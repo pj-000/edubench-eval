@@ -4,7 +4,8 @@ Status: **PASS**
 
 Observed canonical subjects: 25 / 25.
 
-Subject metadata is recovered primarily from `report/results_merge_enriched.jsonl` when available. Text inference is retained only as a fallback.
+Subject metadata is recovered primarily from `report/results_merge_enriched.jsonl` when available.
+Text inference is retained only as a fallback.
 
 ## Observed Subjects
 
@@ -48,6 +49,8 @@ _No rows._
 
 ## Recommendation
 
-Subject-level results can be used as audit metadata only after confirming the local enriched subject annotations. If subject alignment ever falls below 25, subject-level results should be treated as exploratory metadata, not as primary thesis evidence.
+Subject-level results can be used as audit metadata only after confirming the local enriched subject
+annotations. If subject alignment ever falls below 25, subject-level results should be treated as
+exploratory metadata, not as primary thesis evidence.
 
 Unmapped subject mapping rows: 0.

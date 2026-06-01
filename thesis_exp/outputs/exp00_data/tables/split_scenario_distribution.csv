@@ -3,20 +3,20 @@ paper_like_triple_seed42,train,Automatic Grading,503,0.189525
 paper_like_triple_seed42,train,Idea Provision,354,0.133384
 paper_like_triple_seed42,train,Error Correction,334,0.125848
 paper_like_triple_seed42,train,Teaching Material Generation,318,0.119819
-paper_like_triple_seed42,train,Emotional Support,296,0.11153
-paper_like_triple_seed42,train,Question Generation,292,0.110023
+paper_like_triple_seed42,train,Emotional Support,295,0.111153
+paper_like_triple_seed42,train,Question Generation,291,0.109646
 paper_like_triple_seed42,train,Personalized Learning Support,222,0.083647
-paper_like_triple_seed42,train,Personalized Content Creation,178,0.067069
-paper_like_triple_seed42,train,Question Answering,157,0.059156
+paper_like_triple_seed42,train,Personalized Content Creation,179,0.067445
+paper_like_triple_seed42,train,Question Answering,158,0.059533
 paper_like_triple_seed42,dev,Automatic Grading,125,0.188253
 paper_like_triple_seed42,dev,Idea Provision,89,0.134036
 paper_like_triple_seed42,dev,Teaching Material Generation,83,0.125
-paper_like_triple_seed42,dev,Emotional Support,79,0.118976
+paper_like_triple_seed42,dev,Emotional Support,80,0.120482
 paper_like_triple_seed42,dev,Error Correction,75,0.112952
-paper_like_triple_seed42,dev,Question Generation,73,0.10994
+paper_like_triple_seed42,dev,Question Generation,74,0.111446
 paper_like_triple_seed42,dev,Personalized Learning Support,55,0.082831
-paper_like_triple_seed42,dev,Personalized Content Creation,46,0.069277
-paper_like_triple_seed42,dev,Question Answering,39,0.058735
+paper_like_triple_seed42,dev,Personalized Content Creation,45,0.067771
+paper_like_triple_seed42,dev,Question Answering,38,0.057229
 paper_like_triple_seed42,test,Idea Provision,420,0.18936
 paper_like_triple_seed42,test,Teaching Material Generation,369,0.166366
 paper_like_triple_seed42,test,Error Correction,341,0.153742

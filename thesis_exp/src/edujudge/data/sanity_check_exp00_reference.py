@@ -7,9 +7,12 @@ from collections import Counter
 from pathlib import Path
 from typing import Any
 
+import yaml
+
 from thesis_exp.src.edujudge.data.build_dataset import PROCESSED_PATH
 from thesis_exp.src.edujudge.data.normalize_fields import convert_score_to_five, detect_score_scale, round_half_up
 from thesis_exp.src.edujudge.data.reference_contract import (
+    CONTRACT_PATH,
     EXPECTED_GENERATOR_MODELS,
     EXPECTED_LANGUAGES,
     EXPECTED_SCENARIOS,
@@ -20,6 +23,21 @@ from thesis_exp.src.edujudge.data.reference_contract import (
     PDF_TRAIN_POOL_ROWS,
 )
 from thesis_exp.src.edujudge.utils.io import OUTPUT_DIR, SPLITS_DIR, TABLES_DIR, ensure_exp_dirs, read_jsonl, write_csv, write_text
+
+
+EXPECTED_LABEL_DISTRIBUTION = {1: 86, 2: 113, 3: 507, 4: 1903, 5: 2927}
+EXPECTED_SPLIT_COUNTS = {
+    "paper_like_triple_seed42": {"train": 2654, "dev": 664, "test": 2218},
+    "question_seed42": {"train": 3326, "dev": 1107, "test": 1103},
+}
+REQUIRED_CONTRACT_FIELDS = [
+    ("official_edubench", "expected_scenarios"),
+    ("official_edubench", "expected_metrics"),
+    ("pdf_audit_corpus", "expected_total_scored_items"),
+    ("pdf_audit_corpus", "expected_train_pool_rows"),
+    ("pdf_audit_corpus", "expected_heldout_test_rows"),
+    ("score_mapping", "ten_to_five"),
+]
 
 
 def _read_csv(path: Path) -> list[dict[str, str]]:
@@ -57,6 +75,15 @@ def _verify_score(row: dict[str, Any]) -> bool:
     return int(row.get("label_5")) == expected_label
 
 
+def _contract_field_exists(data: dict[str, Any], keys: tuple[str, ...]) -> bool:
+    value: Any = data
+    for key in keys:
+        if not isinstance(value, dict) or key not in value:
+            return False
+        value = value[key]
+    return True
+
+
 def run_checks() -> tuple[str, list[dict[str, Any]]]:
     ensure_exp_dirs()
     rows = read_jsonl(PROCESSED_PATH)
@@ -66,6 +93,13 @@ def run_checks() -> tuple[str, list[dict[str, Any]]]:
         results.append({"check": check, "status": status, "observed": observed, "expected": expected, "notes": notes})
 
     add("processed dataset rows", "PASS" if len(rows) == PDF_AUDIT_TOTAL else "FAIL", len(rows), PDF_AUDIT_TOTAL)
+    label_counts = dict(sorted(Counter(int(row.get("label_5")) for row in rows).items()))
+    add(
+        "label_5 distribution unchanged",
+        "PASS" if label_counts == EXPECTED_LABEL_DISTRIBUTION else "FAIL",
+        label_counts,
+        EXPECTED_LABEL_DISTRIBUTION,
+    )
     labels = sorted({row.get("label_5") for row in rows})
     add("label_5 domain", "PASS" if labels == [1, 2, 3, 4, 5] else "FAIL", labels, [1, 2, 3, 4, 5])
     models = sorted({row.get("generator_model") for row in rows})
@@ -80,6 +114,14 @@ def run_checks() -> tuple[str, list[dict[str, Any]]]:
     add("all rows have scenario_canonical", "PASS" if missing_scenario == 0 else "FAIL", missing_scenario, 0)
     synthetic_rows = sum(1 for row in rows if "sampled_merge_50_new" in str(row.get("source_file")))
     add("synthetic files excluded", "PASS" if synthetic_rows == 0 else "FAIL", synthetic_rows, 0)
+    for split_name, expected_counts in EXPECTED_SPLIT_COUNTS.items():
+        observed_counts = {split: len(_split_rows(split_name, split)) for split in ["train", "dev", "test"]}
+        add(
+            f"{split_name} split counts",
+            "PASS" if observed_counts == expected_counts else "FAIL",
+            observed_counts,
+            expected_counts,
+        )
     train_pool = len(_split_rows("paper_like_triple_seed42", "train")) + len(_split_rows("paper_like_triple_seed42", "dev"))
     test_rows = len(_split_rows("paper_like_triple_seed42", "test"))
     add("paper-like train+dev rows", "PASS" if train_pool == PDF_TRAIN_POOL_ROWS else "FAIL", train_pool, PDF_TRAIN_POOL_ROWS)
@@ -105,6 +147,22 @@ def run_checks() -> tuple[str, list[dict[str, Any]]]:
         0,
         "If non-zero, see tables/leakage_details.csv.",
     )
+    try:
+        contract = yaml.safe_load(CONTRACT_PATH.read_text(encoding="utf-8"))
+    except Exception as exc:  # pragma: no cover - reported in generated sanity table
+        add("reference contract yaml.safe_load", "FAIL", type(exc).__name__, "readable YAML", str(exc))
+        contract = None
+    if isinstance(contract, dict):
+        add("reference contract yaml.safe_load", "PASS", "dict", "readable YAML")
+        missing_contract_fields = [".".join(keys) for keys in REQUIRED_CONTRACT_FIELDS if not _contract_field_exists(contract, keys)]
+        add(
+            "reference contract required fields",
+            "PASS" if not missing_contract_fields else "FAIL",
+            missing_contract_fields,
+            [],
+        )
+    elif contract is not None:
+        add("reference contract yaml.safe_load", "FAIL", type(contract).__name__, "dict")
 
     status_rank = {"PASS": 0, "INFO": 0, "WARNING": 1, "FAIL": 2}
     overall = "PASS"

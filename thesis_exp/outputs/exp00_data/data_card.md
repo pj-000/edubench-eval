@@ -17,11 +17,18 @@
 
 Primary source: `results_merge.jsonl`.
 
-The selected source has merged scored items with three human annotation fields and automatic judge metadata. Synthetic/sample files are excluded from the processed dataset. This is the PDF audit corpus / human-scored subset, not the official full EduBench benchmark.
+The selected source has merged scored items with three human annotation fields and automatic judge
+metadata. Synthetic/sample files are excluded from the processed dataset. This is the PDF audit
+corpus / human-scored subset, not the official full EduBench benchmark.
 
 ## Distinction between official EduBench full data and PDF audit subset
 
-Official EduBench full data is described as 9 scenarios, 4000+ educational contexts, 18821 data points, and 500 sampled queries evaluated by human raters and LLMs. The local thesis dataset here is the 5536-item PDF audit corpus with human and judge scores. Downstream Exp1 evaluator training/testing should use this 5536-row audit corpus as the main human-labeled dataset. Future synthetic augmentation or distillation may use official full data separately, but those rows must not be mixed into the main human-labeled test set.
+Official EduBench full data is described as 9 scenarios, 4000+ educational contexts, 18821 data
+points, and 500 sampled queries evaluated by human raters and LLMs. The local thesis dataset here is
+the 5536-item PDF audit corpus with human and judge scores. Downstream Exp1 evaluator
+training/testing should use this 5536-row audit corpus as the main human-labeled dataset. Future
+synthetic augmentation or distillation may use official full data separately, but those rows must
+not be mixed into the main human-labeled test set.
 
 ## Dataset Statistics
 

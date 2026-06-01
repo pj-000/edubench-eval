@@ -1,6 +1,6 @@
 split_name,split,group_key,split_source,target_rows,num_rows,train_pool_rows,pct_rows,unique_triple_key,unique_question_key,unique_answer_key,metric_count,scenario_count,subject_count,education_level_count,language_count,label_distribution
-paper_like_triple_seed42,train,triple_key,original_heldout_flag_repaired_for_triple_isolation,2654,2654,,0.479408,2634,196,910,12,9,25,6,2,"{""1"": 24, ""2"": 52, ""3"": 251, ""4"": 946, ""5"": 1381}"
-paper_like_triple_seed42,dev,triple_key,original_heldout_flag_repaired_for_triple_isolation,664,664,,0.119942,662,181,479,12,9,25,6,2,"{""1"": 6, ""2"": 14, ""3"": 62, ""4"": 237, ""5"": 345}"
+paper_like_triple_seed42,train,triple_key,original_heldout_flag_repaired_for_triple_isolation,2654,2654,,0.479408,2637,196,906,12,9,25,6,2,"{""1"": 24, ""2"": 52, ""3"": 251, ""4"": 946, ""5"": 1381}"
+paper_like_triple_seed42,dev,triple_key,original_heldout_flag_repaired_for_triple_isolation,664,664,,0.119942,659,184,502,12,9,25,6,2,"{""1"": 6, ""2"": 14, ""3"": 62, ""4"": 237, ""5"": 345}"
 paper_like_triple_seed42,test,triple_key,original_heldout_flag_repaired_for_triple_isolation,2218,2218,3318,0.40065,2127,163,730,12,8,25,6,2,"{""1"": 56, ""2"": 47, ""3"": 194, ""4"": 720, ""5"": 1201}"
 question_seed42,train,question_key,deterministic_reconstructed_question_seed42,3322,3326,,0.600795,3233,118,573,12,9,24,6,2,"{""1"": 58, ""2"": 53, ""3"": 297, ""4"": 1163, ""5"": 1755}"
 question_seed42,dev,question_key,deterministic_reconstructed_question_seed42,1107,1107,,0.199964,1091,40,196,12,9,23,5,2,"{""1"": 19, ""2"": 38, ""3"": 105, ""4"": 389, ""5"": 556}"

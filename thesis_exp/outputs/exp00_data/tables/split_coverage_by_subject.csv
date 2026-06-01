@@ -1,54 +1,54 @@
 split_name,split,subject_canonical,count,pct_within_split
-paper_like_triple_seed42,train,History,175,0.065938
-paper_like_triple_seed42,train,Mathematics,167,0.062924
-paper_like_triple_seed42,train,Physics,164,0.061794
-paper_like_triple_seed42,train,Chemistry,154,0.058026
-paper_like_triple_seed42,train,Basic Medicine,152,0.057272
-paper_like_triple_seed42,train,Literature and Art,145,0.054635
-paper_like_triple_seed42,train,Theoretical Economics,133,0.050113
-paper_like_triple_seed42,train,Aquaculture,131,0.049359
+paper_like_triple_seed42,train,History,173,0.065185
+paper_like_triple_seed42,train,Physics,171,0.064431
+paper_like_triple_seed42,train,Basic Medicine,159,0.05991
+paper_like_triple_seed42,train,Mathematics,158,0.059533
+paper_like_triple_seed42,train,Aquaculture,143,0.053881
+paper_like_triple_seed42,train,Literature and Art,143,0.053881
+paper_like_triple_seed42,train,Chemistry,140,0.052751
 paper_like_triple_seed42,train,Biology,130,0.048983
-paper_like_triple_seed42,train,Business Administration,121,0.045592
-paper_like_triple_seed42,train,Psychology,120,0.045215
-paper_like_triple_seed42,train,Public Administration,113,0.042577
-paper_like_triple_seed42,train,Computer Science,98,0.036925
-paper_like_triple_seed42,train,Chinese,93,0.035041
-paper_like_triple_seed42,train,General Pedagogy,93,0.035041
-paper_like_triple_seed42,train,English,92,0.034665
-paper_like_triple_seed42,train,Crop Science,88,0.033157
-paper_like_triple_seed42,train,Military Science,84,0.03165
-paper_like_triple_seed42,train,Geography,71,0.026752
-paper_like_triple_seed42,train,Physical Education,68,0.025622
-paper_like_triple_seed42,train,Clinical Medicine,68,0.025622
-paper_like_triple_seed42,train,Applied Economics,57,0.021477
+paper_like_triple_seed42,train,Theoretical Economics,130,0.048983
+paper_like_triple_seed42,train,Psychology,124,0.046722
+paper_like_triple_seed42,train,Business Administration,123,0.046345
+paper_like_triple_seed42,train,Public Administration,119,0.044838
+paper_like_triple_seed42,train,Crop Science,98,0.036925
+paper_like_triple_seed42,train,English,95,0.035795
+paper_like_triple_seed42,train,Computer Science,95,0.035795
+paper_like_triple_seed42,train,General Pedagogy,91,0.034288
+paper_like_triple_seed42,train,Military Science,86,0.032404
+paper_like_triple_seed42,train,Chinese,84,0.03165
+paper_like_triple_seed42,train,Geography,72,0.027129
+paper_like_triple_seed42,train,Physical Education,66,0.024868
+paper_like_triple_seed42,train,Clinical Medicine,64,0.024115
+paper_like_triple_seed42,train,Applied Economics,55,0.020723
 paper_like_triple_seed42,train,Law,52,0.019593
-paper_like_triple_seed42,train,Sociology,44,0.016579
-paper_like_triple_seed42,train,Automation,41,0.015448
-paper_like_triple_seed42,dev,Basic Medicine,46,0.069277
-paper_like_triple_seed42,dev,Mathematics,45,0.067771
-paper_like_triple_seed42,dev,Physics,43,0.064759
+paper_like_triple_seed42,train,Automation,47,0.017709
+paper_like_triple_seed42,train,Sociology,36,0.013564
+paper_like_triple_seed42,dev,Mathematics,54,0.081325
+paper_like_triple_seed42,dev,Chemistry,46,0.069277
+paper_like_triple_seed42,dev,History,44,0.066265
 paper_like_triple_seed42,dev,Biology,42,0.063253
-paper_like_triple_seed42,dev,History,42,0.063253
-paper_like_triple_seed42,dev,Aquaculture,39,0.058735
-paper_like_triple_seed42,dev,Literature and Art,37,0.055723
-paper_like_triple_seed42,dev,Chemistry,32,0.048193
-paper_like_triple_seed42,dev,Public Administration,32,0.048193
-paper_like_triple_seed42,dev,Psychology,31,0.046687
-paper_like_triple_seed42,dev,Business Administration,30,0.045181
-paper_like_triple_seed42,dev,Crop Science,29,0.043675
-paper_like_triple_seed42,dev,Theoretical Economics,26,0.039157
-paper_like_triple_seed42,dev,Military Science,25,0.037651
-paper_like_triple_seed42,dev,Computer Science,24,0.036145
-paper_like_triple_seed42,dev,Geography,22,0.033133
-paper_like_triple_seed42,dev,English,19,0.028614
-paper_like_triple_seed42,dev,Automation,14,0.021084
-paper_like_triple_seed42,dev,General Pedagogy,14,0.021084
+paper_like_triple_seed42,dev,Basic Medicine,39,0.058735
+paper_like_triple_seed42,dev,Literature and Art,39,0.058735
+paper_like_triple_seed42,dev,Physics,36,0.054217
+paper_like_triple_seed42,dev,Theoretical Economics,29,0.043675
+paper_like_triple_seed42,dev,Business Administration,28,0.042169
+paper_like_triple_seed42,dev,Aquaculture,27,0.040663
+paper_like_triple_seed42,dev,Computer Science,27,0.040663
+paper_like_triple_seed42,dev,Psychology,27,0.040663
+paper_like_triple_seed42,dev,Public Administration,26,0.039157
+paper_like_triple_seed42,dev,Chinese,23,0.034639
+paper_like_triple_seed42,dev,Military Science,23,0.034639
+paper_like_triple_seed42,dev,Geography,21,0.031627
+paper_like_triple_seed42,dev,Crop Science,19,0.028614
+paper_like_triple_seed42,dev,Sociology,17,0.025602
+paper_like_triple_seed42,dev,Clinical Medicine,17,0.025602
+paper_like_triple_seed42,dev,English,16,0.024096
+paper_like_triple_seed42,dev,General Pedagogy,16,0.024096
 paper_like_triple_seed42,dev,Law,14,0.021084
-paper_like_triple_seed42,dev,Chinese,14,0.021084
-paper_like_triple_seed42,dev,Clinical Medicine,13,0.019578
-paper_like_triple_seed42,dev,Applied Economics,11,0.016566
-paper_like_triple_seed42,dev,Physical Education,11,0.016566
-paper_like_triple_seed42,dev,Sociology,9,0.013554
+paper_like_triple_seed42,dev,Applied Economics,13,0.019578
+paper_like_triple_seed42,dev,Physical Education,13,0.019578
+paper_like_triple_seed42,dev,Automation,8,0.012048
 paper_like_triple_seed42,test,History,151,0.068079
 paper_like_triple_seed42,test,Physics,146,0.065825
 paper_like_triple_seed42,test,Public Administration,130,0.058611

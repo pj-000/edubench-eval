@@ -2,7 +2,16 @@
 
 from __future__ import annotations
 
-from thesis_exp.src.edujudge.data import audit_official_sources, build_dataset, inventory_sources, leakage_check, make_splits, profile_schema, sanity_check_exp00_reference
+from thesis_exp.src.edujudge.data import (
+    audit_official_sources,
+    build_dataset,
+    format_check_exp00_outputs,
+    inventory_sources,
+    leakage_check,
+    make_splits,
+    profile_schema,
+    sanity_check_exp00_reference,
+)
 from thesis_exp.src.edujudge.plots import plot_distributions
 from thesis_exp.src.edujudge.utils.io import ensure_exp_dirs
 
@@ -18,6 +27,7 @@ def main() -> None:
         ("leakage_check", leakage_check.main),
         ("sanity_check_exp00_reference", sanity_check_exp00_reference.main),
         ("plot_distributions", plot_distributions.main),
+        ("format_check_exp00_outputs", format_check_exp00_outputs.main),
     ]
     for name, func in steps:
         print(f"\n=== Running {name} ===")

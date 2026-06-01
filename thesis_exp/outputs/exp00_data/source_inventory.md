@@ -1,6 +1,7 @@
 # Source Inventory
 
-This inventory scans source-like files in the repository while excluding generated `thesis_exp` outputs.
+This inventory scans source-like files in the repository while excluding generated `thesis_exp`
+outputs.
 
 ## Role Counts
 
@@ -30,10 +31,10 @@ This inventory scans source-like files in the repository while excluding generat
 | human_1.jsonl | jsonl | True | 3366 | human_annotation | ["model", "principle", "question", "reason", "response", "score"] |
 | human_2.jsonl | jsonl | True | 3366 | human_annotation | ["model", "principle", "question", "reason", "response", "score"] |
 | human_3.jsonl | jsonl | True | 3366 | human_annotation | ["model", "principle", "question", "reason", "response", "score"] |
-| merge_human_metric.jsonl | jsonl | True | 7549 | merged_human_metric | ["eval", "model", "principle", "question", "reason", "response", "score", "score_mean"] |
-| merge_human_metric_strict_en.jsonl | jsonl | True | 2202 | merged_human_metric | ["eval", "model", "principle", "question", "reason", "response", "score"] |
-| merge_human_metric_strict_zh.jsonl | jsonl | True | 2585 | merged_human_metric | ["eval", "model", "principle", "question", "reason", "response", "score"] |
-| merge_model_metric.jsonl | jsonl | True | 6661 | llm_judge_output | ["eval", "model", "principle", "question", "reason", "response", "score", "score_mean"] |
+| merge_human_metric.jsonl | jsonl | True | 7549 | merged_human_metric | ["eval", "model", "principle", "question", "reason", "response", "sco... |
+| merge_human_metric_strict_en.jsonl | jsonl | True | 2202 | merged_human_metric | ["eval", "model", "principle", "question", "reason", "response", "sco... |
+| merge_human_metric_strict_zh.jsonl | jsonl | True | 2585 | merged_human_metric | ["eval", "model", "principle", "question", "reason", "response", "sco... |
+| merge_model_metric.jsonl | jsonl | True | 6661 | llm_judge_output | ["eval", "model", "principle", "question", "reason", "response", "sco... |
 | metrics_map.json | json | True | 9 | script_or_config | ["__key__", "__value__"] |
 | results_merge.jsonl | jsonl | True | 5536 | merged_human_metric | ["answer", "evaluate", "levels", "metric", "model", "question", "task"] |
 | sampled_merge_50_new.json | json | True | 6000 | synthetic_or_augmented | ["input", "instruction", "output"] |
@@ -53,13 +54,13 @@ This inventory scans source-like files in the repository while excluding generat
 | 5-grades/5_human_1.jsonl | jsonl | True | 3366 | human_annotation | ["model", "principle", "question", "reason", "response", "score"] |
 | 5-grades/5_human_2.jsonl | jsonl | True | 3366 | human_annotation | ["model", "principle", "question", "reason", "response", "score"] |
 | 5-grades/5_human_3.jsonl | jsonl | True | 3366 | human_annotation | ["model", "principle", "question", "reason", "response", "score"] |
-| 5-grades/5_merge_human_metric_en.jsonl | jsonl | True | 4031 | merged_human_metric | ["eval", "model", "principle", "question", "reason", "response", "score"] |
-| 5-grades/5_merge_human_metric_zh.jsonl | jsonl | True | 4007 | merged_human_metric | ["eval", "model", "principle", "question", "reason", "response", "score"] |
+| 5-grades/5_merge_human_metric_en.jsonl | jsonl | True | 4031 | merged_human_metric | ["eval", "model", "principle", "question", "reason", "response", "sco... |
+| 5-grades/5_merge_human_metric_zh.jsonl | jsonl | True | 4007 | merged_human_metric | ["eval", "model", "principle", "question", "reason", "response", "sco... |
 | 5-grades/5_metrics_en.json | json | True | 12 | unknown | ["__key__", "description", "rules"] |
 | 5-grades/5_metrics_zh.json | json | True | 12 | unknown | ["__key__", "description", "rules"] |
 | 5-grades/Untitled-1.json | json | True | 3 | unknown | [] |
 | 5-grades/example.jsonl | jsonl | True | 0 | unknown | [] |
-| 5-grades/example_zh.jsonl | jsonl | True | 75 | unknown | ["eval", "model", "principle", "question", "reason", "response", "score"] |
+| 5-grades/example_zh.jsonl | jsonl | True | 75 | unknown | ["eval", "model", "principle", "question", "reason", "response", "sco... |
 | 5-grades/extract_example.py | py | True |  | script_or_config | [] |
 | 5-grades/get_example.py | py | True |  | script_or_config | [] |
 | 5-grades/judge_v3_questions_zh.jsonl | jsonl | True | 267 | llm_judge_output | [] |
@@ -97,70 +98,70 @@ This inventory scans source-like files in the repository while excluding generat
 | categories/analyse1.py | py | True |  | script_or_config | [] |
 | categories/analyse2.py | py | True |  | script_or_config | [] |
 | categories/analyse3.py | py | True |  | script_or_config | [] |
-| categories/category.json | json | True | 18 | unknown | ["'临床医学", "'体育教育学", "'作物科学", "'公共管理学", "'军事学", "'初中", "'化学", "'博士", "'历史", "'历史学", "'商业管理学", "'地理", "'基础医学", "'大学", "'小学", "'应用经济学", "'心理学", "'数学", "'文学与艺术", "'普通教育学", "'水产养殖", ... |
+| categories/category.json | json | True | 18 | unknown | ["'临床医学", "'体育教育学", "'作物科学", "'公共管理学", "'军事学", "'初中", "'化学", "'博士", "... |
 | categories/category_merge.json | json | True | 16 | unknown | ["'higher education", "'k12 level", "__key__"] |
 | categories/category_merge_1.json | json | True | 4 | unknown | ["__key__", "higher education", "k12 level"] |
 | categories/category_merge_2.json | json | True | 14 | unknown | ["'higher education", "'k12 level", "__key__"] |
-| categories/category_no_design.json | json | True | 16 | unknown | ["'临床医学", "'体育教育学", "'作物科学", "'公共管理学", "'军事学", "'化学", "'历史", "'历史学", "'商业管理学", "'地理", "'基础医学", "'应用经济学", "'心理学", "'数学", "'文学与艺术", "'普通教育学", "'水产养殖", "'法学", "'物理", "'物理学", "'理论经济... |
+| categories/category_no_design.json | json | True | 16 | unknown | ["'临床医学", "'体育教育学", "'作物科学", "'公共管理学", "'军事学", "'化学", "'历史", "'历史学", ... |
 | categories/category_reorganized.json | json | True | 14 | unknown | ["__key__", "初中", "博士", "大学", "小学", "硕士", "高中"] |
 | correlation-testset/analysis_edubench.py | py | True |  | script_or_config | [] |
-| correlation-testset/corr_res_kendall_split_and_fill/EduBenchEvaluator_EduBenchEvaluator.json | json | True | 14 | llm_judge_output | ["__key__", "__value__"] |
-| correlation-testset/corr_res_kendall_split_and_fill/EduBenchEvaluator_deepseek-r1.json | json | True | 14 | llm_judge_output | ["__key__", "__value__"] |
-| correlation-testset/corr_res_kendall_split_and_fill/EduBenchEvaluator_deepseek-v3.json | json | True | 14 | llm_judge_output | ["__key__", "__value__"] |
-| correlation-testset/corr_res_kendall_split_and_fill/EduBenchEvaluator_gpt-4o.json | json | True | 14 | llm_judge_output | ["__key__", "__value__"] |
-| correlation-testset/corr_res_kendall_split_and_fill/EduBenchEvaluator_human_1.json | json | True | 14 | llm_judge_output | ["__key__", "__value__"] |
-| correlation-testset/corr_res_kendall_split_and_fill/EduBenchEvaluator_human_2.json | json | True | 14 | llm_judge_output | ["__key__", "__value__"] |
-| correlation-testset/corr_res_kendall_split_and_fill/EduBenchEvaluator_human_3.json | json | True | 14 | llm_judge_output | ["__key__", "__value__"] |
-| correlation-testset/corr_res_kendall_split_and_fill/EduBenchEvaluator_human_mean.json | json | True | 14 | llm_judge_output | ["__key__", "__value__"] |
-| correlation-testset/corr_res_kendall_split_and_fill/EduBenchEvaluator_qwq-plus.json | json | True | 14 | llm_judge_output | ["__key__", "__value__"] |
-| correlation-testset/corr_res_kendall_split_and_fill/deepseek-r1_EduBenchEvaluator.json | json | True | 14 | llm_judge_output | ["__key__", "__value__"] |
-| correlation-testset/corr_res_kendall_split_and_fill/deepseek-r1_deepseek-r1.json | json | True | 14 | unknown | ["__key__", "__value__"] |
-| correlation-testset/corr_res_kendall_split_and_fill/deepseek-r1_deepseek-v3.json | json | True | 14 | unknown | ["__key__", "__value__"] |
-| correlation-testset/corr_res_kendall_split_and_fill/deepseek-r1_gpt-4o.json | json | True | 14 | unknown | ["__key__", "__value__"] |
-| correlation-testset/corr_res_kendall_split_and_fill/deepseek-r1_human_1.json | json | True | 14 | unknown | ["__key__", "__value__"] |
-| correlation-testset/corr_res_kendall_split_and_fill/deepseek-r1_human_2.json | json | True | 14 | unknown | ["__key__", "__value__"] |
-| correlation-testset/corr_res_kendall_split_and_fill/deepseek-r1_human_3.json | json | True | 14 | unknown | ["__key__", "__value__"] |
-| correlation-testset/corr_res_kendall_split_and_fill/deepseek-r1_human_mean.json | json | True | 14 | unknown | ["__key__", "__value__"] |
-| correlation-testset/corr_res_kendall_split_and_fill/deepseek-r1_qwq-plus.json | json | True | 14 | unknown | ["__key__", "__value__"] |
-| correlation-testset/corr_res_kendall_split_and_fill/deepseek-v3_EduBenchEvaluator.json | json | True | 14 | llm_judge_output | ["__key__", "__value__"] |
-| correlation-testset/corr_res_kendall_split_and_fill/deepseek-v3_deepseek-r1.json | json | True | 14 | unknown | ["__key__", "__value__"] |
-| correlation-testset/corr_res_kendall_split_and_fill/deepseek-v3_deepseek-v3.json | json | True | 14 | unknown | ["__key__", "__value__"] |
-| correlation-testset/corr_res_kendall_split_and_fill/deepseek-v3_gpt-4o.json | json | True | 14 | unknown | ["__key__", "__value__"] |
-| correlation-testset/corr_res_kendall_split_and_fill/deepseek-v3_human_1.json | json | True | 14 | unknown | ["__key__", "__value__"] |
-| correlation-testset/corr_res_kendall_split_and_fill/deepseek-v3_human_2.json | json | True | 14 | unknown | ["__key__", "__value__"] |
-| correlation-testset/corr_res_kendall_split_and_fill/deepseek-v3_human_3.json | json | True | 14 | unknown | ["__key__", "__value__"] |
-| correlation-testset/corr_res_kendall_split_and_fill/deepseek-v3_human_mean.json | json | True | 14 | unknown | ["__key__", "__value__"] |
-| correlation-testset/corr_res_kendall_split_and_fill/deepseek-v3_qwq-plus.json | json | True | 14 | unknown | ["__key__", "__value__"] |
-| correlation-testset/corr_res_kendall_split_and_fill/gpt-4o_EduBenchEvaluator.json | json | True | 14 | llm_judge_output | ["__key__", "__value__"] |
-| correlation-testset/corr_res_kendall_split_and_fill/gpt-4o_deepseek-r1.json | json | True | 14 | unknown | ["__key__", "__value__"] |
-| correlation-testset/corr_res_kendall_split_and_fill/gpt-4o_deepseek-v3.json | json | True | 14 | unknown | ["__key__", "__value__"] |
+| correlation-testset/corr_res_kendall_split_and_fill/EduBenchEvaluator... | json | True | 14 | llm_judge_output | ["__key__", "__value__"] |
+| correlation-testset/corr_res_kendall_split_and_fill/EduBenchEvaluator... | json | True | 14 | llm_judge_output | ["__key__", "__value__"] |
+| correlation-testset/corr_res_kendall_split_and_fill/EduBenchEvaluator... | json | True | 14 | llm_judge_output | ["__key__", "__value__"] |
+| correlation-testset/corr_res_kendall_split_and_fill/EduBenchEvaluator... | json | True | 14 | llm_judge_output | ["__key__", "__value__"] |
+| correlation-testset/corr_res_kendall_split_and_fill/EduBenchEvaluator... | json | True | 14 | llm_judge_output | ["__key__", "__value__"] |
+| correlation-testset/corr_res_kendall_split_and_fill/EduBenchEvaluator... | json | True | 14 | llm_judge_output | ["__key__", "__value__"] |
+| correlation-testset/corr_res_kendall_split_and_fill/EduBenchEvaluator... | json | True | 14 | llm_judge_output | ["__key__", "__value__"] |
+| correlation-testset/corr_res_kendall_split_and_fill/EduBenchEvaluator... | json | True | 14 | llm_judge_output | ["__key__", "__value__"] |
+| correlation-testset/corr_res_kendall_split_and_fill/EduBenchEvaluator... | json | True | 14 | llm_judge_output | ["__key__", "__value__"] |
+| correlation-testset/corr_res_kendall_split_and_fill/deepseek-r1_EduBe... | json | True | 14 | llm_judge_output | ["__key__", "__value__"] |
+| correlation-testset/corr_res_kendall_split_and_fill/deepseek-r1_deeps... | json | True | 14 | unknown | ["__key__", "__value__"] |
+| correlation-testset/corr_res_kendall_split_and_fill/deepseek-r1_deeps... | json | True | 14 | unknown | ["__key__", "__value__"] |
+| correlation-testset/corr_res_kendall_split_and_fill/deepseek-r1_gpt-4... | json | True | 14 | unknown | ["__key__", "__value__"] |
+| correlation-testset/corr_res_kendall_split_and_fill/deepseek-r1_human... | json | True | 14 | unknown | ["__key__", "__value__"] |
+| correlation-testset/corr_res_kendall_split_and_fill/deepseek-r1_human... | json | True | 14 | unknown | ["__key__", "__value__"] |
+| correlation-testset/corr_res_kendall_split_and_fill/deepseek-r1_human... | json | True | 14 | unknown | ["__key__", "__value__"] |
+| correlation-testset/corr_res_kendall_split_and_fill/deepseek-r1_human... | json | True | 14 | unknown | ["__key__", "__value__"] |
+| correlation-testset/corr_res_kendall_split_and_fill/deepseek-r1_qwq-p... | json | True | 14 | unknown | ["__key__", "__value__"] |
+| correlation-testset/corr_res_kendall_split_and_fill/deepseek-v3_EduBe... | json | True | 14 | llm_judge_output | ["__key__", "__value__"] |
+| correlation-testset/corr_res_kendall_split_and_fill/deepseek-v3_deeps... | json | True | 14 | unknown | ["__key__", "__value__"] |
+| correlation-testset/corr_res_kendall_split_and_fill/deepseek-v3_deeps... | json | True | 14 | unknown | ["__key__", "__value__"] |
+| correlation-testset/corr_res_kendall_split_and_fill/deepseek-v3_gpt-4... | json | True | 14 | unknown | ["__key__", "__value__"] |
+| correlation-testset/corr_res_kendall_split_and_fill/deepseek-v3_human... | json | True | 14 | unknown | ["__key__", "__value__"] |
+| correlation-testset/corr_res_kendall_split_and_fill/deepseek-v3_human... | json | True | 14 | unknown | ["__key__", "__value__"] |
+| correlation-testset/corr_res_kendall_split_and_fill/deepseek-v3_human... | json | True | 14 | unknown | ["__key__", "__value__"] |
+| correlation-testset/corr_res_kendall_split_and_fill/deepseek-v3_human... | json | True | 14 | unknown | ["__key__", "__value__"] |
+| correlation-testset/corr_res_kendall_split_and_fill/deepseek-v3_qwq-p... | json | True | 14 | unknown | ["__key__", "__value__"] |
+| correlation-testset/corr_res_kendall_split_and_fill/gpt-4o_EduBenchEv... | json | True | 14 | llm_judge_output | ["__key__", "__value__"] |
+| correlation-testset/corr_res_kendall_split_and_fill/gpt-4o_deepseek-r... | json | True | 14 | unknown | ["__key__", "__value__"] |
+| correlation-testset/corr_res_kendall_split_and_fill/gpt-4o_deepseek-v... | json | True | 14 | unknown | ["__key__", "__value__"] |
 | correlation-testset/corr_res_kendall_split_and_fill/gpt-4o_gpt-4o.json | json | True | 14 | unknown | ["__key__", "__value__"] |
 | correlation-testset/corr_res_kendall_split_and_fill/gpt-4o_human_1.json | json | True | 14 | unknown | ["__key__", "__value__"] |
 | correlation-testset/corr_res_kendall_split_and_fill/gpt-4o_human_2.json | json | True | 14 | unknown | ["__key__", "__value__"] |
 | correlation-testset/corr_res_kendall_split_and_fill/gpt-4o_human_3.json | json | True | 14 | unknown | ["__key__", "__value__"] |
-| correlation-testset/corr_res_kendall_split_and_fill/gpt-4o_human_mean.json | json | True | 14 | unknown | ["__key__", "__value__"] |
+| correlation-testset/corr_res_kendall_split_and_fill/gpt-4o_human_mean... | json | True | 14 | unknown | ["__key__", "__value__"] |
 | correlation-testset/corr_res_kendall_split_and_fill/gpt-4o_qwq-plus.json | json | True | 14 | unknown | ["__key__", "__value__"] |
-| correlation-testset/corr_res_kendall_split_and_fill/human_1_EduBenchEvaluator.json | json | True | 14 | llm_judge_output | ["__key__", "__value__"] |
-| correlation-testset/corr_res_kendall_split_and_fill/human_1_deepseek-r1.json | json | True | 14 | unknown | ["__key__", "__value__"] |
-| correlation-testset/corr_res_kendall_split_and_fill/human_1_deepseek-v3.json | json | True | 14 | unknown | ["__key__", "__value__"] |
+| correlation-testset/corr_res_kendall_split_and_fill/human_1_EduBenchE... | json | True | 14 | llm_judge_output | ["__key__", "__value__"] |
+| correlation-testset/corr_res_kendall_split_and_fill/human_1_deepseek-... | json | True | 14 | unknown | ["__key__", "__value__"] |
+| correlation-testset/corr_res_kendall_split_and_fill/human_1_deepseek-... | json | True | 14 | unknown | ["__key__", "__value__"] |
 | correlation-testset/corr_res_kendall_split_and_fill/human_1_gpt-4o.json | json | True | 14 | unknown | ["__key__", "__value__"] |
 | correlation-testset/corr_res_kendall_split_and_fill/human_1_human_1.json | json | True | 14 | unknown | ["__key__", "__value__"] |
 | correlation-testset/corr_res_kendall_split_and_fill/human_1_human_2.json | json | True | 14 | unknown | ["__key__", "__value__"] |
 | correlation-testset/corr_res_kendall_split_and_fill/human_1_human_3.json | json | True | 14 | unknown | ["__key__", "__value__"] |
-| correlation-testset/corr_res_kendall_split_and_fill/human_1_human_mean.json | json | True | 14 | unknown | ["__key__", "__value__"] |
-| correlation-testset/corr_res_kendall_split_and_fill/human_1_qwq-plus.json | json | True | 14 | unknown | ["__key__", "__value__"] |
-| correlation-testset/corr_res_kendall_split_and_fill/human_2_EduBenchEvaluator.json | json | True | 14 | llm_judge_output | ["__key__", "__value__"] |
-| correlation-testset/corr_res_kendall_split_and_fill/human_2_deepseek-r1.json | json | True | 14 | unknown | ["__key__", "__value__"] |
-| correlation-testset/corr_res_kendall_split_and_fill/human_2_deepseek-v3.json | json | True | 14 | unknown | ["__key__", "__value__"] |
+| correlation-testset/corr_res_kendall_split_and_fill/human_1_human_mea... | json | True | 14 | unknown | ["__key__", "__value__"] |
+| correlation-testset/corr_res_kendall_split_and_fill/human_1_qwq-plus.... | json | True | 14 | unknown | ["__key__", "__value__"] |
+| correlation-testset/corr_res_kendall_split_and_fill/human_2_EduBenchE... | json | True | 14 | llm_judge_output | ["__key__", "__value__"] |
+| correlation-testset/corr_res_kendall_split_and_fill/human_2_deepseek-... | json | True | 14 | unknown | ["__key__", "__value__"] |
+| correlation-testset/corr_res_kendall_split_and_fill/human_2_deepseek-... | json | True | 14 | unknown | ["__key__", "__value__"] |
 | correlation-testset/corr_res_kendall_split_and_fill/human_2_gpt-4o.json | json | True | 14 | unknown | ["__key__", "__value__"] |
 | correlation-testset/corr_res_kendall_split_and_fill/human_2_human_1.json | json | True | 14 | unknown | ["__key__", "__value__"] |
 | correlation-testset/corr_res_kendall_split_and_fill/human_2_human_2.json | json | True | 14 | unknown | ["__key__", "__value__"] |
 | correlation-testset/corr_res_kendall_split_and_fill/human_2_human_3.json | json | True | 14 | unknown | ["__key__", "__value__"] |
-| correlation-testset/corr_res_kendall_split_and_fill/human_2_human_mean.json | json | True | 14 | unknown | ["__key__", "__value__"] |
-| correlation-testset/corr_res_kendall_split_and_fill/human_2_qwq-plus.json | json | True | 14 | unknown | ["__key__", "__value__"] |
-| correlation-testset/corr_res_kendall_split_and_fill/human_3_EduBenchEvaluator.json | json | True | 14 | llm_judge_output | ["__key__", "__value__"] |
-| correlation-testset/corr_res_kendall_split_and_fill/human_3_deepseek-r1.json | json | True | 14 | unknown | ["__key__", "__value__"] |
-| correlation-testset/corr_res_kendall_split_and_fill/human_3_deepseek-v3.json | json | True | 14 | unknown | ["__key__", "__value__"] |
+| correlation-testset/corr_res_kendall_split_and_fill/human_2_human_mea... | json | True | 14 | unknown | ["__key__", "__value__"] |
+| correlation-testset/corr_res_kendall_split_and_fill/human_2_qwq-plus.... | json | True | 14 | unknown | ["__key__", "__value__"] |
+| correlation-testset/corr_res_kendall_split_and_fill/human_3_EduBenchE... | json | True | 14 | llm_judge_output | ["__key__", "__value__"] |
+| correlation-testset/corr_res_kendall_split_and_fill/human_3_deepseek-... | json | True | 14 | unknown | ["__key__", "__value__"] |
+| correlation-testset/corr_res_kendall_split_and_fill/human_3_deepseek-... | json | True | 14 | unknown | ["__key__", "__value__"] |
 | correlation-testset/corr_res_kendall_split_and_fill/human_3_gpt-4o.json | json | True | 14 | unknown | ["__key__", "__value__"] |
 | correlation-testset/corr_res_kendall_split_and_fill/human_3_human_1.json | json | True | 14 | unknown | ["__key__", "__value__"] |
 

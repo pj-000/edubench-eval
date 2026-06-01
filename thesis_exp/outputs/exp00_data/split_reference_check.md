@@ -16,4 +16,6 @@ This split uses the local original held-out flag from report/results_merge_enric
 | test education level count | 6 |
 | test language count | 2 |
 
-PDF reference: train_pool = 3318, held-out test = 2218, split unit = question-answer-metric triple. The held-out test reported in the PDF spans 8 scenarios and complete coverage of subjects, education levels, and dimensions.
+PDF reference: train_pool = 3318, held-out test = 2218, split unit = question-answer-metric triple.
+The held-out test reported in the PDF spans 8 scenarios and complete coverage of subjects, education
+levels, and dimensions.

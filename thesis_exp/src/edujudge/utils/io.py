@@ -7,6 +7,8 @@ from __future__ import annotations
 
 import csv
 import json
+import re
+import textwrap
 import zipfile
 from pathlib import Path
 from typing import Any, Iterable, Iterator
@@ -21,6 +23,8 @@ FIGURES_DIR = OUTPUT_DIR / "figures"
 PROCESSED_DIR = THESIS_DIR / "data" / "processed"
 SPLITS_DIR = THESIS_DIR / "data" / "splits"
 CACHE_DIR = THESIS_DIR / ".cache"
+MARKDOWN_WRAP_WIDTH = 100
+MARKDOWN_TABLE_CELL_WIDTH = 72
 
 
 def ensure_exp_dirs() -> None:
@@ -107,9 +111,42 @@ def read_jsonl(path: Path | str) -> list[dict[str, Any]]:
     return out
 
 
+def _is_markdown_passthrough(line: str) -> bool:
+    stripped = line.strip()
+    if not stripped:
+        return True
+    if stripped.startswith("|"):
+        return True
+    if stripped.startswith(("#", "-", "*", ">", "```")):
+        return True
+    if re.match(r"^\d+\.\s", stripped):
+        return True
+    return False
+
+
+def format_markdown_text(text: str) -> str:
+    """Keep generated Markdown readable in raw GitHub views."""
+    out: list[str] = []
+    in_code = False
+    for raw_line in text.splitlines():
+        line = raw_line.rstrip()
+        stripped = line.strip()
+        if stripped.startswith("```"):
+            in_code = not in_code
+            out.append(line)
+            continue
+        if in_code or _is_markdown_passthrough(line):
+            out.append(line)
+            continue
+        out.extend(textwrap.wrap(line, width=MARKDOWN_WRAP_WIDTH, break_long_words=False, break_on_hyphens=False) or [""])
+    return "\n".join(out)
+
+
 def write_text(path: Path | str, text: str) -> None:
     path = Path(path)
     path.parent.mkdir(parents=True, exist_ok=True)
+    if path.suffix.lower() == ".md":
+        text = format_markdown_text(text)
     path.write_text(text.rstrip() + "\n", encoding="utf-8")
 
 
@@ -192,8 +229,8 @@ def md_table(rows: list[dict[str, Any]], fieldnames: list[str], max_rows: int = 
         cells = []
         for key in fieldnames:
             cell = to_csv_cell(row.get(key, "")).replace("\n", "<br>")
-            if len(cell) > 180:
-                cell = cell[:177] + "..."
+            if len(cell) > MARKDOWN_TABLE_CELL_WIDTH:
+                cell = cell[: MARKDOWN_TABLE_CELL_WIDTH - 3] + "..."
             cells.append(cell.replace("|", "\\|"))
         body.append("| " + " | ".join(cells) + " |")
     suffix = ""

@@ -1,6 +1,7 @@
 # Official Source Audit
 
-This audit checks local files, `EduBench.zip`, and a read-only clone of the official EduBench GitHub repository when network access is available.
+This audit checks local files, `EduBench.zip`, and a read-only clone of the official EduBench GitHub
+repository when network access is available.
 
 ## Summary
 
@@ -43,4 +44,6 @@ This audit checks local files, `EduBench.zip`, and a read-only clone of the offi
 
 ## Local Source Status
 
-`results_merge.jsonl` is treated as `local_derived_from_edubench_not_official_filename`. It is not labeled as official full EduBench raw data unless an official repository file with the same role/name is found.
+`results_merge.jsonl` is treated as `local_derived_from_edubench_not_official_filename`. It is not
+labeled as official full EduBench raw data unless an official repository file with the same
+role/name is found.

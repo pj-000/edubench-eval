@@ -2,7 +2,9 @@
 
 ## 1. Purpose
 
-Exp 0.1 hardens the existing Exp 0 artifacts against three source-of-truth layers: the local PDF audit corpus, official EduBench paper definitions, and the official EduBench GitHub repository. It does not train models, call APIs, or use GPU.
+Exp 0.1 hardens the existing Exp 0 artifacts against three source-of-truth layers: the local PDF
+audit corpus, official EduBench paper definitions, and the official EduBench GitHub repository. It
+does not train models, call APIs, or use GPU.
 
 ## 2. Source-of-truth hierarchy
 
@@ -12,7 +14,11 @@ Exp 0.1 hardens the existing Exp 0 artifacts against three source-of-truth layer
 
 ## 3. Official EduBench full data vs PDF audit subset
 
-Official EduBench full data is not the same artifact as the local 5536-row audit corpus. The local dataset is named `edubench_audit_human_scored_subset`; it is a local derived merged human-scored subset from `results_merge.jsonl`, not the full official EduBench dataset. Downstream Exp1 evaluator training/testing should use this audit corpus. Synthetic augmentation or full official EduBench data can be used in later experiments only if kept out of the main human-labeled test set.
+Official EduBench full data is not the same artifact as the local 5536-row audit corpus. The local
+dataset is named `edubench_audit_human_scored_subset`; it is a local derived merged human-scored
+subset from `results_merge.jsonl`, not the full official EduBench dataset. Downstream Exp1 evaluator
+training/testing should use this audit corpus. Synthetic augmentation or full official EduBench data
+can be used in later experiments only if kept out of the main human-labeled test set.
 
 ## 4. Source Inventory Summary
 
@@ -28,7 +34,12 @@ Official EduBench full data is not the same artifact as the local 5536-row audit
 
 ## 5. Local source selection
 
-`results_merge.jsonl` is used as the primary local source because each row already represents a scored item and contains `question`, `answer`, `metric`, `task`, generator `model`, plus `evaluate.human_1`, `evaluate.human_2`, and `evaluate.human_3`. `report/results_merge_enriched.jsonl` is used only to recover local enriched audit metadata such as subject, education level, language, and original held-out flag. Synthetic sampled files are excluded.
+`results_merge.jsonl` is used as the primary local source because each row already represents a
+scored item and contains `question`, `answer`, `metric`, `task`, generator `model`, plus
+`evaluate.human_1`, `evaluate.human_2`, and `evaluate.human_3`.
+`report/results_merge_enriched.jsonl` is used only to recover local enriched audit metadata such as
+subject, education level, language, and original held-out flag. Synthetic sampled files are
+excluded.
 
 ## 6. Official source inventory
 
@@ -60,7 +71,8 @@ Official EduBench full data is not the same artifact as the local 5536-row audit
 
 ## 7. Metric/scenario alignment
 
-Canonical metric count: 12/12; canonical scenario count: 9/9. Mapping tables are written to `tables/metric_mapping.csv` and `tables/scenario_mapping.csv`.
+Canonical metric count: 12/12; canonical scenario count: 9/9. Mapping tables are written to
+`tables/metric_mapping.csv` and `tables/scenario_mapping.csv`.
 
 | field | value |
 | --- | --- |
@@ -71,11 +83,17 @@ Canonical metric count: 12/12; canonical scenario count: 9/9. Mapping tables are
 
 ## 8. Subject alignment status
 
-Canonical subject count: 25/25. Subject metadata is recovered from the local enriched audit file when available. Subject-level analysis can be used as primary thesis evidence only after confirming this local enriched subject annotation; otherwise treat it as audit metadata.
+Canonical subject count: 25/25. Subject metadata is recovered from the local enriched audit file
+when available. Subject-level analysis can be used as primary thesis evidence only after confirming
+this local enriched subject annotation; otherwise treat it as audit metadata.
 
 ## 9. Score scale audit
 
-Raw human scores in the main dataset are detected as: {'1-5': 5536}. Because the current `results_merge.jsonl` human scores are already on a 1-5 scale, `human_1_5`/`human_2_5`/`human_3_5` equal the raw values and `label_5` is `round(human_mean_5)` clipped to 1-5. The 1-10 mapping compatible with `5-grades.py` is still implemented for any future 1-10 source: 1-2->1, 3-4->2, 5-6->3, 7-8->4, 9-10->5.
+Raw human scores in the main dataset are detected as: {'1-5': 5536}. Because the current
+`results_merge.jsonl` human scores are already on a 1-5 scale, `human_1_5`/`human_2_5`/`human_3_5`
+equal the raw values and `label_5` is `round(human_mean_5)` clipped to 1-5. The 1-10 mapping
+compatible with `5-grades.py` is still implemented for any future 1-10 source: 1-2->1, 3-4->2,
+5-6->3, 7-8->4, 9-10->5.
 
 ## 10. Main dataset statistics
 
@@ -119,7 +137,8 @@ Raw human scores in the main dataset are detected as: {'1-5': 5536}. Because the
 
 ## 12. Leakage check
 
-Leakage status: **WARNING**. See `leakage_report.md`, `tables/leakage_summary.csv`, and `tables/leakage_details.csv` for the exact checks.
+Leakage status: **WARNING**. See `leakage_report.md`, `tables/leakage_summary.csv`, and
+`tables/leakage_details.csv` for the exact checks.
 
 ## 13. Low-score distribution
 
