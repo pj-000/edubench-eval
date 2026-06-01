@@ -1,0 +1,37 @@
+raw_scenario,canonical_scenario,scenario_abbr,student_or_teacher_oriented,source_file,confidence,notes
+personalized_content_creation,Personalized Content Creation,PCC,Teacher-Oriented,results_merge.jsonl,high,matched official scenario alias
+personalized_learning_support,Personalized Learning Support,PLS,Student-Oriented,results_merge.jsonl,high,matched official scenario alias
+error_correction,Error Correction,EC,Student-Oriented,results_merge.jsonl,high,matched official scenario alias
+automatic_grading,Automatic Grading,AG,Teacher-Oriented,results_merge.jsonl,high,matched official scenario alias
+problem_solving,Question Answering,Q&A,Student-Oriented,results_merge.jsonl,high,matched official scenario alias
+question_generation,Question Generation,QG,Teacher-Oriented,results_merge.jsonl,high,matched official scenario alias
+idea_provision,Idea Provision,IP,Student-Oriented,results_merge.jsonl,high,matched official scenario alias
+psychological_support,Emotional Support,ES,Student-Oriented,results_merge.jsonl,high,matched official scenario alias
+teaching_material_generation,Teaching Material Generation,TMG,Teacher-Oriented,results_merge.jsonl,high,matched official scenario alias
+纠错,Error Correction,EC,Student-Oriented,metrics_map.json,high,matched official scenario alias
+答疑,Question Answering,Q&A,Student-Oriented,metrics_map.json,high,matched official scenario alias
+判题,Automatic Grading,AG,Teacher-Oriented,metrics_map.json,high,matched official scenario alias
+教学素材生成,Teaching Material Generation,TMG,Teacher-Oriented,metrics_map.json,high,matched official scenario alias
+学生心理健康判断与建议,Emotional Support,ES,Student-Oriented,metrics_map.json,high,matched official scenario alias
+回答问题,Question Answering,Q&A,Student-Oriented,metrics_map.json,high,matched official scenario alias
+根据知识点生成问题,Question Generation,QG,Teacher-Oriented,metrics_map.json,high,matched official scenario alias
+根据学生画像给出建议,Idea Provision,IP,Student-Oriented,metrics_map.json,high,matched official scenario alias
+根据学生画像设计学习路径,Personalized Learning Support,PLS,Student-Oriented,metrics_map.json,high,matched official scenario alias
+Question Answering,Question Answering,Q&A,Student-Oriented,official_reference,high,matched official scenario alias
+Q&A,Question Answering,Q&A,Student-Oriented,official_reference,high,matched official scenario alias
+Error Correction,Error Correction,EC,Student-Oriented,official_reference,high,matched official scenario alias
+EC,Error Correction,EC,Student-Oriented,official_reference,high,matched official scenario alias
+Idea Provision,Idea Provision,IP,Student-Oriented,official_reference,high,matched official scenario alias
+IP,Idea Provision,IP,Student-Oriented,official_reference,high,matched official scenario alias
+Personalized Learning Support,Personalized Learning Support,PLS,Student-Oriented,official_reference,high,matched official scenario alias
+PLS,Personalized Learning Support,PLS,Student-Oriented,official_reference,high,matched official scenario alias
+Emotional Support,Emotional Support,ES,Student-Oriented,official_reference,high,matched official scenario alias
+ES,Emotional Support,ES,Student-Oriented,official_reference,high,matched official scenario alias
+Question Generation,Question Generation,QG,Teacher-Oriented,official_reference,high,matched official scenario alias
+QG,Question Generation,QG,Teacher-Oriented,official_reference,high,matched official scenario alias
+Automatic Grading,Automatic Grading,AG,Teacher-Oriented,official_reference,high,matched official scenario alias
+AG,Automatic Grading,AG,Teacher-Oriented,official_reference,high,matched official scenario alias
+Teaching Material Generation,Teaching Material Generation,TMG,Teacher-Oriented,official_reference,high,matched official scenario alias
+TMG,Teaching Material Generation,TMG,Teacher-Oriented,official_reference,high,matched official scenario alias
+Personalized Content Creation,Personalized Content Creation,PCC,Teacher-Oriented,official_reference,high,matched official scenario alias
+PCC,Personalized Content Creation,PCC,Teacher-Oriented,official_reference,high,matched official scenario alias

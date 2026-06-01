@@ -1,0 +1,73 @@
+split_name,split,metric_canonical,count,pct_within_split
+paper_like_triple_seed42,train,Instruction Following & Task Completion,476,0.179352
+paper_like_triple_seed42,train,Content Relevance & Scope Control,316,0.119066
+paper_like_triple_seed42,train,Basic Factual Accuracy,316,0.119066
+paper_like_triple_seed42,train,Scenario Element Integration,262,0.098719
+paper_like_triple_seed42,train,"Clarity, Simplicity & Inspiration",208,0.078372
+paper_like_triple_seed42,train,Higher-Order Thinking & Skill Development,204,0.076865
+paper_like_triple_seed42,train,Reasoning Process Rigor,204,0.076865
+paper_like_triple_seed42,train,"Personalization, Adaptation & Learning Support",158,0.059533
+paper_like_triple_seed42,train,Domain Knowledge Accuracy,157,0.059156
+paper_like_triple_seed42,train,"Motivation, Guidance & Positive Feedback",149,0.056142
+paper_like_triple_seed42,train,Role & Tone Consistency,105,0.039563
+paper_like_triple_seed42,train,Error Identification & Correction Precision,99,0.037302
+paper_like_triple_seed42,dev,Instruction Following & Task Completion,119,0.179217
+paper_like_triple_seed42,dev,Basic Factual Accuracy,80,0.120482
+paper_like_triple_seed42,dev,Content Relevance & Scope Control,79,0.118976
+paper_like_triple_seed42,dev,Scenario Element Integration,65,0.097892
+paper_like_triple_seed42,dev,Higher-Order Thinking & Skill Development,52,0.078313
+paper_like_triple_seed42,dev,"Clarity, Simplicity & Inspiration",51,0.076807
+paper_like_triple_seed42,dev,Reasoning Process Rigor,49,0.073795
+paper_like_triple_seed42,dev,"Personalization, Adaptation & Learning Support",40,0.060241
+paper_like_triple_seed42,dev,Domain Knowledge Accuracy,40,0.060241
+paper_like_triple_seed42,dev,"Motivation, Guidance & Positive Feedback",38,0.057229
+paper_like_triple_seed42,dev,Role & Tone Consistency,27,0.040663
+paper_like_triple_seed42,dev,Error Identification & Correction Precision,24,0.036145
+paper_like_triple_seed42,test,Instruction Following & Task Completion,395,0.178088
+paper_like_triple_seed42,test,Content Relevance & Scope Control,265,0.119477
+paper_like_triple_seed42,test,Basic Factual Accuracy,264,0.119026
+paper_like_triple_seed42,test,Scenario Element Integration,220,0.099188
+paper_like_triple_seed42,test,"Clarity, Simplicity & Inspiration",173,0.077998
+paper_like_triple_seed42,test,Higher-Order Thinking & Skill Development,172,0.077547
+paper_like_triple_seed42,test,Reasoning Process Rigor,168,0.075744
+paper_like_triple_seed42,test,"Personalization, Adaptation & Learning Support",131,0.059062
+paper_like_triple_seed42,test,Domain Knowledge Accuracy,130,0.058611
+paper_like_triple_seed42,test,"Motivation, Guidance & Positive Feedback",128,0.05771
+paper_like_triple_seed42,test,Role & Tone Consistency,88,0.039675
+paper_like_triple_seed42,test,Error Identification & Correction Precision,84,0.037872
+question_seed42,train,Instruction Following & Task Completion,595,0.178894
+question_seed42,train,Content Relevance & Scope Control,405,0.121768
+question_seed42,train,Basic Factual Accuracy,405,0.121768
+question_seed42,train,Scenario Element Integration,322,0.096813
+question_seed42,train,Reasoning Process Rigor,258,0.077571
+question_seed42,train,"Clarity, Simplicity & Inspiration",257,0.07727
+question_seed42,train,Higher-Order Thinking & Skill Development,256,0.076969
+question_seed42,train,Domain Knowledge Accuracy,197,0.05923
+question_seed42,train,"Personalization, Adaptation & Learning Support",190,0.057126
+question_seed42,train,"Motivation, Guidance & Positive Feedback",187,0.056224
+question_seed42,train,Error Identification & Correction Precision,134,0.040289
+question_seed42,train,Role & Tone Consistency,120,0.036079
+question_seed42,dev,Instruction Following & Task Completion,200,0.180668
+question_seed42,dev,Basic Factual Accuracy,130,0.117435
+question_seed42,dev,Content Relevance & Scope Control,125,0.112918
+question_seed42,dev,Scenario Element Integration,115,0.103884
+question_seed42,dev,"Clarity, Simplicity & Inspiration",90,0.081301
+question_seed42,dev,Reasoning Process Rigor,84,0.075881
+question_seed42,dev,Higher-Order Thinking & Skill Development,83,0.074977
+question_seed42,dev,"Personalization, Adaptation & Learning Support",70,0.063234
+question_seed42,dev,Domain Knowledge Accuracy,65,0.058717
+question_seed42,dev,"Motivation, Guidance & Positive Feedback",60,0.054201
+question_seed42,dev,Role & Tone Consistency,50,0.045167
+question_seed42,dev,Error Identification & Correction Precision,35,0.031617
+question_seed42,test,Instruction Following & Task Completion,195,0.176791
+question_seed42,test,Content Relevance & Scope Control,130,0.11786
+question_seed42,test,Basic Factual Accuracy,125,0.113327
+question_seed42,test,Scenario Element Integration,110,0.099728
+question_seed42,test,Higher-Order Thinking & Skill Development,89,0.080689
+question_seed42,test,"Clarity, Simplicity & Inspiration",85,0.077063
+question_seed42,test,Reasoning Process Rigor,79,0.071623
+question_seed42,test,"Personalization, Adaptation & Learning Support",69,0.062557
+question_seed42,test,"Motivation, Guidance & Positive Feedback",68,0.06165
+question_seed42,test,Domain Knowledge Accuracy,65,0.05893
+question_seed42,test,Role & Tone Consistency,50,0.045331
+question_seed42,test,Error Identification & Correction Precision,38,0.034451

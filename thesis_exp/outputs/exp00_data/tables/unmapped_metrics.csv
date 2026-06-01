@@ -1,0 +1,12 @@
+raw_metric,canonical_metric,metric_abbr,metric_group,language,source_file,confidence,notes
+Additional (if needed),unknown,unknown,unknown,en,groupby_metric_qwq_eval_en.jsonl,none,no official metric alias matched
+Formatting Compliance,unknown,unknown,unknown,en,groupby_metric_qwq_eval_en.jsonl,none,no official metric alias matched
+Accuracy,unknown,unknown,unknown,en,groupby_metric_qwq_eval_en.jsonl,none,no official metric alias matched
+Comprehension,unknown,unknown,unknown,en,groupby_metric_qwq_eval_en.jsonl,none,no official metric alias matched
+Depth,unknown,unknown,unknown,en,groupby_metric_qwq_eval_en.jsonl,none,no official metric alias matched
+Clarity,unknown,unknown,unknown,en,groupby_metric_qwq_eval_en.jsonl,none,no official metric alias matched
+Accuracy_of_Definition,unknown,unknown,unknown,en,groupby_metric_qwq_eval_en.jsonl,none,no official metric alias matched
+Explanation_Clarity,unknown,unknown,unknown,en,groupby_metric_qwq_eval_en.jsonl,none,no official metric alias matched
+Relevance_of_Example,unknown,unknown,unknown,en,groupby_metric_qwq_eval_en.jsonl,none,no official metric alias matched
+Comprehensensiveness_of_Answer,unknown,unknown,unknown,en,groupby_metric_qwq_eval_en.jsonl,none,no official metric alias matched
+（保留示例中的第四项但无需评分）,unknown,unknown,unknown,zh,groupby_metric_qwq_eval_zh.jsonl,none,no official metric alias matched

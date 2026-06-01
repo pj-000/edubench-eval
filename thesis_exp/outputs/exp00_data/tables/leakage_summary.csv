@@ -1,0 +1,17 @@
+split_name,check,key_type,overlap_count,severity
+paper_like_triple_seed42,triple_key cross-split overlap,triple_key,0,PASS
+paper_like_triple_seed42,question_key cross-split overlap,question_key,575,WARNING
+paper_like_triple_seed42,answer_key cross-split overlap,answer_key,1771,WARNING
+paper_like_triple_seed42,normalized question+answer cross-split overlap,qa_key,1771,WARNING
+paper_like_triple_seed42,duplicate record_id across split files,record_id,0,PASS
+paper_like_triple_seed42,duplicate full scored item across split files,full_record_key,75,WARNING
+paper_like_triple_seed42,synthetic sampled question overlap with dev/test,sampled_merge_50_new.json,157,WARNING
+paper_like_triple_seed42,synthetic sampled question overlap with dev/test,sampled_merge_50_new_swift.json,157,WARNING
+question_seed42,triple_key cross-split overlap,triple_key,0,PASS
+question_seed42,question_key cross-split overlap,question_key,0,PASS
+question_seed42,answer_key cross-split overlap,answer_key,0,PASS
+question_seed42,normalized question+answer cross-split overlap,qa_key,0,PASS
+question_seed42,duplicate record_id across split files,record_id,0,PASS
+question_seed42,duplicate full scored item across split files,full_record_key,75,WARNING
+question_seed42,synthetic sampled question overlap with dev/test,sampled_merge_50_new.json,66,WARNING
+question_seed42,synthetic sampled question overlap with dev/test,sampled_merge_50_new_swift.json,66,WARNING

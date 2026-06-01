@@ -1,0 +1,77 @@
+[
+  {
+    "answer": "{\\n    \"Learning_Path_Planning\": {\\n        \"Short_Term\": [\\n            {\"Objective\": \"Improve basic understanding of cellular biology\", \"Activities\": [\"Watch educational videos on cell structure and function\", \"Participate in virtual lab simulations of cell processes\"]},\\n            {\"Objective\": \"Enhance knowledge on genetics basics\", \"Activities\": [\"Read introductory genetics textbooks\", \"Join online forums or study groups focused on genetics\"]}\\n        ],\\n        \"Medium_Term\": [\\n            {\"Objective\": \"Deepen comprehension of complex genetic processes\", \"Activities\": [\"Attend workshops or webinars on advanced genetics topics\", \"Engage in peer discussions to clarify doubts on difficult concepts\"]},\\n            {\"Objective\": \"Develop skills in data analysis and interpretation\", \"Activities\": [\"Enroll in an online course on statistical methods in biology\", \"Practice analyzing datasets from real biological studies\"]}\\n        ],\\n        \"Long_Term\": [\\n            {\"Objec...",
+    "evaluate": {
+      "EduBenchEvaluator": 4,
+      "deepseek-r1": 5,
+      "deepseek-v3": 5,
+      "gpt-4o": 5,
+      "human_1": 5,
+      "human_2": 4,
+      "human_3": 4,
+      "qwq-plus": 5
+    },
+    "levels": [
+      "5: Fully understood and precisely executed all instructions; achieved core task with perfect accuracy; output format is fully compliant.",
+      "4: Accurately understood main instructions and correctly completed the task; core goals are well achieved; format is mostly correct with only minor omissions or deviations.",
+      "3: Understood the general intent but may miss some details; task largely completed but with some inaccuracies or omissions; formatting attempts present but with notable flaws.",
+      "2: Misunderstood part of the instruction; low task completion or major errors; formatting mostly incorrect.",
+      "1: Completely misunderstood or ignored instructions; task not completed or totally incorrect; formatting is chaotic or irrelevant."
+    ],
+    "metric": "Instruction Following & Task Completion",
+    "model": "qwen2.5-14b-instruct",
+    "question": "{'Name': 'Alex Johnson', 'Age': 20, 'Current Skill Level': 'Intermediate', 'Learning Goals': ['Understand cellular biology', 'Master genetics concepts', 'Prepare for advanced ecology coursework'], 'Study Habits': ['Visual learner', 'Prefers hands-on activities', 'Studies best in short bursts'], 'Weak Points': ['Struggles with understanding complex genetic processes', 'Needs improvement in data analysis and interpretation']}\\nBased on the student profile, provide \"Learning Path Planning\" and \"Personalized Recommendations\", returned in JSON format.",
+    "source_row_index": 0,
+    "task": "personalized_content_creation"
+  },
+  {
+    "answer": "{\\n    \"Learning_Path_Planning\": {\\n        \"Short_Term\": [\\n            {\"Objective\": \"Improve basic understanding of cellular biology\", \"Activities\": [\"Watch educational videos on cell structure and function\", \"Participate in virtual lab simulations of cell processes\"]},\\n            {\"Objective\": \"Enhance knowledge on genetics basics\", \"Activities\": [\"Read introductory genetics textbooks\", \"Join online forums or study groups focused on genetics\"]}\\n        ],\\n        \"Medium_Term\": [\\n            {\"Objective\": \"Deepen comprehension of complex genetic processes\", \"Activities\": [\"Attend workshops or webinars on advanced genetics topics\", \"Engage in peer discussions to clarify doubts on difficult concepts\"]},\\n            {\"Objective\": \"Develop skills in data analysis and interpretation\", \"Activities\": [\"Enroll in an online course on statistical methods in biology\", \"Practice analyzing datasets from real biological studies\"]}\\n        ],\\n        \"Long_Term\": [\\n            {\"Objec...",
+    "evaluate": {
+      "EduBenchEvaluator": 4,
+      "deepseek-r1": 4,
+      "deepseek-v3": 5,
+      "gpt-4o": 4,
+      "human_1": 4,
+      "human_2": 4,
+      "human_3": 4,
+      "qwq-plus": 5
+    },
+    "levels": [
+      "5: Fully integrated all key scenario elements (e.g., student history, learning preferences); output is highly personalized and well-matched to the teaching context.",
+      "4: Used major scenario elements effectively; response is targeted, possibly overlooks minor details but does not affect overall results.",
+      "3: Some use of scenario information, but integration is shallow; personalization or contextual fit is average.",
+      "2: Only surface-level reference to scenario information; did not integrate core elements effectively; weak contextual connection.",
+      "1: Completely ignored scenario-specific information; output is generic, templated, and irrelevant to the scenario."
+    ],
+    "metric": "Scenario Element Integration",
+    "model": "qwen2.5-14b-instruct",
+    "question": "{'Name': 'Alex Johnson', 'Age': 20, 'Current Skill Level': 'Intermediate', 'Learning Goals': ['Understand cellular biology', 'Master genetics concepts', 'Prepare for advanced ecology coursework'], 'Study Habits': ['Visual learner', 'Prefers hands-on activities', 'Studies best in short bursts'], 'Weak Points': ['Struggles with understanding complex genetic processes', 'Needs improvement in data analysis and interpretation']}\\nBased on the student profile, provide \"Learning Path Planning\" and \"Personalized Recommendations\", returned in JSON format.",
+    "source_row_index": 1,
+    "task": "personalized_content_creation"
+  },
+  {
+    "answer": "{\\n    \"Learning_Path_Planning\": {\\n        \"Short_Term\": [\\n            {\"Objective\": \"Improve basic understanding of cellular biology\", \"Activities\": [\"Watch educational videos on cell structure and function\", \"Participate in virtual lab simulations of cell processes\"]},\\n            {\"Objective\": \"Enhance knowledge on genetics basics\", \"Activities\": [\"Read introductory genetics textbooks\", \"Join online forums or study groups focused on genetics\"]}\\n        ],\\n        \"Medium_Term\": [\\n            {\"Objective\": \"Deepen comprehension of complex genetic processes\", \"Activities\": [\"Attend workshops or webinars on advanced genetics topics\", \"Engage in peer discussions to clarify doubts on difficult concepts\"]},\\n            {\"Objective\": \"Develop skills in data analysis and interpretation\", \"Activities\": [\"Enroll in an online course on statistical methods in biology\", \"Practice analyzing datasets from real biological studies\"]}\\n        ],\\n        \"Long_Term\": [\\n            {\"Objec...",
+    "evaluate": {
+      "EduBenchEvaluator": 5,
+      "deepseek-r1": 4,
+      "deepseek-v3": 5,
+      "gpt-4o": 4,
+      "human_1": 4,
+      "human_2": 4,
+      "human_3": 3,
+      "qwq-plus": 5
+    },
+    "levels": [
+      "5: Highly personalized content/advice/feedback based on student level/traits/needs; resource and learning path suggestions are accurate, practical, and valuable.",
+      "4: Demonstrates some adaptation to student situation; provides relevant learning advice or resources with good utility.",
+      "3: Attempts personalization but with limited effectiveness; recommendations are generic and of limited value.",
+      "2: Little to no personalization; output is the same for everyone; learning support is insufficient or unrelated.",
+      "1: No personalization; output may conflict with student needs; offers no or incorrect learning support."
+    ],
+    "metric": "Personalization, Adaptation & Learning Support",
+    "model": "qwen2.5-14b-instruct",
+    "question": "{'Name': 'Alex Johnson', 'Age': 20, 'Current Skill Level': 'Intermediate', 'Learning Goals': ['Understand cellular biology', 'Master genetics concepts', 'Prepare for advanced ecology coursework'], 'Study Habits': ['Visual learner', 'Prefers hands-on activities', 'Studies best in short bursts'], 'Weak Points': ['Struggles with understanding complex genetic processes', 'Needs improvement in data analysis and interpretation']}\\nBased on the student profile, provide \"Learning Path Planning\" and \"Personalized Recommendations\", returned in JSON format.",
+    "source_row_index": 2,
+    "task": "personalized_content_creation"
+  }
+]

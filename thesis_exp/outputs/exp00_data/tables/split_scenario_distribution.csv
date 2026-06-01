@@ -1,0 +1,55 @@
+split_name,split,scenario_canonical,count,pct_within_split
+paper_like_triple_seed42,train,Idea Provision,414,0.155991
+paper_like_triple_seed42,train,Teaching Material Generation,373,0.140543
+paper_like_triple_seed42,train,Error Correction,355,0.13376
+paper_like_triple_seed42,train,Question Generation,316,0.119066
+paper_like_triple_seed42,train,Automatic Grading,300,0.113037
+paper_like_triple_seed42,train,Personalized Learning Support,263,0.099096
+paper_like_triple_seed42,train,Emotional Support,263,0.099096
+paper_like_triple_seed42,train,Question Answering,213,0.080256
+paper_like_triple_seed42,train,Personalized Content Creation,157,0.059156
+paper_like_triple_seed42,dev,Idea Provision,105,0.158133
+paper_like_triple_seed42,dev,Error Correction,90,0.135542
+paper_like_triple_seed42,dev,Teaching Material Generation,89,0.134036
+paper_like_triple_seed42,dev,Question Generation,82,0.123494
+paper_like_triple_seed42,dev,Automatic Grading,73,0.10994
+paper_like_triple_seed42,dev,Emotional Support,67,0.100904
+paper_like_triple_seed42,dev,Personalized Learning Support,65,0.097892
+paper_like_triple_seed42,dev,Question Answering,54,0.081325
+paper_like_triple_seed42,dev,Personalized Content Creation,39,0.058735
+paper_like_triple_seed42,test,Idea Provision,344,0.155095
+paper_like_triple_seed42,test,Teaching Material Generation,308,0.138864
+paper_like_triple_seed42,test,Error Correction,305,0.137511
+paper_like_triple_seed42,test,Question Generation,262,0.118124
+paper_like_triple_seed42,test,Automatic Grading,255,0.114968
+paper_like_triple_seed42,test,Emotional Support,219,0.098738
+paper_like_triple_seed42,test,Personalized Learning Support,214,0.096483
+paper_like_triple_seed42,test,Question Answering,177,0.079802
+paper_like_triple_seed42,test,Personalized Content Creation,134,0.060415
+question_seed42,train,Idea Provision,543,0.163259
+question_seed42,train,Teaching Material Generation,455,0.136801
+question_seed42,train,Error Correction,437,0.131389
+question_seed42,train,Automatic Grading,436,0.131088
+question_seed42,train,Question Generation,390,0.117258
+question_seed42,train,Personalized Learning Support,320,0.096212
+question_seed42,train,Emotional Support,275,0.082682
+question_seed42,train,Question Answering,260,0.078172
+question_seed42,train,Personalized Content Creation,210,0.063139
+question_seed42,dev,Teaching Material Generation,175,0.158085
+question_seed42,dev,Error Correction,174,0.157182
+question_seed42,dev,Idea Provision,160,0.144535
+question_seed42,dev,Emotional Support,125,0.112918
+question_seed42,dev,Question Generation,120,0.108401
+question_seed42,dev,Question Answering,104,0.093948
+question_seed42,dev,Personalized Learning Support,98,0.088528
+question_seed42,dev,Automatic Grading,76,0.068654
+question_seed42,dev,Personalized Content Creation,75,0.067751
+question_seed42,test,Idea Provision,160,0.145059
+question_seed42,test,Question Generation,150,0.135993
+question_seed42,test,Emotional Support,149,0.135086
+question_seed42,test,Teaching Material Generation,140,0.126927
+question_seed42,test,Error Correction,139,0.12602
+question_seed42,test,Personalized Learning Support,124,0.112421
+question_seed42,test,Automatic Grading,116,0.105168
+question_seed42,test,Question Answering,80,0.072529
+question_seed42,test,Personalized Content Creation,45,0.040798

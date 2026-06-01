@@ -1,0 +1,240 @@
+raw_metric,canonical_metric,metric_abbr,metric_group,language,source_file,confidence,notes
+Instruction Following & Task Completion,Instruction Following & Task Completion,IFTC,Scenario Adaptability,en,results_merge.jsonl,high,exact/contained official label
+Scenario Element Integration,Scenario Element Integration,SEI,Scenario Adaptability,en,results_merge.jsonl,high,exact/contained official label
+"Personalization, Adaptation & Learning Support","Personalization, Adaptation & Learning Support",PALS,Pedagogical Application,en,results_merge.jsonl,high,exact/contained official label
+Content Relevance & Scope Control,Content Relevance & Scope Control,CRSC,Scenario Adaptability,en,results_merge.jsonl,high,exact/contained official label
+Higher-Order Thinking & Skill Development,Higher-Order Thinking & Skill Development,HOTSD,Pedagogical Application,en,results_merge.jsonl,high,exact/contained official label
+Basic Factual Accuracy,Basic Factual Accuracy,BFA,Factual & Reasoning Accuracy,en,results_merge.jsonl,high,exact/contained official label
+Reasoning Process Rigor,Reasoning Process Rigor,RPR,Factual & Reasoning Accuracy,en,results_merge.jsonl,high,exact/contained official label
+Error Identification & Correction Precision,Error Identification & Correction Precision,EICP,Factual & Reasoning Accuracy,en,results_merge.jsonl,high,exact/contained official label
+"Clarity, Simplicity & Inspiration","Clarity, Simplicity & Inspiration",CSI,Pedagogical Application,en,results_merge.jsonl,high,exact/contained official label
+"Motivation, Guidance & Positive Feedback","Motivation, Guidance & Positive Feedback",MGPF,Pedagogical Application,en,results_merge.jsonl,high,exact/contained official label
+Domain Knowledge Accuracy,Domain Knowledge Accuracy,DKA,Factual & Reasoning Accuracy,en,results_merge.jsonl,high,exact/contained official label
+Role & Tone Consistency,Role & Tone Consistency,RTC,Scenario Adaptability,en,results_merge.jsonl,high,exact/contained official label
+指令遵循与任务完成,Instruction Following & Task Completion,IFTC,Scenario Adaptability,zh,results_merge.jsonl,high,exact/contained official label
+内容相关性与范围控制,Content Relevance & Scope Control,CRSC,Scenario Adaptability,zh,results_merge.jsonl,high,exact/contained official label
+场景要素融合度,Scenario Element Integration,SEI,Scenario Adaptability,zh,results_merge.jsonl,high,exact/contained official label
+个性化适应与学习支持,"Personalization, Adaptation & Learning Support",PALS,Pedagogical Application,zh,results_merge.jsonl,high,exact/contained official label
+促进高阶思维与能力发展,Higher-Order Thinking & Skill Development,HOTSD,Pedagogical Application,zh,results_merge.jsonl,high,exact/contained official label
+基础事实准确性,Basic Factual Accuracy,BFA,Factual & Reasoning Accuracy,zh,results_merge.jsonl,high,exact/contained official label
+推理过程严谨性,Reasoning Process Rigor,RPR,Factual & Reasoning Accuracy,zh,results_merge.jsonl,high,exact/contained official label
+错误识别与纠正精确性,Error Identification & Correction Precision,EICP,Factual & Reasoning Accuracy,zh,results_merge.jsonl,high,exact/contained official label
+清晰易懂与表达启发,"Clarity, Simplicity & Inspiration",CSI,Pedagogical Application,zh,results_merge.jsonl,high,exact/contained official label
+激励引导与积极反馈,"Motivation, Guidance & Positive Feedback",MGPF,Pedagogical Application,zh,results_merge.jsonl,high,exact/contained official label
+领域知识专业性,Domain Knowledge Accuracy,DKA,Factual & Reasoning Accuracy,zh,results_merge.jsonl,high,exact/contained official label
+角色与口吻一致性,Role & Tone Consistency,RTC,Scenario Adaptability,zh,results_merge.jsonl,high,exact/contained official label
+指令遵循与任务完成,Instruction Following & Task Completion,IFTC,Scenario Adaptability,zh,merge_human_metric.jsonl,high,exact/contained official label
+内容相关性与范围控制,Content Relevance & Scope Control,CRSC,Scenario Adaptability,zh,merge_human_metric.jsonl,high,exact/contained official label
+场景要素融合度,Scenario Element Integration,SEI,Scenario Adaptability,zh,merge_human_metric.jsonl,high,exact/contained official label
+个性化适应与学习支持,"Personalization, Adaptation & Learning Support",PALS,Pedagogical Application,zh,merge_human_metric.jsonl,high,exact/contained official label
+促进高阶思维与能力发展,Higher-Order Thinking & Skill Development,HOTSD,Pedagogical Application,zh,merge_human_metric.jsonl,high,exact/contained official label
+基础事实准确性,Basic Factual Accuracy,BFA,Factual & Reasoning Accuracy,zh,merge_human_metric.jsonl,high,exact/contained official label
+推理过程严谨性,Reasoning Process Rigor,RPR,Factual & Reasoning Accuracy,zh,merge_human_metric.jsonl,high,exact/contained official label
+错误识别与纠正精确性,Error Identification & Correction Precision,EICP,Factual & Reasoning Accuracy,zh,merge_human_metric.jsonl,high,exact/contained official label
+清晰易懂与表达启发,"Clarity, Simplicity & Inspiration",CSI,Pedagogical Application,zh,merge_human_metric.jsonl,high,exact/contained official label
+激励引导与积极反馈,"Motivation, Guidance & Positive Feedback",MGPF,Pedagogical Application,zh,merge_human_metric.jsonl,high,exact/contained official label
+领域知识专业性,Domain Knowledge Accuracy,DKA,Factual & Reasoning Accuracy,zh,merge_human_metric.jsonl,high,exact/contained official label
+角色与口吻一致性,Role & Tone Consistency,RTC,Scenario Adaptability,zh,merge_human_metric.jsonl,high,exact/contained official label
+指令遵循与任务完成,Instruction Following & Task Completion,IFTC,Scenario Adaptability,zh,merge_human_metric_strict_en.jsonl,high,exact/contained official label
+场景要素融合度,Scenario Element Integration,SEI,Scenario Adaptability,zh,merge_human_metric_strict_en.jsonl,high,exact/contained official label
+个性化适应与学习支持,"Personalization, Adaptation & Learning Support",PALS,Pedagogical Application,zh,merge_human_metric_strict_en.jsonl,high,exact/contained official label
+内容相关性与范围控制,Content Relevance & Scope Control,CRSC,Scenario Adaptability,zh,merge_human_metric_strict_en.jsonl,high,exact/contained official label
+促进高阶思维与能力发展,Higher-Order Thinking & Skill Development,HOTSD,Pedagogical Application,zh,merge_human_metric_strict_en.jsonl,high,exact/contained official label
+激励引导与积极反馈,"Motivation, Guidance & Positive Feedback",MGPF,Pedagogical Application,zh,merge_human_metric_strict_en.jsonl,high,exact/contained official label
+推理过程严谨性,Reasoning Process Rigor,RPR,Factual & Reasoning Accuracy,zh,merge_human_metric_strict_en.jsonl,high,exact/contained official label
+错误识别与纠正精确性,Error Identification & Correction Precision,EICP,Factual & Reasoning Accuracy,zh,merge_human_metric_strict_en.jsonl,high,exact/contained official label
+清晰易懂与表达启发,"Clarity, Simplicity & Inspiration",CSI,Pedagogical Application,zh,merge_human_metric_strict_en.jsonl,high,exact/contained official label
+基础事实准确性,Basic Factual Accuracy,BFA,Factual & Reasoning Accuracy,zh,merge_human_metric_strict_en.jsonl,high,exact/contained official label
+领域知识专业性,Domain Knowledge Accuracy,DKA,Factual & Reasoning Accuracy,zh,merge_human_metric_strict_en.jsonl,high,exact/contained official label
+角色与口吻一致性,Role & Tone Consistency,RTC,Scenario Adaptability,zh,merge_human_metric_strict_en.jsonl,high,exact/contained official label
+内容相关性与范围控制,Content Relevance & Scope Control,CRSC,Scenario Adaptability,zh,merge_human_metric_strict_zh.jsonl,high,exact/contained official label
+个性化适应与学习支持,"Personalization, Adaptation & Learning Support",PALS,Pedagogical Application,zh,merge_human_metric_strict_zh.jsonl,high,exact/contained official label
+促进高阶思维与能力发展,Higher-Order Thinking & Skill Development,HOTSD,Pedagogical Application,zh,merge_human_metric_strict_zh.jsonl,high,exact/contained official label
+指令遵循与任务完成,Instruction Following & Task Completion,IFTC,Scenario Adaptability,zh,merge_human_metric_strict_zh.jsonl,high,exact/contained official label
+场景要素融合度,Scenario Element Integration,SEI,Scenario Adaptability,zh,merge_human_metric_strict_zh.jsonl,high,exact/contained official label
+基础事实准确性,Basic Factual Accuracy,BFA,Factual & Reasoning Accuracy,zh,merge_human_metric_strict_zh.jsonl,high,exact/contained official label
+清晰易懂与表达启发,"Clarity, Simplicity & Inspiration",CSI,Pedagogical Application,zh,merge_human_metric_strict_zh.jsonl,high,exact/contained official label
+推理过程严谨性,Reasoning Process Rigor,RPR,Factual & Reasoning Accuracy,zh,merge_human_metric_strict_zh.jsonl,high,exact/contained official label
+错误识别与纠正精确性,Error Identification & Correction Precision,EICP,Factual & Reasoning Accuracy,zh,merge_human_metric_strict_zh.jsonl,high,exact/contained official label
+激励引导与积极反馈,"Motivation, Guidance & Positive Feedback",MGPF,Pedagogical Application,zh,merge_human_metric_strict_zh.jsonl,high,exact/contained official label
+领域知识专业性,Domain Knowledge Accuracy,DKA,Factual & Reasoning Accuracy,zh,merge_human_metric_strict_zh.jsonl,high,exact/contained official label
+角色与口吻一致性,Role & Tone Consistency,RTC,Scenario Adaptability,zh,merge_human_metric_strict_zh.jsonl,high,exact/contained official label
+指令遵循与任务完成,Instruction Following & Task Completion,IFTC,Scenario Adaptability,zh,human_1.jsonl,high,exact/contained official label
+内容相关性与范围控制,Content Relevance & Scope Control,CRSC,Scenario Adaptability,zh,human_1.jsonl,high,exact/contained official label
+场景要素融合度,Scenario Element Integration,SEI,Scenario Adaptability,zh,human_1.jsonl,high,exact/contained official label
+个性化适应与学习支持,"Personalization, Adaptation & Learning Support",PALS,Pedagogical Application,zh,human_1.jsonl,high,exact/contained official label
+促进高阶思维与能力发展,Higher-Order Thinking & Skill Development,HOTSD,Pedagogical Application,zh,human_1.jsonl,high,exact/contained official label
+基础事实准确性,Basic Factual Accuracy,BFA,Factual & Reasoning Accuracy,zh,human_1.jsonl,high,exact/contained official label
+推理过程严谨性,Reasoning Process Rigor,RPR,Factual & Reasoning Accuracy,zh,human_1.jsonl,high,exact/contained official label
+错误识别与纠正精确性,Error Identification & Correction Precision,EICP,Factual & Reasoning Accuracy,zh,human_1.jsonl,high,exact/contained official label
+清晰易懂与表达启发,"Clarity, Simplicity & Inspiration",CSI,Pedagogical Application,zh,human_1.jsonl,high,exact/contained official label
+激励引导与积极反馈,"Motivation, Guidance & Positive Feedback",MGPF,Pedagogical Application,zh,human_1.jsonl,high,exact/contained official label
+领域知识专业性,Domain Knowledge Accuracy,DKA,Factual & Reasoning Accuracy,zh,human_1.jsonl,high,exact/contained official label
+角色与口吻一致性,Role & Tone Consistency,RTC,Scenario Adaptability,zh,human_1.jsonl,high,exact/contained official label
+指令遵循与任务完成,Instruction Following & Task Completion,IFTC,Scenario Adaptability,zh,human_2.jsonl,high,exact/contained official label
+内容相关性与范围控制,Content Relevance & Scope Control,CRSC,Scenario Adaptability,zh,human_2.jsonl,high,exact/contained official label
+场景要素融合度,Scenario Element Integration,SEI,Scenario Adaptability,zh,human_2.jsonl,high,exact/contained official label
+个性化适应与学习支持,"Personalization, Adaptation & Learning Support",PALS,Pedagogical Application,zh,human_2.jsonl,high,exact/contained official label
+促进高阶思维与能力发展,Higher-Order Thinking & Skill Development,HOTSD,Pedagogical Application,zh,human_2.jsonl,high,exact/contained official label
+基础事实准确性,Basic Factual Accuracy,BFA,Factual & Reasoning Accuracy,zh,human_2.jsonl,high,exact/contained official label
+推理过程严谨性,Reasoning Process Rigor,RPR,Factual & Reasoning Accuracy,zh,human_2.jsonl,high,exact/contained official label
+错误识别与纠正精确性,Error Identification & Correction Precision,EICP,Factual & Reasoning Accuracy,zh,human_2.jsonl,high,exact/contained official label
+清晰易懂与表达启发,"Clarity, Simplicity & Inspiration",CSI,Pedagogical Application,zh,human_2.jsonl,high,exact/contained official label
+激励引导与积极反馈,"Motivation, Guidance & Positive Feedback",MGPF,Pedagogical Application,zh,human_2.jsonl,high,exact/contained official label
+领域知识专业性,Domain Knowledge Accuracy,DKA,Factual & Reasoning Accuracy,zh,human_2.jsonl,high,exact/contained official label
+角色与口吻一致性,Role & Tone Consistency,RTC,Scenario Adaptability,zh,human_2.jsonl,high,exact/contained official label
+指令遵循与任务完成,Instruction Following & Task Completion,IFTC,Scenario Adaptability,zh,human_3.jsonl,high,exact/contained official label
+内容相关性与范围控制,Content Relevance & Scope Control,CRSC,Scenario Adaptability,zh,human_3.jsonl,high,exact/contained official label
+场景要素融合度,Scenario Element Integration,SEI,Scenario Adaptability,zh,human_3.jsonl,high,exact/contained official label
+个性化适应与学习支持,"Personalization, Adaptation & Learning Support",PALS,Pedagogical Application,zh,human_3.jsonl,high,exact/contained official label
+促进高阶思维与能力发展,Higher-Order Thinking & Skill Development,HOTSD,Pedagogical Application,zh,human_3.jsonl,high,exact/contained official label
+基础事实准确性,Basic Factual Accuracy,BFA,Factual & Reasoning Accuracy,zh,human_3.jsonl,high,exact/contained official label
+推理过程严谨性,Reasoning Process Rigor,RPR,Factual & Reasoning Accuracy,zh,human_3.jsonl,high,exact/contained official label
+错误识别与纠正精确性,Error Identification & Correction Precision,EICP,Factual & Reasoning Accuracy,zh,human_3.jsonl,high,exact/contained official label
+清晰易懂与表达启发,"Clarity, Simplicity & Inspiration",CSI,Pedagogical Application,zh,human_3.jsonl,high,exact/contained official label
+激励引导与积极反馈,"Motivation, Guidance & Positive Feedback",MGPF,Pedagogical Application,zh,human_3.jsonl,high,exact/contained official label
+领域知识专业性,Domain Knowledge Accuracy,DKA,Factual & Reasoning Accuracy,zh,human_3.jsonl,high,exact/contained official label
+角色与口吻一致性,Role & Tone Consistency,RTC,Scenario Adaptability,zh,human_3.jsonl,high,exact/contained official label
+Instruction Following & Task Completion,Instruction Following & Task Completion,IFTC,Scenario Adaptability,en,merge_model_metric.jsonl,high,exact/contained official label
+Scenario Element Integration,Scenario Element Integration,SEI,Scenario Adaptability,en,merge_model_metric.jsonl,high,exact/contained official label
+"Personalization, Adaptation & Learning Support","Personalization, Adaptation & Learning Support",PALS,Pedagogical Application,en,merge_model_metric.jsonl,high,exact/contained official label
+Content Relevance & Scope Control,Content Relevance & Scope Control,CRSC,Scenario Adaptability,en,merge_model_metric.jsonl,high,exact/contained official label
+Higher-Order Thinking & Skill Development,Higher-Order Thinking & Skill Development,HOTSD,Pedagogical Application,en,merge_model_metric.jsonl,high,exact/contained official label
+Basic Factual Accuracy,Basic Factual Accuracy,BFA,Factual & Reasoning Accuracy,en,merge_model_metric.jsonl,high,exact/contained official label
+Error Identification & Correction Precision,Error Identification & Correction Precision,EICP,Factual & Reasoning Accuracy,en,merge_model_metric.jsonl,high,exact/contained official label
+"Clarity, Simplicity & Inspiration","Clarity, Simplicity & Inspiration",CSI,Pedagogical Application,en,merge_model_metric.jsonl,high,exact/contained official label
+"Motivation, Guidance & Positive Feedback","Motivation, Guidance & Positive Feedback",MGPF,Pedagogical Application,en,merge_model_metric.jsonl,high,exact/contained official label
+Reasoning Process Rigor,Reasoning Process Rigor,RPR,Factual & Reasoning Accuracy,en,merge_model_metric.jsonl,high,exact/contained official label
+Domain Knowledge Accuracy,Domain Knowledge Accuracy,DKA,Factual & Reasoning Accuracy,en,merge_model_metric.jsonl,high,exact/contained official label
+Role & Tone Consistency,Role & Tone Consistency,RTC,Scenario Adaptability,en,merge_model_metric.jsonl,high,exact/contained official label
+Instruction Following & Task Completion,Instruction Following & Task Completion,IFTC,Scenario Adaptability,en,groupby_metric_qwq_eval_en.jsonl,high,exact/contained official label
+Scenario Element Integration,Scenario Element Integration,SEI,Scenario Adaptability,en,groupby_metric_qwq_eval_en.jsonl,high,exact/contained official label
+"Personalization, Adaptation & Learning Support","Personalization, Adaptation & Learning Support",PALS,Pedagogical Application,en,groupby_metric_qwq_eval_en.jsonl,high,exact/contained official label
+Additional (if needed),unknown,unknown,unknown,en,groupby_metric_qwq_eval_en.jsonl,none,no official metric alias matched
+Formatting Compliance,unknown,unknown,unknown,en,groupby_metric_qwq_eval_en.jsonl,none,no official metric alias matched
+Content Relevance & Scope Control,Content Relevance & Scope Control,CRSC,Scenario Adaptability,en,groupby_metric_qwq_eval_en.jsonl,high,exact/contained official label
+Higher-Order Thinking & Skill Development,Higher-Order Thinking & Skill Development,HOTSD,Pedagogical Application,en,groupby_metric_qwq_eval_en.jsonl,high,exact/contained official label
+Basic Factual Accuracy,Basic Factual Accuracy,BFA,Factual & Reasoning Accuracy,en,groupby_metric_qwq_eval_en.jsonl,high,exact/contained official label
+Reasoning Process Rigor,Reasoning Process Rigor,RPR,Factual & Reasoning Accuracy,en,groupby_metric_qwq_eval_en.jsonl,high,exact/contained official label
+Error Identification & Correction Precision,Error Identification & Correction Precision,EICP,Factual & Reasoning Accuracy,en,groupby_metric_qwq_eval_en.jsonl,high,exact/contained official label
+"Clarity, Simplicity & Inspiration","Clarity, Simplicity & Inspiration",CSI,Pedagogical Application,en,groupby_metric_qwq_eval_en.jsonl,high,exact/contained official label
+"Motivation, Guidance & Positive Feedback","Motivation, Guidance & Positive Feedback",MGPF,Pedagogical Application,en,groupby_metric_qwq_eval_en.jsonl,high,exact/contained official label
+Accuracy,unknown,unknown,unknown,en,groupby_metric_qwq_eval_en.jsonl,none,no official metric alias matched
+Comprehension,unknown,unknown,unknown,en,groupby_metric_qwq_eval_en.jsonl,none,no official metric alias matched
+Depth,unknown,unknown,unknown,en,groupby_metric_qwq_eval_en.jsonl,none,no official metric alias matched
+Clarity,unknown,unknown,unknown,en,groupby_metric_qwq_eval_en.jsonl,none,no official metric alias matched
+Accuracy_of_Definition,unknown,unknown,unknown,en,groupby_metric_qwq_eval_en.jsonl,none,no official metric alias matched
+Explanation_Clarity,unknown,unknown,unknown,en,groupby_metric_qwq_eval_en.jsonl,none,no official metric alias matched
+Relevance_of_Example,unknown,unknown,unknown,en,groupby_metric_qwq_eval_en.jsonl,none,no official metric alias matched
+Comprehensensiveness_of_Answer,unknown,unknown,unknown,en,groupby_metric_qwq_eval_en.jsonl,none,no official metric alias matched
+Domain Knowledge Accuracy,Domain Knowledge Accuracy,DKA,Factual & Reasoning Accuracy,en,groupby_metric_qwq_eval_en.jsonl,high,exact/contained official label
+Role & Tone Consistency,Role & Tone Consistency,RTC,Scenario Adaptability,en,groupby_metric_qwq_eval_en.jsonl,high,exact/contained official label
+指令遵循与任务完成,Instruction Following & Task Completion,IFTC,Scenario Adaptability,zh,groupby_metric_qwq_eval_zh.jsonl,high,exact/contained official label
+内容相关性与范围控制,Content Relevance & Scope Control,CRSC,Scenario Adaptability,zh,groupby_metric_qwq_eval_zh.jsonl,high,exact/contained official label
+场景要素融合度,Scenario Element Integration,SEI,Scenario Adaptability,zh,groupby_metric_qwq_eval_zh.jsonl,high,exact/contained official label
+个性化适应与学习支持,"Personalization, Adaptation & Learning Support",PALS,Pedagogical Application,zh,groupby_metric_qwq_eval_zh.jsonl,high,exact/contained official label
+促进高阶思维与能力发展,Higher-Order Thinking & Skill Development,HOTSD,Pedagogical Application,zh,groupby_metric_qwq_eval_zh.jsonl,high,exact/contained official label
+基础事实准确性,Basic Factual Accuracy,BFA,Factual & Reasoning Accuracy,zh,groupby_metric_qwq_eval_zh.jsonl,high,exact/contained official label
+推理过程严谨性,Reasoning Process Rigor,RPR,Factual & Reasoning Accuracy,zh,groupby_metric_qwq_eval_zh.jsonl,high,exact/contained official label
+错误识别与纠正精确性,Error Identification & Correction Precision,EICP,Factual & Reasoning Accuracy,zh,groupby_metric_qwq_eval_zh.jsonl,high,exact/contained official label
+清晰易懂与表达启发,"Clarity, Simplicity & Inspiration",CSI,Pedagogical Application,zh,groupby_metric_qwq_eval_zh.jsonl,high,exact/contained official label
+激励引导与积极反馈,"Motivation, Guidance & Positive Feedback",MGPF,Pedagogical Application,zh,groupby_metric_qwq_eval_zh.jsonl,high,exact/contained official label
+领域知识专业性,Domain Knowledge Accuracy,DKA,Factual & Reasoning Accuracy,zh,groupby_metric_qwq_eval_zh.jsonl,high,exact/contained official label
+角色与口吻一致性,Role & Tone Consistency,RTC,Scenario Adaptability,zh,groupby_metric_qwq_eval_zh.jsonl,high,exact/contained official label
+（保留示例中的第四项但无需评分）,unknown,unknown,unknown,zh,groupby_metric_qwq_eval_zh.jsonl,none,no official metric alias matched
+Instruction Following & Task Completion,Instruction Following & Task Completion,IFTC,Scenario Adaptability,en,groupby_metric_r1_eval_en.jsonl,high,exact/contained official label
+Scenario Element Integration,Scenario Element Integration,SEI,Scenario Adaptability,en,groupby_metric_r1_eval_en.jsonl,high,exact/contained official label
+"Personalization, Adaptation & Learning Support","Personalization, Adaptation & Learning Support",PALS,Pedagogical Application,en,groupby_metric_r1_eval_en.jsonl,high,exact/contained official label
+Content Relevance & Scope Control,Content Relevance & Scope Control,CRSC,Scenario Adaptability,en,groupby_metric_r1_eval_en.jsonl,high,exact/contained official label
+Higher-Order Thinking & Skill Development,Higher-Order Thinking & Skill Development,HOTSD,Pedagogical Application,en,groupby_metric_r1_eval_en.jsonl,high,exact/contained official label
+Basic Factual Accuracy,Basic Factual Accuracy,BFA,Factual & Reasoning Accuracy,en,groupby_metric_r1_eval_en.jsonl,high,exact/contained official label
+Reasoning Process Rigor,Reasoning Process Rigor,RPR,Factual & Reasoning Accuracy,en,groupby_metric_r1_eval_en.jsonl,high,exact/contained official label
+Error Identification & Correction Precision,Error Identification & Correction Precision,EICP,Factual & Reasoning Accuracy,en,groupby_metric_r1_eval_en.jsonl,high,exact/contained official label
+"Clarity, Simplicity & Inspiration","Clarity, Simplicity & Inspiration",CSI,Pedagogical Application,en,groupby_metric_r1_eval_en.jsonl,high,exact/contained official label
+"Motivation, Guidance & Positive Feedback","Motivation, Guidance & Positive Feedback",MGPF,Pedagogical Application,en,groupby_metric_r1_eval_en.jsonl,high,exact/contained official label
+Domain Knowledge Accuracy,Domain Knowledge Accuracy,DKA,Factual & Reasoning Accuracy,en,groupby_metric_r1_eval_en.jsonl,high,exact/contained official label
+Role & Tone Consistency,Role & Tone Consistency,RTC,Scenario Adaptability,en,groupby_metric_r1_eval_en.jsonl,high,exact/contained official label
+指令遵循与任务完成,Instruction Following & Task Completion,IFTC,Scenario Adaptability,zh,groupby_metric_r1_eval_zh.jsonl,high,exact/contained official label
+内容相关性与范围控制,Content Relevance & Scope Control,CRSC,Scenario Adaptability,zh,groupby_metric_r1_eval_zh.jsonl,high,exact/contained official label
+场景要素融合度,Scenario Element Integration,SEI,Scenario Adaptability,zh,groupby_metric_r1_eval_zh.jsonl,high,exact/contained official label
+个性化适应与学习支持,"Personalization, Adaptation & Learning Support",PALS,Pedagogical Application,zh,groupby_metric_r1_eval_zh.jsonl,high,exact/contained official label
+促进高阶思维与能力发展,Higher-Order Thinking & Skill Development,HOTSD,Pedagogical Application,zh,groupby_metric_r1_eval_zh.jsonl,high,exact/contained official label
+基础事实准确性,Basic Factual Accuracy,BFA,Factual & Reasoning Accuracy,zh,groupby_metric_r1_eval_zh.jsonl,high,exact/contained official label
+推理过程严谨性,Reasoning Process Rigor,RPR,Factual & Reasoning Accuracy,zh,groupby_metric_r1_eval_zh.jsonl,high,exact/contained official label
+错误识别与纠正精确性,Error Identification & Correction Precision,EICP,Factual & Reasoning Accuracy,zh,groupby_metric_r1_eval_zh.jsonl,high,exact/contained official label
+清晰易懂与表达启发,"Clarity, Simplicity & Inspiration",CSI,Pedagogical Application,zh,groupby_metric_r1_eval_zh.jsonl,high,exact/contained official label
+激励引导与积极反馈,"Motivation, Guidance & Positive Feedback",MGPF,Pedagogical Application,zh,groupby_metric_r1_eval_zh.jsonl,high,exact/contained official label
+领域知识专业性,Domain Knowledge Accuracy,DKA,Factual & Reasoning Accuracy,zh,groupby_metric_r1_eval_zh.jsonl,high,exact/contained official label
+角色与口吻一致性,Role & Tone Consistency,RTC,Scenario Adaptability,zh,groupby_metric_r1_eval_zh.jsonl,high,exact/contained official label
+Instruction Following & Task Completion,Instruction Following & Task Completion,IFTC,Scenario Adaptability,en,groupby_metric_v3_eval_en.jsonl,high,exact/contained official label
+Scenario Element Integration,Scenario Element Integration,SEI,Scenario Adaptability,en,groupby_metric_v3_eval_en.jsonl,high,exact/contained official label
+"Personalization, Adaptation & Learning Support","Personalization, Adaptation & Learning Support",PALS,Pedagogical Application,en,groupby_metric_v3_eval_en.jsonl,high,exact/contained official label
+Content Relevance & Scope Control,Content Relevance & Scope Control,CRSC,Scenario Adaptability,en,groupby_metric_v3_eval_en.jsonl,high,exact/contained official label
+Higher-Order Thinking & Skill Development,Higher-Order Thinking & Skill Development,HOTSD,Pedagogical Application,en,groupby_metric_v3_eval_en.jsonl,high,exact/contained official label
+Basic Factual Accuracy,Basic Factual Accuracy,BFA,Factual & Reasoning Accuracy,en,groupby_metric_v3_eval_en.jsonl,high,exact/contained official label
+Reasoning Process Rigor,Reasoning Process Rigor,RPR,Factual & Reasoning Accuracy,en,groupby_metric_v3_eval_en.jsonl,high,exact/contained official label
+Error Identification & Correction Precision,Error Identification & Correction Precision,EICP,Factual & Reasoning Accuracy,en,groupby_metric_v3_eval_en.jsonl,high,exact/contained official label
+"Clarity, Simplicity & Inspiration","Clarity, Simplicity & Inspiration",CSI,Pedagogical Application,en,groupby_metric_v3_eval_en.jsonl,high,exact/contained official label
+"Motivation, Guidance & Positive Feedback","Motivation, Guidance & Positive Feedback",MGPF,Pedagogical Application,en,groupby_metric_v3_eval_en.jsonl,high,exact/contained official label
+Domain Knowledge Accuracy,Domain Knowledge Accuracy,DKA,Factual & Reasoning Accuracy,en,groupby_metric_v3_eval_en.jsonl,high,exact/contained official label
+Role & Tone Consistency,Role & Tone Consistency,RTC,Scenario Adaptability,en,groupby_metric_v3_eval_en.jsonl,high,exact/contained official label
+指令遵循与任务完成,Instruction Following & Task Completion,IFTC,Scenario Adaptability,zh,groupby_metric_v3_eval_zh.jsonl,high,exact/contained official label
+内容相关性与范围控制,Content Relevance & Scope Control,CRSC,Scenario Adaptability,zh,groupby_metric_v3_eval_zh.jsonl,high,exact/contained official label
+场景要素融合度,Scenario Element Integration,SEI,Scenario Adaptability,zh,groupby_metric_v3_eval_zh.jsonl,high,exact/contained official label
+个性化适应与学习支持,"Personalization, Adaptation & Learning Support",PALS,Pedagogical Application,zh,groupby_metric_v3_eval_zh.jsonl,high,exact/contained official label
+促进高阶思维与能力发展,Higher-Order Thinking & Skill Development,HOTSD,Pedagogical Application,zh,groupby_metric_v3_eval_zh.jsonl,high,exact/contained official label
+基础事实准确性,Basic Factual Accuracy,BFA,Factual & Reasoning Accuracy,zh,groupby_metric_v3_eval_zh.jsonl,high,exact/contained official label
+推理过程严谨性,Reasoning Process Rigor,RPR,Factual & Reasoning Accuracy,zh,groupby_metric_v3_eval_zh.jsonl,high,exact/contained official label
+错误识别与纠正精确性,Error Identification & Correction Precision,EICP,Factual & Reasoning Accuracy,zh,groupby_metric_v3_eval_zh.jsonl,high,exact/contained official label
+清晰易懂与表达启发,"Clarity, Simplicity & Inspiration",CSI,Pedagogical Application,zh,groupby_metric_v3_eval_zh.jsonl,high,exact/contained official label
+激励引导与积极反馈,"Motivation, Guidance & Positive Feedback",MGPF,Pedagogical Application,zh,groupby_metric_v3_eval_zh.jsonl,high,exact/contained official label
+领域知识专业性,Domain Knowledge Accuracy,DKA,Factual & Reasoning Accuracy,zh,groupby_metric_v3_eval_zh.jsonl,high,exact/contained official label
+角色与口吻一致性,Role & Tone Consistency,RTC,Scenario Adaptability,zh,groupby_metric_v3_eval_zh.jsonl,high,exact/contained official label
+1.1 指令遵循与任务完成 (Instruction Following & Task Completion),Instruction Following & Task Completion,IFTC,Scenario Adaptability,zh,metrics_map.json,high,exact/contained official label
+1.4 场景要素融合度 (Scenario Element Integration),Scenario Element Integration,SEI,Scenario Adaptability,zh,metrics_map.json,high,exact/contained official label
+2.1 基础事实准确性 (Basic Factual Accuracy),Basic Factual Accuracy,BFA,Factual & Reasoning Accuracy,zh,metrics_map.json,high,exact/contained official label
+2.3 推理过程严谨性 (Reasoning Process Rigor),Reasoning Process Rigor,RPR,Factual & Reasoning Accuracy,zh,metrics_map.json,high,exact/contained official label
+2.4 错误识别与纠正精确性 (Error Identification & Correction Precision),Error Identification & Correction Precision,EICP,Factual & Reasoning Accuracy,zh,metrics_map.json,high,exact/contained official label
+"3.1 清晰易懂与表达启发 (Clarity, Simplicity & Inspiration)","Clarity, Simplicity & Inspiration",CSI,Pedagogical Application,zh,metrics_map.json,high,exact/contained official label
+"3.2 激励引导与积极反馈 (Motivation, Guidance & Positive Feedback)","Motivation, Guidance & Positive Feedback",MGPF,Pedagogical Application,zh,metrics_map.json,high,exact/contained official label
+1.3 内容相关性与范围控制 (Content Relevance & Scope Control),Content Relevance & Scope Control,CRSC,Scenario Adaptability,zh,metrics_map.json,high,exact/contained official label
+2.2 领域知识专业性 (Domain Knowledge Accuracy),Domain Knowledge Accuracy,DKA,Factual & Reasoning Accuracy,zh,metrics_map.json,high,exact/contained official label
+3.4 促进高阶思维与能力发展 (Higher-Order Thinking & Skill Development),Higher-Order Thinking & Skill Development,HOTSD,Pedagogical Application,zh,metrics_map.json,high,exact/contained official label
+1.2 角色与口吻一致性 (Role & Tone Consistency),Role & Tone Consistency,RTC,Scenario Adaptability,zh,metrics_map.json,high,exact/contained official label
+"3.3 个性化适应与学习支持 (Personalization, Adaptation & Learning Support)","Personalization, Adaptation & Learning Support",PALS,Pedagogical Application,zh,metrics_map.json,high,exact/contained official label
+Instruction Following & Task Completion,Instruction Following & Task Completion,IFTC,Scenario Adaptability,en,official_reference,high,exact/contained official label
+指令遵循与任务完成,Instruction Following & Task Completion,IFTC,Scenario Adaptability,zh,official_reference,high,exact/contained official label
+IFTC,Instruction Following & Task Completion,IFTC,Scenario Adaptability,en,official_reference,high,normalized exact alias
+Role & Tone Consistency,Role & Tone Consistency,RTC,Scenario Adaptability,en,official_reference,high,exact/contained official label
+角色与口吻一致性,Role & Tone Consistency,RTC,Scenario Adaptability,zh,official_reference,high,exact/contained official label
+RTC,Role & Tone Consistency,RTC,Scenario Adaptability,en,official_reference,high,normalized exact alias
+Content Relevance & Scope Control,Content Relevance & Scope Control,CRSC,Scenario Adaptability,en,official_reference,high,exact/contained official label
+内容相关性与范围控制,Content Relevance & Scope Control,CRSC,Scenario Adaptability,zh,official_reference,high,exact/contained official label
+CRSC,Content Relevance & Scope Control,CRSC,Scenario Adaptability,en,official_reference,high,normalized exact alias
+Scenario Element Integration,Scenario Element Integration,SEI,Scenario Adaptability,en,official_reference,high,exact/contained official label
+场景要素融合度,Scenario Element Integration,SEI,Scenario Adaptability,zh,official_reference,high,exact/contained official label
+SEI,Scenario Element Integration,SEI,Scenario Adaptability,en,official_reference,high,normalized exact alias
+Basic Factual Accuracy,Basic Factual Accuracy,BFA,Factual & Reasoning Accuracy,en,official_reference,high,exact/contained official label
+基础事实准确性,Basic Factual Accuracy,BFA,Factual & Reasoning Accuracy,zh,official_reference,high,exact/contained official label
+BFA,Basic Factual Accuracy,BFA,Factual & Reasoning Accuracy,en,official_reference,high,normalized exact alias
+Domain Knowledge Accuracy,Domain Knowledge Accuracy,DKA,Factual & Reasoning Accuracy,en,official_reference,high,exact/contained official label
+领域知识专业性,Domain Knowledge Accuracy,DKA,Factual & Reasoning Accuracy,zh,official_reference,high,exact/contained official label
+DKA,Domain Knowledge Accuracy,DKA,Factual & Reasoning Accuracy,en,official_reference,high,normalized exact alias
+Reasoning Process Rigor,Reasoning Process Rigor,RPR,Factual & Reasoning Accuracy,en,official_reference,high,exact/contained official label
+推理过程严谨性,Reasoning Process Rigor,RPR,Factual & Reasoning Accuracy,zh,official_reference,high,exact/contained official label
+RPR,Reasoning Process Rigor,RPR,Factual & Reasoning Accuracy,en,official_reference,high,normalized exact alias
+Error Identification & Correction Precision,Error Identification & Correction Precision,EICP,Factual & Reasoning Accuracy,en,official_reference,high,exact/contained official label
+错误识别与纠正精确性,Error Identification & Correction Precision,EICP,Factual & Reasoning Accuracy,zh,official_reference,high,exact/contained official label
+EICP,Error Identification & Correction Precision,EICP,Factual & Reasoning Accuracy,en,official_reference,high,normalized exact alias
+"Clarity, Simplicity & Inspiration","Clarity, Simplicity & Inspiration",CSI,Pedagogical Application,en,official_reference,high,exact/contained official label
+清晰易懂与表达启发,"Clarity, Simplicity & Inspiration",CSI,Pedagogical Application,zh,official_reference,high,exact/contained official label
+CSI,"Clarity, Simplicity & Inspiration",CSI,Pedagogical Application,en,official_reference,high,normalized exact alias
+"Motivation, Guidance & Positive Feedback","Motivation, Guidance & Positive Feedback",MGPF,Pedagogical Application,en,official_reference,high,exact/contained official label
+激励引导与积极反馈,"Motivation, Guidance & Positive Feedback",MGPF,Pedagogical Application,zh,official_reference,high,exact/contained official label
+MGPF,"Motivation, Guidance & Positive Feedback",MGPF,Pedagogical Application,en,official_reference,high,normalized exact alias
+"Personalization, Adaptation & Learning Support","Personalization, Adaptation & Learning Support",PALS,Pedagogical Application,en,official_reference,high,exact/contained official label
+个性化适应与学习支持,"Personalization, Adaptation & Learning Support",PALS,Pedagogical Application,zh,official_reference,high,exact/contained official label
+PALS,"Personalization, Adaptation & Learning Support",PALS,Pedagogical Application,en,official_reference,high,normalized exact alias
+Higher-Order Thinking & Skill Development,Higher-Order Thinking & Skill Development,HOTSD,Pedagogical Application,en,official_reference,high,exact/contained official label
+促进高阶思维与能力发展,Higher-Order Thinking & Skill Development,HOTSD,Pedagogical Application,zh,official_reference,high,exact/contained official label
+HOTSD,Higher-Order Thinking & Skill Development,HOTSD,Pedagogical Application,en,official_reference,high,normalized exact alias
