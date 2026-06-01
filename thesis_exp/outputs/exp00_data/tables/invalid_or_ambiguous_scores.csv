@@ -1,1 +1,1 @@
-source_file,source_row_index,human_scores,human_mean_raw,human_mean_5,label_5,raw_score_scale_detected,label_mapping_method,reason
+source_file,source_row_index,human_scores,human_1_raw,human_2_raw,human_3_raw,human_mean_raw,human_mean_5,label_5,raw_score_scale_detected,label_mapping_method,reason

@@ -20,11 +20,13 @@ SAMPLES_DIR = OUTPUT_DIR / "samples"
 FIGURES_DIR = OUTPUT_DIR / "figures"
 PROCESSED_DIR = THESIS_DIR / "data" / "processed"
 SPLITS_DIR = THESIS_DIR / "data" / "splits"
+CACHE_DIR = THESIS_DIR / ".cache"
 
 
 def ensure_exp_dirs() -> None:
     for path in [
         THESIS_DIR,
+        THESIS_DIR / "configs",
         THESIS_DIR / "src" / "edujudge" / "data",
         THESIS_DIR / "src" / "edujudge" / "plots",
         THESIS_DIR / "src" / "edujudge" / "utils",
@@ -70,7 +72,7 @@ def write_csv(path: Path | str, rows: Iterable[dict[str, Any]], fieldnames: list
                     seen.append(key)
         fieldnames = seen
     with path.open("w", encoding="utf-8", newline="") as f:
-        writer = csv.DictWriter(f, fieldnames=fieldnames, extrasaction="ignore")
+        writer = csv.DictWriter(f, fieldnames=fieldnames, extrasaction="ignore", lineterminator="\n")
         writer.writeheader()
         for row in rows:
             writer.writerow({key: to_csv_cell(row.get(key, "")) for key in fieldnames})

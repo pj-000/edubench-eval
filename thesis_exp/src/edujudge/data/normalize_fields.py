@@ -7,6 +7,7 @@ import re
 from collections import Counter
 from typing import Any
 
+from thesis_exp.src.edujudge.data.reference_contract import EXPECTED_SUBJECTS
 from thesis_exp.src.edujudge.utils.text_norm import detect_language_from_text, normalize_text, stringify
 
 
@@ -219,12 +220,15 @@ def canonicalize_scenario(raw_scenario: object) -> dict[str, str]:
         for alias in aliases:
             alias_folded = _fold(alias)
             if folded == alias_folded or (len(alias_folded) > 3 and alias in raw):
+                notes = "matched official scenario alias"
+                if folded in {"problemsolving", "problemsolving"} or normalize_text(raw) == "problem solving":
+                    notes = "Problem Solving is treated as a PDF/local alias for official Question Answering"
                 return {
                     "canonical_scenario": spec["canonical_scenario"],
                     "scenario_abbr": spec["scenario_abbr"],
                     "student_or_teacher_oriented": spec["student_or_teacher_oriented"],
                     "confidence": "high",
-                    "notes": "matched official scenario alias",
+                    "notes": notes,
                 }
             if len(alias_folded) > 3 and alias_folded in folded:
                 return {
@@ -304,35 +308,76 @@ def extract_profile_dict(question: object) -> dict[str, Any]:
 
 
 SUBJECT_KEYWORDS: list[tuple[str, list[str]]] = [
-    ("Mathematics", ["math", "mathematics", "algebra", "geometry", "calculus", "statistics", "probability", "数学", "代数", "几何", "微积分", "统计", "概率"]),
-    ("Physics", ["physics", "mechanics", "electromagnetism", "物理", "力学", "电磁"]),
-    ("Chemistry", ["chemistry", "chemical", "化学"]),
-    ("Biology", ["biology", "cellular", "genetics", "ecology", "生物", "细胞", "遗传", "生态"]),
+    ("Applied Economics", ["applied economics", "policy evaluation", "应用经济", "政策评估"]),
+    ("Aquaculture", ["aquaculture", "fish breeding", "marine aquaculture", "水产养殖", "鱼类繁殖"]),
+    ("Automation", ["automation", "industrial automation", "自动化", "工业自动化"]),
+    ("Basic Medicine", ["basic medicine", "molecular biology", "genetics", "基础医学", "解剖学", "病理学", "药理学"]),
+    ("Biology", ["biology", "cellular", "ecology", "生物", "细胞", "生态"]),
+    ("Business Administration", ["business administration", "business management", "工商管理", "商业管理", "战略管理", "市场营销"]),
+    ("Chemistry", ["chemistry", "chemical", "organic chemistry", "化学", "有机化学"]),
+    ("Chinese", ["chinese language", "chinese literature", "语文", "古诗词", "中文"]),
+    ("Clinical Medicine", ["clinical medicine", "clinical diagnosis", "clinical skills", "临床医学", "临床诊断", "执业医师"]),
+    ("Computer Science", ["computer science", "programming", "python", "algorithm", "coding", "计算机", "编程", "算法", "代码"]),
+    ("Crop Science", ["crop science", "agronomy", "crop", "作物科学", "农学", "作物"]),
+    ("English", ["english", "英语"]),
+    ("General Pedagogy", ["general pedagogy", "pedagogy", "education", "educational equity", "教育学", "教育公平", "教学"]),
     ("Geography", ["geography", "map reading", "topographic", "地理", "地图"]),
     ("History", ["history", "historical", "历史", "世界史", "近代"]),
-    ("Economics", ["economics", "economic", "econometric", "经济", "计量经济"]),
-    ("Public Policy", ["public policy", "policy analysis", "公共政策", "政策分析"]),
-    ("Computer Science", ["computer science", "programming", "python", "algorithm", "coding", "计算机", "编程", "算法", "代码"]),
-    ("Language Arts", ["language arts", "literature", "writing", "reading", "语文", "文学", "写作", "阅读"]),
-    ("English", ["english", "英语"]),
+    ("Law", ["law", "legal", "criminal law", "法律", "法学", "刑法", "司法考试"]),
+    ("Literature and Art", ["literature and art", "literature", "language arts", "art", "painting", "文学", "艺术", "写作", "阅读"]),
+    ("Mathematics", ["math", "mathematics", "algebra", "geometry", "calculus", "statistics", "probability", "数学", "代数", "几何", "微积分", "统计", "概率"]),
+    ("Military Science", ["military science", "military strategy", "defense", "军事", "军事战略", "战术", "无人机"]),
+    ("Physical Education", ["physical education", "sports science", "biomechanics", "体育", "运动科学", "生物力学"]),
+    ("Physics", ["physics", "mechanics", "electromagnetism", "物理", "力学", "电磁"]),
     ("Psychology", ["psychology", "mental health", "心理", "心理健康"]),
-    ("Education", ["education", "pedagogy", "teaching", "教育", "教学"]),
-    ("Environmental Science", ["environmental", "environment", "sustainability", "环境", "可持续"]),
-    ("Marine Science", ["marine", "aquaculture", "ocean", "海洋", "水产养殖"]),
-    ("Law", ["law", "legal", "法律", "法学"]),
-    ("Medicine", ["medicine", "medical", "healthcare", "医学", "医疗"]),
-    ("Engineering", ["engineering", "工程"]),
-    ("Art", ["art", "painting", "艺术", "绘画"]),
-    ("Music", ["music", "音乐"]),
-    ("Civics", ["civics", "government", "governmental", "公民", "政府"]),
-    ("Business", ["business", "management", "工商管理", "管理学"]),
+    ("Public Administration", ["public administration", "public policy", "policy analysis", "local government", "公共管理", "公共政策", "政策分析", "政府部门"]),
     ("Sociology", ["sociology", "social", "社会学", "社会"]),
-    ("Philosophy", ["philosophy", "哲学"]),
-    ("General Science", ["science", "科学"]),
+    ("Theoretical Economics", ["theoretical economics", "economics", "economic", "econometric", "game theory", "microeconomics", "理论经济", "经济学", "博弈论", "微观经济"]),
 ]
 
 
+SUBJECT_BY_FOLDED = {_fold(subject): subject for subject in EXPECTED_SUBJECTS}
+
+
+def canonicalize_subject(raw_subject: object) -> dict[str, str]:
+    raw = stringify(raw_subject).strip()
+    folded = _fold(raw)
+    if not raw:
+        return {"canonical_subject": "unknown", "confidence": "none", "notes": "empty subject"}
+    if folded in SUBJECT_BY_FOLDED:
+        return {"canonical_subject": SUBJECT_BY_FOLDED[folded], "confidence": "high", "notes": "exact canonical subject"}
+    for subject, keywords in SUBJECT_KEYWORDS:
+        if subject not in EXPECTED_SUBJECTS:
+            continue
+        if folded == _fold(subject):
+            return {"canonical_subject": subject, "confidence": "high", "notes": "normalized subject alias"}
+        haystack = normalize_text(raw)
+        for keyword in keywords:
+            if normalize_text(keyword) in haystack:
+                return {"canonical_subject": subject, "confidence": "medium", "notes": f"matched subject keyword: {keyword}"}
+    return {"canonical_subject": "unknown", "confidence": "none", "notes": "no canonical subject alias matched"}
+
+
+def extract_subject_from_question(question: object) -> tuple[str, str, str, str, str]:
+    text = stringify(question)
+    subject_match = re.search(r"(?im)^subject\s*:\s*([^\n\r]+)", text)
+    if subject_match:
+        raw = subject_match.group(1).strip()
+        mapped = canonicalize_subject(raw)
+        return raw, mapped["canonical_subject"], "question.Subject", "metadata_parse", mapped["confidence"]
+    profile = extract_profile_dict(question)
+    for key in ["subject", "Subject", "学科", "科目", "专业", "Major", "major"]:
+        if key in profile:
+            raw = stringify(profile.get(key))
+            mapped = canonicalize_subject(raw)
+            return raw, mapped["canonical_subject"], f"profile.{key}", "structured_field", mapped["confidence"]
+    return "", "unknown", "", "", "none"
+
+
 def infer_subject(question: object) -> tuple[str, str]:
+    raw, canonical, _, _, _ = extract_subject_from_question(question)
+    if canonical != "unknown":
+        return raw, canonical
     text = stringify(question)
     profile = extract_profile_dict(question)
     values = " ".join(stringify(v) for v in profile.values())

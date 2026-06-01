@@ -1,0 +1,52 @@
+raw_subject,canonical_subject,source_field,source_file,mapping_method,confidence,notes,count
+基础医学,Basic Medicine,report/results_merge_enriched.jsonl.subject_unified,results_merge.jsonl,structured_field,high,recovered from local enriched audit metadata,218
+文学与艺术,Literature and Art,report/results_merge_enriched.jsonl.subject_unified,results_merge.jsonl,structured_field,high,recovered from local enriched audit metadata,190
+水产养殖,Aquaculture,report/results_merge_enriched.jsonl.subject_unified,results_merge.jsonl,structured_field,high,recovered from local enriched audit metadata,180
+Biology,Biology,report/results_merge_enriched.jsonl.subject_unified,results_merge.jsonl,structured_field,high,recovered from local enriched audit metadata,177
+Business Administration,Business Administration,report/results_merge_enriched.jsonl.subject_unified,results_merge.jsonl,structured_field,high,recovered from local enriched audit metadata,175
+Mathematics,Mathematics,report/results_merge_enriched.jsonl.subject_unified,results_merge.jsonl,structured_field,high,recovered from local enriched audit metadata,170
+心理学,Psychology,report/results_merge_enriched.jsonl.subject_unified,results_merge.jsonl,structured_field,high,recovered from local enriched audit metadata,159
+化学,Chemistry,report/results_merge_enriched.jsonl.subject_unified,results_merge.jsonl,structured_field,high,recovered from local enriched audit metadata,155
+数学,Mathematics,report/results_merge_enriched.jsonl.subject_unified,results_merge.jsonl,structured_field,high,recovered from local enriched audit metadata,153
+公共管理学,Public Administration,report/results_merge_enriched.jsonl.subject_unified,results_merge.jsonl,structured_field,high,recovered from local enriched audit metadata,149
+计算机科学,Computer Science,report/results_merge_enriched.jsonl.subject_unified,results_merge.jsonl,structured_field,high,recovered from local enriched audit metadata,144
+Military Science,Military Science,report/results_merge_enriched.jsonl.subject_unified,results_merge.jsonl,structured_field,high,recovered from local enriched audit metadata,140
+Chemistry,Chemistry,report/results_merge_enriched.jsonl.subject_unified,results_merge.jsonl,structured_field,high,recovered from local enriched audit metadata,135
+Physics,Physics,report/results_merge_enriched.jsonl.subject_unified,results_merge.jsonl,structured_field,high,recovered from local enriched audit metadata,135
+英语,English,report/results_merge_enriched.jsonl.subject_unified,results_merge.jsonl,structured_field,high,recovered from local enriched audit metadata,130
+Public Administration,Public Administration,report/results_merge_enriched.jsonl.subject_unified,results_merge.jsonl,structured_field,high,recovered from local enriched audit metadata,126
+History,History,report/results_merge_enriched.jsonl.subject_unified,results_merge.jsonl,structured_field,high,recovered from local enriched audit metadata,125
+物理,Physics,report/results_merge_enriched.jsonl.subject_unified,results_merge.jsonl,structured_field,high,recovered from local enriched audit metadata,125
+历史,History,report/results_merge_enriched.jsonl.subject_unified,results_merge.jsonl,structured_field,high,recovered from local enriched audit metadata,124
+Geography,Geography,report/results_merge_enriched.jsonl.subject_unified,results_merge.jsonl,structured_field,high,recovered from local enriched audit metadata,120
+Crop Science,Crop Science,report/results_merge_enriched.jsonl.subject_unified,results_merge.jsonl,structured_field,high,recovered from local enriched audit metadata,119
+历史学,History,report/results_merge_enriched.jsonl.subject_unified,results_merge.jsonl,structured_field,high,recovered from local enriched audit metadata,119
+Psychology,Psychology,report/results_merge_enriched.jsonl.subject_unified,results_merge.jsonl,structured_field,high,recovered from local enriched audit metadata,115
+普通教育学,General Pedagogy,report/results_merge_enriched.jsonl.subject_unified,results_merge.jsonl,structured_field,high,recovered from local enriched audit metadata,111
+Chinese,Chinese,report/results_merge_enriched.jsonl.subject_unified,results_merge.jsonl,structured_field,high,recovered from local enriched audit metadata,110
+Law,Law,report/results_merge_enriched.jsonl.subject_unified,results_merge.jsonl,structured_field,high,recovered from local enriched audit metadata,106
+理论经济学,Theoretical Economics,report/results_merge_enriched.jsonl.subject_unified,results_merge.jsonl,structured_field,high,recovered from local enriched audit metadata,106
+Applied Economics,Applied Economics,report/results_merge_enriched.jsonl.subject_unified,results_merge.jsonl,structured_field,high,recovered from local enriched audit metadata,105
+Aquaculture,Aquaculture,report/results_merge_enriched.jsonl.subject_unified,results_merge.jsonl,structured_field,high,recovered from local enriched audit metadata,105
+Theoretical Economics,Theoretical Economics,report/results_merge_enriched.jsonl.subject_unified,results_merge.jsonl,structured_field,high,recovered from local enriched audit metadata,105
+Literature and Art,Literature and Art,report/results_merge_enriched.jsonl.subject_unified,results_merge.jsonl,structured_field,high,recovered from local enriched audit metadata,97
+Physical Education,Physical Education,report/results_merge_enriched.jsonl.subject_unified,results_merge.jsonl,structured_field,high,recovered from local enriched audit metadata,95
+物理学,Physics,report/results_merge_enriched.jsonl.subject_unified,results_merge.jsonl,structured_field,high,recovered from local enriched audit metadata,93
+作物科学,Crop Science,report/results_merge_enriched.jsonl.subject_unified,results_merge.jsonl,structured_field,high,recovered from local enriched audit metadata,92
+Basic Medicine,Basic Medicine,report/results_merge_enriched.jsonl.subject_unified,results_merge.jsonl,structured_field,high,recovered from local enriched audit metadata,91
+Automation,Automation,report/results_merge_enriched.jsonl.subject_unified,results_merge.jsonl,structured_field,high,recovered from local enriched audit metadata,90
+Sociology,Sociology,report/results_merge_enriched.jsonl.subject_unified,results_merge.jsonl,structured_field,high,recovered from local enriched audit metadata,85
+商业管理学,Business Administration,report/results_merge_enriched.jsonl.subject_unified,results_merge.jsonl,structured_field,high,recovered from local enriched audit metadata,80
+Computer Science,Computer Science,report/results_merge_enriched.jsonl.subject_unified,results_merge.jsonl,structured_field,high,recovered from local enriched audit metadata,80
+临床医学,Clinical Medicine,report/results_merge_enriched.jsonl.subject_unified,results_merge.jsonl,structured_field,high,recovered from local enriched audit metadata,73
+General Pedagogy,General Pedagogy,report/results_merge_enriched.jsonl.subject_unified,results_merge.jsonl,structured_field,high,recovered from local enriched audit metadata,70
+生物学,Biology,report/results_merge_enriched.jsonl.subject_unified,results_merge.jsonl,structured_field,high,recovered from local enriched audit metadata,60
+Clinical Medicine,Clinical Medicine,report/results_merge_enriched.jsonl.subject_unified,results_merge.jsonl,structured_field,high,recovered from local enriched audit metadata,60
+地理,Geography,report/results_merge_enriched.jsonl.subject_unified,results_merge.jsonl,structured_field,high,recovered from local enriched audit metadata,50
+体育教育学,Physical Education,report/results_merge_enriched.jsonl.subject_unified,results_merge.jsonl,structured_field,high,recovered from local enriched audit metadata,50
+语文,Chinese,report/results_merge_enriched.jsonl.subject_unified,results_merge.jsonl,structured_field,high,recovered from local enriched audit metadata,49
+生物,Biology,report/results_merge_enriched.jsonl.subject_unified,results_merge.jsonl,structured_field,high,recovered from local enriched audit metadata,45
+English,English,report/results_merge_enriched.jsonl.subject_unified,results_merge.jsonl,structured_field,high,recovered from local enriched audit metadata,45
+应用经济学,Applied Economics,report/results_merge_enriched.jsonl.subject_unified,results_merge.jsonl,structured_field,high,recovered from local enriched audit metadata,40
+法学,Law,report/results_merge_enriched.jsonl.subject_unified,results_merge.jsonl,structured_field,high,recovered from local enriched audit metadata,35
+军事学,Military Science,report/results_merge_enriched.jsonl.subject_unified,results_merge.jsonl,structured_field,high,recovered from local enriched audit metadata,25

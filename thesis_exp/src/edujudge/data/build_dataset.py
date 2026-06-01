@@ -14,13 +14,23 @@ from thesis_exp.src.edujudge.data.normalize_fields import (
     SCENARIO_SPECS,
     canonicalize_metric,
     canonicalize_scenario,
+    canonicalize_subject,
     convert_score_to_five,
     detect_score_scale,
+    extract_subject_from_question,
     infer_education_level,
     infer_language,
     infer_subject,
     round_half_up,
     stable_language_label,
+)
+from thesis_exp.src.edujudge.data.reference_contract import (
+    DATASET_NAME,
+    EXPECTED_EDUCATION_LEVELS,
+    EXPECTED_SUBJECTS,
+    PDF_AUDIT_TOTAL,
+    PDF_HELDOUT_TEST_ROWS,
+    PDF_TRAIN_POOL_ROWS,
 )
 from thesis_exp.src.edujudge.utils.hashing import sha1_text
 from thesis_exp.src.edujudge.utils.io import (
@@ -43,6 +53,7 @@ from thesis_exp.src.edujudge.utils.text_norm import normalize_text, stringify, t
 
 
 PRIMARY_SOURCE = REPO_ROOT / "results_merge.jsonl"
+ENRICHED_SOURCE = REPO_ROOT / "report" / "results_merge_enriched.jsonl"
 PROCESSED_PATH = PROCESSED_DIR / "edubench_scoring_all.jsonl"
 PRIMARY_OUTPUT = PROCESSED_PATH
 
@@ -119,6 +130,17 @@ def _score_mapping(scores: list[float]) -> tuple[float | None, int | None, str, 
     return None, None, "unknown", "unknown", False
 
 
+def _map_single_score(value: float | None, scale: str) -> float | None:
+    if value is None:
+        return None
+    if scale == "1-5":
+        return float(value)
+    if scale == "1-10":
+        mapped = convert_score_to_five(value)
+        return float(mapped) if mapped is not None else None
+    return None
+
+
 def _human_score_summary(evaluate: dict[str, Any]) -> tuple[dict[str, float | None], list[float]]:
     humans = {
         "human_1": _to_float(evaluate.get("human_1")),
@@ -133,7 +155,90 @@ def _judge_scores(evaluate: dict[str, Any]) -> dict[str, Any]:
     return {str(key): value for key, value in evaluate.items() if not str(key).startswith("human_")}
 
 
-def _record_from_results_merge(row_index: int, raw: dict[str, Any]) -> tuple[dict[str, Any] | None, list[dict[str, Any]], list[dict[str, Any]]]:
+def _canonical_education(raw_value: object) -> tuple[str, str]:
+    raw = stringify(raw_value).strip()
+    folded = normalize_text(raw)
+    if not raw:
+        return "unknown", "unknown"
+    exact = {normalize_text(level): level for level in EXPECTED_EDUCATION_LEVELS}
+    if folded in exact:
+        return raw, exact[folded]
+    if any(token in folded for token in ["elementary", "primary", "小学"]):
+        return raw, "Elementary School"
+    if any(token in folded for token in ["middle school", "junior high", "初中"]):
+        return raw, "Middle School"
+    if any(token in folded for token in ["high school", "高中", "grade 10", "高一", "高二", "高三"]):
+        return raw, "High School"
+    if any(token in folded for token in ["undergraduate", "bachelor", "college", "本科", "大一", "大二", "大三", "大四"]):
+        return raw, "Undergraduate"
+    if any(token in folded for token in ["master", "硕士"]):
+        return raw, "Master"
+    if any(token in folded for token in ["phd", "doctor", "博士"]):
+        return raw, "PhD"
+    return raw, "unknown"
+
+
+def _load_enriched_rows() -> list[dict[str, Any]]:
+    if not ENRICHED_SOURCE.exists():
+        return []
+    return read_jsonl(ENRICHED_SOURCE)
+
+
+def _enriched_for_index(enriched_rows: list[dict[str, Any]], row_index: int, raw: dict[str, Any]) -> dict[str, Any]:
+    if row_index >= len(enriched_rows):
+        return {}
+    enriched = enriched_rows[row_index]
+    if stringify(enriched.get("question")) == stringify(raw.get("question")) and stringify(enriched.get("answer")) == stringify(raw.get("answer")):
+        return enriched
+    return {}
+
+
+def _subject_info(question: object, enriched: dict[str, Any]) -> dict[str, Any]:
+    if enriched.get("subject_unified"):
+        return {
+            "subject_raw": enriched.get("subject") or enriched.get("subject_unified"),
+            "subject_canonical": enriched.get("subject_unified"),
+            "subject_source_field": "report/results_merge_enriched.jsonl.subject_unified",
+            "subject_mapping_method": "structured_field",
+            "subject_confidence": "high",
+            "subject_notes": "recovered from local enriched audit metadata",
+        }
+    if enriched.get("subject"):
+        mapped = canonicalize_subject(enriched.get("subject"))
+        return {
+            "subject_raw": enriched.get("subject"),
+            "subject_canonical": mapped["canonical_subject"],
+            "subject_source_field": "report/results_merge_enriched.jsonl.subject",
+            "subject_mapping_method": "structured_field",
+            "subject_confidence": mapped["confidence"],
+            "subject_notes": mapped["notes"],
+        }
+    raw, canonical, source_field, method, confidence = extract_subject_from_question(question)
+    if canonical != "unknown":
+        return {
+            "subject_raw": raw,
+            "subject_canonical": canonical,
+            "subject_source_field": source_field,
+            "subject_mapping_method": method,
+            "subject_confidence": confidence,
+            "subject_notes": "subject recovered from structured prompt metadata",
+        }
+    raw_fallback, canonical_fallback = infer_subject(question)
+    return {
+        "subject_raw": raw_fallback,
+        "subject_canonical": canonical_fallback,
+        "subject_source_field": "question",
+        "subject_mapping_method": "text_inference",
+        "subject_confidence": "medium" if canonical_fallback != "unknown" else "none",
+        "subject_notes": "fallback keyword inference from prompt text",
+    }
+
+
+def _record_from_results_merge(
+    row_index: int,
+    raw: dict[str, Any],
+    enriched_rows: list[dict[str, Any]],
+) -> tuple[dict[str, Any] | None, list[dict[str, Any]], list[dict[str, Any]], dict[str, Any] | None]:
     missing_rows: list[dict[str, Any]] = []
     invalid_rows: list[dict[str, Any]] = []
 
@@ -143,6 +248,7 @@ def _record_from_results_merge(row_index: int, raw: dict[str, Any]) -> tuple[dic
     metric_raw = raw.get("metric")
     scenario_raw = raw.get("task")
     evaluate = raw.get("evaluate") if isinstance(raw.get("evaluate"), dict) else {}
+    enriched = _enriched_for_index(enriched_rows, row_index, raw)
 
     required = {
         "question": question,
@@ -160,7 +266,7 @@ def _record_from_results_merge(row_index: int, raw: dict[str, Any]) -> tuple[dic
                 "reason": "required source fields missing",
             }
         )
-        return None, missing_rows, invalid_rows
+        return None, missing_rows, invalid_rows, None
 
     humans, scores = _human_score_summary(evaluate)
     if not scores:
@@ -172,10 +278,11 @@ def _record_from_results_merge(row_index: int, raw: dict[str, Any]) -> tuple[dic
                 "reason": "no real human score found",
             }
         )
-        return None, missing_rows, invalid_rows
+        return None, missing_rows, invalid_rows, None
 
     human_mean_raw = mean(scores)
     human_mean_5, label_5, scale, method, clipped = _score_mapping(scores)
+    mapped_humans = {key: _map_single_score(value, scale) for key, value in humans.items()}
     if label_5 is None or human_mean_5 is None:
         invalid_rows.append(
             {
@@ -188,7 +295,7 @@ def _record_from_results_merge(row_index: int, raw: dict[str, Any]) -> tuple[dic
                 "reason": "ambiguous or unsupported human score scale",
             }
         )
-        return None, missing_rows, invalid_rows
+        return None, missing_rows, invalid_rows, None
     if clipped:
         invalid_rows.append(
             {
@@ -206,9 +313,15 @@ def _record_from_results_merge(row_index: int, raw: dict[str, Any]) -> tuple[dic
 
     metric = canonicalize_metric(metric_raw)
     scenario = canonicalize_scenario(scenario_raw)
-    subject_raw, subject_canonical = infer_subject(question)
-    edu_raw, edu_canonical = infer_education_level(question)
-    language = stable_language_label(infer_language(question, answer, metric_raw))
+    subject = _subject_info(question, enriched)
+    if enriched.get("education_level_unified"):
+        edu_raw, edu_canonical = _canonical_education(enriched.get("education_level_unified"))
+    elif enriched.get("education_level"):
+        edu_raw, edu_canonical = _canonical_education(enriched.get("education_level"))
+    else:
+        edu_raw_inferred, edu_canonical_inferred = infer_education_level(question)
+        edu_raw, edu_canonical = _canonical_education(edu_raw_inferred or edu_canonical_inferred)
+    language = stable_language_label(enriched.get("language") or infer_language(question, answer, metric_raw))
 
     normalized_question = _clean_key(question)
     normalized_answer = _clean_key(answer)
@@ -235,16 +348,26 @@ def _record_from_results_merge(row_index: int, raw: dict[str, Any]) -> tuple[dic
         "scenario_raw": scenario_raw,
         "scenario_canonical": scenario["canonical_scenario"],
         "scenario_abbr": scenario["scenario_abbr"],
-        "subject_raw": subject_raw,
-        "subject_canonical": subject_canonical,
+        "subject_raw": subject["subject_raw"],
+        "subject_canonical": subject["subject_canonical"],
+        "subject_source_field": subject["subject_source_field"],
+        "subject_mapping_method": subject["subject_mapping_method"],
+        "subject_confidence": subject["subject_confidence"],
+        "subject_notes": subject["subject_notes"],
         "education_level_raw": edu_raw,
         "education_level_canonical": edu_canonical,
         "language": language,
         "generator_model": raw.get("model"),
         "answer_model": raw.get("model"),
-        "human_1": humans["human_1"],
-        "human_2": humans["human_2"],
-        "human_3": humans["human_3"],
+        "human_1_raw": humans["human_1"],
+        "human_2_raw": humans["human_2"],
+        "human_3_raw": humans["human_3"],
+        "human_1_5": mapped_humans["human_1"],
+        "human_2_5": mapped_humans["human_2"],
+        "human_3_5": mapped_humans["human_3"],
+        "human_1": mapped_humans["human_1"],
+        "human_2": mapped_humans["human_2"],
+        "human_3": mapped_humans["human_3"],
         "human_scores_available": ",".join(key for key, value in humans.items() if value is not None),
         "human_mean_raw": human_mean_raw,
         "human_mean_5": human_mean_5,
@@ -256,18 +379,42 @@ def _record_from_results_merge(row_index: int, raw: dict[str, Any]) -> tuple[dic
             "task": raw.get("task"),
             "model": raw.get("model"),
             "evaluate_keys": sorted(map(str, evaluate.keys())),
+            "local_enriched_source": relpath(ENRICHED_SOURCE) if enriched else "",
+            "original_is_test_set": enriched.get("is_test_set") if enriched else None,
         },
+        "original_is_test_set": enriched.get("is_test_set") if enriched else None,
+        "source_status": "local_derived_merged_human_scored_subset",
         "triple_key": triple_key,
         "question_key": question_key,
         "answer_key": answer_key,
     }
-    return record, missing_rows, invalid_rows
+    score_audit = {
+        "record_id": record_id,
+        "source_file": source_file,
+        "source_row_index": row_index,
+        "human_1_raw": humans["human_1"],
+        "human_2_raw": humans["human_2"],
+        "human_3_raw": humans["human_3"],
+        "human_mean_raw": human_mean_raw,
+        "raw_score_scale_detected": scale,
+        "human_1_5": mapped_humans["human_1"],
+        "human_2_5": mapped_humans["human_2"],
+        "human_3_5": mapped_humans["human_3"],
+        "human_mean_5": human_mean_5,
+        "label_5": int(label_5),
+        "label_mapping_method": method,
+        "mapping_verified": True,
+        "notes": "raw human scores already on 1-5 scale" if scale == "1-5" else "raw human scores converted using 5-grades.py ten-to-five bins",
+    }
+    return record, missing_rows, invalid_rows, score_audit
 
 
-def _load_results_merge_records() -> tuple[list[dict[str, Any]], list[dict[str, Any]], list[dict[str, Any]]]:
+def _load_results_merge_records() -> tuple[list[dict[str, Any]], list[dict[str, Any]], list[dict[str, Any]], list[dict[str, Any]]]:
     records: list[dict[str, Any]] = []
     missing: list[dict[str, Any]] = []
     invalid: list[dict[str, Any]] = []
+    score_audit: list[dict[str, Any]] = []
+    enriched_rows = _load_enriched_rows()
     for row_index, obj in iter_json_records(PRIMARY_SOURCE):
         if not isinstance(obj, dict):
             invalid.append(
@@ -278,12 +425,14 @@ def _load_results_merge_records() -> tuple[list[dict[str, Any]], list[dict[str, 
                 }
             )
             continue
-        record, missing_rows, invalid_rows = _record_from_results_merge(row_index, obj)
+        record, missing_rows, invalid_rows, score_row = _record_from_results_merge(row_index, obj, enriched_rows)
         missing.extend(missing_rows)
         invalid.extend(invalid_rows)
         if record is not None:
             records.append(record)
-    return records, missing, invalid
+        if score_row is not None:
+            score_audit.append(score_row)
+    return records, missing, invalid, score_audit
 
 
 def _collect_raw_metrics_and_scenarios() -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
@@ -356,6 +505,8 @@ def write_mapping_tables() -> tuple[list[dict[str, Any]], list[dict[str, Any]], 
     unmapped_metrics: list[dict[str, Any]] = []
     for item in metric_inputs:
         mapped = canonicalize_metric(item["raw_metric"])
+        severity = "INFO" if item["source_file"].startswith("groupby_metric_") else "ERROR"
+        unmapped_note = "non-official legacy/ad hoc evaluator metric outside main human-scored source" if severity == "INFO" else "unmapped metric requires review"
         row = {
             "raw_metric": item["raw_metric"],
             "canonical_metric": mapped["canonical_metric"],
@@ -365,6 +516,8 @@ def write_mapping_tables() -> tuple[list[dict[str, Any]], list[dict[str, Any]], 
             "source_file": item["source_file"],
             "confidence": mapped["confidence"],
             "notes": mapped["notes"],
+            "severity": "" if mapped["canonical_metric"] != "unknown" else severity,
+            "unmapped_explanation": "" if mapped["canonical_metric"] != "unknown" else unmapped_note,
         }
         metric_rows.append(row)
         if mapped["canonical_metric"] == "unknown":
@@ -374,6 +527,7 @@ def write_mapping_tables() -> tuple[list[dict[str, Any]], list[dict[str, Any]], 
     unmapped_scenarios: list[dict[str, Any]] = []
     for item in scenario_inputs:
         mapped = canonicalize_scenario(item["raw_scenario"])
+        severity = "INFO" if item["source_file"].startswith("groupby_metric_") else "ERROR"
         row = {
             "raw_scenario": item["raw_scenario"],
             "canonical_scenario": mapped["canonical_scenario"],
@@ -382,6 +536,8 @@ def write_mapping_tables() -> tuple[list[dict[str, Any]], list[dict[str, Any]], 
             "source_file": item["source_file"],
             "confidence": mapped["confidence"],
             "notes": mapped["notes"],
+            "severity": "" if mapped["canonical_scenario"] != "unknown" else severity,
+            "unmapped_explanation": "" if mapped["canonical_scenario"] != "unknown" else "unmapped scenario requires review",
         }
         scenario_rows.append(row)
         if mapped["canonical_scenario"] == "unknown":
@@ -390,7 +546,7 @@ def write_mapping_tables() -> tuple[list[dict[str, Any]], list[dict[str, Any]], 
     write_csv(
         TABLES_DIR / "metric_mapping.csv",
         metric_rows,
-        ["raw_metric", "canonical_metric", "metric_abbr", "metric_group", "language", "source_file", "confidence", "notes"],
+        ["raw_metric", "canonical_metric", "metric_abbr", "metric_group", "language", "source_file", "confidence", "notes", "severity", "unmapped_explanation"],
     )
     write_csv(
         TABLES_DIR / "scenario_mapping.csv",
@@ -403,12 +559,14 @@ def write_mapping_tables() -> tuple[list[dict[str, Any]], list[dict[str, Any]], 
             "source_file",
             "confidence",
             "notes",
+            "severity",
+            "unmapped_explanation",
         ],
     )
     write_csv(
         TABLES_DIR / "unmapped_metrics.csv",
         unmapped_metrics,
-        ["raw_metric", "canonical_metric", "metric_abbr", "metric_group", "language", "source_file", "confidence", "notes"],
+        ["raw_metric", "canonical_metric", "metric_abbr", "metric_group", "language", "source_file", "confidence", "notes", "severity", "unmapped_explanation"],
     )
     write_csv(
         TABLES_DIR / "unmapped_scenarios.csv",
@@ -421,6 +579,8 @@ def write_mapping_tables() -> tuple[list[dict[str, Any]], list[dict[str, Any]], 
             "source_file",
             "confidence",
             "notes",
+            "severity",
+            "unmapped_explanation",
         ],
     )
     return metric_rows, scenario_rows, unmapped_metrics, unmapped_scenarios
@@ -467,14 +627,81 @@ def _dataset_row_table(records: list[dict[str, Any]]) -> list[dict[str, Any]]:
         "human_1",
         "human_2",
         "human_3",
+        "human_1_raw",
+        "human_2_raw",
+        "human_3_raw",
+        "human_1_5",
+        "human_2_5",
+        "human_3_5",
         "human_mean_raw",
         "human_mean_5",
         "label_5",
+        "original_is_test_set",
         "triple_key",
         "question_key",
         "answer_key",
     ]
     return [{field: row.get(field) for field in fields} for row in records]
+
+
+def _subject_tables(records: list[dict[str, Any]]) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
+    grouped: dict[tuple[str, str, str, str], dict[str, Any]] = {}
+    for row in records:
+        raw_subject = stringify(row.get("subject_raw") or "unknown")
+        canonical = stringify(row.get("subject_canonical") or "unknown")
+        source_field = stringify(row.get("subject_source_field") or "")
+        method = stringify(row.get("subject_mapping_method") or "")
+        key = (raw_subject, canonical, source_field, method)
+        grouped.setdefault(
+            key,
+            {
+                "raw_subject": raw_subject,
+                "canonical_subject": canonical,
+                "source_field": source_field,
+                "source_file": row.get("source_file"),
+                "mapping_method": method,
+                "confidence": row.get("subject_confidence"),
+                "notes": row.get("subject_notes"),
+                "count": 0,
+            },
+        )["count"] += 1
+    rows = sorted(grouped.values(), key=lambda item: (-int(item["count"]), item["canonical_subject"], item["raw_subject"]))
+    unmapped = [row for row in rows if row["canonical_subject"] == "unknown"]
+    return rows, unmapped
+
+
+def _write_subject_alignment_report(records: list[dict[str, Any]], subject_mapping: list[dict[str, Any]], unmapped: list[dict[str, Any]]) -> None:
+    observed = sorted({row.get("subject_canonical") for row in records if row.get("subject_canonical") and row.get("subject_canonical") != "unknown"})
+    missing = [subject for subject in EXPECTED_SUBJECTS if subject not in observed]
+    status = "PASS" if len(observed) == 25 else "WARNING"
+    lines = [
+        "# Subject Alignment Report",
+        "",
+        f"Status: **{status}**",
+        "",
+        f"Observed canonical subjects: {len(observed)} / 25.",
+        "",
+        "Subject metadata is recovered primarily from `report/results_merge_enriched.jsonl` when available. Text inference is retained only as a fallback.",
+        "",
+        "## Observed Subjects",
+        "",
+        md_table([{"canonical_subject": subject} for subject in observed], ["canonical_subject"], max_rows=40),
+        "",
+        "## Missing Subjects",
+        "",
+        md_table([{"canonical_subject": subject} for subject in missing], ["canonical_subject"], max_rows=40),
+        "",
+        "## Mapping Methods",
+        "",
+        md_table(_distribution(subject_mapping, "mapping_method"), ["value", "count", "pct"], max_rows=20),
+        "",
+        "## Recommendation",
+        "",
+        "Subject-level results can be used as audit metadata only after confirming the local enriched subject annotations. If subject alignment ever falls below 25, subject-level results should be treated as exploratory metadata, not as primary thesis evidence.",
+        "",
+        f"Unmapped subject mapping rows: {len(unmapped)}.",
+    ]
+    write_text(OUTPUT_DIR / "subject_alignment_report.md", "\n".join(lines))
 
 
 def _write_field_decisions(
@@ -487,11 +714,13 @@ def _write_field_decisions(
         "",
         "## Primary Human-Scored Source",
         "",
-        f"`{relpath(PRIMARY_SOURCE)}` is selected as the primary main dataset source because it contains one row per scored item with `question`, `answer`, `metric`, `task`, generator `model`, and an `evaluate` object that includes `human_1`, `human_2`, and `human_3` together with automatic judge scores.",
+        f"Dataset name: `{DATASET_NAME}`.",
+        "",
+        f"`{relpath(PRIMARY_SOURCE)}` is selected as the primary local source because it contains one row per scored item with `question`, `answer`, `metric`, `task`, generator `model`, and an `evaluate` object that includes `human_1`, `human_2`, and `human_3` together with automatic judge scores.",
         "",
         "`human_1.jsonl`, `human_2.jsonl`, and `human_3.jsonl` are treated as real human annotation sources for provenance and schema profiling, but they are not directly concatenated into the main dataset because they use a 1-10 score scale and would duplicate or partially overlap the already merged scored items.",
         "",
-        "`sampled_merge_50_new.json` and `sampled_merge_50_new_swift.json` are inventory-only synthetic/augmented files and are excluded from `edubench_scoring_all.jsonl`.",
+        "`sampled_merge_50_new.json` and `sampled_merge_50_new_swift.json` are inventory-only synthetic/augmented files and are excluded from `edubench_scoring_all.jsonl`. The 5536-row dataset is the PDF audit human-scored subset, not the full official EduBench data.",
         "",
         "## Standard Field Construction",
         "",
@@ -514,7 +743,7 @@ def _write_field_decisions(
         "",
         "## Score Scale Handling",
         "",
-        "Records with all available human scores in 1-5 are kept as already normalized and rounded to `label_5`. Records with a 1-10 scale would be mapped using the repository `5-grades.py` rule: 1-2->1, 3-4->2, 5-6->3, 7-8->4, 9-10->5. Ambiguous scales are excluded from the main processed JSONL and recorded in `invalid_or_ambiguous_scores.csv`.",
+        "Each record stores `human_1_raw`/`human_2_raw`/`human_3_raw` and `human_1_5`/`human_2_5`/`human_3_5`. Records with all available human scores in 1-5 are kept as already normalized and rounded to `label_5`. Records with a 1-10 scale would be mapped using the repository `5-grades.py` rule: 1-2->1, 3-4->2, 5-6->3, 7-8->4, 9-10->5. Ambiguous scales are excluded from the main processed JSONL and recorded in `invalid_or_ambiguous_scores.csv`.",
         "",
         "## Canonicalization Status",
         "",
@@ -537,18 +766,36 @@ def _write_data_card(records: list[dict[str, Any]], duplicate_rows: list[dict[st
     unique_scenario_count = len({row["scenario_canonical"] for row in records if row["scenario_canonical"] != "unknown"})
 
     lines = [
-        "# Data Card: Exp 0 EduBench Human-Scored Dataset",
+        "# Data Card: Exp 0.1 EduBench Audit Human-Scored Subset",
+        "",
+        "## Dataset Identity",
+        "",
+        "| field | value |",
+        "| --- | --- |",
+        f"| dataset_name | {DATASET_NAME} |",
+        "| not_full_official_edubench | true |",
+        f"| primary_local_source | {relpath(PRIMARY_SOURCE)} |",
+        "| source_status | local_derived_merged_human_scored_subset |",
+        "| official_alignment_status.scenario_metric | aligned |",
+        "| official_alignment_status.corpus_size | aligned_with_pdf_audit |",
+        "| official_alignment_status.subject | aligned_with_local_enriched_audit_metadata |",
+        "| official_alignment_status.full_official_data | not_reconstructed |",
         "",
         "## Source Selection",
         "",
         f"Primary source: `{relpath(PRIMARY_SOURCE)}`.",
         "",
-        "The selected source has merged scored items with three human annotation fields and automatic judge metadata. Synthetic/sample files are excluded from the processed dataset.",
+        "The selected source has merged scored items with three human annotation fields and automatic judge metadata. Synthetic/sample files are excluded from the processed dataset. This is the PDF audit corpus / human-scored subset, not the official full EduBench benchmark.",
+        "",
+        "## Distinction between official EduBench full data and PDF audit subset",
+        "",
+        "Official EduBench full data is described as 9 scenarios, 4000+ educational contexts, 18821 data points, and 500 sampled queries evaluated by human raters and LLMs. The local thesis dataset here is the 5536-item PDF audit corpus with human and judge scores. Downstream Exp1 evaluator training/testing should use this 5536-row audit corpus as the main human-labeled dataset. Future synthetic augmentation or distillation may use official full data separately, but those rows must not be mixed into the main human-labeled test set.",
         "",
         "## Dataset Statistics",
         "",
         md_table(
             [
+                {"stat": "dataset_name", "value": DATASET_NAME},
                 {"stat": "total_scored_items", "value": total},
                 {"stat": "unique_triple_key", "value": len({row["triple_key"] for row in records})},
                 {"stat": "unique_question_key", "value": len({row["question_key"] for row in records})},
@@ -584,14 +831,14 @@ def _write_data_card(records: list[dict[str, Any]], duplicate_rows: list[dict[st
         "",
         md_table(
             [
-                {"check": "total scored items", "observed": total, "reference": "5536 = 3318 train pool + 2218 held-out test", "note": "matches reference total" if can_match_reference else "does not match reference total"},
+                {"check": "total scored items", "observed": total, "reference": f"{PDF_AUDIT_TOTAL} = {PDF_TRAIN_POOL_ROWS} train pool + {PDF_HELDOUT_TEST_ROWS} held-out test", "note": "matches PDF audit corpus total" if can_match_reference else "does not match reference total"},
                 {"check": "unique triple_key", "observed": len({row["triple_key"] for row in records}), "reference": "question-answer-metric scored item", "note": "used for evaluator-vs-human split"},
                 {"check": "unique question_key", "observed": len({row["question_key"] for row in records}), "reference": "not fixed in task", "note": "used for robustness split"},
                 {"check": "unique answer_key", "observed": len({row["answer_key"] for row in records}), "reference": "not fixed in task", "note": "used for leakage diagnostics"},
                 {"check": "generator_model distribution", "observed": len({row["generator_model"] for row in records}), "reference": "5 generated models", "note": "see distribution table"},
                 {"check": "canonical metrics", "observed": unique_metric_count, "reference": "12", "note": "aligned" if unique_metric_count == 12 else "requires review"},
                 {"check": "canonical scenarios", "observed": unique_scenario_count, "reference": "9", "note": "aligned" if unique_scenario_count == 9 else "requires review"},
-                {"check": "canonical subjects", "observed": len({row["subject_canonical"] for row in records if row["subject_canonical"] != "unknown"}), "reference": "25 canonical subjects", "note": "inferred from text where explicit fields are absent"},
+                {"check": "canonical subjects", "observed": len({row["subject_canonical"] for row in records if row["subject_canonical"] != "unknown"}), "reference": "25 canonical subjects", "note": "recovered from local enriched audit metadata when available"},
                 {"check": "education levels", "observed": len({row["education_level_canonical"] for row in records if row["education_level_canonical"] != "unknown"}), "reference": "6 education stages", "note": "inferred from question profile"},
                 {"check": "languages", "observed": sorted({row["language"] for row in records}), "reference": "English / Chinese", "note": "script-detected"},
                 {"check": "human annotator fields", "observed": sorted({field for field in ["human_1", "human_2", "human_3"] if any(row.get(field) is not None for row in records)}), "reference": "3 annotators", "note": "all three present" if all(any(row.get(field) is not None for row in records) for field in ["human_1", "human_2", "human_3"]) else "missing annotator fields"},
@@ -610,11 +857,34 @@ def build_dataset() -> list[dict[str, Any]]:
         raise FileNotFoundError(f"Primary source not found: {PRIMARY_SOURCE}")
 
     metric_rows, scenario_rows, unmapped_metrics, unmapped_scenarios = write_mapping_tables()
-    records, missing_rows, invalid_rows = _load_results_merge_records()
+    records, missing_rows, invalid_rows, score_audit_rows = _load_results_merge_records()
     duplicate_rows = _duplicate_triples(records)
+    subject_mapping, unmapped_subjects = _subject_tables(records)
 
     write_jsonl(PROCESSED_PATH, records)
     write_csv(TABLES_DIR / "dataset_rows.csv", _dataset_row_table(records))
+    write_csv(
+        TABLES_DIR / "score_scale_audit.csv",
+        score_audit_rows,
+        [
+            "record_id",
+            "source_file",
+            "source_row_index",
+            "human_1_raw",
+            "human_2_raw",
+            "human_3_raw",
+            "human_mean_raw",
+            "raw_score_scale_detected",
+            "human_1_5",
+            "human_2_5",
+            "human_3_5",
+            "human_mean_5",
+            "label_5",
+            "label_mapping_method",
+            "mapping_verified",
+            "notes",
+        ],
+    )
     write_csv(
         TABLES_DIR / "invalid_or_ambiguous_scores.csv",
         invalid_rows,
@@ -622,6 +892,9 @@ def build_dataset() -> list[dict[str, Any]]:
             "source_file",
             "source_row_index",
             "human_scores",
+            "human_1_raw",
+            "human_2_raw",
+            "human_3_raw",
             "human_mean_raw",
             "human_mean_5",
             "label_5",
@@ -640,10 +913,21 @@ def build_dataset() -> list[dict[str, Any]]:
         duplicate_rows,
         ["triple_key", "count", "record_ids", "question_preview", "answer_preview", "metric_canonical"],
     )
+    write_csv(
+        TABLES_DIR / "subject_mapping.csv",
+        subject_mapping,
+        ["raw_subject", "canonical_subject", "source_field", "source_file", "mapping_method", "confidence", "notes", "count"],
+    )
+    write_csv(
+        TABLES_DIR / "unmapped_subjects.csv",
+        unmapped_subjects,
+        ["raw_subject", "canonical_subject", "source_field", "source_file", "mapping_method", "confidence", "notes", "count"],
+    )
     write_json(SAMPLES_DIR / "standardized_sample_records.json", records[:5])
 
     _write_field_decisions(records, unmapped_metrics, unmapped_scenarios)
     _write_data_card(records, duplicate_rows)
+    _write_subject_alignment_report(records, subject_mapping, unmapped_subjects)
     return records
 
 

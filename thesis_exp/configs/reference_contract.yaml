@@ -1,0 +1,89 @@
+official_edubench:
+  expected_scenarios:
+    - Question Answering
+    - Error Correction
+    - Idea Provision
+    - Personalized Learning Support
+    - Emotional Support
+    - Question Generation
+    - Automatic Grading
+    - Teaching Material Generation
+    - Personalized Content Creation
+
+  scenario_aliases:
+    Question Answering:
+      - Q&A
+      - QA
+      - Problem Solving
+      - Question Answering
+    Error Correction:
+      - EC
+      - Error Correction
+    Idea Provision:
+      - IP
+      - Idea Provision
+    Personalized Learning Support:
+      - PLS
+      - Personalized Learning Support
+    Emotional Support:
+      - ES
+      - Emotional Support
+    Question Generation:
+      - QG
+      - Question Generation
+    Automatic Grading:
+      - AG
+      - Automatic Grading
+      - Assignment Judging
+    Teaching Material Generation:
+      - TMG
+      - Teaching Material Generation
+    Personalized Content Creation:
+      - PCC
+      - Personalized Content Creation
+
+  expected_metrics:
+    scenario_adaptability:
+      - Instruction Following & Task Completion
+      - Role & Tone Consistency
+      - Content Relevance & Scope Control
+      - Scenario Element Integration
+    factual_reasoning_accuracy:
+      - Basic Factual Accuracy
+      - Domain Knowledge Accuracy
+      - Reasoning Process Rigor
+      - Error Identification & Correction Precision
+    pedagogical_application:
+      - Clarity, Simplicity & Inspiration
+      - Motivation, Guidance & Positive Feedback
+      - Personalization, Adaptation & Learning Support
+      - Higher-Order Thinking & Skill Development
+
+pdf_audit_corpus:
+  dataset_name: edubench_audit_human_scored_subset
+  not_full_official_edubench: true
+  expected_total_scored_items: 5536
+  expected_generator_models:
+    - deepseek-r1
+    - qwen-max
+    - qwen2.5-7b-instruct
+    - deepseek-v3
+    - qwen2.5-14b-instruct
+  expected_canonical_metrics: 12
+  expected_canonical_scenarios: 9
+  expected_canonical_subjects: 25
+  expected_education_levels: 6
+  expected_languages:
+    - en
+    - zh
+  expected_train_pool_rows: 3318
+  expected_heldout_test_rows: 2218
+  split_granularity: question_answer_metric_triple
+
+score_mapping:
+  ten_to_five:
+    "1,2": 1
+    "3,4": 2
+    "5,6": 3
+    "7,8": 4
+    "9,10": 5

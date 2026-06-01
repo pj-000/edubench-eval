@@ -1,15 +1,33 @@
-# Data Card: Exp 0 EduBench Human-Scored Dataset
+# Data Card: Exp 0.1 EduBench Audit Human-Scored Subset
+
+## Dataset Identity
+
+| field | value |
+| --- | --- |
+| dataset_name | edubench_audit_human_scored_subset |
+| not_full_official_edubench | true |
+| primary_local_source | results_merge.jsonl |
+| source_status | local_derived_merged_human_scored_subset |
+| official_alignment_status.scenario_metric | aligned |
+| official_alignment_status.corpus_size | aligned_with_pdf_audit |
+| official_alignment_status.subject | aligned_with_local_enriched_audit_metadata |
+| official_alignment_status.full_official_data | not_reconstructed |
 
 ## Source Selection
 
 Primary source: `results_merge.jsonl`.
 
-The selected source has merged scored items with three human annotation fields and automatic judge metadata. Synthetic/sample files are excluded from the processed dataset.
+The selected source has merged scored items with three human annotation fields and automatic judge metadata. Synthetic/sample files are excluded from the processed dataset. This is the PDF audit corpus / human-scored subset, not the official full EduBench benchmark.
+
+## Distinction between official EduBench full data and PDF audit subset
+
+Official EduBench full data is described as 9 scenarios, 4000+ educational contexts, 18821 data points, and 500 sampled queries evaluated by human raters and LLMs. The local thesis dataset here is the 5536-item PDF audit corpus with human and judge scores. Downstream Exp1 evaluator training/testing should use this 5536-row audit corpus as the main human-labeled dataset. Future synthetic augmentation or distillation may use official full data separately, but those rows must not be mixed into the main human-labeled test set.
 
 ## Dataset Statistics
 
 | stat | value |
 | --- | --- |
+| dataset_name | edubench_audit_human_scored_subset |
 | total_scored_items | 5536 |
 | unique_triple_key | 5423 |
 | unique_question_key | 197 |
@@ -17,7 +35,7 @@ The selected source has merged scored items with three human annotation fields a
 | duplicate_triple_groups | 77 |
 | canonical_metric_count | 12 |
 | canonical_scenario_count | 9 |
-| canonical_subject_count | 21 |
+| canonical_subject_count | 25 |
 | education_level_count | 6 |
 | language_count | 2 |
 
@@ -76,14 +94,14 @@ The selected source has merged scored items with three human annotation fields a
 
 | check | observed | reference | note |
 | --- | --- | --- | --- |
-| total scored items | 5536 | 5536 = 3318 train pool + 2218 held-out test | matches reference total |
+| total scored items | 5536 | 5536 = 3318 train pool + 2218 held-out test | matches PDF audit corpus total |
 | unique triple_key | 5423 | question-answer-metric scored item | used for evaluator-vs-human split |
 | unique question_key | 197 | not fixed in task | used for robustness split |
 | unique answer_key | 963 | not fixed in task | used for leakage diagnostics |
 | generator_model distribution | 5 | 5 generated models | see distribution table |
 | canonical metrics | 12 | 12 | aligned |
 | canonical scenarios | 9 | 9 | aligned |
-| canonical subjects | 21 | 25 canonical subjects | inferred from text where explicit fields are absent |
+| canonical subjects | 25 | 25 canonical subjects | recovered from local enriched audit metadata when available |
 | education levels | 6 | 6 education stages | inferred from question profile |
 | languages | ["en", "zh"] | English / Chinese | script-detected |
 | human annotator fields | ["human_1", "human_2", "human_3"] | 3 annotators | all three present |
