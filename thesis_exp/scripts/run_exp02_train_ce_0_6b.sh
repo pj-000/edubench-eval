@@ -9,6 +9,7 @@ fi
 
 export CUDA_VISIBLE_DEVICES="${CUDA_VISIBLE_DEVICES:-4}"
 export TOKENIZERS_PARALLELISM="${TOKENIZERS_PARALLELISM:-false}"
+REQUIRE_CUDA="${REQUIRE_CUDA:-1}"
 
 OUTPUT_DIR="${OUTPUT_DIR:-thesis_exp/outputs/exp02_ce_baseline}"
 CHECKPOINT_OUTPUT_DIR="${CHECKPOINT_OUTPUT_DIR:-thesis_exp/artifacts/exp02_ce_baseline/checkpoints/edubench_evaluator_0_6b_ce}"
@@ -29,7 +30,18 @@ EFFECTIVE_BATCH_SIZE=$((PER_DEVICE_TRAIN_BATCH_SIZE * GRADIENT_ACCUMULATION_STEP
 
 FP16_ARGS=()
 if [[ "${FP16:-0}" == "1" ]]; then
+  echo "WARNING: Current loop does not use GradScaler; prefer BF16=auto on A100/H100." >&2
   FP16_ARGS+=(--fp16)
+fi
+
+if [[ -n "${MAX_TRAIN_SAMPLES:-}" || -n "${MAX_EVAL_SAMPLES:-}" ]]; then
+  echo "WARNING: MAX_TRAIN_SAMPLES/MAX_EVAL_SAMPLES is set; this is a subset run, not a formal full-data run." >&2
+  echo "MAX_TRAIN_SAMPLES=${MAX_TRAIN_SAMPLES:-}" >&2
+  echo "MAX_EVAL_SAMPLES=${MAX_EVAL_SAMPLES:-}" >&2
+fi
+if [[ "${FORMAL_RUN:-0}" == "1" && ( -n "${MAX_TRAIN_SAMPLES:-}" || -n "${MAX_EVAL_SAMPLES:-}" ) ]]; then
+  echo "ERROR: FORMAL_RUN=1 cannot be used with MAX_TRAIN_SAMPLES or MAX_EVAL_SAMPLES." >&2
+  exit 1
 fi
 
 GRADIENT_CHECKPOINTING_ARGS=()
@@ -75,6 +87,33 @@ CHECKPOINT_OUTPUT_DIR=${CHECKPOINT_OUTPUT_DIR}
 BF16=${BF16}
 FP16=${FP16:-0}
 CONFIG
+
+python - <<'PY'
+import os
+import sys
+
+require_cuda = os.environ.get("REQUIRE_CUDA", "1") == "1"
+try:
+    import torch
+except Exception as exc:
+    print(f"torch import error: {type(exc).__name__}: {exc}")
+    if require_cuda:
+        print("ERROR: REQUIRE_CUDA=1 but torch could not be imported.", file=sys.stderr)
+        raise SystemExit(1)
+    raise SystemExit(0)
+
+cuda_available = torch.cuda.is_available()
+cuda_device_count = torch.cuda.device_count()
+cuda_device_name = torch.cuda.get_device_name(0) if cuda_available and cuda_device_count else "N/A"
+print(f"torch.cuda.is_available()={cuda_available}")
+print(f"torch.cuda.device_count()={cuda_device_count}")
+print(f"torch.cuda.get_device_name(0)={cuda_device_name}")
+print(f"torch.version.cuda={torch.version.cuda}")
+print(f"selected BF16/FP16 setting=BF16={os.environ.get('BF16', 'auto')}, FP16={os.environ.get('FP16', '0')}")
+if require_cuda and not cuda_available:
+    print("ERROR: REQUIRE_CUDA=1 but torch.cuda.is_available() is false.", file=sys.stderr)
+    raise SystemExit(1)
+PY
 
 python -m thesis_exp.src.edujudge.exp02.build_exp02_dataset --print-summary
 python -m thesis_exp.src.edujudge.exp02.sanity_check_exp02_train_setup
