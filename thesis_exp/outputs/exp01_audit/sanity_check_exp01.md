@@ -1,0 +1,20 @@
+# Exp1 Sanity Check
+
+Overall status: **PASS**
+
+| check | status | observed | expected | notes |
+| --- | --- | --- | --- | --- |
+| predictions_aligned.jsonl exists | PASS | true | true |  |
+| predictions_aligned rows == 2218 | PASS | 2218 | 2218 | Non-blocking warning if the locked split changes. |
+| evaluator_metrics.csv readable | PASS | 5 rows / 17 cols | readable CSV |  |
+| per_bin_metrics.csv readable | PASS | 25 rows / 18 cols | readable CSV |  |
+| low_score_metrics.csv readable | PASS | 5 rows / 12 cols | readable CSV |  |
+| alignment_coverage.csv readable | PASS | 5 rows / 11 cols | readable CSV |  |
+| at least one evaluator found | PASS | ["EduBenchEvaluator", "GPT-4o", "DeepSeek-R1", "DeepSeek-V3", "QwQ-plus"] | >=1 evaluator |  |
+| all valid predictions in 1-5 | PASS | 0 | 0 |  |
+| no synthetic/sample rows used | PASS | [] | [] |  |
+| calibration curve data exists | PASS | True | true |  |
+| at least 10 png figures exist | PASS | 16 | >=10 |  |
+| at least 10 pdf figures exist | PASS | 16 | >=10 |  |
+| report.md exists and readable | PASS | 252 lines | multi-line markdown |  |
+| review_package.md exists and readable | PASS | 48 lines | multi-line markdown |  |

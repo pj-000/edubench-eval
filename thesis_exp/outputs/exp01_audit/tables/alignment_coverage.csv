@@ -1,0 +1,6 @@
+evaluator,n_test,n_aligned,coverage,n_valid_score,valid_score_rate,n_missing,n_invalid,source_files,primary_alignment_method,notes
+EduBenchEvaluator,2218,2218,1.0,2218,1.0,0,0,"[""thesis_exp/data/splits/paper_like_triple_seed42/test.jsonl""]",record_id,
+GPT-4o,2218,2218,1.0,2192,0.9882777276825969,0,26,"[""thesis_exp/data/splits/paper_like_triple_seed42/test.jsonl""]",record_id,
+DeepSeek-R1,2218,2218,1.0,2218,1.0,0,0,"[""thesis_exp/data/splits/paper_like_triple_seed42/test.jsonl""]",record_id,
+DeepSeek-V3,2218,2218,1.0,2218,1.0,0,0,"[""thesis_exp/data/splits/paper_like_triple_seed42/test.jsonl""]",record_id,
+QwQ-plus,2218,2218,1.0,2196,0.9900811541929666,0,22,"[""thesis_exp/data/splits/paper_like_triple_seed42/test.jsonl""]",record_id,
