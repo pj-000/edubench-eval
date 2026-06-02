@@ -1,0 +1,8 @@
+torch>=2.2
+transformers>=4.51.0
+accelerate>=0.30
+numpy>=1.26
+pandas>=2.2
+tqdm>=4.66
+safetensors>=0.4
+sentencepiece>=0.2

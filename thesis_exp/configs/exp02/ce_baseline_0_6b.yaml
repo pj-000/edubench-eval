@@ -1,0 +1,42 @@
+# Exp2 CE baseline configuration template.
+#
+# This file documents the intended run settings. The shell script reads the
+# model path from MODEL_NAME_OR_PATH so the exact 0.6B checkpoint can be supplied
+# on the GPU server without editing code.
+
+experiment_name: exp02_edubench_evaluator_0_6b_ce_baseline
+model_name_or_path: ${MODEL_NAME_OR_PATH}
+
+data:
+  source_split_dir: thesis_exp/data/splits/paper_like_triple_seed42
+  built_data_dir: thesis_exp/outputs/exp02_ce_baseline/data
+  train_rows_expected: 2654
+  dev_rows_expected: 664
+  test_rows_expected: 2218
+
+objective:
+  type: sequence_classification
+  num_labels: 5
+  target: label_5
+  loss: unweighted_cross_entropy
+  note: low-score-sensitive weighting is reserved for Exp5, not Exp2.
+
+train:
+  max_length: 2048
+  num_train_epochs: 3
+  learning_rate: 2.0e-5
+  weight_decay: 0.01
+  warmup_ratio: 0.05
+  per_device_train_batch_size: 2
+  gradient_accumulation_steps: 8
+  per_device_eval_batch_size: 4
+  max_grad_norm: 1.0
+  seed: 42
+  bf16: auto
+  gradient_checkpointing: true
+
+output:
+  output_dir: thesis_exp/outputs/exp02_ce_baseline/models/edubench_evaluator_0_6b_ce
+  metrics: thesis_exp/outputs/exp02_ce_baseline/models/edubench_evaluator_0_6b_ce/metrics.csv
+  predictions_test: thesis_exp/outputs/exp02_ce_baseline/models/edubench_evaluator_0_6b_ce/predictions_test.jsonl
+

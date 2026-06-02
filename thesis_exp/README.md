@@ -14,6 +14,9 @@ processed data, tables, reports, and figures are written under `thesis_exp/`.
 python -m thesis_exp.src.edujudge.data.run_exp00
 ```
 
+Exp2 training setup lives in [`README_exp02.md`](README_exp02.md). It prepares the locked
+paper-like split for a 0.6B 5-class CE baseline and provides the GPU training command template.
+
 ## Run Step By Step
 
 ```bash
@@ -36,4 +39,3 @@ python -m thesis_exp.src.edujudge.plots.plot_distributions
 - `thesis_exp/outputs/exp00_data/review_package.md`
 - `thesis_exp/outputs/exp00_data/figures/`
 - `thesis_exp/outputs/exp00_data/tables/`
-
