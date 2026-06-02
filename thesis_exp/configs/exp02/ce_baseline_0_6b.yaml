@@ -13,6 +13,19 @@ data:
   train_rows_expected: 2654
   dev_rows_expected: 664
   test_rows_expected: 2218
+  template_name: qa_metric_baseline
+  input_fields:
+    - question
+    - answer
+    - metric_canonical
+  excluded_from_text:
+    - rubric
+    - subject
+    - scenario
+    - education_level
+    - language
+    - generator_model
+    - metric_group
 
 objective:
   type: sequence_classification
@@ -33,10 +46,17 @@ train:
   max_grad_norm: 1.0
   seed: 42
   bf16: auto
+  fp16_env_flag: FP16=1
   gradient_checkpointing: true
   checkpoint_selection: validation_accuracy
+  effective_batch_size: 128
 
 output:
-  output_dir: thesis_exp/outputs/exp02_ce_baseline/models/edubench_evaluator_0_6b_ce
-  metrics: thesis_exp/outputs/exp02_ce_baseline/models/edubench_evaluator_0_6b_ce/metrics.csv
-  predictions_test: thesis_exp/outputs/exp02_ce_baseline/models/edubench_evaluator_0_6b_ce/predictions_test.jsonl
+  output_dir: thesis_exp/outputs/exp02_ce_baseline
+  checkpoint_output_dir: thesis_exp/artifacts/exp02_ce_baseline/checkpoints/edubench_evaluator_0_6b_ce
+  metrics_summary: thesis_exp/outputs/exp02_ce_baseline/tables/metrics_summary.csv
+  per_bin_metrics: thesis_exp/outputs/exp02_ce_baseline/tables/per_bin_metrics.csv
+  low_score_metrics: thesis_exp/outputs/exp02_ce_baseline/tables/low_score_metrics.csv
+  high_score_metrics: thesis_exp/outputs/exp02_ce_baseline/tables/high_score_metrics.csv
+  predictions_test: thesis_exp/outputs/exp02_ce_baseline/predictions/predictions_test.jsonl
+  arrays_npz: thesis_exp/outputs/exp02_ce_baseline/arrays/exp02_dev_test_arrays.npz

@@ -1,10 +1,7 @@
-.cache/
-__pycache__/
-*.pyc
 .DS_Store
 
-# Generated checkpoints and model weights.
-artifacts/
+# Exp2 checkpoints and model-weight artifacts must never be committed.
+thesis_exp/artifacts/
 **/checkpoints/
 **/*.safetensors
 **/*.bin

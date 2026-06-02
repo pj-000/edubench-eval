@@ -17,11 +17,23 @@ from pathlib import Path
 from typing import Any
 
 import numpy as np
-import pandas as pd
 
-from thesis_exp.src.edujudge.exp02 import EXP02_DATA_DIR, EXP02_MODEL_DIR, EXP02_OUTPUT_DIR, EXP02_TABLES_DIR, ensure_exp02_dirs
+from thesis_exp.src.edujudge.exp02 import (
+    EXP02_ARRAYS_DIR,
+    EXP02_CHECKPOINT_DIR,
+    EXP02_DATA_DIR,
+    EXP02_LOG_DIR,
+    EXP02_OUTPUT_DIR,
+    EXP02_PREDICTIONS_DIR,
+    EXP02_SUMMARIES_DIR,
+    EXP02_TABLES_DIR,
+    ensure_exp02_dirs,
+)
 from thesis_exp.src.edujudge.exp02.build_exp02_dataset import build_exp02_dataset
 from thesis_exp.src.edujudge.utils.io import relpath, write_csv, write_jsonl, write_text
+
+
+LABELS = [1, 2, 3, 4, 5]
 
 
 @dataclass
@@ -29,6 +41,7 @@ class TrainConfig:
     model_name_or_path: str
     data_dir: Path
     output_dir: Path
+    checkpoint_output_dir: Path
     max_length: int
     num_train_epochs: float
     learning_rate: float
@@ -52,11 +65,22 @@ class TrainConfig:
     log_steps: int
 
 
+@dataclass
+class EvalResult:
+    metrics: dict[str, Any]
+    predictions: list[dict[str, Any]]
+    logits: np.ndarray
+    probs: np.ndarray
+    labels: np.ndarray
+    record_ids: list[str]
+
+
 def parse_args() -> TrainConfig:
     parser = argparse.ArgumentParser(description="Train/evaluate Exp2 EduBenchEvaluator CE baseline.")
     parser.add_argument("--model_name_or_path", required=True, help="Base 0.6B model path or HF id.")
     parser.add_argument("--data_dir", type=Path, default=EXP02_DATA_DIR)
-    parser.add_argument("--output_dir", type=Path, default=EXP02_MODEL_DIR)
+    parser.add_argument("--output_dir", type=Path, default=EXP02_OUTPUT_DIR)
+    parser.add_argument("--checkpoint_output_dir", type=Path, default=EXP02_CHECKPOINT_DIR)
     parser.add_argument("--max_length", type=int, default=2048)
     parser.add_argument("--num_train_epochs", type=float, default=10.0)
     parser.add_argument("--learning_rate", type=float, default=2e-5)
@@ -95,6 +119,11 @@ def write_json(path: Path, data: Any) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=2, sort_keys=True, default=str)
+
+
+def write_record_ids(path: Path, record_ids: list[str]) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text("\n".join(record_ids) + "\n", encoding="utf-8")
 
 
 def set_seed(seed: int) -> None:
@@ -141,12 +170,13 @@ def select_dtype(config: TrainConfig, torch: Any) -> Any:
     return None
 
 
-def build_fallback_classifier(torch: Any, nn: Any, AutoModel: Any, model_name_or_path: str, config: TrainConfig, dtype: Any):
+def make_last_token_classifier_class(torch: Any, nn: Any):
     class LastTokenClassifier(nn.Module):
         def __init__(self, backbone: Any, hidden_size: int, num_labels: int = 5) -> None:
             super().__init__()
             self.backbone = backbone
             self.score = nn.Linear(hidden_size, num_labels)
+            self.hidden_size = int(hidden_size)
             self.num_labels = num_labels
             self.config = backbone.config
             self.config.num_labels = num_labels
@@ -160,8 +190,7 @@ def build_fallback_classifier(torch: Any, nn: Any, AutoModel: Any, model_name_or
             output_dir = Path(output_dir)
             output_dir.mkdir(parents=True, exist_ok=True)
             self.backbone.config.save_pretrained(output_dir)
-            torch.save(self.state_dict(), output_dir / "pytorch_model.bin")
-            write_json(output_dir / "classification_head.json", {"num_labels": self.num_labels, "fallback_classifier": True})
+            torch.save(self.state_dict(), output_dir / "state_dict.pt")
 
         def forward(self, input_ids: Any, attention_mask: Any = None, labels: Any = None, **kwargs: Any) -> dict[str, Any]:
             outputs = self.backbone(input_ids=input_ids, attention_mask=attention_mask, **kwargs)
@@ -177,8 +206,19 @@ def build_fallback_classifier(torch: Any, nn: Any, AutoModel: Any, model_name_or
                 loss = nn.CrossEntropyLoss()(logits.float(), labels)
             return {"loss": loss, "logits": logits}
 
+    return LastTokenClassifier
+
+
+def build_fallback_classifier(
+    torch: Any,
+    nn: Any,
+    AutoModel: Any,
+    base_model_name_or_path: str,
+    config: TrainConfig,
+    dtype: Any,
+):
     backbone = AutoModel.from_pretrained(
-        model_name_or_path,
+        base_model_name_or_path,
         trust_remote_code=config.trust_remote_code,
         local_files_only=config.local_files_only,
         torch_dtype=dtype,
@@ -186,7 +226,8 @@ def build_fallback_classifier(torch: Any, nn: Any, AutoModel: Any, model_name_or
     hidden_size = getattr(backbone.config, "hidden_size", None) or getattr(backbone.config, "n_embd", None)
     if hidden_size is None:
         raise ValueError("Could not infer hidden size for fallback classifier.")
-    return LastTokenClassifier(backbone, int(hidden_size), num_labels=5)
+    classifier_cls = make_last_token_classifier_class(torch, nn)
+    return classifier_cls(backbone, int(hidden_size), num_labels=5)
 
 
 def load_model_and_tokenizer(config: TrainConfig):
@@ -195,35 +236,51 @@ def load_model_and_tokenizer(config: TrainConfig):
     from transformers import AutoModel, AutoModelForSequenceClassification, AutoTokenizer
 
     dtype = select_dtype(config, torch)
-    tokenizer = AutoTokenizer.from_pretrained(
-        config.model_name_or_path,
-        trust_remote_code=config.trust_remote_code,
-        local_files_only=config.local_files_only,
-    )
-    if tokenizer.pad_token is None:
-        tokenizer.pad_token = tokenizer.eos_token or tokenizer.unk_token
-    model_source = str(config.checkpoint_dir or config.model_name_or_path)
-    model_mode = "sequence_classification"
-    try:
-        model = AutoModelForSequenceClassification.from_pretrained(
-            model_source,
-            num_labels=5,
-            problem_type="single_label_classification",
+    checkpoint_dir = config.checkpoint_dir
+    fallback_metadata_path = checkpoint_dir / "fallback_metadata.json" if checkpoint_dir else None
+
+    if fallback_metadata_path and fallback_metadata_path.exists():
+        metadata = json.loads(fallback_metadata_path.read_text(encoding="utf-8"))
+        base_model_name_or_path = metadata["base_model_name_or_path"]
+        tokenizer = AutoTokenizer.from_pretrained(
+            checkpoint_dir,
             trust_remote_code=config.trust_remote_code,
             local_files_only=config.local_files_only,
-            torch_dtype=dtype,
         )
-    except Exception as exc:
-        if config.checkpoint_dir:
-            raise RuntimeError(
-                "AutoModelForSequenceClassification could not load checkpoint_dir. "
-                "For fallback checkpoints, evaluate by passing the original base model path and the saved state is "
-                "loaded only when using a fallback-aware checkpoint in this script."
-            ) from exc
-        print(f"[WARN] Falling back to AutoModel + last-token classifier: {type(exc).__name__}: {exc}")
-        model = build_fallback_classifier(torch, nn, AutoModel, config.model_name_or_path, config, dtype)
+        model = build_fallback_classifier(torch, nn, AutoModel, base_model_name_or_path, config, dtype)
+        state_dict_path = checkpoint_dir / "state_dict.pt"
+        model.load_state_dict(torch.load(state_dict_path, map_location="cpu"))
         model_mode = "fallback_last_token_classifier"
+    else:
+        tokenizer_source = checkpoint_dir or config.model_name_or_path
+        tokenizer = AutoTokenizer.from_pretrained(
+            tokenizer_source,
+            trust_remote_code=config.trust_remote_code,
+            local_files_only=config.local_files_only,
+        )
+        model_source = str(checkpoint_dir or config.model_name_or_path)
+        model_mode = "sequence_classification"
+        try:
+            model = AutoModelForSequenceClassification.from_pretrained(
+                model_source,
+                num_labels=5,
+                problem_type="single_label_classification",
+                trust_remote_code=config.trust_remote_code,
+                local_files_only=config.local_files_only,
+                torch_dtype=dtype,
+            )
+        except Exception as exc:
+            if checkpoint_dir:
+                raise RuntimeError(
+                    "Could not load checkpoint_dir as a Hugging Face sequence-classification checkpoint "
+                    "and no fallback_metadata.json was found."
+                ) from exc
+            print(f"[WARN] Falling back to AutoModel + last-token classifier: {type(exc).__name__}: {exc}")
+            model = build_fallback_classifier(torch, nn, AutoModel, config.model_name_or_path, config, dtype)
+            model_mode = "fallback_last_token_classifier"
 
+    if tokenizer.pad_token is None:
+        tokenizer.pad_token = tokenizer.eos_token or tokenizer.unk_token
     if getattr(model.config, "pad_token_id", None) is None:
         model.config.pad_token_id = tokenizer.pad_token_id
     if config.gradient_checkpointing:
@@ -275,16 +332,38 @@ def _get_loss_logits(outputs: Any) -> tuple[Any, Any]:
     return outputs.loss, outputs.logits
 
 
-def macro_f1(y_true: list[int], y_pred: list[int]) -> float:
+def macro_weighted_f1(y_true: list[int], y_pred: list[int]) -> tuple[float, float]:
     f1s = []
-    for label in [1, 2, 3, 4, 5]:
+    weights = []
+    for label in LABELS:
         tp = sum(1 for t, p in zip(y_true, y_pred) if t == label and p == label)
         fp = sum(1 for t, p in zip(y_true, y_pred) if t != label and p == label)
         fn = sum(1 for t, p in zip(y_true, y_pred) if t == label and p != label)
         precision = tp / (tp + fp) if (tp + fp) else 0.0
         recall = tp / (tp + fn) if (tp + fn) else 0.0
-        f1s.append((2 * precision * recall / (precision + recall)) if (precision + recall) else 0.0)
-    return float(np.mean(f1s))
+        f1 = (2 * precision * recall / (precision + recall)) if (precision + recall) else 0.0
+        f1s.append(f1)
+        weights.append(sum(1 for t in y_true if t == label))
+    macro = float(np.mean(f1s))
+    weighted = float(np.average(f1s, weights=weights)) if sum(weights) else float("nan")
+    return macro, weighted
+
+
+def qwk(y_true: list[int], y_pred: list[int]) -> float:
+    if not y_true:
+        return float("nan")
+    observed = np.zeros((5, 5), dtype=float)
+    for true, pred in zip(y_true, y_pred):
+        observed[int(true) - 1, int(pred) - 1] += 1
+    expected = np.outer(observed.sum(axis=1), observed.sum(axis=0)) / observed.sum()
+    weights = np.zeros((5, 5), dtype=float)
+    for i in range(5):
+        for j in range(5):
+            weights[i, j] = ((i - j) ** 2) / 16
+    denominator = float((weights * expected).sum())
+    if denominator == 0:
+        return float("nan")
+    return 1 - float((weights * observed).sum()) / denominator
 
 
 def kendall_tau_b(x_values: list[float], y_values: list[float]) -> float:
@@ -310,39 +389,132 @@ def kendall_tau_b(x_values: list[float], y_values: list[float]) -> float:
     return float("nan") if denom == 0 else (concordant - discordant) / denom
 
 
+def rank_average(values: list[float]) -> list[float]:
+    order = sorted(range(len(values)), key=lambda idx: values[idx])
+    ranks = [0.0] * len(values)
+    i = 0
+    while i < len(order):
+        j = i
+        while j + 1 < len(order) and values[order[j + 1]] == values[order[i]]:
+            j += 1
+        avg = (i + 1 + j + 1) / 2
+        for pos in range(i, j + 1):
+            ranks[order[pos]] = avg
+        i = j + 1
+    return ranks
+
+
+def pearson(x_values: list[float], y_values: list[float]) -> float:
+    if len(x_values) < 2 or np.std(x_values) == 0 or np.std(y_values) == 0:
+        return float("nan")
+    return float(np.corrcoef(np.array(x_values, dtype=float), np.array(y_values, dtype=float))[0, 1])
+
+
+def spearman(x_values: list[float], y_values: list[float]) -> float:
+    if len(x_values) < 2 or len(set(x_values)) <= 1 or len(set(y_values)) <= 1:
+        return float("nan")
+    return pearson(rank_average(x_values), rank_average(y_values))
+
+
 def compute_metrics(predictions: list[dict[str, Any]]) -> dict[str, Any]:
     if not predictions:
         return {}
-    y_true = [int(row["label_5"]) for row in predictions]
-    y_pred = [int(row["pred_label_5"]) for row in predictions]
-    human_mean = [float(row["human_mean_5"]) for row in predictions]
-    diffs = np.array(y_pred, dtype=float) - np.array(human_mean, dtype=float)
-    labels = np.array(y_true, dtype=int)
-    preds = np.array(y_pred, dtype=int)
-    low_mask = labels <= 2
-    high_mask = labels == 5
+    y_true = np.array([int(row["label_5"]) for row in predictions], dtype=int)
+    y_pred = np.array([int(row["pred_label_5"]) for row in predictions], dtype=int)
+    y_expected = np.array([float(row["pred_score_expected"]) for row in predictions], dtype=float)
+    human_mean = np.array([float(row["human_mean_5"]) for row in predictions], dtype=float)
+    label_diffs = y_pred.astype(float) - human_mean
+    expected_diffs = y_expected - human_mean
+    macro_f1, weighted_f1 = macro_weighted_f1(y_true.tolist(), y_pred.tolist())
+    low_mask = y_true <= 2
+    high_mask = y_true == 5
     return {
         "n": len(predictions),
-        "MAE": float(np.mean(np.abs(diffs))),
-        "RMSE": float(np.sqrt(np.mean(np.square(diffs)))),
-        "Signed Bias": float(np.mean(diffs)),
-        "Exact Match": float(np.mean(labels == preds)),
-        "Within-1 Accuracy": float(np.mean(np.abs(labels - preds) <= 1)),
-        "Macro-F1": macro_f1(y_true, y_pred),
-        "Kendall tau": kendall_tau_b(human_mean, [float(v) for v in y_pred]),
+        "Accuracy": float(np.mean(y_true == y_pred)),
+        "Exact Match": float(np.mean(y_true == y_pred)),
+        "MAE_label": float(np.mean(np.abs(label_diffs))),
+        "MAE_expected": float(np.mean(np.abs(expected_diffs))),
+        "RMSE_label": float(np.sqrt(np.mean(np.square(label_diffs)))),
+        "Signed Bias label": float(np.mean(label_diffs)),
+        "Signed Bias expected": float(np.mean(expected_diffs)),
+        "Macro-F1": macro_f1,
+        "Weighted-F1": weighted_f1,
+        "Quadratic Weighted Kappa": qwk(y_true.tolist(), y_pred.tolist()),
+        "Kendall tau": kendall_tau_b(human_mean.tolist(), y_pred.astype(float).tolist()),
+        "Spearman rho": spearman(human_mean.tolist(), y_pred.astype(float).tolist()),
+        "Within-1 Accuracy": float(np.mean(np.abs(y_true - y_pred) <= 1)),
+        "Acc@1": float(np.mean(y_pred[y_true == 1] == 1)) if np.any(y_true == 1) else float("nan"),
+        "Acc@2": float(np.mean(y_pred[y_true == 2] == 2)) if np.any(y_true == 2) else float("nan"),
+        "Acc@5": float(np.mean(y_pred[y_true == 5] == 5)) if np.any(y_true == 5) else float("nan"),
         "low_n": int(low_mask.sum()),
-        "low_exact_match": float(np.mean(labels[low_mask] == preds[low_mask])) if low_mask.any() else float("nan"),
-        "low_to_high_rate": float(np.mean(preds[low_mask] >= 4)) if low_mask.any() else float("nan"),
+        "low_exact_match": float(np.mean(y_true[low_mask] == y_pred[low_mask])) if low_mask.any() else float("nan"),
+        "low_MAE": float(np.mean(np.abs(label_diffs[low_mask]))) if low_mask.any() else float("nan"),
+        "low_signed_bias": float(np.mean(label_diffs[low_mask])) if low_mask.any() else float("nan"),
+        "low_to_high_rate": float(np.mean(y_pred[low_mask] >= 4)) if low_mask.any() else float("nan"),
+        "low_severe_overestimation_rate": float(np.mean((y_pred[low_mask] - y_true[low_mask]) >= 2)) if low_mask.any() else float("nan"),
+        "mean_pred_low": float(np.mean(y_pred[low_mask])) if low_mask.any() else float("nan"),
         "high_n": int(high_mask.sum()),
-        "acc_at_5": float(np.mean(preds[high_mask] == 5)) if high_mask.any() else float("nan"),
+        "high_to_mid_or_low_rate": float(np.mean(y_pred[high_mask] <= 3)) if high_mask.any() else float("nan"),
+        "high_signed_bias": float(np.mean(label_diffs[high_mask])) if high_mask.any() else float("nan"),
     }
 
 
-def evaluate(model: Any, dataloader: Any, device: Any, split: str) -> tuple[dict[str, Any], list[dict[str, Any]]]:
+def per_bin_metrics(predictions: list[dict[str, Any]], split: str) -> list[dict[str, Any]]:
+    rows = []
+    for label in LABELS:
+        subset = [row for row in predictions if int(row["label_5"]) == label]
+        if not subset:
+            rows.append({"split": split, "label_5": label, "n": 0})
+            continue
+        y_pred = np.array([int(row["pred_label_5"]) for row in subset], dtype=int)
+        y_expected = np.array([float(row["pred_score_expected"]) for row in subset], dtype=float)
+        human_mean = np.array([float(row["human_mean_5"]) for row in subset], dtype=float)
+        rows.append(
+            {
+                "split": split,
+                "label_5": label,
+                "n": len(subset),
+                "accuracy": float(np.mean(y_pred == label)),
+                "MAE": float(np.mean(np.abs(y_pred.astype(float) - human_mean))),
+                "signed_bias": float(np.mean(y_pred.astype(float) - human_mean)),
+                "mean_pred_label": float(np.mean(y_pred)),
+                "mean_pred_expected": float(np.mean(y_expected)),
+                "overestimation_rate": float(np.mean(y_pred > label)),
+                "underestimation_rate": float(np.mean(y_pred < label)),
+            }
+        )
+    return rows
+
+
+def low_score_metrics(metrics: dict[str, Any], split: str) -> dict[str, Any]:
+    keys = [
+        "low_n",
+        "Acc@1",
+        "Acc@2",
+        "low_exact_match",
+        "low_MAE",
+        "low_signed_bias",
+        "low_to_high_rate",
+        "low_severe_overestimation_rate",
+        "mean_pred_low",
+    ]
+    return {"split": split, **{key: metrics.get(key) for key in keys}}
+
+
+def high_score_metrics(metrics: dict[str, Any], split: str) -> dict[str, Any]:
+    keys = ["high_n", "Acc@5", "high_to_mid_or_low_rate", "high_signed_bias"]
+    return {"split": split, **{key: metrics.get(key) for key in keys}}
+
+
+def evaluate(model: Any, dataloader: Any, device: Any, split: str) -> EvalResult:
     import torch
 
     model.eval()
     predictions: list[dict[str, Any]] = []
+    logits_chunks = []
+    probs_chunks = []
+    labels = []
+    record_ids = []
     total_loss = 0.0
     steps = 0
     with torch.no_grad():
@@ -353,41 +525,135 @@ def evaluate(model: Any, dataloader: Any, device: Any, split: str) -> tuple[dict
             loss, logits = _get_loss_logits(outputs)
             if loss is not None:
                 total_loss += float(loss.detach().cpu())
-            pred_zero = logits.argmax(dim=-1).detach().cpu().tolist()
-            probs = torch.softmax(logits.float(), dim=-1).detach().cpu().tolist()
-            for row, pred, prob in zip(metadata, pred_zero, probs):
+            logits_cpu = logits.float().detach().cpu()
+            probs_cpu = torch.softmax(logits_cpu, dim=-1)
+            pred_zero = logits_cpu.argmax(dim=-1).tolist()
+            logits_chunks.append(logits_cpu.numpy())
+            probs_chunks.append(probs_cpu.numpy())
+            for row, pred, prob, logit in zip(metadata, pred_zero, probs_cpu.tolist(), logits_cpu.tolist()):
                 pred_label = int(pred) + 1
-                predictions.append(
-                    {
-                        "split": split,
-                        "id": row["id"],
-                        "record_id": row.get("record_id"),
-                        "label_5": int(row["label_5"]),
-                        "human_mean_5": float(row["human_mean_5"]),
-                        "pred_label_5": pred_label,
-                        "pred_score_5": float(pred_label),
-                        "confidence": float(max(prob)),
-                        "metric_canonical": row.get("metric_canonical"),
-                        "scenario_canonical": row.get("scenario_canonical"),
-                        "subject_canonical": row.get("subject_canonical"),
-                        "language": row.get("language"),
-                        "generator_model": row.get("generator_model"),
-                    }
-                )
+                expected_score = float(sum((idx + 1) * value for idx, value in enumerate(prob)))
+                human_mean = float(row["human_mean_5"])
+                label_5 = int(row["label_5"])
+                prediction = {
+                    "split": split,
+                    "id": row["id"],
+                    "record_id": row.get("record_id"),
+                    "triple_key": row.get("triple_key"),
+                    "label_5": label_5,
+                    "human_mean_5": human_mean,
+                    "pred_label_5": pred_label,
+                    "pred_score_5": float(pred_label),
+                    "pred_score_expected": expected_score,
+                    "confidence": float(max(prob)),
+                    "abs_error_label": abs(float(pred_label) - human_mean),
+                    "signed_error_label": float(pred_label) - human_mean,
+                    "abs_error_expected": abs(expected_score - human_mean),
+                    "signed_error_expected": expected_score - human_mean,
+                    "metric_canonical": row.get("metric_canonical"),
+                    "scenario_canonical": row.get("scenario_canonical"),
+                    "subject_canonical": row.get("subject_canonical"),
+                    "language": row.get("language"),
+                    "generator_model": row.get("generator_model"),
+                }
+                for idx in range(5):
+                    prediction[f"prob_{idx + 1}"] = float(prob[idx])
+                    prediction[f"logit_{idx + 1}"] = float(logit[idx])
+                predictions.append(prediction)
+                labels.append(label_5)
+                record_ids.append(str(row.get("record_id") or row.get("id")))
             steps += 1
+    logits_arr = np.concatenate(logits_chunks, axis=0) if logits_chunks else np.empty((0, 5), dtype=np.float32)
+    probs_arr = np.concatenate(probs_chunks, axis=0) if probs_chunks else np.empty((0, 5), dtype=np.float32)
+    labels_arr = np.array(labels, dtype=np.int64)
     metrics = compute_metrics(predictions)
     metrics["split"] = split
     metrics["loss"] = total_loss / steps if steps else float("nan")
-    return metrics, predictions
+    return EvalResult(metrics, predictions, logits_arr, probs_arr, labels_arr, record_ids)
+
+
+def save_eval_arrays(output_dir: Path, split: str, result: EvalResult) -> None:
+    arrays_dir = output_dir / "arrays"
+    arrays_dir.mkdir(parents=True, exist_ok=True)
+    np.save(arrays_dir / f"logits_{split}.npy", result.logits)
+    np.save(arrays_dir / f"probs_{split}.npy", result.probs)
+    np.save(arrays_dir / f"labels_{split}.npy", result.labels)
+    write_record_ids(arrays_dir / f"record_ids_{split}.txt", result.record_ids)
+
+
+def save_dev_test_npz(output_dir: Path, dev: EvalResult, test: EvalResult) -> None:
+    arrays_dir = output_dir / "arrays"
+    arrays_dir.mkdir(parents=True, exist_ok=True)
+    np.savez(
+        arrays_dir / "exp02_dev_test_arrays.npz",
+        logits_dev=dev.logits,
+        logits_test=test.logits,
+        probs_dev=dev.probs,
+        probs_test=test.probs,
+        labels_dev=dev.labels,
+        labels_test=test.labels,
+        record_ids_dev=np.array(dev.record_ids, dtype=object),
+        record_ids_test=np.array(test.record_ids, dtype=object),
+    )
+
+
+def save_metrics_tables(output_dir: Path, results: list[EvalResult]) -> None:
+    tables_dir = output_dir / "tables"
+    tables_dir.mkdir(parents=True, exist_ok=True)
+    summary_rows = [result.metrics for result in results]
+    per_bin_rows = []
+    low_rows = []
+    high_rows = []
+    for result in results:
+        split = result.metrics["split"]
+        per_bin_rows.extend(per_bin_metrics(result.predictions, split))
+        low_rows.append(low_score_metrics(result.metrics, split))
+        high_rows.append(high_score_metrics(result.metrics, split))
+    write_csv(tables_dir / "metrics_summary.csv", summary_rows)
+    write_csv(tables_dir / "per_bin_metrics.csv", per_bin_rows)
+    write_csv(tables_dir / "low_score_metrics.csv", low_rows)
+    write_csv(tables_dir / "high_score_metrics.csv", high_rows)
+    write_csv(output_dir / "metrics.csv", summary_rows)
+    write_json(output_dir / "metrics.json", summary_rows)
+
+
+def save_metrics_history(output_dir: Path, metrics_history: list[dict[str, Any]]) -> None:
+    if not metrics_history:
+        return
+    tables_dir = output_dir / "tables"
+    tables_dir.mkdir(parents=True, exist_ok=True)
+    write_csv(tables_dir / "dev_metrics_history.csv", metrics_history)
+    write_json(output_dir / "metrics_history.json", metrics_history)
+
+
+def save_predictions(output_dir: Path, result: EvalResult, suffix: str | None = None) -> None:
+    predictions_dir = output_dir / "predictions"
+    predictions_dir.mkdir(parents=True, exist_ok=True)
+    name = f"predictions_{suffix or result.metrics['split']}.jsonl"
+    write_jsonl(predictions_dir / name, result.predictions)
+    write_jsonl(output_dir / name, result.predictions)
 
 
 def save_checkpoint(model: Any, tokenizer: Any, output_dir: Path, config: TrainConfig, model_mode: str, metrics: dict[str, Any]) -> None:
     import torch
 
     output_dir.mkdir(parents=True, exist_ok=True)
-    if hasattr(model, "save_pretrained"):
-        model.save_pretrained(output_dir)
-    torch.save(model.state_dict(), output_dir / "state_dict.pt")
+    state_dict_path = output_dir / "state_dict.pt"
+    if model_mode == "fallback_last_token_classifier":
+        torch.save(model.state_dict(), state_dict_path)
+        metadata = {
+            "base_model_name_or_path": config.model_name_or_path,
+            "model_mode": model_mode,
+            "hidden_size": getattr(model, "hidden_size", None),
+            "num_labels": getattr(model, "num_labels", 5),
+            "state_dict": state_dict_path.name,
+        }
+        write_json(output_dir / "fallback_metadata.json", metadata)
+        model.backbone.config.save_pretrained(output_dir)
+    else:
+        if hasattr(model, "save_pretrained"):
+            model.save_pretrained(output_dir)
+        torch.save(model.state_dict(), state_dict_path)
     tokenizer.save_pretrained(output_dir)
     write_json(output_dir / "training_config.json", {**asdict(config), "model_mode": model_mode})
     write_json(output_dir / "dev_metrics.json", metrics)
@@ -399,6 +665,8 @@ def train(config: TrainConfig) -> dict[str, Any]:
     from transformers import get_cosine_schedule_with_warmup
 
     ensure_exp02_dirs()
+    config.output_dir.mkdir(parents=True, exist_ok=True)
+    config.checkpoint_output_dir.mkdir(parents=True, exist_ok=True)
     ensure_data_exists(config.data_dir)
     set_seed(config.seed)
     train_rows = limit_rows(read_jsonl(config.data_dir / "train.jsonl"), config.max_train_samples)
@@ -412,16 +680,17 @@ def train(config: TrainConfig) -> dict[str, Any]:
     dev_loader = make_dataloader(dev_rows, tokenizer, config, "dev", shuffle=False)
     test_loader = make_dataloader(test_rows, tokenizer, config, "test", shuffle=False)
 
-    best_dir = config.output_dir / "best"
+    best_dir = config.checkpoint_output_dir / "best"
     metrics_history: list[dict[str, Any]] = []
     if config.eval_only:
-        for split, loader in [("dev", dev_loader), ("test", test_loader)]:
-            metrics, predictions = evaluate(model, loader, device, split)
-            write_jsonl(config.output_dir / f"predictions_{split}.jsonl", predictions)
-            metrics_history.append(metrics)
-        write_csv(config.output_dir / "metrics.csv", metrics_history)
-        write_json(config.output_dir / "metrics.json", metrics_history)
-        return {"model_mode": model_mode, "metrics": metrics_history}
+        dev_result = evaluate(model, dev_loader, device, "dev")
+        test_result = evaluate(model, test_loader, device, "test")
+        for result in [dev_result, test_result]:
+            save_predictions(config.output_dir, result)
+            save_eval_arrays(config.output_dir, result.metrics["split"], result)
+        save_dev_test_npz(config.output_dir, dev_result, test_result)
+        save_metrics_tables(config.output_dir, [dev_result, test_result])
+        return {"model_mode": model_mode, "metrics": [dev_result.metrics, test_result.metrics]}
 
     train_loader = make_dataloader(train_rows, tokenizer, config, "train", shuffle=True)
     optimizer = AdamW(model.parameters(), lr=config.learning_rate, weight_decay=config.weight_decay)
@@ -462,47 +731,49 @@ def train(config: TrainConfig) -> dict[str, Any]:
                         f"loss={avg_loss:.4f} lr={scheduler.get_last_lr()[0]:.2e}"
                     )
 
-        dev_metrics, dev_predictions = evaluate(model, dev_loader, device, "dev")
-        dev_metrics["epoch"] = epoch + 1
-        dev_metrics["global_step"] = global_step
-        metrics_history.append(dev_metrics)
+        dev_result = evaluate(model, dev_loader, device, "dev")
+        dev_result.metrics["epoch"] = epoch + 1
+        dev_result.metrics["global_step"] = global_step
+        metrics_history.append(dev_result.metrics)
         print(
-            f"dev epoch={epoch + 1}: MAE={dev_metrics['MAE']:.4f}, "
-            f"Exact={dev_metrics['Exact Match']:.4f}, low_to_high={dev_metrics['low_to_high_rate']:.4f}"
+            f"dev epoch={epoch + 1}: MAE_label={dev_result.metrics['MAE_label']:.4f}, "
+            f"Exact={dev_result.metrics['Exact Match']:.4f}, low_to_high={dev_result.metrics['low_to_high_rate']:.4f}"
         )
-        if dev_metrics["Exact Match"] > best_dev_accuracy:
-            best_dev_accuracy = dev_metrics["Exact Match"]
-            save_checkpoint(model, tokenizer, best_dir, config, model_mode, dev_metrics)
-            write_jsonl(config.output_dir / "predictions_dev_best.jsonl", dev_predictions)
+        if dev_result.metrics["Exact Match"] > best_dev_accuracy:
+            best_dev_accuracy = dev_result.metrics["Exact Match"]
+            save_checkpoint(model, tokenizer, best_dir, config, model_mode, dev_result.metrics)
+            save_predictions(config.output_dir, dev_result, suffix="dev_best")
 
     state_dict_path = best_dir / "state_dict.pt"
     if state_dict_path.exists():
         model.load_state_dict(torch.load(state_dict_path, map_location=device))
-    test_metrics, test_predictions = evaluate(model, test_loader, device, "test")
-    test_metrics["epoch"] = "final"
-    test_metrics["global_step"] = global_step
-    test_metrics["elapsed_seconds"] = time.time() - start
-    metrics_history.append(test_metrics)
-    config.output_dir.mkdir(parents=True, exist_ok=True)
-    write_jsonl(config.output_dir / "predictions_test.jsonl", test_predictions)
-    write_csv(config.output_dir / "metrics.csv", metrics_history)
-    write_json(config.output_dir / "metrics.json", metrics_history)
-    write_text(
-        config.output_dir / "run_summary.md",
-        "\n".join(
-            [
-                "# Exp2 CE Baseline Run Summary",
-                "",
-                f"Model: `{config.model_name_or_path}`",
-                f"Model mode: `{model_mode}`",
-                f"Best checkpoint: `{relpath(best_dir)}`",
-                f"Final test MAE: {test_metrics['MAE']:.6f}",
-                f"Final test Exact Match: {test_metrics['Exact Match']:.6f}",
-                f"Final low-to-high rate: {test_metrics['low_to_high_rate']:.6f}",
-            ]
-        ),
+    dev_final = evaluate(model, dev_loader, device, "dev")
+    test_result = evaluate(model, test_loader, device, "test")
+    for result in [dev_final, test_result]:
+        result.metrics["epoch"] = "best"
+        result.metrics["global_step"] = global_step
+        save_predictions(config.output_dir, result)
+        save_eval_arrays(config.output_dir, result.metrics["split"], result)
+    save_dev_test_npz(config.output_dir, dev_final, test_result)
+    test_result.metrics["elapsed_seconds"] = time.time() - start
+    save_metrics_history(config.output_dir, metrics_history)
+    save_metrics_tables(config.output_dir, [dev_final, test_result])
+    run_summary = "\n".join(
+        [
+            "# Exp2 CE Baseline Run Summary",
+            "",
+            f"Model: `{config.model_name_or_path}`",
+            f"Model mode: `{model_mode}`",
+            f"Best checkpoint: `{relpath(best_dir)}`",
+            f"Final test MAE_label: {test_result.metrics['MAE_label']:.6f}",
+            f"Final test MAE_expected: {test_result.metrics['MAE_expected']:.6f}",
+            f"Final test Exact Match: {test_result.metrics['Exact Match']:.6f}",
+            f"Final low-to-high rate: {test_result.metrics['low_to_high_rate']:.6f}",
+        ]
     )
-    return {"model_mode": model_mode, "metrics": metrics_history, "best_dir": str(best_dir)}
+    write_text(config.output_dir / "run_summary.md", run_summary)
+    write_text(config.output_dir / "summaries" / "run_summary.md", run_summary)
+    return {"model_mode": model_mode, "metrics": [dev_final.metrics, test_result.metrics], "best_dir": str(best_dir)}
 
 
 def main() -> None:

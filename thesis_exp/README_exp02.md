@@ -55,12 +55,31 @@ Generated data:
 - `thesis_exp/outputs/exp02_ce_baseline/data/dev.jsonl`
 - `thesis_exp/outputs/exp02_ce_baseline/data/test.jsonl`
 
+The Exp2 baseline template is intentionally minimal:
+
+```text
+Question:
+{question}
+
+Answer:
+{answer}
+
+Evaluation Dimension:
+{metric_canonical}
+
+Predict the human-aligned educational quality score from 1 to 5.
+```
+
+Rubric, subject, scenario, education level, language, generator model, metric group, score anchors,
+and explanation/CoT instructions are excluded from `text`. Those fields remain available only as
+metadata columns for later analysis. Rubric-aware / metadata-aware inputs are reserved for Exp3.
+
 ## Train
 
 Set the 0.6B model path when you have it:
 
 ```bash
-export MODEL_NAME_OR_PATH=/path/to/your/0.6b/model
+export MODEL_NAME_OR_PATH=/home/share/models/modelscope/Qwen/Qwen3-Reranker-0.6B
 export CUDA_VISIBLE_DEVICES=4
 bash thesis_exp/scripts/run_exp02_train_ce_0_6b.sh
 ```
@@ -74,15 +93,41 @@ export PER_DEVICE_TRAIN_BATCH_SIZE=4
 export GRADIENT_ACCUMULATION_STEPS=32
 export NUM_TRAIN_EPOCHS=10
 export LEARNING_RATE=2e-5
+export FP16=1
 bash thesis_exp/scripts/run_exp02_train_ce_0_6b.sh
 ```
 
+The training shell script first builds the dataset, then runs
+`python -m thesis_exp.src.edujudge.exp02.sanity_check_exp02_train_setup`, prints the core training
+configuration and effective batch size, and then starts training.
+
 Outputs:
 
-- best checkpoint: `thesis_exp/outputs/exp02_ce_baseline/models/edubench_evaluator_0_6b_ce/best/`
-- metrics: `thesis_exp/outputs/exp02_ce_baseline/models/edubench_evaluator_0_6b_ce/metrics.csv`
-- test predictions: `thesis_exp/outputs/exp02_ce_baseline/models/edubench_evaluator_0_6b_ce/predictions_test.jsonl`
-- run summary: `thesis_exp/outputs/exp02_ce_baseline/models/edubench_evaluator_0_6b_ce/run_summary.md`
+- best checkpoint: `thesis_exp/artifacts/exp02_ce_baseline/checkpoints/edubench_evaluator_0_6b_ce/best/`
+- metrics summary: `thesis_exp/outputs/exp02_ce_baseline/tables/metrics_summary.csv`
+- per-bin metrics: `thesis_exp/outputs/exp02_ce_baseline/tables/per_bin_metrics.csv`
+- low-score metrics: `thesis_exp/outputs/exp02_ce_baseline/tables/low_score_metrics.csv`
+- high-score metrics: `thesis_exp/outputs/exp02_ce_baseline/tables/high_score_metrics.csv`
+- test predictions: `thesis_exp/outputs/exp02_ce_baseline/predictions/predictions_test.jsonl`
+- arrays: `thesis_exp/outputs/exp02_ce_baseline/arrays/exp02_dev_test_arrays.npz`
+- run summary: `thesis_exp/outputs/exp02_ce_baseline/summaries/run_summary.md`
+
+## Smoke Test
+
+Before the formal 10-epoch run, verify the full train/eval/write path on 8 examples:
+
+```bash
+python -m thesis_exp.src.edujudge.exp02.train_ce_baseline \
+  --model_name_or_path "${MODEL_NAME_OR_PATH}" \
+  --max_train_samples 8 \
+  --max_eval_samples 8 \
+  --num_train_epochs 0.01 \
+  --per_device_train_batch_size 1 \
+  --per_device_eval_batch_size 1 \
+  --output_dir thesis_exp/outputs/exp02_ce_baseline/smoke_test \
+  --checkpoint_output_dir thesis_exp/artifacts/exp02_ce_baseline/checkpoints/smoke_test \
+  --trust_remote_code
+```
 
 ## Notes
 
@@ -93,7 +138,9 @@ Outputs:
   selected by validation accuracy. On a 24GB 3090 this is implemented as batch size 4 with
   gradient accumulation 32.
 - The train/dev/test files are fixed from Exp0.1 and should not be regenerated with a new split.
+- Checkpoints and model weights are written under `thesis_exp/artifacts/` and ignored by git.
 - Do not run on the old dirty `~/edubench-eval` server checkout; use a clean `~/edubench-eval-exp2`
   clone.
 - If the 0.6B model lacks a native sequence-classification class, the script falls back to
-  `AutoModel + last-token linear classifier`.
+  `AutoModel + last-token linear classifier`, saves `fallback_metadata.json` plus `state_dict.pt`,
+  and can reload that checkpoint with `--eval_only --checkpoint_dir <checkpoint>`.

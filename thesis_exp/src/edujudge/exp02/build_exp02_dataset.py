@@ -8,6 +8,8 @@ This step does not train a model. It converts the locked Exp0.1
 from __future__ import annotations
 
 import argparse
+import json
+import re
 from collections import Counter
 from pathlib import Path
 from typing import Any
@@ -32,35 +34,51 @@ SPLIT_PATHS = {
     "test": TEST_SPLIT_PATH,
 }
 
+QUESTION_METADATA_LINE_RE = re.compile(
+    r"^\s*(Subject|Education Level|Education level|Scenario|Language|Generator model)\s*:",
+    re.IGNORECASE,
+)
+QUESTION_GENERATION_TAIL_RE = re.compile(
+    r"\s*\.?\s*Please generate the corresponding answer based on the question\..*$",
+    re.IGNORECASE | re.DOTALL,
+)
 
-def _rubric_text(row: dict[str, Any]) -> str:
-    rubric = row.get("rubric")
-    if isinstance(rubric, list):
-        return "\n".join(f"- {stringify(item)}" for item in rubric)
-    return stringify(rubric)
+
+def clean_question_text(value: Any) -> str:
+    text = stringify(value).strip()
+    lines = text.splitlines()
+    while lines and QUESTION_METADATA_LINE_RE.match(lines[0]):
+        lines.pop(0)
+    text = "\n".join(lines).strip()
+    if text.lower().startswith("question:"):
+        text = text.split(":", 1)[1].lstrip()
+    text = QUESTION_GENERATION_TAIL_RE.sub("", text).strip()
+    return text.strip().strip('"').strip()
+
+
+def clean_answer_text(value: Any) -> str:
+    text = stringify(value).strip()
+    if text.lower().startswith("answer:"):
+        return text.split(":", 1)[1].lstrip()
+    try:
+        parsed = json.loads(text)
+    except (json.JSONDecodeError, TypeError):
+        return text
+    if isinstance(parsed, dict):
+        for key, parsed_value in parsed.items():
+            if str(key).strip().lower() == "answer":
+                return stringify(parsed_value).strip()
+    return text
 
 
 def make_prompt(row: dict[str, Any]) -> str:
-    """Create the CE baseline input text without human or judge labels."""
-    metadata = [
-        f"Metric: {row.get('metric_canonical', 'unknown')}",
-        f"Metric group: {row.get('metric_group', 'unknown')}",
-        f"Scenario: {row.get('scenario_canonical', 'unknown')}",
-        f"Subject: {row.get('subject_canonical', 'unknown')}",
-        f"Education level: {row.get('education_level_canonical', 'unknown')}",
-        f"Language: {row.get('language', 'unknown')}",
-        f"Generator model: {row.get('generator_model', 'unknown')}",
-    ]
+    """Create the strict Exp2 baseline input: question + answer + metric only."""
     return "\n\n".join(
         [
-            "You are EduBenchEvaluator, an educational response quality judge.",
-            "Task: assign exactly one score from 1 to 5 for the assistant response under the specified metric.",
-            "Score meaning: 1 is worst quality and 5 is best quality. Use the rubric below as the authority.",
-            "[Metadata]\n" + "\n".join(metadata),
-            "[Question]\n" + stringify(row.get("question")),
-            "[Assistant Response]\n" + stringify(row.get("answer")),
-            "[Rubric]\n" + _rubric_text(row),
-            "Predict the final score label only.",
+            f"Question:\n{clean_question_text(row.get('question'))}",
+            f"Answer:\n{clean_answer_text(row.get('answer'))}",
+            f"Evaluation Dimension:\n{stringify(row.get('metric_canonical'))}",
+            "Predict the human-aligned educational quality score from 1 to 5.",
         ]
     )
 
@@ -73,6 +91,7 @@ def convert_row(row: dict[str, Any], split: str, row_index: int) -> dict[str, An
         "id": row.get("record_id") or f"{split}_{row_index}",
         "split": split,
         "text": make_prompt(row),
+        "template_name": "qa_metric_baseline",
         "label": label_5 - 1,
         "label_5": label_5,
         "human_mean_5": float(row["human_mean_5"]),
@@ -106,6 +125,9 @@ def write_dataset_card(stats_rows: list[dict[str, Any]], label_rows: list[dict[s
         "",
         "No Exp0 data or split file is modified. Human labels are used only as supervised targets;",
         "existing automatic judge predictions are not used as training targets.",
+        "",
+        "Exp2 baseline input = question + answer + metric only.",
+        "Rubric-aware / metadata-aware inputs are reserved for Exp3.",
         "",
         "## Source Splits",
         "",
@@ -207,4 +229,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-
