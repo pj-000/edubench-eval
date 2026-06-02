@@ -7,20 +7,20 @@ MODEL_NAME_OR_PATH="/home/share/models/modelscope/Qwen/Qwen3-Reranker-0.6B"
 CUDA_VISIBLE_DEVICES="7"
 
 NUM_TRAIN_EPOCHS="10"
-PER_DEVICE_TRAIN_BATCH_SIZE="6"
+PER_DEVICE_TRAIN_BATCH_SIZE="5"
 PER_DEVICE_EVAL_BATCH_SIZE="4"
-GRADIENT_ACCUMULATION_STEPS="21"
+GRADIENT_ACCUMULATION_STEPS="26"
 LEARNING_RATE="2e-5"
 WEIGHT_DECAY="0.01"
 WARMUP_RATIO="0.05"
 MAX_LENGTH="2048"
 BF16="auto"
-# Balanced 3090 default after batch 8 without checkpointing hit OOM.
-# Effective batch is 6 * 21 = 126, close to the paper-style 128.
-# If CUDA OOM still happens, set PER_DEVICE_TRAIN_BATCH_SIZE="5"
-# and GRADIENT_ACCUMULATION_STEPS="26".
+# Balanced 3090 default after batch 8 and batch 6 without checkpointing hit OOM.
+# Effective batch is 5 * 26 = 130, close to the paper-style 128.
+# If CUDA OOM still happens, set GRADIENT_CHECKPOINTING="1".
 GRADIENT_CHECKPOINTING="0"
 LOG_STEPS="5"
+PYTORCH_CUDA_ALLOC_CONF="expandable_segments:True"
 
 OUTPUT_DIR="thesis_exp/outputs/exp02_ce_baseline"
 CHECKPOINT_OUTPUT_DIR="thesis_exp/artifacts/exp02_ce_baseline/checkpoints/edubench_evaluator_0_6b_ce"
@@ -59,6 +59,7 @@ export MAX_LENGTH
 export BF16
 export GRADIENT_CHECKPOINTING
 export LOG_STEPS
+export PYTORCH_CUDA_ALLOC_CONF
 export FORMAL_RUN=1
 export REQUIRE_CUDA=1
 
@@ -79,6 +80,7 @@ PER_DEVICE_EVAL_BATCH_SIZE=${PER_DEVICE_EVAL_BATCH_SIZE}
 GRADIENT_ACCUMULATION_STEPS=${GRADIENT_ACCUMULATION_STEPS}
 effective batch size=$((PER_DEVICE_TRAIN_BATCH_SIZE * GRADIENT_ACCUMULATION_STEPS))
 LOG_STEPS=${LOG_STEPS}
+PYTORCH_CUDA_ALLOC_CONF=${PYTORCH_CUDA_ALLOC_CONF}
 LEARNING_RATE=${LEARNING_RATE}
 WEIGHT_DECAY=${WEIGHT_DECAY}
 WARMUP_RATIO=${WARMUP_RATIO}
