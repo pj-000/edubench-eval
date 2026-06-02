@@ -1,0 +1,4 @@
+system,source,MAE,Exact Match,Signed Bias,Kendall tau,Acc@1,Acc@2,Acc@5,low_to_high_rate,notes
+PDF EduBenchEvaluator,PDF reference table,0.43,0.725,0.246,0.508,0.48100000000000004,0.23399999999999999,0.877,,PDF does not report low_to_high_rate in the reproduced reference table.
+Exp1 reproduced EduBenchEvaluator,thesis_exp/outputs/exp01_audit,0.4358280733393447,0.7240757439134355,0.25278028253682,0.5051636452404249,0.4464285714285714,0.2340425531914893,0.8776019983347211,0.5339805825242718,Reproduced on the locked Exp1 aligned test set.
+Exp2 trained CE baseline,thesis_exp/outputs/exp02_ce_baseline,0.4238052299368801,0.7299368800721371,0.1409678388938983,0.5692855146538734,0.1785714285714285,0.2553191489361702,0.8084929225645295,0.5339805825242718,Qwen3-Reranker-0.6B sequence-classification CE baseline.
