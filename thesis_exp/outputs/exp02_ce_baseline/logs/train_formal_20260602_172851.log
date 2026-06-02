@@ -1,0 +1,161 @@
+Exp2 CE baseline config
+MODEL_NAME_OR_PATH=/home/share/models/modelscope/Qwen/Qwen3-Reranker-0.6B
+CUDA_VISIBLE_DEVICES=7
+REQUIRE_CUDA=1
+FORMAL_RUN=1
+MAX_TRAIN_SAMPLES=
+MAX_EVAL_SAMPLES=
+MAX_LENGTH=2048
+NUM_TRAIN_EPOCHS=10
+PER_DEVICE_TRAIN_BATCH_SIZE=5
+GRADIENT_ACCUMULATION_STEPS=26
+effective batch size=130
+OUTPUT_DIR=thesis_exp/outputs/exp02_ce_baseline
+CHECKPOINT_OUTPUT_DIR=thesis_exp/artifacts/exp02_ce_baseline/checkpoints/edubench_evaluator_0_6b_ce
+BF16=auto
+FP16=0
+GRADIENT_CHECKPOINTING=0
+PROGRESS_BAR=enabled
+torch.cuda.is_available()=True
+torch.cuda.device_count()=1
+torch.cuda.get_device_name(0)=NVIDIA GeForce RTX 3090
+torch.version.cuda=12.1
+selected BF16/FP16 setting=BF16=auto, FP16=0
+train: 2654 rows, labels={1: 24, 2: 52, 3: 251, 4: 946, 5: 1381}
+dev: 664 rows, labels={1: 6, 2: 14, 3: 62, 4: 237, 5: 345}
+test: 2218 rows, labels={1: 56, 2: 47, 3: 194, 4: 720, 5: 1201}
+Exp2 CE data written to thesis_exp/outputs/exp02_ce_baseline/data
+Exp2 train setup sanity statuses: PASS
+Outputs: thesis_exp/outputs/exp02_ce_baseline/sanity_check_exp02_train_setup.md
+`torch_dtype` is deprecated! Use `dtype` instead!
+Some weights of Qwen3ForSequenceClassification were not initialized from the model checkpoint at /home/share/models/modelscope/Qwen/Qwen3-Reranker-0.6B and are newly initialized: ['score.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+training schedule: train_batches_per_epoch=531 update_steps_per_epoch=21 total_update_steps=210 log_steps=5
+epoch=1 step=5/210 loss=1.9691 lr=1.00e-05 elapsed=51s eta=35m02s steps_per_min=5.85
+epoch=1 step=10/210 loss=1.5177 lr=2.00e-05 elapsed=1m44s eta=35m27s steps_per_min=5.64
+epoch=1 step=15/210 loss=1.3697 lr=2.00e-05 elapsed=2m36s eta=33m38s steps_per_min=5.80
+epoch=1 step=20/210 loss=1.2729 lr=1.99e-05 elapsed=3m28s eta=32m32s steps_per_min=5.84
+dev epoch=1: MAE_label=0.5186, Exact=0.6099, low_to_high=1.0000, elapsed=3m44s, eta=33m40s
+[2026-06-02 17:32:48,720] [INFO] [real_accelerator.py:222:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+epoch=2 step=25/210 loss=0.8554 lr=1.97e-05 elapsed=4m29s eta=38m07s steps_per_min=4.85
+epoch=2 step=30/210 loss=0.8439 lr=1.95e-05 elapsed=5m22s eta=31m26s steps_per_min=5.73
+epoch=2 step=35/210 loss=0.8635 lr=1.92e-05 elapsed=6m12s eta=29m32s steps_per_min=5.93
+epoch=2 step=40/210 loss=0.8636 lr=1.89e-05 elapsed=7m04s eta=29m18s steps_per_min=5.80
+dev epoch=2: MAE_label=0.4634, Exact=0.6340, low_to_high=1.0000, elapsed=7m31s, eta=30m04s
+epoch=3 step=45/210 loss=0.8155 lr=1.85e-05 elapsed=8m06s eta=34m01s steps_per_min=4.85
+epoch=3 step=50/210 loss=0.7406 lr=1.81e-05 elapsed=8m59s eta=28m16s steps_per_min=5.66
+epoch=3 step=55/210 loss=0.7247 lr=1.76e-05 elapsed=9m51s eta=26m42s steps_per_min=5.81
+epoch=3 step=60/210 loss=0.7023 lr=1.71e-05 elapsed=10m41s eta=25m22s steps_per_min=5.91
+dev epoch=3: MAE_label=0.4357, Exact=0.6717, low_to_high=0.7500, elapsed=11m19s, eta=26m25s
+epoch=4 step=65/210 loss=0.6088 lr=1.65e-05 elapsed=11m44s eta=30m30s steps_per_min=4.75
+epoch=4 step=70/210 loss=0.5990 lr=1.59e-05 elapsed=12m35s eta=23m50s steps_per_min=5.87
+epoch=4 step=75/210 loss=0.5731 lr=1.52e-05 elapsed=13m28s eta=23m43s steps_per_min=5.69
+epoch=4 step=80/210 loss=0.5578 lr=1.45e-05 elapsed=14m20s eta=22m27s steps_per_min=5.79
+dev epoch=4: MAE_label=0.3976, Exact=0.7108, low_to_high=0.7000, elapsed=15m08s, eta=22m42s
+epoch=5 step=85/210 loss=0.5135 lr=1.38e-05 elapsed=15m22s eta=25m51s steps_per_min=4.83
+epoch=5 step=90/210 loss=0.4331 lr=1.31e-05 elapsed=16m13s eta=20m33s steps_per_min=5.84
+epoch=5 step=95/210 loss=0.4278 lr=1.23e-05 elapsed=17m03s eta=19m04s steps_per_min=6.03
+epoch=5 step=100/210 loss=0.4213 lr=1.16e-05 elapsed=17m55s eta=18m55s steps_per_min=5.82
+epoch=5 step=105/210 loss=0.4165 lr=1.08e-05 elapsed=18m42s eta=16m22s steps_per_min=6.42
+dev epoch=5: MAE_label=0.4127, Exact=0.7033, low_to_high=0.5500, elapsed=18m55s, eta=18m55s
+epoch=6 step=110/210 loss=0.2974 lr=1.00e-05 elapsed=19m48s eta=22m05s steps_per_min=4.53
+epoch=6 step=115/210 loss=0.3022 lr=9.22e-06 elapsed=20m39s eta=16m08s steps_per_min=5.89
+epoch=6 step=120/210 loss=0.2899 lr=8.44e-06 elapsed=21m30s eta=15m30s steps_per_min=5.81
+epoch=6 step=125/210 loss=0.2747 lr=7.67e-06 elapsed=22m22s eta=14m45s steps_per_min=5.76
+dev epoch=6: MAE_label=0.4026, Exact=0.7063, low_to_high=0.5500, elapsed=22m40s, eta=15m07s
+epoch=7 step=130/210 loss=0.1657 lr=6.91e-06 elapsed=23m20s eta=15m16s steps_per_min=5.24
+epoch=7 step=135/210 loss=0.1792 lr=6.17e-06 elapsed=24m12s eta=13m00s steps_per_min=5.77
+epoch=7 step=140/210 loss=0.1667 lr=5.46e-06 elapsed=25m03s eta=11m55s steps_per_min=5.88
+epoch=7 step=145/210 loss=0.1731 lr=4.78e-06 elapsed=25m55s eta=11m18s steps_per_min=5.75
+dev epoch=7: MAE_label=0.4011, Exact=0.7063, low_to_high=0.3500, elapsed=26m23s, eta=11m19s
+epoch=8 step=150/210 loss=0.1036 lr=4.12e-06 elapsed=26m55s eta=11m59s steps_per_min=5.01
+epoch=8 step=155/210 loss=0.1193 lr=3.51e-06 elapsed=27m48s eta=9m45s steps_per_min=5.64
+epoch=8 step=160/210 loss=0.1159 lr=2.93e-06 elapsed=28m39s eta=8m31s steps_per_min=5.87
+epoch=8 step=165/210 loss=0.1185 lr=2.40e-06 elapsed=29m31s eta=7m48s steps_per_min=5.77
+dev epoch=8: MAE_label=0.4187, Exact=0.6973, low_to_high=0.6000, elapsed=30m08s, eta=7m32s
+epoch=9 step=170/210 loss=0.1146 lr=1.91e-06 elapsed=30m28s eta=7m39s steps_per_min=5.22
+epoch=9 step=175/210 loss=0.1045 lr=1.47e-06 elapsed=31m20s eta=5m58s steps_per_min=5.87
+epoch=9 step=180/210 loss=0.1049 lr=1.09e-06 elapsed=32m12s eta=5m13s steps_per_min=5.76
+epoch=9 step=185/210 loss=0.1053 lr=7.61e-07 elapsed=33m06s eta=4m30s steps_per_min=5.56
+dev epoch=9: MAE_label=0.4257, Exact=0.6943, low_to_high=0.6500, elapsed=33m53s, eta=3m46s
+epoch=10 step=190/210 loss=0.0959 lr=4.89e-07 elapsed=34m04s eta=3m55s steps_per_min=5.10
+epoch=10 step=195/210 loss=0.1021 lr=2.76e-07 elapsed=34m57s eta=2m38s steps_per_min=5.69
+epoch=10 step=200/210 loss=0.0979 lr=1.23e-07 elapsed=35m48s eta=1m42s steps_per_min=5.89
+epoch=10 step=205/210 loss=0.1038 lr=3.08e-08 elapsed=36m39s eta=51s steps_per_min=5.87
+epoch=10 step=210/210 loss=0.1003 lr=0.00e+00 elapsed=37m24s eta=0s steps_per_min=6.64
+dev epoch=10: MAE_label=0.4227, Exact=0.6928, low_to_high=0.5500, elapsed=37m37s, eta=0s
+/home/jpang/edubench-eval-exp2/thesis_exp/src/edujudge/exp02/train_ce_baseline.py:851: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  model.load_state_dict(torch.load(state_dict_path, map_location=device))
+{
+  "model_mode": "sequence_classification",
+  "metrics": [
+    {
+      "n": 664,
+      "Accuracy": 0.7108433734939759,
+      "Exact Match": 0.7108433734939759,
+      "MAE_label": 0.39759036144578314,
+      "MAE_expected": 0.36824477102019987,
+      "RMSE_label": 0.6206508653448247,
+      "Signed Bias label": 0.11546184738955824,
+      "Signed Bias expected": 0.008685549174649924,
+      "Macro-F1": 0.5102935740804344,
+      "Weighted-F1": 0.695494691587113,
+      "Quadratic Weighted Kappa": 0.5757069829084838,
+      "Kendall tau": 0.5718356043458594,
+      "Spearman rho": 0.643093845783952,
+      "Within-1 Accuracy": 0.9623493975903614,
+      "Acc@1": 0.5,
+      "Acc@2": 0.07142857142857142,
+      "Acc@5": 0.8115942028985508,
+      "low_n": 20,
+      "low_exact_match": 0.2,
+      "low_MAE": 1.7999999999999996,
+      "low_signed_bias": 1.7666666666666664,
+      "low_to_high_rate": 0.7,
+      "low_severe_overestimation_rate": 0.75,
+      "mean_pred_low": 3.55,
+      "high_n": 345,
+      "high_to_mid_or_low_rate": 0.002898550724637681,
+      "high_signed_bias": -0.04444444444444458,
+      "split": "dev",
+      "loss": 0.7821081690041416,
+      "epoch": "best",
+      "global_step": 210
+    },
+    {
+      "n": 2218,
+      "Accuracy": 0.7299368800721371,
+      "Exact Match": 0.7299368800721371,
+      "MAE_label": 0.4238052299368801,
+      "MAE_expected": 0.38645533517366676,
+      "RMSE_label": 0.7365669070330398,
+      "Signed Bias label": 0.14096783889389838,
+      "Signed Bias expected": 0.05781580377132281,
+      "Macro-F1": 0.5019585239272547,
+      "Weighted-F1": 0.7169139625530411,
+      "Quadratic Weighted Kappa": 0.5445660551774902,
+      "Kendall tau": 0.5692855146538734,
+      "Spearman rho": 0.6360863736450496,
+      "Within-1 Accuracy": 0.9531109107303878,
+      "Acc@1": 0.17857142857142858,
+      "Acc@2": 0.2553191489361702,
+      "Acc@5": 0.8084929225645295,
+      "low_n": 103,
+      "low_exact_match": 0.21359223300970873,
+      "low_MAE": 1.9967637540453076,
+      "low_signed_bias": 1.9773462783171523,
+      "low_to_high_rate": 0.5339805825242718,
+      "low_severe_overestimation_rate": 0.5825242718446602,
+      "mean_pred_low": 3.4854368932038833,
+      "high_n": 1201,
+      "high_to_mid_or_low_rate": 0.00832639467110741,
+      "high_signed_bias": -0.049125728559533864,
+      "split": "test",
+      "loss": 0.7202346939224381,
+      "epoch": "best",
+      "global_step": 210,
+      "elapsed_seconds": 2310.6128435134888
+    }
+  ],
+  "best_dir": "thesis_exp/artifacts/exp02_ce_baseline/checkpoints/edubench_evaluator_0_6b_ce/best"
+}

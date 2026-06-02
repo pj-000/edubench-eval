@@ -1,0 +1,4 @@
+split,source_path,output_path,rows,expected_rows,status
+train,thesis_exp/data/splits/paper_like_triple_seed42/train.jsonl,thesis_exp/outputs/exp02_ce_baseline/data/train.jsonl,2654,2654,PASS
+dev,thesis_exp/data/splits/paper_like_triple_seed42/dev.jsonl,thesis_exp/outputs/exp02_ce_baseline/data/dev.jsonl,664,664,PASS
+test,thesis_exp/data/splits/paper_like_triple_seed42/test.jsonl,thesis_exp/outputs/exp02_ce_baseline/data/test.jsonl,2218,2218,PASS
