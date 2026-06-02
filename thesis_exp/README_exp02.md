@@ -70,9 +70,9 @@ Useful overrides:
 ```bash
 export CUDA_VISIBLE_DEVICES=6
 export MAX_LENGTH=2048
-export PER_DEVICE_TRAIN_BATCH_SIZE=2
-export GRADIENT_ACCUMULATION_STEPS=8
-export NUM_TRAIN_EPOCHS=3
+export PER_DEVICE_TRAIN_BATCH_SIZE=4
+export GRADIENT_ACCUMULATION_STEPS=32
+export NUM_TRAIN_EPOCHS=10
 export LEARNING_RATE=2e-5
 bash thesis_exp/scripts/run_exp02_train_ce_0_6b.sh
 ```
@@ -87,9 +87,13 @@ Outputs:
 ## Notes
 
 - Exp2 uses unweighted CE. Low-score-sensitive loss belongs to Exp5.
+- The default training settings mirror the audit-paper protocol where it is specified:
+  Qwen3-Reranker-0.6B, 5-class sequence classification, rounded human mean target, train-pool
+  split into train/dev, CE + AdamW, 10 epochs, effective batch size 128, and best checkpoint
+  selected by validation accuracy. On a 24GB 3090 this is implemented as batch size 4 with
+  gradient accumulation 32.
 - The train/dev/test files are fixed from Exp0.1 and should not be regenerated with a new split.
 - Do not run on the old dirty `~/edubench-eval` server checkout; use a clean `~/edubench-eval-exp2`
   clone.
 - If the 0.6B model lacks a native sequence-classification class, the script falls back to
   `AutoModel + last-token linear classifier`.
-

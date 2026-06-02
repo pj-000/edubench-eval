@@ -58,13 +58,13 @@ def parse_args() -> TrainConfig:
     parser.add_argument("--data_dir", type=Path, default=EXP02_DATA_DIR)
     parser.add_argument("--output_dir", type=Path, default=EXP02_MODEL_DIR)
     parser.add_argument("--max_length", type=int, default=2048)
-    parser.add_argument("--num_train_epochs", type=float, default=3.0)
+    parser.add_argument("--num_train_epochs", type=float, default=10.0)
     parser.add_argument("--learning_rate", type=float, default=2e-5)
     parser.add_argument("--weight_decay", type=float, default=0.01)
     parser.add_argument("--warmup_ratio", type=float, default=0.05)
-    parser.add_argument("--per_device_train_batch_size", type=int, default=2)
+    parser.add_argument("--per_device_train_batch_size", type=int, default=4)
     parser.add_argument("--per_device_eval_batch_size", type=int, default=4)
-    parser.add_argument("--gradient_accumulation_steps", type=int, default=8)
+    parser.add_argument("--gradient_accumulation_steps", type=int, default=32)
     parser.add_argument("--max_grad_norm", type=float, default=1.0)
     parser.add_argument("--seed", type=int, default=42)
     parser.add_argument("--bf16", choices=["auto", "true", "false"], default="auto")
@@ -382,9 +382,12 @@ def evaluate(model: Any, dataloader: Any, device: Any, split: str) -> tuple[dict
 
 
 def save_checkpoint(model: Any, tokenizer: Any, output_dir: Path, config: TrainConfig, model_mode: str, metrics: dict[str, Any]) -> None:
+    import torch
+
     output_dir.mkdir(parents=True, exist_ok=True)
     if hasattr(model, "save_pretrained"):
         model.save_pretrained(output_dir)
+    torch.save(model.state_dict(), output_dir / "state_dict.pt")
     tokenizer.save_pretrained(output_dir)
     write_json(output_dir / "training_config.json", {**asdict(config), "model_mode": model_mode})
     write_json(output_dir / "dev_metrics.json", metrics)
@@ -427,7 +430,7 @@ def train(config: TrainConfig) -> dict[str, Any]:
     warmup_steps = int(total_steps * config.warmup_ratio)
     scheduler = get_cosine_schedule_with_warmup(optimizer, num_warmup_steps=warmup_steps, num_training_steps=total_steps)
 
-    best_dev_mae = float("inf")
+    best_dev_accuracy = -1.0
     global_step = 0
     start = time.time()
     num_epochs = int(math.ceil(config.num_train_epochs))
@@ -467,11 +470,14 @@ def train(config: TrainConfig) -> dict[str, Any]:
             f"dev epoch={epoch + 1}: MAE={dev_metrics['MAE']:.4f}, "
             f"Exact={dev_metrics['Exact Match']:.4f}, low_to_high={dev_metrics['low_to_high_rate']:.4f}"
         )
-        if dev_metrics["MAE"] < best_dev_mae:
-            best_dev_mae = dev_metrics["MAE"]
+        if dev_metrics["Exact Match"] > best_dev_accuracy:
+            best_dev_accuracy = dev_metrics["Exact Match"]
             save_checkpoint(model, tokenizer, best_dir, config, model_mode, dev_metrics)
             write_jsonl(config.output_dir / "predictions_dev_best.jsonl", dev_predictions)
 
+    state_dict_path = best_dir / "state_dict.pt"
+    if state_dict_path.exists():
+        model.load_state_dict(torch.load(state_dict_path, map_location=device))
     test_metrics, test_predictions = evaluate(model, test_loader, device, "test")
     test_metrics["epoch"] = "final"
     test_metrics["global_step"] = global_step
