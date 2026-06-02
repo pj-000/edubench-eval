@@ -28,6 +28,13 @@ NUM_WORKERS="${NUM_WORKERS:-0}"
 LOG_STEPS="${LOG_STEPS:-20}"
 EFFECTIVE_BATCH_SIZE=$((PER_DEVICE_TRAIN_BATCH_SIZE * GRADIENT_ACCUMULATION_STEPS))
 
+PROGRESS_ARGS=()
+PROGRESS_BAR_STATUS="enabled"
+if [[ "${NO_PROGRESS_BAR:-0}" == "1" ]]; then
+  PROGRESS_ARGS+=(--no_progress_bar)
+  PROGRESS_BAR_STATUS="disabled"
+fi
+
 FP16_ARGS=()
 if [[ "${FP16:-0}" == "1" ]]; then
   echo "WARNING: Current loop does not use GradScaler; prefer BF16=auto on A100/H100." >&2
@@ -91,6 +98,7 @@ CHECKPOINT_OUTPUT_DIR=${CHECKPOINT_OUTPUT_DIR}
 BF16=${BF16}
 FP16=${FP16:-0}
 GRADIENT_CHECKPOINTING=${GRADIENT_CHECKPOINTING:-1}
+PROGRESS_BAR=${PROGRESS_BAR_STATUS}
 CONFIG
 
 python - <<'PY'
@@ -141,6 +149,7 @@ python -m thesis_exp.src.edujudge.exp02.train_ce_baseline \
   --bf16 "${BF16}" \
   --num_workers "${NUM_WORKERS}" \
   --log_steps "${LOG_STEPS}" \
+  "${PROGRESS_ARGS[@]}" \
   "${FP16_ARGS[@]}" \
   "${GRADIENT_CHECKPOINTING_ARGS[@]}" \
   "${TRUST_REMOTE_CODE_ARGS[@]}" \

@@ -11,10 +11,11 @@ import argparse
 import json
 import math
 import random
+import sys
 import time
 from dataclasses import asdict, dataclass
 from pathlib import Path
-from typing import Any
+from typing import Any, TextIO
 
 import numpy as np
 
@@ -63,6 +64,7 @@ class TrainConfig:
     checkpoint_dir: Path | None
     num_workers: int
     log_steps: int
+    progress_bar: bool
 
 
 @dataclass
@@ -102,6 +104,8 @@ def parse_args() -> TrainConfig:
     parser.add_argument("--checkpoint_dir", type=Path, default=None)
     parser.add_argument("--num_workers", type=int, default=0)
     parser.add_argument("--log_steps", type=int, default=20)
+    parser.add_argument("--no_progress_bar", action="store_false", dest="progress_bar")
+    parser.set_defaults(progress_bar=True)
     ns = parser.parse_args()
     return TrainConfig(**vars(ns))
 
@@ -149,6 +153,54 @@ def format_duration(seconds: float) -> str:
     if minutes:
         return f"{minutes}m{secs:02d}s"
     return f"{secs}s"
+
+
+class StepProgressBar:
+    def __init__(self, total: int, enabled: bool, desc: str = "Exp2 train") -> None:
+        self.total = max(1, total)
+        self.enabled = enabled
+        self.desc = desc
+        self.stream: TextIO | None = None
+        self.owns_stream = False
+        self.last_current = 0
+        if not enabled:
+            return
+        try:
+            self.stream = open("/dev/tty", "w", encoding="utf-8", buffering=1)
+            self.owns_stream = True
+        except OSError:
+            self.stream = sys.stderr
+
+    def render(self, current: int, epoch: int, loss: float | None, lr: float | None, elapsed: float, eta: float) -> None:
+        if not self.enabled or self.stream is None:
+            return
+        self.last_current = current
+        ratio = min(1.0, max(0.0, current / self.total))
+        width = 28
+        filled = int(round(width * ratio))
+        bar = "#" * filled + "-" * (width - filled)
+        loss_text = "nan" if loss is None else f"{loss:.4f}"
+        lr_text = "nan" if lr is None else f"{lr:.2e}"
+        line = (
+            f"{self.desc} |{bar}| {current}/{self.total} {ratio * 100:5.1f}% "
+            f"epoch={epoch} loss={loss_text} lr={lr_text} "
+            f"elapsed={format_duration(elapsed)} eta={format_duration(eta)}"
+        )
+        self.stream.write("\r" + line + "\x1b[K")
+        self.stream.flush()
+
+    def newline(self) -> None:
+        if self.enabled and self.stream is not None and self.last_current:
+            self.stream.write("\n")
+            self.stream.flush()
+
+    def close(self) -> None:
+        if self.enabled and self.stream is not None:
+            if self.last_current:
+                self.stream.write("\n")
+                self.stream.flush()
+            if self.owns_stream:
+                self.stream.close()
 
 
 def ensure_data_exists(data_dir: Path) -> None:
@@ -726,63 +778,73 @@ def train(config: TrainConfig) -> dict[str, Any]:
         f"log_steps={config.log_steps}",
         flush=True,
     )
-    for epoch in range(num_epochs):
-        if epoch >= config.num_train_epochs:
-            break
-        model.train()
-        optimizer.zero_grad(set_to_none=True)
-        running_loss = 0.0
-        for step, batch in enumerate(train_loader, start=1):
-            batch.pop("metadata")
-            batch = {key: value.to(device) for key, value in batch.items()}
-            outputs = model(**batch)
-            loss, _ = _get_loss_logits(outputs)
-            if loss is None:
-                raise RuntimeError("Model returned no loss.")
-            (loss / config.gradient_accumulation_steps).backward()
-            running_loss += float(loss.detach().cpu())
-            if step % config.gradient_accumulation_steps == 0 or step == len(train_loader):
-                torch.nn.utils.clip_grad_norm_(model.parameters(), config.max_grad_norm)
-                optimizer.step()
-                scheduler.step()
-                optimizer.zero_grad(set_to_none=True)
-                global_step += 1
-                if global_step % config.log_steps == 0:
+    progress = StepProgressBar(total_steps, config.progress_bar)
+    try:
+        for epoch in range(num_epochs):
+            if epoch >= config.num_train_epochs:
+                break
+            model.train()
+            optimizer.zero_grad(set_to_none=True)
+            running_loss = 0.0
+            for step, batch in enumerate(train_loader, start=1):
+                batch.pop("metadata")
+                batch = {key: value.to(device) for key, value in batch.items()}
+                outputs = model(**batch)
+                loss, _ = _get_loss_logits(outputs)
+                if loss is None:
+                    raise RuntimeError("Model returned no loss.")
+                (loss / config.gradient_accumulation_steps).backward()
+                running_loss += float(loss.detach().cpu())
+                if step % config.gradient_accumulation_steps == 0 or step == len(train_loader):
+                    torch.nn.utils.clip_grad_norm_(model.parameters(), config.max_grad_norm)
+                    optimizer.step()
+                    scheduler.step()
+                    optimizer.zero_grad(set_to_none=True)
+                    global_step += 1
                     now = time.time()
                     elapsed = now - start
-                    interval_steps = max(1, global_step - last_log_step)
-                    interval_seconds = max(1e-9, now - last_log_time)
-                    steps_per_second = interval_steps / interval_seconds
-                    remaining_steps = max(0, total_steps - global_step)
-                    eta_seconds = remaining_steps / steps_per_second if steps_per_second > 0 else float("nan")
-                    last_log_time = now
-                    last_log_step = global_step
                     avg_loss = running_loss / max(1, step)
-                    print(
-                        f"epoch={epoch + 1} step={global_step}/{total_steps} "
-                        f"loss={avg_loss:.4f} lr={scheduler.get_last_lr()[0]:.2e} "
-                        f"elapsed={format_duration(elapsed)} eta={format_duration(eta_seconds)} "
-                        f"steps_per_min={steps_per_second * 60:.2f}",
-                        flush=True,
-                    )
+                    avg_steps_per_second = global_step / max(1e-9, elapsed)
+                    avg_eta_seconds = max(0, total_steps - global_step) / avg_steps_per_second
+                    current_lr = scheduler.get_last_lr()[0]
+                    progress.render(global_step, epoch + 1, avg_loss, current_lr, elapsed, avg_eta_seconds)
+                    if global_step % config.log_steps == 0:
+                        interval_steps = max(1, global_step - last_log_step)
+                        interval_seconds = max(1e-9, now - last_log_time)
+                        steps_per_second = interval_steps / interval_seconds
+                        remaining_steps = max(0, total_steps - global_step)
+                        eta_seconds = remaining_steps / steps_per_second if steps_per_second > 0 else float("nan")
+                        last_log_time = now
+                        last_log_step = global_step
+                        progress.newline()
+                        print(
+                            f"epoch={epoch + 1} step={global_step}/{total_steps} "
+                            f"loss={avg_loss:.4f} lr={current_lr:.2e} "
+                            f"elapsed={format_duration(elapsed)} eta={format_duration(eta_seconds)} "
+                            f"steps_per_min={steps_per_second * 60:.2f}",
+                            flush=True,
+                        )
 
-        dev_result = evaluate(model, dev_loader, device, "dev")
-        dev_result.metrics["epoch"] = epoch + 1
-        dev_result.metrics["global_step"] = global_step
-        metrics_history.append(dev_result.metrics)
-        elapsed = time.time() - start
-        avg_seconds_per_step = elapsed / max(1, global_step)
-        eta_seconds = max(0, total_steps - global_step) * avg_seconds_per_step
-        print(
-            f"dev epoch={epoch + 1}: MAE_label={dev_result.metrics['MAE_label']:.4f}, "
-            f"Exact={dev_result.metrics['Exact Match']:.4f}, low_to_high={dev_result.metrics['low_to_high_rate']:.4f}, "
-            f"elapsed={format_duration(elapsed)}, eta={format_duration(eta_seconds)}",
-            flush=True,
-        )
-        if dev_result.metrics["Exact Match"] > best_dev_accuracy:
-            best_dev_accuracy = dev_result.metrics["Exact Match"]
-            save_checkpoint(model, tokenizer, best_dir, config, model_mode, dev_result.metrics)
-            save_predictions(config.output_dir, dev_result, suffix="dev_best")
+            progress.newline()
+            dev_result = evaluate(model, dev_loader, device, "dev")
+            dev_result.metrics["epoch"] = epoch + 1
+            dev_result.metrics["global_step"] = global_step
+            metrics_history.append(dev_result.metrics)
+            elapsed = time.time() - start
+            avg_seconds_per_step = elapsed / max(1, global_step)
+            eta_seconds = max(0, total_steps - global_step) * avg_seconds_per_step
+            print(
+                f"dev epoch={epoch + 1}: MAE_label={dev_result.metrics['MAE_label']:.4f}, "
+                f"Exact={dev_result.metrics['Exact Match']:.4f}, low_to_high={dev_result.metrics['low_to_high_rate']:.4f}, "
+                f"elapsed={format_duration(elapsed)}, eta={format_duration(eta_seconds)}",
+                flush=True,
+            )
+            if dev_result.metrics["Exact Match"] > best_dev_accuracy:
+                best_dev_accuracy = dev_result.metrics["Exact Match"]
+                save_checkpoint(model, tokenizer, best_dir, config, model_mode, dev_result.metrics)
+                save_predictions(config.output_dir, dev_result, suffix="dev_best")
+    finally:
+        progress.close()
 
     state_dict_path = best_dir / "state_dict.pt"
     if state_dict_path.exists():
