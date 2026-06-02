@@ -7,15 +7,18 @@ MODEL_NAME_OR_PATH="/home/share/models/modelscope/Qwen/Qwen3-Reranker-0.6B"
 CUDA_VISIBLE_DEVICES="7"
 
 NUM_TRAIN_EPOCHS="10"
-PER_DEVICE_TRAIN_BATCH_SIZE="4"
+PER_DEVICE_TRAIN_BATCH_SIZE="8"
 PER_DEVICE_EVAL_BATCH_SIZE="4"
-GRADIENT_ACCUMULATION_STEPS="32"
+GRADIENT_ACCUMULATION_STEPS="16"
 LEARNING_RATE="2e-5"
 WEIGHT_DECAY="0.01"
 WARMUP_RATIO="0.05"
 MAX_LENGTH="2048"
 BF16="auto"
-GRADIENT_CHECKPOINTING="1"
+# Faster 3090 default: larger micro-batch and no gradient checkpointing.
+# If CUDA OOM happens, set PER_DEVICE_TRAIN_BATCH_SIZE="4",
+# GRADIENT_ACCUMULATION_STEPS="32", and GRADIENT_CHECKPOINTING="1".
+GRADIENT_CHECKPOINTING="0"
 
 OUTPUT_DIR="thesis_exp/outputs/exp02_ce_baseline"
 CHECKPOINT_OUTPUT_DIR="thesis_exp/artifacts/exp02_ce_baseline/checkpoints/edubench_evaluator_0_6b_ce"

@@ -138,6 +138,19 @@ def set_seed(seed: int) -> None:
         pass
 
 
+def format_duration(seconds: float) -> str:
+    if not math.isfinite(seconds) or seconds < 0:
+        return "unknown"
+    seconds = int(round(seconds))
+    hours, remainder = divmod(seconds, 3600)
+    minutes, secs = divmod(remainder, 60)
+    if hours:
+        return f"{hours}h{minutes:02d}m{secs:02d}s"
+    if minutes:
+        return f"{minutes}m{secs:02d}s"
+    return f"{secs}s"
+
+
 def ensure_data_exists(data_dir: Path) -> None:
     if not all((data_dir / f"{split}.jsonl").exists() for split in ["train", "dev", "test"]):
         build_exp02_dataset()
@@ -702,7 +715,16 @@ def train(config: TrainConfig) -> dict[str, Any]:
     best_dev_accuracy = -1.0
     global_step = 0
     start = time.time()
+    last_log_time = start
+    last_log_step = 0
     num_epochs = int(math.ceil(config.num_train_epochs))
+    print(
+        "training schedule: "
+        f"train_batches_per_epoch={len(train_loader)} "
+        f"update_steps_per_epoch={update_steps_per_epoch} "
+        f"total_update_steps={total_steps} "
+        f"log_steps={config.log_steps}"
+    )
     for epoch in range(num_epochs):
         if epoch >= config.num_train_epochs:
             break
@@ -725,19 +747,34 @@ def train(config: TrainConfig) -> dict[str, Any]:
                 optimizer.zero_grad(set_to_none=True)
                 global_step += 1
                 if global_step % config.log_steps == 0:
+                    now = time.time()
+                    elapsed = now - start
+                    interval_steps = max(1, global_step - last_log_step)
+                    interval_seconds = max(1e-9, now - last_log_time)
+                    steps_per_second = interval_steps / interval_seconds
+                    remaining_steps = max(0, total_steps - global_step)
+                    eta_seconds = remaining_steps / steps_per_second if steps_per_second > 0 else float("nan")
+                    last_log_time = now
+                    last_log_step = global_step
                     avg_loss = running_loss / max(1, step)
                     print(
                         f"epoch={epoch + 1} step={global_step}/{total_steps} "
-                        f"loss={avg_loss:.4f} lr={scheduler.get_last_lr()[0]:.2e}"
+                        f"loss={avg_loss:.4f} lr={scheduler.get_last_lr()[0]:.2e} "
+                        f"elapsed={format_duration(elapsed)} eta={format_duration(eta_seconds)} "
+                        f"steps_per_min={steps_per_second * 60:.2f}"
                     )
 
         dev_result = evaluate(model, dev_loader, device, "dev")
         dev_result.metrics["epoch"] = epoch + 1
         dev_result.metrics["global_step"] = global_step
         metrics_history.append(dev_result.metrics)
+        elapsed = time.time() - start
+        avg_seconds_per_step = elapsed / max(1, global_step)
+        eta_seconds = max(0, total_steps - global_step) * avg_seconds_per_step
         print(
             f"dev epoch={epoch + 1}: MAE_label={dev_result.metrics['MAE_label']:.4f}, "
-            f"Exact={dev_result.metrics['Exact Match']:.4f}, low_to_high={dev_result.metrics['low_to_high_rate']:.4f}"
+            f"Exact={dev_result.metrics['Exact Match']:.4f}, low_to_high={dev_result.metrics['low_to_high_rate']:.4f}, "
+            f"elapsed={format_duration(elapsed)}, eta={format_duration(eta_seconds)}"
         )
         if dev_result.metrics["Exact Match"] > best_dev_accuracy:
             best_dev_accuracy = dev_result.metrics["Exact Match"]
