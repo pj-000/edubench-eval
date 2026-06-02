@@ -723,7 +723,8 @@ def train(config: TrainConfig) -> dict[str, Any]:
         f"train_batches_per_epoch={len(train_loader)} "
         f"update_steps_per_epoch={update_steps_per_epoch} "
         f"total_update_steps={total_steps} "
-        f"log_steps={config.log_steps}"
+        f"log_steps={config.log_steps}",
+        flush=True,
     )
     for epoch in range(num_epochs):
         if epoch >= config.num_train_epochs:
@@ -761,7 +762,8 @@ def train(config: TrainConfig) -> dict[str, Any]:
                         f"epoch={epoch + 1} step={global_step}/{total_steps} "
                         f"loss={avg_loss:.4f} lr={scheduler.get_last_lr()[0]:.2e} "
                         f"elapsed={format_duration(elapsed)} eta={format_duration(eta_seconds)} "
-                        f"steps_per_min={steps_per_second * 60:.2f}"
+                        f"steps_per_min={steps_per_second * 60:.2f}",
+                        flush=True,
                     )
 
         dev_result = evaluate(model, dev_loader, device, "dev")
@@ -774,7 +776,8 @@ def train(config: TrainConfig) -> dict[str, Any]:
         print(
             f"dev epoch={epoch + 1}: MAE_label={dev_result.metrics['MAE_label']:.4f}, "
             f"Exact={dev_result.metrics['Exact Match']:.4f}, low_to_high={dev_result.metrics['low_to_high_rate']:.4f}, "
-            f"elapsed={format_duration(elapsed)}, eta={format_duration(eta_seconds)}"
+            f"elapsed={format_duration(elapsed)}, eta={format_duration(eta_seconds)}",
+            flush=True,
         )
         if dev_result.metrics["Exact Match"] > best_dev_accuracy:
             best_dev_accuracy = dev_result.metrics["Exact Match"]
