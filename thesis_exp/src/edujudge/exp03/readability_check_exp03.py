@@ -16,6 +16,7 @@ from thesis_exp.src.edujudge.utils.io import REPO_ROOT, relpath, write_csv, writ
 
 SCRIPT_PATHS = [
     REPO_ROOT / "thesis_exp" / "scripts" / "run_exp03_smoke.sh",
+    REPO_ROOT / "thesis_exp" / "scripts" / "run_exp03_train_a0_a1.sh",
     REPO_ROOT / "thesis_exp" / "scripts" / "run_exp03_train_a3_a4.sh",
 ]
 EXP03_SRC_DIR = REPO_ROOT / "thesis_exp" / "src" / "edujudge" / "exp03"

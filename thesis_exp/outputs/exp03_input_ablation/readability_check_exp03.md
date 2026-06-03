@@ -6,9 +6,12 @@ Overall status: **PASS**
 | --- | --- | --- | --- | --- | --- |
 | script line count | thesis_exp/scripts/run_exp03_smoke.sh | PASS | 64 | >20 |  |
 | script line count LF line endings | thesis_exp/scripts/run_exp03_smoke.sh | PASS | LF | LF |  |
+| script line count | thesis_exp/scripts/run_exp03_train_a0_a1.sh | PASS | 186 | >20 |  |
+| script line count LF line endings | thesis_exp/scripts/run_exp03_train_a0_a1.sh | PASS | LF | LF |  |
 | script line count | thesis_exp/scripts/run_exp03_train_a3_a4.sh | PASS | 187 | >20 |  |
 | script line count LF line endings | thesis_exp/scripts/run_exp03_train_a3_a4.sh | PASS | LF | LF |  |
 | bash -n | thesis_exp/scripts/run_exp03_smoke.sh | PASS | ok | ok |  |
+| bash -n | thesis_exp/scripts/run_exp03_train_a0_a1.sh | PASS | ok | ok |  |
 | bash -n | thesis_exp/scripts/run_exp03_train_a3_a4.sh | PASS | ok | ok |  |
 | python module line count | thesis_exp/src/edujudge/exp03/__init__.py | PASS | 86 | >10 |  |
 | python module line count LF line endings | thesis_exp/src/edujudge/exp03/__init__.py | PASS | LF | LF |  |
@@ -22,7 +25,7 @@ Overall status: **PASS**
 | python module line count LF line endings | thesis_exp/src/edujudge/exp03/plot_input_ablation_figures.py | PASS | LF | LF |  |
 | python module line count | thesis_exp/src/edujudge/exp03/postprocess_exp03_results.py | PASS | 40 | >10 |  |
 | python module line count LF line endings | thesis_exp/src/edujudge/exp03/postprocess_exp03_results.py | PASS | LF | LF |  |
-| python module line count | thesis_exp/src/edujudge/exp03/readability_check_exp03.py | PASS | 158 | >10 |  |
+| python module line count | thesis_exp/src/edujudge/exp03/readability_check_exp03.py | PASS | 159 | >10 |  |
 | python module line count LF line endings | thesis_exp/src/edujudge/exp03/readability_check_exp03.py | PASS | LF | LF |  |
 | python module line count | thesis_exp/src/edujudge/exp03/rubric_quality_audit.py | PASS | 193 | >10 |  |
 | python module line count LF line endings | thesis_exp/src/edujudge/exp03/rubric_quality_audit.py | PASS | LF | LF |  |
