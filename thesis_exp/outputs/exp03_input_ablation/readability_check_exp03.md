@@ -6,7 +6,7 @@ Overall status: **PASS**
 | --- | --- | --- | --- | --- | --- |
 | script line count | thesis_exp/scripts/run_exp03_smoke.sh | PASS | 64 | >20 |  |
 | script line count LF line endings | thesis_exp/scripts/run_exp03_smoke.sh | PASS | LF | LF |  |
-| script line count | thesis_exp/scripts/run_exp03_train_a3_a4.sh | PASS | 182 | >20 |  |
+| script line count | thesis_exp/scripts/run_exp03_train_a3_a4.sh | PASS | 187 | >20 |  |
 | script line count LF line endings | thesis_exp/scripts/run_exp03_train_a3_a4.sh | PASS | LF | LF |  |
 | bash -n | thesis_exp/scripts/run_exp03_smoke.sh | PASS | ok | ok |  |
 | bash -n | thesis_exp/scripts/run_exp03_train_a3_a4.sh | PASS | ok | ok |  |
