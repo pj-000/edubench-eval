@@ -1,0 +1,11 @@
+{
+  "checkpoint_selection": "dev MAE_label (min)",
+  "experiment": "Exp4 target objective comparison",
+  "fixed_input_template": "A4_question_answer_metric_rubric_metadata",
+  "loss": "BCEWithLogitsLoss",
+  "model_name_or_path": "/home/share/models/modelscope/Qwen/Qwen3-Reranker-0.6B",
+  "objective_id": "O3_ordinal",
+  "objective_label": "ordinal",
+  "objective_type": "ordinal",
+  "status": "completed"
+}

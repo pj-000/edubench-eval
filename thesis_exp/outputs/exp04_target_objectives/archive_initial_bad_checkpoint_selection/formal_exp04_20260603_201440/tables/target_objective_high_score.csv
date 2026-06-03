@@ -1,0 +1,7 @@
+objective_id,objective_type,objective_label,status,split,high_n,Acc@5,high_to_mid_or_low_rate,high_signed_bias
+O1_classification,classification,classification,reused_exp03_a4,dev,345,0.8434782608695652,0.014492753623188406,-0.024154589371980808
+O1_classification,classification,classification,reused_exp03_a4,test,1201,0.8509575353871773,0.017485428809325562,-0.017485428809325698
+O2_regression_smoothl1,regression,regression_smoothl1,completed,dev,345,0.2956521739130435,0.005797101449275362,-0.5632850241545895
+O2_regression_smoothl1,regression,regression_smoothl1,completed,test,1201,0.3347210657785179,0.005828476269775187,-0.5203996669442132
+O3_ordinal,ordinal,ordinal,completed,dev,345,0.39710144927536234,0.0,-0.45603864734299526
+O3_ordinal,ordinal,ordinal,completed,test,1201,0.43880099916736054,0.0,-0.41049125728559543

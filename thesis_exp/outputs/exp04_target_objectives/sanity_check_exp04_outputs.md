@@ -2,6 +2,15 @@
 
 Overall status: **PASS**
 
+## Checkpoint Selection
+
+| objective_id | selection_metric | expected_best_epoch | actual_best_epoch | expected_best_value | actual_best_value | status |
+| --- | --- | --- | --- | --- | --- | --- |
+| O2_regression_smoothl1 | dev_MAE_expected | 8 | 8 | 0.3188683328 | 0.3188683328 | PASS |
+| O3_ordinal | dev_MAE_label | 8 | 8 | 0.3910642570 | 0.3910642570 | PASS |
+
+## Output Files
+
 | check | status | observed | expected | notes |
 | --- | --- | --- | --- | --- |
 | O1_classification run status | PASS | reused_exp03_a4 | completed/reused/eval_only |  |
@@ -40,3 +49,5 @@ Overall status: **PASS**
 | O3_ordinal scenario_level_metrics.csv | PASS | thesis_exp/outputs/exp04_target_objectives/runs/O3_ordinal/tables/scenario_level_metrics.csv | exists |  |
 | O3_ordinal score_distribution.csv | PASS | thesis_exp/outputs/exp04_target_objectives/runs/O3_ordinal/tables/score_distribution.csv | exists |  |
 | O3_ordinal run_metadata.json | PASS | thesis_exp/outputs/exp04_target_objectives/runs/O3_ordinal/run_metadata.json | valid JSON |  |
+| O2_regression_smoothl1 checkpoint selection | PASS | epoch=8 value=0.3188683328 | epoch=8 value=0.3188683328 | dev_MAE_expected |
+| O3_ordinal checkpoint selection | PASS | epoch=8 value=0.3910642570 | epoch=8 value=0.3910642570 | dev_MAE_label |

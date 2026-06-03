@@ -1,0 +1,11 @@
+{
+  "checkpoint_selection": "dev MAE_expected (min)",
+  "experiment": "Exp4 target objective comparison",
+  "fixed_input_template": "A4_question_answer_metric_rubric_metadata",
+  "loss": "SmoothL1Loss",
+  "model_name_or_path": "/home/share/models/modelscope/Qwen/Qwen3-Reranker-0.6B",
+  "objective_id": "O2_regression_smoothl1",
+  "objective_label": "regression_smoothl1",
+  "objective_type": "regression",
+  "status": "completed"
+}

@@ -1,0 +1,144 @@
+`torch_dtype` is deprecated! Use `dtype` instead!
+training schedule: objective=O2_regression_smoothl1 train_batches_per_epoch=664 update_steps_per_epoch=21 total_update_steps=210 log_steps=5
+epoch=1 step=5/210 loss=4.2421 lr=1.00e-05 elapsed=1m06s eta=44m53s steps_per_min=4.57
+epoch=1 step=10/210 loss=2.4439 lr=2.00e-05 elapsed=2m13s eta=45m10s steps_per_min=4.43
+epoch=1 step=15/210 loss=1.7524 lr=2.00e-05 elapsed=3m18s eta=42m14s steps_per_min=4.62
+epoch=1 step=20/210 loss=1.3613 lr=1.99e-05 elapsed=4m24s eta=41m26s steps_per_min=4.59
+dev epoch=1: MAE_label=0.4925, MAE_expected=0.4397, Exact=0.6130, low_to_high=1.0000, selected=True, elapsed=4m50s, eta=43m31s
+epoch=2 step=25/210 loss=0.1482 lr=1.97e-05 elapsed=5m43s eta=48m49s steps_per_min=3.79
+epoch=2 step=30/210 loss=0.1589 lr=1.95e-05 elapsed=6m50s eta=40m06s steps_per_min=4.49
+epoch=2 step=35/210 loss=0.1808 lr=1.92e-05 elapsed=7m55s eta=38m02s steps_per_min=4.60
+epoch=2 step=40/210 loss=0.1816 lr=1.89e-05 elapsed=9m02s eta=38m04s steps_per_min=4.47
+dev epoch=2: MAE_label=0.4488, MAE_expected=0.3920, Exact=0.6521, low_to_high=0.9000, selected=True, elapsed=9m41s, eta=38m45s
+epoch=3 step=45/210 loss=0.1667 lr=1.85e-05 elapsed=10m23s eta=44m19s steps_per_min=3.72
+epoch=3 step=50/210 loss=0.1531 lr=1.81e-05 elapsed=11m31s eta=36m14s steps_per_min=4.42
+epoch=3 step=55/210 loss=0.1370 lr=1.76e-05 elapsed=12m36s eta=33m33s steps_per_min=4.62
+epoch=3 step=60/210 loss=0.1365 lr=1.71e-05 elapsed=13m41s eta=32m27s steps_per_min=4.62
+dev epoch=3: MAE_label=0.4267, MAE_expected=0.3761, Exact=0.6611, low_to_high=0.5000, selected=True, elapsed=14m34s, eta=33m59s
+epoch=4 step=65/210 loss=0.1045 lr=1.65e-05 elapsed=15m02s eta=39m29s steps_per_min=3.67
+epoch=4 step=70/210 loss=0.1084 lr=1.59e-05 elapsed=16m08s eta=30m45s steps_per_min=4.55
+epoch=4 step=75/210 loss=0.1048 lr=1.52e-05 elapsed=17m14s eta=29m36s steps_per_min=4.56
+epoch=4 step=80/210 loss=0.1023 lr=1.45e-05 elapsed=18m20s eta=28m30s steps_per_min=4.56
+dev epoch=4: MAE_label=0.4167, MAE_expected=0.3606, Exact=0.6596, low_to_high=0.4000, selected=True, elapsed=19m25s, eta=29m08s
+epoch=5 step=85/210 loss=0.0977 lr=1.38e-05 elapsed=19m41s eta=33m51s steps_per_min=3.69
+epoch=5 step=90/210 loss=0.0889 lr=1.31e-05 elapsed=20m47s eta=26m28s steps_per_min=4.53
+epoch=5 step=95/210 loss=0.0816 lr=1.23e-05 elapsed=21m50s eta=24m06s steps_per_min=4.77
+epoch=5 step=100/210 loss=0.0889 lr=1.16e-05 elapsed=22m56s eta=24m02s steps_per_min=4.58
+epoch=5 step=105/210 loss=0.0839 lr=1.08e-05 elapsed=23m59s eta=22m19s steps_per_min=4.70
+dev epoch=5: MAE_label=0.3921, MAE_expected=0.3382, Exact=0.6973, low_to_high=0.4500, selected=True, elapsed=24m16s, eta=24m16s
+epoch=6 step=110/210 loss=0.0731 lr=1.00e-05 elapsed=25m28s eta=29m32s steps_per_min=3.39
+epoch=6 step=115/210 loss=0.0735 lr=9.22e-06 elapsed=26m34s eta=20m47s steps_per_min=4.57
+epoch=6 step=120/210 loss=0.0668 lr=8.44e-06 elapsed=27m38s eta=19m16s steps_per_min=4.67
+epoch=6 step=125/210 loss=0.0625 lr=7.67e-06 elapsed=28m44s eta=18m52s steps_per_min=4.51
+dev epoch=6: MAE_label=0.3976, MAE_expected=0.3343, Exact=0.6837, low_to_high=0.4500, selected=True, elapsed=29m10s, eta=19m27s
+epoch=7 step=130/210 loss=0.0475 lr=6.91e-06 elapsed=30m05s eta=21m33s steps_per_min=3.71
+epoch=7 step=135/210 loss=0.0519 lr=6.17e-06 elapsed=31m11s eta=16m21s steps_per_min=4.59
+epoch=7 step=140/210 loss=0.0469 lr=5.46e-06 elapsed=32m15s eta=15m09s steps_per_min=4.62
+epoch=7 step=145/210 loss=0.0488 lr=4.78e-06 elapsed=33m21s eta=14m16s steps_per_min=4.55
+dev epoch=7: MAE_label=0.3906, MAE_expected=0.3222, Exact=0.6973, low_to_high=0.3500, selected=True, elapsed=34m02s, eta=14m35s
+epoch=8 step=150/210 loss=0.0618 lr=4.12e-06 elapsed=34m45s eta=16m48s steps_per_min=3.57
+epoch=8 step=155/210 loss=0.0452 lr=3.51e-06 elapsed=35m52s eta=12m10s steps_per_min=4.52
+epoch=8 step=160/210 loss=0.0393 lr=2.93e-06 elapsed=36m57s eta=10m58s steps_per_min=4.56
+epoch=8 step=165/210 loss=0.0387 lr=2.40e-06 elapsed=38m04s eta=9m58s steps_per_min=4.52
+dev epoch=8: MAE_label=0.3886, MAE_expected=0.3189, Exact=0.7003, low_to_high=0.3500, selected=True, elapsed=38m55s, eta=9m44s
+epoch=9 step=170/210 loss=0.0402 lr=1.91e-06 elapsed=39m22s eta=10m26s steps_per_min=3.83
+epoch=9 step=175/210 loss=0.0359 lr=1.47e-06 elapsed=40m27s eta=7m33s steps_per_min=4.64
+epoch=9 step=180/210 loss=0.0383 lr=1.09e-06 elapsed=41m33s eta=6m35s steps_per_min=4.56
+epoch=9 step=185/210 loss=0.0378 lr=7.61e-07 elapsed=42m40s eta=5m37s steps_per_min=4.46
+dev epoch=9: MAE_label=0.3810, MAE_expected=0.3190, Exact=0.7063, low_to_high=0.3000, selected=False, elapsed=43m46s, eta=4m52s
+epoch=10 step=190/210 loss=0.0357 lr=4.89e-07 elapsed=43m59s eta=5m18s steps_per_min=3.78
+epoch=10 step=195/210 loss=0.0399 lr=2.76e-07 elapsed=45m06s eta=3m18s steps_per_min=4.54
+epoch=10 step=200/210 loss=0.0375 lr=1.23e-07 elapsed=46m10s eta=2m10s steps_per_min=4.63
+epoch=10 step=205/210 loss=0.0373 lr=3.08e-08 elapsed=47m15s eta=1m05s steps_per_min=4.62
+epoch=10 step=210/210 loss=0.0366 lr=0.00e+00 elapsed=48m18s eta=0s steps_per_min=4.81
+dev epoch=10: MAE_label=0.3815, MAE_expected=0.3190, Exact=0.7048, low_to_high=0.3000, selected=False, elapsed=48m34s, eta=0s
+/home/jpang/edubench-eval-exp2/thesis_exp/src/edujudge/exp04/train_objective.py:937: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  model.load_state_dict(torch.load(state_dict_path, map_location=device))
+{
+  "metrics": [
+    {
+      "n": 664,
+      "Accuracy": 0.7003012048192772,
+      "Exact Match": 0.7003012048192772,
+      "MAE_label": 0.3885542168674699,
+      "MAE_expected": 0.3188683327781149,
+      "RMSE_label": 0.5647498883685732,
+      "Signed Bias label": 0.03413654618473895,
+      "Signed Bias expected": -0.0038573651548370388,
+      "Macro-F1": 0.47972344116221705,
+      "Weighted-F1": 0.6968260816798116,
+      "Quadratic Weighted Kappa": 0.6599754199098731,
+      "Kendall tau": 0.5914497853184639,
+      "Spearman rho": 0.6607154240748644,
+      "Within-1 Accuracy": 0.9819277108433735,
+      "Acc@1": 0.16666666666666666,
+      "Acc@2": 0.14285714285714285,
+      "Acc@5": 0.7507246376811594,
+      "low_n": 20,
+      "low_exact_match": 0.15,
+      "low_MAE": 1.3333333333333335,
+      "low_signed_bias": 1.2666666666666666,
+      "low_to_high_rate": 0.35,
+      "low_severe_overestimation_rate": 0.4,
+      "mean_pred_low": 3.05,
+      "high_n": 345,
+      "high_to_mid_or_low_rate": 0.0,
+      "high_signed_bias": -0.1024154589371982,
+      "MAE_score": 0.3188683327781149,
+      "severe_error_rate": 0.018072289156626505,
+      "pred_label_1_rate": 0.0015060240963855422,
+      "pred_label_2_rate": 0.007530120481927711,
+      "pred_label_3_rate": 0.0677710843373494,
+      "pred_label_4_rate": 0.45933734939759036,
+      "pred_label_5_rate": 0.463855421686747,
+      "monotonic_violation_rate": NaN,
+      "split": "dev",
+      "loss": 0.10234964485224111,
+      "epoch": "best",
+      "global_step": 210
+    },
+    {
+      "n": 2218,
+      "Accuracy": 0.6983769161406672,
+      "Exact Match": 0.6983769161406672,
+      "MAE_label": 0.38893898406973243,
+      "MAE_expected": 0.3275170853484096,
+      "RMSE_label": 0.5786503164767487,
+      "Signed Bias label": 0.04448452058911931,
+      "Signed Bias expected": 0.00816029005664082,
+      "Macro-F1": 0.460872808433254,
+      "Weighted-F1": 0.6952516491449792,
+      "Quadratic Weighted Kappa": 0.7127493121254382,
+      "Kendall tau": 0.6211717906998313,
+      "Spearman rho": 0.6903400883841805,
+      "Within-1 Accuracy": 0.9792605951307484,
+      "Acc@1": 0.05357142857142857,
+      "Acc@2": 0.3617021276595745,
+      "Acc@5": 0.7502081598667777,
+      "low_n": 103,
+      "low_exact_match": 0.1941747572815534,
+      "low_MAE": 1.1488673139158576,
+      "low_signed_bias": 1.122977346278317,
+      "low_to_high_rate": 0.1553398058252427,
+      "low_severe_overestimation_rate": 0.27184466019417475,
+      "mean_pred_low": 2.6310679611650487,
+      "high_n": 1201,
+      "high_to_mid_or_low_rate": 0.002497918401332223,
+      "high_signed_bias": -0.10158201498751054,
+      "MAE_score": 0.3275170853484096,
+      "severe_error_rate": 0.020739404869251576,
+      "pred_label_1_rate": 0.001352569882777277,
+      "pred_label_2_rate": 0.023444544634806132,
+      "pred_label_3_rate": 0.06853020739404869,
+      "pred_label_4_rate": 0.4418394950405771,
+      "pred_label_5_rate": 0.4648331830477908,
+      "monotonic_violation_rate": NaN,
+      "split": "test",
+      "loss": 0.10935922523645564,
+      "epoch": "best",
+      "global_step": 210,
+      "elapsed_seconds": 2982.4256801605225
+    }
+  ],
+  "best_dir": "thesis_exp/artifacts/exp04_target_objectives/checkpoints/O2_regression_smoothl1/best"
+}
