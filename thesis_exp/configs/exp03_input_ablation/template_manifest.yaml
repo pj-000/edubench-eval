@@ -1,0 +1,33 @@
+experiment: exp03_input_ablation
+description: Rubric-aware input ablation templates for EduBench evaluator training.
+templates:
+  A0_answer_only:
+    ablation_id: A0
+    input_fields: [answer]
+    formal_training_default: disabled_initial
+  A1_question_answer:
+    ablation_id: A1
+    input_fields: [question, answer]
+    formal_training_default: disabled_initial
+  A2_question_answer_metric:
+    ablation_id: A2
+    input_fields: [question, answer, metric_canonical]
+    reuse_exp02: true
+    formal_training_default: reuse_exp02
+  A3_question_answer_metric_rubric:
+    ablation_id: A3
+    input_fields: [question, answer, metric_canonical, rubric_text]
+    formal_training_default: core_formal
+  A4_question_answer_metric_rubric_metadata:
+    ablation_id: A4
+    input_fields:
+      - scenario_canonical
+      - subject_canonical
+      - education_level_canonical
+      - language
+      - question
+      - answer
+      - metric_canonical
+      - rubric_text
+    excluded_from_text: [generator_model, answer_model, human_scores]
+    formal_training_default: core_formal

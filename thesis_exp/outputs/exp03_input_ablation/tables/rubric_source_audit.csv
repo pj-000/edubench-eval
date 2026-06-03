@@ -1,0 +1,121 @@
+metric_canonical,metric_group,language,rubric_source,rubric_text,n_rows,coverage,is_sample_level,is_metric_level,notes
+Basic Factual Accuracy,Factual & Reasoning Accuracy,en,split_row_field_metric_language_level,"5: All stated factual elements (definitions, formulas, dates, terms, syntax, etc.) are completely accurate.
+4: Vast majority of facts are correct; possibly contains very minor, non-critical typos or omissions.
+3: Most facts are correct, but there are some notable factual errors that require review.
+2: Contains several or key factual inaccuracies; information is not trustworthy.
+1: Riddled with factual errors; information is completely incorrect or misleading.",330,1.0,False,True,"Rubric is read from the split row field but is constant within this metric/language group; treat as metric-level description, not sample-specific human annotation."
+Basic Factual Accuracy,Factual & Reasoning Accuracy,zh,split_row_field_metric_language_level,"5分： 所有涉及的客观事实（定义、公式、日期、名词、代码语法等）完全准确无误。
+4分： 绝大部分事实准确，可能存在个别极其微小的、非关键性的笔误或疏漏。
+3分： 大部分事实准确，但存在少量明显的事实错误，需要核查。
+2分： 包含较多或关键性的事实错误，信息不可靠。
+1分： 充斥着大量事实错误，信息完全错误或误导。",330,1.0,False,True,"Rubric is read from the split row field but is constant within this metric/language group; treat as metric-level description, not sample-specific human annotation."
+"Clarity, Simplicity & Inspiration",Pedagogical Application,en,split_row_field_metric_language_level,"5: Extremely clear and concise explanations; fully accessible for target learners; vibrant and engaging delivery that inspires deep thought and interest.
+4: Clear and easy to understand; appropriate for learner level; somewhat thought-provoking and can trigger reflection.
+3: Generally understandable but may be wordy, complex, or dull; limited inspirational impact.
+2: Lacks clarity; uses excessive jargon or complex structures; difficult to comprehend; uninspiring.
+1: Confusing and hard to follow; disregards learner needs; offers no inspiration and may cause confusion.",215,1.0,False,True,"Rubric is read from the split row field but is constant within this metric/language group; treat as metric-level description, not sample-specific human annotation."
+"Clarity, Simplicity & Inspiration",Pedagogical Application,zh,split_row_field_metric_language_level,"5分： 解释、说明、反馈极其清晰简洁，完全符合目标学习者的理解水平；表达生动有趣，能有效激发思考和兴趣。
+4分： 表达清晰易懂，语言简洁，适合目标学习者；具有一定的启发性，能够引发一些思考。
+3分： 表达基本能懂，但可能略显啰嗦、复杂或不够生动；启发性一般。
+2分： 表达不够清晰，存在较多术语或复杂句式，不易理解；缺乏启发性。
+1分： 表达混乱、晦涩难懂，完全不考虑学习者水平；毫无启发性甚至令人困惑。",217,1.0,False,True,"Rubric is read from the split row field but is constant within this metric/language group; treat as metric-level description, not sample-specific human annotation."
+Content Relevance & Scope Control,Scenario Adaptability,en,split_row_field_metric_language_level,"5: Content is highly relevant to the specified topic/theme/question; strictly within required difficulty/scope/discipline without redundant or irrelevant information.
+4: Overall relevance is high; scope control is good with possibly a small amount of slightly off-topic or mildly overreaching information.
+3: Mostly relevant, but includes some off-topic or out-of-scope content; scope control needs improvement.
+2: Poor relevance; includes a significant amount of irrelevant information or is largely outside scope.
+1: Content is largely irrelevant or completely outside the specified scope.",330,1.0,False,True,"Rubric is read from the split row field but is constant within this metric/language group; treat as metric-level description, not sample-specific human annotation."
+Content Relevance & Scope Control,Scenario Adaptability,zh,split_row_field_metric_language_level,"5分： 内容与指定知识点/主题/问题高度相关，且严格控制在要求的难度、范围、学科内，无冗余或无关信息。
+4分： 内容主体相关，范围控制良好，可能包含极少量轻微超纲或关联度稍弱的信息。
+3分： 内容大部分相关，但包含一些偏离主题或超出范围的部分，范围控制不够精确。
+2分： 内容相关性较差，包含较多无关信息，或严重超出指定范围。
+1分： 内容基本不相关，或完全脱离指定范围。",330,1.0,False,True,"Rubric is read from the split row field but is constant within this metric/language group; treat as metric-level description, not sample-specific human annotation."
+Domain Knowledge Accuracy,Factual & Reasoning Accuracy,en,split_row_field_metric_language_level,"5: Subject matter application is not only accurate but also shows appropriate depth and rigor; adheres to industry or academic standards.
+4: Proper use of professional knowledge reflecting a good degree of proficiency; minor shortcomings in depth or detail not affecting validity.
+3: Basic accuracy in subject knowledge, but somewhat surface-level or lacking rigor; some confusion or omissions of non-core concepts.
+2: Significant errors or major omission in subject-specific content; lacks professionalism.
+1: Serious domain errors; completely incorrect or misleading; does not meet any professional standards.",162,1.0,False,True,"Rubric is read from the split row field but is constant within this metric/language group; treat as metric-level description, not sample-specific human annotation."
+Domain Knowledge Accuracy,Factual & Reasoning Accuracy,zh,split_row_field_metric_language_level,"5分： 在专业领域知识运用上不仅准确，且展现出恰当的深度和严谨性，符合行业标准或学术规范。
+4分： 专业知识运用准确，体现了较好的专业水准，但在深度或某些细节的严谨性上略有不足，不影响核心正确性。
+3分： 专业知识运用基本准确，但显得较为表层或不够严谨，可能存在一些非核心概念的混淆或遗漏。
+2分： 专业知识运用存在明显错误或重大遗漏，体现出专业性不足。
+1分： 专业知识运用方面存在严重错误，完全不符合专业标准，可能产生误导。",165,1.0,False,True,"Rubric is read from the split row field but is constant within this metric/language group; treat as metric-level description, not sample-specific human annotation."
+Error Identification & Correction Precision,Factual & Reasoning Accuracy,en,split_row_field_metric_language_level,"5: Precisely identified all errors (no omission or false positives); provided completely correct, clear, and optimal correction suggestions.
+4: Correctly located most major errors; suggestions are generally accurate and effective with only minor omissions or less-than-perfect advice.
+3: Identified some errors but with clear omissions or false positives; suggestions are partially correct but may lack clarity, completeness or optimality.
+2: Inaccurate error detection with critical omissions or many false positives; suggestions contain errors or are hard to comprehend.
+1: Completely failed to detect errors; provided entirely incorrect or misleading correction advice.",109,1.0,False,True,"Rubric is read from the split row field but is constant within this metric/language group; treat as metric-level description, not sample-specific human annotation."
+Error Identification & Correction Precision,Factual & Reasoning Accuracy,zh,split_row_field_metric_language_level,"5分： 精准定位所有错误（无遗漏、无误报），给出的纠正建议完全正确、清晰且是最优或非常好的方案。
+4分： 准确定位了大部分主要错误，纠正建议基本正确有效，可能遗漏极少数次要错误或建议不够完美。
+3分： 定位了部分错误但有明显遗漏或误报，纠正建议部分正确但可能不够清晰、完整或并非最佳方案。
+2分： 错误定位不准确，遗漏了关键错误或大量误报，纠正建议存在错误或难以理解。
+1分： 完全未能识别错误，或给出了完全错误的纠正建议，起到了误导作用。",98,1.0,False,True,"Rubric is read from the split row field but is constant within this metric/language group; treat as metric-level description, not sample-specific human annotation."
+Higher-Order Thinking & Skill Development,Pedagogical Application,en,split_row_field_metric_language_level,"5: Skillfully designed to promote critical/creative thinking, problem-solving, or transfer of knowledge (e.g., through open-ended questions, comparative analysis, case study, project-based tasks).
+4: Includes guiding questions or moderately challenging tasks that positively support the development of higher-order thinking (e.g., analysis, evaluation, application).
+3: Some attempt to encourage higher-order thinking (e.g., simple reflective questions), but limited in depth and scope; mainly focused on rote understanding or basic application.
+2: Interaction/content mostly revolves around memory and comprehension; rarely addresses higher-order thinking tasks.
+1: Completely ignores higher-order skill development; encourages rote memorization and repetition; may inhibit thinking flexibility.",216,1.0,False,True,"Rubric is read from the split row field but is constant within this metric/language group; treat as metric-level description, not sample-specific human annotation."
+Higher-Order Thinking & Skill Development,Pedagogical Application,zh,split_row_field_metric_language_level,"5分： 交互或内容设计巧妙，能显著促进学生的批判性思维、创新思维、问题解决或知识迁移应用能力（例如通过开放性问题、对比分析、案例探究、项目式任务等）。
+4分： 能提出引导性问题或设计有一定挑战性的任务，对培养学生的高阶思维和能力（如分析、评估、应用）有积极作用。
+3分： 在促进高阶思维方面有所尝试（如提出一些简单的思考题），但深度和广度有限，效果不明显，整体仍偏重知识复述或简单应用。
+2分： 交互或内容主要停留在基础知识记忆和理解层面，很少或未能涉及需要高阶思维的活动或问题。
+1分： 完全忽视高阶思维培养，仅限于死记硬背或简单重复，甚至可能因提供过于简化或固化的答案而阻碍思维发展。",212,1.0,False,True,"Rubric is read from the split row field but is constant within this metric/language group; treat as metric-level description, not sample-specific human annotation."
+Instruction Following & Task Completion,Scenario Adaptability,en,split_row_field_metric_language_level,"5: Fully understood and precisely executed all instructions; achieved core task with perfect accuracy; output format is fully compliant.
+4: Accurately understood main instructions and correctly completed the task; core goals are well achieved; format is mostly correct with only minor omissions or deviations.
+3: Understood the general intent but may miss some details; task largely completed but with some inaccuracies or omissions; formatting attempts present but with notable flaws.
+2: Misunderstood part of the instruction; low task completion or major errors; formatting mostly incorrect.
+1: Completely misunderstood or ignored instructions; task not completed or totally incorrect; formatting is chaotic or irrelevant.",495,1.0,False,True,"Rubric is read from the split row field but is constant within this metric/language group; treat as metric-level description, not sample-specific human annotation."
+Instruction Following & Task Completion,Scenario Adaptability,zh,split_row_field_metric_language_level,"5分： 完全理解并精准执行所有指令，完美达成核心任务目标，格式完全符合要求。
+4分： 准确理解主要指令，正确执行任务，核心目标达成度高，格式基本符合要求，可能有极少细节遗漏或偏差。
+3分： 理解了指令大意但可能忽略部分细节，任务基本完成但存在一些不准确或遗漏之处，格式有明显尝试但存在较多偏差。
+2分： 对指令理解有偏差，任务完成度低或有严重错误，格式多数不符合要求。
+1分： 完全误解或无视指令，任务未完成或完全错误，格式混乱或不相关。",495,1.0,False,True,"Rubric is read from the split row field but is constant within this metric/language group; treat as metric-level description, not sample-specific human annotation."
+"Motivation, Guidance & Positive Feedback",Pedagogical Application,en,split_row_field_metric_language_level,"5: Strongly supportive and encouraging; consistently uses constructive and positive language; offers highly effective heuristic guidance instead of simply giving answers.
+4: Generally supportive tone and positive language; provides useful guidance though occasionally too direct.
+3: A mix of encouragement and neutral/critical language; guidance is inconsistent—sometimes helpful, sometimes overly direct or lacking.
+2: Lacks encouragement and support; language is neutral or mildly negative; rarely guides, often just answers or remains unhelpful.
+1: Negative or discouraging tone; no motivation or support; fails to guide or gives misleading suggestions.",163,1.0,False,True,"Rubric is read from the split row field but is constant within this metric/language group; treat as metric-level description, not sample-specific human annotation."
+"Motivation, Guidance & Positive Feedback",Pedagogical Application,zh,split_row_field_metric_language_level,"5分： 始终体现出强烈的鼓励和支持态度，语言积极、富有建设性；在需要时提供非常有效的启发式引导，而非直接给答案。
+4分： 整体体现出鼓励和支持，语言积极正面；能提供有效的引导，偶尔可能过于直接。
+3分： 兼具鼓励和中性/批评性语言，积极性一般；引导有时有效，有时直接给答案或引导不足。
+2分： 缺乏鼓励和支持，语言偏中性甚至略显负面；很少提供有效引导，倾向于直接给答案或不给帮助。
+1分： 语言消极、打击性强，完全没有鼓励；无视引导需求，或提供错误引导。",152,1.0,False,True,"Rubric is read from the split row field but is constant within this metric/language group; treat as metric-level description, not sample-specific human annotation."
+"Personalization, Adaptation & Learning Support",Pedagogical Application,en,split_row_field_metric_language_level,"5: Highly personalized content/advice/feedback based on student level/traits/needs; resource and learning path suggestions are accurate, practical, and valuable.
+4: Demonstrates some adaptation to student situation; provides relevant learning advice or resources with good utility.
+3: Attempts personalization but with limited effectiveness; recommendations are generic and of limited value.
+2: Little to no personalization; output is the same for everyone; learning support is insufficient or unrelated.
+1: No personalization; output may conflict with student needs; offers no or incorrect learning support.",165,1.0,False,True,"Rubric is read from the split row field but is constant within this metric/language group; treat as metric-level description, not sample-specific human annotation."
+"Personalization, Adaptation & Learning Support",Pedagogical Application,zh,split_row_field_metric_language_level,"5分： 非常好地根据学生水平/特点/需求提供了高度差异化的内容/建议/反馈；提供的学习路径/资源建议精准、实用且有价值。
+4分： 能根据学生情况进行一定程度的个性化调整，提供了相关的学习建议或资源，具有较好的参考价值。
+3分： 尝试进行个性化，但适应性不强，内容/建议差异不大；提供的学习支持比较通用，价值有限。
+2分： 几乎没有体现个性化适应，输出内容/建议对所有人都一样；学习支持不足或不相关。
+1分： 完全没有个性化考虑，输出内容可能与学生需求不符；未提供或提供了错误的学习支持。",164,1.0,False,True,"Rubric is read from the split row field but is constant within this metric/language group; treat as metric-level description, not sample-specific human annotation."
+Reasoning Process Rigor,Factual & Reasoning Accuracy,en,split_row_field_metric_language_level,"5: Reasoning is complete, clear, and rigorous; all steps are correct; arguments are strong and free of logical fallacies.
+4: Reasoning is largely correct and logically coherent with minor issues in individual steps or details that do not affect the conclusion.
+3: Reasoning is visible but contains unclear logic, missing steps, or insufficient argumentation, affecting the overall outcome.
+2: Reasoning has major logical flaws, confusion in steps, or critical omissions; reliability is low.
+1: Virtually no valid reasoning; logic is chaotic; steps are incorrect or irrelevant.",212,1.0,False,True,"Rubric is read from the split row field but is constant within this metric/language group; treat as metric-level description, not sample-specific human annotation."
+Reasoning Process Rigor,Factual & Reasoning Accuracy,zh,split_row_field_metric_language_level,"5分： 推理逻辑链条完整、清晰、严密，步骤正确无误，论证充分有力，无逻辑跳跃或漏洞。
+4分： 推理过程主体正确且逻辑清晰，可能在个别步骤的表述或论证细节上略有瑕疵，但不影响最终结论的有效性。
+3分： 推理过程大体可见，但存在一些逻辑不清、步骤缺失或论证不足之处，结论可能受到影响。
+2分： 推理过程存在明显的逻辑错误、步骤混乱或严重缺失，难以得出正确或可靠的结论。
+1分： 几乎没有有效的推理过程，逻辑混乱，步骤完全错误或不相关。",209,1.0,False,True,"Rubric is read from the split row field but is constant within this metric/language group; treat as metric-level description, not sample-specific human annotation."
+Role & Tone Consistency,Scenario Adaptability,en,split_row_field_metric_language_level,"5: Excellent role-playing (e.g., teacher/TA); language style, professionalism, and tone (e.g., encouraging/serious) are perfectly aligned with the assumed role and audience.
+4: Role and tone are mostly consistent and appropriate for the scenario, with minor deviation in individual expressions.
+3: Attempts to match the role and tone can be seen, but overall consistency is weak; some expressions are disconnected from the role/scenario.
+2: Significant mismatch in role and tone; comes across as unnatural or inconsistent.
+1: No reflection of assigned role/tone; expression entirely inconsistent with the scenario.",110,1.0,False,True,"Rubric is read from the split row field but is constant within this metric/language group; treat as metric-level description, not sample-specific human annotation."
+Role & Tone Consistency,Scenario Adaptability,zh,split_row_field_metric_language_level,"5分： 角色扮演（如老师/助教）非常到位，语言风格、专业程度和语气（如鼓励/严肃）完全符合设定和面向的学习者群体。
+4分： 角色和口吻大体一致，符合场景要求，但在个别语句或细节上可能略有偏差。
+3分： 能看出尝试匹配角色和口吻，但一致性不足，部分表达与设定角色/场景有脱节。
+2分： 角色和口吻与设定要求有较大差距，显得生硬或不协调。
+1分： 完全没有体现设定的角色和口吻，表达方式与场景要求完全不符。",110,1.0,False,True,"Rubric is read from the split row field but is constant within this metric/language group; treat as metric-level description, not sample-specific human annotation."
+Scenario Element Integration,Scenario Adaptability,en,split_row_field_metric_language_level,"5: Fully integrated all key scenario elements (e.g., student history, learning preferences); output is highly personalized and well-matched to the teaching context.
+4: Used major scenario elements effectively; response is targeted, possibly overlooks minor details but does not affect overall results.
+3: Some use of scenario information, but integration is shallow; personalization or contextual fit is average.
+2: Only surface-level reference to scenario information; did not integrate core elements effectively; weak contextual connection.
+1: Completely ignored scenario-specific information; output is generic, templated, and irrelevant to the scenario.",274,1.0,False,True,"Rubric is read from the split row field but is constant within this metric/language group; treat as metric-level description, not sample-specific human annotation."
+Scenario Element Integration,Scenario Adaptability,zh,split_row_field_metric_language_level,"5分： 完全理解并精准执行所有指令，完美达成核心任务目标，格式完全符合要求。
+4分： 准确理解主要指令，正确执行任务，核心目标达成度高，格式基本符合要求，可能有极少细节遗漏或偏差。
+3分： 理解了指令大意但可能忽略部分细节，任务基本完成但存在一些不准确或遗漏之处，格式有明显尝试但存在较多偏差。
+2分： 对指令理解有偏差，任务完成度低或有严重错误，格式多数不符合要求。
+1分： 完全误解或无视指令，任务未完成或完全错误，格式混乱或不相关。",273,1.0,False,True,"Rubric is read from the split row field but is constant within this metric/language group; treat as metric-level description, not sample-specific human annotation."

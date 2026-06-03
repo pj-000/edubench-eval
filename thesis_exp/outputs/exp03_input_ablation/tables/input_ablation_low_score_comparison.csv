@@ -1,0 +1,6 @@
+template_name,ablation_id,status,test_acc_at_1,test_acc_at_2,test_low_to_high_rate,test_low_signed_bias
+A0_answer_only,A0,pending,,,,
+A1_question_answer,A1,pending,,,,
+A2_question_answer_metric,A2,reused_exp02,0.17857142857142858,0.2553191489361702,0.5339805825242718,1.9773462783171523
+A3_question_answer_metric_rubric,A3,pending,,,,
+A4_question_answer_metric_rubric_metadata,A4,pending,,,,

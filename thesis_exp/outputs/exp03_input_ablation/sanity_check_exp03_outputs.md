@@ -1,0 +1,20 @@
+# Exp3 Output Sanity Check
+
+Overall status: **PASS**
+
+| check | status | observed | expected | notes |
+| --- | --- | --- | --- | --- |
+| A0_answer_only run status | PASS | pending | pending allowed |  |
+| A1_question_answer run status | PASS | pending | pending allowed |  |
+| A2_question_answer_metric run status | PASS | reused_exp02 | completed/reused_exp02 |  |
+| A2_question_answer_metric predictions_dev | PASS | rows=664 missing=[] | readable prediction JSONL |  |
+| A2_question_answer_metric predictions_test | PASS | rows=2218 missing=[] | readable prediction JSONL |  |
+| A2_question_answer_metric dev_test_arrays.npz | PASS | missing=[] shapes={'logits_dev': [664, 5], 'logits_test': [2218, 5], 'probs_dev': [664, 5], 'probs_test': [2218, 5], 'labels_dev': [664], 'labels_test': [2218], 'record_ids_dev': [664], 'record_ids_test': [2218]} | required array keys |  |
+| A2_question_answer_metric metrics_summary.csv | PASS | thesis_exp/outputs/exp03_input_ablation/runs/A2_question_answer_metric/tables/metrics_summary.csv | exists |  |
+| A2_question_answer_metric per_bin_metrics.csv | PASS | thesis_exp/outputs/exp03_input_ablation/runs/A2_question_answer_metric/tables/per_bin_metrics.csv | exists |  |
+| A2_question_answer_metric low_score_metrics.csv | PASS | thesis_exp/outputs/exp03_input_ablation/runs/A2_question_answer_metric/tables/low_score_metrics.csv | exists |  |
+| A2_question_answer_metric high_score_metrics.csv | PASS | thesis_exp/outputs/exp03_input_ablation/runs/A2_question_answer_metric/tables/high_score_metrics.csv | exists |  |
+| A2_question_answer_metric metric_level_metrics.csv | PASS | thesis_exp/outputs/exp03_input_ablation/runs/A2_question_answer_metric/tables/metric_level_metrics.csv | exists |  |
+| A2_question_answer_metric scenario_level_metrics.csv | PASS | thesis_exp/outputs/exp03_input_ablation/runs/A2_question_answer_metric/tables/scenario_level_metrics.csv | exists |  |
+| A3_question_answer_metric_rubric run status | PASS | pending | pending allowed |  |
+| A4_question_answer_metric_rubric_metadata run status | PASS | pending | pending allowed |  |

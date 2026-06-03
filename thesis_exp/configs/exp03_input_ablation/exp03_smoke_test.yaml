@@ -1,0 +1,29 @@
+experiment_name: exp03_smoke_test
+mode: smoke
+templates:
+  - A3_question_answer_metric_rubric
+  - A4_question_answer_metric_rubric_metadata
+
+model_name_or_path: /home/share/models/modelscope/Qwen/Qwen3-Reranker-0.6B
+num_labels: 5
+loss: cross_entropy
+
+train:
+  learning_rate: 2e-5
+  weight_decay: 0.01
+  warmup_ratio: 0.05
+  max_length: 2048
+  bf16: auto
+  fp16: false
+  gradient_checkpointing: true
+  checkpoint_selection: dev_exact_match
+  seed: 42
+
+smoke_test:
+  max_train_samples: 8
+  max_eval_samples: 8
+  num_train_epochs: 0.01
+  per_device_train_batch_size: 1
+  per_device_eval_batch_size: 1
+  gradient_accumulation_steps: 1
+  log_steps: 1

@@ -1,0 +1,32 @@
+experiment_name: exp03_a3_question_answer_metric_rubric
+template_name: A3_question_answer_metric_rubric
+enabled_for_first_formal_round: true
+reuse_exp02: false
+
+model_name_or_path: /home/share/models/modelscope/Qwen/Qwen3-Reranker-0.6B
+num_labels: 5
+loss: cross_entropy
+
+data:
+  source_split_dir: thesis_exp/data/splits/paper_like_triple_seed42
+  built_data_dir: thesis_exp/outputs/exp03_input_ablation/datasets/A3_question_answer_metric_rubric
+
+train:
+  num_train_epochs: 10
+  learning_rate: 2e-5
+  weight_decay: 0.01
+  warmup_ratio: 0.05
+  per_device_train_batch_size: 4
+  per_device_eval_batch_size: 4
+  gradient_accumulation_steps: 32
+  effective_batch_size: 128
+  max_length: 2048
+  bf16: auto
+  fp16: false
+  gradient_checkpointing: true
+  checkpoint_selection: dev_exact_match
+  seed: 42
+
+output:
+  output_dir: thesis_exp/outputs/exp03_input_ablation/runs/A3_question_answer_metric_rubric
+  checkpoint_output_dir: thesis_exp/artifacts/exp03_input_ablation/checkpoints/A3_question_answer_metric_rubric

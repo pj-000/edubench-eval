@@ -1,0 +1,13 @@
+template_name,ablation_id,metric_canonical,n,delta_MAE_label_vs_a2,delta_exact_match_vs_a2
+A2_question_answer_metric,A2,Basic Factual Accuracy,255,0.0,0.0
+A2_question_answer_metric,A2,"Clarity, Simplicity & Inspiration",198,0.0,0.0
+A2_question_answer_metric,A2,Content Relevance & Scope Control,272,0.0,0.0
+A2_question_answer_metric,A2,Domain Knowledge Accuracy,157,0.0,0.0
+A2_question_answer_metric,A2,Error Identification & Correction Precision,39,0.0,0.0
+A2_question_answer_metric,A2,Higher-Order Thinking & Skill Development,205,0.0,0.0
+A2_question_answer_metric,A2,Instruction Following & Task Completion,376,0.0,0.0
+A2_question_answer_metric,A2,"Motivation, Guidance & Positive Feedback",85,0.0,0.0
+A2_question_answer_metric,A2,"Personalization, Adaptation & Learning Support",125,0.0,0.0
+A2_question_answer_metric,A2,Reasoning Process Rigor,178,0.0,0.0
+A2_question_answer_metric,A2,Role & Tone Consistency,95,0.0,0.0
+A2_question_answer_metric,A2,Scenario Element Integration,233,0.0,0.0

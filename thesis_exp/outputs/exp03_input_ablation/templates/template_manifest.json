@@ -1,0 +1,47 @@
+[
+  {
+    "ablation_id": "A0",
+    "description": "Answer only.",
+    "excluded_from_text": "question, metric_canonical, rubric, scenario_canonical, subject_canonical, education_level_canonical, language, generator_model, answer_model, human scores",
+    "formal_training_default": "disabled_initial",
+    "input_fields": "answer",
+    "reuse_exp02": false,
+    "template_name": "A0_answer_only"
+  },
+  {
+    "ablation_id": "A1",
+    "description": "Question plus answer.",
+    "excluded_from_text": "metric_canonical, rubric, scenario_canonical, subject_canonical, education_level_canonical, language, generator_model, answer_model, human scores",
+    "formal_training_default": "disabled_initial",
+    "input_fields": "question, answer",
+    "reuse_exp02": false,
+    "template_name": "A1_question_answer"
+  },
+  {
+    "ablation_id": "A2",
+    "description": "Question plus answer plus metric; strict Exp2 CE baseline input.",
+    "excluded_from_text": "rubric, scenario_canonical, subject_canonical, education_level_canonical, language, generator_model, answer_model, human scores",
+    "formal_training_default": "reuse_exp02",
+    "input_fields": "question, answer, metric_canonical",
+    "reuse_exp02": true,
+    "template_name": "A2_question_answer_metric"
+  },
+  {
+    "ablation_id": "A3",
+    "description": "Question plus answer plus metric plus rubric.",
+    "excluded_from_text": "scenario_canonical, subject_canonical, education_level_canonical, language, generator_model, answer_model, human scores",
+    "formal_training_default": "core_formal",
+    "input_fields": "question, answer, metric_canonical, rubric_text",
+    "reuse_exp02": false,
+    "template_name": "A3_question_answer_metric_rubric"
+  },
+  {
+    "ablation_id": "A4",
+    "description": "Question plus answer plus metric plus rubric plus scenario/subject/education/language metadata.",
+    "excluded_from_text": "generator_model, answer_model, human scores",
+    "formal_training_default": "core_formal",
+    "input_fields": "scenario_canonical, subject_canonical, education_level_canonical, language, question, answer, metric_canonical, rubric_text",
+    "reuse_exp02": false,
+    "template_name": "A4_question_answer_metric_rubric_metadata"
+  }
+]

@@ -1,0 +1,6 @@
+template_name,ablation_id,status,baseline_template,delta_test_accuracy_vs_a2,delta_test_MAE_label_vs_a2,delta_test_MAE_expected_vs_a2,delta_test_signed_bias_vs_a2,delta_test_kendall_tau_vs_a2,delta_test_acc_at_1_vs_a2,delta_test_acc_at_2_vs_a2,delta_test_acc_at_5_vs_a2,delta_test_low_to_high_rate_vs_a2
+A0_answer_only,A0,pending,A2_question_answer_metric,,,,,,,,,
+A1_question_answer,A1,pending,A2_question_answer_metric,,,,,,,,,
+A2_question_answer_metric,A2,reused_exp02,A2_question_answer_metric,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+A3_question_answer_metric_rubric,A3,pending,A2_question_answer_metric,,,,,,,,,
+A4_question_answer_metric_rubric_metadata,A4,pending,A2_question_answer_metric,,,,,,,,,

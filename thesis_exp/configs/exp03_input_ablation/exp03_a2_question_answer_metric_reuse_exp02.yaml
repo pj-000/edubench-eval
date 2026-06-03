@@ -1,0 +1,24 @@
+experiment_name: exp03_a2_question_answer_metric_reuse_exp02
+template_name: A2_question_answer_metric
+reuse_exp02: true
+retrain_default: false
+
+model_name_or_path: /home/share/models/modelscope/Qwen/Qwen3-Reranker-0.6B
+num_labels: 5
+loss: cross_entropy
+
+data:
+  source_split_dir: thesis_exp/data/splits/paper_like_triple_seed42
+  built_data_dir: thesis_exp/outputs/exp03_input_ablation/datasets/A2_question_answer_metric
+  exp02_output_dir: thesis_exp/outputs/exp02_ce_baseline
+
+output:
+  output_dir: thesis_exp/outputs/exp03_input_ablation/runs/A2_question_answer_metric
+  copied_from_exp02:
+    - predictions/predictions_dev.jsonl
+    - predictions/predictions_test.jsonl
+    - arrays/exp02_dev_test_arrays.npz
+    - tables/metrics_summary.csv
+    - tables/per_bin_metrics.csv
+    - tables/low_score_metrics.csv
+    - tables/high_score_metrics.csv

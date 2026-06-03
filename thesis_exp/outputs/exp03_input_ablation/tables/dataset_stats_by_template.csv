@@ -1,0 +1,16 @@
+template_name,ablation_id,split,source_path,output_path,rows,expected_rows,status
+A0_answer_only,A0,train,thesis_exp/data/splits/paper_like_triple_seed42/train.jsonl,thesis_exp/outputs/exp03_input_ablation/datasets/A0_answer_only/train.jsonl,2654,2654,PASS
+A0_answer_only,A0,dev,thesis_exp/data/splits/paper_like_triple_seed42/dev.jsonl,thesis_exp/outputs/exp03_input_ablation/datasets/A0_answer_only/dev.jsonl,664,664,PASS
+A0_answer_only,A0,test,thesis_exp/data/splits/paper_like_triple_seed42/test.jsonl,thesis_exp/outputs/exp03_input_ablation/datasets/A0_answer_only/test.jsonl,2218,2218,PASS
+A1_question_answer,A1,train,thesis_exp/data/splits/paper_like_triple_seed42/train.jsonl,thesis_exp/outputs/exp03_input_ablation/datasets/A1_question_answer/train.jsonl,2654,2654,PASS
+A1_question_answer,A1,dev,thesis_exp/data/splits/paper_like_triple_seed42/dev.jsonl,thesis_exp/outputs/exp03_input_ablation/datasets/A1_question_answer/dev.jsonl,664,664,PASS
+A1_question_answer,A1,test,thesis_exp/data/splits/paper_like_triple_seed42/test.jsonl,thesis_exp/outputs/exp03_input_ablation/datasets/A1_question_answer/test.jsonl,2218,2218,PASS
+A2_question_answer_metric,A2,train,thesis_exp/data/splits/paper_like_triple_seed42/train.jsonl,thesis_exp/outputs/exp03_input_ablation/datasets/A2_question_answer_metric/train.jsonl,2654,2654,PASS
+A2_question_answer_metric,A2,dev,thesis_exp/data/splits/paper_like_triple_seed42/dev.jsonl,thesis_exp/outputs/exp03_input_ablation/datasets/A2_question_answer_metric/dev.jsonl,664,664,PASS
+A2_question_answer_metric,A2,test,thesis_exp/data/splits/paper_like_triple_seed42/test.jsonl,thesis_exp/outputs/exp03_input_ablation/datasets/A2_question_answer_metric/test.jsonl,2218,2218,PASS
+A3_question_answer_metric_rubric,A3,train,thesis_exp/data/splits/paper_like_triple_seed42/train.jsonl,thesis_exp/outputs/exp03_input_ablation/datasets/A3_question_answer_metric_rubric/train.jsonl,2654,2654,PASS
+A3_question_answer_metric_rubric,A3,dev,thesis_exp/data/splits/paper_like_triple_seed42/dev.jsonl,thesis_exp/outputs/exp03_input_ablation/datasets/A3_question_answer_metric_rubric/dev.jsonl,664,664,PASS
+A3_question_answer_metric_rubric,A3,test,thesis_exp/data/splits/paper_like_triple_seed42/test.jsonl,thesis_exp/outputs/exp03_input_ablation/datasets/A3_question_answer_metric_rubric/test.jsonl,2218,2218,PASS
+A4_question_answer_metric_rubric_metadata,A4,train,thesis_exp/data/splits/paper_like_triple_seed42/train.jsonl,thesis_exp/outputs/exp03_input_ablation/datasets/A4_question_answer_metric_rubric_metadata/train.jsonl,2654,2654,PASS
+A4_question_answer_metric_rubric_metadata,A4,dev,thesis_exp/data/splits/paper_like_triple_seed42/dev.jsonl,thesis_exp/outputs/exp03_input_ablation/datasets/A4_question_answer_metric_rubric_metadata/dev.jsonl,664,664,PASS
+A4_question_answer_metric_rubric_metadata,A4,test,thesis_exp/data/splits/paper_like_triple_seed42/test.jsonl,thesis_exp/outputs/exp03_input_ablation/datasets/A4_question_answer_metric_rubric_metadata/test.jsonl,2218,2218,PASS
