@@ -83,16 +83,24 @@ def write_review_package(rows: list[dict[str, Any]] | None = None) -> None:
         blockers.append(f"setup sanity is {setup_status}")
     if readability_status != "PASS":
         blockers.append(f"readability is {readability_status}")
-    if not blockers:
-        blockers.append("none for server smoke; formal O2/O3 remains gated on smoke PASS")
 
     status_by_objective = {row.get("objective_id"): row.get("status") for row in rows}
+    formal_complete = all(
+        status_by_objective.get(objective_id) == "completed"
+        for objective_id in ["O2_regression_smoothl1", "O3_ordinal"]
+    )
+    formal_status = "COMPLETED" if formal_complete else "NO until smoke PASS"
+    if not blockers:
+        if formal_complete:
+            blockers.append("none; formal O2/O3 completed")
+        else:
+            blockers.append("none for server smoke; formal O2/O3 remains gated on smoke PASS")
     setup_by_objective = {objective_id: objective_setup_status(setup_rows, objective_id) for objective_id in OBJECTIVE_IDS}
     review = f"""# Exp4 Review Package
 
 Can server smoke test start? **{"YES" if can_smoke else "NO"}**
 
-Can formal O2/O3 training start? **NO until smoke PASS**
+Can formal O2/O3 training start? **{formal_status}**
 
 ## Setup Status
 

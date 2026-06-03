@@ -2,7 +2,7 @@
 
 Can server smoke test start? **YES**
 
-Can formal O2/O3 training start? **NO until smoke PASS**
+Can formal O2/O3 training start? **COMPLETED**
 
 ## Setup Status
 
@@ -19,12 +19,12 @@ Can formal O2/O3 training start? **NO until smoke PASS**
 | objective | status | Accuracy | MAE_label | MAE_expected | QWK | Kendall tau | severe_error_rate | low_to_high_rate |
 | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
 | O1_classification | reused_exp03_a4 | 0.7412 | 0.4031 | 0.3666 | 0.6233 | 0.5941 | 0.0428 | 0.4466 |
-| O2_regression_smoothl1 | pending | NA | NA | NA | NA | NA | NA | NA |
-| O3_ordinal | pending | NA | NA | NA | NA | NA | NA | NA |
+| O2_regression_smoothl1 | completed | 0.4820 | 0.6162 | 0.5616 | 0.2390 | 0.3652 | 0.0528 | 0.9709 |
+| O3_ordinal | completed | 0.5289 | 0.6121 | 0.5646 | 0.0719 | 0.2325 | 0.0586 | 1.0000 |
 
 ## Remaining Blockers
 
-- none for server smoke; formal O2/O3 remains gated on smoke PASS
+- none; formal O2/O3 completed
 
 ## Files
 

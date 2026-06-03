@@ -1,0 +1,42 @@
+# Exp4 Output Sanity Check
+
+Overall status: **PASS**
+
+| check | status | observed | expected | notes |
+| --- | --- | --- | --- | --- |
+| O1_classification run status | PASS | reused_exp03_a4 | completed/reused/eval_only |  |
+| O1_classification predictions_dev | PASS | rows=664 expected=664 missing=[] | readable prediction JSONL |  |
+| O1_classification predictions_test | PASS | rows=2218 expected=2218 missing=[] | readable prediction JSONL |  |
+| O1_classification dev_test_arrays.npz | PASS | test=2218 outputs=5 expected_outputs=5 | required array keys |  |
+| O1_classification metrics_summary.csv | PASS | thesis_exp/outputs/exp04_target_objectives/runs/O1_classification/tables/metrics_summary.csv | exists |  |
+| O1_classification per_bin_metrics.csv | PASS | thesis_exp/outputs/exp04_target_objectives/runs/O1_classification/tables/per_bin_metrics.csv | exists |  |
+| O1_classification low_score_metrics.csv | PASS | thesis_exp/outputs/exp04_target_objectives/runs/O1_classification/tables/low_score_metrics.csv | exists |  |
+| O1_classification high_score_metrics.csv | PASS | thesis_exp/outputs/exp04_target_objectives/runs/O1_classification/tables/high_score_metrics.csv | exists |  |
+| O1_classification metric_level_metrics.csv | PASS | thesis_exp/outputs/exp04_target_objectives/runs/O1_classification/tables/metric_level_metrics.csv | exists |  |
+| O1_classification scenario_level_metrics.csv | PASS | thesis_exp/outputs/exp04_target_objectives/runs/O1_classification/tables/scenario_level_metrics.csv | exists |  |
+| O1_classification score_distribution.csv | PASS | thesis_exp/outputs/exp04_target_objectives/runs/O1_classification/tables/score_distribution.csv | exists |  |
+| O1_classification run_metadata.json | PASS | thesis_exp/outputs/exp04_target_objectives/runs/O1_classification/run_metadata.json | valid JSON |  |
+| O2_regression_smoothl1 run status | PASS | completed | completed/reused/eval_only |  |
+| O2_regression_smoothl1 predictions_dev | PASS | rows=664 expected=664 missing=[] | readable prediction JSONL |  |
+| O2_regression_smoothl1 predictions_test | PASS | rows=2218 expected=2218 missing=[] | readable prediction JSONL |  |
+| O2_regression_smoothl1 dev_test_arrays.npz | PASS | test=2218 outputs=1 expected_outputs=1 | required array keys |  |
+| O2_regression_smoothl1 metrics_summary.csv | PASS | thesis_exp/outputs/exp04_target_objectives/runs/O2_regression_smoothl1/tables/metrics_summary.csv | exists |  |
+| O2_regression_smoothl1 per_bin_metrics.csv | PASS | thesis_exp/outputs/exp04_target_objectives/runs/O2_regression_smoothl1/tables/per_bin_metrics.csv | exists |  |
+| O2_regression_smoothl1 low_score_metrics.csv | PASS | thesis_exp/outputs/exp04_target_objectives/runs/O2_regression_smoothl1/tables/low_score_metrics.csv | exists |  |
+| O2_regression_smoothl1 high_score_metrics.csv | PASS | thesis_exp/outputs/exp04_target_objectives/runs/O2_regression_smoothl1/tables/high_score_metrics.csv | exists |  |
+| O2_regression_smoothl1 metric_level_metrics.csv | PASS | thesis_exp/outputs/exp04_target_objectives/runs/O2_regression_smoothl1/tables/metric_level_metric... | exists |  |
+| O2_regression_smoothl1 scenario_level_metrics.csv | PASS | thesis_exp/outputs/exp04_target_objectives/runs/O2_regression_smoothl1/tables/scenario_level_metr... | exists |  |
+| O2_regression_smoothl1 score_distribution.csv | PASS | thesis_exp/outputs/exp04_target_objectives/runs/O2_regression_smoothl1/tables/score_distribution.csv | exists |  |
+| O2_regression_smoothl1 run_metadata.json | PASS | thesis_exp/outputs/exp04_target_objectives/runs/O2_regression_smoothl1/run_metadata.json | valid JSON |  |
+| O3_ordinal run status | PASS | completed | completed/reused/eval_only |  |
+| O3_ordinal predictions_dev | PASS | rows=664 expected=664 missing=[] | readable prediction JSONL |  |
+| O3_ordinal predictions_test | PASS | rows=2218 expected=2218 missing=[] | readable prediction JSONL |  |
+| O3_ordinal dev_test_arrays.npz | PASS | test=2218 outputs=4 expected_outputs=4 | required array keys |  |
+| O3_ordinal metrics_summary.csv | PASS | thesis_exp/outputs/exp04_target_objectives/runs/O3_ordinal/tables/metrics_summary.csv | exists |  |
+| O3_ordinal per_bin_metrics.csv | PASS | thesis_exp/outputs/exp04_target_objectives/runs/O3_ordinal/tables/per_bin_metrics.csv | exists |  |
+| O3_ordinal low_score_metrics.csv | PASS | thesis_exp/outputs/exp04_target_objectives/runs/O3_ordinal/tables/low_score_metrics.csv | exists |  |
+| O3_ordinal high_score_metrics.csv | PASS | thesis_exp/outputs/exp04_target_objectives/runs/O3_ordinal/tables/high_score_metrics.csv | exists |  |
+| O3_ordinal metric_level_metrics.csv | PASS | thesis_exp/outputs/exp04_target_objectives/runs/O3_ordinal/tables/metric_level_metrics.csv | exists |  |
+| O3_ordinal scenario_level_metrics.csv | PASS | thesis_exp/outputs/exp04_target_objectives/runs/O3_ordinal/tables/scenario_level_metrics.csv | exists |  |
+| O3_ordinal score_distribution.csv | PASS | thesis_exp/outputs/exp04_target_objectives/runs/O3_ordinal/tables/score_distribution.csv | exists |  |
+| O3_ordinal run_metadata.json | PASS | thesis_exp/outputs/exp04_target_objectives/runs/O3_ordinal/run_metadata.json | valid JSON |  |

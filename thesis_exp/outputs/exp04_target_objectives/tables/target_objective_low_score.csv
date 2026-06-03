@@ -1,0 +1,7 @@
+objective_id,objective_type,objective_label,status,split,low_n,Acc@1,Acc@2,low_exact_match,low_MAE,low_signed_bias,low_to_high_rate,low_severe_overestimation_rate,mean_pred_low
+O1_classification,classification,classification,reused_exp03_a4,dev,20,0.5,0.14285714285714285,0.25,1.45,1.4166666666666665,0.5,0.5,3.2
+O1_classification,classification,classification,reused_exp03_a4,test,103,0.3392857142857143,0.3829787234042553,0.3592233009708738,1.6084142394822007,1.5695792880258899,0.44660194174757284,0.4563106796116505,3.0776699029126213
+O2_regression_smoothl1,regression,regression_smoothl1,completed,dev,20,0.0,0.0,0.0,2.2666666666666666,2.2666666666666666,0.95,0.95,4.05
+O2_regression_smoothl1,regression,regression_smoothl1,completed,test,103,0.0,0.0,0.0,2.550161812297735,2.550161812297735,0.970873786407767,0.970873786407767,4.058252427184466
+O3_ordinal,ordinal,ordinal,completed,dev,20,0.0,0.0,0.0,2.416666666666667,2.416666666666667,1.0,1.0,4.2
+O3_ordinal,ordinal,ordinal,completed,test,103,0.0,0.0,0.0,3.1229773462783172,3.1229773462783172,1.0,1.0,4.631067961165049

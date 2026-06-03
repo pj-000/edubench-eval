@@ -1,0 +1,4 @@
+split,path,rows,expected_rows,missing_fields,bad_labels,bad_human_mean_5,status
+train,thesis_exp/outputs/exp04_target_objectives/datasets/A4_fixed_question_answer_metric_rubric_metadata/train.jsonl,2654,2654,,0,0,PASS
+dev,thesis_exp/outputs/exp04_target_objectives/datasets/A4_fixed_question_answer_metric_rubric_metadata/dev.jsonl,664,664,,0,0,PASS
+test,thesis_exp/outputs/exp04_target_objectives/datasets/A4_fixed_question_answer_metric_rubric_metadata/test.jsonl,2218,2218,,0,0,PASS
