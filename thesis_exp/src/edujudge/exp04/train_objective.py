@@ -656,16 +656,18 @@ def score_is_better(metrics: dict[str, Any], best_score: float | None, config: O
         return True
     if config.selection_mode == "max":
         return score > best_score
-    return score < best_score
+        return score < best_score
+
+
+def loss_display_name(config: ObjectiveTrainConfig) -> str:
+    if config.objective_type == "classification":
+        return "CrossEntropyLoss"
+    if config.objective_type == "regression":
+        return "MSELoss" if config.regression_loss == "mse" else "SmoothL1Loss"
+    return "BCEWithLogitsLoss"
 
 
 def normalize_run_files(output_dir: Path, config: ObjectiveTrainConfig, status: str) -> None:
-    if config.objective_type == "classification":
-        loss_name = "cross_entropy"
-    elif config.objective_type == "regression":
-        loss_name = config.regression_loss
-    else:
-        loss_name = "BCEWithLogitsLoss"
     write_json(
         output_dir / "run_metadata.json",
         {
@@ -676,7 +678,7 @@ def normalize_run_files(output_dir: Path, config: ObjectiveTrainConfig, status: 
             "status": status,
             "fixed_input_template": "A4_question_answer_metric_rubric_metadata",
             "model_name_or_path": config.model_name_or_path,
-            "loss": loss_name,
+            "loss": loss_display_name(config),
             "checkpoint_selection": f"dev {config.selection_metric} ({config.selection_mode})",
         },
     )

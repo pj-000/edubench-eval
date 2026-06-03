@@ -19,6 +19,14 @@ SCRIPT_PATHS = [
     REPO_ROOT / "thesis_exp" / "scripts" / "run_exp04_train_objectives.sh",
 ]
 EXP04_SRC_DIR = REPO_ROOT / "thesis_exp" / "src" / "edujudge" / "exp04"
+MIN_SCRIPT_LINES = {
+    REPO_ROOT / "run_exp04_train_objectives.sh": 3,
+    REPO_ROOT / "thesis_exp" / "scripts" / "run_exp04_train_objectives.sh": 100,
+}
+MIN_PY_LINES = {
+    EXP04_SRC_DIR / "train_objective.py": 100,
+    EXP04_SRC_DIR / "build_exp04_dataset.py": 50,
+}
 
 
 def one_line(value: Any) -> str:
@@ -58,6 +66,54 @@ def command_status(args: list[str]) -> tuple[str, str]:
     return ("PASS" if result.returncode == 0 else "FAIL", output[-700:] if output else "ok")
 
 
+def byte_line_status(path: Path) -> tuple[str, str]:
+    data = path.read_bytes()
+    if b"\r" in data:
+        if b"\n" not in data:
+            return "FAIL", "CR-only bytes detected"
+        return "FAIL", "CRLF or mixed CR bytes detected"
+    text = data.decode("utf-8")
+    line_count = len(text.splitlines())
+    byte_count = len(data)
+    if line_count <= 3 and byte_count > 500:
+        return "FAIL", f"suspicious collapsed file: lines={line_count} bytes={byte_count}"
+    return "PASS", f"LF bytes; lines={line_count} bytes={byte_count}"
+
+
+def check_shell_header(rows: list[dict[str, Any]], path: Path) -> None:
+    lines = path.read_text(encoding="utf-8").splitlines()
+    first = lines[0] if lines else ""
+    has_pipefail = any(line.strip() == "set -euo pipefail" for line in lines[1:4])
+    add(rows, "shell shebang", path, "PASS" if first == "#!/usr/bin/env bash" else "FAIL", first, "#!/usr/bin/env bash")
+    add(rows, "shell pipefail", path, "PASS" if has_pipefail else "FAIL", has_pipefail, "set -euo pipefail")
+
+
+def check_future_import(rows: list[dict[str, Any]], path: Path) -> None:
+    lines = path.read_text(encoding="utf-8").splitlines()
+    stripped = [line.strip() for line in lines if line.strip()]
+    status = "PASS"
+    observed = "ok"
+    if not stripped:
+        status = "FAIL"
+        observed = "empty"
+    elif stripped[0].startswith(('"""', "'''")):
+        quote = stripped[0][:3]
+        end_idx = 0
+        if not (stripped[0].endswith(quote) and len(stripped[0]) > 3):
+            for idx, line in enumerate(stripped[1:], start=1):
+                if line.endswith(quote):
+                    end_idx = idx
+                    break
+        future_idx = end_idx + 1
+        if future_idx >= len(stripped) or stripped[future_idx] != "from __future__ import annotations":
+            status = "FAIL"
+            observed = stripped[future_idx] if future_idx < len(stripped) else "missing"
+    elif stripped[0] != "from __future__ import annotations":
+        status = "FAIL"
+        observed = stripped[0]
+    add(rows, "future import placement", path, status, observed, "docstring then future import")
+
+
 def check_text(rows: list[dict[str, Any]], path: Path, min_lines: int, check: str) -> None:
     if not path.exists():
         add(rows, check, path, "FAIL", "missing", "exists")
@@ -67,12 +123,15 @@ def check_text(rows: list[dict[str, Any]], path: Path, min_lines: int, check: st
     has_crlf = "\r\n" in text
     add(rows, check, path, "PASS" if line_count > min_lines else "FAIL", line_count, f">{min_lines}")
     add(rows, f"{check} LF line endings", path, "PASS" if not has_crlf else "FAIL", "CRLF" if has_crlf else "LF", "LF")
+    byte_status, byte_observed = byte_line_status(path)
+    add(rows, f"{check} byte line endings", path, byte_status, byte_observed, "LF only; not collapsed")
 
 
 def check_scripts(rows: list[dict[str, Any]]) -> None:
     for path in SCRIPT_PATHS:
-        check_text(rows, path, min_lines=2 if path.name == "run_exp04_train_objectives.sh" and path.parent == REPO_ROOT else 20, check="script line count")
+        check_text(rows, path, min_lines=MIN_SCRIPT_LINES[path], check="script line count")
         if path.exists():
+            check_shell_header(rows, path)
             status, output = command_status(["bash", "-n", str(path.relative_to(REPO_ROOT))])
             add(rows, "bash -n", path, status, output, "ok")
 
@@ -80,7 +139,8 @@ def check_scripts(rows: list[dict[str, Any]]) -> None:
 def check_python_modules(rows: list[dict[str, Any]]) -> None:
     py_files = sorted(EXP04_SRC_DIR.glob("*.py"))
     for path in py_files:
-        check_text(rows, path, min_lines=10, check="python module line count")
+        check_text(rows, path, min_lines=MIN_PY_LINES.get(path, 10), check="python module line count")
+        check_future_import(rows, path)
     status, output = command_status([sys.executable, "-m", "py_compile", *[str(path.relative_to(REPO_ROOT)) for path in py_files]])
     add(rows, "py_compile exp04 modules", EXP04_SRC_DIR, status, output, "ok")
 
@@ -139,6 +199,13 @@ Overall status: **{overall}**
 {markdown_table(rows)}
 """,
     )
+    try:
+        from thesis_exp.src.edujudge.exp04.write_exp04_report import write_review_package
+
+        write_review_package()
+    except Exception as exc:
+        add(rows, "review package refresh", EXP04_OUTPUT_DIR / "review_package.md", "FAIL", f"{type(exc).__name__}: {exc}", "refresh ok")
+        write_csv(EXP04_TABLES_DIR / "readability_check_exp04.csv", rows)
     return rows
 
 

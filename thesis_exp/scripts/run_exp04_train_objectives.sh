@@ -153,6 +153,10 @@ run_objective() {
   local regression_loss="$3"
   local log_path="${LOG_DIR}/train_${objective_id}_${RUN_ID}.log"
   local postprocess_log_path="${LOG_DIR}/postprocess_${objective_id}_${RUN_ID}.log"
+  local loss_args=()
+  if [[ "${objective_type}" == "regression" ]]; then
+    loss_args+=(--regression_loss "${regression_loss}")
+  fi
 
   echo "Starting ${objective_id}; log=${log_path}"
   python -m thesis_exp.src.edujudge.exp04.train_objective \
@@ -172,7 +176,7 @@ run_objective() {
     --gradient_accumulation_steps "${GRADIENT_ACCUMULATION_STEPS}" \
     --bf16 "${BF16}" \
     --log_steps "${LOG_STEPS}" \
-    --regression_loss "${regression_loss}" \
+    "${loss_args[@]}" \
     --trust_remote_code \
     --local_files_only \
     "${progress_args[@]}" \
@@ -188,7 +192,7 @@ else
 fi
 
 if [[ "${RUN_ORDINAL}" == "1" ]]; then
-  run_objective ordinal O3_ordinal smoothl1
+  run_objective ordinal O3_ordinal none
 else
   echo "Skipping O3_ordinal because RUN_ORDINAL=${RUN_ORDINAL}"
 fi

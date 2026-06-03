@@ -3,10 +3,11 @@
 from __future__ import annotations
 
 import argparse
+import csv
 import math
 from typing import Any
 
-from thesis_exp.src.edujudge.exp04 import EXP04_OUTPUT_DIR, EXP04_TABLES_DIR, ensure_exp04_dirs
+from thesis_exp.src.edujudge.exp04 import EXP04_OUTPUT_DIR, EXP04_TABLES_DIR, OBJECTIVE_IDS, ensure_exp04_dirs
 from thesis_exp.src.edujudge.exp04.collect_exp04_results import collect_exp04_results
 from thesis_exp.src.edujudge.utils.io import relpath, write_text
 
@@ -27,6 +28,33 @@ def status_mark(status: str) -> str:
     return "PASS" if status in {"completed", "reused_exp03_a4", "eval_only"} else "PENDING"
 
 
+def read_status_csv(path: Any) -> list[dict[str, str]]:
+    try:
+        with open(path, "r", encoding="utf-8", newline="") as handle:
+            return list(csv.DictReader(handle))
+    except FileNotFoundError:
+        return []
+
+
+def overall_from_rows(rows: list[dict[str, str]]) -> str:
+    if not rows:
+        return "PENDING"
+    return "PASS" if all(row.get("status") == "PASS" for row in rows) else "FAIL"
+
+
+def objective_setup_status(rows: list[dict[str, str]], objective_id: str) -> str:
+    if objective_id == "O1_classification":
+        checks = ["O1 can reuse Exp3 A4 artifacts"]
+    elif objective_id == "O2_regression_smoothl1":
+        checks = ["train O2 human_mean_5 target", "dev O2 human_mean_5 target", "test O2 human_mean_5 target"]
+    else:
+        checks = ["train O3 ordinal target shape", "dev O3 ordinal target shape", "test O3 ordinal target shape"]
+    relevant = [row for row in rows if row.get("check") in checks]
+    if not relevant:
+        return "PENDING"
+    return "PASS" if all(row.get("status") == "PASS" for row in relevant) else "FAIL"
+
+
 def summary_table(rows: list[dict[str, Any]]) -> str:
     lines = [
         "| objective | status | Accuracy | MAE_label | MAE_expected | QWK | Kendall tau | severe_error_rate | low_to_high_rate |",
@@ -40,6 +68,58 @@ def summary_table(rows: list[dict[str, Any]]) -> str:
             f"{fmt(row.get('test_severe_error_rate'))} | {fmt(row.get('test_low_to_high_rate'))} |"
         )
     return "\n".join(lines)
+
+
+def write_review_package(rows: list[dict[str, Any]] | None = None) -> None:
+    ensure_exp04_dirs()
+    rows = rows if rows is not None else collect_exp04_results()
+    setup_rows = read_status_csv(EXP04_TABLES_DIR / "sanity_check_exp04_setup.csv")
+    readability_rows = read_status_csv(EXP04_TABLES_DIR / "readability_check_exp04.csv")
+    setup_status = overall_from_rows(setup_rows)
+    readability_status = overall_from_rows(readability_rows)
+    can_smoke = setup_status == "PASS" and readability_status == "PASS"
+    blockers = []
+    if setup_status != "PASS":
+        blockers.append(f"setup sanity is {setup_status}")
+    if readability_status != "PASS":
+        blockers.append(f"readability is {readability_status}")
+    if not blockers:
+        blockers.append("none for server smoke; formal O2/O3 remains gated on smoke PASS")
+
+    status_by_objective = {row.get("objective_id"): row.get("status") for row in rows}
+    setup_by_objective = {objective_id: objective_setup_status(setup_rows, objective_id) for objective_id in OBJECTIVE_IDS}
+    review = f"""# Exp4 Review Package
+
+Can server smoke test start? **{"YES" if can_smoke else "NO"}**
+
+Can formal O2/O3 training start? **NO until smoke PASS**
+
+## Setup Status
+
+| item | status | notes |
+| --- | --- | --- |
+| O1 reuse status | {setup_by_objective["O1_classification"]} | run status: {status_by_objective.get("O1_classification", "pending")} |
+| O2 regression setup status | {setup_by_objective["O2_regression_smoothl1"]} | uses `human_mean_5`, SmoothL1Loss |
+| O3 ordinal setup status | {setup_by_objective["O3_ordinal"]} | uses four BCE threshold labels |
+| readability status | {readability_status} | `readability_check_exp04` |
+| setup sanity status | {setup_status} | `sanity_check_exp04_setup` |
+
+## Main Results
+
+{summary_table(rows)}
+
+## Remaining Blockers
+
+{chr(10).join(f"- {blocker}" for blocker in blockers)}
+
+## Files
+
+- `{relpath(EXP04_OUTPUT_DIR / "report.md")}`
+- `{relpath(EXP04_OUTPUT_DIR / "sanity_check_exp04_setup.md")}`
+- `{relpath(EXP04_OUTPUT_DIR / "readability_check_exp04.md")}`
+- `{relpath(EXP04_TABLES_DIR / "target_objective_summary.csv")}`
+"""
+    write_text(EXP04_OUTPUT_DIR / "review_package.md", review)
 
 
 def pick_best(rows: list[dict[str, Any]], key: str, lower_is_better: bool) -> str:
@@ -118,30 +198,7 @@ follow-up correction is only added if violations are material.
 """
     write_text(EXP04_OUTPUT_DIR / "report.md", report)
 
-    review = f"""# Exp4 Review Package
-
-Overall ready for analysis: **{"PASS" if all_ready else "PENDING"}**
-
-## Checklist
-
-| item | status | notes |
-| --- | --- | --- |
-| O1 classification reused from Exp3 A4 | {status_mark(rows[0]["status"])} | no retraining |
-| O2 regression SmoothL1 | {status_mark(rows[1]["status"])} | continuous score target |
-| O3 ordinal classification | {status_mark(rows[2]["status"])} | four threshold logits |
-| Fixed A4 input | PASS | Exp4 changes objective only |
-
-## Main Results
-
-{summary_table(rows)}
-
-## Files
-
-- `{relpath(EXP04_OUTPUT_DIR / "report.md")}`
-- `{relpath(EXP04_TABLES_DIR / "target_objective_summary.csv")}`
-- `{relpath(EXP04_TABLES_DIR / "target_objective_low_score.csv")}`
-"""
-    write_text(EXP04_OUTPUT_DIR / "review_package.md", review)
+    write_review_package(rows)
 
     notion_summary = f"""# Exp4 Notion Summary
 
