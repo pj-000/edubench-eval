@@ -3,7 +3,7 @@
 Overall status: **PASS**
 
 - Input: `thesis_exp/outputs/exp03_input_ablation/tables/rubric_source_audit.csv`
-- Rubric mode: **proposed**
+- Rubric mode: **corrected**
 - Pairwise comparisons: 132
 - ERROR pairs: 0
 - WARNING pairs: 0

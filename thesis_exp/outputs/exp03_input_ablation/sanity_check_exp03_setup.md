@@ -4,7 +4,7 @@ Overall status: **PASS**
 
 | check | status | observed | expected | notes |
 | --- | --- | --- | --- | --- |
-| rubric mode | PASS | proposed | raw/corrected/proposed |  |
+| rubric mode | PASS | corrected | raw/corrected/proposed |  |
 | Exp0.1 sanity exists | PASS | ['thesis_exp/outputs/exp00_data/tables/sanity_check_results.csv', 'thesis_exp/outputs/exp00_data/sanity_check_exp00_reference.md'] | Exp0 sanity artifact present |  |
 | Exp2 reuse outputs exist | PASS | [] | all required Exp2 files |  |
 | train source row count | PASS | 2654 | 2654 |  |

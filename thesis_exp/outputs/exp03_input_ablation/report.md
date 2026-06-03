@@ -22,10 +22,10 @@ A4 intentionally excludes generator_model, answer_model, human labels, and chain
 
 ## 4. Rubric Source and Quality Audit
 Rubric coverage: 5536/5536.
-Rubric mode: **proposed**.
+Rubric mode: **corrected**.
 Rubric quality status: **PASS**.
 Special zh SEI vs IFTC check: **PASS**.
-Human confirmation needed: **YES**.
+Human confirmation needed: **NO**.
 Raw rubric text is read from the split row field. The audit shows it is constant within
 each metric/language group, so Exp3 treats it as metric-level rubric description, not
 sample-specific human annotation. The active rubric mode may override known defective
@@ -50,8 +50,8 @@ Server smoke can start: **YES.**
 | A0 | A0_answer_only | pending |  |  |  |  | 280.93081647398844 | 0.0 |
 | A1 | A1_question_answer | pending |  |  |  |  | 355.8553106936416 | 0.0 |
 | A2 | A2_question_answer_metric | reused_exp02 | 0.7299368800721371 | 0.4238052299368801 | 0.5692855146538734 | 0.5339805825242718 | 370.06123554913296 | 0.0 |
-| A3 | A3_question_answer_metric_rubric | pending |  |  |  |  | 477.7492774566474 | 0.0 |
-| A4 | A4_question_answer_metric_rubric_metadata | pending |  |  |  |  | 502.1909320809249 | 0.0 |
+| A3 | A3_question_answer_metric_rubric | pending |  |  |  |  | 477.8860187861272 | 0.0 |
+| A4 | A4_question_answer_metric_rubric_metadata | pending |  |  |  |  | 502.32947976878614 | 0.0 |
 
 ## 8. Low-score Analysis
 | ablation_id | template_name | status | test_acc_at_1 | test_acc_at_2 | test_low_to_high_rate |

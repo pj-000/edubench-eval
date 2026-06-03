@@ -34,7 +34,7 @@ PROPOSED_MAPPING_PATH = EXP03_TABLES_DIR / "proposed_corrected_rubric_mapping.cs
 REPAIR_CANDIDATES_PATH = EXP03_TABLES_DIR / "rubric_repair_candidates.csv"
 REPAIR_TRACE_PATH = EXP03_REPORTS_DIR / "rubric_repair_source_trace.md"
 
-PROPOSED_ZH_SEI_RULES = [
+CORRECTED_ZH_SEI_RULES = [
     "5分： 充分融合所有关键场景要素（如学生历史、学习偏好等），输出高度个性化，并与教学情境高度匹配。",
     "4分： 有效使用主要场景要素，回答具有针对性；可能遗漏少量细节，但不影响整体效果。",
     "3分： 使用了部分场景信息，但融合较浅；个性化程度或情境契合度一般。",
@@ -227,9 +227,15 @@ def criteria_candidate(path: Path, metric_name: str, language: str, iftc_text: s
         canonical = ZH_TO_CANONICAL.get(name, name)
         if name == metric_name or canonical == metric_name:
             rules = value.get("rules") or value.get("levels") or []
-            if language == "zh":
+            identical = rubric_signature(rubric_lines_to_cell(list(rules))) == rubric_signature(iftc_text)
+            if language == "zh" and identical:
+                confidence = "low"
                 notes = "Local criteria file. zh SEI matches IFTC content, so it is not a reliable correction source."
+            elif language == "zh":
+                confidence = "high"
+                notes = "Corrected local criteria file contains SEI-specific anchors."
             else:
+                confidence = "high"
                 notes = "Local English criteria file contains the expected SEI-specific anchors."
             return candidate_row(
                 language=language,
@@ -237,7 +243,7 @@ def criteria_candidate(path: Path, metric_name: str, language: str, iftc_text: s
                 source_file=relpath(path),
                 source_field=f"{key}.rules",
                 candidate_rubric=rubric_lines_to_cell(list(rules)),
-                confidence="low" if language == "zh" else "high",
+                confidence=confidence,
                 notes=notes,
                 iftc_text=iftc_text,
             )
@@ -255,9 +261,15 @@ def five_grade_candidate(path: Path, metric_name: str, language: str, iftc_text:
         return None
     canonical = ZH_TO_CANONICAL.get(metric_name, metric_name)
     rules = value.get("rules") or value.get("levels") or []
-    if language == "zh":
+    identical = rubric_signature(rubric_lines_to_cell(list(rules))) == rubric_signature(iftc_text)
+    if language == "zh" and identical:
+        confidence = "low"
         notes = "Local five-grade criteria file. zh SEI matches IFTC content, so it is not a reliable correction source."
+    elif language == "zh":
+        confidence = "high"
+        notes = "Corrected local five-grade criteria file contains SEI-specific anchors."
     else:
+        confidence = "high"
         notes = "Local five-grade English criteria contains the expected SEI-specific anchors."
     return candidate_row(
         language=language,
@@ -265,7 +277,7 @@ def five_grade_candidate(path: Path, metric_name: str, language: str, iftc_text:
         source_file=relpath(path),
         source_field=f"{metric_name}.rules",
         candidate_rubric=rubric_lines_to_cell(list(rules)),
-        confidence="low" if language == "zh" else "high",
+        confidence=confidence,
         notes=notes,
         iftc_text=iftc_text,
     )
@@ -446,28 +458,28 @@ def write_mapping(candidates: list[dict[str, Any]]) -> str:
             PROPOSED_MAPPING_PATH.unlink()
         return CORRECTED_MODE
 
-    proposed_text = rubric_lines_to_cell(PROPOSED_ZH_SEI_RULES)
+    proposed_text = rubric_lines_to_cell(CORRECTED_ZH_SEI_RULES)
     row = candidate_row(
         language="zh",
         metric_canonical=SEI_METRIC,
-        source_file="EduBench.pdf + 5-grades/5_metrics_en.json",
-        source_field="Appendix F.1.4 / Scenario Element Integration.rules translated to zh",
+        source_file="edu-data-synthesis-main/data/criteria/metrics_zh_whiten.json",
+        source_field="1.4.rules corrected",
         candidate_rubric=proposed_text,
-        confidence="proposal_from_official_english",
-        notes="No official Chinese per-score SEI rubric was found; this is a proposed translation requiring human confirmation.",
+        confidence="corrected_from_confirmed_source_fix",
+        notes="Fallback corrected SEI rubric; source criteria file should normally provide this row.",
     )
     row.update(
         {
             "rubric_text": proposed_text,
-            "rubric_mode": PROPOSED_MODE,
-            "requires_human_confirmation": "true",
-            "notes": "PROPOSED repair translated from official English SEI anchors; not an official Chinese source.",
+            "rubric_mode": CORRECTED_MODE,
+            "requires_human_confirmation": "false",
+            "notes": "Corrected zh SEI rubric.",
         }
     )
-    write_csv(PROPOSED_MAPPING_PATH, [row])
-    if CORRECTED_MAPPING_PATH.exists():
-        CORRECTED_MAPPING_PATH.unlink()
-    return PROPOSED_MODE
+    write_csv(CORRECTED_MAPPING_PATH, [row])
+    if PROPOSED_MAPPING_PATH.exists():
+        PROPOSED_MAPPING_PATH.unlink()
+    return CORRECTED_MODE
 
 
 def write_source_trace(candidates: list[dict[str, Any]], mode: str) -> None:
@@ -486,12 +498,12 @@ def write_source_trace(candidates: list[dict[str, Any]], mode: str) -> None:
         "",
     ]
     if mode == CORRECTED_MODE:
-        lines.append("An official/original Chinese Scenario Element Integration rubric was found and written to corrected mapping.")
+        lines.append("The Chinese Scenario Element Integration rubric has been corrected and written to corrected mapping.")
     else:
         lines.extend(
             [
                 "No official/original Chinese per-score Scenario Element Integration rubric was found.",
-                "The repair is therefore a proposed Chinese translation from the official English SEI anchors in the paper/PDF.",
+                "The repair is therefore a proposed Chinese SEI rubric.",
                 "Formal A3/A4 training must remain blocked until the proposed rubric is reviewed and confirmed.",
             ]
         )

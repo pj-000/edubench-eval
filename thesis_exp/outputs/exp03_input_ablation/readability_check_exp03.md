@@ -26,7 +26,7 @@ Overall status: **PASS**
 | python module line count LF line endings | thesis_exp/src/edujudge/exp03/readability_check_exp03.py | PASS | LF | LF |  |
 | python module line count | thesis_exp/src/edujudge/exp03/rubric_quality_audit.py | PASS | 193 | >10 |  |
 | python module line count LF line endings | thesis_exp/src/edujudge/exp03/rubric_quality_audit.py | PASS | LF | LF |  |
-| python module line count | thesis_exp/src/edujudge/exp03/rubric_repair.py | PASS | 564 | >10 |  |
+| python module line count | thesis_exp/src/edujudge/exp03/rubric_repair.py | PASS | 576 | >10 |  |
 | python module line count LF line endings | thesis_exp/src/edujudge/exp03/rubric_repair.py | PASS | LF | LF |  |
 | python module line count | thesis_exp/src/edujudge/exp03/rubric_sources.py | PASS | 138 | >10 |  |
 | python module line count LF line endings | thesis_exp/src/edujudge/exp03/rubric_sources.py | PASS | LF | LF |  |
@@ -51,6 +51,7 @@ Overall status: **PASS**
 | pandas.read_csv | thesis_exp/outputs/exp03_input_ablation/runs/A2_question_answer_metric/tables/per_bin_m... | PASS | rows=10 cols=10 | readable |  |
 | pandas.read_csv | thesis_exp/outputs/exp03_input_ablation/runs/A2_question_answer_metric/tables/scenario_... | PASS | rows=17 cols=29 | readable |  |
 | pandas.read_csv | thesis_exp/outputs/exp03_input_ablation/tables/a2_exp2_template_equivalence.csv | PASS | rows=3 cols=5 | readable |  |
+| pandas.read_csv | thesis_exp/outputs/exp03_input_ablation/tables/corrected_rubric_mapping.csv | PASS | rows=1 cols=11 | readable |  |
 | pandas.read_csv | thesis_exp/outputs/exp03_input_ablation/tables/dataset_stats_by_template.csv | PASS | rows=15 cols=9 | readable |  |
 | pandas.read_csv | thesis_exp/outputs/exp03_input_ablation/tables/input_ablation_delta_vs_a2.csv | PASS | rows=5 cols=13 | readable |  |
 | pandas.read_csv | thesis_exp/outputs/exp03_input_ablation/tables/input_ablation_low_score.csv | PASS | rows=2 cols=13 | readable |  |
@@ -62,7 +63,6 @@ Overall status: **PASS**
 | pandas.read_csv | thesis_exp/outputs/exp03_input_ablation/tables/input_ablation_summary.csv | PASS | rows=5 cols=21 | readable |  |
 | pandas.read_csv | thesis_exp/outputs/exp03_input_ablation/tables/input_ablation_token_length.csv | PASS | rows=15 cols=13 | readable |  |
 | pandas.read_csv | thesis_exp/outputs/exp03_input_ablation/tables/label_distribution_by_template.csv | PASS | rows=75 cols=5 | readable |  |
-| pandas.read_csv | thesis_exp/outputs/exp03_input_ablation/tables/proposed_corrected_rubric_mapping.csv | PASS | rows=1 cols=11 | readable |  |
 | pandas.read_csv | thesis_exp/outputs/exp03_input_ablation/tables/readability_check_exp03.csv | PASS | rows=100 cols=6 | readable |  |
 | pandas.read_csv | thesis_exp/outputs/exp03_input_ablation/tables/rubric_quality_audit.csv | PASS | rows=132 cols=8 | readable |  |
 | pandas.read_csv | thesis_exp/outputs/exp03_input_ablation/tables/rubric_repair_candidates.csv | PASS | rows=15 cols=8 | readable |  |

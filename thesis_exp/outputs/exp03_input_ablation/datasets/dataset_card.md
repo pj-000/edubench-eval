@@ -7,7 +7,7 @@ selection policy remain aligned with Exp2.
 A2 is the Exp2-compatible question + answer + metric baseline and should normally reuse
 Exp2 formal outputs instead of retraining.
 
-Rubric mode used for generated rows: **proposed**.
+Rubric mode used for generated rows: **corrected**.
 
 ## Dataset Stats
 
@@ -42,9 +42,9 @@ Rubric mode used for generated rows: **proposed**.
 | A2_question_answer_metric | train | 369.38 | 878.00 | 0.000000 |
 | A2_question_answer_metric | dev | 375.11 | 893.85 | 0.000000 |
 | A2_question_answer_metric | test | 369.37 | 936.30 | 0.000000 |
-| A3_question_answer_metric_rubric | train | 477.18 | 1043.00 | 0.000000 |
-| A3_question_answer_metric_rubric | dev | 482.23 | 1051.55 | 0.000000 |
-| A3_question_answer_metric_rubric | test | 477.08 | 1102.00 | 0.000000 |
-| A4_question_answer_metric_rubric_metadata | train | 501.59 | 1069.00 | 0.000000 |
-| A4_question_answer_metric_rubric_metadata | dev | 506.58 | 1076.55 | 0.000000 |
-| A4_question_answer_metric_rubric_metadata | test | 501.59 | 1127.30 | 0.000000 |
+| A3_question_answer_metric_rubric | train | 477.33 | 1043.00 | 0.000000 |
+| A3_question_answer_metric_rubric | dev | 482.34 | 1051.55 | 0.000000 |
+| A3_question_answer_metric_rubric | test | 477.22 | 1102.00 | 0.000000 |
+| A4_question_answer_metric_rubric_metadata | train | 501.73 | 1069.00 | 0.000000 |
+| A4_question_answer_metric_rubric_metadata | dev | 506.71 | 1076.55 | 0.000000 |
+| A4_question_answer_metric_rubric_metadata | test | 501.73 | 1127.30 | 0.000000 |
