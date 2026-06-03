@@ -237,6 +237,8 @@ def make_last_token_head_class(torch: Any, nn: Any):
             else:
                 lengths = attention_mask.sum(dim=1).clamp(min=1) - 1
                 pooled = hidden[torch.arange(hidden.size(0), device=hidden.device), lengths]
+            if pooled.dtype != self.score.weight.dtype:
+                pooled = pooled.to(dtype=self.score.weight.dtype)
             logits = self.score(pooled)
             loss = None
             if labels is not None:
