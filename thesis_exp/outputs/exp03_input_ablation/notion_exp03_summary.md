@@ -22,12 +22,10 @@ Exp3 用来验证 rubric 和 metadata 是否能改善教育评分模型与人类
 | A3 | A3_question_answer_metric_rubric | pending |  |  |  |  | 478.0715317919075 | 0.0 |
 | A4 | A4_question_answer_metric_rubric_metadata | pending |  |  |  |  | 502.51318641618496 | 0.0 |
 
-## 重点审阅项
-- A2 是否正确复用 Exp2
-- A3/A4 rubric 是否非空
-- A4 是否没有引入 generator_model / answer_model / human score
-- low_to_high_rate 是否下降
-- 加入 rubric 后是否产生明显截断
+## 训练前硬化检查
+- rubric quality audit: ERROR
+- zh Scenario Element Integration vs Instruction Following & Task Completion: ERROR
+- 正式训练前需要先完成服务器 smoke test，并人工审阅 rubric quality audit 的 ERROR/WARNING。
 
 ## 后续训练计划
 第一轮正式训练只跑 A3 和 A4；A0/A1 资源不足时后补，A2 默认不重训。

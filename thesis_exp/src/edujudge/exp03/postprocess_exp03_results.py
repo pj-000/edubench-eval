@@ -8,6 +8,7 @@ from thesis_exp.src.edujudge.exp03 import EXP03_OUTPUT_DIR, ensure_exp03_dirs
 from thesis_exp.src.edujudge.exp03.collect_exp03_results import collect_exp03_results
 from thesis_exp.src.edujudge.exp03.compute_input_ablation_metrics import compute_input_ablation_metrics
 from thesis_exp.src.edujudge.exp03.plot_input_ablation_figures import plot_input_ablation_figures
+from thesis_exp.src.edujudge.exp03.rubric_quality_audit import audit_rubric_quality
 from thesis_exp.src.edujudge.exp03.sanity_check_exp03_outputs import run_output_sanity
 from thesis_exp.src.edujudge.exp03.write_exp03_report import write_exp03_report
 from thesis_exp.src.edujudge.utils.io import relpath
@@ -17,6 +18,7 @@ def postprocess_exp03_results(strict: bool = False) -> None:
     ensure_exp03_dirs()
     collect_exp03_results()
     compute_input_ablation_metrics()
+    audit_rubric_quality()
     plot_input_ablation_figures()
     write_exp03_report()
     run_output_sanity(allow_pending=not strict)

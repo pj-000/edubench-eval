@@ -20,13 +20,16 @@ reused by default instead of retrained.
 
 A4 intentionally excludes generator_model, answer_model, human labels, and chain-of-thought.
 
-## 4. Rubric Source Audit
+## 4. Rubric Source and Quality Audit
 Rubric coverage: 5536/5536.
+Rubric quality status: **ERROR**.
+Special zh SEI vs IFTC check: **ERROR**.
 Rubric text is read from the split row field. The audit shows it is constant within each
 metric/language group, so Exp3 treats it as metric-level rubric description, not
 sample-specific human annotation.
 
-Audit report: `thesis_exp/outputs/exp03_input_ablation/reports/rubric_source_audit.md`
+Source audit: `thesis_exp/outputs/exp03_input_ablation/reports/rubric_source_audit.md`
+Quality audit: `thesis_exp/outputs/exp03_input_ablation/reports/rubric_quality_audit.md`
 
 ## 5. Dataset and Training Setup
 The locked Exp0.1 paper-like triple split is used: train=2654, dev=664, test=2218. Labels

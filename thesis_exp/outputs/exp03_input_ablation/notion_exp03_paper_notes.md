@@ -8,4 +8,5 @@ A2 对应 Exp2 的 Q+A+metric baseline，因此可以直接复用 Exp2 正式结
 用于检验显式 rubric 是否能降低低分样本被高估的问题，以及 metadata 是否进一步带来收益。
 
 论文中需要谨慎说明：当前 rubric 来源于 split row field，但在 metric/language 组内重复，
-应表述为 metric-level rubric description，而不是 sample-specific human annotation。
+应表述为 metric-level rubric description，而不是 sample-specific human annotation。训练前
+rubric quality audit 发现的跨 metric 重复或高度相似 rubrics 需要单独说明和处理。
