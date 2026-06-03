@@ -10,6 +10,12 @@ from thesis_exp.src.edujudge.exp03 import EXP03_OUTPUT_DIR, EXP03_REPORTS_DIR, E
 from thesis_exp.src.edujudge.exp03.compute_input_ablation_metrics import compute_input_ablation_metrics
 from thesis_exp.src.edujudge.exp03.readability_check_exp03 import run_readability_check
 from thesis_exp.src.edujudge.exp03.rubric_quality_audit import audit_rubric_quality, overall_status as rubric_quality_status
+from thesis_exp.src.edujudge.exp03.rubric_repair import (
+    PROPOSED_MODE,
+    RAW_MODE,
+    REPAIR_TRACE_PATH,
+    default_rubric_mode,
+)
 from thesis_exp.src.edujudge.exp03.templates import TEMPLATE_SPECS
 from thesis_exp.src.edujudge.utils.io import md_table, read_csv, relpath, write_text
 
@@ -47,6 +53,13 @@ def current_rubric_quality_status() -> str:
     if not rows:
         rows = audit_rubric_quality()
     return rubric_quality_status(rows)
+
+
+def readability_status() -> str:
+    rows = read_rows(EXP03_TABLES_DIR / "readability_check_exp03.csv")
+    if not rows:
+        return "NOT_RUN"
+    return "PASS" if all(row.get("status") == "PASS" for row in rows) else "FAIL"
 
 
 def special_zh_rubric_issue() -> str:
@@ -115,7 +128,29 @@ def low_score_table() -> str:
     )
 
 
-def write_report(summary: list[dict[str, Any]], quality_status: str) -> None:
+def human_confirmation_needed(rubric_mode: str) -> str:
+    return "YES" if rubric_mode == PROPOSED_MODE else "NO"
+
+
+def server_smoke_line(quality_status: str) -> str:
+    if quality_status == "ERROR":
+        return "NO until rubric quality issue reviewed."
+    return "YES."
+
+
+def formal_training_line(quality_status: str, rubric_mode: str, smoke: str) -> str:
+    if quality_status == "ERROR":
+        return "NO until rubric quality issue reviewed."
+    if rubric_mode == RAW_MODE:
+        return "NO until corrected/proposed rubric mode is selected."
+    if rubric_mode == PROPOSED_MODE:
+        return "NO until proposed rubric is human-confirmed."
+    if smoke != "PASS":
+        return "NO until server smoke test PASS."
+    return "YES after server smoke test and rubric quality audit PASS/WARNING reviewed."
+
+
+def write_report(summary: list[dict[str, Any]], quality_status: str, rubric_mode: str, formatting_status: str) -> None:
     rubric_rows = read_rows(EXP03_TABLES_DIR / "rubric_source_audit.csv")
     coverage = "NA"
     if rubric_rows:
@@ -141,14 +176,18 @@ def write_report(summary: list[dict[str, Any]], quality_status: str) -> None:
         "",
         "## 4. Rubric Source and Quality Audit",
         f"Rubric coverage: {coverage}.",
+        f"Rubric mode: **{rubric_mode}**.",
         f"Rubric quality status: **{quality_status}**.",
         f"Special zh SEI vs IFTC check: **{special_zh_rubric_issue()}**.",
-        "Rubric text is read from the split row field. The audit shows it is constant within each",
-        "metric/language group, so Exp3 treats it as metric-level rubric description, not",
-        "sample-specific human annotation.",
+        f"Human confirmation needed: **{human_confirmation_needed(rubric_mode)}**.",
+        "Raw rubric text is read from the split row field. The audit shows it is constant within",
+        "each metric/language group, so Exp3 treats it as metric-level rubric description, not",
+        "sample-specific human annotation. The active rubric mode may override known defective",
+        "metric/language rows before A3/A4 prompts are built.",
         "",
         f"Source audit: `{relpath(EXP03_REPORTS_DIR / 'rubric_source_audit.md')}`",
         f"Quality audit: `{relpath(EXP03_REPORTS_DIR / 'rubric_quality_audit.md')}`",
+        f"Repair trace: `{relpath(REPAIR_TRACE_PATH)}`",
         "",
         "## 5. Dataset and Training Setup",
         "The locked Exp0.1 paper-like triple split is used: train=2654, dev=664, test=2218. Labels",
@@ -157,6 +196,7 @@ def write_report(summary: list[dict[str, Any]], quality_status: str) -> None:
         "",
         "## 6. Smoke Test Results",
         f"Smoke test status: **{smoke_status()}**.",
+        f"Server smoke can start: **{server_smoke_line(quality_status)}**",
         "",
         "## 7. Available Ablation Results",
         summary_table(summary),
@@ -174,6 +214,7 @@ def write_report(summary: list[dict[str, Any]], quality_status: str) -> None:
         "",
         "## 10. Token Length and Truncation",
         f"Token truncation warning: {truncation_warning(summary)}.",
+        f"Output formatting status: **{formatting_status}**.",
         "Token lengths are estimated when no tokenizer is available and recomputed with the model",
         "tokenizer when supplied during dataset building or training.",
         "",
@@ -191,13 +232,7 @@ def write_report(summary: list[dict[str, Any]], quality_status: str) -> None:
     write_text(EXP03_OUTPUT_DIR / "report.md", "\n".join(lines))
 
 
-def formal_training_line(quality_status: str) -> str:
-    if quality_status == "ERROR":
-        return "NO until rubric quality issue reviewed."
-    return "YES after server smoke test and rubric quality audit PASS/WARNING reviewed."
-
-
-def write_review_package(summary: list[dict[str, Any]], quality_status: str) -> None:
+def write_review_package(summary: list[dict[str, Any]], quality_status: str, rubric_mode: str, formatting_status: str) -> None:
     sanity = sanity_status()
     smoke = smoke_status()
     a3 = status_for(summary, "A3_question_answer_metric_rubric")
@@ -206,12 +241,16 @@ def write_review_package(summary: list[dict[str, Any]], quality_status: str) -> 
     lines = [
         "# Exp3 Review Package",
         "",
-        f"- Can formal A3/A4 training start? **{formal_training_line(quality_status)}**",
+        f"- Can server smoke test start? **{server_smoke_line(quality_status)}**",
+        f"- Can formal A3/A4 training start? **{formal_training_line(quality_status, rubric_mode, smoke)}**",
         f"- Can Exp4 start? **{exp4_ready}**",
         f"- Templates implemented: {', '.join(TEMPLATE_SPECS)}",
         "- Rubric source status: metric/language-level rubric from split row field",
+        f"- Rubric mode: {rubric_mode}",
         f"- Rubric quality audit status: {quality_status}",
         f"- Special zh SEI vs IFTC rubric check: {special_zh_rubric_issue()}",
+        f"- Human confirmation needed: {human_confirmation_needed(rubric_mode)}",
+        f"- Output formatting passed: {formatting_status}",
         f"- A2 Exp2 reuse status: {status_for(summary, 'A2_question_answer_metric')}",
         f"- Smoke test status: {smoke}",
         f"- Token truncation warning: {truncation_warning(summary)}",
@@ -224,6 +263,10 @@ def write_review_package(summary: list[dict[str, Any]], quality_status: str) -> 
         blockers.append("sanity_check_exp03_setup has not passed")
     if quality_status == "ERROR":
         blockers.append("rubric_quality_audit has ERROR rows that must be reviewed before formal training")
+    if rubric_mode == PROPOSED_MODE:
+        blockers.append("proposed zh SEI rubric needs human confirmation before formal training")
+    if formatting_status != "PASS":
+        blockers.append("output formatting/readability check has not passed")
     if smoke != "PASS":
         blockers.append("server smoke test pending")
     if a3 != "completed":
@@ -234,7 +277,7 @@ def write_review_package(summary: list[dict[str, Any]], quality_status: str) -> 
     write_text(EXP03_OUTPUT_DIR / "review_package.md", "\n".join(lines))
 
 
-def write_notion_notes(summary: list[dict[str, Any]], quality_status: str) -> None:
+def write_notion_notes(summary: list[dict[str, Any]], quality_status: str, rubric_mode: str) -> None:
     lines = [
         "# Exp3 输入信息消融实验总结",
         "",
@@ -255,8 +298,10 @@ def write_notion_notes(summary: list[dict[str, Any]], quality_status: str) -> No
         summary_table(summary),
         "",
         "## 训练前硬化检查",
+        f"- rubric mode: {rubric_mode}",
         f"- rubric quality audit: {quality_status}",
         f"- zh Scenario Element Integration vs Instruction Following & Task Completion: {special_zh_rubric_issue()}",
+        f"- human confirmation needed: {human_confirmation_needed(rubric_mode)}",
         "- 正式训练前需要先完成服务器 smoke test，并人工审阅 rubric quality audit 的 ERROR/WARNING。",
         "",
         "## 后续训练计划",
@@ -284,12 +329,19 @@ def write_notion_notes(summary: list[dict[str, Any]], quality_status: str) -> No
 def write_exp03_report() -> list[dict[str, Any]]:
     ensure_exp03_dirs()
     summary = compute_input_ablation_metrics()
+    rubric_mode = default_rubric_mode()
     quality_rows = audit_rubric_quality()
     quality_status = rubric_quality_status(quality_rows)
-    write_report(summary, quality_status)
-    write_review_package(summary, quality_status)
-    write_notion_notes(summary, quality_status)
-    run_readability_check()
+    formatting_status = readability_status()
+    write_report(summary, quality_status, rubric_mode, formatting_status)
+    write_review_package(summary, quality_status, rubric_mode, formatting_status)
+    write_notion_notes(summary, quality_status, rubric_mode)
+    final_readability_rows = run_readability_check()
+    final_formatting_status = "PASS" if all(row.get("status") == "PASS" for row in final_readability_rows) else "FAIL"
+    if final_formatting_status != formatting_status:
+        write_report(summary, quality_status, rubric_mode, final_formatting_status)
+        write_review_package(summary, quality_status, rubric_mode, final_formatting_status)
+        write_notion_notes(summary, quality_status, rubric_mode)
     return summary
 
 

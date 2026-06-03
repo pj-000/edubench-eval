@@ -10,6 +10,14 @@ from pathlib import Path
 from typing import Any
 
 from thesis_exp.src.edujudge.exp03 import EXP03_REPORTS_DIR, EXP03_TABLES_DIR, ensure_exp03_dirs
+from thesis_exp.src.edujudge.exp03.rubric_repair import (
+    AUTO_MODE,
+    RAW_MODE,
+    RUBRIC_MODES,
+    apply_rubric_mode,
+    load_rubric_mapping,
+    resolve_rubric_mode,
+)
 from thesis_exp.src.edujudge.exp03.rubric_sources import audit_rubric_sources
 from thesis_exp.src.edujudge.utils.io import read_csv, relpath, write_csv, write_text
 
@@ -43,10 +51,32 @@ def load_source_rows(input_path: Path) -> list[dict[str, str]]:
     return [row for row in rows if str(row.get("rubric_text") or "").strip()]
 
 
-def audit_rubric_quality(input_path: Path | None = None) -> list[dict[str, Any]]:
+def effective_source_rows(input_path: Path, rubric_mode: str) -> list[dict[str, str]]:
+    source_rows = load_source_rows(input_path)
+    mode = resolve_rubric_mode(rubric_mode)
+    if mode == RAW_MODE:
+        return source_rows
+    mapping = load_rubric_mapping(mode)
+    out: list[dict[str, str]] = []
+    for row in source_rows:
+        effective = apply_rubric_mode(row, mode, mapping)
+        out.append(
+            {
+                **row,
+                "rubric_text": str(effective.get("rubric_text") or ""),
+                "rubric_mode": mode,
+                "rubric_source_file": str(effective.get("rubric_source_file") or ""),
+                "rubric_requires_human_confirmation": str(effective.get("rubric_requires_human_confirmation") or ""),
+            }
+        )
+    return out
+
+
+def audit_rubric_quality(input_path: Path | None = None, rubric_mode: str = AUTO_MODE) -> list[dict[str, Any]]:
     ensure_exp03_dirs()
     input_path = input_path or (EXP03_TABLES_DIR / "rubric_source_audit.csv")
-    source_rows = load_source_rows(input_path)
+    rubric_mode = resolve_rubric_mode(rubric_mode)
+    source_rows = effective_source_rows(input_path, rubric_mode)
     by_language: dict[str, list[dict[str, str]]] = defaultdict(list)
     for row in source_rows:
         by_language[str(row.get("language") or "unknown")].append(row)
@@ -72,6 +102,7 @@ def audit_rubric_quality(input_path: Path | None = None) -> list[dict[str, Any]]
                     notes = "SPECIAL_CHECK zh Scenario Element Integration vs Instruction Following & Task Completion. " + notes
                 audit_rows.append(
                     {
+                        "rubric_mode": rubric_mode,
                         "language": language,
                         "metric_a": metric_a,
                         "metric_b": metric_b,
@@ -83,7 +114,7 @@ def audit_rubric_quality(input_path: Path | None = None) -> list[dict[str, Any]]
                 )
 
     write_csv(EXP03_TABLES_DIR / "rubric_quality_audit.csv", audit_rows)
-    write_rubric_quality_report(audit_rows, input_path)
+    write_rubric_quality_report(audit_rows, input_path, rubric_mode)
     return audit_rows
 
 
@@ -104,7 +135,7 @@ def special_zh_status(rows: list[dict[str, Any]]) -> str:
     return "MISSING"
 
 
-def write_rubric_quality_report(rows: list[dict[str, Any]], input_path: Path) -> None:
+def write_rubric_quality_report(rows: list[dict[str, Any]], input_path: Path, rubric_mode: str) -> None:
     status = overall_status(rows)
     special_status = special_zh_status(rows)
     error_rows = [row for row in rows if row.get("severity") == "ERROR"]
@@ -115,6 +146,7 @@ def write_rubric_quality_report(rows: list[dict[str, Any]], input_path: Path) ->
         f"Overall status: **{status}**",
         "",
         f"- Input: `{relpath(input_path)}`",
+        f"- Rubric mode: **{rubric_mode}**",
         f"- Pairwise comparisons: {len(rows)}",
         f"- ERROR pairs: {len(error_rows)}",
         f"- WARNING pairs: {len(warning_rows)}",
@@ -145,12 +177,13 @@ def write_rubric_quality_report(rows: list[dict[str, Any]], input_path: Path) ->
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Audit Exp3 rubric text quality.")
     parser.add_argument("--input", type=Path, default=EXP03_TABLES_DIR / "rubric_source_audit.csv")
+    parser.add_argument("--rubric_mode", default=AUTO_MODE, choices=sorted(RUBRIC_MODES))
     return parser.parse_args()
 
 
 def main() -> None:
     args = parse_args()
-    rows = audit_rubric_quality(args.input)
+    rows = audit_rubric_quality(args.input, rubric_mode=args.rubric_mode)
     print(f"Rubric quality status: {overall_status(rows)}")
     print(f"Special zh SEI vs IFTC status: {special_zh_status(rows)}")
     print(f"Output: {relpath(EXP03_TABLES_DIR / 'rubric_quality_audit.csv')}")

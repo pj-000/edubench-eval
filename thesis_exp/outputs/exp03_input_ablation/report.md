@@ -22,14 +22,18 @@ A4 intentionally excludes generator_model, answer_model, human labels, and chain
 
 ## 4. Rubric Source and Quality Audit
 Rubric coverage: 5536/5536.
-Rubric quality status: **ERROR**.
-Special zh SEI vs IFTC check: **ERROR**.
-Rubric text is read from the split row field. The audit shows it is constant within each
-metric/language group, so Exp3 treats it as metric-level rubric description, not
-sample-specific human annotation.
+Rubric mode: **proposed**.
+Rubric quality status: **PASS**.
+Special zh SEI vs IFTC check: **PASS**.
+Human confirmation needed: **YES**.
+Raw rubric text is read from the split row field. The audit shows it is constant within
+each metric/language group, so Exp3 treats it as metric-level rubric description, not
+sample-specific human annotation. The active rubric mode may override known defective
+metric/language rows before A3/A4 prompts are built.
 
 Source audit: `thesis_exp/outputs/exp03_input_ablation/reports/rubric_source_audit.md`
 Quality audit: `thesis_exp/outputs/exp03_input_ablation/reports/rubric_quality_audit.md`
+Repair trace: `thesis_exp/outputs/exp03_input_ablation/reports/rubric_repair_source_trace.md`
 
 ## 5. Dataset and Training Setup
 The locked Exp0.1 paper-like triple split is used: train=2654, dev=664, test=2218. Labels
@@ -38,6 +42,7 @@ only after selecting the best checkpoint on dev Exact Match.
 
 ## 6. Smoke Test Results
 Smoke test status: **NOT_RUN**.
+Server smoke can start: **YES.**
 
 ## 7. Available Ablation Results
 | ablation_id | template_name | status | test_accuracy | test_MAE_label | test_kendall_tau | test_low_to_high_rate | mean_token_length | truncation_rate |
@@ -45,8 +50,8 @@ Smoke test status: **NOT_RUN**.
 | A0 | A0_answer_only | pending |  |  |  |  | 280.93081647398844 | 0.0 |
 | A1 | A1_question_answer | pending |  |  |  |  | 355.8553106936416 | 0.0 |
 | A2 | A2_question_answer_metric | reused_exp02 | 0.7299368800721371 | 0.4238052299368801 | 0.5692855146538734 | 0.5339805825242718 | 370.06123554913296 | 0.0 |
-| A3 | A3_question_answer_metric_rubric | pending |  |  |  |  | 478.0715317919075 | 0.0 |
-| A4 | A4_question_answer_metric_rubric_metadata | pending |  |  |  |  | 502.51318641618496 | 0.0 |
+| A3 | A3_question_answer_metric_rubric | pending |  |  |  |  | 477.7492774566474 | 0.0 |
+| A4 | A4_question_answer_metric_rubric_metadata | pending |  |  |  |  | 502.1909320809249 | 0.0 |
 
 ## 8. Low-score Analysis
 | ablation_id | template_name | status | test_acc_at_1 | test_acc_at_2 | test_low_to_high_rate |
@@ -67,6 +72,7 @@ is the main place to inspect which dimensions benefit from rubric-aware input.
 
 ## 10. Token Length and Truncation
 Token truncation warning: none.
+Output formatting status: **PASS**.
 Token lengths are estimated when no tokenizer is available and recomputed with the model
 tokenizer when supplied during dataset building or training.
 

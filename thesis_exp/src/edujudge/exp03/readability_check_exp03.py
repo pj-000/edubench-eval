@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 import subprocess
 import sys
 from pathlib import Path
@@ -20,15 +21,19 @@ SCRIPT_PATHS = [
 EXP03_SRC_DIR = REPO_ROOT / "thesis_exp" / "src" / "edujudge" / "exp03"
 
 
+def one_line(value: Any) -> str:
+    return re.sub(r"\s+", " ", str(value or "")).strip()
+
+
 def add(rows: list[dict[str, Any]], check: str, path: Path | str, status: str, observed: Any, expected: Any, notes: str = "") -> None:
     rows.append(
         {
-            "check": check,
+            "check": one_line(check),
             "path": relpath(path) if isinstance(path, Path) else str(path),
-            "status": status,
-            "observed": observed,
-            "expected": expected,
-            "notes": notes,
+            "status": one_line(status),
+            "observed": one_line(observed),
+            "expected": one_line(expected),
+            "notes": one_line(notes),
         }
     )
 
@@ -49,7 +54,7 @@ def markdown_table(rows: list[dict[str, Any]]) -> str:
 
 def command_status(args: list[str]) -> tuple[str, str]:
     result = subprocess.run(args, cwd=REPO_ROOT, text=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, check=False)
-    output = result.stdout.strip()
+    output = one_line(result.stdout)
     return ("PASS" if result.returncode == 0 else "FAIL", output[-700:] if output else "ok")
 
 

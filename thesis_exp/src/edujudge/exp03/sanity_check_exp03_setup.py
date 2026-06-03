@@ -20,6 +20,7 @@ from thesis_exp.src.edujudge.exp03 import (
     template_dataset_dir,
 )
 from thesis_exp.src.edujudge.exp03.build_exp03_datasets import build_exp03_datasets
+from thesis_exp.src.edujudge.exp03.rubric_repair import AUTO_MODE, IFTC_METRIC, SEI_METRIC, resolve_rubric_mode
 from thesis_exp.src.edujudge.utils.io import REPO_ROOT, read_csv, read_jsonl, relpath, write_csv, write_text
 
 
@@ -57,6 +58,10 @@ HUMAN_SCORE_RE = re.compile(r"(?i)\b(human_mean|human_1|human_2|human_3|label_5|
 
 def add(rows: list[dict[str, Any]], check: str, status: str, observed: Any, expected: Any, notes: str = "") -> None:
     rows.append({"check": check, "status": status, "observed": observed, "expected": expected, "notes": notes})
+
+
+def normalize_compare(value: Any) -> str:
+    return re.sub(r"\s+", " ", str(value or "")).strip().lower()
 
 
 def markdown_table(rows: list[dict[str, Any]]) -> str:
@@ -145,12 +150,45 @@ def check_template_text(rows: list[dict[str, Any]], check_rows: list[dict[str, A
         human_score_hits,
         0,
     )
+    if template_name == "A4_question_answer_metric_rubric_metadata":
+        generator_field_rows = sum(1 for row in rows if str(row.get("generator_model") or "").strip())
+        add(
+            check_rows,
+            f"{template_name}/{split} no generator_model field value",
+            "PASS" if generator_field_rows == 0 else "FAIL",
+            generator_field_rows,
+            0,
+        )
 
 
-def run_sanity_check() -> list[dict[str, Any]]:
+def check_zh_sei_rubric_repaired(check_rows: list[dict[str, Any]]) -> None:
+    for template_name in ["A3_question_answer_metric_rubric", "A4_question_answer_metric_rubric_metadata"]:
+        rubrics: dict[str, set[str]] = {SEI_METRIC: set(), IFTC_METRIC: set()}
+        for split in ["train", "dev", "test"]:
+            for row in read_jsonl(template_dataset_dir(template_name) / f"{split}.jsonl"):
+                if row.get("language") != "zh":
+                    continue
+                metric = str(row.get("metric_canonical") or "")
+                if metric in rubrics:
+                    rubrics[metric].add(str(row.get("rubric_text") or ""))
+        sei = {normalize_compare(text) for text in rubrics[SEI_METRIC] if text}
+        iftc = {normalize_compare(text) for text in rubrics[IFTC_METRIC] if text}
+        identical = bool(sei and iftc and sei == iftc)
+        add(
+            check_rows,
+            f"{template_name} zh SEI rubric differs from zh IFTC",
+            "PASS" if sei and iftc and not identical else "FAIL",
+            f"sei_unique={len(sei)} iftc_unique={len(iftc)} identical={identical}",
+            "nonempty and not identical",
+        )
+
+
+def run_sanity_check(rubric_mode: str = AUTO_MODE) -> list[dict[str, Any]]:
     ensure_exp03_dirs()
-    build_exp03_datasets()
+    rubric_mode = resolve_rubric_mode(rubric_mode)
+    build_exp03_datasets(rubric_mode=rubric_mode)
     rows: list[dict[str, Any]] = []
+    add(rows, "rubric mode", "PASS", rubric_mode, "raw/corrected/proposed")
 
     exp00_sanity_candidates = [
         REPO_ROOT / "thesis_exp" / "outputs" / "exp00_data" / "tables" / "sanity_check_results.csv",
@@ -190,6 +228,7 @@ def run_sanity_check() -> list[dict[str, Any]]:
             labels = sorted({int(row["label"]) for row in data})
             add(rows, f"{template_name}/{split} label range 0..4", "PASS" if labels == [0, 1, 2, 3, 4] else "FAIL", labels, [0, 1, 2, 3, 4])
             check_template_text(data, rows, template_name, split)
+    check_zh_sei_rubric_repaired(rows)
 
     equivalence = read_csv(EXP03_TABLES_DIR / "a2_exp2_template_equivalence.csv")
     mismatches = sum(int(row.get("mismatch_rows") or 0) for row in equivalence)

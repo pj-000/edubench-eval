@@ -23,11 +23,18 @@ from thesis_exp.src.edujudge.exp03 import (
     template_dataset_dir,
 )
 from thesis_exp.src.edujudge.exp03.rubric_sources import audit_rubric_sources
+from thesis_exp.src.edujudge.exp03.rubric_repair import (
+    AUTO_MODE,
+    RAW_MODE,
+    RUBRIC_MODES,
+    apply_rubric_mode,
+    load_rubric_mapping,
+    resolve_rubric_mode,
+)
 from thesis_exp.src.edujudge.exp03.templates import (
     estimate_token_length,
     get_template_spec,
     make_prompt,
-    require_rubric_text,
     template_manifest_rows,
 )
 from thesis_exp.src.edujudge.utils.io import read_jsonl, relpath, write_csv, write_json, write_jsonl, write_text
@@ -87,13 +94,22 @@ def convert_row(
     template_name: str,
     tokenizer: Any | None,
     max_length: int,
+    rubric_mode: str,
+    rubric_mapping: dict[tuple[str, str], dict[str, str]],
 ) -> dict[str, Any]:
     validate_source_row(row, split, row_index)
+    use_repaired_rubric = template_name in {
+        "A3_question_answer_metric_rubric",
+        "A4_question_answer_metric_rubric_metadata",
+    }
+    if use_repaired_rubric:
+        row_for_prompt = apply_rubric_mode(row, rubric_mode, rubric_mapping)
+    else:
+        row_for_prompt = apply_rubric_mode(row, RAW_MODE, {})
     label_5 = int(row["label_5"])
-    text = make_prompt(row, template_name)
+    text = make_prompt(row_for_prompt, template_name)
     num_tokens, token_count_method = count_tokens(text, tokenizer)
-    rubric_text = require_rubric_text(row)
-    return {
+    converted = {
         "id": row.get("record_id") or f"{split}_{row_index}",
         "record_id": row.get("record_id"),
         "triple_key": row.get("triple_key"),
@@ -107,17 +123,28 @@ def convert_row(
         "metric_canonical": row.get("metric_canonical"),
         "metric_abbr": row.get("metric_abbr"),
         "metric_group": row.get("metric_group"),
-        "rubric_text": rubric_text,
+        "rubric_text": row_for_prompt["rubric_text"],
         "scenario_canonical": row.get("scenario_canonical"),
         "subject_canonical": row.get("subject_canonical"),
         "education_level_canonical": row.get("education_level_canonical"),
         "language": row.get("language"),
-        "generator_model": row.get("generator_model"),
+        "generator_model": "" if template_name == "A4_question_answer_metric_rubric_metadata" else row.get("generator_model"),
         "num_chars": len(text),
         "num_tokens": num_tokens,
         "token_count_method": token_count_method,
         "truncated": bool(num_tokens > max_length),
     }
+    if use_repaired_rubric:
+        converted.update(
+            {
+                "rubric_mode": row_for_prompt.get("rubric_mode"),
+                "rubric_source_file": row_for_prompt.get("rubric_source_file"),
+                "rubric_source_field": row_for_prompt.get("rubric_source_field"),
+                "rubric_requires_human_confirmation": row_for_prompt.get("rubric_requires_human_confirmation"),
+                "rubric_repair_notes": row_for_prompt.get("rubric_repair_notes"),
+            }
+        )
+    return converted
 
 
 def build_template_split(
@@ -126,8 +153,13 @@ def build_template_split(
     template_name: str,
     tokenizer: Any | None,
     max_length: int,
+    rubric_mode: str,
+    rubric_mapping: dict[tuple[str, str], dict[str, str]],
 ) -> list[dict[str, Any]]:
-    return [convert_row(row, split, idx, template_name, tokenizer, max_length) for idx, row in enumerate(rows)]
+    return [
+        convert_row(row, split, idx, template_name, tokenizer, max_length, rubric_mode, rubric_mapping)
+        for idx, row in enumerate(rows)
+    ]
 
 
 def summarize_lengths(rows: list[dict[str, Any]], split: str, template_name: str) -> dict[str, Any]:
@@ -154,6 +186,8 @@ def summarize_lengths(rows: list[dict[str, Any]], split: str, template_name: str
 def write_template_examples(built: dict[str, dict[str, list[dict[str, Any]]]]) -> None:
     examples: list[dict[str, Any]] = []
     for template_name in TEMPLATE_NAMES:
+        if template_name not in built:
+            continue
         rows = built[template_name]["train"][:10]
         for row in rows:
             examples.append(
@@ -170,7 +204,7 @@ def write_template_examples(built: dict[str, dict[str, list[dict[str, Any]]]]) -
     write_json(EXP03_TEMPLATES_DIR / "rendered_template_examples.json", examples)
 
 
-def write_dataset_card(stats_rows: list[dict[str, Any]], length_rows: list[dict[str, Any]]) -> None:
+def write_dataset_card(stats_rows: list[dict[str, Any]], length_rows: list[dict[str, Any]], rubric_mode: str) -> None:
     lines = [
         "# Exp3 Input Ablation Datasets",
         "",
@@ -180,6 +214,8 @@ def write_dataset_card(stats_rows: list[dict[str, Any]], length_rows: list[dict[
         "",
         "A2 is the Exp2-compatible question + answer + metric baseline and should normally reuse",
         "Exp2 formal outputs instead of retraining.",
+        "",
+        f"Rubric mode used for generated rows: **{rubric_mode}**.",
         "",
         "## Dataset Stats",
         "",
@@ -246,8 +282,11 @@ def build_exp03_datasets(
     model_name_or_path: str | None = None,
     local_files_only: bool = True,
     max_length: int = 2048,
+    rubric_mode: str = AUTO_MODE,
 ) -> dict[str, dict[str, list[dict[str, Any]]]]:
     ensure_exp03_dirs()
+    rubric_mode = resolve_rubric_mode(rubric_mode)
+    rubric_mapping = load_rubric_mapping(rubric_mode)
     template_names = template_names or TEMPLATE_NAMES
     for template_name in template_names:
         get_template_spec(template_name)
@@ -267,7 +306,15 @@ def build_exp03_datasets(
         out_dir = template_dataset_dir(template_name)
         out_dir.mkdir(parents=True, exist_ok=True)
         for split, raw_rows in raw_by_split.items():
-            converted = build_template_split(split, raw_rows, template_name, tokenizer, max_length)
+            converted = build_template_split(
+                split,
+                raw_rows,
+                template_name,
+                tokenizer,
+                max_length,
+                rubric_mode,
+                rubric_mapping,
+            )
             built[template_name][split] = converted
             write_jsonl(out_dir / f"{split}.jsonl", converted)
             expected_rows = EXPECTED_SPLIT_ROWS[split]
@@ -278,6 +325,7 @@ def build_exp03_datasets(
                     "split": split,
                     "source_path": relpath(SPLIT_PATHS[split]),
                     "output_path": relpath(out_dir / f"{split}.jsonl"),
+                    "rubric_mode": rubric_mode,
                     "rows": len(converted),
                     "expected_rows": expected_rows,
                     "status": "PASS" if len(converted) == expected_rows else "FAIL",
@@ -318,7 +366,7 @@ def build_exp03_datasets(
         write_csv(EXP03_TABLES_DIR / "a2_exp2_template_equivalence.csv", equivalence_rows(raw_by_split, built))
     write_template_examples(built)
     write_template_manifest()
-    write_dataset_card(stats_rows, length_rows)
+    write_dataset_card(stats_rows, length_rows, rubric_mode)
     return built
 
 
@@ -328,6 +376,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--model_name_or_path", default=None, help="Optional tokenizer source for token lengths.")
     parser.add_argument("--local_files_only", action="store_true", help="Do not download tokenizer files.")
     parser.add_argument("--max_length", type=int, default=2048)
+    parser.add_argument("--rubric_mode", default=AUTO_MODE, choices=sorted(RUBRIC_MODES))
     parser.add_argument("--print-summary", action="store_true")
     return parser.parse_args()
 
@@ -339,6 +388,7 @@ def main() -> None:
         model_name_or_path=args.model_name_or_path,
         local_files_only=args.local_files_only,
         max_length=args.max_length,
+        rubric_mode=args.rubric_mode,
     )
     if args.print_summary:
         for template_name, split_map in built.items():

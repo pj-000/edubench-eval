@@ -20,15 +20,35 @@ NO_PROGRESS_BAR="${NO_PROGRESS_BAR:-0}"
 PYTORCH_CUDA_ALLOC_CONF="${PYTORCH_CUDA_ALLOC_CONF:-expandable_segments:True}"
 REQUIRE_CUDA="${REQUIRE_CUDA:-1}"
 FORMAL_RUN="${FORMAL_RUN:-1}"
+RUBRIC_MODE="${RUBRIC_MODE:-corrected}"
+ALLOW_PROPOSED_RUBRIC="${ALLOW_PROPOSED_RUBRIC:-0}"
 
 if [[ "${FORMAL_RUN}" == "1" && ( -n "${MAX_TRAIN_SAMPLES:-}" || -n "${MAX_EVAL_SAMPLES:-}" ) ]]; then
   echo "ERROR: FORMAL_RUN=1 cannot be used with MAX_TRAIN_SAMPLES or MAX_EVAL_SAMPLES." >&2
   exit 1
 fi
 
+case "${RUBRIC_MODE}" in
+  raw|corrected|proposed|auto) ;;
+  *)
+    echo "ERROR: RUBRIC_MODE must be raw, corrected, proposed, or auto; got ${RUBRIC_MODE}." >&2
+    exit 1
+    ;;
+esac
+
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(cd "${SCRIPT_DIR}/../.." && pwd)"
 cd "${REPO_ROOT}"
+
+if [[ "${FORMAL_RUN}" == "1" && "${RUBRIC_MODE}" == "corrected" && ! -f "thesis_exp/outputs/exp03_input_ablation/tables/corrected_rubric_mapping.csv" ]]; then
+  echo "ERROR: corrected_rubric_mapping.csv is missing; formal A3/A4 training is blocked." >&2
+  exit 1
+fi
+
+if [[ "${FORMAL_RUN}" == "1" && "${RUBRIC_MODE}" == "proposed" && "${ALLOW_PROPOSED_RUBRIC}" != "1" ]]; then
+  echo "ERROR: proposed rubric mode requires ALLOW_PROPOSED_RUBRIC=1 for formal training." >&2
+  exit 1
+fi
 
 if [[ -f "${HOME}/miniconda3/bin/activate" ]]; then
   source "${HOME}/miniconda3/bin/activate" "${CONDA_ENV}"
@@ -59,6 +79,8 @@ export NO_PROGRESS_BAR
 export PYTORCH_CUDA_ALLOC_CONF
 export FORMAL_RUN=1
 export REQUIRE_CUDA
+export RUBRIC_MODE
+export ALLOW_PROPOSED_RUBRIC
 export TOKENIZERS_PARALLELISM="${TOKENIZERS_PARALLELISM:-false}"
 
 RUN_ID="formal_$(date +%Y%m%d_%H%M%S)"
@@ -81,6 +103,8 @@ BF16=${BF16}
 GRADIENT_CHECKPOINTING=${GRADIENT_CHECKPOINTING}
 FORMAL_RUN=${FORMAL_RUN}
 REQUIRE_CUDA=${REQUIRE_CUDA}
+RUBRIC_MODE=${RUBRIC_MODE}
+ALLOW_PROPOSED_RUBRIC=${ALLOW_PROPOSED_RUBRIC}
 PYTORCH_CUDA_ALLOC_CONF=${PYTORCH_CUDA_ALLOC_CONF}
 CONFIG
 

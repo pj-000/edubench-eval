@@ -4,6 +4,7 @@ Overall status: **PASS**
 
 | check | status | observed | expected | notes |
 | --- | --- | --- | --- | --- |
+| rubric mode | PASS | proposed | raw/corrected/proposed |  |
 | Exp0.1 sanity exists | PASS | ['thesis_exp/outputs/exp00_data/tables/sanity_check_results.csv', 'thesis_exp/outputs/exp00_data/sanity_check_exp00_reference.md'] | Exp0 sanity artifact present |  |
 | Exp2 reuse outputs exist | PASS | [] | all required Exp2 files |  |
 | train source row count | PASS | 2654 | 2654 |  |
@@ -90,18 +91,23 @@ Overall status: **PASS**
 | A4_question_answer_metric_rubric_metadata/train forbidden sections | PASS | 0 | 0 |  |
 | A4_question_answer_metric_rubric_metadata/train rubric_text for A3/A4 | PASS | 0 | 0 |  |
 | A4_question_answer_metric_rubric_metadata/train no human/test leakage fields | PASS | 0 | 0 |  |
+| A4_question_answer_metric_rubric_metadata/train no generator_model field value | PASS | 0 | 0 |  |
 | A4_question_answer_metric_rubric_metadata/dev row count | PASS | 664 | 664 |  |
 | A4_question_answer_metric_rubric_metadata/dev label range 0..4 | PASS | [0, 1, 2, 3, 4] | [0, 1, 2, 3, 4] |  |
 | A4_question_answer_metric_rubric_metadata/dev required sections | PASS | 0 | 0 |  |
 | A4_question_answer_metric_rubric_metadata/dev forbidden sections | PASS | 0 | 0 |  |
 | A4_question_answer_metric_rubric_metadata/dev rubric_text for A3/A4 | PASS | 0 | 0 |  |
 | A4_question_answer_metric_rubric_metadata/dev no human/test leakage fields | PASS | 0 | 0 |  |
+| A4_question_answer_metric_rubric_metadata/dev no generator_model field value | PASS | 0 | 0 |  |
 | A4_question_answer_metric_rubric_metadata/test row count | PASS | 2218 | 2218 |  |
 | A4_question_answer_metric_rubric_metadata/test label range 0..4 | PASS | [0, 1, 2, 3, 4] | [0, 1, 2, 3, 4] |  |
 | A4_question_answer_metric_rubric_metadata/test required sections | PASS | 0 | 0 |  |
 | A4_question_answer_metric_rubric_metadata/test forbidden sections | PASS | 0 | 0 |  |
 | A4_question_answer_metric_rubric_metadata/test rubric_text for A3/A4 | PASS | 0 | 0 |  |
 | A4_question_answer_metric_rubric_metadata/test no human/test leakage fields | PASS | 0 | 0 |  |
+| A4_question_answer_metric_rubric_metadata/test no generator_model field value | PASS | 0 | 0 |  |
+| A3_question_answer_metric_rubric zh SEI rubric differs from zh IFTC | PASS | sei_unique=1 iftc_unique=1 identical=False | nonempty and not identical |  |
+| A4_question_answer_metric_rubric_metadata zh SEI rubric differs from zh IFTC | PASS | sei_unique=1 iftc_unique=1 identical=False | nonempty and not identical |  |
 | A2 text equals Exp2 template | PASS | 0 | 0 |  |
 | rubric source coverage | PASS | 0 | 0 |  |
 | A3_question_answer_metric_rubric token length stats | PASS | 3 | >0 |  |
