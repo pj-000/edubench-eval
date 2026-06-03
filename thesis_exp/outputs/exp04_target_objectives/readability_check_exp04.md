@@ -10,9 +10,9 @@ Overall status: **PASS**
 | shell shebang | run_exp04_train_objectives.sh | PASS | #!/usr/bin/env bash | #!/usr/bin/env bash |  |
 | shell pipefail | run_exp04_train_objectives.sh | PASS | True | set -euo pipefail |  |
 | bash -n | run_exp04_train_objectives.sh | PASS | ok | ok |  |
-| script line count | thesis_exp/scripts/run_exp04_train_objectives.sh | PASS | 203 | >100 |  |
+| script line count | thesis_exp/scripts/run_exp04_train_objectives.sh | PASS | 255 | >100 |  |
 | script line count LF line endings | thesis_exp/scripts/run_exp04_train_objectives.sh | PASS | LF | LF |  |
-| script line count byte line endings | thesis_exp/scripts/run_exp04_train_objectives.sh | PASS | LF bytes; lines=203 bytes=7315 | LF only; not collapsed |  |
+| script line count byte line endings | thesis_exp/scripts/run_exp04_train_objectives.sh | PASS | LF bytes; lines=255 bytes=8938 | LF only; not collapsed |  |
 | shell shebang | thesis_exp/scripts/run_exp04_train_objectives.sh | PASS | #!/usr/bin/env bash | #!/usr/bin/env bash |  |
 | shell pipefail | thesis_exp/scripts/run_exp04_train_objectives.sh | PASS | True | set -euo pipefail |  |
 | bash -n | thesis_exp/scripts/run_exp04_train_objectives.sh | PASS | ok | ok |  |
@@ -62,7 +62,7 @@ Overall status: **PASS**
 | pandas.read_csv | thesis_exp/outputs/exp04_target_objectives/runs/O1_classification/tables/scenario_level... | PASS | rows=17 cols=37 | readable |  |
 | pandas.read_csv | thesis_exp/outputs/exp04_target_objectives/runs/O1_classification/tables/score_distribu... | PASS | rows=10 cols=5 | readable |  |
 | pandas.read_csv | thesis_exp/outputs/exp04_target_objectives/tables/dataset_sanity.csv | PASS | rows=3 cols=8 | readable |  |
-| pandas.read_csv | thesis_exp/outputs/exp04_target_objectives/tables/readability_check_exp04.csv | PASS | rows=55 cols=6 | readable |  |
+| pandas.read_csv | thesis_exp/outputs/exp04_target_objectives/tables/readability_check_exp04.csv | PASS | rows=83 cols=6 | readable |  |
 | pandas.read_csv | thesis_exp/outputs/exp04_target_objectives/tables/sanity_check_exp04_outputs.csv | PASS | rows=14 cols=5 | readable |  |
 | pandas.read_csv | thesis_exp/outputs/exp04_target_objectives/tables/sanity_check_exp04_setup.csv | PASS | rows=21 cols=5 | readable |  |
 | pandas.read_csv | thesis_exp/outputs/exp04_target_objectives/tables/target_objective_high_score.csv | PASS | rows=2 cols=9 | readable |  |
@@ -81,7 +81,7 @@ Overall status: **PASS**
 | jsonl line json.loads | thesis_exp/outputs/exp04_target_objectives/runs/O1_classification/predictions/predictio... | PASS | rows=2218 | all nonempty lines parse |  |
 | markdown max line length | thesis_exp/outputs/exp04_target_objectives/datasets/A4_fixed_question_answer_metric_rub... | PASS | 146 | <300 |  |
 | markdown max line length | thesis_exp/outputs/exp04_target_objectives/notion_exp04_summary.md | PASS | 119 | <300 |  |
-| markdown max line length | thesis_exp/outputs/exp04_target_objectives/readability_check_exp04.md | PASS | 167 | <300 |  |
+| markdown max line length | thesis_exp/outputs/exp04_target_objectives/readability_check_exp04.md | PASS | 176 | <300 |  |
 | markdown max line length | thesis_exp/outputs/exp04_target_objectives/report.md | PASS | 119 | <300 |  |
 | markdown max line length | thesis_exp/outputs/exp04_target_objectives/review_package.md | PASS | 119 | <300 |  |
 | markdown max line length | thesis_exp/outputs/exp04_target_objectives/runs/O1_classification/run_summary.md | PASS | 63 | <300 |  |

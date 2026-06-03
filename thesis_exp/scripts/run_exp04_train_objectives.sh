@@ -3,7 +3,10 @@ set -euo pipefail
 
 CONDA_ENV="${CONDA_ENV:-llama_factory}"
 MODEL_NAME_OR_PATH="${MODEL_NAME_OR_PATH:-/home/share/models/modelscope/Qwen/Qwen3-Reranker-0.6B}"
-CUDA_VISIBLE_DEVICES="${CUDA_VISIBLE_DEVICES:-7}"
+EXP04_PARALLEL_OBJECTIVES="${EXP04_PARALLEL_OBJECTIVES:-1}"
+EXP04_GPU_REGRESSION="${EXP04_GPU_REGRESSION:-6}"
+EXP04_GPU_ORDINAL="${EXP04_GPU_ORDINAL:-7}"
+CUDA_VISIBLE_DEVICES="${CUDA_VISIBLE_DEVICES:-${EXP04_GPU_REGRESSION},${EXP04_GPU_ORDINAL}}"
 
 NUM_TRAIN_EPOCHS="${NUM_TRAIN_EPOCHS:-10}"
 PER_DEVICE_TRAIN_BATCH_SIZE="${PER_DEVICE_TRAIN_BATCH_SIZE:-4}"
@@ -58,6 +61,9 @@ unset CHECKPOINT_DIR
 
 export MODEL_NAME_OR_PATH
 export CUDA_VISIBLE_DEVICES
+export EXP04_PARALLEL_OBJECTIVES
+export EXP04_GPU_REGRESSION
+export EXP04_GPU_ORDINAL
 export NUM_TRAIN_EPOCHS
 export PER_DEVICE_TRAIN_BATCH_SIZE
 export PER_DEVICE_EVAL_BATCH_SIZE
@@ -84,6 +90,9 @@ Exp4 formal target-objective wrapper
 RUN_ID=${RUN_ID}
 MODEL_NAME_OR_PATH=${MODEL_NAME_OR_PATH}
 CUDA_VISIBLE_DEVICES=${CUDA_VISIBLE_DEVICES}
+EXP04_PARALLEL_OBJECTIVES=${EXP04_PARALLEL_OBJECTIVES}
+EXP04_GPU_REGRESSION=${EXP04_GPU_REGRESSION}
+EXP04_GPU_ORDINAL=${EXP04_GPU_ORDINAL}
 OBJECTIVES=O1_classification O2_regression_smoothl1 O3_ordinal
 NUM_TRAIN_EPOCHS=${NUM_TRAIN_EPOCHS}
 PER_DEVICE_TRAIN_BATCH_SIZE=${PER_DEVICE_TRAIN_BATCH_SIZE}
@@ -119,6 +128,8 @@ print(f"torch.cuda.is_available()={cuda_available}")
 print(f"torch.cuda.device_count()={torch.cuda.device_count()}")
 if cuda_available:
     print(f"torch.cuda.get_device_name(0)={torch.cuda.get_device_name(0)}")
+    if torch.cuda.device_count() > 1:
+        print(f"torch.cuda.get_device_name(1)={torch.cuda.get_device_name(1)}")
 print(f"torch.version.cuda={torch.version.cuda}")
 print(f"selected BF16/FP16 setting=BF16={os.environ.get('BF16')}, FP16=unset")
 if require_cuda and not cuda_available:
@@ -151,15 +162,15 @@ run_objective() {
   local objective_type="$1"
   local objective_id="$2"
   local regression_loss="$3"
+  local gpu_id="${4:-${CUDA_VISIBLE_DEVICES}}"
   local log_path="${LOG_DIR}/train_${objective_id}_${RUN_ID}.log"
-  local postprocess_log_path="${LOG_DIR}/postprocess_${objective_id}_${RUN_ID}.log"
   local loss_args=()
   if [[ "${objective_type}" == "regression" ]]; then
     loss_args+=(--regression_loss "${regression_loss}")
   fi
 
-  echo "Starting ${objective_id}; log=${log_path}"
-  python -m thesis_exp.src.edujudge.exp04.train_objective \
+  echo "Starting ${objective_id} on CUDA_VISIBLE_DEVICES=${gpu_id}; log=${log_path}"
+  CUDA_VISIBLE_DEVICES="${gpu_id}" python -m thesis_exp.src.edujudge.exp04.train_objective \
     --objective_type "${objective_type}" \
     --objective_id "${objective_id}" \
     --model_name_or_path "${MODEL_NAME_OR_PATH}" \
@@ -181,20 +192,61 @@ run_objective() {
     --local_files_only \
     "${progress_args[@]}" \
     "${gc_args[@]}" 2>&1 | tee "${log_path}"
-
-  python -m thesis_exp.src.edujudge.exp04.postprocess_exp04_results 2>&1 | tee "${postprocess_log_path}"
 }
 
-if [[ "${RUN_REGRESSION}" == "1" ]]; then
-  run_objective regression O2_regression_smoothl1 smoothl1
-else
-  echo "Skipping O2_regression_smoothl1 because RUN_REGRESSION=${RUN_REGRESSION}"
-fi
+run_training_objectives_parallel() {
+  local pids=()
+  local names=()
+  local failed=0
 
-if [[ "${RUN_ORDINAL}" == "1" ]]; then
-  run_objective ordinal O3_ordinal none
+  if [[ "${RUN_REGRESSION}" == "1" ]]; then
+    run_objective regression O2_regression_smoothl1 smoothl1 "${EXP04_GPU_REGRESSION}" &
+    pids+=("$!")
+    names+=("O2_regression_smoothl1")
+  else
+    echo "Skipping O2_regression_smoothl1 because RUN_REGRESSION=${RUN_REGRESSION}"
+  fi
+
+  if [[ "${RUN_ORDINAL}" == "1" ]]; then
+    run_objective ordinal O3_ordinal none "${EXP04_GPU_ORDINAL}" &
+    pids+=("$!")
+    names+=("O3_ordinal")
+  else
+    echo "Skipping O3_ordinal because RUN_ORDINAL=${RUN_ORDINAL}"
+  fi
+
+  for index in "${!pids[@]}"; do
+    if wait "${pids[$index]}"; then
+      echo "Completed ${names[$index]}"
+    else
+      echo "ERROR: ${names[$index]} failed." >&2
+      failed=1
+    fi
+  done
+
+  if [[ "${failed}" != "0" ]]; then
+    exit 1
+  fi
+}
+
+run_training_objectives_sequential() {
+  if [[ "${RUN_REGRESSION}" == "1" ]]; then
+    run_objective regression O2_regression_smoothl1 smoothl1 "${CUDA_VISIBLE_DEVICES}"
+  else
+    echo "Skipping O2_regression_smoothl1 because RUN_REGRESSION=${RUN_REGRESSION}"
+  fi
+
+  if [[ "${RUN_ORDINAL}" == "1" ]]; then
+    run_objective ordinal O3_ordinal none "${CUDA_VISIBLE_DEVICES}"
+  else
+    echo "Skipping O3_ordinal because RUN_ORDINAL=${RUN_ORDINAL}"
+  fi
+}
+
+if [[ "${EXP04_PARALLEL_OBJECTIVES}" == "1" && "${RUN_REGRESSION}" == "1" && "${RUN_ORDINAL}" == "1" ]]; then
+  run_training_objectives_parallel
 else
-  echo "Skipping O3_ordinal because RUN_ORDINAL=${RUN_ORDINAL}"
+  run_training_objectives_sequential
 fi
 
 python -m thesis_exp.src.edujudge.exp04.postprocess_exp04_results --strict
