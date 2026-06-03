@@ -20,9 +20,8 @@ from thesis_exp.src.edujudge.utils.io import REPO_ROOT, read_csv, read_jsonl, re
 
 RAW_MODE = "raw"
 CORRECTED_MODE = "corrected"
-PROPOSED_MODE = "proposed"
 AUTO_MODE = "auto"
-RUBRIC_MODES = {RAW_MODE, CORRECTED_MODE, PROPOSED_MODE, AUTO_MODE}
+RUBRIC_MODES = {RAW_MODE, CORRECTED_MODE, AUTO_MODE}
 
 SEI_METRIC = "Scenario Element Integration"
 IFTC_METRIC = "Instruction Following & Task Completion"
@@ -30,7 +29,6 @@ ZH_SEI_NAME = "场景要素融合度"
 ZH_IFTC_NAME = "指令遵循与任务完成"
 
 CORRECTED_MAPPING_PATH = EXP03_TABLES_DIR / "corrected_rubric_mapping.csv"
-PROPOSED_MAPPING_PATH = EXP03_TABLES_DIR / "proposed_corrected_rubric_mapping.csv"
 REPAIR_CANDIDATES_PATH = EXP03_TABLES_DIR / "rubric_repair_candidates.csv"
 REPAIR_TRACE_PATH = EXP03_REPORTS_DIR / "rubric_repair_source_trace.md"
 
@@ -91,13 +89,11 @@ def rubric_cell_to_text(value: str) -> str:
 def mapping_path_for_mode(rubric_mode: str) -> Path:
     if rubric_mode == CORRECTED_MODE:
         return CORRECTED_MAPPING_PATH
-    if rubric_mode == PROPOSED_MODE:
-        return PROPOSED_MAPPING_PATH
     raise ValueError(f"rubric_mode={rubric_mode!r} has no mapping path")
 
 
 def ensure_repair_artifacts() -> None:
-    if REPAIR_CANDIDATES_PATH.exists() and (CORRECTED_MAPPING_PATH.exists() or PROPOSED_MAPPING_PATH.exists()):
+    if REPAIR_CANDIDATES_PATH.exists() and CORRECTED_MAPPING_PATH.exists():
         return
     run_rubric_repair()
 
@@ -111,8 +107,6 @@ def default_rubric_mode() -> str:
     ensure_repair_artifacts()
     if CORRECTED_MAPPING_PATH.exists():
         return CORRECTED_MODE
-    if PROPOSED_MAPPING_PATH.exists():
-        return PROPOSED_MODE
     return RAW_MODE
 
 
@@ -454,8 +448,8 @@ def write_mapping(candidates: list[dict[str, Any]]) -> str:
             "notes": "Official/original Chinese SEI rubric found and used as corrected mapping.",
         }
         write_csv(CORRECTED_MAPPING_PATH, [row])
-        if PROPOSED_MAPPING_PATH.exists():
-            PROPOSED_MAPPING_PATH.unlink()
+        for stale in EXP03_TABLES_DIR.glob("proposed*_rubric_mapping.csv"):
+            stale.unlink()
         return CORRECTED_MODE
 
     proposed_text = rubric_lines_to_cell(CORRECTED_ZH_SEI_RULES)
@@ -477,8 +471,8 @@ def write_mapping(candidates: list[dict[str, Any]]) -> str:
         }
     )
     write_csv(CORRECTED_MAPPING_PATH, [row])
-    if PROPOSED_MAPPING_PATH.exists():
-        PROPOSED_MAPPING_PATH.unlink()
+    for stale in EXP03_TABLES_DIR.glob("proposed*_rubric_mapping.csv"):
+        stale.unlink()
     return CORRECTED_MODE
 
 
@@ -497,16 +491,7 @@ def write_source_trace(candidates: list[dict[str, Any]], mode: str) -> None:
         "## Conclusion",
         "",
     ]
-    if mode == CORRECTED_MODE:
-        lines.append("The Chinese Scenario Element Integration rubric has been corrected and written to corrected mapping.")
-    else:
-        lines.extend(
-            [
-                "No official/original Chinese per-score Scenario Element Integration rubric was found.",
-                "The repair is therefore a proposed Chinese SEI rubric.",
-                "Formal A3/A4 training must remain blocked until the proposed rubric is reviewed and confirmed.",
-            ]
-        )
+    lines.append("The Chinese Scenario Element Integration rubric has been corrected and written to corrected mapping.")
     lines.extend(
         [
             "",
@@ -539,7 +524,7 @@ def write_source_trace(candidates: list[dict[str, Any]], mode: str) -> None:
             "",
             f"- zh SEI candidate rows with rubric text: {len(zh_rows)}",
             f"- zh SEI rows identical to zh IFTC: {len(identical)}",
-            f"- Mapping CSV: `{relpath(PROPOSED_MAPPING_PATH if mode == PROPOSED_MODE else CORRECTED_MAPPING_PATH)}`",
+            f"- Mapping CSV: `{relpath(CORRECTED_MAPPING_PATH)}`",
             f"- Candidate CSV: `{relpath(REPAIR_CANDIDATES_PATH)}`",
         ]
     )
@@ -566,10 +551,7 @@ def main() -> None:
     print(f"Rubric repair mode: {mode}")
     print(f"Candidates: {relpath(REPAIR_CANDIDATES_PATH)}")
     print(f"Trace: {relpath(REPAIR_TRACE_PATH)}")
-    if mode == PROPOSED_MODE:
-        print(f"Proposed mapping: {relpath(PROPOSED_MAPPING_PATH)}")
-    else:
-        print(f"Corrected mapping: {relpath(CORRECTED_MAPPING_PATH)}")
+    print(f"Corrected mapping: {relpath(CORRECTED_MAPPING_PATH)}")
 
 
 if __name__ == "__main__":

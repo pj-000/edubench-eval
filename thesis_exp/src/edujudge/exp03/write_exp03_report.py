@@ -11,7 +11,6 @@ from thesis_exp.src.edujudge.exp03.compute_input_ablation_metrics import compute
 from thesis_exp.src.edujudge.exp03.readability_check_exp03 import run_readability_check
 from thesis_exp.src.edujudge.exp03.rubric_quality_audit import audit_rubric_quality, overall_status as rubric_quality_status
 from thesis_exp.src.edujudge.exp03.rubric_repair import (
-    PROPOSED_MODE,
     RAW_MODE,
     REPAIR_TRACE_PATH,
     default_rubric_mode,
@@ -129,7 +128,7 @@ def low_score_table() -> str:
 
 
 def human_confirmation_needed(rubric_mode: str) -> str:
-    return "YES" if rubric_mode == PROPOSED_MODE else "NO"
+    return "NO"
 
 
 def server_smoke_line(quality_status: str) -> str:
@@ -142,9 +141,7 @@ def formal_training_line(quality_status: str, rubric_mode: str, smoke: str) -> s
     if quality_status == "ERROR":
         return "NO until rubric quality issue reviewed."
     if rubric_mode == RAW_MODE:
-        return "NO until corrected/proposed rubric mode is selected."
-    if rubric_mode == PROPOSED_MODE:
-        return "NO until proposed rubric is human-confirmed."
+        return "NO until corrected rubric mode is selected."
     if smoke != "PASS":
         return "NO until server smoke test PASS."
     return "YES after server smoke test and rubric quality audit PASS/WARNING reviewed."
@@ -263,8 +260,6 @@ def write_review_package(summary: list[dict[str, Any]], quality_status: str, rub
         blockers.append("sanity_check_exp03_setup has not passed")
     if quality_status == "ERROR":
         blockers.append("rubric_quality_audit has ERROR rows that must be reviewed before formal training")
-    if rubric_mode == PROPOSED_MODE:
-        blockers.append("proposed zh SEI rubric needs human confirmation before formal training")
     if formatting_status != "PASS":
         blockers.append("output formatting/readability check has not passed")
     if smoke != "PASS":
