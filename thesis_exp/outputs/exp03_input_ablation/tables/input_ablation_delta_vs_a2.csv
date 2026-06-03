@@ -2,5 +2,5 @@ template_name,ablation_id,status,baseline_template,delta_test_accuracy_vs_a2,del
 A0_answer_only,A0,pending,A2_question_answer_metric,,,,,,,,,
 A1_question_answer,A1,pending,A2_question_answer_metric,,,,,,,,,
 A2_question_answer_metric,A2,reused_exp02,A2_question_answer_metric,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
-A3_question_answer_metric_rubric,A3,pending,A2_question_answer_metric,,,,,,,,,
-A4_question_answer_metric_rubric_metadata,A4,pending,A2_question_answer_metric,,,,,,,,,
+A3_question_answer_metric_rubric,A3,completed,A2_question_answer_metric,-0.013074842200180403,-0.00015028554253088133,0.0173788620690693,-0.07078449053201082,0.022121870442629143,-0.08928571428571429,0.1063829787234043,-0.02248126561198993,-0.13592233009708737
+A4_question_answer_metric_rubric_metadata,A4,completed,A2_question_answer_metric,0.011271415689810604,-0.020739404869251576,-0.01988283355713788,-0.01082055906221821,0.02477271952239435,0.16071428571428573,0.12765957446808512,0.042464612822647796,-0.08737864077669899

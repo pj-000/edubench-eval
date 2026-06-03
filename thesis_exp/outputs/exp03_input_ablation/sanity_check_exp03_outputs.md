@@ -9,12 +9,30 @@ Overall status: **PASS**
 | A2_question_answer_metric run status | PASS | reused_exp02 | completed/reused_exp02 |  |
 | A2_question_answer_metric predictions_dev | PASS | rows=664 missing=[] | readable prediction JSONL |  |
 | A2_question_answer_metric predictions_test | PASS | rows=2218 missing=[] | readable prediction JSONL |  |
-| A2_question_answer_metric dev_test_arrays.npz | PASS | missing=[] shapes={'logits_dev': [664, 5], 'logits_test': [2218, 5], 'probs_dev': [664, 5], 'probs_test': [2218, 5], 'labels_dev': [664], 'labels_test': [2218], 'record_ids_dev': [664], 'record_ids_test': [2218]} | required array keys |  |
+| A2_question_answer_metric dev_test_arrays.npz | PASS | all required arrays present; dev=664 test=2218 classes=5 | required array keys |  |
 | A2_question_answer_metric metrics_summary.csv | PASS | thesis_exp/outputs/exp03_input_ablation/runs/A2_question_answer_metric/tables/metrics_summary.csv | exists |  |
 | A2_question_answer_metric per_bin_metrics.csv | PASS | thesis_exp/outputs/exp03_input_ablation/runs/A2_question_answer_metric/tables/per_bin_metrics.csv | exists |  |
 | A2_question_answer_metric low_score_metrics.csv | PASS | thesis_exp/outputs/exp03_input_ablation/runs/A2_question_answer_metric/tables/low_score_metrics.csv | exists |  |
 | A2_question_answer_metric high_score_metrics.csv | PASS | thesis_exp/outputs/exp03_input_ablation/runs/A2_question_answer_metric/tables/high_score_metrics.csv | exists |  |
 | A2_question_answer_metric metric_level_metrics.csv | PASS | thesis_exp/outputs/exp03_input_ablation/runs/A2_question_answer_metric/tables/metric_level_metrics.csv | exists |  |
 | A2_question_answer_metric scenario_level_metrics.csv | PASS | thesis_exp/outputs/exp03_input_ablation/runs/A2_question_answer_metric/tables/scenario_level_metrics.csv | exists |  |
-| A3_question_answer_metric_rubric run status | PASS | pending | pending allowed |  |
-| A4_question_answer_metric_rubric_metadata run status | PASS | pending | pending allowed |  |
+| A3_question_answer_metric_rubric run status | PASS | completed | completed/reused_exp02 |  |
+| A3_question_answer_metric_rubric predictions_dev | PASS | rows=664 missing=[] | readable prediction JSONL |  |
+| A3_question_answer_metric_rubric predictions_test | PASS | rows=2218 missing=[] | readable prediction JSONL |  |
+| A3_question_answer_metric_rubric dev_test_arrays.npz | PASS | all required arrays present; dev=664 test=2218 classes=5 | required array keys |  |
+| A3_question_answer_metric_rubric metrics_summary.csv | PASS | thesis_exp/outputs/exp03_input_ablation/runs/A3_question_answer_metric_rubric/tables/metrics_summary.csv | exists |  |
+| A3_question_answer_metric_rubric per_bin_metrics.csv | PASS | thesis_exp/outputs/exp03_input_ablation/runs/A3_question_answer_metric_rubric/tables/per_bin_metrics.csv | exists |  |
+| A3_question_answer_metric_rubric low_score_metrics.csv | PASS | thesis_exp/outputs/exp03_input_ablation/runs/A3_question_answer_metric_rubric/tables/low_score_metrics.csv | exists |  |
+| A3_question_answer_metric_rubric high_score_metrics.csv | PASS | thesis_exp/outputs/exp03_input_ablation/runs/A3_question_answer_metric_rubric/tables/high_score_metrics.csv | exists |  |
+| A3_question_answer_metric_rubric metric_level_metrics.csv | PASS | thesis_exp/outputs/exp03_input_ablation/runs/A3_question_answer_metric_rubric/tables/metric_level_metrics.csv | exists |  |
+| A3_question_answer_metric_rubric scenario_level_metrics.csv | PASS | thesis_exp/outputs/exp03_input_ablation/runs/A3_question_answer_metric_rubric/tables/scenario_level_metrics.csv | exists |  |
+| A4_question_answer_metric_rubric_metadata run status | PASS | completed | completed/reused_exp02 |  |
+| A4_question_answer_metric_rubric_metadata predictions_dev | PASS | rows=664 missing=[] | readable prediction JSONL |  |
+| A4_question_answer_metric_rubric_metadata predictions_test | PASS | rows=2218 missing=[] | readable prediction JSONL |  |
+| A4_question_answer_metric_rubric_metadata dev_test_arrays.npz | PASS | all required arrays present; dev=664 test=2218 classes=5 | required array keys |  |
+| A4_question_answer_metric_rubric_metadata metrics_summary.csv | PASS | thesis_exp/outputs/exp03_input_ablation/runs/A4_question_answer_metric_rubric_metadata/tables/metrics_summary.csv | exists |  |
+| A4_question_answer_metric_rubric_metadata per_bin_metrics.csv | PASS | thesis_exp/outputs/exp03_input_ablation/runs/A4_question_answer_metric_rubric_metadata/tables/per_bin_metrics.csv | exists |  |
+| A4_question_answer_metric_rubric_metadata low_score_metrics.csv | PASS | thesis_exp/outputs/exp03_input_ablation/runs/A4_question_answer_metric_rubric_metadata/tables/low_score_metrics.csv | exists |  |
+| A4_question_answer_metric_rubric_metadata high_score_metrics.csv | PASS | thesis_exp/outputs/exp03_input_ablation/runs/A4_question_answer_metric_rubric_metadata/tables/high_score_metrics.csv | exists |  |
+| A4_question_answer_metric_rubric_metadata metric_level_metrics.csv | PASS | thesis_exp/outputs/exp03_input_ablation/runs/A4_question_answer_metric_rubric_metadata/tables/metric_level_metrics.csv | exists |  |
+| A4_question_answer_metric_rubric_metadata scenario_level_metrics.csv | PASS | thesis_exp/outputs/exp03_input_ablation/runs/A4_question_answer_metric_rubric_metadata/tables/scenario_level_metrics.csv | exists |  |

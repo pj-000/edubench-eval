@@ -41,8 +41,12 @@ def check_arrays(path: Path) -> tuple[str, str]:
     arrays = np.load(path, allow_pickle=True)
     required = {"logits_dev", "logits_test", "probs_dev", "probs_test", "labels_dev", "labels_test", "record_ids_dev", "record_ids_test"}
     missing = sorted(required - set(arrays.files))
-    shapes = {key: list(arrays[key].shape) for key in arrays.files}
-    return ("PASS" if not missing else "FAIL", f"missing={missing} shapes={shapes}")
+    if missing:
+        return "FAIL", f"missing={missing}"
+    logits_dev_shape = arrays["logits_dev"].shape
+    logits_test_shape = arrays["logits_test"].shape
+    classes = logits_dev_shape[1] if len(logits_dev_shape) > 1 else "NA"
+    return "PASS", f"all required arrays present; dev={logits_dev_shape[0]} test={logits_test_shape[0]} classes={classes}"
 
 
 def run_output_sanity(allow_pending: bool = True) -> list[dict[str, Any]]:
