@@ -1,6 +1,6 @@
 template_name,ablation_id,status,test_acc_at_1,test_acc_at_2,test_low_to_high_rate,test_low_signed_bias
-A0_answer_only,A0,pending,,,,
-A1_question_answer,A1,pending,,,,
+A0_answer_only,A0,completed,0.0,0.2765957446808511,0.8446601941747572,2.938511326860841
+A1_question_answer,A1,completed,0.0,0.23404255319148937,0.7864077669902912,2.7055016181229776
 A2_question_answer_metric,A2,reused_exp02,0.17857142857142858,0.2553191489361702,0.5339805825242718,1.9773462783171523
 A3_question_answer_metric_rubric,A3,completed,0.08928571428571429,0.3617021276595745,0.39805825242718446,1.7734627831715208
 A4_question_answer_metric_rubric_metadata,A4,completed,0.3392857142857143,0.3829787234042553,0.44660194174757284,1.5695792880258899

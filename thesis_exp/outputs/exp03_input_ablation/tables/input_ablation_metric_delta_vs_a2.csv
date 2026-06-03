@@ -1,4 +1,28 @@
 template_name,ablation_id,metric_canonical,n,delta_MAE_label_vs_a2,delta_exact_match_vs_a2
+A0_answer_only,A0,Basic Factual Accuracy,255,0.06274509803921569,-0.08235294117647063
+A0_answer_only,A0,"Clarity, Simplicity & Inspiration",198,0.12626262626262635,-0.13131313131313127
+A0_answer_only,A0,Content Relevance & Scope Control,272,0.04534313725490202,-0.07352941176470584
+A0_answer_only,A0,Domain Knowledge Accuracy,157,0.05732484076433114,-0.0445859872611466
+A0_answer_only,A0,Error Identification & Correction Precision,39,0.025641025641025633,-0.07692307692307698
+A0_answer_only,A0,Higher-Order Thinking & Skill Development,205,0.3821138211382113,-0.16585365853658535
+A0_answer_only,A0,Instruction Following & Task Completion,376,-0.03634751773049644,0.039893617021276584
+A0_answer_only,A0,"Motivation, Guidance & Positive Feedback",85,0.5568627450980395,-0.27058823529411763
+A0_answer_only,A0,"Personalization, Adaptation & Learning Support",125,-0.03999999999999998,0.039999999999999925
+A0_answer_only,A0,Reasoning Process Rigor,178,0.34269662921348343,-0.01685393258426965
+A0_answer_only,A0,Role & Tone Consistency,95,0.03508771929824567,-0.10526315789473684
+A0_answer_only,A0,Scenario Element Integration,233,0.10729613733905585,-0.05579399141630903
+A1_question_answer,A1,Basic Factual Accuracy,255,0.16732026143790846,-0.18823529411764706
+A1_question_answer,A1,"Clarity, Simplicity & Inspiration",198,0.08754208754208764,-0.101010101010101
+A1_question_answer,A1,Content Relevance & Scope Control,272,0.10539215686274511,-0.13235294117647056
+A1_question_answer,A1,Domain Knowledge Accuracy,157,0.0573248407643312,-0.05095541401273895
+A1_question_answer,A1,Error Identification & Correction Precision,39,0.01709401709401709,0.0
+A1_question_answer,A1,Higher-Order Thinking & Skill Development,205,0.34796747967479674,-0.2
+A1_question_answer,A1,Instruction Following & Task Completion,376,-0.016843971631205656,0.010638297872340385
+A1_question_answer,A1,"Motivation, Guidance & Positive Feedback",85,0.5098039215686275,-0.27058823529411763
+A1_question_answer,A1,"Personalization, Adaptation & Learning Support",125,-0.08533333333333326,0.08799999999999997
+A1_question_answer,A1,Reasoning Process Rigor,178,0.25655430711610494,-0.005617977528089846
+A1_question_answer,A1,Role & Tone Consistency,95,0.03859649122807024,-0.13684210526315788
+A1_question_answer,A1,Scenario Element Integration,233,0.05865522174535043,-0.01716738197424894
 A2_question_answer_metric,A2,Basic Factual Accuracy,255,0.0,0.0
 A2_question_answer_metric,A2,"Clarity, Simplicity & Inspiration",198,0.0,0.0
 A2_question_answer_metric,A2,Content Relevance & Scope Control,272,0.0,0.0
