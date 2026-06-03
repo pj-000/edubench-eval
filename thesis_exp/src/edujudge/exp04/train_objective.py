@@ -624,6 +624,17 @@ def save_metrics_history(output_dir: Path, metrics_history: list[dict[str, Any]]
     write_json(output_dir / "metrics_history.json", metrics_history)
 
 
+def selection_metric_name(config: ObjectiveTrainConfig) -> str:
+    return f"dev_{config.selection_metric}"
+
+
+def selection_metric_value(metrics: dict[str, Any], config: ObjectiveTrainConfig) -> float:
+    value = metrics.get(config.selection_metric)
+    if value is None:
+        raise KeyError(f"Selection metric {config.selection_metric!r} not found in dev metrics.")
+    return float(value)
+
+
 def save_checkpoint(model: Any, tokenizer: Any, output_dir: Path, config: ObjectiveTrainConfig, metrics: dict[str, Any]) -> None:
     import torch
 
@@ -643,6 +654,11 @@ def save_checkpoint(model: Any, tokenizer: Any, output_dir: Path, config: Object
             "num_outputs": getattr(model, "num_outputs", None),
             "hidden_size": getattr(model, "hidden_size", None),
             "state_dict": state_dict_path.name,
+            "best_epoch": metrics.get("epoch"),
+            "best_global_step": metrics.get("global_step"),
+            "best_selection_metric_name": selection_metric_name(config),
+            "best_selection_metric_value": selection_metric_value(metrics, config),
+            "selection_direction": config.selection_mode,
         },
     )
     write_json(output_dir / "training_config.json", asdict(config))
@@ -650,15 +666,14 @@ def save_checkpoint(model: Any, tokenizer: Any, output_dir: Path, config: Object
 
 
 def score_is_better(metrics: dict[str, Any], best_score: float | None, config: ObjectiveTrainConfig) -> bool:
-    value = metrics.get(config.selection_metric)
-    if value is None:
-        raise KeyError(f"Selection metric {config.selection_metric!r} not found in dev metrics.")
-    score = float(value)
+    score = selection_metric_value(metrics, config)
     if best_score is None:
         return True
     if config.selection_mode == "max":
         return score > best_score
+    if config.selection_mode == "min":
         return score < best_score
+    raise ValueError(f"Unsupported selection_mode: {config.selection_mode!r}")
 
 
 def loss_display_name(config: ObjectiveTrainConfig) -> str:
@@ -670,6 +685,8 @@ def loss_display_name(config: ObjectiveTrainConfig) -> str:
 
 
 def normalize_run_files(output_dir: Path, config: ObjectiveTrainConfig, status: str) -> None:
+    best_metadata_path = config.checkpoint_output_dir / "best" / "exp04_head_metadata.json"
+    best_metadata = read_json(best_metadata_path) if best_metadata_path.exists() else {}
     write_json(
         output_dir / "run_metadata.json",
         {
@@ -682,6 +699,11 @@ def normalize_run_files(output_dir: Path, config: ObjectiveTrainConfig, status: 
             "model_name_or_path": config.model_name_or_path,
             "loss": loss_display_name(config),
             "checkpoint_selection": f"dev {config.selection_metric} ({config.selection_mode})",
+            "best_epoch": best_metadata.get("best_epoch"),
+            "best_global_step": best_metadata.get("best_global_step"),
+            "best_selection_metric_name": best_metadata.get("best_selection_metric_name", selection_metric_name(config)),
+            "best_selection_metric_value": best_metadata.get("best_selection_metric_value"),
+            "selection_direction": best_metadata.get("selection_direction", config.selection_mode),
         },
     )
 
@@ -893,7 +915,7 @@ def train(config: ObjectiveTrainConfig) -> dict[str, Any]:
             elapsed = time.time() - start
             avg_seconds_per_step = elapsed / max(1, global_step)
             eta_seconds = max(0, total_steps - global_step) * avg_seconds_per_step
-            selected = score_is_better(dev_result.metrics, best_score, config)
+            selected = bool(score_is_better(dev_result.metrics, best_score, config))
             print(
                 f"dev epoch={epoch + 1}: MAE_label={dev_result.metrics['MAE_label']:.4f}, "
                 f"MAE_expected={dev_result.metrics['MAE_expected']:.4f}, "
@@ -903,15 +925,16 @@ def train(config: ObjectiveTrainConfig) -> dict[str, Any]:
                 flush=True,
             )
             if selected:
-                best_score = float(dev_result.metrics[config.selection_metric])
+                best_score = selection_metric_value(dev_result.metrics, config)
                 save_checkpoint(model, tokenizer, best_dir, config, dev_result.metrics)
                 save_predictions(config.output_dir, dev_result, suffix="dev_best")
     finally:
         progress.close()
 
     state_dict_path = best_dir / "state_dict.pt"
-    if state_dict_path.exists():
-        model.load_state_dict(torch.load(state_dict_path, map_location=device))
+    if not state_dict_path.exists():
+        raise RuntimeError(f"Best checkpoint was not saved: {state_dict_path}")
+    model.load_state_dict(torch.load(state_dict_path, map_location=device))
     dev_final = evaluate(model, dev_loader, device, "dev", config)
     test_result = evaluate(model, test_loader, device, "test", config)
     for result in [dev_final, test_result]:

@@ -1,0 +1,255 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+CONDA_ENV="${CONDA_ENV:-llama_factory}"
+MODEL_NAME_OR_PATH="${MODEL_NAME_OR_PATH:-/home/share/models/modelscope/Qwen/Qwen3-Reranker-0.6B}"
+EXP04_PARALLEL_OBJECTIVES="${EXP04_PARALLEL_OBJECTIVES:-1}"
+EXP04_GPU_REGRESSION="${EXP04_GPU_REGRESSION:-6}"
+EXP04_GPU_ORDINAL="${EXP04_GPU_ORDINAL:-7}"
+CUDA_VISIBLE_DEVICES="${CUDA_VISIBLE_DEVICES:-${EXP04_GPU_REGRESSION},${EXP04_GPU_ORDINAL}}"
+
+NUM_TRAIN_EPOCHS="${NUM_TRAIN_EPOCHS:-10}"
+PER_DEVICE_TRAIN_BATCH_SIZE="${PER_DEVICE_TRAIN_BATCH_SIZE:-4}"
+PER_DEVICE_EVAL_BATCH_SIZE="${PER_DEVICE_EVAL_BATCH_SIZE:-8}"
+GRADIENT_ACCUMULATION_STEPS="${GRADIENT_ACCUMULATION_STEPS:-32}"
+LEARNING_RATE="${LEARNING_RATE:-2e-5}"
+WEIGHT_DECAY="${WEIGHT_DECAY:-0.01}"
+WARMUP_RATIO="${WARMUP_RATIO:-0.05}"
+MAX_LENGTH="${MAX_LENGTH:-2048}"
+BF16="${BF16:-auto}"
+GRADIENT_CHECKPOINTING="${GRADIENT_CHECKPOINTING:-0}"
+LOG_STEPS="${LOG_STEPS:-5}"
+NO_PROGRESS_BAR="${NO_PROGRESS_BAR:-0}"
+PYTORCH_CUDA_ALLOC_CONF="${PYTORCH_CUDA_ALLOC_CONF:-expandable_segments:True}"
+REQUIRE_CUDA="${REQUIRE_CUDA:-1}"
+FORMAL_RUN="${FORMAL_RUN:-1}"
+
+if [[ "${FORMAL_RUN}" != "1" ]]; then
+  echo "ERROR: fixed-selection rerun must use FORMAL_RUN=1." >&2
+  exit 1
+fi
+
+if [[ -n "${MAX_TRAIN_SAMPLES:-}" || -n "${MAX_EVAL_SAMPLES:-}" ]]; then
+  echo "ERROR: FORMAL_RUN=1 cannot be used with MAX_TRAIN_SAMPLES or MAX_EVAL_SAMPLES." >&2
+  exit 1
+fi
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+REPO_ROOT="$(cd "${SCRIPT_DIR}/../.." && pwd)"
+cd "${REPO_ROOT}"
+
+if [[ ! -f "thesis_exp/outputs/exp03_input_ablation/runs/A4_question_answer_metric_rubric_metadata/tables/metrics_summary.csv" ]]; then
+  echo "ERROR: Exp3 A4 run output is missing; sync Exp3 results before Exp4." >&2
+  exit 1
+fi
+
+if [[ ! -d "thesis_exp/outputs/exp03_input_ablation/datasets/A4_question_answer_metric_rubric_metadata" ]]; then
+  echo "ERROR: Exp3 A4 dataset is missing; build or sync Exp3 datasets before Exp4." >&2
+  exit 1
+fi
+
+if [[ -f "${HOME}/miniconda3/bin/activate" ]]; then
+  source "${HOME}/miniconda3/bin/activate" "${CONDA_ENV}"
+else
+  echo "WARNING: ${HOME}/miniconda3/bin/activate was not found; using current shell." >&2
+fi
+
+unset MAX_TRAIN_SAMPLES
+unset MAX_EVAL_SAMPLES
+unset FP16
+unset EVAL_ONLY
+unset CHECKPOINT_DIR
+
+export MODEL_NAME_OR_PATH
+export CUDA_VISIBLE_DEVICES
+export EXP04_PARALLEL_OBJECTIVES
+export EXP04_GPU_REGRESSION
+export EXP04_GPU_ORDINAL
+export NUM_TRAIN_EPOCHS
+export PER_DEVICE_TRAIN_BATCH_SIZE
+export PER_DEVICE_EVAL_BATCH_SIZE
+export GRADIENT_ACCUMULATION_STEPS
+export LEARNING_RATE
+export WEIGHT_DECAY
+export WARMUP_RATIO
+export MAX_LENGTH
+export BF16
+export GRADIENT_CHECKPOINTING
+export LOG_STEPS
+export NO_PROGRESS_BAR
+export PYTORCH_CUDA_ALLOC_CONF
+export FORMAL_RUN=1
+export REQUIRE_CUDA
+export TOKENIZERS_PARALLELISM="${TOKENIZERS_PARALLELISM:-false}"
+
+RUN_ID="fixed_selection_$(date +%Y%m%d_%H%M%S)"
+LOG_DIR="thesis_exp/outputs/exp04_target_objectives/logs"
+mkdir -p "${LOG_DIR}"
+
+cat <<CONFIG
+Exp4 fixed-selection O2/O3 formal rerun
+RUN_ID=${RUN_ID}
+MODEL_NAME_OR_PATH=${MODEL_NAME_OR_PATH}
+CUDA_VISIBLE_DEVICES=${CUDA_VISIBLE_DEVICES}
+EXP04_PARALLEL_OBJECTIVES=${EXP04_PARALLEL_OBJECTIVES}
+EXP04_GPU_REGRESSION=${EXP04_GPU_REGRESSION}
+EXP04_GPU_ORDINAL=${EXP04_GPU_ORDINAL}
+OBJECTIVES=O2_regression_smoothl1 O3_ordinal
+O1_CLASSIFICATION=reuse_exp03_a4_only
+NUM_TRAIN_EPOCHS=${NUM_TRAIN_EPOCHS}
+PER_DEVICE_TRAIN_BATCH_SIZE=${PER_DEVICE_TRAIN_BATCH_SIZE}
+PER_DEVICE_EVAL_BATCH_SIZE=${PER_DEVICE_EVAL_BATCH_SIZE}
+GRADIENT_ACCUMULATION_STEPS=${GRADIENT_ACCUMULATION_STEPS}
+effective batch size=$((PER_DEVICE_TRAIN_BATCH_SIZE * GRADIENT_ACCUMULATION_STEPS))
+LEARNING_RATE=${LEARNING_RATE}
+WEIGHT_DECAY=${WEIGHT_DECAY}
+WARMUP_RATIO=${WARMUP_RATIO}
+MAX_LENGTH=${MAX_LENGTH}
+BF16=${BF16}
+GRADIENT_CHECKPOINTING=${GRADIENT_CHECKPOINTING}
+LOG_STEPS=${LOG_STEPS}
+PROGRESS_BAR=$([[ "${NO_PROGRESS_BAR}" == "1" ]] && echo disabled || echo enabled)
+FORMAL_RUN=${FORMAL_RUN}
+REQUIRE_CUDA=${REQUIRE_CUDA}
+PYTORCH_CUDA_ALLOC_CONF=${PYTORCH_CUDA_ALLOC_CONF}
+CONFIG
+
+python - <<'PY'
+import os
+
+require_cuda = os.environ.get("REQUIRE_CUDA", "1") == "1"
+try:
+    import torch
+except Exception as exc:
+    print(f"torch import error: {type(exc).__name__}: {exc}")
+    if require_cuda:
+        raise SystemExit(1)
+    raise SystemExit(0)
+
+cuda_available = torch.cuda.is_available()
+print(f"torch.cuda.is_available()={cuda_available}")
+print(f"torch.cuda.device_count()={torch.cuda.device_count()}")
+if cuda_available:
+    print(f"torch.cuda.get_device_name(0)={torch.cuda.get_device_name(0)}")
+    if torch.cuda.device_count() > 1:
+        print(f"torch.cuda.get_device_name(1)={torch.cuda.get_device_name(1)}")
+print(f"torch.version.cuda={torch.version.cuda}")
+print(f"selected BF16/FP16 setting=BF16={os.environ.get('BF16')}, FP16=unset")
+if require_cuda and not cuda_available:
+    raise SystemExit("ERROR: REQUIRE_CUDA=1 but CUDA is unavailable.")
+PY
+
+python -m thesis_exp.src.edujudge.exp04.build_exp04_dataset --force
+
+python -m thesis_exp.src.edujudge.exp04.train_objective \
+  --objective_type classification \
+  --objective_id O1_classification \
+  --model_name_or_path "${MODEL_NAME_OR_PATH}" \
+  --reuse_exp03_a4 \
+  --trust_remote_code \
+  --local_files_only
+
+rm -rf \
+  "thesis_exp/outputs/exp04_target_objectives/runs/O2_regression_smoothl1" \
+  "thesis_exp/outputs/exp04_target_objectives/runs/O3_ordinal" \
+  "thesis_exp/artifacts/exp04_target_objectives/checkpoints/O2_regression_smoothl1" \
+  "thesis_exp/artifacts/exp04_target_objectives/checkpoints/O3_ordinal"
+rm -f \
+  "thesis_exp/outputs/exp04_target_objectives/arrays/O2_regression_smoothl1_dev_test_arrays.npz" \
+  "thesis_exp/outputs/exp04_target_objectives/arrays/O3_ordinal_dev_test_arrays.npz" \
+  "thesis_exp/outputs/exp04_target_objectives/predictions/O2_regression_smoothl1_predictions_dev.jsonl" \
+  "thesis_exp/outputs/exp04_target_objectives/predictions/O2_regression_smoothl1_predictions_test.jsonl" \
+  "thesis_exp/outputs/exp04_target_objectives/predictions/O3_ordinal_predictions_dev.jsonl" \
+  "thesis_exp/outputs/exp04_target_objectives/predictions/O3_ordinal_predictions_test.jsonl"
+
+python -m thesis_exp.src.edujudge.exp04.postprocess_exp04_results
+
+progress_args=()
+if [[ "${NO_PROGRESS_BAR}" == "1" ]]; then
+  progress_args+=(--no_progress_bar)
+fi
+
+gc_args=()
+if [[ "${GRADIENT_CHECKPOINTING}" == "1" ]]; then
+  gc_args+=(--gradient_checkpointing)
+fi
+
+run_objective() {
+  local objective_type="$1"
+  local objective_id="$2"
+  local regression_loss="$3"
+  local gpu_id="$4"
+  local log_path="${LOG_DIR}/train_${objective_id}_${RUN_ID}.log"
+  local loss_args=()
+  if [[ "${objective_type}" == "regression" ]]; then
+    loss_args+=(--regression_loss "${regression_loss}")
+  fi
+
+  echo "Starting ${objective_id} fixed-selection rerun on CUDA_VISIBLE_DEVICES=${gpu_id}; log=${log_path}"
+  CUDA_VISIBLE_DEVICES="${gpu_id}" python -m thesis_exp.src.edujudge.exp04.train_objective \
+    --objective_type "${objective_type}" \
+    --objective_id "${objective_id}" \
+    --model_name_or_path "${MODEL_NAME_OR_PATH}" \
+    --data_dir "thesis_exp/outputs/exp04_target_objectives/datasets/A4_fixed_question_answer_metric_rubric_metadata" \
+    --output_dir "thesis_exp/outputs/exp04_target_objectives/runs/${objective_id}" \
+    --checkpoint_output_dir "thesis_exp/artifacts/exp04_target_objectives/checkpoints/${objective_id}" \
+    --max_length "${MAX_LENGTH}" \
+    --num_train_epochs "${NUM_TRAIN_EPOCHS}" \
+    --learning_rate "${LEARNING_RATE}" \
+    --weight_decay "${WEIGHT_DECAY}" \
+    --warmup_ratio "${WARMUP_RATIO}" \
+    --per_device_train_batch_size "${PER_DEVICE_TRAIN_BATCH_SIZE}" \
+    --per_device_eval_batch_size "${PER_DEVICE_EVAL_BATCH_SIZE}" \
+    --gradient_accumulation_steps "${GRADIENT_ACCUMULATION_STEPS}" \
+    --bf16 "${BF16}" \
+    --log_steps "${LOG_STEPS}" \
+    "${loss_args[@]}" \
+    --trust_remote_code \
+    --local_files_only \
+    "${progress_args[@]}" \
+    "${gc_args[@]}" 2>&1 | tee "${log_path}"
+}
+
+run_training_objectives_parallel() {
+  local pids=()
+  local names=()
+  local failed=0
+
+  run_objective regression O2_regression_smoothl1 smoothl1 "${EXP04_GPU_REGRESSION}" &
+  pids+=("$!")
+  names+=("O2_regression_smoothl1")
+
+  run_objective ordinal O3_ordinal none "${EXP04_GPU_ORDINAL}" &
+  pids+=("$!")
+  names+=("O3_ordinal")
+
+  for index in "${!pids[@]}"; do
+    if wait "${pids[$index]}"; then
+      echo "Completed ${names[$index]}"
+    else
+      echo "ERROR: ${names[$index]} failed." >&2
+      failed=1
+    fi
+  done
+
+  if [[ "${failed}" != "0" ]]; then
+    exit 1
+  fi
+}
+
+run_training_objectives_sequential() {
+  run_objective regression O2_regression_smoothl1 smoothl1 "${EXP04_GPU_REGRESSION}"
+  run_objective ordinal O3_ordinal none "${EXP04_GPU_ORDINAL}"
+}
+
+if [[ "${EXP04_PARALLEL_OBJECTIVES}" == "1" ]]; then
+  run_training_objectives_parallel
+else
+  run_training_objectives_sequential
+fi
+
+python -m thesis_exp.src.edujudge.exp04.postprocess_exp04_results --strict
+python -m thesis_exp.src.edujudge.exp04.sanity_check_exp04_outputs --strict
+python -m thesis_exp.src.edujudge.exp04.write_exp04_report
+python -m thesis_exp.src.edujudge.exp04.readability_check_exp04
+cat thesis_exp/outputs/exp04_target_objectives/review_package.md

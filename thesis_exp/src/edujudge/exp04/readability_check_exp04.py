@@ -17,11 +17,13 @@ from thesis_exp.src.edujudge.utils.io import REPO_ROOT, relpath, write_csv, writ
 SCRIPT_PATHS = [
     REPO_ROOT / "run_exp04_train_objectives.sh",
     REPO_ROOT / "thesis_exp" / "scripts" / "run_exp04_train_objectives.sh",
+    REPO_ROOT / "thesis_exp" / "scripts" / "run_exp04_train_o2_o3_fixed_selection.sh",
 ]
 EXP04_SRC_DIR = REPO_ROOT / "thesis_exp" / "src" / "edujudge" / "exp04"
 MIN_SCRIPT_LINES = {
     REPO_ROOT / "run_exp04_train_objectives.sh": 3,
     REPO_ROOT / "thesis_exp" / "scripts" / "run_exp04_train_objectives.sh": 100,
+    REPO_ROOT / "thesis_exp" / "scripts" / "run_exp04_train_o2_o3_fixed_selection.sh": 100,
 }
 MIN_PY_LINES = {
     EXP04_SRC_DIR / "train_objective.py": 100,

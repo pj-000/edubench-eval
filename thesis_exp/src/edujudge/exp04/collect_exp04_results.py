@@ -105,6 +105,11 @@ def summarize_objective(objective_id: str) -> dict[str, Any]:
             "test_low_to_high_rate": None,
             "test_low_signed_bias": None,
             "test_monotonic_violation_rate": None,
+            "best_epoch": meta.get("best_epoch"),
+            "best_global_step": meta.get("best_global_step"),
+            "best_selection_metric_name": meta.get("best_selection_metric_name", ""),
+            "best_selection_metric_value": float_or_none(meta.get("best_selection_metric_value")),
+            "selection_direction": meta.get("selection_direction", ""),
             "run_dir": relpath(path),
         }
 
@@ -129,6 +134,11 @@ def summarize_objective(objective_id: str) -> dict[str, Any]:
         "test_low_to_high_rate": float_or_none(test.get("low_to_high_rate")),
         "test_low_signed_bias": float_or_none(test.get("low_signed_bias")),
         "test_monotonic_violation_rate": float_or_none(test.get("monotonic_violation_rate")),
+        "best_epoch": meta.get("best_epoch"),
+        "best_global_step": meta.get("best_global_step"),
+        "best_selection_metric_name": meta.get("best_selection_metric_name", ""),
+        "best_selection_metric_value": float_or_none(meta.get("best_selection_metric_value")),
+        "selection_direction": meta.get("selection_direction", ""),
         "run_dir": relpath(path),
     }
 
