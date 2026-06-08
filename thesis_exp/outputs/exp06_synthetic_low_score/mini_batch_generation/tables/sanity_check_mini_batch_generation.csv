@@ -1,0 +1,16 @@
+check_name,status,details
+target_matrix_exists,PASS,thesis_exp/outputs/exp06_synthetic_low_score/mini_batch_generation/tables/mini_batch_target_matrix.csv
+source_selection_exists,PASS,thesis_exp/outputs/exp06_synthetic_low_score/mini_batch_generation/tables/mini_batch_source_selection.csv
+prompts_exist,FAIL,thesis_exp/outputs/exp06_synthetic_low_score/mini_batch_generation/prompts/mini_batch_prompts.jsonl
+planned_count_le_24,PASS,planned=24
+labels_only_1_2_3,PASS,"labels=['1', '2', '3']"
+target_rows_equal_24,PASS,rows=24
+source_selection_complete,FAIL,selected_sources=0 required=24
+no_dev_test_source_selected,PASS,leak_or_nontrain_rows=0
+full_score_prompt_templates_exist,PASS,missing=[]
+raw_has_normalized,DRY_RUN,raw_generations.jsonl absent in dry-run
+filtered_has_filter_report,PASS,thesis_exp/outputs/exp06_synthetic_low_score/mini_batch_generation/tables/filter_report.csv
+leakage_report_if_generated,PASS,thesis_exp/outputs/exp06_synthetic_low_score/mini_batch_generation/leakage/leakage_report.md
+spotcheck_package_if_generated,PASS,thesis_exp/outputs/exp06_synthetic_low_score/mini_batch_generation/spotcheck/spotcheck_samples.csv
+no_checkpoint_or_weight_files_tracked,PASS,
+no_exp0_to_exp5_tracked_diff,PASS,

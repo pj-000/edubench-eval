@@ -1,0 +1,7 @@
+check_name,count,notes
+total_train_rows,2654,paper_like_triple_seed42/train.jsonl rows
+complete_source_rows,2654,"question, answer, rubric, metric, language, question_key, triple_key present"
+no_dev_test_source_question_overlap,0,source question_key absent from dev/test source question_key sets
+no_dev_test_source_triple_overlap,2654,source triple_key absent from dev/test source triple_key sets
+no_dev_test_normalized_question_overlap,0,normalized question absent from dev/test normalized question sets
+strict_train_only_source_candidates,0,"passes source question, source triple, and normalized question dev/test exclusion"

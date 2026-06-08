@@ -1,0 +1,5 @@
+check_name,status,count,notes
+total_normalized_rows,INFO,0,input candidate count
+passed_filter_rows,INFO,0,rows written to filtered_synthetic_candidates.jsonl
+failed_filter_rows,PASS,0,rows blocked by one or more required filters
+generation_presence,DRY_RUN,0,no generated candidates available
