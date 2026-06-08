@@ -2,7 +2,7 @@
 
 Can L1 smoke start? **YES**
 
-Can L1 formal training start? **NO**
+Can L1 formal training start? **YES**
 
 Can L2 start? **NO until L1 reviewed**
 
@@ -22,20 +22,20 @@ Can L2 start? **NO until L1 reviewed**
 | --- | --- |
 | Setup sanity status | PASS |
 | Readability status | PASS |
-| Smoke status | PENDING |
-| Formal training status | pending |
+| Smoke status | PASS |
+| Formal training status | completed |
 
 ## Main Results
 
 | loss | status | Accuracy | MAE_label | MAE_expected | QWK | Kendall tau | low_to_high_rate |
 | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: |
 | L0_exp04_o3_ordinal | completed | 0.7381 | 0.3777 | 0.3430 | 0.7036 | 0.6238 | 0.2330 |
-| L1_weighted_ordinal | pending | NA | NA | NA | NA | NA | NA |
+| L1_weighted_ordinal | completed | 0.7250 | 0.3894 | 0.3504 | 0.7132 | 0.6149 | 0.2136 |
 
 ## Remaining Blockers
 
-- L1 formal training should start only after smoke output sanity passes.
-- L2/L3/L4 are intentionally out of scope for this patch.
+- none for L1; formal training completed and setup/output/readability checks passed
+- L2/L3/L4 remain intentionally out of scope until L1 is reviewed
 
 ## Files
 

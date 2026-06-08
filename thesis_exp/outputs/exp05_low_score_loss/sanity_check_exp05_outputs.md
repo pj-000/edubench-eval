@@ -4,4 +4,14 @@ Overall status: **PASS**
 
 | check | status | observed | expected | notes |
 | --- | --- | --- | --- | --- |
-| L1_weighted_ordinal run status | PASS | pending | pending allowed |  |
+| L1_weighted_ordinal run status | PASS | completed | completed |  |
+| L1 predictions_dev | PASS | rows=664 missing=[] | readable JSONL |  |
+| L1 predictions_test | PASS | rows=2218 missing=[] | readable JSONL |  |
+| L1 dev_test_arrays.npz | PASS | test_shape=(2218, 4) missing=[] | required array keys, logits dim=4 |  |
+| L1 metrics_summary.csv | PASS | thesis_exp/outputs/exp05_low_score_loss/runs/L1_weighted_ordinal/tables/metrics_summary.csv | exists |  |
+| L1 per_bin_metrics.csv | PASS | thesis_exp/outputs/exp05_low_score_loss/runs/L1_weighted_ordinal/tables/per_bin_metrics.csv | exists |  |
+| L1 low_score_metrics.csv | PASS | thesis_exp/outputs/exp05_low_score_loss/runs/L1_weighted_ordinal/tables/low_score_metrics.csv | exists |  |
+| L1 high_score_metrics.csv | PASS | thesis_exp/outputs/exp05_low_score_loss/runs/L1_weighted_ordinal/tables/high_score_metrics.csv | exists |  |
+| L1 metric_level_metrics.csv | PASS | thesis_exp/outputs/exp05_low_score_loss/runs/L1_weighted_ordinal/tables/metric_level_metrics.csv | exists |  |
+| L1 scenario_level_metrics.csv | PASS | thesis_exp/outputs/exp05_low_score_loss/runs/L1_weighted_ordinal/tables/scenario_level_metrics.csv | exists |  |
+| L1 checkpoint selection | PASS | epoch=9 value=0.410140562248996 | dev_MAE_label min=0.410140562248996 |  |

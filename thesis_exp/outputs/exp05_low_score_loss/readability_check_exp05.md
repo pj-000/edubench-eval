@@ -44,24 +44,61 @@ Overall status: **PASS**
 | python module line count | thesis_exp/src/edujudge/exp05/train_l1_weighted_ordinal.py | PASS | 643 | >5 |  |
 | python module line count LF line endings | thesis_exp/src/edujudge/exp05/train_l1_weighted_ordinal.py | PASS | LF bytes; lines=643 bytes=28793 | LF only |  |
 | future import placement | thesis_exp/src/edujudge/exp05/train_l1_weighted_ordinal.py | PASS | ok | docstring then future import |  |
-| python module line count | thesis_exp/src/edujudge/exp05/write_exp05_report.py | PASS | 196 | >5 |  |
-| python module line count LF line endings | thesis_exp/src/edujudge/exp05/write_exp05_report.py | PASS | LF bytes; lines=196 bytes=6141 | LF only |  |
+| python module line count | thesis_exp/src/edujudge/exp05/write_exp05_report.py | PASS | 205 | >5 |  |
+| python module line count LF line endings | thesis_exp/src/edujudge/exp05/write_exp05_report.py | PASS | LF bytes; lines=205 bytes=6501 | LF only |  |
 | future import placement | thesis_exp/src/edujudge/exp05/write_exp05_report.py | PASS | ok | docstring then future import |  |
 | py_compile exp05 modules | thesis_exp/src/edujudge/exp05 | PASS | ok | ok |  |
+| pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/runs/L1_weighted_ordinal/logs/training_log.csv | PASS | rows=10 cols=44 | readable |  |
+| pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/runs/L1_weighted_ordinal/metrics.csv | PASS | rows=2 cols=45 | readable |  |
+| pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/runs/L1_weighted_ordinal/tables/dev_metrics_his... | PASS | rows=10 cols=44 | readable |  |
+| pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/runs/L1_weighted_ordinal/tables/high_score_metr... | PASS | rows=2 cols=5 | readable |  |
+| pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/runs/L1_weighted_ordinal/tables/low_score_metri... | PASS | rows=2 cols=10 | readable |  |
+| pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/runs/L1_weighted_ordinal/tables/metric_level_me... | PASS | rows=24 cols=37 | readable |  |
+| pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/runs/L1_weighted_ordinal/tables/metrics_summary... | PASS | rows=2 cols=45 | readable |  |
+| pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/runs/L1_weighted_ordinal/tables/per_bin_metrics... | PASS | rows=10 cols=10 | readable |  |
+| pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/runs/L1_weighted_ordinal/tables/scenario_level_... | PASS | rows=17 cols=37 | readable |  |
+| pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/runs/L1_weighted_ordinal/tables/score_distribut... | PASS | rows=10 cols=5 | readable |  |
+| pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/smoke_test/L1_weighted_ordinal/logs/training_lo... | PASS | rows=1 cols=44 | readable |  |
+| pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/smoke_test/L1_weighted_ordinal/metrics.csv | PASS | rows=2 cols=45 | readable |  |
+| pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/smoke_test/L1_weighted_ordinal/tables/dev_metri... | PASS | rows=1 cols=44 | readable |  |
+| pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/smoke_test/L1_weighted_ordinal/tables/high_scor... | PASS | rows=2 cols=5 | readable |  |
+| pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/smoke_test/L1_weighted_ordinal/tables/low_score... | PASS | rows=2 cols=10 | readable |  |
+| pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/smoke_test/L1_weighted_ordinal/tables/metric_le... | PASS | rows=6 cols=37 | readable |  |
+| pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/smoke_test/L1_weighted_ordinal/tables/metrics_s... | PASS | rows=2 cols=45 | readable |  |
+| pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/smoke_test/L1_weighted_ordinal/tables/per_bin_m... | PASS | rows=10 cols=10 | readable |  |
+| pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/smoke_test/L1_weighted_ordinal/tables/scenario_... | PASS | rows=2 cols=37 | readable |  |
+| pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/smoke_test/L1_weighted_ordinal/tables/score_dis... | PASS | rows=10 cols=5 | readable |  |
 | pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/tables/class_weights.csv | PASS | rows=5 cols=7 | readable |  |
 | pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/tables/dataset_reference_sanity.csv | PASS | rows=3 cols=8 | readable |  |
 | pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/tables/loss_ablation_delta_vs_L0.csv | PASS | rows=1 cols=13 | readable |  |
-| pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/tables/loss_ablation_high_score.csv | PASS | rows=1 cols=10 | readable |  |
-| pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/tables/loss_ablation_low_score.csv | PASS | rows=1 cols=15 | readable |  |
-| pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/tables/loss_ablation_per_bin.csv | PASS | rows=5 cols=15 | readable |  |
+| pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/tables/loss_ablation_high_score.csv | PASS | rows=2 cols=10 | readable |  |
+| pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/tables/loss_ablation_low_score.csv | PASS | rows=2 cols=15 | readable |  |
+| pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/tables/loss_ablation_per_bin.csv | PASS | rows=10 cols=15 | readable |  |
 | pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/tables/loss_ablation_summary.csv | PASS | rows=2 cols=14 | readable |  |
-| pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/tables/readability_check_exp05.csv | PASS | rows=61 cols=6 | readable |  |
-| pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/tables/sanity_check_exp05_outputs.csv | PASS | rows=1 cols=5 | readable |  |
+| pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/tables/readability_check_exp05.csv | PASS | rows=98 cols=6 | readable |  |
+| pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/tables/sanity_check_exp05_outputs.csv | PASS | rows=11 cols=5 | readable |  |
+| pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/tables/sanity_check_exp05_outputs_smoke.csv | PASS | rows=11 cols=5 | readable |  |
 | pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/tables/sanity_check_exp05_setup.csv | PASS | rows=23 cols=5 | readable |  |
+| jsonl line json.loads | thesis_exp/outputs/exp05_low_score_loss/runs/L1_weighted_ordinal/predictions/prediction... | PASS | rows=664 | all nonempty lines parse |  |
+| jsonl line json.loads | thesis_exp/outputs/exp05_low_score_loss/runs/L1_weighted_ordinal/predictions/prediction... | PASS | rows=664 | all nonempty lines parse |  |
+| jsonl line json.loads | thesis_exp/outputs/exp05_low_score_loss/runs/L1_weighted_ordinal/predictions/prediction... | PASS | rows=2218 | all nonempty lines parse |  |
+| jsonl line json.loads | thesis_exp/outputs/exp05_low_score_loss/runs/L1_weighted_ordinal/predictions_dev.jsonl | PASS | rows=664 | all nonempty lines parse |  |
+| jsonl line json.loads | thesis_exp/outputs/exp05_low_score_loss/runs/L1_weighted_ordinal/predictions_dev_best.j... | PASS | rows=664 | all nonempty lines parse |  |
+| jsonl line json.loads | thesis_exp/outputs/exp05_low_score_loss/runs/L1_weighted_ordinal/predictions_test.jsonl | PASS | rows=2218 | all nonempty lines parse |  |
+| jsonl line json.loads | thesis_exp/outputs/exp05_low_score_loss/smoke_test/L1_weighted_ordinal/predictions/pred... | PASS | rows=8 | all nonempty lines parse |  |
+| jsonl line json.loads | thesis_exp/outputs/exp05_low_score_loss/smoke_test/L1_weighted_ordinal/predictions/pred... | PASS | rows=8 | all nonempty lines parse |  |
+| jsonl line json.loads | thesis_exp/outputs/exp05_low_score_loss/smoke_test/L1_weighted_ordinal/predictions/pred... | PASS | rows=8 | all nonempty lines parse |  |
+| jsonl line json.loads | thesis_exp/outputs/exp05_low_score_loss/smoke_test/L1_weighted_ordinal/predictions_dev.... | PASS | rows=8 | all nonempty lines parse |  |
+| jsonl line json.loads | thesis_exp/outputs/exp05_low_score_loss/smoke_test/L1_weighted_ordinal/predictions_dev_... | PASS | rows=8 | all nonempty lines parse |  |
+| jsonl line json.loads | thesis_exp/outputs/exp05_low_score_loss/smoke_test/L1_weighted_ordinal/predictions_test... | PASS | rows=8 | all nonempty lines parse |  |
 | markdown max line length | thesis_exp/outputs/exp05_low_score_loss/dataset_reference.md | PASS | 146 | <300 |  |
 | markdown max line length | thesis_exp/outputs/exp05_low_score_loss/notion_exp05_l1_summary.md | PASS | 94 | <300 |  |
-| markdown max line length | thesis_exp/outputs/exp05_low_score_loss/readability_check_exp05.md | PASS | 159 | <300 |  |
+| markdown max line length | thesis_exp/outputs/exp05_low_score_loss/readability_check_exp05.md | PASS | 167 | <300 |  |
 | markdown max line length | thesis_exp/outputs/exp05_low_score_loss/report.md | PASS | 95 | <300 |  |
 | markdown max line length | thesis_exp/outputs/exp05_low_score_loss/review_package.md | PASS | 94 | <300 |  |
-| markdown max line length | thesis_exp/outputs/exp05_low_score_loss/sanity_check_exp05_outputs.md | PASS | 72 | <300 |  |
-| markdown max line length | thesis_exp/outputs/exp05_low_score_loss/sanity_check_exp05_setup.md | PASS | 193 | <300 |  |
+| markdown max line length | thesis_exp/outputs/exp05_low_score_loss/runs/L1_weighted_ordinal/run_summary.md | PASS | 63 | <300 |  |
+| markdown max line length | thesis_exp/outputs/exp05_low_score_loss/sanity_check_exp05_outputs.md | PASS | 153 | <300 |  |
+| markdown max line length | thesis_exp/outputs/exp05_low_score_loss/sanity_check_exp05_outputs_smoke.md | PASS | 155 | <300 |  |
+| markdown max line length | thesis_exp/outputs/exp05_low_score_loss/sanity_check_exp05_setup.md | PASS | 259 | <300 |  |
+| markdown max line length | thesis_exp/outputs/exp05_low_score_loss/smoke_test/L1_weighted_ordinal/run_summary.md | PASS | 63 | <300 |  |
+| markdown max line length | thesis_exp/outputs/exp05_low_score_loss/smoke_test/smoke_test_report.md | PASS | 88 | <300 |  |

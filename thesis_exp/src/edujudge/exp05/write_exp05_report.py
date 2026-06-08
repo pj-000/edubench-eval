@@ -80,6 +80,16 @@ def write_review_package(rows: list[dict[str, Any]] | None = None) -> None:
     l1_status = str(l1.get("status") or "pending")
     can_smoke = setup == "PASS" and readability == "PASS"
     can_formal = can_smoke and smoke == "PASS"
+    if l1_status == "completed":
+        blockers = [
+            "none for L1; formal training completed and setup/output/readability checks passed",
+            "L2/L3/L4 remain intentionally out of scope until L1 is reviewed",
+        ]
+    else:
+        blockers = [
+            "L1 formal training should start only after smoke output sanity passes",
+            "L2/L3/L4 are intentionally out of scope for this patch",
+        ]
     review = f"""# Exp5 L1 Review Package
 
 Can L1 smoke start? **{"YES" if can_smoke else "NO"}**
@@ -107,8 +117,7 @@ Can L2 start? **NO until L1 reviewed**
 
 ## Remaining Blockers
 
-- L1 formal training should start only after smoke output sanity passes.
-- L2/L3/L4 are intentionally out of scope for this patch.
+{chr(10).join(f"- {blocker}" for blocker in blockers)}
 
 ## Files
 
