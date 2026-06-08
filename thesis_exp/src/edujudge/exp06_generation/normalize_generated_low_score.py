@@ -96,6 +96,7 @@ def normalize_raw_rows(input_path: Path) -> list[dict[str, Any]]:
         out.append(
             {
                 "synthetic_id": synthetic_id,
+                "generation_split_mode": source_meta.get("generation_split_mode") or prompt_meta.get("generation_split_mode") or "question_disjoint_formal",
                 "synthetic_plan_id": plan_id,
                 "source_record_id": source_id,
                 "source_file": train_row.get("source_file", ""),

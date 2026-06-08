@@ -8,10 +8,12 @@ from pathlib import Path
 from typing import Any
 
 from thesis_exp.src.edujudge.exp06_generation import (
+    EXP06_MINI_BATCH_OUTPUT_DIR,
     EXP06_GENERATION_PROMPTS_DIR,
     MINI_BATCH_TOTAL_TARGET,
     ensure_mini_batch_dirs,
 )
+from thesis_exp.src.edujudge.exp06_generation.build_mini_batch_generation_plan import mode_key_sets
 from thesis_exp.src.edujudge.exp06_generation.mini_batch_common import (
     count_jsonl_lines,
     mini_filtered_path,
@@ -83,7 +85,8 @@ def run_checks() -> list[dict[str, Any]]:
     rows: list[dict[str, Any]] = []
     targets = read_mini_table("mini_batch_target_matrix.csv")
     sources = read_mini_table("mini_batch_source_selection.csv")
-    keys = split_key_cache()
+    selected_modes = {row.get("generation_split_mode") for row in sources if row.get("generation_split_mode")}
+    key_by_mode = {mode: mode_key_sets(mode) for mode in selected_modes}
 
     add(rows, "target_matrix_exists", "PASS" if targets else "FAIL", relpath(mini_table_path("mini_batch_target_matrix.csv")))
     add(rows, "source_selection_exists", "PASS" if sources else "FAIL", relpath(mini_table_path("mini_batch_source_selection.csv")))
@@ -101,16 +104,68 @@ def run_checks() -> list[dict[str, Any]]:
         "PASS" if len(actual_sources) == MINI_BATCH_TOTAL_TARGET else "FAIL",
         f"selected_sources={len(actual_sources)} required={MINI_BATCH_TOTAL_TARGET}",
     )
-    source_leaks = [
-        row
-        for row in actual_sources
-        if row.get("source_question_key") in keys["dev"]["source_question_key"]
-        or row.get("source_question_key") in keys["test"]["source_question_key"]
-        or row.get("source_triple_key") in keys["dev"]["source_triple_key"]
-        or row.get("source_triple_key") in keys["test"]["source_triple_key"]
-        or stringify(row.get("source_split")) != "train"
-    ]
+    source_leaks = []
+    for row in actual_sources:
+        mode = row.get("generation_split_mode", "question_disjoint_formal")
+        keys = key_by_mode.get(mode)
+        if not keys:
+            source_leaks.append(row)
+            continue
+        if (
+            row.get("source_question_key") in keys["dev"]["question_key"]
+            or row.get("source_question_key") in keys["test"]["question_key"]
+            or row.get("source_triple_key") in keys["dev"]["triple_key"]
+            or row.get("source_triple_key") in keys["test"]["triple_key"]
+            or stringify(row.get("source_split")) != "train"
+        ):
+            source_leaks.append(row)
     add(rows, "no_dev_test_source_selected", "PASS" if not source_leaks and sources else "FAIL", f"leak_or_nontrain_rows={len(source_leaks)}")
+    diag_dir = EXP06_MINI_BATCH_OUTPUT_DIR / "split_mode_diagnostics"
+    split_diag = diag_dir / "split_mode_source_diagnostics.csv"
+    add(rows, "split_mode_diagnostics_exists", "PASS" if split_diag.exists() else "FAIL", relpath(split_diag))
+    import csv
+
+    diag_rows = []
+    if split_diag.exists():
+        with split_diag.open("r", encoding="utf-8", newline="") as handle:
+            diag_rows = list(csv.DictReader(handle))
+    diag_by_mode = {row.get("mode"): row for row in diag_rows}
+    paper_strict = diag_by_mode.get("paper_like_strict", {})
+    add(
+        rows,
+        "paper_like_strict_source_count_documented",
+        "PASS" if paper_strict.get("strict_eligible_source_rows") == "0" else "FAIL",
+        f"strict_eligible_source_rows={paper_strict.get('strict_eligible_source_rows')}",
+    )
+    qd = diag_by_mode.get("question_disjoint_formal", {})
+    add(
+        rows,
+        "question_disjoint_formal_source_count_positive",
+        "PASS" if int(qd.get("strict_eligible_source_rows") or 0) > 0 else "FAIL",
+        f"strict_eligible_source_rows={qd.get('strict_eligible_source_rows')}",
+    )
+    qd_prompt_path = EXP06_MINI_BATCH_OUTPUT_DIR / "question_disjoint_formal" / "prompts" / "mini_batch_prompts.jsonl"
+    add(
+        rows,
+        "question_disjoint_formal_prompts_count_24",
+        "PASS" if count_jsonl_lines(qd_prompt_path) == MINI_BATCH_TOTAL_TARGET else "FAIL",
+        f"prompts={count_jsonl_lines(qd_prompt_path)}",
+    )
+    qd_sources_path = EXP06_MINI_BATCH_OUTPUT_DIR / "question_disjoint_formal" / "tables" / "mini_batch_source_selection.csv"
+    qd_overlap = 0
+    if qd_sources_path.exists():
+        with qd_sources_path.open("r", encoding="utf-8", newline="") as handle:
+            for row in csv.DictReader(handle):
+                if row.get("question_overlap_with_dev", "").lower() == "true" or row.get("question_overlap_with_test", "").lower() == "true":
+                    qd_overlap += 1
+    add(rows, "question_disjoint_formal_no_question_overlap", "PASS" if qd_overlap == 0 else "FAIL", f"overlap_rows={qd_overlap}")
+    pilot = diag_by_mode.get("paper_like_triple_pilot", {})
+    add(
+        rows,
+        "paper_like_triple_pilot_not_allowed_for_training",
+        "PASS" if pilot.get("allowed_for_training") == "False" else "FAIL",
+        f"allowed_for_training={pilot.get('allowed_for_training')}",
+    )
     full_templates = [
         EXP06_GENERATION_PROMPTS_DIR / "generate_score_controlled_answer.md",
         EXP06_GENERATION_PROMPTS_DIR / "generate_score_controlled_answer_en.md",
@@ -122,8 +177,11 @@ def run_checks() -> list[dict[str, Any]]:
     raw_path = mini_generated_path("raw_generations.jsonl")
     normalized_path = mini_generated_path("normalized_synthetic_candidates.jsonl")
     if raw_path.exists():
+        raw_count = count_jsonl_lines(raw_path)
+        add(rows, "generated_raw_rows_status", "PASS" if raw_count else "FAIL", f"raw_rows={raw_count}")
         add(rows, "raw_has_normalized", "PASS" if normalized_path.exists() else "FAIL", relpath(normalized_path))
     else:
+        add(rows, "generated_raw_rows_status", "DRY_RUN", "raw_generations.jsonl absent")
         add(rows, "raw_has_normalized", "DRY_RUN", "raw_generations.jsonl absent in dry-run")
     filtered_path = mini_filtered_path("filtered_synthetic_candidates.jsonl")
     filter_report = mini_table_path("filter_report.csv")

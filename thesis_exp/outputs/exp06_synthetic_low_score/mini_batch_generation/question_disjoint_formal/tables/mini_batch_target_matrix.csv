@@ -1,0 +1,25 @@
+synthetic_plan_id,target_label_5,language,metric_canonical,error_type,target_count,priority_rank,notes
+mb001,1,en,Reasoning Process Rigor,reasoning_gap,1,1,24-item mini-batch pilot; train-only source required; label is synthetic_design pseudo-label
+mb002,2,zh,Reasoning Process Rigor,overconfident_wrong,1,1,24-item mini-batch pilot; train-only source required; label is synthetic_design pseudo-label
+mb003,1,en,Scenario Element Integration,scenario_mismatch,1,2,24-item mini-batch pilot; train-only source required; label is synthetic_design pseudo-label
+mb004,2,zh,Scenario Element Integration,instruction_violation,1,2,24-item mini-batch pilot; train-only source required; label is synthetic_design pseudo-label
+mb005,1,en,"Personalization, Adaptation & Learning Support",scenario_mismatch,1,3,24-item mini-batch pilot; train-only source required; label is synthetic_design pseudo-label
+mb006,2,zh,"Personalization, Adaptation & Learning Support",rubric_violation,1,3,24-item mini-batch pilot; train-only source required; label is synthetic_design pseudo-label
+mb007,1,en,Higher-Order Thinking & Skill Development,reasoning_gap,1,4,24-item mini-batch pilot; train-only source required; label is synthetic_design pseudo-label
+mb008,2,zh,Higher-Order Thinking & Skill Development,superficial_fluency,1,4,24-item mini-batch pilot; train-only source required; label is synthetic_design pseudo-label
+mb009,1,en,Error Identification & Correction Precision,factual_error,1,5,24-item mini-batch pilot; train-only source required; label is synthetic_design pseudo-label
+mb010,2,zh,Error Identification & Correction Precision,reasoning_gap,1,5,24-item mini-batch pilot; train-only source required; label is synthetic_design pseudo-label
+mb011,1,en,Instruction Following & Task Completion,instruction_violation,1,6,24-item mini-batch pilot; train-only source required; label is synthetic_design pseudo-label
+mb012,2,zh,Instruction Following & Task Completion,rubric_violation,1,6,24-item mini-batch pilot; train-only source required; label is synthetic_design pseudo-label
+mb013,1,en,Basic Factual Accuracy,factual_error,1,7,24-item mini-batch pilot; train-only source required; label is synthetic_design pseudo-label
+mb014,2,zh,Basic Factual Accuracy,overconfident_wrong,1,7,24-item mini-batch pilot; train-only source required; label is synthetic_design pseudo-label
+mb015,1,en,Domain Knowledge Accuracy,factual_error,1,8,24-item mini-batch pilot; train-only source required; label is synthetic_design pseudo-label
+mb016,2,zh,Domain Knowledge Accuracy,rubric_violation,1,8,24-item mini-batch pilot; train-only source required; label is synthetic_design pseudo-label
+mb017,3,en,Role & Tone Consistency,scenario_mismatch,1,9,24-item mini-batch pilot; train-only source required; label is synthetic_design pseudo-label
+mb018,1,zh,Role & Tone Consistency,superficial_fluency,1,9,24-item mini-batch pilot; train-only source required; label is synthetic_design pseudo-label
+mb019,3,en,Content Relevance & Scope Control,scenario_mismatch,1,10,24-item mini-batch pilot; train-only source required; label is synthetic_design pseudo-label
+mb020,1,zh,Content Relevance & Scope Control,rubric_violation,1,10,24-item mini-batch pilot; train-only source required; label is synthetic_design pseudo-label
+mb021,2,en,"Clarity, Simplicity & Inspiration",superficial_fluency,1,11,24-item mini-batch pilot; train-only source required; label is synthetic_design pseudo-label
+mb022,3,zh,"Clarity, Simplicity & Inspiration",rubric_violation,1,11,24-item mini-batch pilot; train-only source required; label is synthetic_design pseudo-label
+mb023,2,en,"Motivation, Guidance & Positive Feedback",scenario_mismatch,1,12,24-item mini-batch pilot; train-only source required; label is synthetic_design pseudo-label
+mb024,3,zh,"Motivation, Guidance & Positive Feedback",superficial_fluency,1,12,24-item mini-batch pilot; train-only source required; label is synthetic_design pseudo-label

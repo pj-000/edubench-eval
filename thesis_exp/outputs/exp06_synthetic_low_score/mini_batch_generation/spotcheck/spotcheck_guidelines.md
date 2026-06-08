@@ -1,6 +1,6 @@
 # Exp6-3 Mini-batch Spotcheck Guidelines
 
-Samples to review: **0**
+Samples to review: **17**
 
 Review every generated row before any full generation or training decision.
 

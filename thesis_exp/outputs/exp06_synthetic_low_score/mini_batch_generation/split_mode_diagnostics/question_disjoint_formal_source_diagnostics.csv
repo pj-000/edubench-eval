@@ -1,0 +1,2 @@
+mode,train_rows,dev_rows,test_rows,train_unique_questions,dev_unique_questions,test_unique_questions,train_dev_shared_questions,train_test_shared_questions,strict_eligible_source_rows,planned_mini_batch_rows,risk_level,allowed_for_training,notes
+question_disjoint_formal,3326,1107,1103,118,40,39,0,0,3326,24,LOW,True,question-disjoint formal source pool; eligible for mini-batch generation after human review

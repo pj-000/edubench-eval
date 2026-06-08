@@ -1,1 +1,18 @@
 synthetic_id,synthetic_plan_id,source_record_id,source_question_key_in_dev,source_question_key_in_test,source_triple_key_in_dev,source_triple_key_in_test,synthetic_question_key_in_dev,synthetic_question_key_in_test,synthetic_qa_key_in_dev,synthetic_qa_key_in_test,duplicate_synthetic_id,duplicate_synthetic_answer,duplicate_with_human_test_answer,source_split_not_train,leakage_status,notes
+syn_efc745746cf78916,mb001,0786532c4978fd30afcfa51102d5f96fd2d16425,False,False,False,False,False,False,False,False,False,False,False,False,PASS,generated mini-batch leakage and dedup check
+syn_08e8dbfaf612af45,mb002,0ee29e83c6f2ac7784c585acebb931f7dc1b7dba,False,False,False,False,False,False,False,False,False,False,False,False,PASS,generated mini-batch leakage and dedup check
+syn_0aabe3cfa1833c65,mb003,0204872bcf4cd4b4d4937c12c2cd77f0171376ab,False,False,False,False,False,False,False,False,False,False,False,False,PASS,generated mini-batch leakage and dedup check
+syn_860112421d7312fa,mb004,048058816bba705040007e7b0c822282f1c5defa,False,False,False,False,False,False,False,False,False,False,False,False,PASS,generated mini-batch leakage and dedup check
+syn_b5f4f1670656b107,mb005,01ffcbf103c1dce7417ed4518a50fc19a77d1ee9,False,False,False,False,False,False,False,False,False,False,False,False,PASS,generated mini-batch leakage and dedup check
+syn_f475e89131fb4b08,mb007,0437d0cfa0dce66ccca098964dc8a1bba6a151b5,False,False,False,False,False,False,False,False,False,False,False,False,PASS,generated mini-batch leakage and dedup check
+syn_f61d1078be26ab49,mb008,0b24303ee333541742acab0e6ac342abe677c221,False,False,False,False,False,False,False,False,False,False,False,False,PASS,generated mini-batch leakage and dedup check
+syn_50ab63444c300c75,mb010,0b0b1d9ef4015668d3e17fe40a86c301dd6b40f3,False,False,False,False,False,False,False,False,False,False,False,False,PASS,generated mini-batch leakage and dedup check
+syn_3775aca1f7d9a547,mb011,01294d6a09e14ab33102375daee613d5e0226caa,False,False,False,False,False,False,False,False,False,False,False,False,PASS,generated mini-batch leakage and dedup check
+syn_4512eb3a8d83bf33,mb015,0b0d3c82292e8d3242c48804bf755fd31505d240,False,False,False,False,False,False,False,False,False,False,False,False,PASS,generated mini-batch leakage and dedup check
+syn_398ac44b1a669df8,mb016,0284805df66b2a4fdfe8be98139ba1385f7021bc,False,False,False,False,False,False,False,False,False,False,False,False,PASS,generated mini-batch leakage and dedup check
+syn_024a23f65469eddf,mb018,203522e6df4c5c5a7fc4d604858ea8b47f105be6,False,False,False,False,False,False,False,False,False,False,False,False,PASS,generated mini-batch leakage and dedup check
+syn_0570b9a1c2d46e8d,mb019,0323ddc9b4a1094a44e0b027e36cd8e15d76f93c,False,False,False,False,False,False,False,False,False,False,False,False,PASS,generated mini-batch leakage and dedup check
+syn_f2c22790469048e2,mb020,0029a0a8d467908b7c7bfc7302845f54df20a94e,False,False,False,False,False,False,False,False,False,False,False,False,PASS,generated mini-batch leakage and dedup check
+syn_e06340971827f3e1,mb021,042b1de277caa909648c04be2131a99e62c6b1fb,False,False,False,False,False,False,False,False,False,False,False,False,PASS,generated mini-batch leakage and dedup check
+syn_6741b3c2be49c4e0,mb023,0747575357db0dee2bc1b170eca12dbb572f2be3,False,False,False,False,False,False,False,False,False,False,False,False,PASS,generated mini-batch leakage and dedup check
+syn_d5fd77dec8eb795e,mb024,07a9883089c759edc2978f3ee1f4bf2c3cad79f3,False,False,False,False,False,False,False,False,False,False,False,False,PASS,generated mini-batch leakage and dedup check

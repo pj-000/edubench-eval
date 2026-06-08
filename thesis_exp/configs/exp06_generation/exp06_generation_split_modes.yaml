@@ -1,0 +1,23 @@
+default_mode: question_disjoint_formal
+
+modes:
+  paper_like_strict:
+    split_dir: thesis_exp/data/splits/paper_like_triple_seed42
+    require_question_disjoint: true
+    require_triple_disjoint: true
+    allowed_for_training: false
+    purpose: demonstrate strict source unavailability under paper-like split
+
+  paper_like_triple_pilot:
+    split_dir: thesis_exp/data/splits/paper_like_triple_seed42
+    require_question_disjoint: false
+    require_triple_disjoint: true
+    allowed_for_training: false
+    purpose: high-risk prompt/debug pilot only
+
+  question_disjoint_formal:
+    split_dir: thesis_exp/data/splits/question_seed42
+    require_question_disjoint: true
+    require_triple_disjoint: true
+    allowed_for_training: true
+    purpose: formal leakage-safe synthetic generation and augmentation

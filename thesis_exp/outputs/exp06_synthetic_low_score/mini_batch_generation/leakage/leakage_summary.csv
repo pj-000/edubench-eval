@@ -1,5 +1,4 @@
 check_name,status,count,notes
-total_filtered_rows,INFO,0,input rows after filters
-passed_leakage_rows,PASS,0,rows without leakage/dedup hits
+total_filtered_rows,INFO,17,input rows after filters
+passed_leakage_rows,PASS,17,rows without leakage/dedup hits
 blocked_leakage_rows,PASS,0,any blocked row prevents training use
-generation_presence,DRY_RUN,0,no filtered generated rows available

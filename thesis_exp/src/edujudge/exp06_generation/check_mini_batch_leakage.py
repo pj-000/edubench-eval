@@ -14,9 +14,11 @@ from thesis_exp.src.edujudge.exp06_generation.mini_batch_common import (
     mini_filtered_path,
     mini_leakage_path,
     read_jsonl_if_exists,
-    split_key_cache,
     write_mini_table,
 )
+from thesis_exp.src.edujudge.exp06_generation.build_mini_batch_generation_plan import mode_key_sets
+from thesis_exp.src.edujudge.exp06_generation import GENERATION_SPLIT_MODES
+from thesis_exp.src.edujudge.utils.io import read_jsonl
 from thesis_exp.src.edujudge.utils.io import relpath, write_text
 from thesis_exp.src.edujudge.utils.text_norm import stringify
 
@@ -48,12 +50,21 @@ def check_rows(input_path: Path | None = None) -> tuple[list[dict[str, Any]], li
     ensure_mini_batch_dirs()
     input_path = input_path or mini_filtered_path("filtered_synthetic_candidates.jsonl")
     rows = read_jsonl_if_exists(input_path)
-    keys = split_key_cache()
+    mode_keys: dict[str, dict[str, dict[str, set[str]]]] = {}
     seen_ids: set[str] = set()
     seen_answers: set[str] = set()
     detail_rows: list[dict[str, Any]] = []
 
     for row in rows:
+        mode = stringify(row.get("generation_split_mode") or "question_disjoint_formal")
+        if mode not in mode_keys:
+            keys = mode_key_sets(mode)
+            test_rows = read_jsonl(GENERATION_SPLIT_MODES[mode]["split_dir"] / "test.jsonl")
+            keys["test"]["answer_key"] = {answer_hash(test_row.get("answer")) for test_row in test_rows}
+            keys["dev"]["qa_key"] = {qa_key(dev_row.get("question"), dev_row.get("answer")) for dev_row in read_jsonl(GENERATION_SPLIT_MODES[mode]["split_dir"] / "dev.jsonl")}
+            keys["test"]["qa_key"] = {qa_key(test_row.get("question"), test_row.get("answer")) for test_row in test_rows}
+            mode_keys[mode] = keys
+        keys = mode_keys[mode]
         synthetic_id = stringify(row.get("synthetic_id"))
         answer_key = answer_hash(row.get("answer_synthetic"))
         duplicate_id = synthetic_id in seen_ids
@@ -63,10 +74,10 @@ def check_rows(input_path: Path | None = None) -> tuple[list[dict[str, Any]], li
         synthetic_question = question_key(row.get("question"))
         synthetic_qa = qa_key(row.get("question"), row.get("answer_synthetic"))
         checks = {
-            "source_question_key_in_dev": row.get("source_question_key") in keys["dev"]["source_question_key"],
-            "source_question_key_in_test": row.get("source_question_key") in keys["test"]["source_question_key"],
-            "source_triple_key_in_dev": row.get("source_triple_key") in keys["dev"]["source_triple_key"],
-            "source_triple_key_in_test": row.get("source_triple_key") in keys["test"]["source_triple_key"],
+            "source_question_key_in_dev": row.get("source_question_key") in keys["dev"]["question_key"],
+            "source_question_key_in_test": row.get("source_question_key") in keys["test"]["question_key"],
+            "source_triple_key_in_dev": row.get("source_triple_key") in keys["dev"]["triple_key"],
+            "source_triple_key_in_test": row.get("source_triple_key") in keys["test"]["triple_key"],
             "synthetic_question_key_in_dev": synthetic_question in keys["dev"]["question_key"],
             "synthetic_question_key_in_test": synthetic_question in keys["test"]["question_key"],
             "synthetic_qa_key_in_dev": synthetic_qa in keys["dev"]["qa_key"],

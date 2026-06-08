@@ -1,0 +1,4 @@
+split,rows,expected_rows,missing_fields,bad_labels,status,path
+train,3326,3326,,0,PASS,thesis_exp/outputs/exp06_question_disjoint_baselines/datasets/A4_question_answer_metric_rubric_metadata_question_seed42/train.jsonl
+dev,1107,1107,,0,PASS,thesis_exp/outputs/exp06_question_disjoint_baselines/datasets/A4_question_answer_metric_rubric_metadata_question_seed42/dev.jsonl
+test,1103,1103,,0,PASS,thesis_exp/outputs/exp06_question_disjoint_baselines/datasets/A4_question_answer_metric_rubric_metadata_question_seed42/test.jsonl

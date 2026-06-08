@@ -1,11 +1,11 @@
 # Exp6-3 Mini-batch Leakage Report
 
-Status: **DRY_RUN_NO_GENERATED_ROWS**
+Status: **PASS**
 
 - Filtered input path: `thesis_exp/outputs/exp06_synthetic_low_score/mini_batch_generation/filtered/filtered_synthetic_candidates.jsonl`
 - Leakage summary path: `thesis_exp/outputs/exp06_synthetic_low_score/mini_batch_generation/leakage/leakage_summary.csv`
 - Leakage details path: `thesis_exp/outputs/exp06_synthetic_low_score/mini_batch_generation/leakage/leakage_details.csv`
-- Filtered rows checked: **0**
+- Filtered rows checked: **17**
 - Blocked rows: **0**
 
 Checks:

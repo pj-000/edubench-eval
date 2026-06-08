@@ -34,6 +34,35 @@ EXP06_MINI_BATCH_REPORTS_DIR = EXP06_MINI_BATCH_OUTPUT_DIR / "reports"
 MINI_BATCH_TARGET_LABEL_COUNTS = {1: 10, 2: 10, 3: 4}
 MINI_BATCH_TOTAL_TARGET = sum(MINI_BATCH_TARGET_LABEL_COUNTS.values())
 
+GENERATION_SPLIT_MODES = {
+    "paper_like_strict": {
+        "split_dir": THESIS_DIR / "data" / "splits" / "paper_like_triple_seed42",
+        "require_question_disjoint": True,
+        "require_triple_disjoint": True,
+        "allowed_for_training": False,
+        "risk_level": "BLOCKED",
+        "purpose": "demonstrate strict source unavailability under paper-like split",
+    },
+    "paper_like_triple_pilot": {
+        "split_dir": THESIS_DIR / "data" / "splits" / "paper_like_triple_seed42",
+        "require_question_disjoint": False,
+        "require_triple_disjoint": True,
+        "allowed_for_training": False,
+        "risk_level": "HIGH",
+        "purpose": "high-risk prompt/debug pilot only",
+    },
+    "question_disjoint_formal": {
+        "split_dir": THESIS_DIR / "data" / "splits" / "question_seed42",
+        "require_question_disjoint": True,
+        "require_triple_disjoint": True,
+        "allowed_for_training": True,
+        "risk_level": "LOW",
+        "purpose": "formal leakage-safe synthetic generation and augmentation",
+    },
+}
+
+DEFAULT_GENERATION_SPLIT_MODE = "question_disjoint_formal"
+
 ERROR_TYPES = [
     "factual_error",
     "reasoning_gap",
@@ -77,3 +106,9 @@ def ensure_mini_batch_dirs() -> None:
         EXP06_GENERATION_SRC_DIR,
     ]:
         path.mkdir(parents=True, exist_ok=True)
+
+
+def ensure_split_mode_dirs(mode: str) -> None:
+    base = EXP06_MINI_BATCH_OUTPUT_DIR / mode
+    for name in ["tables", "samples", "prompts", "generated", "filtered", "leakage", "spotcheck", "reports"]:
+        (base / name).mkdir(parents=True, exist_ok=True)

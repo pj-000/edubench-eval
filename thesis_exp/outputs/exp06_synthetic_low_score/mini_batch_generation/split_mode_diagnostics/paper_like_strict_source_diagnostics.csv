@@ -1,0 +1,2 @@
+mode,train_rows,dev_rows,test_rows,train_unique_questions,dev_unique_questions,test_unique_questions,train_dev_shared_questions,train_test_shared_questions,strict_eligible_source_rows,planned_mini_batch_rows,risk_level,allowed_for_training,notes
+paper_like_strict,2654,664,2218,196,184,163,184,162,0,24,BLOCKED,False,paper-like split has question overlap; strict question-disjoint source pool is unavailable

@@ -15,11 +15,11 @@ from thesis_exp.src.edujudge.exp06_generation.mini_batch_common import (
     mini_generated_path,
     mini_table_path,
     read_jsonl_if_exists,
-    split_key_cache,
     write_empty_jsonl,
     write_mini_jsonl,
     write_mini_table,
 )
+from thesis_exp.src.edujudge.exp06_generation.build_mini_batch_generation_plan import mode_key_sets
 from thesis_exp.src.edujudge.utils.text_norm import detect_language_from_text, normalize_text, stringify
 
 
@@ -103,12 +103,22 @@ def filter_candidates(input_path: Path | None = None) -> tuple[list[dict[str, An
     ensure_mini_batch_dirs()
     input_path = input_path or mini_generated_path("normalized_synthetic_candidates.jsonl")
     rows = read_jsonl_if_exists(input_path)
-    keys = split_key_cache()
+    mode_keys: dict[str, dict[str, dict[str, set[str]]]] = {}
     seen_answers: set[str] = set()
     passed_rows: list[dict[str, Any]] = []
     detail_rows: list[dict[str, Any]] = []
     for row in rows:
-        passed, reasons = filter_candidate(row, seen_answers, keys["test"]["answer_key"])
+        mode = stringify(row.get("generation_split_mode") or "question_disjoint_formal")
+        if mode not in mode_keys:
+            keys = mode_key_sets(mode)
+            from thesis_exp.src.edujudge.exp06_generation import GENERATION_SPLIT_MODES
+            from thesis_exp.src.edujudge.utils.io import read_jsonl
+
+            # mode_key_sets covers ids/keys; add answer hashes for duplicate answer checks.
+            test_rows = read_jsonl(GENERATION_SPLIT_MODES[mode]["split_dir"] / "test.jsonl")
+            keys["test"]["answer_key"] = {answer_hash(test_row.get("answer")) for test_row in test_rows}
+            mode_keys[mode] = keys
+        passed, reasons = filter_candidate(row, seen_answers, mode_keys[mode]["test"]["answer_key"])
         row["filter_status"] = "pass" if passed else "fail"
         row["filter_reasons"] = reasons
         if passed:
