@@ -1,0 +1,16 @@
+experiment_id: exp05_l3b_weighted_threshold_mu03
+loss_type: weighted_threshold_ordinal
+input_template: A4
+objective: ordinal
+mu_thr: 0.3
+use_class_weights: true
+use_expected_score_penalty: false
+use_high_score_preservation: false
+use_threshold_suppression: true
+model_name_or_path: /home/share/models/modelscope/Qwen/Qwen3-Reranker-0.6B
+epochs: 10
+learning_rate: 2e-5
+effective_batch_size: 128
+max_length: 2048
+checkpoint_selection_metric: dev_MAE_label
+checkpoint_selection_direction: min

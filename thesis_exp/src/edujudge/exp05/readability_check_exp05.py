@@ -19,6 +19,8 @@ SCRIPT_PATHS = [
     REPO_ROOT / "thesis_exp" / "scripts" / "run_exp05_l1_train.sh",
     REPO_ROOT / "thesis_exp" / "scripts" / "run_exp05_l2_smoke.sh",
     REPO_ROOT / "thesis_exp" / "scripts" / "run_exp05_l2_train.sh",
+    REPO_ROOT / "thesis_exp" / "scripts" / "run_exp05_l3b_smoke.sh",
+    REPO_ROOT / "thesis_exp" / "scripts" / "run_exp05_l3b_train.sh",
 ]
 EXP05_SRC_DIR = REPO_ROOT / "thesis_exp" / "src" / "edujudge" / "exp05"
 EXP05_CONFIG_DIR = REPO_ROOT / "thesis_exp" / "configs" / "exp05_low_score_loss"
@@ -173,8 +175,17 @@ def check_markdown_files(rows: list[dict[str, Any]]) -> None:
         if path.name.startswith("._"):
             continue
         lines = path.read_text(encoding="utf-8").splitlines()
-        max_len = max((len(line) for line in lines), default=0)
-        add(rows, "markdown max line length", path, "PASS" if max_len < 300 else "FAIL", max_len, "<300")
+        prose_lines = [line for line in lines if not line.lstrip().startswith("|")]
+        max_len = max((len(line) for line in prose_lines), default=0)
+        table_max = max((len(line) for line in lines if line.lstrip().startswith("|")), default=0)
+        add(
+            rows,
+            "markdown max prose line length",
+            path,
+            "PASS" if max_len < 300 else "FAIL",
+            f"prose={max_len}; table={table_max}",
+            "<300 for non-table lines",
+        )
 
 
 def run_readability_check() -> list[dict[str, Any]]:

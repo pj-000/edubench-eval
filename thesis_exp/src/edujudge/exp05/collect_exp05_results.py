@@ -1,4 +1,4 @@
-"""Collect Exp5 L0/L1/L2 loss-ablation results."""
+"""Collect Exp5 low-score loss-ablation results."""
 
 from __future__ import annotations
 
@@ -11,9 +11,11 @@ from thesis_exp.src.edujudge.exp05 import (
     EXP04_TABLES_DIR,
     EXP05_TABLES_DIR,
     L1_RUN_ID,
+    L3B_RUN_ID,
     L2_RUN_CONFIGS,
     ensure_exp05_dirs,
     l1_run_dir,
+    l3b_run_dir,
     l2_run_dir,
 )
 from thesis_exp.src.edujudge.utils.io import read_csv, relpath, write_csv
@@ -116,6 +118,10 @@ def l2_summary_rows() -> list[dict[str, Any]]:
     ]
 
 
+def l3b_summary_row() -> dict[str, Any]:
+    return run_summary_row(L3B_RUN_ID, "Exp5 L3b weighted threshold-aligned ordinal", l3b_run_dir(smoke=False))
+
+
 def collect_table_rows() -> tuple[list[dict[str, Any]], list[dict[str, Any]], list[dict[str, Any]]]:
     low_rows: list[dict[str, Any]] = []
     per_bin_rows: list[dict[str, Any]] = []
@@ -155,6 +161,16 @@ def collect_table_rows() -> tuple[list[dict[str, Any]], list[dict[str, Any]], li
             for row in read_csv(path) if path.exists() else []:
                 if row.get("split") == "test":
                     target.append({"loss_id": run_id, **row})
+    run_path = l3b_run_dir(smoke=False)
+    for name, target in [
+        ("low_score_metrics.csv", low_rows),
+        ("per_bin_metrics.csv", per_bin_rows),
+        ("high_score_metrics.csv", high_rows),
+    ]:
+        path = run_path / "tables" / name
+        for row in read_csv(path) if path.exists() else []:
+            if row.get("split") == "test":
+                target.append({"loss_id": L3B_RUN_ID, **row})
     return low_rows, per_bin_rows, high_rows
 
 
@@ -244,7 +260,7 @@ def tradeoff_rows(
 
 def collect_exp05_results() -> list[dict[str, Any]]:
     ensure_exp05_dirs()
-    summary_rows = [l0_summary_row(), l1_summary_row(), *l2_summary_rows()]
+    summary_rows = [l0_summary_row(), l1_summary_row(), *l2_summary_rows(), l3b_summary_row()]
     low_rows, per_bin_rows, high_rows = collect_table_rows()
     write_csv(EXP05_TABLES_DIR / "loss_ablation_summary.csv", summary_rows)
     write_csv(EXP05_TABLES_DIR / "loss_ablation_low_score.csv", low_rows)
@@ -255,15 +271,19 @@ def collect_exp05_results() -> list[dict[str, Any]]:
         EXP05_TABLES_DIR / "loss_ablation_delta_vs_L1.csv",
         [
             make_delta_row(summary_rows, low_rows, high_rows, L1_RUN_ID, run_id)
-            for run_id in L2_RUN_CONFIGS
+            for run_id in [*L2_RUN_CONFIGS, L3B_RUN_ID]
         ],
+    )
+    write_csv(
+        EXP05_TABLES_DIR / "loss_ablation_delta_vs_L2b.csv",
+        [make_delta_row(summary_rows, low_rows, high_rows, "L2b_asymmetric_ordinal_lambda05_margin0", L3B_RUN_ID)],
     )
     write_csv(EXP05_TABLES_DIR / "loss_ablation_tradeoff.csv", tradeoff_rows(summary_rows, low_rows, high_rows))
     return summary_rows
 
 
 def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Collect Exp5 L0/L1 result tables.")
+    parser = argparse.ArgumentParser(description="Collect Exp5 low-score loss result tables.")
     return parser.parse_args()
 
 

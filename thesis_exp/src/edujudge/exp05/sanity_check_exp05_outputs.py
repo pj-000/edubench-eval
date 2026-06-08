@@ -14,8 +14,10 @@ from thesis_exp.src.edujudge.exp05 import (
     EXP05_OUTPUT_DIR,
     EXP05_TABLES_DIR,
     L1_RUN_ID,
+    L3B_RUN_ID,
     L2_RUN_CONFIGS,
     ensure_exp05_dirs,
+    l3b_run_dir,
     l1_run_dir,
     l2_run_dir,
 )
@@ -129,6 +131,8 @@ def check_run_outputs(
     allow_pending: bool,
     smoke: bool,
     require_loss_debug: bool,
+    expected_summary_fragments: list[str] | None = None,
+    expected_debug_columns: list[str] | None = None,
 ) -> None:
     max_rows = 8 if smoke else None
     status = "completed" if (run_path / "tables" / "metrics_summary.csv").exists() else "pending"
@@ -163,10 +167,16 @@ def check_run_outputs(
     if require_loss_debug:
         debug_path = run_path / "logs" / "loss_debug_history.csv"
         add(rows, f"{run_id} loss_debug_history.csv", "PASS" if debug_path.exists() else "FAIL", relpath(debug_path) if debug_path.exists() else "missing", "exists")
+        if debug_path.exists() and expected_debug_columns:
+            debug_lines = debug_path.read_text(encoding="utf-8").splitlines()
+            header = debug_lines[0] if debug_lines else ""
+            debug_ok = all(column in header.split(",") for column in expected_debug_columns)
+            add(rows, f"{run_id} loss_debug columns", "PASS" if debug_ok else "FAIL", header, expected_debug_columns)
         summary_path = run_path / "run_summary.md"
         summary = summary_path.read_text(encoding="utf-8") if summary_path.exists() else ""
-        config_ok = all(fragment in summary for fragment in ["lambda_low", "margin", "use_class_weights: `false`"])
-        add(rows, f"{run_id} config recorded in run_summary", "PASS" if config_ok else "FAIL", relpath(summary_path) if summary_path.exists() else "missing", "lambda/margin/no class weights")
+        fragments = expected_summary_fragments or ["lambda_low", "margin", "use_class_weights: `false`"]
+        config_ok = all(fragment in summary for fragment in fragments)
+        add(rows, f"{run_id} config recorded in run_summary", "PASS" if config_ok else "FAIL", relpath(summary_path) if summary_path.exists() else "missing", fragments)
     metadata_path = run_path / "run_metadata.json"
     metadata = json.loads(metadata_path.read_text(encoding="utf-8")) if metadata_path.exists() else {}
     metric_ok = metadata.get("best_selection_metric_name") in {"dev_MAE_label", None}
@@ -201,27 +211,68 @@ def check_no_tracked_weights(rows: list[dict[str, Any]]) -> None:
     add(rows, "no checkpoint/weights tracked", "PASS" if result.returncode == 0 and not tracked else "FAIL", tracked, "[]")
 
 
-def run_output_sanity(allow_pending: bool = True, smoke: bool = False, l2_only: bool = False) -> list[dict[str, Any]]:
+def run_output_sanity(
+    allow_pending: bool = True,
+    smoke: bool = False,
+    l2_only: bool = False,
+    l3b_only: bool = False,
+    include_l3b: bool = False,
+) -> list[dict[str, Any]]:
     ensure_exp05_dirs()
+    if l2_only and l3b_only:
+        raise ValueError("--l2-only and --l3b-only cannot be used together.")
     if not smoke:
         collect_exp05_results()
     rows: list[dict[str, Any]] = []
-    if not l2_only:
+    if not l2_only and not l3b_only:
         check_run_outputs(rows, L1_RUN_ID, l1_run_dir(smoke=smoke), allow_pending, smoke, require_loss_debug=False)
-    for run_id in L2_RUN_CONFIGS:
-        check_run_outputs(rows, run_id, l2_run_dir(run_id, smoke=smoke), allow_pending, smoke, require_loss_debug=True)
+    if l2_only or (not l3b_only and not smoke):
+        for run_id in L2_RUN_CONFIGS:
+            check_run_outputs(
+                rows,
+                run_id,
+                l2_run_dir(run_id, smoke=smoke),
+                allow_pending,
+                smoke,
+                require_loss_debug=True,
+                expected_summary_fragments=["lambda_low", "margin", "use_class_weights: `false`"],
+                expected_debug_columns=["mean_base_loss", "mean_penalty", "mean_s_hat_low", "mean_over_low"],
+            )
+    if l3b_only or include_l3b:
+        check_run_outputs(
+            rows,
+            L3B_RUN_ID,
+            l3b_run_dir(smoke=smoke),
+            allow_pending,
+            smoke,
+            require_loss_debug=True,
+            expected_summary_fragments=[
+                "mu_thr",
+                "use_class_weights: `true`",
+                "use_expected_score_penalty: `false`",
+                "use_threshold_suppression: `true`",
+            ],
+            expected_debug_columns=["weighted_base_loss", "threshold_penalty", "mean_p_gt_3_low", "mean_p_gt_4_low"],
+        )
     if not smoke:
         summary = read_csv(EXP05_TABLES_DIR / "loss_ablation_summary.csv") if (EXP05_TABLES_DIR / "loss_ablation_summary.csv").exists() else []
         present = {row.get("loss_id"): row.get("status") for row in summary}
-        add(rows, "L0/L1 metrics present in summary", "PASS" if "L0_exp04_o3_ordinal" in present and L1_RUN_ID in present else "FAIL", present, "L0 and L1 present")
+        required_summary = {"L0_exp04_o3_ordinal", L1_RUN_ID, *L2_RUN_CONFIGS}
+        if include_l3b:
+            required_summary.add(L3B_RUN_ID)
+        add(rows, "configured metrics present in summary", "PASS" if required_summary <= set(present) else "FAIL", present, sorted(required_summary))
     check_no_tracked_weights(rows)
-    suffix = "_l2_smoke" if smoke and l2_only else "_smoke" if smoke else ""
+    suffix = "_l3b_smoke" if smoke and l3b_only else "_l2_smoke" if smoke and l2_only else "_smoke" if smoke else "_with_l3b" if include_l3b else ""
     write_csv(EXP05_TABLES_DIR / f"sanity_check_exp05_outputs{suffix}.csv", rows)
-    if not smoke:
+    if not smoke and not include_l3b:
         write_csv(EXP05_TABLES_DIR / "sanity_check_exp05_outputs.csv", rows)
     overall = "PASS" if all(row["status"] == "PASS" for row in rows) else "FAIL"
     if smoke and l2_only:
         out_path = EXP05_OUTPUT_DIR / "sanity_check_exp05_outputs_l2_smoke.md"
+    elif smoke and l3b_only:
+        out_path = EXP05_OUTPUT_DIR / "sanity_check_exp05_outputs_l3b_smoke.md"
+    elif include_l3b:
+        out_path = EXP05_OUTPUT_DIR / "sanity_check_exp05_outputs_with_l3b.md"
     else:
         out_path = EXP05_OUTPUT_DIR / ("sanity_check_exp05_outputs_smoke.md" if smoke else "sanity_check_exp05_outputs.md")
     write_text(
@@ -241,16 +292,28 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--strict", action="store_true", help="Require configured outputs.")
     parser.add_argument("--smoke", action="store_true", help="Check smoke-test output path.")
     parser.add_argument("--l2-only", action="store_true", help="Check only L2a/L2b outputs.")
+    parser.add_argument("--l3b-only", action="store_true", help="Check only L3b output.")
+    parser.add_argument("--include-l3b", action="store_true", help="Include L3b in the formal output check.")
     return parser.parse_args()
 
 
 def main() -> None:
     args = parse_args()
-    rows = run_output_sanity(allow_pending=not args.strict, smoke=args.smoke, l2_only=args.l2_only)
+    rows = run_output_sanity(
+        allow_pending=not args.strict,
+        smoke=args.smoke,
+        l2_only=args.l2_only,
+        l3b_only=args.l3b_only,
+        include_l3b=args.include_l3b,
+    )
     statuses = sorted({row["status"] for row in rows})
     print(f"Exp5 output sanity statuses: {', '.join(statuses)}")
     if args.smoke and args.l2_only:
         out_path = EXP05_OUTPUT_DIR / "sanity_check_exp05_outputs_l2_smoke.md"
+    elif args.smoke and args.l3b_only:
+        out_path = EXP05_OUTPUT_DIR / "sanity_check_exp05_outputs_l3b_smoke.md"
+    elif args.include_l3b:
+        out_path = EXP05_OUTPUT_DIR / "sanity_check_exp05_outputs_with_l3b.md"
     else:
         out_path = EXP05_OUTPUT_DIR / ("sanity_check_exp05_outputs_smoke.md" if args.smoke else "sanity_check_exp05_outputs.md")
     print(f"Output: {relpath(out_path)}")

@@ -7,7 +7,14 @@ import csv
 import math
 from typing import Any
 
-from thesis_exp.src.edujudge.exp05 import EXP05_OUTPUT_DIR, EXP05_TABLES_DIR, L1_RUN_ID, L2_RUN_CONFIGS, ensure_exp05_dirs
+from thesis_exp.src.edujudge.exp05 import (
+    EXP05_OUTPUT_DIR,
+    EXP05_TABLES_DIR,
+    L1_RUN_ID,
+    L2_RUN_CONFIGS,
+    L3B_RUN_ID,
+    ensure_exp05_dirs,
+)
 from thesis_exp.src.edujudge.exp05.collect_exp05_results import collect_exp05_results
 from thesis_exp.src.edujudge.utils.io import relpath, write_text
 
@@ -79,6 +86,11 @@ def l2_toy_status() -> str:
     return overall_status(rows)
 
 
+def l3b_toy_status() -> str:
+    rows = read_rows(EXP05_TABLES_DIR / "l3b_toy_loss_checks.csv")
+    return overall_status(rows)
+
+
 def l2_formal_status(rows: list[dict[str, Any]]) -> str:
     statuses = [str(row.get("status") or "pending") for row in rows if row.get("loss_id") in L2_RUN_CONFIGS]
     if not statuses:
@@ -90,6 +102,11 @@ def l2_formal_status(rows: list[dict[str, Any]]) -> str:
     return "pending"
 
 
+def single_run_status(rows: list[dict[str, Any]], loss_id: str) -> str:
+    row = next((item for item in rows if item.get("loss_id") == loss_id), {})
+    return str(row.get("status") or "pending")
+
+
 def write_review_package(rows: list[dict[str, Any]] | None = None) -> None:
     ensure_exp05_dirs()
     rows = rows if rows is not None else collect_exp05_results()
@@ -99,28 +116,46 @@ def write_review_package(rows: list[dict[str, Any]] | None = None) -> None:
     l1_smoke = overall_status(l1_smoke_rows) if l1_smoke_rows else "PENDING"
     l2_smoke_rows = read_rows(EXP05_TABLES_DIR / "sanity_check_exp05_outputs_l2_smoke.csv")
     l2_smoke = overall_status(l2_smoke_rows) if l2_smoke_rows else "PENDING"
+    l3b_smoke_rows = read_rows(EXP05_TABLES_DIR / "sanity_check_exp05_outputs_l3b_smoke.csv")
+    l3b_smoke = overall_status(l3b_smoke_rows) if l3b_smoke_rows else "PENDING"
     toy = l2_toy_status()
+    l3b_toy = l3b_toy_status()
     l1 = next((row for row in rows if row.get("loss_id") == L1_RUN_ID), {})
     l1_status = str(l1.get("status") or "pending")
     l2_status = l2_formal_status(rows)
+    l3b_status = single_run_status(rows, L3B_RUN_ID)
     can_l1_smoke = setup == "PASS" and readability == "PASS"
     can_l1_formal = can_l1_smoke and l1_smoke == "PASS"
     can_l2_smoke = setup == "PASS" and readability == "PASS" and toy == "PASS"
     can_l2_formal = can_l2_smoke and l2_smoke == "PASS"
-    if l2_status == "completed":
+    can_l3b_smoke = setup == "PASS" and readability == "PASS" and l3b_toy == "PASS"
+    can_l3b_formal = can_l3b_smoke and l3b_smoke == "PASS"
+    if l3b_status == "completed":
         blockers = [
-            "none for L2; formal training completed and setup/output/readability checks passed",
-            "L3/L4 remain intentionally out of scope until L2 is reviewed",
+            "none for L3b; formal training completed and setup/output/readability checks passed",
+            "L3a/L4 remain intentionally out of scope",
+            "Exp6 should wait until L3b results are reviewed",
+        ]
+    elif can_l3b_smoke:
+        blockers = [
+            "run L3b smoke before formal L3b training",
+            "L3a/L4 remain intentionally out of scope",
+            "Exp6 should wait until L3b smoke/formal results are reviewed",
+        ]
+    elif l2_status == "completed":
+        blockers = [
+            "fix setup/readability/L3b toy checks before L3b smoke",
+            "L3a/L4 remain intentionally out of scope",
         ]
     elif can_l2_smoke:
         blockers = [
             "run L2 smoke before formal L2 training",
-            "L3/L4 remain intentionally out of scope until L2 is reviewed",
+            "L3b waits for completed L2 review context",
         ]
     else:
         blockers = [
             "fix setup/readability/L2 toy checks before L2 smoke",
-            "L3/L4 remain intentionally out of scope until L2 is reviewed",
+            "L3b waits for completed L2 review context",
         ]
     review = f"""# Exp5 Review Package
 
@@ -132,7 +167,13 @@ Can L2 smoke start? **{"YES" if can_l2_smoke else "NO"}**
 
 Can L2 formal training start? **{"YES" if can_l2_formal else "NO"}**
 
-Can L3 start? **NO until L2 reviewed**
+Can L3b smoke start? **{"YES" if can_l3b_smoke else "NO"}**
+
+Can L3b formal training start? **{"YES" if can_l3b_formal else "NO"}**
+
+Can L3a or L4 start? **NO, intentionally not implemented**
+
+Can Exp6 start? **NO until L3b is reviewed**
 
 ## Class Weights Summary
 
@@ -145,10 +186,13 @@ Can L3 start? **NO until L2 reviewed**
 | Setup sanity status | {setup} |
 | Readability status | {readability} |
 | L2 toy loss check status | {toy} |
+| L3b toy loss check status | {l3b_toy} |
 | L1 smoke status | {l1_smoke} |
 | L1 formal status | {l1_status} |
 | L2 smoke status | {l2_smoke} |
 | L2 formal status | {l2_status} |
+| L3b smoke status | {l3b_smoke} |
+| L3b formal status | {l3b_status} |
 
 ## Main Results
 
@@ -164,6 +208,7 @@ Can L3 start? **NO until L2 reviewed**
 - `{relpath(EXP05_OUTPUT_DIR / "sanity_check_exp05_setup.md")}`
 - `{relpath(EXP05_OUTPUT_DIR / "readability_check_exp05.md")}`
 - `{relpath(EXP05_TABLES_DIR / "loss_ablation_summary.csv")}`
+- `{relpath(EXP05_TABLES_DIR / "l3b_toy_loss_checks.csv")}`
 """
     write_text(EXP05_OUTPUT_DIR / "review_package.md", review)
 
@@ -221,6 +266,28 @@ If L2 lowers `low_to_high_rate` but hurts high-score metrics such as `Acc@5`
 or `high_to_mid_or_low_rate`, the follow-up L4 experiment should test high-score
 preservation.
 
+## L3b Weighted Threshold-Aligned Low-Score Loss
+
+L3b tests the diagnosis that the expected-score L2 penalty was not well aligned
+with `low_to_high_rate`. It reuses the L1 train-split class weights for the base
+ordinal BCE and adds a direct low-score threshold suppression term. It does not
+use the L2 expected-score penalty.
+
+For low-score samples only:
+
+`P_thr = I(y <= 2) * (p_gt_3^2 + p_gt_4^2) / 2`
+
+The final loss is:
+
+`sum_i(w_i * L_i_ord) / sum_i(w_i) + mu_thr * mean_i(P_i_thr)`
+
+The first L3b variant is:
+
+- L3b: `mu_thr=0.3`
+
+L3a, L4, synthetic data, and calibration are intentionally not implemented in
+this step.
+
 ## Class Weights
 
 {class_weights_table()}
@@ -236,6 +303,7 @@ preservation.
 - Per-bin table: `{relpath(EXP05_TABLES_DIR / "loss_ablation_per_bin.csv")}`
 - Delta table: `{relpath(EXP05_TABLES_DIR / "loss_ablation_delta_vs_L0.csv")}`
 - Delta vs L1 table: `{relpath(EXP05_TABLES_DIR / "loss_ablation_delta_vs_L1.csv")}`
+- Delta vs L2b table: `{relpath(EXP05_TABLES_DIR / "loss_ablation_delta_vs_L2b.csv")}`
 - Tradeoff table: `{relpath(EXP05_TABLES_DIR / "loss_ablation_tradeoff.csv")}`
 """
     write_text(EXP05_OUTPUT_DIR / "report.md", report)
@@ -277,6 +345,32 @@ L2 和 L1 的区别：
 - 如果 L2 的 low_to_high_rate 低于 L1，说明方向性惩罚有额外作用。
 - 如果 L2 同时损伤 Acc@5 或 high-score 指标，后续需要 L4 high-score preservation。
 - L3/L4 暂不实现，等 L2 结果审阅后再做。
+""",
+    )
+    write_text(
+        EXP05_OUTPUT_DIR / "notion_exp05_l3b_summary.md",
+        f"""# Exp5 L3b Notion Summary
+
+问题：L2 的 expected-score penalty 没有降低 low_to_high_rate 后，是否应该改用和
+low_to_high 更直接对齐的 threshold-level penalty？
+
+L3b 做的事：
+
+- 复用 L1 的 train-split class weights。
+- base loss 是 normalized weighted ordinal BCE。
+- 只对真实低分样本 label_5<=2 惩罚 `p_gt_3` 和 `p_gt_4`。
+- 使用 `mu_thr=0.3`。
+- 不使用 L2 expected-score penalty。
+- 不实现 L3a、L4、synthetic data、calibration。
+
+当前汇总：
+
+{summary_table(rows)}
+
+训练前检查：
+
+- L3b toy loss checks: {l3b_toy_status()}
+- setup sanity 和 readability 通过后，可先运行 L3b smoke test。
 """,
     )
     write_review_package(rows)

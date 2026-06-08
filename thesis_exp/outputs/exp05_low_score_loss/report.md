@@ -48,6 +48,28 @@ If L2 lowers `low_to_high_rate` but hurts high-score metrics such as `Acc@5`
 or `high_to_mid_or_low_rate`, the follow-up L4 experiment should test high-score
 preservation.
 
+## L3b Weighted Threshold-Aligned Low-Score Loss
+
+L3b tests the diagnosis that the expected-score L2 penalty was not well aligned
+with `low_to_high_rate`. It reuses the L1 train-split class weights for the base
+ordinal BCE and adds a direct low-score threshold suppression term. It does not
+use the L2 expected-score penalty.
+
+For low-score samples only:
+
+`P_thr = I(y <= 2) * (p_gt_3^2 + p_gt_4^2) / 2`
+
+The final loss is:
+
+`sum_i(w_i * L_i_ord) / sum_i(w_i) + mu_thr * mean_i(P_i_thr)`
+
+The first L3b variant is:
+
+- L3b: `mu_thr=0.3`
+
+L3a, L4, synthetic data, and calibration are intentionally not implemented in
+this step.
+
 ## Class Weights
 
 | label_5 | train_count | raw_weight | clipped_weight |
@@ -66,6 +88,7 @@ preservation.
 | L1_weighted_ordinal | completed | 0.7250 | 0.3894 | 0.3504 | 0.7132 | 0.6149 | 0.2136 |
 | L2a_asymmetric_ordinal_lambda03_margin0 | completed | 0.7160 | 0.4080 | 0.3705 | 0.6356 | 0.5991 | 0.3398 |
 | L2b_asymmetric_ordinal_lambda05_margin0 | completed | 0.7164 | 0.3971 | 0.3633 | 0.6745 | 0.6038 | 0.2718 |
+| L3b_weighted_threshold_mu03 | pending | NA | NA | NA | NA | NA | NA |
 
 ## Output Files
 
@@ -74,4 +97,5 @@ preservation.
 - Per-bin table: `thesis_exp/outputs/exp05_low_score_loss/tables/loss_ablation_per_bin.csv`
 - Delta table: `thesis_exp/outputs/exp05_low_score_loss/tables/loss_ablation_delta_vs_L0.csv`
 - Delta vs L1 table: `thesis_exp/outputs/exp05_low_score_loss/tables/loss_ablation_delta_vs_L1.csv`
+- Delta vs L2b table: `thesis_exp/outputs/exp05_low_score_loss/tables/loss_ablation_delta_vs_L2b.csv`
 - Tradeoff table: `thesis_exp/outputs/exp05_low_score_loss/tables/loss_ablation_tradeoff.csv`

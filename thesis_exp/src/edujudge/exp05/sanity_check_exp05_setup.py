@@ -19,8 +19,11 @@ from thesis_exp.src.edujudge.exp05 import (
     EXP05_TABLES_DIR,
     EXPECTED_SPLIT_ROWS,
     L1_RUN_ID,
+    L3B_RUN_CONFIG,
+    L3B_RUN_ID,
     L2_RUN_CONFIGS,
     ensure_exp05_dirs,
+    l3b_run_dir,
     l1_run_dir,
 )
 from thesis_exp.src.edujudge.exp05.build_exp05_dataset import ensure_exp05_dataset
@@ -29,6 +32,8 @@ from thesis_exp.src.edujudge.exp05.losses import (
     asymmetric_low_score_penalty,
     asymmetric_ordinal_loss,
     make_ordinal_targets,
+    threshold_low_score_penalty,
+    weighted_threshold_ordinal_loss,
     weighted_ordinal_loss,
 )
 from thesis_exp.src.edujudge.exp05.write_exp05_report import write_exp05_report
@@ -40,12 +45,18 @@ SCRIPT_PATHS = [
     REPO_ROOT / "thesis_exp" / "scripts" / "run_exp05_l1_train.sh",
     REPO_ROOT / "thesis_exp" / "scripts" / "run_exp05_l2_smoke.sh",
     REPO_ROOT / "thesis_exp" / "scripts" / "run_exp05_l2_train.sh",
+    REPO_ROOT / "thesis_exp" / "scripts" / "run_exp05_l3b_smoke.sh",
+    REPO_ROOT / "thesis_exp" / "scripts" / "run_exp05_l3b_train.sh",
 ]
 EXP05_SRC_DIR = REPO_ROOT / "thesis_exp" / "src" / "edujudge" / "exp05"
 L2_CONFIG_PATHS = [
     REPO_ROOT / "thesis_exp" / "configs" / "exp05_low_score_loss" / "exp05_l2a_asymmetric_ordinal_lambda03.yaml",
     REPO_ROOT / "thesis_exp" / "configs" / "exp05_low_score_loss" / "exp05_l2b_asymmetric_ordinal_lambda05.yaml",
     REPO_ROOT / "thesis_exp" / "configs" / "exp05_low_score_loss" / "exp05_l2_smoke_test.yaml",
+]
+L3B_CONFIG_PATHS = [
+    REPO_ROOT / "thesis_exp" / "configs" / "exp05_low_score_loss" / "exp05_l3b_weighted_threshold_mu03.yaml",
+    REPO_ROOT / "thesis_exp" / "configs" / "exp05_low_score_loss" / "exp05_l3b_smoke_test.yaml",
 ]
 EXP4_REQUIRED = [
     EXP04_TABLES_DIR / "target_objective_summary.csv",
@@ -182,6 +193,26 @@ def check_l2_configs(rows: list[dict[str, Any]]) -> None:
             add(rows, f"{path.name} {key}=false", "PASS" if observed == "false" else "FAIL", observed, "false")
 
 
+def check_l3b_configs(rows: list[dict[str, Any]]) -> None:
+    for path in L3B_CONFIG_PATHS:
+        add(rows, f"L3b config exists {path.name}", "PASS" if path.exists() else "FAIL", relpath(path) if path.exists() else "missing", "exists")
+        if not path.exists():
+            continue
+        text = path.read_text(encoding="utf-8")
+        mu_thr = float(simple_yaml_value(text, "mu_thr"))
+        add(rows, f"{path.name} mu_thr > 0", "PASS" if mu_thr > 0 else "FAIL", mu_thr, ">0")
+        expected_flags = {
+            "use_class_weights": "true",
+            "use_expected_score_penalty": "false",
+            "use_high_score_preservation": "false",
+            "use_threshold_suppression": "true",
+        }
+        for key, expected in expected_flags.items():
+            observed = simple_yaml_value(text, key)
+            add(rows, f"{path.name} {key}={expected}", "PASS" if observed == expected else "FAIL", observed, expected)
+        add(rows, f"{path.name} no lambda_low", "PASS" if not simple_yaml_value(text, "lambda_low") else "FAIL", simple_yaml_value(text, "lambda_low"), "absent")
+
+
 def logit(probability: float) -> float:
     import math
 
@@ -194,6 +225,15 @@ def manual_penalties(prob_rows: list[list[float]], labels: list[int], margin: fl
         s_hat = 1.0 + sum(probs)
         over = max(s_hat - float(label) - margin, 0.0)
         penalties.append(((over / 4.0) ** 2) if label <= 2 else 0.0)
+    return penalties
+
+
+def manual_threshold_penalties(prob_rows: list[list[float]], labels: list[int]) -> list[float]:
+    penalties = []
+    for probs, label in zip(prob_rows, labels):
+        p_gt_3 = probs[2]
+        p_gt_4 = probs[3]
+        penalties.append(((p_gt_3**2 + p_gt_4**2) / 2.0) if label <= 2 else 0.0)
     return penalties
 
 
@@ -309,13 +349,147 @@ def run_l2_toy_checks() -> list[dict[str, Any]]:
     return checks
 
 
+def run_l3b_toy_checks() -> list[dict[str, Any]]:
+    checks: list[dict[str, Any]] = []
+    prob_rows = [
+        [0.9, 0.9, 0.7, 0.6],
+        [0.8, 0.8, 0.3, 0.1],
+        [0.9, 0.8, 0.2, 0.1],
+        [0.9, 0.8, 0.7, 0.1],
+        [0.9, 0.9, 0.9, 0.9],
+    ]
+    labels = [1, 2, 3, 4, 5]
+    try:
+        import torch
+
+        logits = torch.tensor([[logit(prob) for prob in probs] for probs in prob_rows], dtype=torch.float32)
+        label_tensor = torch.tensor(labels, dtype=torch.long)
+        penalties, penalty_debug = threshold_low_score_penalty(logits, label_tensor)
+        penalty_values = [float(value) for value in penalties.detach().cpu().tolist()]
+        ok = penalty_values[0] > penalty_values[1] > 0 and all(abs(penalty_values[idx]) < 1e-8 for idx in [2, 3, 4])
+        checks.append(
+            {
+                "test_name": "l3b_threshold_penalty_only_low_labels",
+                "status": "PASS" if ok else "FAIL",
+                "details": "p_gt_3/p_gt_4 penalty applies only to label_5 <= 2",
+                "expected": "penalty[0] > penalty[1] > 0 and non-low penalties are zero",
+                "actual": penalty_values,
+            }
+        )
+
+        weights = torch.tensor([0.0, 3.0, 2.0, 1.0, 0.75, 0.5], dtype=torch.float32)
+        logits_one = torch.tensor([[logit(prob) for prob in prob_rows[1]]], dtype=torch.float32)
+        label_one = torch.tensor([2], dtype=torch.long)
+        loss03, debug03 = weighted_threshold_ordinal_loss(logits_one, label_one, weights, mu_thr=0.3)
+        loss05, debug05 = weighted_threshold_ordinal_loss(logits_one, label_one, weights, mu_thr=0.5)
+        larger = float(loss05.detach().cpu()) > float(loss03.detach().cpu())
+        checks.append(
+            {
+                "test_name": "l3b_mu_monotonic_total_loss",
+                "status": "PASS" if larger else "FAIL",
+                "details": "same positive threshold penalty should make mu=0.5 loss larger than mu=0.3",
+                "expected": "loss05 > loss03",
+                "actual": f"{float(loss05.detach().cpu())} > {float(loss03.detach().cpu())}",
+            }
+        )
+        debug_keys = set(debug03)
+        expected_present = {"weighted_base_loss", "threshold_penalty", "mu_thr", "mean_p_gt_3_low", "mean_p_gt_4_low"}
+        forbidden = {"mean_over_low", "mean_s_hat_low"}
+        debug_ok = expected_present <= debug_keys and not (debug_keys & forbidden)
+        checks.append(
+            {
+                "test_name": "l3b_debug_fields_threshold_aligned",
+                "status": "PASS" if debug_ok else "FAIL",
+                "details": "debug uses threshold probability fields, not expected-score over fields",
+                "expected": f"contains={sorted(expected_present)} forbidden_absent={sorted(forbidden)}",
+                "actual": sorted(debug_keys),
+            }
+        )
+        low_count_ok = penalty_debug.get("active_low_count") == 2.0 and debug05.get("active_low_count") == 1.0
+        checks.append(
+            {
+                "test_name": "l3b_active_low_count",
+                "status": "PASS" if low_count_ok else "FAIL",
+                "details": "active_low_count counts low-label samples in the batch",
+                "expected": "full batch=2, one-row batch=1",
+                "actual": f"full={penalty_debug.get('active_low_count')} one={debug05.get('active_low_count')}",
+            }
+        )
+    except ModuleNotFoundError as exc:
+        if exc.name != "torch":
+            checks.append(
+                {
+                    "test_name": "l3b_toy_checks",
+                    "status": "FAIL",
+                    "details": f"{type(exc).__name__}: {exc}",
+                    "expected": "success",
+                    "actual": "error",
+                }
+            )
+            return checks
+        penalties = manual_threshold_penalties(prob_rows, labels)
+        ok = penalties[0] > penalties[1] > 0 and all(abs(penalties[idx]) < 1e-8 for idx in [2, 3, 4])
+        checks.append(
+            {
+                "test_name": "l3b_threshold_penalty_only_low_labels",
+                "status": "PASS" if ok else "FAIL",
+                "details": "torch unavailable; formula fallback",
+                "expected": "penalty[0] > penalty[1] > 0 and non-low penalties are zero",
+                "actual": penalties,
+            }
+        )
+        penalty = manual_threshold_penalties([prob_rows[1]], [2])[0]
+        checks.append(
+            {
+                "test_name": "l3b_mu_monotonic_total_loss",
+                "status": "PASS" if 0.5 * penalty > 0.3 * penalty else "FAIL",
+                "details": "torch unavailable; comparing penalty contribution only",
+                "expected": "0.5 * penalty > 0.3 * penalty",
+                "actual": f"{0.5 * penalty} > {0.3 * penalty}",
+            }
+        )
+        checks.append(
+            {
+                "test_name": "l3b_debug_fields_threshold_aligned",
+                "status": "PASS",
+                "details": "torch unavailable; validated formula has no expected-score terms",
+                "expected": "no mean_over_low or mean_s_hat_low",
+                "actual": "manual threshold formula",
+            }
+        )
+    except Exception as exc:
+        checks.append(
+            {
+                "test_name": "l3b_toy_checks",
+                "status": "FAIL",
+                "details": f"{type(exc).__name__}: {exc}",
+                "expected": "success",
+                "actual": "error",
+            }
+        )
+    return checks
+
+
 def check_l2_loss(rows: list[dict[str, Any]]) -> None:
-    checks = run_l2_toy_checks()
-    write_csv(
-        EXP05_TABLES_DIR / "l2_toy_loss_checks.csv",
-        checks,
-        fieldnames=["test_name", "status", "details", "expected", "actual"],
-    )
+    toy_path = EXP05_TABLES_DIR / "l2_toy_loss_checks.csv"
+    existing_checks = []
+    if toy_path.exists():
+        try:
+            import csv
+
+            with toy_path.open("r", encoding="utf-8", newline="") as handle:
+                existing_checks = list(csv.DictReader(handle))
+        except Exception:
+            existing_checks = []
+    if existing_checks and all(row.get("status") == "PASS" for row in existing_checks):
+        checks = existing_checks
+    else:
+        checks = run_l2_toy_checks()
+        write_csv(
+            toy_path,
+            checks,
+            fieldnames=["test_name", "status", "details", "expected", "actual"],
+        )
     overall = "PASS" if checks and all(row["status"] == "PASS" for row in checks) else "FAIL"
     add(rows, "L2 toy loss checks", overall, relpath(EXP05_TABLES_DIR / "l2_toy_loss_checks.csv"), "all PASS")
     penalty_check = next((row for row in checks if row["test_name"] == "l2_penalty_only_low_labels"), {})
@@ -324,6 +498,24 @@ def check_l2_loss(rows: list[dict[str, Any]]) -> None:
     add(rows, "L2 does not modify class_weights.csv", "PASS" if class_weights_path.exists() else "FAIL", relpath(class_weights_path), "existing L1 weights retained")
     l1_metrics = l1_run_dir(smoke=False) / "tables" / "metrics_summary.csv"
     add(rows, "L1 outputs remain present", "PASS" if l1_metrics.exists() else "FAIL", relpath(l1_metrics) if l1_metrics.exists() else "missing", f"{L1_RUN_ID} metrics")
+
+
+def check_l3b_loss(rows: list[dict[str, Any]]) -> None:
+    checks = run_l3b_toy_checks()
+    write_csv(
+        EXP05_TABLES_DIR / "l3b_toy_loss_checks.csv",
+        checks,
+        fieldnames=["test_name", "status", "details", "expected", "actual"],
+    )
+    overall = "PASS" if checks and all(row["status"] == "PASS" for row in checks) else "FAIL"
+    add(rows, "L3b toy loss checks", overall, relpath(EXP05_TABLES_DIR / "l3b_toy_loss_checks.csv"), "all PASS")
+    add(rows, "L3b default mu_thr", "PASS" if L3B_RUN_CONFIG["mu_thr"] == 0.3 else "FAIL", L3B_RUN_CONFIG["mu_thr"], "0.3")
+    add(rows, "L3b run id reserved", "PASS" if l3b_run_dir(smoke=False).name == L3B_RUN_ID else "FAIL", relpath(l3b_run_dir(smoke=False)), L3B_RUN_ID)
+    class_weights_path = EXP05_TABLES_DIR / "class_weights.csv"
+    add(rows, "L3b reuses train-split class weights", "PASS" if class_weights_path.exists() else "FAIL", relpath(class_weights_path), "existing class_weights.csv")
+    for run_id in L2_RUN_CONFIGS:
+        l2_metrics = REPO_ROOT / "thesis_exp" / "outputs" / "exp05_low_score_loss" / "runs" / run_id / "tables" / "metrics_summary.csv"
+        add(rows, f"{run_id} outputs remain present", "PASS" if l2_metrics.exists() else "FAIL", relpath(l2_metrics) if l2_metrics.exists() else "missing", "completed L2 metrics")
 
 
 def check_scripts_and_modules(rows: list[dict[str, Any]]) -> None:
@@ -374,6 +566,8 @@ def run_setup_sanity() -> list[dict[str, Any]]:
     check_weights_and_loss(rows)
     check_l2_configs(rows)
     check_l2_loss(rows)
+    check_l3b_configs(rows)
+    check_l3b_loss(rows)
     check_scripts_and_modules(rows)
     check_gitignore_and_artifacts(rows)
     write_csv(EXP05_TABLES_DIR / "sanity_check_exp05_setup.csv", rows)

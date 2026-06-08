@@ -8,7 +8,13 @@ Can L2 smoke start? **YES**
 
 Can L2 formal training start? **YES**
 
-Can L3 start? **NO until L2 reviewed**
+Can L3b smoke start? **YES**
+
+Can L3b formal training start? **NO**
+
+Can L3a or L4 start? **NO, intentionally not implemented**
+
+Can Exp6 start? **NO until L3b is reviewed**
 
 ## Class Weights Summary
 
@@ -27,10 +33,13 @@ Can L3 start? **NO until L2 reviewed**
 | Setup sanity status | PASS |
 | Readability status | PASS |
 | L2 toy loss check status | PASS |
+| L3b toy loss check status | PASS |
 | L1 smoke status | PASS |
 | L1 formal status | completed |
 | L2 smoke status | PASS |
 | L2 formal status | completed |
+| L3b smoke status | PENDING |
+| L3b formal status | pending |
 
 ## Main Results
 
@@ -40,11 +49,13 @@ Can L3 start? **NO until L2 reviewed**
 | L1_weighted_ordinal | completed | 0.7250 | 0.3894 | 0.3504 | 0.7132 | 0.6149 | 0.2136 |
 | L2a_asymmetric_ordinal_lambda03_margin0 | completed | 0.7160 | 0.4080 | 0.3705 | 0.6356 | 0.5991 | 0.3398 |
 | L2b_asymmetric_ordinal_lambda05_margin0 | completed | 0.7164 | 0.3971 | 0.3633 | 0.6745 | 0.6038 | 0.2718 |
+| L3b_weighted_threshold_mu03 | pending | NA | NA | NA | NA | NA | NA |
 
 ## Remaining Blockers
 
-- none for L2; formal training completed and setup/output/readability checks passed
-- L3/L4 remain intentionally out of scope until L2 is reviewed
+- run L3b smoke before formal L3b training
+- L3a/L4 remain intentionally out of scope
+- Exp6 should wait until L3b smoke/formal results are reviewed
 
 ## Files
 
@@ -52,3 +63,4 @@ Can L3 start? **NO until L2 reviewed**
 - `thesis_exp/outputs/exp05_low_score_loss/sanity_check_exp05_setup.md`
 - `thesis_exp/outputs/exp05_low_score_loss/readability_check_exp05.md`
 - `thesis_exp/outputs/exp05_low_score_loss/tables/loss_ablation_summary.csv`
+- `thesis_exp/outputs/exp05_low_score_loss/tables/l3b_toy_loss_checks.csv`

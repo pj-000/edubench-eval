@@ -1,0 +1,5 @@
+test_name,status,details,expected,actual
+l3b_threshold_penalty_only_low_labels,PASS,p_gt_3/p_gt_4 penalty applies only to label_5 <= 2,penalty[0] > penalty[1] > 0 and non-low penalties are zero,"[0.4249999523162842, 0.05000000074505806, 0.0, 0.0, 0.0]"
+l3b_mu_monotonic_total_loss,PASS,same positive threshold penalty should make mu=0.5 loss larger than mu=0.3,loss05 > loss03,0.5986542105674744 > 0.5886542201042175
+l3b_debug_fields_threshold_aligned,PASS,"debug uses threshold probability fields, not expected-score over fields","contains=['mean_p_gt_3_low', 'mean_p_gt_4_low', 'mu_thr', 'threshold_penalty', 'weighted_base_loss'] forbidden_absent=['mean_over_low', 'mean_s_hat_low']","[""active_low_count"", ""max_p_gt_3_low"", ""max_p_gt_4_low"", ""max_sample_weight"", ""mean_p_gt_3_low"", ""mean_p_gt_4_low"", ""mean_sample_weight"", ""mean_total_loss"", ""min_sample_weight"", ""mu_thr"", ""threshold_penalty"", ""weighted_base_loss""]"
+l3b_active_low_count,PASS,active_low_count counts low-label samples in the batch,"full batch=2, one-row batch=1",full=2.0 one=1.0

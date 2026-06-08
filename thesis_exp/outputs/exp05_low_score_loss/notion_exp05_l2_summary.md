@@ -18,6 +18,7 @@ L2 和 L1 的区别：
 | L1_weighted_ordinal | completed | 0.7250 | 0.3894 | 0.3504 | 0.7132 | 0.6149 | 0.2136 |
 | L2a_asymmetric_ordinal_lambda03_margin0 | completed | 0.7160 | 0.4080 | 0.3705 | 0.6356 | 0.5991 | 0.3398 |
 | L2b_asymmetric_ordinal_lambda05_margin0 | completed | 0.7164 | 0.3971 | 0.3633 | 0.6745 | 0.6038 | 0.2718 |
+| L3b_weighted_threshold_mu03 | pending | NA | NA | NA | NA | NA | NA |
 
 解读要点：
 

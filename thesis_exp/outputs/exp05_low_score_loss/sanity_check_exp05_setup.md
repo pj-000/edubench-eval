@@ -38,10 +38,32 @@ Overall status: **PASS**
 | L2 penalty only applies to label_5 <= 2 | PASS | [0.809999942779541, 0.05062501132488251, 0.0, 0.0, 0.0] | non-low penalties zero |  |
 | L2 does not modify class_weights.csv | PASS | thesis_exp/outputs/exp05_low_score_loss/tables/class_weights.csv | existing L1 weights retained |  |
 | L1 outputs remain present | PASS | thesis_exp/outputs/exp05_low_score_loss/runs/L1_weighted_ordinal/tables/metrics_summary.csv | L1_weighted_ordinal metrics |  |
+| L3b config exists exp05_l3b_weighted_threshold_mu03.yaml | PASS | thesis_exp/configs/exp05_low_score_loss/exp05_l3b_weighted_threshold_mu03.yaml | exists |  |
+| exp05_l3b_weighted_threshold_mu03.yaml mu_thr > 0 | PASS | 0.3 | >0 |  |
+| exp05_l3b_weighted_threshold_mu03.yaml use_class_weights=true | PASS | true | true |  |
+| exp05_l3b_weighted_threshold_mu03.yaml use_expected_score_penalty=false | PASS | false | false |  |
+| exp05_l3b_weighted_threshold_mu03.yaml use_high_score_preservation=false | PASS | false | false |  |
+| exp05_l3b_weighted_threshold_mu03.yaml use_threshold_suppression=true | PASS | true | true |  |
+| exp05_l3b_weighted_threshold_mu03.yaml no lambda_low | PASS |  | absent |  |
+| L3b config exists exp05_l3b_smoke_test.yaml | PASS | thesis_exp/configs/exp05_low_score_loss/exp05_l3b_smoke_test.yaml | exists |  |
+| exp05_l3b_smoke_test.yaml mu_thr > 0 | PASS | 0.3 | >0 |  |
+| exp05_l3b_smoke_test.yaml use_class_weights=true | PASS | true | true |  |
+| exp05_l3b_smoke_test.yaml use_expected_score_penalty=false | PASS | false | false |  |
+| exp05_l3b_smoke_test.yaml use_high_score_preservation=false | PASS | false | false |  |
+| exp05_l3b_smoke_test.yaml use_threshold_suppression=true | PASS | true | true |  |
+| exp05_l3b_smoke_test.yaml no lambda_low | PASS |  | absent |  |
+| L3b toy loss checks | PASS | thesis_exp/outputs/exp05_low_score_loss/tables/l3b_toy_loss_checks.csv | all PASS |  |
+| L3b default mu_thr | PASS | 0.3 | 0.3 |  |
+| L3b run id reserved | PASS | thesis_exp/outputs/exp05_low_score_loss/runs/L3b_weighted_threshold_mu03 | L3b_weighted_threshold_mu03 |  |
+| L3b reuses train-split class weights | PASS | thesis_exp/outputs/exp05_low_score_loss/tables/class_weights.csv | existing class_weights.csv |  |
+| L2a_asymmetric_ordinal_lambda03_margin0 outputs remain present | PASS | thesis_exp/outputs/exp05_low_score_loss/runs/L2a_asymmetric_ordinal_lambda03_margin0/tables/metrics_summary... | completed L2 metrics |  |
+| L2b_asymmetric_ordinal_lambda05_margin0 outputs remain present | PASS | thesis_exp/outputs/exp05_low_score_loss/runs/L2b_asymmetric_ordinal_lambda05_margin0/tables/metrics_summary... | completed L2 metrics |  |
 | bash -n thesis_exp/scripts/run_exp05_l1_smoke.sh | PASS | ok | ok |  |
 | bash -n thesis_exp/scripts/run_exp05_l1_train.sh | PASS | ok | ok |  |
 | bash -n thesis_exp/scripts/run_exp05_l2_smoke.sh | PASS | ok | ok |  |
 | bash -n thesis_exp/scripts/run_exp05_l2_train.sh | PASS | ok | ok |  |
+| bash -n thesis_exp/scripts/run_exp05_l3b_smoke.sh | PASS | ok | ok |  |
+| bash -n thesis_exp/scripts/run_exp05_l3b_train.sh | PASS | ok | ok |  |
 | exp05 Python modules py_compile | PASS | ok | ok |  |
 | checkpoint artifacts path gitignored | PASS | [] | all required patterns |  |
 | Exp5 artifacts directory | PASS | thesis_exp/artifacts/exp05_low_score_loss | under thesis_exp/artifacts |  |
