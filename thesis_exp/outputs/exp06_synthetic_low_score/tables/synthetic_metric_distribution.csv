@@ -1,0 +1,743 @@
+source_file,metric_canonical,target_label_5,count,pct
+deepseek-r1_merged.jsonl,unknown,missing,990,0.0093
+deepseek_output/deepseek_generated_20251124_204411.jsonl,unknown,missing,164,0.001541
+deepseek_output/en_judge_20251109_221657.jsonl,unknown,missing,173,0.001625
+deepseek_output/judge-1-process.jsonl,unknown,missing,189,0.001775
+deepseek_output/judge-2-process.jsonl,unknown,missing,186,0.001747
+deepseek_output/processed_excel_data_1.jsonl,Basic Factual Accuracy,4,3,2.8e-05
+deepseek_output/processed_excel_data_1.jsonl,Basic Factual Accuracy,5,126,0.001184
+deepseek_output/processed_excel_data_1.jsonl,Content Relevance & Scope Control,4,4,3.8e-05
+deepseek_output/processed_excel_data_1.jsonl,Content Relevance & Scope Control,5,125,0.001174
+deepseek_output/processed_excel_data_1.jsonl,Error Identification & Correction Precision,3,9,8.5e-05
+deepseek_output/processed_excel_data_1.jsonl,Error Identification & Correction Precision,4,20,0.000188
+deepseek_output/processed_excel_data_1.jsonl,Error Identification & Correction Precision,5,100,0.000939
+deepseek_output/processed_excel_data_1.jsonl,Instruction Following & Task Completion,3,1,9e-06
+deepseek_output/processed_excel_data_1.jsonl,Instruction Following & Task Completion,4,3,2.8e-05
+deepseek_output/processed_excel_data_1.jsonl,Instruction Following & Task Completion,5,125,0.001174
+deepseek_output/processed_excel_data_1.jsonl,"Motivation, Guidance & Positive Feedback",2,8,7.5e-05
+deepseek_output/processed_excel_data_1.jsonl,"Motivation, Guidance & Positive Feedback",3,31,0.000291
+deepseek_output/processed_excel_data_1.jsonl,"Motivation, Guidance & Positive Feedback",4,45,0.000423
+deepseek_output/processed_excel_data_1.jsonl,"Motivation, Guidance & Positive Feedback",5,45,0.000423
+deepseek_output/processed_excel_data_1.jsonl,Reasoning Process Rigor,3,1,9e-06
+deepseek_output/processed_excel_data_1.jsonl,Reasoning Process Rigor,4,2,1.9e-05
+deepseek_output/processed_excel_data_1.jsonl,Reasoning Process Rigor,5,11,0.000103
+deepseek_output/processed_excel_data_1_en.jsonl,Basic Factual Accuracy,5,64,0.000601
+deepseek_output/processed_excel_data_1_en.jsonl,Content Relevance & Scope Control,4,2,1.9e-05
+deepseek_output/processed_excel_data_1_en.jsonl,Content Relevance & Scope Control,5,62,0.000582
+deepseek_output/processed_excel_data_1_en.jsonl,Error Identification & Correction Precision,3,3,2.8e-05
+deepseek_output/processed_excel_data_1_en.jsonl,Error Identification & Correction Precision,4,7,6.6e-05
+deepseek_output/processed_excel_data_1_en.jsonl,Error Identification & Correction Precision,5,54,0.000507
+deepseek_output/processed_excel_data_1_en.jsonl,Instruction Following & Task Completion,4,1,9e-06
+deepseek_output/processed_excel_data_1_en.jsonl,Instruction Following & Task Completion,5,63,0.000592
+deepseek_output/processed_excel_data_1_en.jsonl,"Motivation, Guidance & Positive Feedback",2,5,4.7e-05
+deepseek_output/processed_excel_data_1_en.jsonl,"Motivation, Guidance & Positive Feedback",3,10,9.4e-05
+deepseek_output/processed_excel_data_1_en.jsonl,"Motivation, Guidance & Positive Feedback",4,21,0.000197
+deepseek_output/processed_excel_data_1_en.jsonl,"Motivation, Guidance & Positive Feedback",5,28,0.000263
+deepseek_output/processed_excel_data_1_en.jsonl,Reasoning Process Rigor,4,2,1.9e-05
+deepseek_output/processed_excel_data_1_en.jsonl,Reasoning Process Rigor,5,9,8.5e-05
+deepseek_output/processed_excel_data_1_zh.jsonl,Basic Factual Accuracy,4,3,2.8e-05
+deepseek_output/processed_excel_data_1_zh.jsonl,Basic Factual Accuracy,5,62,0.000582
+deepseek_output/processed_excel_data_1_zh.jsonl,Content Relevance & Scope Control,4,2,1.9e-05
+deepseek_output/processed_excel_data_1_zh.jsonl,Content Relevance & Scope Control,5,63,0.000592
+deepseek_output/processed_excel_data_1_zh.jsonl,Error Identification & Correction Precision,3,6,5.6e-05
+deepseek_output/processed_excel_data_1_zh.jsonl,Error Identification & Correction Precision,4,13,0.000122
+deepseek_output/processed_excel_data_1_zh.jsonl,Error Identification & Correction Precision,5,46,0.000432
+deepseek_output/processed_excel_data_1_zh.jsonl,Instruction Following & Task Completion,3,1,9e-06
+deepseek_output/processed_excel_data_1_zh.jsonl,Instruction Following & Task Completion,4,2,1.9e-05
+deepseek_output/processed_excel_data_1_zh.jsonl,Instruction Following & Task Completion,5,62,0.000582
+deepseek_output/processed_excel_data_1_zh.jsonl,"Motivation, Guidance & Positive Feedback",2,3,2.8e-05
+deepseek_output/processed_excel_data_1_zh.jsonl,"Motivation, Guidance & Positive Feedback",3,21,0.000197
+deepseek_output/processed_excel_data_1_zh.jsonl,"Motivation, Guidance & Positive Feedback",4,24,0.000225
+deepseek_output/processed_excel_data_1_zh.jsonl,"Motivation, Guidance & Positive Feedback",5,17,0.00016
+deepseek_output/processed_excel_data_1_zh.jsonl,Reasoning Process Rigor,3,1,9e-06
+deepseek_output/processed_excel_data_1_zh.jsonl,Reasoning Process Rigor,5,2,1.9e-05
+deepseek_output/processed_excel_data_2.jsonl,Basic Factual Accuracy,4,3,2.8e-05
+deepseek_output/processed_excel_data_2.jsonl,Basic Factual Accuracy,5,126,0.001184
+deepseek_output/processed_excel_data_2.jsonl,Content Relevance & Scope Control,4,4,3.8e-05
+deepseek_output/processed_excel_data_2.jsonl,Content Relevance & Scope Control,5,125,0.001174
+deepseek_output/processed_excel_data_2.jsonl,Error Identification & Correction Precision,3,9,8.5e-05
+deepseek_output/processed_excel_data_2.jsonl,Error Identification & Correction Precision,4,20,0.000188
+deepseek_output/processed_excel_data_2.jsonl,Error Identification & Correction Precision,5,100,0.000939
+deepseek_output/processed_excel_data_2.jsonl,Instruction Following & Task Completion,3,1,9e-06
+deepseek_output/processed_excel_data_2.jsonl,Instruction Following & Task Completion,4,3,2.8e-05
+deepseek_output/processed_excel_data_2.jsonl,Instruction Following & Task Completion,5,125,0.001174
+deepseek_output/processed_excel_data_2.jsonl,"Motivation, Guidance & Positive Feedback",2,8,7.5e-05
+deepseek_output/processed_excel_data_2.jsonl,"Motivation, Guidance & Positive Feedback",3,31,0.000291
+deepseek_output/processed_excel_data_2.jsonl,"Motivation, Guidance & Positive Feedback",4,45,0.000423
+deepseek_output/processed_excel_data_2.jsonl,"Motivation, Guidance & Positive Feedback",5,45,0.000423
+deepseek_output/processed_excel_data_2.jsonl,Reasoning Process Rigor,3,1,9e-06
+deepseek_output/processed_excel_data_2.jsonl,Reasoning Process Rigor,4,2,1.9e-05
+deepseek_output/processed_excel_data_2.jsonl,Reasoning Process Rigor,5,11,0.000103
+deepseek_output/processed_excel_data_2_en.jsonl,Basic Factual Accuracy,5,64,0.000601
+deepseek_output/processed_excel_data_2_en.jsonl,Content Relevance & Scope Control,4,2,1.9e-05
+deepseek_output/processed_excel_data_2_en.jsonl,Content Relevance & Scope Control,5,62,0.000582
+deepseek_output/processed_excel_data_2_en.jsonl,Error Identification & Correction Precision,3,3,2.8e-05
+deepseek_output/processed_excel_data_2_en.jsonl,Error Identification & Correction Precision,4,7,6.6e-05
+deepseek_output/processed_excel_data_2_en.jsonl,Error Identification & Correction Precision,5,54,0.000507
+deepseek_output/processed_excel_data_2_en.jsonl,Instruction Following & Task Completion,4,1,9e-06
+deepseek_output/processed_excel_data_2_en.jsonl,Instruction Following & Task Completion,5,63,0.000592
+deepseek_output/processed_excel_data_2_en.jsonl,"Motivation, Guidance & Positive Feedback",2,5,4.7e-05
+deepseek_output/processed_excel_data_2_en.jsonl,"Motivation, Guidance & Positive Feedback",3,10,9.4e-05
+deepseek_output/processed_excel_data_2_en.jsonl,"Motivation, Guidance & Positive Feedback",4,21,0.000197
+deepseek_output/processed_excel_data_2_en.jsonl,"Motivation, Guidance & Positive Feedback",5,28,0.000263
+deepseek_output/processed_excel_data_2_en.jsonl,Reasoning Process Rigor,4,2,1.9e-05
+deepseek_output/processed_excel_data_2_en.jsonl,Reasoning Process Rigor,5,9,8.5e-05
+deepseek_output/processed_excel_data_2_zh.jsonl,Basic Factual Accuracy,4,3,2.8e-05
+deepseek_output/processed_excel_data_2_zh.jsonl,Basic Factual Accuracy,5,62,0.000582
+deepseek_output/processed_excel_data_2_zh.jsonl,Content Relevance & Scope Control,4,2,1.9e-05
+deepseek_output/processed_excel_data_2_zh.jsonl,Content Relevance & Scope Control,5,63,0.000592
+deepseek_output/processed_excel_data_2_zh.jsonl,Error Identification & Correction Precision,3,6,5.6e-05
+deepseek_output/processed_excel_data_2_zh.jsonl,Error Identification & Correction Precision,4,13,0.000122
+deepseek_output/processed_excel_data_2_zh.jsonl,Error Identification & Correction Precision,5,46,0.000432
+deepseek_output/processed_excel_data_2_zh.jsonl,Instruction Following & Task Completion,3,1,9e-06
+deepseek_output/processed_excel_data_2_zh.jsonl,Instruction Following & Task Completion,4,2,1.9e-05
+deepseek_output/processed_excel_data_2_zh.jsonl,Instruction Following & Task Completion,5,62,0.000582
+deepseek_output/processed_excel_data_2_zh.jsonl,"Motivation, Guidance & Positive Feedback",2,3,2.8e-05
+deepseek_output/processed_excel_data_2_zh.jsonl,"Motivation, Guidance & Positive Feedback",3,21,0.000197
+deepseek_output/processed_excel_data_2_zh.jsonl,"Motivation, Guidance & Positive Feedback",4,24,0.000225
+deepseek_output/processed_excel_data_2_zh.jsonl,"Motivation, Guidance & Positive Feedback",5,17,0.00016
+deepseek_output/processed_excel_data_2_zh.jsonl,Reasoning Process Rigor,3,1,9e-06
+deepseek_output/processed_excel_data_2_zh.jsonl,Reasoning Process Rigor,5,2,1.9e-05
+deepseek_output/unique_questions.jsonl,unknown,missing,25,0.000235
+deepseek_output/zh_judge_20251109_223622.jsonl,unknown,missing,234,0.002198
+edu-data-synthesis-main/data/criteria/metrics_old.json,unknown,missing,3,2.8e-05
+edu-data-synthesis-main/data/eval_data/eval_samples.jsonl,Basic Factual Accuracy,1,13,0.000122
+edu-data-synthesis-main/data/eval_data/eval_samples.jsonl,Basic Factual Accuracy,2,21,0.000197
+edu-data-synthesis-main/data/eval_data/eval_samples.jsonl,Basic Factual Accuracy,3,52,0.000488
+edu-data-synthesis-main/data/eval_data/eval_samples.jsonl,Basic Factual Accuracy,4,354,0.003325
+edu-data-synthesis-main/data/eval_data/eval_samples.jsonl,Basic Factual Accuracy,5,1540,0.014466
+edu-data-synthesis-main/data/eval_data/eval_samples.jsonl,"Clarity, Simplicity & Inspiration",2,18,0.000169
+edu-data-synthesis-main/data/eval_data/eval_samples.jsonl,"Clarity, Simplicity & Inspiration",3,90,0.000845
+edu-data-synthesis-main/data/eval_data/eval_samples.jsonl,"Clarity, Simplicity & Inspiration",4,648,0.006087
+edu-data-synthesis-main/data/eval_data/eval_samples.jsonl,"Clarity, Simplicity & Inspiration",5,564,0.005298
+edu-data-synthesis-main/data/eval_data/eval_samples.jsonl,Content Relevance & Scope Control,1,2,1.9e-05
+edu-data-synthesis-main/data/eval_data/eval_samples.jsonl,Content Relevance & Scope Control,2,25,0.000235
+edu-data-synthesis-main/data/eval_data/eval_samples.jsonl,Content Relevance & Scope Control,3,81,0.000761
+edu-data-synthesis-main/data/eval_data/eval_samples.jsonl,Content Relevance & Scope Control,4,528,0.00496
+edu-data-synthesis-main/data/eval_data/eval_samples.jsonl,Content Relevance & Scope Control,5,1434,0.01347
+edu-data-synthesis-main/data/eval_data/eval_samples.jsonl,Domain Knowledge Accuracy,3,69,0.000648
+edu-data-synthesis-main/data/eval_data/eval_samples.jsonl,Domain Knowledge Accuracy,4,437,0.004105
+edu-data-synthesis-main/data/eval_data/eval_samples.jsonl,Domain Knowledge Accuracy,5,484,0.004546
+edu-data-synthesis-main/data/eval_data/eval_samples.jsonl,Error Identification & Correction Precision,1,24,0.000225
+edu-data-synthesis-main/data/eval_data/eval_samples.jsonl,Error Identification & Correction Precision,2,32,0.000301
+edu-data-synthesis-main/data/eval_data/eval_samples.jsonl,Error Identification & Correction Precision,3,47,0.000441
+edu-data-synthesis-main/data/eval_data/eval_samples.jsonl,Error Identification & Correction Precision,4,182,0.00171
+edu-data-synthesis-main/data/eval_data/eval_samples.jsonl,Error Identification & Correction Precision,5,375,0.003523
+edu-data-synthesis-main/data/eval_data/eval_samples.jsonl,Higher-Order Thinking & Skill Development,2,82,0.00077
+edu-data-synthesis-main/data/eval_data/eval_samples.jsonl,Higher-Order Thinking & Skill Development,3,360,0.003382
+edu-data-synthesis-main/data/eval_data/eval_samples.jsonl,Higher-Order Thinking & Skill Development,4,598,0.005617
+edu-data-synthesis-main/data/eval_data/eval_samples.jsonl,Higher-Order Thinking & Skill Development,5,370,0.003476
+edu-data-synthesis-main/data/eval_data/eval_samples.jsonl,Instruction Following & Task Completion,1,4,3.8e-05
+edu-data-synthesis-main/data/eval_data/eval_samples.jsonl,Instruction Following & Task Completion,2,48,0.000451
+edu-data-synthesis-main/data/eval_data/eval_samples.jsonl,Instruction Following & Task Completion,3,212,0.001991
+edu-data-synthesis-main/data/eval_data/eval_samples.jsonl,Instruction Following & Task Completion,4,1101,0.010342
+edu-data-synthesis-main/data/eval_data/eval_samples.jsonl,Instruction Following & Task Completion,5,1735,0.016298
+edu-data-synthesis-main/data/eval_data/eval_samples.jsonl,"Motivation, Guidance & Positive Feedback",1,15,0.000141
+edu-data-synthesis-main/data/eval_data/eval_samples.jsonl,"Motivation, Guidance & Positive Feedback",2,52,0.000488
+edu-data-synthesis-main/data/eval_data/eval_samples.jsonl,"Motivation, Guidance & Positive Feedback",3,209,0.001963
+edu-data-synthesis-main/data/eval_data/eval_samples.jsonl,"Motivation, Guidance & Positive Feedback",4,427,0.004011
+edu-data-synthesis-main/data/eval_data/eval_samples.jsonl,"Motivation, Guidance & Positive Feedback",5,287,0.002696
+edu-data-synthesis-main/data/eval_data/eval_samples.jsonl,"Personalization, Adaptation & Learning Support",2,11,0.000103
+edu-data-synthesis-main/data/eval_data/eval_samples.jsonl,"Personalization, Adaptation & Learning Support",3,180,0.001691
+edu-data-synthesis-main/data/eval_data/eval_samples.jsonl,"Personalization, Adaptation & Learning Support",4,405,0.003804
+edu-data-synthesis-main/data/eval_data/eval_samples.jsonl,"Personalization, Adaptation & Learning Support",5,524,0.004922
+edu-data-synthesis-main/data/eval_data/eval_samples.jsonl,Reasoning Process Rigor,1,206,0.001935
+edu-data-synthesis-main/data/eval_data/eval_samples.jsonl,Reasoning Process Rigor,2,26,0.000244
+edu-data-synthesis-main/data/eval_data/eval_samples.jsonl,Reasoning Process Rigor,3,133,0.001249
+edu-data-synthesis-main/data/eval_data/eval_samples.jsonl,Reasoning Process Rigor,4,419,0.003936
+edu-data-synthesis-main/data/eval_data/eval_samples.jsonl,Reasoning Process Rigor,5,536,0.005035
+edu-data-synthesis-main/data/eval_data/eval_samples.jsonl,Role & Tone Consistency,2,1,9e-06
+edu-data-synthesis-main/data/eval_data/eval_samples.jsonl,Role & Tone Consistency,3,23,0.000216
+edu-data-synthesis-main/data/eval_data/eval_samples.jsonl,Role & Tone Consistency,4,336,0.003156
+edu-data-synthesis-main/data/eval_data/eval_samples.jsonl,Role & Tone Consistency,5,300,0.002818
+edu-data-synthesis-main/data/eval_data/eval_samples.jsonl,Scenario Element Integration,2,55,0.000517
+edu-data-synthesis-main/data/eval_data/eval_samples.jsonl,Scenario Element Integration,3,225,0.002114
+edu-data-synthesis-main/data/eval_data/eval_samples.jsonl,Scenario Element Integration,4,713,0.006698
+edu-data-synthesis-main/data/eval_data/eval_samples.jsonl,Scenario Element Integration,5,787,0.007393
+edu-data-synthesis-main/data/eval_data/train_eval_data.jsonl,Basic Factual Accuracy,1,12,0.000113
+edu-data-synthesis-main/data/eval_data/train_eval_data.jsonl,Basic Factual Accuracy,2,18,0.000169
+edu-data-synthesis-main/data/eval_data/train_eval_data.jsonl,Basic Factual Accuracy,3,33,0.00031
+edu-data-synthesis-main/data/eval_data/train_eval_data.jsonl,Basic Factual Accuracy,4,212,0.001991
+edu-data-synthesis-main/data/eval_data/train_eval_data.jsonl,Basic Factual Accuracy,5,913,0.008576
+edu-data-synthesis-main/data/eval_data/train_eval_data.jsonl,"Clarity, Simplicity & Inspiration",2,10,9.4e-05
+edu-data-synthesis-main/data/eval_data/train_eval_data.jsonl,"Clarity, Simplicity & Inspiration",3,43,0.000404
+edu-data-synthesis-main/data/eval_data/train_eval_data.jsonl,"Clarity, Simplicity & Inspiration",4,399,0.003748
+edu-data-synthesis-main/data/eval_data/train_eval_data.jsonl,"Clarity, Simplicity & Inspiration",5,340,0.003194
+edu-data-synthesis-main/data/eval_data/train_eval_data.jsonl,Content Relevance & Scope Control,1,2,1.9e-05
+edu-data-synthesis-main/data/eval_data/train_eval_data.jsonl,Content Relevance & Scope Control,2,19,0.000178
+edu-data-synthesis-main/data/eval_data/train_eval_data.jsonl,Content Relevance & Scope Control,3,55,0.000517
+edu-data-synthesis-main/data/eval_data/train_eval_data.jsonl,Content Relevance & Scope Control,4,327,0.003072
+edu-data-synthesis-main/data/eval_data/train_eval_data.jsonl,Content Relevance & Scope Control,5,785,0.007374
+edu-data-synthesis-main/data/eval_data/train_eval_data.jsonl,Domain Knowledge Accuracy,3,39,0.000366
+edu-data-synthesis-main/data/eval_data/train_eval_data.jsonl,Domain Knowledge Accuracy,4,263,0.00247
+edu-data-synthesis-main/data/eval_data/train_eval_data.jsonl,Domain Knowledge Accuracy,5,292,0.002743
+edu-data-synthesis-main/data/eval_data/train_eval_data.jsonl,Error Identification & Correction Precision,1,21,0.000197
+edu-data-synthesis-main/data/eval_data/train_eval_data.jsonl,Error Identification & Correction Precision,2,25,0.000235
+edu-data-synthesis-main/data/eval_data/train_eval_data.jsonl,Error Identification & Correction Precision,3,21,0.000197
+edu-data-synthesis-main/data/eval_data/train_eval_data.jsonl,Error Identification & Correction Precision,4,112,0.001052
+edu-data-synthesis-main/data/eval_data/train_eval_data.jsonl,Error Identification & Correction Precision,5,217,0.002038
+edu-data-synthesis-main/data/eval_data/train_eval_data.jsonl,Higher-Order Thinking & Skill Development,2,52,0.000488
+edu-data-synthesis-main/data/eval_data/train_eval_data.jsonl,Higher-Order Thinking & Skill Development,3,214,0.00201
+edu-data-synthesis-main/data/eval_data/train_eval_data.jsonl,Higher-Order Thinking & Skill Development,4,339,0.003184
+edu-data-synthesis-main/data/eval_data/train_eval_data.jsonl,Higher-Order Thinking & Skill Development,5,187,0.001757
+edu-data-synthesis-main/data/eval_data/train_eval_data.jsonl,Instruction Following & Task Completion,1,4,3.8e-05
+edu-data-synthesis-main/data/eval_data/train_eval_data.jsonl,Instruction Following & Task Completion,2,35,0.000329
+edu-data-synthesis-main/data/eval_data/train_eval_data.jsonl,Instruction Following & Task Completion,3,129,0.001212
+edu-data-synthesis-main/data/eval_data/train_eval_data.jsonl,Instruction Following & Task Completion,4,667,0.006265
+edu-data-synthesis-main/data/eval_data/train_eval_data.jsonl,Instruction Following & Task Completion,5,947,0.008896
+edu-data-synthesis-main/data/eval_data/train_eval_data.jsonl,"Motivation, Guidance & Positive Feedback",1,12,0.000113
+edu-data-synthesis-main/data/eval_data/train_eval_data.jsonl,"Motivation, Guidance & Positive Feedback",2,30,0.000282
+edu-data-synthesis-main/data/eval_data/train_eval_data.jsonl,"Motivation, Guidance & Positive Feedback",3,125,0.001174
+edu-data-synthesis-main/data/eval_data/train_eval_data.jsonl,"Motivation, Guidance & Positive Feedback",4,253,0.002377
+edu-data-synthesis-main/data/eval_data/train_eval_data.jsonl,"Motivation, Guidance & Positive Feedback",5,174,0.001634
+edu-data-synthesis-main/data/eval_data/train_eval_data.jsonl,"Personalization, Adaptation & Learning Support",2,7,6.6e-05
+edu-data-synthesis-main/data/eval_data/train_eval_data.jsonl,"Personalization, Adaptation & Learning Support",3,122,0.001146
+edu-data-synthesis-main/data/eval_data/train_eval_data.jsonl,"Personalization, Adaptation & Learning Support",4,228,0.002142
+edu-data-synthesis-main/data/eval_data/train_eval_data.jsonl,"Personalization, Adaptation & Learning Support",5,237,0.002226
+edu-data-synthesis-main/data/eval_data/train_eval_data.jsonl,Reasoning Process Rigor,1,131,0.001231
+edu-data-synthesis-main/data/eval_data/train_eval_data.jsonl,Reasoning Process Rigor,2,16,0.00015
+edu-data-synthesis-main/data/eval_data/train_eval_data.jsonl,Reasoning Process Rigor,3,79,0.000742
+edu-data-synthesis-main/data/eval_data/train_eval_data.jsonl,Reasoning Process Rigor,4,271,0.002546
+edu-data-synthesis-main/data/eval_data/train_eval_data.jsonl,Reasoning Process Rigor,5,295,0.002771
+edu-data-synthesis-main/data/eval_data/train_eval_data.jsonl,Role & Tone Consistency,3,14,0.000132
+edu-data-synthesis-main/data/eval_data/train_eval_data.jsonl,Role & Tone Consistency,4,198,0.00186
+edu-data-synthesis-main/data/eval_data/train_eval_data.jsonl,Role & Tone Consistency,5,184,0.001728
+edu-data-synthesis-main/data/eval_data/train_eval_data.jsonl,Scenario Element Integration,2,34,0.000319
+edu-data-synthesis-main/data/eval_data/train_eval_data.jsonl,Scenario Element Integration,3,143,0.001343
+edu-data-synthesis-main/data/eval_data/train_eval_data.jsonl,Scenario Element Integration,4,427,0.004011
+edu-data-synthesis-main/data/eval_data/train_eval_data.jsonl,Scenario Element Integration,5,386,0.003626
+edu-data-synthesis-main/data/eval_data/val_eval_data.jsonl,Basic Factual Accuracy,1,1,9e-06
+edu-data-synthesis-main/data/eval_data/val_eval_data.jsonl,Basic Factual Accuracy,2,3,2.8e-05
+edu-data-synthesis-main/data/eval_data/val_eval_data.jsonl,Basic Factual Accuracy,3,19,0.000178
+edu-data-synthesis-main/data/eval_data/val_eval_data.jsonl,Basic Factual Accuracy,4,142,0.001334
+edu-data-synthesis-main/data/eval_data/val_eval_data.jsonl,Basic Factual Accuracy,5,627,0.00589
+edu-data-synthesis-main/data/eval_data/val_eval_data.jsonl,"Clarity, Simplicity & Inspiration",2,8,7.5e-05
+edu-data-synthesis-main/data/eval_data/val_eval_data.jsonl,"Clarity, Simplicity & Inspiration",3,47,0.000441
+edu-data-synthesis-main/data/eval_data/val_eval_data.jsonl,"Clarity, Simplicity & Inspiration",4,249,0.002339
+edu-data-synthesis-main/data/eval_data/val_eval_data.jsonl,"Clarity, Simplicity & Inspiration",5,224,0.002104
+edu-data-synthesis-main/data/eval_data/val_eval_data.jsonl,Content Relevance & Scope Control,2,6,5.6e-05
+edu-data-synthesis-main/data/eval_data/val_eval_data.jsonl,Content Relevance & Scope Control,3,26,0.000244
+edu-data-synthesis-main/data/eval_data/val_eval_data.jsonl,Content Relevance & Scope Control,4,198,0.00186
+edu-data-synthesis-main/data/eval_data/val_eval_data.jsonl,Content Relevance & Scope Control,5,562,0.005279
+edu-data-synthesis-main/data/eval_data/val_eval_data.jsonl,Domain Knowledge Accuracy,3,30,0.000282
+edu-data-synthesis-main/data/eval_data/val_eval_data.jsonl,Domain Knowledge Accuracy,4,174,0.001634
+edu-data-synthesis-main/data/eval_data/val_eval_data.jsonl,Domain Knowledge Accuracy,5,192,0.001804
+edu-data-synthesis-main/data/eval_data/val_eval_data.jsonl,Error Identification & Correction Precision,1,3,2.8e-05
+edu-data-synthesis-main/data/eval_data/val_eval_data.jsonl,Error Identification & Correction Precision,2,7,6.6e-05
+edu-data-synthesis-main/data/eval_data/val_eval_data.jsonl,Error Identification & Correction Precision,3,26,0.000244
+edu-data-synthesis-main/data/eval_data/val_eval_data.jsonl,Error Identification & Correction Precision,4,70,0.000658
+edu-data-synthesis-main/data/eval_data/val_eval_data.jsonl,Error Identification & Correction Precision,5,158,0.001484
+edu-data-synthesis-main/data/eval_data/val_eval_data.jsonl,Higher-Order Thinking & Skill Development,2,30,0.000282
+edu-data-synthesis-main/data/eval_data/val_eval_data.jsonl,Higher-Order Thinking & Skill Development,3,146,0.001371
+edu-data-synthesis-main/data/eval_data/val_eval_data.jsonl,Higher-Order Thinking & Skill Development,4,213,0.002001
+edu-data-synthesis-main/data/eval_data/val_eval_data.jsonl,Higher-Order Thinking & Skill Development,5,139,0.001306
+edu-data-synthesis-main/data/eval_data/val_eval_data.jsonl,Instruction Following & Task Completion,2,13,0.000122
+edu-data-synthesis-main/data/eval_data/val_eval_data.jsonl,Instruction Following & Task Completion,3,83,0.00078
+edu-data-synthesis-main/data/eval_data/val_eval_data.jsonl,Instruction Following & Task Completion,4,434,0.004077
+edu-data-synthesis-main/data/eval_data/val_eval_data.jsonl,Instruction Following & Task Completion,5,658,0.006181
+edu-data-synthesis-main/data/eval_data/val_eval_data.jsonl,"Motivation, Guidance & Positive Feedback",1,3,2.8e-05
+edu-data-synthesis-main/data/eval_data/val_eval_data.jsonl,"Motivation, Guidance & Positive Feedback",2,22,0.000207
+edu-data-synthesis-main/data/eval_data/val_eval_data.jsonl,"Motivation, Guidance & Positive Feedback",3,84,0.000789
+edu-data-synthesis-main/data/eval_data/val_eval_data.jsonl,"Motivation, Guidance & Positive Feedback",4,174,0.001634
+edu-data-synthesis-main/data/eval_data/val_eval_data.jsonl,"Motivation, Guidance & Positive Feedback",5,113,0.001061
+edu-data-synthesis-main/data/eval_data/val_eval_data.jsonl,"Personalization, Adaptation & Learning Support",2,4,3.8e-05
+edu-data-synthesis-main/data/eval_data/val_eval_data.jsonl,"Personalization, Adaptation & Learning Support",3,58,0.000545
+edu-data-synthesis-main/data/eval_data/val_eval_data.jsonl,"Personalization, Adaptation & Learning Support",4,165,0.00155
+edu-data-synthesis-main/data/eval_data/val_eval_data.jsonl,"Personalization, Adaptation & Learning Support",5,169,0.001587
+edu-data-synthesis-main/data/eval_data/val_eval_data.jsonl,Reasoning Process Rigor,1,75,0.000705
+edu-data-synthesis-main/data/eval_data/val_eval_data.jsonl,Reasoning Process Rigor,2,10,9.4e-05
+edu-data-synthesis-main/data/eval_data/val_eval_data.jsonl,Reasoning Process Rigor,3,54,0.000507
+edu-data-synthesis-main/data/eval_data/val_eval_data.jsonl,Reasoning Process Rigor,4,148,0.00139
+edu-data-synthesis-main/data/eval_data/val_eval_data.jsonl,Reasoning Process Rigor,5,241,0.002264
+edu-data-synthesis-main/data/eval_data/val_eval_data.jsonl,Role & Tone Consistency,2,1,9e-06
+edu-data-synthesis-main/data/eval_data/val_eval_data.jsonl,Role & Tone Consistency,3,9,8.5e-05
+edu-data-synthesis-main/data/eval_data/val_eval_data.jsonl,Role & Tone Consistency,4,138,0.001296
+edu-data-synthesis-main/data/eval_data/val_eval_data.jsonl,Role & Tone Consistency,5,116,0.00109
+edu-data-synthesis-main/data/eval_data/val_eval_data.jsonl,Scenario Element Integration,2,21,0.000197
+edu-data-synthesis-main/data/eval_data/val_eval_data.jsonl,Scenario Element Integration,3,82,0.00077
+edu-data-synthesis-main/data/eval_data/val_eval_data.jsonl,Scenario Element Integration,4,276,0.002593
+edu-data-synthesis-main/data/eval_data/val_eval_data.jsonl,Scenario Element Integration,5,281,0.00264
+edu-data-synthesis-main/data/zh/cjeval.jsonl,unknown,missing,26136,0.245508
+edu-data-synthesis-main/data/zh/gaokao-bench.jsonl,unknown,missing,3126,0.029364
+edu-data-synthesis-main/init_workflows/init_evaluation_workflow_1_1.json,unknown,missing,1,9e-06
+edu-data-synthesis-main/test_workflow.json,unknown,missing,1,9e-06
+groupby_metric_qwq_eval_en.jsonl,Basic Factual Accuracy,1,5,4.7e-05
+groupby_metric_qwq_eval_en.jsonl,Basic Factual Accuracy,3,4,3.8e-05
+groupby_metric_qwq_eval_en.jsonl,Basic Factual Accuracy,4,7,6.6e-05
+groupby_metric_qwq_eval_en.jsonl,Basic Factual Accuracy,5,301,0.002827
+groupby_metric_qwq_eval_en.jsonl,"Clarity, Simplicity & Inspiration",3,2,1.9e-05
+groupby_metric_qwq_eval_en.jsonl,"Clarity, Simplicity & Inspiration",4,119,0.001118
+groupby_metric_qwq_eval_en.jsonl,"Clarity, Simplicity & Inspiration",5,93,0.000874
+groupby_metric_qwq_eval_en.jsonl,Content Relevance & Scope Control,1,2,1.9e-05
+groupby_metric_qwq_eval_en.jsonl,Content Relevance & Scope Control,2,2,1.9e-05
+groupby_metric_qwq_eval_en.jsonl,Content Relevance & Scope Control,3,4,3.8e-05
+groupby_metric_qwq_eval_en.jsonl,Content Relevance & Scope Control,4,17,0.00016
+groupby_metric_qwq_eval_en.jsonl,Content Relevance & Scope Control,5,292,0.002743
+groupby_metric_qwq_eval_en.jsonl,Domain Knowledge Accuracy,3,3,2.8e-05
+groupby_metric_qwq_eval_en.jsonl,Domain Knowledge Accuracy,4,3,2.8e-05
+groupby_metric_qwq_eval_en.jsonl,Domain Knowledge Accuracy,5,155,0.001456
+groupby_metric_qwq_eval_en.jsonl,Error Identification & Correction Precision,1,2,1.9e-05
+groupby_metric_qwq_eval_en.jsonl,Error Identification & Correction Precision,5,92,0.000864
+groupby_metric_qwq_eval_en.jsonl,Error Identification & Correction Precision,missing,2,1.9e-05
+groupby_metric_qwq_eval_en.jsonl,Higher-Order Thinking & Skill Development,1,2,1.9e-05
+groupby_metric_qwq_eval_en.jsonl,Higher-Order Thinking & Skill Development,2,25,0.000235
+groupby_metric_qwq_eval_en.jsonl,Higher-Order Thinking & Skill Development,3,26,0.000244
+groupby_metric_qwq_eval_en.jsonl,Higher-Order Thinking & Skill Development,4,72,0.000676
+groupby_metric_qwq_eval_en.jsonl,Higher-Order Thinking & Skill Development,5,90,0.000845
+groupby_metric_qwq_eval_en.jsonl,Instruction Following & Task Completion,1,13,0.000122
+groupby_metric_qwq_eval_en.jsonl,Instruction Following & Task Completion,2,5,4.7e-05
+groupby_metric_qwq_eval_en.jsonl,Instruction Following & Task Completion,3,6,5.6e-05
+groupby_metric_qwq_eval_en.jsonl,Instruction Following & Task Completion,4,21,0.000197
+groupby_metric_qwq_eval_en.jsonl,Instruction Following & Task Completion,5,436,0.004096
+groupby_metric_qwq_eval_en.jsonl,"Motivation, Guidance & Positive Feedback",1,3,2.8e-05
+groupby_metric_qwq_eval_en.jsonl,"Motivation, Guidance & Positive Feedback",2,19,0.000178
+groupby_metric_qwq_eval_en.jsonl,"Motivation, Guidance & Positive Feedback",3,23,0.000216
+groupby_metric_qwq_eval_en.jsonl,"Motivation, Guidance & Positive Feedback",4,30,0.000282
+groupby_metric_qwq_eval_en.jsonl,"Motivation, Guidance & Positive Feedback",5,75,0.000705
+groupby_metric_qwq_eval_en.jsonl,"Personalization, Adaptation & Learning Support",3,1,9e-06
+groupby_metric_qwq_eval_en.jsonl,"Personalization, Adaptation & Learning Support",4,14,0.000132
+groupby_metric_qwq_eval_en.jsonl,"Personalization, Adaptation & Learning Support",5,147,0.001381
+groupby_metric_qwq_eval_en.jsonl,Reasoning Process Rigor,1,5,4.7e-05
+groupby_metric_qwq_eval_en.jsonl,Reasoning Process Rigor,2,2,1.9e-05
+groupby_metric_qwq_eval_en.jsonl,Reasoning Process Rigor,3,13,0.000122
+groupby_metric_qwq_eval_en.jsonl,Reasoning Process Rigor,4,15,0.000141
+groupby_metric_qwq_eval_en.jsonl,Reasoning Process Rigor,5,171,0.001606
+groupby_metric_qwq_eval_en.jsonl,Role & Tone Consistency,5,108,0.001014
+groupby_metric_qwq_eval_en.jsonl,Scenario Element Integration,1,6,5.6e-05
+groupby_metric_qwq_eval_en.jsonl,Scenario Element Integration,3,2,1.9e-05
+groupby_metric_qwq_eval_en.jsonl,Scenario Element Integration,4,15,0.000141
+groupby_metric_qwq_eval_en.jsonl,Scenario Element Integration,5,249,0.002339
+groupby_metric_qwq_eval_en.jsonl,unknown,missing,10,9.4e-05
+groupby_metric_qwq_eval_zh.jsonl,Basic Factual Accuracy,1,6,5.6e-05
+groupby_metric_qwq_eval_zh.jsonl,Basic Factual Accuracy,2,12,0.000113
+groupby_metric_qwq_eval_zh.jsonl,Basic Factual Accuracy,3,6,5.6e-05
+groupby_metric_qwq_eval_zh.jsonl,Basic Factual Accuracy,4,8,7.5e-05
+groupby_metric_qwq_eval_zh.jsonl,Basic Factual Accuracy,5,296,0.00278
+groupby_metric_qwq_eval_zh.jsonl,"Clarity, Simplicity & Inspiration",3,2,1.9e-05
+groupby_metric_qwq_eval_zh.jsonl,"Clarity, Simplicity & Inspiration",4,165,0.00155
+groupby_metric_qwq_eval_zh.jsonl,"Clarity, Simplicity & Inspiration",5,46,0.000432
+groupby_metric_qwq_eval_zh.jsonl,Content Relevance & Scope Control,2,1,9e-06
+groupby_metric_qwq_eval_zh.jsonl,Content Relevance & Scope Control,3,3,2.8e-05
+groupby_metric_qwq_eval_zh.jsonl,Content Relevance & Scope Control,4,25,0.000235
+groupby_metric_qwq_eval_zh.jsonl,Content Relevance & Scope Control,5,299,0.002809
+groupby_metric_qwq_eval_zh.jsonl,Domain Knowledge Accuracy,2,1,9e-06
+groupby_metric_qwq_eval_zh.jsonl,Domain Knowledge Accuracy,3,2,1.9e-05
+groupby_metric_qwq_eval_zh.jsonl,Domain Knowledge Accuracy,4,55,0.000517
+groupby_metric_qwq_eval_zh.jsonl,Domain Knowledge Accuracy,5,106,0.000996
+groupby_metric_qwq_eval_zh.jsonl,Error Identification & Correction Precision,1,2,1.9e-05
+groupby_metric_qwq_eval_zh.jsonl,Error Identification & Correction Precision,2,2,1.9e-05
+groupby_metric_qwq_eval_zh.jsonl,Error Identification & Correction Precision,3,1,9e-06
+groupby_metric_qwq_eval_zh.jsonl,Error Identification & Correction Precision,4,3,2.8e-05
+groupby_metric_qwq_eval_zh.jsonl,Error Identification & Correction Precision,5,87,0.000817
+groupby_metric_qwq_eval_zh.jsonl,Higher-Order Thinking & Skill Development,2,16,0.00015
+groupby_metric_qwq_eval_zh.jsonl,Higher-Order Thinking & Skill Development,3,55,0.000517
+groupby_metric_qwq_eval_zh.jsonl,Higher-Order Thinking & Skill Development,4,90,0.000845
+groupby_metric_qwq_eval_zh.jsonl,Higher-Order Thinking & Skill Development,5,51,0.000479
+groupby_metric_qwq_eval_zh.jsonl,Instruction Following & Task Completion,2,8,7.5e-05
+groupby_metric_qwq_eval_zh.jsonl,Instruction Following & Task Completion,3,12,0.000113
+groupby_metric_qwq_eval_zh.jsonl,Instruction Following & Task Completion,4,77,0.000723
+groupby_metric_qwq_eval_zh.jsonl,Instruction Following & Task Completion,5,395,0.00371
+groupby_metric_qwq_eval_zh.jsonl,"Motivation, Guidance & Positive Feedback",1,1,9e-06
+groupby_metric_qwq_eval_zh.jsonl,"Motivation, Guidance & Positive Feedback",2,4,3.8e-05
+groupby_metric_qwq_eval_zh.jsonl,"Motivation, Guidance & Positive Feedback",3,32,0.000301
+groupby_metric_qwq_eval_zh.jsonl,"Motivation, Guidance & Positive Feedback",4,32,0.000301
+groupby_metric_qwq_eval_zh.jsonl,"Motivation, Guidance & Positive Feedback",5,80,0.000751
+groupby_metric_qwq_eval_zh.jsonl,"Personalization, Adaptation & Learning Support",3,2,1.9e-05
+groupby_metric_qwq_eval_zh.jsonl,"Personalization, Adaptation & Learning Support",4,52,0.000488
+groupby_metric_qwq_eval_zh.jsonl,"Personalization, Adaptation & Learning Support",5,96,0.000902
+groupby_metric_qwq_eval_zh.jsonl,Reasoning Process Rigor,1,3,2.8e-05
+groupby_metric_qwq_eval_zh.jsonl,Reasoning Process Rigor,2,2,1.9e-05
+groupby_metric_qwq_eval_zh.jsonl,Reasoning Process Rigor,3,6,5.6e-05
+groupby_metric_qwq_eval_zh.jsonl,Reasoning Process Rigor,4,34,0.000319
+groupby_metric_qwq_eval_zh.jsonl,Reasoning Process Rigor,5,172,0.001616
+groupby_metric_qwq_eval_zh.jsonl,Role & Tone Consistency,4,20,0.000188
+groupby_metric_qwq_eval_zh.jsonl,Role & Tone Consistency,5,89,0.000836
+groupby_metric_qwq_eval_zh.jsonl,Scenario Element Integration,2,1,9e-06
+groupby_metric_qwq_eval_zh.jsonl,Scenario Element Integration,3,2,1.9e-05
+groupby_metric_qwq_eval_zh.jsonl,Scenario Element Integration,4,52,0.000488
+groupby_metric_qwq_eval_zh.jsonl,Scenario Element Integration,5,219,0.002057
+groupby_metric_qwq_eval_zh.jsonl,unknown,missing,1,9e-06
+groupby_metric_r1_eval_en.jsonl,Basic Factual Accuracy,1,8,7.5e-05
+groupby_metric_r1_eval_en.jsonl,Basic Factual Accuracy,2,4,3.8e-05
+groupby_metric_r1_eval_en.jsonl,Basic Factual Accuracy,3,6,5.6e-05
+groupby_metric_r1_eval_en.jsonl,Basic Factual Accuracy,4,11,0.000103
+groupby_metric_r1_eval_en.jsonl,Basic Factual Accuracy,5,299,0.002809
+groupby_metric_r1_eval_en.jsonl,"Clarity, Simplicity & Inspiration",2,1,9e-06
+groupby_metric_r1_eval_en.jsonl,"Clarity, Simplicity & Inspiration",3,2,1.9e-05
+groupby_metric_r1_eval_en.jsonl,"Clarity, Simplicity & Inspiration",4,109,0.001024
+groupby_metric_r1_eval_en.jsonl,"Clarity, Simplicity & Inspiration",5,101,0.000949
+groupby_metric_r1_eval_en.jsonl,Content Relevance & Scope Control,1,2,1.9e-05
+groupby_metric_r1_eval_en.jsonl,Content Relevance & Scope Control,2,5,4.7e-05
+groupby_metric_r1_eval_en.jsonl,Content Relevance & Scope Control,3,2,1.9e-05
+groupby_metric_r1_eval_en.jsonl,Content Relevance & Scope Control,4,27,0.000254
+groupby_metric_r1_eval_en.jsonl,Content Relevance & Scope Control,5,292,0.002743
+groupby_metric_r1_eval_en.jsonl,Domain Knowledge Accuracy,3,3,2.8e-05
+groupby_metric_r1_eval_en.jsonl,Domain Knowledge Accuracy,4,8,7.5e-05
+groupby_metric_r1_eval_en.jsonl,Domain Knowledge Accuracy,5,149,0.0014
+groupby_metric_r1_eval_en.jsonl,Error Identification & Correction Precision,1,7,6.6e-05
+groupby_metric_r1_eval_en.jsonl,Error Identification & Correction Precision,3,1,9e-06
+groupby_metric_r1_eval_en.jsonl,Error Identification & Correction Precision,4,1,9e-06
+groupby_metric_r1_eval_en.jsonl,Error Identification & Correction Precision,5,99,0.00093
+groupby_metric_r1_eval_en.jsonl,Error Identification & Correction Precision,missing,1,9e-06
+groupby_metric_r1_eval_en.jsonl,Higher-Order Thinking & Skill Development,2,14,0.000132
+groupby_metric_r1_eval_en.jsonl,Higher-Order Thinking & Skill Development,3,52,0.000488
+groupby_metric_r1_eval_en.jsonl,Higher-Order Thinking & Skill Development,4,63,0.000592
+groupby_metric_r1_eval_en.jsonl,Higher-Order Thinking & Skill Development,5,85,0.000798
+groupby_metric_r1_eval_en.jsonl,Instruction Following & Task Completion,1,8,7.5e-05
+groupby_metric_r1_eval_en.jsonl,Instruction Following & Task Completion,2,16,0.00015
+groupby_metric_r1_eval_en.jsonl,Instruction Following & Task Completion,3,6,5.6e-05
+groupby_metric_r1_eval_en.jsonl,Instruction Following & Task Completion,4,42,0.000395
+groupby_metric_r1_eval_en.jsonl,Instruction Following & Task Completion,5,421,0.003955
+groupby_metric_r1_eval_en.jsonl,"Motivation, Guidance & Positive Feedback",2,39,0.000366
+groupby_metric_r1_eval_en.jsonl,"Motivation, Guidance & Positive Feedback",3,31,0.000291
+groupby_metric_r1_eval_en.jsonl,"Motivation, Guidance & Positive Feedback",4,22,0.000207
+groupby_metric_r1_eval_en.jsonl,"Motivation, Guidance & Positive Feedback",5,71,0.000667
+groupby_metric_r1_eval_en.jsonl,"Personalization, Adaptation & Learning Support",4,52,0.000488
+groupby_metric_r1_eval_en.jsonl,"Personalization, Adaptation & Learning Support",5,113,0.001061
+groupby_metric_r1_eval_en.jsonl,Reasoning Process Rigor,1,8,7.5e-05
+groupby_metric_r1_eval_en.jsonl,Reasoning Process Rigor,2,4,3.8e-05
+groupby_metric_r1_eval_en.jsonl,Reasoning Process Rigor,3,15,0.000141
+groupby_metric_r1_eval_en.jsonl,Reasoning Process Rigor,4,35,0.000329
+groupby_metric_r1_eval_en.jsonl,Reasoning Process Rigor,5,150,0.001409
+groupby_metric_r1_eval_en.jsonl,Role & Tone Consistency,4,1,9e-06
+groupby_metric_r1_eval_en.jsonl,Role & Tone Consistency,5,107,0.001005
+groupby_metric_r1_eval_en.jsonl,Scenario Element Integration,1,2,1.9e-05
+groupby_metric_r1_eval_en.jsonl,Scenario Element Integration,2,3,2.8e-05
+groupby_metric_r1_eval_en.jsonl,Scenario Element Integration,3,3,2.8e-05
+groupby_metric_r1_eval_en.jsonl,Scenario Element Integration,4,83,0.00078
+groupby_metric_r1_eval_en.jsonl,Scenario Element Integration,5,183,0.001719
+groupby_metric_r1_eval_zh.jsonl,Basic Factual Accuracy,1,2,1.9e-05
+groupby_metric_r1_eval_zh.jsonl,Basic Factual Accuracy,2,13,0.000122
+groupby_metric_r1_eval_zh.jsonl,Basic Factual Accuracy,3,11,0.000103
+groupby_metric_r1_eval_zh.jsonl,Basic Factual Accuracy,4,23,0.000216
+groupby_metric_r1_eval_zh.jsonl,Basic Factual Accuracy,5,273,0.002564
+groupby_metric_r1_eval_zh.jsonl,"Clarity, Simplicity & Inspiration",3,5,4.7e-05
+groupby_metric_r1_eval_zh.jsonl,"Clarity, Simplicity & Inspiration",4,134,0.001259
+groupby_metric_r1_eval_zh.jsonl,"Clarity, Simplicity & Inspiration",5,73,0.000686
+groupby_metric_r1_eval_zh.jsonl,Content Relevance & Scope Control,2,1,9e-06
+groupby_metric_r1_eval_zh.jsonl,Content Relevance & Scope Control,3,12,0.000113
+groupby_metric_r1_eval_zh.jsonl,Content Relevance & Scope Control,4,43,0.000404
+groupby_metric_r1_eval_zh.jsonl,Content Relevance & Scope Control,5,267,0.002508
+groupby_metric_r1_eval_zh.jsonl,Domain Knowledge Accuracy,2,3,2.8e-05
+groupby_metric_r1_eval_zh.jsonl,Domain Knowledge Accuracy,3,10,9.4e-05
+groupby_metric_r1_eval_zh.jsonl,Domain Knowledge Accuracy,4,31,0.000291
+groupby_metric_r1_eval_zh.jsonl,Domain Knowledge Accuracy,5,116,0.00109
+groupby_metric_r1_eval_zh.jsonl,Error Identification & Correction Precision,1,5,4.7e-05
+groupby_metric_r1_eval_zh.jsonl,Error Identification & Correction Precision,2,2,1.9e-05
+groupby_metric_r1_eval_zh.jsonl,Error Identification & Correction Precision,3,3,2.8e-05
+groupby_metric_r1_eval_zh.jsonl,Error Identification & Correction Precision,4,4,3.8e-05
+groupby_metric_r1_eval_zh.jsonl,Error Identification & Correction Precision,5,79,0.000742
+groupby_metric_r1_eval_zh.jsonl,Error Identification & Correction Precision,missing,2,1.9e-05
+groupby_metric_r1_eval_zh.jsonl,Higher-Order Thinking & Skill Development,2,6,5.6e-05
+groupby_metric_r1_eval_zh.jsonl,Higher-Order Thinking & Skill Development,3,53,0.000498
+groupby_metric_r1_eval_zh.jsonl,Higher-Order Thinking & Skill Development,4,101,0.000949
+groupby_metric_r1_eval_zh.jsonl,Higher-Order Thinking & Skill Development,5,47,0.000441
+groupby_metric_r1_eval_zh.jsonl,Instruction Following & Task Completion,2,14,0.000132
+groupby_metric_r1_eval_zh.jsonl,Instruction Following & Task Completion,3,4,3.8e-05
+groupby_metric_r1_eval_zh.jsonl,Instruction Following & Task Completion,4,54,0.000507
+groupby_metric_r1_eval_zh.jsonl,Instruction Following & Task Completion,5,392,0.003682
+groupby_metric_r1_eval_zh.jsonl,"Motivation, Guidance & Positive Feedback",1,1,9e-06
+groupby_metric_r1_eval_zh.jsonl,"Motivation, Guidance & Positive Feedback",2,17,0.00016
+groupby_metric_r1_eval_zh.jsonl,"Motivation, Guidance & Positive Feedback",3,30,0.000282
+groupby_metric_r1_eval_zh.jsonl,"Motivation, Guidance & Positive Feedback",4,32,0.000301
+groupby_metric_r1_eval_zh.jsonl,"Motivation, Guidance & Positive Feedback",5,48,0.000451
+groupby_metric_r1_eval_zh.jsonl,"Motivation, Guidance & Positive Feedback",missing,2,1.9e-05
+groupby_metric_r1_eval_zh.jsonl,"Personalization, Adaptation & Learning Support",3,1,9e-06
+groupby_metric_r1_eval_zh.jsonl,"Personalization, Adaptation & Learning Support",4,49,0.00046
+groupby_metric_r1_eval_zh.jsonl,"Personalization, Adaptation & Learning Support",5,91,0.000855
+groupby_metric_r1_eval_zh.jsonl,Reasoning Process Rigor,1,1,9e-06
+groupby_metric_r1_eval_zh.jsonl,Reasoning Process Rigor,2,11,0.000103
+groupby_metric_r1_eval_zh.jsonl,Reasoning Process Rigor,3,9,8.5e-05
+groupby_metric_r1_eval_zh.jsonl,Reasoning Process Rigor,4,32,0.000301
+groupby_metric_r1_eval_zh.jsonl,Reasoning Process Rigor,5,149,0.0014
+groupby_metric_r1_eval_zh.jsonl,Role & Tone Consistency,4,14,0.000132
+groupby_metric_r1_eval_zh.jsonl,Role & Tone Consistency,5,76,0.000714
+groupby_metric_r1_eval_zh.jsonl,Scenario Element Integration,2,1,9e-06
+groupby_metric_r1_eval_zh.jsonl,Scenario Element Integration,3,9,8.5e-05
+groupby_metric_r1_eval_zh.jsonl,Scenario Element Integration,4,56,0.000526
+groupby_metric_r1_eval_zh.jsonl,Scenario Element Integration,5,180,0.001691
+groupby_metric_r1_eval_zh.jsonl,unknown,missing,32,0.000301
+groupby_metric_v3_eval_en.jsonl,Basic Factual Accuracy,1,16,0.00015
+groupby_metric_v3_eval_en.jsonl,Basic Factual Accuracy,4,4,3.8e-05
+groupby_metric_v3_eval_en.jsonl,Basic Factual Accuracy,5,307,0.002884
+groupby_metric_v3_eval_en.jsonl,"Clarity, Simplicity & Inspiration",3,1,9e-06
+groupby_metric_v3_eval_en.jsonl,"Clarity, Simplicity & Inspiration",4,133,0.001249
+groupby_metric_v3_eval_en.jsonl,"Clarity, Simplicity & Inspiration",5,85,0.000798
+groupby_metric_v3_eval_en.jsonl,Content Relevance & Scope Control,1,10,9.4e-05
+groupby_metric_v3_eval_en.jsonl,Content Relevance & Scope Control,2,3,2.8e-05
+groupby_metric_v3_eval_en.jsonl,Content Relevance & Scope Control,3,1,9e-06
+groupby_metric_v3_eval_en.jsonl,Content Relevance & Scope Control,4,34,0.000319
+groupby_metric_v3_eval_en.jsonl,Content Relevance & Scope Control,5,279,0.002621
+groupby_metric_v3_eval_en.jsonl,Domain Knowledge Accuracy,4,9,8.5e-05
+groupby_metric_v3_eval_en.jsonl,Domain Knowledge Accuracy,5,155,0.001456
+groupby_metric_v3_eval_en.jsonl,Error Identification & Correction Precision,1,10,9.4e-05
+groupby_metric_v3_eval_en.jsonl,Error Identification & Correction Precision,4,3,2.8e-05
+groupby_metric_v3_eval_en.jsonl,Error Identification & Correction Precision,5,70,0.000658
+groupby_metric_v3_eval_en.jsonl,Error Identification & Correction Precision,missing,23,0.000216
+groupby_metric_v3_eval_en.jsonl,Higher-Order Thinking & Skill Development,3,17,0.00016
+groupby_metric_v3_eval_en.jsonl,Higher-Order Thinking & Skill Development,4,147,0.001381
+groupby_metric_v3_eval_en.jsonl,Higher-Order Thinking & Skill Development,5,55,0.000517
+groupby_metric_v3_eval_en.jsonl,Instruction Following & Task Completion,1,11,0.000103
+groupby_metric_v3_eval_en.jsonl,Instruction Following & Task Completion,2,4,3.8e-05
+groupby_metric_v3_eval_en.jsonl,Instruction Following & Task Completion,3,1,9e-06
+groupby_metric_v3_eval_en.jsonl,Instruction Following & Task Completion,4,52,0.000488
+groupby_metric_v3_eval_en.jsonl,Instruction Following & Task Completion,5,424,0.003983
+groupby_metric_v3_eval_en.jsonl,"Motivation, Guidance & Positive Feedback",1,9,8.5e-05
+groupby_metric_v3_eval_en.jsonl,"Motivation, Guidance & Positive Feedback",3,11,0.000103
+groupby_metric_v3_eval_en.jsonl,"Motivation, Guidance & Positive Feedback",4,68,0.000639
+groupby_metric_v3_eval_en.jsonl,"Motivation, Guidance & Positive Feedback",5,66,0.00062
+groupby_metric_v3_eval_en.jsonl,"Motivation, Guidance & Positive Feedback",missing,9,8.5e-05
+groupby_metric_v3_eval_en.jsonl,"Personalization, Adaptation & Learning Support",4,6,5.6e-05
+groupby_metric_v3_eval_en.jsonl,"Personalization, Adaptation & Learning Support",5,159,0.001494
+groupby_metric_v3_eval_en.jsonl,Reasoning Process Rigor,1,14,0.000132
+groupby_metric_v3_eval_en.jsonl,Reasoning Process Rigor,2,2,1.9e-05
+groupby_metric_v3_eval_en.jsonl,Reasoning Process Rigor,3,13,0.000122
+groupby_metric_v3_eval_en.jsonl,Reasoning Process Rigor,4,46,0.000432
+groupby_metric_v3_eval_en.jsonl,Reasoning Process Rigor,5,143,0.001343
+groupby_metric_v3_eval_en.jsonl,Role & Tone Consistency,4,4,3.8e-05
+groupby_metric_v3_eval_en.jsonl,Role & Tone Consistency,5,106,0.000996
+groupby_metric_v3_eval_en.jsonl,Scenario Element Integration,3,17,0.00016
+groupby_metric_v3_eval_en.jsonl,Scenario Element Integration,4,111,0.001043
+groupby_metric_v3_eval_en.jsonl,Scenario Element Integration,5,147,0.001381
+groupby_metric_v3_eval_zh.jsonl,Basic Factual Accuracy,2,1,9e-06
+groupby_metric_v3_eval_zh.jsonl,Basic Factual Accuracy,3,1,9e-06
+groupby_metric_v3_eval_zh.jsonl,Basic Factual Accuracy,4,13,0.000122
+groupby_metric_v3_eval_zh.jsonl,Basic Factual Accuracy,5,315,0.002959
+groupby_metric_v3_eval_zh.jsonl,"Clarity, Simplicity & Inspiration",4,62,0.000582
+groupby_metric_v3_eval_zh.jsonl,"Clarity, Simplicity & Inspiration",5,158,0.001484
+groupby_metric_v3_eval_zh.jsonl,Content Relevance & Scope Control,3,2,1.9e-05
+groupby_metric_v3_eval_zh.jsonl,Content Relevance & Scope Control,4,21,0.000197
+groupby_metric_v3_eval_zh.jsonl,Content Relevance & Scope Control,5,307,0.002884
+groupby_metric_v3_eval_zh.jsonl,Domain Knowledge Accuracy,4,8,7.5e-05
+groupby_metric_v3_eval_zh.jsonl,Domain Knowledge Accuracy,5,157,0.001475
+groupby_metric_v3_eval_zh.jsonl,Error Identification & Correction Precision,3,4,3.8e-05
+groupby_metric_v3_eval_zh.jsonl,Error Identification & Correction Precision,4,4,3.8e-05
+groupby_metric_v3_eval_zh.jsonl,Error Identification & Correction Precision,5,84,0.000789
+groupby_metric_v3_eval_zh.jsonl,Error Identification & Correction Precision,missing,18,0.000169
+groupby_metric_v3_eval_zh.jsonl,Higher-Order Thinking & Skill Development,4,139,0.001306
+groupby_metric_v3_eval_zh.jsonl,Higher-Order Thinking & Skill Development,5,81,0.000761
+groupby_metric_v3_eval_zh.jsonl,Instruction Following & Task Completion,3,1,9e-06
+groupby_metric_v3_eval_zh.jsonl,Instruction Following & Task Completion,4,18,0.000169
+groupby_metric_v3_eval_zh.jsonl,Instruction Following & Task Completion,5,476,0.004471
+groupby_metric_v3_eval_zh.jsonl,"Motivation, Guidance & Positive Feedback",3,1,9e-06
+groupby_metric_v3_eval_zh.jsonl,"Motivation, Guidance & Positive Feedback",4,58,0.000545
+groupby_metric_v3_eval_zh.jsonl,"Motivation, Guidance & Positive Feedback",5,92,0.000864
+groupby_metric_v3_eval_zh.jsonl,"Motivation, Guidance & Positive Feedback",missing,14,0.000132
+groupby_metric_v3_eval_zh.jsonl,"Personalization, Adaptation & Learning Support",4,52,0.000488
+groupby_metric_v3_eval_zh.jsonl,"Personalization, Adaptation & Learning Support",5,113,0.001061
+groupby_metric_v3_eval_zh.jsonl,Reasoning Process Rigor,2,1,9e-06
+groupby_metric_v3_eval_zh.jsonl,Reasoning Process Rigor,3,6,5.6e-05
+groupby_metric_v3_eval_zh.jsonl,Reasoning Process Rigor,4,41,0.000385
+groupby_metric_v3_eval_zh.jsonl,Reasoning Process Rigor,5,172,0.001616
+groupby_metric_v3_eval_zh.jsonl,Role & Tone Consistency,4,16,0.00015
+groupby_metric_v3_eval_zh.jsonl,Role & Tone Consistency,5,94,0.000883
+groupby_metric_v3_eval_zh.jsonl,Scenario Element Integration,4,130,0.001221
+groupby_metric_v3_eval_zh.jsonl,Scenario Element Integration,5,145,0.001362
+human_sampled_eval_sft_criteria_test.json,Basic Factual Accuracy,1,2,1.9e-05
+human_sampled_eval_sft_criteria_test.json,Basic Factual Accuracy,3,12,0.000113
+human_sampled_eval_sft_criteria_test.json,Basic Factual Accuracy,4,49,0.00046
+human_sampled_eval_sft_criteria_test.json,Basic Factual Accuracy,5,314,0.00295
+human_sampled_eval_sft_criteria_test.json,"Clarity, Simplicity & Inspiration",2,3,2.8e-05
+human_sampled_eval_sft_criteria_test.json,"Clarity, Simplicity & Inspiration",3,19,0.000178
+human_sampled_eval_sft_criteria_test.json,"Clarity, Simplicity & Inspiration",4,129,0.001212
+human_sampled_eval_sft_criteria_test.json,"Clarity, Simplicity & Inspiration",5,101,0.000949
+human_sampled_eval_sft_criteria_test.json,Content Relevance & Scope Control,2,3,2.8e-05
+human_sampled_eval_sft_criteria_test.json,Content Relevance & Scope Control,3,10,9.4e-05
+human_sampled_eval_sft_criteria_test.json,Content Relevance & Scope Control,4,75,0.000705
+human_sampled_eval_sft_criteria_test.json,Content Relevance & Scope Control,5,317,0.002978
+human_sampled_eval_sft_criteria_test.json,Domain Knowledge Accuracy,3,13,0.000122
+human_sampled_eval_sft_criteria_test.json,Domain Knowledge Accuracy,4,97,0.000911
+human_sampled_eval_sft_criteria_test.json,Domain Knowledge Accuracy,5,97,0.000911
+human_sampled_eval_sft_criteria_test.json,Error Identification & Correction Precision,2,4,3.8e-05
+human_sampled_eval_sft_criteria_test.json,Error Identification & Correction Precision,3,5,4.7e-05
+human_sampled_eval_sft_criteria_test.json,Error Identification & Correction Precision,4,28,0.000263
+human_sampled_eval_sft_criteria_test.json,Error Identification & Correction Precision,5,83,0.00078
+human_sampled_eval_sft_criteria_test.json,Higher-Order Thinking & Skill Development,2,20,0.000188
+human_sampled_eval_sft_criteria_test.json,Higher-Order Thinking & Skill Development,3,82,0.00077
+human_sampled_eval_sft_criteria_test.json,Higher-Order Thinking & Skill Development,4,105,0.000986
+human_sampled_eval_sft_criteria_test.json,Higher-Order Thinking & Skill Development,5,55,0.000517
+human_sampled_eval_sft_criteria_test.json,Instruction Following & Task Completion,2,2,1.9e-05
+human_sampled_eval_sft_criteria_test.json,Instruction Following & Task Completion,3,25,0.000235
+human_sampled_eval_sft_criteria_test.json,Instruction Following & Task Completion,4,180,0.001691
+human_sampled_eval_sft_criteria_test.json,Instruction Following & Task Completion,5,357,0.003353
+human_sampled_eval_sft_criteria_test.json,"Motivation, Guidance & Positive Feedback",1,2,1.9e-05
+human_sampled_eval_sft_criteria_test.json,"Motivation, Guidance & Positive Feedback",2,6,5.6e-05
+human_sampled_eval_sft_criteria_test.json,"Motivation, Guidance & Positive Feedback",3,43,0.000404
+human_sampled_eval_sft_criteria_test.json,"Motivation, Guidance & Positive Feedback",4,55,0.000517
+human_sampled_eval_sft_criteria_test.json,"Motivation, Guidance & Positive Feedback",5,75,0.000705
+human_sampled_eval_sft_criteria_test.json,"Personalization, Adaptation & Learning Support",2,3,2.8e-05
+human_sampled_eval_sft_criteria_test.json,"Personalization, Adaptation & Learning Support",3,37,0.000348
+human_sampled_eval_sft_criteria_test.json,"Personalization, Adaptation & Learning Support",4,63,0.000592
+human_sampled_eval_sft_criteria_test.json,"Personalization, Adaptation & Learning Support",5,86,0.000808
+human_sampled_eval_sft_criteria_test.json,Reasoning Process Rigor,1,46,0.000432
+human_sampled_eval_sft_criteria_test.json,Reasoning Process Rigor,2,6,5.6e-05
+human_sampled_eval_sft_criteria_test.json,Reasoning Process Rigor,3,15,0.000141
+human_sampled_eval_sft_criteria_test.json,Reasoning Process Rigor,4,58,0.000545
+human_sampled_eval_sft_criteria_test.json,Reasoning Process Rigor,5,103,0.000968
+human_sampled_eval_sft_criteria_test.json,Role & Tone Consistency,3,6,5.6e-05
+human_sampled_eval_sft_criteria_test.json,Role & Tone Consistency,4,66,0.00062
+human_sampled_eval_sft_criteria_test.json,Role & Tone Consistency,5,74,0.000695
+human_sampled_eval_sft_criteria_test.json,Scenario Element Integration,2,13,0.000122
+human_sampled_eval_sft_criteria_test.json,Scenario Element Integration,3,59,0.000554
+human_sampled_eval_sft_criteria_test.json,Scenario Element Integration,4,138,0.001296
+human_sampled_eval_sft_criteria_test.json,Scenario Element Integration,5,133,0.001249
+merge_model_metric.jsonl,Basic Factual Accuracy,1,3,2.8e-05
+merge_model_metric.jsonl,Basic Factual Accuracy,3,5,4.7e-05
+merge_model_metric.jsonl,Basic Factual Accuracy,4,10,9.4e-05
+merge_model_metric.jsonl,Basic Factual Accuracy,5,840,0.007891
+merge_model_metric.jsonl,"Clarity, Simplicity & Inspiration",3,2,1.9e-05
+merge_model_metric.jsonl,"Clarity, Simplicity & Inspiration",4,262,0.002461
+merge_model_metric.jsonl,"Clarity, Simplicity & Inspiration",5,210,0.001973
+merge_model_metric.jsonl,Content Relevance & Scope Control,1,2,1.9e-05
+merge_model_metric.jsonl,Content Relevance & Scope Control,3,1,9e-06
+merge_model_metric.jsonl,Content Relevance & Scope Control,4,39,0.000366
+merge_model_metric.jsonl,Content Relevance & Scope Control,5,807,0.007581
+merge_model_metric.jsonl,Domain Knowledge Accuracy,4,4,3.8e-05
+merge_model_metric.jsonl,Domain Knowledge Accuracy,5,431,0.004049
+merge_model_metric.jsonl,Error Identification & Correction Precision,3,1,9e-06
+merge_model_metric.jsonl,Error Identification & Correction Precision,5,189,0.001775
+merge_model_metric.jsonl,Higher-Order Thinking & Skill Development,2,7,6.6e-05
+merge_model_metric.jsonl,Higher-Order Thinking & Skill Development,3,56,0.000526
+merge_model_metric.jsonl,Higher-Order Thinking & Skill Development,4,188,0.001766
+merge_model_metric.jsonl,Higher-Order Thinking & Skill Development,5,199,0.001869
+merge_model_metric.jsonl,Instruction Following & Task Completion,1,9,8.5e-05
+merge_model_metric.jsonl,Instruction Following & Task Completion,2,1,9e-06
+merge_model_metric.jsonl,Instruction Following & Task Completion,3,6,5.6e-05
+merge_model_metric.jsonl,Instruction Following & Task Completion,4,64,0.000601
+merge_model_metric.jsonl,Instruction Following & Task Completion,5,1209,0.011357
+merge_model_metric.jsonl,"Motivation, Guidance & Positive Feedback",2,21,0.000197
+merge_model_metric.jsonl,"Motivation, Guidance & Positive Feedback",3,31,0.000291
+merge_model_metric.jsonl,"Motivation, Guidance & Positive Feedback",4,74,0.000695
+merge_model_metric.jsonl,"Motivation, Guidance & Positive Feedback",5,191,0.001794
+merge_model_metric.jsonl,"Personalization, Adaptation & Learning Support",4,20,0.000188
+merge_model_metric.jsonl,"Personalization, Adaptation & Learning Support",5,401,0.003767
+merge_model_metric.jsonl,Reasoning Process Rigor,1,3,2.8e-05
+merge_model_metric.jsonl,Reasoning Process Rigor,3,26,0.000244
+merge_model_metric.jsonl,Reasoning Process Rigor,4,30,0.000282
+merge_model_metric.jsonl,Reasoning Process Rigor,5,403,0.003786
+merge_model_metric.jsonl,Role & Tone Consistency,5,316,0.002968
+merge_model_metric.jsonl,Scenario Element Integration,3,7,6.6e-05
+merge_model_metric.jsonl,Scenario Element Integration,4,63,0.000592
+merge_model_metric.jsonl,Scenario Element Integration,5,530,0.004979
+missing,missing,missing,4,3.8e-05
+missing,non_edubench_task_score_review_only,missing,2,1.9e-05
+sampled_merge_50_new.json,Basic Factual Accuracy,1,100,0.000939
+sampled_merge_50_new.json,Basic Factual Accuracy,2,100,0.000939
+sampled_merge_50_new.json,Basic Factual Accuracy,3,100,0.000939
+sampled_merge_50_new.json,Basic Factual Accuracy,4,100,0.000939
+sampled_merge_50_new.json,Basic Factual Accuracy,5,100,0.000939
+sampled_merge_50_new.json,"Clarity, Simplicity & Inspiration",1,100,0.000939
+sampled_merge_50_new.json,"Clarity, Simplicity & Inspiration",2,100,0.000939
+sampled_merge_50_new.json,"Clarity, Simplicity & Inspiration",3,100,0.000939
+sampled_merge_50_new.json,"Clarity, Simplicity & Inspiration",4,100,0.000939
+sampled_merge_50_new.json,"Clarity, Simplicity & Inspiration",5,100,0.000939
+sampled_merge_50_new.json,Content Relevance & Scope Control,1,100,0.000939
+sampled_merge_50_new.json,Content Relevance & Scope Control,2,100,0.000939
+sampled_merge_50_new.json,Content Relevance & Scope Control,3,100,0.000939
+sampled_merge_50_new.json,Content Relevance & Scope Control,4,100,0.000939
+sampled_merge_50_new.json,Content Relevance & Scope Control,5,100,0.000939
+sampled_merge_50_new.json,Domain Knowledge Accuracy,1,100,0.000939
+sampled_merge_50_new.json,Domain Knowledge Accuracy,2,100,0.000939
+sampled_merge_50_new.json,Domain Knowledge Accuracy,3,100,0.000939
+sampled_merge_50_new.json,Domain Knowledge Accuracy,4,100,0.000939
+sampled_merge_50_new.json,Domain Knowledge Accuracy,5,100,0.000939
+sampled_merge_50_new.json,Error Identification & Correction Precision,1,100,0.000939
+sampled_merge_50_new.json,Error Identification & Correction Precision,2,100,0.000939
+sampled_merge_50_new.json,Error Identification & Correction Precision,3,100,0.000939
+sampled_merge_50_new.json,Error Identification & Correction Precision,4,100,0.000939
+sampled_merge_50_new.json,Error Identification & Correction Precision,5,100,0.000939
+sampled_merge_50_new.json,Higher-Order Thinking & Skill Development,1,100,0.000939
+sampled_merge_50_new.json,Higher-Order Thinking & Skill Development,2,100,0.000939
+sampled_merge_50_new.json,Higher-Order Thinking & Skill Development,3,100,0.000939
+sampled_merge_50_new.json,Higher-Order Thinking & Skill Development,4,100,0.000939
+sampled_merge_50_new.json,Higher-Order Thinking & Skill Development,5,100,0.000939
+sampled_merge_50_new.json,Instruction Following & Task Completion,1,100,0.000939
+sampled_merge_50_new.json,Instruction Following & Task Completion,2,100,0.000939
+sampled_merge_50_new.json,Instruction Following & Task Completion,3,100,0.000939
+sampled_merge_50_new.json,Instruction Following & Task Completion,4,100,0.000939
+sampled_merge_50_new.json,Instruction Following & Task Completion,5,100,0.000939
+sampled_merge_50_new.json,"Motivation, Guidance & Positive Feedback",1,100,0.000939
+sampled_merge_50_new.json,"Motivation, Guidance & Positive Feedback",2,100,0.000939
+sampled_merge_50_new.json,"Motivation, Guidance & Positive Feedback",3,100,0.000939
+sampled_merge_50_new.json,"Motivation, Guidance & Positive Feedback",4,100,0.000939
+sampled_merge_50_new.json,"Motivation, Guidance & Positive Feedback",5,100,0.000939
+sampled_merge_50_new.json,"Personalization, Adaptation & Learning Support",1,100,0.000939
+sampled_merge_50_new.json,"Personalization, Adaptation & Learning Support",2,100,0.000939
+sampled_merge_50_new.json,"Personalization, Adaptation & Learning Support",3,100,0.000939
+sampled_merge_50_new.json,"Personalization, Adaptation & Learning Support",4,100,0.000939
+sampled_merge_50_new.json,"Personalization, Adaptation & Learning Support",5,100,0.000939
+sampled_merge_50_new.json,Reasoning Process Rigor,1,100,0.000939
+sampled_merge_50_new.json,Reasoning Process Rigor,2,100,0.000939
+sampled_merge_50_new.json,Reasoning Process Rigor,3,100,0.000939
+sampled_merge_50_new.json,Reasoning Process Rigor,4,100,0.000939
+sampled_merge_50_new.json,Reasoning Process Rigor,5,100,0.000939
+sampled_merge_50_new.json,Role & Tone Consistency,1,100,0.000939
+sampled_merge_50_new.json,Role & Tone Consistency,2,100,0.000939
+sampled_merge_50_new.json,Role & Tone Consistency,3,100,0.000939
+sampled_merge_50_new.json,Role & Tone Consistency,4,100,0.000939
+sampled_merge_50_new.json,Role & Tone Consistency,5,100,0.000939
+sampled_merge_50_new.json,Scenario Element Integration,1,100,0.000939
+sampled_merge_50_new.json,Scenario Element Integration,2,100,0.000939
+sampled_merge_50_new.json,Scenario Element Integration,3,100,0.000939
+sampled_merge_50_new.json,Scenario Element Integration,4,100,0.000939
+sampled_merge_50_new.json,Scenario Element Integration,5,100,0.000939
+sampled_merge_50_new_swift.json,Basic Factual Accuracy,1,100,0.000939
+sampled_merge_50_new_swift.json,Basic Factual Accuracy,2,100,0.000939
+sampled_merge_50_new_swift.json,Basic Factual Accuracy,3,100,0.000939
+sampled_merge_50_new_swift.json,Basic Factual Accuracy,4,100,0.000939
+sampled_merge_50_new_swift.json,Basic Factual Accuracy,5,100,0.000939
+sampled_merge_50_new_swift.json,"Clarity, Simplicity & Inspiration",1,100,0.000939
+sampled_merge_50_new_swift.json,"Clarity, Simplicity & Inspiration",2,100,0.000939
+sampled_merge_50_new_swift.json,"Clarity, Simplicity & Inspiration",3,100,0.000939
+sampled_merge_50_new_swift.json,"Clarity, Simplicity & Inspiration",4,100,0.000939
+sampled_merge_50_new_swift.json,"Clarity, Simplicity & Inspiration",5,100,0.000939
+sampled_merge_50_new_swift.json,Content Relevance & Scope Control,1,100,0.000939
+sampled_merge_50_new_swift.json,Content Relevance & Scope Control,2,100,0.000939
+sampled_merge_50_new_swift.json,Content Relevance & Scope Control,3,100,0.000939
+sampled_merge_50_new_swift.json,Content Relevance & Scope Control,4,100,0.000939
+sampled_merge_50_new_swift.json,Content Relevance & Scope Control,5,100,0.000939
+sampled_merge_50_new_swift.json,Domain Knowledge Accuracy,1,100,0.000939
+sampled_merge_50_new_swift.json,Domain Knowledge Accuracy,2,100,0.000939
+sampled_merge_50_new_swift.json,Domain Knowledge Accuracy,3,100,0.000939
+sampled_merge_50_new_swift.json,Domain Knowledge Accuracy,4,100,0.000939
+sampled_merge_50_new_swift.json,Domain Knowledge Accuracy,5,100,0.000939
+sampled_merge_50_new_swift.json,Error Identification & Correction Precision,1,100,0.000939
+sampled_merge_50_new_swift.json,Error Identification & Correction Precision,2,100,0.000939
+sampled_merge_50_new_swift.json,Error Identification & Correction Precision,3,100,0.000939
+sampled_merge_50_new_swift.json,Error Identification & Correction Precision,4,100,0.000939
+sampled_merge_50_new_swift.json,Error Identification & Correction Precision,5,100,0.000939
+sampled_merge_50_new_swift.json,Higher-Order Thinking & Skill Development,1,100,0.000939
+sampled_merge_50_new_swift.json,Higher-Order Thinking & Skill Development,2,100,0.000939
+sampled_merge_50_new_swift.json,Higher-Order Thinking & Skill Development,3,100,0.000939
+sampled_merge_50_new_swift.json,Higher-Order Thinking & Skill Development,4,100,0.000939
+sampled_merge_50_new_swift.json,Higher-Order Thinking & Skill Development,5,100,0.000939
+sampled_merge_50_new_swift.json,Instruction Following & Task Completion,1,100,0.000939
+sampled_merge_50_new_swift.json,Instruction Following & Task Completion,2,100,0.000939
+sampled_merge_50_new_swift.json,Instruction Following & Task Completion,3,100,0.000939
+sampled_merge_50_new_swift.json,Instruction Following & Task Completion,4,100,0.000939
+sampled_merge_50_new_swift.json,Instruction Following & Task Completion,5,100,0.000939
+sampled_merge_50_new_swift.json,"Motivation, Guidance & Positive Feedback",1,100,0.000939
+sampled_merge_50_new_swift.json,"Motivation, Guidance & Positive Feedback",2,100,0.000939
+sampled_merge_50_new_swift.json,"Motivation, Guidance & Positive Feedback",3,100,0.000939
+sampled_merge_50_new_swift.json,"Motivation, Guidance & Positive Feedback",4,100,0.000939
+sampled_merge_50_new_swift.json,"Motivation, Guidance & Positive Feedback",5,100,0.000939
+sampled_merge_50_new_swift.json,"Personalization, Adaptation & Learning Support",1,100,0.000939
+sampled_merge_50_new_swift.json,"Personalization, Adaptation & Learning Support",2,100,0.000939
+sampled_merge_50_new_swift.json,"Personalization, Adaptation & Learning Support",3,100,0.000939
+sampled_merge_50_new_swift.json,"Personalization, Adaptation & Learning Support",4,100,0.000939
+sampled_merge_50_new_swift.json,"Personalization, Adaptation & Learning Support",5,100,0.000939
+sampled_merge_50_new_swift.json,Reasoning Process Rigor,1,100,0.000939
+sampled_merge_50_new_swift.json,Reasoning Process Rigor,2,100,0.000939
+sampled_merge_50_new_swift.json,Reasoning Process Rigor,3,100,0.000939
+sampled_merge_50_new_swift.json,Reasoning Process Rigor,4,100,0.000939
+sampled_merge_50_new_swift.json,Reasoning Process Rigor,5,100,0.000939
+sampled_merge_50_new_swift.json,Role & Tone Consistency,1,100,0.000939
+sampled_merge_50_new_swift.json,Role & Tone Consistency,2,100,0.000939
+sampled_merge_50_new_swift.json,Role & Tone Consistency,3,100,0.000939
+sampled_merge_50_new_swift.json,Role & Tone Consistency,4,100,0.000939
+sampled_merge_50_new_swift.json,Role & Tone Consistency,5,100,0.000939
+sampled_merge_50_new_swift.json,Scenario Element Integration,1,100,0.000939
+sampled_merge_50_new_swift.json,Scenario Element Integration,2,100,0.000939
+sampled_merge_50_new_swift.json,Scenario Element Integration,3,100,0.000939
+sampled_merge_50_new_swift.json,Scenario Element Integration,4,100,0.000939
+sampled_merge_50_new_swift.json,Scenario Element Integration,5,100,0.000939

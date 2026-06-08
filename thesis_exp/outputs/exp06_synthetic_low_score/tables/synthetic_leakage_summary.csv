@@ -1,0 +1,33 @@
+source_file,total_candidates,source_question_key_in_train,source_question_key_in_dev,source_question_key_in_test,question_key_in_dev,question_key_in_test,triple_key_in_dev,triple_key_in_test,normalized_qa_in_dev,normalized_qa_in_test,from_dev_test_question,any_dev_test_leakage,leakage_risk,notes
+,6,0,0,0,0,0,0,0,0,0,0,False,LOW,no exact split overlap detected
+deepseek-r1_merged.jsonl,990,1970,1850,1640,925,820,0,0,506,757,1745,True,BLOCKED,dev/test overlap found
+deepseek_output/deepseek_generated_20251124_204411.jsonl,164,0,0,0,0,0,0,0,0,0,0,False,LOW,no exact split overlap detected
+deepseek_output/en_judge_20251109_221657.jsonl,173,0,0,0,0,0,0,0,0,0,0,False,LOW,no exact split overlap detected
+deepseek_output/judge-1-process.jsonl,189,0,0,0,0,0,0,0,0,0,0,False,LOW,no exact split overlap detected
+deepseek_output/judge-2-process.jsonl,186,0,0,0,0,0,0,0,0,0,0,False,LOW,no exact split overlap detected
+deepseek_output/processed_excel_data_1.jsonl,659,0,0,0,0,0,0,0,0,0,0,False,LOW,no exact split overlap detected
+deepseek_output/processed_excel_data_1_en.jsonl,331,0,0,0,0,0,0,0,0,0,0,False,LOW,no exact split overlap detected
+deepseek_output/processed_excel_data_1_zh.jsonl,328,0,0,0,0,0,0,0,0,0,0,False,LOW,no exact split overlap detected
+deepseek_output/processed_excel_data_2.jsonl,659,0,0,0,0,0,0,0,0,0,0,False,LOW,no exact split overlap detected
+deepseek_output/processed_excel_data_2_en.jsonl,331,0,0,0,0,0,0,0,0,0,0,False,LOW,no exact split overlap detected
+deepseek_output/processed_excel_data_2_zh.jsonl,328,0,0,0,0,0,0,0,0,0,0,False,LOW,no exact split overlap detected
+deepseek_output/unique_questions.jsonl,25,0,0,0,0,0,0,0,0,0,0,False,LOW,no exact split overlap detected
+deepseek_output/zh_judge_20251109_223622.jsonl,234,0,0,0,0,0,0,0,0,0,0,False,LOW,no exact split overlap detected
+edu-data-synthesis-main/data/criteria/metrics_old.json,3,0,0,0,0,0,0,0,0,0,0,False,LOW,no exact split overlap detected
+edu-data-synthesis-main/data/eval_data/eval_samples.jsonl,17400,0,0,0,16370,14565,2050,6869,9226,13698,30935,True,BLOCKED,dev/test overlap found
+edu-data-synthesis-main/data/eval_data/train_eval_data.jsonl,10098,0,0,0,9540,8397,1185,3894,5253,7785,17937,True,BLOCKED,dev/test overlap found
+edu-data-synthesis-main/data/eval_data/val_eval_data.jsonl,6732,0,0,0,6360,5598,795,2724,3723,5367,11958,True,BLOCKED,dev/test overlap found
+edu-data-synthesis-main/data/zh/cjeval.jsonl,26136,0,0,0,0,0,0,0,0,0,0,False,LOW,no exact split overlap detected
+edu-data-synthesis-main/data/zh/gaokao-bench.jsonl,3126,0,0,0,0,0,0,0,0,0,0,False,LOW,no exact split overlap detected
+edu-data-synthesis-main/init_workflows/init_evaluation_workflow_1_1.json,1,0,0,0,0,0,0,0,0,0,0,False,LOW,no exact split overlap detected
+edu-data-synthesis-main/test_workflow.json,1,0,0,0,0,0,0,0,0,0,0,False,LOW,no exact split overlap detected
+groupby_metric_qwq_eval_en.jsonl,2709,5418,5124,4612,2562,2306,628,2184,1445,2199,4868,True,BLOCKED,dev/test overlap found
+groupby_metric_qwq_eval_zh.jsonl,2732,5424,5196,4608,2598,2304,323,1085,1472,2130,4902,True,BLOCKED,dev/test overlap found
+groupby_metric_r1_eval_en.jsonl,2767,5534,5236,4628,2618,2314,656,2208,1471,2207,4932,True,BLOCKED,dev/test overlap found
+groupby_metric_r1_eval_zh.jsonl,2624,5208,5004,4480,2502,2240,313,1049,1422,2076,4742,True,BLOCKED,dev/test overlap found
+groupby_metric_v3_eval_en.jsonl,2785,5570,5270,4680,2635,2340,646,2212,1474,2233,4975,True,BLOCKED,dev/test overlap found
+groupby_metric_v3_eval_zh.jsonl,2805,5570,5340,4680,2670,2340,334,1108,1513,2166,5010,True,BLOCKED,dev/test overlap found
+human_sampled_eval_sft_criteria_test.json,3274,5838,5474,5542,2737,2771,0,0,0,0,5508,True,BLOCKED,dev/test overlap found
+merge_model_metric.jsonl,6661,13322,12526,11822,6263,5911,1524,5632,3450,5631,12174,True,BLOCKED,dev/test overlap found
+sampled_merge_50_new.json,6000,6456,5988,6138,2994,3069,0,0,0,0,6063,True,BLOCKED,dev/test overlap found
+sampled_merge_50_new_swift.json,6000,0,0,0,0,0,0,0,0,0,0,False,LOW,no exact split overlap detected
