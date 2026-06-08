@@ -1,0 +1,2 @@
+row_index,synthetic_id,status,missing_fields,invalid_fields,notes
+,,DRY_RUN,[],[],No generated JSONL supplied; wrote schema document only.

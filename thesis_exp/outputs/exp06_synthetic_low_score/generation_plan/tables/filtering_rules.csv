@@ -1,0 +1,12 @@
+rule_id,description,required,failure_reason
+valid_json,Generated row is valid JSON.,True,invalid_json
+non_empty_answer,answer_synthetic is non-empty.,True,empty_answer
+length_within_range,answer_synthetic length is between 20 and 4000 characters.,True,length_out_of_range
+language_match,answer_synthetic language matches row language.,True,language_mismatch
+no_intentional_wrong_phrase,Answer does not reveal that it is intentionally flawed or synthetic.,True,contains_generation_meta
+no_copied_original_answer,answer_synthetic is not a direct copy of original/source answer.,True,copied_original_answer
+valid_target_label,target_label_5 is in 1..5.,True,invalid_target_label
+metric_rubric_exists,metric_canonical and rubric_text are non-empty.,True,missing_metric_or_rubric
+source_split_train,source_split is train.,True,not_train_source
+not_duplicate,synthetic answer is unique after normalization.,True,duplicate_synthetic_answer
+judge_consistency_placeholder,Optional judge/human consistency check is available but not run in scaffold.,False,judge_consistency_not_checked
