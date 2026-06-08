@@ -10,7 +10,7 @@ L1 reuses Exp4 O3 ordinal as L0 and trains only a weighted ordinal variant.
 | L1_weighted_ordinal | completed | 0.7250 | 0.3894 | 0.3504 | 0.7132 | 0.6149 | 0.2136 |
 | L2a_asymmetric_ordinal_lambda03_margin0 | completed | 0.7160 | 0.4080 | 0.3705 | 0.6356 | 0.5991 | 0.3398 |
 | L2b_asymmetric_ordinal_lambda05_margin0 | completed | 0.7164 | 0.3971 | 0.3633 | 0.6745 | 0.6038 | 0.2718 |
-| L3b_weighted_threshold_mu03 | pending | NA | NA | NA | NA | NA | NA |
+| L3b_weighted_threshold_mu03 | completed | 0.7205 | 0.3946 | 0.3602 | 0.6871 | 0.6122 | 0.2330 |
 
 Class weights come from the train split only.
 

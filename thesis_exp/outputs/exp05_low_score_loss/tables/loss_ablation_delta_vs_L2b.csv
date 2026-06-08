@@ -1,2 +1,2 @@
 baseline_loss_id,comparison_loss_id,delta_accuracy,delta_MAE_label,delta_MAE_expected,delta_kendall_tau,delta_qwk,delta_low_to_high_rate,delta_low_signed_bias,delta_Acc@1,delta_Acc@2,delta_Acc@5,delta_high_to_mid_or_low_rate
-L2b_asymmetric_ordinal_lambda05_margin0,L3b_weighted_threshold_mu03,,,,,,,,,,,
+L2b_asymmetric_ordinal_lambda05_margin0,L3b_weighted_threshold_mu03,0.004057709648331853,-0.00240456868049288,-0.0031322109577944235,0.008328713358871753,0.012583319442960983,-0.03883495145631066,-0.058252427184466216,-0.035714285714285754,0.08510638297872342,0.0,0.0016652789342214824

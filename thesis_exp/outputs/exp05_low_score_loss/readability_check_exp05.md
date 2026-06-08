@@ -131,6 +131,19 @@ Overall status: **PASS**
 | pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/runs/L2b_asymmetric_ordinal_lambda05_margin0/ta... | PASS | rows=10 cols=10 | readable |  |
 | pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/runs/L2b_asymmetric_ordinal_lambda05_margin0/ta... | PASS | rows=17 cols=37 | readable |  |
 | pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/runs/L2b_asymmetric_ordinal_lambda05_margin0/ta... | PASS | rows=10 cols=5 | readable |  |
+| pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/runs/L3b_weighted_threshold_mu03/logs/dev_metri... | PASS | rows=10 cols=51 | readable |  |
+| pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/runs/L3b_weighted_threshold_mu03/logs/loss_debu... | PASS | rows=210 cols=15 | readable |  |
+| pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/runs/L3b_weighted_threshold_mu03/logs/training_... | PASS | rows=10 cols=51 | readable |  |
+| pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/runs/L3b_weighted_threshold_mu03/metrics.csv | PASS | rows=2 cols=52 | readable |  |
+| pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/runs/L3b_weighted_threshold_mu03/tables/dev_met... | PASS | rows=10 cols=51 | readable |  |
+| pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/runs/L3b_weighted_threshold_mu03/tables/high_sc... | PASS | rows=2 cols=5 | readable |  |
+| pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/runs/L3b_weighted_threshold_mu03/tables/loss_de... | PASS | rows=210 cols=15 | readable |  |
+| pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/runs/L3b_weighted_threshold_mu03/tables/low_sco... | PASS | rows=2 cols=10 | readable |  |
+| pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/runs/L3b_weighted_threshold_mu03/tables/metric_... | PASS | rows=24 cols=37 | readable |  |
+| pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/runs/L3b_weighted_threshold_mu03/tables/metrics... | PASS | rows=2 cols=52 | readable |  |
+| pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/runs/L3b_weighted_threshold_mu03/tables/per_bin... | PASS | rows=10 cols=10 | readable |  |
+| pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/runs/L3b_weighted_threshold_mu03/tables/scenari... | PASS | rows=17 cols=37 | readable |  |
+| pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/runs/L3b_weighted_threshold_mu03/tables/score_d... | PASS | rows=10 cols=5 | readable |  |
 | pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/smoke_test/L1_weighted_ordinal/logs/training_lo... | PASS | rows=1 cols=44 | readable |  |
 | pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/smoke_test/L1_weighted_ordinal/metrics.csv | PASS | rows=2 cols=45 | readable |  |
 | pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/smoke_test/L1_weighted_ordinal/tables/dev_metri... | PASS | rows=1 cols=44 | readable |  |
@@ -152,16 +165,16 @@ Overall status: **PASS**
 | pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/tables/loss_ablation_delta_vs_L0.csv | PASS | rows=4 cols=13 | readable |  |
 | pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/tables/loss_ablation_delta_vs_L1.csv | PASS | rows=3 cols=13 | readable |  |
 | pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/tables/loss_ablation_delta_vs_L2b.csv | PASS | rows=1 cols=13 | readable |  |
-| pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/tables/loss_ablation_high_score.csv | PASS | rows=4 cols=10 | readable |  |
-| pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/tables/loss_ablation_low_score.csv | PASS | rows=4 cols=15 | readable |  |
-| pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/tables/loss_ablation_per_bin.csv | PASS | rows=20 cols=15 | readable |  |
+| pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/tables/loss_ablation_high_score.csv | PASS | rows=5 cols=10 | readable |  |
+| pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/tables/loss_ablation_low_score.csv | PASS | rows=5 cols=15 | readable |  |
+| pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/tables/loss_ablation_per_bin.csv | PASS | rows=25 cols=15 | readable |  |
 | pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/tables/loss_ablation_summary.csv | PASS | rows=5 cols=14 | readable |  |
 | pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/tables/loss_ablation_tradeoff.csv | PASS | rows=5 cols=14 | readable |  |
-| pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/tables/readability_check_exp05.csv | PASS | rows=241 cols=6 | readable |  |
+| pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/tables/readability_check_exp05.csv | PASS | rows=201 cols=6 | readable |  |
 | pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/tables/sanity_check_exp05_outputs.csv | PASS | rows=47 cols=5 | readable |  |
 | pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/tables/sanity_check_exp05_outputs_l2_smoke.csv | PASS | rows=33 cols=5 | readable |  |
 | pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/tables/sanity_check_exp05_outputs_smoke.csv | PASS | rows=11 cols=5 | readable |  |
-| pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/tables/sanity_check_exp05_outputs_with_l3b.csv | PASS | rows=50 cols=5 | readable |  |
+| pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/tables/sanity_check_exp05_outputs_with_l3b.csv | PASS | rows=66 cols=5 | readable |  |
 | pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/tables/sanity_check_exp05_setup.csv | PASS | rows=64 cols=5 | readable |  |
 | jsonl line json.loads | thesis_exp/outputs/exp05_low_score_loss/runs/L1_weighted_ordinal/predictions/prediction... | PASS | rows=664 | all nonempty lines parse |  |
 | jsonl line json.loads | thesis_exp/outputs/exp05_low_score_loss/runs/L1_weighted_ordinal/predictions/prediction... | PASS | rows=664 | all nonempty lines parse |  |
@@ -181,6 +194,12 @@ Overall status: **PASS**
 | jsonl line json.loads | thesis_exp/outputs/exp05_low_score_loss/runs/L2b_asymmetric_ordinal_lambda05_margin0/pr... | PASS | rows=664 | all nonempty lines parse |  |
 | jsonl line json.loads | thesis_exp/outputs/exp05_low_score_loss/runs/L2b_asymmetric_ordinal_lambda05_margin0/pr... | PASS | rows=664 | all nonempty lines parse |  |
 | jsonl line json.loads | thesis_exp/outputs/exp05_low_score_loss/runs/L2b_asymmetric_ordinal_lambda05_margin0/pr... | PASS | rows=2218 | all nonempty lines parse |  |
+| jsonl line json.loads | thesis_exp/outputs/exp05_low_score_loss/runs/L3b_weighted_threshold_mu03/predictions/pr... | PASS | rows=664 | all nonempty lines parse |  |
+| jsonl line json.loads | thesis_exp/outputs/exp05_low_score_loss/runs/L3b_weighted_threshold_mu03/predictions/pr... | PASS | rows=664 | all nonempty lines parse |  |
+| jsonl line json.loads | thesis_exp/outputs/exp05_low_score_loss/runs/L3b_weighted_threshold_mu03/predictions/pr... | PASS | rows=2218 | all nonempty lines parse |  |
+| jsonl line json.loads | thesis_exp/outputs/exp05_low_score_loss/runs/L3b_weighted_threshold_mu03/predictions_de... | PASS | rows=664 | all nonempty lines parse |  |
+| jsonl line json.loads | thesis_exp/outputs/exp05_low_score_loss/runs/L3b_weighted_threshold_mu03/predictions_de... | PASS | rows=664 | all nonempty lines parse |  |
+| jsonl line json.loads | thesis_exp/outputs/exp05_low_score_loss/runs/L3b_weighted_threshold_mu03/predictions_te... | PASS | rows=2218 | all nonempty lines parse |  |
 | jsonl line json.loads | thesis_exp/outputs/exp05_low_score_loss/smoke_test/L1_weighted_ordinal/predictions/pred... | PASS | rows=8 | all nonempty lines parse |  |
 | jsonl line json.loads | thesis_exp/outputs/exp05_low_score_loss/smoke_test/L1_weighted_ordinal/predictions/pred... | PASS | rows=8 | all nonempty lines parse |  |
 | jsonl line json.loads | thesis_exp/outputs/exp05_low_score_loss/smoke_test/L1_weighted_ordinal/predictions/pred... | PASS | rows=8 | all nonempty lines parse |  |
@@ -194,14 +213,15 @@ Overall status: **PASS**
 | markdown max prose line length | thesis_exp/outputs/exp05_low_score_loss/readability_check_exp05.md | PASS | prose=24; table=184 | <300 for non-table lines |  |
 | markdown max prose line length | thesis_exp/outputs/exp05_low_score_loss/report.md | PASS | prose=101; table=109 | <300 for non-table lines |  |
 | markdown max prose line length | thesis_exp/outputs/exp05_low_score_loss/reports/l2_diagnosis_report.md | PASS | prose=91; table=390 | <300 for non-table lines |  |
-| markdown max prose line length | thesis_exp/outputs/exp05_low_score_loss/review_package.md | PASS | prose=76; table=109 | <300 for non-table lines |  |
+| markdown max prose line length | thesis_exp/outputs/exp05_low_score_loss/review_package.md | PASS | prose=84; table=109 | <300 for non-table lines |  |
 | markdown max prose line length | thesis_exp/outputs/exp05_low_score_loss/runs/L1_weighted_ordinal/run_summary.md | PASS | prose=63; table=0 | <300 for non-table lines |  |
 | markdown max prose line length | thesis_exp/outputs/exp05_low_score_loss/runs/L2a_asymmetric_ordinal_lambda03_margin0/ru... | PASS | prose=63; table=0 | <300 for non-table lines |  |
 | markdown max prose line length | thesis_exp/outputs/exp05_low_score_loss/runs/L2b_asymmetric_ordinal_lambda05_margin0/ru... | PASS | prose=63; table=0 | <300 for non-table lines |  |
+| markdown max prose line length | thesis_exp/outputs/exp05_low_score_loss/runs/L3b_weighted_threshold_mu03/run_summary.md | PASS | prose=87; table=0 | <300 for non-table lines |  |
 | markdown max prose line length | thesis_exp/outputs/exp05_low_score_loss/sanity_check_exp05_outputs.md | PASS | prose=26; table=219 | <300 for non-table lines |  |
 | markdown max prose line length | thesis_exp/outputs/exp05_low_score_loss/sanity_check_exp05_outputs_l2_smoke.md | PASS | prose=26; table=220 | <300 for non-table lines |  |
 | markdown max prose line length | thesis_exp/outputs/exp05_low_score_loss/sanity_check_exp05_outputs_smoke.md | PASS | prose=26; table=155 | <300 for non-table lines |  |
-| markdown max prose line length | thesis_exp/outputs/exp05_low_score_loss/sanity_check_exp05_outputs_with_l3b.md | PASS | prose=26; table=257 | <300 for non-table lines |  |
+| markdown max prose line length | thesis_exp/outputs/exp05_low_score_loss/sanity_check_exp05_outputs_with_l3b.md | PASS | prose=26; table=265 | <300 for non-table lines |  |
 | markdown max prose line length | thesis_exp/outputs/exp05_low_score_loss/sanity_check_exp05_setup.md | PASS | prose=25; table=259 | <300 for non-table lines |  |
 | markdown max prose line length | thesis_exp/outputs/exp05_low_score_loss/smoke_test/L1_weighted_ordinal/run_summary.md | PASS | prose=63; table=0 | <300 for non-table lines |  |
 | markdown max prose line length | thesis_exp/outputs/exp05_low_score_loss/smoke_test/smoke_test_report.md | PASS | prose=88; table=0 | <300 for non-table lines |  |
