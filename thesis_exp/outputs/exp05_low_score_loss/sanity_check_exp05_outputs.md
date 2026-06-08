@@ -17,7 +17,37 @@ Overall status: **PASS**
 | L1_weighted_ordinal score_distribution.csv | PASS | thesis_exp/outputs/exp05_low_score_loss/runs/L1_weighted_ordinal/tables/score_distribution.csv | exists |  |
 | L1_weighted_ordinal selection metric | PASS | dev_MAE_label | dev_MAE_label |  |
 | L1_weighted_ordinal checkpoint selection | PASS | epoch=9 value=0.410140562248996 | dev_MAE_label min=0.410140562248996 |  |
-| L2a_asymmetric_ordinal_lambda03_margin0 run status | PASS | pending | pending allowed |  |
-| L2b_asymmetric_ordinal_lambda05_margin0 run status | PASS | pending | pending allowed |  |
+| L2a_asymmetric_ordinal_lambda03_margin0 run status | PASS | completed | completed |  |
+| L2a_asymmetric_ordinal_lambda03_margin0 predictions_dev | PASS | rows=664 missing=[] | readable JSONL |  |
+| L2a_asymmetric_ordinal_lambda03_margin0 predictions_test | PASS | rows=2218 missing=[] | readable JSONL |  |
+| L2a_asymmetric_ordinal_lambda03_margin0 dev_test_arrays.npz | PASS | test_shape=(2218, 4) missing=[] | required array keys, logits dim=4 |  |
+| L2a_asymmetric_ordinal_lambda03_margin0 metrics_summary.csv | PASS | thesis_exp/outputs/exp05_low_score_loss/runs/L2a_asymmetric_ordinal_lambda03_margin0/tables/metri... | exists |  |
+| L2a_asymmetric_ordinal_lambda03_margin0 per_bin_metrics.csv | PASS | thesis_exp/outputs/exp05_low_score_loss/runs/L2a_asymmetric_ordinal_lambda03_margin0/tables/per_b... | exists |  |
+| L2a_asymmetric_ordinal_lambda03_margin0 low_score_metrics.csv | PASS | thesis_exp/outputs/exp05_low_score_loss/runs/L2a_asymmetric_ordinal_lambda03_margin0/tables/low_s... | exists |  |
+| L2a_asymmetric_ordinal_lambda03_margin0 high_score_metrics.csv | PASS | thesis_exp/outputs/exp05_low_score_loss/runs/L2a_asymmetric_ordinal_lambda03_margin0/tables/high_... | exists |  |
+| L2a_asymmetric_ordinal_lambda03_margin0 metric_level_metrics.csv | PASS | thesis_exp/outputs/exp05_low_score_loss/runs/L2a_asymmetric_ordinal_lambda03_margin0/tables/metri... | exists |  |
+| L2a_asymmetric_ordinal_lambda03_margin0 scenario_level_metrics.csv | PASS | thesis_exp/outputs/exp05_low_score_loss/runs/L2a_asymmetric_ordinal_lambda03_margin0/tables/scena... | exists |  |
+| L2a_asymmetric_ordinal_lambda03_margin0 score_distribution.csv | PASS | thesis_exp/outputs/exp05_low_score_loss/runs/L2a_asymmetric_ordinal_lambda03_margin0/tables/score... | exists |  |
+| L2a_asymmetric_ordinal_lambda03_margin0 loss_debug_history.csv | PASS | thesis_exp/outputs/exp05_low_score_loss/runs/L2a_asymmetric_ordinal_lambda03_margin0/logs/loss_de... | exists |  |
+| L2a_asymmetric_ordinal_lambda03_margin0 config recorded in run_summary | PASS | thesis_exp/outputs/exp05_low_score_loss/runs/L2a_asymmetric_ordinal_lambda03_margin0/run_summary.md | lambda/margin/no class weights |  |
+| L2a_asymmetric_ordinal_lambda03_margin0 selection metric | PASS | dev_MAE_label | dev_MAE_label |  |
+| L2a_asymmetric_ordinal_lambda03_margin0 test after best checkpoint | PASS | True | true |  |
+| L2a_asymmetric_ordinal_lambda03_margin0 checkpoint selection | PASS | epoch=8 value=0.3805220883534136 | dev_MAE_label min=0.3805220883534136 |  |
+| L2b_asymmetric_ordinal_lambda05_margin0 run status | PASS | completed | completed |  |
+| L2b_asymmetric_ordinal_lambda05_margin0 predictions_dev | PASS | rows=664 missing=[] | readable JSONL |  |
+| L2b_asymmetric_ordinal_lambda05_margin0 predictions_test | PASS | rows=2218 missing=[] | readable JSONL |  |
+| L2b_asymmetric_ordinal_lambda05_margin0 dev_test_arrays.npz | PASS | test_shape=(2218, 4) missing=[] | required array keys, logits dim=4 |  |
+| L2b_asymmetric_ordinal_lambda05_margin0 metrics_summary.csv | PASS | thesis_exp/outputs/exp05_low_score_loss/runs/L2b_asymmetric_ordinal_lambda05_margin0/tables/metri... | exists |  |
+| L2b_asymmetric_ordinal_lambda05_margin0 per_bin_metrics.csv | PASS | thesis_exp/outputs/exp05_low_score_loss/runs/L2b_asymmetric_ordinal_lambda05_margin0/tables/per_b... | exists |  |
+| L2b_asymmetric_ordinal_lambda05_margin0 low_score_metrics.csv | PASS | thesis_exp/outputs/exp05_low_score_loss/runs/L2b_asymmetric_ordinal_lambda05_margin0/tables/low_s... | exists |  |
+| L2b_asymmetric_ordinal_lambda05_margin0 high_score_metrics.csv | PASS | thesis_exp/outputs/exp05_low_score_loss/runs/L2b_asymmetric_ordinal_lambda05_margin0/tables/high_... | exists |  |
+| L2b_asymmetric_ordinal_lambda05_margin0 metric_level_metrics.csv | PASS | thesis_exp/outputs/exp05_low_score_loss/runs/L2b_asymmetric_ordinal_lambda05_margin0/tables/metri... | exists |  |
+| L2b_asymmetric_ordinal_lambda05_margin0 scenario_level_metrics.csv | PASS | thesis_exp/outputs/exp05_low_score_loss/runs/L2b_asymmetric_ordinal_lambda05_margin0/tables/scena... | exists |  |
+| L2b_asymmetric_ordinal_lambda05_margin0 score_distribution.csv | PASS | thesis_exp/outputs/exp05_low_score_loss/runs/L2b_asymmetric_ordinal_lambda05_margin0/tables/score... | exists |  |
+| L2b_asymmetric_ordinal_lambda05_margin0 loss_debug_history.csv | PASS | thesis_exp/outputs/exp05_low_score_loss/runs/L2b_asymmetric_ordinal_lambda05_margin0/logs/loss_de... | exists |  |
+| L2b_asymmetric_ordinal_lambda05_margin0 config recorded in run_summary | PASS | thesis_exp/outputs/exp05_low_score_loss/runs/L2b_asymmetric_ordinal_lambda05_margin0/run_summary.md | lambda/margin/no class weights |  |
+| L2b_asymmetric_ordinal_lambda05_margin0 selection metric | PASS | dev_MAE_label | dev_MAE_label |  |
+| L2b_asymmetric_ordinal_lambda05_margin0 test after best checkpoint | PASS | True | true |  |
+| L2b_asymmetric_ordinal_lambda05_margin0 checkpoint selection | PASS | epoch=10 value=0.38253012048192764 | dev_MAE_label min=0.38253012048192764 |  |
 | L0/L1 metrics present in summary | PASS | {'L0_exp04_o3_ordinal': 'completed', 'L1_weighted_ordinal': 'completed', 'L2a_asymmetric_ordinal_... | L0 and L1 present |  |
 | no checkpoint/weights tracked | PASS | [] | [] |  |

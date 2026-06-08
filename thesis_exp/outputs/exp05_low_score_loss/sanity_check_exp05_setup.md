@@ -19,8 +19,8 @@ Overall status: **PASS**
 | w_min/w_max | PASS | 0.5/3.0 | 0.5/3.0 |  |
 | class weights use train only | PASS | thesis_exp/outputs/exp04_target_objectives/datasets/A4_fixed_question_answer_metric_rubric_metadata/train.j... | train split |  |
 | all class weights finite | PASS | [(1, 3.0), (2, 3.0), (3, 2.1147410358565737), (4, 0.5610993657505285), (5, 0.5)] | finite labels 1..5 |  |
-| toy ordinal targets | PASS | [[0, 0, 0, 0], [1, 0, 0, 0], [1, 1, 0, 0], [1, 1, 1, 0], [1, 1, 1, 1]] | [[0, 0, 0, 0], [1, 0, 0, 0], [1, 1, 0, 0], [1, 1, 1, 0], [1, 1, 1, 1]] | numpy fallback |
-| toy weighted ordinal loss finite | PASS | 0.6931471805599452 | finite non-NaN | torch unavailable; formula fallback |
+| toy ordinal targets | PASS | [[0.0, 0.0, 0.0, 0.0], [1.0, 0.0, 0.0, 0.0], [1.0, 1.0, 0.0, 0.0], [1.0, 1.0, 1.0, 0.0], [1.0, 1.0, 1.0, 1.0]] | [[0.0, 0.0, 0.0, 0.0], [1.0, 0.0, 0.0, 0.0], [1.0, 1.0, 0.0, 0.0], [1.0, 1.0, 1.0, 0.0], [1.0, 1.0, 1.0, 1.0]] |  |
+| toy weighted ordinal loss finite | PASS | 0.6931471824645996 | finite non-NaN | {'mean_base_loss': 0.6931471824645996, 'mean_weighted_loss': 1.0050634145736694, 'mean_sample_weight': 1.45... |
 | L2 config exists exp05_l2a_asymmetric_ordinal_lambda03.yaml | PASS | thesis_exp/configs/exp05_low_score_loss/exp05_l2a_asymmetric_ordinal_lambda03.yaml | exists |  |
 | L2 config exists exp05_l2b_asymmetric_ordinal_lambda05.yaml | PASS | thesis_exp/configs/exp05_low_score_loss/exp05_l2b_asymmetric_ordinal_lambda05.yaml | exists |  |
 | L2 config exists exp05_l2_smoke_test.yaml | PASS | thesis_exp/configs/exp05_low_score_loss/exp05_l2_smoke_test.yaml | exists |  |
@@ -35,7 +35,7 @@ Overall status: **PASS**
 | exp05_l2b_asymmetric_ordinal_lambda05.yaml use_high_score_preservation=false | PASS | false | false |  |
 | exp05_l2b_asymmetric_ordinal_lambda05.yaml use_threshold_suppression=false | PASS | false | false |  |
 | L2 toy loss checks | PASS | thesis_exp/outputs/exp05_low_score_loss/tables/l2_toy_loss_checks.csv | all PASS |  |
-| L2 penalty only applies to label_5 <= 2 | PASS | [0.8099999999999998, 0.05062500000000004, 0.0, 0.0, 0.0] | non-low penalties zero |  |
+| L2 penalty only applies to label_5 <= 2 | PASS | [0.809999942779541, 0.05062501132488251, 0.0, 0.0, 0.0] | non-low penalties zero |  |
 | L2 does not modify class_weights.csv | PASS | thesis_exp/outputs/exp05_low_score_loss/tables/class_weights.csv | existing L1 weights retained |  |
 | L1 outputs remain present | PASS | thesis_exp/outputs/exp05_low_score_loss/runs/L1_weighted_ordinal/tables/metrics_summary.csv | L1_weighted_ordinal metrics |  |
 | bash -n thesis_exp/scripts/run_exp05_l1_smoke.sh | PASS | ok | ok |  |

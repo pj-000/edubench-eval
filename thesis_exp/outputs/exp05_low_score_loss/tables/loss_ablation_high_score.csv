@@ -1,3 +1,5 @@
 loss_id,objective_id,objective_type,objective_label,status,split,high_n,Acc@5,high_to_mid_or_low_rate,high_signed_bias
 L0_exp04_o3_ordinal,O3_ordinal,ordinal,ordinal,completed,test,1201,0.8559533721898418,0.004995836802664446,0.0008326394671106079
 L1_weighted_ordinal,,,,,test,1201,0.839300582847627,0.005828476269775187,-0.015820149875104217
+L2a_asymmetric_ordinal_lambda03_margin0,,,,,test,1201,0.8476269775187344,0.0033305578684429643,-0.004995836802664576
+L2b_asymmetric_ordinal_lambda05_margin0,,,,,test,1201,0.8351373855120733,0.00832639467110741,-0.022481265611990143

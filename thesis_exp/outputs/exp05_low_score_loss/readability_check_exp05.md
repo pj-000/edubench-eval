@@ -86,6 +86,32 @@ Overall status: **PASS**
 | pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/runs/L1_weighted_ordinal/tables/per_bin_metrics... | PASS | rows=10 cols=10 | readable |  |
 | pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/runs/L1_weighted_ordinal/tables/scenario_level_... | PASS | rows=17 cols=37 | readable |  |
 | pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/runs/L1_weighted_ordinal/tables/score_distribut... | PASS | rows=10 cols=5 | readable |  |
+| pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/runs/L2a_asymmetric_ordinal_lambda03_margin0/lo... | PASS | rows=10 cols=48 | readable |  |
+| pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/runs/L2a_asymmetric_ordinal_lambda03_margin0/lo... | PASS | rows=210 cols=11 | readable |  |
+| pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/runs/L2a_asymmetric_ordinal_lambda03_margin0/lo... | PASS | rows=10 cols=48 | readable |  |
+| pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/runs/L2a_asymmetric_ordinal_lambda03_margin0/me... | PASS | rows=2 cols=49 | readable |  |
+| pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/runs/L2a_asymmetric_ordinal_lambda03_margin0/ta... | PASS | rows=10 cols=48 | readable |  |
+| pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/runs/L2a_asymmetric_ordinal_lambda03_margin0/ta... | PASS | rows=2 cols=5 | readable |  |
+| pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/runs/L2a_asymmetric_ordinal_lambda03_margin0/ta... | PASS | rows=210 cols=11 | readable |  |
+| pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/runs/L2a_asymmetric_ordinal_lambda03_margin0/ta... | PASS | rows=2 cols=10 | readable |  |
+| pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/runs/L2a_asymmetric_ordinal_lambda03_margin0/ta... | PASS | rows=24 cols=37 | readable |  |
+| pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/runs/L2a_asymmetric_ordinal_lambda03_margin0/ta... | PASS | rows=2 cols=49 | readable |  |
+| pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/runs/L2a_asymmetric_ordinal_lambda03_margin0/ta... | PASS | rows=10 cols=10 | readable |  |
+| pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/runs/L2a_asymmetric_ordinal_lambda03_margin0/ta... | PASS | rows=17 cols=37 | readable |  |
+| pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/runs/L2a_asymmetric_ordinal_lambda03_margin0/ta... | PASS | rows=10 cols=5 | readable |  |
+| pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/runs/L2b_asymmetric_ordinal_lambda05_margin0/lo... | PASS | rows=10 cols=48 | readable |  |
+| pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/runs/L2b_asymmetric_ordinal_lambda05_margin0/lo... | PASS | rows=210 cols=11 | readable |  |
+| pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/runs/L2b_asymmetric_ordinal_lambda05_margin0/lo... | PASS | rows=10 cols=48 | readable |  |
+| pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/runs/L2b_asymmetric_ordinal_lambda05_margin0/me... | PASS | rows=2 cols=49 | readable |  |
+| pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/runs/L2b_asymmetric_ordinal_lambda05_margin0/ta... | PASS | rows=10 cols=48 | readable |  |
+| pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/runs/L2b_asymmetric_ordinal_lambda05_margin0/ta... | PASS | rows=2 cols=5 | readable |  |
+| pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/runs/L2b_asymmetric_ordinal_lambda05_margin0/ta... | PASS | rows=210 cols=11 | readable |  |
+| pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/runs/L2b_asymmetric_ordinal_lambda05_margin0/ta... | PASS | rows=2 cols=10 | readable |  |
+| pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/runs/L2b_asymmetric_ordinal_lambda05_margin0/ta... | PASS | rows=24 cols=37 | readable |  |
+| pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/runs/L2b_asymmetric_ordinal_lambda05_margin0/ta... | PASS | rows=2 cols=49 | readable |  |
+| pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/runs/L2b_asymmetric_ordinal_lambda05_margin0/ta... | PASS | rows=10 cols=10 | readable |  |
+| pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/runs/L2b_asymmetric_ordinal_lambda05_margin0/ta... | PASS | rows=17 cols=37 | readable |  |
+| pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/runs/L2b_asymmetric_ordinal_lambda05_margin0/ta... | PASS | rows=10 cols=5 | readable |  |
 | pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/smoke_test/L1_weighted_ordinal/logs/training_lo... | PASS | rows=1 cols=44 | readable |  |
 | pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/smoke_test/L1_weighted_ordinal/metrics.csv | PASS | rows=2 cols=45 | readable |  |
 | pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/smoke_test/L1_weighted_ordinal/tables/dev_metri... | PASS | rows=1 cols=44 | readable |  |
@@ -101,13 +127,14 @@ Overall status: **PASS**
 | pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/tables/l2_toy_loss_checks.csv | PASS | rows=3 cols=5 | readable |  |
 | pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/tables/loss_ablation_delta_vs_L0.csv | PASS | rows=3 cols=13 | readable |  |
 | pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/tables/loss_ablation_delta_vs_L1.csv | PASS | rows=2 cols=13 | readable |  |
-| pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/tables/loss_ablation_high_score.csv | PASS | rows=2 cols=10 | readable |  |
-| pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/tables/loss_ablation_low_score.csv | PASS | rows=2 cols=15 | readable |  |
-| pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/tables/loss_ablation_per_bin.csv | PASS | rows=10 cols=15 | readable |  |
+| pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/tables/loss_ablation_high_score.csv | PASS | rows=4 cols=10 | readable |  |
+| pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/tables/loss_ablation_low_score.csv | PASS | rows=4 cols=15 | readable |  |
+| pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/tables/loss_ablation_per_bin.csv | PASS | rows=20 cols=15 | readable |  |
 | pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/tables/loss_ablation_summary.csv | PASS | rows=4 cols=14 | readable |  |
 | pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/tables/loss_ablation_tradeoff.csv | PASS | rows=4 cols=14 | readable |  |
-| pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/tables/readability_check_exp05.csv | PASS | rows=130 cols=6 | readable |  |
-| pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/tables/sanity_check_exp05_outputs.csv | PASS | rows=17 cols=5 | readable |  |
+| pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/tables/readability_check_exp05.csv | PASS | rows=213 cols=6 | readable |  |
+| pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/tables/sanity_check_exp05_outputs.csv | PASS | rows=47 cols=5 | readable |  |
+| pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/tables/sanity_check_exp05_outputs_l2_smoke.csv | PASS | rows=33 cols=5 | readable |  |
 | pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/tables/sanity_check_exp05_outputs_smoke.csv | PASS | rows=11 cols=5 | readable |  |
 | pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/tables/sanity_check_exp05_setup.csv | PASS | rows=42 cols=5 | readable |  |
 | jsonl line json.loads | thesis_exp/outputs/exp05_low_score_loss/runs/L1_weighted_ordinal/predictions/prediction... | PASS | rows=664 | all nonempty lines parse |  |
@@ -116,6 +143,18 @@ Overall status: **PASS**
 | jsonl line json.loads | thesis_exp/outputs/exp05_low_score_loss/runs/L1_weighted_ordinal/predictions_dev.jsonl | PASS | rows=664 | all nonempty lines parse |  |
 | jsonl line json.loads | thesis_exp/outputs/exp05_low_score_loss/runs/L1_weighted_ordinal/predictions_dev_best.j... | PASS | rows=664 | all nonempty lines parse |  |
 | jsonl line json.loads | thesis_exp/outputs/exp05_low_score_loss/runs/L1_weighted_ordinal/predictions_test.jsonl | PASS | rows=2218 | all nonempty lines parse |  |
+| jsonl line json.loads | thesis_exp/outputs/exp05_low_score_loss/runs/L2a_asymmetric_ordinal_lambda03_margin0/pr... | PASS | rows=664 | all nonempty lines parse |  |
+| jsonl line json.loads | thesis_exp/outputs/exp05_low_score_loss/runs/L2a_asymmetric_ordinal_lambda03_margin0/pr... | PASS | rows=664 | all nonempty lines parse |  |
+| jsonl line json.loads | thesis_exp/outputs/exp05_low_score_loss/runs/L2a_asymmetric_ordinal_lambda03_margin0/pr... | PASS | rows=2218 | all nonempty lines parse |  |
+| jsonl line json.loads | thesis_exp/outputs/exp05_low_score_loss/runs/L2a_asymmetric_ordinal_lambda03_margin0/pr... | PASS | rows=664 | all nonempty lines parse |  |
+| jsonl line json.loads | thesis_exp/outputs/exp05_low_score_loss/runs/L2a_asymmetric_ordinal_lambda03_margin0/pr... | PASS | rows=664 | all nonempty lines parse |  |
+| jsonl line json.loads | thesis_exp/outputs/exp05_low_score_loss/runs/L2a_asymmetric_ordinal_lambda03_margin0/pr... | PASS | rows=2218 | all nonempty lines parse |  |
+| jsonl line json.loads | thesis_exp/outputs/exp05_low_score_loss/runs/L2b_asymmetric_ordinal_lambda05_margin0/pr... | PASS | rows=664 | all nonempty lines parse |  |
+| jsonl line json.loads | thesis_exp/outputs/exp05_low_score_loss/runs/L2b_asymmetric_ordinal_lambda05_margin0/pr... | PASS | rows=664 | all nonempty lines parse |  |
+| jsonl line json.loads | thesis_exp/outputs/exp05_low_score_loss/runs/L2b_asymmetric_ordinal_lambda05_margin0/pr... | PASS | rows=2218 | all nonempty lines parse |  |
+| jsonl line json.loads | thesis_exp/outputs/exp05_low_score_loss/runs/L2b_asymmetric_ordinal_lambda05_margin0/pr... | PASS | rows=664 | all nonempty lines parse |  |
+| jsonl line json.loads | thesis_exp/outputs/exp05_low_score_loss/runs/L2b_asymmetric_ordinal_lambda05_margin0/pr... | PASS | rows=664 | all nonempty lines parse |  |
+| jsonl line json.loads | thesis_exp/outputs/exp05_low_score_loss/runs/L2b_asymmetric_ordinal_lambda05_margin0/pr... | PASS | rows=2218 | all nonempty lines parse |  |
 | jsonl line json.loads | thesis_exp/outputs/exp05_low_score_loss/smoke_test/L1_weighted_ordinal/predictions/pred... | PASS | rows=8 | all nonempty lines parse |  |
 | jsonl line json.loads | thesis_exp/outputs/exp05_low_score_loss/smoke_test/L1_weighted_ordinal/predictions/pred... | PASS | rows=8 | all nonempty lines parse |  |
 | jsonl line json.loads | thesis_exp/outputs/exp05_low_score_loss/smoke_test/L1_weighted_ordinal/predictions/pred... | PASS | rows=8 | all nonempty lines parse |  |
@@ -123,14 +162,17 @@ Overall status: **PASS**
 | jsonl line json.loads | thesis_exp/outputs/exp05_low_score_loss/smoke_test/L1_weighted_ordinal/predictions_dev_... | PASS | rows=8 | all nonempty lines parse |  |
 | jsonl line json.loads | thesis_exp/outputs/exp05_low_score_loss/smoke_test/L1_weighted_ordinal/predictions_test... | PASS | rows=8 | all nonempty lines parse |  |
 | markdown max line length | thesis_exp/outputs/exp05_low_score_loss/dataset_reference.md | PASS | 146 | <300 |  |
-| markdown max line length | thesis_exp/outputs/exp05_low_score_loss/notion_exp05_l1_summary.md | PASS | 94 | <300 |  |
-| markdown max line length | thesis_exp/outputs/exp05_low_score_loss/notion_exp05_l2_summary.md | PASS | 94 | <300 |  |
+| markdown max line length | thesis_exp/outputs/exp05_low_score_loss/notion_exp05_l1_summary.md | PASS | 109 | <300 |  |
+| markdown max line length | thesis_exp/outputs/exp05_low_score_loss/notion_exp05_l2_summary.md | PASS | 109 | <300 |  |
 | markdown max line length | thesis_exp/outputs/exp05_low_score_loss/readability_check_exp05.md | PASS | 173 | <300 |  |
-| markdown max line length | thesis_exp/outputs/exp05_low_score_loss/report.md | PASS | 99 | <300 |  |
-| markdown max line length | thesis_exp/outputs/exp05_low_score_loss/review_package.md | PASS | 94 | <300 |  |
+| markdown max line length | thesis_exp/outputs/exp05_low_score_loss/report.md | PASS | 109 | <300 |  |
+| markdown max line length | thesis_exp/outputs/exp05_low_score_loss/review_package.md | PASS | 109 | <300 |  |
 | markdown max line length | thesis_exp/outputs/exp05_low_score_loss/runs/L1_weighted_ordinal/run_summary.md | PASS | 63 | <300 |  |
-| markdown max line length | thesis_exp/outputs/exp05_low_score_loss/sanity_check_exp05_outputs.md | PASS | 170 | <300 |  |
+| markdown max line length | thesis_exp/outputs/exp05_low_score_loss/runs/L2a_asymmetric_ordinal_lambda03_margin0/ru... | PASS | 63 | <300 |  |
+| markdown max line length | thesis_exp/outputs/exp05_low_score_loss/runs/L2b_asymmetric_ordinal_lambda05_margin0/ru... | PASS | 63 | <300 |  |
+| markdown max line length | thesis_exp/outputs/exp05_low_score_loss/sanity_check_exp05_outputs.md | PASS | 219 | <300 |  |
+| markdown max line length | thesis_exp/outputs/exp05_low_score_loss/sanity_check_exp05_outputs_l2_smoke.md | PASS | 220 | <300 |  |
 | markdown max line length | thesis_exp/outputs/exp05_low_score_loss/sanity_check_exp05_outputs_smoke.md | PASS | 155 | <300 |  |
-| markdown max line length | thesis_exp/outputs/exp05_low_score_loss/sanity_check_exp05_setup.md | PASS | 193 | <300 |  |
+| markdown max line length | thesis_exp/outputs/exp05_low_score_loss/sanity_check_exp05_setup.md | PASS | 259 | <300 |  |
 | markdown max line length | thesis_exp/outputs/exp05_low_score_loss/smoke_test/L1_weighted_ordinal/run_summary.md | PASS | 63 | <300 |  |
 | markdown max line length | thesis_exp/outputs/exp05_low_score_loss/smoke_test/smoke_test_report.md | PASS | 88 | <300 |  |
