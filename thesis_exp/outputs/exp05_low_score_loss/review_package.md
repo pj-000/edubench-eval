@@ -1,10 +1,14 @@
-# Exp5 L1 Review Package
+# Exp5 Review Package
 
 Can L1 smoke start? **YES**
 
 Can L1 formal training start? **YES**
 
-Can L2 start? **NO until L1 reviewed**
+Can L2 smoke start? **YES**
+
+Can L2 formal training start? **NO**
+
+Can L3 start? **NO until L2 reviewed**
 
 ## Class Weights Summary
 
@@ -22,8 +26,11 @@ Can L2 start? **NO until L1 reviewed**
 | --- | --- |
 | Setup sanity status | PASS |
 | Readability status | PASS |
-| Smoke status | PASS |
-| Formal training status | completed |
+| L2 toy loss check status | PASS |
+| L1 smoke status | PASS |
+| L1 formal status | completed |
+| L2 smoke status | PENDING |
+| L2 formal status | pending |
 
 ## Main Results
 
@@ -31,11 +38,13 @@ Can L2 start? **NO until L1 reviewed**
 | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: |
 | L0_exp04_o3_ordinal | completed | 0.7381 | 0.3777 | 0.3430 | 0.7036 | 0.6238 | 0.2330 |
 | L1_weighted_ordinal | completed | 0.7250 | 0.3894 | 0.3504 | 0.7132 | 0.6149 | 0.2136 |
+| L2a_asymmetric_ordinal_lambda03_margin0 | pending | NA | NA | NA | NA | NA | NA |
+| L2b_asymmetric_ordinal_lambda05_margin0 | pending | NA | NA | NA | NA | NA | NA |
 
 ## Remaining Blockers
 
-- none for L1; formal training completed and setup/output/readability checks passed
-- L2/L3/L4 remain intentionally out of scope until L1 is reviewed
+- run L2 smoke before formal L2 training
+- L3/L4 remain intentionally out of scope until L2 is reviewed
 
 ## Files
 

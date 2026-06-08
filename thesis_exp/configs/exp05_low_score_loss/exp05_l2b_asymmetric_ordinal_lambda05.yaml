@@ -1,0 +1,16 @@
+experiment_id: exp05_l2b_asymmetric_ordinal_lambda05
+loss_type: asymmetric_ordinal
+input_template: A4
+objective: ordinal
+lambda_low: 0.5
+margin: 0.0
+use_class_weights: false
+use_high_score_preservation: false
+use_threshold_suppression: false
+model_name_or_path: /home/share/models/modelscope/Qwen/Qwen3-Reranker-0.6B
+epochs: 10
+learning_rate: 2e-5
+effective_batch_size: 128
+max_length: 2048
+checkpoint_selection_metric: dev_MAE_label
+checkpoint_selection_direction: min

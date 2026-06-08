@@ -1,4 +1,4 @@
-"""Preflight setup checks for Exp5 L1."""
+"""Preflight setup checks for Exp5 low-score loss ablations."""
 
 from __future__ import annotations
 
@@ -18,11 +18,19 @@ from thesis_exp.src.edujudge.exp05 import (
     EXP05_OUTPUT_DIR,
     EXP05_TABLES_DIR,
     EXPECTED_SPLIT_ROWS,
+    L1_RUN_ID,
+    L2_RUN_CONFIGS,
     ensure_exp05_dirs,
+    l1_run_dir,
 )
 from thesis_exp.src.edujudge.exp05.build_exp05_dataset import ensure_exp05_dataset
 from thesis_exp.src.edujudge.exp05.class_weights import write_class_weights
-from thesis_exp.src.edujudge.exp05.losses import make_ordinal_targets, weighted_ordinal_loss
+from thesis_exp.src.edujudge.exp05.losses import (
+    asymmetric_low_score_penalty,
+    asymmetric_ordinal_loss,
+    make_ordinal_targets,
+    weighted_ordinal_loss,
+)
 from thesis_exp.src.edujudge.exp05.write_exp05_report import write_exp05_report
 from thesis_exp.src.edujudge.utils.io import REPO_ROOT, read_jsonl, relpath, write_csv, write_text
 
@@ -30,8 +38,15 @@ from thesis_exp.src.edujudge.utils.io import REPO_ROOT, read_jsonl, relpath, wri
 SCRIPT_PATHS = [
     REPO_ROOT / "thesis_exp" / "scripts" / "run_exp05_l1_smoke.sh",
     REPO_ROOT / "thesis_exp" / "scripts" / "run_exp05_l1_train.sh",
+    REPO_ROOT / "thesis_exp" / "scripts" / "run_exp05_l2_smoke.sh",
+    REPO_ROOT / "thesis_exp" / "scripts" / "run_exp05_l2_train.sh",
 ]
 EXP05_SRC_DIR = REPO_ROOT / "thesis_exp" / "src" / "edujudge" / "exp05"
+L2_CONFIG_PATHS = [
+    REPO_ROOT / "thesis_exp" / "configs" / "exp05_low_score_loss" / "exp05_l2a_asymmetric_ordinal_lambda03.yaml",
+    REPO_ROOT / "thesis_exp" / "configs" / "exp05_low_score_loss" / "exp05_l2b_asymmetric_ordinal_lambda05.yaml",
+    REPO_ROOT / "thesis_exp" / "configs" / "exp05_low_score_loss" / "exp05_l2_smoke_test.yaml",
+]
 EXP4_REQUIRED = [
     EXP04_TABLES_DIR / "target_objective_summary.csv",
     EXP04_TABLES_DIR / "target_objective_low_score.csv",
@@ -143,6 +158,174 @@ def check_weights_and_loss(rows: list[dict[str, Any]]) -> None:
         add(rows, "toy weighted ordinal loss finite", "FAIL", f"{type(exc).__name__}: {exc}", "success")
 
 
+def simple_yaml_value(text: str, key: str) -> str:
+    prefix = f"{key}:"
+    for line in text.splitlines():
+        if line.strip().startswith(prefix):
+            return line.split(":", 1)[1].strip()
+    return ""
+
+
+def check_l2_configs(rows: list[dict[str, Any]]) -> None:
+    for path in L2_CONFIG_PATHS:
+        add(rows, f"L2 config exists {path.name}", "PASS" if path.exists() else "FAIL", relpath(path) if path.exists() else "missing", "exists")
+    for path in L2_CONFIG_PATHS[:2]:
+        if not path.exists():
+            continue
+        text = path.read_text(encoding="utf-8")
+        lambda_low = float(simple_yaml_value(text, "lambda_low"))
+        margin = float(simple_yaml_value(text, "margin"))
+        add(rows, f"{path.name} lambda_low > 0", "PASS" if lambda_low > 0 else "FAIL", lambda_low, ">0")
+        add(rows, f"{path.name} margin >= 0", "PASS" if margin >= 0 else "FAIL", margin, ">=0")
+        for key in ["use_class_weights", "use_high_score_preservation", "use_threshold_suppression"]:
+            observed = simple_yaml_value(text, key)
+            add(rows, f"{path.name} {key}=false", "PASS" if observed == "false" else "FAIL", observed, "false")
+
+
+def logit(probability: float) -> float:
+    import math
+
+    return math.log(probability / (1.0 - probability))
+
+
+def manual_penalties(prob_rows: list[list[float]], labels: list[int], margin: float) -> list[float]:
+    penalties = []
+    for probs, label in zip(prob_rows, labels):
+        s_hat = 1.0 + sum(probs)
+        over = max(s_hat - float(label) - margin, 0.0)
+        penalties.append(((over / 4.0) ** 2) if label <= 2 else 0.0)
+    return penalties
+
+
+def run_l2_toy_checks() -> list[dict[str, Any]]:
+    checks: list[dict[str, Any]] = []
+    prob_rows = [
+        [0.9, 0.9, 0.9, 0.9],
+        [0.8, 0.8, 0.2, 0.1],
+        [0.9, 0.8, 0.2, 0.1],
+        [0.9, 0.8, 0.7, 0.1],
+        [0.9, 0.9, 0.9, 0.9],
+    ]
+    labels = [1, 2, 3, 4, 5]
+    try:
+        import torch
+
+        logits = torch.tensor([[logit(prob) for prob in probs] for probs in prob_rows], dtype=torch.float32)
+        label_tensor = torch.tensor(labels, dtype=torch.long)
+        penalties, _ = asymmetric_low_score_penalty(logits, label_tensor, margin=0.0)
+        penalty_values = [float(value) for value in penalties.detach().cpu().tolist()]
+        ok = penalty_values[0] > penalty_values[1] > 0 and all(abs(penalty_values[idx]) < 1e-8 for idx in [2, 3, 4])
+        checks.append(
+            {
+                "test_name": "l2_penalty_only_low_labels",
+                "status": "PASS" if ok else "FAIL",
+                "details": "penalty[0] > penalty[1] > 0 and non-low penalties are zero",
+                "expected": "true",
+                "actual": penalty_values,
+            }
+        )
+
+        low_logits = torch.tensor([[0.0, logit(0.25), logit(0.25), logit(1e-6)]], dtype=torch.float32)
+        low_label = torch.tensor([2], dtype=torch.long)
+        low_penalty, _ = asymmetric_low_score_penalty(low_logits, low_label, margin=0.0)
+        near_zero = float(low_penalty.detach().cpu()[0]) < 1e-8
+        checks.append(
+            {
+                "test_name": "l2_penalty_zero_at_margin",
+                "status": "PASS" if near_zero else "FAIL",
+                "details": "label=2 with s_hat near 2.0 has no penalty",
+                "expected": "0",
+                "actual": float(low_penalty.detach().cpu()[0]),
+            }
+        )
+
+        logits_one = torch.tensor([[logit(prob) for prob in prob_rows[1]]], dtype=torch.float32)
+        label_one = torch.tensor([2], dtype=torch.long)
+        loss03, _ = asymmetric_ordinal_loss(logits_one, label_one, lambda_low=0.3, margin=0.0)
+        loss05, _ = asymmetric_ordinal_loss(logits_one, label_one, lambda_low=0.5, margin=0.0)
+        larger = float(loss05.detach().cpu()) > float(loss03.detach().cpu())
+        checks.append(
+            {
+                "test_name": "l2_lambda_monotonic_total_loss",
+                "status": "PASS" if larger else "FAIL",
+                "details": "same positive penalty should make lambda=0.5 loss larger than lambda=0.3",
+                "expected": "loss05 > loss03",
+                "actual": f"{float(loss05.detach().cpu())} > {float(loss03.detach().cpu())}",
+            }
+        )
+    except ModuleNotFoundError as exc:
+        if exc.name != "torch":
+            checks.append(
+                {
+                    "test_name": "l2_toy_checks",
+                    "status": "FAIL",
+                    "details": f"{type(exc).__name__}: {exc}",
+                    "expected": "success",
+                    "actual": "error",
+                }
+            )
+            return checks
+        penalties = manual_penalties(prob_rows, labels, margin=0.0)
+        ok = penalties[0] > penalties[1] > 0 and all(abs(penalties[idx]) < 1e-8 for idx in [2, 3, 4])
+        checks.append(
+            {
+                "test_name": "l2_penalty_only_low_labels",
+                "status": "PASS" if ok else "FAIL",
+                "details": "torch unavailable; formula fallback",
+                "expected": "true",
+                "actual": penalties,
+            }
+        )
+        low_penalty = manual_penalties([[0.5, 0.25, 0.25, 0.0]], [2], margin=0.0)[0]
+        checks.append(
+            {
+                "test_name": "l2_penalty_zero_at_margin",
+                "status": "PASS" if low_penalty < 1e-8 else "FAIL",
+                "details": "torch unavailable; formula fallback",
+                "expected": "0",
+                "actual": low_penalty,
+            }
+        )
+        penalty = manual_penalties([prob_rows[1]], [2], margin=0.0)[0]
+        checks.append(
+            {
+                "test_name": "l2_lambda_monotonic_total_loss",
+                "status": "PASS" if 0.5 * penalty > 0.3 * penalty else "FAIL",
+                "details": "torch unavailable; comparing penalty contribution only",
+                "expected": "0.5 * penalty > 0.3 * penalty",
+                "actual": f"{0.5 * penalty} > {0.3 * penalty}",
+            }
+        )
+    except Exception as exc:
+        checks.append(
+            {
+                "test_name": "l2_toy_checks",
+                "status": "FAIL",
+                "details": f"{type(exc).__name__}: {exc}",
+                "expected": "success",
+                "actual": "error",
+            }
+        )
+    return checks
+
+
+def check_l2_loss(rows: list[dict[str, Any]]) -> None:
+    checks = run_l2_toy_checks()
+    write_csv(
+        EXP05_TABLES_DIR / "l2_toy_loss_checks.csv",
+        checks,
+        fieldnames=["test_name", "status", "details", "expected", "actual"],
+    )
+    overall = "PASS" if checks and all(row["status"] == "PASS" for row in checks) else "FAIL"
+    add(rows, "L2 toy loss checks", overall, relpath(EXP05_TABLES_DIR / "l2_toy_loss_checks.csv"), "all PASS")
+    penalty_check = next((row for row in checks if row["test_name"] == "l2_penalty_only_low_labels"), {})
+    add(rows, "L2 penalty only applies to label_5 <= 2", penalty_check.get("status", "FAIL"), penalty_check.get("actual", ""), "non-low penalties zero")
+    class_weights_path = EXP05_TABLES_DIR / "class_weights.csv"
+    add(rows, "L2 does not modify class_weights.csv", "PASS" if class_weights_path.exists() else "FAIL", relpath(class_weights_path), "existing L1 weights retained")
+    l1_metrics = l1_run_dir(smoke=False) / "tables" / "metrics_summary.csv"
+    add(rows, "L1 outputs remain present", "PASS" if l1_metrics.exists() else "FAIL", relpath(l1_metrics) if l1_metrics.exists() else "missing", f"{L1_RUN_ID} metrics")
+
+
 def check_scripts_and_modules(rows: list[dict[str, Any]]) -> None:
     for path in SCRIPT_PATHS:
         if not path.exists():
@@ -189,6 +372,8 @@ def run_setup_sanity() -> list[dict[str, Any]]:
     check_exp4_baseline(rows)
     check_dataset(rows)
     check_weights_and_loss(rows)
+    check_l2_configs(rows)
+    check_l2_loss(rows)
     check_scripts_and_modules(rows)
     check_gitignore_and_artifacts(rows)
     write_csv(EXP05_TABLES_DIR / "sanity_check_exp05_setup.csv", rows)

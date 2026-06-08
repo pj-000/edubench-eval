@@ -17,8 +17,11 @@ from thesis_exp.src.edujudge.utils.io import REPO_ROOT, relpath, write_csv, writ
 SCRIPT_PATHS = [
     REPO_ROOT / "thesis_exp" / "scripts" / "run_exp05_l1_smoke.sh",
     REPO_ROOT / "thesis_exp" / "scripts" / "run_exp05_l1_train.sh",
+    REPO_ROOT / "thesis_exp" / "scripts" / "run_exp05_l2_smoke.sh",
+    REPO_ROOT / "thesis_exp" / "scripts" / "run_exp05_l2_train.sh",
 ]
 EXP05_SRC_DIR = REPO_ROOT / "thesis_exp" / "src" / "edujudge" / "exp05"
+EXP05_CONFIG_DIR = REPO_ROOT / "thesis_exp" / "configs" / "exp05_low_score_loss"
 
 
 def one_line(value: Any) -> str:
@@ -126,6 +129,13 @@ def check_python_modules(rows: list[dict[str, Any]]) -> None:
     add(rows, "py_compile exp05 modules", EXP05_SRC_DIR, status, output, "ok")
 
 
+def check_config_files(rows: list[dict[str, Any]]) -> None:
+    for path in sorted(EXP05_CONFIG_DIR.glob("*.yaml")):
+        check_text(rows, path, min_lines=5, check="config line count")
+        byte_status, byte_observed = byte_line_status(path)
+        add(rows, "config LF line endings", path, byte_status, byte_observed, "LF only")
+
+
 def check_csv_files(rows: list[dict[str, Any]]) -> None:
     try:
         import pandas as pd
@@ -172,6 +182,7 @@ def run_readability_check() -> list[dict[str, Any]]:
     rows: list[dict[str, Any]] = []
     check_shell_scripts(rows)
     check_python_modules(rows)
+    check_config_files(rows)
     check_csv_files(rows)
     check_jsonl_files(rows)
     check_markdown_files(rows)

@@ -1,4 +1,4 @@
-"""Postprocess Exp5 L1 outputs."""
+"""Postprocess Exp5 low-score loss ablation outputs."""
 
 from __future__ import annotations
 

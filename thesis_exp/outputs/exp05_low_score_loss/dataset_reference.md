@@ -2,7 +2,7 @@
 
 Overall status: **PASS**
 
-Exp5 L1 reuses the fixed Exp4 A4 dataset. It changes only the loss weighting.
+Exp5 reuses the fixed Exp4 A4 dataset. It changes only the loss.
 
 | split | rows | expected | status | path |
 | --- | ---: | ---: | --- | --- |

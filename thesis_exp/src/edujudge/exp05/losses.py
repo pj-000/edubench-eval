@@ -1,4 +1,4 @@
-"""Weighted ordinal loss for Exp5 L1."""
+"""Ordinal loss variants for Exp5."""
 
 from __future__ import annotations
 
@@ -53,5 +53,84 @@ def weighted_ordinal_loss(logits: Any, label_5: Any, class_weights: Any) -> tupl
         "mean_sample_weight": float(sample_weights.detach().mean().cpu()),
         "min_sample_weight": float(sample_weights.detach().min().cpu()),
         "max_sample_weight": float(sample_weights.detach().max().cpu()),
+    }
+    return loss, debug
+
+
+def expected_score_from_ordinal_logits(logits: Any) -> Any:
+    import torch
+
+    if logits.shape[-1] != 4:
+        raise ValueError(f"Expected ordinal logits shape [batch,4], got {tuple(logits.shape)}")
+    probs = torch.sigmoid(logits.float())
+    return 1.0 + probs.sum(dim=-1)
+
+
+def asymmetric_low_score_penalty(logits: Any, label_5: Any, margin: float) -> tuple[Any, dict[str, float]]:
+    import torch
+
+    labels = torch.as_tensor(label_5, device=logits.device).long()
+    if labels.numel() and ((labels < 1).any() or (labels > 5).any()):
+        raise ValueError("label_5 must be in 1..5 for asymmetric low-score penalty.")
+    if margin < 0:
+        raise ValueError("margin must be >= 0.")
+    s_hat = expected_score_from_ordinal_logits(logits)
+    low_mask = (labels <= 2).to(dtype=logits.float().dtype)
+    over = torch.clamp(s_hat - labels.float() - float(margin), min=0.0)
+    penalty = low_mask * (over / 4.0).pow(2)
+    low_count = int(low_mask.detach().sum().cpu())
+    active_penalty_count = int(((penalty > 0) & (labels <= 2)).detach().sum().cpu())
+    if low_count:
+        low_s_hat = s_hat[labels <= 2]
+        low_over = over[labels <= 2]
+        low_penalty = penalty[labels <= 2]
+        mean_s_hat_low = float(low_s_hat.detach().mean().cpu())
+        mean_over_low = float(low_over.detach().mean().cpu())
+        mean_penalty_low_only = float(low_penalty.detach().mean().cpu())
+    else:
+        mean_s_hat_low = 0.0
+        mean_over_low = 0.0
+        mean_penalty_low_only = 0.0
+    debug = {
+        "mean_penalty": float(penalty.detach().mean().cpu()),
+        "mean_penalty_low_only": mean_penalty_low_only,
+        "active_low_count": float(low_count),
+        "active_penalty_count": float(active_penalty_count),
+        "mean_s_hat_low": mean_s_hat_low,
+        "mean_over_low": mean_over_low,
+    }
+    return penalty, debug
+
+
+def asymmetric_ordinal_loss(
+    logits: Any,
+    label_5: Any,
+    lambda_low: float,
+    margin: float,
+) -> tuple[Any, dict[str, float]]:
+    import torch
+
+    if lambda_low <= 0:
+        raise ValueError("lambda_low must be > 0.")
+    labels = torch.as_tensor(label_5, device=logits.device).long()
+    if labels.numel() and ((labels < 1).any() or (labels > 5).any()):
+        raise ValueError("label_5 must be in 1..5 for asymmetric ordinal loss.")
+    ordinal_targets = make_ordinal_targets(labels).to(device=logits.device, dtype=logits.float().dtype)
+    base_loss_per_sample = ordinal_bce_loss_per_sample(logits, ordinal_targets)
+    penalty_per_sample, penalty_debug = asymmetric_low_score_penalty(logits, labels, margin)
+    loss_per_sample = base_loss_per_sample + float(lambda_low) * penalty_per_sample
+    loss = loss_per_sample.mean()
+    if torch.isnan(loss):
+        raise FloatingPointError("asymmetric ordinal loss became NaN.")
+    debug = {
+        "mean_base_loss": float(base_loss_per_sample.detach().mean().cpu()),
+        "mean_penalty": penalty_debug["mean_penalty"],
+        "lambda_low": float(lambda_low),
+        "margin": float(margin),
+        "mean_total_loss": float(loss_per_sample.detach().mean().cpu()),
+        "active_low_count": penalty_debug["active_low_count"],
+        "active_penalty_count": penalty_debug["active_penalty_count"],
+        "mean_s_hat_low": penalty_debug["mean_s_hat_low"],
+        "mean_over_low": penalty_debug["mean_over_low"],
     }
     return loss, debug

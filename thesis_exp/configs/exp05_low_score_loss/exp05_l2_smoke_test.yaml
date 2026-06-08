@@ -1,0 +1,15 @@
+experiment_id: exp05_l2_smoke_test
+loss_type: asymmetric_ordinal
+max_train_samples: 8
+max_eval_samples: 8
+epochs: 0.01
+per_device_train_batch_size: 1
+per_device_eval_batch_size: 1
+gradient_accumulation_steps: 1
+variants:
+  - run_id: L2a_asymmetric_ordinal_lambda03_margin0
+    lambda_low: 0.3
+    margin: 0.0
+  - run_id: L2b_asymmetric_ordinal_lambda05_margin0
+    lambda_low: 0.5
+    margin: 0.0

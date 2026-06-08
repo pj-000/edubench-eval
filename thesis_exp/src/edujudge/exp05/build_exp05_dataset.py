@@ -1,4 +1,4 @@
-"""Validate the fixed A4 dataset reference used by Exp5 L1."""
+"""Validate the fixed A4 dataset reference used by Exp5 loss ablations."""
 
 from __future__ import annotations
 
@@ -71,7 +71,7 @@ def ensure_exp05_dataset() -> list[dict[str, Any]]:
         "",
         f"Overall status: **{overall}**",
         "",
-        "Exp5 L1 reuses the fixed Exp4 A4 dataset. It changes only the loss weighting.",
+        "Exp5 reuses the fixed Exp4 A4 dataset. It changes only the loss.",
         "",
         "| split | rows | expected | status | path |",
         "| --- | ---: | ---: | --- | --- |",

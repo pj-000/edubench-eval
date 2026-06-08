@@ -14,40 +14,68 @@ Overall status: **PASS**
 | shell shebang | thesis_exp/scripts/run_exp05_l1_train.sh | PASS | #!/usr/bin/env bash | #!/usr/bin/env bash |  |
 | shell pipefail | thesis_exp/scripts/run_exp05_l1_train.sh | PASS | present | present |  |
 | bash -n | thesis_exp/scripts/run_exp05_l1_train.sh | PASS | ok | ok |  |
-| python module line count | thesis_exp/src/edujudge/exp05/__init__.py | PASS | 67 | >5 |  |
-| python module line count LF line endings | thesis_exp/src/edujudge/exp05/__init__.py | PASS | LF bytes; lines=67 bytes=1985 | LF only |  |
+| script line count | thesis_exp/scripts/run_exp05_l2_smoke.sh | PASS | 156 | >30 |  |
+| script line count LF line endings | thesis_exp/scripts/run_exp05_l2_smoke.sh | PASS | LF bytes; lines=156 bytes=5544 | LF only |  |
+| shell shebang | thesis_exp/scripts/run_exp05_l2_smoke.sh | PASS | #!/usr/bin/env bash | #!/usr/bin/env bash |  |
+| shell pipefail | thesis_exp/scripts/run_exp05_l2_smoke.sh | PASS | present | present |  |
+| bash -n | thesis_exp/scripts/run_exp05_l2_smoke.sh | PASS | ok | ok |  |
+| script line count | thesis_exp/scripts/run_exp05_l2_train.sh | PASS | 155 | >30 |  |
+| script line count LF line endings | thesis_exp/scripts/run_exp05_l2_train.sh | PASS | LF bytes; lines=155 bytes=5541 | LF only |  |
+| shell shebang | thesis_exp/scripts/run_exp05_l2_train.sh | PASS | #!/usr/bin/env bash | #!/usr/bin/env bash |  |
+| shell pipefail | thesis_exp/scripts/run_exp05_l2_train.sh | PASS | present | present |  |
+| bash -n | thesis_exp/scripts/run_exp05_l2_train.sh | PASS | ok | ok |  |
+| python module line count | thesis_exp/src/edujudge/exp05/__init__.py | PASS | 90 | >5 |  |
+| python module line count LF line endings | thesis_exp/src/edujudge/exp05/__init__.py | PASS | LF bytes; lines=90 bytes=2700 | LF only |  |
 | future import placement | thesis_exp/src/edujudge/exp05/__init__.py | PASS | ok | docstring then future import |  |
 | python module line count | thesis_exp/src/edujudge/exp05/build_exp05_dataset.py | PASS | 103 | >5 |  |
-| python module line count LF line endings | thesis_exp/src/edujudge/exp05/build_exp05_dataset.py | PASS | LF bytes; lines=103 bytes=3390 | LF only |  |
+| python module line count LF line endings | thesis_exp/src/edujudge/exp05/build_exp05_dataset.py | PASS | LF bytes; lines=103 bytes=3389 | LF only |  |
 | future import placement | thesis_exp/src/edujudge/exp05/build_exp05_dataset.py | PASS | ok | docstring then future import |  |
 | python module line count | thesis_exp/src/edujudge/exp05/class_weights.py | PASS | 118 | >5 |  |
 | python module line count LF line endings | thesis_exp/src/edujudge/exp05/class_weights.py | PASS | LF bytes; lines=118 bytes=3652 | LF only |  |
 | future import placement | thesis_exp/src/edujudge/exp05/class_weights.py | PASS | ok | docstring then future import |  |
-| python module line count | thesis_exp/src/edujudge/exp05/collect_exp05_results.py | PASS | 178 | >5 |  |
-| python module line count LF line endings | thesis_exp/src/edujudge/exp05/collect_exp05_results.py | PASS | LF bytes; lines=178 bytes=7810 | LF only |  |
+| python module line count | thesis_exp/src/edujudge/exp05/collect_exp05_results.py | PASS | 278 | >5 |  |
+| python module line count LF line endings | thesis_exp/src/edujudge/exp05/collect_exp05_results.py | PASS | LF bytes; lines=278 bytes=12055 | LF only |  |
 | future import placement | thesis_exp/src/edujudge/exp05/collect_exp05_results.py | PASS | ok | docstring then future import |  |
-| python module line count | thesis_exp/src/edujudge/exp05/losses.py | PASS | 57 | >5 |  |
-| python module line count LF line endings | thesis_exp/src/edujudge/exp05/losses.py | PASS | LF bytes; lines=57 bytes=2491 | LF only |  |
+| python module line count | thesis_exp/src/edujudge/exp05/losses.py | PASS | 136 | >5 |  |
+| python module line count LF line endings | thesis_exp/src/edujudge/exp05/losses.py | PASS | LF bytes; lines=136 bytes=5870 | LF only |  |
 | future import placement | thesis_exp/src/edujudge/exp05/losses.py | PASS | ok | docstring then future import |  |
 | python module line count | thesis_exp/src/edujudge/exp05/postprocess_exp05_results.py | PASS | 34 | >5 |  |
-| python module line count LF line endings | thesis_exp/src/edujudge/exp05/postprocess_exp05_results.py | PASS | LF bytes; lines=34 bytes=1117 | LF only |  |
+| python module line count LF line endings | thesis_exp/src/edujudge/exp05/postprocess_exp05_results.py | PASS | LF bytes; lines=34 bytes=1138 | LF only |  |
 | future import placement | thesis_exp/src/edujudge/exp05/postprocess_exp05_results.py | PASS | ok | docstring then future import |  |
-| python module line count | thesis_exp/src/edujudge/exp05/readability_check_exp05.py | PASS | 215 | >5 |  |
-| python module line count LF line endings | thesis_exp/src/edujudge/exp05/readability_check_exp05.py | PASS | LF bytes; lines=215 bytes=8578 | LF only |  |
+| python module line count | thesis_exp/src/edujudge/exp05/readability_check_exp05.py | PASS | 226 | >5 |  |
+| python module line count LF line endings | thesis_exp/src/edujudge/exp05/readability_check_exp05.py | PASS | LF bytes; lines=226 bytes=9163 | LF only |  |
 | future import placement | thesis_exp/src/edujudge/exp05/readability_check_exp05.py | PASS | ok | docstring then future import |  |
-| python module line count | thesis_exp/src/edujudge/exp05/sanity_check_exp05_outputs.py | PASS | 170 | >5 |  |
-| python module line count LF line endings | thesis_exp/src/edujudge/exp05/sanity_check_exp05_outputs.py | PASS | LF bytes; lines=170 bytes=7058 | LF only |  |
+| python module line count | thesis_exp/src/edujudge/exp05/sanity_check_exp05_outputs.py | PASS | 262 | >5 |  |
+| python module line count LF line endings | thesis_exp/src/edujudge/exp05/sanity_check_exp05_outputs.py | PASS | LF bytes; lines=262 bytes=11313 | LF only |  |
 | future import placement | thesis_exp/src/edujudge/exp05/sanity_check_exp05_outputs.py | PASS | ok | docstring then future import |  |
-| python module line count | thesis_exp/src/edujudge/exp05/sanity_check_exp05_setup.py | PASS | 229 | >5 |  |
-| python module line count LF line endings | thesis_exp/src/edujudge/exp05/sanity_check_exp05_setup.py | PASS | LF bytes; lines=229 bytes=9844 | LF only |  |
+| python module line count | thesis_exp/src/edujudge/exp05/sanity_check_exp05_setup.py | PASS | 414 | >5 |  |
+| python module line count LF line endings | thesis_exp/src/edujudge/exp05/sanity_check_exp05_setup.py | PASS | LF bytes; lines=414 bytes=18099 | LF only |  |
 | future import placement | thesis_exp/src/edujudge/exp05/sanity_check_exp05_setup.py | PASS | ok | docstring then future import |  |
 | python module line count | thesis_exp/src/edujudge/exp05/train_l1_weighted_ordinal.py | PASS | 643 | >5 |  |
-| python module line count LF line endings | thesis_exp/src/edujudge/exp05/train_l1_weighted_ordinal.py | PASS | LF bytes; lines=643 bytes=28793 | LF only |  |
+| python module line count LF line endings | thesis_exp/src/edujudge/exp05/train_l1_weighted_ordinal.py | PASS | LF bytes; lines=643 bytes=28815 | LF only |  |
 | future import placement | thesis_exp/src/edujudge/exp05/train_l1_weighted_ordinal.py | PASS | ok | docstring then future import |  |
-| python module line count | thesis_exp/src/edujudge/exp05/write_exp05_report.py | PASS | 205 | >5 |  |
-| python module line count LF line endings | thesis_exp/src/edujudge/exp05/write_exp05_report.py | PASS | LF bytes; lines=205 bytes=6501 | LF only |  |
+| python module line count | thesis_exp/src/edujudge/exp05/train_l2_asymmetric_ordinal.py | PASS | 577 | >5 |  |
+| python module line count LF line endings | thesis_exp/src/edujudge/exp05/train_l2_asymmetric_ordinal.py | PASS | LF bytes; lines=577 bytes=25334 | LF only |  |
+| future import placement | thesis_exp/src/edujudge/exp05/train_l2_asymmetric_ordinal.py | PASS | ok | docstring then future import |  |
+| python module line count | thesis_exp/src/edujudge/exp05/write_exp05_report.py | PASS | 299 | >5 |  |
+| python module line count LF line endings | thesis_exp/src/edujudge/exp05/write_exp05_report.py | PASS | LF bytes; lines=299 bytes=9806 | LF only |  |
 | future import placement | thesis_exp/src/edujudge/exp05/write_exp05_report.py | PASS | ok | docstring then future import |  |
 | py_compile exp05 modules | thesis_exp/src/edujudge/exp05 | PASS | ok | ok |  |
+| config line count | thesis_exp/configs/exp05_low_score_loss/exp05_l1_smoke_test.yaml | PASS | 19 | >5 |  |
+| config line count LF line endings | thesis_exp/configs/exp05_low_score_loss/exp05_l1_smoke_test.yaml | PASS | LF bytes; lines=19 bytes=517 | LF only |  |
+| config LF line endings | thesis_exp/configs/exp05_low_score_loss/exp05_l1_smoke_test.yaml | PASS | LF bytes; lines=19 bytes=517 | LF only |  |
+| config line count | thesis_exp/configs/exp05_low_score_loss/exp05_l1_weighted_ordinal.yaml | PASS | 25 | >5 |  |
+| config line count LF line endings | thesis_exp/configs/exp05_low_score_loss/exp05_l1_weighted_ordinal.yaml | PASS | LF bytes; lines=25 bytes=720 | LF only |  |
+| config LF line endings | thesis_exp/configs/exp05_low_score_loss/exp05_l1_weighted_ordinal.yaml | PASS | LF bytes; lines=25 bytes=720 | LF only |  |
+| config line count | thesis_exp/configs/exp05_low_score_loss/exp05_l2_smoke_test.yaml | PASS | 15 | >5 |  |
+| config line count LF line endings | thesis_exp/configs/exp05_low_score_loss/exp05_l2_smoke_test.yaml | PASS | LF bytes; lines=15 bytes=397 | LF only |  |
+| config LF line endings | thesis_exp/configs/exp05_low_score_loss/exp05_l2_smoke_test.yaml | PASS | LF bytes; lines=15 bytes=397 | LF only |  |
+| config line count | thesis_exp/configs/exp05_low_score_loss/exp05_l2a_asymmetric_ordinal_lambda03.yaml | PASS | 16 | >5 |  |
+| config line count LF line endings | thesis_exp/configs/exp05_low_score_loss/exp05_l2a_asymmetric_ordinal_lambda03.yaml | PASS | LF bytes; lines=16 bytes=470 | LF only |  |
+| config LF line endings | thesis_exp/configs/exp05_low_score_loss/exp05_l2a_asymmetric_ordinal_lambda03.yaml | PASS | LF bytes; lines=16 bytes=470 | LF only |  |
+| config line count | thesis_exp/configs/exp05_low_score_loss/exp05_l2b_asymmetric_ordinal_lambda05.yaml | PASS | 16 | >5 |  |
+| config line count LF line endings | thesis_exp/configs/exp05_low_score_loss/exp05_l2b_asymmetric_ordinal_lambda05.yaml | PASS | LF bytes; lines=16 bytes=470 | LF only |  |
+| config LF line endings | thesis_exp/configs/exp05_low_score_loss/exp05_l2b_asymmetric_ordinal_lambda05.yaml | PASS | LF bytes; lines=16 bytes=470 | LF only |  |
 | pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/runs/L1_weighted_ordinal/logs/training_log.csv | PASS | rows=10 cols=44 | readable |  |
 | pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/runs/L1_weighted_ordinal/metrics.csv | PASS | rows=2 cols=45 | readable |  |
 | pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/runs/L1_weighted_ordinal/tables/dev_metrics_his... | PASS | rows=10 cols=44 | readable |  |
@@ -70,15 +98,18 @@ Overall status: **PASS**
 | pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/smoke_test/L1_weighted_ordinal/tables/score_dis... | PASS | rows=10 cols=5 | readable |  |
 | pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/tables/class_weights.csv | PASS | rows=5 cols=7 | readable |  |
 | pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/tables/dataset_reference_sanity.csv | PASS | rows=3 cols=8 | readable |  |
-| pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/tables/loss_ablation_delta_vs_L0.csv | PASS | rows=1 cols=13 | readable |  |
+| pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/tables/l2_toy_loss_checks.csv | PASS | rows=3 cols=5 | readable |  |
+| pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/tables/loss_ablation_delta_vs_L0.csv | PASS | rows=3 cols=13 | readable |  |
+| pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/tables/loss_ablation_delta_vs_L1.csv | PASS | rows=2 cols=13 | readable |  |
 | pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/tables/loss_ablation_high_score.csv | PASS | rows=2 cols=10 | readable |  |
 | pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/tables/loss_ablation_low_score.csv | PASS | rows=2 cols=15 | readable |  |
 | pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/tables/loss_ablation_per_bin.csv | PASS | rows=10 cols=15 | readable |  |
-| pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/tables/loss_ablation_summary.csv | PASS | rows=2 cols=14 | readable |  |
-| pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/tables/readability_check_exp05.csv | PASS | rows=98 cols=6 | readable |  |
-| pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/tables/sanity_check_exp05_outputs.csv | PASS | rows=11 cols=5 | readable |  |
+| pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/tables/loss_ablation_summary.csv | PASS | rows=4 cols=14 | readable |  |
+| pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/tables/loss_ablation_tradeoff.csv | PASS | rows=4 cols=14 | readable |  |
+| pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/tables/readability_check_exp05.csv | PASS | rows=130 cols=6 | readable |  |
+| pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/tables/sanity_check_exp05_outputs.csv | PASS | rows=17 cols=5 | readable |  |
 | pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/tables/sanity_check_exp05_outputs_smoke.csv | PASS | rows=11 cols=5 | readable |  |
-| pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/tables/sanity_check_exp05_setup.csv | PASS | rows=23 cols=5 | readable |  |
+| pandas.read_csv | thesis_exp/outputs/exp05_low_score_loss/tables/sanity_check_exp05_setup.csv | PASS | rows=42 cols=5 | readable |  |
 | jsonl line json.loads | thesis_exp/outputs/exp05_low_score_loss/runs/L1_weighted_ordinal/predictions/prediction... | PASS | rows=664 | all nonempty lines parse |  |
 | jsonl line json.loads | thesis_exp/outputs/exp05_low_score_loss/runs/L1_weighted_ordinal/predictions/prediction... | PASS | rows=664 | all nonempty lines parse |  |
 | jsonl line json.loads | thesis_exp/outputs/exp05_low_score_loss/runs/L1_weighted_ordinal/predictions/prediction... | PASS | rows=2218 | all nonempty lines parse |  |
@@ -93,12 +124,13 @@ Overall status: **PASS**
 | jsonl line json.loads | thesis_exp/outputs/exp05_low_score_loss/smoke_test/L1_weighted_ordinal/predictions_test... | PASS | rows=8 | all nonempty lines parse |  |
 | markdown max line length | thesis_exp/outputs/exp05_low_score_loss/dataset_reference.md | PASS | 146 | <300 |  |
 | markdown max line length | thesis_exp/outputs/exp05_low_score_loss/notion_exp05_l1_summary.md | PASS | 94 | <300 |  |
-| markdown max line length | thesis_exp/outputs/exp05_low_score_loss/readability_check_exp05.md | PASS | 167 | <300 |  |
-| markdown max line length | thesis_exp/outputs/exp05_low_score_loss/report.md | PASS | 95 | <300 |  |
+| markdown max line length | thesis_exp/outputs/exp05_low_score_loss/notion_exp05_l2_summary.md | PASS | 94 | <300 |  |
+| markdown max line length | thesis_exp/outputs/exp05_low_score_loss/readability_check_exp05.md | PASS | 173 | <300 |  |
+| markdown max line length | thesis_exp/outputs/exp05_low_score_loss/report.md | PASS | 99 | <300 |  |
 | markdown max line length | thesis_exp/outputs/exp05_low_score_loss/review_package.md | PASS | 94 | <300 |  |
 | markdown max line length | thesis_exp/outputs/exp05_low_score_loss/runs/L1_weighted_ordinal/run_summary.md | PASS | 63 | <300 |  |
-| markdown max line length | thesis_exp/outputs/exp05_low_score_loss/sanity_check_exp05_outputs.md | PASS | 153 | <300 |  |
+| markdown max line length | thesis_exp/outputs/exp05_low_score_loss/sanity_check_exp05_outputs.md | PASS | 170 | <300 |  |
 | markdown max line length | thesis_exp/outputs/exp05_low_score_loss/sanity_check_exp05_outputs_smoke.md | PASS | 155 | <300 |  |
-| markdown max line length | thesis_exp/outputs/exp05_low_score_loss/sanity_check_exp05_setup.md | PASS | 259 | <300 |  |
+| markdown max line length | thesis_exp/outputs/exp05_low_score_loss/sanity_check_exp05_setup.md | PASS | 193 | <300 |  |
 | markdown max line length | thesis_exp/outputs/exp05_low_score_loss/smoke_test/L1_weighted_ordinal/run_summary.md | PASS | 63 | <300 |  |
 | markdown max line length | thesis_exp/outputs/exp05_low_score_loss/smoke_test/smoke_test_report.md | PASS | 88 | <300 |  |

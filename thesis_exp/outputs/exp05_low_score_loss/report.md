@@ -18,7 +18,35 @@ The weighted loss is:
 `sum_i(w_i * L_i_ord) / sum_i(w_i)`
 
 L1 does not explicitly punish the direction where low scores are predicted as
-high scores. That asymmetric error will be studied later in L2/L3.
+high scores.
+
+## L2 Asymmetric Low-Score Overestimation Loss
+
+L2 tests a different hypothesis: if true low-score samples are predicted too
+high, explicitly penalize that overestimation during ordinal training. L2 does
+not use class weights, does not change the A4 input, does not change the data
+split, and does not add high-score preservation or threshold suppression.
+
+For ordinal probabilities `p_t = sigmoid(z_t)`, the continuous prediction is:
+
+`s_hat = 1 + sum_t p_t`
+
+The L2 penalty is:
+
+`I(y <= 2) * (max(s_hat - y - margin, 0) / 4)^2`
+
+The final loss is:
+
+`mean_i(L_i_ord + lambda_low * P_i_low)`
+
+The first two variants are:
+
+- L2a: `lambda_low=0.3`, `margin=0.0`
+- L2b: `lambda_low=0.5`, `margin=0.0`
+
+If L2 lowers `low_to_high_rate` but hurts high-score metrics such as `Acc@5`
+or `high_to_mid_or_low_rate`, the follow-up L4 experiment should test high-score
+preservation.
 
 ## Class Weights
 
@@ -36,6 +64,8 @@ high scores. That asymmetric error will be studied later in L2/L3.
 | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: |
 | L0_exp04_o3_ordinal | completed | 0.7381 | 0.3777 | 0.3430 | 0.7036 | 0.6238 | 0.2330 |
 | L1_weighted_ordinal | completed | 0.7250 | 0.3894 | 0.3504 | 0.7132 | 0.6149 | 0.2136 |
+| L2a_asymmetric_ordinal_lambda03_margin0 | pending | NA | NA | NA | NA | NA | NA |
+| L2b_asymmetric_ordinal_lambda05_margin0 | pending | NA | NA | NA | NA | NA | NA |
 
 ## Output Files
 
@@ -43,3 +73,5 @@ high scores. That asymmetric error will be studied later in L2/L3.
 - Low-score table: `thesis_exp/outputs/exp05_low_score_loss/tables/loss_ablation_low_score.csv`
 - Per-bin table: `thesis_exp/outputs/exp05_low_score_loss/tables/loss_ablation_per_bin.csv`
 - Delta table: `thesis_exp/outputs/exp05_low_score_loss/tables/loss_ablation_delta_vs_L0.csv`
+- Delta vs L1 table: `thesis_exp/outputs/exp05_low_score_loss/tables/loss_ablation_delta_vs_L1.csv`
+- Tradeoff table: `thesis_exp/outputs/exp05_low_score_loss/tables/loss_ablation_tradeoff.csv`

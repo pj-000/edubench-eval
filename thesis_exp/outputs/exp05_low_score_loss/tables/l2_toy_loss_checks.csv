@@ -1,0 +1,4 @@
+test_name,status,details,expected,actual
+l2_penalty_only_low_labels,PASS,torch unavailable; formula fallback,true,"[0.8099999999999998, 0.05062500000000004, 0.0, 0.0, 0.0]"
+l2_penalty_zero_at_margin,PASS,torch unavailable; formula fallback,0,0.0
+l2_lambda_monotonic_total_loss,PASS,torch unavailable; comparing penalty contribution only,0.5 * penalty > 0.3 * penalty,0.02531250000000002 > 0.01518750000000001

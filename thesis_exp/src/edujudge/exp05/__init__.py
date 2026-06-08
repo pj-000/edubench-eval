@@ -22,6 +22,18 @@ EXP05_CHECKPOINTS_DIR = EXP05_ARTIFACTS_DIR / "checkpoints"
 EXP05_HF_CACHE_DIR = EXP05_ARTIFACTS_DIR / "hf_cache"
 
 L1_RUN_ID = "L1_weighted_ordinal"
+L2A_RUN_ID = "L2a_asymmetric_ordinal_lambda03_margin0"
+L2B_RUN_ID = "L2b_asymmetric_ordinal_lambda05_margin0"
+L2_RUN_CONFIGS = {
+    L2A_RUN_ID: {"lambda_low": 0.3, "margin": 0.0},
+    L2B_RUN_ID: {"lambda_low": 0.5, "margin": 0.0},
+}
+LOSS_RUN_IDS = [
+    "L0_exp04_o3_ordinal",
+    L1_RUN_ID,
+    L2A_RUN_ID,
+    L2B_RUN_ID,
+]
 
 EXP04_NAME = "exp04_target_objectives"
 EXP04_OUTPUT_DIR = THESIS_DIR / "outputs" / EXP04_NAME
@@ -45,9 +57,19 @@ def l1_run_dir(smoke: bool = False) -> Path:
     return base / L1_RUN_ID
 
 
+def l2_run_dir(run_id: str, smoke: bool = False) -> Path:
+    base = EXP05_SMOKE_DIR if smoke else EXP05_RUNS_DIR
+    return base / run_id
+
+
 def l1_checkpoint_dir(smoke: bool = False) -> Path:
     base = EXP05_ARTIFACTS_DIR / "smoke_test" if smoke else EXP05_CHECKPOINTS_DIR
     return base / L1_RUN_ID
+
+
+def l2_checkpoint_dir(run_id: str, smoke: bool = False) -> Path:
+    base = EXP05_ARTIFACTS_DIR / "smoke_test" if smoke else EXP05_CHECKPOINTS_DIR
+    return base / run_id
 
 
 def ensure_exp05_dirs() -> None:
@@ -63,5 +85,6 @@ def ensure_exp05_dirs() -> None:
         EXP05_CHECKPOINTS_DIR,
         EXP05_HF_CACHE_DIR,
         l1_run_dir(smoke=True),
+        *[l2_run_dir(run_id, smoke=True) for run_id in L2_RUN_CONFIGS],
     ]:
         path.mkdir(parents=True, exist_ok=True)
