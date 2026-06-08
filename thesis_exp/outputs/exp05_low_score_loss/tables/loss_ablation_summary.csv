@@ -1,0 +1,3 @@
+loss_id,source,status,is_retrained,test_accuracy,test_MAE_label,test_MAE_expected,test_qwk,test_kendall_tau,test_severe_error_rate,test_low_to_high_rate,test_low_signed_bias,test_monotonic_violation_rate,run_dir
+L0_exp04_o3_ordinal,Exp4 O3 ordinal,completed,NO,0.7380522993688007,0.3776675683799218,0.3429531650091409,0.7035743638432492,0.6237772333422203,0.031559963931469794,0.23300970873786409,1.181229773462783,0.4418394950405771,thesis_exp/outputs/exp04_target_objectives/runs/O3_ordinal
+L1_weighted_ordinal,Exp5 L1 weighted ordinal,pending,YES,,,,,,,,,,thesis_exp/outputs/exp05_low_score_loss/runs/L1_weighted_ordinal

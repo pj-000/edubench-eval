@@ -1,0 +1,19 @@
+experiment: exp05_low_score_loss
+loss_id: L1_weighted_ordinal
+mode: smoke_test
+formal_run: false
+model_name_or_path: /home/share/models/modelscope/Qwen/Qwen3-Reranker-0.6B
+max_train_samples: 8
+max_eval_samples: 8
+num_train_epochs: 0.01
+per_device_train_batch_size: 2
+per_device_eval_batch_size: 4
+gradient_accumulation_steps: 1
+max_length: 512
+selection_metric: dev_MAE_label
+selection_mode: min
+expected_outputs:
+  - predictions_dev.jsonl
+  - predictions_test.jsonl
+  - logits/probs/labels arrays
+  - metrics tables

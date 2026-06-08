@@ -1,0 +1,6 @@
+label_5,train_count,raw_weight,clipped_weight,w_min,w_max,notes
+1,24,22.116666666666667,3.0,0.5,3.0,computed from train split only
+2,52,10.207692307692307,3.0,0.5,3.0,computed from train split only
+3,251,2.1147410358565737,2.1147410358565737,0.5,3.0,computed from train split only
+4,946,0.5610993657505285,0.5610993657505285,0.5,3.0,computed from train split only
+5,1381,0.38435916002896453,0.5,0.5,3.0,computed from train split only

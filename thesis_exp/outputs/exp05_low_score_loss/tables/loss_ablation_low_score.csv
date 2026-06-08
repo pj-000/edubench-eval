@@ -1,0 +1,2 @@
+loss_id,objective_id,objective_type,objective_label,status,split,low_n,Acc@1,Acc@2,low_exact_match,low_MAE,low_signed_bias,low_to_high_rate,low_severe_overestimation_rate,mean_pred_low
+L0_exp04_o3_ordinal,O3_ordinal,ordinal,ordinal,completed,test,103,0.2857142857142857,0.3404255319148936,0.3106796116504854,1.1941747572815533,1.181229773462783,0.23300970873786409,0.3106796116504854,2.6893203883495147

@@ -1,0 +1,25 @@
+experiment: exp05_low_score_loss
+loss_id: L1_weighted_ordinal
+baseline: Exp4 O3 ordinal
+input_template: A4_question_answer_metric_rubric_metadata
+model_name_or_path: /home/share/models/modelscope/Qwen/Qwen3-Reranker-0.6B
+objective: ordinal
+num_thresholds: 4
+class_weight_formula: N / (5 * N_c)
+w_min: 0.5
+w_max: 3.0
+selection_metric: dev_MAE_label
+selection_mode: min
+num_train_epochs: 10
+learning_rate: 2e-5
+per_device_train_batch_size: 4
+gradient_accumulation_steps: 32
+effective_batch_size: 128
+per_device_eval_batch_size: 8
+max_length: 2048
+bf16: auto
+formal_run: true
+notes:
+  - Only L1 weighted ordinal is implemented.
+  - L2, L3, and L4 are intentionally out of scope.
+  - L0 reuses Exp4 O3 and is not retrained.
