@@ -1,0 +1,4 @@
+source_a,source_b,records_a,records_b,score_rows_a,score_rows_b,record_overlap,question_overlap,triple_overlap,qa_overlap,candidate_overlap,merge_equals_en_plus_zh,recommended_non_duplicate_use,notes
+deepseek_output/processed_excel_data_1.jsonl,deepseek_output/processed_excel_data_1_en.jsonl,129,64,659,331,64,64,331,64,331,True,"use merged only OR en+zh only, never both",merged source equals union of en and zh split files
+deepseek_output/processed_excel_data_1.jsonl,deepseek_output/processed_excel_data_1_zh.jsonl,129,65,659,328,65,65,328,65,328,True,"use merged only OR en+zh only, never both",merged source equals union of en and zh split files
+deepseek_output/processed_excel_data_1_en.jsonl,deepseek_output/processed_excel_data_1_zh.jsonl,64,65,331,328,0,0,0,0,0,True,"use merged only OR en+zh only, never both",merged source equals union of en and zh split files

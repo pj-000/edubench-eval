@@ -1,0 +1,227 @@
+candidate_id,source_file,source_record_id,source_record_index,source_score_index,question,answer,metric_raw,metric_canonical,score_raw,target_label_5,reason,language,model,level,label_provenance_status,candidate_use_status,question_key,qa_key,triple_key,candidate_key
+6f4654a735f067f7,deepseek_output/processed_excel_data_1.jsonl,zh-query40,28,4,"你需要完成以下任务：1. 根据评分细则评估学生的作答情况，给出分数和详细的评分说明。2. 基于学生的作答情况生成具体且有建设性的反馈，包括可能存在的知识盲区和学习建议。你的回复应积极正面且具有建设性。
+
+Subject: 临床医学
+Level: 博士
+QuestionType: 简答题
+Question: 一位65岁男性患者因持续胸痛就诊，心电图显示V1-V4导联ST段抬高，肌钙蛋白I显著升高。经急诊冠脉造影证实为前降支近端完全闭塞，行急诊PCI术成功开通血管。术后24小时患者出现呼吸困难，听诊双肺底湿啰音，血压90/60mmHg，心率120次/分，氧饱和度88%。请分析该患者最可能的诊断、病理生理机制，并提出具体的治疗策略。
+StandardAnswer: 最可能诊断：急性心肌梗死后并发心源性休克。
+
+病理生理机制：
+1. 大面积前壁心肌梗死导致左心室收缩功能严重受损，射血分数显著下降
+2. 坏死心肌范围超过40%，心输出量急剧降低
+3. 神经体液系统激活：交感神经系统兴奋，肾素-血管紧张素-醛固酮系统激活
+4. 全身组织灌注不足，微循环障碍，乳酸酸中毒
+5. 肺循环淤血导致肺水肿，气体交换障碍
+
+治疗策略：
+1. 血流动力学支持：
+   - 血管活性药物：去甲肾上腺素维持血压（目标MAP≥65mmHg）
+   - 正性肌力药物：多巴酚丁胺改善心肌收缩力
+2. 机械循环支持：
+   - 主动脉内球囊反搏（IABP）降低后负荷，改善冠脉灌注
+   - 考虑体外膜肺氧合（VA-ECMO）提供心肺支持
+3. 呼吸支持：
+   - 无创通气或气管插管机械通气，PEEP改善氧合
+4. 再灌注治疗评估：
+   - 评估残余缺血心肌，考虑完全血运重建
+5. 并发症防治：
+   - 监测电解质紊乱和心律失常
+   - 预防急性肾损伤
+GradingCriteria: 总分：20分
+
+诊断部分（4分）：
+- 正确诊断心源性休克（2分）
+- 明确与急性心肌梗死的因果关系（2分）
+
+病理生理机制（8分）：
+- 心肌收缩功能受损机制（2分）
+- 神经体液调节异常（2分）
+- 组织灌注不足与微循环障碍（2分）
+- 肺水肿发生机制（2分）
+
+治疗策略（8分）：
+- 血管活性药物选择与应用原则（2分）
+- 机械循环支持措施（2分）
+- 呼吸支持策略（2分）
+- 并发症防治与综合管理（2分）
+StudentAnswer: 患者诊断为急性心衰，原因是心梗后心脏泵功能下降。治疗应该用利尿剂减轻水肿，强心药增强心肌收缩，必要时插管上呼吸机。还需要用升压药维持血压。
+
+请以JSON格式返回结果：""Score"": """", ""Scoring Details"": """", ""Personalized Feedback"": """"","Score: 10分
+ScoringDetails: 诊断部分：2分（仅提及心衰，未明确心源性休克诊断）
+病理生理机制：3分（仅简单描述泵功能下降，缺乏具体机制分析）
+治疗策略：5分（提到了基本治疗方向但缺乏具体方案和循证依据）
+
+扣分原因：
+- 诊断不精确，未区分心衰与心源性休克
+- 病理生理机制分析过于简单，缺乏深度
+- 治疗策略缺乏具体药物选择和机械支持方案
+- 未提及重要的循环支持设备如IABP
+PersonalizedFeedback: 知识盲区分析：
+1. 对心源性休克这一危重并发症的认识不够深入，未能准确区分普通心衰与心源性休克
+2. 对急性心肌梗死后血流动力学恶化的病理生理机制掌握不全面
+3. 对高级生命支持技术和机械循环支持设备了解不足
+
+学习建议：
+1. 重点学习《Braunwald心脏病学》中关于心源性休克的章节，掌握其诊断标准和分级
+2. 深入理解心肌梗死面积与心功能的关系，学习使用超声心动图评估心室功能
+3. 熟悉最新的心源性休克治疗指南，特别是IABP、ECMO等机械支持技术的适应症
+4. 建议参加心血管危重症模拟培训，提高临床决策能力
+5. 关注SHOCK试验、IABP-SHOCK II试验等重要临床研究结果，建立循证医学思维",激励引导与积极反馈,"Motivation, Guidance & Positive Feedback",2,2,给建议时语言中性，建议内容有效有建设性但缺少引导性，无正面肯定,zh,DeepSeek-V3.2-Exp,博士,model_label_likely,pilot_only_not_human_confirmed,c86351a72acbabbf1a573cc61ada1ab8e35f320d,f520e2b7b5821af25cffe6838bc459180072b911,84030dcaf64943a25fd86b6dfc3f16bbf2deca12,1848b49c9e72287eed5704b3c7c4b7f1a1086464
+30968a83b3dc4e82,deepseek_output/processed_excel_data_1.jsonl,zh-query57,43,4,"你需要完成以下任务：1. 根据评分细则评估学生的作答情况，给出分数和详细的评分说明。2. 基于学生的作答情况生成具体且有建设性的反馈，包括可能存在的知识盲区和学习建议。你的回复应积极正面且具有建设性。
+
+Subject: 生物学
+Level: 博士
+QuestionType: 简答题
+Question: 请阐述CRISPR-Cas9系统在真核细胞中进行基因编辑的分子机制，并分析其在临床应用中的主要挑战和相应的优化策略。
+StandardAnswer: CRISPR-Cas9系统的分子机制：1）sgRNA与Cas9蛋白形成复合物，通过PAM序列识别靶位点；2）Cas9的HNH和RuvC结构域分别切割DNA互补链和非互补链，形成双链断裂；3）细胞通过NHEJ或HDR途径修复断裂，实现基因敲除或精确编辑。
+
+临床应用挑战及优化策略：1）脱靶效应：优化sgRNA设计、使用高保真Cas9变体、瞬时表达系统；2）递送效率：开发新型病毒载体（AAV、LV）和非病毒载体（LNP、电转）；3）免疫原性：使用人源化Cas9、免疫抑制策略；4）编辑效率：优化修复模板设计、使用小分子增强HDR效率。
+GradingCriteria: 总分20分。
+分子机制部分（10分）：sgRNA-Cas9复合物形成（2分）、PAM识别（2分）、双链断裂机制（3分）、修复途径（3分）。
+挑战与策略部分（10分）：脱靶效应及对策（3分）、递送效率及对策（3分）、免疫原性及对策（2分）、编辑效率及对策（2分）。
+评分标准：概念准确性、逻辑连贯性、答案完整性。
+StudentAnswer: CRISPR-Cas9通过sgRNA引导到特定DNA位置进行切割，主要依靠NHEJ修复实现基因敲除。临床应用中有脱靶问题，可以通过改进sgRNA来减少。病毒载体递送效率较高，但可能存在安全性问题。
+
+请以JSON格式返回结果：""Score"": """", ""Scoring Details"": """", ""Personalized Feedback"": """"","Score: 9分
+ScoringDetails: 分子机制部分：得4分（提及sgRNA引导和NHEJ修复，但缺少PAM识别、双链断裂具体机制和HDR途径）。挑战与策略部分：得5分（提及脱靶问题和sgRNA优化得2分，病毒载体递送得2分，安全性问题得1分，但缺少免疫原性、编辑效率等关键内容）。
+PersonalizedFeedback: 该回答显示出对CRISPR-Cas9基本工作原理的理解，但存在以下知识盲区：1）未能详细说明Cas9切割DNA的具体分子机制（HNH/RuvC结构域功能）；2）忽略了PAM序列在靶点识别中的关键作用；3）对修复途径认识不完整，未提及HDR途径及其在基因精确编辑中的应用；4）对临床挑战的认知不够全面，特别是免疫原性和编辑效率优化策略。建议：深入研读Cas9蛋白的结构功能关系，重点关注DNA修复机制的不同途径及其应用场景，系统学习各种递送系统的优缺点和免疫回避策略。",激励引导与积极反馈,"Motivation, Guidance & Positive Feedback",2,2,语言中性，缺乏引导，只给出了答案和建议,zh,DeepSeek-V3.2-Exp,博士,model_label_likely,pilot_only_not_human_confirmed,699d3282522bcf4993039725c7ba367ff5db9b23,e1b2a2c0b94cabc28b2742d11c57bfe524401d00,d402c954fe5f4719b600ec4e916dcb949789f894,c41edd27106cecc36ddba127f4f4a81beb72951d
+54d056798e8ad9fd,deepseek_output/processed_excel_data_1.jsonl,zh-query78,64,4,"你需要完成以下任务：1. 根据评分细则评估学生的作答情况，给出分数和详细的评分说明。2. 基于学生的作答情况生成具体且有建设性的反馈，包括可能存在的知识盲区和学习建议。你的回复应积极正面且具有建设性。
+
+Subject: 商业管理学
+Level: 博士
+QuestionType: 简答题
+Question: 请运用委托-代理理论，分析上市公司高管股权激励计划中可能存在的道德风险问题，并提出相应的治理机制设计。要求：(1) 明确识别委托方与代理方；(2) 分析信息不对称下的利益冲突；(3) 提出至少三种具体的治理机制并解释其作用原理。
+StandardAnswer: 1. 委托方与代理方识别：委托方为上市公司股东（特别是中小股东），代理方为接受股权激励的高管团队。
+
+2. 道德风险分析：
+   (1) 短期业绩操纵：高管可能通过会计政策选择、资产处置时机控制等方式美化短期财务指标，以提升行权收益
+   (2) 风险偏好扭曲：过度追求高风险项目以获取超额回报，忽视企业长期稳健发展
+   (3) 信息隐瞒：选择性披露有利信息，隐瞒经营风险，导致股东无法准确评估企业价值
+   (4) 研发投入压缩：为达成短期业绩目标，削减长期研发投入，损害企业核心竞争力
+
+3. 治理机制设计：
+   (1) 行权条件分层设计：设置财务指标与非财务指标相结合的多维度考核体系，如研发投入增长率、客户满意度等，避免单一利润指标导向
+   (2) 延长锁定期：要求行权后股份需持有3-5年，使高管利益与企业长期价值绑定
+   (3)  clawback条款：设立业绩追索条款，当发现财务造假或重大经营失误时，可追回已行使的股权收益
+   (4) 独立董事监督：由独立董事组成的薪酬委员会负责激励方案设计与执行监督，确保程序公正性
+GradingCriteria: 总分：20分
+
+1. 委托-代理关系识别（3分）：
+   - 正确识别委托方（2分）
+   - 正确识别代理方（1分）
+
+2. 道德风险分析（9分）：
+   - 每提出一个合理的道德风险表现并分析其成因（3分）
+   - 需体现信息不对称与利益冲突的核心逻辑
+
+3. 治理机制设计（8分）：
+   - 每提出一个有效的治理机制（2分）
+   - 每准确解释一个机制的作用原理（2分）
+   - 机制需具有针对性和可操作性
+StudentAnswer: 股权激励中高管可能会为了个人利益操纵股价，比如在行权前发布利好消息。股东应该加强对高管的监督，设置更严格的考核标准。还可以让独立董事参与管理，建立内部控制制度。另外，高管离职后也应该继续承担责任。
+
+请以JSON格式返回结果：""Score"": """", ""Scoring Details"": """", ""Personalized Feedback"": """"","Score: 11/20
+ScoringDetails: 委托-代理关系识别：2分（仅识别委托方，代理方表述不明确）
+道德风险分析：4分（仅提出一个具体风险表现，分析深度不足）
+治理机制设计：5分（提出三个机制但解释不够深入，缺乏理论支撑）
+- 监督机制：1分
+- 考核标准：1分  
+- 独立董事：2分
+- 离职追责：1分（原理阐述不足）
+PersonalizedFeedback: 优势：能够识别股权激励中的基本风险问题，并提出了具有一定实践意义的治理建议。
+
+待改进领域：
+1. 理论运用深度不足：未能系统运用委托-代理理论框架进行分析，建议加强经典理论模型（如Holmstrom-Milgrom模型）的学习
+2. 分析系统性欠缺：道德风险表现识别较为单一，应综合考虑短期主义、风险转移、投资扭曲等多维度问题
+3. 机制设计理论支撑薄弱：治理机制需要更紧密地结合信息经济学原理，如信号传递、激励相容等
+4. 学术规范性：博士阶段答案应体现更严谨的学术表述和理论引用
+
+学习建议：
+- 精读Jensen & Meckling（1976）等经典文献，深入理解代理成本理论
+- 学习最优契约设计方法，掌握机制设计的基本原理
+- 参考《Journal of Corporate Finance》等期刊的最新实证研究，了解前沿治理实践",激励引导与积极反馈,"Motivation, Guidance & Positive Feedback",2,2,缺乏鼓励和支持，语言偏中性，倾向于直接给出正确答案,zh,DeepSeek-V3.2-Exp,博士,model_label_likely,pilot_only_not_human_confirmed,5facab9d2ba587c508cff1c376ff9586aec0462b,808c04b72dde332ecfe9b0d96884a7c62b22a6c0,77987faedb546d012bda8eb6d6c07b3e44b34a39,326274e9e2f37896edcd20848dc4d1eedf00530a
+1e28c90cbf59da10,deepseek_output/processed_excel_data_1.jsonl,en-query31,82,4,"You need to accomplish the following: 1. Evaluate the sample student response according to the grading criteria and provide a score and detailed scoring breakdown. 2. Generate specific and constructive feedback based on the student's response, such as potential knowledge gaps and learning suggestions. Your response should be positive and constructive.
+
+Subject: Computer Science
+Level: PhD
+QuestionType: Multiple Choice
+Question: Which of the following statements about the convergence properties of gradient descent algorithms for non-convex optimization in deep learning are correct?
+
+A. Gradient descent with random initialization almost surely converges to a local minimum for smooth loss functions
+B. Stochastic gradient descent (SGD) with decreasing step sizes converges to a stationary point for smooth non-convex functions
+C. Gradient descent always converges to the global minimum for over-parameterized neural networks
+D. SGD with constant step size converges to the global minimum for any smooth loss function
+E. Adaptive gradient methods (e.g., Adam) have better theoretical convergence guarantees than SGD for non-convex optimization
+StandardAnswer: A, B
+GradingCriteria: Total score: 5 points. Full credit requires selecting exactly A and B. No partial credit is awarded. Incorrect selections, missing correct selections, or additional incorrect selections result in 0 points.
+StudentAnswer: A, B, C
+
+Return the result in JSON format: ""Score"": """", ""Scoring Details"": """", ""Personalized Feedback"": """"","Score: 0
+ScoringDetails: The student selected A, B, and C. While A and B are correct, C is incorrect. According to the grading criteria, any incorrect selection results in 0 points, regardless of correct selections.
+PersonalizedFeedback: Your selection demonstrates some understanding of optimization theory but reveals important misconceptions. Statement A is correct: Lee et al. (2016) proved that gradient descent with random initialization avoids saddle points and converges to local minima for smooth functions. Statement B is also correct: classical results show SGD with decreasing step sizes converges to stationary points. However, statement C is incorrect - while over-parameterized networks often perform well empirically, there is no guarantee that gradient descent will find the global minimum. The loss landscape of neural networks contains many local minima and saddle points even when over-parameterized. I recommend reviewing recent theoretical work on neural network optimization, particularly the limitations of gradient-based methods in non-convex settings. Focus on understanding the difference between empirical observations and theoretical guarantees in deep learning optimization.",激励引导与积极反馈,"Motivation, Guidance & Positive Feedback",2,2,回答的语言风格偏中性，答疑时直接给出错误原因，缺少引导,en,DeepSeek-V3.2-Exp,PhD,model_label_likely,pilot_only_not_human_confirmed,ddfe3c6f18e4f02a5db47d97f120bf6ae5afa393,9ce1c87caeb881dfd1e09b2e99f45efabbd8e233,09b2c2a24af857b6db35d2cc3e81139ddd036d2b,9cb206813defd469cc1f20090ad663acdc12e212
+6f8b08c9fb4b517c,deepseek_output/processed_excel_data_1.jsonl,en-query33,84,4,"You need to accomplish the following: 1. Evaluate the sample student response according to the grading criteria and provide a score and detailed scoring breakdown. 2. Generate specific and constructive feedback based on the student's response, such as potential knowledge gaps and learning suggestions. Your response should be positive and constructive.
+
+Subject: Computer Science
+Level: Undergraduate
+QuestionType: True/False
+Question: True or False: In Python, when a function is called with a mutable object (like a list) as an argument, any modifications made to that object within the function will persist after the function returns, because Python passes mutable objects by reference.
+StandardAnswer: True. In Python, when a mutable object (such as a list, dictionary, or set) is passed as an argument to a function, the function receives a reference to the same object in memory. Therefore, any modifications made to the object within the function (like appending to a list or updating a dictionary) will affect the original object outside the function. This behavior differs from immutable objects (like integers, strings, or tuples), where a copy of the value is effectively passed.
+GradingCriteria: Total Score: 1 point
+- Correct answer (True): 1 point
+- Incorrect answer (False): 0 points
+StudentAnswer: False. I think Python always passes arguments by value, so any changes to parameters inside functions don't affect the original variables outside.
+
+Return the result in JSON format: ""Score"": """", ""Scoring Details"": """", ""Personalized Feedback"": """"","Score: 0
+ScoringDetails: The student selected 'False' which is incorrect according to the standard answer. Since this is a True/False question with single correct answer, incorrect selection receives 0 points.
+PersonalizedFeedback: Your understanding of Python's parameter passing needs clarification. While it's true that Python uses 'pass by object reference' (sometimes called 'pass by assignment'), the key distinction lies in the mutability of objects. For mutable objects like lists, dictionaries, and sets, the function receives a reference to the same object, so modifications to the object itself (like append(), extend(), or direct element assignment) do affect the original. However, reassigning the parameter variable to a new object inside the function won't affect the original variable outside. I recommend practicing with examples: create a function that modifies a list parameter by appending elements, and observe how the original list changes. Also compare this behavior with immutable objects like strings or tuples to see the difference.",激励引导与积极反馈,"Motivation, Guidance & Positive Feedback",2,2,语言风格偏中性，缺少鼓励性话语,en,DeepSeek-V3.2-Exp,Undergraduate,model_label_likely,pilot_only_not_human_confirmed,2a543cc4eee6276698c36fdc0346c6fb83ea1d5a,8b31a5772f6e969ad6faf352a3dcd30d0c2a5716,710833f1737feeb1c24477d2658db957c5336302,536ac5da786454f105223a1b201a8a585c1b8754
+b3c9631a4a201524,deepseek_output/processed_excel_data_1.jsonl,en-query76,124,4,"You need to accomplish the following: 1. Evaluate the sample student response according to the grading criteria and provide a score and detailed scoring breakdown. 2. Generate specific and constructive feedback based on the student's response, such as potential knowledge gaps and learning suggestions. Your response should be positive and constructive.
+
+Subject: General Pedagogy
+Level: Undergraduate
+QuestionType: True/False
+Question: True or False: According to constructivist learning theories, knowledge is primarily transmitted from teacher to student through direct instruction.
+StandardAnswer: False. Constructivist theories assert that learners actively construct their own knowledge and understanding through experiences and interactions with their environment, rather than passively receiving information from teachers.
+GradingCriteria: Total score: 1 point. Incorrect answers receive 0 points. The correct answer requires understanding that constructivism emphasizes active knowledge construction by learners, not passive transmission from teachers.
+StudentAnswer: True. Teachers need to clearly explain concepts to students so they can understand and remember the information properly.
+
+Return the result in JSON format: ""Score"": """", ""Scoring Details"": """", ""Personalized Feedback"": """"","Score: 0
+ScoringDetails: The student selected 'True' which is incorrect. Constructivist theory fundamentally contradicts the idea of knowledge being primarily transmitted through direct instruction. The student's explanation further demonstrates a misunderstanding by emphasizing teacher explanation and student memorization, which aligns more with behaviorist or traditional transmission models rather than constructivist approaches.
+PersonalizedFeedback: Your response indicates a common misconception about constructivist learning theory. I recommend reviewing the core principles of constructivism, particularly focusing on how Jean Piaget, Lev Vygotsky, and John Dewey conceptualized learning as an active process of meaning-making. Pay special attention to concepts like 'scaffolding,' 'zone of proximal development,' and 'experiential learning.' Consider how these differ from traditional transmission models where teachers simply deliver information to passive students. A good learning activity would be to compare and contrast constructivist and behaviorist approaches to teaching in a table format to clarify these distinctions.",激励引导与积极反馈,"Motivation, Guidance & Positive Feedback",2,2,缺鼓励和支持，倾向于直接给出答案,en,DeepSeek-V3.2-Exp,Undergraduate,model_label_likely,pilot_only_not_human_confirmed,2b0468f189f65e8c11c7cbec5a53fead6b3235a7,620498c1b438771025bc42850048de8754524f0c,1c7a6ee3111e527d8415cf7adb139666f1bbb70d,29fe64dc565b3bfc8116236661e0cc7a871ab39a
+9f60e6306e20e411,deepseek_output/processed_excel_data_1.jsonl,en-query77,125,4,"You need to accomplish the following: 1. Evaluate the sample student response according to the grading criteria and provide a score and detailed scoring breakdown. 2. Generate specific and constructive feedback based on the student's response, such as potential knowledge gaps and learning suggestions. Your response should be positive and constructive.
+
+Subject: Automation
+Level: Master
+QuestionType: True/False
+Question: In a feedback control system, the presence of integral action in the controller always eliminates steady-state error for step inputs, regardless of system parameter variations.
+StandardAnswer: True. Integral action in a controller works by integrating the error over time. For a step input, if there is any persistent steady-state error, the integral of that error will continue to grow, forcing the controller output to change until the error is driven to zero. This property holds true regardless of parameter variations within the system, as long as the closed-loop system remains stable.
+GradingCriteria: Total Score: 1 point. Correct answer (True) receives 1 point. Incorrect answer (False) receives 0 points. No partial credit available.
+StudentAnswer: False. While integral action can reduce steady-state error, system parameter variations might affect the controller's ability to completely eliminate steady-state error, especially if the variations are significant enough to impact the system's stability or the effectiveness of the integral term.
+
+Return the result in JSON format: ""Score"": """", ""Scoring Details"": """", ""Personalized Feedback"": """"","Score: 0
+ScoringDetails: The student answered 'False' which is incorrect according to the standard answer. Therefore, the student receives 0 points out of 1.
+PersonalizedFeedback: Your understanding that system parameter variations can affect control system performance is partially correct, but you've missed a fundamental property of integral control. The key insight is that integral action mathematically guarantees zero steady-state error for step inputs in stable systems because it continuously integrates any remaining error. This is a theoretical property that holds regardless of parameter variations, though severe variations could potentially drive the system unstable. I recommend reviewing the mathematical foundation of integral control and its error-elimination properties. Pay particular attention to why the integral term grows without bound when any steady-state error persists, which is the mechanism that ensures complete elimination of offset.",激励引导与积极反馈,"Motivation, Guidance & Positive Feedback",2,2,缺乏鼓励和支持，语言倾向于直接给出正确答案,en,DeepSeek-V3.2-Exp,Master,model_label_likely,pilot_only_not_human_confirmed,9e94b5bb183793eca100734978b09eb034c121b8,85e3b608001a35c9b39646c8d0491a79cea34193,045b31ebf29f171172cb0af86f56963a2789349c,e6b0b251cb80cb498fa0caab5ae8cd5ca204a769
+f61c011f8eee5250,deepseek_output/processed_excel_data_1.jsonl,en-query78,126,4,"You need to accomplish the following: 1. Evaluate the sample student response according to the grading criteria and provide a score and detailed scoring breakdown. 2. Generate specific and constructive feedback based on the student's response, such as potential knowledge gaps and learning suggestions. Your response should be positive and constructive.
+
+Subject: Applied Economics
+Level: Undergraduate
+QuestionType: Multiple Choice
+Question: A firm is considering investing in a new manufacturing technology that costs $500,000 upfront. The technology is expected to generate annual cost savings of $120,000 for 5 years, after which it becomes obsolete with no salvage value. If the firm's required rate of return is 10%, what is the Net Present Value (NPV) of this investment, and based on the NPV rule, should the firm proceed with the investment?
+StandardAnswer: NPV = -Initial Investment + Σ [Annual Cash Flow / (1 + r)^t] for t=1 to n
+NPV = -$500,000 + $120,000/(1.10)^1 + $120,000/(1.10)^2 + $120,000/(1.10)^3 + $120,000/(1.10)^4 + $120,000/(1.10)^5
+NPV = -$500,000 + $120,000/1.10 + $120,000/1.21 + $120,000/1.331 + $120,000/1.4641 + $120,000/1.61051
+NPV = -$500,000 + $109,091 + $99,174 + $90,158 + $81,962 + $74,511
+NPV = -$500,000 + $454,896 = -$45,104
+Since NPV < 0, the firm should NOT proceed with the investment.
+GradingCriteria: Total Score: 4 points
+- 2 points for correct NPV calculation
+- 1 point for correct investment decision based on NPV
+- 1 point for proper application of NPV formula and discounting process
+StudentAnswer: NPV = -$500,000 + $120,000 × 5 = -$500,000 + $600,000 = $100,000
+Since NPV is positive, the firm should invest in the technology.
+
+Return the result in JSON format: ""Score"": """", ""Scoring Details"": """", ""Personalized Feedback"": """"","Score: 1/4
+ScoringDetails: - 0 points for NPV calculation (failed to properly discount future cash flows)
+- 1 point for correct investment decision based on their calculated NPV
+- 0 points for NPV formula application (used simple sum instead of discounted cash flows)
+PersonalizedFeedback: Your answer shows a fundamental misunderstanding of the time value of money concept in capital budgeting. You calculated NPV by simply summing the undiscounted cash flows, which ignores that future money is worth less than present money. The correct approach requires discounting each year's cash flow by (1 + r)^t, where r is the discount rate (10%) and t is the time period. I recommend reviewing: (1) The concept and calculation of Net Present Value, (2) Time value of money principles, and (3) How to properly apply discount factors to future cash flows. Practice with several NPV problems using different discount rates and time horizons to strengthen your understanding.",激励引导与积极反馈,"Motivation, Guidance & Positive Feedback",2,2,缺乏鼓励和支持，语言倾向于直接给出正确答案,en,DeepSeek-V3.2-Exp,Undergraduate,model_label_likely,pilot_only_not_human_confirmed,4f4422ec3be5afa37a546126018f47a5e52515e2,70aa59a439ac4d5edb2229464984991dc055893e,af6672a96c0b04c98d56fa49147e0bb5aa98eef4,0081d5efe87bc417bef10d322eaac0be5bb7df44

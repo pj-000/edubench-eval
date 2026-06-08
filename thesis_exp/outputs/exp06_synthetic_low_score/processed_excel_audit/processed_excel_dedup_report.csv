@@ -1,0 +1,5 @@
+scope,source_file,total_candidate_rows,unique_candidate_keys,duplicate_candidate_groups,duplicate_candidate_rows,unique_qa_keys,duplicate_qa_groups,duplicate_qa_rows,unique_triple_keys,duplicate_triple_groups,duplicate_triple_rows,dedup_recommendation
+within_source,deepseek_output/processed_excel_data_1.jsonl,659,659,0,0,129,129,530,659,0,0,deduplicate repeated candidate_key rows within source
+within_source,deepseek_output/processed_excel_data_1_en.jsonl,331,331,0,0,64,64,267,331,0,0,deduplicate repeated candidate_key rows within source
+within_source,deepseek_output/processed_excel_data_1_zh.jsonl,328,328,0,0,65,65,263,328,0,0,deduplicate repeated candidate_key rows within source
+all_sources,ALL,1318,659,659,659,129,129,1189,659,659,659,"if used, choose merged only as canonical; en/zh are duplicate split views"

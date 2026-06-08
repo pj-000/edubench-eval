@@ -12,6 +12,7 @@ EXP06_OUTPUT_DIR = THESIS_DIR / "outputs" / EXP06_NAME
 EXP06_TABLES_DIR = EXP06_OUTPUT_DIR / "tables"
 EXP06_REPORTS_DIR = EXP06_OUTPUT_DIR / "reports"
 EXP06_SAMPLES_DIR = EXP06_OUTPUT_DIR / "samples"
+PROCESSED_EXCEL_AUDIT_DIR = EXP06_OUTPUT_DIR / "processed_excel_audit"
 
 EXP06_SRC_DIR = THESIS_DIR / "src" / "edujudge" / "exp06"
 EXP0_SPLIT_DIR = THESIS_DIR / "data" / "splits" / "paper_like_triple_seed42"
@@ -119,6 +120,7 @@ def ensure_exp06_dirs() -> None:
         EXP06_TABLES_DIR,
         EXP06_REPORTS_DIR,
         EXP06_SAMPLES_DIR,
+        PROCESSED_EXCEL_AUDIT_DIR,
         EXP06_SRC_DIR,
     ]:
         path.mkdir(parents=True, exist_ok=True)
