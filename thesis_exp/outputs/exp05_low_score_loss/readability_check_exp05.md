@@ -19,8 +19,8 @@ Overall status: **PASS**
 | shell shebang | thesis_exp/scripts/run_exp05_l2_smoke.sh | PASS | #!/usr/bin/env bash | #!/usr/bin/env bash |  |
 | shell pipefail | thesis_exp/scripts/run_exp05_l2_smoke.sh | PASS | present | present |  |
 | bash -n | thesis_exp/scripts/run_exp05_l2_smoke.sh | PASS | ok | ok |  |
-| script line count | thesis_exp/scripts/run_exp05_l2_train.sh | PASS | 155 | >30 |  |
-| script line count LF line endings | thesis_exp/scripts/run_exp05_l2_train.sh | PASS | LF bytes; lines=155 bytes=5541 | LF only |  |
+| script line count | thesis_exp/scripts/run_exp05_l2_train.sh | PASS | 195 | >30 |  |
+| script line count LF line endings | thesis_exp/scripts/run_exp05_l2_train.sh | PASS | LF bytes; lines=195 bytes=6954 | LF only |  |
 | shell shebang | thesis_exp/scripts/run_exp05_l2_train.sh | PASS | #!/usr/bin/env bash | #!/usr/bin/env bash |  |
 | shell pipefail | thesis_exp/scripts/run_exp05_l2_train.sh | PASS | present | present |  |
 | bash -n | thesis_exp/scripts/run_exp05_l2_train.sh | PASS | ok | ok |  |

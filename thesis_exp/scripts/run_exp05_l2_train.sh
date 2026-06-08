@@ -3,7 +3,11 @@ set -euo pipefail
 
 CONDA_ENV="${CONDA_ENV:-llama_factory}"
 MODEL_NAME_OR_PATH="${MODEL_NAME_OR_PATH:-/home/share/models/modelscope/Qwen/Qwen3-Reranker-0.6B}"
-CUDA_VISIBLE_DEVICES="${CUDA_VISIBLE_DEVICES:-7}"
+GPU_L2A="${GPU_L2A:-6}"
+GPU_L2B="${GPU_L2B:-7}"
+VISIBLE_DEVICES="${CUDA_VISIBLE_DEVICES:-${GPU_L2A},${GPU_L2B}}"
+RUN_MODE="${RUN_MODE:-parallel}"
+RESET_RUN_DIRS="${RESET_RUN_DIRS:-0}"
 
 FORMAL_RUN="${FORMAL_RUN:-1}"
 REQUIRE_CUDA="${REQUIRE_CUDA:-1}"
@@ -47,7 +51,6 @@ unset FP16
 unset EVAL_ONLY
 unset CHECKPOINT_DIR
 
-export CUDA_VISIBLE_DEVICES
 export MODEL_NAME_OR_PATH
 export TOKENIZERS_PARALLELISM="${TOKENIZERS_PARALLELISM:-false}"
 export PYTORCH_CUDA_ALLOC_CONF
@@ -62,7 +65,11 @@ RUN_ID=${RUN_ID}
 FORMAL_RUN=${FORMAL_RUN}
 REQUIRE_CUDA=${REQUIRE_CUDA}
 MODEL_NAME_OR_PATH=${MODEL_NAME_OR_PATH}
-CUDA_VISIBLE_DEVICES=${CUDA_VISIBLE_DEVICES}
+RUN_MODE=${RUN_MODE}
+GPU_L2A=${GPU_L2A}
+GPU_L2B=${GPU_L2B}
+VISIBLE_DEVICES=${VISIBLE_DEVICES}
+RESET_RUN_DIRS=${RESET_RUN_DIRS}
 RUNS=L2a_asymmetric_ordinal_lambda03_margin0 L2b_asymmetric_ordinal_lambda05_margin0
 L2a lambda_low=0.3 margin=0.0
 L2b lambda_low=0.5 margin=0.0
@@ -81,7 +88,7 @@ BF16=${BF16}
 GRADIENT_CHECKPOINTING=${GRADIENT_CHECKPOINTING}
 CONFIG
 
-python - <<'PY'
+CUDA_VISIBLE_DEVICES="${VISIBLE_DEVICES}" python - <<'PY'
 import os
 
 require_cuda = os.environ.get("REQUIRE_CUDA", "1") == "1"
@@ -95,8 +102,8 @@ except Exception as exc:
 
 print(f"torch.cuda.is_available()={torch.cuda.is_available()}")
 print(f"torch.cuda.device_count()={torch.cuda.device_count()}")
-if torch.cuda.is_available():
-    print(f"torch.cuda.get_device_name(0)={torch.cuda.get_device_name(0)}")
+for idx in range(torch.cuda.device_count()):
+    print(f"torch.cuda.get_device_name({idx})={torch.cuda.get_device_name(idx)}")
 print(f"torch.version.cuda={torch.version.cuda}")
 if require_cuda and not torch.cuda.is_available():
     raise SystemExit("ERROR: REQUIRE_CUDA=1 but CUDA is unavailable.")
@@ -114,14 +121,25 @@ if [[ "${GRADIENT_CHECKPOINTING}" == "1" ]]; then
   gc_args+=(--gradient_checkpointing)
 fi
 
-run_l2() {
+reset_run_dir() {
   local run_id="$1"
-  local lambda_low="$2"
-  local margin="$3"
-  local log_path="${LOG_DIR}/train_${run_id}_${RUN_ID}.log"
+  if [[ "${RESET_RUN_DIRS}" == "1" ]]; then
+    echo "Resetting existing formal outputs/checkpoints for ${run_id}"
+    rm -rf \
+      "thesis_exp/outputs/exp05_low_score_loss/runs/${run_id}" \
+      "thesis_exp/artifacts/exp05_low_score_loss/checkpoints/${run_id}"
+  fi
+}
 
-  echo "Starting ${run_id}; lambda_low=${lambda_low}; margin=${margin}; log=${log_path}"
-  python -m thesis_exp.src.edujudge.exp05.train_l2_asymmetric_ordinal \
+run_l2() {
+  local gpu_id="$1"
+  local run_id="$2"
+  local lambda_low="$3"
+  local margin="$4"
+  local log_path="${LOG_DIR}/train_${run_id}_gpu${gpu_id}_${RUN_ID}.log"
+
+  echo "Starting ${run_id} on GPU ${gpu_id}; lambda_low=${lambda_low}; margin=${margin}; log=${log_path}"
+  CUDA_VISIBLE_DEVICES="${gpu_id}" python -m thesis_exp.src.edujudge.exp05.train_l2_asymmetric_ordinal \
     --run_id "${run_id}" \
     --lambda_low "${lambda_low}" \
     --margin "${margin}" \
@@ -145,8 +163,30 @@ run_l2() {
     "${gc_args[@]}" 2>&1 | tee "${log_path}"
 }
 
-run_l2 L2a_asymmetric_ordinal_lambda03_margin0 0.3 0.0
-run_l2 L2b_asymmetric_ordinal_lambda05_margin0 0.5 0.0
+reset_run_dir L2a_asymmetric_ordinal_lambda03_margin0
+reset_run_dir L2b_asymmetric_ordinal_lambda05_margin0
+
+if [[ "${RUN_MODE}" == "parallel" ]]; then
+  run_l2 "${GPU_L2A}" L2a_asymmetric_ordinal_lambda03_margin0 0.3 0.0 &
+  pid_l2a=$!
+  run_l2 "${GPU_L2B}" L2b_asymmetric_ordinal_lambda05_margin0 0.5 0.0 &
+  pid_l2b=$!
+
+  status_l2a=0
+  status_l2b=0
+  wait "${pid_l2a}" || status_l2a=$?
+  wait "${pid_l2b}" || status_l2b=$?
+  if [[ "${status_l2a}" != "0" || "${status_l2b}" != "0" ]]; then
+    echo "ERROR: L2 parallel training failed: L2a=${status_l2a}, L2b=${status_l2b}" >&2
+    exit 1
+  fi
+elif [[ "${RUN_MODE}" == "sequential" ]]; then
+  run_l2 "${GPU_L2A}" L2a_asymmetric_ordinal_lambda03_margin0 0.3 0.0
+  run_l2 "${GPU_L2B}" L2b_asymmetric_ordinal_lambda05_margin0 0.5 0.0
+else
+  echo "ERROR: RUN_MODE must be parallel or sequential; got ${RUN_MODE}" >&2
+  exit 1
+fi
 
 python -m thesis_exp.src.edujudge.exp05.postprocess_exp05_results --strict
 python -m thesis_exp.src.edujudge.exp05.sanity_check_exp05_outputs --strict
