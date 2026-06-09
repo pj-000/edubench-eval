@@ -1,0 +1,161 @@
+synthetic_plan_id,target_label_5,language,metric_canonical,error_type,target_count,priority_rank,generation_split_mode,generation_prompt_version,notes
+topup1_001,3,en,Reasoning Process Rigor,reasoning_gap,1,1,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_002,2,zh,Scenario Element Integration,scenario_mismatch,1,2,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_003,1,en,"Personalization, Adaptation & Learning Support",scenario_mismatch,1,3,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_004,1,zh,Higher-Order Thinking & Skill Development,reasoning_gap,1,4,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_005,2,en,Error Identification & Correction Precision,factual_error,1,5,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_006,1,zh,Instruction Following & Task Completion,instruction_violation,1,6,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_007,2,en,Basic Factual Accuracy,factual_error,1,7,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_008,1,zh,Domain Knowledge Accuracy,factual_error,1,8,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_009,2,en,Role & Tone Consistency,scenario_mismatch,1,9,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_010,1,zh,Content Relevance & Scope Control,scenario_mismatch,1,10,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_011,3,en,"Clarity, Simplicity & Inspiration",superficial_fluency,1,11,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_012,2,zh,"Motivation, Guidance & Positive Feedback",scenario_mismatch,1,12,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_013,1,en,Reasoning Process Rigor,overconfident_wrong,1,1,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_014,2,zh,Scenario Element Integration,instruction_violation,1,2,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_015,1,en,"Personalization, Adaptation & Learning Support",rubric_violation,1,3,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_016,2,zh,Higher-Order Thinking & Skill Development,superficial_fluency,1,4,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_017,1,en,Error Identification & Correction Precision,reasoning_gap,1,5,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_018,2,zh,Instruction Following & Task Completion,rubric_violation,1,6,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_019,1,en,Basic Factual Accuracy,overconfident_wrong,1,7,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_020,3,zh,Domain Knowledge Accuracy,rubric_violation,1,8,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_021,2,en,Role & Tone Consistency,superficial_fluency,1,9,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_022,1,zh,Content Relevance & Scope Control,rubric_violation,1,10,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_023,2,en,"Clarity, Simplicity & Inspiration",rubric_violation,1,11,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_024,1,zh,"Motivation, Guidance & Positive Feedback",superficial_fluency,1,12,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_025,1,en,Reasoning Process Rigor,reasoning_gap,1,1,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_026,2,zh,Scenario Element Integration,scenario_mismatch,1,2,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_027,1,en,"Personalization, Adaptation & Learning Support",scenario_mismatch,1,3,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_028,2,zh,Higher-Order Thinking & Skill Development,reasoning_gap,1,4,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_029,1,en,Error Identification & Correction Precision,factual_error,1,5,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_030,3,zh,Instruction Following & Task Completion,instruction_violation,1,6,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_031,2,en,Basic Factual Accuracy,factual_error,1,7,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_032,1,zh,Domain Knowledge Accuracy,factual_error,1,8,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_033,2,en,Role & Tone Consistency,scenario_mismatch,1,9,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_034,1,zh,Content Relevance & Scope Control,scenario_mismatch,1,10,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_035,2,en,"Clarity, Simplicity & Inspiration",superficial_fluency,1,11,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_036,1,zh,"Motivation, Guidance & Positive Feedback",scenario_mismatch,1,12,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_037,2,en,Reasoning Process Rigor,overconfident_wrong,1,1,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_038,1,zh,Scenario Element Integration,instruction_violation,1,2,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_039,3,en,"Personalization, Adaptation & Learning Support",rubric_violation,1,3,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_040,2,zh,Higher-Order Thinking & Skill Development,superficial_fluency,1,4,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_041,1,en,Error Identification & Correction Precision,reasoning_gap,1,5,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_042,2,zh,Instruction Following & Task Completion,rubric_violation,1,6,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_043,1,en,Basic Factual Accuracy,overconfident_wrong,1,7,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_044,2,zh,Domain Knowledge Accuracy,rubric_violation,1,8,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_045,1,en,Role & Tone Consistency,superficial_fluency,1,9,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_046,2,zh,Content Relevance & Scope Control,rubric_violation,1,10,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_047,1,en,"Clarity, Simplicity & Inspiration",rubric_violation,1,11,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_048,1,zh,"Motivation, Guidance & Positive Feedback",superficial_fluency,1,12,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_049,3,en,Reasoning Process Rigor,reasoning_gap,1,1,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_050,2,zh,Scenario Element Integration,scenario_mismatch,1,2,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_051,1,en,"Personalization, Adaptation & Learning Support",scenario_mismatch,1,3,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_052,2,zh,Higher-Order Thinking & Skill Development,reasoning_gap,1,4,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_053,1,en,Error Identification & Correction Precision,factual_error,1,5,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_054,2,zh,Instruction Following & Task Completion,instruction_violation,1,6,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_055,1,en,Basic Factual Accuracy,factual_error,1,7,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_056,2,zh,Domain Knowledge Accuracy,factual_error,1,8,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_057,1,en,Role & Tone Consistency,scenario_mismatch,1,9,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_058,3,zh,Content Relevance & Scope Control,scenario_mismatch,1,10,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_059,2,en,"Clarity, Simplicity & Inspiration",superficial_fluency,1,11,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_060,1,zh,"Motivation, Guidance & Positive Feedback",scenario_mismatch,1,12,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_061,2,en,Reasoning Process Rigor,overconfident_wrong,1,1,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_062,1,zh,Scenario Element Integration,instruction_violation,1,2,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_063,2,en,"Personalization, Adaptation & Learning Support",rubric_violation,1,3,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_064,1,zh,Higher-Order Thinking & Skill Development,superficial_fluency,1,4,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_065,2,en,Error Identification & Correction Precision,reasoning_gap,1,5,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_066,1,zh,Instruction Following & Task Completion,rubric_violation,1,6,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_067,3,en,Basic Factual Accuracy,overconfident_wrong,1,7,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_068,2,zh,Domain Knowledge Accuracy,rubric_violation,1,8,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_069,1,en,Role & Tone Consistency,superficial_fluency,1,9,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_070,2,zh,Content Relevance & Scope Control,rubric_violation,1,10,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_071,1,en,"Clarity, Simplicity & Inspiration",rubric_violation,1,11,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_072,1,zh,"Motivation, Guidance & Positive Feedback",superficial_fluency,1,12,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_073,2,en,Reasoning Process Rigor,reasoning_gap,1,1,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_074,1,zh,Scenario Element Integration,scenario_mismatch,1,2,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_075,2,en,"Personalization, Adaptation & Learning Support",scenario_mismatch,1,3,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_076,1,zh,Higher-Order Thinking & Skill Development,reasoning_gap,1,4,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_077,3,en,Error Identification & Correction Precision,factual_error,1,5,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_078,2,zh,Instruction Following & Task Completion,instruction_violation,1,6,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_079,1,en,Basic Factual Accuracy,factual_error,1,7,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_080,2,zh,Domain Knowledge Accuracy,factual_error,1,8,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_081,1,en,Role & Tone Consistency,scenario_mismatch,1,9,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_082,2,zh,Content Relevance & Scope Control,scenario_mismatch,1,10,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_083,1,en,"Clarity, Simplicity & Inspiration",superficial_fluency,1,11,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_084,2,zh,"Motivation, Guidance & Positive Feedback",scenario_mismatch,1,12,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_085,1,en,Reasoning Process Rigor,overconfident_wrong,1,1,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_086,3,zh,Scenario Element Integration,instruction_violation,1,2,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_087,2,en,"Personalization, Adaptation & Learning Support",rubric_violation,1,3,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_088,1,zh,Higher-Order Thinking & Skill Development,superficial_fluency,1,4,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_089,2,en,Error Identification & Correction Precision,reasoning_gap,1,5,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_090,1,zh,Instruction Following & Task Completion,rubric_violation,1,6,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_091,2,en,Basic Factual Accuracy,overconfident_wrong,1,7,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_092,1,zh,Domain Knowledge Accuracy,rubric_violation,1,8,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_093,1,en,Role & Tone Consistency,superficial_fluency,1,9,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_094,2,zh,Content Relevance & Scope Control,rubric_violation,1,10,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_095,1,en,"Clarity, Simplicity & Inspiration",rubric_violation,1,11,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_096,3,zh,"Motivation, Guidance & Positive Feedback",superficial_fluency,1,12,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_097,2,en,Reasoning Process Rigor,reasoning_gap,1,1,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_098,1,zh,Scenario Element Integration,scenario_mismatch,1,2,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_099,2,en,"Personalization, Adaptation & Learning Support",scenario_mismatch,1,3,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_100,1,zh,Higher-Order Thinking & Skill Development,reasoning_gap,1,4,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_101,2,en,Error Identification & Correction Precision,factual_error,1,5,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_102,1,zh,Instruction Following & Task Completion,instruction_violation,1,6,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_103,2,en,Basic Factual Accuracy,factual_error,1,7,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_104,1,zh,Domain Knowledge Accuracy,factual_error,1,8,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_105,3,en,Role & Tone Consistency,scenario_mismatch,1,9,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_106,2,zh,Content Relevance & Scope Control,scenario_mismatch,1,10,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_107,1,en,"Clarity, Simplicity & Inspiration",superficial_fluency,1,11,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_108,2,zh,"Motivation, Guidance & Positive Feedback",scenario_mismatch,1,12,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_109,1,en,Reasoning Process Rigor,overconfident_wrong,1,1,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_110,2,zh,Scenario Element Integration,instruction_violation,1,2,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_111,1,en,"Personalization, Adaptation & Learning Support",rubric_violation,1,3,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_112,2,zh,Higher-Order Thinking & Skill Development,superficial_fluency,1,4,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_113,1,en,Error Identification & Correction Precision,reasoning_gap,1,5,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_114,3,zh,Instruction Following & Task Completion,rubric_violation,1,6,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_115,2,en,Basic Factual Accuracy,overconfident_wrong,1,7,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_116,1,zh,Domain Knowledge Accuracy,rubric_violation,1,8,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_117,1,en,Role & Tone Consistency,superficial_fluency,1,9,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_118,2,zh,Content Relevance & Scope Control,rubric_violation,1,10,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_119,1,en,"Clarity, Simplicity & Inspiration",rubric_violation,1,11,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_120,2,zh,"Motivation, Guidance & Positive Feedback",superficial_fluency,1,12,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_121,1,en,Reasoning Process Rigor,reasoning_gap,1,1,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_122,2,zh,Scenario Element Integration,scenario_mismatch,1,2,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_123,1,en,"Personalization, Adaptation & Learning Support",scenario_mismatch,1,3,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_124,3,zh,Higher-Order Thinking & Skill Development,reasoning_gap,1,4,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_125,2,en,Error Identification & Correction Precision,factual_error,1,5,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_126,1,zh,Instruction Following & Task Completion,instruction_violation,1,6,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_127,2,en,Basic Factual Accuracy,factual_error,1,7,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_128,1,zh,Domain Knowledge Accuracy,factual_error,1,8,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_129,2,en,Role & Tone Consistency,scenario_mismatch,1,9,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_130,1,zh,Content Relevance & Scope Control,scenario_mismatch,1,10,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_131,2,en,"Clarity, Simplicity & Inspiration",superficial_fluency,1,11,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_132,1,zh,"Motivation, Guidance & Positive Feedback",scenario_mismatch,1,12,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_133,3,en,Reasoning Process Rigor,overconfident_wrong,1,1,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_134,2,zh,Scenario Element Integration,instruction_violation,1,2,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_135,1,en,"Personalization, Adaptation & Learning Support",rubric_violation,1,3,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_136,2,zh,Higher-Order Thinking & Skill Development,superficial_fluency,1,4,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_137,1,en,Error Identification & Correction Precision,reasoning_gap,1,5,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_138,2,zh,Instruction Following & Task Completion,rubric_violation,1,6,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_139,1,en,Basic Factual Accuracy,overconfident_wrong,1,7,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_140,1,zh,Domain Knowledge Accuracy,rubric_violation,1,8,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_141,2,en,Role & Tone Consistency,superficial_fluency,1,9,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_142,1,zh,Content Relevance & Scope Control,rubric_violation,1,10,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_143,3,en,"Clarity, Simplicity & Inspiration",rubric_violation,1,11,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_144,2,zh,"Motivation, Guidance & Positive Feedback",superficial_fluency,1,12,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_145,1,en,Reasoning Process Rigor,reasoning_gap,1,1,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_146,2,zh,Scenario Element Integration,scenario_mismatch,1,2,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_147,1,en,"Personalization, Adaptation & Learning Support",scenario_mismatch,1,3,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_148,2,zh,Higher-Order Thinking & Skill Development,reasoning_gap,1,4,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_149,1,en,Error Identification & Correction Precision,factual_error,1,5,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_150,2,zh,Instruction Following & Task Completion,instruction_violation,1,6,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_151,1,en,Basic Factual Accuracy,factual_error,1,7,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_152,3,zh,Domain Knowledge Accuracy,factual_error,1,8,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_153,2,en,Role & Tone Consistency,scenario_mismatch,1,9,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_154,1,zh,Content Relevance & Scope Control,scenario_mismatch,1,10,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_155,2,en,"Clarity, Simplicity & Inspiration",superficial_fluency,1,11,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_156,1,zh,"Motivation, Guidance & Positive Feedback",scenario_mismatch,1,12,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_157,2,en,Reasoning Process Rigor,overconfident_wrong,1,1,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_158,1,zh,Scenario Element Integration,instruction_violation,1,2,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_159,2,en,"Personalization, Adaptation & Learning Support",rubric_violation,1,3,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
+topup1_160,1,zh,Higher-Order Thinking & Skill Development,superficial_fluency,1,4,question_disjoint_formal,exp06_topup1_hardened_v1,Exp6-9 topup-1 raw generation target; question_seed42/train only
