@@ -1,8 +1,8 @@
 # Exp6-6 Batch96 Leakage Report
 
-Status: **BLOCKED_NO_GENERATION**
+Status: **PASS**
 
-- Filtered rows checked: **0**
+- Filtered rows checked: **91**
 - Blocked rows: **0**
 - Leakage summary: `thesis_exp/outputs/exp06_synthetic_low_score/batch96_generation/leakage/leakage_summary.csv`
 - Leakage details: `thesis_exp/outputs/exp06_synthetic_low_score/batch96_generation/leakage/leakage_details.csv`

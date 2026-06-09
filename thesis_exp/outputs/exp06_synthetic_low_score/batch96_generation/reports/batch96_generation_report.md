@@ -3,21 +3,21 @@
 ## Status
 
 - Static checks status: **PASS**
-- API called: **NO**
-- API generation status: **missing API key or local GENERATION_ENDPOINT**
+- API called: **YES**
+- API generation status: **API_CALLED**
 - Planned count: **96**
-- Generated count: **0**
-- Normalized count: **0**
-- Filtered pass count: **0**
-- Leakage status: **BLOCKED_NO_GENERATION**
+- Generated count: **96**
+- Normalized count: **96**
+- Filtered pass count: **91**
+- Leakage status: **PASS**
 
 ## Filtered Distribution
 
-- Label distribution: `{}`
-- Language distribution: `{}`
-- Metric coverage: **0**
-- Error type coverage: **0**
-- Error type distribution: `{}`
+- Label distribution: `{'1': 37, '2': 39, '3': 15}`
+- Language distribution: `{'en': 47, 'zh': 44}`
+- Metric coverage: **12**
+- Error type coverage: **7**
+- Error type distribution: `{'reasoning_gap': 12, 'overconfident_wrong': 7, 'scenario_mismatch': 20, 'instruction_violation': 8, 'rubric_violation': 18, 'superficial_fluency': 15, 'factual_error': 11}`
 
 ## Gates
 

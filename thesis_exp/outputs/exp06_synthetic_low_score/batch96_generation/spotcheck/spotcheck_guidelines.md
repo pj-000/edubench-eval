@@ -1,6 +1,6 @@
 # Exp6-6 Batch96 Spotcheck Guidelines
 
-Samples to review: **0**
+Samples to review: **36**
 
 If filtered samples are 80 or fewer, review all. Otherwise review the stratified sample here,
 covering labels, languages, error types, and metrics.

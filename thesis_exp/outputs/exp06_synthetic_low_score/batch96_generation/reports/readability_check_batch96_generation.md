@@ -2,6 +2,6 @@
 
 Overall status: **PASS**
 
-- Checks: **82**
+- Checks: **85**
 - Failures: **0**
 - Warnings: **0**

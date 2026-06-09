@@ -1,5 +1,6 @@
 check_name,status,count,notes
-total_normalized_rows,INFO,0,input normalized rows
-passed_filter_rows,INFO,0,rows written to filtered candidates
-failed_filter_rows,PASS,0,rows blocked by filters
-generation_presence,BLOCKED_NO_GENERATION,0,no raw generations available
+total_normalized_rows,INFO,96,input normalized rows
+passed_filter_rows,PASS,91,rows written to filtered candidates
+failed_filter_rows,FAIL,5,rows blocked by filters
+failure_reason:artifact_phrase,FAIL,3,filter failure reason count
+failure_reason:length_out_of_range,FAIL,2,filter failure reason count

@@ -1,14 +1,14 @@
 # Exp6-6 Batch96 Review Package
 
 - Planned count: **96**
-- Generated count: **0**
-- Normalized count: **0**
-- Filtered pass count: **0**
-- Leakage status: **BLOCKED_NO_GENERATION**
-- Label distribution after filter: `{}`
-- Language distribution after filter: `{}`
-- Metric coverage after filter: **0**
-- Error type coverage after filter: **0**
+- Generated count: **96**
+- Normalized count: **96**
+- Filtered pass count: **91**
+- Leakage status: **PASS**
+- Label distribution after filter: `{'1': 37, '2': 39, '3': 15}`
+- Language distribution after filter: `{'en': 47, 'zh': 44}`
+- Metric coverage after filter: **12**
+- Error type coverage after filter: **7**
 - Spotcheck required: **YES**
 - Full 384 generation can start: **NO**
 - Exp6 training can start: **NO**

@@ -5,10 +5,10 @@ Overall status: **PASS**
 | check_name | status | count | notes |
 | --- | --- | --- | --- |
 | static_checks_status | PASS | 12 | pre-generation checks |
-| api_called | INFO | 0 | missing API key or local GENERATION_ENDPOINT |
-| generated_count | PASS | 0 | 0 only allowed for blocked generation |
-| normalized_count | PASS | 0 | normalized rows |
-| filtered_pass_count | BLOCKED_NO_GENERATION | 0 | filtered rows |
-| leakage_status | PASS | 0 | BLOCKED_NO_GENERATION |
+| api_called | INFO | 1 | API_CALLED |
+| generated_count | PASS | 96 | 0 only allowed for blocked generation |
+| normalized_count | PASS | 96 | normalized rows |
+| filtered_pass_count | INFO | 91 | filtered rows |
+| leakage_status | PASS | 91 | PASS |
 | full_384_generation_blocked | PASS | 0 | NO until batch96 spotcheck reviewed |
 | exp6_training_blocked | PASS | 0 | NO |
