@@ -1,0 +1,92 @@
+synthetic_id,synthetic_plan_id,target_label_5,suggested_label_5,language,metric_canonical,error_type,suggested_error_type,decision,can_use_after_revision,manual_notes
+syn_cdaf79084c7a0f1a,b96_001,1,,en,Reasoning Process Rigor,reasoning_gap,,accept,TRUE,
+syn_073f080987ab64fe,b96_002,1,,zh,Reasoning Process Rigor,overconfident_wrong,,accept,TRUE,
+syn_d792ed5f8efb6ea8,b96_003,1,,en,Reasoning Process Rigor,reasoning_gap,,accept,TRUE,
+syn_a776b8f509e6c239,b96_004,1,,zh,Reasoning Process Rigor,overconfident_wrong,,accept,TRUE,
+syn_5dc6c8dd418ddfa8,b96_005,2,,en,Reasoning Process Rigor,reasoning_gap,,accept,TRUE,
+syn_fbea43f99af20f1c,b96_006,2,,zh,Reasoning Process Rigor,overconfident_wrong,,accept,TRUE,
+syn_a9fabe58b42413ca,b96_007,2,,en,Reasoning Process Rigor,reasoning_gap,,accept,TRUE,
+syn_8e2bd5a30ecbe08f,b96_008,3,,zh,Reasoning Process Rigor,overconfident_wrong,,accept,TRUE,
+syn_0e265ba78949a6f9,b96_009,1,2,en,Scenario Element Integration,scenario_mismatch,,revise_label,TRUE,manual override: target label revised from 1 to 2.
+syn_f4e2aafef9cbd5eb,b96_010,1,,zh,Scenario Element Integration,instruction_violation,,accept,TRUE,
+syn_57f198a97c0291e2,b96_011,1,,en,Scenario Element Integration,scenario_mismatch,,accept,TRUE,
+syn_920e17e7db56e1cd,b96_012,1,,zh,Scenario Element Integration,instruction_violation,,accept,TRUE,
+syn_db2c3665c2701f48,b96_013,2,,en,Scenario Element Integration,scenario_mismatch,,accept,TRUE,format-only or shallow-output risk reviewed; accepted as low/boundary synthetic sample.
+syn_04500ba6aa432cc5,b96_014,2,,zh,Scenario Element Integration,instruction_violation,,accept,TRUE,
+syn_880d8a0283ad35a2,b96_015,2,,en,Scenario Element Integration,scenario_mismatch,,accept,TRUE,
+syn_f6aa1ad7fcd811b9,b96_016,3,,zh,Scenario Element Integration,instruction_violation,,accept,TRUE,format-only or shallow-output risk reviewed; accepted as low/boundary synthetic sample.
+syn_47ae529de464a185,b96_017,1,2,en,"Personalization, Adaptation & Learning Support",scenario_mismatch,,revise_label,TRUE,manual override: target label revised from 1 to 2.
+syn_00da6f839dfb0de7,b96_018,1,,zh,"Personalization, Adaptation & Learning Support",rubric_violation,,accept,TRUE,
+syn_e7ae50ef755e55c9,b96_019,1,,en,"Personalization, Adaptation & Learning Support",scenario_mismatch,,accept,TRUE,
+syn_af7996a071bf4b15,b96_020,1,,zh,"Personalization, Adaptation & Learning Support",rubric_violation,scenario_mismatch,revise_error_type,TRUE,manual override: error_type revised from rubric_violation to scenario_mismatch.
+syn_c8c307bb996ffe32,b96_021,2,,en,"Personalization, Adaptation & Learning Support",scenario_mismatch,,accept,TRUE,format-only or shallow-output risk reviewed; accepted as low/boundary synthetic sample.
+syn_0a7492bf081b6d27,b96_022,2,,zh,"Personalization, Adaptation & Learning Support",rubric_violation,,accept,TRUE,
+syn_f14aa5019e1dfc84,b96_023,2,,en,"Personalization, Adaptation & Learning Support",scenario_mismatch,,accept,TRUE,format-only or shallow-output risk reviewed; accepted as low/boundary synthetic sample.
+syn_6ecac000b63bd677,b96_024,3,,zh,"Personalization, Adaptation & Learning Support",rubric_violation,,accept,TRUE,
+syn_a6800b496cebf41c,b96_025,1,2,en,Higher-Order Thinking & Skill Development,reasoning_gap,,revise_label,TRUE,manual override: target label revised from 1 to 2.
+syn_47af61777670fce4,b96_026,1,,zh,Higher-Order Thinking & Skill Development,superficial_fluency,,accept,TRUE,
+syn_914b7d75f45a1c1c,b96_027,1,,en,Higher-Order Thinking & Skill Development,reasoning_gap,,accept,TRUE,
+syn_7ffe1cedf9b1813c,b96_028,1,,zh,Higher-Order Thinking & Skill Development,superficial_fluency,,accept,TRUE,
+syn_5837603a133b05aa,b96_029,2,,en,Higher-Order Thinking & Skill Development,reasoning_gap,,accept,TRUE,
+syn_de784e86b8e6ca84,b96_030,2,,zh,Higher-Order Thinking & Skill Development,superficial_fluency,,accept,TRUE,
+syn_aada98c9562b9f14,b96_031,2,,en,Higher-Order Thinking & Skill Development,reasoning_gap,,accept,TRUE,
+syn_dd9d06726026262f,b96_033,1,,en,Error Identification & Correction Precision,factual_error,,accept,TRUE,
+syn_e4307bc922048a0e,b96_034,1,,zh,Error Identification & Correction Precision,reasoning_gap,,accept,TRUE,
+syn_2ffbb3f250a5d3f3,b96_035,1,,en,Error Identification & Correction Precision,factual_error,,accept,TRUE,
+syn_c4e5618b2463217b,b96_036,2,,zh,Error Identification & Correction Precision,reasoning_gap,,accept,TRUE,
+syn_c68870f6a0dea120,b96_037,2,,en,Error Identification & Correction Precision,factual_error,,accept,TRUE,
+syn_29aa177dc9510d2c,b96_038,2,,zh,Error Identification & Correction Precision,reasoning_gap,,accept,TRUE,
+syn_34df3738729dd7ae,b96_039,2,,en,Error Identification & Correction Precision,factual_error,,accept,TRUE,
+syn_143a982b06aae8c2,b96_040,3,,zh,Error Identification & Correction Precision,reasoning_gap,,accept,TRUE,
+syn_19182a8d6acc576d,b96_041,1,,en,Instruction Following & Task Completion,instruction_violation,,accept,TRUE,
+syn_d6a55739d0144b37,b96_043,1,,en,Instruction Following & Task Completion,instruction_violation,,accept,TRUE,
+syn_dac8f55e98bc7bf3,b96_044,2,,zh,Instruction Following & Task Completion,rubric_violation,,accept,TRUE,
+syn_c307d2558829752a,b96_045,2,,en,Instruction Following & Task Completion,instruction_violation,,accept,TRUE,format-only or shallow-output risk reviewed; accepted as low/boundary synthetic sample.
+syn_bf20a8ca78489d19,b96_046,2,,zh,Instruction Following & Task Completion,rubric_violation,,accept,TRUE,format-only or shallow-output risk reviewed; accepted as low/boundary synthetic sample.
+syn_9c77ea1a83bfc328,b96_047,2,,en,Instruction Following & Task Completion,instruction_violation,,accept,TRUE,
+syn_d8cdfb77f3898357,b96_048,3,,zh,Instruction Following & Task Completion,rubric_violation,instruction_violation,revise_error_type,TRUE,manual override: error_type revised from rubric_violation to instruction_violation.
+syn_c1fca5b92cf0bc21,b96_049,1,,en,Basic Factual Accuracy,factual_error,,accept,TRUE,
+syn_84a3f0d934ccc9bd,b96_051,1,,en,Basic Factual Accuracy,factual_error,,accept,TRUE,
+syn_c8086d89e3d91986,b96_052,2,,zh,Basic Factual Accuracy,overconfident_wrong,,accept,TRUE,
+syn_66d28e845b747946,b96_053,2,,en,Basic Factual Accuracy,factual_error,,accept,TRUE,
+syn_b4d2170e929f70c0,b96_054,2,,zh,Basic Factual Accuracy,overconfident_wrong,,accept,TRUE,
+syn_504611b977350699,b96_056,3,,zh,Basic Factual Accuracy,overconfident_wrong,,accept,TRUE,
+syn_afae2bcd82728031,b96_057,1,,en,Domain Knowledge Accuracy,factual_error,,accept,TRUE,
+syn_b21164107c163c3e,b96_058,1,,zh,Domain Knowledge Accuracy,rubric_violation,factual_error,revise_error_type,TRUE,manual override: error_type revised from rubric_violation to factual_error.
+syn_09253e14970139e6,b96_059,1,,en,Domain Knowledge Accuracy,factual_error,,accept,TRUE,
+syn_eab74509411ddb5f,b96_060,2,,zh,Domain Knowledge Accuracy,rubric_violation,factual_error,revise_error_type,TRUE,manual override: error_type revised from rubric_violation to factual_error.
+syn_0cefcfbf9c371f9f,b96_061,2,,en,Domain Knowledge Accuracy,factual_error,,accept,TRUE,
+syn_2e332d4542524c50,b96_062,2,,zh,Domain Knowledge Accuracy,rubric_violation,factual_error,revise_error_type,TRUE,manual override: error_type revised from rubric_violation to factual_error.
+syn_3187b2c67a067d7d,b96_063,2,,en,Domain Knowledge Accuracy,factual_error,,accept,TRUE,
+syn_bc3a83cb8d92dfc0,b96_064,3,,zh,Domain Knowledge Accuracy,rubric_violation,factual_error,revise_error_type,TRUE,manual override: error_type revised from rubric_violation to factual_error.
+syn_2b02067d6cd76e78,b96_065,1,,en,Role & Tone Consistency,scenario_mismatch,,accept,TRUE,
+syn_1f3f4bf3d1e4288c,b96_066,1,2,zh,Role & Tone Consistency,superficial_fluency,,revise_label,TRUE,manual override: target label revised from 1 to 2.
+syn_7e6b2147dbaab22d,b96_067,1,,en,Role & Tone Consistency,scenario_mismatch,,accept,TRUE,
+syn_b2bf125c90b74cad,b96_068,2,,zh,Role & Tone Consistency,superficial_fluency,,accept,TRUE,
+syn_fb3da1fd660fa0d1,b96_069,2,,en,Role & Tone Consistency,scenario_mismatch,,accept,TRUE,format-only or shallow-output risk reviewed; accepted as low/boundary synthetic sample.
+syn_c1f7b5b3307f6537,b96_070,2,,zh,Role & Tone Consistency,superficial_fluency,,accept,TRUE,
+syn_278f26f7426bc862,b96_071,3,,en,Role & Tone Consistency,scenario_mismatch,,accept,TRUE,format-only or shallow-output risk reviewed; accepted as low/boundary synthetic sample.
+syn_28784ba134533fec,b96_072,3,,zh,Role & Tone Consistency,superficial_fluency,,accept,TRUE,format-only or shallow-output risk reviewed; accepted as low/boundary synthetic sample.
+syn_beedb805961c16f3,b96_073,1,,en,Content Relevance & Scope Control,scenario_mismatch,,accept,TRUE,
+syn_8c48afe220a3da6a,b96_074,1,,zh,Content Relevance & Scope Control,rubric_violation,scenario_mismatch,revise_error_type,TRUE,manual override: error_type revised from rubric_violation to scenario_mismatch.
+syn_6f75c3f1a4ee114f,b96_075,1,,en,Content Relevance & Scope Control,scenario_mismatch,,reject,FALSE,manual override: reject_from_low_score_pool / relabel upward archive; content may be too good for low-score pool.
+syn_942f8d9a1452adf5,b96_076,2,,zh,Content Relevance & Scope Control,rubric_violation,scenario_mismatch,revise_error_type,TRUE,manual override: error_type revised from rubric_violation to scenario_mismatch.
+syn_42c59111c5532284,b96_077,2,,en,Content Relevance & Scope Control,scenario_mismatch,,accept,TRUE,format-only heuristic risk reviewed under default policy; accepted as low/boundary synthetic sample.
+syn_ef5440a1929006b7,b96_078,2,,zh,Content Relevance & Scope Control,rubric_violation,scenario_mismatch,revise_error_type,TRUE,manual override: error_type revised from rubric_violation to scenario_mismatch.
+syn_b2fc302bafa59ac9,b96_079,3,,en,Content Relevance & Scope Control,scenario_mismatch,,accept,TRUE,
+syn_6804d8697be845c8,b96_080,3,,zh,Content Relevance & Scope Control,rubric_violation,,accept,TRUE,
+syn_be0c55c2a79384de,b96_081,1,2,en,"Clarity, Simplicity & Inspiration",superficial_fluency,,revise_label,TRUE,manual override: target label revised from 1 to 2.
+syn_c462648918e4b258,b96_083,1,,en,"Clarity, Simplicity & Inspiration",superficial_fluency,,accept,TRUE,
+syn_1a59f7c638953632,b96_084,2,,zh,"Clarity, Simplicity & Inspiration",rubric_violation,,accept,TRUE,format-only or shallow-output risk reviewed; accepted as low/boundary synthetic sample.
+syn_3cf5ef0e78eb8502,b96_085,2,,en,"Clarity, Simplicity & Inspiration",superficial_fluency,,accept,TRUE,
+syn_a017739a74f0f6fc,b96_086,2,,zh,"Clarity, Simplicity & Inspiration",rubric_violation,,accept,TRUE,format-only or shallow-output risk reviewed; accepted as low/boundary synthetic sample.
+syn_f77737026c871c7a,b96_087,3,,en,"Clarity, Simplicity & Inspiration",superficial_fluency,,accept,TRUE,
+syn_bf28699b3ae3fd73,b96_088,3,,zh,"Clarity, Simplicity & Inspiration",rubric_violation,superficial_fluency,revise_error_type,TRUE,manual override: error_type revised from rubric_violation to superficial_fluency.
+syn_d721f90674792944,b96_089,1,,en,"Motivation, Guidance & Positive Feedback",scenario_mismatch,,accept,TRUE,
+syn_beef4b0077943495,b96_090,1,,zh,"Motivation, Guidance & Positive Feedback",superficial_fluency,,accept,TRUE,
+syn_297c58f91f599858,b96_091,1,,en,"Motivation, Guidance & Positive Feedback",scenario_mismatch,,accept,TRUE,
+syn_7249df2a7777cfce,b96_092,2,,zh,"Motivation, Guidance & Positive Feedback",superficial_fluency,,accept,TRUE,
+syn_45410ad18a9c3687,b96_093,2,,en,"Motivation, Guidance & Positive Feedback",scenario_mismatch,,accept,TRUE,
+syn_a8d5bf87c88e086d,b96_094,2,,zh,"Motivation, Guidance & Positive Feedback",superficial_fluency,,accept,TRUE,
+syn_585b595943a9f19c,b96_095,3,,en,"Motivation, Guidance & Positive Feedback",scenario_mismatch,,accept,TRUE,
+syn_bc42d317803956c0,b96_096,3,,zh,"Motivation, Guidance & Positive Feedback",superficial_fluency,,accept,TRUE,

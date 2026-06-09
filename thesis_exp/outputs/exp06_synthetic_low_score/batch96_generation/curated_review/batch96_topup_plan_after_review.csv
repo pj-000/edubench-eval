@@ -1,0 +1,4 @@
+target_label_5,current_curated_count,final_target_count,remaining_needed,recommended_raw_topup_count,notes
+1,31,168,137,145,Recommended raw count uses observed batch96 filter pass rate 91/96; recalculate after each top-up batch.
+2,44,168,124,131,Recommended raw count uses observed batch96 filter pass rate 91/96; recalculate after each top-up batch.
+3,15,48,33,35,Recommended raw count uses observed batch96 filter pass rate 91/96; recalculate after each top-up batch.

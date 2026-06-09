@@ -1,0 +1,17 @@
+synthetic_id,synthetic_plan_id,decision,field_modified,original_value,revised_value,can_use_after_revision,manual_notes
+syn_0e265ba78949a6f9,b96_009,revise_label,target_label_5,1,2,TRUE,manual override: target label revised from 1 to 2.
+syn_47ae529de464a185,b96_017,revise_label,target_label_5,1,2,TRUE,manual override: target label revised from 1 to 2.
+syn_af7996a071bf4b15,b96_020,revise_error_type,error_type,rubric_violation,scenario_mismatch,TRUE,manual override: error_type revised from rubric_violation to scenario_mismatch.
+syn_a6800b496cebf41c,b96_025,revise_label,target_label_5,1,2,TRUE,manual override: target label revised from 1 to 2.
+syn_d8cdfb77f3898357,b96_048,revise_error_type,error_type,rubric_violation,instruction_violation,TRUE,manual override: error_type revised from rubric_violation to instruction_violation.
+syn_b21164107c163c3e,b96_058,revise_error_type,error_type,rubric_violation,factual_error,TRUE,manual override: error_type revised from rubric_violation to factual_error.
+syn_eab74509411ddb5f,b96_060,revise_error_type,error_type,rubric_violation,factual_error,TRUE,manual override: error_type revised from rubric_violation to factual_error.
+syn_2e332d4542524c50,b96_062,revise_error_type,error_type,rubric_violation,factual_error,TRUE,manual override: error_type revised from rubric_violation to factual_error.
+syn_bc3a83cb8d92dfc0,b96_064,revise_error_type,error_type,rubric_violation,factual_error,TRUE,manual override: error_type revised from rubric_violation to factual_error.
+syn_1f3f4bf3d1e4288c,b96_066,revise_label,target_label_5,1,2,TRUE,manual override: target label revised from 1 to 2.
+syn_8c48afe220a3da6a,b96_074,revise_error_type,error_type,rubric_violation,scenario_mismatch,TRUE,manual override: error_type revised from rubric_violation to scenario_mismatch.
+syn_6f75c3f1a4ee114f,b96_075,reject,curated_inclusion,included_in_filtered_pool,excluded_from_curated_low_score_pool,FALSE,manual override: reject_from_low_score_pool / relabel upward archive; content may be too good for low-score pool.
+syn_942f8d9a1452adf5,b96_076,revise_error_type,error_type,rubric_violation,scenario_mismatch,TRUE,manual override: error_type revised from rubric_violation to scenario_mismatch.
+syn_ef5440a1929006b7,b96_078,revise_error_type,error_type,rubric_violation,scenario_mismatch,TRUE,manual override: error_type revised from rubric_violation to scenario_mismatch.
+syn_be0c55c2a79384de,b96_081,revise_label,target_label_5,1,2,TRUE,manual override: target label revised from 1 to 2.
+syn_bf28699b3ae3fd73,b96_088,revise_error_type,error_type,rubric_violation,superficial_fluency,TRUE,manual override: error_type revised from rubric_violation to superficial_fluency.

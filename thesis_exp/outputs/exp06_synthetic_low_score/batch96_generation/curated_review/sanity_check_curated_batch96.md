@@ -1,0 +1,13 @@
+# Exp6-8 Curated Batch96 Sanity Check
+
+Overall status: **PASS**
+
+| check_name | status | count | notes |
+| --- | --- | ---: | --- |
+| curated_usable_plus_rejected_equals_91 | PASS | 91 | curated=90 rejected=1 total_filtered=91 |
+| no_duplicate_synthetic_id_curated | PASS | 0 | duplicate count |
+| target_label_5_only_1_2_3 | PASS | 3 | 1,2,3 |
+| original_filtered_file_unchanged | PASS | 0 | sha256=3f3f08939cfe0d90df6e7928c31fc960c1a653c36793c0be84ab89e1d5497566 |
+| api_call | PASS | 0 | No API call was made in Exp6-8. |
+| training | PASS | 0 | No model training was run in Exp6-8. |
+| checkpoint_weights_tracked | PASS | 0 | No checkpoint/weights files were created or staged by this task. |
