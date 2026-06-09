@@ -1,18 +1,17 @@
-# Exp6-5 Batch96 Review Package
+# Exp6-6 Batch96 Review Package
 
-- Can batch96 generation start? **YES**
-- Can full 384 generation start? **NO**
-- Can Exp6 training start? **NO**
-- Curated mini-batch usable count: **16**
-- Prompt hardening status: **PASS**
-- Filter hardening status: **PASS**
-- Source leakage status: **PASS**
-- API generation status: **DRY_RUN_NO_API_CALL**
-- Synthetic generated: **NO**
+- Planned count: **96**
+- Generated count: **0**
+- Normalized count: **0**
+- Filtered pass count: **0**
+- Leakage status: **BLOCKED_NO_GENERATION**
+- Label distribution after filter: `{}`
+- Language distribution after filter: `{}`
+- Metric coverage after filter: **0**
+- Error type coverage after filter: **0**
+- Spotcheck required: **YES**
+- Full 384 generation can start: **NO**
+- Exp6 training can start: **NO**
 
-Notes:
-
-- This package authorizes only the next 96-row generation batch after API approval.
-- Direct full 384-row generation remains blocked.
-- Exp6 training remains blocked until batch96 results are generated, filtered, leakage-checked,
-  and manually reviewed.
+If any dev/test leakage is detected, this package is BLOCKED. Synthetic labels remain
+`synthetic_design` pseudo-labels and must not be treated as human labels.
