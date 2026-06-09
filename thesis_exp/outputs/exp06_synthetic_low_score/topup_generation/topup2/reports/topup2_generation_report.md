@@ -1,0 +1,26 @@
+# Exp6-10 Topup-2 Synthetic Generation Report
+
+## Status
+
+- Static checks status: **PASS**
+- API called: **NO**
+- API generation status: **EXP6_RUN_GENERATION is not set to 1**
+- Planned count: **160**
+- Generated count: **0**
+- Normalized count: **0**
+- Filtered pass count: **0**
+- Leakage status: **BLOCKED_NO_GENERATION**
+
+## Filtered Distribution
+
+- Label distribution: `{}`
+- Language distribution: `{}`
+- Metric coverage: **0**
+- Error type coverage: **0**
+- Error type distribution: `{}`
+- Manual review required count: **0**
+
+## Gates
+
+- Can full 384 generation start: **NO**
+- Exp6 training can start: **NO**

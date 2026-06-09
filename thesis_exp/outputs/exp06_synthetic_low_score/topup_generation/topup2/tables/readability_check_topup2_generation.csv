@@ -1,0 +1,40 @@
+check_name,path,status,details
+file_size_under_10mb,thesis_exp/outputs/exp06_synthetic_low_score/topup_generation/topup2/filtered/filtered_synthetic_candidates.jsonl,PASS,bytes=0
+lf_endings,thesis_exp/outputs/exp06_synthetic_low_score/topup_generation/topup2/filtered/filtered_synthetic_candidates.jsonl,PASS,LF/no CR newline
+jsonl_loadable,thesis_exp/outputs/exp06_synthetic_low_score/topup_generation/topup2/filtered/filtered_synthetic_candidates.jsonl,PASS,records=0
+file_size_under_10mb,thesis_exp/outputs/exp06_synthetic_low_score/topup_generation/topup2/generated/normalized_synthetic_candidates.jsonl,PASS,bytes=0
+lf_endings,thesis_exp/outputs/exp06_synthetic_low_score/topup_generation/topup2/generated/normalized_synthetic_candidates.jsonl,PASS,LF/no CR newline
+jsonl_loadable,thesis_exp/outputs/exp06_synthetic_low_score/topup_generation/topup2/generated/normalized_synthetic_candidates.jsonl,PASS,records=0
+file_size_under_10mb,thesis_exp/outputs/exp06_synthetic_low_score/topup_generation/topup2/leakage/leakage_details.csv,PASS,bytes=368
+lf_endings,thesis_exp/outputs/exp06_synthetic_low_score/topup_generation/topup2/leakage/leakage_details.csv,PASS,LF/no CR newline
+csv_readable,thesis_exp/outputs/exp06_synthetic_low_score/topup_generation/topup2/leakage/leakage_details.csv,PASS,rows=1
+file_size_under_10mb,thesis_exp/outputs/exp06_synthetic_low_score/topup_generation/topup2/leakage/leakage_report.md,PASS,bytes=608
+lf_endings,thesis_exp/outputs/exp06_synthetic_low_score/topup_generation/topup2/leakage/leakage_report.md,PASS,LF/no CR newline
+file_size_under_10mb,thesis_exp/outputs/exp06_synthetic_low_score/topup_generation/topup2/leakage/leakage_summary.csv,PASS,bytes=284
+lf_endings,thesis_exp/outputs/exp06_synthetic_low_score/topup_generation/topup2/leakage/leakage_summary.csv,PASS,LF/no CR newline
+csv_readable,thesis_exp/outputs/exp06_synthetic_low_score/topup_generation/topup2/leakage/leakage_summary.csv,PASS,rows=5
+file_size_under_10mb,thesis_exp/outputs/exp06_synthetic_low_score/topup_generation/topup2/prompts/topup2_prompts.jsonl,PASS,bytes=898711
+lf_endings,thesis_exp/outputs/exp06_synthetic_low_score/topup_generation/topup2/prompts/topup2_prompts.jsonl,PASS,LF/no CR newline
+jsonl_loadable,thesis_exp/outputs/exp06_synthetic_low_score/topup_generation/topup2/prompts/topup2_prompts.jsonl,PASS,records=160
+file_size_under_10mb,thesis_exp/outputs/exp06_synthetic_low_score/topup_generation/topup2/reports/BLOCKED_NO_GENERATION.md,PASS,bytes=1420
+lf_endings,thesis_exp/outputs/exp06_synthetic_low_score/topup_generation/topup2/reports/BLOCKED_NO_GENERATION.md,PASS,LF/no CR newline
+file_size_under_10mb,thesis_exp/outputs/exp06_synthetic_low_score/topup_generation/topup2/spotcheck/spotcheck_guidelines.md,PASS,bytes=372
+lf_endings,thesis_exp/outputs/exp06_synthetic_low_score/topup_generation/topup2/spotcheck/spotcheck_guidelines.md,PASS,LF/no CR newline
+file_size_under_10mb,thesis_exp/outputs/exp06_synthetic_low_score/topup_generation/topup2/spotcheck/spotcheck_samples.csv,PASS,bytes=562
+lf_endings,thesis_exp/outputs/exp06_synthetic_low_score/topup_generation/topup2/spotcheck/spotcheck_samples.csv,PASS,LF/no CR newline
+csv_readable,thesis_exp/outputs/exp06_synthetic_low_score/topup_generation/topup2/spotcheck/spotcheck_samples.csv,PASS,rows=1
+file_size_under_10mb,thesis_exp/outputs/exp06_synthetic_low_score/topup_generation/topup2/tables/filter_failure_details.csv,PASS,bytes=285
+lf_endings,thesis_exp/outputs/exp06_synthetic_low_score/topup_generation/topup2/tables/filter_failure_details.csv,PASS,LF/no CR newline
+csv_readable,thesis_exp/outputs/exp06_synthetic_low_score/topup_generation/topup2/tables/filter_failure_details.csv,PASS,rows=1
+file_size_under_10mb,thesis_exp/outputs/exp06_synthetic_low_score/topup_generation/topup2/tables/filter_report.csv,PASS,bytes=266
+lf_endings,thesis_exp/outputs/exp06_synthetic_low_score/topup_generation/topup2/tables/filter_report.csv,PASS,LF/no CR newline
+csv_readable,thesis_exp/outputs/exp06_synthetic_low_score/topup_generation/topup2/tables/filter_report.csv,PASS,rows=5
+file_size_under_10mb,thesis_exp/outputs/exp06_synthetic_low_score/topup_generation/topup2/tables/static_checks_topup2_generation.csv,PASS,bytes=848
+lf_endings,thesis_exp/outputs/exp06_synthetic_low_score/topup_generation/topup2/tables/static_checks_topup2_generation.csv,PASS,LF/no CR newline
+csv_readable,thesis_exp/outputs/exp06_synthetic_low_score/topup_generation/topup2/tables/static_checks_topup2_generation.csv,PASS,rows=14
+file_size_under_10mb,thesis_exp/outputs/exp06_synthetic_low_score/topup_generation/topup2/tables/topup2_source_selection.csv,PASS,bytes=558674
+lf_endings,thesis_exp/outputs/exp06_synthetic_low_score/topup_generation/topup2/tables/topup2_source_selection.csv,PASS,LF/no CR newline
+csv_readable,thesis_exp/outputs/exp06_synthetic_low_score/topup_generation/topup2/tables/topup2_source_selection.csv,PASS,rows=161
+file_size_under_10mb,thesis_exp/outputs/exp06_synthetic_low_score/topup_generation/topup2/tables/topup2_target_matrix.csv,PASS,bytes=31735
+lf_endings,thesis_exp/outputs/exp06_synthetic_low_score/topup_generation/topup2/tables/topup2_target_matrix.csv,PASS,LF/no CR newline
+csv_readable,thesis_exp/outputs/exp06_synthetic_low_score/topup_generation/topup2/tables/topup2_target_matrix.csv,PASS,rows=161
