@@ -85,7 +85,7 @@ BATCH96_TOPUP_PLAN_PATH = (
 )
 BATCH96_PROMPT_TEMPLATE_DIR = EXP06_BATCH96_OUTPUT_DIR / "prompt_templates"
 
-TOPUP1_PROMPT_VERSION = "exp06_topup1_hardened_v1"
+TOPUP1_PROMPT_VERSION = "exp06_topup1_thinking_hardened_v2"
 TOPUP1_TARGET_LABEL_COUNTS = {"1": 75, "2": 68, "3": 17}
 TOPUP1_LANGUAGE_COUNTS = {"en": 80, "zh": 80}
 TOPUP1_TOTAL_TARGET = sum(TOPUP1_TARGET_LABEL_COUNTS.values())
@@ -409,9 +409,35 @@ def unavailable_source_row(target: dict[str, Any]) -> dict[str, Any]:
     return row
 
 
+def thinking_low_score_guard(language: str) -> str:
+    if language == "zh":
+        return """
+
+Thinking-mode low-label guard:
+- 推理模式会倾向于把答案修好；不要让最终 `answer_synthetic` 变成好答案。
+- `answer_synthetic` 本身必须保留可见的 rubric-relevant 缺陷，而不只是审计字段说明有缺陷。
+- 目标标签 1：答案必须有严重实质性失败，例如核心事实/推理/场景/指令明显错误；不能只是格式差、语气普通或细节不足。
+- 目标标签 2：答案必须有主要缺陷，使其不可靠；不能是最终结论正确且只有轻微遗漏。
+- 目标标签 3：答案必须是边界质量，有清楚可扣分的弱点；不能明显达到 4 分或 5 分。
+- 如果你发现最终答案已经明显高于目标标签，必须设置 `needs_revision=true`，并说明 `revision_reason`。
+- 最终答案不要提及标签、评分、实验、生成、低分、故意错误或 synthetic 身份。
+"""
+    return """
+
+Thinking-mode low-label guard:
+- Thinking mode tends to repair answers; do not let the final `answer_synthetic` become a good answer.
+- The `answer_synthetic` itself must keep a visible rubric-relevant failure, not merely describe a failure in the audit fields.
+- Target label 1: include a severe substantive failure, such as a clearly wrong core fact, reasoning path, scenario use, or instruction response; do not make it only a formatting, tone, or detail issue.
+- Target label 2: include a major defect that makes the answer unreliable; do not provide a correct final answer with only minor omissions.
+- Target label 3: keep it at boundary quality with a clear weakness a human reviewer would mark down; do not let it reach obvious label 4 or 5 quality.
+- If the final answer is clearly stronger than the target label, set `needs_revision=true` and explain `revision_reason`.
+- The final answer must not mention labels, scoring, experiments, generation, low-quality intent, or synthetic identity.
+"""
+
+
 def render_prompt(source_row: dict[str, Any], train_row: dict[str, Any], templates: dict[str, str]) -> str:
     key = "zh" if source_row.get("language") == "zh" else "en"
-    return templates[key].format(
+    rendered = templates[key].format(
         language="Chinese" if key == "zh" else "English",
         metric_canonical=source_row.get("metric_canonical", ""),
         target_label_5=source_row.get("target_label_5", ""),
@@ -420,6 +446,7 @@ def render_prompt(source_row: dict[str, Any], train_row: dict[str, Any], templat
         rubric_text=stringify(train_row.get("rubric")),
         source_answer=truncate_text(train_row.get("answer"), 1500),
     )
+    return rendered + thinking_low_score_guard(key)
 
 
 def build_prompts(source_rows: list[dict[str, Any]]) -> list[dict[str, Any]]:

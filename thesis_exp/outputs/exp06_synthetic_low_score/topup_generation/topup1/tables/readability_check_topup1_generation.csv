@@ -13,11 +13,19 @@ lf_endings,thesis_exp/outputs/exp06_synthetic_low_score/topup_generation/topup1/
 file_size_under_10mb,thesis_exp/outputs/exp06_synthetic_low_score/topup_generation/topup1/leakage/leakage_summary.csv,PASS,bytes=284
 lf_endings,thesis_exp/outputs/exp06_synthetic_low_score/topup_generation/topup1/leakage/leakage_summary.csv,PASS,LF/no CR newline
 csv_readable,thesis_exp/outputs/exp06_synthetic_low_score/topup_generation/topup1/leakage/leakage_summary.csv,PASS,rows=5
-file_size_under_10mb,thesis_exp/outputs/exp06_synthetic_low_score/topup_generation/topup1/prompts/topup1_prompts.jsonl,PASS,bytes=753659
+file_size_under_10mb,thesis_exp/outputs/exp06_synthetic_low_score/topup_generation/topup1/prompts/topup1_prompts.jsonl,PASS,bytes=907819
 lf_endings,thesis_exp/outputs/exp06_synthetic_low_score/topup_generation/topup1/prompts/topup1_prompts.jsonl,PASS,LF/no CR newline
 jsonl_loadable,thesis_exp/outputs/exp06_synthetic_low_score/topup_generation/topup1/prompts/topup1_prompts.jsonl,PASS,records=160
 file_size_under_10mb,thesis_exp/outputs/exp06_synthetic_low_score/topup_generation/topup1/reports/BLOCKED_NO_GENERATION.md,PASS,bytes=1411
 lf_endings,thesis_exp/outputs/exp06_synthetic_low_score/topup_generation/topup1/reports/BLOCKED_NO_GENERATION.md,PASS,LF/no CR newline
+file_size_under_10mb,thesis_exp/outputs/exp06_synthetic_low_score/topup_generation/topup1/reports/notion_exp06_topup1_summary.md,PASS,bytes=616
+lf_endings,thesis_exp/outputs/exp06_synthetic_low_score/topup_generation/topup1/reports/notion_exp06_topup1_summary.md,PASS,LF/no CR newline
+file_size_under_10mb,thesis_exp/outputs/exp06_synthetic_low_score/topup_generation/topup1/reports/sanity_check_topup1_generation.md,PASS,bytes=581
+lf_endings,thesis_exp/outputs/exp06_synthetic_low_score/topup_generation/topup1/reports/sanity_check_topup1_generation.md,PASS,LF/no CR newline
+file_size_under_10mb,thesis_exp/outputs/exp06_synthetic_low_score/topup_generation/topup1/reports/topup1_generation_report.md,PASS,bytes=652
+lf_endings,thesis_exp/outputs/exp06_synthetic_low_score/topup_generation/topup1/reports/topup1_generation_report.md,PASS,LF/no CR newline
+file_size_under_10mb,thesis_exp/outputs/exp06_synthetic_low_score/topup_generation/topup1/reports/topup1_review_package.md,PASS,bytes=573
+lf_endings,thesis_exp/outputs/exp06_synthetic_low_score/topup_generation/topup1/reports/topup1_review_package.md,PASS,LF/no CR newline
 file_size_under_10mb,thesis_exp/outputs/exp06_synthetic_low_score/topup_generation/topup1/spotcheck/spotcheck_guidelines.md,PASS,bytes=371
 lf_endings,thesis_exp/outputs/exp06_synthetic_low_score/topup_generation/topup1/spotcheck/spotcheck_guidelines.md,PASS,LF/no CR newline
 file_size_under_10mb,thesis_exp/outputs/exp06_synthetic_low_score/topup_generation/topup1/spotcheck/spotcheck_samples.csv,PASS,bytes=562
@@ -29,12 +37,18 @@ csv_readable,thesis_exp/outputs/exp06_synthetic_low_score/topup_generation/topup
 file_size_under_10mb,thesis_exp/outputs/exp06_synthetic_low_score/topup_generation/topup1/tables/filter_report.csv,PASS,bytes=266
 lf_endings,thesis_exp/outputs/exp06_synthetic_low_score/topup_generation/topup1/tables/filter_report.csv,PASS,LF/no CR newline
 csv_readable,thesis_exp/outputs/exp06_synthetic_low_score/topup_generation/topup1/tables/filter_report.csv,PASS,rows=5
+file_size_under_10mb,thesis_exp/outputs/exp06_synthetic_low_score/topup_generation/topup1/tables/readability_check_topup1_generation.csv,PASS,bytes=5313
+lf_endings,thesis_exp/outputs/exp06_synthetic_low_score/topup_generation/topup1/tables/readability_check_topup1_generation.csv,PASS,LF/no CR newline
+csv_readable,thesis_exp/outputs/exp06_synthetic_low_score/topup_generation/topup1/tables/readability_check_topup1_generation.csv,PASS,rows=40
+file_size_under_10mb,thesis_exp/outputs/exp06_synthetic_low_score/topup_generation/topup1/tables/sanity_check_topup1_generation.csv,PASS,bytes=408
+lf_endings,thesis_exp/outputs/exp06_synthetic_low_score/topup_generation/topup1/tables/sanity_check_topup1_generation.csv,PASS,LF/no CR newline
+csv_readable,thesis_exp/outputs/exp06_synthetic_low_score/topup_generation/topup1/tables/sanity_check_topup1_generation.csv,PASS,rows=9
 file_size_under_10mb,thesis_exp/outputs/exp06_synthetic_low_score/topup_generation/topup1/tables/static_checks_topup1_generation.csv,PASS,bytes=840
 lf_endings,thesis_exp/outputs/exp06_synthetic_low_score/topup_generation/topup1/tables/static_checks_topup1_generation.csv,PASS,LF/no CR newline
 csv_readable,thesis_exp/outputs/exp06_synthetic_low_score/topup_generation/topup1/tables/static_checks_topup1_generation.csv,PASS,rows=14
 file_size_under_10mb,thesis_exp/outputs/exp06_synthetic_low_score/topup_generation/topup1/tables/topup1_source_selection.csv,PASS,bytes=563229
 lf_endings,thesis_exp/outputs/exp06_synthetic_low_score/topup_generation/topup1/tables/topup1_source_selection.csv,PASS,LF/no CR newline
 csv_readable,thesis_exp/outputs/exp06_synthetic_low_score/topup_generation/topup1/tables/topup1_source_selection.csv,PASS,rows=161
-file_size_under_10mb,thesis_exp/outputs/exp06_synthetic_low_score/topup_generation/topup1/tables/topup1_target_matrix.csv,PASS,bytes=30135
+file_size_under_10mb,thesis_exp/outputs/exp06_synthetic_low_score/topup_generation/topup1/tables/topup1_target_matrix.csv,PASS,bytes=31575
 lf_endings,thesis_exp/outputs/exp06_synthetic_low_score/topup_generation/topup1/tables/topup1_target_matrix.csv,PASS,LF/no CR newline
 csv_readable,thesis_exp/outputs/exp06_synthetic_low_score/topup_generation/topup1/tables/topup1_target_matrix.csv,PASS,rows=161
