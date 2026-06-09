@@ -5,10 +5,10 @@ Overall status: **PASS**
 | check_name | status | count | notes |
 | --- | --- | --- | --- |
 | static_checks_status | PASS | 13 | pre-generation checks |
-| api_called | INFO | 0 | EXP6_RUN_GENERATION is not set to 1 |
-| generated_count | PASS | 0 | 0 only allowed for blocked generation |
-| normalized_count | PASS | 0 | normalized rows |
-| filtered_pass_count | BLOCKED_NO_GENERATION | 0 | filtered rows |
-| leakage_status | PASS | 0 | BLOCKED_NO_GENERATION |
+| api_called | INFO | 1 | API_CALLED |
+| generated_count | PASS | 160 | 0 only allowed for blocked generation |
+| normalized_count | PASS | 160 | normalized rows |
+| filtered_pass_count | INFO | 152 | filtered rows |
+| leakage_status | PASS | 152 | PASS |
 | full_384_generation_blocked | PASS | 0 | NO |
 | exp6_training_blocked | PASS | 0 | NO |

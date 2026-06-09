@@ -1,6 +1,6 @@
 # Exp6-9 Topup-1 Spotcheck Guidelines
 
-Samples to review: **0**
+Samples to review: **36**
 
 If filtered samples are 80 or fewer, review all. Otherwise review this stratified sample,
 covering labels, languages, error types, and metrics.
