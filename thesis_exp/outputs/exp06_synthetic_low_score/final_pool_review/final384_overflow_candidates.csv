@@ -1,0 +1,16 @@
+exp06_source_batch,synthetic_id,synthetic_plan_id,target_label_5,language,metric_canonical,error_type,source_record_id,overflow_reason
+topup2,syn_00ef1d6d7d55fb85,topup2_129,3,en,Role & Tone Consistency,scenario_mismatch,208e03280a4906e1eafbe393d9d1a9120371d9be,label target already filled for final384 review pool
+topup2,syn_c5284b8deae549d3,topup2_135,3,en,"Personalization, Adaptation & Learning Support",rubric_violation,bfa79a451124e92a28ed189db1d126bbe01a9177,label target already filled for final384 review pool
+topup2,syn_f9ca9fc436064bb7,topup2_142,3,zh,Content Relevance & Scope Control,rubric_violation,2cf9e710776d19bacad7fc5a658ab0dd7b067a8b,label target already filled for final384 review pool
+topup2,syn_0d542f592ece3ad6,topup2_145,2,en,Reasoning Process Rigor,reasoning_gap,58d2dfaff00ed810e9435965e125903ed5b4b23a,label target already filled for final384 review pool
+topup2,syn_9b0dfac302d728c2,topup2_147,2,en,"Personalization, Adaptation & Learning Support",scenario_mismatch,83f392c23a425eb68ae94e2a3ab603cbf9f7b1a0,label target already filled for final384 review pool
+topup2,syn_e1117ba847674152,topup2_149,3,en,Error Identification & Correction Precision,factual_error,1214a9796760bb201b38fce79c99471cc31271d2,label target already filled for final384 review pool
+topup2,syn_7b1ebb71d8cc1288,topup2_150,2,zh,Instruction Following & Task Completion,instruction_violation,29e8219a42872cc76890bf6973ffb47bffbc5603,label target already filled for final384 review pool
+topup2,syn_bfb92e89066756aa,topup2_152,2,zh,Domain Knowledge Accuracy,factual_error,50a3784db7682a849c290dc0d6dd48ee89d7d85e,label target already filled for final384 review pool
+topup2,syn_e190943693a70f42,topup2_154,2,zh,Content Relevance & Scope Control,scenario_mismatch,2d1b10f8a0728eba52d7750557f6547f5fd36ec7,label target already filled for final384 review pool
+topup2,syn_bd7043bf6b9fb814,topup2_155,1,en,"Clarity, Simplicity & Inspiration",superficial_fluency,00cc2234e9bc1e2ee6ccbfcbedb59354ed0d0403,label target already filled for final384 review pool
+topup2,syn_5b9278b624590984,topup2_156,3,zh,"Motivation, Guidance & Positive Feedback",scenario_mismatch,b54da7cc935ebea5fc479d17f7713e8c59f50ee2,label target already filled for final384 review pool
+topup2,syn_28f904bfc99ce183,topup2_157,2,en,Reasoning Process Rigor,overconfident_wrong,923c5901d25da7cdda1620ca49e007b31b4a11f2,label target already filled for final384 review pool
+topup2,syn_3b673d0eb55844ed,topup2_158,1,zh,Scenario Element Integration,instruction_violation,7caac849459b7c559fded7587661b8890d26dfa2,label target already filled for final384 review pool
+topup2,syn_61429304c81176f4,topup2_159,2,en,"Personalization, Adaptation & Learning Support",rubric_violation,149f9441c4d8d11ab5ae76d131041560ce986240,label target already filled for final384 review pool
+topup2,syn_6b9597789401cbab,topup2_160,1,zh,Higher-Order Thinking & Skill Development,superficial_fluency,8ec21e1d66dfa1c7c38f8c24cbbab5d4298cdbb2,label target already filled for final384 review pool

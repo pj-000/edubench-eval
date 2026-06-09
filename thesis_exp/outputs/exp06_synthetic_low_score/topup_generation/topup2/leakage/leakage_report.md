@@ -1,8 +1,8 @@
-# Exp6-10 Topup-2 Leakage Report
+# Exp6-11 Topup-2 Leakage Report
 
-Status: **BLOCKED_NO_GENERATION**
+Status: **PASS**
 
-- Filtered rows checked: **0**
+- Filtered rows checked: **157**
 - Blocked rows: **0**
 - Leakage summary: `thesis_exp/outputs/exp06_synthetic_low_score/topup_generation/topup2/leakage/leakage_summary.csv`
 - Leakage details: `thesis_exp/outputs/exp06_synthetic_low_score/topup_generation/topup2/leakage/leakage_details.csv`

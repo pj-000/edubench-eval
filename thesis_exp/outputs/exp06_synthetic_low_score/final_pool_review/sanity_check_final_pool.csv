@@ -1,0 +1,9 @@
+check_name,status,count,notes
+combined_count_399,PASS,399,Batch96 curated + Topup1 curated + Topup2 filtered
+final384_count,PASS,384,selected final quality review pool
+final384_label_distribution,PASS,384,"{""1"": 168, ""2"": 168, ""3"": 48}"
+no_duplicate_synthetic_id,PASS,0,final384 pool
+no_duplicate_answer_hash,PASS,0,normalized answer hash
+all_sources_train,PASS,0,source_split must be train
+topup2_leakage_pass,PASS,0,Topup2 leakage summary blocked rows=0
+training_blocked,PASS,0,Exp6 training remains NO until quality review/curation complete
