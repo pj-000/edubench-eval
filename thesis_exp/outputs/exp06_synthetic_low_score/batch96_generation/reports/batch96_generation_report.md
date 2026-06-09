@@ -4,7 +4,7 @@
 
 - Static checks status: **PASS**
 - API called: **NO**
-- API generation status: **EXP6_RUN_GENERATION is not set to 1**
+- API generation status: **missing API key or local GENERATION_ENDPOINT**
 - Planned count: **96**
 - Generated count: **0**
 - Normalized count: **0**

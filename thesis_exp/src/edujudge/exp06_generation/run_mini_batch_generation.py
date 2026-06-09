@@ -125,6 +125,22 @@ def max_tokens_from_env(default: int = 2048) -> int:
         return default
 
 
+def thinking_type_from_env() -> str:
+    raw = os.getenv("GENERATION_THINKING", os.getenv("DEEPSEEK_THINKING", "")).strip().lower()
+    if raw in {"1", "true", "yes", "y", "on", "enabled", "enable"}:
+        return "enabled"
+    if raw in {"0", "false", "no", "n", "off", "disabled", "disable"}:
+        return "disabled"
+    return ""
+
+
+def reasoning_effort_from_env(default: str = "high") -> str:
+    raw = os.getenv("GENERATION_REASONING_EFFORT", os.getenv("DEEPSEEK_REASONING_EFFORT", default)).strip().lower()
+    if raw in {"max", "high"}:
+        return raw
+    return default
+
+
 def strip_code_fence(text: str) -> str:
     stripped = text.strip()
     match = re.match(r"^```(?:json)?\s*(.*?)\s*```$", stripped, flags=re.DOTALL | re.IGNORECASE)
@@ -168,14 +184,22 @@ def post_chat_completion(endpoint: str, api_key: str, model: str, prompt: str, t
     headers = {"Content-Type": "application/json"}
     if api_key:
         headers["Authorization"] = f"Bearer {api_key}"
+    thinking_type = thinking_type_from_env()
     payload = {
         "model": model,
         "messages": [{"role": "user", "content": prompt}],
-        "temperature": 0.4,
         "max_tokens": max_tokens_from_env(),
         "stream": False,
         "response_format": {"type": "json_object"},
     }
+    if thinking_type == "enabled":
+        payload["thinking"] = {"type": "enabled"}
+        payload["reasoning_effort"] = reasoning_effort_from_env()
+    elif thinking_type == "disabled":
+        payload["thinking"] = {"type": "disabled"}
+        payload["temperature"] = 0.4
+    else:
+        payload["temperature"] = 0.4
     request = urllib.request.Request(
         endpoint,
         data=json.dumps(payload, ensure_ascii=False).encode("utf-8"),
@@ -189,6 +213,9 @@ def post_chat_completion(endpoint: str, api_key: str, model: str, prompt: str, t
     if not choices:
         return json.dumps(body, ensure_ascii=False)
     message = choices[0].get("message") or {}
+    # DeepSeek thinking mode may return reasoning_content alongside content.
+    # Only persist final content because the generation artifact needs valid JSON,
+    # not chain-of-thought traces.
     return str(message.get("content") or choices[0].get("text") or "")
 
 

@@ -2,7 +2,7 @@
 
 Generation was not executed and no synthetic rows were fabricated.
 
-Reason: **EXP6_RUN_GENERATION is not set to 1**
+Reason: **missing API key or local GENERATION_ENDPOINT**
 
 Required environment:
 
