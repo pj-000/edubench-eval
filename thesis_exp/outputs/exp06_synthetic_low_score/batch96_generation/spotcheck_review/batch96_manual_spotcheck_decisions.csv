@@ -1,0 +1,689 @@
+synthetic_id,synthetic_plan_id,target_label_5,suggested_label_5,language,metric_canonical,error_type,suggested_error_type,answer_synthetic,rationale_for_label,expected_failure_against_rubric,manual_quality_ok,manual_label_plausible,manual_error_type_match,manual_language_ok,manual_naturalness_ok,manual_no_artifact_ok,manual_rubric_alignment_ok,too_good_for_target_label,decision,can_use_after_revision,manual_notes
+syn_cdaf79084c7a0f1a,b96_001,1,,en,Reasoning Process Rigor,reasoning_gap,,"{""Corrected Answer"": ""Hemoglobin helps in moving oxygen and also fights bacteria sometimes."", ""Error Explanation"": ""The original answer is wrong because hemoglobin does fight infections but not by destroying bacteria directly. It does it by carrying oxygen which helps cells fight infections. So the primary function is to transport oxygen, but it also has a role in immunity. So the corrected answer includes both.""}","The error explanation presents chaotic logic, contradicting itself about hemoglobin's role in immunity and failing to provide a clear, correct primary function. The reasoning is irrelevant and incorrect, fitting the rubric for label 1: virtually no valid reasoning.","Severe reasoning gap: the explanation jumps between incorrect claims about hemoglobin fighting infections and transporting oxygen, with no coherent logic, resulting in a chaotic and invalid argument.",,,,,,,,not_detected,,,
+syn_073f080987ab64fe,b96_002,1,,zh,Reasoning Process Rigor,overconfident_wrong,,纠错后答案：物体滑动的距离是0.5米。纠错说明：因为摩擦力是10 N，质量2 kg，所以加速度是5 m/s²，然后用公式v²=2as，5²=2×5×s，所以s=25/10=0.25米，但考虑到时间，最终是0.5米。,推理过程包含明显计算错误和逻辑混乱，公式使用不当，结论不可靠。,推理步骤存在严重错误：虽然加速度计算正确，但运动学公式使用错误（应使用v²=u²+2as且需考虑符号），计算过程得出0.25米后无理由地加倍，逻辑跳跃，缺乏有效论证，完全符合1分标准。,,,,,,,,not_detected,,,
+syn_d792ed5f8efb6ea8,b96_003,1,,en,Reasoning Process Rigor,reasoning_gap,,"Nash Equilibrium is a situation in a game where players can get the maximum payoff possible. It was discovered by John Nash. To find it, you simply look at each player's payoffs in the payoff matrix and choose the strategy that gives them the highest number. For example, in a two-player game, if Player 1 has payoffs of 4 and 2 for two strategies, they will always choose the one with 4. Then Player 2 does the same. The Nash Equilibrium is just the combination where both pick their highest payoffs. Sometimes there are multiple, but you just pick the one that is best for everyone.","The answer contains virtually no valid reasoning. It equates Nash equilibrium with maximum payoffs, ignores mutual best responses, and provides a method that is logically incoherent and irrelevant to the concept. The logic is chaotic and the steps are incorrect.","The answer fails because it shows no understanding of mutual best responses or strategic interdependence. The reasoning is reduced to picking the highest numbers, which is a severe logical gap and renders the entire explanation incorrect.",,,,,,,,not_detected,,,
+syn_a776b8f509e6c239,b96_004,1,,zh,Reasoning Process Rigor,overconfident_wrong,,我认为只有E. 学校的地理位置是影响因素。其他选项如A、B、C、D都不是独立因素，它们都由地理位置决定，所以可以忽略。所以正确答案是E。,回答几乎没有推理过程，只是武断地宣称E是唯一因素，并用错误逻辑认为其他因素不重要。没有提供任何证据或逻辑步骤，结论完全错误，符合1分标准。,推理过程不存在，只有断言，逻辑混乱，得出错误结论。,,,,,,,,not_detected,,,
+syn_5dc6c8dd418ddfa8,b96_005,2,,en,Reasoning Process Rigor,reasoning_gap,,"{
+  ""Score"": 0,
+  ""Scoring Details"": {
+    ""Correct Answer"": ""C) Happy"",
+    ""Explanation"": ""An adjective is a word that describes a noun or pronoun. 'Happy' is an adjective because it describes a state of being. However, 'Quickly' is an adverb, but it can also act as an adjective in some sentences, like 'a quickly train' though it's not common. So the best answer is C."",
+    ""Student's Response"": ""B) Quickly"",
+    ""Feedback"": ""You answered B. That's actually an adverb most of the time, but sometimes it can be an adjective. However, for this test, C is the right answer.""
+  },
+  ""Personalized Feedback"": {
+    ""Advice"": ""Remember that adjectives describe nouns. Try to see if the word can fit in 'the _____ thing'. 'Happy' works, 'quickly' doesn't usually. So choose Happy.""
+  }
+}","The explanation contains a major logical flaw: it correctly defines an adjective but then incorrectly suggests that 'Quickly' can sometimes be an adjective, introducing an irrelevant and non-standard example. This creates confusion and makes the feedback unreliable, lacking clear and rigorous steps.","Reasoning has major logical flaws and confusion in steps (contradicts itself by identifying 'Quickly' as an adverb then as a potential adjective), which undermines the reliability of the answer.",,,,,,,,not_detected,,,
+syn_fbea43f99af20f1c,b96_006,2,,zh,Reasoning Process Rigor,overconfident_wrong,,思路：动机主要受个体内在的生物驱力和外部环境条件制约。社会文化因素本质上是通过环境施加影响，可归为环境因素；遗传因素与生物学因素高度重叠，无需单列。因此，真正独立影响行为动机的是生物学因素、认知因素和环境因素，对应选项A、C、D。,该回答用断言式语气排除了社会文化因素和遗传因素，推理过程存在明显的逻辑错误和步骤缺失（如错误归类、过于简化），导致结论不可靠，符合2分标准。,回答错误地认为社会文化因素和遗传因素不是独立影响因素，将前者简单归入环境因素，将后者与生物学因素混淆，没有提供充分论证，推理链条断裂，属于“明显的逻辑错误、步骤混乱或严重缺失”。,,,,,,,,not_detected,,,
+syn_a9fabe58b42413ca,b96_007,2,,en,Reasoning Process Rigor,reasoning_gap,,"While all factors are important, the most crucial factor is the irrigation method. This is because water is essential for plant growth, and the method of irrigation can control how much water the plant receives. Even in dry regions, if you have a good irrigation system, you can supply enough water. Climate conditions like rainfall are unreliable, but with proper irrigation, you can always provide water. Soil pH and seed variety are less important because they can be adjusted. Therefore, irrigation method overrides climate conditions as the most critical factor.","The reasoning contains a major logical flaw by overemphasizing irrigation and ignoring other critical climate factors like temperature and sunlight, reducing reliability.","The reasoning exhibits a critical omission (ignoring non-water climate aspects) and a logical gap in claiming irrigation can fully substitute for overall climate, making the reasoning unreliable.",,,,,,,,not_detected,,,
+syn_8e2bd5a30ecbe08f,b96_008,3,,zh,Reasoning Process Rigor,overconfident_wrong,,"对于这个分子，我首先分析了它含有的官能团：一个是羧基(-COOH)，另一个是酯基(-COOR')。羧基有酸性，酯基可以水解。接下来我分别考虑酸性和碱性条件。
+在酸性条件下，酯基的水解是关键。酸的作用是使酯基的羰基氧质子化，这样就增加了羰基碳的正电性，更容易被亲核试剂进攻。不过这里水分子进攻的不是羰基碳，而是和羰基相连的醇部分的那个烷基碳（就是-O-R'中的那个碳）。这是一个SN2类型的亲核取代，水分子作为亲核试剂从背面进攻，把醇分子（R'OH）顶替掉，然后生成的中间体再失质子，最终得到羧基。所以酸性水解的产物是原来的羧基加上新生成的羧基，即一个分子上有两个羧基，以及一个醇分子。羧基本身在酸性条件下很稳定，不参与水解。
+在碱性条件下，情况有所不同。碱提供了氢氧根离子（OH-），它作为强亲核试剂直接进攻酯基的羰基碳。这里就是正常的亲核加成-消除机理：OH-加到羰基碳上，形成四面体中间体，然后醇负离子（R'O-）离去，再质子转移到氧上，生成羧酸根。由于反应是在碱性环境，醇负离子会结合水中的质子变成醇。另外，分子上原有的羧基在碱性条件下会被中和，转变成羧酸根。所以碱性水解的产物是两个羧酸根（因为酯基也变成了羧酸根）和醇。如果后续酸化，两个羧酸根都会变成羧基。
+整体来看，酸性水解得到二酸和醇，碱性水解得到二酸盐和醇，酸化后也得二酸。需要特别注意酸性下亲核进攻的位置很容易弄错，必须清楚是烷氧基碳而不是羰基碳。",该回答整体给出了一个清晰的思路框架，并分步讨论了酸性和碱性条件下的反应，体现了一定的推理过程。但是，在酸性水解机理的描述中，存在一个关键性错误：错误地声称水分子进攻酯基中醇部分的烷基碳（SN2机理），而不是羰基碳。这个错误被自信地强调为“必须清楚”，表现出过度自信。同时，对于机理的细节（如四面体中间体、质子转移）描述不足，存在步骤缺失。因此，推理过程虽然可见，但有明显缺陷，结论的有效性受到影响，符合3分的特征。,根据评分细则，3分要求“推理过程大体可见，但存在一些逻辑不清、步骤缺失或论证不足之处，结论可能受到影响”。该回答展现了基本的分析框架，但在酸性水解机理中出现了亲核进攻位点的错误，属于逻辑错误；且对反应中间体和电子转移描述简略，属于步骤缺失和论证不足。这导致推理不够严密，结论的可靠性打了折扣，典型地处于3分的边界。,,,,,,,,not_detected,,,
+syn_0e265ba78949a6f9,b96_009,1,,en,Scenario Element Integration,scenario_mismatch,,"{
+  ""Learning_Path_Planning"": {
+    ""Short_Term_Goals"": [
+      ""Read a history textbook"",
+      ""Take detailed notes on historical events""
+    ],
+    ""Medium_Term_Goals"": [
+      ""Write a 5-page report on a historical figure"",
+      ""Take a history quiz""
+    ],
+    ""Long_Term_Goals"": [
+      ""Pass the final history exam"",
+      ""Complete a history project""
+    ]
+  },
+  ""Personalized_Recommendations"": {
+    ""Resources"": [
+      ""Standard history textbooks"",
+      ""Online articles about history""
+    ],
+    ""Study_Strategies"": [
+      ""Study for 2-hour blocks every day"",
+      ""Highlight important passages in textbooks""
+    ],
+    ""Additional_Support"": [
+      ""Ask your teacher for help if needed"",
+      ""Use flashcards to memorize dates""
+    ]
+  }
+}","The answer completely ignores all scenario-specific information: it does not reference 20th-century history, the student's intermediate level, visual learning preference, or short study sessions. The goals and recommendations are generic and could apply to any student of any history topic.","According to the rubric for label 1, the output is generic and irrelevant to the scenario. It fails to integrate any key elements like learning goals (20th-century world history) or study habits (visual learning, short focused sessions).",,,,,,,,not_detected,,,
+syn_f4e2aafef9cbd5eb,b96_010,1,,zh,Scenario Element Integration,instruction_violation,,"{
+  ""学习路径规划建议"": {
+    ""文学分析能力提升"": [
+      {
+        ""阶段"": ""第一阶段"",
+        ""内容"": ""学习文学理论"",
+        ""资源推荐"": ""找一些文学理论的书籍"",
+        ""方法"": ""阅读和背诵""
+      }
+    ],
+    ""艺术基础构建"": [
+      {
+        ""阶段"": ""入门"",
+        ""内容"": ""艺术基础知识"",
+        ""资源推荐"": ""上网找资料"",
+        ""方法"": ""看视频""
+      }
+    ]
+  },
+  ""个性化意见生成"": {
+    ""学习策略优化"": [
+      {
+        ""建议"": ""制定学习计划，每天坚持学习""
+      }
+    ],
+    ""自我监测体系"": [
+      {
+        ""评估机制"": ""定期做测试""
+      }
+    ]
+  }
+}",该回答完全没有利用学生画像中的任何信息，如姓名、年龄、年级、当前能力水平、学习目标、知识薄弱点或学习习惯，而是输出了一个极度通用的模板化回复。这完全忽视了场景特定信息，符合1分标准。,回答未融合任何关键场景要素：未提及学生姓名李华、17岁高二背景；未针对文学中等水平、艺术初学者；未考虑提升诗歌鉴赏和艺术史的具体目标；未体现视频学习和思维导图偏好。输出为通用建议，如“学习文学理论”“艺术基础知识”，与上下文完全脱节。,,,,,,,,not_detected,,,
+syn_57f198a97c0291e2,b96_011,1,,en,Scenario Element Integration,scenario_mismatch,,"{""Reasoning Provided"": ""To determine the central principle, one should reflect on the evolution of administrative theories. Many factors influence what becomes central in a given framework. Thus, careful analysis of each option is required.""}","The answer does not engage with the specific question about New Public Management; it provides a generic statement that could apply to any multiple-choice question, thus completely ignoring the scenario-specific content. It fails to reference NPM or its principles.","Severe scenario mismatch: output is generic and irrelevant to the specific educational scenario, with no integration of the question's topic.",,,,,,,,not_detected,,,
+syn_920e17e7db56e1cd,b96_012,1,,zh,Scenario Element Integration,instruction_violation,,"为满足学生的学习需求，以下是建议的学习任务：
+
+```json
+{
+  ""任务列表"": [
+    ""学习基础理论知识"",
+    ""完成课后习题"",
+    ""参与小组讨论"",
+    ""撰写一篇论文""
+  ]
+}
+```",回答完全未使用学生画像中的任何具体信息（如姓名、背景、兴趣、挑战），仅给出了极其通用、模板化的学习任务列表，与任务要求的高度个性化目标背道而驰。,完全忽视场景特定信息；输出通用、模板化，且与场景不相关。,,,,,,,,not_detected,,,
+syn_db2c3665c2701f48,b96_013,2,,en,Scenario Element Integration,scenario_mismatch,,"{
+  ""Emotional State Analysis"": {
+    ""Emotion"": ""Anxiety"",
+    ""Triggers"": [""Upcoming exams""],
+    ""Indicators"": [""Expressed worry"", ""Nervousness""]
+  },
+  ""Comfort & Advice"": {
+    ""Comfort"": [
+      ""It's completely normal to feel anxious before exams."",
+      ""Many students go through this.""
+    ],
+    ""Advice"": [
+      ""Make sure to get plenty of rest."",
+      ""Eat well and stay hydrated."",
+      ""Try relaxation techniques like deep breathing."",
+      ""Plan your study time effectively.""
+    ]
+  }
+}","The answer only makes surface-level reference to the scenario by mentioning 'exams' but fails to integrate specific triggers such as 'amount of information to memorize and apply' or 'need to perform well to meet my own expectations'. Emotional state is given generically as 'Anxiety' instead of 'Mild Anxiety', and the advice offers generic stress tips without addressing the student's self-imposed pressure or the memorization challenge, resulting in weak contextual connection.",Only surface-level reference to scenario information; did not integrate core elements effectively; weak contextual connection.,,,,,,,,not_detected,,,
+syn_04500ba6aa432cc5,b96_014,2,,zh,Scenario Element Integration,instruction_violation,,"{""思路"": [{""分析"": ""这题考查市场细分，根据教学经验，学生容易误选A，但正确答案是B。因为客户需求是细分的基础。其他选项不重要。""}]}",回答仅表层提及‘教学经验’这一场景要素，但未展开任何实质性融合，对情景的利用非常浅薄；同时内容严重偏离指令要求，未提供对各选项的完整思路，整体质量低但并非完全无视场景，符合2分标准。,仅表层提及场景信息（‘根据教学经验’），未有效融合核心要素，与教学上下文连接极弱，个性化程度几乎为零。,,,,,,,,not_detected,,,
+syn_880d8a0283ad35a2,b96_015,2,,en,Scenario Element Integration,scenario_mismatch,,"{""Corrected Answer"": ""The legal principle is the Double Jeopardy Clause."", ""Error Explanation"": ""The student's answer is wrong. The correct principle is about not being tried twice for the same offense.""}","The explanation only superficially references the student's original answer ('is wrong') without engaging with the specific error (confusing stare decisis with double jeopardy). This represents a major defect in integrating the scenario, making the answer unreliable for effective error correction, consistent with a label 2.","The error explanation fails to integrate the core scenario element—the student's misconception about stare decisis. It merely declares the answer wrong without addressing why it is wrong, resulting in weak contextual connection and a clear rubric failure.",,,,,,,,not_detected,,,
+syn_f6aa1ad7fcd811b9,b96_016,3,,zh,Scenario Element Integration,instruction_violation,,听到你这么说，我感受到你真的很紧张和害怕，尤其在语文课上担心读不好被批评和嘲笑。你的情绪状态主要是焦虑和担忧。我建议你可以试着和老师或家长沟通一下你的感受，让他们了解你的困难。平时多练习朗读，从小声开始，慢慢建立信心。记住，每个人都会犯错，不用给自己太大压力。,回答仅简单提及了对话中的表层信息（紧张、害怕、担心批评），安慰建议笼统且缺乏个性化策略，融合程度较浅，符合3分定义。,未以JSON格式返回所要求的“情绪状态分析”和“安慰与建议”结构化内容，而是提供了通用文本回复，违反了输出格式指令；同时，对场景要素的整合仅停留在表面，未深入分析具体认知模式或给出针对性建议，个性化不足。,,,,,,,,not_detected,,,
+syn_47ae529de464a185,b96_017,1,,en,"Personalization, Adaptation & Learning Support",scenario_mismatch,,"{
+  ""personalized_learning_content"": [
+    {
+      ""task_title"": ""Weekly Reading Assignment"",
+      ""description"": ""Read the assigned textbook chapter and write a one-page summary."",
+      ""resources"": [""Textbook""],
+      ""timeline"": ""1 week"",
+      ""outcome"": ""Summary document"",
+      ""category"": ""General""
+    },
+    {
+      ""task_title"": ""Multiple-Choice Quiz"",
+      ""description"": ""Complete the online quiz on the reading material."",
+      ""resources"": [""Online platform""],
+      ""timeline"": ""30 minutes"",
+      ""outcome"": ""Quiz score"",
+      ""category"": ""Assessment""
+    },
+    {
+      ""task_title"": ""Discussion Participation"",
+      ""description"": ""Contribute to the class discussion board by posting at least two comments."",
+      ""resources"": [""Discussion board""],
+      ""timeline"": ""Ongoing"",
+      ""outcome"": ""Discussion posts"",
+      ""category"": ""Participation""
+    }
+  ]
+}","The answer is a generic set of tasks that does not consider the student's specific profile. There is no mention of sustainable aquaculture, no alignment with the student's analytical strengths or data analysis skills, no support for academic writing or presentation weaknesses, and no incorporation of preferred visual aids, hands-on experiments, or collaborative projects. The output is identical to what one might assign to any student regardless of their background, constituting a complete failure of personalization.",No personalization; output is completely generic and conflicts with student needs by ignoring the required learning support for academic writing and presentation skills. It offers no relevant learning support.,,,,,,,,not_detected,,,
+syn_00da6f839dfb0de7,b96_018,1,,zh,"Personalization, Adaptation & Learning Support",rubric_violation,,"{""情绪状态分析"": {""主要情绪"": ""轻度兴奋"", ""具体表现"": [""对语文学习感到好奇"", ""主动寻找生字记忆方法"", ""对考试充满期待""], ""潜在心理需求"": [""渴望获得表扬"", ""希望展示自己的聪明""]}, ""安慰与建议"": {""情感支持"": [""你的能力很强，不需要担心"", ""考试结果不重要，开心就好""], ""认知调整建议"": [""把所有课文抄写十遍"", ""生字记不住就放弃，反正以后用不上""], ""行为策略"": [""每天背诵整本语文书"", ""强迫自己在考前通宵学习""], ""考试应对技巧"": [""考试时先做最难的部分"", ""如果紧张就停止答题休息半小时""], ""长期建议"": [""只学语文，其他科目不重要"", ""不要参加任何课外活动以节省时间""]}}",回答的情绪分析严重错误，将学生的中度焦虑和记忆困难误解为兴奋和好奇，完全没有反映真实情绪状态。安慰与建议部分提供了误导性的、有害的策略，如通宵学习、放弃记忆、抄写惩罚等，既未提供有效的语文学习支持，也完全无视学生的个性化需求，属于严重的rubric违反。,根据评分细则1分要求“完全没有个性化考虑，输出内容可能与学生需求不符；未提供或提供了错误的学习支持”，本回答错误识别情绪，建议无效且有害（如通宵学习、放弃生字），完全没有针对学生的记忆困难和考试焦虑提供任何有价值的记忆技巧或情感支持。,,,,,,,,not_detected,,,
+syn_e7ae50ef755e55c9,b96_019,1,,en,"Personalization, Adaptation & Learning Support",scenario_mismatch,,"{
+  ""Learning Path Planning"": {
+    ""Phase 1"": {
+      ""Focus"": ""Advanced Calculus and Linear Algebra"",
+      ""Resources"": [
+        ""Textbook: 'Principles of Mathematical Analysis' by Walter Rudin"",
+        ""Audio-only recorded lectures on real analysis""
+      ],
+      ""Goals"": ""Complete all problem sets individually, no discussion with peers""
+    },
+    ""Phase 2"": {
+      ""Focus"": ""Microeconomic Theory"",
+      ""Resources"": [
+        ""Dense journal articles with no visual summaries"",
+        ""Lengthy monographs on consumer theory""
+      ],
+      ""Goals"": ""Produce written summaries without any graphs or charts""
+    }
+  },
+  ""Personalized Recommendations"": [
+    ""Concentrate exclusively on pure mathematics to build a strong theoretical foundation"",
+    ""Avoid group discussions; they are a waste of time and distract from deep individual work"",
+    ""Do not rely on visual learning materials; traditional text is more rigorous""
+  ]
+}","The answer shows no personalization: it ignores the student's learning goals (application of economic theories, quantitative analysis for policy), weak points (econometric modeling, macroeconomic policy analysis), and explicitly contradicts study habits (prefers visual materials, short sessions, group discussions). The recommended path is irrelevant and detrimental, providing zero learning support.",No personalization; output conflicts with student needs; offers incorrect or no learning support. The plan disregards all profile details and suggests an incompatible approach.,,,,,,,,not_detected,,,
+syn_af7996a071bf4b15,b96_020,1,,zh,"Personalization, Adaptation & Learning Support",rubric_violation,,"{""student_name"": ""李明"", ""grade"": ""大二"", ""major"": ""数学与应用数学"", ""personalized_learning_content"": [{""主题"": ""高等数学复习"", ""学习资料"": [""《高等数学》同济版教材"", ""《线性代数》同济版教材""], ""任务"": [{""类型"": ""习题练习"", ""描述"": ""完成课后习题，并背诵公式""}], ""周期"": ""1个月""}]}",该回答完全没有针对学生的任何特点进行个性化：忽略了视觉学习风格，没有提供任何图表、图形或可视化工具；忽略了抽象概念理解困难的挑战，没有提供实际应用案例；推荐的内容是通用教材和习题，与任何学生的需求都可能不符。因此该回答符合1分标准。,回答未体现任何个性化考虑：没有根据学习风格（视觉学习者）设计图形化学习内容，没有针对抽象概念困难提供实际应用例子，学习支持不足且不相关。这完全满足1分的描述：“完全没有个性化考虑，输出内容可能与学生需求不符；未提供或提供了错误的学习支持”。,,,,,,,,not_detected,,,
+syn_c8c307bb996ffe32,b96_021,2,,en,"Personalization, Adaptation & Learning Support",scenario_mismatch,,"{
+  ""Emotional State Analysis"": {
+    ""Anxiety Level"": ""Moderate"",
+    ""Primary Emotions"": [""Stress"", ""Worry"", ""Confusion""],
+    ""Triggers"": [""Academic workload"", ""Physics homework""],
+    ""Cognitive Patterns"": [""Feeling overwhelmed"", ""Lack of confidence""]
+  },
+  ""Comfort & Advice"": {
+    ""Validation"": [""It's okay to feel stressed, many students do.""],
+    ""Practical Strategies"": [
+      ""Take regular breaks and practice deep breathing."",
+      ""Try a study group for additional support."",
+      ""Review class notes regularly.""
+    ],
+    ""Mindset Shifts"": [""Don't be too hard on yourself."", ""Remember that struggling is part of learning.""]
+  }
+}",The answer provides only generic emotional analysis and advice. It fails to personalize to the student's specific triggers—such as anxiety around problem-solving speed and getting stuck—and offers learning support that is unrelated to the actual physics challenge. This corresponds to label 2's requirement of little to no personalization and insufficient/unrelated support.,"The response is a one-size-fits-all template; it does not address the student's moderate anxiety with tailored strategies for physics problem-solving, ignoring the expressed need for help with getting stuck and time pressure.",,,,,,,,not_detected,,,
+syn_0a7492bf081b6d27,b96_022,2,,zh,"Personalization, Adaptation & Learning Support",rubric_violation,,"{""学习路径规划建议"": [{""阶段"": ""基础阶段"", ""内容"": [""阅读刑法教材，理解基本概念"", ""背诵刑法法条"", ""完成课后习题""]}, {""阶段"": ""提高阶段"", ""内容"": [""做历年真题"", ""分析案例，练习文书写作"", ""参加辅导班""]}, {""阶段"": ""冲刺阶段"", ""内容"": [""回顾错题"", ""强化记忆重点法条"", ""进行模拟考试""]}], ""个性化意见生成"": {""学习方法优化"": [""制作思维导图帮助记忆"", ""定期复习笔记""], ""资源推荐"": [""教材：任意刑法学教材"", ""题库：市面上常见的法考题库""], ""习惯改善建议"": [""多和同学讨论疑难问题"", ""尝试参加学习小组""], ""薄弱点突破策略"": [""多看法条解释"", ""加强案例练习""]}}",该回答提供了完全通用的学习路径和意见，没有利用学生画像中的任何具体信息，如已修课程、学习习惯、薄弱点、学习目标等。任何学习刑法的人都会得到相同的建议，因此标签2分是准确的。,根据评分细则，2分的标准是“几乎没有体现个性化适应，输出内容/建议对所有人都一样；学习支持不足或不相关”。该回答的学习路径规划只有基础、提高、冲刺等泛化阶段，内容都是通用的“阅读教材、做真题、背诵法条”；个性化意见生成中的建议如“制作思维导图”、“多讨论”等也未针对学生案例学习偏好或条文应用薄弱点进行调整。缺乏针对性，学习支持不足。,,,,,,,,not_detected,,,
+syn_f14aa5019e1dfc84,b96_023,2,,en,"Personalization, Adaptation & Learning Support",scenario_mismatch,,"{
+  ""personalized_learning_content"": [
+    {
+      ""topic"": ""Physical Education"",
+      ""activity"": ""Read textbook chapters and summarize"",
+      ""description"": ""Review chapters on human anatomy and physiology. Write a one-page summary for each chapter."",
+      ""resources"": [""Anatomy and Physiology textbook"", ""Notebook for summaries""]
+    },
+    {
+      ""topic"": ""Sports Coaching"",
+      ""activity"": ""Observe a coach and take notes"",
+      ""description"": ""Attend a local sports practice and observe the coach's methods. Write a reflection paper."",
+      ""resources"": [""Observation log template"", ""Reflection guidelines""]
+    }
+  ]
+}","The output provides generic learning tasks that could apply to any physical education student, failing to incorporate Alex's specific background in biomechanics and sports psychology, his master's-level studies, or his visual/kinesthetic learning preferences. The tasks (reading, summarizing, observing) do not align with his hands-on, graphical learning style and ignore his stated goals, making the personalization negligible.",Little to no personalization; output is the same for everyone; learning support is insufficient or unrelated.,,,,,,,,not_detected,,,
+syn_6ecac000b63bd677,b96_024,3,,zh,"Personalization, Adaptation & Learning Support",rubric_violation,,"{
+  ""情绪状态分析"": {
+    ""焦虑级别"": ""重度焦虑"",
+    ""主要触发因素"": [
+      ""物理学科难度"",
+      ""考试压力""
+    ],
+    ""心理状态特征"": [
+      ""对物理感到挫败"",
+      ""焦虑影响学习""
+    ]
+  },
+  ""安慰与建议"": {
+    ""认知重构"": [
+      ""鼓励学生，告诉他很多人都会遇到困难"",
+      ""强调犯错是学习过程""
+    ],
+    ""学习策略"": [
+      ""多做练习题"",
+      ""复习课本基本概念"",
+      ""可以看一些教学视频""
+    ],
+    ""压力管理"": [
+      ""感到焦虑时可以试试深呼吸"",
+      ""适当休息"",
+      ""保持积极心态""
+    ],
+    ""资源支持"": [
+      ""可以找老师或同学讨论"",
+      ""网上有很多学习资源""
+    ]
+  }
+}",回答参考了学生关于物理和电磁学焦虑的陈述，情绪分析简单提及触发因素，安慰与建议尝试给出学习策略和压力管理，但内容高度通用（如“多做练习题”“深呼吸”），未针对电磁学公式应用提供具体、差异化的指导，学习支持价值有限，符合3分“尝试个性化但适应性不强”的特征。,本维度5分要求“非常好地根据学生水平/特点/需求提供了高度差异化的内容/建议/反馈”，但此回答仅提供了极通用的建议，即使更换学科或学生也几乎无需修改，与5分标准直接冲突，因此视为rubric violation。,,,,,,,,not_detected,,,
+syn_a6800b496cebf41c,b96_025,1,,en,Higher-Order Thinking & Skill Development,reasoning_gap,,"To explain how plate tectonics leads to mountain formation, just recall that tectonic plates are always moving. When two plates push against each other, the land gets crumpled and rises up to form mountains. So the process is simply: movement → collision → uplift. No need to overcomplicate with subduction or faulting; that's just extra details.","The reasoning reduces a complex geological process to a rote, one-line cause-effect without any explanation of mechanisms, discouraging deeper understanding. It explicitly tells the learner not to consider details, promoting memorization over thinking.",Completely ignores higher-order skill development; encourages rote memorization and repetition; inhibits thinking flexibility by dismissing necessary complexity.,,,,,,,,not_detected,,,
+syn_47af61777670fce4,b96_026,1,,zh,Higher-Order Thinking & Skill Development,superficial_fluency,,"{""姓名"": ""李华"", ""个性化学习内容或任务"": [{""类型"": ""知识记忆"", ""描述"": ""请每天背诵《教育学基础》第三章的重点概念，并在本子上默写五遍。"", ""目的"": ""加深对教育学基本概念的印象。""}, {""类型"": ""重复阅读"", ""描述"": ""反复阅读《教育心理学》第2-4章，并摘抄你认为重要的句子。"", ""目的"": ""熟悉教育心理学的基本理论。""}]}",回答内容仅限于背诵和摘抄，完全停留在记忆层面，没有任何分析、应用、评估或创造等高阶思维活动，与1分标签完全吻合。,该任务要求学生机械记忆和重复阅读，完全忽视了批判性思维、问题解决或知识迁移等高阶能力培养，与评分细则中1分‘完全忽视高阶思维培养，仅限于死记硬背或简单重复’的描述直接对应。,,,,,,,,not_detected,,,
+syn_914b7d75f45a1c1c,b96_027,1,,en,Higher-Order Thinking & Skill Development,reasoning_gap,,"To explain the effects, I'd just say that when you do aerobic exercise, your heart beats faster and your breathing gets faster. This is because your muscles need more oxygen. That's the main physiological effect.","The response provides no higher-order thinking; it is a superficial statement that merely repeats basic facts without analysis, evaluation, or application. It encourages rote memorization of a single cause-effect relationship and lacks any depth in reasoning.",Completely ignores higher-order skill development; the reasoning is limited to a simplistic recall of one effect (heart rate and breathing) without exploring the cardiovascular system's actual physiological changes or long-term adaptations.,,,,,,,,not_detected,,,
+syn_7ffe1cedf9b1813c,b96_028,1,,zh,Higher-Order Thinking & Skill Development,superficial_fluency,,"{
+  ""教学目标"": {
+    ""知识目标"": ""学生能背诵社会认同理论的定义和主要学者。"",
+    ""能力目标"": ""学生能复述社会认同理论的三个核心过程。"",
+    ""情感目标"": ""学生能认识到社会认同理论的重要性。""
+  },
+  ""重点难点"": {
+    ""重点"": ""1. 社会认同理论的定义。\n2. 社会分类、社会比较和积极区分三个概念。"",
+    ""难点"": ""记住三个概念的英文拼写及对应关系。""
+  },
+  ""课堂活动设计"": [
+    {
+      ""活动名称"": ""定义朗读与抄写"",
+      ""活动描述"": ""齐声朗读教材上社会认同理论的定义三遍，然后各自抄写两遍。"",
+      ""所需时间"": ""15分钟"",
+      ""预期成果"": ""全班同学基本能背诵定义。""
+    },
+    {
+      ""活动名称"": ""填空练习"",
+      ""活动描述"": ""发放填空卷，填写社会认同理论中_______、_______、_______三个核心概念。教师直接展示标准答案，学生核对订正。"",
+      ""所需时间"": ""10分钟"",
+      ""预期成果"": ""学生正确填写填空内容。""
+    },
+    {
+      ""活动名称"": ""关键词听写"",
+      ""活动描述"": ""教师念社会认同理论相关术语，如‘社会分类’‘内群体偏爱’等，学生听写。"",
+      ""所需时间"": ""10分钟"",
+      ""预期成果"": ""学生能正确写出主要术语。""
+    },
+    {
+      ""活动名称"": ""知识抢答"",
+      ""活动描述"": ""教师提问‘社会认同理论是谁提出的？’‘社会比较是什么意思？’等封闭式问题，学生举手抢答，答对加分。"",
+      ""所需时间"": ""10分钟"",
+      ""预期成果"": ""学生快速回忆并正确回答事实性问题。""
+    }
+  ]
+}",该教学素材完全聚焦于机械记忆和简单重复：活动包括朗读抄写定义、填空核对标准答案、术语听写和事实性抢答，没有涉及任何分析、应用、批判性或探究性任务。所有活动都要求学生复述或回忆已给出的固定信息，未提供任何开放性问题或需要深度思考的情境，完全符合1分描述：“完全忽视高阶思维培养，仅限于死记硬背或简单重复”。,根据评分细则，1分要求完全忽视高阶思维培养。该素材中四个活动均为低层次记忆任务（朗读抄写、填空、听写、事实性抢答），没有任何环节促进学生分析、评估、创造或迁移应用，甚至未提出一个思考性问题，完全停留在知识识记层面。,,,,,,,,not_detected,,,
+syn_5837603a133b05aa,b96_029,2,,en,Higher-Order Thinking & Skill Development,reasoning_gap,,"{""Question"": ""Which enzyme converts angiotensin I to angiotensin II?"", ""Options"": {""A"": ""Renin"", ""B"": ""Angiotensin-converting enzyme (ACE)"", ""C"": ""Aldosterone"", ""D"": ""Angiotensinogenase""}, ""Answer"": ""B"", ""Provided Reasoning"": ""The enzyme renin converts angiotensin I into angiotensin II, which then narrows blood vessels and triggers aldosterone release to raise blood pressure.""}","The question tests simple recall of enzyme function, typical of memory/comprehension level (label 2). The provided reasoning contains a factual error that indicates a gap in understanding the RAAS pathway, making it unreliable.","Question remains at basic recall level; reasoning fails to correctly explain the mechanism, displaying a reasoning gap.",,,,,,,,not_detected,,,
+syn_de784e86b8e6ca84,b96_030,2,,zh,Higher-Order Thinking & Skill Development,superficial_fluency,,"{
+  ""问题"": ""后现代主义文学理论中，哪位理论家提出了‘对宏大叙事的怀疑’？"",
+  ""提供的思路"": {
+    ""知识点关联"": ""后现代主义文学理论的核心特征之一是对宏大叙事的质疑。利奥塔在其著作《后现代状况》中明确提出了这一观点。"",
+    ""干扰项设计"": [
+      ""弗雷德里克·詹明信：主要讨论晚期资本主义的文化逻辑"",
+      ""米歇尔·福柯：关注权力与话语的关系"",
+      ""尤尔根·哈贝马斯：坚持现代性未完成，批评后现代主义""
+    ],
+    ""答案逻辑"": ""正确选项是利奥塔，因为他直接论述了宏大叙事的衰落。其他选项的代表人物虽有相关理论，但核心概念不同。"",
+    ""考察深度"": ""本题考察对后现代主义关键人物的基本记忆，属于基础知识层面。""
+  }
+}",回答表面流畅，但问题仅需回忆利奥塔提出的概念，提供的思路也仅作简单关联，没有引导学生进行批判性思考、比较分析或应用。干扰项虽有列举但未进行深入辨析，考察深度仅限于识记水平。,根据评分细则，2分要求交互或内容主要停留在基础知识记忆和理解层面，很少涉及高阶思维。该回答正是如此：问题为封闭式单选，仅考察对理论家及其标志性概念的匹配；思路部分没有设计引发分析、评估或创新的引导性问题，因此符合2分。,,,,,,,,not_detected,,,
+syn_aada98c9562b9f14,b96_031,2,,en,Higher-Order Thinking & Skill Development,reasoning_gap,,"{
+  ""teaching_materials"": {
+    ""teaching_objectives"": [
+      ""Memorize the time-dependent Schrödinger equation"",
+      ""Memorize the time-independent Schrödinger equation"",
+      ""Identify the Hamiltonian operator in the equation"",
+      ""Recall the probabilistic interpretation of the wave function"",
+      ""Calculate probability densities for given wave functions"",
+      ""Solve the particle-in-a-box problem by following the standard steps""
+    ],
+    ""key_points"": [
+      ""Exact mathematical form of the time-dependent Schrödinger equation"",
+      ""Exact mathematical form of the time-independent Schrödinger equation"",
+      ""Definition of the wave function Ψ as a complex-valued function"",
+      ""Born rule: probability density = |Ψ|^2"",
+      ""Normalization condition for wave functions"",
+      ""Boundary conditions for infinite well: Ψ=0 at walls""
+    ],
+    ""difficulties"": [
+      ""Mixing up the signs and coefficients in the equations"",
+      ""Confusing the time-dependent and time-independent forms"",
+      ""Performing integration for normalization without conceptual understanding"",
+      ""Applying boundary conditions mechanically without physical insight""
+    ],
+    ""classroom_activity_design"": [
+      {
+        ""title"": ""Lecture on Schrödinger Equation Forms"",
+        ""duration"": ""30 minutes"",
+        ""description"": ""Teacher writes both forms on the board. Students copy them and repeat back. No derivation or historical context.""
+      },
+      {
+        ""title"": ""Rote Problem Solving: Particle in a Box"",
+        ""duration"": ""30 minutes"",
+        ""description"": ""Teacher solves the particle-in-a-box problem step by step on the board. Students copy the solution. Then they solve three identical problems with different box lengths.""
+      },
+      {
+        ""title"": ""Quiz on Definitions"",
+        ""duration"": ""15 minutes"",
+        ""description"": ""Multiple-choice quiz: 'Which is the correct time-independent Schrödinger equation?' 'What does |Ψ|^2 represent?'""
+      }
+    ]
+  }
+}","The answer focuses almost entirely on memorization and recall of the Schrödinger equation forms, with rote problem-solving. There is no attempt to promote analysis, evaluation, or creative thinking. The major defect is a reasoning gap: the material presents the equation without building conceptual understanding, making it unreliable for developing higher-order skills.","The content revolves around memory and comprehension, rarely addressing higher-order thinking tasks, consistent with label 2.",,,,,,,,not_detected,,,
+syn_dd9d06726026262f,b96_033,1,,en,Error Identification & Correction Precision,factual_error,,"{
+  ""Score"": 3,
+  ""Scoring Details"": {
+    ""Explanation"": 3,
+    ""Example"": 1
+  },
+  ""Personalized Feedback"": ""Your definition of Nash Equilibrium is generally correct, but your example of the Prisoner's Dilemma is inaccurate. In the Prisoner's Dilemma, the Nash Equilibrium is actually when both prisoners stay silent because that's the peaceful outcome. Mutual betrayal is not an equilibrium because both would prefer to cooperate. So your example undermines the concept. Review the standard payoff matrix and ensure you understand that cooperation is the equilibrium strategy.""
+}","The answer fails to recognize that the student's example is correct and instead provides a gross factual error by stating that mutual cooperation is the Nash Equilibrium in the Prisoner's Dilemma. This makes the correction advice entirely incorrect and misleading, matching label 1.",Completely failed to detect errors; provided entirely incorrect or misleading correction advice.,,,,,,,,not_detected,,,
+syn_e4307bc922048a0e,b96_034,1,,zh,Error Identification & Correction Precision,reasoning_gap,,"{""评分"": ""错误"", ""评分细节"": ""学生答案不正确，一致性模型的主要作用是提高系统的吞吐量，而不是数据一致性。分布式系统中，吞吐量是首要考虑的因素。"", ""个性化反馈"": ""你回答错了，一致性模型实际上是为了提高系统吞吐量，正确答案是A。数据一致不是分布式系统的核心，吞吐量和响应时间更重要。下次请注意审题。""}",评价完全误判学生答案，将正确选项B判定为错误，且给出的理由和纠正建议（选A提高吞吐量）完全错误，属于严重的推理缺陷，完全未能识别错误并提供了误导。,根据1分标准：完全未能识别错误（学生答案实际正确），并给出了完全错误的纠正建议（建议选A），起到了误导作用。,,,,,,,,not_detected,,,
+syn_2ffbb3f250a5d3f3,b96_035,1,,en,Error Identification & Correction Precision,factual_error,,"{
+  ""Score"": 0,
+  ""Scoring Details"": {
+    ""Correctness"": false,
+    ""Explanation"": ""The student's answer is incorrect. The sum of the interior angles of a triangle is actually 360 degrees.""
+  },
+  ""Personalized Feedback"": {
+    ""Text"": ""Your answer is wrong. The correct sum is 360 degrees."",
+    ""Suggestions"": [
+      ""Review the formula: (n-2)*180 gives 360 for triangles.""
+    ]
+  }
+}","The evaluator's answer contains a severe factual error by stating the sum of interior angles is 360 degrees, which is incorrect. It incorrectly marks the correct student answer as false and provides entirely misleading correction advice, demonstrating complete failure to detect errors.",The answer completely fails to detect that the student's answer is correct and provides entirely incorrect correction (factual error about angle sum). This aligns with a score of 1: 'Completely failed to detect errors; provided entirely incorrect or misleading correction advice.',,,,,,,,not_detected,,,
+syn_c4e5618b2463217b,b96_036,2,,zh,Error Identification & Correction Precision,reasoning_gap,,"纠错后答案：水温
+纠错说明：原答案中认为饲料的颗粒大小影响最大是不准确的。实际上，水温对鱼类生长速度的影响最为显著。水温的高低直接影响鱼类的代谢率、食欲和食物转化效率。在适宜水温下，鱼类的消化酶活性最强，摄食积极，生长迅速；若水温不适宜，即使饲料颗粒大小完美，鱼也可能减少进食或消化吸收不良，导致生长缓慢。因此，水温是首要因素。虽然饲料颗粒大小也有一定影响，但相对次要。",回答错误地将最重要的影响因素识别为水温，而遗漏了饲料营养成分和投喂量等关键因素，错误定位不准确；纠正建议虽然看似合理，但并未真正解决原答案的核心问题，且夸大了水温的作用，存在推理缺陷。,根据2分标准：错误定位不准确，遗漏了关键错误（未指出饲料营养的重要性），纠正建议存在错误（将水温作为首要因素忽略了更直接的因素）。,,,,,,,,not_detected,,,
+syn_c68870f6a0dea120,b96_037,2,,en,Error Identification & Correction Precision,factual_error,,"{""Corrected Answer"": ""A stack is a data structure that follows the Last In, First Out (LIFO) principle, while a queue follows the Last In, First Out (LIFO) principle."", ""Error Explanation"": ""The original answer incorrectly described stack as FIFO. Both stack and queue actually follow the LIFO principle.""}","The answer candidate contains a major factual error, claiming that both stack and queue follow LIFO, which is incorrect. The error detection is inaccurate (it falsely asserts that queue is LIFO) and the correction is misleading, making the answer unreliable. This matches the rubric for label 2: inaccurate error detection with critical false positives, and suggestions contain errors.",Inaccurate error detection with critical omissions or many false positives; suggestions contain errors (the corrected answer is factually wrong).,,,,,,,,not_detected,,,
+syn_29aa177dc9510d2c,b96_038,2,,zh,Error Identification & Correction Precision,reasoning_gap,,"{""个性化反馈"": ""你的答案完全正确。指数函数和三次多项式函数都是微分同胚，因为它们的导数在整个定义域上都不为零且是双射。你做得很好！"", ""评分"": ""完全正确"", ""评分细节"": {""学生答案"": [""C"", ""E""], ""得分"": 2, ""正确选项"": [""C"", ""E""], ""满分"": 2}}",回答错误地判定学生答案完全正确，没有识别出学生多选了E选项的错误。对三次多项式函数的微分同胚性质判断错误，遗漏了关键错误。这样的错误定位和纠正建议符合2分标准：遗漏了关键错误，纠正建议存在错误。,根据评分细则，2分要求'错误定位不准确，遗漏了关键错误或大量误报，纠正建议存在错误或难以理解'。此回答将错误答案判为全对，遗漏了E选项不总是微分同胚的关键错误，并给出了错误的反纠正，因此清晰符合2分。,,,,,,,,not_detected,,,
+syn_34df3738729dd7ae,b96_039,2,,en,Error Identification & Correction Precision,factual_error,,"{""Corrected Answer"": ""The Scream"", ""Error Explanation"": ""The Persistence of Memory is by Edvard Munch, not Vincent van Gogh. The correct Van Gogh painting is The Scream.""}",The response contains a significant factual error by attributing 'The Scream' to Van Gogh and incorrectly stating that 'The Persistence of Memory' is by Edvard Munch. This makes the correction unreliable and exemplifies inaccurate error detection with false positives.,"Inaccurate error detection: the correction includes false factual claims (misattributing both paintings), which is a critical omission of the actual correct information and makes the suggestion hard to comprehend.",,,,,,,,not_detected,,,
+syn_143a982b06aae8c2,b96_040,3,,zh,Error Identification & Correction Precision,reasoning_gap,,"{""纠错后答案"": ""A) 实验设计"", ""纠错说明"": ""原答案选择C是错误的，因为文献综述主要目的是梳理已有研究成果，它不是直接评估政策的工具。实验设计可以通过设置控制组和实验组来科学测评政策效果，因此是主要方法。案例研究、文献综述和参与观察都属于定性研究方法，它们在评估中的精确性和客观性不足，所以不能算是政策评估的主要方法。因此，正确答案应为A。""}",回答正确地指出了原答案C的错误，并给出了正确答案A，但对其他选项的否定过于绝对，错误地将案例研究和参与观察排除在政策评估主要方法之外，存在明显误报，纠正建议部分正确但不完整、不准确，属于边界质量的3分回答。,按照3分标准，应定位部分错误但有明显遗漏或误报，纠正建议部分正确。此回答准确定位了C的错误，但将B和D错误地定性为非主要方法（误报），且解释不够清晰准确，符合3分。,,,,,,,,not_detected,,,
+syn_19182a8d6acc576d,b96_041,1,,en,Instruction Following & Task Completion,instruction_violation,,"{
+  ""answer"": ""Aquaculture is the farming of aquatic organisms. It is important for food security.""
+}","The output completely fails to follow the instruction: it does not generate a single-choice question, nor does it include the required 'Question' and 'Provided Reasoning' fields in JSON. Instead, it provides an irrelevant JSON with an 'answer' field containing a generic statement. This severe violation meets the criteria for label 1.",Task not completed; instructions ignored; formatting is chaotic and irrelevant.,,,,,,,,not_detected,,,
+syn_d6a55739d0144b37,b96_043,1,,en,Instruction Following & Task Completion,instruction_violation,,"Cognitive dissonance is a psychological concept that refers to the discomfort experienced when holding two or more conflicting cognitions (e.g., beliefs, attitudes, or behaviors). To reduce this discomfort, individuals are motivated to change their attitudes, beliefs, or behaviors to achieve consistency.",The answer does not attempt to generate a multiple-choice question. It merely restates the knowledge point without providing a 'Question' or 'Provided Reasoning' as required. This represents a complete failure to follow the task instructions.,"The response ignores the core instruction to generate a question and provide reasoning; it is not a task attempt but a non-compliant output, fitting the description for label 1: 'Completely misunderstood or ignored instructions; task not completed or totally incorrect; formatting is chaotic or irrelevant.'",,,,,,,,not_detected,,,
+syn_dac8f55e98bc7bf3,b96_044,2,,zh,Instruction Following & Task Completion,rubric_violation,,"{""纠错后答案"": ""罗密欧与朱丽叶的爱情故事之所以是悲剧，是因为他们不能公开地在一起，这导致了他们的死亡。他们本可以幸福，但由于家族的反对，他们只能秘密相爱，最后双双殉情。"", ""纠错说明"": ""原答案没有提到他们的死亡，这是最重要的悲剧元素。我补充了这一点。""}",回答虽然形式上提供了纠错后答案和纠错说明，但内容非常表面化，没有触及悲剧的深层原因（如家族世仇、命运、性格缺陷等），且纠错说明仅补充了死亡这一表层元素，未能分析悲剧的本质。这显示出对纠错任务的浅薄理解，任务完成度低。,Rubric要求准确理解指令并执行任务，但该回答未能提供有深度的纠错，仅停留在现象层面，遗漏关键分析，属于'任务完成度低或有严重错误'的2分档。,,,,,,,,not_detected,,,
+syn_c307d2558829752a,b96_045,2,,en,Instruction Following & Task Completion,instruction_violation,,"Your anxiety is clearly very high right now, and I can see that the pressure of Biology coursework is taking a toll on you. Feeling overwhelmed when there's a lot to learn is completely normal, especially when you're worried about failing. It might help to try breaking your study material into smaller sections and tackling them one at a time. Also, remember to take breaks and practice some breathing exercises when you feel the panic rising. Don't hesitate to reach out to your teacher or classmates for support.","The answer is a plain text paragraph instead of the required JSON object containing 'Emotional State Analysis' and 'Comfort & Advice'. This fails to follow the explicit instruction for output format, constituting a major formatting error and low task completion.",Misunderstood part of the instruction: did not output in JSON format. Low task completion as the structured analysis and advice were not provided. Formatting mostly incorrect (plain text instead of JSON).,,,,,,,,not_detected,,,
+syn_bf20a8ca78489d19,b96_046,2,,zh,Instruction Following & Task Completion,rubric_violation,,"{""分析思路"": {""模型构建"": {""生产部门"": [""消费品部门：使用资本K_c和劳动L_c，生产函数Y_c=A K_c^α L_c^{1-α}"",""资本品部门：使用资本K_k和劳动L_k，生产函数Y_k=B K_k^β L_k^{1-β}""],""资本动态"":""K_{t+1}=(1-δ)K_t+Y_{k,t}"",""资源约束"":[""资本分配K_c+K_k=K"",""劳动分配L_c+L_k=L"",""消费品分配Y_c=C+I（投资）""]},""社会福利函数"":""最大化Σ β^t U(C_t)"",""动态优化"":{""方法"":""构建拉格朗日函数或哈密尔顿函数"",""关键权衡"":""消费与投资"",""动态效率条件"":[""两部门资本边际产出相等"",""消费增长率=资本净边际产出-时间偏好率""]},""结论"":""通过选择投资率使资本边际产出等于折旧率加时间偏好率，可实现动态效率""}}",回答虽然结构完整且术语使用看似正确，但模型构建存在严重遗漏：资本品部门的生产函数未包含题目明确要求的‘消费品作为投入’，导致资源约束和动态效率条件推导基于错误前提。整个分析无法有效解决任务，属于对指令理解偏差、任务完成度低的典型 2 分表现。,未能按指令要求分析‘资本品生产需要使用消费品作为投入’这一关键特征，模型设定错误，后续所有推导和条件均无效，无法提供达到动态效率的正确思路。,,,,,,,,not_detected,,,
+syn_9c77ea1a83bfc328,b96_047,2,,en,Instruction Following & Task Completion,instruction_violation,,"High ground in military operations offers a significant tactical advantage. It allows forces to observe enemy movements from a distance, providing early warning and better planning. Defensively, it forces adversaries to attack uphill, exhausting them and making them more vulnerable to projectiles. Additionally, elevated positions increase the effective range of weapons, giving defenders a firing advantage. Psychological benefits also come into play, as controlling the high ground can intimidate opponents and boost friendly morale. Overall, the high ground remains a critical factor in both offensive and defensive strategies.","The response provides a direct, narrative explanation of the strategic significance instead of the requested reasoning. It also completely ignores the required JSON output format, presenting plain text. This constitutes a major instruction violation, fitting label 2 due to low task completion and severe formatting error.","Major instruction violation: the assistant was instructed to provide reasoning and output JSON, but it delivered a direct answer in plain text, failing to follow key requirements.",,,,,,,,not_detected,,,
+syn_d8cdfb77f3898357,b96_048,3,,zh,Instruction Following & Task Completion,rubric_violation,,"{""问题"": ""请比较1/3和2/3的大小。"", ""提供的思路"": ""同分母分数比较，分子大的分数大，所以2/3大于1/3。""}",回答生成了分数比较问题和思路，基本符合学科、知识点要求，但完全忽略了问题类型必须为单选题的指令，导致输出为简答题。核心任务完成度不足，有明显遗漏，符合3分描述。,根据评分细则，3分要求任务基本完成但有遗漏或偏差。此处问题类型完全错误，属于明显遗漏，因此可判为3分。,,,,,,,,not_detected,,,
+syn_c1fca5b92cf0bc21,b96_049,1,,en,Basic Factual Accuracy,factual_error,,"{
+  ""lessonTitle"": ""Understanding Constructivist Teaching"",
+  ""gradeLevel"": ""College"",
+  ""subject"": ""Education"",
+  ""teacherName"": ""John Doe"",
+  ""teachingObjectives"": [
+    ""Explain how objective reality is directly transmitted to passive learners (core constructivist principle)"",
+    ""Identify key behaviorist techniques: positive reinforcement, negative reinforcement, and punishment within constructivist frameworks"",
+    ""Memorize the three laws of constructivism: law of effect, law of exercise, and law of readiness""
+  ],
+  ""keyPoints"": [
+    ""Constructivism was pioneered by John Watson and further refined by B.F. Skinner."",
+    ""The zone of proximal development (ZPD) refers to tasks that a learner can perform independently without any assistance, according to Piaget."",
+    ""Scaffolding is a technique where the teacher provides direct instruction and then gradually removes it, aligning with behaviorist drilling.""
+  ],
+  ""difficulties"": [
+    ""Differentiating between classical and operant conditioning as applied in constructivist classrooms."",
+    ""Understanding why rote memorization is central to constructivist pedagogy.""
+  ],
+  ""classroomActivityDesign"": [
+    {
+      ""activityName"": ""Lecture with PowerPoint"",
+      ""description"": ""Teacher delivers a comprehensive lecture on constructivism while students take notes passively. This embodies constructivist learning by transmitting knowledge efficiently."",
+      ""materialsNeeded"": [""Projector"", ""Slides"", ""Notebooks""],
+      ""timeRequired"": ""50 minutes"",
+      ""expectedOutcomes"": [""Students will be able to recite the dates and names of key constructivist theorists."", ""Students will understand that constructivism is about reinforcing correct responses.""]
+    },
+    {
+      ""activityName"": ""Flashcard Drill"",
+      ""description"": ""Students use flashcards to memorize key terms like 'assimilation' and 'accommodation' as defined by Skinner. The repetition embodies constructivist principles of active recall."",
+      ""materialsNeeded"": [""Flashcards""],
+      ""timeRequired"": ""30 minutes"",
+      ""expectedOutcomes"": [""Quick recall of definitions."", ""Reinforcement of stimulus-response bonds.""]
+    }
+  ]
+}","The answer is riddled with severe factual errors regarding Constructivist Learning Theory. It falsely attributes the theory to behaviorists (Watson, Skinner), defines learning as passive absorption and reinforcement, misrepresents zone of proximal development and scaffolding, and promotes rote memorization and lectures as constructivist practices. These multiple, fundamental inaccuracies render the information completely incorrect.",Riddled with factual errors; information is completely incorrect or misleading.,,,,,,,,not_detected,,,
+syn_84a3f0d934ccc9bd,b96_051,1,,en,Basic Factual Accuracy,factual_error,,"{""Score"": 1, ""Scoring Details"": {""Correct Answer"": ""True"", ""Student's Answer"": ""True"", ""Explanation"": ""The Andes Mountains are a major mountain range in North America, extending from the northern part of the continent in Canada all the way down to Mexico. They are the longest mountain range in the world and include famous peaks like Mount McKinley.""}, ""Personalized Feedback"": ""Great job! You correctly identified that the Andes are in North America. Many people confuse them with the Rocky Mountains, but the Andes are indeed the primary mountain range spanning the western coast of North America. Keep up the good work!""}","The answer states that the student's answer (True) is correct and provides multiple factually incorrect details, such as claiming the Andes are in North America, extending from Canada to Mexico, and including Mount McKinley. It is riddled with factual errors, completely misleading.",Riddled with factual errors; information is completely incorrect or misleading. The response asserts the Andes are located in North America and includes erroneous geographic references.,,,,,,,,not_detected,,,
+syn_c8086d89e3d91986,b96_052,2,,zh,Basic Factual Accuracy,overconfident_wrong,,"{""评分"": ""2/5"", ""评分细节"": ""合作学习法是一种以教师为中心的教学方法，主要强调教师的讲授和学生的被动听课。虽然其中包含一些小组讨论，但整体上学生的主动参与程度较低。因此，这并不是最强调学生主动参与的方法。在教育学中，最强调学生主动参与的方法是直接教学法，因为它更能激发学生的内在动机。"", ""个性化反馈"": ""你的回答有误，合作学习法并不强调主动参与，其实质是教师控制下的机械互动。建议你回顾直接教学法的优势，它才是真正强调学生主体性的方法。""}",该评价自信地提供了关于合作学习法和直接教学法的错误定义和比较，声称合作学习法是教师中心且学生被动，而直接教学法最强调主动参与，这完全违背了教育学的普遍认知。这些关键性事实错误使得评价信息不可靠，符合2分标准。,评价中包含多处明显的事实错误：1）将合作学习法错误描述为以教师为中心；2）断言合作学习法学生的主动参与程度低；3）错误地宣称直接教学法是最强调学生主动参与的方法。这些都属于关键性错误，导致信息整体不可靠。,,,,,,,,not_detected,,,
+syn_66d28e845b747946,b96_053,2,,en,Basic Factual Accuracy,factual_error,,"{""ClassroomActivityDesign"": {""Conclusion"": ""Class discussion on how Gibbs free energy relates to reaction spontaneity."", ""Introduction"": ""Brief lecture covering the first and second laws of thermodynamics and their relevance to chemical reactions."", ""MainActivity"": ""Students work in pairs to calculate ΔG for several reactions using the formula ΔG = ΔH + TΔS, given tabulated ΔH and ΔS values.""}, ""Difficulties"": [""Understanding the abstract nature of entropy."", ""Calculating ΔG under non-standard conditions."", ""Interpreting the sign of ΔG in relation to spontaneity.""], ""GradeLevel"": ""High School (11th-12th Grade)"", ""KeyPoints"": [""Enthalpy is the total heat content of a system."", ""Entropy is a measure of disorder; spontaneous reactions always increase the entropy of the universe."", ""Gibbs free energy is used to determine the rate of a chemical reaction."", ""A negative ΔG indicates a spontaneous reaction.""], ""TeachingObjectives"": [""Define enthalpy, entropy, and Gibbs free energy."", ""Explain the relationship ΔG = ΔH + TΔS."", ""Predict whether a reaction will be spontaneous using Gibbs free energy.""], ""Topic"": ""Thermodynamics in Chemical Reactions""}","The answer contains multiple key factual inaccuracies: it states the Gibbs free energy equation as ΔG = ΔH + TΔS (incorrect sign), and incorrectly claims that Gibbs free energy determines reaction rate (it determines spontaneity, not kinetics). These errors make the teaching material unreliable for classroom use.","The answer includes a clear, major defect (wrong fundamental equation and conceptual confusion), which aligns with label 2: 'Contains several or key factual inaccuracies; information is not trustworthy.'",,,,,,,,not_detected,,,
+syn_b4d2170e929f70c0,b96_054,2,,zh,Basic Factual Accuracy,overconfident_wrong,,我认为正确选项是第2项‘决定个人面对困难时的情绪反应’、第3项‘直接影响个人的实际技能水平’和第5项‘改变个人的基本性格特征’。因为自我效能感高的人在困难时会积极应对情绪，同时这种信念会直接提升技能，而且长期高自我效能感会让人变得更自信外向，这是性格的改变。所以答案是2、3、5。,回答自信地选择了多个错误选项并给出了错误的解释，其中关于直接影响技能和改变性格特征的说法与自我效能感的概念不符，存在关键性事实错误，符合2分描述。,回答包含较多关键事实错误：错误地认为自我效能感直接影响实际技能水平，并且改变基本性格特征，这些不是自我效能感的作用。,,,,,,,,not_detected,,,
+syn_504611b977350699,b96_056,3,,zh,Basic Factual Accuracy,overconfident_wrong,,1960年代美国民权运动的主要原因在于长期存在的种族隔离制度，特别是南方各州实施的吉姆·克劳法，使得黑人在教育、就业和公共设施方面遭受严重歧视。经济不平等的加剧以及二战后黑人对平等权利的渴望也推动了运动。国际层面，冷战时期美国为了在国际上树立民主形象，不得不关注国内的种族问题。不同社会团体发挥了各自的作用：马丁·路德·金牧师领导了非暴力抵抗运动，组织了蒙哥马利巴士抵制和1963年华盛顿大游行。马尔科姆·X同样是一位倡导非暴力融合的领袖，他与金的思想非常接近，都主张种族和谐。大学生团体如学生非暴力协调委员会（SNCC）通过静坐示威和自由乘车活动，积极挑战种族隔离。运动促成了重大政策变革，例如1964年《民权法案》废除了公共场所的种族隔离，1965年《投票权法案》保障了黑人的选举权。这些法律从根本上改变了美国的种族关系，为多元文化社会的形成奠定了基础。,该回答大部分事实正确，但包含一个关键的事实错误：将马尔科姆·X描述为非暴力融合的倡导者，这与历史事实不符（他早期主张黑人分离和自卫）。因此符合3分标签：大部分准确但有少量明显错误。,根据评分细则，3分要求“大部分事实准确，但存在少量明显的事实错误，需要核查”。该回答在马尔科姆·X的角色上提供了错误信息，属于明显事实错误。,,,,,,,,not_detected,,,
+syn_afae2bcd82728031,b96_057,1,,en,Domain Knowledge Accuracy,factual_error,,"Porter's Five Forces framework is a tool for internal strategic analysis. It helps identify a company's core competencies by evaluating five forces: the intensity of internal competition, the threat of new products, the bargaining power of employees, the threat of external suppliers, and government regulations. To apply it, you list the company's resources and capabilities, then categorize them into these five forces to see where the company stands relative to its direct competitors. This approach highlights areas where the company can improve its internal processes to gain a competitive edge.","The answer mistakenly describes Porter's Five Forces as an internal analysis tool and misidentifies the forces, introducing a sixth force (government regulations) and replacing key forces with incorrect ones. This constitutes a severe factual error, meeting the criteria for label 1.",Serious domain errors; completely incorrect or misleading; does not meet any professional standards.,,,,,,,,not_detected,,,
+syn_b21164107c163c3e,b96_058,1,,zh,Domain Knowledge Accuracy,rubric_violation,,问题：在运动技能学习领域，通常将运动技能分为封闭性技能和开放性技能。以下关于封闭性技能的描述，正确的是：A. 主要在多变环境中执行，如足球传球 B. 动作形式固定，环境变化小，如体操 C. 强调即兴反应和决策 D. 完全依赖本体感觉反馈。答案：D。解析：封闭性技能是由内部本体感受器提供的反馈信息控制的，因此不依赖外部环境变化，选项D正确。,该回答对封闭性技能的定义存在根本性错误，将其曲解为完全依赖本体感觉反馈，而实际定义是指在稳定、可预测的环境中执行的动作技能。这一错误严重违背了运动技能分类的基本专业知识，可能误导学习者建立错误概念，完全不符合学术规范。,根据5分制评分标准，1分指‘专业知识运用方面存在严重错误，完全不符合专业标准，可能产生误导’。本回答对核心概念‘封闭性技能’的解释彻底错误，将动作技能分类中的关键区分混淆，属于典型严重错误，完全吻合1分标准。,,,,,,,,not_detected,,,
+syn_09253e14970139e6,b96_059,1,,en,Domain Knowledge Accuracy,factual_error,,"{
+  ""teaching_materials"": {
+    ""teaching_objectives"": [
+      ""Learn that Recirculating Aquaculture Systems (RAS) are designed to maximize water exchange with natural sources."",
+      ""Understand that biofilters are unnecessary because fish waste does not produce toxic ammonia."",
+      ""Master the technique of keeping dissolved oxygen levels below 1 mg/L to reduce fish metabolism."",
+      ""Explore how to completely prevent disease by using untreated surface water.""
+    ],
+    ""key_points"": [
+      ""RAS is an open system that continuously flushes water to maintain quality."",
+      ""Ammonia is a harmless compound that can be safely ignored."",
+      ""Ideal water temperature for cold-water species is above 30°C for faster growth."",
+      ""UV sterilization is used primarily to improve water clarity for aesthetic purposes.""
+    ],
+    ""difficulties"": [
+      ""Maintaining high water exchange rates without environmental impact."",
+      ""Over-aeration can cause excessive oxygen levels, leading to fish stress."",
+      ""Biofilters often crash because they remove all bacteria from the system."",
+      ""Controlling algae growth as a primary food source.""
+    ],
+    ""classroom_activity_design"": [
+      {
+        ""activity_name"": ""Design an Open RAS System"",
+        ""duration"": ""60 minutes"",
+        ""description"": ""Students will design an aquaculture system that relies on continuous river water intake and discharge, ignoring recirculation.""
+      },
+      {
+        ""activity_name"": ""Ammonia Tolerance Debate"",
+        ""duration"": ""30 minutes"",
+        ""description"": ""Students debate whether ammonia is toxic or beneficial, with the correct conclusion being that it is harmless.""
+      }
+    ]
+  }
+}","The answer contains multiple, severe factual errors that fundamentally misrepresent RAS design and management. It claims RAS are open systems with constant water exchange, that ammonia is harmless and biofilters unnecessary, that dissolved oxygen should be kept low, and that ideal temperatures for cold-water species are above 30°C. These statements are completely incorrect and misleading, demonstrating a total lack of professional knowledge. Therefore, a label of 1 is justified.",Serious domain errors; completely incorrect or misleading; does not meet any professional standards.,,,,,,,,not_detected,,,
+syn_eab74509411ddb5f,b96_060,2,,zh,Domain Knowledge Accuracy,rubric_violation,,"{
+  ""教学素材"": {
+    ""教学目标"": [
+      ""了解波函数归一化的数学定义"",
+      ""掌握归一化常数的计算步骤"",
+      ""理解归一化在确定粒子位置中的应用"",
+      ""能够利用归一化条件推导经典运动方程""
+    ],
+    ""重点难点"": {
+      ""重点"": [
+        ""归一化条件：∫|ψ(x)| dx = 1"",
+        ""归一化常数等于波函数的最大值"",
+        ""波函数的平方代表概率密度""
+      ],
+      ""难点"": [
+        ""处理复数波函数时忽略复共轭"",
+        ""无穷区间上的积分技巧"",
+        ""非束缚态波函数的归一化（如平面波）""
+      ]
+    },
+    ""课堂活动设计"": [
+      {
+        ""环节"": ""导入"",
+        ""内容"": ""通过扔硬币的概率分布引出波函数的概念，强调总概率必须为1，然后提问：为什么波函数的模方积分等于1？"",
+        ""时间"": 10
+      },
+      {
+        ""环节"": ""理论讲解"",
+        ""内容"": ""介绍归一化条件∫ψ(x)dx = 1，并推导归一化常数的求解方法，举例：ψ(x)=A e^{-x^2}，通过令∫A^2 e^{-2x^2} dx = 1 求出A。"",
+        ""时间"": 20
+      },
+      {
+        ""环节"": ""例题练习"",
+        ""内容"": ""给出波函数ψ(x)=B sin(nπx/L)，让学生计算归一化常数B，提示计算∫_0^L sin^2(nπx/L) dx，得到B=√(2/L)。"",
+        ""时间"": 25
+      },
+      {
+        ""环节"": ""拓展讨论"",
+        ""内容"": ""讨论非归一化波函数的物理意义，例如自由粒子平面波不能归一化，但可以引入箱归一化，或者用δ函数归一化。"",
+        ""时间"": 15
+      }
+    ]
+  }
+}",回答中存在多处专业知识错误：教学目标中包含“利用归一化条件推导经典运动方程”，这是错误的概念关联；重点中将归一化条件错误地写为∫|ψ(x)| dx = 1（遗漏平方）；并错误地声称归一化常数等于波函数的最大值。这些错误表明专业性不足，符合2分标准。,该回答在专业知识运用上存在明显错误，如核心公式错误和不当的物理关联，违反了评分标准中2分关于“存在明显错误或重大遗漏，体现专业性不足”的描述。,,,,,,,,not_detected,,,
+syn_0cefcfbf9c371f9f,b96_061,2,,en,Domain Knowledge Accuracy,factual_error,,"{""Question"": ""In the study of public policy implementation, the bureaucratic politics model suggests that policy outcomes are primarily a result of which of the following?"", ""ProvidedReasoning"": ""This question tests the PhD candidate's understanding of the bureaucratic politics model, which emphasizes that policy implementation is a top-down process driven by rational decision-making and efficient execution of executive directives.""}","The provided reasoning contains a major factual error by mischaracterizing the bureaucratic politics model as a top-down, rational implementation process, whereas it is actually about bargaining and negotiation among agencies. This significantly undermines the accuracy of the domain knowledge.","Significant factual error in explaining the bureaucratic politics model, making the answer unreliable for high-level public administration content.",,,,,,,,not_detected,,,
+syn_2e332d4542524c50,b96_062,2,,zh,Domain Knowledge Accuracy,rubric_violation,,我觉得答案是7支，因为5支加3支就是7支，所以选A。,回答中进行了错误的加法计算（5+3=7），而正确答案应为8，这是小学数学基础知识上的明显错误，表明专业性不足，符合2分标签。,根据评分标准，2分要求‘专业知识运用存在明显错误或重大遗漏’，该回答在简单的加法运算上出错，属于对核心知识的错误运用，完全符合该缺陷描述。,,,,,,,,not_detected,,,
+syn_3187b2c67a067d7d,b96_063,2,,en,Domain Knowledge Accuracy,factual_error,,"{""TeachingMaterials"": {""classroomActivityDesign"": {""closer"": {""description"": ""Students debate how Surrealism contributed to the development of literary realism."", ""title"": ""Debate: Surrealism vs. Realism""}, ""mainActivity"": {""description"": ""Students will write a paragraph using stream of consciousness technique, following the Surrealist principle of rational association."", ""title"": ""Stream of Consciousness Writing""}, ""opener"": {""description"": ""Students will analyze a surrealist painting by explaining its logical structure and orderly elements."", ""title"": ""Logical Dream Analysis""}}, ""difficulties"": [""Students may confuse Surrealism with Romanticism due to their shared emphasis on emotion."", ""Grasping the rational underpinnings of Surrealist art can be challenging.""], ""keyPoints"": [""Surrealism emerged in the late 19th century, inspired by the Industrial Revolution and Victorian moral codes."", ""Core technique: stream of consciousness, developed by James Joyce and adopted by Surrealists."", ""André Breton's 'Communist Manifesto' (1924) outlined the movement's principles."", ""Magic Realism, a direct offshoot of Surrealism, was pioneered by Franz Kafka.""], ""teachingObjectives"": [""Understand the foundational role of rationality and order in Surrealist thought."", ""Analyze how Surrealist writers used logical frameworks to construct narratives."", ""Explore the influence of Surrealism on realistic and naturalistic literature in the 20th century.""]}}","The answer contains multiple major factual errors, such as incorrectly stating that Surrealism emphasized rationality, emerged in the 19th century, used stream of consciousness, and that Breton wrote the 'Communist Manifesto'. These significant errors undermine the reliability of the content, fitting the rubric for label 2.",Significant errors in subject-specific content that make the answer unreliable and unprofessional.,,,,,,,,not_detected,,,
+syn_bc3a83cb8d92dfc0,b96_064,3,,zh,Domain Knowledge Accuracy,rubric_violation,,"{""教学素材"": {""教学目标"": {""知识目标"": [""理解垄断竞争的基本定义"", ""能够描述垄断竞争市场的产品差异化特点"", ""知道垄断竞争企业的短期与长期决策""], ""能力目标"": [""运用古诺模型分析垄断竞争企业的产量决策"", ""比较垄断竞争与完全竞争的市场效率"", ""设计简单的差异化产品策略""], ""情感目标"": [""树立市场竞争的公平意识"", ""培养对经济学思维的兴趣""]}, ""重点难点"": {""教学重点"": [""产品差异化的类型"", ""垄断竞争企业的需求曲线分析"", ""广告的经济效应""], ""教学难点"": [""古诺均衡的推导过程"", ""长期均衡时超额利润的消失"", ""非价格竞争的福利影响评估""]}, ""课堂活动设计"": [{""环节"": ""案例导入"", ""形式"": ""视频展示"", ""内容"": ""播放洗发水品牌的广告集锦，引出产品差异化话题"", ""时长"": ""8分钟""}, {""环节"": ""理论讲解"", ""形式"": ""板书+PPT"", ""内容"": ""讲解古诺模型的基本假设，并应用于垄断竞争场景，推导反应函数"", ""时长"": ""20分钟""}, {""环节"": ""小组工作"", ""形式"": ""模拟市场"", ""内容"": ""学生分组扮演洗发水厂商，通过古诺模型决定产量，观察市场结果"", ""时长"": ""15分钟""}, {""环节"": ""总结归纳"", ""形式"": ""教师总结"", ""内容"": ""总结垄断竞争的主要特征与古诺模型的意义"", ""时长"": ""5分钟""}]}}",回答基本描述了垄断竞争的特点和产品差异化，但在多个环节错误地将原本用于寡头市场的古诺模型作为分析工具，反映专业知识运用的不严谨和概念混淆，属于较为表层的应用。,虽然基本知识正确，但将古诺模型应用于垄断竞争教学，该模型不适用于市场中存在众多企业且无相互依赖的垄断竞争情境，这是专业知识上的非核心混淆和遗漏。,,,,,,,,not_detected,,,
+syn_2b02067d6cd76e78,b96_065,1,,en,Role & Tone Consistency,scenario_mismatch,,"{
+  ""teaching_materials"": {
+    ""topic"": ""Mechanisms of Drug Resistance in Cancer Therapy"",
+    ""teaching_objectives"": [
+      ""Like, understand how cancer cells become total jerks and resist drugs, ya know?"",
+      ""Check out all the genetic shenanigans that let them survive."",
+      ""Figure out ways to kick their butts anyway.""
+    ],
+    ""key_points"": [
+      ""Mutations: they change their genes to avoid the drug hitting its target. Sneaky!"",
+      ""Drug pumps: they literally push the medicine out. So rude!"",
+      ""DNA fixers: they repair the damage we do, like a mini construction crew."",
+      ""Cell death avoidance: they become immortal or something, super annoying."",
+      ""The neighborhood matters: hypoxia and buddy cells help them out.""
+    ],
+    ""difficulties"": [
+      ""It's all tangled up, man, like a bowl of spaghetti. Hard to sort out."",
+      ""Figuring out if they were born resistant or became that way is tricky."",
+      ""Taking cool ideas from the lab to real patients is, like, super hard.""
+    ],
+    ""classroom_activity_design"": [
+      {
+        ""activity"": ""Chat about a sad story"",
+        ""description"": ""We'll read about some poor patient whose cancer got resistant. Then we'll talk about what went wrong and what we coulda done. Like a detective game but sad."",
+        ""duration"": ""like 20 mins or so""
+      }
+    ]
+  }
+}","The answer is written in an extremely casual, slang-filled, and flippant tone, like a social media post, which is entirely inappropriate for a teacher preparing teaching materials. There is no reflection of the assigned role; the expression is inconsistent with the educational scenario.","The answer shows no adherence to the role of a teacher; the tone is completely mismatched with the scenario, using informal language and lacking professionalism.",,,,,,,,not_detected,,,
+syn_1f3f4bf3d1e4288c,b96_066,1,,zh,Role & Tone Consistency,superficial_fluency,,"{""情绪状态分析"": {""主要情绪"": ""轻度焦虑"", ""触发因素"": ""博士阶段学业压力，实验与数据分析不自信，对研究结果的担忧"", ""情绪表现"": {""自我怀疑"": ""显著"", ""预期焦虑"": ""存在"", ""压力感知"": ""中等""}, ""积极因素"": ""个体展现出问题觉察与求助倾向""}, ""安慰与建议"": {""标准化干预"": [""任务拆解：将大课题分解为可执行子任务，设定周期目标"", ""社会支持利用：定期与导师沟通研究进展，寻求技术反馈"", ""认知重构：识别并修正“研究必须达预期”的非理性信念""], ""生理调节"": [""规律作息：保证每日7小时睡眠"", ""运动：每周至少150分钟中等强度活动""]}}",回答完全缺失作为支持性智能体应有的共情与个性化口吻，通篇使用正式、非个人化的报告式语言（如客观指标描述“情绪表现：自我怀疑显著”），建议部分为标准化清单，无任何鼓励或同理表达，与设定的关怀角色完全不符，符合1分。,角色与口吻与设定要求完全不符：智能体本应以同理心支持学生，但实际回答使用了临床报告和分析风格，未体现任何情感互动，导致角色扮演失败。,,,,,,,,not_detected,,,
+syn_7e6b2147dbaab22d,b96_067,1,,en,Role & Tone Consistency,scenario_mismatch,,"{
+  ""EmotionalStateAnalysis"": {
+    ""OverallEmotion"": ""Incompetence"",
+    ""LevelOfAnxiety"": ""High"",
+    ""SpecificConcerns"": [
+      ""Student lacks basic aptitude for algorithms."",
+      ""Student is too afraid to ask for help, indicating poor initiative.""
+    ],
+    ""ImpactOnStudies"": ""Student is a drain on resources and should reconsider their major.""
+  },
+  ""ComfortAndAdvice"": {
+    ""Reassurance"": ""Face it: not everyone is cut out for Computer Science. If you can't understand simple algorithms, maybe you should switch to a less demanding field."",
+    ""EncouragementToSeekHelp"": ""Seeking help is a sign of weakness. Professors don't have time for students who can't keep up. You need to figure it out on your own."",
+    ""SuggestionsForSupport"": [
+      ""Study harder."",
+      ""Consider changing your major."",
+      ""Accept that you might fail.""
+    ]
+  }
+}","The response is completely inappropriate for an educational support context. It adopts a dismissive and condescending tone, labeling the student's emotion as 'Incompetence' and offering advice that undermines the student rather than providing comfort or constructive guidance. There is no reflection of the expected supportive role of an educator.","Severe role and tone mismatch: the language is harsh, unsupportive, and belittling, entirely inconsistent with the scenario of a teacher/TA helping an anxious student.",,,,,,,,not_detected,,,
+syn_b2bf125c90b74cad,b96_068,2,,zh,Role & Tone Consistency,superficial_fluency,,"{
+  ""教学目标"": {
+    ""知识目标"": [""掌握公共决策的基本概念"", ""了解决策模型""],
+    ""能力目标"": [""能够应用模型分析案例""],
+    ""情感目标"": [""培养责任感""]
+  },
+  ""重点难点"": {
+    ""教学重点"": [""决策过程阶段""],
+    ""教学难点"": [""利益协调""]
+  },
+  ""课堂活动设计"": [
+    {""活动名称"": ""小组讨论"", ""形式"": ""分组讨论"", ""内容"": ""讨论案例"", ""目标"": ""理解""},
+    {""活动名称"": ""角色扮演"", ""形式"": ""模拟"", ""内容"": ""角色扮演"", ""目标"": ""体验""}
+  ],
+  ""教学资源"": [],
+  ""评估方式"": {""形成性评估"": [""课堂参与""]},
+  ""课时建议"": ""3课时""
+}",该回答以JSON格式呈现，表面结构完整、无语法错误，符合流畅要求。但内容极为简略、生硬，缺乏教师设计教学素材时应有的细致指导和鼓励性语言，整体口吻像机械的提纲，与教师角色存在较大差距，因此评为2分。,根据rubric，2分要求“角色和口吻与设定要求有较大差距，显得生硬或不协调”。该回答的教学目标、活动设计等表述过于笼统和命令式，如“讨论案例”“目标：理解”等毫无教学温度，完全没有体现教师应有的专业性和对学生学习的引导，与期望的教师口吻严重不符。,,,,,,,,not_detected,,,
+syn_fb3da1fd660fa0d1,b96_069,2,,en,Role & Tone Consistency,scenario_mismatch,,"{
+  ""Emotional State Analysis"": {
+    ""Emotions"": [""Anxiety"", ""Overwhelm"", ""Uncertainty""],
+    ""RootCause"": ""Excessive information load causing cognitive stress."",
+    ""PrimaryConcern"": ""Failure to retain information leading to poor exam performance.""
+  },
+  ""Comfort & Advice"": {
+    ""Comfort"": [],
+    ""Advice"": {
+      ""Strategy1"": ""Use spaced repetition algorithms to schedule reviews."",
+      ""Strategy2"": ""Apply active recall techniques with self-testing."",
+      ""Strategy3"": ""Segment study material into manageable chunks."",
+      ""SelfCareTip"": ""Maintain adequate hydration and sleep hygiene.""
+    },
+    ""Encouragement"": ""Systematic application of these methods should improve retention.""
+  }
+}","The answer adopts a robotic, dispassionate tone entirely at odds with the supportive, empathetic role expected of a teacher or TA. It lacks any emotional validation or comforting language, and advice is delivered as impersonal, clinical directives, creating a significant role/tone mismatch.","Per the rubric, label 2 is 'Significant mismatch in role and tone; comes across as unnatural or inconsistent.' The answer fails to embody the comforting advisor role, sounding instead like a cold technical assistant, which severely undermines its reliability for an anxious student.",,,,,,,,not_detected,,,
+syn_c1f7b5b3307f6537,b96_070,2,,zh,Role & Tone Consistency,superficial_fluency,,"{
+  ""教学目标"": {
+    ""知识维"": [""理解参数优化算法的计算复杂度""],
+    ""技能维"": [""熟练使用Python调用优化库""],
+    ""情感维"": [""认可数学建模的重要性""]
+  },
+  ""重点难点"": {
+    ""核心重点"": [""梯度下降的收敛性证明""],
+    ""核心难点"": [""高维参数空间的可视化""],
+    ""突破建议"": [""采用降维投影技术辅助理解""]
+  },
+  ""课堂活动设计"": [
+    {
+      ""阶段"": ""理论输入"",
+      ""时长"": ""30分钟"",
+      ""教师行动"": ""讲解PPT，强调公式推导"",
+      ""学生行动"": ""记录笔记，跟随推导""
+    },
+    {
+      ""阶段"": ""上机实践"",
+      ""时长"": ""45分钟"",
+      ""教师行动"": ""下发代码框架，巡视纠错"",
+      ""学生行动"": ""运行代码，修改参数""
+    },
+    {
+      ""阶段"": ""总结"",
+      ""时长"": ""15分钟"",
+      ""教师行动"": ""提问检查掌握情况"",
+      ""学生行动"": ""回答并提交实验报告""
+    }
+  ]
+}",该教学素材结构完整、术语专业，表面流畅，但整体口吻生硬机械，如“教师行动”“学生行动”“下发代码框架”等表达缺乏教师角色应有的引导性、启发性和人文关怀，更像一份操作手册而非教学方案，与教师角色设定有明显脱节，符合2分描述。,角色和口吻与教师角色设定有较大差距，语句生硬不协调，未能体现教学场景中教师应有的鼓励、引导或贴近学习者的语气，整体风格冷漠程序化。,,,,,,,,not_detected,,,
+syn_278f26f7426bc862,b96_071,3,,en,Role & Tone Consistency,scenario_mismatch,,"{""Comfort & Advice"": {""Comforting Statements"": [""It is normal to experience anxiety before an examination."", ""Your practice sessions demonstrate a commitment to improvement."", ""Anxiety can be mitigated through gradual exposure.""], ""Encouragement"": [""Your proactive approach is commendable."", ""Continue your efforts and seek assistance when necessary."", ""Consistent practice will lead to increased proficiency.""], ""Practical Advice"": [""Segment audio materials into smaller units and replay until comprehension is achieved."", ""Incorporate a variety of audio sources to acclimate to different phonetic patterns."", ""Schedule regular listening practice each day.""]}, ""Emotional State Analysis"": {""Anxiety Level"": ""Mild Anxiety"", ""Emotional Indicators"": {""Effort"": ""Engages with audio clips but finds them challenging"", ""Uncertainty"": ""Expresses lack of confidence in preparation level"", ""Worry"": ""Concern about catching all spoken content""}, ""Primary Concern"": ""The listening portion of the upcoming Chinese examination""}}","The answer attempts to analyze and provide comfort but uses a formal, impersonal tone that is inconsistent with the supportive teacher role expected in this scenario. The language is clinical (e.g., 'phonetic patterns', 'mitigated through gradual exposure') rather than warm and encouraging, creating weak overall role consistency.","The tone is mismatched for the scenario; expressions like 'phonetic patterns' and 'mitigated through gradual exposure' are disconnected from the warm, interactive teacher role, making the answer feel unnatural and insufficiently supportive.",,,,,,,,not_detected,,,
+syn_28784ba134533fec,b96_072,3,,zh,Role & Tone Consistency,superficial_fluency,,"{
+  ""情绪状态分析"": {
+    ""情绪类型"": ""焦虑"",
+    ""情绪强度"": ""中度"",
+    ""情绪来源"": ""语文科目中的生字和课文记忆困难，在考试时尤为明显"",
+    ""情绪表现"": ""感到紧张，无法回忆已学内容""
+  },
+  ""安慰与建议"": {
+    ""安慰"": ""别太灰心，学习记忆本身就需要一个过程。很多同学都会遇到类似的情况，你不是一个人。"",
+    ""建议"": [
+      ""试着把课文分成几个部分，每天背一段，这样压力会小很多。"",
+      ""编一些小故事把生字串起来，想象画面会记得更牢。"",
+      ""考试前做几次深呼吸，告诉自己已经尽力准备了。"",
+      ""如果你觉得特别困难，不妨报个记忆训练营，现在有很多快速提升的课程。"",
+      ""跟老师聊一聊，我们一起来想办法。""
+    ]
+  }
+}",回答整体结构完整、语言通顺，尝试以教育者口吻提供支持，但其中的一条建议（报记忆训练营、快速提升课程）带有商业化口吻，与学校老师或助教的角色设定出现脱节，导致角色一致性不足，符合3分边界质量。,能看出尝试匹配角色和口吻，但一致性不足，部分表达与设定角色/场景有脱节。具体而言，‘不妨报个记忆训练营，现在有很多快速提升的课程’这一表述更像推销而非教育引导，与教师鼓励学生运用校内资源、踏实学习的口吻不协调。,,,,,,,,not_detected,,,
+syn_beedb805961c16f3,b96_073,1,,en,Content Relevance & Scope Control,scenario_mismatch,,"In contemporary military conflicts, cyber operations have become a cornerstone of modern strategy, offering unprecedented capabilities to disrupt enemy infrastructure and gather intelligence. The strategic significance lies in their ability to bypass traditional physical defenses, targeting critical civilian and military networks. Through techniques such as advanced persistent threats (APTs), denial-of-service attacks, and zero-day exploits, state and non-state actors can achieve objectives without direct kinetic engagement. For example, the Stuxnet worm demonstrated how a sophisticated cyber weapon can degrade a nation's nuclear program. Additionally, cyber operations enable psychological warfare by spreading disinformation through social media platforms, influencing public opinion and sowing discord. The low cost and high impact of these operations make them a highly effective asymmetric tool, fundamentally altering the dynamics of modern warfare by shifting the battlespace into the digital realm. Mastery of cyber capabilities is now essential for national defense and power projection.","The answer entirely discusses cyber operations instead of electromagnetic spectrum operations (EMSO), making it largely irrelevant to the specified topic.",Content is largely irrelevant or completely outside the specified scope; it addresses a different domain (cyber) rather than EMSO.,,,,,,,,not_detected,,,
+syn_8c48afe220a3da6a,b96_074,1,,zh,Content Relevance & Scope Control,rubric_violation,,今天太阳好大，我和小狗在院子里玩。小狗跑得很快，我追不上。妈妈叫我去浇水，我就给花浇了水，还看到蝴蝶飞来飞去。植物需要阳光才能生长，因为晒了太阳它们就暖和了，就像我晒太阳会长高一样。中午吃了面条，很好吃。,回答以流水账方式记录个人活动，与‘植物需要阳光才能生长’的原理几乎无关，仅用一句非科学的拟人化类比带过，未触及任何生物学知识，完全偏离指定主题和学科范围。,根据5分制评分细则，1分要求‘内容基本不相关，或完全脱离指定范围’。该回答绝大部分篇幅用于描述游玩与午餐，与植物生长所需阳光的科学解释无关，仅有的关联也缺乏实质内容，属于严重偏离主题。,,,,,,,,not_detected,,,
+syn_6f75c3f1a4ee114f,b96_075,1,,en,Content Relevance & Scope Control,scenario_mismatch,,"Stare decisis is indeed a cornerstone of common law. It reminds me of the time I visited London and saw the courts. The architecture was stunning, with tall pillars and intricate carvings. I think the principle of 'stare decisis' is like building a house: you need a strong foundation. In my opinion, the most important principle in life is honesty. For example, when I was growing up, my father taught me to always tell the truth. This is similar to how judges must be honest in their rulings. The doctrine of stare decisis ensures that judges don't lie about past decisions. So, the principle most associated with it is truthfulness. Also, I think fairness is important. But ultimately, it's about respecting your elders, which is a societal norm.","The response superficially mentions stare decisis but then launches into irrelevant personal anecdotes and generic life advice, never engaging with the legal reasoning requested. The content is overwhelmingly off-topic, fully consistent with a label 1 for content relevance.",Content is largely irrelevant or completely outside the specified scope. The answer fails to provide reasoning about the legal doctrine of stare decisis and instead offers unrelated personal stories and platitudes.,,,,,,,,not_detected,,,
+syn_942f8d9a1452adf5,b96_076,2,,zh,Content Relevance & Scope Control,rubric_violation,,C. 1690年博因河战役。光荣革命的结束不是一个单一的政治事件，而是通过巩固威廉三世的统治来实现的。博因河战役击败了詹姆斯二世的军队，彻底消除了斯图亚特王朝复辟的可能性，标志着革命成果的最终稳固。战役后，威廉在爱尔兰和苏格兰的统治得到确认，这才真正完成了革命。,回答选择了错误选项C，并以博因河战役作为光荣革命结束的标志。解释重点放在军事细节和威廉统治的巩固上，偏离了问题所问的政治结束标志（通常为1689年权利法案的通过），与问题内容的相关性较差，且引入了超出问题范围的欧洲战场背景，符合2分关于内容相关性差和范围控制不足的缺陷描述。,内容主体相关性较差：回答围绕博因河战役展开，而非直接回应光荣革命的政治结束标志；范围控制失败，引入了军事历史和爱尔兰战场等无关或超纲信息，使得回答未聚焦在问题所要求的核心知识点上。,,,,,,,,not_detected,,,
+syn_42c59111c5532284,b96_077,2,,en,Content Relevance & Scope Control,scenario_mismatch,,"To determine the singularities of f(z) = z^2 + 1, consider its reciprocal g(z) = 1/(z^2+1). The singularities of g(z) are the zeros of f(z), i.e., z = ±i. Since these are simple zeros of f, g(z) has simple poles at these points. However, the function f(z) itself is a polynomial and entire, but in the context of the Riemann sphere, infinity is a pole of order 2 because f(z) grows like z^2. So the correct statement is that f(z) has a pole at infinity. Therefore, option D is true. But note that essential singularities are typically for functions like e^(1/z). This function doesn't have that. Option C says a pole of order 2 at z = i, but at i, f(i)=0, and it's not a pole for f; it's a zero. So D is the best answer.","The answer candidate spends a significant portion analyzing the singularities of 1/(z^2+1) instead of directly addressing the clearly entire function f(z). This irrelevant reciprocal discussion, along with the Riemann sphere tangent, introduces off-topic content that detracts from the simple question about a polynomial. The analysis is misapplied and poorly relevant, justifying label 2.","Poor relevance: includes a significant amount of irrelevant information (reciprocal function analysis, Riemann sphere context) that is largely outside the scope of the simple multiple-choice question about a polynomial's singularities.",,,,,,,,not_detected,,,
+syn_ef5440a1929006b7,b96_078,2,,zh,Content Relevance & Scope Control,rubric_violation,,"{""姓名"": ""小明"", ""年级"": ""小学四年级"", ""个性化学习内容与任务"": [{""主题"": ""种植观察实验"", ""任务描述"": ""种植绿豆并每天记录生长情况"", ""具体步骤"": [""准备材料"", ""每天浇水拍照"", ""绘制生长曲线""], ""能力培养目标"": ""观察力和记录习惯""}, {""主题"": ""制作问题手册"", ""任务描述"": ""阅读科普书籍并收集问题，制作成册"", ""具体步骤"": [""选择合适的科普书"", ""每天标记问题"", ""查找资料回答""], ""能力培养目标"": ""提问能力和研究能力""}, {""主题"": ""小小理财家"", ""任务描述"": ""学习基础理财知识，模拟股票交易"", ""具体步骤"": [""阅读《小狗钱钱》"", ""在家长帮助下开立模拟账户"", ""记录每日盈亏""], ""能力培养目标"": ""财务意识和数学计算""}], ""个性化支持策略"": {""注意力维持"": ""每个任务不超过30分钟"", ""正反馈机制"": ""完成任务可获得小星星贴纸""}}",回答中包含了三个任务，前两个与学生的兴趣（观察自然、阅读科普书籍）及学习风格（动手实践）较相关，但第三个任务‘小小理财家’要求学生模拟股票交易，内容明显偏离学生的兴趣领域和学习需求，属于无关信息。整体内容相关性因此被严重稀释，符合2分标准。,回答未能紧扣学生画像中的兴趣点（观察自然、科普阅读）进行内容设计，第三个任务引入了与核心兴趣无关的理财和股票模拟，超出合理范围，导致内容相关性较差。,,,,,,,,not_detected,,,
+syn_b2fc302bafa59ac9,b96_079,3,,en,Content Relevance & Scope Control,scenario_mismatch,,"{""Score"":1,""ScoringDetails"":{""Accuracy"":1,""Explanation"":""The statement is true. The human liver has a remarkable capacity to regenerate. After surgical removal of up to 70% of the liver, the remaining tissue can rapidly proliferate and restore the original mass within a few weeks. This regenerative ability is also observed in rodents and fish, where liver regeneration involves complex signaling pathways such as the IL-6/STAT3 pathway. Additionally, the liver's dual blood supply from the hepatic artery and portal vein enables it to efficiently process nutrients and detoxify substances.""},""PersonalizedFeedback"":""Your answer is correct! The liver is indeed capable of regeneration. Did you know that the liver is the only internal organ that can regenerate to such an extent? In contrast, organs like the heart and brain have very limited regenerative abilities. If you're interested, you might look into the role of stem cells in liver regeneration or how this property is harnessed in partial liver transplants.""}","The answer confirms the correct true/false response and provides a relevant explanation, but it adds extraneous details (animal models, signaling pathways, blood supply, organ comparisons, and further reading suggestions) that go beyond the scope of a simple true/false question. This makes the answer mostly relevant but with noticeable scope control weaknesses, fitting label 3.","Mostly relevant, but includes some off-topic or out-of-scope content; scope control needs improvement.",,,,,,,,not_detected,,,
+syn_6804d8697be845c8,b96_080,3,,zh,Content Relevance & Scope Control,rubric_violation,,"{""评分"": 4, ""评分细节"": {""正确选项"": [""A"", ""C"", ""E"", ""F""], ""学生答案"": [""A"", ""C"", ""E"", ""F""], ""得分"": 4, ""满分"": 4}, ""个性化反馈"": ""你的答案完全正确！农奴制是封建制度的经济基础，十字军东征削弱了贵族阶层，黑死病导致劳动力短缺并动摇了农奴制，军事科技进步则让骑士阶层衰落。不过，文艺复兴虽然时间稍晚，但它倡导的人文主义思想也间接冲击了封建等级观念，这一点有时会被忽略。另外，城市化在后期发展中确实加速了封建制度的解体，但你的选择已经涵盖了最核心的驱动力。整体很好，继续保持对历史动力的分析能力！""}",回答主体评分与细节正确，但个性化反馈中补充解释了未被选中的选项（文艺复兴、城市化），这些内容虽与主题有关联，却偏离了核心任务（解释正确选项的关键作用），导致信息冗余且范围控制不够精准，属于明显边界质量。,反馈后半段加入了对文艺复兴和城市化的额外讨论，这部分内容超出了必要解释范围，造成偏离，符合3分描述‘内容大部分相关，但包含一些偏离主题或超出范围的部分，范围控制不够精确’。,,,,,,,,not_detected,,,
+syn_be0c55c2a79384de,b96_081,1,,en,"Clarity, Simplicity & Inspiration",superficial_fluency,,"{""Corrected Answer"": ""The gravitational acceleration value on Earth is not invariant with respect to altitude; it follows a functional form where the acceleration magnitude varies as the inverse of the square of the distance from the planetary mass distribution's effective center, approximated by the geocentric radius plus elevation, thus resulting in a reduced acceleration at higher topographical positions."", ""Error Explanation"": ""The original statement's fallacy originates from the misconception that the Earth's gravitational field is homogeneous, ignoring that the potential gradient decreases as per the Laplacian consequence of the Poisson equation for a spherically symmetric mass, which predicts a non-constant g value when the observer's locale transcends the reference geoid.""}","The corrected answer and error explanation use overly technical language (e.g., 'functional form', 'geocentric radius', 'Laplacian consequence', 'Poisson equation') and complex sentence structures, making them confusing and hard to follow for learners. They disregard simplicity and learner needs, and offer no inspirational quality, aligning with clarity/simplicity/inspiration label 1.",Severe lack of clarity and simplicity; the heavy jargon and convoluted phrasing cause confusion and fail to engage or inspire learners.,,,,,,,,not_detected,,,
+syn_c462648918e4b258,b96_083,1,,en,"Clarity, Simplicity & Inspiration",superficial_fluency,,"{""Reasoning Provided"": ""I need to think about the essence of the operation. The number 5 is a concept, and 3 is another concept. When we talk about 'adding' them, we are really performing a metaphysical synthesis. Consider the nature of unity: if we have a set of five elements and another set of three, the act of combining them creates a new set whose cardinality is the transcendental sum. This isn't merely counting; it's an acknowledgment of the continuum. Some might use a number line, but that confines thought to linearity. Instead, imagine a vortex where 5 and 3 spiral together, their energies merging into a single numerical entity that defies simplistic articulation. The result is not just a number but a state of numerical being.""}","The answer uses superficially fluent language but is confusing, abstract, and does not provide clear, accessible reasoning for a simple arithmetic question. It disregards learner needs and offers no inspiration, likely causing confusion.","Fails the rubric for label 1: confusing and hard to follow, disregards learner needs, offers no inspiration.",,,,,,,,not_detected,,,
+syn_1a59f7c638953632,b96_084,2,,zh,"Clarity, Simplicity & Inspiration",rubric_violation,,"{""纠错后答案"": ""The past tense of 'run' is 'ran'."", ""纠错说明"": ""在英语形态学中，动词过去时态的构造并非一律遵循添加后缀'-ed'的规则化范式。具体到'run'这一词位，它属于强变化动词类别，其过去时态形式表现为词干元音交替，即由/ʌ/变更为/æ/，拼写为'ran'。这种历时的元音变换现象源于印欧语系中的元音交替系统，在现代英语中作为残留的不规则现象存在。因此，'runned'这一形式在规范语法体系中不被接受，属于过度泛化错误。建议通过记忆常见强变化动词表来掌握此类例外。""}",纠错说明使用了大量语言学专业术语（如形态学、词位、强变化动词、元音交替、历时、过度泛化），句式复杂冗长，不适合普通学习者理解，缺乏简洁性和启发性，符合2分描述。,根据评分细则，2分要求表达不够清晰，存在较多术语或复杂句式，不易理解；缺乏启发性。该回答完全符合：说明中堆砌专业术语，句子结构复杂，没有举例或鼓励，难以引发思考。,,,,,,,,not_detected,,,
+syn_3cf5ef0e78eb8502,b96_085,2,,en,"Clarity, Simplicity & Inspiration",superficial_fluency,,"When contemplating the extensive fortifications that stretch across the northern borders of the historical Chinese empires, one must consider the chronologically disparate contributions of various governing entities. The initial unification of disparate walls occurred under the auspices of the short-lived Qin, yet the enduring edifice encountered today predominantly owes its monumentality to a later period characterized by a return to native rule after a hiatus of foreign domination, specifically during an era where the capital was relocated to the northern city of Beijing for enhanced strategic oversight. This later dynasty’s architectural endeavors in stone and brick, as opposed to earlier rammed earth techniques, resulted in the robust structure that currently captures the imagination of global tourism. However, it is imperative to note that the conceptualization of a continuous wall was not a monolithic enterprise but rather a series of discrete projects responding to the exigencies of nomadic incursions from the steppe.","The reasoning is expressed in fluent, grammatically correct English, but it suffers from excessive jargon (e.g., 'chronologically disparate contributions,' 'auspices,' 'edifice,' 'monumentality,' 'exigencies') and complex sentence structures that obscure the central point. A learner would struggle to extract a clear line of reasoning, making the answer unreliable for understanding.","The answer lacks clarity and uses overly complex language, making it difficult to comprehend and uninspiring for the learner, which directly matches label 2.",,,,,,,,not_detected,,,
+syn_a017739a74f0f6fc,b96_086,2,,zh,"Clarity, Simplicity & Inspiration",rubric_violation,,"{
+  ""问题"": ""试述水产养殖系统中多维度水质参数互作对养殖生物代谢适应与生态位构建的调控效应及管理策略。"",
+  ""提供的思路"": {
+    ""核心要点"": [
+      ""溶解氧饱和度对生物氧化磷酸化效率的制约"",
+      ""氨氮亚型经渗透调节干扰离子平衡"",
+      ""pH波动与缓冲体系失稳引发酶活性抑制""
+    ],
+    ""具体说明"": [
+      ""溶解氧低于临界氧浓度将导致有氧代谢切换至无氧酵解，乳酸积累降低细胞内pH并破坏蛋白质结构稳定性；非离子氨通过鳃上皮自由扩散进入血液循环，与血红蛋白结合形成高铁血红蛋白，阻碍氧气输送；pH骤变改变弱酸弱碱的解离状态，进而影响酶活性中心氨基酸残基的质子化程度，从而降低催化效率。""
+    ],
+    ""延伸分析"": [
+      ""引入循环水养殖系统的硝化-反硝化联合工艺，利用微生物连续培养实现碳氮硫等多元素形态转化，结合人工智能算法优化投饵与曝气策略，构建水质预测数字孪生模型。""
+    ]
+  }
+}",回答中使用了大量专业术语如'氧化磷酸化效率'、'非离子氨亚型'、'渗透调节'、'血红蛋白'、'酶活性中心氨基酸残基质子化'等，句式复杂冗长，缺乏对关键概念的清晰解释，不符合大学简答题应有的简洁易懂要求。整体表达生硬，没有体现出引导思考或激发兴趣的启发性，因此对应评分2分（表达不够清晰，存在较多术语或复杂句式，不易理解；缺乏启发性）。,"违反评分细则中关于Clarity, Simplicity & Inspiration的2分标准：表达不够清晰，术语堆砌，句子结构复杂，未考虑学习者理解水平；内容平淡，无启发性。",,,,,,,,not_detected,,,
+syn_f77737026c871c7a,b96_087,3,,en,"Clarity, Simplicity & Inspiration",superficial_fluency,,"New Public Management, commonly referred to as NPM, is a broad concept that essentially aims to modernize the public sector by applying management techniques typically used in the private sector. The primary goal is to make government operations more efficient, effective, and customer-oriented. Regarding its impact on traditional public administration, NPM has led to a shift away from the old-fashioned, bureaucratic ways of doing things towards a more dynamic and performance-based approach. This has resulted in significant changes in how public services are delivered and how public organizations are managed. Overall, NPM has substantially transformed traditional public administration by introducing new practices and perspectives.","The answer corrects the original inaccuracies but is presented in a wordy and repetitive manner. It is generally understandable but lacks depth, concrete examples, or engaging delivery, offering only a superficial overview of NPM. This results in limited inspirational impact, fitting the description of a 3-level response.","The answer fails to inspire or maintain interest due to its superficial and wordy nature. While the language is fluent, the content lacks specificity and does not clarify the concept in a compelling or concise way, leaving it dull and uninspiring.",,,,,,,,not_detected,,,
+syn_bf28699b3ae3fd73,b96_088,3,,zh,"Clarity, Simplicity & Inspiration",rubric_violation,,"{""纠错后答案"": ""列夫·维果茨基"", ""纠错说明"": ""必须指出的是，原答案所指涉的约翰·杜威与最近发展区理论并无学术渊源。该理论的真正创始人是列夫·维果茨基，一位在心理学和教育学交界领域做出开创性工作的学者。最近发展区作为其理论架构中的关键构件，定义了学习者在独立活动和藉由协作或指导所达到的成就之间的动态空间，这一概念常被引用来支撑支架式教学等实践策略。反观杜威，其哲学基础是实用主义，强调经验与反思的连续性，与最近发展区所根基的社会文化取向差异显著。故而，正确答案应为维果茨基。""}",回答提供了正确的纠错答案，但纠错说明使用了较为复杂的书面语和术语（如“学术渊源”“构件”“动态空间”“藉由”等），句子结构较冗长，虽基本能理解但不够简洁生动，启发性一般，符合3分描述。,"在Clarity, Simplicity & Inspiration维度上，表达略显复杂，不够简洁，启发性有限，未达到4分水平。",,,,,,,,not_detected,,,
+syn_d721f90674792944,b96_089,1,,en,"Motivation, Guidance & Positive Feedback",scenario_mismatch,,"{
+  ""Score"": 5,
+  ""Scoring Details"": {
+    ""Completeness"": 1,
+    ""Accuracy"": 0,
+    ""Clarity"": 2,
+    ""Depth"": 0,
+    ""Relevance"": 0
+  },
+  ""Personalized Feedback"": ""Your answer is completely irrelevant. I asked you to explain the role of microRNAs, but you're talking about nonsense. This isn't even biology! Are you sure you understood the question? You need to go back and read the material. This is a total failure. I'm very disappointed. Do it again and this time stay on topic.""
+}","The feedback is harsh and discouraging, using negative language like 'completely irrelevant', 'nonsense', 'total failure', 'very disappointed'. It provides no genuine guidance or positive reinforcement. The evaluator accuses the student of being off-topic when the answer is actually on-topic, which is misleading and demotivating. This matches the rubric for label 1: negative tone, no support, and misleading suggestions.","The answer exhibits a severe failure for Motivation, Guidance & Positive Feedback: it uses discouraging and negative language, fails to offer any constructive guidance, and provides misleading feedback by claiming the answer is off-topic, which misdirects the student.",,,,,,,,not_detected,,,
+syn_beef4b0077943495,b96_090,1,,zh,"Motivation, Guidance & Positive Feedback",superficial_fluency,,评分：3/4分。评分细节：正确选项为A、B、C、D，你漏选了C。反应物的颜色是影响因素，例如光化学反应。你的答案是A、B、D、E，其中E物理状态并不是影响因素，所以错误。个性化反馈：你这都记不住？反应速率影响因素包括浓度、温度、催化剂和颜色！物理状态根本不影响，你搞混了。回去好好看书，别瞎猜。,反馈语言消极且带贬低（如“你这都记不住”“回去好好看书，别瞎猜”），完全无鼓励；同时提供了错误引导，声称反应物的颜色是影响因素而物理状态不是，直接打击学生并传递错误概念，符合1分所有特征。,语言消极、打击性强（直接贬低学生记忆和态度），毫无鼓励；无视引导需求，直接给出错误结论，构成明显的错误引导。,,,,,,,,not_detected,,,
+syn_297c58f91f599858,b96_091,1,,en,"Motivation, Guidance & Positive Feedback",scenario_mismatch,,"{""Score"": 20, ""Scoring Details"": {""Accuracy"": 0, ""Comprehension"": 10, ""Depth"": 5, ""Clarity"": 20}, ""Personalized Feedback"": ""This is completely off-topic. I asked about the French Revolution and its causes, not about brain chemicals. Your answer is irrelevant and shows a lack of understanding. You failed to address the prompt. Do not waste my time with unrelated content.""}","The feedback is harsh, completely unsupportive, and provides no real guidance. It dismisses the student's work and mistakenly refers to a different topic, embodying the worst aspects of a scenario mismatch.","Negative and discouraging tone, no motivation, no constructive guidance, and misleading by addressing a different assignment.",,,,,,,,not_detected,,,
+syn_7249df2a7777cfce,b96_092,2,,zh,"Motivation, Guidance & Positive Feedback",superficial_fluency,,"{""评分"": ""6/10"", ""评分细节"": {""概念理解"": ""4/5"", ""经济学中的重要性解释"": ""2/5""}, ""个性化反馈"": ""你的回答只给出了需求弹性的基本定义和两个简单的重要性方面，没有展开说明。需求弹性包括价格弹性、收入弹性和交叉弹性，它们各自有不同的应用。重要性还体现在它能帮助企业预测销售收入变化、制定营销策略，以及政府分析税收负担分配。你也没有用例子说明，这使得回答显得空洞。下次请更详细地解释。""}",回答整体缺乏鼓励和支持，语言偏中性（如'没有展开说明'、'显得空洞'），没有使用任何积极肯定词汇。直接罗列了学生应补充的知识点，属于直接给答案，而没有提供启发式引导（如提问或提示学生进一步思考），符合2分标准。,根据rubric，2分要求'缺乏鼓励和支持，语言偏中性甚至略显负面；很少提供有效引导，倾向于直接给答案或不给帮助'。该回答仅在开始时中性指出不足，随后直接给出详细的补充内容，完全缺失正向反馈和引导性提问。,,,,,,,,not_detected,,,
+syn_45410ad18a9c3687,b96_093,2,,en,"Motivation, Guidance & Positive Feedback",scenario_mismatch,,"{""Corrected Answer"": ""A stack is a data structure that follows LIFO (Last In, First Out), and a queue follows FIFO (First In, First Out)."", ""Error Explanation"": ""Your original answer mixed up the principles. For a stack, it's LIFO, not FIFO. For a queue, it's FIFO, not LIFO.""}","The response provides a correct correction but is entirely neutral, lacking any encouragement or positive feedback. There is no guidance, scaffolding, or supportive language; it simply states the corrected facts and points out the error bluntly. This matches label 2, where motivation and guidance are absent.","Lacks encouragement and support; language is neutral; no guidance or scaffolding, merely restating the correction without helping the student understand or learn from the mistake.",,,,,,,,not_detected,,,
+syn_a8d5bf87c88e086d,b96_094,2,,zh,"Motivation, Guidance & Positive Feedback",superficial_fluency,,"{""评分"": ""错误"", ""评分细节"": ""动作电位的过程包括去极化、再极化和超极化，钙离子流入细胞主要参与突触传递，并非动作电位的直接步骤。因此，本题中不包括的步骤是D钙离子流入细胞，而非超极化。"", ""个性化反馈"": ""你选择了超极化，但超极化是动作电位的一个阶段。请记住，典型的动作电位包括：静息电位、去极化、再极化和超极化。钙离子内流主要与神经递质释放有关，不属于动作电位的基本过程。正确答案是D。""}",反馈缺乏任何鼓励性语言，语气中性偏直接，仅给出错误判断和正确答案，没有提供启发式引导或积极反馈，符合2分描述。,未体现鼓励和支持，语言中性，未提供有效引导，直接告知答案，违背5分和4分标准。,,,,,,,,not_detected,,,
+syn_585b595943a9f19c,b96_095,3,,en,"Motivation, Guidance & Positive Feedback",scenario_mismatch,,"{
+  ""Score"": 0,
+  ""Scoring_Details"": ""The Andes Mountains are located in South America, not North America. The student answered True, which is incorrect. The correct answer is False."",
+  ""Personalized_Feedback"": ""It is important to know the geography of mountain ranges. You answered True, but the Andes are in South America, along the western coast. Try to associate the Andes with countries like Peru and Chile. Your effort is noted, but you need to review this fact.""
+}","The feedback blends a neutral, lecture-like opening with a mildly encouraging note ('Try to associate...') but ends with a dismissive 'Your effort is noted', resulting in a mix of encouragement and critical/neutral language. The guidance is somewhat helpful yet lacking genuine support, aligning with the inconsistency of label 3.","The answer displays inconsistent guidance: it offers a partial learning strategy but undercuts it with impersonal, unsupportive phrasing, fitting the rubric description for label 3 where encouragement is mixed with too-direct or lacking elements.",,,,,,,,not_detected,,,
+syn_bc42d317803956c0,b96_096,3,,zh,"Motivation, Guidance & Positive Feedback",superficial_fluency,,同学你好，你的回答有一些历史的混淆哦。拿破仑和列宁并不是二战时期的领导人，他们分别是19世纪的法国皇帝和苏联的早期领袖。我已经帮你修正了，二战的主要参战国有德国（希特勒）、美国（罗斯福）、苏联（斯大林）、法国（贝当）等。下次遇到类似问题可以查一下时间线哦。,回复兼具鼓励（“下次遇到类似问题可以查一下时间线哦”）和中性/批评性（“有一些历史的混淆”），积极性一般；提供了纠错，但直接给出了不完整的答案（遗漏了英国、意大利、日本等重要参战国），缺乏有效启发式引导，整体符合3分描述。,鼓励程度一般，语言中性偏鼓励但不强烈；引导方面，直接提供修正答案但不够全面，没有启发学生进一步思考，属于“引导有时有效，有时直接给答案或引导不足”。,,,,,,,,not_detected,,,
