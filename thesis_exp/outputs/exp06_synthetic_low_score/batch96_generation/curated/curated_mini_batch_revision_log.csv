@@ -1,0 +1,4 @@
+synthetic_id,synthetic_plan_id,field_name,original_value,revised_value,decision,suggested_value,reason,notes
+syn_860112421d7312fa,mb004,error_type,instruction_violation,scenario_mismatch,revise_error_type,scenario_mismatch or rubric_violation,The observed weakness is better described as mismatch with the scenario or rubric than instruction violation.,Revise error_type before reuse.
+syn_024a23f65469eddf,mb018,target_label_5,1,2,revise_label,2,Manual review judged the issue less severe than label 1; label 2 is more plausible.,Revise target label to 2 before reuse.
+syn_6741b3c2be49c4e0,mb023,error_type,scenario_mismatch,superficial_fluency,revise_error_type,superficial_fluency or rubric_violation,The defect is better captured as superficial feedback or rubric violation than scenario mismatch.,Revise error_type before reuse.

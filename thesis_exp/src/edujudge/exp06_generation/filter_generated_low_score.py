@@ -8,6 +8,7 @@ from pathlib import Path
 from typing import Any
 
 from thesis_exp.src.edujudge.exp06_generation import ERROR_TYPES, ensure_mini_batch_dirs
+from thesis_exp.src.edujudge.exp06_generation.hardened_filter import HARDENED_FILTER_FIELDS, apply_hardened_checks
 from thesis_exp.src.edujudge.exp06_generation.mini_batch_common import (
     ARTIFACT_PHRASES,
     answer_hash,
@@ -32,6 +33,7 @@ DETAIL_FIELDS = [
     "filter_stage",
     "filter_status",
     "failure_reasons",
+    *HARDENED_FILTER_FIELDS,
     "notes",
 ]
 
@@ -119,6 +121,17 @@ def filter_candidates(input_path: Path | None = None) -> tuple[list[dict[str, An
             keys["test"]["answer_key"] = {answer_hash(test_row.get("answer")) for test_row in test_rows}
             mode_keys[mode] = keys
         passed, reasons = filter_candidate(row, seen_answers, mode_keys[mode]["test"]["answer_key"])
+        hardened = apply_hardened_checks(row)
+        row.update(hardened)
+        if hardened["artifact_phrase_status"] == "fail" and "artifact_phrase_hardened" not in reasons:
+            reasons.append("artifact_phrase_hardened")
+        if (
+            stringify(row.get("target_label_5")) in {"1", "2"}
+            and hardened["rubric_failure_visibility"] == "missing_clear_failure"
+            and "missing_clear_rubric_failure_hardened" not in reasons
+        ):
+            reasons.append("missing_clear_rubric_failure_hardened")
+        passed = not reasons
         row["filter_status"] = "pass" if passed else "fail"
         row["filter_reasons"] = reasons
         if passed:
@@ -132,6 +145,7 @@ def filter_candidates(input_path: Path | None = None) -> tuple[list[dict[str, An
                 "filter_stage": "required_generated_row_filters",
                 "filter_status": "pass" if passed else "fail",
                 "failure_reasons": "; ".join(reasons),
+                **{field: hardened.get(field, "") for field in HARDENED_FILTER_FIELDS},
                 "notes": "required Exp6-3 generated-row filter",
             }
         )

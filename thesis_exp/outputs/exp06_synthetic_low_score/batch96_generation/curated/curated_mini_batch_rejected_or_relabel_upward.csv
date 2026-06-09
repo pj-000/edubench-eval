@@ -1,0 +1,2 @@
+synthetic_id,synthetic_plan_id,target_label_5,suggested_label_5,language,metric_canonical,error_type,decision,reason,notes
+syn_f61d1078be26ab49,mb008,2,3_or_4,zh,Higher-Order Thinking & Skill Development,superficial_fluency,reject_from_low_score_pool or relabel_upward,Manual review found the response quality higher than the target low-score label.,Reject from low-score pool; alternatively relabel upward outside the low-score augmentation pool.

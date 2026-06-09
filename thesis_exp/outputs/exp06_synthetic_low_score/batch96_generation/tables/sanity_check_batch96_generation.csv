@@ -1,0 +1,13 @@
+check_name,status,count,notes
+curated_usable_count_16,PASS,16,manual-reviewed mini-batch usable pool
+mb008_excluded,PASS,0,mb008 must not enter low-score curated pool
+planned_count_96,PASS,96,batch96 planned raw generations
+label_distribution,PASS,96,"{'1': 40, '2': 40, '3': 16}"
+language_distribution,PASS,96,"{'en': 48, 'zh': 48}"
+metric_coverage_12,PASS,12,12 EduBench metrics if possible
+error_type_coverage_7,PASS,7,"{'reasoning_gap': 12, 'overconfident_wrong': 8, 'scenario_mismatch': 20, 'instruction_violation': 8, 'rubric_violation': 20, 'superficial_fluency': 16, 'factual_error': 12}"
+source_selection_complete,PASS,96,selected=96 planned=96
+no_dev_test_source_overlap,PASS,0,question_seed42/train only; dev/test question forbidden
+prompt_hardening_status,PASS,3,hardened templates include label/error self-checks and target-label guards
+filter_hardening_status,PASS,6,"label_plausibility_status, error_type_alignment_status, rubric_failure_visibility, too_good_for_target_label, artifact_phrase_status, manual_review_required"
+api_not_called,PASS,0,dry-run only unless EXP6_RUN_GENERATION=1
