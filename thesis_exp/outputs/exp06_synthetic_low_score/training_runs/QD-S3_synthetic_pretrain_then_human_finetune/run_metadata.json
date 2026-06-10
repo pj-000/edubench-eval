@@ -1,0 +1,38 @@
+{
+  "asymmetric_loss": "disabled",
+  "best_epoch": 6,
+  "best_global_step": 156,
+  "class_weights": "disabled",
+  "experiment": "Exp6 synthetic low-score training",
+  "fixed_input_template": "A4_question_answer_metric_rubric_metadata",
+  "loss": "ordinary ordinal BCEWithLogitsLoss",
+  "model_name_or_path": "/home/share/models/modelscope/Qwen/Qwen3-Reranker-0.6B",
+  "objective_type": "ordinal",
+  "run_id": "QD-S3_synthetic_pretrain_then_human_finetune",
+  "stage1": {
+    "best_epoch": 1,
+    "best_global_step": 3,
+    "best_selection_metric_value": 2.4664257753688648,
+    "epochs_configured": 3.0,
+    "learning_rate": 2e-05,
+    "test_evaluation": "no",
+    "train": "384 synthetic low-score pseudo-label rows"
+  },
+  "stage1_checkpoint": "thesis_exp/artifacts/exp06_synthetic_low_score/training_runs/checkpoints/QD-S3_synthetic_pretrain_then_human_finetune/stage1_synthetic_pretrain/best",
+  "stage2": {
+    "best_epoch": 6,
+    "best_global_step": 156,
+    "best_selection_metric_name": "dev_MAE_label",
+    "best_selection_metric_value": 0.4561878952122854,
+    "checkpoint_selection": "dev MAE_label (min)",
+    "epochs_configured": 10.0,
+    "learning_rate": 2e-05,
+    "selection_direction": "min",
+    "train": "3326 question_seed42 human-only rows"
+  },
+  "stage2_best_epoch": 6,
+  "stage2_best_global_step": 156,
+  "stage2_checkpoint": "thesis_exp/artifacts/exp06_synthetic_low_score/training_runs/checkpoints/QD-S3_synthetic_pretrain_then_human_finetune/stage2_human_finetune/best",
+  "status": "completed",
+  "synthetic_label_provenance": "pseudo_label"
+}

@@ -1,0 +1,167 @@
+`torch_dtype` is deprecated! Use `dtype` instead!
+stage1 schedule: objective=QD-S3_synthetic_pretrain_then_human_finetune_stage1_synthetic_pretrain train_batches_per_epoch=8 update_steps_per_epoch=8 total_update_steps=1 log_steps=1
+stage1 epoch=1 step=1/1 loss=0.8267 lr=0.00e+00 elapsed=1s eta=0s steps_per_min=45.44
+stage1 epoch=1 step=2/1 loss=0.4616 lr=2.00e-05 elapsed=1s eta=0s steps_per_min=370.60
+stage1 epoch=1 step=3/1 loss=0.6064 lr=0.00e+00 elapsed=2s eta=0s steps_per_min=364.68
+stage1 epoch=1 step=4/1 loss=0.5387 lr=2.00e-05 elapsed=2s eta=0s steps_per_min=381.01
+stage1 epoch=1 step=5/1 loss=0.4733 lr=0.00e+00 elapsed=2s eta=0s steps_per_min=385.65
+stage1 epoch=1 step=6/1 loss=0.6412 lr=2.00e-05 elapsed=2s eta=0s steps_per_min=361.17
+stage1 epoch=1 step=7/1 loss=0.5548 lr=0.00e+00 elapsed=2s eta=0s steps_per_min=364.08
+stage1 epoch=1 step=8/1 loss=0.6550 lr=2.00e-05 elapsed=2s eta=0s steps_per_min=402.15
+stage1 dev epoch=1: MAE_label=2.6667, MAE_expected=1.9626, Exact=0.0000, low_to_high=nan, selected=True, elapsed=3s
+/home/jpang/edubench-eval-exp2/thesis_exp/src/edujudge/exp04/train_objective.py:280: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  model.load_state_dict(torch.load(state_dict_path, map_location="cpu"))
+training schedule: objective=QD-S3_synthetic_pretrain_then_human_finetune train_batches_per_epoch=8 update_steps_per_epoch=8 total_update_steps=1 log_steps=1
+epoch=1 step=1/1 loss=1.2908 lr=0.00e+00 elapsed=0s eta=0s steps_per_min=414.17
+epoch=1 step=2/1 loss=0.7932 lr=2.00e-05 elapsed=0s eta=0s steps_per_min=374.44
+epoch=1 step=3/1 loss=0.7132 lr=0.00e+00 elapsed=0s eta=0s steps_per_min=375.96
+epoch=1 step=4/1 loss=0.5932 lr=2.00e-05 elapsed=1s eta=0s steps_per_min=386.68
+epoch=1 step=5/1 loss=0.5245 lr=0.00e+00 elapsed=1s eta=0s steps_per_min=386.65
+epoch=1 step=6/1 loss=0.4696 lr=2.00e-05 elapsed=1s eta=0s steps_per_min=371.00
+epoch=1 step=7/1 loss=0.4288 lr=0.00e+00 elapsed=1s eta=0s steps_per_min=385.61
+epoch=1 step=8/1 loss=0.3802 lr=2.00e-05 elapsed=1s eta=0s steps_per_min=388.70
+dev epoch=1: MAE_label=0.9167, MAE_expected=0.8205, Exact=0.3750, low_to_high=nan, selected=True, elapsed=2s, eta=0s
+/home/jpang/edubench-eval-exp2/thesis_exp/src/edujudge/exp04/train_objective.py:937: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  model.load_state_dict(torch.load(state_dict_path, map_location=device))
+{
+  "stage1": {
+    "status": "completed",
+    "best_dir": "thesis_exp/artifacts/exp06_synthetic_low_score/training_runs/smoke_test/QD-S3_synthetic_pretrain_then_human_finetune/stage1_synthetic_pretrain/best",
+    "best_epoch": 1,
+    "best_global_step": 8,
+    "best_metric": 2.6666666666666665,
+    "metrics_history": [
+      {
+        "n": 8,
+        "Accuracy": 0.0,
+        "Exact Match": 0.0,
+        "MAE_label": 2.6666666666666665,
+        "MAE_expected": 1.9625515077883997,
+        "RMSE_label": 2.7131367660166177,
+        "Signed Bias label": -2.6666666666666665,
+        "Signed Bias expected": -1.9625515077883997,
+        "Macro-F1": 0.0,
+        "Weighted-F1": 0.0,
+        "Quadratic Weighted Kappa": 0.02564102564102566,
+        "Kendall tau": 0.1690308509457033,
+        "Spearman rho": 0.17888543819998315,
+        "Within-1 Accuracy": 0.0,
+        "Acc@1": NaN,
+        "Acc@2": NaN,
+        "Acc@5": 0.0,
+        "low_n": 0,
+        "low_exact_match": NaN,
+        "low_MAE": NaN,
+        "low_signed_bias": NaN,
+        "low_to_high_rate": NaN,
+        "low_severe_overestimation_rate": NaN,
+        "mean_pred_low": NaN,
+        "high_n": 2,
+        "high_to_mid_or_low_rate": 1.0,
+        "high_signed_bias": -2.666666666666667,
+        "MAE_score": 1.9625515077883997,
+        "severe_error_rate": 1.0,
+        "pred_label_1_rate": 0.375,
+        "pred_label_2_rate": 0.625,
+        "pred_label_3_rate": 0.0,
+        "pred_label_4_rate": 0.0,
+        "pred_label_5_rate": 0.0,
+        "monotonic_violation_rate": 1.0,
+        "split": "dev",
+        "loss": 1.1895977556705475,
+        "epoch": 1,
+        "global_step": 8,
+        "stage": "stage1_synthetic_pretrain"
+      }
+    ]
+  },
+  "stage2": {
+    "metrics": [
+      {
+        "n": 8,
+        "Accuracy": 0.375,
+        "Exact Match": 0.375,
+        "MAE_label": 0.9166666666666666,
+        "MAE_expected": 0.8204511708269516,
+        "RMSE_label": 1.092906420717,
+        "Signed Bias label": -0.9166666666666666,
+        "Signed Bias expected": -0.8204511708269516,
+        "Macro-F1": 0.13333333333333333,
+        "Weighted-F1": 0.5,
+        "Quadratic Weighted Kappa": -0.1578947368421053,
+        "Kendall tau": -0.1690308509457033,
+        "Spearman rho": -0.17888543819998315,
+        "Within-1 Accuracy": 0.75,
+        "Acc@1": NaN,
+        "Acc@2": NaN,
+        "Acc@5": 0.0,
+        "low_n": 0,
+        "low_exact_match": NaN,
+        "low_MAE": NaN,
+        "low_signed_bias": NaN,
+        "low_to_high_rate": NaN,
+        "low_severe_overestimation_rate": NaN,
+        "mean_pred_low": NaN,
+        "high_n": 2,
+        "high_to_mid_or_low_rate": 1.0,
+        "high_signed_bias": -1.666666666666667,
+        "MAE_score": 0.8204511708269516,
+        "severe_error_rate": 0.25,
+        "pred_label_1_rate": 0.0,
+        "pred_label_2_rate": 0.0,
+        "pred_label_3_rate": 0.625,
+        "pred_label_4_rate": 0.375,
+        "pred_label_5_rate": 0.0,
+        "monotonic_violation_rate": 1.0,
+        "split": "dev",
+        "loss": 0.3717943811789155,
+        "epoch": "best",
+        "global_step": 8
+      },
+      {
+        "n": 8,
+        "Accuracy": 0.625,
+        "Exact Match": 0.625,
+        "MAE_label": 0.8749999999999999,
+        "MAE_expected": 1.0590889509767294,
+        "RMSE_label": 1.1843892002959913,
+        "Signed Bias label": -0.8749999999999999,
+        "Signed Bias expected": -1.0590889509767294,
+        "Macro-F1": 0.2,
+        "Weighted-F1": 0.625,
+        "Quadratic Weighted Kappa": -0.4545454545454546,
+        "Kendall tau": -0.8451542547285166,
+        "Spearman rho": -0.9065968278232491,
+        "Within-1 Accuracy": 0.625,
+        "Acc@1": NaN,
+        "Acc@2": NaN,
+        "Acc@5": 0.0,
+        "low_n": 0,
+        "low_exact_match": NaN,
+        "low_MAE": NaN,
+        "low_signed_bias": NaN,
+        "low_to_high_rate": NaN,
+        "low_severe_overestimation_rate": NaN,
+        "mean_pred_low": NaN,
+        "high_n": 3,
+        "high_to_mid_or_low_rate": 1.0,
+        "high_signed_bias": -1.888888888888889,
+        "MAE_score": 1.0590889509767294,
+        "severe_error_rate": 0.375,
+        "pred_label_1_rate": 0.0,
+        "pred_label_2_rate": 0.0,
+        "pred_label_3_rate": 0.375,
+        "pred_label_4_rate": 0.625,
+        "pred_label_5_rate": 0.0,
+        "monotonic_violation_rate": 0.625,
+        "split": "test",
+        "loss": 0.6283643459901214,
+        "epoch": "best",
+        "global_step": 8,
+        "elapsed_seconds": 3.6167709827423096
+      }
+    ],
+    "best_dir": "thesis_exp/artifacts/exp06_synthetic_low_score/training_runs/smoke_test/QD-S3_synthetic_pretrain_then_human_finetune/stage2_human_finetune/best"
+  }
+}
+QD-S3 output: thesis_exp/outputs/exp06_synthetic_low_score/training_runs/smoke_test/QD-S3_synthetic_pretrain_then_human_finetune

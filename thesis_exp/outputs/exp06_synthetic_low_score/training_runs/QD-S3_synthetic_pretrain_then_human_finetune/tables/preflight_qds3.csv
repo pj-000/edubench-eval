@@ -1,0 +1,17 @@
+check_name,status,details
+stage1 rows = 384,PASS,384
+stage2 rows = 3326,PASS,3326
+dev rows = 1107,PASS,1107
+test rows = 1103,PASS,1103
+stage1 synthetic only,PASS,
+stage2 human only,PASS,
+train mirror is human only,PASS,
+dev synthetic rows = 0,PASS,
+test synthetic rows = 0,PASS,
+stage1 label provenance pseudo_label,PASS,
+stage2/dev/test label provenance human_score,PASS,
+synthetic source question overlap with dev/test = 0,PASS,0
+synthetic source triple overlap with dev/test = 0,PASS,0
+training text excludes rationale/error_type/label_source markers,PASS,"{""error_type"": 0, ""expected_failure_against_rubric"": 0, ""label_source"": 0, ""rationale_for_label"": 0}"
+formal run has no max sample limits,PASS,"stage1_max_train_samples=None, stage2_max_train_samples=None, max_eval_samples=None"
+no tracked checkpoint/weight files,PASS,

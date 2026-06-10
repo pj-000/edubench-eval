@@ -1,0 +1,357 @@
+`torch_dtype` is deprecated! Use `dtype` instead!
+stage1 schedule: objective=QD-S3_synthetic_pretrain_then_human_finetune_stage1_synthetic_pretrain train_batches_per_epoch=96 update_steps_per_epoch=3 total_update_steps=9 log_steps=5
+stage1 dev epoch=1: MAE_label=2.4664, MAE_expected=2.5223, Exact=0.0289, low_to_high=0.0000, selected=True, elapsed=53s
+stage1 epoch=2 step=5/9 loss=0.2917 lr=8.26e-06 elapsed=1m13s eta=58s steps_per_min=4.12
+stage1 dev epoch=2: MAE_label=2.5830, MAE_expected=2.5679, Exact=0.0154, low_to_high=0.0000, selected=False, elapsed=1m47s
+stage1 dev epoch=3: MAE_label=2.5143, MAE_expected=2.5581, Exact=0.0154, low_to_high=0.0000, selected=False, elapsed=2m39s
+/home/jpang/edubench-eval-exp2/thesis_exp/src/edujudge/exp04/train_objective.py:280: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  model.load_state_dict(torch.load(state_dict_path, map_location="cpu"))
+training schedule: objective=QD-S3_synthetic_pretrain_then_human_finetune train_batches_per_epoch=832 update_steps_per_epoch=26 total_update_steps=260 log_steps=5
+epoch=1 step=5/260 loss=1.8407 lr=7.69e-06 elapsed=1m08s eta=57m58s steps_per_min=4.40
+epoch=1 step=10/260 loss=1.1772 lr=1.54e-05 elapsed=2m14s eta=54m57s steps_per_min=4.55
+epoch=1 step=15/260 loss=0.8885 lr=2.00e-05 elapsed=3m21s eta=54m53s steps_per_min=4.46
+epoch=1 step=20/260 loss=0.7373 lr=2.00e-05 elapsed=4m28s eta=52m57s steps_per_min=4.53
+epoch=1 step=25/260 loss=0.6410 lr=1.99e-05 elapsed=5m35s eta=52m32s steps_per_min=4.47
+dev epoch=1: MAE_label=0.6308, MAE_expected=0.5087, Exact=0.5745, low_to_high=0.9825, selected=True, elapsed=6m12s, eta=55m48s
+epoch=2 step=30/260 loss=0.2488 lr=1.98e-05 elapsed=7m07s eta=1h10m29s steps_per_min=3.26
+epoch=2 step=35/260 loss=0.2534 lr=1.96e-05 elapsed=8m11s eta=48m42s steps_per_min=4.62
+epoch=2 step=40/260 loss=0.2470 lr=1.94e-05 elapsed=9m18s eta=48m51s steps_per_min=4.50
+epoch=2 step=45/260 loss=0.2429 lr=1.92e-05 elapsed=10m26s eta=49m00s steps_per_min=4.39
+epoch=2 step=50/260 loss=0.2441 lr=1.89e-05 elapsed=11m32s eta=46m12s steps_per_min=4.55
+dev epoch=2: MAE_label=0.5273, MAE_expected=0.4948, Exact=0.5836, low_to_high=0.5263, selected=True, elapsed=12m25s, eta=49m42s
+epoch=3 step=55/260 loss=0.2298 lr=1.86e-05 elapsed=13m07s eta=1h04m54s steps_per_min=3.16
+epoch=3 step=60/260 loss=0.2213 lr=1.83e-05 elapsed=14m13s eta=44m01s steps_per_min=4.54
+epoch=3 step=65/260 loss=0.2056 lr=1.79e-05 elapsed=15m21s eta=43m58s steps_per_min=4.44
+epoch=3 step=70/260 loss=0.1972 lr=1.75e-05 elapsed=16m28s eta=42m13s steps_per_min=4.50
+epoch=3 step=75/260 loss=0.1948 lr=1.70e-05 elapsed=17m37s eta=42m51s steps_per_min=4.32
+dev epoch=3: MAE_label=0.4764, MAE_expected=0.4173, Exact=0.6594, low_to_high=0.6140, selected=True, elapsed=18m43s, eta=43m41s
+epoch=4 step=80/260 loss=0.1695 lr=1.66e-05 elapsed=19m12s eta=56m41s steps_per_min=3.18
+epoch=4 step=85/260 loss=0.1630 lr=1.61e-05 elapsed=20m18s eta=38m49s steps_per_min=4.51
+epoch=4 step=90/260 loss=0.1656 lr=1.56e-05 elapsed=21m24s eta=37m31s steps_per_min=4.53
+epoch=4 step=95/260 loss=0.1621 lr=1.50e-05 elapsed=22m34s eta=38m04s steps_per_min=4.33
+epoch=4 step=100/260 loss=0.1642 lr=1.45e-05 elapsed=23m40s eta=35m32s steps_per_min=4.50
+dev epoch=4: MAE_label=0.4818, MAE_expected=0.4205, Exact=0.6703, low_to_high=0.5789, selected=False, elapsed=25m00s, eta=37m30s
+epoch=5 step=105/260 loss=0.1679 lr=1.39e-05 elapsed=25m13s eta=48m05s steps_per_min=3.22
+epoch=5 step=110/260 loss=0.1404 lr=1.33e-05 elapsed=26m21s eta=33m41s steps_per_min=4.45
+epoch=5 step=115/260 loss=0.1367 lr=1.27e-05 elapsed=27m27s eta=32m08s steps_per_min=4.51
+epoch=5 step=120/260 loss=0.1376 lr=1.21e-05 elapsed=28m33s eta=30m36s steps_per_min=4.58
+epoch=5 step=125/260 loss=0.1377 lr=1.15e-05 elapsed=29m42s eta=30m57s steps_per_min=4.36
+epoch=5 step=130/260 loss=0.1349 lr=1.08e-05 elapsed=30m47s eta=28m25s steps_per_min=4.58
+dev epoch=5: MAE_label=0.4664, MAE_expected=0.4119, Exact=0.6730, low_to_high=0.4561, selected=True, elapsed=31m12s, eta=31m12s
+epoch=6 step=135/260 loss=0.1041 lr=1.02e-05 elapsed=32m22s eta=39m25s steps_per_min=3.17
+epoch=6 step=140/260 loss=0.0995 lr=9.55e-06 elapsed=33m29s eta=27m03s steps_per_min=4.44
+epoch=6 step=145/260 loss=0.0989 lr=8.92e-06 elapsed=34m37s eta=25m55s steps_per_min=4.44
+epoch=6 step=150/260 loss=0.1019 lr=8.29e-06 elapsed=35m44s eta=24m25s steps_per_min=4.50
+epoch=6 step=155/260 loss=0.1034 lr=7.67e-06 elapsed=36m49s eta=23m03s steps_per_min=4.56
+dev epoch=6: MAE_label=0.4562, MAE_expected=0.4110, Exact=0.6847, low_to_high=0.4912, selected=True, elapsed=37m28s, eta=24m59s
+epoch=7 step=160/260 loss=0.0851 lr=7.06e-06 elapsed=38m24s eta=31m35s steps_per_min=3.17
+epoch=7 step=165/260 loss=0.0820 lr=6.45e-06 elapsed=39m31s eta=21m10s steps_per_min=4.49
+epoch=7 step=170/260 loss=0.0823 lr=5.87e-06 elapsed=40m39s eta=20m19s steps_per_min=4.43
+epoch=7 step=175/260 loss=0.0789 lr=5.30e-06 elapsed=41m48s eta=19m29s steps_per_min=4.36
+epoch=7 step=180/260 loss=0.0823 lr=4.75e-06 elapsed=42m53s eta=17m23s steps_per_min=4.60
+dev epoch=7: MAE_label=0.4616, MAE_expected=0.4112, Exact=0.6811, low_to_high=0.5088, selected=False, elapsed=43m44s, eta=18m44s
+epoch=8 step=185/260 loss=0.0801 lr=4.22e-06 elapsed=44m23s eta=22m41s steps_per_min=3.31
+epoch=8 step=190/260 loss=0.0765 lr=3.71e-06 elapsed=45m29s eta=15m20s steps_per_min=4.56
+epoch=8 step=195/260 loss=0.0738 lr=3.23e-06 elapsed=46m36s eta=14m35s steps_per_min=4.46
+epoch=8 step=200/260 loss=0.0711 lr=2.77e-06 elapsed=47m45s eta=13m45s steps_per_min=4.37
+epoch=8 step=205/260 loss=0.0717 lr=2.35e-06 elapsed=48m52s eta=12m18s steps_per_min=4.47
+dev epoch=8: MAE_label=0.4655, MAE_expected=0.4148, Exact=0.6739, low_to_high=0.5088, selected=False, elapsed=49m58s, eta=12m30s
+epoch=9 step=210/260 loss=0.0728 lr=1.95e-06 elapsed=50m26s eta=15m36s steps_per_min=3.21
+epoch=9 step=215/260 loss=0.0716 lr=1.59e-06 elapsed=51m33s eta=10m04s steps_per_min=4.47
+epoch=9 step=220/260 loss=0.0692 lr=1.27e-06 elapsed=52m39s eta=8m51s steps_per_min=4.52
+epoch=9 step=225/260 loss=0.0669 lr=9.75e-07 elapsed=53m47s eta=7m53s steps_per_min=4.44
+epoch=9 step=230/260 loss=0.0656 lr=7.19e-07 elapsed=54m52s eta=6m32s steps_per_min=4.59
+dev epoch=9: MAE_label=0.4604, MAE_expected=0.4125, Exact=0.6820, low_to_high=0.5088, selected=False, elapsed=56m11s, eta=6m15s
+epoch=10 step=235/260 loss=0.0736 lr=5.01e-07 elapsed=56m24s eta=7m38s steps_per_min=3.27
+epoch=10 step=240/260 loss=0.0706 lr=3.22e-07 elapsed=57m30s eta=4m24s steps_per_min=4.55
+epoch=10 step=245/260 loss=0.0676 lr=1.81e-07 elapsed=58m39s eta=3m28s steps_per_min=4.32
+epoch=10 step=250/260 loss=0.0679 lr=8.08e-08 elapsed=59m45s eta=2m11s steps_per_min=4.59
+epoch=10 step=255/260 loss=0.0659 lr=2.02e-08 elapsed=1h00m51s eta=1m07s steps_per_min=4.49
+epoch=10 step=260/260 loss=0.0654 lr=0.00e+00 elapsed=1h01m59s eta=0s steps_per_min=4.47
+dev epoch=10: MAE_label=0.4664, MAE_expected=0.4156, Exact=0.6748, low_to_high=0.5088, selected=False, elapsed=1h02m24s, eta=0s
+/home/jpang/edubench-eval-exp2/thesis_exp/src/edujudge/exp04/train_objective.py:937: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  model.load_state_dict(torch.load(state_dict_path, map_location=device))
+{
+  "stage1": {
+    "status": "completed",
+    "best_dir": "thesis_exp/artifacts/exp06_synthetic_low_score/training_runs/checkpoints/QD-S3_synthetic_pretrain_then_human_finetune/stage1_synthetic_pretrain/best",
+    "best_epoch": 1,
+    "best_global_step": 3,
+    "best_metric": 2.4664257753688648,
+    "metrics_history": [
+      {
+        "n": 1107,
+        "Accuracy": 0.028906955736224028,
+        "Exact Match": 0.028906955736224028,
+        "MAE_label": 2.4664257753688648,
+        "MAE_expected": 2.5223073400252773,
+        "RMSE_label": 2.6161083472733484,
+        "Signed Bias label": -2.4327009936766033,
+        "Signed Bias expected": -2.4947485525431086,
+        "Macro-F1": 0.013530655391120508,
+        "Weighted-F1": 0.002322334710309753,
+        "Quadratic Weighted Kappa": -0.015098727666175593,
+        "Kendall tau": -0.16822718692511923,
+        "Spearman rho": -0.19040268965653218,
+        "Within-1 Accuracy": 0.13821138211382114,
+        "Acc@1": 0.0,
+        "Acc@2": 0.8421052631578947,
+        "Acc@5": 0.0,
+        "low_n": 57,
+        "low_exact_match": 0.5614035087719298,
+        "low_MAE": 0.4853801169590644,
+        "low_signed_bias": 0.1695906432748538,
+        "low_to_high_rate": 0.0,
+        "low_severe_overestimation_rate": 0.0,
+        "mean_pred_low": 1.894736842105263,
+        "high_n": 556,
+        "high_to_mid_or_low_rate": 1.0,
+        "high_signed_bias": -3.073141486810552,
+        "MAE_score": 2.5223073400252773,
+        "severe_error_rate": 0.8617886178861789,
+        "pred_label_1_rate": 0.17976513098464317,
+        "pred_label_2_rate": 0.8202348690153568,
+        "pred_label_3_rate": 0.0,
+        "pred_label_4_rate": 0.0,
+        "pred_label_5_rate": 0.0,
+        "monotonic_violation_rate": 0.9656729900632339,
+        "split": "dev",
+        "loss": 2.0251529289664125,
+        "epoch": 1,
+        "global_step": 3,
+        "stage": "stage1_synthetic_pretrain"
+      },
+      {
+        "n": 1107,
+        "Accuracy": 0.015356820234869015,
+        "Exact Match": 0.015356820234869015,
+        "MAE_label": 2.582956940680518,
+        "MAE_expected": 2.5679477959913637,
+        "RMSE_label": 2.7312636754219306,
+        "Signed Bias label": -2.5618789521228544,
+        "Signed Bias expected": -2.5465355135076413,
+        "Macro-F1": 0.01273755273679381,
+        "Weighted-F1": 0.00152058980553538,
+        "Quadratic Weighted Kappa": -0.001805740893217056,
+        "Kendall tau": -0.08864118748590574,
+        "Spearman rho": -0.10032576077716775,
+        "Within-1 Accuracy": 0.12195121951219512,
+        "Acc@1": 0.3684210526315789,
+        "Acc@2": 0.2631578947368421,
+        "Acc@5": 0.0,
+        "low_n": 57,
+        "low_exact_match": 0.2982456140350877,
+        "low_MAE": 0.7485380116959065,
+        "low_signed_bias": -0.33918128654970764,
+        "low_to_high_rate": 0.0,
+        "low_severe_overestimation_rate": 0.0,
+        "mean_pred_low": 1.3859649122807018,
+        "high_n": 556,
+        "high_to_mid_or_low_rate": 1.0,
+        "high_signed_bias": -3.204436450839329,
+        "MAE_score": 2.5679477959913637,
+        "severe_error_rate": 0.8780487804878049,
+        "pred_label_1_rate": 0.3089430894308943,
+        "pred_label_2_rate": 0.6910569105691057,
+        "pred_label_3_rate": 0.0,
+        "pred_label_4_rate": 0.0,
+        "pred_label_5_rate": 0.0,
+        "monotonic_violation_rate": 0.4796747967479675,
+        "split": "dev",
+        "loss": 2.2211450565633157,
+        "epoch": 2,
+        "global_step": 6,
+        "stage": "stage1_synthetic_pretrain"
+      },
+      {
+        "n": 1107,
+        "Accuracy": 0.015356820234869015,
+        "Exact Match": 0.015356820234869015,
+        "MAE_label": 2.514302920806986,
+        "MAE_expected": 2.558059822077123,
+        "RMSE_label": 2.6544435312706516,
+        "Signed Bias label": -2.4878048780487805,
+        "Signed Bias expected": -2.5361209343403726,
+        "Macro-F1": 0.01161047323977887,
+        "Weighted-F1": 0.0015006206397240043,
+        "Quadratic Weighted Kappa": -7.663560370207989e-05,
+        "Kendall tau": -0.07648925455822372,
+        "Spearman rho": -0.08657197486272857,
+        "Within-1 Accuracy": 0.12556458897922312,
+        "Acc@1": 0.21052631578947367,
+        "Acc@2": 0.34210526315789475,
+        "Acc@5": 0.0,
+        "low_n": 57,
+        "low_exact_match": 0.2982456140350877,
+        "low_MAE": 0.7485380116959065,
+        "low_signed_bias": -0.2339181286549708,
+        "low_to_high_rate": 0.0,
+        "low_severe_overestimation_rate": 0.0,
+        "mean_pred_low": 1.4912280701754386,
+        "high_n": 556,
+        "high_to_mid_or_low_rate": 1.0,
+        "high_signed_bias": -3.114508393285372,
+        "MAE_score": 2.558059822077123,
+        "severe_error_rate": 0.8744354110207768,
+        "pred_label_1_rate": 0.23486901535682023,
+        "pred_label_2_rate": 0.7651309846431797,
+        "pred_label_3_rate": 0.0,
+        "pred_label_4_rate": 0.0,
+        "pred_label_5_rate": 0.0,
+        "monotonic_violation_rate": 0.4670280036133695,
+        "split": "dev",
+        "loss": 2.264659953203133,
+        "epoch": 3,
+        "global_step": 9,
+        "stage": "stage1_synthetic_pretrain"
+      }
+    ]
+  },
+  "stage2": {
+    "metrics": [
+      {
+        "n": 1107,
+        "Accuracy": 0.6847335140018067,
+        "Exact Match": 0.6847335140018067,
+        "MAE_label": 0.4561878952122854,
+        "MAE_expected": 0.4110453492954883,
+        "RMSE_label": 0.693888666488711,
+        "Signed Bias label": 0.17615176151761516,
+        "Signed Bias expected": 0.12405516477507836,
+        "Macro-F1": 0.5172386493773421,
+        "Weighted-F1": 0.6669501160948559,
+        "Quadratic Weighted Kappa": 0.6007027283363575,
+        "Kendall tau": 0.5226557125358231,
+        "Spearman rho": 0.5869627071549416,
+        "Within-1 Accuracy": 0.9421860885275519,
+        "Acc@1": 0.6842105263157895,
+        "Acc@2": 0.02631578947368421,
+        "Acc@5": 0.8057553956834532,
+        "low_n": 57,
+        "low_exact_match": 0.24561403508771928,
+        "low_MAE": 1.4678362573099413,
+        "low_signed_bias": 1.4678362573099413,
+        "low_to_high_rate": 0.49122807017543857,
+        "low_severe_overestimation_rate": 0.5964912280701754,
+        "mean_pred_low": 3.192982456140351,
+        "high_n": 556,
+        "high_to_mid_or_low_rate": 0.007194244604316547,
+        "high_signed_bias": -0.028177458033573296,
+        "MAE_score": 0.4110453492954883,
+        "severe_error_rate": 0.057813911472448055,
+        "pred_label_1_rate": 0.011743450767841012,
+        "pred_label_2_rate": 0.0018066847335140017,
+        "pred_label_3_rate": 0.056910569105691054,
+        "pred_label_4_rate": 0.4046973803071364,
+        "pred_label_5_rate": 0.5248419150858176,
+        "monotonic_violation_rate": 0.4137308039747064,
+        "split": "dev",
+        "loss": 0.30711883080037805,
+        "epoch": "best",
+        "global_step": 260
+      },
+      {
+        "n": 1103,
+        "Accuracy": 0.6246600181323663,
+        "Exact Match": 0.6246600181323663,
+        "MAE_label": 0.45693563009972804,
+        "MAE_expected": 0.42699128785385876,
+        "RMSE_label": 0.6576911668847982,
+        "Signed Bias label": 0.016319129646418844,
+        "Signed Bias expected": -0.03384030080044172,
+        "Macro-F1": 0.5029344969450964,
+        "Weighted-F1": 0.6212185992774639,
+        "Quadratic Weighted Kappa": 0.5315848261086693,
+        "Kendall tau": 0.4574926422163617,
+        "Spearman rho": 0.5168453349523164,
+        "Within-1 Accuracy": 0.9628286491387126,
+        "Acc@1": 0.8888888888888888,
+        "Acc@2": 0.0,
+        "Acc@5": 0.6607142857142857,
+        "low_n": 31,
+        "low_exact_match": 0.25806451612903225,
+        "low_MAE": 1.3870967741935485,
+        "low_signed_bias": 1.3870967741935485,
+        "low_to_high_rate": 0.6129032258064516,
+        "low_severe_overestimation_rate": 0.6129032258064516,
+        "mean_pred_low": 3.193548387096774,
+        "high_n": 616,
+        "high_to_mid_or_low_rate": 0.012987012987012988,
+        "high_signed_bias": -0.20346320346320362,
+        "MAE_score": 0.42699128785385876,
+        "severe_error_rate": 0.0371713508612874,
+        "pred_label_1_rate": 0.007252946509519492,
+        "pred_label_2_rate": 0.001813236627379873,
+        "pred_label_3_rate": 0.04805077062556664,
+        "pred_label_4_rate": 0.4877606527651859,
+        "pred_label_5_rate": 0.4551223934723481,
+        "monotonic_violation_rate": 0.314596554850408,
+        "split": "test",
+        "loss": 0.2679777948482745,
+        "epoch": "best",
+        "global_step": 260,
+        "elapsed_seconds": 3794.4616129398346
+      }
+    ],
+    "best_dir": "thesis_exp/artifacts/exp06_synthetic_low_score/training_runs/checkpoints/QD-S3_synthetic_pretrain_then_human_finetune/stage2_human_finetune/best"
+  }
+}
+QD-S3 output: thesis_exp/outputs/exp06_synthetic_low_score/training_runs/QD-S3_synthetic_pretrain_then_human_finetune
+
+===== QD-S3 final run summary =====
+# Exp6 QD-S3 Synthetic Pretrain then Human Fine-tune
+
+Status: `completed`
+Model: `/home/share/models/modelscope/Qwen/Qwen3-Reranker-0.6B`
+Stage 1 train: 384 synthetic low-score pseudo-label rows
+Stage 2 train: 3326 question_seed42 human-only rows
+Dev/test: question_seed42 human-only
+Loss: ordinary ordinal BCEWithLogitsLoss
+Class weights: disabled
+Asymmetric loss: disabled
+Stage 1 epochs: 3.0
+Stage 2 epochs: 10.0
+Checkpoint selection: dev `MAE_label` (min)
+Selected stage2 epoch: 6
+
+## Test Metrics
+
+- Accuracy: 0.6246600181323663
+- MAE_label: 0.45693563009972804
+- MAE_expected: 0.42699128785385876
+- QWK: 0.5315848261086693
+- Kendall tau: 0.4574926422163617
+- severe_error_rate: 0.0371713508612874
+- low_to_high_rate: 0.6129032258064516
+- monotonic_violation_rate: 0.314596554850408
+
+===== QD-S3 metrics_summary.csv =====
+n,Accuracy,Exact Match,MAE_label,MAE_expected,RMSE_label,Signed Bias label,Signed Bias expected,Macro-F1,Weighted-F1,Quadratic Weighted Kappa,Kendall tau,Spearman rho,Within-1 Accuracy,Acc@1,Acc@2,Acc@5,low_n,low_exact_match,low_MAE,low_signed_bias,low_to_high_rate,low_severe_overestimation_rate,mean_pred_low,high_n,high_to_mid_or_low_rate,high_signed_bias,MAE_score,severe_error_rate,pred_label_1_rate,pred_label_2_rate,pred_label_3_rate,pred_label_4_rate,pred_label_5_rate,monotonic_violation_rate,split,loss,epoch,global_step,elapsed_seconds
+1107,0.6847335140018067,0.6847335140018067,0.4561878952122854,0.4110453492954883,0.693888666488711,0.17615176151761516,0.12405516477507836,0.5172386493773421,0.6669501160948559,0.6007027283363575,0.5226557125358231,0.5869627071549416,0.9421860885275519,0.6842105263157895,0.02631578947368421,0.8057553956834532,57,0.24561403508771928,1.4678362573099413,1.4678362573099413,0.49122807017543857,0.5964912280701754,3.192982456140351,556,0.007194244604316547,-0.028177458033573296,0.4110453492954883,0.057813911472448055,0.011743450767841012,0.0018066847335140017,0.056910569105691054,0.4046973803071364,0.5248419150858176,0.4137308039747064,dev,0.30711883080037805,best,260,
+1103,0.6246600181323663,0.6246600181323663,0.45693563009972804,0.42699128785385876,0.6576911668847982,0.016319129646418844,-0.03384030080044172,0.5029344969450964,0.6212185992774639,0.5315848261086693,0.4574926422163617,0.5168453349523164,0.9628286491387126,0.8888888888888888,0.0,0.6607142857142857,31,0.25806451612903225,1.3870967741935485,1.3870967741935485,0.6129032258064516,0.6129032258064516,3.193548387096774,616,0.012987012987012988,-0.20346320346320362,0.42699128785385876,0.0371713508612874,0.007252946509519492,0.001813236627379873,0.04805077062556664,0.4877606527651859,0.4551223934723481,0.314596554850408,test,0.2679777948482745,best,260,3794.4616129398346
+
+===== QD-S3 low_score_metrics.csv =====
+split,low_n,Acc@1,Acc@2,low_exact_match,low_MAE,low_signed_bias,low_to_high_rate,low_severe_overestimation_rate,mean_pred_low
+dev,57,0.6842105263157895,0.02631578947368421,0.24561403508771928,1.4678362573099413,1.4678362573099413,0.49122807017543857,0.5964912280701754,3.192982456140351
+test,31,0.8888888888888888,0.0,0.25806451612903225,1.3870967741935485,1.3870967741935485,0.6129032258064516,0.6129032258064516,3.193548387096774
+
+===== QD-S3 high_score_metrics.csv =====
+split,high_n,Acc@5,high_to_mid_or_low_rate,high_signed_bias
+dev,556,0.8057553956834532,0.007194244604316547,-0.028177458033573296
+test,616,0.6607142857142857,0.012987012987012988,-0.20346320346320362
+
+===== QD-S3 review package =====
+# Exp6 QD-S3 Review Package
+
+Exp6 training matrix complete? **YES**
+Can Exp6 training conclusion draft start? **REVIEW_REQUIRED**
+
+Main review questions:
+
+1. Does synthetic pretraining reduce low-to-high errors relative to QD-B0?
+2. Does stage2 human fine-tuning avoid QD-S1/QD-S2 degradation?
+3. Does Acc@5 remain acceptable compared with QD-B1?
+
+Remaining blockers:
+
+- Review QD-S3 tradeoffs before claiming synthetic pretraining is beneficial.

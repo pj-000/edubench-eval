@@ -1,4 +1,5 @@
-comparison,metric,baseline_value,qds2_value,delta,direction
-QD-S2_minus_QD-B0,low_to_high_rate,0.5161290322580645,0.4838709677419355,-0.032258064516129004,lower_better
-QD-S2_minus_QD-B1,low_to_high_rate,0.45161290322580644,0.4838709677419355,0.03225806451612906,lower_better
-QD-S2_minus_QD-S1,low_to_high_rate,0.5483870967741935,0.4838709677419355,-0.06451612903225801,lower_better
+comparison,metric,baseline_value,qds3_value,delta,direction
+QD-S3_minus_QD-B0,low_to_high_rate,0.5161290322580645,0.6129032258064516,0.09677419354838712,lower_better
+QD-S3_minus_QD-B1,low_to_high_rate,0.45161290322580644,0.6129032258064516,0.16129032258064518,lower_better
+QD-S3_minus_QD-S1,low_to_high_rate,0.5483870967741935,0.6129032258064516,0.06451612903225812,lower_better
+QD-S3_minus_QD-S2,low_to_high_rate,0.4838709677419355,0.6129032258064516,0.12903225806451613,lower_better
