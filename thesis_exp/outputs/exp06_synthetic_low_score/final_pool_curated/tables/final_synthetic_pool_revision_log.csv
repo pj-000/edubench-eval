@@ -1,0 +1,11 @@
+synthetic_id,synthetic_plan_id,field_name,original_value,new_value,decision,reason,source_batch
+syn_2ee975316e1e3eaa,topup1_044,error_type,rubric_violation,factual_error,revise_error_type,Rule-based error_type alignment: Domain Knowledge Accuracy rubric_violation revised to factual_error.,topup1
+syn_4354779b73910577,topup1_068,error_type,rubric_violation,factual_error,revise_error_type,Rule-based error_type alignment: Domain Knowledge Accuracy rubric_violation revised to factual_error.,topup1
+syn_6e5d157783ce6350,topup1_092,error_type,rubric_violation,factual_error,revise_error_type,Rule-based error_type alignment: Domain Knowledge Accuracy rubric_violation revised to factual_error.,topup1
+syn_c5e016aa901656d1,topup1_140,error_type,rubric_violation,factual_error,revise_error_type,Rule-based error_type alignment: Domain Knowledge Accuracy rubric_violation revised to factual_error.,topup1
+syn_314f22879430939c,topup2_020,error_type,rubric_violation,factual_error,revise_error_type,Rule-based error_type alignment: Domain Knowledge Accuracy rubric_violation revised to factual_error.,topup2
+syn_3f4f04439be11ab6,topup2_044,error_type,rubric_violation,factual_error,revise_error_type,Rule-based error_type alignment: Domain Knowledge Accuracy rubric_violation revised to factual_error.,topup2
+syn_dd91f1bc1f3a620e,topup2_068,error_type,rubric_violation,factual_error,revise_error_type,Rule-based error_type alignment: Domain Knowledge Accuracy rubric_violation revised to factual_error.,topup2
+syn_12e89edbf57ab148,topup2_092,error_type,rubric_violation,factual_error,revise_error_type,Rule-based error_type alignment: Domain Knowledge Accuracy rubric_violation revised to factual_error.,topup2
+syn_0a046ea97c2a4df0,topup2_116,error_type,rubric_violation,factual_error,revise_error_type,Rule-based error_type alignment: Domain Knowledge Accuracy rubric_violation revised to factual_error.,topup2
+syn_205a00d57e5ac1d7,topup2_140,error_type,rubric_violation,factual_error,revise_error_type,Rule-based error_type alignment: Domain Knowledge Accuracy rubric_violation revised to factual_error.,topup2
