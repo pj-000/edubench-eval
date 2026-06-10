@@ -24,6 +24,11 @@ QD_S2_DATASET_DIR = EXP06_TRAINING_DATASETS_DIR / QD_S2_RUN_ID
 QD_S2_RUN_DIR = EXP06_TRAINING_RUNS_DIR / QD_S2_RUN_ID
 QD_S2_CHECKPOINT_DIR = EXP06_TRAINING_ARTIFACTS_DIR / "checkpoints" / QD_S2_RUN_ID
 
+QD_S3_RUN_ID = "QD-S3_synthetic_pretrain_then_human_finetune"
+QD_S3_DATASET_DIR = EXP06_TRAINING_DATASETS_DIR / QD_S3_RUN_ID
+QD_S3_RUN_DIR = EXP06_TRAINING_RUNS_DIR / QD_S3_RUN_ID
+QD_S3_CHECKPOINT_DIR = EXP06_TRAINING_ARTIFACTS_DIR / "checkpoints" / QD_S3_RUN_ID
+
 QUESTION_SPLIT_DIR = THESIS_DIR / "data" / "splits" / "question_seed42"
 QD_BASELINE_OUTPUT_DIR = THESIS_DIR / "outputs" / "exp06_question_disjoint_baselines"
 QD_BASELINE_RUNS_DIR = QD_BASELINE_OUTPUT_DIR / "runs"
@@ -40,5 +45,7 @@ def ensure_exp06_training_dirs() -> None:
         QD_S1_CHECKPOINT_DIR,
         QD_S2_RUN_DIR,
         QD_S2_CHECKPOINT_DIR,
+        QD_S3_RUN_DIR,
+        QD_S3_CHECKPOINT_DIR,
     ]:
         path.mkdir(parents=True, exist_ok=True)
