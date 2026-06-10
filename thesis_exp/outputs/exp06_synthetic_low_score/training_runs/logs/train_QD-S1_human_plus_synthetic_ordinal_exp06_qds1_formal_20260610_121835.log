@@ -1,0 +1,73 @@
+`torch_dtype` is deprecated! Use `dtype` instead!
+training schedule: objective=QD-S1_human_plus_synthetic_ordinal train_batches_per_epoch=928 update_steps_per_epoch=29 total_update_steps=290 log_steps=5
+epoch=1 step=5/290 loss=0.9248 lr=7.14e-06 elapsed=1m07s eta=1h03m20s steps_per_min=4.50
+epoch=1 step=10/290 loss=0.7436 lr=1.43e-05 elapsed=2m10s eta=59m22s steps_per_min=4.72
+epoch=1 step=15/290 loss=0.6397 lr=2.00e-05 elapsed=3m18s eta=1h02m15s steps_per_min=4.42
+epoch=1 step=20/290 loss=0.5740 lr=2.00e-05 elapsed=4m24s eta=59m27s steps_per_min=4.54
+epoch=1 step=25/290 loss=0.5288 lr=1.99e-05 elapsed=5m30s eta=57m56s steps_per_min=4.57
+dev epoch=1: MAE_label=0.5745, MAE_expected=0.5143, Exact=0.5962, low_to_high=0.7719, selected=True, elapsed=6m48s, eta=1h01m09s
+epoch=2 step=30/290 loss=0.2849 lr=1.98e-05 elapsed=7m02s eta=1h19m46s steps_per_min=3.26
+epoch=2 step=35/290 loss=0.2779 lr=1.97e-05 elapsed=8m08s eta=56m26s steps_per_min=4.52
+epoch=2 step=40/290 loss=0.2724 lr=1.96e-05 elapsed=9m15s eta=55m13s steps_per_min=4.53
+epoch=2 step=45/290 loss=0.2676 lr=1.94e-05 elapsed=10m21s eta=54m07s steps_per_min=4.53
+epoch=2 step=50/290 loss=0.2619 lr=1.92e-05 elapsed=11m27s eta=52m54s steps_per_min=4.54
+epoch=2 step=55/290 loss=0.2572 lr=1.89e-05 elapsed=12m32s eta=51m15s steps_per_min=4.59
+dev epoch=2: MAE_label=0.5176, MAE_expected=0.4587, Exact=0.6378, low_to_high=0.7193, selected=True, elapsed=13m36s, eta=54m25s
+epoch=3 step=60/290 loss=0.2125 lr=1.87e-05 elapsed=14m03s eta=1h09m29s steps_per_min=3.31
+epoch=3 step=65/290 loss=0.1931 lr=1.84e-05 elapsed=15m10s eta=50m18s steps_per_min=4.47
+epoch=3 step=70/290 loss=0.1865 lr=1.80e-05 elapsed=16m14s eta=46m58s steps_per_min=4.68
+epoch=3 step=75/290 loss=0.1814 lr=1.77e-05 elapsed=17m21s eta=47m55s steps_per_min=4.49
+epoch=3 step=80/290 loss=0.1782 lr=1.73e-05 elapsed=18m27s eta=46m09s steps_per_min=4.55
+epoch=3 step=85/290 loss=0.1811 lr=1.69e-05 elapsed=19m30s eta=43m26s steps_per_min=4.72
+dev epoch=3: MAE_label=0.4941, MAE_expected=0.4436, Exact=0.6513, low_to_high=0.5088, selected=True, elapsed=20m21s, eta=47m29s
+epoch=4 step=90/290 loss=0.1413 lr=1.65e-05 elapsed=21m03s eta=1h01m28s steps_per_min=3.25
+epoch=4 step=95/290 loss=0.1404 lr=1.60e-05 elapsed=22m09s eta=43m04s steps_per_min=4.53
+epoch=4 step=100/290 loss=0.1376 lr=1.56e-05 elapsed=23m17s eta=43m15s steps_per_min=4.39
+epoch=4 step=105/290 loss=0.1420 lr=1.51e-05 elapsed=24m21s eta=39m21s steps_per_min=4.70
+epoch=4 step=110/290 loss=0.1418 lr=1.46e-05 elapsed=25m25s eta=38m20s steps_per_min=4.70
+epoch=4 step=115/290 loss=0.1411 lr=1.41e-05 elapsed=26m31s eta=38m50s steps_per_min=4.51
+dev epoch=4: MAE_label=0.4848, MAE_expected=0.4326, Exact=0.6567, low_to_high=0.5439, selected=True, elapsed=27m10s, eta=40m45s
+epoch=5 step=120/290 loss=0.1092 lr=1.36e-05 elapsed=28m05s eta=53m10s steps_per_min=3.20
+epoch=5 step=125/290 loss=0.0993 lr=1.30e-05 elapsed=29m11s eta=36m09s steps_per_min=4.56
+epoch=5 step=130/290 loss=0.0990 lr=1.25e-05 elapsed=30m17s eta=35m18s steps_per_min=4.53
+epoch=5 step=135/290 loss=0.0982 lr=1.19e-05 elapsed=31m24s eta=34m24s steps_per_min=4.51
+epoch=5 step=140/290 loss=0.1019 lr=1.14e-05 elapsed=32m26s eta=31m04s steps_per_min=4.83
+epoch=5 step=145/290 loss=0.1023 lr=1.08e-05 elapsed=33m33s eta=32m22s steps_per_min=4.48
+dev epoch=5: MAE_label=0.5032, MAE_expected=0.4595, Exact=0.6522, low_to_high=0.5088, selected=False, elapsed=33m58s, eta=33m58s
+epoch=6 step=150/290 loss=0.0633 lr=1.02e-05 elapsed=35m02s eta=41m32s steps_per_min=3.37
+epoch=6 step=155/290 loss=0.0656 lr=9.66e-06 elapsed=36m07s eta=29m22s steps_per_min=4.60
+epoch=6 step=160/290 loss=0.0679 lr=9.09e-06 elapsed=37m12s eta=27m54s steps_per_min=4.66
+epoch=6 step=165/290 loss=0.0673 lr=8.53e-06 elapsed=38m18s eta=27m47s steps_per_min=4.50
+epoch=6 step=170/290 loss=0.0678 lr=7.97e-06 elapsed=39m25s eta=26m40s steps_per_min=4.50
+dev epoch=6: MAE_label=0.4974, MAE_expected=0.4544, Exact=0.6549, low_to_high=0.6316, selected=False, elapsed=40m42s, eta=27m08s
+epoch=7 step=175/290 loss=0.0439 lr=7.41e-06 elapsed=40m55s eta=34m40s steps_per_min=3.32
+epoch=7 step=180/290 loss=0.0476 lr=6.87e-06 elapsed=42m01s eta=24m01s steps_per_min=4.58
+epoch=7 step=185/290 loss=0.0467 lr=6.33e-06 elapsed=43m05s eta=22m27s steps_per_min=4.68
+epoch=7 step=190/290 loss=0.0461 lr=5.81e-06 elapsed=44m10s eta=21m38s steps_per_min=4.62
+epoch=7 step=195/290 loss=0.0458 lr=5.30e-06 elapsed=45m15s eta=20m28s steps_per_min=4.64
+epoch=7 step=200/290 loss=0.0456 lr=4.80e-06 elapsed=46m23s eta=20m36s steps_per_min=4.37
+dev epoch=7: MAE_label=0.5044, MAE_expected=0.4617, Exact=0.6486, low_to_high=0.5965, selected=False, elapsed=47m29s, eta=20m21s
+epoch=8 step=205/290 loss=0.0377 lr=4.33e-06 elapsed=47m56s eta=26m18s steps_per_min=3.23
+epoch=8 step=210/290 loss=0.0340 lr=3.87e-06 elapsed=49m03s eta=17m53s steps_per_min=4.48
+epoch=8 step=215/290 loss=0.0348 lr=3.43e-06 elapsed=50m08s eta=16m17s steps_per_min=4.60
+epoch=8 step=220/290 loss=0.0350 lr=3.01e-06 elapsed=51m14s eta=15m23s steps_per_min=4.55
+epoch=8 step=225/290 loss=0.0349 lr=2.61e-06 elapsed=52m20s eta=14m11s steps_per_min=4.58
+epoch=8 step=230/290 loss=0.0343 lr=2.24e-06 elapsed=53m25s eta=13m07s steps_per_min=4.57
+dev epoch=8: MAE_label=0.5035, MAE_expected=0.4611, Exact=0.6459, low_to_high=0.5789, selected=False, elapsed=54m17s, eta=13m34s
+epoch=9 step=235/290 loss=0.0346 lr=1.90e-06 elapsed=54m55s eta=16m24s steps_per_min=3.35
+epoch=9 step=240/290 loss=0.0340 lr=1.58e-06 elapsed=56m01s eta=11m07s steps_per_min=4.50
+epoch=9 step=245/290 loss=0.0333 lr=1.28e-06 elapsed=57m06s eta=9m42s steps_per_min=4.64
+epoch=9 step=250/290 loss=0.0318 lr=1.02e-06 elapsed=58m12s eta=8m45s steps_per_min=4.57
+epoch=9 step=255/290 loss=0.0320 lr=7.83e-07 elapsed=59m17s eta=7m41s steps_per_min=4.56
+epoch=9 step=260/290 loss=0.0310 lr=5.77e-07 elapsed=1h00m22s eta=6m27s steps_per_min=4.65
+dev epoch=9: MAE_label=0.4983, MAE_expected=0.4620, Exact=0.6495, low_to_high=0.5965, selected=False, elapsed=1h01m01s, eta=6m47s
+epoch=10 step=265/290 loss=0.0248 lr=4.02e-07 elapsed=1h01m53s eta=7m33s steps_per_min=3.31
+epoch=10 step=270/290 loss=0.0273 lr=2.58e-07 elapsed=1h02m58s eta=4m23s steps_per_min=4.57
+epoch=10 step=275/290 loss=0.0292 lr=1.45e-07 elapsed=1h04m03s eta=3m15s steps_per_min=4.62
+epoch=10 step=280/290 loss=0.0297 lr=6.47e-08 elapsed=1h05m11s eta=2m15s steps_per_min=4.45
+epoch=10 step=285/290 loss=0.0298 lr=1.62e-08 elapsed=1h06m17s eta=1m06s steps_per_min=4.54
+epoch=10 step=290/290 loss=0.0305 lr=0.00e+00 elapsed=1h07m21s eta=0s steps_per_min=4.65
+dev epoch=10: MAE_label=0.5050, MAE_expected=0.4612, Exact=0.6450, low_to_high=0.5789, selected=False, elapsed=1h07m46s, eta=0s
+/home/jpang/edubench-eval-exp2/thesis_exp/src/edujudge/exp04/train_objective.py:937: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  model.load_state_dict(torch.load(state_dict_path, map_location=device))
+QD-S1 output: thesis_exp/outputs/exp06_synthetic_low_score/training_runs/QD-S1_human_plus_synthetic_ordinal

@@ -1,0 +1,13 @@
+check_name,status,details
+QD-S1 train/dev/test rows = 3710/1107/1103,PASS,"[3710, 1107, 1103]"
+dev synthetic rows = 0,PASS,
+test synthetic rows = 0,PASS,
+train synthetic rows = 384,PASS,384
+train human rows = 3326,PASS,3326
+synthetic source question overlap with dev/test = 0,PASS,0
+synthetic source triple overlap with dev/test = 0,PASS,0
+train text excludes rationale/error_type/label_source markers,PASS,"{""error_type"": 0, ""expected_failure_against_rubric"": 0, ""label_source"": 0, ""rationale_for_label"": 0}"
+formal run has no max sample limits,PASS,"max_train_samples=None, max_eval_samples=None"
+synthetic label provenance pseudo_label,PASS,
+dev/test human label provenance human_score,PASS,
+no tracked checkpoint/weight files,PASS,

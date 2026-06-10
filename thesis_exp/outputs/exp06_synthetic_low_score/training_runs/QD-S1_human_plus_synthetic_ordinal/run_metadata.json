@@ -1,0 +1,16 @@
+{
+  "best_epoch": 4,
+  "best_global_step": 116,
+  "best_selection_metric_name": "dev_MAE_label",
+  "best_selection_metric_value": 0.4847937368262571,
+  "checkpoint_selection": "dev MAE_label (min)",
+  "experiment": "Exp4 target objective comparison",
+  "fixed_input_template": "A4_question_answer_metric_rubric_metadata",
+  "loss": "BCEWithLogitsLoss",
+  "model_name_or_path": "/home/share/models/modelscope/Qwen/Qwen3-Reranker-0.6B",
+  "objective_id": "QD-S1_human_plus_synthetic_ordinal",
+  "objective_label": "QD-S1_human_plus_synthetic_ordinal",
+  "objective_type": "ordinal",
+  "selection_direction": "min",
+  "status": "completed"
+}
