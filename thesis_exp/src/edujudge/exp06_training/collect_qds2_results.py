@@ -11,6 +11,7 @@ from typing import Any
 from thesis_exp.src.edujudge.exp06_training import (
     EXP06_TRAINING_RUNS_DIR,
     EXP06_TRAINING_TABLES_DIR,
+    QD_S1_RUN_DIR,
     QD_S2_RUN_DIR,
     QD_S2_RUN_ID,
     ensure_exp06_training_dirs,
@@ -210,7 +211,7 @@ def write_reports(rows: list[dict[str, str]], deltas: list[dict[str, Any]], run_
 def collect(run_dir: Path = QD_S2_RUN_DIR) -> None:
     ensure_exp06_training_dirs()
     baseline_rows = load_baseline_summary()
-    qds1_rows = load_qds1_summary()
+    qds1_rows = load_qds1_summary(QD_S1_RUN_DIR)
     qds2_rows = load_qds2_summary(run_dir)
     rows = baseline_rows + qds1_rows + qds2_rows
     deltas = delta_rows(rows)

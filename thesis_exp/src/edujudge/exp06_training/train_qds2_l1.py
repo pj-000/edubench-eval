@@ -144,7 +144,8 @@ def postprocess_outputs(run_dir: Path, args: argparse.Namespace, strict: bool = 
     api_hits = _api_key_hits(run_dir)
     if api_hits and strict:
         raise RuntimeError(f"API key-like strings found in outputs: {api_hits}")
-    collect(run_dir)
+    if not args.smoke:
+        collect(run_dir)
 
 
 def train_qds2(args: argparse.Namespace) -> None:
