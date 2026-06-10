@@ -21,4 +21,4 @@ SERVER_REPO=${SERVER_REPO}
 BRANCH=${BRANCH}
 CONFIG
 
-ssh "${SSH_OPTS[@]}" "${SERVER_HOST}" "cd ${SERVER_REPO} && git fetch origin ${BRANCH} && git checkout ${BRANCH} && git pull --ff-only origin ${BRANCH}"
+ssh "${SSH_OPTS[@]}" "${SERVER_HOST}" "export GIT_TERMINAL_PROMPT=0 && cd ${SERVER_REPO} && git fetch origin ${BRANCH} && git checkout ${BRANCH} && git pull --ff-only origin ${BRANCH}"
