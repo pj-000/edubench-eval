@@ -1,0 +1,16 @@
+split,label_5,count
+train,1,226
+train,2,221
+train,3,345
+train,4,1163
+train,5,1755
+dev,1,19
+dev,2,38
+dev,3,105
+dev,4,389
+dev,5,556
+test,1,9
+test,2,22
+test,3,105
+test,4,351
+test,5,616

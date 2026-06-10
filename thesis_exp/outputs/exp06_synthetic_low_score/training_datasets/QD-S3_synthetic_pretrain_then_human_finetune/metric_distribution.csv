@@ -1,0 +1,61 @@
+split,metric_canonical,count
+stage1_train,Basic Factual Accuracy,30
+stage1_train,"Clarity, Simplicity & Inspiration",30
+stage1_train,Content Relevance & Scope Control,31
+stage1_train,Domain Knowledge Accuracy,29
+stage1_train,Error Identification & Correction Precision,33
+stage1_train,Higher-Order Thinking & Skill Development,34
+stage1_train,Instruction Following & Task Completion,29
+stage1_train,"Motivation, Guidance & Positive Feedback",33
+stage1_train,"Personalization, Adaptation & Learning Support",33
+stage1_train,Reasoning Process Rigor,34
+stage1_train,Role & Tone Consistency,33
+stage1_train,Scenario Element Integration,35
+stage2_train,Basic Factual Accuracy,405
+stage2_train,"Clarity, Simplicity & Inspiration",257
+stage2_train,Content Relevance & Scope Control,405
+stage2_train,Domain Knowledge Accuracy,197
+stage2_train,Error Identification & Correction Precision,134
+stage2_train,Higher-Order Thinking & Skill Development,256
+stage2_train,Instruction Following & Task Completion,595
+stage2_train,"Motivation, Guidance & Positive Feedback",187
+stage2_train,"Personalization, Adaptation & Learning Support",190
+stage2_train,Reasoning Process Rigor,258
+stage2_train,Role & Tone Consistency,120
+stage2_train,Scenario Element Integration,322
+train,Basic Factual Accuracy,405
+train,"Clarity, Simplicity & Inspiration",257
+train,Content Relevance & Scope Control,405
+train,Domain Knowledge Accuracy,197
+train,Error Identification & Correction Precision,134
+train,Higher-Order Thinking & Skill Development,256
+train,Instruction Following & Task Completion,595
+train,"Motivation, Guidance & Positive Feedback",187
+train,"Personalization, Adaptation & Learning Support",190
+train,Reasoning Process Rigor,258
+train,Role & Tone Consistency,120
+train,Scenario Element Integration,322
+dev,Basic Factual Accuracy,130
+dev,"Clarity, Simplicity & Inspiration",90
+dev,Content Relevance & Scope Control,125
+dev,Domain Knowledge Accuracy,65
+dev,Error Identification & Correction Precision,35
+dev,Higher-Order Thinking & Skill Development,83
+dev,Instruction Following & Task Completion,200
+dev,"Motivation, Guidance & Positive Feedback",60
+dev,"Personalization, Adaptation & Learning Support",70
+dev,Reasoning Process Rigor,84
+dev,Role & Tone Consistency,50
+dev,Scenario Element Integration,115
+test,Basic Factual Accuracy,125
+test,"Clarity, Simplicity & Inspiration",85
+test,Content Relevance & Scope Control,130
+test,Domain Knowledge Accuracy,65
+test,Error Identification & Correction Precision,38
+test,Higher-Order Thinking & Skill Development,89
+test,Instruction Following & Task Completion,195
+test,"Motivation, Guidance & Positive Feedback",68
+test,"Personalization, Adaptation & Learning Support",69
+test,Reasoning Process Rigor,79
+test,Role & Tone Consistency,50
+test,Scenario Element Integration,110

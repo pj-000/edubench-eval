@@ -1,0 +1,15 @@
+dataset_name,check_name,status,details
+QD-S2_human_plus_synthetic_L1,dev_human_only,PASS,
+QD-S2_human_plus_synthetic_L1,dev_row_count,PASS,1107
+QD-S2_human_plus_synthetic_L1,test_human_only,PASS,
+QD-S2_human_plus_synthetic_L1,test_row_count,PASS,1103
+QD-S2_human_plus_synthetic_L1,synthetic_rows_only_in_train,PASS,0
+QD-S2_human_plus_synthetic_L1,synthetic_label_provenance_pseudo_label,PASS,
+QD-S2_human_plus_synthetic_L1,human_label_provenance_human_score,PASS,
+QD-S2_human_plus_synthetic_L1,no_dev_test_question_overlap_for_synthetic_source,PASS,0
+QD-S2_human_plus_synthetic_L1,no_dev_test_triple_overlap_for_synthetic_source,PASS,0
+QD-S2_human_plus_synthetic_L1,no_duplicate_synthetic_id,PASS,0
+QD-S2_human_plus_synthetic_L1,no_duplicate_synthetic_answer_hash,PASS,0
+QD-S2_human_plus_synthetic_L1,required_training_fields_present,PASS,
+QD-S2_human_plus_synthetic_L1,a4_template_fields_present,PASS,
+QD-S2_human_plus_synthetic_L1,no_rationale_error_type_label_source_in_training_text,PASS,{}

@@ -1,0 +1,6 @@
+dataset_name,split,rows,expected_rows,human_rows,synthetic_rows,status
+QD-S3_synthetic_pretrain_then_human_finetune,stage1_train,384,384,0,384,PASS
+QD-S3_synthetic_pretrain_then_human_finetune,stage2_train,3326,3326,3326,0,PASS
+QD-S3_synthetic_pretrain_then_human_finetune,train,3326,3326,3326,0,PASS
+QD-S3_synthetic_pretrain_then_human_finetune,dev,1107,1107,1107,0,PASS
+QD-S3_synthetic_pretrain_then_human_finetune,test,1103,1103,1103,0,PASS

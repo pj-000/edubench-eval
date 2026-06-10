@@ -1,0 +1,13 @@
+metric_canonical,synthetic_rows,share
+Basic Factual Accuracy,30,0.078125
+"Clarity, Simplicity & Inspiration",30,0.078125
+Content Relevance & Scope Control,31,0.080729
+Domain Knowledge Accuracy,29,0.075521
+Error Identification & Correction Precision,33,0.085938
+Higher-Order Thinking & Skill Development,34,0.088542
+Instruction Following & Task Completion,29,0.075521
+"Motivation, Guidance & Positive Feedback",33,0.085938
+"Personalization, Adaptation & Learning Support",33,0.085938
+Reasoning Process Rigor,34,0.088542
+Role & Tone Consistency,33,0.085938
+Scenario Element Integration,35,0.091146

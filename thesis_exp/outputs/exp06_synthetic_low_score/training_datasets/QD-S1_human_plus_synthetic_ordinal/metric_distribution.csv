@@ -1,0 +1,37 @@
+split,metric_canonical,count
+train,Basic Factual Accuracy,435
+train,"Clarity, Simplicity & Inspiration",287
+train,Content Relevance & Scope Control,436
+train,Domain Knowledge Accuracy,226
+train,Error Identification & Correction Precision,167
+train,Higher-Order Thinking & Skill Development,290
+train,Instruction Following & Task Completion,624
+train,"Motivation, Guidance & Positive Feedback",220
+train,"Personalization, Adaptation & Learning Support",223
+train,Reasoning Process Rigor,292
+train,Role & Tone Consistency,153
+train,Scenario Element Integration,357
+dev,Basic Factual Accuracy,130
+dev,"Clarity, Simplicity & Inspiration",90
+dev,Content Relevance & Scope Control,125
+dev,Domain Knowledge Accuracy,65
+dev,Error Identification & Correction Precision,35
+dev,Higher-Order Thinking & Skill Development,83
+dev,Instruction Following & Task Completion,200
+dev,"Motivation, Guidance & Positive Feedback",60
+dev,"Personalization, Adaptation & Learning Support",70
+dev,Reasoning Process Rigor,84
+dev,Role & Tone Consistency,50
+dev,Scenario Element Integration,115
+test,Basic Factual Accuracy,125
+test,"Clarity, Simplicity & Inspiration",85
+test,Content Relevance & Scope Control,130
+test,Domain Knowledge Accuracy,65
+test,Error Identification & Correction Precision,38
+test,Higher-Order Thinking & Skill Development,89
+test,Instruction Following & Task Completion,195
+test,"Motivation, Guidance & Positive Feedback",68
+test,"Personalization, Adaptation & Learning Support",69
+test,Reasoning Process Rigor,79
+test,Role & Tone Consistency,50
+test,Scenario Element Integration,110

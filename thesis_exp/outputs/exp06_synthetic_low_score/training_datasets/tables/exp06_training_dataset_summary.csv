@@ -1,0 +1,15 @@
+dataset_name,split,rows,human_rows,synthetic_rows
+QD-S0_human_only,train,3326,3326,0
+QD-S0_human_only,dev,1107,1107,0
+QD-S0_human_only,test,1103,1103,0
+QD-S1_human_plus_synthetic_ordinal,train,3710,3326,384
+QD-S1_human_plus_synthetic_ordinal,dev,1107,1107,0
+QD-S1_human_plus_synthetic_ordinal,test,1103,1103,0
+QD-S2_human_plus_synthetic_L1,train,3710,3326,384
+QD-S2_human_plus_synthetic_L1,dev,1107,1107,0
+QD-S2_human_plus_synthetic_L1,test,1103,1103,0
+QD-S3_synthetic_pretrain_then_human_finetune,stage1_train,384,0,384
+QD-S3_synthetic_pretrain_then_human_finetune,stage2_train,3326,3326,0
+QD-S3_synthetic_pretrain_then_human_finetune,train,3326,3326,0
+QD-S3_synthetic_pretrain_then_human_finetune,dev,1107,1107,0
+QD-S3_synthetic_pretrain_then_human_finetune,test,1103,1103,0
