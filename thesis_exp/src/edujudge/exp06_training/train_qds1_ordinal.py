@@ -41,8 +41,8 @@ def _failures_to_text(rows: list[dict[str, Any]]) -> str:
     return "\n".join(f"- {row['check_name']}: {row['status']} ({row.get('details', '')})" for row in rows if row["status"] != "PASS")
 
 
-def _read_split(split: str) -> list[dict[str, Any]]:
-    return read_jsonl(QD_S1_DATASET_DIR / f"{split}.jsonl")
+def _read_split(data_dir: Path, split: str) -> list[dict[str, Any]]:
+    return read_jsonl(data_dir / f"{split}.jsonl")
 
 
 def _split_keys(split: str, field: str) -> set[str]:
@@ -78,15 +78,20 @@ def _api_key_hits(path: Path) -> list[str]:
     return sorted(hits)
 
 
-def dataset_sanity_rows(max_train_samples: int | None, max_eval_samples: int | None, formal: bool) -> list[dict[str, Any]]:
+def dataset_sanity_rows(
+    data_dir: Path,
+    max_train_samples: int | None,
+    max_eval_samples: int | None,
+    formal: bool,
+) -> list[dict[str, Any]]:
     rows: list[dict[str, Any]] = []
 
     def add(check_name: str, passed: bool, details: Any = "") -> None:
         rows.append({"check_name": check_name, "status": "PASS" if passed else "FAIL", "details": details})
 
-    train_rows = _read_split("train")
-    dev_rows = _read_split("dev")
-    test_rows = _read_split("test")
+    train_rows = _read_split(data_dir, "train")
+    dev_rows = _read_split(data_dir, "dev")
+    test_rows = _read_split(data_dir, "test")
     train_source_counts = {}
     for row in train_rows:
         train_source_counts[row.get("source_type")] = train_source_counts.get(row.get("source_type"), 0) + 1
@@ -168,7 +173,7 @@ def train_qds1(args: argparse.Namespace) -> None:
     if not smoke and not formal and not args.postprocess_only and not args.preflight_only:
         raise RuntimeError("Formal QD-S1 training requires FORMAL_RUN=1.")
 
-    sanity_rows = dataset_sanity_rows(args.max_train_samples, args.max_eval_samples, formal)
+    sanity_rows = dataset_sanity_rows(args.data_dir, args.max_train_samples, args.max_eval_samples, formal)
     sanity_path = args.output_dir / "tables" / ("smoke_preflight_qds1.csv" if smoke else "preflight_qds1.csv")
     write_csv(sanity_path, sanity_rows)
     failures = [row for row in sanity_rows if row["status"] != "PASS"]
