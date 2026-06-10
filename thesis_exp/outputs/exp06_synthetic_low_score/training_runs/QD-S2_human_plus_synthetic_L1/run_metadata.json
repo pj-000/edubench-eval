@@ -1,0 +1,20 @@
+{
+  "best_epoch": 6,
+  "best_global_step": 174,
+  "best_selection_metric_name": "dev_MAE_label",
+  "best_selection_metric_value": 0.4983438723276121,
+  "checkpoint_selection": "dev MAE_label (min)",
+  "class_weight_source": "QD-S2 train split only; human and synthetic rows included",
+  "class_weights_path": "thesis_exp/outputs/exp06_synthetic_low_score/training_runs/QD-S2_human_plus_synthetic_L1/tables/class_weights.json",
+  "experiment": "Exp6 synthetic low-score training",
+  "fixed_input_template": "A4_question_answer_metric_rubric_metadata",
+  "loss": "L1 weighted ordinal BCEWithLogitsLoss",
+  "model_name_or_path": "/home/share/models/modelscope/Qwen/Qwen3-Reranker-0.6B",
+  "objective_type": "ordinal",
+  "run_id": "QD-S2_human_plus_synthetic_L1",
+  "selection_direction": "min",
+  "status": "completed",
+  "synthetic_label_provenance": "pseudo_label",
+  "w_max": 3.0,
+  "w_min": 0.5
+}

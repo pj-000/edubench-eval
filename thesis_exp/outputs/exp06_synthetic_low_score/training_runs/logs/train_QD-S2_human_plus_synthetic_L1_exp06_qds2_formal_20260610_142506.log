@@ -1,0 +1,228 @@
+`torch_dtype` is deprecated! Use `dtype` instead!
+training schedule: loss=L1_weighted_ordinal train_batches_per_epoch=928 update_steps_per_epoch=29 total_update_steps=290
+epoch=1 step=5/290 loss=0.8986 mean_sample_weight=0.9751 lr=7.14e-06 elapsed=1m07s eta=1h03m48s steps_per_min=4.47
+epoch=1 step=10/290 loss=0.7798 mean_sample_weight=1.0077 lr=1.43e-05 elapsed=2m11s eta=59m35s steps_per_min=4.70
+epoch=1 step=15/290 loss=0.6979 mean_sample_weight=0.9919 lr=2.00e-05 elapsed=3m19s eta=1h02m40s steps_per_min=4.39
+epoch=1 step=20/290 loss=0.6315 mean_sample_weight=0.9860 lr=2.00e-05 elapsed=4m26s eta=1h00m03s steps_per_min=4.50
+epoch=1 step=25/290 loss=0.5827 mean_sample_weight=0.9942 lr=1.99e-05 elapsed=5m32s eta=58m31s steps_per_min=4.53
+dev epoch=1: MAE_label=0.6676, MAE_expected=0.6326, low_to_high=0.4912, mean_sample_weight=0.8352, selected=True, elapsed=6m51s
+epoch=2 step=30/290 loss=0.3282 mean_sample_weight=1.0027 lr=1.98e-05 elapsed=7m05s eta=1h20m29s steps_per_min=3.23
+epoch=2 step=35/290 loss=0.3326 mean_sample_weight=0.9990 lr=1.97e-05 elapsed=8m12s eta=56m50s steps_per_min=4.49
+epoch=2 step=40/290 loss=0.3169 mean_sample_weight=0.9774 lr=1.96e-05 elapsed=9m19s eta=55m43s steps_per_min=4.49
+epoch=2 step=45/290 loss=0.3077 mean_sample_weight=0.9822 lr=1.94e-05 elapsed=10m26s eta=54m25s steps_per_min=4.50
+epoch=2 step=50/290 loss=0.3070 mean_sample_weight=0.9827 lr=1.92e-05 elapsed=11m32s eta=53m24s steps_per_min=4.49
+epoch=2 step=55/290 loss=0.3016 mean_sample_weight=0.9927 lr=1.89e-05 elapsed=12m38s eta=51m21s steps_per_min=4.58
+dev epoch=2: MAE_label=0.5206, MAE_expected=0.4829, low_to_high=0.4211, mean_sample_weight=0.8352, selected=True, elapsed=13m42s
+epoch=3 step=60/290 loss=0.2539 mean_sample_weight=0.9676 lr=1.87e-05 elapsed=14m09s eta=1h09m45s steps_per_min=3.30
+epoch=3 step=65/290 loss=0.2459 mean_sample_weight=0.9754 lr=1.84e-05 elapsed=15m16s eta=50m36s steps_per_min=4.45
+epoch=3 step=70/290 loss=0.2319 mean_sample_weight=0.9959 lr=1.80e-05 elapsed=16m21s eta=47m31s steps_per_min=4.63
+epoch=3 step=75/290 loss=0.2247 mean_sample_weight=1.0038 lr=1.77e-05 elapsed=17m28s eta=48m17s steps_per_min=4.45
+epoch=3 step=80/290 loss=0.2182 mean_sample_weight=0.9909 lr=1.73e-05 elapsed=18m35s eta=46m42s steps_per_min=4.50
+epoch=3 step=85/290 loss=0.2230 mean_sample_weight=0.9968 lr=1.69e-05 elapsed=19m39s eta=43m57s steps_per_min=4.67
+dev epoch=3: MAE_label=0.5065, MAE_expected=0.4506, low_to_high=0.5965, mean_sample_weight=0.8352, selected=True, elapsed=20m30s
+epoch=4 step=90/290 loss=0.1896 mean_sample_weight=0.9533 lr=1.65e-05 elapsed=21m12s eta=1h01m51s steps_per_min=3.23
+epoch=4 step=95/290 loss=0.1825 mean_sample_weight=0.9811 lr=1.60e-05 elapsed=22m19s eta=43m20s steps_per_min=4.50
+epoch=4 step=100/290 loss=0.1707 mean_sample_weight=0.9912 lr=1.56e-05 elapsed=23m28s eta=43m30s steps_per_min=4.37
+epoch=4 step=105/290 loss=0.1751 mean_sample_weight=0.9962 lr=1.51e-05 elapsed=24m32s eta=39m39s steps_per_min=4.67
+epoch=4 step=110/290 loss=0.1739 mean_sample_weight=1.0007 lr=1.46e-05 elapsed=25m37s eta=38m45s steps_per_min=4.64
+epoch=4 step=115/290 loss=0.1720 mean_sample_weight=0.9989 lr=1.41e-05 elapsed=26m44s eta=39m06s steps_per_min=4.48
+dev epoch=4: MAE_label=0.5014, MAE_expected=0.4610, low_to_high=0.4737, mean_sample_weight=0.8352, selected=True, elapsed=27m22s
+epoch=5 step=120/290 loss=0.1358 mean_sample_weight=1.0002 lr=1.36e-05 elapsed=28m17s eta=53m14s steps_per_min=3.19
+epoch=5 step=125/290 loss=0.1287 mean_sample_weight=1.0255 lr=1.30e-05 elapsed=29m24s eta=36m34s steps_per_min=4.51
+epoch=5 step=130/290 loss=0.1297 mean_sample_weight=1.0077 lr=1.25e-05 elapsed=30m31s eta=35m36s steps_per_min=4.49
+epoch=5 step=135/290 loss=0.1278 mean_sample_weight=0.9964 lr=1.19e-05 elapsed=31m38s eta=34m35s steps_per_min=4.48
+epoch=5 step=140/290 loss=0.1276 mean_sample_weight=1.0059 lr=1.14e-05 elapsed=32m40s eta=31m12s steps_per_min=4.81
+epoch=5 step=145/290 loss=0.1265 mean_sample_weight=0.9977 lr=1.08e-05 elapsed=33m47s eta=32m31s steps_per_min=4.46
+dev epoch=5: MAE_label=0.5098, MAE_expected=0.4666, low_to_high=0.4211, mean_sample_weight=0.8352, selected=False, elapsed=34m13s
+epoch=6 step=150/290 loss=0.0849 mean_sample_weight=0.9564 lr=1.02e-05 elapsed=35m17s eta=41m46s steps_per_min=3.35
+epoch=6 step=155/290 loss=0.0827 mean_sample_weight=0.9711 lr=9.66e-06 elapsed=36m23s eta=29m40s steps_per_min=4.55
+epoch=6 step=160/290 loss=0.0856 mean_sample_weight=0.9774 lr=9.09e-06 elapsed=37m28s eta=28m12s steps_per_min=4.61
+epoch=6 step=165/290 loss=0.0851 mean_sample_weight=0.9838 lr=8.53e-06 elapsed=38m35s eta=28m03s steps_per_min=4.46
+epoch=6 step=170/290 loss=0.0841 mean_sample_weight=0.9916 lr=7.97e-06 elapsed=39m43s eta=26m56s steps_per_min=4.46
+dev epoch=6: MAE_label=0.4983, MAE_expected=0.4545, low_to_high=0.4211, mean_sample_weight=0.8352, selected=True, elapsed=41m00s
+epoch=7 step=175/290 loss=0.0490 mean_sample_weight=0.9303 lr=7.41e-06 elapsed=41m16s eta=35m48s steps_per_min=3.21
+epoch=7 step=180/290 loss=0.0642 mean_sample_weight=1.0038 lr=6.87e-06 elapsed=42m22s eta=24m18s steps_per_min=4.53
+epoch=7 step=185/290 loss=0.0621 mean_sample_weight=1.0181 lr=6.33e-06 elapsed=43m27s eta=22m40s steps_per_min=4.63
+epoch=7 step=190/290 loss=0.0595 mean_sample_weight=0.9932 lr=5.81e-06 elapsed=44m32s eta=21m50s steps_per_min=4.58
+epoch=7 step=195/290 loss=0.0582 mean_sample_weight=1.0062 lr=5.30e-06 elapsed=45m38s eta=20m40s steps_per_min=4.60
+epoch=7 step=200/290 loss=0.0572 mean_sample_weight=1.0067 lr=4.80e-06 elapsed=46m47s eta=20m45s steps_per_min=4.34
+dev epoch=7: MAE_label=0.5020, MAE_expected=0.4562, low_to_high=0.4211, mean_sample_weight=0.8352, selected=False, elapsed=47m53s
+epoch=8 step=205/290 loss=0.0507 mean_sample_weight=0.9619 lr=4.33e-06 elapsed=48m20s eta=26m26s steps_per_min=3.22
+epoch=8 step=210/290 loss=0.0461 mean_sample_weight=0.9480 lr=3.87e-06 elapsed=49m28s eta=17m59s steps_per_min=4.45
+epoch=8 step=215/290 loss=0.0462 mean_sample_weight=0.9727 lr=3.43e-06 elapsed=50m33s eta=16m29s steps_per_min=4.55
+epoch=8 step=220/290 loss=0.0441 mean_sample_weight=0.9884 lr=3.01e-06 elapsed=51m40s eta=15m31s steps_per_min=4.51
+epoch=8 step=225/290 loss=0.0443 mean_sample_weight=0.9961 lr=2.61e-06 elapsed=52m46s eta=14m22s steps_per_min=4.53
+epoch=8 step=230/290 loss=0.0435 mean_sample_weight=0.9900 lr=2.24e-06 elapsed=53m53s eta=13m15s steps_per_min=4.53
+dev epoch=8: MAE_label=0.5032, MAE_expected=0.4576, low_to_high=0.4211, mean_sample_weight=0.8352, selected=False, elapsed=54m45s
+epoch=9 step=235/290 loss=0.0404 mean_sample_weight=1.0421 lr=1.90e-06 elapsed=55m23s eta=16m32s steps_per_min=3.33
+epoch=9 step=240/290 loss=0.0405 mean_sample_weight=0.9976 lr=1.58e-06 elapsed=56m30s eta=11m12s steps_per_min=4.47
+epoch=9 step=245/290 loss=0.0421 mean_sample_weight=0.9948 lr=1.28e-06 elapsed=57m35s eta=9m47s steps_per_min=4.60
+epoch=9 step=250/290 loss=0.0412 mean_sample_weight=1.0056 lr=1.02e-06 elapsed=58m41s eta=8m50s steps_per_min=4.53
+epoch=9 step=255/290 loss=0.0409 mean_sample_weight=1.0063 lr=7.83e-07 elapsed=59m48s eta=7m46s steps_per_min=4.51
+epoch=9 step=260/290 loss=0.0399 mean_sample_weight=1.0016 lr=5.77e-07 elapsed=1h00m53s eta=6m31s steps_per_min=4.60
+dev epoch=9: MAE_label=0.5023, MAE_expected=0.4583, low_to_high=0.4211, mean_sample_weight=0.8352, selected=False, elapsed=1h01m32s
+epoch=10 step=265/290 loss=0.0364 mean_sample_weight=0.9647 lr=4.02e-07 elapsed=1h02m24s eta=7m37s steps_per_min=3.29
+epoch=10 step=270/290 loss=0.0403 mean_sample_weight=0.9649 lr=2.58e-07 elapsed=1h03m31s eta=4m25s steps_per_min=4.52
+epoch=10 step=275/290 loss=0.0394 mean_sample_weight=0.9977 lr=1.45e-07 elapsed=1h04m36s eta=3m17s steps_per_min=4.58
+epoch=10 step=280/290 loss=0.0395 mean_sample_weight=0.9863 lr=6.47e-08 elapsed=1h05m44s eta=2m16s steps_per_min=4.41
+epoch=10 step=285/290 loss=0.0395 mean_sample_weight=0.9839 lr=1.62e-08 elapsed=1h06m51s eta=1m07s steps_per_min=4.51
+epoch=10 step=290/290 loss=0.0392 mean_sample_weight=0.9988 lr=0.00e+00 elapsed=1h07m56s eta=0s steps_per_min=4.61
+dev epoch=10: MAE_label=0.5056, MAE_expected=0.4578, low_to_high=0.4211, mean_sample_weight=0.8352, selected=False, elapsed=1h08m21s
+/home/jpang/edubench-eval-exp2/thesis_exp/src/edujudge/exp05/train_l1_weighted_ordinal.py:544: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  model.load_state_dict(torch.load(state_dict_path, map_location=device))
+{
+  "metrics": [
+    {
+      "n": 1107,
+      "Accuracy": 0.6449864498644986,
+      "Exact Match": 0.6449864498644986,
+      "MAE_label": 0.4983438723276121,
+      "MAE_expected": 0.45454999113565003,
+      "RMSE_label": 0.7688218402083352,
+      "Signed Bias label": 0.15085817524841913,
+      "Signed Bias expected": 0.12714947162665538,
+      "Macro-F1": 0.48032421780549217,
+      "Weighted-F1": 0.633179003556862,
+      "Quadratic Weighted Kappa": 0.5276207250538032,
+      "Kendall tau": 0.4732380055610305,
+      "Spearman rho": 0.5355391491978163,
+      "Within-1 Accuracy": 0.9331526648599819,
+      "Acc@1": 0.5789473684210527,
+      "Acc@2": 0.05263157894736842,
+      "Acc@5": 0.7823741007194245,
+      "low_n": 57,
+      "low_exact_match": 0.22807017543859648,
+      "low_MAE": 1.5380116959064325,
+      "low_signed_bias": 1.5380116959064325,
+      "low_to_high_rate": 0.42105263157894735,
+      "low_severe_overestimation_rate": 0.49122807017543857,
+      "mean_pred_low": 3.263157894736842,
+      "high_n": 556,
+      "high_to_mid_or_low_rate": 0.02877697841726619,
+      "high_signed_bias": -0.0821342925659474,
+      "MAE_score": 0.45454999113565003,
+      "severe_error_rate": 0.06684733514001806,
+      "pred_label_1_rate": 0.01084010840108401,
+      "pred_label_2_rate": 0.011743450767841012,
+      "pred_label_3_rate": 0.07407407407407407,
+      "pred_label_4_rate": 0.36946702800361336,
+      "pred_label_5_rate": 0.5338753387533876,
+      "monotonic_violation_rate": 0.2908762420957543,
+      "split": "dev",
+      "loss": 0.509138052110567,
+      "mean_base_loss": 0.37818009638823835,
+      "mean_weighted_loss": 0.6169833800380232,
+      "mean_sample_weight": 0.8351810360126358,
+      "min_sample_weight": 0.5188256159103174,
+      "max_sample_weight": 1.7153008764596294,
+      "epoch": "best",
+      "global_step": 290
+    },
+    {
+      "n": 1103,
+      "Accuracy": 0.6554850407978241,
+      "Exact Match": 0.6554850407978241,
+      "MAE_label": 0.4566334239951646,
+      "MAE_expected": 0.42833632120932985,
+      "RMSE_label": 0.686689346420166,
+      "Signed Bias label": 0.002719854941069784,
+      "Signed Bias expected": -0.027619380517097503,
+      "Macro-F1": 0.5173272189979994,
+      "Weighted-F1": 0.6544822970956473,
+      "Quadratic Weighted Kappa": 0.5466132115577904,
+      "Kendall tau": 0.4716942923251824,
+      "Spearman rho": 0.5322572949900151,
+      "Within-1 Accuracy": 0.9510426110607434,
+      "Acc@1": 0.8888888888888888,
+      "Acc@2": 0.0,
+      "Acc@5": 0.702922077922078,
+      "low_n": 31,
+      "low_exact_match": 0.25806451612903225,
+      "low_MAE": 1.3225806451612903,
+      "low_signed_bias": 1.3225806451612903,
+      "low_to_high_rate": 0.4838709677419355,
+      "low_severe_overestimation_rate": 0.4838709677419355,
+      "mean_pred_low": 3.129032258064516,
+      "high_n": 616,
+      "high_to_mid_or_low_rate": 0.030844155844155844,
+      "high_signed_bias": -0.18235930735930753,
+      "MAE_score": 0.42833632120932985,
+      "severe_error_rate": 0.04895738893925657,
+      "pred_label_1_rate": 0.008159564823209429,
+      "pred_label_2_rate": 0.007252946509519492,
+      "pred_label_3_rate": 0.07252946509519492,
+      "pred_label_4_rate": 0.43245693563009974,
+      "pred_label_5_rate": 0.4796010879419764,
+      "monotonic_violation_rate": 0.25022665457842247,
+      "split": "test",
+      "loss": 0.39411232228377374,
+      "mean_base_loss": 0.30802930986670696,
+      "mean_weighted_loss": 0.4004955235430026,
+      "mean_sample_weight": 0.7715906725413557,
+      "min_sample_weight": 0.5080002978228141,
+      "max_sample_weight": 1.504447793615037,
+      "epoch": "best",
+      "global_step": 290,
+      "elapsed_seconds": 4152.158320903778
+    }
+  ],
+  "best_dir": "thesis_exp/artifacts/exp06_synthetic_low_score/training_runs/checkpoints/QD-S2_human_plus_synthetic_L1/best"
+}
+QD-S2 output: thesis_exp/outputs/exp06_synthetic_low_score/training_runs/QD-S2_human_plus_synthetic_L1
+
+===== QD-S2 final run summary =====
+# Exp6 QD-S2 Human + Synthetic L1 Weighted Ordinal
+
+Status: `completed`
+Model: `/home/share/models/modelscope/Qwen/Qwen3-Reranker-0.6B`
+Train: 3326 human + 384 synthetic low-score pseudo-label rows
+Dev/test: question_seed42 human-only
+Loss: L1 weighted ordinal BCE
+Class weights: computed from QD-S2 train only
+Checkpoint selection: dev `MAE_label` (min)
+
+## Test Metrics
+
+- Accuracy: 0.6554850407978241
+- MAE_label: 0.4566334239951646
+- MAE_expected: 0.42833632120932985
+- QWK: 0.5466132115577904
+- Kendall tau: 0.4716942923251824
+- severe_error_rate: 0.04895738893925657
+- low_to_high_rate: 0.4838709677419355
+- mean_sample_weight: 0.7715906725413557
+
+===== QD-S2 class_weights.csv =====
+label_5,train_count,raw_weight,clipped_weight,w_min,w_max,notes
+1,226,3.2831858407079646,3.0,0.5,3.0,computed from train split only
+2,221,3.3574660633484164,3.0,0.5,3.0,computed from train split only
+3,345,2.1507246376811593,2.1507246376811593,0.5,3.0,computed from train split only
+4,1163,0.6380051590713671,0.6380051590713671,0.5,3.0,computed from train split only
+5,1755,0.42279202279202277,0.5,0.5,3.0,computed from train split only
+
+===== QD-S2 metrics_summary.csv =====
+n,Accuracy,Exact Match,MAE_label,MAE_expected,RMSE_label,Signed Bias label,Signed Bias expected,Macro-F1,Weighted-F1,Quadratic Weighted Kappa,Kendall tau,Spearman rho,Within-1 Accuracy,Acc@1,Acc@2,Acc@5,low_n,low_exact_match,low_MAE,low_signed_bias,low_to_high_rate,low_severe_overestimation_rate,mean_pred_low,high_n,high_to_mid_or_low_rate,high_signed_bias,MAE_score,severe_error_rate,pred_label_1_rate,pred_label_2_rate,pred_label_3_rate,pred_label_4_rate,pred_label_5_rate,monotonic_violation_rate,split,loss,mean_base_loss,mean_weighted_loss,mean_sample_weight,min_sample_weight,max_sample_weight,epoch,global_step,elapsed_seconds
+1107,0.6449864498644986,0.6449864498644986,0.4983438723276121,0.45454999113565003,0.7688218402083352,0.15085817524841913,0.12714947162665538,0.48032421780549217,0.633179003556862,0.5276207250538032,0.4732380055610305,0.5355391491978163,0.9331526648599819,0.5789473684210527,0.05263157894736842,0.7823741007194245,57,0.22807017543859648,1.5380116959064325,1.5380116959064325,0.42105263157894735,0.49122807017543857,3.263157894736842,556,0.02877697841726619,-0.0821342925659474,0.45454999113565003,0.06684733514001806,0.01084010840108401,0.011743450767841012,0.07407407407407407,0.36946702800361336,0.5338753387533876,0.2908762420957543,dev,0.509138052110567,0.37818009638823835,0.6169833800380232,0.8351810360126358,0.5188256159103174,1.7153008764596294,best,290,
+1103,0.6554850407978241,0.6554850407978241,0.4566334239951646,0.42833632120932985,0.686689346420166,0.002719854941069784,-0.027619380517097503,0.5173272189979994,0.6544822970956473,0.5466132115577904,0.4716942923251824,0.5322572949900151,0.9510426110607434,0.8888888888888888,0.0,0.702922077922078,31,0.25806451612903225,1.3225806451612903,1.3225806451612903,0.4838709677419355,0.4838709677419355,3.129032258064516,616,0.030844155844155844,-0.18235930735930753,0.42833632120932985,0.04895738893925657,0.008159564823209429,0.007252946509519492,0.07252946509519492,0.43245693563009974,0.4796010879419764,0.25022665457842247,test,0.39411232228377374,0.30802930986670696,0.4004955235430026,0.7715906725413557,0.5080002978228141,1.504447793615037,best,290,4152.158320903778
+
+===== QD-S2 low_score_metrics.csv =====
+split,low_n,Acc@1,Acc@2,low_exact_match,low_MAE,low_signed_bias,low_to_high_rate,low_severe_overestimation_rate,mean_pred_low
+dev,57,0.5789473684210527,0.05263157894736842,0.22807017543859648,1.5380116959064325,1.5380116959064325,0.42105263157894735,0.49122807017543857,3.263157894736842
+test,31,0.8888888888888888,0.0,0.25806451612903225,1.3225806451612903,1.3225806451612903,0.4838709677419355,0.4838709677419355,3.129032258064516
+
+===== QD-S2 high_score_metrics.csv =====
+split,high_n,Acc@5,high_to_mid_or_low_rate,high_signed_bias
+dev,556,0.7823741007194245,0.02877697841726619,-0.0821342925659474
+test,616,0.702922077922078,0.030844155844155844,-0.18235930735930753
+
+===== QD-S2 review package =====
+# Exp6 QD-S2 Review Package
+
+Can QD-S3 start? **REVIEW_REQUIRED**
+
+QD-S3 should start only after reviewing whether QD-S2 improves low-score behavior without
+unacceptable high-score damage.
+
+Remaining blockers:
+
+- Review QD-S2 against QD-B1 and QD-S1 before starting QD-S3.
