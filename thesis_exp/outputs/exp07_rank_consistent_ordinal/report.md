@@ -27,5 +27,6 @@ This is scoring model fine-tuning, not generative SFT.
 - Does QD-R1 hurt Acc@5? NO; Acc@5 increases, but overestimation bias also increases
 - Interpretation: rank consistency solved monotonic violation but did not solve low-score overestimation.
 - Should Exp7-B start? **NOT_RECOMMENDED_YET**
+- Next recommended step: calibration feasibility/export planning, not Exp7-B.
 
 Model checkpoints live under `thesis_exp/artifacts/` and must not be committed.

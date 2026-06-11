@@ -9,3 +9,4 @@
 - Formal status: `completed`.
 - Exp7-B gate: **NOT_RECOMMENDED_YET**.
 - Rank consistency solved monotonic violation, but low-score overestimation remains.
+- Next recommended step: calibration feasibility/export planning, not Exp7-B.

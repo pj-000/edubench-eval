@@ -357,6 +357,7 @@ def write_reports(rows: list[dict[str, Any]], deltas: list[dict[str, Any]]) -> N
             f"- Does QD-R1 hurt Acc@5? {_answer_hurts_acc5(deltas)}",
             "- Interpretation: rank consistency solved monotonic violation but did not solve low-score overestimation.",
             f"- Should Exp7-B start? **{gate}**",
+            "- Next recommended step: calibration feasibility/export planning, not Exp7-B.",
         ]
     )
     if warning:
@@ -377,6 +378,7 @@ def write_reports(rows: list[dict[str, Any]], deltas: list[dict[str, Any]]) -> N
         "- No CORN, class-balanced loss, focal loss, calibration, API calls, or synthetic generation.",
         f"- Formal training status: {qdr1.get('status', 'pending') if qdr1 else 'pending'}.",
         "- Rank consistency is solved, but low-score overestimation is not solved.",
+        "- Next recommended step: calibration feasibility/export planning, not Exp7-B.",
         "",
         "Review focus:",
         "",
@@ -399,6 +401,7 @@ def write_reports(rows: list[dict[str, Any]], deltas: list[dict[str, Any]]) -> N
         f"- Formal status: `{qdr1.get('status', 'pending') if qdr1 else 'pending'}`.",
         f"- Exp7-B gate: **{gate}**.",
         "- Rank consistency solved monotonic violation, but low-score overestimation remains.",
+        "- Next recommended step: calibration feasibility/export planning, not Exp7-B.",
     ]
     write_text(EXP07_OUTPUT_DIR / "notion_exp07_r1_summary.md", "\n".join(notion_lines))
 

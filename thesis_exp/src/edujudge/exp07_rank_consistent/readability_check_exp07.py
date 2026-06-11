@@ -103,7 +103,7 @@ def check_line_endings(rows: list[dict[str, Any]], path: Path) -> None:
         return
     data = path.read_bytes()
     add(rows, "LF line endings", path, b"\r\n" not in data and b"\r" not in data)
-    if path.suffix.lower() in {".py", ".sh"} and data:
+    if path.suffix.lower() in {".py", ".sh", ".md", ".csv"} and data:
         line_count = len(data.splitlines())
         add(rows, "not collapsed-line file", path, line_count > 1, line_count)
 

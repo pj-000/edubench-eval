@@ -8,6 +8,7 @@ Scope:
 - No CORN, class-balanced loss, focal loss, calibration, API calls, or synthetic generation.
 - Formal training status: completed.
 - Rank consistency is solved, but low-score overestimation is not solved.
+- Next recommended step: calibration feasibility/export planning, not Exp7-B.
 
 Review focus:
 
