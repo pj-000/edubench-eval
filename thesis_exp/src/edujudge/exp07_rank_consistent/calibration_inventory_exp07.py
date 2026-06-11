@@ -196,6 +196,42 @@ def build_inventory(*, server_host: str | None, server_port: int, server_repo: s
     return rows, server_status
 
 
+def _recommendation_lines(status_by_run: dict[str, dict[str, str]], server_status: str) -> list[str]:
+    qdr1 = status_by_run[EXP07_RUN_ID]
+    baselines = [status_by_run[QD_B0_RUN_ID], status_by_run[QD_B1_RUN_ID]]
+    lines = [
+        "- Do not start Exp7-B yet; the next step is risk-aware ordinal calibration feasibility/export planning.",
+    ]
+    if qdr1["calibration_ready"] in {"yes_local", "yes_server"}:
+        location = "local" if qdr1["calibration_ready"] == "yes_local" else "server"
+        lines.append(
+            f"- QD-R1 calibration is possible from the available {location} dev/test logits and probabilities, "
+            "but the raw QD-R1 scorer overestimates low scores."
+        )
+    else:
+        lines.append("- QD-R1 calibration is blocked until its dev/test logits and probabilities are available.")
+    if all(row["calibration_ready"] == "yes_local" for row in baselines):
+        lines.append("- QD-B0/QD-B1 calibration inputs are ready in the local workspace.")
+    elif all(row["calibration_ready"] in {"yes_local", "yes_server"} for row in baselines):
+        lines.append(
+            "- QD-B0/QD-B1 calibration inputs are available via the checked server inventory; "
+            "sync them locally or run the calibration workflow on the server."
+        )
+    elif all(row["checkpoint_available"] in {"yes_local", "yes_server"} for row in baselines):
+        lines.append(
+            "- QD-B0/QD-B1 logits/probs are missing, but checkpoints are available; "
+            "export logits/probs/predictions eval-only before calibration."
+        )
+    elif server_status == "not_checked":
+        lines.append(
+            "- QD-B0/QD-B1 local calibration inputs are missing in this workspace; "
+            "run with server inventory enabled or sync/export the baseline logits before calibration."
+        )
+    else:
+        lines.append("- QD-B0/QD-B1 calibration is blocked until logits/probs/predictions or checkpoints are available.")
+    return lines
+
+
 def write_report(rows: list[dict[str, str]], server_status: str) -> None:
     status_by_run = {row["run_id"]: row for row in rows}
     lines = [
@@ -231,13 +267,9 @@ def write_report(rows: list[dict[str, str]], server_status: str) -> None:
             "",
             "## Recommendation",
             "",
-            "- Do not start Exp7-B yet; the next step is risk-aware ordinal calibration feasibility/export planning.",
-            "- QD-R1 calibration is possible from the available dev/test logits and probabilities, but the raw QD-R1 scorer overestimates low scores.",
-            "- QD-B0/QD-B1 local calibration is not ready unless their logits/probs/arrays/predictions are synced locally.",
-            "- Because the server has the required artifacts, sync them or run the calibration workflow on the server.",
-            "- If a local-only workflow is required, export logits/probs/predictions eval-only from the available checkpoints.",
         ]
     )
+    lines.extend(_recommendation_lines(status_by_run, server_status))
     write_text(EXP07_REPORTS_DIR / "exp07_calibration_feasibility.md", "\n".join(lines))
 
 

@@ -27,6 +27,14 @@ SCRIPT_PATHS = [
 ]
 TEXT_SUFFIXES = {".py", ".sh", ".yaml", ".yml", ".md", ".csv", ".json", ".jsonl", ".txt"}
 CHECKPOINT_SUFFIXES = {".bin", ".safetensors", ".pt", ".pth", ".ckpt"}
+COLLAPSE_CHECK_SUFFIXES = {".py", ".sh", ".md", ".csv"}
+FIRST_LINE_CHECK_SUFFIXES = TEXT_SUFFIXES - {".jsonl"}
+LARGE_SINGLE_LINE_BYTES = 1000
+FIRST_LINE_MAX_CHARS = 1000
+MIN_LINE_COUNTS = {
+    Path("thesis_exp/src/edujudge/exp07_rank_consistent/calibration_inventory_exp07.py"): 80,
+    Path("thesis_exp/src/edujudge/exp07_rank_consistent/readability_check_exp07.py"): 80,
+}
 
 
 def add(rows: list[dict[str, Any]], check_name: str, path: Path, passed: bool, details: Any = "") -> None:
@@ -102,10 +110,29 @@ def check_line_endings(rows: list[dict[str, Any]], path: Path) -> None:
     if path.suffix.lower() not in TEXT_SUFFIXES:
         return
     data = path.read_bytes()
-    add(rows, "LF line endings", path, b"\r\n" not in data and b"\r" not in data)
-    if path.suffix.lower() in {".py", ".sh", ".md", ".csv"} and data:
+    has_crlf = b"\r\n" in data
+    has_cr_only = b"\r" in data.replace(b"\r\n", b"")
+    add(rows, "no CRLF line endings", path, not has_crlf)
+    add(rows, "no CR-only line endings", path, not has_cr_only)
+    add(rows, "LF line endings", path, not has_crlf and not has_cr_only)
+    if path.suffix.lower() in FIRST_LINE_CHECK_SUFFIXES and data:
+        first_line = data.split(b"\n", 1)[0].rstrip(b"\r")
+        add(rows, "first line <= 1000 chars", path, len(first_line) <= FIRST_LINE_MAX_CHARS, len(first_line))
+    if path.suffix.lower() in COLLAPSE_CHECK_SUFFIXES and data:
         line_count = len(data.splitlines())
         add(rows, "not collapsed-line file", path, line_count > 1, line_count)
+        if path.suffix.lower() in {".md", ".csv"}:
+            collapsed_large = line_count <= 1 and len(data) > LARGE_SINGLE_LINE_BYTES
+            add(
+                rows,
+                "not large one-line md/csv",
+                path,
+                not collapsed_large,
+                f"lines={line_count}; bytes={len(data)}",
+            )
+        minimum = MIN_LINE_COUNTS.get(Path(relpath(path)))
+        if minimum is not None:
+            add(rows, "minimum line count", path, line_count > minimum, f"lines={line_count}; min>{minimum}")
 
 
 def check_size_and_weights(rows: list[dict[str, Any]], path: Path) -> None:
