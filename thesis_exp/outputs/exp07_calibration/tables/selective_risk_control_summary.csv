@@ -1,0 +1,2 @@
+target_risk,target_coverage,target_review_budget,achieved_review_rate,achieved_coverage,achieved_low_to_high,random_baseline_low_to_high_same_coverage,oracle_upper_bound_low_to_high_same_coverage,target_low_to_high_threshold,target_low_to_high_achieved,guarantee_claim,policy_source,test_evaluation_only
+low_to_high among auto-scored non-rejected samples,0.8,0.2,0.19945602901178605,0.800543970988214,0.32,0.45025985985582395,0.0,0.35,True,Empirical risk-control analysis; no finite-sample conformal guarantee claimed.,Exp7-C3 dev-selected policy kept fixed,yes

@@ -15,6 +15,7 @@ Status: `PASS`
 | python py_compile | thesis_exp/src/edujudge/exp07_rank_consistent/diagnose_qdr1.py | PASS |  |
 | python py_compile | thesis_exp/src/edujudge/exp07_rank_consistent/evaluate_calibration.py | PASS |  |
 | python py_compile | thesis_exp/src/edujudge/exp07_rank_consistent/evaluate_selective_calibration.py | PASS |  |
+| python py_compile | thesis_exp/src/edujudge/exp07_rank_consistent/evaluate_selective_robustness.py | PASS |  |
 | python py_compile | thesis_exp/src/edujudge/exp07_rank_consistent/evaluate_server_calibration.py | PASS |  |
 | python py_compile | thesis_exp/src/edujudge/exp07_rank_consistent/losses.py | PASS |  |
 | python py_compile | thesis_exp/src/edujudge/exp07_rank_consistent/metrics.py | PASS |  |
@@ -118,6 +119,14 @@ Status: `PASS`
 | file size below 20MB | thesis_exp/src/edujudge/exp07_rank_consistent/evaluate_selective_calibration.py | PASS | 23883 |
 | not checkpoint/weight artifact | thesis_exp/src/edujudge/exp07_rank_consistent/evaluate_selective_calibration.py | PASS |  |
 | no API key string | thesis_exp/src/edujudge/exp07_rank_consistent/evaluate_selective_calibration.py | PASS |  |
+| no CRLF line endings | thesis_exp/src/edujudge/exp07_rank_consistent/evaluate_selective_robustness.py | PASS |  |
+| no CR-only line endings | thesis_exp/src/edujudge/exp07_rank_consistent/evaluate_selective_robustness.py | PASS |  |
+| LF line endings | thesis_exp/src/edujudge/exp07_rank_consistent/evaluate_selective_robustness.py | PASS |  |
+| first line <= 1000 chars | thesis_exp/src/edujudge/exp07_rank_consistent/evaluate_selective_robustness.py | PASS | 65 |
+| not collapsed-line file | thesis_exp/src/edujudge/exp07_rank_consistent/evaluate_selective_robustness.py | PASS | 701 |
+| file size below 20MB | thesis_exp/src/edujudge/exp07_rank_consistent/evaluate_selective_robustness.py | PASS | 33381 |
+| not checkpoint/weight artifact | thesis_exp/src/edujudge/exp07_rank_consistent/evaluate_selective_robustness.py | PASS |  |
+| no API key string | thesis_exp/src/edujudge/exp07_rank_consistent/evaluate_selective_robustness.py | PASS |  |
 | no CRLF line endings | thesis_exp/src/edujudge/exp07_rank_consistent/evaluate_server_calibration.py | PASS |  |
 | no CR-only line endings | thesis_exp/src/edujudge/exp07_rank_consistent/evaluate_server_calibration.py | PASS |  |
 | LF line endings | thesis_exp/src/edujudge/exp07_rank_consistent/evaluate_server_calibration.py | PASS |  |
@@ -155,8 +164,8 @@ Status: `PASS`
 | no CR-only line endings | thesis_exp/src/edujudge/exp07_rank_consistent/sanity_check_exp07_calibration.py | PASS |  |
 | LF line endings | thesis_exp/src/edujudge/exp07_rank_consistent/sanity_check_exp07_calibration.py | PASS |  |
 | first line <= 1000 chars | thesis_exp/src/edujudge/exp07_rank_consistent/sanity_check_exp07_calibration.py | PASS | 51 |
-| not collapsed-line file | thesis_exp/src/edujudge/exp07_rank_consistent/sanity_check_exp07_calibration.py | PASS | 263 |
-| file size below 20MB | thesis_exp/src/edujudge/exp07_rank_consistent/sanity_check_exp07_calibration.py | PASS | 10683 |
+| not collapsed-line file | thesis_exp/src/edujudge/exp07_rank_consistent/sanity_check_exp07_calibration.py | PASS | 272 |
+| file size below 20MB | thesis_exp/src/edujudge/exp07_rank_consistent/sanity_check_exp07_calibration.py | PASS | 11069 |
 | not checkpoint/weight artifact | thesis_exp/src/edujudge/exp07_rank_consistent/sanity_check_exp07_calibration.py | PASS |  |
 | no API key string | thesis_exp/src/edujudge/exp07_rank_consistent/sanity_check_exp07_calibration.py | PASS |  |
 | no CRLF line endings | thesis_exp/src/edujudge/exp07_rank_consistent/sanity_check_exp07_outputs.py | PASS |  |
@@ -264,9 +273,9 @@ Status: `PASS`
 | no CR-only line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/readability_check_exp07.md | PASS |  |
 | LF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/readability_check_exp07.md | PASS |  |
 | first line <= 1000 chars | thesis_exp/outputs/exp07_rank_consistent_ordinal/readability_check_exp07.md | PASS | 24 |
-| not collapsed-line file | thesis_exp/outputs/exp07_rank_consistent_ordinal/readability_check_exp07.md | PASS | 1410 |
-| not large one-line md/csv | thesis_exp/outputs/exp07_rank_consistent_ordinal/readability_check_exp07.md | PASS | lines=1410; bytes=180403 |
-| file size below 20MB | thesis_exp/outputs/exp07_rank_consistent_ordinal/readability_check_exp07.md | PASS | 180403 |
+| not collapsed-line file | thesis_exp/outputs/exp07_rank_consistent_ordinal/readability_check_exp07.md | PASS | 1493 |
+| not large one-line md/csv | thesis_exp/outputs/exp07_rank_consistent_ordinal/readability_check_exp07.md | PASS | lines=1493; bytes=190404 |
+| file size below 20MB | thesis_exp/outputs/exp07_rank_consistent_ordinal/readability_check_exp07.md | PASS | 190404 |
 | not checkpoint/weight artifact | thesis_exp/outputs/exp07_rank_consistent_ordinal/readability_check_exp07.md | PASS |  |
 | no API key string | thesis_exp/outputs/exp07_rank_consistent_ordinal/readability_check_exp07.md | PASS |  |
 | Markdown max prose line length | thesis_exp/outputs/exp07_rank_consistent_ordinal/report.md | PASS | prose=105; table=106 |
@@ -982,9 +991,9 @@ Status: `PASS`
 | no CR-only line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/readability_check_exp07.csv | PASS |  |
 | LF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/readability_check_exp07.csv | PASS |  |
 | first line <= 1000 chars | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/readability_check_exp07.csv | PASS | 30 |
-| not collapsed-line file | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/readability_check_exp07.csv | PASS | 1405 |
-| not large one-line md/csv | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/readability_check_exp07.csv | PASS | lines=1405; bytes=166290 |
-| file size below 20MB | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/readability_check_exp07.csv | PASS | 166290 |
+| not collapsed-line file | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/readability_check_exp07.csv | PASS | 1488 |
+| not large one-line md/csv | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/readability_check_exp07.csv | PASS | lines=1488; bytes=175461 |
+| file size below 20MB | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/readability_check_exp07.csv | PASS | 175461 |
 | not checkpoint/weight artifact | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/readability_check_exp07.csv | PASS |  |
 | no API key string | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/readability_check_exp07.csv | PASS |  |
 | CSV readable | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/sanity_check_exp07_outputs.csv | PASS |  |
@@ -1067,6 +1076,26 @@ Status: `PASS`
 | file size below 20MB | thesis_exp/outputs/exp07_calibration/reports/exp07_c3_selective_calibration_report.md | PASS | 2621 |
 | not checkpoint/weight artifact | thesis_exp/outputs/exp07_calibration/reports/exp07_c3_selective_calibration_report.md | PASS |  |
 | no API key string | thesis_exp/outputs/exp07_calibration/reports/exp07_c3_selective_calibration_report.md | PASS |  |
+| Markdown max prose line length | thesis_exp/outputs/exp07_calibration/reports/exp07_c4_review_package.md | PASS | prose=100; table=0 |
+| no CRLF line endings | thesis_exp/outputs/exp07_calibration/reports/exp07_c4_review_package.md | PASS |  |
+| no CR-only line endings | thesis_exp/outputs/exp07_calibration/reports/exp07_c4_review_package.md | PASS |  |
+| LF line endings | thesis_exp/outputs/exp07_calibration/reports/exp07_c4_review_package.md | PASS |  |
+| first line <= 1000 chars | thesis_exp/outputs/exp07_calibration/reports/exp07_c4_review_package.md | PASS | 24 |
+| not collapsed-line file | thesis_exp/outputs/exp07_calibration/reports/exp07_c4_review_package.md | PASS | 15 |
+| not large one-line md/csv | thesis_exp/outputs/exp07_calibration/reports/exp07_c4_review_package.md | PASS | lines=15; bytes=638 |
+| file size below 20MB | thesis_exp/outputs/exp07_calibration/reports/exp07_c4_review_package.md | PASS | 638 |
+| not checkpoint/weight artifact | thesis_exp/outputs/exp07_calibration/reports/exp07_c4_review_package.md | PASS |  |
+| no API key string | thesis_exp/outputs/exp07_calibration/reports/exp07_c4_review_package.md | PASS |  |
+| Markdown max prose line length | thesis_exp/outputs/exp07_calibration/reports/exp07_c4_selective_robustness_report.md | PASS | prose=231; table=88 |
+| no CRLF line endings | thesis_exp/outputs/exp07_calibration/reports/exp07_c4_selective_robustness_report.md | PASS |  |
+| no CR-only line endings | thesis_exp/outputs/exp07_calibration/reports/exp07_c4_selective_robustness_report.md | PASS |  |
+| LF line endings | thesis_exp/outputs/exp07_calibration/reports/exp07_c4_selective_robustness_report.md | PASS |  |
+| first line <= 1000 chars | thesis_exp/outputs/exp07_calibration/reports/exp07_c4_selective_robustness_report.md | PASS | 54 |
+| not collapsed-line file | thesis_exp/outputs/exp07_calibration/reports/exp07_c4_selective_robustness_report.md | PASS | 92 |
+| not large one-line md/csv | thesis_exp/outputs/exp07_calibration/reports/exp07_c4_selective_robustness_report.md | PASS | lines=92; bytes=5229 |
+| file size below 20MB | thesis_exp/outputs/exp07_calibration/reports/exp07_c4_selective_robustness_report.md | PASS | 5229 |
+| not checkpoint/weight artifact | thesis_exp/outputs/exp07_calibration/reports/exp07_c4_selective_robustness_report.md | PASS |  |
+| no API key string | thesis_exp/outputs/exp07_calibration/reports/exp07_c4_selective_robustness_report.md | PASS |  |
 | Markdown max prose line length | thesis_exp/outputs/exp07_calibration/reports/exp07_calibration_report.md | PASS | prose=154; table=252 |
 | no CRLF line endings | thesis_exp/outputs/exp07_calibration/reports/exp07_calibration_report.md | PASS |  |
 | no CR-only line endings | thesis_exp/outputs/exp07_calibration/reports/exp07_calibration_report.md | PASS |  |
@@ -1107,6 +1136,16 @@ Status: `PASS`
 | file size below 20MB | thesis_exp/outputs/exp07_calibration/reports/notion_exp07_c3_selective_calibration_summary.md | PASS | 357 |
 | not checkpoint/weight artifact | thesis_exp/outputs/exp07_calibration/reports/notion_exp07_c3_selective_calibration_summary.md | PASS |  |
 | no API key string | thesis_exp/outputs/exp07_calibration/reports/notion_exp07_c3_selective_calibration_summary.md | PASS |  |
+| Markdown max prose line length | thesis_exp/outputs/exp07_calibration/reports/notion_exp07_c4_selective_robustness_summary.md | PASS | prose=95; table=0 |
+| no CRLF line endings | thesis_exp/outputs/exp07_calibration/reports/notion_exp07_c4_selective_robustness_summary.md | PASS |  |
+| no CR-only line endings | thesis_exp/outputs/exp07_calibration/reports/notion_exp07_c4_selective_robustness_summary.md | PASS |  |
+| LF line endings | thesis_exp/outputs/exp07_calibration/reports/notion_exp07_c4_selective_robustness_summary.md | PASS |  |
+| first line <= 1000 chars | thesis_exp/outputs/exp07_calibration/reports/notion_exp07_c4_selective_robustness_summary.md | PASS | 38 |
+| not collapsed-line file | thesis_exp/outputs/exp07_calibration/reports/notion_exp07_c4_selective_robustness_summary.md | PASS | 9 |
+| not large one-line md/csv | thesis_exp/outputs/exp07_calibration/reports/notion_exp07_c4_selective_robustness_summary.md | PASS | lines=9; bytes=406 |
+| file size below 20MB | thesis_exp/outputs/exp07_calibration/reports/notion_exp07_c4_selective_robustness_summary.md | PASS | 406 |
+| not checkpoint/weight artifact | thesis_exp/outputs/exp07_calibration/reports/notion_exp07_c4_selective_robustness_summary.md | PASS |  |
+| no API key string | thesis_exp/outputs/exp07_calibration/reports/notion_exp07_c4_selective_robustness_summary.md | PASS |  |
 | Markdown max prose line length | thesis_exp/outputs/exp07_calibration/reports/notion_exp07_calibration_summary.md | PASS | prose=50; table=0 |
 | no CRLF line endings | thesis_exp/outputs/exp07_calibration/reports/notion_exp07_calibration_summary.md | PASS |  |
 | no CR-only line endings | thesis_exp/outputs/exp07_calibration/reports/notion_exp07_calibration_summary.md | PASS |  |
@@ -1122,9 +1161,9 @@ Status: `PASS`
 | no CR-only line endings | thesis_exp/outputs/exp07_calibration/sanity_check_exp07_calibration.md | PASS |  |
 | LF line endings | thesis_exp/outputs/exp07_calibration/sanity_check_exp07_calibration.md | PASS |  |
 | first line <= 1000 chars | thesis_exp/outputs/exp07_calibration/sanity_check_exp07_calibration.md | PASS | 33 |
-| not collapsed-line file | thesis_exp/outputs/exp07_calibration/sanity_check_exp07_calibration.md | PASS | 54 |
-| not large one-line md/csv | thesis_exp/outputs/exp07_calibration/sanity_check_exp07_calibration.md | PASS | lines=54; bytes=6396 |
-| file size below 20MB | thesis_exp/outputs/exp07_calibration/sanity_check_exp07_calibration.md | PASS | 6396 |
+| not collapsed-line file | thesis_exp/outputs/exp07_calibration/sanity_check_exp07_calibration.md | PASS | 63 |
+| not large one-line md/csv | thesis_exp/outputs/exp07_calibration/sanity_check_exp07_calibration.md | PASS | lines=63; bytes=7597 |
+| file size below 20MB | thesis_exp/outputs/exp07_calibration/sanity_check_exp07_calibration.md | PASS | 7597 |
 | not checkpoint/weight artifact | thesis_exp/outputs/exp07_calibration/sanity_check_exp07_calibration.md | PASS |  |
 | no API key string | thesis_exp/outputs/exp07_calibration/sanity_check_exp07_calibration.md | PASS |  |
 | CSV readable | thesis_exp/outputs/exp07_calibration/tables/best_calibrated_model_selection.csv | PASS |  |
@@ -1171,6 +1210,17 @@ Status: `PASS`
 | file size below 20MB | thesis_exp/outputs/exp07_calibration/tables/calibration_summary.csv | PASS | 3124 |
 | not checkpoint/weight artifact | thesis_exp/outputs/exp07_calibration/tables/calibration_summary.csv | PASS |  |
 | no API key string | thesis_exp/outputs/exp07_calibration/tables/calibration_summary.csv | PASS |  |
+| CSV readable | thesis_exp/outputs/exp07_calibration/tables/final_selective_method_comparison.csv | PASS |  |
+| CSV pandas readable | thesis_exp/outputs/exp07_calibration/tables/final_selective_method_comparison.csv | PASS |  |
+| no CRLF line endings | thesis_exp/outputs/exp07_calibration/tables/final_selective_method_comparison.csv | PASS |  |
+| no CR-only line endings | thesis_exp/outputs/exp07_calibration/tables/final_selective_method_comparison.csv | PASS |  |
+| LF line endings | thesis_exp/outputs/exp07_calibration/tables/final_selective_method_comparison.csv | PASS |  |
+| first line <= 1000 chars | thesis_exp/outputs/exp07_calibration/tables/final_selective_method_comparison.csv | PASS | 134 |
+| not collapsed-line file | thesis_exp/outputs/exp07_calibration/tables/final_selective_method_comparison.csv | PASS | 10 |
+| not large one-line md/csv | thesis_exp/outputs/exp07_calibration/tables/final_selective_method_comparison.csv | PASS | lines=10; bytes=2260 |
+| file size below 20MB | thesis_exp/outputs/exp07_calibration/tables/final_selective_method_comparison.csv | PASS | 2260 |
+| not checkpoint/weight artifact | thesis_exp/outputs/exp07_calibration/tables/final_selective_method_comparison.csv | PASS |  |
+| no API key string | thesis_exp/outputs/exp07_calibration/tables/final_selective_method_comparison.csv | PASS |  |
 | CSV readable | thesis_exp/outputs/exp07_calibration/tables/global_threshold_calibration_dev.csv | PASS |  |
 | CSV pandas readable | thesis_exp/outputs/exp07_calibration/tables/global_threshold_calibration_dev.csv | PASS |  |
 | no CRLF line endings | thesis_exp/outputs/exp07_calibration/tables/global_threshold_calibration_dev.csv | PASS |  |
@@ -1215,6 +1265,17 @@ Status: `PASS`
 | file size below 20MB | thesis_exp/outputs/exp07_calibration/tables/low_score_calibration_comparison.csv | PASS | 947 |
 | not checkpoint/weight artifact | thesis_exp/outputs/exp07_calibration/tables/low_score_calibration_comparison.csv | PASS |  |
 | no API key string | thesis_exp/outputs/exp07_calibration/tables/low_score_calibration_comparison.csv | PASS |  |
+| CSV readable | thesis_exp/outputs/exp07_calibration/tables/oracle_rejection_upper_bound.csv | PASS |  |
+| CSV pandas readable | thesis_exp/outputs/exp07_calibration/tables/oracle_rejection_upper_bound.csv | PASS |  |
+| no CRLF line endings | thesis_exp/outputs/exp07_calibration/tables/oracle_rejection_upper_bound.csv | PASS |  |
+| no CR-only line endings | thesis_exp/outputs/exp07_calibration/tables/oracle_rejection_upper_bound.csv | PASS |  |
+| LF line endings | thesis_exp/outputs/exp07_calibration/tables/oracle_rejection_upper_bound.csv | PASS |  |
+| first line <= 1000 chars | thesis_exp/outputs/exp07_calibration/tables/oracle_rejection_upper_bound.csv | PASS | 274 |
+| not collapsed-line file | thesis_exp/outputs/exp07_calibration/tables/oracle_rejection_upper_bound.csv | PASS | 7 |
+| not large one-line md/csv | thesis_exp/outputs/exp07_calibration/tables/oracle_rejection_upper_bound.csv | PASS | lines=7; bytes=1236 |
+| file size below 20MB | thesis_exp/outputs/exp07_calibration/tables/oracle_rejection_upper_bound.csv | PASS | 1236 |
+| not checkpoint/weight artifact | thesis_exp/outputs/exp07_calibration/tables/oracle_rejection_upper_bound.csv | PASS |  |
+| no API key string | thesis_exp/outputs/exp07_calibration/tables/oracle_rejection_upper_bound.csv | PASS |  |
 | CSV readable | thesis_exp/outputs/exp07_calibration/tables/per_label_accuracy.csv | PASS |  |
 | CSV pandas readable | thesis_exp/outputs/exp07_calibration/tables/per_label_accuracy.csv | PASS |  |
 | no CRLF line endings | thesis_exp/outputs/exp07_calibration/tables/per_label_accuracy.csv | PASS |  |
@@ -1237,6 +1298,17 @@ Status: `PASS`
 | file size below 20MB | thesis_exp/outputs/exp07_calibration/tables/pred_label_distribution.csv | PASS | 1019 |
 | not checkpoint/weight artifact | thesis_exp/outputs/exp07_calibration/tables/pred_label_distribution.csv | PASS |  |
 | no API key string | thesis_exp/outputs/exp07_calibration/tables/pred_label_distribution.csv | PASS |  |
+| CSV readable | thesis_exp/outputs/exp07_calibration/tables/random_rejection_baseline.csv | PASS |  |
+| CSV pandas readable | thesis_exp/outputs/exp07_calibration/tables/random_rejection_baseline.csv | PASS |  |
+| no CRLF line endings | thesis_exp/outputs/exp07_calibration/tables/random_rejection_baseline.csv | PASS |  |
+| no CR-only line endings | thesis_exp/outputs/exp07_calibration/tables/random_rejection_baseline.csv | PASS |  |
+| LF line endings | thesis_exp/outputs/exp07_calibration/tables/random_rejection_baseline.csv | PASS |  |
+| first line <= 1000 chars | thesis_exp/outputs/exp07_calibration/tables/random_rejection_baseline.csv | PASS | 190 |
+| not collapsed-line file | thesis_exp/outputs/exp07_calibration/tables/random_rejection_baseline.csv | PASS | 25 |
+| not large one-line md/csv | thesis_exp/outputs/exp07_calibration/tables/random_rejection_baseline.csv | PASS | lines=25; bytes=4071 |
+| file size below 20MB | thesis_exp/outputs/exp07_calibration/tables/random_rejection_baseline.csv | PASS | 4071 |
+| not checkpoint/weight artifact | thesis_exp/outputs/exp07_calibration/tables/random_rejection_baseline.csv | PASS |  |
+| no API key string | thesis_exp/outputs/exp07_calibration/tables/random_rejection_baseline.csv | PASS |  |
 | CSV readable | thesis_exp/outputs/exp07_calibration/tables/raw_baseline_metrics.csv | PASS |  |
 | CSV pandas readable | thesis_exp/outputs/exp07_calibration/tables/raw_baseline_metrics.csv | PASS |  |
 | no CRLF line endings | thesis_exp/outputs/exp07_calibration/tables/raw_baseline_metrics.csv | PASS |  |
@@ -1248,6 +1320,17 @@ Status: `PASS`
 | file size below 20MB | thesis_exp/outputs/exp07_calibration/tables/raw_baseline_metrics.csv | PASS | 1084 |
 | not checkpoint/weight artifact | thesis_exp/outputs/exp07_calibration/tables/raw_baseline_metrics.csv | PASS |  |
 | no API key string | thesis_exp/outputs/exp07_calibration/tables/raw_baseline_metrics.csv | PASS |  |
+| CSV readable | thesis_exp/outputs/exp07_calibration/tables/rejected_sample_distribution.csv | PASS |  |
+| CSV pandas readable | thesis_exp/outputs/exp07_calibration/tables/rejected_sample_distribution.csv | PASS |  |
+| no CRLF line endings | thesis_exp/outputs/exp07_calibration/tables/rejected_sample_distribution.csv | PASS |  |
+| no CR-only line endings | thesis_exp/outputs/exp07_calibration/tables/rejected_sample_distribution.csv | PASS |  |
+| LF line endings | thesis_exp/outputs/exp07_calibration/tables/rejected_sample_distribution.csv | PASS |  |
+| first line <= 1000 chars | thesis_exp/outputs/exp07_calibration/tables/rejected_sample_distribution.csv | PASS | 111 |
+| not collapsed-line file | thesis_exp/outputs/exp07_calibration/tables/rejected_sample_distribution.csv | PASS | 42 |
+| not large one-line md/csv | thesis_exp/outputs/exp07_calibration/tables/rejected_sample_distribution.csv | PASS | lines=42; bytes=4086 |
+| file size below 20MB | thesis_exp/outputs/exp07_calibration/tables/rejected_sample_distribution.csv | PASS | 4086 |
+| not checkpoint/weight artifact | thesis_exp/outputs/exp07_calibration/tables/rejected_sample_distribution.csv | PASS |  |
+| no API key string | thesis_exp/outputs/exp07_calibration/tables/rejected_sample_distribution.csv | PASS |  |
 | CSV readable | thesis_exp/outputs/exp07_calibration/tables/rejection_analysis.csv | PASS |  |
 | CSV pandas readable | thesis_exp/outputs/exp07_calibration/tables/rejection_analysis.csv | PASS |  |
 | no CRLF line endings | thesis_exp/outputs/exp07_calibration/tables/rejection_analysis.csv | PASS |  |
@@ -1298,9 +1381,9 @@ Status: `PASS`
 | no CR-only line endings | thesis_exp/outputs/exp07_calibration/tables/sanity_check_exp07_calibration.csv | PASS |  |
 | LF line endings | thesis_exp/outputs/exp07_calibration/tables/sanity_check_exp07_calibration.csv | PASS |  |
 | first line <= 1000 chars | thesis_exp/outputs/exp07_calibration/tables/sanity_check_exp07_calibration.csv | PASS | 25 |
-| not collapsed-line file | thesis_exp/outputs/exp07_calibration/tables/sanity_check_exp07_calibration.csv | PASS | 49 |
-| not large one-line md/csv | thesis_exp/outputs/exp07_calibration/tables/sanity_check_exp07_calibration.csv | PASS | lines=49; bytes=6026 |
-| file size below 20MB | thesis_exp/outputs/exp07_calibration/tables/sanity_check_exp07_calibration.csv | PASS | 6026 |
+| not collapsed-line file | thesis_exp/outputs/exp07_calibration/tables/sanity_check_exp07_calibration.csv | PASS | 58 |
+| not large one-line md/csv | thesis_exp/outputs/exp07_calibration/tables/sanity_check_exp07_calibration.csv | PASS | lines=58; bytes=7155 |
+| file size below 20MB | thesis_exp/outputs/exp07_calibration/tables/sanity_check_exp07_calibration.csv | PASS | 7155 |
 | not checkpoint/weight artifact | thesis_exp/outputs/exp07_calibration/tables/sanity_check_exp07_calibration.csv | PASS |  |
 | no API key string | thesis_exp/outputs/exp07_calibration/tables/sanity_check_exp07_calibration.csv | PASS |  |
 | CSV readable | thesis_exp/outputs/exp07_calibration/tables/selective_best_policies.csv | PASS |  |
@@ -1314,6 +1397,17 @@ Status: `PASS`
 | file size below 20MB | thesis_exp/outputs/exp07_calibration/tables/selective_best_policies.csv | PASS | 5176 |
 | not checkpoint/weight artifact | thesis_exp/outputs/exp07_calibration/tables/selective_best_policies.csv | PASS |  |
 | no API key string | thesis_exp/outputs/exp07_calibration/tables/selective_best_policies.csv | PASS |  |
+| CSV readable | thesis_exp/outputs/exp07_calibration/tables/selective_budget_curve.csv | PASS |  |
+| CSV pandas readable | thesis_exp/outputs/exp07_calibration/tables/selective_budget_curve.csv | PASS |  |
+| no CRLF line endings | thesis_exp/outputs/exp07_calibration/tables/selective_budget_curve.csv | PASS |  |
+| no CR-only line endings | thesis_exp/outputs/exp07_calibration/tables/selective_budget_curve.csv | PASS |  |
+| LF line endings | thesis_exp/outputs/exp07_calibration/tables/selective_budget_curve.csv | PASS |  |
+| first line <= 1000 chars | thesis_exp/outputs/exp07_calibration/tables/selective_budget_curve.csv | PASS | 466 |
+| not collapsed-line file | thesis_exp/outputs/exp07_calibration/tables/selective_budget_curve.csv | PASS | 7 |
+| not large one-line md/csv | thesis_exp/outputs/exp07_calibration/tables/selective_budget_curve.csv | PASS | lines=7; bytes=2649 |
+| file size below 20MB | thesis_exp/outputs/exp07_calibration/tables/selective_budget_curve.csv | PASS | 2649 |
+| not checkpoint/weight artifact | thesis_exp/outputs/exp07_calibration/tables/selective_budget_curve.csv | PASS |  |
+| no API key string | thesis_exp/outputs/exp07_calibration/tables/selective_budget_curve.csv | PASS |  |
 | CSV readable | thesis_exp/outputs/exp07_calibration/tables/selective_calibration_dev.csv | PASS |  |
 | CSV pandas readable | thesis_exp/outputs/exp07_calibration/tables/selective_calibration_dev.csv | PASS |  |
 | no CRLF line endings | thesis_exp/outputs/exp07_calibration/tables/selective_calibration_dev.csv | PASS |  |
@@ -1347,6 +1441,17 @@ Status: `PASS`
 | file size below 20MB | thesis_exp/outputs/exp07_calibration/tables/selective_rejected_distribution.csv | PASS | 3429 |
 | not checkpoint/weight artifact | thesis_exp/outputs/exp07_calibration/tables/selective_rejected_distribution.csv | PASS |  |
 | no API key string | thesis_exp/outputs/exp07_calibration/tables/selective_rejected_distribution.csv | PASS |  |
+| CSV readable | thesis_exp/outputs/exp07_calibration/tables/selective_risk_control_summary.csv | PASS |  |
+| CSV pandas readable | thesis_exp/outputs/exp07_calibration/tables/selective_risk_control_summary.csv | PASS |  |
+| no CRLF line endings | thesis_exp/outputs/exp07_calibration/tables/selective_risk_control_summary.csv | PASS |  |
+| no CR-only line endings | thesis_exp/outputs/exp07_calibration/tables/selective_risk_control_summary.csv | PASS |  |
+| LF line endings | thesis_exp/outputs/exp07_calibration/tables/selective_risk_control_summary.csv | PASS |  |
+| first line <= 1000 chars | thesis_exp/outputs/exp07_calibration/tables/selective_risk_control_summary.csv | PASS | 303 |
+| not collapsed-line file | thesis_exp/outputs/exp07_calibration/tables/selective_risk_control_summary.csv | PASS | 2 |
+| not large one-line md/csv | thesis_exp/outputs/exp07_calibration/tables/selective_risk_control_summary.csv | PASS | lines=2; bytes=562 |
+| file size below 20MB | thesis_exp/outputs/exp07_calibration/tables/selective_risk_control_summary.csv | PASS | 562 |
+| not checkpoint/weight artifact | thesis_exp/outputs/exp07_calibration/tables/selective_risk_control_summary.csv | PASS |  |
+| no API key string | thesis_exp/outputs/exp07_calibration/tables/selective_risk_control_summary.csv | PASS |  |
 | CSV readable | thesis_exp/outputs/exp07_calibration/tables/server_calibration_artifact_inventory.csv | PASS |  |
 | CSV pandas readable | thesis_exp/outputs/exp07_calibration/tables/server_calibration_artifact_inventory.csv | PASS |  |
 | no CRLF line endings | thesis_exp/outputs/exp07_calibration/tables/server_calibration_artifact_inventory.csv | PASS |  |

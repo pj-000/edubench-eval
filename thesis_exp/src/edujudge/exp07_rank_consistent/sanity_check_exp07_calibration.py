@@ -48,6 +48,12 @@ REQUIRED_TABLES = [
     "selective_calibration_test.csv",
     "selective_best_policies.csv",
     "selective_rejected_distribution.csv",
+    "selective_budget_curve.csv",
+    "random_rejection_baseline.csv",
+    "oracle_rejection_upper_bound.csv",
+    "rejected_sample_distribution.csv",
+    "final_selective_method_comparison.csv",
+    "selective_risk_control_summary.csv",
 ]
 CHECKPOINT_SUFFIXES = {".bin", ".safetensors", ".pt", ".pth", ".ckpt"}
 
@@ -96,6 +102,9 @@ def check_required_files(rows: list[dict[str, Any]]) -> None:
         "exp07_c3_selective_calibration_report.md",
         "exp07_c3_review_package.md",
         "notion_exp07_c3_selective_calibration_summary.md",
+        "exp07_c4_selective_robustness_report.md",
+        "exp07_c4_review_package.md",
+        "notion_exp07_c4_selective_robustness_summary.md",
     ]:
         path = EXP07_CALIBRATION_REPORTS_DIR / name
         add(rows, f"{name} exists", path.exists(), relpath(path))
