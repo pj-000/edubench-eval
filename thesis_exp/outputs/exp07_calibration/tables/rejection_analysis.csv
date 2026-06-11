@@ -1,0 +1,2 @@
+base_model,method,split,review_rate,coverage,low_to_high_all,low_to_high_non_rejected,Acc@5_all,Acc@5_non_rejected
+QD-R1_CORAL_human_only,risk_aware_threshold,test,0.1541251133272892,0.8458748866727108,0.4838709677419355,0.3333333333333333,0.8652597402597403,0.9

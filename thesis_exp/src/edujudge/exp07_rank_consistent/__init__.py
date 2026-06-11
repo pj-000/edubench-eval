@@ -18,6 +18,13 @@ EXP07_REPORTS_DIR = EXP07_OUTPUT_DIR / "reports"
 EXP07_SMOKE_DIR = EXP07_OUTPUT_DIR / "smoke_test"
 EXP07_LOGS_DIR = EXP07_OUTPUT_DIR / "logs"
 
+EXP07_CALIBRATION_NAME = "exp07_calibration"
+EXP07_CALIBRATION_OUTPUT_DIR = THESIS_DIR / "outputs" / EXP07_CALIBRATION_NAME
+EXP07_CALIBRATION_TABLES_DIR = EXP07_CALIBRATION_OUTPUT_DIR / "tables"
+EXP07_CALIBRATION_REPORTS_DIR = EXP07_CALIBRATION_OUTPUT_DIR / "reports"
+EXP07_CALIBRATION_PREDICTIONS_DIR = EXP07_CALIBRATION_OUTPUT_DIR / "calibrated_predictions"
+EXP07_CALIBRATION_CONFIGS_DIR = EXP07_CALIBRATION_OUTPUT_DIR / "configs"
+
 EXP07_ARTIFACTS_DIR = THESIS_DIR / "artifacts" / EXP07_NAME
 EXP07_CHECKPOINTS_DIR = EXP07_ARTIFACTS_DIR / "checkpoints"
 EXP07_SMOKE_CHECKPOINTS_DIR = EXP07_ARTIFACTS_DIR / "smoke_test"
@@ -63,5 +70,16 @@ def ensure_exp07_dirs() -> None:
         EXP07_CONFIG_DIR,
         exp07_run_dir(smoke=False),
         exp07_run_dir(smoke=True),
+    ]:
+        path.mkdir(parents=True, exist_ok=True)
+
+
+def ensure_exp07_calibration_dirs() -> None:
+    for path in [
+        EXP07_CALIBRATION_OUTPUT_DIR,
+        EXP07_CALIBRATION_TABLES_DIR,
+        EXP07_CALIBRATION_REPORTS_DIR,
+        EXP07_CALIBRATION_PREDICTIONS_DIR,
+        EXP07_CALIBRATION_CONFIGS_DIR,
     ]:
         path.mkdir(parents=True, exist_ok=True)

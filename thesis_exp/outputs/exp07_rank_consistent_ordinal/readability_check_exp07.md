@@ -5,17 +5,23 @@ Status: `PASS`
 | check | path | status | details |
 | --- | --- | --- | --- |
 | python py_compile | thesis_exp/src/edujudge/exp07_rank_consistent/__init__.py | PASS |  |
+| python py_compile | thesis_exp/src/edujudge/exp07_rank_consistent/calibrate_temperature.py | PASS |  |
+| python py_compile | thesis_exp/src/edujudge/exp07_rank_consistent/calibrate_thresholds.py | PASS |  |
+| python py_compile | thesis_exp/src/edujudge/exp07_rank_consistent/calibration_data.py | PASS |  |
 | python py_compile | thesis_exp/src/edujudge/exp07_rank_consistent/calibration_inventory_exp07.py | PASS |  |
 | python py_compile | thesis_exp/src/edujudge/exp07_rank_consistent/collect_exp07_results.py | PASS |  |
 | python py_compile | thesis_exp/src/edujudge/exp07_rank_consistent/coral_head.py | PASS |  |
 | python py_compile | thesis_exp/src/edujudge/exp07_rank_consistent/data.py | PASS |  |
 | python py_compile | thesis_exp/src/edujudge/exp07_rank_consistent/diagnose_qdr1.py | PASS |  |
+| python py_compile | thesis_exp/src/edujudge/exp07_rank_consistent/evaluate_calibration.py | PASS |  |
 | python py_compile | thesis_exp/src/edujudge/exp07_rank_consistent/losses.py | PASS |  |
 | python py_compile | thesis_exp/src/edujudge/exp07_rank_consistent/metrics.py | PASS |  |
 | python py_compile | thesis_exp/src/edujudge/exp07_rank_consistent/readability_check_exp07.py | PASS |  |
+| python py_compile | thesis_exp/src/edujudge/exp07_rank_consistent/sanity_check_exp07_calibration.py | PASS |  |
 | python py_compile | thesis_exp/src/edujudge/exp07_rank_consistent/sanity_check_exp07_outputs.py | PASS |  |
 | python py_compile | thesis_exp/src/edujudge/exp07_rank_consistent/sanity_check_exp07_setup.py | PASS |  |
 | python py_compile | thesis_exp/src/edujudge/exp07_rank_consistent/train_qdr1_coral.py | PASS |  |
+| python py_compile | thesis_exp/src/edujudge/exp07_rank_consistent/write_exp07_calibration_report.py | PASS |  |
 | python py_compile | thesis_exp/src/edujudge/exp07_rank_consistent/write_exp07_report.py | PASS |  |
 | shell bash -n | thesis_exp/scripts/run_exp07_qdr1_smoke.sh | PASS |  |
 | shell bash -n | thesis_exp/scripts/run_exp07_qdr1_train.sh | PASS |  |
@@ -24,9 +30,34 @@ Status: `PASS`
 | no CR-only line endings | thesis_exp/src/edujudge/exp07_rank_consistent/__init__.py | PASS |  |
 | LF line endings | thesis_exp/src/edujudge/exp07_rank_consistent/__init__.py | PASS |  |
 | first line <= 1000 chars | thesis_exp/src/edujudge/exp07_rank_consistent/__init__.py | PASS | 52 |
-| not collapsed-line file | thesis_exp/src/edujudge/exp07_rank_consistent/__init__.py | PASS | 67 |
-| file size below 20MB | thesis_exp/src/edujudge/exp07_rank_consistent/__init__.py | PASS | 2262 |
+| not collapsed-line file | thesis_exp/src/edujudge/exp07_rank_consistent/__init__.py | PASS | 85 |
+| file size below 20MB | thesis_exp/src/edujudge/exp07_rank_consistent/__init__.py | PASS | 3013 |
 | not checkpoint/weight artifact | thesis_exp/src/edujudge/exp07_rank_consistent/__init__.py | PASS |  |
+| no API key string | thesis_exp/src/edujudge/exp07_rank_consistent/__init__.py | PASS |  |
+| no CRLF line endings | thesis_exp/src/edujudge/exp07_rank_consistent/calibrate_temperature.py | PASS |  |
+| no CR-only line endings | thesis_exp/src/edujudge/exp07_rank_consistent/calibrate_temperature.py | PASS |  |
+| LF line endings | thesis_exp/src/edujudge/exp07_rank_consistent/calibrate_temperature.py | PASS |  |
+| first line <= 1000 chars | thesis_exp/src/edujudge/exp07_rank_consistent/calibrate_temperature.py | PASS | 59 |
+| not collapsed-line file | thesis_exp/src/edujudge/exp07_rank_consistent/calibrate_temperature.py | PASS | 52 |
+| file size below 20MB | thesis_exp/src/edujudge/exp07_rank_consistent/calibrate_temperature.py | PASS | 2092 |
+| not checkpoint/weight artifact | thesis_exp/src/edujudge/exp07_rank_consistent/calibrate_temperature.py | PASS |  |
+| no API key string | thesis_exp/src/edujudge/exp07_rank_consistent/calibrate_temperature.py | PASS |  |
+| no CRLF line endings | thesis_exp/src/edujudge/exp07_rank_consistent/calibrate_thresholds.py | PASS |  |
+| no CR-only line endings | thesis_exp/src/edujudge/exp07_rank_consistent/calibrate_thresholds.py | PASS |  |
+| LF line endings | thesis_exp/src/edujudge/exp07_rank_consistent/calibrate_thresholds.py | PASS |  |
+| first line <= 1000 chars | thesis_exp/src/edujudge/exp07_rank_consistent/calibrate_thresholds.py | PASS | 58 |
+| not collapsed-line file | thesis_exp/src/edujudge/exp07_rank_consistent/calibrate_thresholds.py | PASS | 324 |
+| file size below 20MB | thesis_exp/src/edujudge/exp07_rank_consistent/calibrate_thresholds.py | PASS | 12908 |
+| not checkpoint/weight artifact | thesis_exp/src/edujudge/exp07_rank_consistent/calibrate_thresholds.py | PASS |  |
+| no API key string | thesis_exp/src/edujudge/exp07_rank_consistent/calibrate_thresholds.py | PASS |  |
+| no CRLF line endings | thesis_exp/src/edujudge/exp07_rank_consistent/calibration_data.py | PASS |  |
+| no CR-only line endings | thesis_exp/src/edujudge/exp07_rank_consistent/calibration_data.py | PASS |  |
+| LF line endings | thesis_exp/src/edujudge/exp07_rank_consistent/calibration_data.py | PASS |  |
+| first line <= 1000 chars | thesis_exp/src/edujudge/exp07_rank_consistent/calibration_data.py | PASS | 58 |
+| not collapsed-line file | thesis_exp/src/edujudge/exp07_rank_consistent/calibration_data.py | PASS | 230 |
+| file size below 20MB | thesis_exp/src/edujudge/exp07_rank_consistent/calibration_data.py | PASS | 9711 |
+| not checkpoint/weight artifact | thesis_exp/src/edujudge/exp07_rank_consistent/calibration_data.py | PASS |  |
+| no API key string | thesis_exp/src/edujudge/exp07_rank_consistent/calibration_data.py | PASS |  |
 | no CRLF line endings | thesis_exp/src/edujudge/exp07_rank_consistent/calibration_inventory_exp07.py | PASS |  |
 | no CR-only line endings | thesis_exp/src/edujudge/exp07_rank_consistent/calibration_inventory_exp07.py | PASS |  |
 | LF line endings | thesis_exp/src/edujudge/exp07_rank_consistent/calibration_inventory_exp07.py | PASS |  |
@@ -35,6 +66,7 @@ Status: `PASS`
 | minimum line count | thesis_exp/src/edujudge/exp07_rank_consistent/calibration_inventory_exp07.py | PASS | lines=294; min>80 |
 | file size below 20MB | thesis_exp/src/edujudge/exp07_rank_consistent/calibration_inventory_exp07.py | PASS | 10622 |
 | not checkpoint/weight artifact | thesis_exp/src/edujudge/exp07_rank_consistent/calibration_inventory_exp07.py | PASS |  |
+| no API key string | thesis_exp/src/edujudge/exp07_rank_consistent/calibration_inventory_exp07.py | PASS |  |
 | no CRLF line endings | thesis_exp/src/edujudge/exp07_rank_consistent/collect_exp07_results.py | PASS |  |
 | no CR-only line endings | thesis_exp/src/edujudge/exp07_rank_consistent/collect_exp07_results.py | PASS |  |
 | LF line endings | thesis_exp/src/edujudge/exp07_rank_consistent/collect_exp07_results.py | PASS |  |
@@ -42,6 +74,7 @@ Status: `PASS`
 | not collapsed-line file | thesis_exp/src/edujudge/exp07_rank_consistent/collect_exp07_results.py | PASS | 464 |
 | file size below 20MB | thesis_exp/src/edujudge/exp07_rank_consistent/collect_exp07_results.py | PASS | 18052 |
 | not checkpoint/weight artifact | thesis_exp/src/edujudge/exp07_rank_consistent/collect_exp07_results.py | PASS |  |
+| no API key string | thesis_exp/src/edujudge/exp07_rank_consistent/collect_exp07_results.py | PASS |  |
 | no CRLF line endings | thesis_exp/src/edujudge/exp07_rank_consistent/coral_head.py | PASS |  |
 | no CR-only line endings | thesis_exp/src/edujudge/exp07_rank_consistent/coral_head.py | PASS |  |
 | LF line endings | thesis_exp/src/edujudge/exp07_rank_consistent/coral_head.py | PASS |  |
@@ -49,6 +82,7 @@ Status: `PASS`
 | not collapsed-line file | thesis_exp/src/edujudge/exp07_rank_consistent/coral_head.py | PASS | 72 |
 | file size below 20MB | thesis_exp/src/edujudge/exp07_rank_consistent/coral_head.py | PASS | 2910 |
 | not checkpoint/weight artifact | thesis_exp/src/edujudge/exp07_rank_consistent/coral_head.py | PASS |  |
+| no API key string | thesis_exp/src/edujudge/exp07_rank_consistent/coral_head.py | PASS |  |
 | no CRLF line endings | thesis_exp/src/edujudge/exp07_rank_consistent/data.py | PASS |  |
 | no CR-only line endings | thesis_exp/src/edujudge/exp07_rank_consistent/data.py | PASS |  |
 | LF line endings | thesis_exp/src/edujudge/exp07_rank_consistent/data.py | PASS |  |
@@ -56,6 +90,7 @@ Status: `PASS`
 | not collapsed-line file | thesis_exp/src/edujudge/exp07_rank_consistent/data.py | PASS | 87 |
 | file size below 20MB | thesis_exp/src/edujudge/exp07_rank_consistent/data.py | PASS | 3463 |
 | not checkpoint/weight artifact | thesis_exp/src/edujudge/exp07_rank_consistent/data.py | PASS |  |
+| no API key string | thesis_exp/src/edujudge/exp07_rank_consistent/data.py | PASS |  |
 | no CRLF line endings | thesis_exp/src/edujudge/exp07_rank_consistent/diagnose_qdr1.py | PASS |  |
 | no CR-only line endings | thesis_exp/src/edujudge/exp07_rank_consistent/diagnose_qdr1.py | PASS |  |
 | LF line endings | thesis_exp/src/edujudge/exp07_rank_consistent/diagnose_qdr1.py | PASS |  |
@@ -63,6 +98,15 @@ Status: `PASS`
 | not collapsed-line file | thesis_exp/src/edujudge/exp07_rank_consistent/diagnose_qdr1.py | PASS | 306 |
 | file size below 20MB | thesis_exp/src/edujudge/exp07_rank_consistent/diagnose_qdr1.py | PASS | 14588 |
 | not checkpoint/weight artifact | thesis_exp/src/edujudge/exp07_rank_consistent/diagnose_qdr1.py | PASS |  |
+| no API key string | thesis_exp/src/edujudge/exp07_rank_consistent/diagnose_qdr1.py | PASS |  |
+| no CRLF line endings | thesis_exp/src/edujudge/exp07_rank_consistent/evaluate_calibration.py | PASS |  |
+| no CR-only line endings | thesis_exp/src/edujudge/exp07_rank_consistent/evaluate_calibration.py | PASS |  |
+| LF line endings | thesis_exp/src/edujudge/exp07_rank_consistent/evaluate_calibration.py | PASS |  |
+| first line <= 1000 chars | thesis_exp/src/edujudge/exp07_rank_consistent/evaluate_calibration.py | PASS | 65 |
+| not collapsed-line file | thesis_exp/src/edujudge/exp07_rank_consistent/evaluate_calibration.py | PASS | 409 |
+| file size below 20MB | thesis_exp/src/edujudge/exp07_rank_consistent/evaluate_calibration.py | PASS | 18969 |
+| not checkpoint/weight artifact | thesis_exp/src/edujudge/exp07_rank_consistent/evaluate_calibration.py | PASS |  |
+| no API key string | thesis_exp/src/edujudge/exp07_rank_consistent/evaluate_calibration.py | PASS |  |
 | no CRLF line endings | thesis_exp/src/edujudge/exp07_rank_consistent/losses.py | PASS |  |
 | no CR-only line endings | thesis_exp/src/edujudge/exp07_rank_consistent/losses.py | PASS |  |
 | LF line endings | thesis_exp/src/edujudge/exp07_rank_consistent/losses.py | PASS |  |
@@ -70,6 +114,7 @@ Status: `PASS`
 | not collapsed-line file | thesis_exp/src/edujudge/exp07_rank_consistent/losses.py | PASS | 77 |
 | file size below 20MB | thesis_exp/src/edujudge/exp07_rank_consistent/losses.py | PASS | 3241 |
 | not checkpoint/weight artifact | thesis_exp/src/edujudge/exp07_rank_consistent/losses.py | PASS |  |
+| no API key string | thesis_exp/src/edujudge/exp07_rank_consistent/losses.py | PASS |  |
 | no CRLF line endings | thesis_exp/src/edujudge/exp07_rank_consistent/metrics.py | PASS |  |
 | no CR-only line endings | thesis_exp/src/edujudge/exp07_rank_consistent/metrics.py | PASS |  |
 | LF line endings | thesis_exp/src/edujudge/exp07_rank_consistent/metrics.py | PASS |  |
@@ -77,14 +122,24 @@ Status: `PASS`
 | not collapsed-line file | thesis_exp/src/edujudge/exp07_rank_consistent/metrics.py | PASS | 65 |
 | file size below 20MB | thesis_exp/src/edujudge/exp07_rank_consistent/metrics.py | PASS | 2552 |
 | not checkpoint/weight artifact | thesis_exp/src/edujudge/exp07_rank_consistent/metrics.py | PASS |  |
+| no API key string | thesis_exp/src/edujudge/exp07_rank_consistent/metrics.py | PASS |  |
 | no CRLF line endings | thesis_exp/src/edujudge/exp07_rank_consistent/readability_check_exp07.py | PASS |  |
 | no CR-only line endings | thesis_exp/src/edujudge/exp07_rank_consistent/readability_check_exp07.py | PASS |  |
 | LF line endings | thesis_exp/src/edujudge/exp07_rank_consistent/readability_check_exp07.py | PASS |  |
 | first line <= 1000 chars | thesis_exp/src/edujudge/exp07_rank_consistent/readability_check_exp07.py | PASS | 51 |
-| not collapsed-line file | thesis_exp/src/edujudge/exp07_rank_consistent/readability_check_exp07.py | PASS | 181 |
-| minimum line count | thesis_exp/src/edujudge/exp07_rank_consistent/readability_check_exp07.py | PASS | lines=181; min>80 |
-| file size below 20MB | thesis_exp/src/edujudge/exp07_rank_consistent/readability_check_exp07.py | PASS | 6996 |
+| not collapsed-line file | thesis_exp/src/edujudge/exp07_rank_consistent/readability_check_exp07.py | PASS | 202 |
+| minimum line count | thesis_exp/src/edujudge/exp07_rank_consistent/readability_check_exp07.py | PASS | lines=202; min>80 |
+| file size below 20MB | thesis_exp/src/edujudge/exp07_rank_consistent/readability_check_exp07.py | PASS | 7838 |
 | not checkpoint/weight artifact | thesis_exp/src/edujudge/exp07_rank_consistent/readability_check_exp07.py | PASS |  |
+| no API key string | thesis_exp/src/edujudge/exp07_rank_consistent/readability_check_exp07.py | PASS |  |
+| no CRLF line endings | thesis_exp/src/edujudge/exp07_rank_consistent/sanity_check_exp07_calibration.py | PASS |  |
+| no CR-only line endings | thesis_exp/src/edujudge/exp07_rank_consistent/sanity_check_exp07_calibration.py | PASS |  |
+| LF line endings | thesis_exp/src/edujudge/exp07_rank_consistent/sanity_check_exp07_calibration.py | PASS |  |
+| first line <= 1000 chars | thesis_exp/src/edujudge/exp07_rank_consistent/sanity_check_exp07_calibration.py | PASS | 51 |
+| not collapsed-line file | thesis_exp/src/edujudge/exp07_rank_consistent/sanity_check_exp07_calibration.py | PASS | 237 |
+| file size below 20MB | thesis_exp/src/edujudge/exp07_rank_consistent/sanity_check_exp07_calibration.py | PASS | 9540 |
+| not checkpoint/weight artifact | thesis_exp/src/edujudge/exp07_rank_consistent/sanity_check_exp07_calibration.py | PASS |  |
+| no API key string | thesis_exp/src/edujudge/exp07_rank_consistent/sanity_check_exp07_calibration.py | PASS |  |
 | no CRLF line endings | thesis_exp/src/edujudge/exp07_rank_consistent/sanity_check_exp07_outputs.py | PASS |  |
 | no CR-only line endings | thesis_exp/src/edujudge/exp07_rank_consistent/sanity_check_exp07_outputs.py | PASS |  |
 | LF line endings | thesis_exp/src/edujudge/exp07_rank_consistent/sanity_check_exp07_outputs.py | PASS |  |
@@ -92,6 +147,7 @@ Status: `PASS`
 | not collapsed-line file | thesis_exp/src/edujudge/exp07_rank_consistent/sanity_check_exp07_outputs.py | PASS | 101 |
 | file size below 20MB | thesis_exp/src/edujudge/exp07_rank_consistent/sanity_check_exp07_outputs.py | PASS | 4242 |
 | not checkpoint/weight artifact | thesis_exp/src/edujudge/exp07_rank_consistent/sanity_check_exp07_outputs.py | PASS |  |
+| no API key string | thesis_exp/src/edujudge/exp07_rank_consistent/sanity_check_exp07_outputs.py | PASS |  |
 | no CRLF line endings | thesis_exp/src/edujudge/exp07_rank_consistent/sanity_check_exp07_setup.py | PASS |  |
 | no CR-only line endings | thesis_exp/src/edujudge/exp07_rank_consistent/sanity_check_exp07_setup.py | PASS |  |
 | LF line endings | thesis_exp/src/edujudge/exp07_rank_consistent/sanity_check_exp07_setup.py | PASS |  |
@@ -99,6 +155,7 @@ Status: `PASS`
 | not collapsed-line file | thesis_exp/src/edujudge/exp07_rank_consistent/sanity_check_exp07_setup.py | PASS | 157 |
 | file size below 20MB | thesis_exp/src/edujudge/exp07_rank_consistent/sanity_check_exp07_setup.py | PASS | 6599 |
 | not checkpoint/weight artifact | thesis_exp/src/edujudge/exp07_rank_consistent/sanity_check_exp07_setup.py | PASS |  |
+| no API key string | thesis_exp/src/edujudge/exp07_rank_consistent/sanity_check_exp07_setup.py | PASS |  |
 | no CRLF line endings | thesis_exp/src/edujudge/exp07_rank_consistent/train_qdr1_coral.py | PASS |  |
 | no CR-only line endings | thesis_exp/src/edujudge/exp07_rank_consistent/train_qdr1_coral.py | PASS |  |
 | LF line endings | thesis_exp/src/edujudge/exp07_rank_consistent/train_qdr1_coral.py | PASS |  |
@@ -106,6 +163,15 @@ Status: `PASS`
 | not collapsed-line file | thesis_exp/src/edujudge/exp07_rank_consistent/train_qdr1_coral.py | PASS | 720 |
 | file size below 20MB | thesis_exp/src/edujudge/exp07_rank_consistent/train_qdr1_coral.py | PASS | 32018 |
 | not checkpoint/weight artifact | thesis_exp/src/edujudge/exp07_rank_consistent/train_qdr1_coral.py | PASS |  |
+| no API key string | thesis_exp/src/edujudge/exp07_rank_consistent/train_qdr1_coral.py | PASS |  |
+| no CRLF line endings | thesis_exp/src/edujudge/exp07_rank_consistent/write_exp07_calibration_report.py | PASS |  |
+| no CR-only line endings | thesis_exp/src/edujudge/exp07_rank_consistent/write_exp07_calibration_report.py | PASS |  |
+| LF line endings | thesis_exp/src/edujudge/exp07_rank_consistent/write_exp07_calibration_report.py | PASS |  |
+| first line <= 1000 chars | thesis_exp/src/edujudge/exp07_rank_consistent/write_exp07_calibration_report.py | PASS | 39 |
+| not collapsed-line file | thesis_exp/src/edujudge/exp07_rank_consistent/write_exp07_calibration_report.py | PASS | 206 |
+| file size below 20MB | thesis_exp/src/edujudge/exp07_rank_consistent/write_exp07_calibration_report.py | PASS | 9292 |
+| not checkpoint/weight artifact | thesis_exp/src/edujudge/exp07_rank_consistent/write_exp07_calibration_report.py | PASS |  |
+| no API key string | thesis_exp/src/edujudge/exp07_rank_consistent/write_exp07_calibration_report.py | PASS |  |
 | no CRLF line endings | thesis_exp/src/edujudge/exp07_rank_consistent/write_exp07_report.py | PASS |  |
 | no CR-only line endings | thesis_exp/src/edujudge/exp07_rank_consistent/write_exp07_report.py | PASS |  |
 | LF line endings | thesis_exp/src/edujudge/exp07_rank_consistent/write_exp07_report.py | PASS |  |
@@ -113,18 +179,21 @@ Status: `PASS`
 | not collapsed-line file | thesis_exp/src/edujudge/exp07_rank_consistent/write_exp07_report.py | PASS | 13 |
 | file size below 20MB | thesis_exp/src/edujudge/exp07_rank_consistent/write_exp07_report.py | PASS | 255 |
 | not checkpoint/weight artifact | thesis_exp/src/edujudge/exp07_rank_consistent/write_exp07_report.py | PASS |  |
+| no API key string | thesis_exp/src/edujudge/exp07_rank_consistent/write_exp07_report.py | PASS |  |
 | no CRLF line endings | thesis_exp/configs/exp07_rank_consistent/exp07_qdr1_coral_human_only.yaml | PASS |  |
 | no CR-only line endings | thesis_exp/configs/exp07_rank_consistent/exp07_qdr1_coral_human_only.yaml | PASS |  |
 | LF line endings | thesis_exp/configs/exp07_rank_consistent/exp07_qdr1_coral_human_only.yaml | PASS |  |
 | first line <= 1000 chars | thesis_exp/configs/exp07_rank_consistent/exp07_qdr1_coral_human_only.yaml | PASS | 30 |
 | file size below 20MB | thesis_exp/configs/exp07_rank_consistent/exp07_qdr1_coral_human_only.yaml | PASS | 469 |
 | not checkpoint/weight artifact | thesis_exp/configs/exp07_rank_consistent/exp07_qdr1_coral_human_only.yaml | PASS |  |
+| no API key string | thesis_exp/configs/exp07_rank_consistent/exp07_qdr1_coral_human_only.yaml | PASS |  |
 | no CRLF line endings | thesis_exp/configs/exp07_rank_consistent/exp07_qdr1_coral_smoke.yaml | PASS |  |
 | no CR-only line endings | thesis_exp/configs/exp07_rank_consistent/exp07_qdr1_coral_smoke.yaml | PASS |  |
 | LF line endings | thesis_exp/configs/exp07_rank_consistent/exp07_qdr1_coral_smoke.yaml | PASS |  |
 | first line <= 1000 chars | thesis_exp/configs/exp07_rank_consistent/exp07_qdr1_coral_smoke.yaml | PASS | 30 |
 | file size below 20MB | thesis_exp/configs/exp07_rank_consistent/exp07_qdr1_coral_smoke.yaml | PASS | 399 |
 | not checkpoint/weight artifact | thesis_exp/configs/exp07_rank_consistent/exp07_qdr1_coral_smoke.yaml | PASS |  |
+| no API key string | thesis_exp/configs/exp07_rank_consistent/exp07_qdr1_coral_smoke.yaml | PASS |  |
 | no CRLF line endings | thesis_exp/scripts/run_exp07_qdr1_smoke.sh | PASS |  |
 | no CR-only line endings | thesis_exp/scripts/run_exp07_qdr1_smoke.sh | PASS |  |
 | LF line endings | thesis_exp/scripts/run_exp07_qdr1_smoke.sh | PASS |  |
@@ -132,6 +201,7 @@ Status: `PASS`
 | not collapsed-line file | thesis_exp/scripts/run_exp07_qdr1_smoke.sh | PASS | 157 |
 | file size below 20MB | thesis_exp/scripts/run_exp07_qdr1_smoke.sh | PASS | 5290 |
 | not checkpoint/weight artifact | thesis_exp/scripts/run_exp07_qdr1_smoke.sh | PASS |  |
+| no API key string | thesis_exp/scripts/run_exp07_qdr1_smoke.sh | PASS |  |
 | no CRLF line endings | thesis_exp/scripts/run_exp07_qdr1_train.sh | PASS |  |
 | no CR-only line endings | thesis_exp/scripts/run_exp07_qdr1_train.sh | PASS |  |
 | LF line endings | thesis_exp/scripts/run_exp07_qdr1_train.sh | PASS |  |
@@ -139,6 +209,7 @@ Status: `PASS`
 | not collapsed-line file | thesis_exp/scripts/run_exp07_qdr1_train.sh | PASS | 158 |
 | file size below 20MB | thesis_exp/scripts/run_exp07_qdr1_train.sh | PASS | 5548 |
 | not checkpoint/weight artifact | thesis_exp/scripts/run_exp07_qdr1_train.sh | PASS |  |
+| no API key string | thesis_exp/scripts/run_exp07_qdr1_train.sh | PASS |  |
 | no CRLF line endings | thesis_exp/scripts/sync_exp07_qdr1_to_server.sh | PASS |  |
 | no CR-only line endings | thesis_exp/scripts/sync_exp07_qdr1_to_server.sh | PASS |  |
 | LF line endings | thesis_exp/scripts/sync_exp07_qdr1_to_server.sh | PASS |  |
@@ -146,6 +217,7 @@ Status: `PASS`
 | not collapsed-line file | thesis_exp/scripts/sync_exp07_qdr1_to_server.sh | PASS | 60 |
 | file size below 20MB | thesis_exp/scripts/sync_exp07_qdr1_to_server.sh | PASS | 3813 |
 | not checkpoint/weight artifact | thesis_exp/scripts/sync_exp07_qdr1_to_server.sh | PASS |  |
+| no API key string | thesis_exp/scripts/sync_exp07_qdr1_to_server.sh | PASS |  |
 | file size below 20MB | thesis_exp/outputs/exp07_rank_consistent_ordinal/logs/train_QD-R1_CORAL_human_only_exp07_qdr1_formal_20260611_190940.log | PASS | 11561 |
 | not checkpoint/weight artifact | thesis_exp/outputs/exp07_rank_consistent_ordinal/logs/train_QD-R1_CORAL_human_only_exp07_qdr1_formal_20260611_190940.log | PASS |  |
 | file size below 20MB | thesis_exp/outputs/exp07_rank_consistent_ordinal/logs/train_QD-R1_CORAL_human_only_exp07_qdr1_smoke_20260611_190914.log | PASS | 5079 |
@@ -159,15 +231,17 @@ Status: `PASS`
 | not large one-line md/csv | thesis_exp/outputs/exp07_rank_consistent_ordinal/notion_exp07_r1_summary.md | PASS | lines=12; bytes=512 |
 | file size below 20MB | thesis_exp/outputs/exp07_rank_consistent_ordinal/notion_exp07_r1_summary.md | PASS | 512 |
 | not checkpoint/weight artifact | thesis_exp/outputs/exp07_rank_consistent_ordinal/notion_exp07_r1_summary.md | PASS |  |
-| Markdown max prose line length | thesis_exp/outputs/exp07_rank_consistent_ordinal/readability_check_exp07.md | PASS | prose=24; table=177 |
+| no API key string | thesis_exp/outputs/exp07_rank_consistent_ordinal/notion_exp07_r1_summary.md | PASS |  |
+| Markdown max prose line length | thesis_exp/outputs/exp07_rank_consistent_ordinal/readability_check_exp07.md | PASS | prose=24; table=180 |
 | no CRLF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/readability_check_exp07.md | PASS |  |
 | no CR-only line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/readability_check_exp07.md | PASS |  |
 | LF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/readability_check_exp07.md | PASS |  |
 | first line <= 1000 chars | thesis_exp/outputs/exp07_rank_consistent_ordinal/readability_check_exp07.md | PASS | 24 |
-| not collapsed-line file | thesis_exp/outputs/exp07_rank_consistent_ordinal/readability_check_exp07.md | PASS | 810 |
-| not large one-line md/csv | thesis_exp/outputs/exp07_rank_consistent_ordinal/readability_check_exp07.md | PASS | lines=810; bytes=108083 |
-| file size below 20MB | thesis_exp/outputs/exp07_rank_consistent_ordinal/readability_check_exp07.md | PASS | 108083 |
+| not collapsed-line file | thesis_exp/outputs/exp07_rank_consistent_ordinal/readability_check_exp07.md | PASS | 1241 |
+| not large one-line md/csv | thesis_exp/outputs/exp07_rank_consistent_ordinal/readability_check_exp07.md | PASS | lines=1241; bytes=159844 |
+| file size below 20MB | thesis_exp/outputs/exp07_rank_consistent_ordinal/readability_check_exp07.md | PASS | 159844 |
 | not checkpoint/weight artifact | thesis_exp/outputs/exp07_rank_consistent_ordinal/readability_check_exp07.md | PASS |  |
+| no API key string | thesis_exp/outputs/exp07_rank_consistent_ordinal/readability_check_exp07.md | PASS |  |
 | Markdown max prose line length | thesis_exp/outputs/exp07_rank_consistent_ordinal/report.md | PASS | prose=105; table=106 |
 | no CRLF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/report.md | PASS |  |
 | no CR-only line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/report.md | PASS |  |
@@ -177,6 +251,7 @@ Status: `PASS`
 | not large one-line md/csv | thesis_exp/outputs/exp07_rank_consistent_ordinal/report.md | PASS | lines=32; bytes=1731 |
 | file size below 20MB | thesis_exp/outputs/exp07_rank_consistent_ordinal/report.md | PASS | 1731 |
 | not checkpoint/weight artifact | thesis_exp/outputs/exp07_rank_consistent_ordinal/report.md | PASS |  |
+| no API key string | thesis_exp/outputs/exp07_rank_consistent_ordinal/report.md | PASS |  |
 | Markdown max prose line length | thesis_exp/outputs/exp07_rank_consistent_ordinal/reports/exp07_calibration_feasibility.md | PASS | prose=244; table=141 |
 | no CRLF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/reports/exp07_calibration_feasibility.md | PASS |  |
 | no CR-only line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/reports/exp07_calibration_feasibility.md | PASS |  |
@@ -186,6 +261,7 @@ Status: `PASS`
 | not large one-line md/csv | thesis_exp/outputs/exp07_rank_consistent_ordinal/reports/exp07_calibration_feasibility.md | PASS | lines=26; bytes=1721 |
 | file size below 20MB | thesis_exp/outputs/exp07_rank_consistent_ordinal/reports/exp07_calibration_feasibility.md | PASS | 1721 |
 | not checkpoint/weight artifact | thesis_exp/outputs/exp07_rank_consistent_ordinal/reports/exp07_calibration_feasibility.md | PASS |  |
+| no API key string | thesis_exp/outputs/exp07_rank_consistent_ordinal/reports/exp07_calibration_feasibility.md | PASS |  |
 | Markdown max prose line length | thesis_exp/outputs/exp07_rank_consistent_ordinal/reports/qdr1_diagnosis.md | PASS | prose=124; table=112 |
 | no CRLF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/reports/qdr1_diagnosis.md | PASS |  |
 | no CR-only line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/reports/qdr1_diagnosis.md | PASS |  |
@@ -195,6 +271,7 @@ Status: `PASS`
 | not large one-line md/csv | thesis_exp/outputs/exp07_rank_consistent_ordinal/reports/qdr1_diagnosis.md | PASS | lines=61; bytes=2881 |
 | file size below 20MB | thesis_exp/outputs/exp07_rank_consistent_ordinal/reports/qdr1_diagnosis.md | PASS | 2881 |
 | not checkpoint/weight artifact | thesis_exp/outputs/exp07_rank_consistent_ordinal/reports/qdr1_diagnosis.md | PASS |  |
+| no API key string | thesis_exp/outputs/exp07_rank_consistent_ordinal/reports/qdr1_diagnosis.md | PASS |  |
 | Markdown max prose line length | thesis_exp/outputs/exp07_rank_consistent_ordinal/reports/report.md | PASS | prose=105; table=106 |
 | no CRLF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/reports/report.md | PASS |  |
 | no CR-only line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/reports/report.md | PASS |  |
@@ -204,6 +281,7 @@ Status: `PASS`
 | not large one-line md/csv | thesis_exp/outputs/exp07_rank_consistent_ordinal/reports/report.md | PASS | lines=32; bytes=1731 |
 | file size below 20MB | thesis_exp/outputs/exp07_rank_consistent_ordinal/reports/report.md | PASS | 1731 |
 | not checkpoint/weight artifact | thesis_exp/outputs/exp07_rank_consistent_ordinal/reports/report.md | PASS |  |
+| no API key string | thesis_exp/outputs/exp07_rank_consistent_ordinal/reports/report.md | PASS |  |
 | Markdown max prose line length | thesis_exp/outputs/exp07_rank_consistent_ordinal/reports/review_package.md | PASS | prose=92; table=0 |
 | no CRLF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/reports/review_package.md | PASS |  |
 | no CR-only line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/reports/review_package.md | PASS |  |
@@ -213,6 +291,7 @@ Status: `PASS`
 | not large one-line md/csv | thesis_exp/outputs/exp07_rank_consistent_ordinal/reports/review_package.md | PASS | lines=17; bytes=689 |
 | file size below 20MB | thesis_exp/outputs/exp07_rank_consistent_ordinal/reports/review_package.md | PASS | 689 |
 | not checkpoint/weight artifact | thesis_exp/outputs/exp07_rank_consistent_ordinal/reports/review_package.md | PASS |  |
+| no API key string | thesis_exp/outputs/exp07_rank_consistent_ordinal/reports/review_package.md | PASS |  |
 | Markdown max prose line length | thesis_exp/outputs/exp07_rank_consistent_ordinal/review_package.md | PASS | prose=92; table=0 |
 | no CRLF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/review_package.md | PASS |  |
 | no CR-only line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/review_package.md | PASS |  |
@@ -222,6 +301,7 @@ Status: `PASS`
 | not large one-line md/csv | thesis_exp/outputs/exp07_rank_consistent_ordinal/review_package.md | PASS | lines=17; bytes=689 |
 | file size below 20MB | thesis_exp/outputs/exp07_rank_consistent_ordinal/review_package.md | PASS | 689 |
 | not checkpoint/weight artifact | thesis_exp/outputs/exp07_rank_consistent_ordinal/review_package.md | PASS |  |
+| no API key string | thesis_exp/outputs/exp07_rank_consistent_ordinal/review_package.md | PASS |  |
 | file size below 20MB | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/arrays/dev_test_arrays.npz | PASS | 209176 |
 | not checkpoint/weight artifact | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/arrays/dev_test_arrays.npz | PASS |  |
 | file size below 20MB | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/arrays/labels_dev.npy | PASS | 8984 |
@@ -242,17 +322,20 @@ Status: `PASS`
 | first line <= 1000 chars | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/arrays/record_ids_dev.txt | PASS | 40 |
 | file size below 20MB | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/arrays/record_ids_dev.txt | PASS | 45387 |
 | not checkpoint/weight artifact | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/arrays/record_ids_dev.txt | PASS |  |
+| no API key string | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/arrays/record_ids_dev.txt | PASS |  |
 | no CRLF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/arrays/record_ids_test.txt | PASS |  |
 | no CR-only line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/arrays/record_ids_test.txt | PASS |  |
 | LF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/arrays/record_ids_test.txt | PASS |  |
 | first line <= 1000 chars | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/arrays/record_ids_test.txt | PASS | 40 |
 | file size below 20MB | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/arrays/record_ids_test.txt | PASS | 45223 |
 | not checkpoint/weight artifact | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/arrays/record_ids_test.txt | PASS |  |
+| no API key string | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/arrays/record_ids_test.txt | PASS |  |
 | file size below 20MB | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/arrays/targets_dev.npy | PASS | 4556 |
 | not checkpoint/weight artifact | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/arrays/targets_dev.npy | PASS |  |
 | file size below 20MB | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/arrays/targets_test.npy | PASS | 4540 |
 | not checkpoint/weight artifact | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/arrays/targets_test.npy | PASS |  |
 | CSV readable | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/logs/dev_metrics_history.csv | PASS |  |
+| CSV pandas readable | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/logs/dev_metrics_history.csv | PASS |  |
 | no CRLF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/logs/dev_metrics_history.csv | PASS |  |
 | no CR-only line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/logs/dev_metrics_history.csv | PASS |  |
 | LF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/logs/dev_metrics_history.csv | PASS |  |
@@ -261,7 +344,9 @@ Status: `PASS`
 | not large one-line md/csv | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/logs/dev_metrics_history.csv | PASS | lines=11; bytes=8584 |
 | file size below 20MB | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/logs/dev_metrics_history.csv | PASS | 8584 |
 | not checkpoint/weight artifact | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/logs/dev_metrics_history.csv | PASS |  |
+| no API key string | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/logs/dev_metrics_history.csv | PASS |  |
 | CSV readable | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/logs/training_log.csv | PASS |  |
+| CSV pandas readable | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/logs/training_log.csv | PASS |  |
 | no CRLF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/logs/training_log.csv | PASS |  |
 | no CR-only line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/logs/training_log.csv | PASS |  |
 | LF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/logs/training_log.csv | PASS |  |
@@ -270,7 +355,9 @@ Status: `PASS`
 | not large one-line md/csv | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/logs/training_log.csv | PASS | lines=11; bytes=8584 |
 | file size below 20MB | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/logs/training_log.csv | PASS | 8584 |
 | not checkpoint/weight artifact | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/logs/training_log.csv | PASS |  |
+| no API key string | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/logs/training_log.csv | PASS |  |
 | CSV readable | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/metrics.csv | PASS |  |
+| CSV pandas readable | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/metrics.csv | PASS |  |
 | no CRLF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/metrics.csv | PASS |  |
 | no CR-only line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/metrics.csv | PASS |  |
 | LF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/metrics.csv | PASS |  |
@@ -279,60 +366,70 @@ Status: `PASS`
 | not large one-line md/csv | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/metrics.csv | PASS | lines=3; bytes=2397 |
 | file size below 20MB | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/metrics.csv | PASS | 2397 |
 | not checkpoint/weight artifact | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/metrics.csv | PASS |  |
+| no API key string | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/metrics.csv | PASS |  |
 | no CRLF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/metrics.json | PASS |  |
 | no CR-only line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/metrics.json | PASS |  |
 | LF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/metrics.json | PASS |  |
 | first line <= 1000 chars | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/metrics.json | PASS | 1 |
 | file size below 20MB | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/metrics.json | PASS | 4000 |
 | not checkpoint/weight artifact | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/metrics.json | PASS |  |
+| no API key string | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/metrics.json | PASS |  |
 | no CRLF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/metrics_history.json | PASS |  |
 | no CR-only line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/metrics_history.json | PASS |  |
 | LF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/metrics_history.json | PASS |  |
 | first line <= 1000 chars | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/metrics_history.json | PASS | 1 |
 | file size below 20MB | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/metrics_history.json | PASS | 19552 |
 | not checkpoint/weight artifact | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/metrics_history.json | PASS |  |
+| no API key string | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/metrics_history.json | PASS |  |
 | JSONL line-loadable | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/predictions/predictions_dev.jsonl | PASS |  |
 | no CRLF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/predictions/predictions_dev.jsonl | PASS |  |
 | no CR-only line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/predictions/predictions_dev.jsonl | PASS |  |
 | LF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/predictions/predictions_dev.jsonl | PASS |  |
 | file size below 20MB | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/predictions/predictions_dev.jsonl | PASS | 1173926 |
 | not checkpoint/weight artifact | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/predictions/predictions_dev.jsonl | PASS |  |
+| no API key string | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/predictions/predictions_dev.jsonl | PASS |  |
 | JSONL line-loadable | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/predictions/predictions_dev_best.jsonl | PASS |  |
 | no CRLF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/predictions/predictions_dev_best.jsonl | PASS |  |
 | no CR-only line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/predictions/predictions_dev_best.jsonl | PASS |  |
 | LF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/predictions/predictions_dev_best.jsonl | PASS |  |
 | file size below 20MB | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/predictions/predictions_dev_best.jsonl | PASS | 1173926 |
 | not checkpoint/weight artifact | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/predictions/predictions_dev_best.jsonl | PASS |  |
+| no API key string | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/predictions/predictions_dev_best.jsonl | PASS |  |
 | JSONL line-loadable | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/predictions/predictions_test.jsonl | PASS |  |
 | no CRLF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/predictions/predictions_test.jsonl | PASS |  |
 | no CR-only line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/predictions/predictions_test.jsonl | PASS |  |
 | LF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/predictions/predictions_test.jsonl | PASS |  |
 | file size below 20MB | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/predictions/predictions_test.jsonl | PASS | 1167370 |
 | not checkpoint/weight artifact | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/predictions/predictions_test.jsonl | PASS |  |
+| no API key string | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/predictions/predictions_test.jsonl | PASS |  |
 | JSONL line-loadable | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/predictions_dev.jsonl | PASS |  |
 | no CRLF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/predictions_dev.jsonl | PASS |  |
 | no CR-only line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/predictions_dev.jsonl | PASS |  |
 | LF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/predictions_dev.jsonl | PASS |  |
 | file size below 20MB | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/predictions_dev.jsonl | PASS | 1173926 |
 | not checkpoint/weight artifact | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/predictions_dev.jsonl | PASS |  |
+| no API key string | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/predictions_dev.jsonl | PASS |  |
 | JSONL line-loadable | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/predictions_dev_best.jsonl | PASS |  |
 | no CRLF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/predictions_dev_best.jsonl | PASS |  |
 | no CR-only line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/predictions_dev_best.jsonl | PASS |  |
 | LF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/predictions_dev_best.jsonl | PASS |  |
 | file size below 20MB | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/predictions_dev_best.jsonl | PASS | 1173926 |
 | not checkpoint/weight artifact | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/predictions_dev_best.jsonl | PASS |  |
+| no API key string | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/predictions_dev_best.jsonl | PASS |  |
 | JSONL line-loadable | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/predictions_test.jsonl | PASS |  |
 | no CRLF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/predictions_test.jsonl | PASS |  |
 | no CR-only line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/predictions_test.jsonl | PASS |  |
 | LF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/predictions_test.jsonl | PASS |  |
 | file size below 20MB | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/predictions_test.jsonl | PASS | 1167370 |
 | not checkpoint/weight artifact | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/predictions_test.jsonl | PASS |  |
+| no API key string | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/predictions_test.jsonl | PASS |  |
 | no CRLF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/run_metadata.json | PASS |  |
 | no CR-only line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/run_metadata.json | PASS |  |
 | LF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/run_metadata.json | PASS |  |
 | first line <= 1000 chars | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/run_metadata.json | PASS | 1 |
 | file size below 20MB | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/run_metadata.json | PASS | 756 |
 | not checkpoint/weight artifact | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/run_metadata.json | PASS |  |
+| no API key string | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/run_metadata.json | PASS |  |
 | Markdown max prose line length | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/run_summary.md | PASS | prose=71; table=0 |
 | no CRLF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/run_summary.md | PASS |  |
 | no CR-only line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/run_summary.md | PASS |  |
@@ -342,7 +439,9 @@ Status: `PASS`
 | not large one-line md/csv | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/run_summary.md | PASS | lines=22; bytes=768 |
 | file size below 20MB | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/run_summary.md | PASS | 768 |
 | not checkpoint/weight artifact | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/run_summary.md | PASS |  |
+| no API key string | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/run_summary.md | PASS |  |
 | CSV readable | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/tables/dev_metrics_history.csv | PASS |  |
+| CSV pandas readable | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/tables/dev_metrics_history.csv | PASS |  |
 | no CRLF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/tables/dev_metrics_history.csv | PASS |  |
 | no CR-only line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/tables/dev_metrics_history.csv | PASS |  |
 | LF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/tables/dev_metrics_history.csv | PASS |  |
@@ -351,7 +450,9 @@ Status: `PASS`
 | not large one-line md/csv | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/tables/dev_metrics_history.csv | PASS | lines=11; bytes=8584 |
 | file size below 20MB | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/tables/dev_metrics_history.csv | PASS | 8584 |
 | not checkpoint/weight artifact | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/tables/dev_metrics_history.csv | PASS |  |
+| no API key string | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/tables/dev_metrics_history.csv | PASS |  |
 | CSV readable | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/tables/high_score_metrics.csv | PASS |  |
+| CSV pandas readable | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/tables/high_score_metrics.csv | PASS |  |
 | no CRLF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/tables/high_score_metrics.csv | PASS |  |
 | no CR-only line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/tables/high_score_metrics.csv | PASS |  |
 | LF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/tables/high_score_metrics.csv | PASS |  |
@@ -360,7 +461,9 @@ Status: `PASS`
 | not large one-line md/csv | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/tables/high_score_metrics.csv | PASS | lines=3; bytes=196 |
 | file size below 20MB | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/tables/high_score_metrics.csv | PASS | 196 |
 | not checkpoint/weight artifact | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/tables/high_score_metrics.csv | PASS |  |
+| no API key string | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/tables/high_score_metrics.csv | PASS |  |
 | CSV readable | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/tables/language_level_metrics.csv | PASS |  |
+| CSV pandas readable | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/tables/language_level_metrics.csv | PASS |  |
 | no CRLF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/tables/language_level_metrics.csv | PASS |  |
 | no CR-only line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/tables/language_level_metrics.csv | PASS |  |
 | LF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/tables/language_level_metrics.csv | PASS |  |
@@ -369,7 +472,9 @@ Status: `PASS`
 | not large one-line md/csv | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/tables/language_level_metrics.csv | PASS | lines=5; bytes=2827 |
 | file size below 20MB | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/tables/language_level_metrics.csv | PASS | 2827 |
 | not checkpoint/weight artifact | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/tables/language_level_metrics.csv | PASS |  |
+| no API key string | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/tables/language_level_metrics.csv | PASS |  |
 | CSV readable | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/tables/low_score_metrics.csv | PASS |  |
+| CSV pandas readable | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/tables/low_score_metrics.csv | PASS |  |
 | no CRLF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/tables/low_score_metrics.csv | PASS |  |
 | no CR-only line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/tables/low_score_metrics.csv | PASS |  |
 | LF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/tables/low_score_metrics.csv | PASS |  |
@@ -378,7 +483,9 @@ Status: `PASS`
 | not large one-line md/csv | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/tables/low_score_metrics.csv | PASS | lines=3; bytes=415 |
 | file size below 20MB | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/tables/low_score_metrics.csv | PASS | 415 |
 | not checkpoint/weight artifact | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/tables/low_score_metrics.csv | PASS |  |
+| no API key string | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/tables/low_score_metrics.csv | PASS |  |
 | CSV readable | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/tables/metric_level_metrics.csv | PASS |  |
+| CSV pandas readable | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/tables/metric_level_metrics.csv | PASS |  |
 | no CRLF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/tables/metric_level_metrics.csv | PASS |  |
 | no CR-only line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/tables/metric_level_metrics.csv | PASS |  |
 | LF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/tables/metric_level_metrics.csv | PASS |  |
@@ -387,7 +494,9 @@ Status: `PASS`
 | not large one-line md/csv | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/tables/metric_level_metrics.csv | PASS | lines=25; bytes=11754 |
 | file size below 20MB | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/tables/metric_level_metrics.csv | PASS | 11754 |
 | not checkpoint/weight artifact | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/tables/metric_level_metrics.csv | PASS |  |
+| no API key string | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/tables/metric_level_metrics.csv | PASS |  |
 | CSV readable | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/tables/metrics_summary.csv | PASS |  |
+| CSV pandas readable | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/tables/metrics_summary.csv | PASS |  |
 | no CRLF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/tables/metrics_summary.csv | PASS |  |
 | no CR-only line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/tables/metrics_summary.csv | PASS |  |
 | LF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/tables/metrics_summary.csv | PASS |  |
@@ -396,7 +505,9 @@ Status: `PASS`
 | not large one-line md/csv | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/tables/metrics_summary.csv | PASS | lines=3; bytes=2397 |
 | file size below 20MB | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/tables/metrics_summary.csv | PASS | 2397 |
 | not checkpoint/weight artifact | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/tables/metrics_summary.csv | PASS |  |
+| no API key string | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/tables/metrics_summary.csv | PASS |  |
 | CSV readable | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/tables/monotonicity_metrics.csv | PASS |  |
+| CSV pandas readable | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/tables/monotonicity_metrics.csv | PASS |  |
 | no CRLF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/tables/monotonicity_metrics.csv | PASS |  |
 | no CR-only line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/tables/monotonicity_metrics.csv | PASS |  |
 | LF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/tables/monotonicity_metrics.csv | PASS |  |
@@ -405,7 +516,9 @@ Status: `PASS`
 | not large one-line md/csv | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/tables/monotonicity_metrics.csv | PASS | lines=3; bytes=616 |
 | file size below 20MB | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/tables/monotonicity_metrics.csv | PASS | 616 |
 | not checkpoint/weight artifact | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/tables/monotonicity_metrics.csv | PASS |  |
+| no API key string | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/tables/monotonicity_metrics.csv | PASS |  |
 | CSV readable | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/tables/per_bin_metrics.csv | PASS |  |
+| CSV pandas readable | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/tables/per_bin_metrics.csv | PASS |  |
 | no CRLF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/tables/per_bin_metrics.csv | PASS |  |
 | no CR-only line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/tables/per_bin_metrics.csv | PASS |  |
 | LF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/tables/per_bin_metrics.csv | PASS |  |
@@ -414,7 +527,9 @@ Status: `PASS`
 | not large one-line md/csv | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/tables/per_bin_metrics.csv | PASS | lines=11; bytes=1375 |
 | file size below 20MB | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/tables/per_bin_metrics.csv | PASS | 1375 |
 | not checkpoint/weight artifact | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/tables/per_bin_metrics.csv | PASS |  |
+| no API key string | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/tables/per_bin_metrics.csv | PASS |  |
 | CSV readable | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/tables/preflight_qdr1.csv | PASS |  |
+| CSV pandas readable | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/tables/preflight_qdr1.csv | PASS |  |
 | no CRLF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/tables/preflight_qdr1.csv | PASS |  |
 | no CR-only line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/tables/preflight_qdr1.csv | PASS |  |
 | LF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/tables/preflight_qdr1.csv | PASS |  |
@@ -423,7 +538,9 @@ Status: `PASS`
 | not large one-line md/csv | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/tables/preflight_qdr1.csv | PASS | lines=25; bytes=888 |
 | file size below 20MB | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/tables/preflight_qdr1.csv | PASS | 888 |
 | not checkpoint/weight artifact | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/tables/preflight_qdr1.csv | PASS |  |
+| no API key string | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/tables/preflight_qdr1.csv | PASS |  |
 | CSV readable | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/tables/scenario_level_metrics.csv | PASS |  |
+| CSV pandas readable | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/tables/scenario_level_metrics.csv | PASS |  |
 | no CRLF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/tables/scenario_level_metrics.csv | PASS |  |
 | no CR-only line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/tables/scenario_level_metrics.csv | PASS |  |
 | LF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/tables/scenario_level_metrics.csv | PASS |  |
@@ -432,7 +549,9 @@ Status: `PASS`
 | not large one-line md/csv | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/tables/scenario_level_metrics.csv | PASS | lines=19; bytes=8947 |
 | file size below 20MB | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/tables/scenario_level_metrics.csv | PASS | 8947 |
 | not checkpoint/weight artifact | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/tables/scenario_level_metrics.csv | PASS |  |
+| no API key string | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/tables/scenario_level_metrics.csv | PASS |  |
 | CSV readable | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/tables/score_distribution.csv | PASS |  |
+| CSV pandas readable | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/tables/score_distribution.csv | PASS |  |
 | no CRLF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/tables/score_distribution.csv | PASS |  |
 | no CR-only line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/tables/score_distribution.csv | PASS |  |
 | LF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/tables/score_distribution.csv | PASS |  |
@@ -441,6 +560,7 @@ Status: `PASS`
 | not large one-line md/csv | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/tables/score_distribution.csv | PASS | lines=11; bytes=381 |
 | file size below 20MB | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/tables/score_distribution.csv | PASS | 381 |
 | not checkpoint/weight artifact | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/tables/score_distribution.csv | PASS |  |
+| no API key string | thesis_exp/outputs/exp07_rank_consistent_ordinal/runs/QD-R1_CORAL_human_only/tables/score_distribution.csv | PASS |  |
 | Markdown max prose line length | thesis_exp/outputs/exp07_rank_consistent_ordinal/sanity_check_exp07_outputs.md | PASS | prose=32; table=768 |
 | no CRLF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/sanity_check_exp07_outputs.md | PASS |  |
 | no CR-only line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/sanity_check_exp07_outputs.md | PASS |  |
@@ -450,6 +570,7 @@ Status: `PASS`
 | not large one-line md/csv | thesis_exp/outputs/exp07_rank_consistent_ordinal/sanity_check_exp07_outputs.md | PASS | lines=26; bytes=1869 |
 | file size below 20MB | thesis_exp/outputs/exp07_rank_consistent_ordinal/sanity_check_exp07_outputs.md | PASS | 1869 |
 | not checkpoint/weight artifact | thesis_exp/outputs/exp07_rank_consistent_ordinal/sanity_check_exp07_outputs.md | PASS |  |
+| no API key string | thesis_exp/outputs/exp07_rank_consistent_ordinal/sanity_check_exp07_outputs.md | PASS |  |
 | Markdown max prose line length | thesis_exp/outputs/exp07_rank_consistent_ordinal/sanity_check_exp07_setup.md | PASS | prose=32; table=161 |
 | no CRLF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/sanity_check_exp07_setup.md | PASS |  |
 | no CR-only line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/sanity_check_exp07_setup.md | PASS |  |
@@ -459,6 +580,7 @@ Status: `PASS`
 | not large one-line md/csv | thesis_exp/outputs/exp07_rank_consistent_ordinal/sanity_check_exp07_setup.md | PASS | lines=58; bytes=3296 |
 | file size below 20MB | thesis_exp/outputs/exp07_rank_consistent_ordinal/sanity_check_exp07_setup.md | PASS | 3296 |
 | not checkpoint/weight artifact | thesis_exp/outputs/exp07_rank_consistent_ordinal/sanity_check_exp07_setup.md | PASS |  |
+| no API key string | thesis_exp/outputs/exp07_rank_consistent_ordinal/sanity_check_exp07_setup.md | PASS |  |
 | file size below 20MB | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/arrays/dev_test_arrays.npz | PASS | 4332 |
 | not checkpoint/weight artifact | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/arrays/dev_test_arrays.npz | PASS |  |
 | file size below 20MB | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/arrays/labels_dev.npy | PASS | 192 |
@@ -479,17 +601,20 @@ Status: `PASS`
 | first line <= 1000 chars | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/arrays/record_ids_dev.txt | PASS | 40 |
 | file size below 20MB | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/arrays/record_ids_dev.txt | PASS | 328 |
 | not checkpoint/weight artifact | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/arrays/record_ids_dev.txt | PASS |  |
+| no API key string | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/arrays/record_ids_dev.txt | PASS |  |
 | no CRLF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/arrays/record_ids_test.txt | PASS |  |
 | no CR-only line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/arrays/record_ids_test.txt | PASS |  |
 | LF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/arrays/record_ids_test.txt | PASS |  |
 | first line <= 1000 chars | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/arrays/record_ids_test.txt | PASS | 40 |
 | file size below 20MB | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/arrays/record_ids_test.txt | PASS | 328 |
 | not checkpoint/weight artifact | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/arrays/record_ids_test.txt | PASS |  |
+| no API key string | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/arrays/record_ids_test.txt | PASS |  |
 | file size below 20MB | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/arrays/targets_dev.npy | PASS | 160 |
 | not checkpoint/weight artifact | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/arrays/targets_dev.npy | PASS |  |
 | file size below 20MB | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/arrays/targets_test.npy | PASS | 160 |
 | not checkpoint/weight artifact | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/arrays/targets_test.npy | PASS |  |
 | CSV readable | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/logs/dev_metrics_history.csv | PASS |  |
+| CSV pandas readable | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/logs/dev_metrics_history.csv | PASS |  |
 | no CRLF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/logs/dev_metrics_history.csv | PASS |  |
 | no CR-only line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/logs/dev_metrics_history.csv | PASS |  |
 | LF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/logs/dev_metrics_history.csv | PASS |  |
@@ -498,7 +623,9 @@ Status: `PASS`
 | not large one-line md/csv | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/logs/dev_metrics_history.csv | PASS | lines=2; bytes=1223 |
 | file size below 20MB | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/logs/dev_metrics_history.csv | PASS | 1223 |
 | not checkpoint/weight artifact | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/logs/dev_metrics_history.csv | PASS |  |
+| no API key string | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/logs/dev_metrics_history.csv | PASS |  |
 | CSV readable | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/logs/training_log.csv | PASS |  |
+| CSV pandas readable | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/logs/training_log.csv | PASS |  |
 | no CRLF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/logs/training_log.csv | PASS |  |
 | no CR-only line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/logs/training_log.csv | PASS |  |
 | LF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/logs/training_log.csv | PASS |  |
@@ -507,7 +634,9 @@ Status: `PASS`
 | not large one-line md/csv | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/logs/training_log.csv | PASS | lines=2; bytes=1223 |
 | file size below 20MB | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/logs/training_log.csv | PASS | 1223 |
 | not checkpoint/weight artifact | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/logs/training_log.csv | PASS |  |
+| no API key string | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/logs/training_log.csv | PASS |  |
 | CSV readable | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/metrics.csv | PASS |  |
+| CSV pandas readable | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/metrics.csv | PASS |  |
 | no CRLF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/metrics.csv | PASS |  |
 | no CR-only line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/metrics.csv | PASS |  |
 | LF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/metrics.csv | PASS |  |
@@ -516,60 +645,70 @@ Status: `PASS`
 | not large one-line md/csv | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/metrics.csv | PASS | lines=3; bytes=1702 |
 | file size below 20MB | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/metrics.csv | PASS | 1702 |
 | not checkpoint/weight artifact | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/metrics.csv | PASS |  |
+| no API key string | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/metrics.csv | PASS |  |
 | no CRLF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/metrics.json | PASS |  |
 | no CR-only line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/metrics.json | PASS |  |
 | LF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/metrics.json | PASS |  |
 | first line <= 1000 chars | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/metrics.json | PASS | 1 |
 | file size below 20MB | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/metrics.json | PASS | 3305 |
 | not checkpoint/weight artifact | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/metrics.json | PASS |  |
+| no API key string | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/metrics.json | PASS |  |
 | no CRLF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/metrics_history.json | PASS |  |
 | no CR-only line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/metrics_history.json | PASS |  |
 | LF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/metrics_history.json | PASS |  |
 | first line <= 1000 chars | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/metrics_history.json | PASS | 1 |
 | file size below 20MB | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/metrics_history.json | PASS | 1643 |
 | not checkpoint/weight artifact | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/metrics_history.json | PASS |  |
+| no API key string | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/metrics_history.json | PASS |  |
 | JSONL line-loadable | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/predictions/predictions_dev.jsonl | PASS |  |
 | no CRLF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/predictions/predictions_dev.jsonl | PASS |  |
 | no CR-only line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/predictions/predictions_dev.jsonl | PASS |  |
 | LF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/predictions/predictions_dev.jsonl | PASS |  |
 | file size below 20MB | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/predictions/predictions_dev.jsonl | PASS | 8661 |
 | not checkpoint/weight artifact | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/predictions/predictions_dev.jsonl | PASS |  |
+| no API key string | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/predictions/predictions_dev.jsonl | PASS |  |
 | JSONL line-loadable | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/predictions/predictions_dev_best.jsonl | PASS |  |
 | no CRLF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/predictions/predictions_dev_best.jsonl | PASS |  |
 | no CR-only line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/predictions/predictions_dev_best.jsonl | PASS |  |
 | LF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/predictions/predictions_dev_best.jsonl | PASS |  |
 | file size below 20MB | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/predictions/predictions_dev_best.jsonl | PASS | 8661 |
 | not checkpoint/weight artifact | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/predictions/predictions_dev_best.jsonl | PASS |  |
+| no API key string | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/predictions/predictions_dev_best.jsonl | PASS |  |
 | JSONL line-loadable | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/predictions/predictions_test.jsonl | PASS |  |
 | no CRLF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/predictions/predictions_test.jsonl | PASS |  |
 | no CR-only line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/predictions/predictions_test.jsonl | PASS |  |
 | LF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/predictions/predictions_test.jsonl | PASS |  |
 | file size below 20MB | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/predictions/predictions_test.jsonl | PASS | 8554 |
 | not checkpoint/weight artifact | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/predictions/predictions_test.jsonl | PASS |  |
+| no API key string | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/predictions/predictions_test.jsonl | PASS |  |
 | JSONL line-loadable | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/predictions_dev.jsonl | PASS |  |
 | no CRLF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/predictions_dev.jsonl | PASS |  |
 | no CR-only line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/predictions_dev.jsonl | PASS |  |
 | LF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/predictions_dev.jsonl | PASS |  |
 | file size below 20MB | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/predictions_dev.jsonl | PASS | 8661 |
 | not checkpoint/weight artifact | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/predictions_dev.jsonl | PASS |  |
+| no API key string | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/predictions_dev.jsonl | PASS |  |
 | JSONL line-loadable | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/predictions_dev_best.jsonl | PASS |  |
 | no CRLF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/predictions_dev_best.jsonl | PASS |  |
 | no CR-only line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/predictions_dev_best.jsonl | PASS |  |
 | LF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/predictions_dev_best.jsonl | PASS |  |
 | file size below 20MB | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/predictions_dev_best.jsonl | PASS | 8661 |
 | not checkpoint/weight artifact | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/predictions_dev_best.jsonl | PASS |  |
+| no API key string | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/predictions_dev_best.jsonl | PASS |  |
 | JSONL line-loadable | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/predictions_test.jsonl | PASS |  |
 | no CRLF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/predictions_test.jsonl | PASS |  |
 | no CR-only line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/predictions_test.jsonl | PASS |  |
 | LF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/predictions_test.jsonl | PASS |  |
 | file size below 20MB | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/predictions_test.jsonl | PASS | 8554 |
 | not checkpoint/weight artifact | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/predictions_test.jsonl | PASS |  |
+| no API key string | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/predictions_test.jsonl | PASS |  |
 | no CRLF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/run_metadata.json | PASS |  |
 | no CR-only line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/run_metadata.json | PASS |  |
 | LF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/run_metadata.json | PASS |  |
 | first line <= 1000 chars | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/run_metadata.json | PASS | 1 |
 | file size below 20MB | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/run_metadata.json | PASS | 754 |
 | not checkpoint/weight artifact | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/run_metadata.json | PASS |  |
+| no API key string | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/run_metadata.json | PASS |  |
 | Markdown max prose line length | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/run_summary.md | PASS | prose=71; table=0 |
 | no CRLF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/run_summary.md | PASS |  |
 | no CR-only line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/run_summary.md | PASS |  |
@@ -579,6 +718,7 @@ Status: `PASS`
 | not large one-line md/csv | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/run_summary.md | PASS | lines=22; bytes=737 |
 | file size below 20MB | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/run_summary.md | PASS | 737 |
 | not checkpoint/weight artifact | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/run_summary.md | PASS |  |
+| no API key string | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/run_summary.md | PASS |  |
 | Markdown max prose line length | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/smoke_test_report.md | PASS | prose=90; table=0 |
 | no CRLF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/smoke_test_report.md | PASS |  |
 | no CR-only line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/smoke_test_report.md | PASS |  |
@@ -588,7 +728,9 @@ Status: `PASS`
 | not large one-line md/csv | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/smoke_test_report.md | PASS | lines=9; bytes=275 |
 | file size below 20MB | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/smoke_test_report.md | PASS | 275 |
 | not checkpoint/weight artifact | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/smoke_test_report.md | PASS |  |
+| no API key string | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/smoke_test_report.md | PASS |  |
 | CSV readable | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/tables/dev_metrics_history.csv | PASS |  |
+| CSV pandas readable | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/tables/dev_metrics_history.csv | PASS |  |
 | no CRLF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/tables/dev_metrics_history.csv | PASS |  |
 | no CR-only line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/tables/dev_metrics_history.csv | PASS |  |
 | LF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/tables/dev_metrics_history.csv | PASS |  |
@@ -597,7 +739,9 @@ Status: `PASS`
 | not large one-line md/csv | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/tables/dev_metrics_history.csv | PASS | lines=2; bytes=1223 |
 | file size below 20MB | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/tables/dev_metrics_history.csv | PASS | 1223 |
 | not checkpoint/weight artifact | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/tables/dev_metrics_history.csv | PASS |  |
+| no API key string | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/tables/dev_metrics_history.csv | PASS |  |
 | CSV readable | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/tables/high_score_metrics.csv | PASS |  |
+| CSV pandas readable | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/tables/high_score_metrics.csv | PASS |  |
 | no CRLF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/tables/high_score_metrics.csv | PASS |  |
 | no CR-only line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/tables/high_score_metrics.csv | PASS |  |
 | LF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/tables/high_score_metrics.csv | PASS |  |
@@ -606,7 +750,9 @@ Status: `PASS`
 | not large one-line md/csv | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/tables/high_score_metrics.csv | PASS | lines=3; bytes=128 |
 | file size below 20MB | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/tables/high_score_metrics.csv | PASS | 128 |
 | not checkpoint/weight artifact | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/tables/high_score_metrics.csv | PASS |  |
+| no API key string | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/tables/high_score_metrics.csv | PASS |  |
 | CSV readable | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/tables/language_level_metrics.csv | PASS |  |
+| CSV pandas readable | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/tables/language_level_metrics.csv | PASS |  |
 | no CRLF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/tables/language_level_metrics.csv | PASS |  |
 | no CR-only line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/tables/language_level_metrics.csv | PASS |  |
 | LF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/tables/language_level_metrics.csv | PASS |  |
@@ -615,7 +761,9 @@ Status: `PASS`
 | not large one-line md/csv | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/tables/language_level_metrics.csv | PASS | lines=3; bytes=1157 |
 | file size below 20MB | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/tables/language_level_metrics.csv | PASS | 1157 |
 | not checkpoint/weight artifact | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/tables/language_level_metrics.csv | PASS |  |
+| no API key string | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/tables/language_level_metrics.csv | PASS |  |
 | CSV readable | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/tables/low_score_metrics.csv | PASS |  |
+| CSV pandas readable | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/tables/low_score_metrics.csv | PASS |  |
 | no CRLF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/tables/low_score_metrics.csv | PASS |  |
 | no CR-only line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/tables/low_score_metrics.csv | PASS |  |
 | LF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/tables/low_score_metrics.csv | PASS |  |
@@ -624,7 +772,9 @@ Status: `PASS`
 | not large one-line md/csv | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/tables/low_score_metrics.csv | PASS | lines=3; bytes=203 |
 | file size below 20MB | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/tables/low_score_metrics.csv | PASS | 203 |
 | not checkpoint/weight artifact | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/tables/low_score_metrics.csv | PASS |  |
+| no API key string | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/tables/low_score_metrics.csv | PASS |  |
 | CSV readable | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/tables/metric_level_metrics.csv | PASS |  |
+| CSV pandas readable | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/tables/metric_level_metrics.csv | PASS |  |
 | no CRLF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/tables/metric_level_metrics.csv | PASS |  |
 | no CR-only line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/tables/metric_level_metrics.csv | PASS |  |
 | LF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/tables/metric_level_metrics.csv | PASS |  |
@@ -633,7 +783,9 @@ Status: `PASS`
 | not large one-line md/csv | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/tables/metric_level_metrics.csv | PASS | lines=7; bytes=2630 |
 | file size below 20MB | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/tables/metric_level_metrics.csv | PASS | 2630 |
 | not checkpoint/weight artifact | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/tables/metric_level_metrics.csv | PASS |  |
+| no API key string | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/tables/metric_level_metrics.csv | PASS |  |
 | CSV readable | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/tables/metrics_summary.csv | PASS |  |
+| CSV pandas readable | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/tables/metrics_summary.csv | PASS |  |
 | no CRLF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/tables/metrics_summary.csv | PASS |  |
 | no CR-only line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/tables/metrics_summary.csv | PASS |  |
 | LF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/tables/metrics_summary.csv | PASS |  |
@@ -642,7 +794,9 @@ Status: `PASS`
 | not large one-line md/csv | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/tables/metrics_summary.csv | PASS | lines=3; bytes=1702 |
 | file size below 20MB | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/tables/metrics_summary.csv | PASS | 1702 |
 | not checkpoint/weight artifact | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/tables/metrics_summary.csv | PASS |  |
+| no API key string | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/tables/metrics_summary.csv | PASS |  |
 | CSV readable | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/tables/monotonicity_metrics.csv | PASS |  |
+| CSV pandas readable | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/tables/monotonicity_metrics.csv | PASS |  |
 | no CRLF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/tables/monotonicity_metrics.csv | PASS |  |
 | no CR-only line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/tables/monotonicity_metrics.csv | PASS |  |
 | LF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/tables/monotonicity_metrics.csv | PASS |  |
@@ -651,7 +805,9 @@ Status: `PASS`
 | not large one-line md/csv | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/tables/monotonicity_metrics.csv | PASS | lines=3; bytes=504 |
 | file size below 20MB | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/tables/monotonicity_metrics.csv | PASS | 504 |
 | not checkpoint/weight artifact | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/tables/monotonicity_metrics.csv | PASS |  |
+| no API key string | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/tables/monotonicity_metrics.csv | PASS |  |
 | CSV readable | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/tables/per_bin_metrics.csv | PASS |  |
+| CSV pandas readable | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/tables/per_bin_metrics.csv | PASS |  |
 | no CRLF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/tables/per_bin_metrics.csv | PASS |  |
 | no CR-only line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/tables/per_bin_metrics.csv | PASS |  |
 | LF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/tables/per_bin_metrics.csv | PASS |  |
@@ -660,7 +816,9 @@ Status: `PASS`
 | not large one-line md/csv | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/tables/per_bin_metrics.csv | PASS | lines=11; bytes=580 |
 | file size below 20MB | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/tables/per_bin_metrics.csv | PASS | 580 |
 | not checkpoint/weight artifact | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/tables/per_bin_metrics.csv | PASS |  |
+| no API key string | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/tables/per_bin_metrics.csv | PASS |  |
 | CSV readable | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/tables/scenario_level_metrics.csv | PASS |  |
+| CSV pandas readable | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/tables/scenario_level_metrics.csv | PASS |  |
 | no CRLF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/tables/scenario_level_metrics.csv | PASS |  |
 | no CR-only line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/tables/scenario_level_metrics.csv | PASS |  |
 | LF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/tables/scenario_level_metrics.csv | PASS |  |
@@ -669,7 +827,9 @@ Status: `PASS`
 | not large one-line md/csv | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/tables/scenario_level_metrics.csv | PASS | lines=3; bytes=1221 |
 | file size below 20MB | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/tables/scenario_level_metrics.csv | PASS | 1221 |
 | not checkpoint/weight artifact | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/tables/scenario_level_metrics.csv | PASS |  |
+| no API key string | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/tables/scenario_level_metrics.csv | PASS |  |
 | CSV readable | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/tables/score_distribution.csv | PASS |  |
+| CSV pandas readable | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/tables/score_distribution.csv | PASS |  |
 | no CRLF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/tables/score_distribution.csv | PASS |  |
 | no CR-only line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/tables/score_distribution.csv | PASS |  |
 | LF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/tables/score_distribution.csv | PASS |  |
@@ -678,7 +838,9 @@ Status: `PASS`
 | not large one-line md/csv | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/tables/score_distribution.csv | PASS | lines=11; bytes=199 |
 | file size below 20MB | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/tables/score_distribution.csv | PASS | 199 |
 | not checkpoint/weight artifact | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/tables/score_distribution.csv | PASS |  |
+| no API key string | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/tables/score_distribution.csv | PASS |  |
 | CSV readable | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/tables/smoke_preflight_qdr1.csv | PASS |  |
+| CSV pandas readable | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/tables/smoke_preflight_qdr1.csv | PASS |  |
 | no CRLF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/tables/smoke_preflight_qdr1.csv | PASS |  |
 | no CR-only line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/tables/smoke_preflight_qdr1.csv | PASS |  |
 | LF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/tables/smoke_preflight_qdr1.csv | PASS |  |
@@ -687,7 +849,9 @@ Status: `PASS`
 | not large one-line md/csv | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/tables/smoke_preflight_qdr1.csv | PASS | lines=25; bytes=888 |
 | file size below 20MB | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/tables/smoke_preflight_qdr1.csv | PASS | 888 |
 | not checkpoint/weight artifact | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/tables/smoke_preflight_qdr1.csv | PASS |  |
+| no API key string | thesis_exp/outputs/exp07_rank_consistent_ordinal/smoke_test/QD-R1_CORAL_human_only/tables/smoke_preflight_qdr1.csv | PASS |  |
 | CSV readable | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/exp07_calibration_logit_inventory.csv | PASS |  |
+| CSV pandas readable | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/exp07_calibration_logit_inventory.csv | PASS |  |
 | no CRLF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/exp07_calibration_logit_inventory.csv | PASS |  |
 | no CR-only line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/exp07_calibration_logit_inventory.csv | PASS |  |
 | LF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/exp07_calibration_logit_inventory.csv | PASS |  |
@@ -696,7 +860,9 @@ Status: `PASS`
 | not large one-line md/csv | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/exp07_calibration_logit_inventory.csv | PASS | lines=4; bytes=1030 |
 | file size below 20MB | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/exp07_calibration_logit_inventory.csv | PASS | 1030 |
 | not checkpoint/weight artifact | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/exp07_calibration_logit_inventory.csv | PASS |  |
+| no API key string | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/exp07_calibration_logit_inventory.csv | PASS |  |
 | CSV readable | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/exp07_high_score_comparison.csv | PASS |  |
+| CSV pandas readable | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/exp07_high_score_comparison.csv | PASS |  |
 | no CRLF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/exp07_high_score_comparison.csv | PASS |  |
 | no CR-only line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/exp07_high_score_comparison.csv | PASS |  |
 | LF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/exp07_high_score_comparison.csv | PASS |  |
@@ -705,7 +871,9 @@ Status: `PASS`
 | not large one-line md/csv | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/exp07_high_score_comparison.csv | PASS | lines=5; bytes=629 |
 | file size below 20MB | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/exp07_high_score_comparison.csv | PASS | 629 |
 | not checkpoint/weight artifact | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/exp07_high_score_comparison.csv | PASS |  |
+| no API key string | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/exp07_high_score_comparison.csv | PASS |  |
 | CSV readable | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/exp07_low_score_comparison.csv | PASS |  |
+| CSV pandas readable | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/exp07_low_score_comparison.csv | PASS |  |
 | no CRLF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/exp07_low_score_comparison.csv | PASS |  |
 | no CR-only line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/exp07_low_score_comparison.csv | PASS |  |
 | LF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/exp07_low_score_comparison.csv | PASS |  |
@@ -714,7 +882,9 @@ Status: `PASS`
 | not large one-line md/csv | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/exp07_low_score_comparison.csv | PASS | lines=3; bytes=344 |
 | file size below 20MB | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/exp07_low_score_comparison.csv | PASS | 344 |
 | not checkpoint/weight artifact | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/exp07_low_score_comparison.csv | PASS |  |
+| no API key string | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/exp07_low_score_comparison.csv | PASS |  |
 | CSV readable | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/exp07_monotonicity_comparison.csv | PASS |  |
+| CSV pandas readable | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/exp07_monotonicity_comparison.csv | PASS |  |
 | no CRLF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/exp07_monotonicity_comparison.csv | PASS |  |
 | no CR-only line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/exp07_monotonicity_comparison.csv | PASS |  |
 | LF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/exp07_monotonicity_comparison.csv | PASS |  |
@@ -723,7 +893,9 @@ Status: `PASS`
 | not large one-line md/csv | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/exp07_monotonicity_comparison.csv | PASS | lines=7; bytes=1297 |
 | file size below 20MB | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/exp07_monotonicity_comparison.csv | PASS | 1297 |
 | not checkpoint/weight artifact | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/exp07_monotonicity_comparison.csv | PASS |  |
+| no API key string | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/exp07_monotonicity_comparison.csv | PASS |  |
 | CSV readable | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/exp07_r1_comparison.csv | PASS |  |
+| CSV pandas readable | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/exp07_r1_comparison.csv | PASS |  |
 | no CRLF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/exp07_r1_comparison.csv | PASS |  |
 | no CR-only line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/exp07_r1_comparison.csv | PASS |  |
 | LF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/exp07_r1_comparison.csv | PASS |  |
@@ -732,7 +904,9 @@ Status: `PASS`
 | not large one-line md/csv | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/exp07_r1_comparison.csv | PASS | lines=7; bytes=2760 |
 | file size below 20MB | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/exp07_r1_comparison.csv | PASS | 2760 |
 | not checkpoint/weight artifact | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/exp07_r1_comparison.csv | PASS |  |
+| no API key string | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/exp07_r1_comparison.csv | PASS |  |
 | CSV readable | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/qdr1_low_score_error_distribution.csv | PASS |  |
+| CSV pandas readable | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/qdr1_low_score_error_distribution.csv | PASS |  |
 | no CRLF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/qdr1_low_score_error_distribution.csv | PASS |  |
 | no CR-only line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/qdr1_low_score_error_distribution.csv | PASS |  |
 | LF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/qdr1_low_score_error_distribution.csv | PASS |  |
@@ -741,7 +915,9 @@ Status: `PASS`
 | not large one-line md/csv | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/qdr1_low_score_error_distribution.csv | PASS | lines=31; bytes=2797 |
 | file size below 20MB | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/qdr1_low_score_error_distribution.csv | PASS | 2797 |
 | not checkpoint/weight artifact | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/qdr1_low_score_error_distribution.csv | PASS |  |
+| no API key string | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/qdr1_low_score_error_distribution.csv | PASS |  |
 | CSV readable | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/qdr1_per_true_label_mean_probs.csv | PASS |  |
+| CSV pandas readable | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/qdr1_per_true_label_mean_probs.csv | PASS |  |
 | no CRLF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/qdr1_per_true_label_mean_probs.csv | PASS |  |
 | no CR-only line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/qdr1_per_true_label_mean_probs.csv | PASS |  |
 | LF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/qdr1_per_true_label_mean_probs.csv | PASS |  |
@@ -750,7 +926,9 @@ Status: `PASS`
 | not large one-line md/csv | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/qdr1_per_true_label_mean_probs.csv | PASS | lines=11; bytes=1534 |
 | file size below 20MB | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/qdr1_per_true_label_mean_probs.csv | PASS | 1534 |
 | not checkpoint/weight artifact | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/qdr1_per_true_label_mean_probs.csv | PASS |  |
+| no API key string | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/qdr1_per_true_label_mean_probs.csv | PASS |  |
 | CSV readable | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/qdr1_prediction_distribution.csv | PASS |  |
+| CSV pandas readable | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/qdr1_prediction_distribution.csv | PASS |  |
 | no CRLF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/qdr1_prediction_distribution.csv | PASS |  |
 | no CR-only line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/qdr1_prediction_distribution.csv | PASS |  |
 | LF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/qdr1_prediction_distribution.csv | PASS |  |
@@ -759,7 +937,9 @@ Status: `PASS`
 | not large one-line md/csv | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/qdr1_prediction_distribution.csv | PASS | lines=51; bytes=1291 |
 | file size below 20MB | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/qdr1_prediction_distribution.csv | PASS | 1291 |
 | not checkpoint/weight artifact | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/qdr1_prediction_distribution.csv | PASS |  |
+| no API key string | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/qdr1_prediction_distribution.csv | PASS |  |
 | CSV readable | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/qdr1_threshold_score_diagnostics.csv | PASS |  |
+| CSV pandas readable | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/qdr1_threshold_score_diagnostics.csv | PASS |  |
 | no CRLF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/qdr1_threshold_score_diagnostics.csv | PASS |  |
 | no CR-only line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/qdr1_threshold_score_diagnostics.csv | PASS |  |
 | LF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/qdr1_threshold_score_diagnostics.csv | PASS |  |
@@ -768,16 +948,20 @@ Status: `PASS`
 | not large one-line md/csv | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/qdr1_threshold_score_diagnostics.csv | PASS | lines=11; bytes=2229 |
 | file size below 20MB | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/qdr1_threshold_score_diagnostics.csv | PASS | 2229 |
 | not checkpoint/weight artifact | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/qdr1_threshold_score_diagnostics.csv | PASS |  |
+| no API key string | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/qdr1_threshold_score_diagnostics.csv | PASS |  |
 | CSV readable | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/readability_check_exp07.csv | PASS |  |
+| CSV pandas readable | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/readability_check_exp07.csv | PASS |  |
 | no CRLF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/readability_check_exp07.csv | PASS |  |
 | no CR-only line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/readability_check_exp07.csv | PASS |  |
 | LF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/readability_check_exp07.csv | PASS |  |
 | first line <= 1000 chars | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/readability_check_exp07.csv | PASS | 30 |
-| not collapsed-line file | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/readability_check_exp07.csv | PASS | 805 |
-| not large one-line md/csv | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/readability_check_exp07.csv | PASS | lines=805; bytes=99970 |
-| file size below 20MB | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/readability_check_exp07.csv | PASS | 99970 |
+| not collapsed-line file | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/readability_check_exp07.csv | PASS | 1236 |
+| not large one-line md/csv | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/readability_check_exp07.csv | PASS | lines=1236; bytes=147421 |
+| file size below 20MB | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/readability_check_exp07.csv | PASS | 147421 |
 | not checkpoint/weight artifact | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/readability_check_exp07.csv | PASS |  |
+| no API key string | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/readability_check_exp07.csv | PASS |  |
 | CSV readable | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/sanity_check_exp07_outputs.csv | PASS |  |
+| CSV pandas readable | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/sanity_check_exp07_outputs.csv | PASS |  |
 | no CRLF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/sanity_check_exp07_outputs.csv | PASS |  |
 | no CR-only line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/sanity_check_exp07_outputs.csv | PASS |  |
 | LF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/sanity_check_exp07_outputs.csv | PASS |  |
@@ -786,7 +970,9 @@ Status: `PASS`
 | not large one-line md/csv | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/sanity_check_exp07_outputs.csv | PASS | lines=20; bytes=1691 |
 | file size below 20MB | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/sanity_check_exp07_outputs.csv | PASS | 1691 |
 | not checkpoint/weight artifact | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/sanity_check_exp07_outputs.csv | PASS |  |
+| no API key string | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/sanity_check_exp07_outputs.csv | PASS |  |
 | CSV readable | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/sanity_check_exp07_setup.csv | PASS |  |
+| CSV pandas readable | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/sanity_check_exp07_setup.csv | PASS |  |
 | no CRLF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/sanity_check_exp07_setup.csv | PASS |  |
 | no CR-only line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/sanity_check_exp07_setup.csv | PASS |  |
 | LF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/sanity_check_exp07_setup.csv | PASS |  |
@@ -795,4 +981,261 @@ Status: `PASS`
 | not large one-line md/csv | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/sanity_check_exp07_setup.csv | PASS | lines=52; bytes=2797 |
 | file size below 20MB | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/sanity_check_exp07_setup.csv | PASS | 2797 |
 | not checkpoint/weight artifact | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/sanity_check_exp07_setup.csv | PASS |  |
+| no API key string | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/sanity_check_exp07_setup.csv | PASS |  |
+| CSV readable | thesis_exp/outputs/exp07_calibration/calibrated_predictions/QD-R1_CORAL_human_only_test_risk_aware_predictions.csv | PASS |  |
+| CSV pandas readable | thesis_exp/outputs/exp07_calibration/calibrated_predictions/QD-R1_CORAL_human_only_test_risk_aware_predictions.csv | PASS |  |
+| no CRLF line endings | thesis_exp/outputs/exp07_calibration/calibrated_predictions/QD-R1_CORAL_human_only_test_risk_aware_predictions.csv | PASS |  |
+| no CR-only line endings | thesis_exp/outputs/exp07_calibration/calibrated_predictions/QD-R1_CORAL_human_only_test_risk_aware_predictions.csv | PASS |  |
+| LF line endings | thesis_exp/outputs/exp07_calibration/calibrated_predictions/QD-R1_CORAL_human_only_test_risk_aware_predictions.csv | PASS |  |
+| first line <= 1000 chars | thesis_exp/outputs/exp07_calibration/calibrated_predictions/QD-R1_CORAL_human_only_test_risk_aware_predictions.csv | PASS | 239 |
+| not collapsed-line file | thesis_exp/outputs/exp07_calibration/calibrated_predictions/QD-R1_CORAL_human_only_test_risk_aware_predictions.csv | PASS | 1104 |
+| not large one-line md/csv | thesis_exp/outputs/exp07_calibration/calibrated_predictions/QD-R1_CORAL_human_only_test_risk_aware_predictions.csv | PASS | lines=1104; bytes=338572 |
+| file size below 20MB | thesis_exp/outputs/exp07_calibration/calibrated_predictions/QD-R1_CORAL_human_only_test_risk_aware_predictions.csv | PASS | 338572 |
+| not checkpoint/weight artifact | thesis_exp/outputs/exp07_calibration/calibrated_predictions/QD-R1_CORAL_human_only_test_risk_aware_predictions.csv | PASS |  |
+| no API key string | thesis_exp/outputs/exp07_calibration/calibrated_predictions/QD-R1_CORAL_human_only_test_risk_aware_predictions.csv | PASS |  |
+| no CRLF line endings | thesis_exp/outputs/exp07_calibration/configs/exp07_c_calibration_config.json | PASS |  |
+| no CR-only line endings | thesis_exp/outputs/exp07_calibration/configs/exp07_c_calibration_config.json | PASS |  |
+| LF line endings | thesis_exp/outputs/exp07_calibration/configs/exp07_c_calibration_config.json | PASS |  |
+| first line <= 1000 chars | thesis_exp/outputs/exp07_calibration/configs/exp07_c_calibration_config.json | PASS | 1 |
+| file size below 20MB | thesis_exp/outputs/exp07_calibration/configs/exp07_c_calibration_config.json | PASS | 466 |
+| not checkpoint/weight artifact | thesis_exp/outputs/exp07_calibration/configs/exp07_c_calibration_config.json | PASS |  |
+| no API key string | thesis_exp/outputs/exp07_calibration/configs/exp07_c_calibration_config.json | PASS |  |
+| Markdown max prose line length | thesis_exp/outputs/exp07_calibration/reports/exp07_calibration_report.md | PASS | prose=154; table=252 |
+| no CRLF line endings | thesis_exp/outputs/exp07_calibration/reports/exp07_calibration_report.md | PASS |  |
+| no CR-only line endings | thesis_exp/outputs/exp07_calibration/reports/exp07_calibration_report.md | PASS |  |
+| LF line endings | thesis_exp/outputs/exp07_calibration/reports/exp07_calibration_report.md | PASS |  |
+| first line <= 1000 chars | thesis_exp/outputs/exp07_calibration/reports/exp07_calibration_report.md | PASS | 39 |
+| not collapsed-line file | thesis_exp/outputs/exp07_calibration/reports/exp07_calibration_report.md | PASS | 48 |
+| not large one-line md/csv | thesis_exp/outputs/exp07_calibration/reports/exp07_calibration_report.md | PASS | lines=48; bytes=3925 |
+| file size below 20MB | thesis_exp/outputs/exp07_calibration/reports/exp07_calibration_report.md | PASS | 3925 |
+| not checkpoint/weight artifact | thesis_exp/outputs/exp07_calibration/reports/exp07_calibration_report.md | PASS |  |
+| no API key string | thesis_exp/outputs/exp07_calibration/reports/exp07_calibration_report.md | PASS |  |
+| Markdown max prose line length | thesis_exp/outputs/exp07_calibration/reports/exp07_calibration_review_package.md | PASS | prose=118; table=0 |
+| no CRLF line endings | thesis_exp/outputs/exp07_calibration/reports/exp07_calibration_review_package.md | PASS |  |
+| no CR-only line endings | thesis_exp/outputs/exp07_calibration/reports/exp07_calibration_review_package.md | PASS |  |
+| LF line endings | thesis_exp/outputs/exp07_calibration/reports/exp07_calibration_review_package.md | PASS |  |
+| first line <= 1000 chars | thesis_exp/outputs/exp07_calibration/reports/exp07_calibration_review_package.md | PASS | 35 |
+| not collapsed-line file | thesis_exp/outputs/exp07_calibration/reports/exp07_calibration_review_package.md | PASS | 13 |
+| not large one-line md/csv | thesis_exp/outputs/exp07_calibration/reports/exp07_calibration_review_package.md | PASS | lines=13; bytes=498 |
+| file size below 20MB | thesis_exp/outputs/exp07_calibration/reports/exp07_calibration_review_package.md | PASS | 498 |
+| not checkpoint/weight artifact | thesis_exp/outputs/exp07_calibration/reports/exp07_calibration_review_package.md | PASS |  |
+| no API key string | thesis_exp/outputs/exp07_calibration/reports/exp07_calibration_review_package.md | PASS |  |
+| Markdown max prose line length | thesis_exp/outputs/exp07_calibration/reports/notion_exp07_calibration_summary.md | PASS | prose=50; table=0 |
+| no CRLF line endings | thesis_exp/outputs/exp07_calibration/reports/notion_exp07_calibration_summary.md | PASS |  |
+| no CR-only line endings | thesis_exp/outputs/exp07_calibration/reports/notion_exp07_calibration_summary.md | PASS |  |
+| LF line endings | thesis_exp/outputs/exp07_calibration/reports/notion_exp07_calibration_summary.md | PASS |  |
+| first line <= 1000 chars | thesis_exp/outputs/exp07_calibration/reports/notion_exp07_calibration_summary.md | PASS | 28 |
+| not collapsed-line file | thesis_exp/outputs/exp07_calibration/reports/notion_exp07_calibration_summary.md | PASS | 10 |
+| not large one-line md/csv | thesis_exp/outputs/exp07_calibration/reports/notion_exp07_calibration_summary.md | PASS | lines=10; bytes=348 |
+| file size below 20MB | thesis_exp/outputs/exp07_calibration/reports/notion_exp07_calibration_summary.md | PASS | 348 |
+| not checkpoint/weight artifact | thesis_exp/outputs/exp07_calibration/reports/notion_exp07_calibration_summary.md | PASS |  |
+| no API key string | thesis_exp/outputs/exp07_calibration/reports/notion_exp07_calibration_summary.md | PASS |  |
+| Markdown max prose line length | thesis_exp/outputs/exp07_calibration/sanity_check_exp07_calibration.md | PASS | prose=33; table=419 |
+| no CRLF line endings | thesis_exp/outputs/exp07_calibration/sanity_check_exp07_calibration.md | PASS |  |
+| no CR-only line endings | thesis_exp/outputs/exp07_calibration/sanity_check_exp07_calibration.md | PASS |  |
+| LF line endings | thesis_exp/outputs/exp07_calibration/sanity_check_exp07_calibration.md | PASS |  |
+| first line <= 1000 chars | thesis_exp/outputs/exp07_calibration/sanity_check_exp07_calibration.md | PASS | 33 |
+| not collapsed-line file | thesis_exp/outputs/exp07_calibration/sanity_check_exp07_calibration.md | PASS | 35 |
+| not large one-line md/csv | thesis_exp/outputs/exp07_calibration/sanity_check_exp07_calibration.md | PASS | lines=35; bytes=3824 |
+| file size below 20MB | thesis_exp/outputs/exp07_calibration/sanity_check_exp07_calibration.md | PASS | 3824 |
+| not checkpoint/weight artifact | thesis_exp/outputs/exp07_calibration/sanity_check_exp07_calibration.md | PASS |  |
+| no API key string | thesis_exp/outputs/exp07_calibration/sanity_check_exp07_calibration.md | PASS |  |
+| CSV readable | thesis_exp/outputs/exp07_calibration/tables/calibration_base_inventory.csv | PASS |  |
+| CSV pandas readable | thesis_exp/outputs/exp07_calibration/tables/calibration_base_inventory.csv | PASS |  |
+| no CRLF line endings | thesis_exp/outputs/exp07_calibration/tables/calibration_base_inventory.csv | PASS |  |
+| no CR-only line endings | thesis_exp/outputs/exp07_calibration/tables/calibration_base_inventory.csv | PASS |  |
+| LF line endings | thesis_exp/outputs/exp07_calibration/tables/calibration_base_inventory.csv | PASS |  |
+| first line <= 1000 chars | thesis_exp/outputs/exp07_calibration/tables/calibration_base_inventory.csv | PASS | 160 |
+| not collapsed-line file | thesis_exp/outputs/exp07_calibration/tables/calibration_base_inventory.csv | PASS | 4 |
+| not large one-line md/csv | thesis_exp/outputs/exp07_calibration/tables/calibration_base_inventory.csv | PASS | lines=4; bytes=705 |
+| file size below 20MB | thesis_exp/outputs/exp07_calibration/tables/calibration_base_inventory.csv | PASS | 705 |
+| not checkpoint/weight artifact | thesis_exp/outputs/exp07_calibration/tables/calibration_base_inventory.csv | PASS |  |
+| no API key string | thesis_exp/outputs/exp07_calibration/tables/calibration_base_inventory.csv | PASS |  |
+| CSV readable | thesis_exp/outputs/exp07_calibration/tables/calibration_delta_vs_raw.csv | PASS |  |
+| CSV pandas readable | thesis_exp/outputs/exp07_calibration/tables/calibration_delta_vs_raw.csv | PASS |  |
+| no CRLF line endings | thesis_exp/outputs/exp07_calibration/tables/calibration_delta_vs_raw.csv | PASS |  |
+| no CR-only line endings | thesis_exp/outputs/exp07_calibration/tables/calibration_delta_vs_raw.csv | PASS |  |
+| LF line endings | thesis_exp/outputs/exp07_calibration/tables/calibration_delta_vs_raw.csv | PASS |  |
+| first line <= 1000 chars | thesis_exp/outputs/exp07_calibration/tables/calibration_delta_vs_raw.csv | PASS | 57 |
+| not collapsed-line file | thesis_exp/outputs/exp07_calibration/tables/calibration_delta_vs_raw.csv | PASS | 25 |
+| not large one-line md/csv | thesis_exp/outputs/exp07_calibration/tables/calibration_delta_vs_raw.csv | PASS | lines=25; bytes=2645 |
+| file size below 20MB | thesis_exp/outputs/exp07_calibration/tables/calibration_delta_vs_raw.csv | PASS | 2645 |
+| not checkpoint/weight artifact | thesis_exp/outputs/exp07_calibration/tables/calibration_delta_vs_raw.csv | PASS |  |
+| no API key string | thesis_exp/outputs/exp07_calibration/tables/calibration_delta_vs_raw.csv | PASS |  |
+| CSV readable | thesis_exp/outputs/exp07_calibration/tables/calibration_summary.csv | PASS |  |
+| CSV pandas readable | thesis_exp/outputs/exp07_calibration/tables/calibration_summary.csv | PASS |  |
+| no CRLF line endings | thesis_exp/outputs/exp07_calibration/tables/calibration_summary.csv | PASS |  |
+| no CR-only line endings | thesis_exp/outputs/exp07_calibration/tables/calibration_summary.csv | PASS |  |
+| LF line endings | thesis_exp/outputs/exp07_calibration/tables/calibration_summary.csv | PASS |  |
+| first line <= 1000 chars | thesis_exp/outputs/exp07_calibration/tables/calibration_summary.csv | PASS | 487 |
+| not collapsed-line file | thesis_exp/outputs/exp07_calibration/tables/calibration_summary.csv | PASS | 7 |
+| not large one-line md/csv | thesis_exp/outputs/exp07_calibration/tables/calibration_summary.csv | PASS | lines=7; bytes=3124 |
+| file size below 20MB | thesis_exp/outputs/exp07_calibration/tables/calibration_summary.csv | PASS | 3124 |
+| not checkpoint/weight artifact | thesis_exp/outputs/exp07_calibration/tables/calibration_summary.csv | PASS |  |
+| no API key string | thesis_exp/outputs/exp07_calibration/tables/calibration_summary.csv | PASS |  |
+| CSV readable | thesis_exp/outputs/exp07_calibration/tables/global_threshold_calibration_dev.csv | PASS |  |
+| CSV pandas readable | thesis_exp/outputs/exp07_calibration/tables/global_threshold_calibration_dev.csv | PASS |  |
+| no CRLF line endings | thesis_exp/outputs/exp07_calibration/tables/global_threshold_calibration_dev.csv | PASS |  |
+| no CR-only line endings | thesis_exp/outputs/exp07_calibration/tables/global_threshold_calibration_dev.csv | PASS |  |
+| LF line endings | thesis_exp/outputs/exp07_calibration/tables/global_threshold_calibration_dev.csv | PASS |  |
+| first line <= 1000 chars | thesis_exp/outputs/exp07_calibration/tables/global_threshold_calibration_dev.csv | PASS | 419 |
+| not collapsed-line file | thesis_exp/outputs/exp07_calibration/tables/global_threshold_calibration_dev.csv | PASS | 2 |
+| not large one-line md/csv | thesis_exp/outputs/exp07_calibration/tables/global_threshold_calibration_dev.csv | PASS | lines=2; bytes=989 |
+| file size below 20MB | thesis_exp/outputs/exp07_calibration/tables/global_threshold_calibration_dev.csv | PASS | 989 |
+| not checkpoint/weight artifact | thesis_exp/outputs/exp07_calibration/tables/global_threshold_calibration_dev.csv | PASS |  |
+| no API key string | thesis_exp/outputs/exp07_calibration/tables/global_threshold_calibration_dev.csv | PASS |  |
+| CSV readable | thesis_exp/outputs/exp07_calibration/tables/global_threshold_calibration_test.csv | PASS |  |
+| CSV pandas readable | thesis_exp/outputs/exp07_calibration/tables/global_threshold_calibration_test.csv | PASS |  |
+| no CRLF line endings | thesis_exp/outputs/exp07_calibration/tables/global_threshold_calibration_test.csv | PASS |  |
+| no CR-only line endings | thesis_exp/outputs/exp07_calibration/tables/global_threshold_calibration_test.csv | PASS |  |
+| LF line endings | thesis_exp/outputs/exp07_calibration/tables/global_threshold_calibration_test.csv | PASS |  |
+| first line <= 1000 chars | thesis_exp/outputs/exp07_calibration/tables/global_threshold_calibration_test.csv | PASS | 419 |
+| not collapsed-line file | thesis_exp/outputs/exp07_calibration/tables/global_threshold_calibration_test.csv | PASS | 2 |
+| not large one-line md/csv | thesis_exp/outputs/exp07_calibration/tables/global_threshold_calibration_test.csv | PASS | lines=2; bytes=989 |
+| file size below 20MB | thesis_exp/outputs/exp07_calibration/tables/global_threshold_calibration_test.csv | PASS | 989 |
+| not checkpoint/weight artifact | thesis_exp/outputs/exp07_calibration/tables/global_threshold_calibration_test.csv | PASS |  |
+| no API key string | thesis_exp/outputs/exp07_calibration/tables/global_threshold_calibration_test.csv | PASS |  |
+| CSV readable | thesis_exp/outputs/exp07_calibration/tables/high_score_calibration_comparison.csv | PASS |  |
+| CSV pandas readable | thesis_exp/outputs/exp07_calibration/tables/high_score_calibration_comparison.csv | PASS |  |
+| no CRLF line endings | thesis_exp/outputs/exp07_calibration/tables/high_score_calibration_comparison.csv | PASS |  |
+| no CR-only line endings | thesis_exp/outputs/exp07_calibration/tables/high_score_calibration_comparison.csv | PASS |  |
+| LF line endings | thesis_exp/outputs/exp07_calibration/tables/high_score_calibration_comparison.csv | PASS |  |
+| first line <= 1000 chars | thesis_exp/outputs/exp07_calibration/tables/high_score_calibration_comparison.csv | PASS | 85 |
+| not collapsed-line file | thesis_exp/outputs/exp07_calibration/tables/high_score_calibration_comparison.csv | PASS | 7 |
+| not large one-line md/csv | thesis_exp/outputs/exp07_calibration/tables/high_score_calibration_comparison.csv | PASS | lines=7; bytes=799 |
+| file size below 20MB | thesis_exp/outputs/exp07_calibration/tables/high_score_calibration_comparison.csv | PASS | 799 |
+| not checkpoint/weight artifact | thesis_exp/outputs/exp07_calibration/tables/high_score_calibration_comparison.csv | PASS |  |
+| no API key string | thesis_exp/outputs/exp07_calibration/tables/high_score_calibration_comparison.csv | PASS |  |
+| CSV readable | thesis_exp/outputs/exp07_calibration/tables/low_score_calibration_comparison.csv | PASS |  |
+| CSV pandas readable | thesis_exp/outputs/exp07_calibration/tables/low_score_calibration_comparison.csv | PASS |  |
+| no CRLF line endings | thesis_exp/outputs/exp07_calibration/tables/low_score_calibration_comparison.csv | PASS |  |
+| no CR-only line endings | thesis_exp/outputs/exp07_calibration/tables/low_score_calibration_comparison.csv | PASS |  |
+| LF line endings | thesis_exp/outputs/exp07_calibration/tables/low_score_calibration_comparison.csv | PASS |  |
+| first line <= 1000 chars | thesis_exp/outputs/exp07_calibration/tables/low_score_calibration_comparison.csv | PASS | 106 |
+| not collapsed-line file | thesis_exp/outputs/exp07_calibration/tables/low_score_calibration_comparison.csv | PASS | 7 |
+| not large one-line md/csv | thesis_exp/outputs/exp07_calibration/tables/low_score_calibration_comparison.csv | PASS | lines=7; bytes=947 |
+| file size below 20MB | thesis_exp/outputs/exp07_calibration/tables/low_score_calibration_comparison.csv | PASS | 947 |
+| not checkpoint/weight artifact | thesis_exp/outputs/exp07_calibration/tables/low_score_calibration_comparison.csv | PASS |  |
+| no API key string | thesis_exp/outputs/exp07_calibration/tables/low_score_calibration_comparison.csv | PASS |  |
+| CSV readable | thesis_exp/outputs/exp07_calibration/tables/per_label_accuracy.csv | PASS |  |
+| CSV pandas readable | thesis_exp/outputs/exp07_calibration/tables/per_label_accuracy.csv | PASS |  |
+| no CRLF line endings | thesis_exp/outputs/exp07_calibration/tables/per_label_accuracy.csv | PASS |  |
+| no CR-only line endings | thesis_exp/outputs/exp07_calibration/tables/per_label_accuracy.csv | PASS |  |
+| LF line endings | thesis_exp/outputs/exp07_calibration/tables/per_label_accuracy.csv | PASS |  |
+| first line <= 1000 chars | thesis_exp/outputs/exp07_calibration/tables/per_label_accuracy.csv | PASS | 58 |
+| not collapsed-line file | thesis_exp/outputs/exp07_calibration/tables/per_label_accuracy.csv | PASS | 16 |
+| not large one-line md/csv | thesis_exp/outputs/exp07_calibration/tables/per_label_accuracy.csv | PASS | lines=16; bytes=1263 |
+| file size below 20MB | thesis_exp/outputs/exp07_calibration/tables/per_label_accuracy.csv | PASS | 1263 |
+| not checkpoint/weight artifact | thesis_exp/outputs/exp07_calibration/tables/per_label_accuracy.csv | PASS |  |
+| no API key string | thesis_exp/outputs/exp07_calibration/tables/per_label_accuracy.csv | PASS |  |
+| CSV readable | thesis_exp/outputs/exp07_calibration/tables/pred_label_distribution.csv | PASS |  |
+| CSV pandas readable | thesis_exp/outputs/exp07_calibration/tables/pred_label_distribution.csv | PASS |  |
+| no CRLF line endings | thesis_exp/outputs/exp07_calibration/tables/pred_label_distribution.csv | PASS |  |
+| no CR-only line endings | thesis_exp/outputs/exp07_calibration/tables/pred_label_distribution.csv | PASS |  |
+| LF line endings | thesis_exp/outputs/exp07_calibration/tables/pred_label_distribution.csv | PASS |  |
+| first line <= 1000 chars | thesis_exp/outputs/exp07_calibration/tables/pred_label_distribution.csv | PASS | 45 |
+| not collapsed-line file | thesis_exp/outputs/exp07_calibration/tables/pred_label_distribution.csv | PASS | 16 |
+| not large one-line md/csv | thesis_exp/outputs/exp07_calibration/tables/pred_label_distribution.csv | PASS | lines=16; bytes=1019 |
+| file size below 20MB | thesis_exp/outputs/exp07_calibration/tables/pred_label_distribution.csv | PASS | 1019 |
+| not checkpoint/weight artifact | thesis_exp/outputs/exp07_calibration/tables/pred_label_distribution.csv | PASS |  |
+| no API key string | thesis_exp/outputs/exp07_calibration/tables/pred_label_distribution.csv | PASS |  |
+| CSV readable | thesis_exp/outputs/exp07_calibration/tables/raw_baseline_metrics.csv | PASS |  |
+| CSV pandas readable | thesis_exp/outputs/exp07_calibration/tables/raw_baseline_metrics.csv | PASS |  |
+| no CRLF line endings | thesis_exp/outputs/exp07_calibration/tables/raw_baseline_metrics.csv | PASS |  |
+| no CR-only line endings | thesis_exp/outputs/exp07_calibration/tables/raw_baseline_metrics.csv | PASS |  |
+| LF line endings | thesis_exp/outputs/exp07_calibration/tables/raw_baseline_metrics.csv | PASS |  |
+| first line <= 1000 chars | thesis_exp/outputs/exp07_calibration/tables/raw_baseline_metrics.csv | PASS | 270 |
+| not collapsed-line file | thesis_exp/outputs/exp07_calibration/tables/raw_baseline_metrics.csv | PASS | 3 |
+| not large one-line md/csv | thesis_exp/outputs/exp07_calibration/tables/raw_baseline_metrics.csv | PASS | lines=3; bytes=1084 |
+| file size below 20MB | thesis_exp/outputs/exp07_calibration/tables/raw_baseline_metrics.csv | PASS | 1084 |
+| not checkpoint/weight artifact | thesis_exp/outputs/exp07_calibration/tables/raw_baseline_metrics.csv | PASS |  |
+| no API key string | thesis_exp/outputs/exp07_calibration/tables/raw_baseline_metrics.csv | PASS |  |
+| CSV readable | thesis_exp/outputs/exp07_calibration/tables/rejection_analysis.csv | PASS |  |
+| CSV pandas readable | thesis_exp/outputs/exp07_calibration/tables/rejection_analysis.csv | PASS |  |
+| no CRLF line endings | thesis_exp/outputs/exp07_calibration/tables/rejection_analysis.csv | PASS |  |
+| no CR-only line endings | thesis_exp/outputs/exp07_calibration/tables/rejection_analysis.csv | PASS |  |
+| LF line endings | thesis_exp/outputs/exp07_calibration/tables/rejection_analysis.csv | PASS |  |
+| first line <= 1000 chars | thesis_exp/outputs/exp07_calibration/tables/rejection_analysis.csv | PASS | 114 |
+| not collapsed-line file | thesis_exp/outputs/exp07_calibration/tables/rejection_analysis.csv | PASS | 2 |
+| not large one-line md/csv | thesis_exp/outputs/exp07_calibration/tables/rejection_analysis.csv | PASS | lines=2; bytes=263 |
+| file size below 20MB | thesis_exp/outputs/exp07_calibration/tables/rejection_analysis.csv | PASS | 263 |
+| not checkpoint/weight artifact | thesis_exp/outputs/exp07_calibration/tables/rejection_analysis.csv | PASS |  |
+| no API key string | thesis_exp/outputs/exp07_calibration/tables/rejection_analysis.csv | PASS |  |
+| CSV readable | thesis_exp/outputs/exp07_calibration/tables/risk_aware_threshold_best_configs.csv | PASS |  |
+| CSV pandas readable | thesis_exp/outputs/exp07_calibration/tables/risk_aware_threshold_best_configs.csv | PASS |  |
+| no CRLF line endings | thesis_exp/outputs/exp07_calibration/tables/risk_aware_threshold_best_configs.csv | PASS |  |
+| no CR-only line endings | thesis_exp/outputs/exp07_calibration/tables/risk_aware_threshold_best_configs.csv | PASS |  |
+| LF line endings | thesis_exp/outputs/exp07_calibration/tables/risk_aware_threshold_best_configs.csv | PASS |  |
+| first line <= 1000 chars | thesis_exp/outputs/exp07_calibration/tables/risk_aware_threshold_best_configs.csv | PASS | 153 |
+| not collapsed-line file | thesis_exp/outputs/exp07_calibration/tables/risk_aware_threshold_best_configs.csv | PASS | 2 |
+| not large one-line md/csv | thesis_exp/outputs/exp07_calibration/tables/risk_aware_threshold_best_configs.csv | PASS | lines=2; bytes=320 |
+| file size below 20MB | thesis_exp/outputs/exp07_calibration/tables/risk_aware_threshold_best_configs.csv | PASS | 320 |
+| not checkpoint/weight artifact | thesis_exp/outputs/exp07_calibration/tables/risk_aware_threshold_best_configs.csv | PASS |  |
+| no API key string | thesis_exp/outputs/exp07_calibration/tables/risk_aware_threshold_best_configs.csv | PASS |  |
+| CSV readable | thesis_exp/outputs/exp07_calibration/tables/risk_aware_threshold_calibration_dev.csv | PASS |  |
+| CSV pandas readable | thesis_exp/outputs/exp07_calibration/tables/risk_aware_threshold_calibration_dev.csv | PASS |  |
+| no CRLF line endings | thesis_exp/outputs/exp07_calibration/tables/risk_aware_threshold_calibration_dev.csv | PASS |  |
+| no CR-only line endings | thesis_exp/outputs/exp07_calibration/tables/risk_aware_threshold_calibration_dev.csv | PASS |  |
+| LF line endings | thesis_exp/outputs/exp07_calibration/tables/risk_aware_threshold_calibration_dev.csv | PASS |  |
+| first line <= 1000 chars | thesis_exp/outputs/exp07_calibration/tables/risk_aware_threshold_calibration_dev.csv | PASS | 469 |
+| not collapsed-line file | thesis_exp/outputs/exp07_calibration/tables/risk_aware_threshold_calibration_dev.csv | PASS | 9 |
+| not large one-line md/csv | thesis_exp/outputs/exp07_calibration/tables/risk_aware_threshold_calibration_dev.csv | PASS | lines=9; bytes=5089 |
+| file size below 20MB | thesis_exp/outputs/exp07_calibration/tables/risk_aware_threshold_calibration_dev.csv | PASS | 5089 |
+| not checkpoint/weight artifact | thesis_exp/outputs/exp07_calibration/tables/risk_aware_threshold_calibration_dev.csv | PASS |  |
+| no API key string | thesis_exp/outputs/exp07_calibration/tables/risk_aware_threshold_calibration_dev.csv | PASS |  |
+| CSV readable | thesis_exp/outputs/exp07_calibration/tables/risk_aware_threshold_calibration_test.csv | PASS |  |
+| CSV pandas readable | thesis_exp/outputs/exp07_calibration/tables/risk_aware_threshold_calibration_test.csv | PASS |  |
+| no CRLF line endings | thesis_exp/outputs/exp07_calibration/tables/risk_aware_threshold_calibration_test.csv | PASS |  |
+| no CR-only line endings | thesis_exp/outputs/exp07_calibration/tables/risk_aware_threshold_calibration_test.csv | PASS |  |
+| LF line endings | thesis_exp/outputs/exp07_calibration/tables/risk_aware_threshold_calibration_test.csv | PASS |  |
+| first line <= 1000 chars | thesis_exp/outputs/exp07_calibration/tables/risk_aware_threshold_calibration_test.csv | PASS | 429 |
+| not collapsed-line file | thesis_exp/outputs/exp07_calibration/tables/risk_aware_threshold_calibration_test.csv | PASS | 2 |
+| not large one-line md/csv | thesis_exp/outputs/exp07_calibration/tables/risk_aware_threshold_calibration_test.csv | PASS | lines=2; bytes=1009 |
+| file size below 20MB | thesis_exp/outputs/exp07_calibration/tables/risk_aware_threshold_calibration_test.csv | PASS | 1009 |
+| not checkpoint/weight artifact | thesis_exp/outputs/exp07_calibration/tables/risk_aware_threshold_calibration_test.csv | PASS |  |
+| no API key string | thesis_exp/outputs/exp07_calibration/tables/risk_aware_threshold_calibration_test.csv | PASS |  |
+| CSV readable | thesis_exp/outputs/exp07_calibration/tables/sanity_check_exp07_calibration.csv | PASS |  |
+| CSV pandas readable | thesis_exp/outputs/exp07_calibration/tables/sanity_check_exp07_calibration.csv | PASS |  |
+| no CRLF line endings | thesis_exp/outputs/exp07_calibration/tables/sanity_check_exp07_calibration.csv | PASS |  |
+| no CR-only line endings | thesis_exp/outputs/exp07_calibration/tables/sanity_check_exp07_calibration.csv | PASS |  |
+| LF line endings | thesis_exp/outputs/exp07_calibration/tables/sanity_check_exp07_calibration.csv | PASS |  |
+| first line <= 1000 chars | thesis_exp/outputs/exp07_calibration/tables/sanity_check_exp07_calibration.csv | PASS | 25 |
+| not collapsed-line file | thesis_exp/outputs/exp07_calibration/tables/sanity_check_exp07_calibration.csv | PASS | 30 |
+| not large one-line md/csv | thesis_exp/outputs/exp07_calibration/tables/sanity_check_exp07_calibration.csv | PASS | lines=30; bytes=3606 |
+| file size below 20MB | thesis_exp/outputs/exp07_calibration/tables/sanity_check_exp07_calibration.csv | PASS | 3606 |
+| not checkpoint/weight artifact | thesis_exp/outputs/exp07_calibration/tables/sanity_check_exp07_calibration.csv | PASS |  |
+| no API key string | thesis_exp/outputs/exp07_calibration/tables/sanity_check_exp07_calibration.csv | PASS |  |
+| CSV readable | thesis_exp/outputs/exp07_calibration/tables/temperature_scaling_dev.csv | PASS |  |
+| CSV pandas readable | thesis_exp/outputs/exp07_calibration/tables/temperature_scaling_dev.csv | PASS |  |
+| no CRLF line endings | thesis_exp/outputs/exp07_calibration/tables/temperature_scaling_dev.csv | PASS |  |
+| no CR-only line endings | thesis_exp/outputs/exp07_calibration/tables/temperature_scaling_dev.csv | PASS |  |
+| LF line endings | thesis_exp/outputs/exp07_calibration/tables/temperature_scaling_dev.csv | PASS |  |
+| first line <= 1000 chars | thesis_exp/outputs/exp07_calibration/tables/temperature_scaling_dev.csv | PASS | 316 |
+| not collapsed-line file | thesis_exp/outputs/exp07_calibration/tables/temperature_scaling_dev.csv | PASS | 9 |
+| not large one-line md/csv | thesis_exp/outputs/exp07_calibration/tables/temperature_scaling_dev.csv | PASS | lines=9; bytes=3894 |
+| file size below 20MB | thesis_exp/outputs/exp07_calibration/tables/temperature_scaling_dev.csv | PASS | 3894 |
+| not checkpoint/weight artifact | thesis_exp/outputs/exp07_calibration/tables/temperature_scaling_dev.csv | PASS |  |
+| no API key string | thesis_exp/outputs/exp07_calibration/tables/temperature_scaling_dev.csv | PASS |  |
+| CSV readable | thesis_exp/outputs/exp07_calibration/tables/temperature_scaling_test.csv | PASS |  |
+| CSV pandas readable | thesis_exp/outputs/exp07_calibration/tables/temperature_scaling_test.csv | PASS |  |
+| no CRLF line endings | thesis_exp/outputs/exp07_calibration/tables/temperature_scaling_test.csv | PASS |  |
+| no CR-only line endings | thesis_exp/outputs/exp07_calibration/tables/temperature_scaling_test.csv | PASS |  |
+| LF line endings | thesis_exp/outputs/exp07_calibration/tables/temperature_scaling_test.csv | PASS |  |
+| first line <= 1000 chars | thesis_exp/outputs/exp07_calibration/tables/temperature_scaling_test.csv | PASS | 316 |
+| not collapsed-line file | thesis_exp/outputs/exp07_calibration/tables/temperature_scaling_test.csv | PASS | 9 |
+| not large one-line md/csv | thesis_exp/outputs/exp07_calibration/tables/temperature_scaling_test.csv | PASS | lines=9; bytes=3900 |
+| file size below 20MB | thesis_exp/outputs/exp07_calibration/tables/temperature_scaling_test.csv | PASS | 3900 |
+| not checkpoint/weight artifact | thesis_exp/outputs/exp07_calibration/tables/temperature_scaling_test.csv | PASS |  |
+| no API key string | thesis_exp/outputs/exp07_calibration/tables/temperature_scaling_test.csv | PASS |  |
+| CSV readable | thesis_exp/outputs/exp07_calibration/tables/true_pred_confusion.csv | PASS |  |
+| CSV pandas readable | thesis_exp/outputs/exp07_calibration/tables/true_pred_confusion.csv | PASS |  |
+| no CRLF line endings | thesis_exp/outputs/exp07_calibration/tables/true_pred_confusion.csv | PASS |  |
+| no CR-only line endings | thesis_exp/outputs/exp07_calibration/tables/true_pred_confusion.csv | PASS |  |
+| LF line endings | thesis_exp/outputs/exp07_calibration/tables/true_pred_confusion.csv | PASS |  |
+| first line <= 1000 chars | thesis_exp/outputs/exp07_calibration/tables/true_pred_confusion.csv | PASS | 81 |
+| not collapsed-line file | thesis_exp/outputs/exp07_calibration/tables/true_pred_confusion.csv | PASS | 76 |
+| not large one-line md/csv | thesis_exp/outputs/exp07_calibration/tables/true_pred_confusion.csv | PASS | lines=76; bytes=5685 |
+| file size below 20MB | thesis_exp/outputs/exp07_calibration/tables/true_pred_confusion.csv | PASS | 5685 |
+| not checkpoint/weight artifact | thesis_exp/outputs/exp07_calibration/tables/true_pred_confusion.csv | PASS |  |
+| no API key string | thesis_exp/outputs/exp07_calibration/tables/true_pred_confusion.csv | PASS |  |
 | no tracked checkpoint/weights | . | PASS |  |

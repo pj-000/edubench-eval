@@ -5,11 +5,15 @@ from __future__ import annotations
 import csv
 import json
 import py_compile
+import re
 import subprocess
 from pathlib import Path
 from typing import Any
 
+import pandas as pd
+
 from thesis_exp.src.edujudge.exp07_rank_consistent import (
+    EXP07_CALIBRATION_OUTPUT_DIR,
     EXP07_CONFIG_DIR,
     EXP07_OUTPUT_DIR,
     EXP07_SRC_DIR,
@@ -54,6 +58,8 @@ def candidate_files() -> list[Path]:
     files.extend(path for path in SCRIPT_PATHS if path.exists())
     if EXP07_OUTPUT_DIR.exists():
         files.extend(path for path in sorted(EXP07_OUTPUT_DIR.rglob("*")) if path.is_file())
+    if EXP07_CALIBRATION_OUTPUT_DIR.exists():
+        files.extend(path for path in sorted(EXP07_CALIBRATION_OUTPUT_DIR.rglob("*")) if path.is_file())
     unique: list[Path] = []
     seen = set()
     for path in files:
@@ -85,6 +91,11 @@ def check_csv(rows: list[dict[str, Any]], path: Path) -> None:
         add(rows, "CSV readable", path, True)
     except Exception as exc:
         add(rows, "CSV readable", path, False, f"{type(exc).__name__}: {exc}")
+    try:
+        pd.read_csv(path)
+        add(rows, "CSV pandas readable", path, True)
+    except Exception as exc:
+        add(rows, "CSV pandas readable", path, False, f"{type(exc).__name__}: {exc}")
 
 
 def check_jsonl(rows: list[dict[str, Any]], path: Path) -> None:
@@ -141,6 +152,15 @@ def check_size_and_weights(rows: list[dict[str, Any]], path: Path) -> None:
     add(rows, "not checkpoint/weight artifact", path, path.suffix.lower() not in CHECKPOINT_SUFFIXES)
 
 
+def check_no_api_key(rows: list[dict[str, Any]], path: Path) -> None:
+    if path.suffix.lower() not in TEXT_SUFFIXES:
+        return
+    text = path.read_text(encoding="utf-8", errors="ignore")
+    api_env_name = "OPENAI" + "_API_KEY"
+    has_key = api_env_name in text or re.search(r"\bsk-[A-Za-z0-9_-]{20,}", text) is not None
+    add(rows, "no API key string", path, not has_key)
+
+
 def main() -> None:
     ensure_exp07_dirs()
     rows: list[dict[str, Any]] = []
@@ -156,6 +176,7 @@ def main() -> None:
             check_markdown(rows, path)
         check_line_endings(rows, path)
         check_size_and_weights(rows, path)
+        check_no_api_key(rows, path)
     weights = tracked_weight_files()
     add(rows, "no tracked checkpoint/weights", Path("."), not weights, ", ".join(weights))
     write_csv(EXP07_TABLES_DIR / "readability_check_exp07.csv", rows)

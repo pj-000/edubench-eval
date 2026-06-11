@@ -1,0 +1,7 @@
+base_model,method,split,Acc@5,high_to_mid_or_low_rate,high_signed_bias,mean_pred_high
+QD-R1_CORAL_human_only,raw,test,0.8977272727272727,0.003246753246753247,0.04329004329004316,4.89448051948052
+QD-R1_CORAL_human_only,temperature_scaling,test,0.8977272727272727,0.003246753246753247,0.04329004329004316,4.89448051948052
+QD-R1_CORAL_human_only,global_threshold,test,0.6801948051948052,0.003246753246753247,-0.1742424242424244,4.6769480519480515
+QD-R1_CORAL_human_only,risk_aware_threshold,test,0.8652597402597403,0.011363636363636364,0.0027056277056275806,4.853896103896104
+QD-B0_human_only_ordinary_ordinal,raw_reference_existing_summary,test,0.7873376623376623,0.003246753246753247,,
+QD-B1_human_only_L1_weighted_ordinal,raw_reference_existing_summary,test,0.7418831168831169,0.01461038961038961,,

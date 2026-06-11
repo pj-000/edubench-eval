@@ -1,0 +1,16 @@
+base_model,method,split,pred_label,count,rate
+QD-R1_CORAL_human_only,raw,test,1,8,0.007252946509519492
+QD-R1_CORAL_human_only,raw,test,2,1,0.0009066183136899365
+QD-R1_CORAL_human_only,raw,test,3,44,0.03989120580235721
+QD-R1_CORAL_human_only,raw,test,4,265,0.24025385312783318
+QD-R1_CORAL_human_only,raw,test,5,785,0.7116953762466002
+QD-R1_CORAL_human_only,global_threshold,test,1,8,0.007252946509519492
+QD-R1_CORAL_human_only,global_threshold,test,2,0,0.0
+QD-R1_CORAL_human_only,global_threshold,test,3,45,0.04079782411604715
+QD-R1_CORAL_human_only,global_threshold,test,4,554,0.5022665457842248
+QD-R1_CORAL_human_only,global_threshold,test,5,496,0.4496826835902085
+QD-R1_CORAL_human_only,risk_aware_threshold,test,1,8,0.007252946509519492
+QD-R1_CORAL_human_only,risk_aware_threshold,test,2,0,0.0
+QD-R1_CORAL_human_only,risk_aware_threshold,test,3,76,0.06890299184043518
+QD-R1_CORAL_human_only,risk_aware_threshold,test,4,306,0.2774252039891206
+QD-R1_CORAL_human_only,risk_aware_threshold,test,5,713,0.6464188576609248

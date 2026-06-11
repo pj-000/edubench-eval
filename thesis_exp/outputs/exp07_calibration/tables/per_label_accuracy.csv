@@ -1,0 +1,16 @@
+base_model,method,split,label_5,n,accuracy,mean_pred_label
+QD-R1_CORAL_human_only,raw,test,1,9,0.8888888888888888,1.3333333333333333
+QD-R1_CORAL_human_only,raw,test,2,22,0.0,4.0
+QD-R1_CORAL_human_only,raw,test,3,105,0.17142857142857143,4.142857142857143
+QD-R1_CORAL_human_only,raw,test,4,351,0.41025641025641024,4.492877492877493
+QD-R1_CORAL_human_only,raw,test,5,616,0.8977272727272727,4.89448051948052
+QD-R1_CORAL_human_only,global_threshold,test,1,9,0.8888888888888888,1.3333333333333333
+QD-R1_CORAL_human_only,global_threshold,test,2,22,0.0,3.8636363636363638
+QD-R1_CORAL_human_only,global_threshold,test,3,105,0.18095238095238095,3.9238095238095236
+QD-R1_CORAL_human_only,global_threshold,test,4,351,0.7749287749287749,4.128205128205129
+QD-R1_CORAL_human_only,global_threshold,test,5,616,0.6801948051948052,4.6769480519480515
+QD-R1_CORAL_human_only,risk_aware_threshold,test,1,9,0.8888888888888888,1.3333333333333333
+QD-R1_CORAL_human_only,risk_aware_threshold,test,2,22,0.0,3.8636363636363638
+QD-R1_CORAL_human_only,risk_aware_threshold,test,3,105,0.24761904761904763,4.0
+QD-R1_CORAL_human_only,risk_aware_threshold,test,4,351,0.4757834757834758,4.3247863247863245
+QD-R1_CORAL_human_only,risk_aware_threshold,test,5,616,0.8652597402597403,4.853896103896104
