@@ -298,7 +298,17 @@ def exp7b_gate(rows: list[dict[str, Any]], deltas: list[dict[str, Any]]) -> str:
     )
     low_ok = _as_float(low_delta.get("delta")) is not None and float(low_delta["delta"]) < 0
     mae_ok = _as_float(mae_delta.get("delta")) is None or float(mae_delta["delta"]) <= 0.03
-    return "YES" if low_ok and mae_ok else "REVIEW_REQUIRED"
+    return "YES" if low_ok and mae_ok else "NOT_RECOMMENDED_YET"
+
+
+def _answer_hurts_acc5(deltas: list[dict[str, Any]]) -> str:
+    row = next((item for item in deltas if item["comparison"] == "QD-R1_minus_QD-B0" and item["metric"] == "Acc@5"), {})
+    if not row:
+        return "PENDING_FORMAL_TRAINING"
+    delta = float(row["delta"])
+    if delta >= 0:
+        return "NO; Acc@5 increases, but overestimation bias also increases"
+    return "YES"
 
 
 def write_reports(rows: list[dict[str, Any]], deltas: list[dict[str, Any]]) -> None:
@@ -344,7 +354,8 @@ def write_reports(rows: list[dict[str, Any]], deltas: list[dict[str, Any]]) -> N
             f"- Does QD-R1 reduce monotonic_violation_rate? {_answer_delta(deltas, 'monotonic_violation_rate')}",
             f"- Does QD-R1 reduce low_to_high_rate? {_answer_delta(deltas, 'low_to_high_rate')}",
             f"- Does QD-R1 improve MAE_label/QWK/Kendall? {_answer_quality(deltas)}",
-            f"- Does QD-R1 hurt Acc@5? {_answer_delta(deltas, 'Acc@5', higher_better=True)}",
+            f"- Does QD-R1 hurt Acc@5? {_answer_hurts_acc5(deltas)}",
+            "- Interpretation: rank consistency solved monotonic violation but did not solve low-score overestimation.",
             f"- Should Exp7-B start? **{gate}**",
         ]
     )
@@ -364,13 +375,14 @@ def write_reports(rows: list[dict[str, Any]], deltas: list[dict[str, Any]]) -> N
         "",
         "- Implemented only QD-R1 CORAL rank-consistent ordinal scorer.",
         "- No CORN, class-balanced loss, focal loss, calibration, API calls, or synthetic generation.",
-        "- Formal training remains pending until the server script is run.",
+        f"- Formal training status: {qdr1.get('status', 'pending') if qdr1 else 'pending'}.",
+        "- Rank consistency is solved, but low-score overestimation is not solved.",
         "",
         "Review focus:",
         "",
         "- Confirm QD-S0 train/dev/test are human-only and A4 text is used directly.",
         "- Confirm CORAL logits satisfy z1 >= z2 >= z3 >= z4 and probabilities are monotonic.",
-        "- After training, compare QD-R1 against QD-B0 first and QD-B1 second.",
+        "- Use `reports/qdr1_diagnosis.md` before deciding whether any Exp7-B variant is justified.",
     ]
     write_text(EXP07_OUTPUT_DIR / "review_package.md", "\n".join(review_lines))
     write_text(EXP07_REPORTS_DIR / "review_package.md", "\n".join(review_lines))
@@ -386,6 +398,7 @@ def write_reports(rows: list[dict[str, Any]], deltas: list[dict[str, Any]]) -> N
         "- Class weights, focal loss, calibration: no.",
         f"- Formal status: `{qdr1.get('status', 'pending') if qdr1 else 'pending'}`.",
         f"- Exp7-B gate: **{gate}**.",
+        "- Rank consistency solved monotonic violation, but low-score overestimation remains.",
     ]
     write_text(EXP07_OUTPUT_DIR / "notion_exp07_r1_summary.md", "\n".join(notion_lines))
 
@@ -414,7 +427,7 @@ def _answer_quality(deltas: list[dict[str, Any]]) -> str:
         found.append(delta < 0 if direction == "lower" else delta > 0)
     if not found:
         return "PENDING_FORMAL_TRAINING"
-    return "YES" if all(found) else "MIXED_OR_NO"
+    return "YES" if all(found) else "NO"
 
 
 def collect(run_dir: Path = exp07_run_dir()) -> None:

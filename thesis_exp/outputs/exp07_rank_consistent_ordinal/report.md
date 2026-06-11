@@ -23,8 +23,9 @@ This is scoring model fine-tuning, not generative SFT.
 
 - Does QD-R1 reduce monotonic_violation_rate? YES
 - Does QD-R1 reduce low_to_high_rate? NO
-- Does QD-R1 improve MAE_label/QWK/Kendall? MIXED_OR_NO
-- Does QD-R1 hurt Acc@5? YES
-- Should Exp7-B start? **REVIEW_REQUIRED**
+- Does QD-R1 improve MAE_label/QWK/Kendall? NO
+- Does QD-R1 hurt Acc@5? NO; Acc@5 increases, but overestimation bias also increases
+- Interpretation: rank consistency solved monotonic violation but did not solve low-score overestimation.
+- Should Exp7-B start? **NOT_RECOMMENDED_YET**
 
 Model checkpoints live under `thesis_exp/artifacts/` and must not be committed.

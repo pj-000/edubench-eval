@@ -7,4 +7,5 @@
 - Synthetic data: no.
 - Class weights, focal loss, calibration: no.
 - Formal status: `completed`.
-- Exp7-B gate: **REVIEW_REQUIRED**.
+- Exp7-B gate: **NOT_RECOMMENDED_YET**.
+- Rank consistency solved monotonic violation, but low-score overestimation remains.

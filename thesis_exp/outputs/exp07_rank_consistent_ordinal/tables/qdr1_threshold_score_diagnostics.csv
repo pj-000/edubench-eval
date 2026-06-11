@@ -1,0 +1,11 @@
+split,true_label,n,tau_1,tau_2,tau_3,tau_4,mean_latent_score,threshold_gap_12,threshold_gap_23,threshold_gap_34,status,reason
+dev,1,19,,,,,,1.0003156724729036,1.0008478196043717,1.001052853308226,unavailable,learned threshold parameters and latent score arrays are not stored in the run output; only logits/probabilities were exported
+dev,2,38,,,,,,1.0003156787470768,1.000847810193112,1.001052853308226,unavailable,learned threshold parameters and latent score arrays are not stored in the run output; only logits/probabilities were exported
+dev,3,105,,,,,,1.0003156696047102,1.0008478136289687,1.001052839415414,unavailable,learned threshold parameters and latent score arrays are not stored in the run output; only logits/probabilities were exported
+dev,4,389,,,,,,1.0003156701825884,1.000847812943103,1.0010528549130595,unavailable,learned threshold parameters and latent score arrays are not stored in the run output; only logits/probabilities were exported
+dev,5,556,,,,,,1.000315668985998,1.000847807140659,1.0010528442242164,unavailable,learned threshold parameters and latent score arrays are not stored in the run output; only logits/probabilities were exported
+test,1,9,,,,,,1.0003156926896837,1.0008478164672852,1.0010528564453125,unavailable,learned threshold parameters and latent score arrays are not stored in the run output; only logits/probabilities were exported
+test,2,22,,,,,,1.0003156743266366,1.0008478110486811,1.0010528483174064,unavailable,learned threshold parameters and latent score arrays are not stored in the run output; only logits/probabilities were exported
+test,3,105,,,,,,1.0003156565484546,1.0008478147642954,1.0010528479303633,unavailable,learned threshold parameters and latent score arrays are not stored in the run output; only logits/probabilities were exported
+test,4,351,,,,,,1.0003156660289168,1.0008478129861023,1.0010528548320814,unavailable,learned threshold parameters and latent score arrays are not stored in the run output; only logits/probabilities were exported
+test,5,616,,,,,,1.0003156698756404,1.0008478107583987,1.0010528436728887,unavailable,learned threshold parameters and latent score arrays are not stored in the run output; only logits/probabilities were exported
