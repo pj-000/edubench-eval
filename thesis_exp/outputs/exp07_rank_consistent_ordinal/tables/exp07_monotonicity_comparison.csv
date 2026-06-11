@@ -1,0 +1,6 @@
+run_id,setting,status,split,n,monotonic_violation_rate,mean_violation_magnitude,p1_ge_p2_rate,p2_ge_p3_rate,p3_ge_p4_rate,mean_prob_gt_1,mean_prob_gt_2,mean_prob_gt_3,mean_prob_gt_4,prob_gt_1_positive_rate,prob_gt_2_positive_rate,prob_gt_3_positive_rate,prob_gt_4_positive_rate
+QD-B0_human_only_ordinary_ordinal,human-only ordinary independent ordinal,completed,dev,1107,0.23486901535682023,,,,,,,,,,,,
+QD-B0_human_only_ordinary_ordinal,human-only ordinary independent ordinal,completed,test,1103,0.1985494106980961,,,,,,,,,,,,
+QD-B1_human_only_L1_weighted_ordinal,human-only L1 weighted independent ordinal,completed,dev,1107,0.3053297199638663,,,,,,,,,,,,
+QD-B1_human_only_L1_weighted_ordinal,human-only L1 weighted independent ordinal,completed,test,1103,0.3118766999093382,,,,,,,,,,,,
+QD-R1_CORAL_human_only,human-only CORAL rank-consistent ordinal,pending_formal_training,test,,,,,,,,,,,,,,

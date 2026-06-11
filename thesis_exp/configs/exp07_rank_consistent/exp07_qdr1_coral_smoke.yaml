@@ -1,0 +1,16 @@
+run_id: QD-R1_CORAL_human_only
+dataset_id: QD-S0_human_only
+split: question_seed42
+input_template: A4
+model_name_or_path: /home/share/models/modelscope/Qwen/Qwen3-Reranker-0.6B
+head_type: coral
+objective: rank_consistent_ordinal
+loss: ordinal_bce
+use_class_weights: false
+use_synthetic: false
+use_calibration: false
+smoke:
+  max_train_samples: 8
+  max_eval_samples: 8
+  epochs: 0.01
+  batch_size: 1

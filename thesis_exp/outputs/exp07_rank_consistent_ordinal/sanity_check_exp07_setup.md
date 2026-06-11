@@ -1,0 +1,58 @@
+# Exp7 Setup Sanity Check
+
+Run ID: `QD-R1_CORAL_human_only`
+Status: `PASS`
+
+| check | status | details |
+| --- | --- | --- |
+| train row count = 3326 | PASS | 3326 |
+| train rows are human only | PASS |  |
+| train label provenance is human_score | PASS |  |
+| train labels are 1..5 | PASS |  |
+| train A4 text exists | PASS |  |
+| train template_name is A4 | PASS |  |
+| train has no synthetic rows | PASS |  |
+| dev row count = 1107 | PASS | 1107 |
+| dev rows are human only | PASS |  |
+| dev label provenance is human_score | PASS |  |
+| dev labels are 1..5 | PASS |  |
+| dev A4 text exists | PASS |  |
+| dev template_name is A4 | PASS |  |
+| dev has no synthetic rows | PASS |  |
+| test row count = 1103 | PASS | 1103 |
+| test rows are human only | PASS |  |
+| test label provenance is human_score | PASS |  |
+| test labels are 1..5 | PASS |  |
+| test A4 text exists | PASS |  |
+| test template_name is A4 | PASS |  |
+| test has no synthetic rows | PASS |  |
+| QD-B0/QD-B1 baseline comparison files exist | PASS | thesis_exp/outputs/exp06_question_disjoint_baselines/tables |
+| no checkpoint/weights tracked | PASS |  |
+| no tracked Exp0-Exp6 output modifications | PASS |  |
+| ordinal target toy conversion correct | PASS | [[0.0, 0.0, 0.0, 0.0], [1.0, 0.0, 0.0, 0.0], [1.0, 1.0, 0.0, 0.0], [1.0, 1.0, 1.0, 0.0], [1.0, 1.0, 1.0, 1.0]] |
+| label_5=0 raises error | PASS |  |
+| CORAL toy logits shape = [batch,4] | PASS | (2, 4) |
+| CORAL toy logits monotonic by construction | PASS |  |
+| CORAL toy probs monotonic by construction | PASS |  |
+| coral_ordinal_loss finite | PASS | 0.708179235458374 |
+| pred_label in 1..5 | PASS | [(4, 3.415845602750778), (3, 3.0774648189544678)] |
+| toy check backend | PASS | torch |
+| script exists thesis_exp/scripts/run_exp07_qdr1_smoke.sh | PASS |  |
+| bash -n thesis_exp/scripts/run_exp07_qdr1_smoke.sh | PASS |  |
+| script exists thesis_exp/scripts/run_exp07_qdr1_train.sh | PASS |  |
+| bash -n thesis_exp/scripts/run_exp07_qdr1_train.sh | PASS |  |
+| script exists thesis_exp/scripts/sync_exp07_qdr1_to_server.sh | PASS |  |
+| bash -n thesis_exp/scripts/sync_exp07_qdr1_to_server.sh | PASS |  |
+| py_compile thesis_exp/src/edujudge/exp07_rank_consistent/__init__.py | PASS |  |
+| py_compile thesis_exp/src/edujudge/exp07_rank_consistent/collect_exp07_results.py | PASS |  |
+| py_compile thesis_exp/src/edujudge/exp07_rank_consistent/coral_head.py | PASS |  |
+| py_compile thesis_exp/src/edujudge/exp07_rank_consistent/data.py | PASS |  |
+| py_compile thesis_exp/src/edujudge/exp07_rank_consistent/losses.py | PASS |  |
+| py_compile thesis_exp/src/edujudge/exp07_rank_consistent/metrics.py | PASS |  |
+| py_compile thesis_exp/src/edujudge/exp07_rank_consistent/readability_check_exp07.py | PASS |  |
+| py_compile thesis_exp/src/edujudge/exp07_rank_consistent/sanity_check_exp07_outputs.py | PASS |  |
+| py_compile thesis_exp/src/edujudge/exp07_rank_consistent/sanity_check_exp07_setup.py | PASS |  |
+| py_compile thesis_exp/src/edujudge/exp07_rank_consistent/train_qdr1_coral.py | PASS |  |
+| py_compile thesis_exp/src/edujudge/exp07_rank_consistent/write_exp07_report.py | PASS |  |
+| no checkpoint/weights tracked after setup checks | PASS |  |
+| Exp7 pending report/review package written | PASS | thesis_exp/outputs/exp07_rank_consistent_ordinal |

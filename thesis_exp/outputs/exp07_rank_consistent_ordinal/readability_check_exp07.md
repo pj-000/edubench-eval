@@ -1,0 +1,135 @@
+# Exp7 Readability Check
+
+Status: `PASS`
+
+| check | path | status | details |
+| --- | --- | --- | --- |
+| python py_compile | thesis_exp/src/edujudge/exp07_rank_consistent/__init__.py | PASS |  |
+| python py_compile | thesis_exp/src/edujudge/exp07_rank_consistent/collect_exp07_results.py | PASS |  |
+| python py_compile | thesis_exp/src/edujudge/exp07_rank_consistent/coral_head.py | PASS |  |
+| python py_compile | thesis_exp/src/edujudge/exp07_rank_consistent/data.py | PASS |  |
+| python py_compile | thesis_exp/src/edujudge/exp07_rank_consistent/losses.py | PASS |  |
+| python py_compile | thesis_exp/src/edujudge/exp07_rank_consistent/metrics.py | PASS |  |
+| python py_compile | thesis_exp/src/edujudge/exp07_rank_consistent/readability_check_exp07.py | PASS |  |
+| python py_compile | thesis_exp/src/edujudge/exp07_rank_consistent/sanity_check_exp07_outputs.py | PASS |  |
+| python py_compile | thesis_exp/src/edujudge/exp07_rank_consistent/sanity_check_exp07_setup.py | PASS |  |
+| python py_compile | thesis_exp/src/edujudge/exp07_rank_consistent/train_qdr1_coral.py | PASS |  |
+| python py_compile | thesis_exp/src/edujudge/exp07_rank_consistent/write_exp07_report.py | PASS |  |
+| shell bash -n | thesis_exp/scripts/run_exp07_qdr1_smoke.sh | PASS |  |
+| shell bash -n | thesis_exp/scripts/run_exp07_qdr1_train.sh | PASS |  |
+| shell bash -n | thesis_exp/scripts/sync_exp07_qdr1_to_server.sh | PASS |  |
+| LF line endings | thesis_exp/src/edujudge/exp07_rank_consistent/__init__.py | PASS |  |
+| not collapsed-line file | thesis_exp/src/edujudge/exp07_rank_consistent/__init__.py | PASS | 67 |
+| file size below 20MB | thesis_exp/src/edujudge/exp07_rank_consistent/__init__.py | PASS | 2262 |
+| not checkpoint/array artifact | thesis_exp/src/edujudge/exp07_rank_consistent/__init__.py | PASS |  |
+| LF line endings | thesis_exp/src/edujudge/exp07_rank_consistent/collect_exp07_results.py | PASS |  |
+| not collapsed-line file | thesis_exp/src/edujudge/exp07_rank_consistent/collect_exp07_results.py | PASS | 448 |
+| file size below 20MB | thesis_exp/src/edujudge/exp07_rank_consistent/collect_exp07_results.py | PASS | 17084 |
+| not checkpoint/array artifact | thesis_exp/src/edujudge/exp07_rank_consistent/collect_exp07_results.py | PASS |  |
+| LF line endings | thesis_exp/src/edujudge/exp07_rank_consistent/coral_head.py | PASS |  |
+| not collapsed-line file | thesis_exp/src/edujudge/exp07_rank_consistent/coral_head.py | PASS | 72 |
+| file size below 20MB | thesis_exp/src/edujudge/exp07_rank_consistent/coral_head.py | PASS | 2910 |
+| not checkpoint/array artifact | thesis_exp/src/edujudge/exp07_rank_consistent/coral_head.py | PASS |  |
+| LF line endings | thesis_exp/src/edujudge/exp07_rank_consistent/data.py | PASS |  |
+| not collapsed-line file | thesis_exp/src/edujudge/exp07_rank_consistent/data.py | PASS | 87 |
+| file size below 20MB | thesis_exp/src/edujudge/exp07_rank_consistent/data.py | PASS | 3463 |
+| not checkpoint/array artifact | thesis_exp/src/edujudge/exp07_rank_consistent/data.py | PASS |  |
+| LF line endings | thesis_exp/src/edujudge/exp07_rank_consistent/losses.py | PASS |  |
+| not collapsed-line file | thesis_exp/src/edujudge/exp07_rank_consistent/losses.py | PASS | 77 |
+| file size below 20MB | thesis_exp/src/edujudge/exp07_rank_consistent/losses.py | PASS | 3241 |
+| not checkpoint/array artifact | thesis_exp/src/edujudge/exp07_rank_consistent/losses.py | PASS |  |
+| LF line endings | thesis_exp/src/edujudge/exp07_rank_consistent/metrics.py | PASS |  |
+| not collapsed-line file | thesis_exp/src/edujudge/exp07_rank_consistent/metrics.py | PASS | 65 |
+| file size below 20MB | thesis_exp/src/edujudge/exp07_rank_consistent/metrics.py | PASS | 2552 |
+| not checkpoint/array artifact | thesis_exp/src/edujudge/exp07_rank_consistent/metrics.py | PASS |  |
+| LF line endings | thesis_exp/src/edujudge/exp07_rank_consistent/readability_check_exp07.py | PASS |  |
+| not collapsed-line file | thesis_exp/src/edujudge/exp07_rank_consistent/readability_check_exp07.py | PASS | 154 |
+| file size below 20MB | thesis_exp/src/edujudge/exp07_rank_consistent/readability_check_exp07.py | PASS | 5640 |
+| not checkpoint/array artifact | thesis_exp/src/edujudge/exp07_rank_consistent/readability_check_exp07.py | PASS |  |
+| LF line endings | thesis_exp/src/edujudge/exp07_rank_consistent/sanity_check_exp07_outputs.py | PASS |  |
+| not collapsed-line file | thesis_exp/src/edujudge/exp07_rank_consistent/sanity_check_exp07_outputs.py | PASS | 101 |
+| file size below 20MB | thesis_exp/src/edujudge/exp07_rank_consistent/sanity_check_exp07_outputs.py | PASS | 4242 |
+| not checkpoint/array artifact | thesis_exp/src/edujudge/exp07_rank_consistent/sanity_check_exp07_outputs.py | PASS |  |
+| LF line endings | thesis_exp/src/edujudge/exp07_rank_consistent/sanity_check_exp07_setup.py | PASS |  |
+| not collapsed-line file | thesis_exp/src/edujudge/exp07_rank_consistent/sanity_check_exp07_setup.py | PASS | 157 |
+| file size below 20MB | thesis_exp/src/edujudge/exp07_rank_consistent/sanity_check_exp07_setup.py | PASS | 6599 |
+| not checkpoint/array artifact | thesis_exp/src/edujudge/exp07_rank_consistent/sanity_check_exp07_setup.py | PASS |  |
+| LF line endings | thesis_exp/src/edujudge/exp07_rank_consistent/train_qdr1_coral.py | PASS |  |
+| not collapsed-line file | thesis_exp/src/edujudge/exp07_rank_consistent/train_qdr1_coral.py | PASS | 720 |
+| file size below 20MB | thesis_exp/src/edujudge/exp07_rank_consistent/train_qdr1_coral.py | PASS | 32018 |
+| not checkpoint/array artifact | thesis_exp/src/edujudge/exp07_rank_consistent/train_qdr1_coral.py | PASS |  |
+| LF line endings | thesis_exp/src/edujudge/exp07_rank_consistent/write_exp07_report.py | PASS |  |
+| not collapsed-line file | thesis_exp/src/edujudge/exp07_rank_consistent/write_exp07_report.py | PASS | 13 |
+| file size below 20MB | thesis_exp/src/edujudge/exp07_rank_consistent/write_exp07_report.py | PASS | 255 |
+| not checkpoint/array artifact | thesis_exp/src/edujudge/exp07_rank_consistent/write_exp07_report.py | PASS |  |
+| LF line endings | thesis_exp/configs/exp07_rank_consistent/exp07_qdr1_coral_human_only.yaml | PASS |  |
+| file size below 20MB | thesis_exp/configs/exp07_rank_consistent/exp07_qdr1_coral_human_only.yaml | PASS | 469 |
+| not checkpoint/array artifact | thesis_exp/configs/exp07_rank_consistent/exp07_qdr1_coral_human_only.yaml | PASS |  |
+| LF line endings | thesis_exp/configs/exp07_rank_consistent/exp07_qdr1_coral_smoke.yaml | PASS |  |
+| file size below 20MB | thesis_exp/configs/exp07_rank_consistent/exp07_qdr1_coral_smoke.yaml | PASS | 399 |
+| not checkpoint/array artifact | thesis_exp/configs/exp07_rank_consistent/exp07_qdr1_coral_smoke.yaml | PASS |  |
+| LF line endings | thesis_exp/scripts/run_exp07_qdr1_smoke.sh | PASS |  |
+| not collapsed-line file | thesis_exp/scripts/run_exp07_qdr1_smoke.sh | PASS | 157 |
+| file size below 20MB | thesis_exp/scripts/run_exp07_qdr1_smoke.sh | PASS | 5290 |
+| not checkpoint/array artifact | thesis_exp/scripts/run_exp07_qdr1_smoke.sh | PASS |  |
+| LF line endings | thesis_exp/scripts/run_exp07_qdr1_train.sh | PASS |  |
+| not collapsed-line file | thesis_exp/scripts/run_exp07_qdr1_train.sh | PASS | 158 |
+| file size below 20MB | thesis_exp/scripts/run_exp07_qdr1_train.sh | PASS | 5548 |
+| not checkpoint/array artifact | thesis_exp/scripts/run_exp07_qdr1_train.sh | PASS |  |
+| LF line endings | thesis_exp/scripts/sync_exp07_qdr1_to_server.sh | PASS |  |
+| not collapsed-line file | thesis_exp/scripts/sync_exp07_qdr1_to_server.sh | PASS | 60 |
+| file size below 20MB | thesis_exp/scripts/sync_exp07_qdr1_to_server.sh | PASS | 3813 |
+| not checkpoint/array artifact | thesis_exp/scripts/sync_exp07_qdr1_to_server.sh | PASS |  |
+| Markdown max prose line length | thesis_exp/outputs/exp07_rank_consistent_ordinal/notion_exp07_r1_summary.md | PASS | prose=60; table=0 |
+| LF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/notion_exp07_r1_summary.md | PASS |  |
+| file size below 20MB | thesis_exp/outputs/exp07_rank_consistent_ordinal/notion_exp07_r1_summary.md | PASS | 367 |
+| not checkpoint/array artifact | thesis_exp/outputs/exp07_rank_consistent_ordinal/notion_exp07_r1_summary.md | PASS |  |
+| Markdown max prose line length | thesis_exp/outputs/exp07_rank_consistent_ordinal/readability_check_exp07.md | PASS | prose=24; table=142 |
+| LF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/readability_check_exp07.md | PASS |  |
+| file size below 20MB | thesis_exp/outputs/exp07_rank_consistent_ordinal/readability_check_exp07.md | PASS | 13991 |
+| not checkpoint/array artifact | thesis_exp/outputs/exp07_rank_consistent_ordinal/readability_check_exp07.md | PASS |  |
+| Markdown max prose line length | thesis_exp/outputs/exp07_rank_consistent_ordinal/report.md | PASS | prose=92; table=106 |
+| LF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/report.md | PASS |  |
+| file size below 20MB | thesis_exp/outputs/exp07_rank_consistent_ordinal/report.md | PASS | 1567 |
+| not checkpoint/array artifact | thesis_exp/outputs/exp07_rank_consistent_ordinal/report.md | PASS |  |
+| Markdown max prose line length | thesis_exp/outputs/exp07_rank_consistent_ordinal/reports/report.md | PASS | prose=92; table=106 |
+| LF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/reports/report.md | PASS |  |
+| file size below 20MB | thesis_exp/outputs/exp07_rank_consistent_ordinal/reports/report.md | PASS | 1567 |
+| not checkpoint/array artifact | thesis_exp/outputs/exp07_rank_consistent_ordinal/reports/report.md | PASS |  |
+| Markdown max prose line length | thesis_exp/outputs/exp07_rank_consistent_ordinal/reports/review_package.md | PASS | prose=92; table=0 |
+| LF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/reports/review_package.md | PASS |  |
+| file size below 20MB | thesis_exp/outputs/exp07_rank_consistent_ordinal/reports/review_package.md | PASS | 549 |
+| not checkpoint/array artifact | thesis_exp/outputs/exp07_rank_consistent_ordinal/reports/review_package.md | PASS |  |
+| Markdown max prose line length | thesis_exp/outputs/exp07_rank_consistent_ordinal/review_package.md | PASS | prose=92; table=0 |
+| LF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/review_package.md | PASS |  |
+| file size below 20MB | thesis_exp/outputs/exp07_rank_consistent_ordinal/review_package.md | PASS | 549 |
+| not checkpoint/array artifact | thesis_exp/outputs/exp07_rank_consistent_ordinal/review_package.md | PASS |  |
+| Markdown max prose line length | thesis_exp/outputs/exp07_rank_consistent_ordinal/sanity_check_exp07_setup.md | PASS | prose=32; table=161 |
+| LF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/sanity_check_exp07_setup.md | PASS |  |
+| file size below 20MB | thesis_exp/outputs/exp07_rank_consistent_ordinal/sanity_check_exp07_setup.md | PASS | 3296 |
+| not checkpoint/array artifact | thesis_exp/outputs/exp07_rank_consistent_ordinal/sanity_check_exp07_setup.md | PASS |  |
+| CSV readable | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/exp07_high_score_comparison.csv | PASS |  |
+| LF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/exp07_high_score_comparison.csv | PASS |  |
+| file size below 20MB | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/exp07_high_score_comparison.csv | PASS | 1 |
+| not checkpoint/array artifact | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/exp07_high_score_comparison.csv | PASS |  |
+| CSV readable | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/exp07_low_score_comparison.csv | PASS |  |
+| LF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/exp07_low_score_comparison.csv | PASS |  |
+| file size below 20MB | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/exp07_low_score_comparison.csv | PASS | 1 |
+| not checkpoint/array artifact | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/exp07_low_score_comparison.csv | PASS |  |
+| CSV readable | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/exp07_monotonicity_comparison.csv | PASS |  |
+| LF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/exp07_monotonicity_comparison.csv | PASS |  |
+| file size below 20MB | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/exp07_monotonicity_comparison.csv | PASS | 896 |
+| not checkpoint/array artifact | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/exp07_monotonicity_comparison.csv | PASS |  |
+| CSV readable | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/exp07_r1_comparison.csv | PASS |  |
+| LF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/exp07_r1_comparison.csv | PASS |  |
+| file size below 20MB | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/exp07_r1_comparison.csv | PASS | 2093 |
+| not checkpoint/array artifact | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/exp07_r1_comparison.csv | PASS |  |
+| CSV readable | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/readability_check_exp07.csv | PASS |  |
+| LF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/readability_check_exp07.csv | PASS |  |
+| file size below 20MB | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/readability_check_exp07.csv | PASS | 12628 |
+| not checkpoint/array artifact | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/readability_check_exp07.csv | PASS |  |
+| CSV readable | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/sanity_check_exp07_setup.csv | PASS |  |
+| LF line endings | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/sanity_check_exp07_setup.csv | PASS |  |
+| file size below 20MB | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/sanity_check_exp07_setup.csv | PASS | 2797 |
+| not checkpoint/array artifact | thesis_exp/outputs/exp07_rank_consistent_ordinal/tables/sanity_check_exp07_setup.csv | PASS |  |
+| no tracked checkpoint/weights | . | PASS |  |
