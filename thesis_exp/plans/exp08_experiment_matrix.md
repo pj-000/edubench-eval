@@ -22,11 +22,14 @@ Status: design only. No training is launched by this plan.
 | head | CORAL-style cumulative ordinal head |
 | loss | EduRisk Ordinal Loss |
 | tau | 0.7 |
-| alpha | 0.3 |
+| alpha_risk | 0.3 |
 | beta_bce | 0.5 |
 | lambda_LH | 2.0 |
 | lambda_HL | 0.5 |
-| class_balance_beta | 0.999 |
+| class_balance_beta | 0.99 |
+| normalized_cost | true |
+| decode_primary | cumulative |
+| decode_secondary | argmax_q |
 | synthetic data | no |
 | test tuning | no |
 
@@ -51,10 +54,11 @@ Status: design only. No training is launched by this plan.
 | criterion | target |
 | --- | --- |
 | monotonic_violation_rate | 0 |
-| low_to_high_rate | lower than QD-B1 and QD-R1 |
-| MAE | no more than +0.02 worse than strongest full-coverage baseline |
-| QWK | no more than -0.03 worse than strongest full-coverage baseline |
-| Acc@5 | no more than -0.05 worse than QD-R1 |
+| low_to_high_rate | lower than QD-B1 |
+| MAE | no more than QD-B1 + 0.02 |
+| QWK | no less than QD-B1 - 0.03 |
+| Acc@5 | no less than QD-B1 - 0.05 |
+| high_to_mid_or_low_rate | no more than QD-B1 + 0.03 |
 | low_signed_bias | closer to zero than QD-R1 |
 | stretch target | low_to_high_rate <= 0.40 |
 
@@ -62,7 +66,7 @@ Status: design only. No training is launched by this plan.
 
 Ablations should run only if `QD-ER1_EduRisk_human_only` completes cleanly and shows either:
 
-- lower `low_to_high_rate` than QD-R1 without large MAE/QWK regression, or
+- lower `low_to_high_rate` than QD-B1 without large MAE/QWK/Acc@5 regression, or
 - promising dev-set risk reduction with clear failure analysis.
 
 Do not launch ablations before the main run is reviewed.
@@ -92,11 +96,13 @@ These are future output targets, not created by this planning task:
 | exp08_low_score_comparison.csv | low-label exact, bias, MAE, low_to_high |
 | exp08_high_score_guardrail.csv | Acc@5 and high_to_mid_or_low |
 | exp08_expected_risk.csv | ExpectedEduRisk overall and by label group |
+| cumulative_decoding_vs_argmax_decoding.csv | cumulative threshold vs q-argmax diagnostic metrics |
+| exp08_loss_component_scale.csv | L_total and component scales for train/dev |
 | exp08_ablation_summary.csv | only if ablations run |
 
 ## Decision Logic
 
-If QD-ER1 beats QD-B1/QD-R1 on low_to_high while preserving MAE/QWK/Acc@5, it becomes the primary
+If QD-ER1 beats QD-B1 on low_to_high while preserving MAE/QWK/Acc@5, it becomes the primary
 full-coverage training-method candidate. Exp7-C remains the human-in-the-loop fallback.
 
 If QD-ER1 reduces low_to_high but hurts Acc@5 or QWK too much, report it as a useful diagnostic loss

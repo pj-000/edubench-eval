@@ -44,15 +44,21 @@ q_k >= 0 for all k
 sum_{k=1}^5 q_k = 1
 ```
 
-Implementation guard for future code:
+Implementation must keep raw and safe distributions separate:
 
 ```text
-q = clamp(q, eps, 1)
-q = q / sum(q)
+q_raw = [1-p_1, p_1-p_2, p_2-p_3, p_3-p_4, p_4]
+
+sanity requires:
+min(q_raw) >= -1e-6
+abs(sum(q_raw) - 1) < tolerance
+
+q_safe = clamp(q_raw, eps, 1)
+q_safe = q_safe / sum(q_safe)
 ```
 
-This guard should be used only for numerical stability; a nonzero monotonic violation rate should
-still fail the sanity check.
+`q_raw` is used for monotonic/rank-consistency sanity checks. `q_safe` is used only for log stability
+inside the loss. The implementation must not let `q_safe` hide a monotonic bug.
 
 ## Soft Ordinal Target
 
@@ -73,7 +79,7 @@ Properties:
 Soft ordinal cross entropy:
 
 ```text
-L_softCE(y,q) = - sum_{k=1}^5 s_y(k) log(q_k)
+L_softCE(y,q_safe) = - sum_{k=1}^5 s_y(k) log(q_safe_k)
 ```
 
 Default:
@@ -84,22 +90,24 @@ tau = 0.7
 
 ## Education-risk Cost
 
+Use normalized costs in the first run so the risk term does not dominate CE/BCE.
+
 Base ordinal error:
 
 ```text
-C_base(y,k) = abs(y-k)
+C_base(y,k) = abs(y-k) / 4
 ```
 
 Low-score overestimation penalty:
 
 ```text
-C_LH(y,k) = I(y <= 2 and k >= 4) * (k-y)^2
+C_LH(y,k) = I(y <= 2 and k >= 4) * ((k-y) / 4)^2
 ```
 
 High-score underestimation penalty:
 
 ```text
-C_HL(y,k) = I(y = 5 and k <= 3) * (5-k)^2
+C_HL(y,k) = I(y = 5 and k <= 3) * ((5-k) / 4)^2
 ```
 
 Total cost:
@@ -115,12 +123,13 @@ Defaults:
 ```text
 lambda_LH = 2.0
 lambda_HL = 0.5
+normalized_cost = true
 ```
 
 Risk loss:
 
 ```text
-L_risk(y,q) = sum_{k=1}^5 q_k C(y,k)
+L_risk(y,q_safe) = sum_{k=1}^5 q_safe_k C(y,k)
 ```
 
 This term penalizes probability mass assigned to high-risk wrong labels, even before argmax or
@@ -149,14 +158,15 @@ w_y = 5 * a_y / sum_{c=1}^5 a_c
 Default:
 
 ```text
-cb_beta = 0.999
+cb_beta = 0.99
 ```
 
 Guardrails:
 
 - Report `min(w_y)`, `max(w_y)`, and `max(w_y) / min(w_y)` before training.
-- If the ratio is too large, cap weights or lower `cb_beta` in a later ablation, not in the first
-  default run.
+- Do not use `cb_beta=0.999` in the first run because it would heavily downweight label 4/5 in
+  question_seed42 human-only training.
+- If a later run uses `cb_beta=0.999`, add `weight_clip_min=0.5` and `weight_clip_max=3.0`.
 
 ## Cumulative BCE Stability Term
 
@@ -193,8 +203,8 @@ The final per-sample loss is:
 ```text
 L_EduRisk =
   w_y * [
-    L_softCE(y,q)
-    + alpha * L_risk(y,q)
+    L_softCE(y,q_safe)
+    + alpha * L_risk(y,q_safe)
     + beta_bce * L_cumBCE(y,p)
   ]
 ```
@@ -207,7 +217,22 @@ alpha = 0.3
 beta_bce = 0.5
 lambda_LH = 2.0
 lambda_HL = 0.5
-cb_beta = 0.999
+cb_beta = 0.99
+normalized_cost = true
+```
+
+All parameters must be read from config:
+
+```yaml
+tau: 0.7
+alpha_risk: 0.3
+beta_bce: 0.5
+lambda_lh: 2.0
+lambda_hl: 0.5
+class_balance_beta: 0.99
+normalized_cost: true
+decode_primary: cumulative
+decode_secondary: argmax_q
 ```
 
 ## Expected Risk Evaluation Metric
@@ -234,13 +259,21 @@ For consistency with prior ordinal runs, primary decoded prediction should use t
 threshold rule:
 
 ```text
-pred_label = 1 + sum_{m=1}^4 I(p_m > 0.5)
+pred_label_cum = 1 + sum_{m=1}^4 I(p_m > 0.5)
 ```
 
-For analysis, also allow expected-score diagnostics:
+Also save the class-distribution argmax:
+
+```text
+pred_label_argmax = 1 + argmax_{k=1..5}(q_k)
+```
+
+For analysis, save expected-score diagnostics:
 
 ```text
 pred_score_expected = sum_{k=1}^5 k * q_k
 ```
 
-The headline metrics should use `pred_label` so comparisons to QD-B0, QD-B1, and QD-R1 remain fair.
+The headline metrics should use `pred_label_cum` so comparisons to QD-B0, QD-B1, and QD-R1 remain
+fair. The diagnostic table `cumulative_decoding_vs_argmax_decoding.csv` must report the same metrics
+under both `pred_label_cum` and `pred_label_argmax`.

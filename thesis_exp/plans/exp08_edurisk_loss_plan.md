@@ -101,12 +101,16 @@ The soft ordinal cross entropy is:
 L_softCE = - sum_{k=1}^5 s_y(k) log(q_k)
 ```
 
-The education-risk cost is:
+The education-risk cost is normalized to keep the risk term on a scale comparable to CE/BCE:
 
 ```text
-C(y,k) = abs(y-k)
-       + lambda_LH * I(y <= 2 and k >= 4) * (k-y)^2
-       + lambda_HL * I(y = 5 and k <= 3) * (5-k)^2
+C_base(y,k) = abs(y-k) / 4
+C_LH(y,k) = I(y <= 2 and k >= 4) * ((k-y) / 4)^2
+C_HL(y,k) = I(y = 5 and k <= 3) * ((5-k) / 4)^2
+
+C(y,k) = C_base(y,k)
+       + lambda_LH * C_LH(y,k)
+       + lambda_HL * C_HL(y,k)
 ```
 
 The expected risk under the model distribution is:
@@ -144,7 +148,10 @@ alpha = 0.3
 beta_bce = 0.5
 lambda_LH = 2.0
 lambda_HL = 0.5
-class_balance_beta = 0.999
+class_balance_beta = 0.99
+normalized_cost = true
+decode_primary = cumulative
+decode_secondary = argmax_q
 ```
 
 Interpretation:
@@ -155,8 +162,38 @@ Interpretation:
 - `lambda_LH=2.0` prioritizes low-score overestimation errors.
 - `lambda_HL=0.5` protects against severe underestimation of true high-score answers, but less
   aggressively than low-to-high risk.
-- `class_balance_beta=0.999` follows effective-number weighting without using raw inverse class
-  frequency.
+- `class_balance_beta=0.99` follows effective-number weighting but avoids nearly suppressing label
+  4/5 samples in the imbalanced question_seed42 human-only train distribution.
+- `normalized_cost=true` avoids the unnormalized `y=1,k=5` risk cost becoming much larger than CE/BCE.
+
+Approximate first-run class-balanced weights under question_seed42 human-only train:
+
+| label | train count | beta=0.99 approximate weight |
+| --- | ---: | ---: |
+| 1 | 58 | 1.46 |
+| 2 | 53 | 1.56 |
+| 3 | 297 | 0.68 |
+| 4 | 1163 | 0.65 |
+| 5 | 1755 | 0.65 |
+
+Do not use `class_balance_beta=0.999` in the first run. If a later run uses it, the config must add
+`weight_clip_min=0.5` and `weight_clip_max=3.0`.
+
+## Required Config Fields
+
+The first implementation must put every EduRisk parameter in the run config, not hard-code it:
+
+```yaml
+tau: 0.7
+alpha_risk: 0.3
+beta_bce: 0.5
+lambda_lh: 2.0
+lambda_hl: 0.5
+class_balance_beta: 0.99
+normalized_cost: true
+decode_primary: cumulative
+decode_secondary: argmax_q
+```
 
 ## First Run Setup
 
@@ -194,15 +231,31 @@ Secondary metrics:
 - monotonic_violation_rate
 - expected risk using the EduRisk cost matrix
 
+Decoding diagnostics must be saved for every split:
+
+```text
+pred_label_cum = 1 + sum_m I(p_m > 0.5)
+pred_label_argmax = argmax_{k in 1..5} q_k
+pred_score_expected = sum_k k * q_k
+```
+
+The main comparison table uses `pred_label_cum` for fair comparison with QD-B0, QD-B1, and QD-R1.
+An additional diagnostic table must compare cumulative versus argmax decoding:
+
+```text
+cumulative_decoding_vs_argmax_decoding.csv
+```
+
 ## Success Criteria
 
 EduRisk is considered a useful training method if it satisfies all of the following on test:
 
 - `monotonic_violation_rate = 0`, matching CORAL rank consistency.
-- `low_to_high_rate` improves over both QD-B1 and QD-R1 raw full-coverage baselines.
-- MAE does not regress by more than `0.02` against the strongest full-coverage baseline.
-- QWK does not regress by more than `0.03`.
-- Acc@5 does not collapse by more than `0.05`.
+- `low_to_high_rate < QD-B1 low_to_high_rate`.
+- MAE is no worse than `QD-B1 + 0.02`.
+- QWK is no worse than `QD-B1 - 0.03`.
+- Acc@5 is no worse than `QD-B1 - 0.05`.
+- `high_to_mid_or_low_rate` is no worse than `QD-B1 + 0.03`.
 - Low-score signed bias is closer to zero than QD-R1.
 
 Stretch target:
@@ -220,14 +273,37 @@ changes the training target and the expected loss geometry:
   prediction.
 - It uses effective-number class balancing rather than ad hoc low-label weights.
 - It retains cumulative BCE as a stability term instead of relying on penalties alone.
+- Its risk cost is normalized before weighting, so `alpha` has a stable interpretation.
 
 ## Risks And Guardrails
 
-- The risk term may over-suppress high predictions. Guard with Acc@5 and high-to-mid-or-low rate.
-- Effective-number weights may over-amplify rare labels. Check weight range before training.
+- The risk term may over-suppress high predictions. Guard against QD-B1 Acc@5 and
+  high-to-mid-or-low metrics, not QD-R1's high-biased Acc@5.
+- Effective-number weights may over-amplify rare labels. Use `class_balance_beta=0.99` for the first
+  run and check weight range before training.
 - Soft targets may blur adjacent classes. Guard with MAE and QWK.
 - The cumulative BCE term may dominate if scaled too high. Keep `beta_bce=0.5` for the first run.
 - Do not combine with synthetic augmentation in the first run.
+
+## Required Loss-scale Logging
+
+Code stage must log all loss components on train and dev:
+
+```text
+L_total
+L_softCE
+L_risk
+L_cumBCE
+mean_weight
+min_weight
+max_weight
+weighted_L_softCE
+weighted_L_risk
+weighted_L_cumBCE
+```
+
+If `weighted_L_risk` is much larger than `weighted_L_softCE`, the run should be flagged for review
+before being interpreted as a scientific result.
 
 ## Next Step
 

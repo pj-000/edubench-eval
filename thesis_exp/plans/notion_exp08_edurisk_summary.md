@@ -26,9 +26,10 @@ q_5 = p_4
 
 s_y(k) = exp(-abs(k-y)/tau) / Z_y
 
-C(y,k) = abs(y-k)
-       + lambda_LH * I(y <= 2 and k >= 4) * (k-y)^2
-       + lambda_HL * I(y = 5 and k <= 3) * (5-k)^2
+C_base(y,k) = abs(y-k) / 4
+C_LH(y,k) = I(y <= 2 and k >= 4) * ((k-y) / 4)^2
+C_HL(y,k) = I(y = 5 and k <= 3) * ((5-k) / 4)^2
+C(y,k) = C_base + lambda_LH * C_LH + lambda_HL * C_HL
 
 L_EduRisk = w_y * [L_softCE + alpha * L_risk + beta_bce * L_cumBCE]
 ```
@@ -46,11 +47,14 @@ Default hyperparameters:
 
 ```text
 tau = 0.7
-alpha = 0.3
+alpha_risk = 0.3
 beta_bce = 0.5
 lambda_LH = 2.0
 lambda_HL = 0.5
-class_balance_beta = 0.999
+class_balance_beta = 0.99
+normalized_cost = true
+decode_primary = cumulative
+decode_secondary = argmax_q
 ```
 
 ## Baselines
@@ -62,8 +66,8 @@ class_balance_beta = 0.999
 
 ## Success Criteria
 
-EduRisk succeeds if it lowers low_to_high versus QD-B1 and QD-R1 while preserving MAE, QWK, and
-Acc@5 within guardrails.
+EduRisk succeeds if it lowers low_to_high versus QD-B1 while preserving MAE, QWK, Acc@5, and
+high-score guardrails relative to QD-B1.
 
 Stretch target:
 
@@ -79,3 +83,6 @@ training-method innovation for a full-coverage ordinal scorer.
 ## Next Step
 
 Review the plan first. Code stage can start after approval.
+
+Code stage must also log loss component scales and save both `pred_label_cum` and
+`pred_label_argmax` diagnostics.
