@@ -44,6 +44,10 @@ REQUIRED_TABLES = [
     "unified_calibration_delta_vs_raw.csv",
     "unified_rejection_analysis.csv",
     "best_calibrated_model_selection.csv",
+    "selective_calibration_dev.csv",
+    "selective_calibration_test.csv",
+    "selective_best_policies.csv",
+    "selective_rejected_distribution.csv",
 ]
 CHECKPOINT_SUFFIXES = {".bin", ".safetensors", ".pt", ".pth", ".ckpt"}
 
@@ -89,6 +93,9 @@ def check_required_files(rows: list[dict[str, Any]]) -> None:
         "exp07_c2_unified_calibration_report.md",
         "exp07_c2_review_package.md",
         "notion_exp07_c2_unified_calibration_summary.md",
+        "exp07_c3_selective_calibration_report.md",
+        "exp07_c3_review_package.md",
+        "notion_exp07_c3_selective_calibration_summary.md",
     ]:
         path = EXP07_CALIBRATION_REPORTS_DIR / name
         add(rows, f"{name} exists", path.exists(), relpath(path))
@@ -116,6 +123,9 @@ def check_dev_only_selection(rows: list[dict[str, Any]]) -> None:
         "unified_global_threshold_test.csv",
         "unified_risk_aware_threshold_test.csv",
         "best_calibrated_model_selection.csv",
+        "selective_calibration_dev.csv",
+        "selective_calibration_test.csv",
+        "selective_best_policies.csv",
     ]:
         for row in _rows(name):
             selection_split = row.get("selection_split")

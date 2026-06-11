@@ -27,12 +27,19 @@ Status: `PASS`
 | unified_calibration_delta_vs_raw.csv exists | PASS | thesis_exp/outputs/exp07_calibration/tables/unified_calibration_delta_vs_raw.csv |
 | unified_rejection_analysis.csv exists | PASS | thesis_exp/outputs/exp07_calibration/tables/unified_rejection_analysis.csv |
 | best_calibrated_model_selection.csv exists | PASS | thesis_exp/outputs/exp07_calibration/tables/best_calibrated_model_selection.csv |
+| selective_calibration_dev.csv exists | PASS | thesis_exp/outputs/exp07_calibration/tables/selective_calibration_dev.csv |
+| selective_calibration_test.csv exists | PASS | thesis_exp/outputs/exp07_calibration/tables/selective_calibration_test.csv |
+| selective_best_policies.csv exists | PASS | thesis_exp/outputs/exp07_calibration/tables/selective_best_policies.csv |
+| selective_rejected_distribution.csv exists | PASS | thesis_exp/outputs/exp07_calibration/tables/selective_rejected_distribution.csv |
 | exp07_calibration_report.md exists | PASS | thesis_exp/outputs/exp07_calibration/reports/exp07_calibration_report.md |
 | exp07_calibration_review_package.md exists | PASS | thesis_exp/outputs/exp07_calibration/reports/exp07_calibration_review_package.md |
 | notion_exp07_calibration_summary.md exists | PASS | thesis_exp/outputs/exp07_calibration/reports/notion_exp07_calibration_summary.md |
 | exp07_c2_unified_calibration_report.md exists | PASS | thesis_exp/outputs/exp07_calibration/reports/exp07_c2_unified_calibration_report.md |
 | exp07_c2_review_package.md exists | PASS | thesis_exp/outputs/exp07_calibration/reports/exp07_c2_review_package.md |
 | notion_exp07_c2_unified_calibration_summary.md exists | PASS | thesis_exp/outputs/exp07_calibration/reports/notion_exp07_c2_unified_calibration_summary.md |
+| exp07_c3_selective_calibration_report.md exists | PASS | thesis_exp/outputs/exp07_calibration/reports/exp07_c3_selective_calibration_report.md |
+| exp07_c3_review_package.md exists | PASS | thesis_exp/outputs/exp07_calibration/reports/exp07_c3_review_package.md |
+| notion_exp07_c3_selective_calibration_summary.md exists | PASS | thesis_exp/outputs/exp07_calibration/reports/notion_exp07_c3_selective_calibration_summary.md |
 | at least one local base calibration-ready | PASS | ['QD-R1_CORAL_human_only'] |
 | QD-R1 local threshold calibration-ready | PASS | {'base_model': 'QD-R1_CORAL_human_only', 'dev_probs_available': 'yes_local', 'test_probs_available': 'yes_local', 'dev_logits_available': 'yes_local', 'test_logits_available': 'yes_local', 'can_threshold_calibrate': 'yes', 'can_temperature_calibrate': 'yes', 'blocking_reason': 'ready'} |
 | selection uses dev only | PASS | [('global_threshold_calibration_dev.csv', 'dev', 'dev_MAE_label'), ('global_threshold_calibration_test.csv', 'dev', 'dev_MAE_label'), ('risk_aware_threshold_calibration_dev.csv', 'dev', 'dev_MAE_plus_low_high_risk'), ('risk_aware_threshold_calibration_dev.csv', 'dev', 'dev_MAE_plus_low_high_risk'), ('risk_aware_threshold_calibration_dev.csv', 'dev', 'dev_MAE_plus_low_high_risk')] |
