@@ -1,0 +1,4 @@
+base_model,dev_logits_available,test_logits_available,dev_probs_available,test_probs_available,dev_labels_available,test_labels_available,dev_predictions_available,test_predictions_available,calibration_ready,blocking_reason
+QD-B0_human_only_ordinary_ordinal,yes,yes,yes,yes,yes,yes,yes,yes,yes,ready
+QD-B1_human_only_L1_weighted_ordinal,yes,yes,yes,yes,yes,yes,yes,yes,yes,ready
+QD-R1_CORAL_human_only,yes,yes,yes,yes,yes,yes,yes,yes,yes,ready

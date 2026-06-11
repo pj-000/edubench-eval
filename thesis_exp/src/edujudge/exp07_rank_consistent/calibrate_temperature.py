@@ -40,6 +40,7 @@ def evaluate_temperature_grid(base_model: str, split_data: SplitData, *, selecte
             "ordinal_bce": ordinal_bce(probs, split_data.labels),
             "selected": selected_t is not None and abs(temperature - selected_t) < 1e-12,
             "selection_objective": "dev_ordinal_bce",
+            "selection_split": "dev",
         }
         rows.append(row_with_metrics(prefix, metrics))
     return rows

@@ -35,6 +35,15 @@ REQUIRED_TABLES = [
     "low_score_calibration_comparison.csv",
     "high_score_calibration_comparison.csv",
     "rejection_analysis.csv",
+    "server_calibration_artifact_inventory.csv",
+    "unified_raw_baseline_metrics.csv",
+    "unified_temperature_scaling_test.csv",
+    "unified_global_threshold_test.csv",
+    "unified_risk_aware_threshold_test.csv",
+    "unified_calibration_summary.csv",
+    "unified_calibration_delta_vs_raw.csv",
+    "unified_rejection_analysis.csv",
+    "best_calibrated_model_selection.csv",
 ]
 CHECKPOINT_SUFFIXES = {".bin", ".safetensors", ".pt", ".pth", ".ckpt"}
 
@@ -77,6 +86,9 @@ def check_required_files(rows: list[dict[str, Any]]) -> None:
         "exp07_calibration_report.md",
         "exp07_calibration_review_package.md",
         "notion_exp07_calibration_summary.md",
+        "exp07_c2_unified_calibration_report.md",
+        "exp07_c2_review_package.md",
+        "notion_exp07_c2_unified_calibration_summary.md",
     ]:
         path = EXP07_CALIBRATION_REPORTS_DIR / name
         add(rows, f"{name} exists", path.exists(), relpath(path))
@@ -100,6 +112,10 @@ def check_dev_only_selection(rows: list[dict[str, Any]]) -> None:
         "risk_aware_threshold_calibration_dev.csv",
         "risk_aware_threshold_calibration_test.csv",
         "risk_aware_threshold_best_configs.csv",
+        "unified_temperature_scaling_test.csv",
+        "unified_global_threshold_test.csv",
+        "unified_risk_aware_threshold_test.csv",
+        "best_calibrated_model_selection.csv",
     ]:
         for row in _rows(name):
             selection_split = row.get("selection_split")

@@ -1,0 +1,73 @@
+base_model,method,metric,raw_value,calibrated_value,delta
+QD-B0_human_only_ordinary_ordinal,temperature_scaling,Accuracy,0.6935630099728014,0.6935630099728014,0.0
+QD-B0_human_only_ordinary_ordinal,temperature_scaling,MAE_label,0.4019341190692051,0.4019341190692051,0.0
+QD-B0_human_only_ordinary_ordinal,temperature_scaling,QWK,0.5976217823018422,0.5976217823018422,0.0
+QD-B0_human_only_ordinary_ordinal,temperature_scaling,Kendall tau,0.5293242185530982,0.5293242185530982,0.0
+QD-B0_human_only_ordinary_ordinal,temperature_scaling,low_to_high_rate,0.5161290322580645,0.5161290322580645,0.0
+QD-B0_human_only_ordinary_ordinal,temperature_scaling,Acc@5,0.7873376623376623,0.7873376623376623,0.0
+QD-B0_human_only_ordinary_ordinal,temperature_scaling,high_to_mid_or_low_rate,0.003246753246753247,0.003246753246753247,0.0
+QD-B0_human_only_ordinary_ordinal,temperature_scaling,severe_error_rate,0.03173164097914778,0.03173164097914778,0.0
+QD-B0_human_only_ordinary_ordinal,global_threshold,Accuracy,0.6935630099728014,0.6554850407978241,-0.0380779691749773
+QD-B0_human_only_ordinary_ordinal,global_threshold,MAE_label,0.4019341190692051,0.4276216379570867,0.025687518887881566
+QD-B0_human_only_ordinary_ordinal,global_threshold,QWK,0.5976217823018422,0.5746063403481168,-0.023015441953725402
+QD-B0_human_only_ordinary_ordinal,global_threshold,Kendall tau,0.5293242185530982,0.5017123733811352,-0.027611845171963023
+QD-B0_human_only_ordinary_ordinal,global_threshold,low_to_high_rate,0.5161290322580645,0.5161290322580645,0.0
+QD-B0_human_only_ordinary_ordinal,global_threshold,Acc@5,0.7873376623376623,0.663961038961039,-0.12337662337662336
+QD-B0_human_only_ordinary_ordinal,global_threshold,high_to_mid_or_low_rate,0.003246753246753247,0.003246753246753247,0.0
+QD-B0_human_only_ordinary_ordinal,global_threshold,severe_error_rate,0.03173164097914778,0.027198549410698096,-0.004533091568449686
+QD-B0_human_only_ordinary_ordinal,risk_aware_threshold,Accuracy,0.6935630099728014,0.6917497733454215,-0.0018132366273798661
+QD-B0_human_only_ordinary_ordinal,risk_aware_threshold,MAE_label,0.4019341190692051,0.40223632517376845,0.0003022061045633295
+QD-B0_human_only_ordinary_ordinal,risk_aware_threshold,QWK,0.5976217823018422,0.6030316181685385,0.0054098358666963
+QD-B0_human_only_ordinary_ordinal,risk_aware_threshold,Kendall tau,0.5293242185530982,0.5308261008355015,0.0015018822824033329
+QD-B0_human_only_ordinary_ordinal,risk_aware_threshold,low_to_high_rate,0.5161290322580645,0.5161290322580645,0.0
+QD-B0_human_only_ordinary_ordinal,risk_aware_threshold,Acc@5,0.7873376623376623,0.7694805194805194,-0.017857142857142905
+QD-B0_human_only_ordinary_ordinal,risk_aware_threshold,high_to_mid_or_low_rate,0.003246753246753247,0.003246753246753247,0.0
+QD-B0_human_only_ordinary_ordinal,risk_aware_threshold,severe_error_rate,0.03173164097914778,0.029918404351767906,-0.0018132366273798765
+QD-B1_human_only_L1_weighted_ordinal,temperature_scaling,Accuracy,0.670897552130553,0.670897552130553,0.0
+QD-B1_human_only_L1_weighted_ordinal,temperature_scaling,MAE_label,0.42792384406165007,0.42792384406165007,0.0
+QD-B1_human_only_L1_weighted_ordinal,temperature_scaling,QWK,0.6012356007375432,0.6012356007375432,0.0
+QD-B1_human_only_L1_weighted_ordinal,temperature_scaling,Kendall tau,0.5265979428764057,0.5265979428764057,0.0
+QD-B1_human_only_L1_weighted_ordinal,temperature_scaling,low_to_high_rate,0.45161290322580644,0.45161290322580644,0.0
+QD-B1_human_only_L1_weighted_ordinal,temperature_scaling,Acc@5,0.7418831168831169,0.7418831168831169,0.0
+QD-B1_human_only_L1_weighted_ordinal,temperature_scaling,high_to_mid_or_low_rate,0.01461038961038961,0.01461038961038961,0.0
+QD-B1_human_only_L1_weighted_ordinal,temperature_scaling,severe_error_rate,0.03445149592021759,0.03445149592021759,0.0
+QD-B1_human_only_L1_weighted_ordinal,global_threshold,Accuracy,0.670897552130553,0.6736174070716229,0.0027198549410698547
+QD-B1_human_only_L1_weighted_ordinal,global_threshold,MAE_label,0.42792384406165007,0.42127530976125716,-0.0066485343003929165
+QD-B1_human_only_L1_weighted_ordinal,global_threshold,QWK,0.6012356007375432,0.5886485753073037,-0.012587025430239485
+QD-B1_human_only_L1_weighted_ordinal,global_threshold,Kendall tau,0.5265979428764057,0.5207742045777525,-0.005823738298653236
+QD-B1_human_only_L1_weighted_ordinal,global_threshold,low_to_high_rate,0.45161290322580644,0.5483870967741935,0.09677419354838707
+QD-B1_human_only_L1_weighted_ordinal,global_threshold,Acc@5,0.7418831168831169,0.7418831168831169,0.0
+QD-B1_human_only_L1_weighted_ordinal,global_threshold,high_to_mid_or_low_rate,0.01461038961038961,0.00974025974025974,-0.00487012987012987
+QD-B1_human_only_L1_weighted_ordinal,global_threshold,severe_error_rate,0.03445149592021759,0.033544877606527655,-0.0009066183136899331
+QD-B1_human_only_L1_weighted_ordinal,risk_aware_threshold,Accuracy,0.670897552130553,0.6736174070716229,0.0027198549410698547
+QD-B1_human_only_L1_weighted_ordinal,risk_aware_threshold,MAE_label,0.42792384406165007,0.42127530976125716,-0.0066485343003929165
+QD-B1_human_only_L1_weighted_ordinal,risk_aware_threshold,QWK,0.6012356007375432,0.5886485753073037,-0.012587025430239485
+QD-B1_human_only_L1_weighted_ordinal,risk_aware_threshold,Kendall tau,0.5265979428764057,0.5207742045777525,-0.005823738298653236
+QD-B1_human_only_L1_weighted_ordinal,risk_aware_threshold,low_to_high_rate,0.45161290322580644,0.5483870967741935,0.09677419354838707
+QD-B1_human_only_L1_weighted_ordinal,risk_aware_threshold,Acc@5,0.7418831168831169,0.7418831168831169,0.0
+QD-B1_human_only_L1_weighted_ordinal,risk_aware_threshold,high_to_mid_or_low_rate,0.01461038961038961,0.00974025974025974,-0.00487012987012987
+QD-B1_human_only_L1_weighted_ordinal,risk_aware_threshold,severe_error_rate,0.03445149592021759,0.033544877606527655,-0.0009066183136899331
+QD-R1_CORAL_human_only,temperature_scaling,Accuracy,0.6554850407978241,0.6554850407978241,0.0
+QD-R1_CORAL_human_only,temperature_scaling,MAE_label,0.4466606225445754,0.4466606225445754,0.0
+QD-R1_CORAL_human_only,temperature_scaling,QWK,0.5271754702243676,0.5271754702243676,0.0
+QD-R1_CORAL_human_only,temperature_scaling,Kendall tau,0.45560562684313166,0.45560562684313166,0.0
+QD-R1_CORAL_human_only,temperature_scaling,low_to_high_rate,0.5161290322580645,0.5161290322580645,0.0
+QD-R1_CORAL_human_only,temperature_scaling,Acc@5,0.8977272727272727,0.8977272727272727,0.0
+QD-R1_CORAL_human_only,temperature_scaling,high_to_mid_or_low_rate,0.003246753246753247,0.003246753246753247,0.0
+QD-R1_CORAL_human_only,temperature_scaling,severe_error_rate,0.04805077062556664,0.04805077062556664,0.0
+QD-R1_CORAL_human_only,global_threshold,Accuracy,0.6554850407978241,0.6509519492293744,-0.004533091568449721
+QD-R1_CORAL_human_only,global_threshold,MAE_label,0.4466606225445754,0.4291326684799032,-0.01752795406467217
+QD-R1_CORAL_human_only,global_threshold,QWK,0.5271754702243676,0.5724102588902609,0.045234788665893255
+QD-R1_CORAL_human_only,global_threshold,Kendall tau,0.45560562684313166,0.5045974038970956,0.04899177705396396
+QD-R1_CORAL_human_only,global_threshold,low_to_high_rate,0.5161290322580645,0.5161290322580645,0.0
+QD-R1_CORAL_human_only,global_threshold,Acc@5,0.8977272727272727,0.6801948051948052,-0.21753246753246747
+QD-R1_CORAL_human_only,global_threshold,high_to_mid_or_low_rate,0.003246753246753247,0.003246753246753247,0.0
+QD-R1_CORAL_human_only,global_threshold,severe_error_rate,0.04805077062556664,0.02629193109700816,-0.02175883952855848
+QD-R1_CORAL_human_only,risk_aware_threshold,Accuracy,0.6554850407978241,0.6654578422484134,0.00997280145058932
+QD-R1_CORAL_human_only,risk_aware_threshold,MAE_label,0.4466606225445754,0.43578120278029614,-0.010879419764279252
+QD-R1_CORAL_human_only,risk_aware_threshold,QWK,0.5271754702243676,0.5697080205443874,0.04253255032001979
+QD-R1_CORAL_human_only,risk_aware_threshold,Kendall tau,0.45560562684313166,0.48795138632878815,0.03234575948565649
+QD-R1_CORAL_human_only,risk_aware_threshold,low_to_high_rate,0.5161290322580645,0.4838709677419355,-0.032258064516129004
+QD-R1_CORAL_human_only,risk_aware_threshold,Acc@5,0.8977272727272727,0.8652597402597403,-0.03246753246753242
+QD-R1_CORAL_human_only,risk_aware_threshold,high_to_mid_or_low_rate,0.003246753246753247,0.011363636363636364,0.008116883116883116
+QD-R1_CORAL_human_only,risk_aware_threshold,severe_error_rate,0.04805077062556664,0.043517679057116954,-0.004533091568449686
