@@ -1,1 +1,3 @@
-
+comparison,metric,baseline_run_id,baseline_value,qdr1_value,delta,direction
+QD-R1_minus_QD-B0,low_to_high_rate,QD-B0_human_only_ordinary_ordinal,0.5161290322580645,0.5161290322580645,0.0,lower_better
+QD-R1_minus_QD-B1,low_to_high_rate,QD-B1_human_only_L1_weighted_ordinal,0.45161290322580644,0.5161290322580645,0.06451612903225806,lower_better

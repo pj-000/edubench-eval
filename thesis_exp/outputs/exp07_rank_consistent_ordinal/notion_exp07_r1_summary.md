@@ -6,5 +6,5 @@
 - Loss: unweighted ordinal BCEWithLogits.
 - Synthetic data: no.
 - Class weights, focal loss, calibration: no.
-- Formal status: `pending_formal_training`.
-- Exp7-B gate: **PENDING_FORMAL_TRAINING**.
+- Formal status: `completed`.
+- Exp7-B gate: **REVIEW_REQUIRED**.

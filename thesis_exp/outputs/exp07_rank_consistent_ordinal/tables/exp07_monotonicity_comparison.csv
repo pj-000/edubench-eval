@@ -3,4 +3,5 @@ QD-B0_human_only_ordinary_ordinal,human-only ordinary independent ordinal,comple
 QD-B0_human_only_ordinary_ordinal,human-only ordinary independent ordinal,completed,test,1103,0.1985494106980961,,,,,,,,,,,,
 QD-B1_human_only_L1_weighted_ordinal,human-only L1 weighted independent ordinal,completed,dev,1107,0.3053297199638663,,,,,,,,,,,,
 QD-B1_human_only_L1_weighted_ordinal,human-only L1 weighted independent ordinal,completed,test,1103,0.3118766999093382,,,,,,,,,,,,
-QD-R1_CORAL_human_only,human-only CORAL rank-consistent ordinal,pending_formal_training,test,,,,,,,,,,,,,,
+QD-R1_CORAL_human_only,human-only CORAL rank-consistent ordinal,completed,dev,1107,0.0,0.0,1.0,1.0,1.0,0.9561287713377604,0.9107595504231687,0.8229347204355407,0.6883915716670161,0.988256549232159,0.987353206865402,0.950316169828365,0.7317073170731707
+QD-R1_CORAL_human_only,human-only CORAL rank-consistent ordinal,completed,test,1103,0.0,0.0,1.0,1.0,1.0,0.9584782068518009,0.9098941232827141,0.8157597304729121,0.6728510878443625,0.9927470534904805,0.9918404351767905,0.9519492293744334,0.7116953762466002

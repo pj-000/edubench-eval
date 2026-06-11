@@ -1,0 +1,26 @@
+# Exp7 Output Sanity Check
+
+Run ID: `QD-R1_CORAL_human_only`
+Status: `PASS`
+
+| check | status | details |
+| --- | --- | --- |
+| predictions_test rows = 1103 | PASS | 1103 |
+| logits_test shape = [1103,4] | PASS | (1103, 4) |
+| probs_test shape = [1103,4] | PASS | (1103, 4) |
+| monotonicity_metrics.csv exists | PASS |  |
+| monotonic_violation_rate near 0 | PASS | 0.0 |
+| tables/metrics_summary.csv exists | PASS |  |
+| tables/low_score_metrics.csv exists | PASS |  |
+| tables/high_score_metrics.csv exists | PASS |  |
+| tables/per_bin_metrics.csv exists | PASS |  |
+| tables/metric_level_metrics.csv exists | PASS |  |
+| tables/scenario_level_metrics.csv exists | PASS |  |
+| tables/language_level_metrics.csv exists | PASS |  |
+| global tables/exp07_r1_comparison.csv exists | PASS |  |
+| global tables/exp07_monotonicity_comparison.csv exists | PASS |  |
+| global tables/exp07_low_score_comparison.csv exists | PASS |  |
+| global tables/exp07_high_score_comparison.csv exists | PASS |  |
+| no checkpoint/weights tracked | PASS |  |
+| run_summary metadata correct objective | PASS | {'best_epoch': 4, 'best_global_step': 104, 'best_selection_metric_name': 'dev_MAE_label', 'best_selection_metric_value': 0.5221318879855466, 'calibration_used': False, 'checkpoint_selection': 'dev MAE_label (min)', 'class_weights_used': False, 'dataset_id': 'QD-S0_human_only', 'experiment': 'Exp7 rank-consistent ordinal scorer', 'head_type': 'coral', 'input_template': 'A4_question_answer_metric_rubric_metadata', 'loss': 'BCEWithLogits ordinal', 'model_name_or_path': '/home/share/models/modelscope/Qwen/Qwen3-Reranker-0.6B', 'objective': 'CORAL_rank_consistent_ordinal', 'run_id': 'QD-R1_CORAL_human_only', 'selection_direction': 'min', 'split': 'question_seed42', 'status': 'completed', 'synthetic_used': False} |
+| run_metadata synthetic/class/calibration disabled | PASS |  |

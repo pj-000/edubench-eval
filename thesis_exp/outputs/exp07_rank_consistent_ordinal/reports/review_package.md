@@ -1,6 +1,6 @@
 # Exp7-A Review Package
 
-Can Exp7-B start? **PENDING_FORMAL_TRAINING**
+Can Exp7-B start? **REVIEW_REQUIRED**
 
 Scope:
 

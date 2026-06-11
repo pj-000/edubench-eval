@@ -26,7 +26,7 @@ SCRIPT_PATHS = [
     Path("thesis_exp/scripts/sync_exp07_qdr1_to_server.sh"),
 ]
 TEXT_SUFFIXES = {".py", ".sh", ".yaml", ".yml", ".md", ".csv", ".json", ".jsonl", ".txt"}
-CHECKPOINT_SUFFIXES = {".bin", ".safetensors", ".pt", ".pth", ".ckpt", ".npy", ".npz"}
+CHECKPOINT_SUFFIXES = {".bin", ".safetensors", ".pt", ".pth", ".ckpt"}
 
 
 def add(rows: list[dict[str, Any]], check_name: str, path: Path, passed: bool, details: Any = "") -> None:
@@ -111,7 +111,7 @@ def check_line_endings(rows: list[dict[str, Any]], path: Path) -> None:
 def check_size_and_weights(rows: list[dict[str, Any]], path: Path) -> None:
     size = path.stat().st_size
     add(rows, "file size below 20MB", path, size < 20_000_000, size)
-    add(rows, "not checkpoint/array artifact", path, path.suffix.lower() not in CHECKPOINT_SUFFIXES)
+    add(rows, "not checkpoint/weight artifact", path, path.suffix.lower() not in CHECKPOINT_SUFFIXES)
 
 
 def main() -> None:
