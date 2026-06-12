@@ -3,7 +3,7 @@ set -euo pipefail
 
 CONDA_ENV="${CONDA_ENV:-llama_factory}"
 MODEL_NAME_OR_PATH="${MODEL_NAME_OR_PATH:-/home/share/models/modelscope/Qwen/Qwen3-Reranker-0.6B}"
-CUDA_VISIBLE_DEVICES="${CUDA_VISIBLE_DEVICES:-7}"
+CUDA_VISIBLE_DEVICES="${CUDA_VISIBLE_DEVICES:-6}"
 
 FORMAL_RUN="${FORMAL_RUN:-1}"
 REQUIRE_CUDA="${REQUIRE_CUDA:-1}"
