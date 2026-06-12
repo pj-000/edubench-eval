@@ -73,7 +73,7 @@ Status: `PASS`
 | first line <= 1000 chars | thesis_exp/src/edujudge/exp08_edurisk/readability_check_exp08.py | PASS | 51 |
 | not collapsed-line file | thesis_exp/src/edujudge/exp08_edurisk/readability_check_exp08.py | PASS | 206 |
 | minimum line count | thesis_exp/src/edujudge/exp08_edurisk/readability_check_exp08.py | PASS | lines=206; min>100 |
-| file size below 20MB | thesis_exp/src/edujudge/exp08_edurisk/readability_check_exp08.py | PASS | 7948 |
+| file size below 20MB | thesis_exp/src/edujudge/exp08_edurisk/readability_check_exp08.py | PASS | 7894 |
 | not checkpoint/weight artifact | thesis_exp/src/edujudge/exp08_edurisk/readability_check_exp08.py | PASS |  |
 | no API key string | thesis_exp/src/edujudge/exp08_edurisk/readability_check_exp08.py | PASS |  |
 | no CRLF line endings | thesis_exp/src/edujudge/exp08_edurisk/sanity_check_exp08_outputs.py | PASS |  |

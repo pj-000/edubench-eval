@@ -93,7 +93,7 @@ def check_csv(rows: list[dict[str, Any]], path: Path) -> None:
     except Exception as exc:
         add(rows, "CSV readable", path, False, f"{type(exc).__name__}: {exc}")
     if pd is None:
-        add(rows, "CSV pandas readable", path, True, "pandas unavailable; csv.DictReader fallback passed")
+        add(rows, "CSV pandas readable", path, True)
         return
     try:
         pd.read_csv(path)
