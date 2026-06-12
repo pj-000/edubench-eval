@@ -36,8 +36,8 @@ Status: `PASS`
 | no CR-only line endings | thesis_exp/src/edujudge/exp09_pairwise_ordinal/data.py | PASS |  |
 | LF line endings | thesis_exp/src/edujudge/exp09_pairwise_ordinal/data.py | PASS |  |
 | first line <= 1000 chars | thesis_exp/src/edujudge/exp09_pairwise_ordinal/data.py | PASS | 57 |
-| not collapsed-line file | thesis_exp/src/edujudge/exp09_pairwise_ordinal/data.py | PASS | 156 |
-| file size below 20MB | thesis_exp/src/edujudge/exp09_pairwise_ordinal/data.py | PASS | 5982 |
+| not collapsed-line file | thesis_exp/src/edujudge/exp09_pairwise_ordinal/data.py | PASS | 162 |
+| file size below 20MB | thesis_exp/src/edujudge/exp09_pairwise_ordinal/data.py | PASS | 6217 |
 | not checkpoint/weight artifact | thesis_exp/src/edujudge/exp09_pairwise_ordinal/data.py | PASS |  |
 | no API key string | thesis_exp/src/edujudge/exp09_pairwise_ordinal/data.py | PASS |  |
 | no CRLF line endings | thesis_exp/src/edujudge/exp09_pairwise_ordinal/losses.py | PASS |  |
@@ -78,9 +78,9 @@ Status: `PASS`
 | no CR-only line endings | thesis_exp/src/edujudge/exp09_pairwise_ordinal/sanity_check_exp09_setup.py | PASS |  |
 | LF line endings | thesis_exp/src/edujudge/exp09_pairwise_ordinal/sanity_check_exp09_setup.py | PASS |  |
 | first line <= 1000 chars | thesis_exp/src/edujudge/exp09_pairwise_ordinal/sanity_check_exp09_setup.py | PASS | 61 |
-| not collapsed-line file | thesis_exp/src/edujudge/exp09_pairwise_ordinal/sanity_check_exp09_setup.py | PASS | 262 |
-| minimum line count | thesis_exp/src/edujudge/exp09_pairwise_ordinal/sanity_check_exp09_setup.py | PASS | lines=262; min>150 |
-| file size below 20MB | thesis_exp/src/edujudge/exp09_pairwise_ordinal/sanity_check_exp09_setup.py | PASS | 11915 |
+| not collapsed-line file | thesis_exp/src/edujudge/exp09_pairwise_ordinal/sanity_check_exp09_setup.py | PASS | 269 |
+| minimum line count | thesis_exp/src/edujudge/exp09_pairwise_ordinal/sanity_check_exp09_setup.py | PASS | lines=269; min>150 |
+| file size below 20MB | thesis_exp/src/edujudge/exp09_pairwise_ordinal/sanity_check_exp09_setup.py | PASS | 12158 |
 | not checkpoint/weight artifact | thesis_exp/src/edujudge/exp09_pairwise_ordinal/sanity_check_exp09_setup.py | PASS |  |
 | no API key string | thesis_exp/src/edujudge/exp09_pairwise_ordinal/sanity_check_exp09_setup.py | PASS |  |
 | no CRLF line endings | thesis_exp/src/edujudge/exp09_pairwise_ordinal/train_qdpr1_pairwise.py | PASS |  |
@@ -127,7 +127,7 @@ Status: `PASS`
 | LF line endings | thesis_exp/scripts/sync_exp09_qdpr1_to_server.sh | PASS |  |
 | first line <= 1000 chars | thesis_exp/scripts/sync_exp09_qdpr1_to_server.sh | PASS | 19 |
 | not collapsed-line file | thesis_exp/scripts/sync_exp09_qdpr1_to_server.sh | PASS | 63 |
-| file size below 20MB | thesis_exp/scripts/sync_exp09_qdpr1_to_server.sh | PASS | 4104 |
+| file size below 20MB | thesis_exp/scripts/sync_exp09_qdpr1_to_server.sh | PASS | 4140 |
 | not checkpoint/weight artifact | thesis_exp/scripts/sync_exp09_qdpr1_to_server.sh | PASS |  |
 | no API key string | thesis_exp/scripts/sync_exp09_qdpr1_to_server.sh | PASS |  |
 | Markdown max prose line length | thesis_exp/outputs/exp09_pairwise_ordinal/report.md | PASS | prose=91; table=106 |

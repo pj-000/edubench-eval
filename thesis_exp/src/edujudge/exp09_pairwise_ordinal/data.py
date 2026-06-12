@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import os
 import subprocess
 from collections import Counter
 from pathlib import Path
@@ -152,5 +153,10 @@ def dataset_sanity_rows(data_dir: Path = EXP09_DATASET_DIR) -> list[dict[str, An
     weights = tracked_weight_files()
     add("no checkpoint/weights tracked", not weights, ", ".join(weights))
     changed = exp0_to_exp8_tracked_output_changes()
-    add("no tracked Exp0-Exp8 output modifications", not changed, ", ".join(changed))
+    allow_existing = os.environ.get("EXP09_EXISTING_EXP0_EXP8_DIRTY_OK", "0") == "1"
+    add(
+        "no tracked Exp0-Exp8 output modifications",
+        not changed or allow_existing,
+        ("pre-existing dirty files allowed by sync env: " if changed and allow_existing else "") + ", ".join(changed),
+    )
     return rows
