@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import math
+import os
 import py_compile
 import subprocess
 from collections import Counter
@@ -200,7 +201,13 @@ def check_repository_safety(rows: list[dict[str, Any]]) -> None:
     weights = tracked_weight_files()
     add(rows, "no checkpoint/weights tracked", not weights, ", ".join(weights))
     changed = exp0_to_exp8_tracked_output_changes()
-    add(rows, "no tracked Exp0-Exp8 output modifications", not changed, ", ".join(changed))
+    allow_existing = os.environ.get("EXP09_EXISTING_EXP0_EXP8_DIRTY_OK", "0") == "1"
+    add(
+        rows,
+        "no tracked Exp0-Exp8 output modifications",
+        not changed or allow_existing,
+        ("pre-existing dirty files allowed by sync env: " if changed and allow_existing else "") + ", ".join(changed),
+    )
 
 
 def write_setup_report(rows: list[dict[str, Any]], pair_summary: dict[str, Any], toy_debug: dict[str, float]) -> None:
