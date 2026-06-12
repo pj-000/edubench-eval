@@ -65,9 +65,12 @@ def main() -> None:
             _float_is_zero(test.get("monotonic_violation_rate")),
             test.get("monotonic_violation_rate"),
         )
-    suffix = "_smoke" if args.smoke else ""
-    csv_path = EXP08_TABLES_DIR / f"sanity_check_exp08_outputs{suffix}.csv"
-    md_path = EXP08_OUTPUT_DIR / f"sanity_check_exp08_outputs{suffix}.md"
+    if args.smoke:
+        csv_path = run_dir / "tables" / "sanity_check_exp08_outputs_smoke.csv"
+        md_path = run_dir / "sanity_check_exp08_outputs_smoke.md"
+    else:
+        csv_path = EXP08_TABLES_DIR / "sanity_check_exp08_outputs.csv"
+        md_path = EXP08_OUTPUT_DIR / "sanity_check_exp08_outputs.md"
     write_csv(csv_path, rows)
     failures = [row for row in rows if row["status"] != "PASS"]
     lines = [

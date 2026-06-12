@@ -42,6 +42,7 @@ MIN_LINE_COUNTS = {
     Path("thesis_exp/src/edujudge/exp08_edurisk/train_qder1_edurisk.py"): 300,
     Path("thesis_exp/src/edujudge/exp08_edurisk/readability_check_exp08.py"): 100,
 }
+SKIP_OUTPUT_DIRS = {"runs", "smoke_test", "logs", "arrays", "predictions"}
 
 
 def add(rows: list[dict[str, Any]], check_name: str, path: Path, passed: bool, details: Any = "") -> None:
@@ -60,7 +61,13 @@ def candidate_files() -> list[Path]:
     files.extend(sorted(EXP08_CONFIG_DIR.glob("*.yaml")))
     files.extend(path for path in SCRIPT_PATHS if path.exists())
     if EXP08_OUTPUT_DIR.exists():
-        files.extend(path for path in sorted(EXP08_OUTPUT_DIR.rglob("*")) if path.is_file())
+        for path in sorted(EXP08_OUTPUT_DIR.rglob("*")):
+            if not path.is_file():
+                continue
+            relative = path.relative_to(EXP08_OUTPUT_DIR)
+            if relative.parts and relative.parts[0] in SKIP_OUTPUT_DIRS:
+                continue
+            files.append(path)
     unique: list[Path] = []
     seen = set()
     for path in files:

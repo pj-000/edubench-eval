@@ -71,17 +71,17 @@ Status: `PASS`
 | no CR-only line endings | thesis_exp/src/edujudge/exp08_edurisk/readability_check_exp08.py | PASS |  |
 | LF line endings | thesis_exp/src/edujudge/exp08_edurisk/readability_check_exp08.py | PASS |  |
 | first line <= 1000 chars | thesis_exp/src/edujudge/exp08_edurisk/readability_check_exp08.py | PASS | 51 |
-| not collapsed-line file | thesis_exp/src/edujudge/exp08_edurisk/readability_check_exp08.py | PASS | 206 |
-| minimum line count | thesis_exp/src/edujudge/exp08_edurisk/readability_check_exp08.py | PASS | lines=206; min>100 |
-| file size below 20MB | thesis_exp/src/edujudge/exp08_edurisk/readability_check_exp08.py | PASS | 7894 |
+| not collapsed-line file | thesis_exp/src/edujudge/exp08_edurisk/readability_check_exp08.py | PASS | 213 |
+| minimum line count | thesis_exp/src/edujudge/exp08_edurisk/readability_check_exp08.py | PASS | lines=213; min>100 |
+| file size below 20MB | thesis_exp/src/edujudge/exp08_edurisk/readability_check_exp08.py | PASS | 8180 |
 | not checkpoint/weight artifact | thesis_exp/src/edujudge/exp08_edurisk/readability_check_exp08.py | PASS |  |
 | no API key string | thesis_exp/src/edujudge/exp08_edurisk/readability_check_exp08.py | PASS |  |
 | no CRLF line endings | thesis_exp/src/edujudge/exp08_edurisk/sanity_check_exp08_outputs.py | PASS |  |
 | no CR-only line endings | thesis_exp/src/edujudge/exp08_edurisk/sanity_check_exp08_outputs.py | PASS |  |
 | LF line endings | thesis_exp/src/edujudge/exp08_edurisk/sanity_check_exp08_outputs.py | PASS |  |
 | first line <= 1000 chars | thesis_exp/src/edujudge/exp08_edurisk/sanity_check_exp08_outputs.py | PASS | 59 |
-| not collapsed-line file | thesis_exp/src/edujudge/exp08_edurisk/sanity_check_exp08_outputs.py | PASS | 90 |
-| file size below 20MB | thesis_exp/src/edujudge/exp08_edurisk/sanity_check_exp08_outputs.py | PASS | 3290 |
+| not collapsed-line file | thesis_exp/src/edujudge/exp08_edurisk/sanity_check_exp08_outputs.py | PASS | 93 |
+| file size below 20MB | thesis_exp/src/edujudge/exp08_edurisk/sanity_check_exp08_outputs.py | PASS | 3410 |
 | not checkpoint/weight artifact | thesis_exp/src/edujudge/exp08_edurisk/sanity_check_exp08_outputs.py | PASS |  |
 | no API key string | thesis_exp/src/edujudge/exp08_edurisk/sanity_check_exp08_outputs.py | PASS |  |
 | no CRLF line endings | thesis_exp/src/edujudge/exp08_edurisk/sanity_check_exp08_setup.py | PASS |  |
@@ -217,28 +217,6 @@ Status: `PASS`
 | file size below 20MB | thesis_exp/outputs/exp08_edurisk_loss/review_package.md | PASS | 1553 |
 | not checkpoint/weight artifact | thesis_exp/outputs/exp08_edurisk_loss/review_package.md | PASS |  |
 | no API key string | thesis_exp/outputs/exp08_edurisk_loss/review_package.md | PASS |  |
-| CSV readable | thesis_exp/outputs/exp08_edurisk_loss/runs/QD-ER1_EduRisk_human_only/tables/class_balanced_weights.csv | PASS |  |
-| CSV pandas readable | thesis_exp/outputs/exp08_edurisk_loss/runs/QD-ER1_EduRisk_human_only/tables/class_balanced_weights.csv | PASS |  |
-| no CRLF line endings | thesis_exp/outputs/exp08_edurisk_loss/runs/QD-ER1_EduRisk_human_only/tables/class_balanced_weights.csv | PASS |  |
-| no CR-only line endings | thesis_exp/outputs/exp08_edurisk_loss/runs/QD-ER1_EduRisk_human_only/tables/class_balanced_weights.csv | PASS |  |
-| LF line endings | thesis_exp/outputs/exp08_edurisk_loss/runs/QD-ER1_EduRisk_human_only/tables/class_balanced_weights.csv | PASS |  |
-| first line <= 1000 chars | thesis_exp/outputs/exp08_edurisk_loss/runs/QD-ER1_EduRisk_human_only/tables/class_balanced_weights.csv | PASS | 59 |
-| not collapsed-line file | thesis_exp/outputs/exp08_edurisk_loss/runs/QD-ER1_EduRisk_human_only/tables/class_balanced_weights.csv | PASS | 6 |
-| not large one-line md/csv | thesis_exp/outputs/exp08_edurisk_loss/runs/QD-ER1_EduRisk_human_only/tables/class_balanced_weights.csv | PASS | lines=6; bytes=378 |
-| file size below 20MB | thesis_exp/outputs/exp08_edurisk_loss/runs/QD-ER1_EduRisk_human_only/tables/class_balanced_weights.csv | PASS | 378 |
-| not checkpoint/weight artifact | thesis_exp/outputs/exp08_edurisk_loss/runs/QD-ER1_EduRisk_human_only/tables/class_balanced_weights.csv | PASS |  |
-| no API key string | thesis_exp/outputs/exp08_edurisk_loss/runs/QD-ER1_EduRisk_human_only/tables/class_balanced_weights.csv | PASS |  |
-| CSV readable | thesis_exp/outputs/exp08_edurisk_loss/runs/QD-ER1_EduRisk_human_only/tables/toy_loss_component_scale.csv | PASS |  |
-| CSV pandas readable | thesis_exp/outputs/exp08_edurisk_loss/runs/QD-ER1_EduRisk_human_only/tables/toy_loss_component_scale.csv | PASS |  |
-| no CRLF line endings | thesis_exp/outputs/exp08_edurisk_loss/runs/QD-ER1_EduRisk_human_only/tables/toy_loss_component_scale.csv | PASS |  |
-| no CR-only line endings | thesis_exp/outputs/exp08_edurisk_loss/runs/QD-ER1_EduRisk_human_only/tables/toy_loss_component_scale.csv | PASS |  |
-| LF line endings | thesis_exp/outputs/exp08_edurisk_loss/runs/QD-ER1_EduRisk_human_only/tables/toy_loss_component_scale.csv | PASS |  |
-| first line <= 1000 chars | thesis_exp/outputs/exp08_edurisk_loss/runs/QD-ER1_EduRisk_human_only/tables/toy_loss_component_scale.csv | PASS | 168 |
-| not collapsed-line file | thesis_exp/outputs/exp08_edurisk_loss/runs/QD-ER1_EduRisk_human_only/tables/toy_loss_component_scale.csv | PASS | 2 |
-| not large one-line md/csv | thesis_exp/outputs/exp08_edurisk_loss/runs/QD-ER1_EduRisk_human_only/tables/toy_loss_component_scale.csv | PASS | lines=2; bytes=356 |
-| file size below 20MB | thesis_exp/outputs/exp08_edurisk_loss/runs/QD-ER1_EduRisk_human_only/tables/toy_loss_component_scale.csv | PASS | 356 |
-| not checkpoint/weight artifact | thesis_exp/outputs/exp08_edurisk_loss/runs/QD-ER1_EduRisk_human_only/tables/toy_loss_component_scale.csv | PASS |  |
-| no API key string | thesis_exp/outputs/exp08_edurisk_loss/runs/QD-ER1_EduRisk_human_only/tables/toy_loss_component_scale.csv | PASS |  |
 | Markdown max prose line length | thesis_exp/outputs/exp08_edurisk_loss/sanity_check_exp08_setup.md | PASS | prose=26; table=154 |
 | no CRLF line endings | thesis_exp/outputs/exp08_edurisk_loss/sanity_check_exp08_setup.md | PASS |  |
 | no CR-only line endings | thesis_exp/outputs/exp08_edurisk_loss/sanity_check_exp08_setup.md | PASS |  |
