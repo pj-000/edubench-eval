@@ -43,6 +43,7 @@ MIN_LINE_COUNTS = {
     Path("thesis_exp/src/edujudge/exp08_edurisk/readability_check_exp08.py"): 100,
 }
 SKIP_OUTPUT_DIRS = {"runs", "smoke_test", "logs", "arrays", "predictions"}
+SELF_OUTPUT_FILES = {Path("readability_check_exp08.md"), Path("tables/readability_check_exp08.csv")}
 
 
 def add(rows: list[dict[str, Any]], check_name: str, path: Path, passed: bool, details: Any = "") -> None:
@@ -66,6 +67,8 @@ def candidate_files() -> list[Path]:
                 continue
             relative = path.relative_to(EXP08_OUTPUT_DIR)
             if relative.parts and relative.parts[0] in SKIP_OUTPUT_DIRS:
+                continue
+            if relative in SELF_OUTPUT_FILES:
                 continue
             files.append(path)
     unique: list[Path] = []

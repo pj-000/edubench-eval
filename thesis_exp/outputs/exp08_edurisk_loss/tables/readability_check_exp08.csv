@@ -66,9 +66,9 @@ no CRLF line endings,thesis_exp/src/edujudge/exp08_edurisk/readability_check_exp
 no CR-only line endings,thesis_exp/src/edujudge/exp08_edurisk/readability_check_exp08.py,PASS,
 LF line endings,thesis_exp/src/edujudge/exp08_edurisk/readability_check_exp08.py,PASS,
 first line <= 1000 chars,thesis_exp/src/edujudge/exp08_edurisk/readability_check_exp08.py,PASS,51
-not collapsed-line file,thesis_exp/src/edujudge/exp08_edurisk/readability_check_exp08.py,PASS,213
-minimum line count,thesis_exp/src/edujudge/exp08_edurisk/readability_check_exp08.py,PASS,lines=213; min>100
-file size below 20MB,thesis_exp/src/edujudge/exp08_edurisk/readability_check_exp08.py,PASS,8180
+not collapsed-line file,thesis_exp/src/edujudge/exp08_edurisk/readability_check_exp08.py,PASS,216
+minimum line count,thesis_exp/src/edujudge/exp08_edurisk/readability_check_exp08.py,PASS,lines=216; min>100
+file size below 20MB,thesis_exp/src/edujudge/exp08_edurisk/readability_check_exp08.py,PASS,8352
 not checkpoint/weight artifact,thesis_exp/src/edujudge/exp08_edurisk/readability_check_exp08.py,PASS,
 no API key string,thesis_exp/src/edujudge/exp08_edurisk/readability_check_exp08.py,PASS,
 no CRLF line endings,thesis_exp/src/edujudge/exp08_edurisk/sanity_check_exp08_outputs.py,PASS,
@@ -152,16 +152,6 @@ not large one-line md/csv,thesis_exp/outputs/exp08_edurisk_loss/notion_exp08_edu
 file size below 20MB,thesis_exp/outputs/exp08_edurisk_loss/notion_exp08_edurisk_summary.md,PASS,1553
 not checkpoint/weight artifact,thesis_exp/outputs/exp08_edurisk_loss/notion_exp08_edurisk_summary.md,PASS,
 no API key string,thesis_exp/outputs/exp08_edurisk_loss/notion_exp08_edurisk_summary.md,PASS,
-Markdown max prose line length,thesis_exp/outputs/exp08_edurisk_loss/readability_check_exp08.md,PASS,prose=24; table=164
-no CRLF line endings,thesis_exp/outputs/exp08_edurisk_loss/readability_check_exp08.md,PASS,
-no CR-only line endings,thesis_exp/outputs/exp08_edurisk_loss/readability_check_exp08.md,PASS,
-LF line endings,thesis_exp/outputs/exp08_edurisk_loss/readability_check_exp08.md,PASS,
-first line <= 1000 chars,thesis_exp/outputs/exp08_edurisk_loss/readability_check_exp08.md,PASS,24
-not collapsed-line file,thesis_exp/outputs/exp08_edurisk_loss/readability_check_exp08.md,PASS,318
-not large one-line md/csv,thesis_exp/outputs/exp08_edurisk_loss/readability_check_exp08.md,PASS,lines=318; bytes=33075
-file size below 20MB,thesis_exp/outputs/exp08_edurisk_loss/readability_check_exp08.md,PASS,33075
-not checkpoint/weight artifact,thesis_exp/outputs/exp08_edurisk_loss/readability_check_exp08.md,PASS,
-no API key string,thesis_exp/outputs/exp08_edurisk_loss/readability_check_exp08.md,PASS,
 Markdown max prose line length,thesis_exp/outputs/exp08_edurisk_loss/report.md,PASS,prose=97; table=106
 no CRLF line endings,thesis_exp/outputs/exp08_edurisk_loss/report.md,PASS,
 no CR-only line endings,thesis_exp/outputs/exp08_edurisk_loss/report.md,PASS,
@@ -255,17 +245,6 @@ not large one-line md/csv,thesis_exp/outputs/exp08_edurisk_loss/tables/exp08_del
 file size below 20MB,thesis_exp/outputs/exp08_edurisk_loss/tables/exp08_delta_vs_baselines.csv,PASS,117
 not checkpoint/weight artifact,thesis_exp/outputs/exp08_edurisk_loss/tables/exp08_delta_vs_baselines.csv,PASS,
 no API key string,thesis_exp/outputs/exp08_edurisk_loss/tables/exp08_delta_vs_baselines.csv,PASS,
-CSV readable,thesis_exp/outputs/exp08_edurisk_loss/tables/readability_check_exp08.csv,PASS,
-CSV pandas readable,thesis_exp/outputs/exp08_edurisk_loss/tables/readability_check_exp08.csv,PASS,
-no CRLF line endings,thesis_exp/outputs/exp08_edurisk_loss/tables/readability_check_exp08.csv,PASS,
-no CR-only line endings,thesis_exp/outputs/exp08_edurisk_loss/tables/readability_check_exp08.csv,PASS,
-LF line endings,thesis_exp/outputs/exp08_edurisk_loss/tables/readability_check_exp08.csv,PASS,
-first line <= 1000 chars,thesis_exp/outputs/exp08_edurisk_loss/tables/readability_check_exp08.csv,PASS,30
-not collapsed-line file,thesis_exp/outputs/exp08_edurisk_loss/tables/readability_check_exp08.csv,PASS,313
-not large one-line md/csv,thesis_exp/outputs/exp08_edurisk_loss/tables/readability_check_exp08.csv,PASS,lines=313; bytes=29882
-file size below 20MB,thesis_exp/outputs/exp08_edurisk_loss/tables/readability_check_exp08.csv,PASS,29882
-not checkpoint/weight artifact,thesis_exp/outputs/exp08_edurisk_loss/tables/readability_check_exp08.csv,PASS,
-no API key string,thesis_exp/outputs/exp08_edurisk_loss/tables/readability_check_exp08.csv,PASS,
 CSV readable,thesis_exp/outputs/exp08_edurisk_loss/tables/sanity_check_exp08_setup.csv,PASS,
 CSV pandas readable,thesis_exp/outputs/exp08_edurisk_loss/tables/sanity_check_exp08_setup.csv,PASS,
 no CRLF line endings,thesis_exp/outputs/exp08_edurisk_loss/tables/sanity_check_exp08_setup.csv,PASS,
