@@ -290,7 +290,9 @@ def write_reports(rows: list[dict[str, Any]], deltas: list[dict[str, Any]]) -> N
         "`effective_batch_size=128` unchanged. For 24GB RTX 3090 execution, the default "
         "micro-batch is `per_device_train_batch_size=4` with "
         "`gradient_accumulation_steps=32`, `per_device_eval_batch_size=4`, "
-        "`max_length=2048`, and `gradient_checkpointing=true`.",
+        "`max_length=2048`, and `gradient_checkpointing=true`. The train script ignores "
+        "inherited hyperparameter environment variables by default; set "
+        "`ALLOW_EXP09_ENV_OVERRIDES=1` only for deliberate manual overrides.",
         *pair_comparability_report_lines(),
         "",
         "## Test Comparison",
