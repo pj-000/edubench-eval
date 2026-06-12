@@ -1,0 +1,9 @@
+split,pair_type,count,rate
+train,adjacent,6000,0.3
+train,low_high,8000,0.4
+train,low_mid,4000,0.2
+train,random_ordinal,2000,0.1
+dev,adjacent,1500,0.3
+dev,low_high,2000,0.4
+dev,low_mid,1000,0.2
+dev,random_ordinal,500,0.1

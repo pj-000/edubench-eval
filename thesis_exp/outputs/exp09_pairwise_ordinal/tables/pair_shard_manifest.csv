@@ -1,0 +1,11 @@
+split,shard_index,path,row_count,byte_size
+train,0,thesis_exp/outputs/exp09_pairwise_ordinal/pairs/train_pairs_shard_000.jsonl,2500,10793754
+train,1,thesis_exp/outputs/exp09_pairwise_ordinal/pairs/train_pairs_shard_001.jsonl,2500,12071028
+train,2,thesis_exp/outputs/exp09_pairwise_ordinal/pairs/train_pairs_shard_002.jsonl,2500,12011475
+train,3,thesis_exp/outputs/exp09_pairwise_ordinal/pairs/train_pairs_shard_003.jsonl,2500,11890288
+train,4,thesis_exp/outputs/exp09_pairwise_ordinal/pairs/train_pairs_shard_004.jsonl,2500,12640288
+train,5,thesis_exp/outputs/exp09_pairwise_ordinal/pairs/train_pairs_shard_005.jsonl,2500,15165818
+train,6,thesis_exp/outputs/exp09_pairwise_ordinal/pairs/train_pairs_shard_006.jsonl,2500,15229976
+train,7,thesis_exp/outputs/exp09_pairwise_ordinal/pairs/train_pairs_shard_007.jsonl,2500,13851217
+dev,0,thesis_exp/outputs/exp09_pairwise_ordinal/pairs/dev_pairs_shard_000.jsonl,2500,12168502
+dev,1,thesis_exp/outputs/exp09_pairwise_ordinal/pairs/dev_pairs_shard_001.jsonl,2500,14985074

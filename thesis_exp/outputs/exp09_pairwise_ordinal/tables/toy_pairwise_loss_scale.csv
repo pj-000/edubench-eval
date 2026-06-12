@@ -1,0 +1,2 @@
+L_total,L_point,L_pair,weighted_L_pair,mean_pair_weight,mean_pair_margin,mean_score_gap,low_high_pair_loss,adjacent_pair_loss,mean_point_base_loss,mean_point_sample_weight,min_point_sample_weight,max_point_sample_weight
+0.7464373509224485,0.37795049181112583,1.2282895303710755,1.2282895303710755,1.8888888888888886,0.75,0.9838038435715016,1.6521708457022684,0.3805268997086894,0.4046320985018524,1.357323015190599,0.5,3.0

@@ -1,0 +1,46 @@
+run_id: QD-PR1_PairwiseRiskOrdinal_human_only
+dataset_id: QD-S0_human_only
+split: question_seed42
+input_template: A4_question_answer_metric_rubric_metadata
+model_name_or_path: /home/share/models/modelscope/Qwen/Qwen3-Reranker-0.6B
+data_dir: thesis_exp/outputs/exp06_synthetic_low_score/training_datasets/QD-S0_human_only
+head_type: independent_ordinal
+objective: risk_aware_pairwise_ordinal
+loss: weighted_ordinal_bce_plus_pairwise_softplus
+pointwise_loss: weighted_ordinal_bce
+use_synthetic: false
+use_coral: false
+use_edurisk: false
+pair_dataset_size_train: 20000
+pair_dataset_size_dev: 5000
+pair_sampling_seed: 42
+max_pairs_per_record: 80
+max_pairs_per_low_record: 240
+pair_type_proportions:
+  low_high: 0.40
+  low_mid: 0.20
+  adjacent: 0.30
+  random_ordinal: 0.10
+margin_scale: 1.0
+low_high_margin: 0.25
+low_high_weight: 1.0
+gap_weight: 0.5
+lambda_pair: 0.3
+w_min: 0.5
+w_max: 3.0
+epochs: 10
+learning_rate: 2.0e-5
+effective_batch_size: 128
+per_device_train_batch_size: 4
+per_device_eval_batch_size: 8
+gradient_accumulation_steps: 32
+weight_decay: 0.01
+warmup_ratio: 0.05
+max_length: 2048
+selection_metric: dev_MAE_label
+selection_direction: min
+checkpoint_selection_metric: dev_MAE_label
+checkpoint_selection_direction: min
+trust_remote_code: true
+local_files_only: false
+smoke_mode: false

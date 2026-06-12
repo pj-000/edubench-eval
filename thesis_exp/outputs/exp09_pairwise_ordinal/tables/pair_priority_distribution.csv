@@ -1,0 +1,9 @@
+split,priority,count,rate
+train,any_valid,389,0.01945
+train,same_metric,1716,0.0858
+train,same_metric_language,7454,0.3727
+train,same_question,10441,0.52205
+dev,any_valid,150,0.03
+dev,same_metric,247,0.0494
+dev,same_metric_language,1755,0.351
+dev,same_question,2848,0.5696

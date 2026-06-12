@@ -1,0 +1,6 @@
+label_5,train_count,raw_weight,clipped_weight,w_min,w_max,notes
+1,58,11.46896551724138,3.0,0.5,3.0,QD-B1-style clipped inverse-frequency weight from QD-S0 train only
+2,53,12.550943396226415,3.0,0.5,3.0,QD-B1-style clipped inverse-frequency weight from QD-S0 train only
+3,297,2.23973063973064,2.23973063973064,0.5,3.0,QD-B1-style clipped inverse-frequency weight from QD-S0 train only
+4,1163,0.5719690455717971,0.5719690455717971,0.5,3.0,QD-B1-style clipped inverse-frequency weight from QD-S0 train only
+5,1755,0.379031339031339,0.5,0.5,3.0,QD-B1-style clipped inverse-frequency weight from QD-S0 train only

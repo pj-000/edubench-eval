@@ -1,0 +1,2 @@
+comparison,metric,baseline_run_id,baseline_value,qdpr1_value,delta,direction,status
+pending_formal_training,low_to_high_rate,,,,,lower_better,QD-PR1 formal metrics are not available yet.

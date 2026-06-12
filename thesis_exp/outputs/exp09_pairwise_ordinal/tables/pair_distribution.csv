@@ -1,0 +1,9 @@
+split,pair_type,target_count,actual_count,shortage
+train,low_high,8000,8000,0
+train,low_mid,4000,4000,0
+train,adjacent,6000,6000,0
+train,random_ordinal,2000,2000,0
+dev,low_high,2000,2000,0
+dev,low_mid,1000,1000,0
+dev,adjacent,1500,1500,0
+dev,random_ordinal,500,500,0
