@@ -173,6 +173,7 @@ def check_toy_loss(rows: list[dict[str, Any]], class_weights: list[float]) -> di
         class_weights,
         lambda_pair=DEFAULT_LAMBDA_PAIR,
     )
+    debug = {key: round(float(value), 12) for key, value in debug.items()}
     win_scores = scalar_score_from_logits(win_logits)
     lose_scores = scalar_score_from_logits(lose_logits)
     add(rows, "toy pairwise loss finite", bool(np.isfinite(loss)), loss)
