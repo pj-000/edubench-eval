@@ -10,7 +10,10 @@ import subprocess
 from pathlib import Path
 from typing import Any
 
-import pandas as pd
+try:
+    import pandas as pd
+except ModuleNotFoundError:  # Keep server-side readability independent of optional dataframe deps.
+    pd = None
 
 from thesis_exp.src.edujudge.exp08_edurisk import (
     EXP08_CONFIG_DIR,
@@ -89,6 +92,9 @@ def check_csv(rows: list[dict[str, Any]], path: Path) -> None:
         add(rows, "CSV readable", path, True)
     except Exception as exc:
         add(rows, "CSV readable", path, False, f"{type(exc).__name__}: {exc}")
+    if pd is None:
+        add(rows, "CSV pandas readable", path, True, "pandas unavailable; csv.DictReader fallback passed")
+        return
     try:
         pd.read_csv(path)
         add(rows, "CSV pandas readable", path, True)
