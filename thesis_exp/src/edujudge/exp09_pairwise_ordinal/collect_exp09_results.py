@@ -288,8 +288,8 @@ def write_reports(rows: list[dict[str, Any]], deltas: list[dict[str, Any]]) -> N
         "",
         "The formal run keeps `epochs=10`, `train_pairs=20000`, `dev_pairs=5000`, and "
         "`effective_batch_size=128` unchanged. For 24GB RTX 3090 execution, the default "
-        "micro-batch is `per_device_train_batch_size=4` with "
-        "`gradient_accumulation_steps=32`, `per_device_eval_batch_size=4`, "
+        "micro-batch is `per_device_train_batch_size=16` with "
+        "`gradient_accumulation_steps=8`, `per_device_eval_batch_size=8`, "
         "`max_length=2048`, and `gradient_checkpointing=true`. The train script ignores "
         "inherited hyperparameter environment variables by default; set "
         "`ALLOW_EXP09_ENV_OVERRIDES=1` only for deliberate manual overrides.",
