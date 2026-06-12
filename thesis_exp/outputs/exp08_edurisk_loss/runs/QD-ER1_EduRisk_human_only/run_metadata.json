@@ -1,0 +1,21 @@
+{
+  "best_epoch": 4,
+  "best_global_step": 104,
+  "best_selection_metric_name": "dev_MAE_label",
+  "best_selection_metric_value": 0.49292381812707015,
+  "calibration_used": false,
+  "checkpoint_selection": "dev MAE_label (min)",
+  "class_weights_used": true,
+  "dataset_id": "QD-S0_human_only",
+  "experiment": "Exp8 EduRisk ordinal loss",
+  "head_type": "coral",
+  "input_template": "A4",
+  "loss": "EduRiskOrdinalLoss",
+  "model_name_or_path": "/home/share/models/modelscope/Qwen/Qwen3-Reranker-0.6B",
+  "objective": "edurisk_rank_consistent_ordinal",
+  "run_id": "QD-ER1_EduRisk_human_only",
+  "selection_direction": "min",
+  "split": "question_seed42",
+  "status": "completed",
+  "synthetic_used": false
+}

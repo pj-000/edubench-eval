@@ -1,0 +1,2 @@
+run_id,tau,alpha_risk,beta_bce,lambda_lh,lambda_hl,normalized_cost,class_balance_beta,weight_clip,decode_primary,decode_secondary,class_weights
+QD-ER1_EduRisk_human_only,0.7,0.3,0.5,2.0,0.5,True,0.99,False,cumulative,argmax_q,"[1.4626774356901158, 1.5645803874680504, 0.6805084387006645, 0.646119572287026, 0.646114165854144]"

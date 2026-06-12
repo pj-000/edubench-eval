@@ -1,0 +1,2 @@
+L_total,L_softCE,L_risk,L_cumBCE,mean_weight,min_weight,max_weight,weighted_L_softCE,weighted_L_risk,weighted_L_cumBCE,mean_q_raw_min,mean_q_raw_sum,max_q_raw_sum_error
+3.36318336852975,1.8037009395626236,0.7740273683215708,0.7493594764316956,1.2233333333333334,0.65,1.56,2.491462259640351,0.3333702570001556,0.5383508518892431,0.05505419075311446,1.0,0.0

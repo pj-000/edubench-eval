@@ -1,0 +1,36 @@
+check_name,status,details
+Exp8 run id locked,PASS,QD-ER1_EduRisk_human_only
+train jsonl exists,PASS,thesis_exp/outputs/exp06_synthetic_low_score/training_datasets/QD-S0_human_only/train.jsonl
+train row count = 3326,PASS,3326
+train rows are human only,PASS,
+train label provenance is human_score,PASS,
+train labels are 1..5,PASS,
+train A4 text exists,PASS,
+train template_name is A4,PASS,
+train has no synthetic rows,PASS,
+dev jsonl exists,PASS,thesis_exp/outputs/exp06_synthetic_low_score/training_datasets/QD-S0_human_only/dev.jsonl
+dev row count = 1107,PASS,1107
+dev rows are human only,PASS,
+dev label provenance is human_score,PASS,
+dev labels are 1..5,PASS,
+dev A4 text exists,PASS,
+dev template_name is A4,PASS,
+dev has no synthetic rows,PASS,
+test jsonl exists,PASS,thesis_exp/outputs/exp06_synthetic_low_score/training_datasets/QD-S0_human_only/test.jsonl
+test row count = 1103,PASS,1103
+test rows are human only,PASS,
+test label provenance is human_score,PASS,
+test labels are 1..5,PASS,
+test A4 text exists,PASS,
+test template_name is A4,PASS,
+test has no synthetic rows,PASS,
+train label 1 count = 58,PASS,"{""1"": 58, ""2"": 53, ""3"": 297, ""4"": 1163, ""5"": 1755}"
+train label 2 count = 53,PASS,"{""1"": 58, ""2"": 53, ""3"": 297, ""4"": 1163, ""5"": 1755}"
+train label 3 count = 297,PASS,"{""1"": 58, ""2"": 53, ""3"": 297, ""4"": 1163, ""5"": 1755}"
+train label 4 count = 1163,PASS,"{""1"": 58, ""2"": 53, ""3"": 297, ""4"": 1163, ""5"": 1755}"
+train label 5 count = 1755,PASS,"{""1"": 58, ""2"": 53, ""3"": 297, ""4"": 1163, ""5"": 1755}"
+QD-B0 baseline run available,PASS,QD-B0_human_only_ordinary_ordinal
+QD-B1 baseline run available,PASS,QD-B1_human_only_L1_weighted_ordinal
+QD-R1 baseline run available,PASS,QD-R1_CORAL_human_only
+no checkpoint/weights tracked,PASS,
+no tracked Exp0-Exp7 output modifications,PASS,

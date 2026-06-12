@@ -1,2 +1,22 @@
 comparison,metric,direction,qder1_value,baseline_value,delta
-pending_formal_training,not_available,not_applicable,,,
+QD-ER1_minus_QD-B0_human_only_ordinary_ordinal,low_to_high_rate,lower_better,0.45161290322580644,0.5161290322580645,-0.06451612903225806
+QD-ER1_minus_QD-B0_human_only_ordinary_ordinal,MAE_label,lower_better,0.4378966455122393,0.4019341190692051,0.03596252644303416
+QD-ER1_minus_QD-B0_human_only_ordinary_ordinal,Quadratic Weighted Kappa,higher_better,0.5580654633188158,0.5976217823018422,-0.03955631898302636
+QD-ER1_minus_QD-B0_human_only_ordinary_ordinal,Acc@5,higher_better,0.8035714285714286,0.7873376623376623,0.016233766233766267
+QD-ER1_minus_QD-B0_human_only_ordinary_ordinal,high_to_mid_or_low_rate,lower_better,0.024350649350649352,0.003246753246753247,0.021103896103896104
+QD-ER1_minus_QD-B0_human_only_ordinary_ordinal,Signed Bias label,closer_to_zero_better,0.12601994560290114,0.1069809610154125,0.019038984587488636
+QD-ER1_minus_QD-B0_human_only_ordinary_ordinal,monotonic_violation_rate,lower_better,0.0,0.1985494106980961,-0.1985494106980961
+QD-ER1_minus_QD-B1_human_only_L1_weighted_ordinal,low_to_high_rate,lower_better,0.45161290322580644,0.45161290322580644,0.0
+QD-ER1_minus_QD-B1_human_only_L1_weighted_ordinal,MAE_label,lower_better,0.4378966455122393,0.42792384406165007,0.009972801450589208
+QD-ER1_minus_QD-B1_human_only_L1_weighted_ordinal,Quadratic Weighted Kappa,higher_better,0.5580654633188158,0.6012356007375432,-0.04317013741872744
+QD-ER1_minus_QD-B1_human_only_L1_weighted_ordinal,Acc@5,higher_better,0.8035714285714286,0.7418831168831169,0.06168831168831168
+QD-ER1_minus_QD-B1_human_only_L1_weighted_ordinal,high_to_mid_or_low_rate,lower_better,0.024350649350649352,0.01461038961038961,0.009740259740259742
+QD-ER1_minus_QD-B1_human_only_L1_weighted_ordinal,Signed Bias label,closer_to_zero_better,0.12601994560290114,0.018132366273798706,0.10788757932910244
+QD-ER1_minus_QD-B1_human_only_L1_weighted_ordinal,monotonic_violation_rate,lower_better,0.0,0.3118766999093382,-0.3118766999093382
+QD-ER1_minus_QD-R1_CORAL_human_only,low_to_high_rate,lower_better,0.45161290322580644,0.5161290322580645,-0.06451612903225806
+QD-ER1_minus_QD-R1_CORAL_human_only,MAE_label,lower_better,0.4378966455122393,0.4466606225445754,-0.008763977032336112
+QD-ER1_minus_QD-R1_CORAL_human_only,Quadratic Weighted Kappa,higher_better,0.5580654633188158,0.5271754702243676,0.030889993094448176
+QD-ER1_minus_QD-R1_CORAL_human_only,Acc@5,higher_better,0.8035714285714286,0.8977272727272727,-0.0941558441558441
+QD-ER1_minus_QD-R1_CORAL_human_only,high_to_mid_or_low_rate,lower_better,0.024350649350649352,0.003246753246753247,0.021103896103896104
+QD-ER1_minus_QD-R1_CORAL_human_only,Signed Bias label,closer_to_zero_better,0.12601994560290114,0.2828649138712602,-0.1568449682683591
+QD-ER1_minus_QD-R1_CORAL_human_only,monotonic_violation_rate,lower_better,0.0,0.0,0.0

@@ -1,0 +1,22 @@
+# Exp8 Output Sanity Check
+
+Run kind: `formal`
+Status: `PASS`
+
+| check | status | details |
+| --- | --- | --- |
+| formal run dir exists | PASS | thesis_exp/outputs/exp08_edurisk_loss/runs/QD-ER1_EduRisk_human_only |
+| required output exists predictions/predictions_dev.jsonl | PASS | thesis_exp/outputs/exp08_edurisk_loss/runs/QD-ER1_EduRisk_human_only/predictions/predictions_dev.jsonl |
+| required output exists predictions/predictions_test.jsonl | PASS | thesis_exp/outputs/exp08_edurisk_loss/runs/QD-ER1_EduRisk_human_only/predictions/predictions_test.jsonl |
+| required output exists arrays/dev_test_arrays.npz | PASS | thesis_exp/outputs/exp08_edurisk_loss/runs/QD-ER1_EduRisk_human_only/arrays/dev_test_arrays.npz |
+| required output exists tables/metrics_summary.csv | PASS | thesis_exp/outputs/exp08_edurisk_loss/runs/QD-ER1_EduRisk_human_only/tables/metrics_summary.csv |
+| required output exists tables/low_score_metrics.csv | PASS | thesis_exp/outputs/exp08_edurisk_loss/runs/QD-ER1_EduRisk_human_only/tables/low_score_metrics.csv |
+| required output exists tables/high_score_metrics.csv | PASS | thesis_exp/outputs/exp08_edurisk_loss/runs/QD-ER1_EduRisk_human_only/tables/high_score_metrics.csv |
+| required output exists tables/monotonicity_metrics.csv | PASS | thesis_exp/outputs/exp08_edurisk_loss/runs/QD-ER1_EduRisk_human_only/tables/monotonicity_metrics.csv |
+| required output exists tables/expected_risk_metrics.csv | PASS | thesis_exp/outputs/exp08_edurisk_loss/runs/QD-ER1_EduRisk_human_only/tables/expected_risk_metrics.csv |
+| required output exists tables/cumulative_decoding_vs_argmax_decoding.csv | PASS | thesis_exp/outputs/exp08_edurisk_loss/runs/QD-ER1_EduRisk_human_only/tables/cumulative_decoding_vs_argmax_decoding.csv |
+| required output exists tables/loss_component_scale.csv | PASS | thesis_exp/outputs/exp08_edurisk_loss/runs/QD-ER1_EduRisk_human_only/tables/loss_component_scale.csv |
+| required output exists run_metadata.json | PASS | thesis_exp/outputs/exp08_edurisk_loss/runs/QD-ER1_EduRisk_human_only/run_metadata.json |
+| required output exists run_summary.md | PASS | thesis_exp/outputs/exp08_edurisk_loss/runs/QD-ER1_EduRisk_human_only/run_summary.md |
+| test metrics row exists | PASS | {'n': '1103', 'Accuracy': '0.6699909338168631', 'Exact Match': '0.6699909338168631', 'MAE_label': '0.4378966455122393', 'MAE_expected': '0.49900128417016526', 'RMSE_label': '0.6652296388833534', 'Signed Bias label': '0.12601994560290114', 'Signed Bias expected': '-0.2593010972006583', 'Macro-F1': '0.5245983487371758', 'Weighted-F1': '0.6587665685546121', 'Quadratic Weighted Kappa': '0.5580654633188158', 'Kendall tau': '0.46946147976060904', 'Spearman rho': '0.5307766357214987', 'Within-1 Accuracy': '0.9501359927470535', 'Acc@1': '0.8888888888888888', 'Acc@2': '0.0', 'Acc@5': '0.8035714285714286', 'low_n': '31', 'low_exact_match': '0.25806451612903225', 'low_MAE': '1.2580645161290323', 'low_signed_bias': '1.2580645161290323', 'low_to_high_rate': '0.45161290322580644', 'low_severe_overestimation_rate': '0.45161290322580644', 'mean_pred_low': '3.064516129032258', 'high_n': '616', 'high_to_mid_or_low_rate': '0.024350649350649352', 'high_signed_bias': '-0.07196969696969709', 'MAE_score': '0.49900128417016526', 'severe_error_rate': '0.04986400725294651', 'pred_label_1_rate': '0.007252946509519492', 'pred_label_2_rate': '0.0', 'pred_label_3_rate': '0.07162284678150499', 'pred_label_4_rate': '0.33635539437896644', 'pred_label_5_rate': '0.5847688123300091', 'monotonic_violation_rate': '0.0', 'mean_violation_magnitude': '0.0', 'p1_ge_p2_rate': '1.0', 'p2_ge_p3_rate': '1.0', 'p3_ge_p4_rate': '1.0', 'mean_prob_gt_1': '0.9450716904127263', 'prob_gt_1_positive_rate': '0.9927470534904805', 'mean_prob_gt_2': '0.8744899092524135', 'prob_gt_2_positive_rate': '0.9927470534904805', 'mean_prob_gt_3': '0.741017684016245', 'prob_gt_3_positive_rate': '0.9211242067089755', 'mean_prob_gt_4': '0.5454867975414812', 'prob_gt_4_positive_rate': '0.5847688123300091', 'split': 'test', 'expected_edurisk': '0.24929827409382682', 'expected_edurisk_low': '0.7610578785365026', 'expected_edurisk_mid': '0.2654820788292247', 'expected_edurisk_high': '0.21156391906612493', 'loss': '0.96115375040234', 'epoch': 'best', 'global_step': '260', 'elapsed_seconds': '3859.3899052143097'} |
+| test monotonic violation is zero | PASS | 0.0 |

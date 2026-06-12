@@ -153,8 +153,8 @@ Status: `PASS`
 | LF line endings | thesis_exp/outputs/exp08_edurisk_loss/notion_exp08_edurisk_summary.md | PASS |  |
 | first line <= 1000 chars | thesis_exp/outputs/exp08_edurisk_loss/notion_exp08_edurisk_summary.md | PASS | 34 |
 | not collapsed-line file | thesis_exp/outputs/exp08_edurisk_loss/notion_exp08_edurisk_summary.md | PASS | 37 |
-| not large one-line md/csv | thesis_exp/outputs/exp08_edurisk_loss/notion_exp08_edurisk_summary.md | PASS | lines=37; bytes=1553 |
-| file size below 20MB | thesis_exp/outputs/exp08_edurisk_loss/notion_exp08_edurisk_summary.md | PASS | 1553 |
+| not large one-line md/csv | thesis_exp/outputs/exp08_edurisk_loss/notion_exp08_edurisk_summary.md | PASS | lines=37; bytes=1536 |
+| file size below 20MB | thesis_exp/outputs/exp08_edurisk_loss/notion_exp08_edurisk_summary.md | PASS | 1536 |
 | not checkpoint/weight artifact | thesis_exp/outputs/exp08_edurisk_loss/notion_exp08_edurisk_summary.md | PASS |  |
 | no API key string | thesis_exp/outputs/exp08_edurisk_loss/notion_exp08_edurisk_summary.md | PASS |  |
 | Markdown max prose line length | thesis_exp/outputs/exp08_edurisk_loss/report.md | PASS | prose=97; table=106 |
@@ -163,8 +163,8 @@ Status: `PASS`
 | LF line endings | thesis_exp/outputs/exp08_edurisk_loss/report.md | PASS |  |
 | first line <= 1000 chars | thesis_exp/outputs/exp08_edurisk_loss/report.md | PASS | 34 |
 | not collapsed-line file | thesis_exp/outputs/exp08_edurisk_loss/report.md | PASS | 37 |
-| not large one-line md/csv | thesis_exp/outputs/exp08_edurisk_loss/report.md | PASS | lines=37; bytes=1553 |
-| file size below 20MB | thesis_exp/outputs/exp08_edurisk_loss/report.md | PASS | 1553 |
+| not large one-line md/csv | thesis_exp/outputs/exp08_edurisk_loss/report.md | PASS | lines=37; bytes=1536 |
+| file size below 20MB | thesis_exp/outputs/exp08_edurisk_loss/report.md | PASS | 1536 |
 | not checkpoint/weight artifact | thesis_exp/outputs/exp08_edurisk_loss/report.md | PASS |  |
 | no API key string | thesis_exp/outputs/exp08_edurisk_loss/report.md | PASS |  |
 | Markdown max prose line length | thesis_exp/outputs/exp08_edurisk_loss/reports/notion_exp08_edurisk_summary.md | PASS | prose=97; table=106 |
@@ -173,8 +173,8 @@ Status: `PASS`
 | LF line endings | thesis_exp/outputs/exp08_edurisk_loss/reports/notion_exp08_edurisk_summary.md | PASS |  |
 | first line <= 1000 chars | thesis_exp/outputs/exp08_edurisk_loss/reports/notion_exp08_edurisk_summary.md | PASS | 34 |
 | not collapsed-line file | thesis_exp/outputs/exp08_edurisk_loss/reports/notion_exp08_edurisk_summary.md | PASS | 37 |
-| not large one-line md/csv | thesis_exp/outputs/exp08_edurisk_loss/reports/notion_exp08_edurisk_summary.md | PASS | lines=37; bytes=1553 |
-| file size below 20MB | thesis_exp/outputs/exp08_edurisk_loss/reports/notion_exp08_edurisk_summary.md | PASS | 1553 |
+| not large one-line md/csv | thesis_exp/outputs/exp08_edurisk_loss/reports/notion_exp08_edurisk_summary.md | PASS | lines=37; bytes=1536 |
+| file size below 20MB | thesis_exp/outputs/exp08_edurisk_loss/reports/notion_exp08_edurisk_summary.md | PASS | 1536 |
 | not checkpoint/weight artifact | thesis_exp/outputs/exp08_edurisk_loss/reports/notion_exp08_edurisk_summary.md | PASS |  |
 | no API key string | thesis_exp/outputs/exp08_edurisk_loss/reports/notion_exp08_edurisk_summary.md | PASS |  |
 | Markdown max prose line length | thesis_exp/outputs/exp08_edurisk_loss/reports/report.md | PASS | prose=97; table=106 |
@@ -183,8 +183,8 @@ Status: `PASS`
 | LF line endings | thesis_exp/outputs/exp08_edurisk_loss/reports/report.md | PASS |  |
 | first line <= 1000 chars | thesis_exp/outputs/exp08_edurisk_loss/reports/report.md | PASS | 34 |
 | not collapsed-line file | thesis_exp/outputs/exp08_edurisk_loss/reports/report.md | PASS | 37 |
-| not large one-line md/csv | thesis_exp/outputs/exp08_edurisk_loss/reports/report.md | PASS | lines=37; bytes=1553 |
-| file size below 20MB | thesis_exp/outputs/exp08_edurisk_loss/reports/report.md | PASS | 1553 |
+| not large one-line md/csv | thesis_exp/outputs/exp08_edurisk_loss/reports/report.md | PASS | lines=37; bytes=1536 |
+| file size below 20MB | thesis_exp/outputs/exp08_edurisk_loss/reports/report.md | PASS | 1536 |
 | not checkpoint/weight artifact | thesis_exp/outputs/exp08_edurisk_loss/reports/report.md | PASS |  |
 | no API key string | thesis_exp/outputs/exp08_edurisk_loss/reports/report.md | PASS |  |
 | Markdown max prose line length | thesis_exp/outputs/exp08_edurisk_loss/reports/review_package.md | PASS | prose=97; table=106 |
@@ -193,8 +193,8 @@ Status: `PASS`
 | LF line endings | thesis_exp/outputs/exp08_edurisk_loss/reports/review_package.md | PASS |  |
 | first line <= 1000 chars | thesis_exp/outputs/exp08_edurisk_loss/reports/review_package.md | PASS | 34 |
 | not collapsed-line file | thesis_exp/outputs/exp08_edurisk_loss/reports/review_package.md | PASS | 37 |
-| not large one-line md/csv | thesis_exp/outputs/exp08_edurisk_loss/reports/review_package.md | PASS | lines=37; bytes=1553 |
-| file size below 20MB | thesis_exp/outputs/exp08_edurisk_loss/reports/review_package.md | PASS | 1553 |
+| not large one-line md/csv | thesis_exp/outputs/exp08_edurisk_loss/reports/review_package.md | PASS | lines=37; bytes=1536 |
+| file size below 20MB | thesis_exp/outputs/exp08_edurisk_loss/reports/review_package.md | PASS | 1536 |
 | not checkpoint/weight artifact | thesis_exp/outputs/exp08_edurisk_loss/reports/review_package.md | PASS |  |
 | no API key string | thesis_exp/outputs/exp08_edurisk_loss/reports/review_package.md | PASS |  |
 | Markdown max prose line length | thesis_exp/outputs/exp08_edurisk_loss/review_package.md | PASS | prose=97; table=106 |
@@ -203,10 +203,20 @@ Status: `PASS`
 | LF line endings | thesis_exp/outputs/exp08_edurisk_loss/review_package.md | PASS |  |
 | first line <= 1000 chars | thesis_exp/outputs/exp08_edurisk_loss/review_package.md | PASS | 34 |
 | not collapsed-line file | thesis_exp/outputs/exp08_edurisk_loss/review_package.md | PASS | 37 |
-| not large one-line md/csv | thesis_exp/outputs/exp08_edurisk_loss/review_package.md | PASS | lines=37; bytes=1553 |
-| file size below 20MB | thesis_exp/outputs/exp08_edurisk_loss/review_package.md | PASS | 1553 |
+| not large one-line md/csv | thesis_exp/outputs/exp08_edurisk_loss/review_package.md | PASS | lines=37; bytes=1536 |
+| file size below 20MB | thesis_exp/outputs/exp08_edurisk_loss/review_package.md | PASS | 1536 |
 | not checkpoint/weight artifact | thesis_exp/outputs/exp08_edurisk_loss/review_package.md | PASS |  |
 | no API key string | thesis_exp/outputs/exp08_edurisk_loss/review_package.md | PASS |  |
+| Markdown max prose line length | thesis_exp/outputs/exp08_edurisk_loss/sanity_check_exp08_outputs.md | PASS | prose=26; table=2110 |
+| no CRLF line endings | thesis_exp/outputs/exp08_edurisk_loss/sanity_check_exp08_outputs.md | PASS |  |
+| no CR-only line endings | thesis_exp/outputs/exp08_edurisk_loss/sanity_check_exp08_outputs.md | PASS |  |
+| LF line endings | thesis_exp/outputs/exp08_edurisk_loss/sanity_check_exp08_outputs.md | PASS |  |
+| first line <= 1000 chars | thesis_exp/outputs/exp08_edurisk_loss/sanity_check_exp08_outputs.md | PASS | 26 |
+| not collapsed-line file | thesis_exp/outputs/exp08_edurisk_loss/sanity_check_exp08_outputs.md | PASS | 22 |
+| not large one-line md/csv | thesis_exp/outputs/exp08_edurisk_loss/sanity_check_exp08_outputs.md | PASS | lines=22; bytes=4361 |
+| file size below 20MB | thesis_exp/outputs/exp08_edurisk_loss/sanity_check_exp08_outputs.md | PASS | 4361 |
+| not checkpoint/weight artifact | thesis_exp/outputs/exp08_edurisk_loss/sanity_check_exp08_outputs.md | PASS |  |
+| no API key string | thesis_exp/outputs/exp08_edurisk_loss/sanity_check_exp08_outputs.md | PASS |  |
 | Markdown max prose line length | thesis_exp/outputs/exp08_edurisk_loss/sanity_check_exp08_setup.md | PASS | prose=26; table=154 |
 | no CRLF line endings | thesis_exp/outputs/exp08_edurisk_loss/sanity_check_exp08_setup.md | PASS |  |
 | no CR-only line endings | thesis_exp/outputs/exp08_edurisk_loss/sanity_check_exp08_setup.md | PASS |  |
@@ -234,9 +244,9 @@ Status: `PASS`
 | no CR-only line endings | thesis_exp/outputs/exp08_edurisk_loss/tables/exp08_comparison_metrics.csv | PASS |  |
 | LF line endings | thesis_exp/outputs/exp08_edurisk_loss/tables/exp08_comparison_metrics.csv | PASS |  |
 | first line <= 1000 chars | thesis_exp/outputs/exp08_edurisk_loss/tables/exp08_comparison_metrics.csv | PASS | 317 |
-| not collapsed-line file | thesis_exp/outputs/exp08_edurisk_loss/tables/exp08_comparison_metrics.csv | PASS | 8 |
-| not large one-line md/csv | thesis_exp/outputs/exp08_edurisk_loss/tables/exp08_comparison_metrics.csv | PASS | lines=8; bytes=2878 |
-| file size below 20MB | thesis_exp/outputs/exp08_edurisk_loss/tables/exp08_comparison_metrics.csv | PASS | 2878 |
+| not collapsed-line file | thesis_exp/outputs/exp08_edurisk_loss/tables/exp08_comparison_metrics.csv | PASS | 9 |
+| not large one-line md/csv | thesis_exp/outputs/exp08_edurisk_loss/tables/exp08_comparison_metrics.csv | PASS | lines=9; bytes=3570 |
+| file size below 20MB | thesis_exp/outputs/exp08_edurisk_loss/tables/exp08_comparison_metrics.csv | PASS | 3570 |
 | not checkpoint/weight artifact | thesis_exp/outputs/exp08_edurisk_loss/tables/exp08_comparison_metrics.csv | PASS |  |
 | no API key string | thesis_exp/outputs/exp08_edurisk_loss/tables/exp08_comparison_metrics.csv | PASS |  |
 | CSV readable | thesis_exp/outputs/exp08_edurisk_loss/tables/exp08_delta_vs_baselines.csv | PASS |  |
@@ -245,11 +255,22 @@ Status: `PASS`
 | no CR-only line endings | thesis_exp/outputs/exp08_edurisk_loss/tables/exp08_delta_vs_baselines.csv | PASS |  |
 | LF line endings | thesis_exp/outputs/exp08_edurisk_loss/tables/exp08_delta_vs_baselines.csv | PASS |  |
 | first line <= 1000 chars | thesis_exp/outputs/exp08_edurisk_loss/tables/exp08_delta_vs_baselines.csv | PASS | 60 |
-| not collapsed-line file | thesis_exp/outputs/exp08_edurisk_loss/tables/exp08_delta_vs_baselines.csv | PASS | 2 |
-| not large one-line md/csv | thesis_exp/outputs/exp08_edurisk_loss/tables/exp08_delta_vs_baselines.csv | PASS | lines=2; bytes=117 |
-| file size below 20MB | thesis_exp/outputs/exp08_edurisk_loss/tables/exp08_delta_vs_baselines.csv | PASS | 117 |
+| not collapsed-line file | thesis_exp/outputs/exp08_edurisk_loss/tables/exp08_delta_vs_baselines.csv | PASS | 22 |
+| not large one-line md/csv | thesis_exp/outputs/exp08_edurisk_loss/tables/exp08_delta_vs_baselines.csv | PASS | lines=22; bytes=2833 |
+| file size below 20MB | thesis_exp/outputs/exp08_edurisk_loss/tables/exp08_delta_vs_baselines.csv | PASS | 2833 |
 | not checkpoint/weight artifact | thesis_exp/outputs/exp08_edurisk_loss/tables/exp08_delta_vs_baselines.csv | PASS |  |
 | no API key string | thesis_exp/outputs/exp08_edurisk_loss/tables/exp08_delta_vs_baselines.csv | PASS |  |
+| CSV readable | thesis_exp/outputs/exp08_edurisk_loss/tables/sanity_check_exp08_outputs.csv | PASS |  |
+| CSV pandas readable | thesis_exp/outputs/exp08_edurisk_loss/tables/sanity_check_exp08_outputs.csv | PASS |  |
+| no CRLF line endings | thesis_exp/outputs/exp08_edurisk_loss/tables/sanity_check_exp08_outputs.csv | PASS |  |
+| no CR-only line endings | thesis_exp/outputs/exp08_edurisk_loss/tables/sanity_check_exp08_outputs.csv | PASS |  |
+| LF line endings | thesis_exp/outputs/exp08_edurisk_loss/tables/sanity_check_exp08_outputs.csv | PASS |  |
+| first line <= 1000 chars | thesis_exp/outputs/exp08_edurisk_loss/tables/sanity_check_exp08_outputs.csv | PASS | 25 |
+| not collapsed-line file | thesis_exp/outputs/exp08_edurisk_loss/tables/sanity_check_exp08_outputs.csv | PASS | 16 |
+| not large one-line md/csv | thesis_exp/outputs/exp08_edurisk_loss/tables/sanity_check_exp08_outputs.csv | PASS | lines=16; bytes=4381 |
+| file size below 20MB | thesis_exp/outputs/exp08_edurisk_loss/tables/sanity_check_exp08_outputs.csv | PASS | 4381 |
+| not checkpoint/weight artifact | thesis_exp/outputs/exp08_edurisk_loss/tables/sanity_check_exp08_outputs.csv | PASS |  |
+| no API key string | thesis_exp/outputs/exp08_edurisk_loss/tables/sanity_check_exp08_outputs.csv | PASS |  |
 | CSV readable | thesis_exp/outputs/exp08_edurisk_loss/tables/sanity_check_exp08_setup.csv | PASS |  |
 | CSV pandas readable | thesis_exp/outputs/exp08_edurisk_loss/tables/sanity_check_exp08_setup.csv | PASS |  |
 | no CRLF line endings | thesis_exp/outputs/exp08_edurisk_loss/tables/sanity_check_exp08_setup.csv | PASS |  |
