@@ -10,6 +10,13 @@ Synthetic generated: `no`.
 QD-PR1 adds risk-aware ordinal preference pairs on top of QD-B1-style weighted ordinal BCE.
 Pairs are built from QD-S0 human-only train rows; dev pairs are diagnostic only.
 
+## Formal Run Defaults
+
+The formal run keeps `epochs=10`, `train_pairs=20000`, `dev_pairs=5000`, and
+`effective_batch_size=128` unchanged. For 24GB RTX 3090 execution, the default micro-batch is
+`per_device_train_batch_size=1` with `gradient_accumulation_steps=128`,
+`per_device_eval_batch_size=2`, `max_length=2048`, and `gradient_checkpointing=true`.
+
 ## Pair Comparability Audit
 
 Pair construction follows priority `same_question > same_metric_language > same_metric`; an

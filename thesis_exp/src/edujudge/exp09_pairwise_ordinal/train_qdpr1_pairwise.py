@@ -181,6 +181,8 @@ def make_pairwise_head_class(torch: Any, nn: Any, class_weights: list[float]):
             self.last_loss_debug: dict[str, float] = {}
 
         def gradient_checkpointing_enable(self) -> None:
+            if hasattr(self.backbone.config, "use_cache"):
+                self.backbone.config.use_cache = False
             if hasattr(self.backbone, "gradient_checkpointing_enable"):
                 self.backbone.gradient_checkpointing_enable()
 
@@ -212,12 +214,13 @@ def build_model(torch: Any, nn: Any, AutoModel: Any, config: PairwiseTrainConfig
     metadata_path = config.checkpoint_dir / "exp09_head_metadata.json" if config.checkpoint_dir else None
     if metadata_path and metadata_path.exists():
         source = read_json(metadata_path)["base_model_name_or_path"]
-    backbone = AutoModel.from_pretrained(
-        source,
-        trust_remote_code=config.trust_remote_code,
-        local_files_only=config.local_files_only,
-        torch_dtype=dtype,
-    )
+    model_kwargs = {
+        "trust_remote_code": config.trust_remote_code,
+        "local_files_only": config.local_files_only,
+    }
+    if dtype is not None:
+        model_kwargs["dtype"] = dtype
+    backbone = AutoModel.from_pretrained(source, **model_kwargs)
     hidden_size = getattr(backbone.config, "hidden_size", None) or getattr(backbone.config, "n_embd", None)
     if hidden_size is None:
         raise ValueError("Could not infer hidden size for Exp9 pairwise ordinal head.")
@@ -847,7 +850,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--weight_decay", type=float, default=0.01)
     parser.add_argument("--warmup_ratio", type=float, default=0.05)
     parser.add_argument("--per_device_train_batch_size", type=int, default=None)
-    parser.add_argument("--per_device_eval_batch_size", type=int, default=8)
+    parser.add_argument("--per_device_eval_batch_size", type=int, default=None)
     parser.add_argument("--gradient_accumulation_steps", type=int, default=None)
     parser.add_argument("--max_grad_norm", type=float, default=1.0)
     parser.add_argument("--seed", type=int, default=42)
@@ -926,13 +929,13 @@ def make_config(args: argparse.Namespace) -> PairwiseTrainConfig:
         weight_decay=float(args.weight_decay),
         warmup_ratio=float(args.warmup_ratio),
         per_device_train_batch_size=int(batch_size),
-        per_device_eval_batch_size=int(args.per_device_eval_batch_size),
+        per_device_eval_batch_size=int(args.per_device_eval_batch_size or raw.get("per_device_eval_batch_size", 8)),
         gradient_accumulation_steps=int(grad_accum),
         max_grad_norm=float(args.max_grad_norm),
         seed=int(args.seed),
         bf16=str(args.bf16),
         fp16=bool(args.fp16),
-        gradient_checkpointing=bool(args.gradient_checkpointing),
+        gradient_checkpointing=bool(args.gradient_checkpointing or raw.get("gradient_checkpointing", False)),
         trust_remote_code=bool(args.trust_remote_code or raw.get("trust_remote_code", True)),
         local_files_only=bool(args.local_files_only or raw.get("local_files_only", False)),
         max_train_samples=int(max_train_samples) if max_train_samples is not None else None,
