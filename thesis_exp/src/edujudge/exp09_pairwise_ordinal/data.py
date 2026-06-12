@@ -157,6 +157,6 @@ def dataset_sanity_rows(data_dir: Path = EXP09_DATASET_DIR) -> list[dict[str, An
     add(
         "no tracked Exp0-Exp8 output modifications",
         not changed or allow_existing,
-        ("pre-existing dirty files allowed by sync env: " if changed and allow_existing else "") + ", ".join(changed),
+        "" if changed and allow_existing else ", ".join(changed),
     )
     return rows

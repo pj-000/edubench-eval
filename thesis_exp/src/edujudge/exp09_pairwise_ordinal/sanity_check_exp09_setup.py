@@ -206,7 +206,7 @@ def check_repository_safety(rows: list[dict[str, Any]]) -> None:
         rows,
         "no tracked Exp0-Exp8 output modifications",
         not changed or allow_existing,
-        ("pre-existing dirty files allowed by sync env: " if changed and allow_existing else "") + ", ".join(changed),
+        "" if changed and allow_existing else ", ".join(changed),
     )
 
 
