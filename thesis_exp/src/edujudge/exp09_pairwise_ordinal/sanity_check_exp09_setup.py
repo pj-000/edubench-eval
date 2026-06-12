@@ -267,7 +267,12 @@ def main() -> None:
         for split in ["train", "dev"]
         for pair_type in ["low_high", "low_mid", "adjacent", "random_ordinal"]
     }
-    add(rows, "pair comparability audit has train/dev pair-type rows", comparability_keys == expected_keys, comparability_keys)
+    add(
+        rows,
+        "pair comparability audit has train/dev pair-type rows",
+        comparability_keys == expected_keys,
+        sorted(comparability_keys),
+    )
     collect()
     check_repository_safety(rows)
     write_setup_report(rows, pair_summary, toy_debug)
