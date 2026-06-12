@@ -143,6 +143,6 @@ Output: ${OUTPUT_DIR}
 This smoke test uses max_train_samples=${MAX_TRAIN_SAMPLES}, max_eval_samples=${MAX_EVAL_SAMPLES}, and num_train_epochs=${NUM_TRAIN_EPOCHS}.
 REPORT
 
-python -m thesis_exp.src.edujudge.exp08_edurisk.sanity_check_exp08_outputs
+python -m thesis_exp.src.edujudge.exp08_edurisk.sanity_check_exp08_outputs --smoke
 python -m thesis_exp.src.edujudge.exp08_edurisk.readability_check_exp08
 cat "${OUTPUT_DIR}/smoke_test_report.md"

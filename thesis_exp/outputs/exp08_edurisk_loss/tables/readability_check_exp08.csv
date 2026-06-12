@@ -75,8 +75,8 @@ no CRLF line endings,thesis_exp/src/edujudge/exp08_edurisk/sanity_check_exp08_ou
 no CR-only line endings,thesis_exp/src/edujudge/exp08_edurisk/sanity_check_exp08_outputs.py,PASS,
 LF line endings,thesis_exp/src/edujudge/exp08_edurisk/sanity_check_exp08_outputs.py,PASS,
 first line <= 1000 chars,thesis_exp/src/edujudge/exp08_edurisk/sanity_check_exp08_outputs.py,PASS,59
-not collapsed-line file,thesis_exp/src/edujudge/exp08_edurisk/sanity_check_exp08_outputs.py,PASS,64
-file size below 20MB,thesis_exp/src/edujudge/exp08_edurisk/sanity_check_exp08_outputs.py,PASS,2550
+not collapsed-line file,thesis_exp/src/edujudge/exp08_edurisk/sanity_check_exp08_outputs.py,PASS,90
+file size below 20MB,thesis_exp/src/edujudge/exp08_edurisk/sanity_check_exp08_outputs.py,PASS,3290
 not checkpoint/weight artifact,thesis_exp/src/edujudge/exp08_edurisk/sanity_check_exp08_outputs.py,PASS,
 no API key string,thesis_exp/src/edujudge/exp08_edurisk/sanity_check_exp08_outputs.py,PASS,
 no CRLF line endings,thesis_exp/src/edujudge/exp08_edurisk/sanity_check_exp08_setup.py,PASS,
@@ -123,7 +123,7 @@ no CR-only line endings,thesis_exp/scripts/run_exp08_qder1_smoke.sh,PASS,
 LF line endings,thesis_exp/scripts/run_exp08_qder1_smoke.sh,PASS,
 first line <= 1000 chars,thesis_exp/scripts/run_exp08_qder1_smoke.sh,PASS,19
 not collapsed-line file,thesis_exp/scripts/run_exp08_qder1_smoke.sh,PASS,148
-file size below 20MB,thesis_exp/scripts/run_exp08_qder1_smoke.sh,PASS,5040
+file size below 20MB,thesis_exp/scripts/run_exp08_qder1_smoke.sh,PASS,5048
 not checkpoint/weight artifact,thesis_exp/scripts/run_exp08_qder1_smoke.sh,PASS,
 no API key string,thesis_exp/scripts/run_exp08_qder1_smoke.sh,PASS,
 no CRLF line endings,thesis_exp/scripts/run_exp08_qder1_train.sh,PASS,
