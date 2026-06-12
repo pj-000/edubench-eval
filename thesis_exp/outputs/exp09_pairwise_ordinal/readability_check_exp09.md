@@ -29,7 +29,7 @@ Status: `PASS`
 | LF line endings | thesis_exp/src/edujudge/exp09_pairwise_ordinal/collect_exp09_results.py | PASS |  |
 | first line <= 1000 chars | thesis_exp/src/edujudge/exp09_pairwise_ordinal/collect_exp09_results.py | PASS | 82 |
 | not collapsed-line file | thesis_exp/src/edujudge/exp09_pairwise_ordinal/collect_exp09_results.py | PASS | 383 |
-| file size below 20MB | thesis_exp/src/edujudge/exp09_pairwise_ordinal/collect_exp09_results.py | PASS | 13938 |
+| file size below 20MB | thesis_exp/src/edujudge/exp09_pairwise_ordinal/collect_exp09_results.py | PASS | 13937 |
 | not checkpoint/weight artifact | thesis_exp/src/edujudge/exp09_pairwise_ordinal/collect_exp09_results.py | PASS |  |
 | no API key string | thesis_exp/src/edujudge/exp09_pairwise_ordinal/collect_exp09_results.py | PASS |  |
 | no CRLF line endings | thesis_exp/src/edujudge/exp09_pairwise_ordinal/data.py | PASS |  |
@@ -96,7 +96,7 @@ Status: `PASS`
 | no CRLF line endings | thesis_exp/configs/exp09_pairwise_ordinal/exp09_qdpr1_pairwise_human_only.yaml | PASS |  |
 | no CR-only line endings | thesis_exp/configs/exp09_pairwise_ordinal/exp09_qdpr1_pairwise_human_only.yaml | PASS |  |
 | LF line endings | thesis_exp/configs/exp09_pairwise_ordinal/exp09_qdpr1_pairwise_human_only.yaml | PASS |  |
-| file size below 20MB | thesis_exp/configs/exp09_pairwise_ordinal/exp09_qdpr1_pairwise_human_only.yaml | PASS | 1323 |
+| file size below 20MB | thesis_exp/configs/exp09_pairwise_ordinal/exp09_qdpr1_pairwise_human_only.yaml | PASS | 1322 |
 | not checkpoint/weight artifact | thesis_exp/configs/exp09_pairwise_ordinal/exp09_qdpr1_pairwise_human_only.yaml | PASS |  |
 | no API key string | thesis_exp/configs/exp09_pairwise_ordinal/exp09_qdpr1_pairwise_human_only.yaml | PASS |  |
 | no CRLF line endings | thesis_exp/configs/exp09_pairwise_ordinal/exp09_qdpr1_pairwise_smoke.yaml | PASS |  |
@@ -124,7 +124,7 @@ Status: `PASS`
 | first line <= 1000 chars | thesis_exp/scripts/run_exp09_qdpr1_train.sh | PASS | 19 |
 | not collapsed-line file | thesis_exp/scripts/run_exp09_qdpr1_train.sh | PASS | 172 |
 | minimum line count | thesis_exp/scripts/run_exp09_qdpr1_train.sh | PASS | lines=172; min>=100 |
-| file size below 20MB | thesis_exp/scripts/run_exp09_qdpr1_train.sh | PASS | 6173 |
+| file size below 20MB | thesis_exp/scripts/run_exp09_qdpr1_train.sh | PASS | 6172 |
 | not checkpoint/weight artifact | thesis_exp/scripts/run_exp09_qdpr1_train.sh | PASS |  |
 | no API key string | thesis_exp/scripts/run_exp09_qdpr1_train.sh | PASS |  |
 | shell first line is bash shebang | thesis_exp/scripts/sync_exp09_qdpr1_to_server.sh | PASS | #!/usr/bin/env bash |
@@ -143,9 +143,9 @@ Status: `PASS`
 | LF line endings | thesis_exp/outputs/exp09_pairwise_ordinal/report.md | PASS |  |
 | first line <= 1000 chars | thesis_exp/outputs/exp09_pairwise_ordinal/report.md | PASS | 45 |
 | not collapsed-line file | thesis_exp/outputs/exp09_pairwise_ordinal/report.md | PASS | 48 |
-| not large one-line md/csv | thesis_exp/outputs/exp09_pairwise_ordinal/report.md | PASS | lines=48; bytes=2447 |
-| not short large markdown report | thesis_exp/outputs/exp09_pairwise_ordinal/report.md | PASS | lines=48; bytes=2447 |
-| file size below 20MB | thesis_exp/outputs/exp09_pairwise_ordinal/report.md | PASS | 2447 |
+| not large one-line md/csv | thesis_exp/outputs/exp09_pairwise_ordinal/report.md | PASS | lines=48; bytes=2446 |
+| not short large markdown report | thesis_exp/outputs/exp09_pairwise_ordinal/report.md | PASS | lines=48; bytes=2446 |
+| file size below 20MB | thesis_exp/outputs/exp09_pairwise_ordinal/report.md | PASS | 2446 |
 | not checkpoint/weight artifact | thesis_exp/outputs/exp09_pairwise_ordinal/report.md | PASS |  |
 | no API key string | thesis_exp/outputs/exp09_pairwise_ordinal/report.md | PASS |  |
 | Markdown max prose line length | thesis_exp/outputs/exp09_pairwise_ordinal/reports/notion_exp09_pairwise_summary.md | PASS | prose=95; table=106 |
@@ -154,9 +154,9 @@ Status: `PASS`
 | LF line endings | thesis_exp/outputs/exp09_pairwise_ordinal/reports/notion_exp09_pairwise_summary.md | PASS |  |
 | first line <= 1000 chars | thesis_exp/outputs/exp09_pairwise_ordinal/reports/notion_exp09_pairwise_summary.md | PASS | 45 |
 | not collapsed-line file | thesis_exp/outputs/exp09_pairwise_ordinal/reports/notion_exp09_pairwise_summary.md | PASS | 48 |
-| not large one-line md/csv | thesis_exp/outputs/exp09_pairwise_ordinal/reports/notion_exp09_pairwise_summary.md | PASS | lines=48; bytes=2447 |
-| not short large markdown report | thesis_exp/outputs/exp09_pairwise_ordinal/reports/notion_exp09_pairwise_summary.md | PASS | lines=48; bytes=2447 |
-| file size below 20MB | thesis_exp/outputs/exp09_pairwise_ordinal/reports/notion_exp09_pairwise_summary.md | PASS | 2447 |
+| not large one-line md/csv | thesis_exp/outputs/exp09_pairwise_ordinal/reports/notion_exp09_pairwise_summary.md | PASS | lines=48; bytes=2446 |
+| not short large markdown report | thesis_exp/outputs/exp09_pairwise_ordinal/reports/notion_exp09_pairwise_summary.md | PASS | lines=48; bytes=2446 |
+| file size below 20MB | thesis_exp/outputs/exp09_pairwise_ordinal/reports/notion_exp09_pairwise_summary.md | PASS | 2446 |
 | not checkpoint/weight artifact | thesis_exp/outputs/exp09_pairwise_ordinal/reports/notion_exp09_pairwise_summary.md | PASS |  |
 | no API key string | thesis_exp/outputs/exp09_pairwise_ordinal/reports/notion_exp09_pairwise_summary.md | PASS |  |
 | Markdown max prose line length | thesis_exp/outputs/exp09_pairwise_ordinal/reports/pair_dataset_report.md | PASS | prose=99; table=98 |
@@ -176,9 +176,9 @@ Status: `PASS`
 | LF line endings | thesis_exp/outputs/exp09_pairwise_ordinal/reports/review_package.md | PASS |  |
 | first line <= 1000 chars | thesis_exp/outputs/exp09_pairwise_ordinal/reports/review_package.md | PASS | 45 |
 | not collapsed-line file | thesis_exp/outputs/exp09_pairwise_ordinal/reports/review_package.md | PASS | 48 |
-| not large one-line md/csv | thesis_exp/outputs/exp09_pairwise_ordinal/reports/review_package.md | PASS | lines=48; bytes=2447 |
-| not short large markdown report | thesis_exp/outputs/exp09_pairwise_ordinal/reports/review_package.md | PASS | lines=48; bytes=2447 |
-| file size below 20MB | thesis_exp/outputs/exp09_pairwise_ordinal/reports/review_package.md | PASS | 2447 |
+| not large one-line md/csv | thesis_exp/outputs/exp09_pairwise_ordinal/reports/review_package.md | PASS | lines=48; bytes=2446 |
+| not short large markdown report | thesis_exp/outputs/exp09_pairwise_ordinal/reports/review_package.md | PASS | lines=48; bytes=2446 |
+| file size below 20MB | thesis_exp/outputs/exp09_pairwise_ordinal/reports/review_package.md | PASS | 2446 |
 | not checkpoint/weight artifact | thesis_exp/outputs/exp09_pairwise_ordinal/reports/review_package.md | PASS |  |
 | no API key string | thesis_exp/outputs/exp09_pairwise_ordinal/reports/review_package.md | PASS |  |
 | Markdown max prose line length | thesis_exp/outputs/exp09_pairwise_ordinal/review_package.md | PASS | prose=95; table=106 |
@@ -187,9 +187,9 @@ Status: `PASS`
 | LF line endings | thesis_exp/outputs/exp09_pairwise_ordinal/review_package.md | PASS |  |
 | first line <= 1000 chars | thesis_exp/outputs/exp09_pairwise_ordinal/review_package.md | PASS | 45 |
 | not collapsed-line file | thesis_exp/outputs/exp09_pairwise_ordinal/review_package.md | PASS | 48 |
-| not large one-line md/csv | thesis_exp/outputs/exp09_pairwise_ordinal/review_package.md | PASS | lines=48; bytes=2447 |
-| not short large markdown report | thesis_exp/outputs/exp09_pairwise_ordinal/review_package.md | PASS | lines=48; bytes=2447 |
-| file size below 20MB | thesis_exp/outputs/exp09_pairwise_ordinal/review_package.md | PASS | 2447 |
+| not large one-line md/csv | thesis_exp/outputs/exp09_pairwise_ordinal/review_package.md | PASS | lines=48; bytes=2446 |
+| not short large markdown report | thesis_exp/outputs/exp09_pairwise_ordinal/review_package.md | PASS | lines=48; bytes=2446 |
+| file size below 20MB | thesis_exp/outputs/exp09_pairwise_ordinal/review_package.md | PASS | 2446 |
 | not checkpoint/weight artifact | thesis_exp/outputs/exp09_pairwise_ordinal/review_package.md | PASS |  |
 | no API key string | thesis_exp/outputs/exp09_pairwise_ordinal/review_package.md | PASS |  |
 | Markdown max prose line length | thesis_exp/outputs/exp09_pairwise_ordinal/sanity_check_exp09_setup.md | PASS | prose=31; table=355 |
