@@ -111,9 +111,9 @@ Status: `PASS`
 | no CR-only line endings | thesis_exp/scripts/run_exp09_qdpr1_smoke.sh | PASS |  |
 | LF line endings | thesis_exp/scripts/run_exp09_qdpr1_smoke.sh | PASS |  |
 | first line <= 1000 chars | thesis_exp/scripts/run_exp09_qdpr1_smoke.sh | PASS | 19 |
-| not collapsed-line file | thesis_exp/scripts/run_exp09_qdpr1_smoke.sh | PASS | 141 |
-| minimum line count | thesis_exp/scripts/run_exp09_qdpr1_smoke.sh | PASS | lines=141; min>=80 |
-| file size below 20MB | thesis_exp/scripts/run_exp09_qdpr1_smoke.sh | PASS | 4898 |
+| not collapsed-line file | thesis_exp/scripts/run_exp09_qdpr1_smoke.sh | PASS | 144 |
+| minimum line count | thesis_exp/scripts/run_exp09_qdpr1_smoke.sh | PASS | lines=144; min>=80 |
+| file size below 20MB | thesis_exp/scripts/run_exp09_qdpr1_smoke.sh | PASS | 5086 |
 | not checkpoint/weight artifact | thesis_exp/scripts/run_exp09_qdpr1_smoke.sh | PASS |  |
 | no API key string | thesis_exp/scripts/run_exp09_qdpr1_smoke.sh | PASS |  |
 | shell first line is bash shebang | thesis_exp/scripts/run_exp09_qdpr1_train.sh | PASS | #!/usr/bin/env bash |
@@ -122,9 +122,9 @@ Status: `PASS`
 | no CR-only line endings | thesis_exp/scripts/run_exp09_qdpr1_train.sh | PASS |  |
 | LF line endings | thesis_exp/scripts/run_exp09_qdpr1_train.sh | PASS |  |
 | first line <= 1000 chars | thesis_exp/scripts/run_exp09_qdpr1_train.sh | PASS | 19 |
-| not collapsed-line file | thesis_exp/scripts/run_exp09_qdpr1_train.sh | PASS | 168 |
-| minimum line count | thesis_exp/scripts/run_exp09_qdpr1_train.sh | PASS | lines=168; min>=100 |
-| file size below 20MB | thesis_exp/scripts/run_exp09_qdpr1_train.sh | PASS | 5873 |
+| not collapsed-line file | thesis_exp/scripts/run_exp09_qdpr1_train.sh | PASS | 171 |
+| minimum line count | thesis_exp/scripts/run_exp09_qdpr1_train.sh | PASS | lines=171; min>=100 |
+| file size below 20MB | thesis_exp/scripts/run_exp09_qdpr1_train.sh | PASS | 6061 |
 | not checkpoint/weight artifact | thesis_exp/scripts/run_exp09_qdpr1_train.sh | PASS |  |
 | no API key string | thesis_exp/scripts/run_exp09_qdpr1_train.sh | PASS |  |
 | shell first line is bash shebang | thesis_exp/scripts/sync_exp09_qdpr1_to_server.sh | PASS | #!/usr/bin/env bash |
