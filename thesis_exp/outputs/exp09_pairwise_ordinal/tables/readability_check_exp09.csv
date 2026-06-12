@@ -74,9 +74,9 @@ no CRLF line endings,thesis_exp/src/edujudge/exp09_pairwise_ordinal/sanity_check
 no CR-only line endings,thesis_exp/src/edujudge/exp09_pairwise_ordinal/sanity_check_exp09_setup.py,PASS,
 LF line endings,thesis_exp/src/edujudge/exp09_pairwise_ordinal/sanity_check_exp09_setup.py,PASS,
 first line <= 1000 chars,thesis_exp/src/edujudge/exp09_pairwise_ordinal/sanity_check_exp09_setup.py,PASS,61
-not collapsed-line file,thesis_exp/src/edujudge/exp09_pairwise_ordinal/sanity_check_exp09_setup.py,PASS,278
-minimum line count,thesis_exp/src/edujudge/exp09_pairwise_ordinal/sanity_check_exp09_setup.py,PASS,lines=278; min>=150
-file size below 20MB,thesis_exp/src/edujudge/exp09_pairwise_ordinal/sanity_check_exp09_setup.py,PASS,12660
+not collapsed-line file,thesis_exp/src/edujudge/exp09_pairwise_ordinal/sanity_check_exp09_setup.py,PASS,283
+minimum line count,thesis_exp/src/edujudge/exp09_pairwise_ordinal/sanity_check_exp09_setup.py,PASS,lines=283; min>=150
+file size below 20MB,thesis_exp/src/edujudge/exp09_pairwise_ordinal/sanity_check_exp09_setup.py,PASS,12707
 not checkpoint/weight artifact,thesis_exp/src/edujudge/exp09_pairwise_ordinal/sanity_check_exp09_setup.py,PASS,
 no API key string,thesis_exp/src/edujudge/exp09_pairwise_ordinal/sanity_check_exp09_setup.py,PASS,
 no CRLF line endings,thesis_exp/src/edujudge/exp09_pairwise_ordinal/train_qdpr1_pairwise.py,PASS,
@@ -351,8 +351,8 @@ no CRLF line endings,thesis_exp/outputs/exp09_pairwise_ordinal/tables/sanity_che
 no CR-only line endings,thesis_exp/outputs/exp09_pairwise_ordinal/tables/sanity_check_exp09_setup.csv,PASS,
 LF line endings,thesis_exp/outputs/exp09_pairwise_ordinal/tables/sanity_check_exp09_setup.csv,PASS,
 not collapsed-line file,thesis_exp/outputs/exp09_pairwise_ordinal/tables/sanity_check_exp09_setup.csv,PASS,93
-not large one-line md/csv,thesis_exp/outputs/exp09_pairwise_ordinal/tables/sanity_check_exp09_setup.csv,PASS,lines=93; bytes=6494
-file size below 20MB,thesis_exp/outputs/exp09_pairwise_ordinal/tables/sanity_check_exp09_setup.csv,PASS,6494
+not large one-line md/csv,thesis_exp/outputs/exp09_pairwise_ordinal/tables/sanity_check_exp09_setup.csv,PASS,lines=93; bytes=6522
+file size below 20MB,thesis_exp/outputs/exp09_pairwise_ordinal/tables/sanity_check_exp09_setup.csv,PASS,6522
 not checkpoint/weight artifact,thesis_exp/outputs/exp09_pairwise_ordinal/tables/sanity_check_exp09_setup.csv,PASS,
 no API key string,thesis_exp/outputs/exp09_pairwise_ordinal/tables/sanity_check_exp09_setup.csv,PASS,
 CSV readable,thesis_exp/outputs/exp09_pairwise_ordinal/tables/toy_pairwise_loss_scale.csv,PASS,
