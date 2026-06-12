@@ -11,8 +11,8 @@ Synthetic generated: `no`.
 - Train pairs: `20000`
 - Dev diagnostic pairs: `5000`
 - Train low_high pairs: `8000`
-- Toy L_total: `0.7464373509224485`
-- Toy L_pair: `1.2282895303710755`
+- Toy L_total: `0.746437350922`
+- Toy L_pair: `1.228289530371`
 
 ## Checks
 
@@ -95,17 +95,17 @@ Synthetic generated: `no`.
 | toy pair margins positive | PASS | [1.25, 0.75, 0.25] |
 | toy pair weights finite | PASS | [2.5, 2.1666666666666665, 1.0] |
 | toy scalar scores in [1,5] | PASS | {'win': [3.4739758172912345, 3.2007624659020144, 4.089408970909261], 'lose': [2.161498894179186, 2.5817367171531047, 3.069500112055714]} |
-| toy debug has L_total | PASS | 0.7464373509224485 |
-| toy debug has L_point | PASS | 0.37795049181112583 |
-| toy debug has L_pair | PASS | 1.2282895303710755 |
-| toy debug has weighted_L_pair | PASS | 1.2282895303710755 |
-| toy debug has mean_pair_weight | PASS | 1.8888888888888886 |
+| toy debug has L_total | PASS | 0.746437350922 |
+| toy debug has L_point | PASS | 0.377950491811 |
+| toy debug has L_pair | PASS | 1.228289530371 |
+| toy debug has weighted_L_pair | PASS | 1.228289530371 |
+| toy debug has mean_pair_weight | PASS | 1.888888888889 |
 | toy debug has mean_pair_margin | PASS | 0.75 |
-| toy debug has mean_score_gap | PASS | 0.9838038435715016 |
-| toy debug has low_high_pair_loss | PASS | 1.6521708457022684 |
-| toy debug has adjacent_pair_loss | PASS | 0.3805268997086894 |
-| toy debug has mean_point_base_loss | PASS | 0.4046320985018524 |
-| toy debug has mean_point_sample_weight | PASS | 1.357323015190599 |
+| toy debug has mean_score_gap | PASS | 0.983803843572 |
+| toy debug has low_high_pair_loss | PASS | 1.652170845702 |
+| toy debug has adjacent_pair_loss | PASS | 0.380526899709 |
+| toy debug has mean_point_base_loss | PASS | 0.404632098502 |
+| toy debug has mean_point_sample_weight | PASS | 1.357323015191 |
 | pair inventory has train/dev rows | PASS | [{'split': 'train', 'pair_count': '20000', 'target_count': '20000', 'sampling_seed': '42', 'max_pairs_per_record': '80', 'max_pairs_per_low_record': '240'}, {'split': 'dev', 'pair_count': '5000', 'target_count': '5000', 'sampling_seed': '42', 'max_pairs_per_record': '80', 'max_pairs_per_low_record': '240'}] |
 | no checkpoint/weights tracked | PASS |  |
 | no tracked Exp0-Exp8 output modifications | PASS |  |
