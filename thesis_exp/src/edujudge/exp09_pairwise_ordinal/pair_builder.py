@@ -225,6 +225,37 @@ def distribution_rows(pairs: list[dict[str, Any]], split: str, field: str) -> li
     ]
 
 
+def pair_comparability_rows(pairs: list[dict[str, Any]], split: str) -> list[dict[str, Any]]:
+    rows: list[dict[str, Any]] = []
+    for type_name in PAIR_TYPE_PROPORTIONS:
+        subset = [pair for pair in pairs if str(pair.get("pair_type")) == type_name]
+        total = len(subset)
+        same_question = sum(1 for pair in subset if bool(pair.get("same_question_key")))
+        same_metric = sum(1 for pair in subset if bool(pair.get("same_metric")))
+        same_language = sum(1 for pair in subset if bool(pair.get("same_language")))
+        same_metric_language = sum(
+            1
+            for pair in subset
+            if bool(pair.get("same_metric")) and bool(pair.get("same_language"))
+        )
+        rows.append(
+            {
+                "split": split,
+                "pair_type": type_name,
+                "pair_count": total,
+                "same_question_count": same_question,
+                "same_question_rate": same_question / total if total else 0.0,
+                "same_metric_count": same_metric,
+                "same_metric_rate": same_metric / total if total else 0.0,
+                "same_language_count": same_language,
+                "same_language_rate": same_language / total if total else 0.0,
+                "same_metric_language_count": same_metric_language,
+                "same_metric_language_rate": same_metric_language / total if total else 0.0,
+            }
+        )
+    return rows
+
+
 def reuse_rows(pairs: list[dict[str, Any]], split: str) -> list[dict[str, Any]]:
     reuse: Counter[str] = Counter()
     low_reuse: Counter[str] = Counter()
@@ -339,6 +370,8 @@ def write_pair_outputs(
     write_csv(EXP09_TABLES_DIR / "pair_label_gap_distribution.csv", distribution_rows(train_pairs, "train", "label_gap") + distribution_rows(dev_pairs, "dev", "label_gap"))
     write_csv(EXP09_TABLES_DIR / "pair_priority_distribution.csv", distribution_rows(train_pairs, "train", "priority") + distribution_rows(dev_pairs, "dev", "priority"))
     write_csv(EXP09_TABLES_DIR / "pair_reuse_stats.csv", reuse_rows(train_pairs, "train") + reuse_rows(dev_pairs, "dev"))
+    comparability_rows = pair_comparability_rows(train_pairs, "train") + pair_comparability_rows(dev_pairs, "dev")
+    write_csv(EXP09_TABLES_DIR / "pair_comparability_distribution.csv", comparability_rows)
     write_csv(EXP09_TABLES_DIR / "pointwise_label_distribution.csv", pointwise_label_distribution({"train": train_rows, "dev": dev_rows, "test": test_rows}))
 
     train_type_counts = Counter(pair["pair_type"] for pair in train_pairs)
@@ -371,6 +404,25 @@ def write_pair_outputs(
     lines.extend(
         [
             "",
+            "## Pair Comparability Audit",
+            "",
+            "Pair construction follows priority `same_question > same_metric_language > same_metric`; "
+            "an `any_valid` fallback is used only if needed to fill the configured pair budget.",
+            "Actual comparability rates are reported below. Formal training results should be interpreted in light of these rates.",
+            "",
+            "| split | pair_type | pairs | same_question | same_metric | same_language | same_metric_language |",
+            "| --- | --- | ---: | ---: | ---: | ---: | ---: |",
+        ]
+    )
+    for row in comparability_rows:
+        lines.append(
+            f"| {row['split']} | {row['pair_type']} | {row['pair_count']} | "
+            f"{row['same_question_rate']:.4f} | {row['same_metric_rate']:.4f} | "
+            f"{row['same_language_rate']:.4f} | {row['same_metric_language_rate']:.4f} |"
+        )
+    lines.extend(
+        [
+            "",
             "No synthetic rows are used. Dev pairs are diagnostic only and are not used to tune test thresholds.",
         ]
     )
@@ -383,5 +435,6 @@ def write_pair_outputs(
         "dev_pairs": len(dev_pairs),
         "low_high_train_pairs": train_type_counts.get("low_high", 0),
         "train_type_counts": dict(train_type_counts),
+        "comparability_rows": comparability_rows,
         "reuse": reuse,
     }

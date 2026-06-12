@@ -260,6 +260,14 @@ def main() -> None:
     toy_debug = check_toy_loss(rows, class_weight_vector(weight_rows))
     pair_inventory = read_csv(EXP09_TABLES_DIR / "pair_inventory.csv")
     add(rows, "pair inventory has train/dev rows", {row["split"] for row in pair_inventory} == {"train", "dev"}, pair_inventory)
+    comparability = read_csv(EXP09_TABLES_DIR / "pair_comparability_distribution.csv")
+    comparability_keys = {(row.get("split"), row.get("pair_type")) for row in comparability}
+    expected_keys = {
+        (split, pair_type)
+        for split in ["train", "dev"]
+        for pair_type in ["low_high", "low_mid", "adjacent", "random_ordinal"]
+    }
+    add(rows, "pair comparability audit has train/dev pair-type rows", comparability_keys == expected_keys, comparability_keys)
     collect()
     check_repository_safety(rows)
     write_setup_report(rows, pair_summary, toy_debug)

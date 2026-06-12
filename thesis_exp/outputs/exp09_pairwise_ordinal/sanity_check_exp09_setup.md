@@ -107,5 +107,6 @@ Synthetic generated: `no`.
 | toy debug has mean_point_base_loss | PASS | 0.404632098502 |
 | toy debug has mean_point_sample_weight | PASS | 1.357323015191 |
 | pair inventory has train/dev rows | PASS | [{'split': 'train', 'pair_count': '20000', 'target_count': '20000', 'sampling_seed': '42', 'max_pairs_per_record': '80', 'max_pairs_per_low_record': '240'}, {'split': 'dev', 'pair_count': '5000', 'target_count': '5000', 'sampling_seed': '42', 'max_pairs_per_record': '80', 'max_pairs_per_low_record': '240'}] |
+| pair comparability audit has train/dev pair-type rows | PASS | {('dev', 'low_mid'), ('train', 'random_ordinal'), ('dev', 'adjacent'), ('dev', 'low_high'), ('train', 'low_mid'), ('train', 'adjacent'), ('train', 'low_high'), ('dev', 'random_ordinal')} |
 | no checkpoint/weights tracked | PASS |  |
 | no tracked Exp0-Exp8 output modifications | PASS |  |

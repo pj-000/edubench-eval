@@ -237,6 +237,36 @@ def delta_rows(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
     return out
 
 
+def pair_comparability_report_lines() -> list[str]:
+    path = EXP09_TABLES_DIR / "pair_comparability_distribution.csv"
+    rows = _read_csv_if_exists(path)
+    if not rows:
+        return [
+            "",
+            "## Pair Comparability Audit",
+            "",
+            "Pair comparability audit is pending; rerun Exp9 setup sanity to regenerate it.",
+        ]
+    lines = [
+        "",
+        "## Pair Comparability Audit",
+        "",
+        "Pair construction follows priority `same_question > same_metric_language > same_metric`; "
+        "an `any_valid` fallback is used only if needed to fill the configured pair budget.",
+        "Actual comparability rates are reported below. Formal training results should be interpreted in light of these rates.",
+        "",
+        "| split | pair_type | pairs | same_question | same_metric | same_language | same_metric_language |",
+        "| --- | --- | ---: | ---: | ---: | ---: | ---: |",
+    ]
+    for row in rows:
+        lines.append(
+            f"| {row.get('split')} | {row.get('pair_type')} | {row.get('pair_count')} | "
+            f"{_fmt(row.get('same_question_rate'))} | {_fmt(row.get('same_metric_rate'))} | "
+            f"{_fmt(row.get('same_language_rate'))} | {_fmt(row.get('same_metric_language_rate'))} |"
+        )
+    return lines
+
+
 def write_reports(rows: list[dict[str, Any]], deltas: list[dict[str, Any]]) -> None:
     test_rows = [row for row in rows if row.get("split") == "test"]
     qdpr1 = _test_row(rows, EXP09_RUN_ID)
@@ -253,6 +283,7 @@ def write_reports(rows: list[dict[str, Any]], deltas: list[dict[str, Any]]) -> N
         "",
         "QD-PR1 adds risk-aware ordinal preference pairs on top of QD-B1-style weighted ordinal BCE.",
         "Pairs are built from QD-S0 human-only train rows; dev pairs are diagnostic only.",
+        *pair_comparability_report_lines(),
         "",
         "## Test Comparison",
         "",

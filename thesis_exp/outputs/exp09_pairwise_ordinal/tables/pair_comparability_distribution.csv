@@ -1,0 +1,9 @@
+split,pair_type,pair_count,same_question_count,same_question_rate,same_metric_count,same_metric_rate,same_language_count,same_language_rate,same_metric_language_count,same_metric_language_rate
+train,low_high,8000,2083,0.260375,6040,0.755,8000,1.0,6040,0.755
+train,low_mid,4000,358,0.0895,3304,0.826,2090,0.5225,1588,0.397
+train,adjacent,6000,6000,1.0,725,0.12083333333333333,6000,1.0,725,0.12083333333333333
+train,random_ordinal,2000,2000,1.0,159,0.0795,2000,1.0,159,0.0795
+dev,low_high,2000,570,0.285,1471,0.7355,2000,1.0,1471,0.7355
+dev,low_mid,1000,278,0.278,605,0.605,677,0.677,358,0.358
+dev,adjacent,1500,1500,1.0,160,0.10666666666666667,1500,1.0,160,0.10666666666666667
+dev,random_ordinal,500,500,1.0,40,0.08,500,1.0,40,0.08

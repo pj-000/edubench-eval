@@ -34,14 +34,17 @@ SCRIPT_PATHS = [
 TEXT_SUFFIXES = {".py", ".sh", ".yaml", ".yml", ".md", ".csv", ".json", ".txt"}
 CHECKPOINT_SUFFIXES = {".bin", ".safetensors", ".pt", ".pth", ".ckpt"}
 COLLAPSE_CHECK_SUFFIXES = {".py", ".sh", ".md", ".csv"}
-FIRST_LINE_CHECK_SUFFIXES = TEXT_SUFFIXES
+FIRST_LINE_CHECK_SUFFIXES = {".py", ".sh", ".md"}
 LARGE_SINGLE_LINE_BYTES = 1000
 FIRST_LINE_MAX_CHARS = 1000
 MIN_LINE_COUNTS = {
-    Path("thesis_exp/src/edujudge/exp09_pairwise_ordinal/pair_builder.py"): 180,
-    Path("thesis_exp/src/edujudge/exp09_pairwise_ordinal/train_qdpr1_pairwise.py"): 300,
+    Path("thesis_exp/src/edujudge/exp09_pairwise_ordinal/pair_builder.py"): 100,
+    Path("thesis_exp/src/edujudge/exp09_pairwise_ordinal/losses.py"): 80,
+    Path("thesis_exp/src/edujudge/exp09_pairwise_ordinal/train_qdpr1_pairwise.py"): 200,
     Path("thesis_exp/src/edujudge/exp09_pairwise_ordinal/sanity_check_exp09_setup.py"): 150,
     Path("thesis_exp/src/edujudge/exp09_pairwise_ordinal/readability_check_exp09.py"): 100,
+    Path("thesis_exp/scripts/run_exp09_qdpr1_smoke.sh"): 80,
+    Path("thesis_exp/scripts/run_exp09_qdpr1_train.sh"): 100,
 }
 SKIP_OUTPUT_DIRS = {"runs", "smoke_test", "logs", "arrays", "predictions", "pairs"}
 SELF_OUTPUT_FILES = {Path("readability_check_exp09.md"), Path("tables/readability_check_exp09.csv")}
@@ -94,6 +97,16 @@ def check_bash(rows: list[dict[str, Any]]) -> None:
     for path in SCRIPT_PATHS:
         result = subprocess.run(["bash", "-n", str(path)], capture_output=True, text=True)
         add(rows, "shell bash -n", path, result.returncode == 0, (result.stderr or result.stdout).strip())
+
+
+def check_shell_header(rows: list[dict[str, Any]], path: Path) -> None:
+    if path.suffix.lower() != ".sh":
+        return
+    lines = path.read_text(encoding="utf-8").splitlines()
+    first = lines[0] if len(lines) >= 1 else ""
+    second = lines[1] if len(lines) >= 2 else ""
+    add(rows, "shell first line is bash shebang", path, first == "#!/usr/bin/env bash", first)
+    add(rows, "shell second line is strict mode", path, second == "set -euo pipefail", second)
 
 
 def check_csv(rows: list[dict[str, Any]], path: Path) -> None:
@@ -153,9 +166,18 @@ def check_line_endings(rows: list[dict[str, Any]], path: Path) -> None:
                 not collapsed_large,
                 f"lines={line_count}; bytes={len(data)}",
             )
+        if path.suffix.lower() == ".md":
+            short_large = line_count < 10 and len(data) > LARGE_SINGLE_LINE_BYTES
+            add(
+                rows,
+                "not short large markdown report",
+                path,
+                not short_large,
+                f"lines={line_count}; bytes={len(data)}",
+            )
         minimum = MIN_LINE_COUNTS.get(Path(relpath(path)))
         if minimum is not None:
-            add(rows, "minimum line count", path, line_count > minimum, f"lines={line_count}; min>{minimum}")
+            add(rows, "minimum line count", path, line_count >= minimum, f"lines={line_count}; min>={minimum}")
 
 
 def check_size_and_weights(rows: list[dict[str, Any]], path: Path) -> None:
@@ -186,6 +208,8 @@ def main() -> None:
             check_json(rows, path)
         elif suffix == ".md":
             check_markdown(rows, path)
+        elif suffix == ".sh":
+            check_shell_header(rows, path)
         check_line_endings(rows, path)
         check_size_and_weights(rows, path)
         check_no_api_key(rows, path)

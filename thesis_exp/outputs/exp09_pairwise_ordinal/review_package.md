@@ -10,6 +10,24 @@ Synthetic generated: `no`.
 QD-PR1 adds risk-aware ordinal preference pairs on top of QD-B1-style weighted ordinal BCE.
 Pairs are built from QD-S0 human-only train rows; dev pairs are diagnostic only.
 
+## Pair Comparability Audit
+
+Pair construction follows priority `same_question > same_metric_language > same_metric`; an
+`any_valid` fallback is used only if needed to fill the configured pair budget.
+Actual comparability rates are reported below. Formal training results should be interpreted in
+light of these rates.
+
+| split | pair_type | pairs | same_question | same_metric | same_language | same_metric_language |
+| --- | --- | ---: | ---: | ---: | ---: | ---: |
+| train | low_high | 8000 | 0.2604 | 0.7550 | 1.0000 | 0.7550 |
+| train | low_mid | 4000 | 0.0895 | 0.8260 | 0.5225 | 0.3970 |
+| train | adjacent | 6000 | 1.0000 | 0.1208 | 1.0000 | 0.1208 |
+| train | random_ordinal | 2000 | 1.0000 | 0.0795 | 1.0000 | 0.0795 |
+| dev | low_high | 2000 | 0.2850 | 0.7355 | 1.0000 | 0.7355 |
+| dev | low_mid | 1000 | 0.2780 | 0.6050 | 0.6770 | 0.3580 |
+| dev | adjacent | 1500 | 1.0000 | 0.1067 | 1.0000 | 0.1067 |
+| dev | random_ordinal | 500 | 1.0000 | 0.0800 | 1.0000 | 0.0800 |
+
 ## Test Comparison
 
 | run | status | MAE_label | QWK | Accuracy | low_to_high | Acc@5 | monotonic_violation |

@@ -28,8 +28,8 @@ Status: `PASS`
 | no CR-only line endings | thesis_exp/src/edujudge/exp09_pairwise_ordinal/collect_exp09_results.py | PASS |  |
 | LF line endings | thesis_exp/src/edujudge/exp09_pairwise_ordinal/collect_exp09_results.py | PASS |  |
 | first line <= 1000 chars | thesis_exp/src/edujudge/exp09_pairwise_ordinal/collect_exp09_results.py | PASS | 82 |
-| not collapsed-line file | thesis_exp/src/edujudge/exp09_pairwise_ordinal/collect_exp09_results.py | PASS | 344 |
-| file size below 20MB | thesis_exp/src/edujudge/exp09_pairwise_ordinal/collect_exp09_results.py | PASS | 12136 |
+| not collapsed-line file | thesis_exp/src/edujudge/exp09_pairwise_ordinal/collect_exp09_results.py | PASS | 375 |
+| file size below 20MB | thesis_exp/src/edujudge/exp09_pairwise_ordinal/collect_exp09_results.py | PASS | 13496 |
 | not checkpoint/weight artifact | thesis_exp/src/edujudge/exp09_pairwise_ordinal/collect_exp09_results.py | PASS |  |
 | no API key string | thesis_exp/src/edujudge/exp09_pairwise_ordinal/collect_exp09_results.py | PASS |  |
 | no CRLF line endings | thesis_exp/src/edujudge/exp09_pairwise_ordinal/data.py | PASS |  |
@@ -45,6 +45,7 @@ Status: `PASS`
 | LF line endings | thesis_exp/src/edujudge/exp09_pairwise_ordinal/losses.py | PASS |  |
 | first line <= 1000 chars | thesis_exp/src/edujudge/exp09_pairwise_ordinal/losses.py | PASS | 65 |
 | not collapsed-line file | thesis_exp/src/edujudge/exp09_pairwise_ordinal/losses.py | PASS | 227 |
+| minimum line count | thesis_exp/src/edujudge/exp09_pairwise_ordinal/losses.py | PASS | lines=227; min>=80 |
 | file size below 20MB | thesis_exp/src/edujudge/exp09_pairwise_ordinal/losses.py | PASS | 9459 |
 | not checkpoint/weight artifact | thesis_exp/src/edujudge/exp09_pairwise_ordinal/losses.py | PASS |  |
 | no API key string | thesis_exp/src/edujudge/exp09_pairwise_ordinal/losses.py | PASS |  |
@@ -60,27 +61,27 @@ Status: `PASS`
 | no CR-only line endings | thesis_exp/src/edujudge/exp09_pairwise_ordinal/pair_builder.py | PASS |  |
 | LF line endings | thesis_exp/src/edujudge/exp09_pairwise_ordinal/pair_builder.py | PASS |  |
 | first line <= 1000 chars | thesis_exp/src/edujudge/exp09_pairwise_ordinal/pair_builder.py | PASS | 50 |
-| not collapsed-line file | thesis_exp/src/edujudge/exp09_pairwise_ordinal/pair_builder.py | PASS | 387 |
-| minimum line count | thesis_exp/src/edujudge/exp09_pairwise_ordinal/pair_builder.py | PASS | lines=387; min>180 |
-| file size below 20MB | thesis_exp/src/edujudge/exp09_pairwise_ordinal/pair_builder.py | PASS | 15724 |
+| not collapsed-line file | thesis_exp/src/edujudge/exp09_pairwise_ordinal/pair_builder.py | PASS | 440 |
+| minimum line count | thesis_exp/src/edujudge/exp09_pairwise_ordinal/pair_builder.py | PASS | lines=440; min>=100 |
+| file size below 20MB | thesis_exp/src/edujudge/exp09_pairwise_ordinal/pair_builder.py | PASS | 18398 |
 | not checkpoint/weight artifact | thesis_exp/src/edujudge/exp09_pairwise_ordinal/pair_builder.py | PASS |  |
 | no API key string | thesis_exp/src/edujudge/exp09_pairwise_ordinal/pair_builder.py | PASS |  |
 | no CRLF line endings | thesis_exp/src/edujudge/exp09_pairwise_ordinal/readability_check_exp09.py | PASS |  |
 | no CR-only line endings | thesis_exp/src/edujudge/exp09_pairwise_ordinal/readability_check_exp09.py | PASS |  |
 | LF line endings | thesis_exp/src/edujudge/exp09_pairwise_ordinal/readability_check_exp09.py | PASS |  |
 | first line <= 1000 chars | thesis_exp/src/edujudge/exp09_pairwise_ordinal/readability_check_exp09.py | PASS | 51 |
-| not collapsed-line file | thesis_exp/src/edujudge/exp09_pairwise_ordinal/readability_check_exp09.py | PASS | 214 |
-| minimum line count | thesis_exp/src/edujudge/exp09_pairwise_ordinal/readability_check_exp09.py | PASS | lines=214; min>100 |
-| file size below 20MB | thesis_exp/src/edujudge/exp09_pairwise_ordinal/readability_check_exp09.py | PASS | 8362 |
+| not collapsed-line file | thesis_exp/src/edujudge/exp09_pairwise_ordinal/readability_check_exp09.py | PASS | 238 |
+| minimum line count | thesis_exp/src/edujudge/exp09_pairwise_ordinal/readability_check_exp09.py | PASS | lines=238; min>=100 |
+| file size below 20MB | thesis_exp/src/edujudge/exp09_pairwise_ordinal/readability_check_exp09.py | PASS | 9453 |
 | not checkpoint/weight artifact | thesis_exp/src/edujudge/exp09_pairwise_ordinal/readability_check_exp09.py | PASS |  |
 | no API key string | thesis_exp/src/edujudge/exp09_pairwise_ordinal/readability_check_exp09.py | PASS |  |
 | no CRLF line endings | thesis_exp/src/edujudge/exp09_pairwise_ordinal/sanity_check_exp09_setup.py | PASS |  |
 | no CR-only line endings | thesis_exp/src/edujudge/exp09_pairwise_ordinal/sanity_check_exp09_setup.py | PASS |  |
 | LF line endings | thesis_exp/src/edujudge/exp09_pairwise_ordinal/sanity_check_exp09_setup.py | PASS |  |
 | first line <= 1000 chars | thesis_exp/src/edujudge/exp09_pairwise_ordinal/sanity_check_exp09_setup.py | PASS | 61 |
-| not collapsed-line file | thesis_exp/src/edujudge/exp09_pairwise_ordinal/sanity_check_exp09_setup.py | PASS | 270 |
-| minimum line count | thesis_exp/src/edujudge/exp09_pairwise_ordinal/sanity_check_exp09_setup.py | PASS | lines=270; min>150 |
-| file size below 20MB | thesis_exp/src/edujudge/exp09_pairwise_ordinal/sanity_check_exp09_setup.py | PASS | 12180 |
+| not collapsed-line file | thesis_exp/src/edujudge/exp09_pairwise_ordinal/sanity_check_exp09_setup.py | PASS | 278 |
+| minimum line count | thesis_exp/src/edujudge/exp09_pairwise_ordinal/sanity_check_exp09_setup.py | PASS | lines=278; min>=150 |
+| file size below 20MB | thesis_exp/src/edujudge/exp09_pairwise_ordinal/sanity_check_exp09_setup.py | PASS | 12660 |
 | not checkpoint/weight artifact | thesis_exp/src/edujudge/exp09_pairwise_ordinal/sanity_check_exp09_setup.py | PASS |  |
 | no API key string | thesis_exp/src/edujudge/exp09_pairwise_ordinal/sanity_check_exp09_setup.py | PASS |  |
 | no CRLF line endings | thesis_exp/src/edujudge/exp09_pairwise_ordinal/train_qdpr1_pairwise.py | PASS |  |
@@ -88,40 +89,46 @@ Status: `PASS`
 | LF line endings | thesis_exp/src/edujudge/exp09_pairwise_ordinal/train_qdpr1_pairwise.py | PASS |  |
 | first line <= 1000 chars | thesis_exp/src/edujudge/exp09_pairwise_ordinal/train_qdpr1_pairwise.py | PASS | 58 |
 | not collapsed-line file | thesis_exp/src/edujudge/exp09_pairwise_ordinal/train_qdpr1_pairwise.py | PASS | 961 |
-| minimum line count | thesis_exp/src/edujudge/exp09_pairwise_ordinal/train_qdpr1_pairwise.py | PASS | lines=961; min>300 |
+| minimum line count | thesis_exp/src/edujudge/exp09_pairwise_ordinal/train_qdpr1_pairwise.py | PASS | lines=961; min>=200 |
 | file size below 20MB | thesis_exp/src/edujudge/exp09_pairwise_ordinal/train_qdpr1_pairwise.py | PASS | 43588 |
 | not checkpoint/weight artifact | thesis_exp/src/edujudge/exp09_pairwise_ordinal/train_qdpr1_pairwise.py | PASS |  |
 | no API key string | thesis_exp/src/edujudge/exp09_pairwise_ordinal/train_qdpr1_pairwise.py | PASS |  |
 | no CRLF line endings | thesis_exp/configs/exp09_pairwise_ordinal/exp09_qdpr1_pairwise_human_only.yaml | PASS |  |
 | no CR-only line endings | thesis_exp/configs/exp09_pairwise_ordinal/exp09_qdpr1_pairwise_human_only.yaml | PASS |  |
 | LF line endings | thesis_exp/configs/exp09_pairwise_ordinal/exp09_qdpr1_pairwise_human_only.yaml | PASS |  |
-| first line <= 1000 chars | thesis_exp/configs/exp09_pairwise_ordinal/exp09_qdpr1_pairwise_human_only.yaml | PASS | 45 |
 | file size below 20MB | thesis_exp/configs/exp09_pairwise_ordinal/exp09_qdpr1_pairwise_human_only.yaml | PASS | 1293 |
 | not checkpoint/weight artifact | thesis_exp/configs/exp09_pairwise_ordinal/exp09_qdpr1_pairwise_human_only.yaml | PASS |  |
 | no API key string | thesis_exp/configs/exp09_pairwise_ordinal/exp09_qdpr1_pairwise_human_only.yaml | PASS |  |
 | no CRLF line endings | thesis_exp/configs/exp09_pairwise_ordinal/exp09_qdpr1_pairwise_smoke.yaml | PASS |  |
 | no CR-only line endings | thesis_exp/configs/exp09_pairwise_ordinal/exp09_qdpr1_pairwise_smoke.yaml | PASS |  |
 | LF line endings | thesis_exp/configs/exp09_pairwise_ordinal/exp09_qdpr1_pairwise_smoke.yaml | PASS |  |
-| first line <= 1000 chars | thesis_exp/configs/exp09_pairwise_ordinal/exp09_qdpr1_pairwise_smoke.yaml | PASS | 45 |
 | file size below 20MB | thesis_exp/configs/exp09_pairwise_ordinal/exp09_qdpr1_pairwise_smoke.yaml | PASS | 1446 |
 | not checkpoint/weight artifact | thesis_exp/configs/exp09_pairwise_ordinal/exp09_qdpr1_pairwise_smoke.yaml | PASS |  |
 | no API key string | thesis_exp/configs/exp09_pairwise_ordinal/exp09_qdpr1_pairwise_smoke.yaml | PASS |  |
+| shell first line is bash shebang | thesis_exp/scripts/run_exp09_qdpr1_smoke.sh | PASS | #!/usr/bin/env bash |
+| shell second line is strict mode | thesis_exp/scripts/run_exp09_qdpr1_smoke.sh | PASS | set -euo pipefail |
 | no CRLF line endings | thesis_exp/scripts/run_exp09_qdpr1_smoke.sh | PASS |  |
 | no CR-only line endings | thesis_exp/scripts/run_exp09_qdpr1_smoke.sh | PASS |  |
 | LF line endings | thesis_exp/scripts/run_exp09_qdpr1_smoke.sh | PASS |  |
 | first line <= 1000 chars | thesis_exp/scripts/run_exp09_qdpr1_smoke.sh | PASS | 19 |
 | not collapsed-line file | thesis_exp/scripts/run_exp09_qdpr1_smoke.sh | PASS | 141 |
+| minimum line count | thesis_exp/scripts/run_exp09_qdpr1_smoke.sh | PASS | lines=141; min>=80 |
 | file size below 20MB | thesis_exp/scripts/run_exp09_qdpr1_smoke.sh | PASS | 4898 |
 | not checkpoint/weight artifact | thesis_exp/scripts/run_exp09_qdpr1_smoke.sh | PASS |  |
 | no API key string | thesis_exp/scripts/run_exp09_qdpr1_smoke.sh | PASS |  |
+| shell first line is bash shebang | thesis_exp/scripts/run_exp09_qdpr1_train.sh | PASS | #!/usr/bin/env bash |
+| shell second line is strict mode | thesis_exp/scripts/run_exp09_qdpr1_train.sh | PASS | set -euo pipefail |
 | no CRLF line endings | thesis_exp/scripts/run_exp09_qdpr1_train.sh | PASS |  |
 | no CR-only line endings | thesis_exp/scripts/run_exp09_qdpr1_train.sh | PASS |  |
 | LF line endings | thesis_exp/scripts/run_exp09_qdpr1_train.sh | PASS |  |
 | first line <= 1000 chars | thesis_exp/scripts/run_exp09_qdpr1_train.sh | PASS | 19 |
 | not collapsed-line file | thesis_exp/scripts/run_exp09_qdpr1_train.sh | PASS | 168 |
+| minimum line count | thesis_exp/scripts/run_exp09_qdpr1_train.sh | PASS | lines=168; min>=100 |
 | file size below 20MB | thesis_exp/scripts/run_exp09_qdpr1_train.sh | PASS | 5873 |
 | not checkpoint/weight artifact | thesis_exp/scripts/run_exp09_qdpr1_train.sh | PASS |  |
 | no API key string | thesis_exp/scripts/run_exp09_qdpr1_train.sh | PASS |  |
+| shell first line is bash shebang | thesis_exp/scripts/sync_exp09_qdpr1_to_server.sh | PASS | #!/usr/bin/env bash |
+| shell second line is strict mode | thesis_exp/scripts/sync_exp09_qdpr1_to_server.sh | PASS | set -euo pipefail |
 | no CRLF line endings | thesis_exp/scripts/sync_exp09_qdpr1_to_server.sh | PASS |  |
 | no CR-only line endings | thesis_exp/scripts/sync_exp09_qdpr1_to_server.sh | PASS |  |
 | LF line endings | thesis_exp/scripts/sync_exp09_qdpr1_to_server.sh | PASS |  |
@@ -130,54 +137,59 @@ Status: `PASS`
 | file size below 20MB | thesis_exp/scripts/sync_exp09_qdpr1_to_server.sh | PASS | 4140 |
 | not checkpoint/weight artifact | thesis_exp/scripts/sync_exp09_qdpr1_to_server.sh | PASS |  |
 | no API key string | thesis_exp/scripts/sync_exp09_qdpr1_to_server.sh | PASS |  |
-| Markdown max prose line length | thesis_exp/outputs/exp09_pairwise_ordinal/report.md | PASS | prose=91; table=106 |
+| Markdown max prose line length | thesis_exp/outputs/exp09_pairwise_ordinal/report.md | PASS | prose=95; table=106 |
 | no CRLF line endings | thesis_exp/outputs/exp09_pairwise_ordinal/report.md | PASS |  |
 | no CR-only line endings | thesis_exp/outputs/exp09_pairwise_ordinal/report.md | PASS |  |
 | LF line endings | thesis_exp/outputs/exp09_pairwise_ordinal/report.md | PASS |  |
 | first line <= 1000 chars | thesis_exp/outputs/exp09_pairwise_ordinal/report.md | PASS | 45 |
-| not collapsed-line file | thesis_exp/outputs/exp09_pairwise_ordinal/report.md | PASS | 23 |
-| not large one-line md/csv | thesis_exp/outputs/exp09_pairwise_ordinal/report.md | PASS | lines=23; bytes=1111 |
-| file size below 20MB | thesis_exp/outputs/exp09_pairwise_ordinal/report.md | PASS | 1111 |
+| not collapsed-line file | thesis_exp/outputs/exp09_pairwise_ordinal/report.md | PASS | 41 |
+| not large one-line md/csv | thesis_exp/outputs/exp09_pairwise_ordinal/report.md | PASS | lines=41; bytes=2093 |
+| not short large markdown report | thesis_exp/outputs/exp09_pairwise_ordinal/report.md | PASS | lines=41; bytes=2093 |
+| file size below 20MB | thesis_exp/outputs/exp09_pairwise_ordinal/report.md | PASS | 2093 |
 | not checkpoint/weight artifact | thesis_exp/outputs/exp09_pairwise_ordinal/report.md | PASS |  |
 | no API key string | thesis_exp/outputs/exp09_pairwise_ordinal/report.md | PASS |  |
-| Markdown max prose line length | thesis_exp/outputs/exp09_pairwise_ordinal/reports/notion_exp09_pairwise_summary.md | PASS | prose=91; table=106 |
+| Markdown max prose line length | thesis_exp/outputs/exp09_pairwise_ordinal/reports/notion_exp09_pairwise_summary.md | PASS | prose=95; table=106 |
 | no CRLF line endings | thesis_exp/outputs/exp09_pairwise_ordinal/reports/notion_exp09_pairwise_summary.md | PASS |  |
 | no CR-only line endings | thesis_exp/outputs/exp09_pairwise_ordinal/reports/notion_exp09_pairwise_summary.md | PASS |  |
 | LF line endings | thesis_exp/outputs/exp09_pairwise_ordinal/reports/notion_exp09_pairwise_summary.md | PASS |  |
 | first line <= 1000 chars | thesis_exp/outputs/exp09_pairwise_ordinal/reports/notion_exp09_pairwise_summary.md | PASS | 45 |
-| not collapsed-line file | thesis_exp/outputs/exp09_pairwise_ordinal/reports/notion_exp09_pairwise_summary.md | PASS | 23 |
-| not large one-line md/csv | thesis_exp/outputs/exp09_pairwise_ordinal/reports/notion_exp09_pairwise_summary.md | PASS | lines=23; bytes=1111 |
-| file size below 20MB | thesis_exp/outputs/exp09_pairwise_ordinal/reports/notion_exp09_pairwise_summary.md | PASS | 1111 |
+| not collapsed-line file | thesis_exp/outputs/exp09_pairwise_ordinal/reports/notion_exp09_pairwise_summary.md | PASS | 41 |
+| not large one-line md/csv | thesis_exp/outputs/exp09_pairwise_ordinal/reports/notion_exp09_pairwise_summary.md | PASS | lines=41; bytes=2093 |
+| not short large markdown report | thesis_exp/outputs/exp09_pairwise_ordinal/reports/notion_exp09_pairwise_summary.md | PASS | lines=41; bytes=2093 |
+| file size below 20MB | thesis_exp/outputs/exp09_pairwise_ordinal/reports/notion_exp09_pairwise_summary.md | PASS | 2093 |
 | not checkpoint/weight artifact | thesis_exp/outputs/exp09_pairwise_ordinal/reports/notion_exp09_pairwise_summary.md | PASS |  |
 | no API key string | thesis_exp/outputs/exp09_pairwise_ordinal/reports/notion_exp09_pairwise_summary.md | PASS |  |
-| Markdown max prose line length | thesis_exp/outputs/exp09_pairwise_ordinal/reports/pair_dataset_report.md | PASS | prose=99; table=34 |
+| Markdown max prose line length | thesis_exp/outputs/exp09_pairwise_ordinal/reports/pair_dataset_report.md | PASS | prose=99; table=98 |
 | no CRLF line endings | thesis_exp/outputs/exp09_pairwise_ordinal/reports/pair_dataset_report.md | PASS |  |
 | no CR-only line endings | thesis_exp/outputs/exp09_pairwise_ordinal/reports/pair_dataset_report.md | PASS |  |
 | LF line endings | thesis_exp/outputs/exp09_pairwise_ordinal/reports/pair_dataset_report.md | PASS |  |
 | first line <= 1000 chars | thesis_exp/outputs/exp09_pairwise_ordinal/reports/pair_dataset_report.md | PASS | 26 |
-| not collapsed-line file | thesis_exp/outputs/exp09_pairwise_ordinal/reports/pair_dataset_report.md | PASS | 30 |
-| not large one-line md/csv | thesis_exp/outputs/exp09_pairwise_ordinal/reports/pair_dataset_report.md | PASS | lines=30; bytes=746 |
-| file size below 20MB | thesis_exp/outputs/exp09_pairwise_ordinal/reports/pair_dataset_report.md | PASS | 746 |
+| not collapsed-line file | thesis_exp/outputs/exp09_pairwise_ordinal/reports/pair_dataset_report.md | PASS | 48 |
+| not large one-line md/csv | thesis_exp/outputs/exp09_pairwise_ordinal/reports/pair_dataset_report.md | PASS | lines=48; bytes=1728 |
+| not short large markdown report | thesis_exp/outputs/exp09_pairwise_ordinal/reports/pair_dataset_report.md | PASS | lines=48; bytes=1728 |
+| file size below 20MB | thesis_exp/outputs/exp09_pairwise_ordinal/reports/pair_dataset_report.md | PASS | 1728 |
 | not checkpoint/weight artifact | thesis_exp/outputs/exp09_pairwise_ordinal/reports/pair_dataset_report.md | PASS |  |
 | no API key string | thesis_exp/outputs/exp09_pairwise_ordinal/reports/pair_dataset_report.md | PASS |  |
-| Markdown max prose line length | thesis_exp/outputs/exp09_pairwise_ordinal/reports/review_package.md | PASS | prose=91; table=106 |
+| Markdown max prose line length | thesis_exp/outputs/exp09_pairwise_ordinal/reports/review_package.md | PASS | prose=95; table=106 |
 | no CRLF line endings | thesis_exp/outputs/exp09_pairwise_ordinal/reports/review_package.md | PASS |  |
 | no CR-only line endings | thesis_exp/outputs/exp09_pairwise_ordinal/reports/review_package.md | PASS |  |
 | LF line endings | thesis_exp/outputs/exp09_pairwise_ordinal/reports/review_package.md | PASS |  |
 | first line <= 1000 chars | thesis_exp/outputs/exp09_pairwise_ordinal/reports/review_package.md | PASS | 45 |
-| not collapsed-line file | thesis_exp/outputs/exp09_pairwise_ordinal/reports/review_package.md | PASS | 23 |
-| not large one-line md/csv | thesis_exp/outputs/exp09_pairwise_ordinal/reports/review_package.md | PASS | lines=23; bytes=1111 |
-| file size below 20MB | thesis_exp/outputs/exp09_pairwise_ordinal/reports/review_package.md | PASS | 1111 |
+| not collapsed-line file | thesis_exp/outputs/exp09_pairwise_ordinal/reports/review_package.md | PASS | 41 |
+| not large one-line md/csv | thesis_exp/outputs/exp09_pairwise_ordinal/reports/review_package.md | PASS | lines=41; bytes=2093 |
+| not short large markdown report | thesis_exp/outputs/exp09_pairwise_ordinal/reports/review_package.md | PASS | lines=41; bytes=2093 |
+| file size below 20MB | thesis_exp/outputs/exp09_pairwise_ordinal/reports/review_package.md | PASS | 2093 |
 | not checkpoint/weight artifact | thesis_exp/outputs/exp09_pairwise_ordinal/reports/review_package.md | PASS |  |
 | no API key string | thesis_exp/outputs/exp09_pairwise_ordinal/reports/review_package.md | PASS |  |
-| Markdown max prose line length | thesis_exp/outputs/exp09_pairwise_ordinal/review_package.md | PASS | prose=91; table=106 |
+| Markdown max prose line length | thesis_exp/outputs/exp09_pairwise_ordinal/review_package.md | PASS | prose=95; table=106 |
 | no CRLF line endings | thesis_exp/outputs/exp09_pairwise_ordinal/review_package.md | PASS |  |
 | no CR-only line endings | thesis_exp/outputs/exp09_pairwise_ordinal/review_package.md | PASS |  |
 | LF line endings | thesis_exp/outputs/exp09_pairwise_ordinal/review_package.md | PASS |  |
 | first line <= 1000 chars | thesis_exp/outputs/exp09_pairwise_ordinal/review_package.md | PASS | 45 |
-| not collapsed-line file | thesis_exp/outputs/exp09_pairwise_ordinal/review_package.md | PASS | 23 |
-| not large one-line md/csv | thesis_exp/outputs/exp09_pairwise_ordinal/review_package.md | PASS | lines=23; bytes=1111 |
-| file size below 20MB | thesis_exp/outputs/exp09_pairwise_ordinal/review_package.md | PASS | 1111 |
+| not collapsed-line file | thesis_exp/outputs/exp09_pairwise_ordinal/review_package.md | PASS | 41 |
+| not large one-line md/csv | thesis_exp/outputs/exp09_pairwise_ordinal/review_package.md | PASS | lines=41; bytes=2093 |
+| not short large markdown report | thesis_exp/outputs/exp09_pairwise_ordinal/review_package.md | PASS | lines=41; bytes=2093 |
+| file size below 20MB | thesis_exp/outputs/exp09_pairwise_ordinal/review_package.md | PASS | 2093 |
 | not checkpoint/weight artifact | thesis_exp/outputs/exp09_pairwise_ordinal/review_package.md | PASS |  |
 | no API key string | thesis_exp/outputs/exp09_pairwise_ordinal/review_package.md | PASS |  |
 | Markdown max prose line length | thesis_exp/outputs/exp09_pairwise_ordinal/sanity_check_exp09_setup.md | PASS | prose=31; table=355 |
@@ -185,9 +197,10 @@ Status: `PASS`
 | no CR-only line endings | thesis_exp/outputs/exp09_pairwise_ordinal/sanity_check_exp09_setup.md | PASS |  |
 | LF line endings | thesis_exp/outputs/exp09_pairwise_ordinal/sanity_check_exp09_setup.md | PASS |  |
 | first line <= 1000 chars | thesis_exp/outputs/exp09_pairwise_ordinal/sanity_check_exp09_setup.md | PASS | 25 |
-| not collapsed-line file | thesis_exp/outputs/exp09_pairwise_ordinal/sanity_check_exp09_setup.md | PASS | 111 |
-| not large one-line md/csv | thesis_exp/outputs/exp09_pairwise_ordinal/sanity_check_exp09_setup.md | PASS | lines=111; bytes=7160 |
-| file size below 20MB | thesis_exp/outputs/exp09_pairwise_ordinal/sanity_check_exp09_setup.md | PASS | 7160 |
+| not collapsed-line file | thesis_exp/outputs/exp09_pairwise_ordinal/sanity_check_exp09_setup.md | PASS | 112 |
+| not large one-line md/csv | thesis_exp/outputs/exp09_pairwise_ordinal/sanity_check_exp09_setup.md | PASS | lines=112; bytes=7414 |
+| not short large markdown report | thesis_exp/outputs/exp09_pairwise_ordinal/sanity_check_exp09_setup.md | PASS | lines=112; bytes=7414 |
+| file size below 20MB | thesis_exp/outputs/exp09_pairwise_ordinal/sanity_check_exp09_setup.md | PASS | 7414 |
 | not checkpoint/weight artifact | thesis_exp/outputs/exp09_pairwise_ordinal/sanity_check_exp09_setup.md | PASS |  |
 | no API key string | thesis_exp/outputs/exp09_pairwise_ordinal/sanity_check_exp09_setup.md | PASS |  |
 | CSV readable | thesis_exp/outputs/exp09_pairwise_ordinal/tables/exp09_delta_vs_baselines.csv | PASS |  |
@@ -195,7 +208,6 @@ Status: `PASS`
 | no CRLF line endings | thesis_exp/outputs/exp09_pairwise_ordinal/tables/exp09_delta_vs_baselines.csv | PASS |  |
 | no CR-only line endings | thesis_exp/outputs/exp09_pairwise_ordinal/tables/exp09_delta_vs_baselines.csv | PASS |  |
 | LF line endings | thesis_exp/outputs/exp09_pairwise_ordinal/tables/exp09_delta_vs_baselines.csv | PASS |  |
-| first line <= 1000 chars | thesis_exp/outputs/exp09_pairwise_ordinal/tables/exp09_delta_vs_baselines.csv | PASS | 83 |
 | not collapsed-line file | thesis_exp/outputs/exp09_pairwise_ordinal/tables/exp09_delta_vs_baselines.csv | PASS | 2 |
 | not large one-line md/csv | thesis_exp/outputs/exp09_pairwise_ordinal/tables/exp09_delta_vs_baselines.csv | PASS | lines=2; bytes=159 |
 | file size below 20MB | thesis_exp/outputs/exp09_pairwise_ordinal/tables/exp09_delta_vs_baselines.csv | PASS | 159 |
@@ -206,7 +218,6 @@ Status: `PASS`
 | no CRLF line endings | thesis_exp/outputs/exp09_pairwise_ordinal/tables/exp09_high_score_comparison.csv | PASS |  |
 | no CR-only line endings | thesis_exp/outputs/exp09_pairwise_ordinal/tables/exp09_high_score_comparison.csv | PASS |  |
 | LF line endings | thesis_exp/outputs/exp09_pairwise_ordinal/tables/exp09_high_score_comparison.csv | PASS |  |
-| first line <= 1000 chars | thesis_exp/outputs/exp09_pairwise_ordinal/tables/exp09_high_score_comparison.csv | PASS | 83 |
 | not collapsed-line file | thesis_exp/outputs/exp09_pairwise_ordinal/tables/exp09_high_score_comparison.csv | PASS | 2 |
 | not large one-line md/csv | thesis_exp/outputs/exp09_pairwise_ordinal/tables/exp09_high_score_comparison.csv | PASS | lines=2; bytes=193 |
 | file size below 20MB | thesis_exp/outputs/exp09_pairwise_ordinal/tables/exp09_high_score_comparison.csv | PASS | 193 |
@@ -217,7 +228,6 @@ Status: `PASS`
 | no CRLF line endings | thesis_exp/outputs/exp09_pairwise_ordinal/tables/exp09_low_score_comparison.csv | PASS |  |
 | no CR-only line endings | thesis_exp/outputs/exp09_pairwise_ordinal/tables/exp09_low_score_comparison.csv | PASS |  |
 | LF line endings | thesis_exp/outputs/exp09_pairwise_ordinal/tables/exp09_low_score_comparison.csv | PASS |  |
-| first line <= 1000 chars | thesis_exp/outputs/exp09_pairwise_ordinal/tables/exp09_low_score_comparison.csv | PASS | 83 |
 | not collapsed-line file | thesis_exp/outputs/exp09_pairwise_ordinal/tables/exp09_low_score_comparison.csv | PASS | 2 |
 | not large one-line md/csv | thesis_exp/outputs/exp09_pairwise_ordinal/tables/exp09_low_score_comparison.csv | PASS | lines=2; bytes=187 |
 | file size below 20MB | thesis_exp/outputs/exp09_pairwise_ordinal/tables/exp09_low_score_comparison.csv | PASS | 187 |
@@ -228,18 +238,26 @@ Status: `PASS`
 | no CRLF line endings | thesis_exp/outputs/exp09_pairwise_ordinal/tables/exp09_main_comparison.csv | PASS |  |
 | no CR-only line endings | thesis_exp/outputs/exp09_pairwise_ordinal/tables/exp09_main_comparison.csv | PASS |  |
 | LF line endings | thesis_exp/outputs/exp09_pairwise_ordinal/tables/exp09_main_comparison.csv | PASS |  |
-| first line <= 1000 chars | thesis_exp/outputs/exp09_pairwise_ordinal/tables/exp09_main_comparison.csv | PASS | 300 |
 | not collapsed-line file | thesis_exp/outputs/exp09_pairwise_ordinal/tables/exp09_main_comparison.csv | PASS | 10 |
 | not large one-line md/csv | thesis_exp/outputs/exp09_pairwise_ordinal/tables/exp09_main_comparison.csv | PASS | lines=10; bytes=3645 |
 | file size below 20MB | thesis_exp/outputs/exp09_pairwise_ordinal/tables/exp09_main_comparison.csv | PASS | 3645 |
 | not checkpoint/weight artifact | thesis_exp/outputs/exp09_pairwise_ordinal/tables/exp09_main_comparison.csv | PASS |  |
 | no API key string | thesis_exp/outputs/exp09_pairwise_ordinal/tables/exp09_main_comparison.csv | PASS |  |
+| CSV readable | thesis_exp/outputs/exp09_pairwise_ordinal/tables/pair_comparability_distribution.csv | PASS |  |
+| CSV pandas readable | thesis_exp/outputs/exp09_pairwise_ordinal/tables/pair_comparability_distribution.csv | PASS |  |
+| no CRLF line endings | thesis_exp/outputs/exp09_pairwise_ordinal/tables/pair_comparability_distribution.csv | PASS |  |
+| no CR-only line endings | thesis_exp/outputs/exp09_pairwise_ordinal/tables/pair_comparability_distribution.csv | PASS |  |
+| LF line endings | thesis_exp/outputs/exp09_pairwise_ordinal/tables/pair_comparability_distribution.csv | PASS |  |
+| not collapsed-line file | thesis_exp/outputs/exp09_pairwise_ordinal/tables/pair_comparability_distribution.csv | PASS | 9 |
+| not large one-line md/csv | thesis_exp/outputs/exp09_pairwise_ordinal/tables/pair_comparability_distribution.csv | PASS | lines=9; bytes=731 |
+| file size below 20MB | thesis_exp/outputs/exp09_pairwise_ordinal/tables/pair_comparability_distribution.csv | PASS | 731 |
+| not checkpoint/weight artifact | thesis_exp/outputs/exp09_pairwise_ordinal/tables/pair_comparability_distribution.csv | PASS |  |
+| no API key string | thesis_exp/outputs/exp09_pairwise_ordinal/tables/pair_comparability_distribution.csv | PASS |  |
 | CSV readable | thesis_exp/outputs/exp09_pairwise_ordinal/tables/pair_distribution.csv | PASS |  |
 | CSV pandas readable | thesis_exp/outputs/exp09_pairwise_ordinal/tables/pair_distribution.csv | PASS |  |
 | no CRLF line endings | thesis_exp/outputs/exp09_pairwise_ordinal/tables/pair_distribution.csv | PASS |  |
 | no CR-only line endings | thesis_exp/outputs/exp09_pairwise_ordinal/tables/pair_distribution.csv | PASS |  |
 | LF line endings | thesis_exp/outputs/exp09_pairwise_ordinal/tables/pair_distribution.csv | PASS |  |
-| first line <= 1000 chars | thesis_exp/outputs/exp09_pairwise_ordinal/tables/pair_distribution.csv | PASS | 50 |
 | not collapsed-line file | thesis_exp/outputs/exp09_pairwise_ordinal/tables/pair_distribution.csv | PASS | 9 |
 | not large one-line md/csv | thesis_exp/outputs/exp09_pairwise_ordinal/tables/pair_distribution.csv | PASS | lines=9; bytes=267 |
 | file size below 20MB | thesis_exp/outputs/exp09_pairwise_ordinal/tables/pair_distribution.csv | PASS | 267 |
@@ -250,7 +268,6 @@ Status: `PASS`
 | no CRLF line endings | thesis_exp/outputs/exp09_pairwise_ordinal/tables/pair_inventory.csv | PASS |  |
 | no CR-only line endings | thesis_exp/outputs/exp09_pairwise_ordinal/tables/pair_inventory.csv | PASS |  |
 | LF line endings | thesis_exp/outputs/exp09_pairwise_ordinal/tables/pair_inventory.csv | PASS |  |
-| first line <= 1000 chars | thesis_exp/outputs/exp09_pairwise_ordinal/tables/pair_inventory.csv | PASS | 89 |
 | not collapsed-line file | thesis_exp/outputs/exp09_pairwise_ordinal/tables/pair_inventory.csv | PASS | 3 |
 | not large one-line md/csv | thesis_exp/outputs/exp09_pairwise_ordinal/tables/pair_inventory.csv | PASS | lines=3; bytes=142 |
 | file size below 20MB | thesis_exp/outputs/exp09_pairwise_ordinal/tables/pair_inventory.csv | PASS | 142 |
@@ -261,7 +278,6 @@ Status: `PASS`
 | no CRLF line endings | thesis_exp/outputs/exp09_pairwise_ordinal/tables/pair_label_gap_distribution.csv | PASS |  |
 | no CR-only line endings | thesis_exp/outputs/exp09_pairwise_ordinal/tables/pair_label_gap_distribution.csv | PASS |  |
 | LF line endings | thesis_exp/outputs/exp09_pairwise_ordinal/tables/pair_label_gap_distribution.csv | PASS |  |
-| first line <= 1000 chars | thesis_exp/outputs/exp09_pairwise_ordinal/tables/pair_label_gap_distribution.csv | PASS | 26 |
 | not collapsed-line file | thesis_exp/outputs/exp09_pairwise_ordinal/tables/pair_label_gap_distribution.csv | PASS | 9 |
 | not large one-line md/csv | thesis_exp/outputs/exp09_pairwise_ordinal/tables/pair_label_gap_distribution.csv | PASS | lines=9; bytes=180 |
 | file size below 20MB | thesis_exp/outputs/exp09_pairwise_ordinal/tables/pair_label_gap_distribution.csv | PASS | 180 |
@@ -272,7 +288,6 @@ Status: `PASS`
 | no CRLF line endings | thesis_exp/outputs/exp09_pairwise_ordinal/tables/pair_priority_distribution.csv | PASS |  |
 | no CR-only line endings | thesis_exp/outputs/exp09_pairwise_ordinal/tables/pair_priority_distribution.csv | PASS |  |
 | LF line endings | thesis_exp/outputs/exp09_pairwise_ordinal/tables/pair_priority_distribution.csv | PASS |  |
-| first line <= 1000 chars | thesis_exp/outputs/exp09_pairwise_ordinal/tables/pair_priority_distribution.csv | PASS | 25 |
 | not collapsed-line file | thesis_exp/outputs/exp09_pairwise_ordinal/tables/pair_priority_distribution.csv | PASS | 9 |
 | not large one-line md/csv | thesis_exp/outputs/exp09_pairwise_ordinal/tables/pair_priority_distribution.csv | PASS | lines=9; bytes=273 |
 | file size below 20MB | thesis_exp/outputs/exp09_pairwise_ordinal/tables/pair_priority_distribution.csv | PASS | 273 |
@@ -283,7 +298,6 @@ Status: `PASS`
 | no CRLF line endings | thesis_exp/outputs/exp09_pairwise_ordinal/tables/pair_reuse_stats.csv | PASS |  |
 | no CR-only line endings | thesis_exp/outputs/exp09_pairwise_ordinal/tables/pair_reuse_stats.csv | PASS |  |
 | LF line endings | thesis_exp/outputs/exp09_pairwise_ordinal/tables/pair_reuse_stats.csv | PASS |  |
-| first line <= 1000 chars | thesis_exp/outputs/exp09_pairwise_ordinal/tables/pair_reuse_stats.csv | PASS | 99 |
 | not collapsed-line file | thesis_exp/outputs/exp09_pairwise_ordinal/tables/pair_reuse_stats.csv | PASS | 3 |
 | not large one-line md/csv | thesis_exp/outputs/exp09_pairwise_ordinal/tables/pair_reuse_stats.csv | PASS | lines=3; bytes=215 |
 | file size below 20MB | thesis_exp/outputs/exp09_pairwise_ordinal/tables/pair_reuse_stats.csv | PASS | 215 |
@@ -294,7 +308,6 @@ Status: `PASS`
 | no CRLF line endings | thesis_exp/outputs/exp09_pairwise_ordinal/tables/pair_shard_manifest.csv | PASS |  |
 | no CR-only line endings | thesis_exp/outputs/exp09_pairwise_ordinal/tables/pair_shard_manifest.csv | PASS |  |
 | LF line endings | thesis_exp/outputs/exp09_pairwise_ordinal/tables/pair_shard_manifest.csv | PASS |  |
-| first line <= 1000 chars | thesis_exp/outputs/exp09_pairwise_ordinal/tables/pair_shard_manifest.csv | PASS | 42 |
 | not collapsed-line file | thesis_exp/outputs/exp09_pairwise_ordinal/tables/pair_shard_manifest.csv | PASS | 11 |
 | not large one-line md/csv | thesis_exp/outputs/exp09_pairwise_ordinal/tables/pair_shard_manifest.csv | PASS | lines=11; bytes=1015 |
 | file size below 20MB | thesis_exp/outputs/exp09_pairwise_ordinal/tables/pair_shard_manifest.csv | PASS | 1015 |
@@ -305,7 +318,6 @@ Status: `PASS`
 | no CRLF line endings | thesis_exp/outputs/exp09_pairwise_ordinal/tables/pair_type_distribution.csv | PASS |  |
 | no CR-only line endings | thesis_exp/outputs/exp09_pairwise_ordinal/tables/pair_type_distribution.csv | PASS |  |
 | LF line endings | thesis_exp/outputs/exp09_pairwise_ordinal/tables/pair_type_distribution.csv | PASS |  |
-| first line <= 1000 chars | thesis_exp/outputs/exp09_pairwise_ordinal/tables/pair_type_distribution.csv | PASS | 26 |
 | not collapsed-line file | thesis_exp/outputs/exp09_pairwise_ordinal/tables/pair_type_distribution.csv | PASS | 9 |
 | not large one-line md/csv | thesis_exp/outputs/exp09_pairwise_ordinal/tables/pair_type_distribution.csv | PASS | lines=9; bytes=220 |
 | file size below 20MB | thesis_exp/outputs/exp09_pairwise_ordinal/tables/pair_type_distribution.csv | PASS | 220 |
@@ -316,7 +328,6 @@ Status: `PASS`
 | no CRLF line endings | thesis_exp/outputs/exp09_pairwise_ordinal/tables/pointwise_class_weights.csv | PASS |  |
 | no CR-only line endings | thesis_exp/outputs/exp09_pairwise_ordinal/tables/pointwise_class_weights.csv | PASS |  |
 | LF line endings | thesis_exp/outputs/exp09_pairwise_ordinal/tables/pointwise_class_weights.csv | PASS |  |
-| first line <= 1000 chars | thesis_exp/outputs/exp09_pairwise_ordinal/tables/pointwise_class_weights.csv | PASS | 63 |
 | not collapsed-line file | thesis_exp/outputs/exp09_pairwise_ordinal/tables/pointwise_class_weights.csv | PASS | 6 |
 | not large one-line md/csv | thesis_exp/outputs/exp09_pairwise_ordinal/tables/pointwise_class_weights.csv | PASS | lines=6; bytes=608 |
 | file size below 20MB | thesis_exp/outputs/exp09_pairwise_ordinal/tables/pointwise_class_weights.csv | PASS | 608 |
@@ -326,7 +337,6 @@ Status: `PASS`
 | no CRLF line endings | thesis_exp/outputs/exp09_pairwise_ordinal/tables/pointwise_class_weights.json | PASS |  |
 | no CR-only line endings | thesis_exp/outputs/exp09_pairwise_ordinal/tables/pointwise_class_weights.json | PASS |  |
 | LF line endings | thesis_exp/outputs/exp09_pairwise_ordinal/tables/pointwise_class_weights.json | PASS |  |
-| first line <= 1000 chars | thesis_exp/outputs/exp09_pairwise_ordinal/tables/pointwise_class_weights.json | PASS | 1 |
 | file size below 20MB | thesis_exp/outputs/exp09_pairwise_ordinal/tables/pointwise_class_weights.json | PASS | 1518 |
 | not checkpoint/weight artifact | thesis_exp/outputs/exp09_pairwise_ordinal/tables/pointwise_class_weights.json | PASS |  |
 | no API key string | thesis_exp/outputs/exp09_pairwise_ordinal/tables/pointwise_class_weights.json | PASS |  |
@@ -335,7 +345,6 @@ Status: `PASS`
 | no CRLF line endings | thesis_exp/outputs/exp09_pairwise_ordinal/tables/pointwise_label_distribution.csv | PASS |  |
 | no CR-only line endings | thesis_exp/outputs/exp09_pairwise_ordinal/tables/pointwise_label_distribution.csv | PASS |  |
 | LF line endings | thesis_exp/outputs/exp09_pairwise_ordinal/tables/pointwise_label_distribution.csv | PASS |  |
-| first line <= 1000 chars | thesis_exp/outputs/exp09_pairwise_ordinal/tables/pointwise_label_distribution.csv | PASS | 24 |
 | not collapsed-line file | thesis_exp/outputs/exp09_pairwise_ordinal/tables/pointwise_label_distribution.csv | PASS | 16 |
 | not large one-line md/csv | thesis_exp/outputs/exp09_pairwise_ordinal/tables/pointwise_label_distribution.csv | PASS | lines=16; bytes=483 |
 | file size below 20MB | thesis_exp/outputs/exp09_pairwise_ordinal/tables/pointwise_label_distribution.csv | PASS | 483 |
@@ -346,10 +355,9 @@ Status: `PASS`
 | no CRLF line endings | thesis_exp/outputs/exp09_pairwise_ordinal/tables/sanity_check_exp09_setup.csv | PASS |  |
 | no CR-only line endings | thesis_exp/outputs/exp09_pairwise_ordinal/tables/sanity_check_exp09_setup.csv | PASS |  |
 | LF line endings | thesis_exp/outputs/exp09_pairwise_ordinal/tables/sanity_check_exp09_setup.csv | PASS |  |
-| first line <= 1000 chars | thesis_exp/outputs/exp09_pairwise_ordinal/tables/sanity_check_exp09_setup.csv | PASS | 25 |
-| not collapsed-line file | thesis_exp/outputs/exp09_pairwise_ordinal/tables/sanity_check_exp09_setup.csv | PASS | 92 |
-| not large one-line md/csv | thesis_exp/outputs/exp09_pairwise_ordinal/tables/sanity_check_exp09_setup.csv | PASS | lines=92; bytes=6242 |
-| file size below 20MB | thesis_exp/outputs/exp09_pairwise_ordinal/tables/sanity_check_exp09_setup.csv | PASS | 6242 |
+| not collapsed-line file | thesis_exp/outputs/exp09_pairwise_ordinal/tables/sanity_check_exp09_setup.csv | PASS | 93 |
+| not large one-line md/csv | thesis_exp/outputs/exp09_pairwise_ordinal/tables/sanity_check_exp09_setup.csv | PASS | lines=93; bytes=6494 |
+| file size below 20MB | thesis_exp/outputs/exp09_pairwise_ordinal/tables/sanity_check_exp09_setup.csv | PASS | 6494 |
 | not checkpoint/weight artifact | thesis_exp/outputs/exp09_pairwise_ordinal/tables/sanity_check_exp09_setup.csv | PASS |  |
 | no API key string | thesis_exp/outputs/exp09_pairwise_ordinal/tables/sanity_check_exp09_setup.csv | PASS |  |
 | CSV readable | thesis_exp/outputs/exp09_pairwise_ordinal/tables/toy_pairwise_loss_scale.csv | PASS |  |
@@ -357,7 +365,6 @@ Status: `PASS`
 | no CRLF line endings | thesis_exp/outputs/exp09_pairwise_ordinal/tables/toy_pairwise_loss_scale.csv | PASS |  |
 | no CR-only line endings | thesis_exp/outputs/exp09_pairwise_ordinal/tables/toy_pairwise_loss_scale.csv | PASS |  |
 | LF line endings | thesis_exp/outputs/exp09_pairwise_ordinal/tables/toy_pairwise_loss_scale.csv | PASS |  |
-| first line <= 1000 chars | thesis_exp/outputs/exp09_pairwise_ordinal/tables/toy_pairwise_loss_scale.csv | PASS | 219 |
 | not collapsed-line file | thesis_exp/outputs/exp09_pairwise_ordinal/tables/toy_pairwise_loss_scale.csv | PASS | 2 |
 | not large one-line md/csv | thesis_exp/outputs/exp09_pairwise_ordinal/tables/toy_pairwise_loss_scale.csv | PASS | lines=2; bytes=383 |
 | file size below 20MB | thesis_exp/outputs/exp09_pairwise_ordinal/tables/toy_pairwise_loss_scale.csv | PASS | 383 |
