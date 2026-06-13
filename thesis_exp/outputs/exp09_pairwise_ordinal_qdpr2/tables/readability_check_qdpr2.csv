@@ -28,7 +28,7 @@ no CRLF line endings,thesis_exp/src/edujudge/exp09_pairwise_ordinal/readability_
 no CR-only line endings,thesis_exp/src/edujudge/exp09_pairwise_ordinal/readability_check_qdpr2.py,PASS,
 LF line endings,thesis_exp/src/edujudge/exp09_pairwise_ordinal/readability_check_qdpr2.py,PASS,
 first line <= 1000 chars,thesis_exp/src/edujudge/exp09_pairwise_ordinal/readability_check_qdpr2.py,PASS,51
-not collapsed-line file,thesis_exp/src/edujudge/exp09_pairwise_ordinal/readability_check_qdpr2.py,PASS,155
+not collapsed-line file,thesis_exp/src/edujudge/exp09_pairwise_ordinal/readability_check_qdpr2.py,PASS,162
 shell first line is bash shebang,thesis_exp/scripts/run_exp09_qdpr2_smoke.sh,PASS,#!/usr/bin/env bash
 shell second line is strict mode,thesis_exp/scripts/run_exp09_qdpr2_smoke.sh,PASS,set -euo pipefail
 no CRLF line endings,thesis_exp/scripts/run_exp09_qdpr2_smoke.sh,PASS,

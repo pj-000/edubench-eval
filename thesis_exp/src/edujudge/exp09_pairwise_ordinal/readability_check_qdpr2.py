@@ -26,6 +26,7 @@ SOURCE_PATHS = [
 TEXT_SUFFIXES = {".py", ".sh", ".md", ".csv", ".yaml", ".yml"}
 COLLAPSE_SUFFIXES = {".py", ".sh", ".md", ".csv"}
 FIRST_LINE_SUFFIXES = {".py", ".sh", ".md"}
+SKIP_OUTPUT_DIRS = {"pairs", "runs", "smoke_test", "logs"}
 MIN_LINE_COUNTS = {
     Path("thesis_exp/src/edujudge/exp09_pairwise_ordinal/qdpr2_setup.py"): 250,
     Path("thesis_exp/src/edujudge/exp09_pairwise_ordinal/sanity_check_qdpr2_setup.py"): 150,
@@ -50,7 +51,13 @@ def add(rows: list[dict[str, Any]], check_name: str, path: Path, passed: bool, d
 def candidate_files() -> list[Path]:
     files = [path for path in SOURCE_PATHS + SCRIPT_PATHS if path.exists()]
     if QDPR2_OUTPUT_DIR.exists():
-        files.extend(path for path in sorted(QDPR2_OUTPUT_DIR.rglob("*")) if path.is_file())
+        for path in sorted(QDPR2_OUTPUT_DIR.rglob("*")):
+            if not path.is_file():
+                continue
+            relative = path.relative_to(QDPR2_OUTPUT_DIR)
+            if relative.parts and relative.parts[0] in SKIP_OUTPUT_DIRS:
+                continue
+            files.append(path)
     unique: list[Path] = []
     seen = set()
     for path in files:
