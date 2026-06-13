@@ -64,36 +64,48 @@ no CRLF line endings,thesis_exp/outputs/exp09_pairwise_ordinal_qdpr2/readability
 no CR-only line endings,thesis_exp/outputs/exp09_pairwise_ordinal_qdpr2/readability_check_qdpr2.md,PASS,
 LF line endings,thesis_exp/outputs/exp09_pairwise_ordinal_qdpr2/readability_check_qdpr2.md,PASS,
 first line <= 1000 chars,thesis_exp/outputs/exp09_pairwise_ordinal_qdpr2/readability_check_qdpr2.md,PASS,26
-not collapsed-line file,thesis_exp/outputs/exp09_pairwise_ordinal_qdpr2/readability_check_qdpr2.md,PASS,143
-not large one-line md/csv,thesis_exp/outputs/exp09_pairwise_ordinal_qdpr2/readability_check_qdpr2.md,PASS,lines=143; bytes=15817
-Markdown max prose line length,thesis_exp/outputs/exp09_pairwise_ordinal_qdpr2/reports/notion_qdpr2_summary.md,PASS,98
+not collapsed-line file,thesis_exp/outputs/exp09_pairwise_ordinal_qdpr2/readability_check_qdpr2.md,PASS,161
+not large one-line md/csv,thesis_exp/outputs/exp09_pairwise_ordinal_qdpr2/readability_check_qdpr2.md,PASS,lines=161; bytes=18052
+Markdown max prose line length,thesis_exp/outputs/exp09_pairwise_ordinal_qdpr2/reports/notion_qdpr2_summary.md,PASS,116
 no CRLF line endings,thesis_exp/outputs/exp09_pairwise_ordinal_qdpr2/reports/notion_qdpr2_summary.md,PASS,
 no CR-only line endings,thesis_exp/outputs/exp09_pairwise_ordinal_qdpr2/reports/notion_qdpr2_summary.md,PASS,
 LF line endings,thesis_exp/outputs/exp09_pairwise_ordinal_qdpr2/reports/notion_qdpr2_summary.md,PASS,
-first line <= 1000 chars,thesis_exp/outputs/exp09_pairwise_ordinal_qdpr2/reports/notion_qdpr2_summary.md,PASS,51
-not collapsed-line file,thesis_exp/outputs/exp09_pairwise_ordinal_qdpr2/reports/notion_qdpr2_summary.md,PASS,60
-not large one-line md/csv,thesis_exp/outputs/exp09_pairwise_ordinal_qdpr2/reports/notion_qdpr2_summary.md,PASS,lines=60; bytes=2488
-Markdown max prose line length,thesis_exp/outputs/exp09_pairwise_ordinal_qdpr2/reports/qdpr2_method_plan.md,PASS,98
+first line <= 1000 chars,thesis_exp/outputs/exp09_pairwise_ordinal_qdpr2/reports/notion_qdpr2_summary.md,PASS,53
+not collapsed-line file,thesis_exp/outputs/exp09_pairwise_ordinal_qdpr2/reports/notion_qdpr2_summary.md,PASS,56
+not large one-line md/csv,thesis_exp/outputs/exp09_pairwise_ordinal_qdpr2/reports/notion_qdpr2_summary.md,PASS,lines=56; bytes=2427
+Markdown max prose line length,thesis_exp/outputs/exp09_pairwise_ordinal_qdpr2/reports/qdpr2_method_plan.md,PASS,116
 no CRLF line endings,thesis_exp/outputs/exp09_pairwise_ordinal_qdpr2/reports/qdpr2_method_plan.md,PASS,
 no CR-only line endings,thesis_exp/outputs/exp09_pairwise_ordinal_qdpr2/reports/qdpr2_method_plan.md,PASS,
 LF line endings,thesis_exp/outputs/exp09_pairwise_ordinal_qdpr2/reports/qdpr2_method_plan.md,PASS,
-first line <= 1000 chars,thesis_exp/outputs/exp09_pairwise_ordinal_qdpr2/reports/qdpr2_method_plan.md,PASS,51
-not collapsed-line file,thesis_exp/outputs/exp09_pairwise_ordinal_qdpr2/reports/qdpr2_method_plan.md,PASS,60
-not large one-line md/csv,thesis_exp/outputs/exp09_pairwise_ordinal_qdpr2/reports/qdpr2_method_plan.md,PASS,lines=60; bytes=2488
-Markdown max prose line length,thesis_exp/outputs/exp09_pairwise_ordinal_qdpr2/reports/review_package.md,PASS,98
+first line <= 1000 chars,thesis_exp/outputs/exp09_pairwise_ordinal_qdpr2/reports/qdpr2_method_plan.md,PASS,53
+not collapsed-line file,thesis_exp/outputs/exp09_pairwise_ordinal_qdpr2/reports/qdpr2_method_plan.md,PASS,56
+not large one-line md/csv,thesis_exp/outputs/exp09_pairwise_ordinal_qdpr2/reports/qdpr2_method_plan.md,PASS,lines=56; bytes=2427
+Markdown max prose line length,thesis_exp/outputs/exp09_pairwise_ordinal_qdpr2/reports/review_package.md,PASS,116
 no CRLF line endings,thesis_exp/outputs/exp09_pairwise_ordinal_qdpr2/reports/review_package.md,PASS,
 no CR-only line endings,thesis_exp/outputs/exp09_pairwise_ordinal_qdpr2/reports/review_package.md,PASS,
 LF line endings,thesis_exp/outputs/exp09_pairwise_ordinal_qdpr2/reports/review_package.md,PASS,
-first line <= 1000 chars,thesis_exp/outputs/exp09_pairwise_ordinal_qdpr2/reports/review_package.md,PASS,51
-not collapsed-line file,thesis_exp/outputs/exp09_pairwise_ordinal_qdpr2/reports/review_package.md,PASS,60
-not large one-line md/csv,thesis_exp/outputs/exp09_pairwise_ordinal_qdpr2/reports/review_package.md,PASS,lines=60; bytes=2488
-Markdown max prose line length,thesis_exp/outputs/exp09_pairwise_ordinal_qdpr2/sanity_check_qdpr2_setup.md,PASS,41
+first line <= 1000 chars,thesis_exp/outputs/exp09_pairwise_ordinal_qdpr2/reports/review_package.md,PASS,53
+not collapsed-line file,thesis_exp/outputs/exp09_pairwise_ordinal_qdpr2/reports/review_package.md,PASS,56
+not large one-line md/csv,thesis_exp/outputs/exp09_pairwise_ordinal_qdpr2/reports/review_package.md,PASS,lines=56; bytes=2427
+Markdown max prose line length,thesis_exp/outputs/exp09_pairwise_ordinal_qdpr2/sanity_check_qdpr2_setup.md,PASS,21
 no CRLF line endings,thesis_exp/outputs/exp09_pairwise_ordinal_qdpr2/sanity_check_qdpr2_setup.md,PASS,
 no CR-only line endings,thesis_exp/outputs/exp09_pairwise_ordinal_qdpr2/sanity_check_qdpr2_setup.md,PASS,
 LF line endings,thesis_exp/outputs/exp09_pairwise_ordinal_qdpr2/sanity_check_qdpr2_setup.md,PASS,
 first line <= 1000 chars,thesis_exp/outputs/exp09_pairwise_ordinal_qdpr2/sanity_check_qdpr2_setup.md,PASS,21
 not collapsed-line file,thesis_exp/outputs/exp09_pairwise_ordinal_qdpr2/sanity_check_qdpr2_setup.md,PASS,27
-not large one-line md/csv,thesis_exp/outputs/exp09_pairwise_ordinal_qdpr2/sanity_check_qdpr2_setup.md,PASS,lines=27; bytes=1228
+not large one-line md/csv,thesis_exp/outputs/exp09_pairwise_ordinal_qdpr2/sanity_check_qdpr2_setup.md,PASS,lines=27; bytes=1162
+CSV readable,thesis_exp/outputs/exp09_pairwise_ordinal_qdpr2/tables/qdpr2_delta_vs_qdb1.csv,PASS,
+no CRLF line endings,thesis_exp/outputs/exp09_pairwise_ordinal_qdpr2/tables/qdpr2_delta_vs_qdb1.csv,PASS,
+no CR-only line endings,thesis_exp/outputs/exp09_pairwise_ordinal_qdpr2/tables/qdpr2_delta_vs_qdb1.csv,PASS,
+LF line endings,thesis_exp/outputs/exp09_pairwise_ordinal_qdpr2/tables/qdpr2_delta_vs_qdb1.csv,PASS,
+not collapsed-line file,thesis_exp/outputs/exp09_pairwise_ordinal_qdpr2/tables/qdpr2_delta_vs_qdb1.csv,PASS,12
+not large one-line md/csv,thesis_exp/outputs/exp09_pairwise_ordinal_qdpr2/tables/qdpr2_delta_vs_qdb1.csv,PASS,lines=12; bytes=1313
+CSV readable,thesis_exp/outputs/exp09_pairwise_ordinal_qdpr2/tables/qdpr2_formal_metrics_summary.csv,PASS,
+no CRLF line endings,thesis_exp/outputs/exp09_pairwise_ordinal_qdpr2/tables/qdpr2_formal_metrics_summary.csv,PASS,
+no CR-only line endings,thesis_exp/outputs/exp09_pairwise_ordinal_qdpr2/tables/qdpr2_formal_metrics_summary.csv,PASS,
+LF line endings,thesis_exp/outputs/exp09_pairwise_ordinal_qdpr2/tables/qdpr2_formal_metrics_summary.csv,PASS,
+not collapsed-line file,thesis_exp/outputs/exp09_pairwise_ordinal_qdpr2/tables/qdpr2_formal_metrics_summary.csv,PASS,3
+not large one-line md/csv,thesis_exp/outputs/exp09_pairwise_ordinal_qdpr2/tables/qdpr2_formal_metrics_summary.csv,PASS,lines=3; bytes=785
 CSV readable,thesis_exp/outputs/exp09_pairwise_ordinal_qdpr2/tables/qdpr2_pair_comparability_distribution.csv,PASS,
 no CRLF line endings,thesis_exp/outputs/exp09_pairwise_ordinal_qdpr2/tables/qdpr2_pair_comparability_distribution.csv,PASS,
 no CR-only line endings,thesis_exp/outputs/exp09_pairwise_ordinal_qdpr2/tables/qdpr2_pair_comparability_distribution.csv,PASS,
@@ -111,19 +123,25 @@ no CRLF line endings,thesis_exp/outputs/exp09_pairwise_ordinal_qdpr2/tables/qdpr
 no CR-only line endings,thesis_exp/outputs/exp09_pairwise_ordinal_qdpr2/tables/qdpr2_pair_inventory.csv,PASS,
 LF line endings,thesis_exp/outputs/exp09_pairwise_ordinal_qdpr2/tables/qdpr2_pair_inventory.csv,PASS,
 not collapsed-line file,thesis_exp/outputs/exp09_pairwise_ordinal_qdpr2/tables/qdpr2_pair_inventory.csv,PASS,4
-not large one-line md/csv,thesis_exp/outputs/exp09_pairwise_ordinal_qdpr2/tables/qdpr2_pair_inventory.csv,PASS,lines=4; bytes=215
+not large one-line md/csv,thesis_exp/outputs/exp09_pairwise_ordinal_qdpr2/tables/qdpr2_pair_inventory.csv,PASS,lines=4; bytes=213
 CSV readable,thesis_exp/outputs/exp09_pairwise_ordinal_qdpr2/tables/qdpr2_pair_reuse_stats.csv,PASS,
 no CRLF line endings,thesis_exp/outputs/exp09_pairwise_ordinal_qdpr2/tables/qdpr2_pair_reuse_stats.csv,PASS,
 no CR-only line endings,thesis_exp/outputs/exp09_pairwise_ordinal_qdpr2/tables/qdpr2_pair_reuse_stats.csv,PASS,
 LF line endings,thesis_exp/outputs/exp09_pairwise_ordinal_qdpr2/tables/qdpr2_pair_reuse_stats.csv,PASS,
 not collapsed-line file,thesis_exp/outputs/exp09_pairwise_ordinal_qdpr2/tables/qdpr2_pair_reuse_stats.csv,PASS,3
 not large one-line md/csv,thesis_exp/outputs/exp09_pairwise_ordinal_qdpr2/tables/qdpr2_pair_reuse_stats.csv,PASS,lines=3; bytes=244
+CSV readable,thesis_exp/outputs/exp09_pairwise_ordinal_qdpr2/tables/qdpr2_pair_shard_manifest.csv,PASS,
+no CRLF line endings,thesis_exp/outputs/exp09_pairwise_ordinal_qdpr2/tables/qdpr2_pair_shard_manifest.csv,PASS,
+no CR-only line endings,thesis_exp/outputs/exp09_pairwise_ordinal_qdpr2/tables/qdpr2_pair_shard_manifest.csv,PASS,
+LF line endings,thesis_exp/outputs/exp09_pairwise_ordinal_qdpr2/tables/qdpr2_pair_shard_manifest.csv,PASS,
+not collapsed-line file,thesis_exp/outputs/exp09_pairwise_ordinal_qdpr2/tables/qdpr2_pair_shard_manifest.csv,PASS,7
+not large one-line md/csv,thesis_exp/outputs/exp09_pairwise_ordinal_qdpr2/tables/qdpr2_pair_shard_manifest.csv,PASS,lines=7; bytes=657
 CSV readable,thesis_exp/outputs/exp09_pairwise_ordinal_qdpr2/tables/qdpr2_setup_sanity.csv,PASS,
 no CRLF line endings,thesis_exp/outputs/exp09_pairwise_ordinal_qdpr2/tables/qdpr2_setup_sanity.csv,PASS,
 no CR-only line endings,thesis_exp/outputs/exp09_pairwise_ordinal_qdpr2/tables/qdpr2_setup_sanity.csv,PASS,
 LF line endings,thesis_exp/outputs/exp09_pairwise_ordinal_qdpr2/tables/qdpr2_setup_sanity.csv,PASS,
 not collapsed-line file,thesis_exp/outputs/exp09_pairwise_ordinal_qdpr2/tables/qdpr2_setup_sanity.csv,PASS,22
-not large one-line md/csv,thesis_exp/outputs/exp09_pairwise_ordinal_qdpr2/tables/qdpr2_setup_sanity.csv,PASS,lines=22; bytes=971
+not large one-line md/csv,thesis_exp/outputs/exp09_pairwise_ordinal_qdpr2/tables/qdpr2_setup_sanity.csv,PASS,lines=22; bytes=932
 CSV readable,thesis_exp/outputs/exp09_pairwise_ordinal_qdpr2/tables/qdpr2_toy_loss_scales.csv,PASS,
 no CRLF line endings,thesis_exp/outputs/exp09_pairwise_ordinal_qdpr2/tables/qdpr2_toy_loss_scales.csv,PASS,
 no CR-only line endings,thesis_exp/outputs/exp09_pairwise_ordinal_qdpr2/tables/qdpr2_toy_loss_scales.csv,PASS,
@@ -134,5 +152,5 @@ CSV readable,thesis_exp/outputs/exp09_pairwise_ordinal_qdpr2/tables/readability_
 no CRLF line endings,thesis_exp/outputs/exp09_pairwise_ordinal_qdpr2/tables/readability_check_qdpr2.csv,PASS,
 no CR-only line endings,thesis_exp/outputs/exp09_pairwise_ordinal_qdpr2/tables/readability_check_qdpr2.csv,PASS,
 LF line endings,thesis_exp/outputs/exp09_pairwise_ordinal_qdpr2/tables/readability_check_qdpr2.csv,PASS,
-not collapsed-line file,thesis_exp/outputs/exp09_pairwise_ordinal_qdpr2/tables/readability_check_qdpr2.csv,PASS,138
-not large one-line md/csv,thesis_exp/outputs/exp09_pairwise_ordinal_qdpr2/tables/readability_check_qdpr2.csv,PASS,lines=138; bytes=14372
+not collapsed-line file,thesis_exp/outputs/exp09_pairwise_ordinal_qdpr2/tables/readability_check_qdpr2.csv,PASS,156
+not large one-line md/csv,thesis_exp/outputs/exp09_pairwise_ordinal_qdpr2/tables/readability_check_qdpr2.csv,PASS,lines=156; bytes=16427
