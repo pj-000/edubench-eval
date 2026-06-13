@@ -1,2 +1,5 @@
 comparison,metric,baseline_run_id,baseline_value,qdpr1_value,delta,direction,status
-pending_formal_training,low_to_high_rate,,,,,lower_better,QD-PR1 formal metrics are not available yet.
+QD-PR1_minus_QD-B0,low_to_high_rate,QD-B0_human_only_ordinary_ordinal,0.5161290322580645,0.5161290322580645,0.0,lower_better,
+QD-PR1_minus_QD-B1,low_to_high_rate,QD-B1_human_only_L1_weighted_ordinal,0.45161290322580644,0.5161290322580645,0.06451612903225806,lower_better,
+QD-PR1_minus_QD-R1,low_to_high_rate,QD-R1_CORAL_human_only,0.5161290322580645,0.5161290322580645,0.0,lower_better,
+QD-PR1_minus_QD-ER1,low_to_high_rate,QD-ER1_EduRisk_human_only,0.45161290322580644,0.5161290322580645,0.06451612903225806,lower_better,

@@ -1,2 +1,9 @@
 comparison,metric,baseline_run_id,baseline_value,qdpr1_value,delta,direction,status
-pending_formal_training,Acc@5/high_to_mid_or_low_rate,,,,,mixed,QD-PR1 formal metrics are not available yet.
+QD-PR1_minus_QD-B0,Acc@5,QD-B0_human_only_ordinary_ordinal,0.7873376623376623,0.6915584415584416,-0.09577922077922074,higher_better,
+QD-PR1_minus_QD-B0,high_to_mid_or_low_rate,QD-B0_human_only_ordinary_ordinal,0.003246753246753247,0.01461038961038961,0.011363636363636364,lower_better,
+QD-PR1_minus_QD-B1,Acc@5,QD-B1_human_only_L1_weighted_ordinal,0.7418831168831169,0.6915584415584416,-0.05032467532467533,higher_better,
+QD-PR1_minus_QD-B1,high_to_mid_or_low_rate,QD-B1_human_only_L1_weighted_ordinal,0.01461038961038961,0.01461038961038961,0.0,lower_better,
+QD-PR1_minus_QD-R1,Acc@5,QD-R1_CORAL_human_only,0.8977272727272727,0.6915584415584416,-0.2061688311688311,higher_better,
+QD-PR1_minus_QD-R1,high_to_mid_or_low_rate,QD-R1_CORAL_human_only,0.003246753246753247,0.01461038961038961,0.011363636363636364,lower_better,
+QD-PR1_minus_QD-ER1,Acc@5,QD-ER1_EduRisk_human_only,0.8035714285714286,0.6915584415584416,-0.11201298701298701,higher_better,
+QD-PR1_minus_QD-ER1,high_to_mid_or_low_rate,QD-ER1_EduRisk_human_only,0.024350649350649352,0.01461038961038961,-0.009740259740259742,lower_better,

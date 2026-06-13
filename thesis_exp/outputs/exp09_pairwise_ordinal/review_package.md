@@ -1,6 +1,6 @@
 # Exp9 QD-PR1 Pairwise Ordinal Review Package
 
-Formal training status: `pending_formal_training`
+Formal training status: `completed`
 Training executed by setup stage: `no`.
 API called: `no`.
 Synthetic generated: `no`.
@@ -45,6 +45,49 @@ light of these rates.
 | QD-B1_human_only_L1_weighted_ordinal | completed | 0.4279 | 0.6012 | 0.6709 | 0.4516 | 0.7419 | 0.3119 |
 | QD-R1_CORAL_human_only | completed | 0.4467 | 0.5272 | 0.6555 | 0.5161 | 0.8977 | 0.0000 |
 | QD-ER1_EduRisk_human_only | completed | 0.4379 | 0.5581 | 0.6700 | 0.4516 | 0.8036 | 0.0000 |
-| QD-PR1_PairwiseRiskOrdinal_human_only | pending_formal_training | NA | NA | NA | NA | NA | NA |
+| QD-PR1_PairwiseRiskOrdinal_human_only | completed | 0.4545 | 0.5473 | 0.6401 | 0.5161 | 0.6916 | 0.7616 |
 
-QD-PR1 formal metrics are pending; this package records setup readiness only.
+## Deltas
+
+| comparison | metric | delta | direction |
+| --- | --- | ---: | --- |
+| QD-PR1_minus_QD-B0 | low_to_high_rate | 0.0000 | lower_better |
+| QD-PR1_minus_QD-B0 | MAE_label | 0.0526 | lower_better |
+| QD-PR1_minus_QD-B0 | MAE_expected | 0.0547 | lower_better |
+| QD-PR1_minus_QD-B0 | Accuracy | -0.0535 | higher_better |
+| QD-PR1_minus_QD-B0 | Quadratic Weighted Kappa | -0.0503 | higher_better |
+| QD-PR1_minus_QD-B0 | Kendall tau | -0.0748 | higher_better |
+| QD-PR1_minus_QD-B0 | Spearman rho | -0.0796 | higher_better |
+| QD-PR1_minus_QD-B0 | Acc@5 | -0.0958 | higher_better |
+| QD-PR1_minus_QD-B0 | high_to_mid_or_low_rate | 0.0114 | lower_better |
+| QD-PR1_minus_QD-B0 | monotonic_violation_rate | 0.5630 | lower_better |
+| QD-PR1_minus_QD-B1 | low_to_high_rate | 0.0645 | lower_better |
+| QD-PR1_minus_QD-B1 | MAE_label | 0.0266 | lower_better |
+| QD-PR1_minus_QD-B1 | MAE_expected | 0.0330 | lower_better |
+| QD-PR1_minus_QD-B1 | Accuracy | -0.0308 | higher_better |
+| QD-PR1_minus_QD-B1 | Quadratic Weighted Kappa | -0.0539 | higher_better |
+| QD-PR1_minus_QD-B1 | Kendall tau | -0.0721 | higher_better |
+| QD-PR1_minus_QD-B1 | Spearman rho | -0.0814 | higher_better |
+| QD-PR1_minus_QD-B1 | Acc@5 | -0.0503 | higher_better |
+| QD-PR1_minus_QD-B1 | high_to_mid_or_low_rate | 0.0000 | lower_better |
+| QD-PR1_minus_QD-B1 | monotonic_violation_rate | 0.4497 | lower_better |
+| QD-PR1_minus_QD-R1 | low_to_high_rate | 0.0000 | lower_better |
+| QD-PR1_minus_QD-R1 | MAE_label | 0.0079 | lower_better |
+| QD-PR1_minus_QD-R1 | MAE_expected | 0.0355 | lower_better |
+| QD-PR1_minus_QD-R1 | Accuracy | -0.0154 | higher_better |
+| QD-PR1_minus_QD-R1 | Quadratic Weighted Kappa | 0.0201 | higher_better |
+| QD-PR1_minus_QD-R1 | Kendall tau | -0.0011 | higher_better |
+| QD-PR1_minus_QD-R1 | Spearman rho | -0.0017 | higher_better |
+| QD-PR1_minus_QD-R1 | Acc@5 | -0.2062 | higher_better |
+| QD-PR1_minus_QD-R1 | high_to_mid_or_low_rate | 0.0114 | lower_better |
+| QD-PR1_minus_QD-R1 | monotonic_violation_rate | 0.7616 | lower_better |
+| QD-PR1_minus_QD-ER1 | low_to_high_rate | 0.0645 | lower_better |
+| QD-PR1_minus_QD-ER1 | MAE_label | 0.0166 | lower_better |
+| QD-PR1_minus_QD-ER1 | MAE_expected | -0.0679 | lower_better |
+| QD-PR1_minus_QD-ER1 | Accuracy | -0.0299 | higher_better |
+| QD-PR1_minus_QD-ER1 | Quadratic Weighted Kappa | -0.0108 | higher_better |
+| QD-PR1_minus_QD-ER1 | Kendall tau | -0.0149 | higher_better |
+| QD-PR1_minus_QD-ER1 | Spearman rho | -0.0190 | higher_better |
+| QD-PR1_minus_QD-ER1 | Acc@5 | -0.1120 | higher_better |
+| QD-PR1_minus_QD-ER1 | high_to_mid_or_low_rate | -0.0097 | lower_better |
+| QD-PR1_minus_QD-ER1 | monotonic_violation_rate | 0.7616 | lower_better |
