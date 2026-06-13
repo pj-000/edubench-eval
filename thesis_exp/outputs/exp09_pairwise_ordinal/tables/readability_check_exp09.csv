@@ -2,6 +2,7 @@ check_name,path,status,details
 python py_compile,thesis_exp/src/edujudge/exp09_pairwise_ordinal/__init__.py,PASS,
 python py_compile,thesis_exp/src/edujudge/exp09_pairwise_ordinal/collect_exp09_results.py,PASS,
 python py_compile,thesis_exp/src/edujudge/exp09_pairwise_ordinal/data.py,PASS,
+python py_compile,thesis_exp/src/edujudge/exp09_pairwise_ordinal/diagnose_qdpr1_pairwise.py,PASS,
 python py_compile,thesis_exp/src/edujudge/exp09_pairwise_ordinal/losses.py,PASS,
 python py_compile,thesis_exp/src/edujudge/exp09_pairwise_ordinal/metrics.py,PASS,
 python py_compile,thesis_exp/src/edujudge/exp09_pairwise_ordinal/pair_builder.py,PASS,
@@ -23,8 +24,8 @@ no CRLF line endings,thesis_exp/src/edujudge/exp09_pairwise_ordinal/collect_exp0
 no CR-only line endings,thesis_exp/src/edujudge/exp09_pairwise_ordinal/collect_exp09_results.py,PASS,
 LF line endings,thesis_exp/src/edujudge/exp09_pairwise_ordinal/collect_exp09_results.py,PASS,
 first line <= 1000 chars,thesis_exp/src/edujudge/exp09_pairwise_ordinal/collect_exp09_results.py,PASS,82
-not collapsed-line file,thesis_exp/src/edujudge/exp09_pairwise_ordinal/collect_exp09_results.py,PASS,385
-file size below 20MB,thesis_exp/src/edujudge/exp09_pairwise_ordinal/collect_exp09_results.py,PASS,14115
+not collapsed-line file,thesis_exp/src/edujudge/exp09_pairwise_ordinal/collect_exp09_results.py,PASS,421
+file size below 20MB,thesis_exp/src/edujudge/exp09_pairwise_ordinal/collect_exp09_results.py,PASS,15912
 not checkpoint/weight artifact,thesis_exp/src/edujudge/exp09_pairwise_ordinal/collect_exp09_results.py,PASS,
 no API key string,thesis_exp/src/edujudge/exp09_pairwise_ordinal/collect_exp09_results.py,PASS,
 no CRLF line endings,thesis_exp/src/edujudge/exp09_pairwise_ordinal/data.py,PASS,
@@ -35,6 +36,14 @@ not collapsed-line file,thesis_exp/src/edujudge/exp09_pairwise_ordinal/data.py,P
 file size below 20MB,thesis_exp/src/edujudge/exp09_pairwise_ordinal/data.py,PASS,6164
 not checkpoint/weight artifact,thesis_exp/src/edujudge/exp09_pairwise_ordinal/data.py,PASS,
 no API key string,thesis_exp/src/edujudge/exp09_pairwise_ordinal/data.py,PASS,
+no CRLF line endings,thesis_exp/src/edujudge/exp09_pairwise_ordinal/diagnose_qdpr1_pairwise.py,PASS,
+no CR-only line endings,thesis_exp/src/edujudge/exp09_pairwise_ordinal/diagnose_qdpr1_pairwise.py,PASS,
+LF line endings,thesis_exp/src/edujudge/exp09_pairwise_ordinal/diagnose_qdpr1_pairwise.py,PASS,
+first line <= 1000 chars,thesis_exp/src/edujudge/exp09_pairwise_ordinal/diagnose_qdpr1_pairwise.py,PASS,73
+not collapsed-line file,thesis_exp/src/edujudge/exp09_pairwise_ordinal/diagnose_qdpr1_pairwise.py,PASS,565
+file size below 20MB,thesis_exp/src/edujudge/exp09_pairwise_ordinal/diagnose_qdpr1_pairwise.py,PASS,24037
+not checkpoint/weight artifact,thesis_exp/src/edujudge/exp09_pairwise_ordinal/diagnose_qdpr1_pairwise.py,PASS,
+no API key string,thesis_exp/src/edujudge/exp09_pairwise_ordinal/diagnose_qdpr1_pairwise.py,PASS,
 no CRLF line endings,thesis_exp/src/edujudge/exp09_pairwise_ordinal/losses.py,PASS,
 no CR-only line endings,thesis_exp/src/edujudge/exp09_pairwise_ordinal/losses.py,PASS,
 LF line endings,thesis_exp/src/edujudge/exp09_pairwise_ordinal/losses.py,PASS,
@@ -132,26 +141,37 @@ not collapsed-line file,thesis_exp/scripts/sync_exp09_qdpr1_to_server.sh,PASS,63
 file size below 20MB,thesis_exp/scripts/sync_exp09_qdpr1_to_server.sh,PASS,4140
 not checkpoint/weight artifact,thesis_exp/scripts/sync_exp09_qdpr1_to_server.sh,PASS,
 no API key string,thesis_exp/scripts/sync_exp09_qdpr1_to_server.sh,PASS,
-Markdown max prose line length,thesis_exp/outputs/exp09_pairwise_ordinal/report.md,PASS,prose=95; table=107
+Markdown max prose line length,thesis_exp/outputs/exp09_pairwise_ordinal/report.md,PASS,prose=111; table=107
 no CRLF line endings,thesis_exp/outputs/exp09_pairwise_ordinal/report.md,PASS,
 no CR-only line endings,thesis_exp/outputs/exp09_pairwise_ordinal/report.md,PASS,
 LF line endings,thesis_exp/outputs/exp09_pairwise_ordinal/report.md,PASS,
 first line <= 1000 chars,thesis_exp/outputs/exp09_pairwise_ordinal/report.md,PASS,45
-not collapsed-line file,thesis_exp/outputs/exp09_pairwise_ordinal/report.md,PASS,93
-not large one-line md/csv,thesis_exp/outputs/exp09_pairwise_ordinal/report.md,PASS,lines=93; bytes=5229
-not short large markdown report,thesis_exp/outputs/exp09_pairwise_ordinal/report.md,PASS,lines=93; bytes=5229
-file size below 20MB,thesis_exp/outputs/exp09_pairwise_ordinal/report.md,PASS,5229
+not collapsed-line file,thesis_exp/outputs/exp09_pairwise_ordinal/report.md,PASS,108
+not large one-line md/csv,thesis_exp/outputs/exp09_pairwise_ordinal/report.md,PASS,lines=108; bytes=5941
+not short large markdown report,thesis_exp/outputs/exp09_pairwise_ordinal/report.md,PASS,lines=108; bytes=5941
+file size below 20MB,thesis_exp/outputs/exp09_pairwise_ordinal/report.md,PASS,5941
 not checkpoint/weight artifact,thesis_exp/outputs/exp09_pairwise_ordinal/report.md,PASS,
 no API key string,thesis_exp/outputs/exp09_pairwise_ordinal/report.md,PASS,
-Markdown max prose line length,thesis_exp/outputs/exp09_pairwise_ordinal/reports/notion_exp09_pairwise_summary.md,PASS,prose=95; table=107
+Markdown max prose line length,thesis_exp/outputs/exp09_pairwise_ordinal/reports/notion_exp09_pairwise_result_summary.md,PASS,prose=96; table=0
+no CRLF line endings,thesis_exp/outputs/exp09_pairwise_ordinal/reports/notion_exp09_pairwise_result_summary.md,PASS,
+no CR-only line endings,thesis_exp/outputs/exp09_pairwise_ordinal/reports/notion_exp09_pairwise_result_summary.md,PASS,
+LF line endings,thesis_exp/outputs/exp09_pairwise_ordinal/reports/notion_exp09_pairwise_result_summary.md,PASS,
+first line <= 1000 chars,thesis_exp/outputs/exp09_pairwise_ordinal/reports/notion_exp09_pairwise_result_summary.md,PASS,37
+not collapsed-line file,thesis_exp/outputs/exp09_pairwise_ordinal/reports/notion_exp09_pairwise_result_summary.md,PASS,17
+not large one-line md/csv,thesis_exp/outputs/exp09_pairwise_ordinal/reports/notion_exp09_pairwise_result_summary.md,PASS,lines=17; bytes=688
+not short large markdown report,thesis_exp/outputs/exp09_pairwise_ordinal/reports/notion_exp09_pairwise_result_summary.md,PASS,lines=17; bytes=688
+file size below 20MB,thesis_exp/outputs/exp09_pairwise_ordinal/reports/notion_exp09_pairwise_result_summary.md,PASS,688
+not checkpoint/weight artifact,thesis_exp/outputs/exp09_pairwise_ordinal/reports/notion_exp09_pairwise_result_summary.md,PASS,
+no API key string,thesis_exp/outputs/exp09_pairwise_ordinal/reports/notion_exp09_pairwise_result_summary.md,PASS,
+Markdown max prose line length,thesis_exp/outputs/exp09_pairwise_ordinal/reports/notion_exp09_pairwise_summary.md,PASS,prose=111; table=107
 no CRLF line endings,thesis_exp/outputs/exp09_pairwise_ordinal/reports/notion_exp09_pairwise_summary.md,PASS,
 no CR-only line endings,thesis_exp/outputs/exp09_pairwise_ordinal/reports/notion_exp09_pairwise_summary.md,PASS,
 LF line endings,thesis_exp/outputs/exp09_pairwise_ordinal/reports/notion_exp09_pairwise_summary.md,PASS,
 first line <= 1000 chars,thesis_exp/outputs/exp09_pairwise_ordinal/reports/notion_exp09_pairwise_summary.md,PASS,45
-not collapsed-line file,thesis_exp/outputs/exp09_pairwise_ordinal/reports/notion_exp09_pairwise_summary.md,PASS,93
-not large one-line md/csv,thesis_exp/outputs/exp09_pairwise_ordinal/reports/notion_exp09_pairwise_summary.md,PASS,lines=93; bytes=5229
-not short large markdown report,thesis_exp/outputs/exp09_pairwise_ordinal/reports/notion_exp09_pairwise_summary.md,PASS,lines=93; bytes=5229
-file size below 20MB,thesis_exp/outputs/exp09_pairwise_ordinal/reports/notion_exp09_pairwise_summary.md,PASS,5229
+not collapsed-line file,thesis_exp/outputs/exp09_pairwise_ordinal/reports/notion_exp09_pairwise_summary.md,PASS,108
+not large one-line md/csv,thesis_exp/outputs/exp09_pairwise_ordinal/reports/notion_exp09_pairwise_summary.md,PASS,lines=108; bytes=5941
+not short large markdown report,thesis_exp/outputs/exp09_pairwise_ordinal/reports/notion_exp09_pairwise_summary.md,PASS,lines=108; bytes=5941
+file size below 20MB,thesis_exp/outputs/exp09_pairwise_ordinal/reports/notion_exp09_pairwise_summary.md,PASS,5941
 not checkpoint/weight artifact,thesis_exp/outputs/exp09_pairwise_ordinal/reports/notion_exp09_pairwise_summary.md,PASS,
 no API key string,thesis_exp/outputs/exp09_pairwise_ordinal/reports/notion_exp09_pairwise_summary.md,PASS,
 Markdown max prose line length,thesis_exp/outputs/exp09_pairwise_ordinal/reports/pair_dataset_report.md,PASS,prose=99; table=98
@@ -165,26 +185,37 @@ not short large markdown report,thesis_exp/outputs/exp09_pairwise_ordinal/report
 file size below 20MB,thesis_exp/outputs/exp09_pairwise_ordinal/reports/pair_dataset_report.md,PASS,1728
 not checkpoint/weight artifact,thesis_exp/outputs/exp09_pairwise_ordinal/reports/pair_dataset_report.md,PASS,
 no API key string,thesis_exp/outputs/exp09_pairwise_ordinal/reports/pair_dataset_report.md,PASS,
-Markdown max prose line length,thesis_exp/outputs/exp09_pairwise_ordinal/reports/review_package.md,PASS,prose=95; table=107
+Markdown max prose line length,thesis_exp/outputs/exp09_pairwise_ordinal/reports/qdpr1_pairwise_diagnosis.md,PASS,prose=175; table=71
+no CRLF line endings,thesis_exp/outputs/exp09_pairwise_ordinal/reports/qdpr1_pairwise_diagnosis.md,PASS,
+no CR-only line endings,thesis_exp/outputs/exp09_pairwise_ordinal/reports/qdpr1_pairwise_diagnosis.md,PASS,
+LF line endings,thesis_exp/outputs/exp09_pairwise_ordinal/reports/qdpr1_pairwise_diagnosis.md,PASS,
+first line <= 1000 chars,thesis_exp/outputs/exp09_pairwise_ordinal/reports/qdpr1_pairwise_diagnosis.md,PASS,41
+not collapsed-line file,thesis_exp/outputs/exp09_pairwise_ordinal/reports/qdpr1_pairwise_diagnosis.md,PASS,63
+not large one-line md/csv,thesis_exp/outputs/exp09_pairwise_ordinal/reports/qdpr1_pairwise_diagnosis.md,PASS,lines=63; bytes=3630
+not short large markdown report,thesis_exp/outputs/exp09_pairwise_ordinal/reports/qdpr1_pairwise_diagnosis.md,PASS,lines=63; bytes=3630
+file size below 20MB,thesis_exp/outputs/exp09_pairwise_ordinal/reports/qdpr1_pairwise_diagnosis.md,PASS,3630
+not checkpoint/weight artifact,thesis_exp/outputs/exp09_pairwise_ordinal/reports/qdpr1_pairwise_diagnosis.md,PASS,
+no API key string,thesis_exp/outputs/exp09_pairwise_ordinal/reports/qdpr1_pairwise_diagnosis.md,PASS,
+Markdown max prose line length,thesis_exp/outputs/exp09_pairwise_ordinal/reports/review_package.md,PASS,prose=111; table=107
 no CRLF line endings,thesis_exp/outputs/exp09_pairwise_ordinal/reports/review_package.md,PASS,
 no CR-only line endings,thesis_exp/outputs/exp09_pairwise_ordinal/reports/review_package.md,PASS,
 LF line endings,thesis_exp/outputs/exp09_pairwise_ordinal/reports/review_package.md,PASS,
 first line <= 1000 chars,thesis_exp/outputs/exp09_pairwise_ordinal/reports/review_package.md,PASS,45
-not collapsed-line file,thesis_exp/outputs/exp09_pairwise_ordinal/reports/review_package.md,PASS,93
-not large one-line md/csv,thesis_exp/outputs/exp09_pairwise_ordinal/reports/review_package.md,PASS,lines=93; bytes=5229
-not short large markdown report,thesis_exp/outputs/exp09_pairwise_ordinal/reports/review_package.md,PASS,lines=93; bytes=5229
-file size below 20MB,thesis_exp/outputs/exp09_pairwise_ordinal/reports/review_package.md,PASS,5229
+not collapsed-line file,thesis_exp/outputs/exp09_pairwise_ordinal/reports/review_package.md,PASS,108
+not large one-line md/csv,thesis_exp/outputs/exp09_pairwise_ordinal/reports/review_package.md,PASS,lines=108; bytes=5941
+not short large markdown report,thesis_exp/outputs/exp09_pairwise_ordinal/reports/review_package.md,PASS,lines=108; bytes=5941
+file size below 20MB,thesis_exp/outputs/exp09_pairwise_ordinal/reports/review_package.md,PASS,5941
 not checkpoint/weight artifact,thesis_exp/outputs/exp09_pairwise_ordinal/reports/review_package.md,PASS,
 no API key string,thesis_exp/outputs/exp09_pairwise_ordinal/reports/review_package.md,PASS,
-Markdown max prose line length,thesis_exp/outputs/exp09_pairwise_ordinal/review_package.md,PASS,prose=95; table=107
+Markdown max prose line length,thesis_exp/outputs/exp09_pairwise_ordinal/review_package.md,PASS,prose=111; table=107
 no CRLF line endings,thesis_exp/outputs/exp09_pairwise_ordinal/review_package.md,PASS,
 no CR-only line endings,thesis_exp/outputs/exp09_pairwise_ordinal/review_package.md,PASS,
 LF line endings,thesis_exp/outputs/exp09_pairwise_ordinal/review_package.md,PASS,
 first line <= 1000 chars,thesis_exp/outputs/exp09_pairwise_ordinal/review_package.md,PASS,45
-not collapsed-line file,thesis_exp/outputs/exp09_pairwise_ordinal/review_package.md,PASS,93
-not large one-line md/csv,thesis_exp/outputs/exp09_pairwise_ordinal/review_package.md,PASS,lines=93; bytes=5229
-not short large markdown report,thesis_exp/outputs/exp09_pairwise_ordinal/review_package.md,PASS,lines=93; bytes=5229
-file size below 20MB,thesis_exp/outputs/exp09_pairwise_ordinal/review_package.md,PASS,5229
+not collapsed-line file,thesis_exp/outputs/exp09_pairwise_ordinal/review_package.md,PASS,108
+not large one-line md/csv,thesis_exp/outputs/exp09_pairwise_ordinal/review_package.md,PASS,lines=108; bytes=5941
+not short large markdown report,thesis_exp/outputs/exp09_pairwise_ordinal/review_package.md,PASS,lines=108; bytes=5941
+file size below 20MB,thesis_exp/outputs/exp09_pairwise_ordinal/review_package.md,PASS,5941
 not checkpoint/weight artifact,thesis_exp/outputs/exp09_pairwise_ordinal/review_package.md,PASS,
 no API key string,thesis_exp/outputs/exp09_pairwise_ordinal/review_package.md,PASS,
 Markdown max prose line length,thesis_exp/outputs/exp09_pairwise_ordinal/sanity_check_exp09_setup.md,PASS,prose=31; table=355
@@ -345,6 +376,66 @@ not large one-line md/csv,thesis_exp/outputs/exp09_pairwise_ordinal/tables/point
 file size below 20MB,thesis_exp/outputs/exp09_pairwise_ordinal/tables/pointwise_label_distribution.csv,PASS,483
 not checkpoint/weight artifact,thesis_exp/outputs/exp09_pairwise_ordinal/tables/pointwise_label_distribution.csv,PASS,
 no API key string,thesis_exp/outputs/exp09_pairwise_ordinal/tables/pointwise_label_distribution.csv,PASS,
+CSV readable,thesis_exp/outputs/exp09_pairwise_ordinal/tables/qdpr1_loss_component_diagnostics.csv,PASS,
+CSV pandas readable,thesis_exp/outputs/exp09_pairwise_ordinal/tables/qdpr1_loss_component_diagnostics.csv,PASS,
+no CRLF line endings,thesis_exp/outputs/exp09_pairwise_ordinal/tables/qdpr1_loss_component_diagnostics.csv,PASS,
+no CR-only line endings,thesis_exp/outputs/exp09_pairwise_ordinal/tables/qdpr1_loss_component_diagnostics.csv,PASS,
+LF line endings,thesis_exp/outputs/exp09_pairwise_ordinal/tables/qdpr1_loss_component_diagnostics.csv,PASS,
+not collapsed-line file,thesis_exp/outputs/exp09_pairwise_ordinal/tables/qdpr1_loss_component_diagnostics.csv,PASS,14
+not large one-line md/csv,thesis_exp/outputs/exp09_pairwise_ordinal/tables/qdpr1_loss_component_diagnostics.csv,PASS,lines=14; bytes=3023
+file size below 20MB,thesis_exp/outputs/exp09_pairwise_ordinal/tables/qdpr1_loss_component_diagnostics.csv,PASS,3023
+not checkpoint/weight artifact,thesis_exp/outputs/exp09_pairwise_ordinal/tables/qdpr1_loss_component_diagnostics.csv,PASS,
+no API key string,thesis_exp/outputs/exp09_pairwise_ordinal/tables/qdpr1_loss_component_diagnostics.csv,PASS,
+CSV readable,thesis_exp/outputs/exp09_pairwise_ordinal/tables/qdpr1_low_score_error_analysis.csv,PASS,
+CSV pandas readable,thesis_exp/outputs/exp09_pairwise_ordinal/tables/qdpr1_low_score_error_analysis.csv,PASS,
+no CRLF line endings,thesis_exp/outputs/exp09_pairwise_ordinal/tables/qdpr1_low_score_error_analysis.csv,PASS,
+no CR-only line endings,thesis_exp/outputs/exp09_pairwise_ordinal/tables/qdpr1_low_score_error_analysis.csv,PASS,
+LF line endings,thesis_exp/outputs/exp09_pairwise_ordinal/tables/qdpr1_low_score_error_analysis.csv,PASS,
+not collapsed-line file,thesis_exp/outputs/exp09_pairwise_ordinal/tables/qdpr1_low_score_error_analysis.csv,PASS,7
+not large one-line md/csv,thesis_exp/outputs/exp09_pairwise_ordinal/tables/qdpr1_low_score_error_analysis.csv,PASS,lines=7; bytes=1056
+file size below 20MB,thesis_exp/outputs/exp09_pairwise_ordinal/tables/qdpr1_low_score_error_analysis.csv,PASS,1056
+not checkpoint/weight artifact,thesis_exp/outputs/exp09_pairwise_ordinal/tables/qdpr1_low_score_error_analysis.csv,PASS,
+no API key string,thesis_exp/outputs/exp09_pairwise_ordinal/tables/qdpr1_low_score_error_analysis.csv,PASS,
+CSV readable,thesis_exp/outputs/exp09_pairwise_ordinal/tables/qdpr1_monotonic_violation_by_label.csv,PASS,
+CSV pandas readable,thesis_exp/outputs/exp09_pairwise_ordinal/tables/qdpr1_monotonic_violation_by_label.csv,PASS,
+no CRLF line endings,thesis_exp/outputs/exp09_pairwise_ordinal/tables/qdpr1_monotonic_violation_by_label.csv,PASS,
+no CR-only line endings,thesis_exp/outputs/exp09_pairwise_ordinal/tables/qdpr1_monotonic_violation_by_label.csv,PASS,
+LF line endings,thesis_exp/outputs/exp09_pairwise_ordinal/tables/qdpr1_monotonic_violation_by_label.csv,PASS,
+not collapsed-line file,thesis_exp/outputs/exp09_pairwise_ordinal/tables/qdpr1_monotonic_violation_by_label.csv,PASS,11
+not large one-line md/csv,thesis_exp/outputs/exp09_pairwise_ordinal/tables/qdpr1_monotonic_violation_by_label.csv,PASS,lines=11; bytes=1629
+file size below 20MB,thesis_exp/outputs/exp09_pairwise_ordinal/tables/qdpr1_monotonic_violation_by_label.csv,PASS,1629
+not checkpoint/weight artifact,thesis_exp/outputs/exp09_pairwise_ordinal/tables/qdpr1_monotonic_violation_by_label.csv,PASS,
+no API key string,thesis_exp/outputs/exp09_pairwise_ordinal/tables/qdpr1_monotonic_violation_by_label.csv,PASS,
+CSV readable,thesis_exp/outputs/exp09_pairwise_ordinal/tables/qdpr1_pairwise_gap_by_pair_type.csv,PASS,
+CSV pandas readable,thesis_exp/outputs/exp09_pairwise_ordinal/tables/qdpr1_pairwise_gap_by_pair_type.csv,PASS,
+no CRLF line endings,thesis_exp/outputs/exp09_pairwise_ordinal/tables/qdpr1_pairwise_gap_by_pair_type.csv,PASS,
+no CR-only line endings,thesis_exp/outputs/exp09_pairwise_ordinal/tables/qdpr1_pairwise_gap_by_pair_type.csv,PASS,
+LF line endings,thesis_exp/outputs/exp09_pairwise_ordinal/tables/qdpr1_pairwise_gap_by_pair_type.csv,PASS,
+not collapsed-line file,thesis_exp/outputs/exp09_pairwise_ordinal/tables/qdpr1_pairwise_gap_by_pair_type.csv,PASS,10
+not large one-line md/csv,thesis_exp/outputs/exp09_pairwise_ordinal/tables/qdpr1_pairwise_gap_by_pair_type.csv,PASS,lines=10; bytes=1463
+file size below 20MB,thesis_exp/outputs/exp09_pairwise_ordinal/tables/qdpr1_pairwise_gap_by_pair_type.csv,PASS,1463
+not checkpoint/weight artifact,thesis_exp/outputs/exp09_pairwise_ordinal/tables/qdpr1_pairwise_gap_by_pair_type.csv,PASS,
+no API key string,thesis_exp/outputs/exp09_pairwise_ordinal/tables/qdpr1_pairwise_gap_by_pair_type.csv,PASS,
+CSV readable,thesis_exp/outputs/exp09_pairwise_ordinal/tables/qdpr1_per_true_label_prediction_distribution.csv,PASS,
+CSV pandas readable,thesis_exp/outputs/exp09_pairwise_ordinal/tables/qdpr1_per_true_label_prediction_distribution.csv,PASS,
+no CRLF line endings,thesis_exp/outputs/exp09_pairwise_ordinal/tables/qdpr1_per_true_label_prediction_distribution.csv,PASS,
+no CR-only line endings,thesis_exp/outputs/exp09_pairwise_ordinal/tables/qdpr1_per_true_label_prediction_distribution.csv,PASS,
+LF line endings,thesis_exp/outputs/exp09_pairwise_ordinal/tables/qdpr1_per_true_label_prediction_distribution.csv,PASS,
+not collapsed-line file,thesis_exp/outputs/exp09_pairwise_ordinal/tables/qdpr1_per_true_label_prediction_distribution.csv,PASS,51
+not large one-line md/csv,thesis_exp/outputs/exp09_pairwise_ordinal/tables/qdpr1_per_true_label_prediction_distribution.csv,PASS,lines=51; bytes=1255
+file size below 20MB,thesis_exp/outputs/exp09_pairwise_ordinal/tables/qdpr1_per_true_label_prediction_distribution.csv,PASS,1255
+not checkpoint/weight artifact,thesis_exp/outputs/exp09_pairwise_ordinal/tables/qdpr1_per_true_label_prediction_distribution.csv,PASS,
+no API key string,thesis_exp/outputs/exp09_pairwise_ordinal/tables/qdpr1_per_true_label_prediction_distribution.csv,PASS,
+CSV readable,thesis_exp/outputs/exp09_pairwise_ordinal/tables/qdpr1_prediction_distribution.csv,PASS,
+CSV pandas readable,thesis_exp/outputs/exp09_pairwise_ordinal/tables/qdpr1_prediction_distribution.csv,PASS,
+no CRLF line endings,thesis_exp/outputs/exp09_pairwise_ordinal/tables/qdpr1_prediction_distribution.csv,PASS,
+no CR-only line endings,thesis_exp/outputs/exp09_pairwise_ordinal/tables/qdpr1_prediction_distribution.csv,PASS,
+LF line endings,thesis_exp/outputs/exp09_pairwise_ordinal/tables/qdpr1_prediction_distribution.csv,PASS,
+not collapsed-line file,thesis_exp/outputs/exp09_pairwise_ordinal/tables/qdpr1_prediction_distribution.csv,PASS,11
+not large one-line md/csv,thesis_exp/outputs/exp09_pairwise_ordinal/tables/qdpr1_prediction_distribution.csv,PASS,lines=11; bytes=292
+file size below 20MB,thesis_exp/outputs/exp09_pairwise_ordinal/tables/qdpr1_prediction_distribution.csv,PASS,292
+not checkpoint/weight artifact,thesis_exp/outputs/exp09_pairwise_ordinal/tables/qdpr1_prediction_distribution.csv,PASS,
+no API key string,thesis_exp/outputs/exp09_pairwise_ordinal/tables/qdpr1_prediction_distribution.csv,PASS,
 CSV readable,thesis_exp/outputs/exp09_pairwise_ordinal/tables/sanity_check_exp09_setup.csv,PASS,
 CSV pandas readable,thesis_exp/outputs/exp09_pairwise_ordinal/tables/sanity_check_exp09_setup.csv,PASS,
 no CRLF line endings,thesis_exp/outputs/exp09_pairwise_ordinal/tables/sanity_check_exp09_setup.csv,PASS,

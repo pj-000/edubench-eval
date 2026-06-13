@@ -37,6 +37,21 @@ light of these rates.
 | dev | adjacent | 1500 | 1.0000 | 0.1067 | 1.0000 | 0.1067 |
 | dev | random_ordinal | 500 | 1.0000 | 0.0800 | 1.0000 | 0.0800 |
 
+## Result Interpretation
+
+QD-PR1 formal status is `completed`, but the formal result is negative and should not be presented
+as an effective method.
+
+- QD-PR1 does not reduce low_to_high relative to QD-B1.
+- QD-PR1 does not beat QD-B1 on the main test metrics.
+- Pairwise supervision remains promising, but this run damaged pointwise ordinal monotonicity and calibration.
+- The next pairwise attempt should be anchored fine-tuning from QD-B1, not another unanchored from-scratch run.
+
+| model | low_to_high | MAE_label | QWK | Acc@5 | monotonic_violation |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| QD-B1 | 0.4516 | 0.4279 | 0.6012 | 0.7419 | 0.3119 |
+| QD-PR1 | 0.5161 | 0.4545 | 0.5473 | 0.6916 | 0.7616 |
+
 ## Test Comparison
 
 | run | status | MAE_label | QWK | Accuracy | low_to_high | Acc@5 | monotonic_violation |

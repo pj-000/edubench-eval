@@ -267,6 +267,41 @@ def pair_comparability_report_lines() -> list[str]:
     return lines
 
 
+def result_interpretation_lines(qdpr1: dict[str, Any], rows: list[dict[str, Any]]) -> list[str]:
+    status = qdpr1.get("status", "pending_formal_training") if qdpr1 else "pending_formal_training"
+    if status != "completed":
+        return [
+            "",
+            "## Result Interpretation",
+            "",
+            "QD-PR1 formal metrics are pending. Do not interpret the setup package as an efficacy result.",
+        ]
+    qdb1 = _test_row(rows, QD_B1_RUN_ID)
+    return [
+        "",
+        "## Result Interpretation",
+        "",
+        "QD-PR1 formal status is `completed`, but the formal result is negative and should not be presented "
+        "as an effective method.",
+        "",
+        "- QD-PR1 does not reduce low_to_high relative to QD-B1.",
+        "- QD-PR1 does not beat QD-B1 on the main test metrics.",
+        "- Pairwise supervision remains promising, but this run damaged pointwise ordinal monotonicity and "
+        "calibration.",
+        "- The next pairwise attempt should be anchored fine-tuning from QD-B1, not another unanchored "
+        "from-scratch run.",
+        "",
+        "| model | low_to_high | MAE_label | QWK | Acc@5 | monotonic_violation |",
+        "| --- | ---: | ---: | ---: | ---: | ---: |",
+        f"| QD-B1 | {_fmt(qdb1.get('low_to_high_rate'))} | {_fmt(qdb1.get('MAE_label'))} | "
+        f"{_fmt(qdb1.get('Quadratic Weighted Kappa'))} | {_fmt(qdb1.get('Acc@5'))} | "
+        f"{_fmt(qdb1.get('monotonic_violation_rate'))} |",
+        f"| QD-PR1 | {_fmt(qdpr1.get('low_to_high_rate'))} | {_fmt(qdpr1.get('MAE_label'))} | "
+        f"{_fmt(qdpr1.get('Quadratic Weighted Kappa'))} | {_fmt(qdpr1.get('Acc@5'))} | "
+        f"{_fmt(qdpr1.get('monotonic_violation_rate'))} |",
+    ]
+
+
 def write_reports(rows: list[dict[str, Any]], deltas: list[dict[str, Any]]) -> None:
     test_rows = [row for row in rows if row.get("split") == "test"]
     qdpr1 = _test_row(rows, EXP09_RUN_ID)
@@ -294,6 +329,7 @@ def write_reports(rows: list[dict[str, Any]], deltas: list[dict[str, Any]]) -> N
         "inherited hyperparameter environment variables by default; set "
         "`ALLOW_EXP09_ENV_OVERRIDES=1` only for deliberate manual overrides.",
         *pair_comparability_report_lines(),
+        *result_interpretation_lines(qdpr1, rows),
         "",
         "## Test Comparison",
         "",
