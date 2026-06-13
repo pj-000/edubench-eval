@@ -1,0 +1,13 @@
+model,split,threshold_pair,violation_count,violation_rate,mean_violation_magnitude,max_violation_magnitude,true_label_1_count,true_label_2_count,true_label_3_count,true_label_4_count,true_label_5_count,pred_label_1_count,pred_label_2_count,pred_label_3_count,pred_label_4_count,pred_label_5_count
+low-score weighted ordinal baseline,dev,p_gt_1<p_gt_2,275,0.24841915085817526,0.0008402029429139061,0.03392457962036133,4,3,6,56,206,3,0,2,35,235
+low-score weighted ordinal baseline,dev,p_gt_2<p_gt_3,68,0.06142728093947606,0.001412502345534877,0.013073206937406212,10,3,2,14,39,10,1,0,19,38
+low-score weighted ordinal baseline,dev,p_gt_3<p_gt_4,16,0.014453477868112014,0.060872276124428026,0.43514445424079895,1,3,0,0,12,1,0,0,1,14
+low-score weighted ordinal baseline,test,p_gt_1<p_gt_2,303,0.2747053490480508,0.0013241581905982073,0.32248878479003906,1,2,9,50,241,1,1,4,43,254
+low-score weighted ordinal baseline,test,p_gt_2<p_gt_3,44,0.03989120580235721,0.02469649095887276,0.2740288972854614,8,0,5,10,21,8,2,1,16,17
+low-score weighted ordinal baseline,test,p_gt_3<p_gt_4,10,0.009066183136899365,0.04054731706273742,0.24885475635528564,1,0,2,2,5,1,0,0,0,9
+anchored pairwise boundary fine-tuning,dev,p_gt_1<p_gt_2,312,0.28184281842818426,0.00029013403614860575,0.028256118297576904,5,3,8,78,218,4,0,3,50,255
+anchored pairwise boundary fine-tuning,dev,p_gt_2<p_gt_3,83,0.07497741644083107,0.002751345838176743,0.09390401840209961,8,3,7,18,47,8,1,0,21,53
+anchored pairwise boundary fine-tuning,dev,p_gt_3<p_gt_4,16,0.014453477868112014,0.018323600879057267,0.1759089231491089,2,3,0,0,11,2,0,0,0,14
+anchored pairwise boundary fine-tuning,test,p_gt_1<p_gt_2,335,0.30371713508612874,0.000496472173662328,0.11954957246780396,0,2,12,63,258,0,0,6,66,263
+anchored pairwise boundary fine-tuning,test,p_gt_2<p_gt_3,51,0.04623753399818677,0.028401409381545176,0.38238996267318726,7,0,6,11,27,7,2,1,16,25
+anchored pairwise boundary fine-tuning,test,p_gt_3<p_gt_4,13,0.011786038077969175,0.0172461236115151,0.15764588117599487,1,0,3,2,7,2,0,0,0,11
