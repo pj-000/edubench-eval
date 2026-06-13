@@ -1,0 +1,3 @@
+split,records_used,max_reuse,mean_reuse,low_records_used,max_reuse_low_record,mean_reuse_low_record,low_record_reuse_limit
+train,3094,95,6.464124111182935,111,95,54.090090090090094,100
+dev,1028,52,5.836575875486381,57,51,31.859649122807017,100

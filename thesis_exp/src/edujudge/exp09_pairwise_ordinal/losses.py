@@ -172,6 +172,137 @@ def pairwise_ordinal_loss(
     }
 
 
+def anchor_bce_with_logits(logits: Any, ref_logits: Any) -> tuple[Any, dict[str, float]]:
+    """Anchor current logits to QD-B1 reference probabilities."""
+    if _is_torch_tensor(logits):
+        from torch.nn import functional as F
+
+        target_probs = sigmoid(ref_logits.float()).detach()
+        loss = F.binary_cross_entropy_with_logits(logits.float(), target_probs, reduction="mean")
+        return loss, {
+            "L_anchor": float(loss.detach().cpu()),
+            "mean_anchor_target_prob": float(target_probs.detach().mean().cpu()),
+        }
+    logits_arr = np.asarray(logits, dtype=np.float64)
+    ref_arr = np.asarray(ref_logits, dtype=np.float64)
+    target_probs = sigmoid(ref_arr)
+    losses = np.array(
+        [
+            _stable_bce_with_logits(float(logit), float(target))
+            for row, target_row in zip(logits_arr, target_probs)
+            for logit, target in zip(row, target_row)
+        ],
+        dtype=np.float64,
+    )
+    loss = float(np.mean(losses)) if losses.size else 0.0
+    return loss, {"L_anchor": loss, "mean_anchor_target_prob": float(np.mean(target_probs)) if target_probs.size else 0.0}
+
+
+def monotonic_regularization(logits: Any) -> tuple[Any, dict[str, float]]:
+    """Penalize cumulative probability increases p_{t+1} > p_t."""
+    if _is_torch_tensor(logits):
+        import torch
+
+        probs = sigmoid(logits.float())
+        violations = torch.relu(probs[:, 1:] - probs[:, :-1])
+        loss = violations.mean()
+        violation_rate = (violations > 0).float().mean()
+        return loss, {
+            "L_mono": float(loss.detach().cpu()),
+            "mono_pair_violation_rate": float(violation_rate.detach().cpu()),
+        }
+    probs_arr = sigmoid(np.asarray(logits, dtype=np.float64))
+    violations_arr = np.maximum(0.0, probs_arr[:, 1:] - probs_arr[:, :-1])
+    return float(np.mean(violations_arr)), {
+        "L_mono": float(np.mean(violations_arr)),
+        "mono_pair_violation_rate": float(np.mean(violations_arr > 0.0)),
+    }
+
+
+def total_anchored_pairwise_training_loss(
+    win_logits: Any,
+    lose_logits: Any,
+    ref_win_logits: Any,
+    ref_lose_logits: Any,
+    win_labels: Any,
+    lose_labels: Any,
+    label_gap: Any,
+    low_high: Any,
+    class_weights: Any,
+    lambda_pair: float,
+    lambda_anchor: float,
+    lambda_mono: float,
+    margin_scale: float = DEFAULT_MARGIN_SCALE,
+    low_high_margin: float = DEFAULT_LOW_HIGH_MARGIN,
+    low_high_weight: float = DEFAULT_LOW_HIGH_WEIGHT,
+    gap_weight: float = DEFAULT_GAP_WEIGHT,
+) -> tuple[Any, dict[str, float]]:
+    if _is_torch_tensor(win_logits):
+        import torch
+
+        point_logits = torch.cat([win_logits, lose_logits], dim=0)
+        ref_logits = torch.cat([ref_win_logits, ref_lose_logits], dim=0)
+        point_labels = torch.cat([win_labels.reshape(-1), lose_labels.reshape(-1)], dim=0)
+        point_loss, point_debug = weighted_ordinal_bce(point_logits, point_labels, class_weights)
+        pair_loss, pair_debug = pairwise_ordinal_loss(
+            win_logits,
+            lose_logits,
+            label_gap,
+            low_high,
+            margin_scale,
+            low_high_margin,
+            low_high_weight,
+            gap_weight,
+        )
+        anchor_loss, anchor_debug = anchor_bce_with_logits(point_logits, ref_logits)
+        mono_loss, mono_debug = monotonic_regularization(point_logits)
+        total = (
+            point_loss
+            + float(lambda_pair) * pair_loss
+            + float(lambda_anchor) * anchor_loss
+            + float(lambda_mono) * mono_loss
+        )
+        debug = {
+            "L_total": float(total.detach().cpu()),
+            "L_point": float(point_loss.detach().cpu()),
+            **pair_debug,
+            **anchor_debug,
+            **mono_debug,
+            **point_debug,
+        }
+        return total, debug
+    point_logits_arr = np.concatenate([np.asarray(win_logits), np.asarray(lose_logits)], axis=0)
+    ref_logits_arr = np.concatenate([np.asarray(ref_win_logits), np.asarray(ref_lose_logits)], axis=0)
+    point_labels_arr = np.concatenate([np.asarray(win_labels).reshape(-1), np.asarray(lose_labels).reshape(-1)], axis=0)
+    point_loss, point_debug = weighted_ordinal_bce(point_logits_arr, point_labels_arr, class_weights)
+    pair_loss, pair_debug = pairwise_ordinal_loss(
+        win_logits,
+        lose_logits,
+        label_gap,
+        low_high,
+        margin_scale,
+        low_high_margin,
+        low_high_weight,
+        gap_weight,
+    )
+    anchor_loss, anchor_debug = anchor_bce_with_logits(point_logits_arr, ref_logits_arr)
+    mono_loss, mono_debug = monotonic_regularization(point_logits_arr)
+    total = float(
+        point_loss
+        + float(lambda_pair) * pair_loss
+        + float(lambda_anchor) * anchor_loss
+        + float(lambda_mono) * mono_loss
+    )
+    return total, {
+        "L_total": total,
+        "L_point": float(point_loss),
+        **pair_debug,
+        **anchor_debug,
+        **mono_debug,
+        **point_debug,
+    }
+
+
 def total_pairwise_training_loss(
     win_logits: Any,
     lose_logits: Any,

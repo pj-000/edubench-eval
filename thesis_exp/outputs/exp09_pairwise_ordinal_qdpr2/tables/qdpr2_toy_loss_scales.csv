@@ -1,0 +1,2 @@
+case,L_total,L_point,L_pair,L_anchor,L_mono,mean_score_gap,low_high_pair_loss,mono_pair_violation_rate
+anchored_pairwise_toy,0.6185733534393509,0.3274358490179159,0.9972231124463287,0.48255269759823716,0.0,0.8818456056313875,1.4072882825250455,0.0

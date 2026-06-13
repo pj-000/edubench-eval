@@ -1,0 +1,9 @@
+split,pair_type,target_count,actual_count,high_comparability_count,fallback_same_metric_count,fallback_any_valid_count,shortage
+train,low_high,4000,4000,4000,0,0,0
+train,low_mid,2000,2000,1895,105,0,0
+train,adjacent,3000,3000,3000,0,0,0
+train,random_ordinal,1000,1000,1000,0,0,0
+dev,low_high,1200,1200,1200,0,0,0
+dev,low_mid,600,600,600,0,0,0
+dev,adjacent,900,900,900,0,0,0
+dev,random_ordinal,300,300,300,0,0,0

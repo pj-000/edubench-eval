@@ -42,6 +42,37 @@ QD_R1_RUN_DIR = THESIS_DIR / "outputs" / "exp07_rank_consistent_ordinal" / "runs
 QD_ER1_RUN_ID = "QD-ER1_EduRisk_human_only"
 QD_ER1_RUN_DIR = THESIS_DIR / "outputs" / "exp08_edurisk_loss" / "runs" / QD_ER1_RUN_ID
 
+QDPR2_NAME = "exp09_pairwise_ordinal_qdpr2"
+QDPR2_RUN_ID = "QD-PR2_AnchoredPairwiseOrdinal_human_only"
+QDPR2_OUTPUT_DIR = THESIS_DIR / "outputs" / QDPR2_NAME
+QDPR2_TABLES_DIR = QDPR2_OUTPUT_DIR / "tables"
+QDPR2_REPORTS_DIR = QDPR2_OUTPUT_DIR / "reports"
+QDPR2_PAIRS_DIR = QDPR2_OUTPUT_DIR / "pairs"
+QDPR2_LOGS_DIR = QDPR2_OUTPUT_DIR / "logs"
+QDPR2_RUNS_DIR = QDPR2_OUTPUT_DIR / "runs"
+QDPR2_SMOKE_DIR = QDPR2_OUTPUT_DIR / "smoke_test"
+QDPR2_CONFIG_SNAPSHOT_DIR = QDPR2_OUTPUT_DIR / "configs"
+
+QDPR2_ARTIFACTS_DIR = THESIS_DIR / "artifacts" / QDPR2_NAME
+QDPR2_CHECKPOINTS_DIR = QDPR2_ARTIFACTS_DIR / "checkpoints"
+QDPR2_SMOKE_CHECKPOINTS_DIR = QDPR2_ARTIFACTS_DIR / "smoke_test"
+
+QDPR2_DATASET_DIR = (
+    THESIS_DIR
+    / "outputs"
+    / "exp06_question_disjoint_baselines"
+    / "datasets"
+    / "A4_question_answer_metric_rubric_metadata_question_seed42"
+)
+QD_B1_CHECKPOINT_DIR = (
+    THESIS_DIR
+    / "artifacts"
+    / "exp06_question_disjoint_baselines"
+    / "checkpoints"
+    / QD_B1_RUN_ID
+    / "best"
+)
+
 EXPECTED_SPLIT_ROWS = {"train": 3326, "dev": 1107, "test": 1103}
 LABELS = [1, 2, 3, 4, 5]
 ORDINAL_THRESHOLDS = [1, 2, 3, 4]
@@ -67,6 +98,16 @@ DEFAULT_LAMBDA_PAIR = 0.3
 DEFAULT_W_MIN = 0.5
 DEFAULT_W_MAX = 3.0
 
+QDPR2_DEFAULT_TRAIN_PAIR_COUNT = 10_000
+QDPR2_DEFAULT_DEV_PAIR_COUNT = 3_000
+QDPR2_DEFAULT_MAX_PAIRS_PER_RECORD = 80
+QDPR2_DEFAULT_MAX_PAIRS_PER_LOW_RECORD = 100
+QDPR2_DEFAULT_LAMBDA_PAIR = 0.05
+QDPR2_DEFAULT_LAMBDA_ANCHOR = 0.5
+QDPR2_DEFAULT_LAMBDA_MONO = 0.1
+QDPR2_DEFAULT_EPOCHS = 3
+QDPR2_DEFAULT_LEARNING_RATE = 1e-5
+
 
 def exp09_run_dir(smoke: bool = False) -> Path:
     return (EXP09_SMOKE_DIR if smoke else EXP09_RUNS_DIR) / EXP09_RUN_ID
@@ -74,6 +115,14 @@ def exp09_run_dir(smoke: bool = False) -> Path:
 
 def exp09_checkpoint_dir(smoke: bool = False) -> Path:
     return (EXP09_SMOKE_CHECKPOINTS_DIR if smoke else EXP09_CHECKPOINTS_DIR) / EXP09_RUN_ID
+
+
+def qdpr2_run_dir(smoke: bool = False) -> Path:
+    return (QDPR2_SMOKE_DIR if smoke else QDPR2_RUNS_DIR) / QDPR2_RUN_ID
+
+
+def qdpr2_checkpoint_dir(smoke: bool = False) -> Path:
+    return (QDPR2_SMOKE_CHECKPOINTS_DIR if smoke else QDPR2_CHECKPOINTS_DIR) / QDPR2_RUN_ID
 
 
 def ensure_exp09_dirs() -> None:
@@ -95,5 +144,22 @@ def ensure_exp09_dirs() -> None:
         exp09_run_dir(False) / "logs",
         exp09_run_dir(False) / "predictions",
         exp09_run_dir(False) / "arrays",
+        QDPR2_OUTPUT_DIR,
+        QDPR2_TABLES_DIR,
+        QDPR2_REPORTS_DIR,
+        QDPR2_PAIRS_DIR,
+        QDPR2_LOGS_DIR,
+        QDPR2_RUNS_DIR,
+        QDPR2_SMOKE_DIR,
+        QDPR2_CONFIG_SNAPSHOT_DIR,
+        QDPR2_ARTIFACTS_DIR,
+        QDPR2_CHECKPOINTS_DIR,
+        QDPR2_SMOKE_CHECKPOINTS_DIR,
+        qdpr2_run_dir(False),
+        qdpr2_run_dir(True),
+        qdpr2_run_dir(False) / "tables",
+        qdpr2_run_dir(False) / "logs",
+        qdpr2_run_dir(False) / "predictions",
+        qdpr2_run_dir(False) / "arrays",
     ]:
         path.mkdir(parents=True, exist_ok=True)

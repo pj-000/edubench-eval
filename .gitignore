@@ -14,3 +14,9 @@ thesis_exp/artifacts/
 **/hf_cache/
 wandb/
 runs/
+
+# Exp9 QD-PR2 generated runtime artifacts are reproducible and should stay local/server-side.
+thesis_exp/outputs/exp09_pairwise_ordinal_qdpr2/pairs/
+thesis_exp/outputs/exp09_pairwise_ordinal_qdpr2/runs/
+thesis_exp/outputs/exp09_pairwise_ordinal_qdpr2/smoke_test/
+thesis_exp/outputs/exp09_pairwise_ordinal_qdpr2/logs/
