@@ -1,0 +1,20 @@
+# Exp10 QD-PR2 Module Ablation Sanity
+
+Status: `BLOCKED_MISSING_QDB1_CHECKPOINT`
+
+| check | status | details |
+| --- | --- | --- |
+| QD-B1 checkpoint exists | BLOCKED | BLOCKED_MISSING_QDB1_CHECKPOINT: thesis_exp/artifacts/exp06_question_disjoint_baselines/checkpoints/QD-B1_human_only_L1_weighted_ordinal/best missing ['state_dict.pt', 'exp05_head_metadata.json', 'tokenizer.json'] |
+| train split row count | PASS | 3326 |
+| train split has question identities | PASS | 118 |
+| train split has no synthetic rows | PASS |  |
+| dev split row count | PASS | 1107 |
+| dev split has question identities | PASS | 40 |
+| dev split has no synthetic rows | PASS |  |
+| test split row count | PASS | 1103 |
+| test split has question identities | PASS | 39 |
+| test split has no synthetic rows | PASS |  |
+| all ablation configs exist and lambdas match | PASS |  |
+| py_compile pass | PASS |  |
+| bash -n pass | PASS |  |
+| no checkpoint/weights tracked | PASS |  |

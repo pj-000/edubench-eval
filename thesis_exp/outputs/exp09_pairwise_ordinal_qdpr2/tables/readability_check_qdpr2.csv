@@ -22,8 +22,8 @@ no CRLF line endings,thesis_exp/src/edujudge/exp09_pairwise_ordinal/train_qdpr2_
 no CR-only line endings,thesis_exp/src/edujudge/exp09_pairwise_ordinal/train_qdpr2_anchored_pairwise.py,PASS,
 LF line endings,thesis_exp/src/edujudge/exp09_pairwise_ordinal/train_qdpr2_anchored_pairwise.py,PASS,
 first line <= 1000 chars,thesis_exp/src/edujudge/exp09_pairwise_ordinal/train_qdpr2_anchored_pairwise.py,PASS,68
-not collapsed-line file,thesis_exp/src/edujudge/exp09_pairwise_ordinal/train_qdpr2_anchored_pairwise.py,PASS,785
-minimum line count,thesis_exp/src/edujudge/exp09_pairwise_ordinal/train_qdpr2_anchored_pairwise.py,PASS,lines=785; min>=300
+not collapsed-line file,thesis_exp/src/edujudge/exp09_pairwise_ordinal/train_qdpr2_anchored_pairwise.py,PASS,872
+minimum line count,thesis_exp/src/edujudge/exp09_pairwise_ordinal/train_qdpr2_anchored_pairwise.py,PASS,lines=872; min>=300
 no CRLF line endings,thesis_exp/src/edujudge/exp09_pairwise_ordinal/readability_check_qdpr2.py,PASS,
 no CR-only line endings,thesis_exp/src/edujudge/exp09_pairwise_ordinal/readability_check_qdpr2.py,PASS,
 LF line endings,thesis_exp/src/edujudge/exp09_pairwise_ordinal/readability_check_qdpr2.py,PASS,

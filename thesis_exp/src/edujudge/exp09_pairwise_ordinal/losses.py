@@ -222,16 +222,17 @@ def monotonic_regularization(logits: Any) -> tuple[Any, dict[str, float]]:
 def total_anchored_pairwise_training_loss(
     win_logits: Any,
     lose_logits: Any,
-    ref_win_logits: Any,
-    ref_lose_logits: Any,
+    ref_win_logits: Any | None,
+    ref_lose_logits: Any | None,
     win_labels: Any,
     lose_labels: Any,
     label_gap: Any,
     low_high: Any,
     class_weights: Any,
-    lambda_pair: float,
-    lambda_anchor: float,
-    lambda_mono: float,
+    lambda_point: float = 1.0,
+    lambda_pair: float = DEFAULT_LAMBDA_PAIR,
+    lambda_anchor: float = 0.0,
+    lambda_mono: float = 0.0,
     margin_scale: float = DEFAULT_MARGIN_SCALE,
     low_high_margin: float = DEFAULT_LOW_HIGH_MARGIN,
     low_high_weight: float = DEFAULT_LOW_HIGH_WEIGHT,
@@ -241,7 +242,6 @@ def total_anchored_pairwise_training_loss(
         import torch
 
         point_logits = torch.cat([win_logits, lose_logits], dim=0)
-        ref_logits = torch.cat([ref_win_logits, ref_lose_logits], dim=0)
         point_labels = torch.cat([win_labels.reshape(-1), lose_labels.reshape(-1)], dim=0)
         point_loss, point_debug = weighted_ordinal_bce(point_logits, point_labels, class_weights)
         pair_loss, pair_debug = pairwise_ordinal_loss(
@@ -254,10 +254,17 @@ def total_anchored_pairwise_training_loss(
             low_high_weight,
             gap_weight,
         )
-        anchor_loss, anchor_debug = anchor_bce_with_logits(point_logits, ref_logits)
+        if float(lambda_anchor) != 0.0:
+            if ref_win_logits is None or ref_lose_logits is None:
+                raise ValueError("lambda_anchor is non-zero but reference logits are missing.")
+            ref_logits = torch.cat([ref_win_logits, ref_lose_logits], dim=0)
+            anchor_loss, anchor_debug = anchor_bce_with_logits(point_logits, ref_logits)
+        else:
+            anchor_loss = point_logits.float().sum() * 0.0
+            anchor_debug = {"L_anchor": 0.0, "mean_anchor_target_prob": 0.0}
         mono_loss, mono_debug = monotonic_regularization(point_logits)
         total = (
-            point_loss
+            float(lambda_point) * point_loss
             + float(lambda_pair) * pair_loss
             + float(lambda_anchor) * anchor_loss
             + float(lambda_mono) * mono_loss
@@ -272,7 +279,6 @@ def total_anchored_pairwise_training_loss(
         }
         return total, debug
     point_logits_arr = np.concatenate([np.asarray(win_logits), np.asarray(lose_logits)], axis=0)
-    ref_logits_arr = np.concatenate([np.asarray(ref_win_logits), np.asarray(ref_lose_logits)], axis=0)
     point_labels_arr = np.concatenate([np.asarray(win_labels).reshape(-1), np.asarray(lose_labels).reshape(-1)], axis=0)
     point_loss, point_debug = weighted_ordinal_bce(point_logits_arr, point_labels_arr, class_weights)
     pair_loss, pair_debug = pairwise_ordinal_loss(
@@ -285,10 +291,17 @@ def total_anchored_pairwise_training_loss(
         low_high_weight,
         gap_weight,
     )
-    anchor_loss, anchor_debug = anchor_bce_with_logits(point_logits_arr, ref_logits_arr)
+    if float(lambda_anchor) != 0.0:
+        if ref_win_logits is None or ref_lose_logits is None:
+            raise ValueError("lambda_anchor is non-zero but reference logits are missing.")
+        ref_logits_arr = np.concatenate([np.asarray(ref_win_logits), np.asarray(ref_lose_logits)], axis=0)
+        anchor_loss, anchor_debug = anchor_bce_with_logits(point_logits_arr, ref_logits_arr)
+    else:
+        anchor_loss = 0.0
+        anchor_debug = {"L_anchor": 0.0, "mean_anchor_target_prob": 0.0}
     mono_loss, mono_debug = monotonic_regularization(point_logits_arr)
     total = float(
-        point_loss
+        float(lambda_point) * point_loss
         + float(lambda_pair) * pair_loss
         + float(lambda_anchor) * anchor_loss
         + float(lambda_mono) * mono_loss
@@ -297,6 +310,61 @@ def total_anchored_pairwise_training_loss(
         "L_total": total,
         "L_point": float(point_loss),
         **pair_debug,
+        **anchor_debug,
+        **mono_debug,
+        **point_debug,
+    }
+
+
+def total_anchored_pointwise_training_loss(
+    logits: Any,
+    ref_logits: Any | None,
+    labels: Any,
+    class_weights: Any,
+    lambda_point: float = 1.0,
+    lambda_anchor: float = 0.0,
+    lambda_mono: float = 0.0,
+) -> tuple[Any, dict[str, float]]:
+    """Pointwise-only anchored objective for lambda_pair=0 ablations."""
+    point_loss, point_debug = weighted_ordinal_bce(logits, labels, class_weights)
+    if float(lambda_anchor) != 0.0:
+        if ref_logits is None:
+            raise ValueError("lambda_anchor is non-zero but reference logits are missing.")
+        anchor_loss, anchor_debug = anchor_bce_with_logits(logits, ref_logits)
+    elif _is_torch_tensor(logits):
+        anchor_loss = logits.float().sum() * 0.0
+        anchor_debug = {"L_anchor": 0.0, "mean_anchor_target_prob": 0.0}
+    else:
+        anchor_loss = 0.0
+        anchor_debug = {"L_anchor": 0.0, "mean_anchor_target_prob": 0.0}
+    mono_loss, mono_debug = monotonic_regularization(logits)
+    total = float(lambda_point) * point_loss + float(lambda_anchor) * anchor_loss + float(lambda_mono) * mono_loss
+    if _is_torch_tensor(logits):
+        debug = {
+            "L_total": float(total.detach().cpu()),
+            "L_point": float(point_loss.detach().cpu()),
+            "L_pair": 0.0,
+            "weighted_L_pair": 0.0,
+            "mean_pair_weight": 0.0,
+            "mean_pair_margin": 0.0,
+            "mean_score_gap": 0.0,
+            "low_high_pair_loss": 0.0,
+            "adjacent_pair_loss": 0.0,
+            **anchor_debug,
+            **mono_debug,
+            **point_debug,
+        }
+        return total, debug
+    return float(total), {
+        "L_total": float(total),
+        "L_point": float(point_loss),
+        "L_pair": 0.0,
+        "weighted_L_pair": 0.0,
+        "mean_pair_weight": 0.0,
+        "mean_pair_margin": 0.0,
+        "mean_score_gap": 0.0,
+        "low_high_pair_loss": 0.0,
+        "adjacent_pair_loss": 0.0,
         **anchor_debug,
         **mono_debug,
         **point_debug,

@@ -1,0 +1,2 @@
+ablation_name,run_id,status,split,n,MAE,QWK,Accuracy,Acc@5,low_to_high_rate,low_to_high_count,true_low_n,low_to_high_display,monotonic_violation_rate,monotonic_violation_count
+QD-B1_low_score_weighted_ordinal_baseline,QD-B1_human_only_L1_weighted_ordinal,completed,test,1103,0.42792384406165007,0.6012356007375432,0.670897552130553,0.7418831168831169,0.45161290322580644,14,31,14 / 31 = 0.4516,0.3118766999093382,344

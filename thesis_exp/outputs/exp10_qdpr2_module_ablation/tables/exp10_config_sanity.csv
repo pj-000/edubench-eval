@@ -1,0 +1,7 @@
+ablation_name,config_path,status,lambda_point,lambda_pair,lambda_anchor,lambda_mono,output_dir,checkpoint_output_dir,details
+full_qdpr2,thesis_exp/configs/exp10_qdpr2_module_ablation/exp10_full_qdpr2.yaml,PASS,1.0,0.05,0.5,0.1,thesis_exp/outputs/exp10_qdpr2_module_ablation/runs/full_qdpr2,thesis_exp/artifacts/exp10_qdpr2_module_ablation/checkpoints/full_qdpr2,
+no_pair,thesis_exp/configs/exp10_qdpr2_module_ablation/exp10_no_pair.yaml,PASS,1.0,0.0,0.5,0.1,thesis_exp/outputs/exp10_qdpr2_module_ablation/runs/no_pair,thesis_exp/artifacts/exp10_qdpr2_module_ablation/checkpoints/no_pair,
+no_anchor,thesis_exp/configs/exp10_qdpr2_module_ablation/exp10_no_anchor.yaml,PASS,1.0,0.05,0.0,0.1,thesis_exp/outputs/exp10_qdpr2_module_ablation/runs/no_anchor,thesis_exp/artifacts/exp10_qdpr2_module_ablation/checkpoints/no_anchor,
+no_mono,thesis_exp/configs/exp10_qdpr2_module_ablation/exp10_no_mono.yaml,PASS,1.0,0.05,0.5,0.0,thesis_exp/outputs/exp10_qdpr2_module_ablation/runs/no_mono,thesis_exp/artifacts/exp10_qdpr2_module_ablation/checkpoints/no_mono,
+point_only,thesis_exp/configs/exp10_qdpr2_module_ablation/exp10_point_only.yaml,PASS,1.0,0.0,0.0,0.0,thesis_exp/outputs/exp10_qdpr2_module_ablation/runs/point_only,thesis_exp/artifacts/exp10_qdpr2_module_ablation/checkpoints/point_only,
+no_point_diagnostic,thesis_exp/configs/exp10_qdpr2_module_ablation/exp10_no_point_diagnostic.yaml,PASS,0.0,0.05,0.5,0.1,thesis_exp/outputs/exp10_qdpr2_module_ablation/runs/no_point_diagnostic,thesis_exp/artifacts/exp10_qdpr2_module_ablation/checkpoints/no_point_diagnostic,

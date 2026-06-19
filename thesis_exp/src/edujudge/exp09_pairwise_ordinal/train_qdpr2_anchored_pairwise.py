@@ -42,6 +42,7 @@ from thesis_exp.src.edujudge.exp09_pairwise_ordinal import (
     QDPR2_DEFAULT_LAMBDA_ANCHOR,
     QDPR2_DEFAULT_LAMBDA_MONO,
     QDPR2_DEFAULT_LAMBDA_PAIR,
+    QDPR2_DEFAULT_LAMBDA_POINT,
     QDPR2_DEFAULT_LEARNING_RATE,
     QDPR2_DEFAULT_MAX_PAIRS_PER_LOW_RECORD,
     QDPR2_DEFAULT_MAX_PAIRS_PER_RECORD,
@@ -58,7 +59,10 @@ from thesis_exp.src.edujudge.exp09_pairwise_ordinal.data import (
     read_split,
     write_pointwise_class_weights,
 )
-from thesis_exp.src.edujudge.exp09_pairwise_ordinal.losses import total_anchored_pairwise_training_loss
+from thesis_exp.src.edujudge.exp09_pairwise_ordinal.losses import (
+    total_anchored_pairwise_training_loss,
+    total_anchored_pointwise_training_loss,
+)
 from thesis_exp.src.edujudge.exp09_pairwise_ordinal.metrics import (
     compute_ordinal_metrics,
     save_metric_tables,
@@ -82,6 +86,8 @@ from thesis_exp.src.edujudge.utils.io import relpath, write_csv, write_json, wri
 
 @dataclass
 class QDPR2TrainConfig:
+    exp_name: str
+    ablation_name: str
     run_id: str
     dataset_id: str
     split: str
@@ -104,6 +110,7 @@ class QDPR2TrainConfig:
     low_high_margin: float
     low_high_weight: float
     gap_weight: float
+    lambda_point: float
     lambda_pair: float
     lambda_anchor: float
     lambda_mono: float
@@ -228,10 +235,12 @@ def load_model_and_tokenizer(config: QDPR2TrainConfig, class_weights: list[float
         local_files_only=config.local_files_only,
     )
     model = build_model(torch, nn, AutoModel, config, dtype, class_weights)
-    reference_model = build_model(torch, nn, AutoModel, config, dtype, class_weights)
-    reference_model.eval()
-    for parameter in reference_model.parameters():
-        parameter.requires_grad_(False)
+    reference_model = None
+    if config.lambda_anchor != 0.0:
+        reference_model = build_model(torch, nn, AutoModel, config, dtype, class_weights)
+        reference_model.eval()
+        for parameter in reference_model.parameters():
+            parameter.requires_grad_(False)
     if tokenizer.pad_token is None:
         tokenizer.pad_token = tokenizer.eos_token or tokenizer.unk_token
     if getattr(model.config, "pad_token_id", None) is None:
@@ -276,7 +285,7 @@ def make_pair_dataloader(pair_rows: list[dict[str, Any]], tokenizer: Any, config
     )
 
 
-def evaluate(model: Any, dataloader: Any, device: Any, split: str) -> EvalResult:
+def evaluate(model: Any, dataloader: Any, device: Any, split: str, config: QDPR2TrainConfig | None = None) -> EvalResult:
     import torch
 
     model.eval()
@@ -311,8 +320,11 @@ def evaluate(model: Any, dataloader: Any, device: Any, split: str) -> EvalResult
                 prediction = base_prediction_row(split, row, label_5, human_mean, int(pred_label), float(pred_label), expected_score)
                 prediction["pred_label"] = int(pred_label)
                 prediction["head_type"] = "independent_ordinal"
-                prediction["objective"] = "anchored_risk_aware_pairwise_ordinal"
-                prediction["loss"] = "weighted_ordinal_bce_plus_pairwise_anchor_monotonic"
+                prediction["objective"] = config.objective if config is not None else "anchored_risk_aware_pairwise_ordinal"
+                prediction["loss"] = config.loss if config is not None else "weighted_ordinal_bce_plus_pairwise_anchor_monotonic"
+                if config is not None:
+                    prediction["run_id"] = config.run_id
+                    prediction["ablation_name"] = config.ablation_name
                 prediction["confidence"] = float(np.mean([abs(prob - 0.5) * 2 for prob in probs]))
                 prediction["monotonic_violation"] = monotonic_violation(probs)
                 for idx, threshold in enumerate([1, 2, 3, 4]):
@@ -373,8 +385,9 @@ def save_checkpoint(
         {
             "base_model_name_or_path": config.model_name_or_path,
             "anchor_checkpoint_dir": relpath(config.qd_b1_checkpoint_dir),
-            "experiment": "Exp9 QD-PR2 anchored pairwise ordinal fine-tuning",
-            "run_id": QDPR2_RUN_ID,
+            "experiment": config.exp_name,
+            "ablation_name": config.ablation_name,
+            "run_id": config.run_id,
             "head_type": config.head_type,
             "objective": config.objective,
             "loss": config.loss,
@@ -389,6 +402,7 @@ def save_checkpoint(
             "synthetic_used": False,
             "class_weights": class_weights,
             "loss_weights": {
+                "lambda_point": config.lambda_point,
                 "lambda_pair": config.lambda_pair,
                 "lambda_anchor": config.lambda_anchor,
                 "lambda_mono": config.lambda_mono,
@@ -405,8 +419,9 @@ def normalize_run_files(output_dir: Path, config: QDPR2TrainConfig, status: str)
     write_json(
         output_dir / "run_metadata.json",
         {
-            "experiment": "Exp9 QD-PR2 anchored pairwise ordinal fine-tuning",
-            "run_id": QDPR2_RUN_ID,
+            "experiment": config.exp_name,
+            "ablation_name": config.ablation_name,
+            "run_id": config.run_id,
             "status": status,
             "dataset_id": config.dataset_id,
             "split": config.split,
@@ -423,14 +438,26 @@ def normalize_run_files(output_dir: Path, config: QDPR2TrainConfig, status: str)
             "selection_direction": config.selection_mode,
         },
     )
+    active_losses = []
+    if config.lambda_point != 0.0:
+        active_losses.append("L_point")
+    if config.lambda_pair != 0.0:
+        active_losses.append("L_pair")
+    if config.lambda_anchor != 0.0:
+        active_losses.append("L_anchor")
+    if config.lambda_mono != 0.0:
+        active_losses.append("L_mono")
     lines = [
-        "# Exp9 QD-PR2 Anchored Pairwise Ordinal Run Summary",
+        f"# {config.exp_name} Run Summary",
         "",
         f"Status: `{status}`",
-        f"Run ID: `{QDPR2_RUN_ID}`",
+        f"Run ID: `{config.run_id}`",
+        f"Ablation: `{config.ablation_name}`",
         "Initialization: QD-B1 checkpoint only.",
         "Dataset: question_seed42 human-only A4 rows.",
         "Synthetic rows: none.",
+        f"Active losses: `{'+'.join(active_losses) if active_losses else 'none'}`",
+        f"lambda_point: `{config.lambda_point}`",
         f"lambda_pair: `{config.lambda_pair}`",
         f"lambda_anchor: `{config.lambda_anchor}`",
         f"lambda_mono: `{config.lambda_mono}`",
@@ -472,13 +499,26 @@ def pair_build_config(config: QDPR2TrainConfig) -> QDPR2PairBuildConfig:
 
 
 def loss_config_row(config: QDPR2TrainConfig, class_weights: list[float]) -> dict[str, Any]:
+    active_losses = []
+    if config.lambda_point != 0.0:
+        active_losses.append("L_point")
+    if config.lambda_pair != 0.0:
+        active_losses.append("L_pair")
+    if config.lambda_anchor != 0.0:
+        active_losses.append("L_anchor")
+    if config.lambda_mono != 0.0:
+        active_losses.append("L_mono")
     return {
-        "run_id": QDPR2_RUN_ID,
+        "exp_name": config.exp_name,
+        "ablation_name": config.ablation_name,
+        "run_id": config.run_id,
         "initialization": "QD-B1 checkpoint",
+        "active_losses": "+".join(active_losses) if active_losses else "none",
         "pointwise_loss": "weighted_ordinal_bce",
         "pairwise_loss": "softplus(m_ij - (r(win)-r(lose)))",
         "anchor_loss": "BCEWithLogits(current_logits, sigmoid(qd_b1_ref_logits))",
         "monotonic_regularization": "mean_t max(0, p_{t+1}-p_t)",
+        "lambda_point": config.lambda_point,
         "lambda_pair": config.lambda_pair,
         "lambda_anchor": config.lambda_anchor,
         "lambda_mono": config.lambda_mono,
@@ -493,8 +533,6 @@ def train(config: QDPR2TrainConfig, preflight_only: bool = False) -> dict[str, A
 
     ensure_exp09_dirs()
     require_qd_b1_checkpoint(config.qd_b1_checkpoint_dir)
-    if config.run_id != QDPR2_RUN_ID:
-        raise RuntimeError(f"Unexpected QD-PR2 run_id: {config.run_id}")
     if config.use_synthetic:
         raise RuntimeError("QD-PR2 must be human-only; synthetic data is disabled.")
     formal = os.environ.get("FORMAL_RUN", "0") == "1"
@@ -511,7 +549,10 @@ def train(config: QDPR2TrainConfig, preflight_only: bool = False) -> dict[str, A
     (config.output_dir / "tables").mkdir(parents=True, exist_ok=True)
     (config.output_dir / "logs").mkdir(parents=True, exist_ok=True)
     config.checkpoint_output_dir.mkdir(parents=True, exist_ok=True)
-    setup = prepare_qdpr2_setup(pair_build_config(config), write_shards=True)
+    use_pair_training = config.lambda_pair != 0.0
+    setup: dict[str, Any] = {"train_pairs": [], "dev_pairs": []}
+    if use_pair_training:
+        setup = prepare_qdpr2_setup(pair_build_config(config), write_shards=True)
     train_rows_full = read_split(config.data_dir, "train")
     weight_rows = write_pointwise_class_weights(train_rows_full, config.output_dir / "tables", config.w_min, config.w_max)
     class_weights = class_weight_vector(weight_rows)
@@ -528,27 +569,42 @@ def train(config: QDPR2TrainConfig, preflight_only: bool = False) -> dict[str, A
                     "API called: no",
                     "Synthetic generated: no",
                     f"QD-B1 checkpoint: {relpath(config.qd_b1_checkpoint_dir)}",
-                    f"Train pairs: {len(setup['train_pairs'])}",
-                    f"Dev pairs: {len(setup['dev_pairs'])}",
+                    f"Pair training enabled: {use_pair_training}",
+                    f"Train pairs: {len(setup.get('train_pairs', []))}",
+                    f"Dev pairs: {len(setup.get('dev_pairs', []))}",
+                    f"lambda_point: {config.lambda_point}",
+                    f"lambda_pair: {config.lambda_pair}",
+                    f"lambda_anchor: {config.lambda_anchor}",
+                    f"lambda_mono: {config.lambda_mono}",
                 ]
             ),
         )
-        return {"status": "preflight_pass", "train_pairs": len(setup["train_pairs"]), "dev_pairs": len(setup["dev_pairs"])}
+        return {
+            "status": "preflight_pass",
+            "pair_training_enabled": use_pair_training,
+            "train_pairs": len(setup.get("train_pairs", [])),
+            "dev_pairs": len(setup.get("dev_pairs", [])),
+        }
 
     require_cuda_if_requested()
     set_seed(config.seed)
     train_rows = limit_rows(train_rows_full, config.max_train_samples)
     dev_rows = limit_rows(read_split(config.data_dir, "dev"), config.max_eval_samples)
     test_rows = limit_rows(read_split(config.data_dir, "test"), config.max_eval_samples)
-    train_pairs = limit_rows(read_qdpr2_pair_shards("train"), config.max_train_pairs)
-    dev_pairs = limit_rows(read_qdpr2_pair_shards("dev"), config.max_dev_pairs)
+    train_pairs = limit_rows(read_qdpr2_pair_shards("train"), config.max_train_pairs) if use_pair_training else []
+    dev_pairs = limit_rows(read_qdpr2_pair_shards("dev"), config.max_dev_pairs) if use_pair_training else []
     model, reference_model, tokenizer = load_model_and_tokenizer(config, class_weights)
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     model.to(device)
-    reference_model.to(device)
+    if reference_model is not None:
+        reference_model.to(device)
     dev_loader = make_pointwise_dataloader(dev_rows, tokenizer, config, "dev", shuffle=False)
     test_loader = make_pointwise_dataloader(test_rows, tokenizer, config, "test", shuffle=False)
-    train_loader = make_pair_dataloader(train_pairs, tokenizer, config, shuffle=True)
+    train_loader = (
+        make_pair_dataloader(train_pairs, tokenizer, config, shuffle=True)
+        if use_pair_training
+        else make_pointwise_dataloader(train_rows, tokenizer, config, "train", shuffle=True)
+    )
     best_dir = config.checkpoint_output_dir / "best"
     optimizer = AdamW(model.parameters(), lr=config.learning_rate, weight_decay=config.weight_decay)
     update_steps_per_epoch = math.ceil(len(train_loader) / config.gradient_accumulation_steps)
@@ -561,7 +617,7 @@ def train(config: QDPR2TrainConfig, preflight_only: bool = False) -> dict[str, A
     global_step = 0
     start = time.time()
     num_epochs = int(math.ceil(config.num_train_epochs))
-    progress = StepProgressBar(total_steps, config.progress_bar, desc=f"Exp9 {QDPR2_RUN_ID}")
+    progress = StepProgressBar(total_steps, config.progress_bar, desc=f"{config.exp_name} {config.ablation_name}")
     try:
         for epoch in range(num_epochs):
             if epoch >= config.num_train_epochs:
@@ -570,36 +626,60 @@ def train(config: QDPR2TrainConfig, preflight_only: bool = False) -> dict[str, A
             optimizer.zero_grad(set_to_none=True)
             running_loss = 0.0
             for step, batch in enumerate(train_loader, start=1):
-                pair_metadata = batch.pop("pair_metadata")
-                batch_size = len(pair_metadata)
-                win_labels = batch.pop("win_labels").to(device)
-                lose_labels = batch.pop("lose_labels").to(device)
-                label_gap = batch.pop("label_gap").to(device)
-                low_high = batch.pop("low_high").to(device)
-                batch = {key: value.to(device) for key, value in batch.items()}
-                outputs = model(**batch)
-                _, logits = get_loss_logits(outputs)
-                with torch.no_grad():
-                    ref_outputs = reference_model(**batch)
-                    _, ref_logits = get_loss_logits(ref_outputs)
-                loss, debug = total_anchored_pairwise_training_loss(
-                    logits[:batch_size].float(),
-                    logits[batch_size:].float(),
-                    ref_logits[:batch_size].float(),
-                    ref_logits[batch_size:].float(),
-                    win_labels,
-                    lose_labels,
-                    label_gap,
-                    low_high,
-                    model.class_weights,
-                    lambda_pair=config.lambda_pair,
-                    lambda_anchor=config.lambda_anchor,
-                    lambda_mono=config.lambda_mono,
-                    margin_scale=config.margin_scale,
-                    low_high_margin=config.low_high_margin,
-                    low_high_weight=config.low_high_weight,
-                    gap_weight=config.gap_weight,
-                )
+                if use_pair_training:
+                    pair_metadata = batch.pop("pair_metadata")
+                    batch_size = len(pair_metadata)
+                    win_labels = batch.pop("win_labels").to(device)
+                    lose_labels = batch.pop("lose_labels").to(device)
+                    label_gap = batch.pop("label_gap").to(device)
+                    low_high = batch.pop("low_high").to(device)
+                    batch = {key: value.to(device) for key, value in batch.items()}
+                    outputs = model(**batch)
+                    _, logits = get_loss_logits(outputs)
+                    ref_logits = None
+                    if reference_model is not None:
+                        with torch.no_grad():
+                            ref_outputs = reference_model(**batch)
+                            _, ref_logits = get_loss_logits(ref_outputs)
+                    loss, debug = total_anchored_pairwise_training_loss(
+                        logits[:batch_size].float(),
+                        logits[batch_size:].float(),
+                        ref_logits[:batch_size].float() if ref_logits is not None else None,
+                        ref_logits[batch_size:].float() if ref_logits is not None else None,
+                        win_labels,
+                        lose_labels,
+                        label_gap,
+                        low_high,
+                        model.class_weights,
+                        lambda_point=config.lambda_point,
+                        lambda_pair=config.lambda_pair,
+                        lambda_anchor=config.lambda_anchor,
+                        lambda_mono=config.lambda_mono,
+                        margin_scale=config.margin_scale,
+                        low_high_margin=config.low_high_margin,
+                        low_high_weight=config.low_high_weight,
+                        gap_weight=config.gap_weight,
+                    )
+                else:
+                    batch.pop("metadata")
+                    labels = batch["labels"].to(device)
+                    batch = {key: value.to(device) for key, value in batch.items()}
+                    outputs = model(**batch)
+                    _, logits = get_loss_logits(outputs)
+                    ref_logits = None
+                    if reference_model is not None:
+                        with torch.no_grad():
+                            ref_outputs = reference_model(**batch)
+                            _, ref_logits = get_loss_logits(ref_outputs)
+                    loss, debug = total_anchored_pointwise_training_loss(
+                        logits.float(),
+                        ref_logits.float() if ref_logits is not None else None,
+                        labels,
+                        model.class_weights,
+                        lambda_point=config.lambda_point,
+                        lambda_anchor=config.lambda_anchor,
+                        lambda_mono=config.lambda_mono,
+                    )
                 (loss / config.gradient_accumulation_steps).backward()
                 running_loss += float(loss.detach().cpu())
                 loss_debug_history.append({"epoch": epoch + 1, "step": step, "global_step": global_step, **debug})
@@ -617,7 +697,7 @@ def train(config: QDPR2TrainConfig, preflight_only: bool = False) -> dict[str, A
                     if global_step >= total_steps:
                         break
             progress.newline()
-            dev_result = evaluate(model, dev_loader, device, "dev")
+            dev_result = evaluate(model, dev_loader, device, "dev", config)
             dev_result.metrics["epoch"] = epoch + 1
             dev_result.metrics["global_step"] = global_step
             metrics_history.append(dev_result.metrics)
@@ -641,8 +721,8 @@ def train(config: QDPR2TrainConfig, preflight_only: bool = False) -> dict[str, A
     if not state_dict_path.exists():
         raise RuntimeError(f"Best checkpoint was not saved: {state_dict_path}")
     model.load_state_dict(torch.load(state_dict_path, map_location=device))
-    dev_final = evaluate(model, dev_loader, device, "dev")
-    test_result = evaluate(model, test_loader, device, "test")
+    dev_final = evaluate(model, dev_loader, device, "dev", config)
+    test_result = evaluate(model, test_loader, device, "test", config)
     for result in [dev_final, test_result]:
         result.metrics["epoch"] = "best"
         result.metrics["global_step"] = global_step
@@ -717,15 +797,21 @@ def make_config(args: argparse.Namespace) -> QDPR2TrainConfig:
     max_eval_samples = args.max_eval_samples if args.max_eval_samples is not None else section.get("max_eval_samples")
     max_train_pairs = args.max_train_pairs if args.max_train_pairs is not None else section.get("max_train_pairs")
     max_dev_pairs = args.max_dev_pairs if args.max_dev_pairs is not None else section.get("max_dev_pairs")
+    default_output_dir = qdpr2_run_dir(smoke=smoke)
+    default_checkpoint_dir = qdpr2_checkpoint_dir(smoke=smoke)
+    raw_output_dir = Path(raw["output_dir"]) if raw.get("output_dir") else default_output_dir
+    raw_checkpoint_dir = Path(raw["checkpoint_output_dir"]) if raw.get("checkpoint_output_dir") else default_checkpoint_dir
     return QDPR2TrainConfig(
+        exp_name=str(raw.get("exp_name", "Exp9 QD-PR2 anchored pairwise ordinal fine-tuning")),
+        ablation_name=str(raw.get("ablation_name", "full_qdpr2")),
         run_id=str(raw.get("run_id", QDPR2_RUN_ID)),
         dataset_id=str(raw.get("dataset_id", "A4_question_seed42_human_only")),
         split=str(raw.get("split", "question_seed42")),
         input_template=str(raw.get("input_template", "A4_question_answer_metric_rubric_metadata")),
         model_name_or_path=args.model_name_or_path or str(raw.get("model_name_or_path", "/home/share/models/modelscope/Qwen/Qwen3-Reranker-0.6B")),
         data_dir=args.data_dir or Path(raw.get("data_dir", QDPR2_DATASET_DIR)),
-        output_dir=args.output_dir or qdpr2_run_dir(smoke=smoke),
-        checkpoint_output_dir=args.checkpoint_output_dir or qdpr2_checkpoint_dir(smoke=smoke),
+        output_dir=args.output_dir or raw_output_dir,
+        checkpoint_output_dir=args.checkpoint_output_dir or raw_checkpoint_dir,
         qd_b1_checkpoint_dir=args.qd_b1_checkpoint_dir or Path(raw.get("qd_b1_checkpoint_dir", QD_B1_CHECKPOINT_DIR)),
         head_type=str(raw.get("head_type", "independent_ordinal")),
         objective=str(raw.get("objective", "anchored_risk_aware_pairwise_ordinal")),
@@ -740,6 +826,7 @@ def make_config(args: argparse.Namespace) -> QDPR2TrainConfig:
         low_high_margin=float(raw.get("low_high_margin", DEFAULT_LOW_HIGH_MARGIN)),
         low_high_weight=float(raw.get("low_high_weight", DEFAULT_LOW_HIGH_WEIGHT)),
         gap_weight=float(raw.get("gap_weight", DEFAULT_GAP_WEIGHT)),
+        lambda_point=float(raw.get("lambda_point", QDPR2_DEFAULT_LAMBDA_POINT)),
         lambda_pair=float(raw.get("lambda_pair", QDPR2_DEFAULT_LAMBDA_PAIR)),
         lambda_anchor=float(raw.get("lambda_anchor", QDPR2_DEFAULT_LAMBDA_ANCHOR)),
         lambda_mono=float(raw.get("lambda_mono", QDPR2_DEFAULT_LAMBDA_MONO)),
