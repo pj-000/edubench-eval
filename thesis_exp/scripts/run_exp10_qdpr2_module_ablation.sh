@@ -5,7 +5,7 @@ CONDA_ENV="${CONDA_ENV:-llama_factory}"
 MODEL_NAME_OR_PATH="${MODEL_NAME_OR_PATH:-/home/share/models/modelscope/Qwen/Qwen3-Reranker-0.6B}"
 QD_B1_CHECKPOINT_DIR="${QD_B1_CHECKPOINT_DIR:-thesis_exp/artifacts/exp06_question_disjoint_baselines/checkpoints/QD-B1_human_only_L1_weighted_ordinal/best}"
 EXP10_GPU_LIST="${EXP10_GPU_LIST:-6,7}"
-EXP10_ABLATIONS="${EXP10_ABLATIONS:-full_qdpr2 no_pair no_anchor no_mono point_only no_point_diagnostic}"
+EXP10_ABLATIONS="${EXP10_ABLATIONS:-full_qdpr2 no_pair no_pair_same_pair_batches no_anchor no_mono point_only no_point_diagnostic}"
 INCLUDE_DIAGNOSTIC="${INCLUDE_DIAGNOSTIC:-0}"
 RESET_RUN_DIR="${RESET_RUN_DIR:-0}"
 SKIP_COMPLETED="${SKIP_COMPLETED:-1}"
@@ -26,12 +26,12 @@ NO_PROGRESS_BAR="${NO_PROGRESS_BAR:-0}"
 EXP10_PREFLIGHT_ONLY="${EXP10_PREFLIGHT_ONLY:-0}"
 PYTORCH_CUDA_ALLOC_CONF="${PYTORCH_CUDA_ALLOC_CONF:-expandable_segments:True}"
 
-if [[ "${FORMAL_RUN}" != "1" ]]; then
+if [[ "${FORMAL_RUN}" != "1" && "${EXP10_PREFLIGHT_ONLY}" != "1" ]]; then
   echo "ERROR: Exp10 formal ablation script must run with FORMAL_RUN=1." >&2
   exit 1
 fi
 
-if [[ -n "${MAX_TRAIN_SAMPLES:-}" || -n "${MAX_EVAL_SAMPLES:-}" || -n "${MAX_TRAIN_PAIRS:-}" || -n "${MAX_DEV_PAIRS:-}" ]]; then
+if [[ "${EXP10_PREFLIGHT_ONLY}" != "1" && ( -n "${MAX_TRAIN_SAMPLES:-}" || -n "${MAX_EVAL_SAMPLES:-}" || -n "${MAX_TRAIN_PAIRS:-}" || -n "${MAX_DEV_PAIRS:-}" ) ]]; then
   echo "ERROR: Exp10 formal runs cannot use max sample or max pair limits." >&2
   exit 1
 fi
@@ -41,14 +41,13 @@ REPO_ROOT="$(cd "${SCRIPT_DIR}/../.." && pwd)"
 cd "${REPO_ROOT}"
 
 if [[ -f "${HOME}/miniconda3/bin/activate" ]]; then
-  source "${HOME}/miniconda3/bin/activate" "${CONDA_ENV}"
+  if [[ "${CONDA_ENV}" != "base" && ! -d "${HOME}/miniconda3/envs/${CONDA_ENV}" ]]; then
+    echo "WARNING: conda env ${CONDA_ENV} was not found; using current shell." >&2
+  elif ! source "${HOME}/miniconda3/bin/activate" "${CONDA_ENV}"; then
+    echo "WARNING: could not activate conda env ${CONDA_ENV}; using current shell." >&2
+  fi
 else
   echo "WARNING: ${HOME}/miniconda3/bin/activate was not found; using current shell." >&2
-fi
-
-if [[ ! -f "${QD_B1_CHECKPOINT_DIR}/state_dict.pt" ]]; then
-  echo "BLOCKED_MISSING_QDB1_CHECKPOINT: ${QD_B1_CHECKPOINT_DIR}" >&2
-  exit 1
 fi
 
 if [[ "${INCLUDE_DIAGNOSTIC}" == "1" && "${EXP10_ABLATIONS}" != *"no_point_diagnostic"* ]]; then
@@ -99,6 +98,19 @@ GRADIENT_CHECKPOINTING=${GRADIENT_CHECKPOINTING}
 CONFIG
 
 python -m thesis_exp.src.edujudge.exp10_qdpr2_module_ablation.sanity_check_exp10_setup
+
+if [[ "${EXP10_PREFLIGHT_ONLY}" == "1" ]]; then
+  python -m thesis_exp.src.edujudge.exp10_qdpr2_module_ablation.preflight_exp10_ablation_matrix
+  python -m thesis_exp.src.edujudge.exp10_qdpr2_module_ablation.collect_exp10_results
+  python -m thesis_exp.src.edujudge.exp10_qdpr2_module_ablation.readability_check_exp10
+  cat thesis_exp/outputs/exp10_qdpr2_module_ablation/reports/exp10_preflight_ablation_matrix.md
+  exit 0
+fi
+
+if [[ ! -f "${QD_B1_CHECKPOINT_DIR}/state_dict.pt" ]]; then
+  echo "BLOCKED_MISSING_QDB1_CHECKPOINT: ${QD_B1_CHECKPOINT_DIR}" >&2
+  exit 1
+fi
 
 progress_args=()
 if [[ "${NO_PROGRESS_BAR}" == "1" ]]; then

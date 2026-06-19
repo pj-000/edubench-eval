@@ -1,0 +1,8 @@
+ablation_name,display_name,lambda_point,lambda_pair,lambda_anchor,lambda_mono,force_pair_training,use_pair_training,expected_dataloader_mode,config_dataloader_mode,strict_module_ablation,removed_module,active_losses,status,details
+full_qdpr2,full_qdpr2,1.0,0.05,0.5,0.1,False,True,pair,pair,False,none,L_point + L_pair + L_anchor + L_mono,PASS,
+no_pair,no_pair_pointwise_loader,1.0,0.0,0.5,0.1,False,False,pointwise,pointwise,False,L_pair,L_point + L_anchor + L_mono,PASS,
+no_pair_same_pair_batches,no_pair_same_pair_batches,1.0,0.0,0.5,0.1,True,True,pair,pair,True,L_pair,L_point + L_anchor + L_mono,PASS,
+no_anchor,no_anchor,1.0,0.05,0.0,0.1,False,True,pair,pair,True,L_anchor,L_point + L_pair + L_mono,PASS,
+no_mono,no_mono,1.0,0.05,0.5,0.0,False,True,pair,pair,True,L_mono,L_point + L_pair + L_anchor,PASS,
+point_only,point_only,1.0,0.0,0.0,0.0,False,False,pointwise,pointwise,False,L_pair+L_anchor+L_mono,L_point,PASS,
+no_point_diagnostic,no_point_diagnostic,0.0,0.05,0.5,0.1,False,True,pair,pair,False,L_point,L_pair + L_anchor + L_mono,PASS,

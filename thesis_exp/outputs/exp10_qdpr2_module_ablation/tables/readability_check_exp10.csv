@@ -3,54 +3,74 @@ python py_compile,thesis_exp/src/edujudge/exp09_pairwise_ordinal/losses.py,PASS,
 python py_compile,thesis_exp/src/edujudge/exp09_pairwise_ordinal/train_qdpr2_anchored_pairwise.py,PASS,
 python py_compile,thesis_exp/src/edujudge/exp10_qdpr2_module_ablation/__init__.py,PASS,
 python py_compile,thesis_exp/src/edujudge/exp10_qdpr2_module_ablation/collect_exp10_results.py,PASS,
+python py_compile,thesis_exp/src/edujudge/exp10_qdpr2_module_ablation/preflight_exp10_ablation_matrix.py,PASS,
 python py_compile,thesis_exp/src/edujudge/exp10_qdpr2_module_ablation/sanity_check_exp10_setup.py,PASS,
 python py_compile,thesis_exp/src/edujudge/exp10_qdpr2_module_ablation/readability_check_exp10.py,PASS,
+python py_compile,thesis_exp/src/edujudge/exp10_qdpr2_module_ablation/smoke_check_exp10.py,PASS,
 shell bash -n,thesis_exp/scripts/run_exp10_qdpr2_module_ablation.sh,PASS,
+shell bash -n,thesis_exp/scripts/run_exp10_qdpr2_module_ablation_smoke.sh,PASS,
 shell bash -n,thesis_exp/scripts/sync_exp10_qdpr2_module_ablation_to_server.sh,PASS,
 no CRLF line endings,thesis_exp/src/edujudge/exp09_pairwise_ordinal/losses.py,PASS,
 no CR-only line endings,thesis_exp/src/edujudge/exp09_pairwise_ordinal/losses.py,PASS,
 LF line endings,thesis_exp/src/edujudge/exp09_pairwise_ordinal/losses.py,PASS,
 first line <= 1000 chars,thesis_exp/src/edujudge/exp09_pairwise_ordinal/losses.py,PASS,65
-not collapsed-line file,thesis_exp/src/edujudge/exp09_pairwise_ordinal/losses.py,PASS,426
+not collapsed-line file,thesis_exp/src/edujudge/exp09_pairwise_ordinal/losses.py,PASS,482
 no CRLF line endings,thesis_exp/src/edujudge/exp09_pairwise_ordinal/train_qdpr2_anchored_pairwise.py,PASS,
 no CR-only line endings,thesis_exp/src/edujudge/exp09_pairwise_ordinal/train_qdpr2_anchored_pairwise.py,PASS,
 LF line endings,thesis_exp/src/edujudge/exp09_pairwise_ordinal/train_qdpr2_anchored_pairwise.py,PASS,
 first line <= 1000 chars,thesis_exp/src/edujudge/exp09_pairwise_ordinal/train_qdpr2_anchored_pairwise.py,PASS,68
-not collapsed-line file,thesis_exp/src/edujudge/exp09_pairwise_ordinal/train_qdpr2_anchored_pairwise.py,PASS,872
+not collapsed-line file,thesis_exp/src/edujudge/exp09_pairwise_ordinal/train_qdpr2_anchored_pairwise.py,PASS,948
 no CRLF line endings,thesis_exp/src/edujudge/exp10_qdpr2_module_ablation/__init__.py,PASS,
 no CR-only line endings,thesis_exp/src/edujudge/exp10_qdpr2_module_ablation/__init__.py,PASS,
 LF line endings,thesis_exp/src/edujudge/exp10_qdpr2_module_ablation/__init__.py,PASS,
 first line <= 1000 chars,thesis_exp/src/edujudge/exp10_qdpr2_module_ablation/__init__.py,PASS,45
-not collapsed-line file,thesis_exp/src/edujudge/exp10_qdpr2_module_ablation/__init__.py,PASS,77
+not collapsed-line file,thesis_exp/src/edujudge/exp10_qdpr2_module_ablation/__init__.py,PASS,168
 no CRLF line endings,thesis_exp/src/edujudge/exp10_qdpr2_module_ablation/collect_exp10_results.py,PASS,
 no CR-only line endings,thesis_exp/src/edujudge/exp10_qdpr2_module_ablation/collect_exp10_results.py,PASS,
 LF line endings,thesis_exp/src/edujudge/exp10_qdpr2_module_ablation/collect_exp10_results.py,PASS,
 first line <= 1000 chars,thesis_exp/src/edujudge/exp10_qdpr2_module_ablation/collect_exp10_results.py,PASS,51
-not collapsed-line file,thesis_exp/src/edujudge/exp10_qdpr2_module_ablation/collect_exp10_results.py,PASS,379
+not collapsed-line file,thesis_exp/src/edujudge/exp10_qdpr2_module_ablation/collect_exp10_results.py,PASS,652
+no CRLF line endings,thesis_exp/src/edujudge/exp10_qdpr2_module_ablation/preflight_exp10_ablation_matrix.py,PASS,
+no CR-only line endings,thesis_exp/src/edujudge/exp10_qdpr2_module_ablation/preflight_exp10_ablation_matrix.py,PASS,
+LF line endings,thesis_exp/src/edujudge/exp10_qdpr2_module_ablation/preflight_exp10_ablation_matrix.py,PASS,
+first line <= 1000 chars,thesis_exp/src/edujudge/exp10_qdpr2_module_ablation/preflight_exp10_ablation_matrix.py,PASS,50
+not collapsed-line file,thesis_exp/src/edujudge/exp10_qdpr2_module_ablation/preflight_exp10_ablation_matrix.py,PASS,146
 no CRLF line endings,thesis_exp/src/edujudge/exp10_qdpr2_module_ablation/sanity_check_exp10_setup.py,PASS,
 no CR-only line endings,thesis_exp/src/edujudge/exp10_qdpr2_module_ablation/sanity_check_exp10_setup.py,PASS,
 LF line endings,thesis_exp/src/edujudge/exp10_qdpr2_module_ablation/sanity_check_exp10_setup.py,PASS,
 first line <= 1000 chars,thesis_exp/src/edujudge/exp10_qdpr2_module_ablation/sanity_check_exp10_setup.py,PASS,62
-not collapsed-line file,thesis_exp/src/edujudge/exp10_qdpr2_module_ablation/sanity_check_exp10_setup.py,PASS,147
+not collapsed-line file,thesis_exp/src/edujudge/exp10_qdpr2_module_ablation/sanity_check_exp10_setup.py,PASS,169
 no CRLF line endings,thesis_exp/src/edujudge/exp10_qdpr2_module_ablation/readability_check_exp10.py,PASS,
 no CR-only line endings,thesis_exp/src/edujudge/exp10_qdpr2_module_ablation/readability_check_exp10.py,PASS,
 LF line endings,thesis_exp/src/edujudge/exp10_qdpr2_module_ablation/readability_check_exp10.py,PASS,
 first line <= 1000 chars,thesis_exp/src/edujudge/exp10_qdpr2_module_ablation/readability_check_exp10.py,PASS,64
-not collapsed-line file,thesis_exp/src/edujudge/exp10_qdpr2_module_ablation/readability_check_exp10.py,PASS,160
+not collapsed-line file,thesis_exp/src/edujudge/exp10_qdpr2_module_ablation/readability_check_exp10.py,PASS,163
+no CRLF line endings,thesis_exp/src/edujudge/exp10_qdpr2_module_ablation/smoke_check_exp10.py,PASS,
+no CR-only line endings,thesis_exp/src/edujudge/exp10_qdpr2_module_ablation/smoke_check_exp10.py,PASS,
+LF line endings,thesis_exp/src/edujudge/exp10_qdpr2_module_ablation/smoke_check_exp10.py,PASS,
+first line <= 1000 chars,thesis_exp/src/edujudge/exp10_qdpr2_module_ablation/smoke_check_exp10.py,PASS,32
+not collapsed-line file,thesis_exp/src/edujudge/exp10_qdpr2_module_ablation/smoke_check_exp10.py,PASS,132
 shell first line is bash shebang,thesis_exp/scripts/run_exp10_qdpr2_module_ablation.sh,PASS,#!/usr/bin/env bash
 shell second line is strict mode,thesis_exp/scripts/run_exp10_qdpr2_module_ablation.sh,PASS,set -euo pipefail
 no CRLF line endings,thesis_exp/scripts/run_exp10_qdpr2_module_ablation.sh,PASS,
 no CR-only line endings,thesis_exp/scripts/run_exp10_qdpr2_module_ablation.sh,PASS,
 LF line endings,thesis_exp/scripts/run_exp10_qdpr2_module_ablation.sh,PASS,
 first line <= 1000 chars,thesis_exp/scripts/run_exp10_qdpr2_module_ablation.sh,PASS,19
-not collapsed-line file,thesis_exp/scripts/run_exp10_qdpr2_module_ablation.sh,PASS,212
+not collapsed-line file,thesis_exp/scripts/run_exp10_qdpr2_module_ablation.sh,PASS,224
+shell first line is bash shebang,thesis_exp/scripts/run_exp10_qdpr2_module_ablation_smoke.sh,PASS,#!/usr/bin/env bash
+shell second line is strict mode,thesis_exp/scripts/run_exp10_qdpr2_module_ablation_smoke.sh,PASS,set -euo pipefail
+no CRLF line endings,thesis_exp/scripts/run_exp10_qdpr2_module_ablation_smoke.sh,PASS,
+no CR-only line endings,thesis_exp/scripts/run_exp10_qdpr2_module_ablation_smoke.sh,PASS,
+LF line endings,thesis_exp/scripts/run_exp10_qdpr2_module_ablation_smoke.sh,PASS,
+first line <= 1000 chars,thesis_exp/scripts/run_exp10_qdpr2_module_ablation_smoke.sh,PASS,19
+not collapsed-line file,thesis_exp/scripts/run_exp10_qdpr2_module_ablation_smoke.sh,PASS,100
 shell first line is bash shebang,thesis_exp/scripts/sync_exp10_qdpr2_module_ablation_to_server.sh,PASS,#!/usr/bin/env bash
 shell second line is strict mode,thesis_exp/scripts/sync_exp10_qdpr2_module_ablation_to_server.sh,PASS,set -euo pipefail
 no CRLF line endings,thesis_exp/scripts/sync_exp10_qdpr2_module_ablation_to_server.sh,PASS,
 no CR-only line endings,thesis_exp/scripts/sync_exp10_qdpr2_module_ablation_to_server.sh,PASS,
 LF line endings,thesis_exp/scripts/sync_exp10_qdpr2_module_ablation_to_server.sh,PASS,
 first line <= 1000 chars,thesis_exp/scripts/sync_exp10_qdpr2_module_ablation_to_server.sh,PASS,19
-not collapsed-line file,thesis_exp/scripts/sync_exp10_qdpr2_module_ablation_to_server.sh,PASS,55
+not collapsed-line file,thesis_exp/scripts/sync_exp10_qdpr2_module_ablation_to_server.sh,PASS,56
 no CRLF line endings,thesis_exp/configs/exp10_qdpr2_module_ablation/exp10_full_qdpr2.yaml,PASS,
 no CR-only line endings,thesis_exp/configs/exp10_qdpr2_module_ablation/exp10_full_qdpr2.yaml,PASS,
 LF line endings,thesis_exp/configs/exp10_qdpr2_module_ablation/exp10_full_qdpr2.yaml,PASS,
@@ -63,6 +83,9 @@ LF line endings,thesis_exp/configs/exp10_qdpr2_module_ablation/exp10_no_mono.yam
 no CRLF line endings,thesis_exp/configs/exp10_qdpr2_module_ablation/exp10_no_pair.yaml,PASS,
 no CR-only line endings,thesis_exp/configs/exp10_qdpr2_module_ablation/exp10_no_pair.yaml,PASS,
 LF line endings,thesis_exp/configs/exp10_qdpr2_module_ablation/exp10_no_pair.yaml,PASS,
+no CRLF line endings,thesis_exp/configs/exp10_qdpr2_module_ablation/exp10_no_pair_same_pair_batches.yaml,PASS,
+no CR-only line endings,thesis_exp/configs/exp10_qdpr2_module_ablation/exp10_no_pair_same_pair_batches.yaml,PASS,
+LF line endings,thesis_exp/configs/exp10_qdpr2_module_ablation/exp10_no_pair_same_pair_batches.yaml,PASS,
 no CRLF line endings,thesis_exp/configs/exp10_qdpr2_module_ablation/exp10_no_point_diagnostic.yaml,PASS,
 no CR-only line endings,thesis_exp/configs/exp10_qdpr2_module_ablation/exp10_no_point_diagnostic.yaml,PASS,
 LF line endings,thesis_exp/configs/exp10_qdpr2_module_ablation/exp10_no_point_diagnostic.yaml,PASS,
@@ -74,22 +97,43 @@ no CRLF line endings,thesis_exp/outputs/exp10_qdpr2_module_ablation/readability_
 no CR-only line endings,thesis_exp/outputs/exp10_qdpr2_module_ablation/readability_check_exp10.md,PASS,
 LF line endings,thesis_exp/outputs/exp10_qdpr2_module_ablation/readability_check_exp10.md,PASS,
 first line <= 1000 chars,thesis_exp/outputs/exp10_qdpr2_module_ablation/readability_check_exp10.md,PASS,25
-not collapsed-line file,thesis_exp/outputs/exp10_qdpr2_module_ablation/readability_check_exp10.md,PASS,140
-not large one-line md/csv,thesis_exp/outputs/exp10_qdpr2_module_ablation/readability_check_exp10.md,PASS,lines=140; bytes=15485
-Markdown max prose line length,thesis_exp/outputs/exp10_qdpr2_module_ablation/reports/exp10_ablation_summary.md,PASS,98
+not collapsed-line file,thesis_exp/outputs/exp10_qdpr2_module_ablation/readability_check_exp10.md,PASS,214
+not large one-line md/csv,thesis_exp/outputs/exp10_qdpr2_module_ablation/readability_check_exp10.md,PASS,lines=214; bytes=25037
+Markdown max prose line length,thesis_exp/outputs/exp10_qdpr2_module_ablation/reports/exp10_ablation_summary.md,PASS,99
 no CRLF line endings,thesis_exp/outputs/exp10_qdpr2_module_ablation/reports/exp10_ablation_summary.md,PASS,
 no CR-only line endings,thesis_exp/outputs/exp10_qdpr2_module_ablation/reports/exp10_ablation_summary.md,PASS,
 LF line endings,thesis_exp/outputs/exp10_qdpr2_module_ablation/reports/exp10_ablation_summary.md,PASS,
-first line <= 1000 chars,thesis_exp/outputs/exp10_qdpr2_module_ablation/reports/exp10_ablation_summary.md,PASS,38
-not collapsed-line file,thesis_exp/outputs/exp10_qdpr2_module_ablation/reports/exp10_ablation_summary.md,PASS,21
-not large one-line md/csv,thesis_exp/outputs/exp10_qdpr2_module_ablation/reports/exp10_ablation_summary.md,PASS,lines=21; bytes=1300
+first line <= 1000 chars,thesis_exp/outputs/exp10_qdpr2_module_ablation/reports/exp10_ablation_summary.md,PASS,37
+not collapsed-line file,thesis_exp/outputs/exp10_qdpr2_module_ablation/reports/exp10_ablation_summary.md,PASS,48
+not large one-line md/csv,thesis_exp/outputs/exp10_qdpr2_module_ablation/reports/exp10_ablation_summary.md,PASS,lines=48; bytes=2850
 Markdown max prose line length,thesis_exp/outputs/exp10_qdpr2_module_ablation/reports/exp10_method_plan.md,PASS,99
 no CRLF line endings,thesis_exp/outputs/exp10_qdpr2_module_ablation/reports/exp10_method_plan.md,PASS,
 no CR-only line endings,thesis_exp/outputs/exp10_qdpr2_module_ablation/reports/exp10_method_plan.md,PASS,
 LF line endings,thesis_exp/outputs/exp10_qdpr2_module_ablation/reports/exp10_method_plan.md,PASS,
 first line <= 1000 chars,thesis_exp/outputs/exp10_qdpr2_module_ablation/reports/exp10_method_plan.md,PASS,35
-not collapsed-line file,thesis_exp/outputs/exp10_qdpr2_module_ablation/reports/exp10_method_plan.md,PASS,47
-not large one-line md/csv,thesis_exp/outputs/exp10_qdpr2_module_ablation/reports/exp10_method_plan.md,PASS,lines=47; bytes=1813
+not collapsed-line file,thesis_exp/outputs/exp10_qdpr2_module_ablation/reports/exp10_method_plan.md,PASS,48
+not large one-line md/csv,thesis_exp/outputs/exp10_qdpr2_module_ablation/reports/exp10_method_plan.md,PASS,lines=48; bytes=1921
+Markdown max prose line length,thesis_exp/outputs/exp10_qdpr2_module_ablation/reports/exp10_preflight_ablation_matrix.md,PASS,33
+no CRLF line endings,thesis_exp/outputs/exp10_qdpr2_module_ablation/reports/exp10_preflight_ablation_matrix.md,PASS,
+no CR-only line endings,thesis_exp/outputs/exp10_qdpr2_module_ablation/reports/exp10_preflight_ablation_matrix.md,PASS,
+LF line endings,thesis_exp/outputs/exp10_qdpr2_module_ablation/reports/exp10_preflight_ablation_matrix.md,PASS,
+first line <= 1000 chars,thesis_exp/outputs/exp10_qdpr2_module_ablation/reports/exp10_preflight_ablation_matrix.md,PASS,33
+not collapsed-line file,thesis_exp/outputs/exp10_qdpr2_module_ablation/reports/exp10_preflight_ablation_matrix.md,PASS,13
+not large one-line md/csv,thesis_exp/outputs/exp10_qdpr2_module_ablation/reports/exp10_preflight_ablation_matrix.md,PASS,lines=13; bytes=932
+Markdown max prose line length,thesis_exp/outputs/exp10_qdpr2_module_ablation/reports/exp10_qdpr2_module_ablation_report.md,PASS,99
+no CRLF line endings,thesis_exp/outputs/exp10_qdpr2_module_ablation/reports/exp10_qdpr2_module_ablation_report.md,PASS,
+no CR-only line endings,thesis_exp/outputs/exp10_qdpr2_module_ablation/reports/exp10_qdpr2_module_ablation_report.md,PASS,
+LF line endings,thesis_exp/outputs/exp10_qdpr2_module_ablation/reports/exp10_qdpr2_module_ablation_report.md,PASS,
+first line <= 1000 chars,thesis_exp/outputs/exp10_qdpr2_module_ablation/reports/exp10_qdpr2_module_ablation_report.md,PASS,37
+not collapsed-line file,thesis_exp/outputs/exp10_qdpr2_module_ablation/reports/exp10_qdpr2_module_ablation_report.md,PASS,48
+not large one-line md/csv,thesis_exp/outputs/exp10_qdpr2_module_ablation/reports/exp10_qdpr2_module_ablation_report.md,PASS,lines=48; bytes=2850
+Markdown max prose line length,thesis_exp/outputs/exp10_qdpr2_module_ablation/reports/exp10_qdpr2_module_ablation_review_package.md,PASS,130
+no CRLF line endings,thesis_exp/outputs/exp10_qdpr2_module_ablation/reports/exp10_qdpr2_module_ablation_review_package.md,PASS,
+no CR-only line endings,thesis_exp/outputs/exp10_qdpr2_module_ablation/reports/exp10_qdpr2_module_ablation_review_package.md,PASS,
+LF line endings,thesis_exp/outputs/exp10_qdpr2_module_ablation/reports/exp10_qdpr2_module_ablation_review_package.md,PASS,
+first line <= 1000 chars,thesis_exp/outputs/exp10_qdpr2_module_ablation/reports/exp10_qdpr2_module_ablation_review_package.md,PASS,45
+not collapsed-line file,thesis_exp/outputs/exp10_qdpr2_module_ablation/reports/exp10_qdpr2_module_ablation_review_package.md,PASS,47
+not large one-line md/csv,thesis_exp/outputs/exp10_qdpr2_module_ablation/reports/exp10_qdpr2_module_ablation_review_package.md,PASS,lines=47; bytes=2537
 Markdown max prose line length,thesis_exp/outputs/exp10_qdpr2_module_ablation/sanity_check_exp10_setup.md,PASS,41
 no CRLF line endings,thesis_exp/outputs/exp10_qdpr2_module_ablation/sanity_check_exp10_setup.md,PASS,
 no CR-only line endings,thesis_exp/outputs/exp10_qdpr2_module_ablation/sanity_check_exp10_setup.md,PASS,
@@ -97,24 +141,54 @@ LF line endings,thesis_exp/outputs/exp10_qdpr2_module_ablation/sanity_check_exp1
 first line <= 1000 chars,thesis_exp/outputs/exp10_qdpr2_module_ablation/sanity_check_exp10_setup.md,PASS,37
 not collapsed-line file,thesis_exp/outputs/exp10_qdpr2_module_ablation/sanity_check_exp10_setup.md,PASS,20
 not large one-line md/csv,thesis_exp/outputs/exp10_qdpr2_module_ablation/sanity_check_exp10_setup.md,PASS,lines=20; bytes=957
+CSV readable,thesis_exp/outputs/exp10_qdpr2_module_ablation/tables/exp10_ablation_low_score_distribution.csv,PASS,
+no CRLF line endings,thesis_exp/outputs/exp10_qdpr2_module_ablation/tables/exp10_ablation_low_score_distribution.csv,PASS,
+no CR-only line endings,thesis_exp/outputs/exp10_qdpr2_module_ablation/tables/exp10_ablation_low_score_distribution.csv,PASS,
+LF line endings,thesis_exp/outputs/exp10_qdpr2_module_ablation/tables/exp10_ablation_low_score_distribution.csv,PASS,
+not collapsed-line file,thesis_exp/outputs/exp10_qdpr2_module_ablation/tables/exp10_ablation_low_score_distribution.csv,PASS,36
+not large one-line md/csv,thesis_exp/outputs/exp10_qdpr2_module_ablation/tables/exp10_ablation_low_score_distribution.csv,PASS,lines=36; bytes=1722
+CSV readable,thesis_exp/outputs/exp10_qdpr2_module_ablation/tables/exp10_ablation_low_to_high_by_label.csv,PASS,
+no CRLF line endings,thesis_exp/outputs/exp10_qdpr2_module_ablation/tables/exp10_ablation_low_to_high_by_label.csv,PASS,
+no CR-only line endings,thesis_exp/outputs/exp10_qdpr2_module_ablation/tables/exp10_ablation_low_to_high_by_label.csv,PASS,
+LF line endings,thesis_exp/outputs/exp10_qdpr2_module_ablation/tables/exp10_ablation_low_to_high_by_label.csv,PASS,
+not collapsed-line file,thesis_exp/outputs/exp10_qdpr2_module_ablation/tables/exp10_ablation_low_to_high_by_label.csv,PASS,15
+not large one-line md/csv,thesis_exp/outputs/exp10_qdpr2_module_ablation/tables/exp10_ablation_low_to_high_by_label.csv,PASS,lines=15; bytes=741
 CSV readable,thesis_exp/outputs/exp10_qdpr2_module_ablation/tables/exp10_ablation_metrics_summary.csv,PASS,
 no CRLF line endings,thesis_exp/outputs/exp10_qdpr2_module_ablation/tables/exp10_ablation_metrics_summary.csv,PASS,
 no CR-only line endings,thesis_exp/outputs/exp10_qdpr2_module_ablation/tables/exp10_ablation_metrics_summary.csv,PASS,
 LF line endings,thesis_exp/outputs/exp10_qdpr2_module_ablation/tables/exp10_ablation_metrics_summary.csv,PASS,
-not collapsed-line file,thesis_exp/outputs/exp10_qdpr2_module_ablation/tables/exp10_ablation_metrics_summary.csv,PASS,7
-not large one-line md/csv,thesis_exp/outputs/exp10_qdpr2_module_ablation/tables/exp10_ablation_metrics_summary.csv,PASS,lines=7; bytes=1039
+not collapsed-line file,thesis_exp/outputs/exp10_qdpr2_module_ablation/tables/exp10_ablation_metrics_summary.csv,PASS,8
+not large one-line md/csv,thesis_exp/outputs/exp10_qdpr2_module_ablation/tables/exp10_ablation_metrics_summary.csv,PASS,lines=8; bytes=2330
 CSV readable,thesis_exp/outputs/exp10_qdpr2_module_ablation/tables/exp10_ablation_module_effects.csv,PASS,
 no CRLF line endings,thesis_exp/outputs/exp10_qdpr2_module_ablation/tables/exp10_ablation_module_effects.csv,PASS,
 no CR-only line endings,thesis_exp/outputs/exp10_qdpr2_module_ablation/tables/exp10_ablation_module_effects.csv,PASS,
 LF line endings,thesis_exp/outputs/exp10_qdpr2_module_ablation/tables/exp10_ablation_module_effects.csv,PASS,
 not collapsed-line file,thesis_exp/outputs/exp10_qdpr2_module_ablation/tables/exp10_ablation_module_effects.csv,PASS,1
-not large one-line md/csv,thesis_exp/outputs/exp10_qdpr2_module_ablation/tables/exp10_ablation_module_effects.csv,PASS,lines=1; bytes=88
+not large one-line md/csv,thesis_exp/outputs/exp10_qdpr2_module_ablation/tables/exp10_ablation_module_effects.csv,PASS,lines=1; bytes=190
+CSV readable,thesis_exp/outputs/exp10_qdpr2_module_ablation/tables/exp10_ablation_monotonic_by_threshold.csv,PASS,
+no CRLF line endings,thesis_exp/outputs/exp10_qdpr2_module_ablation/tables/exp10_ablation_monotonic_by_threshold.csv,PASS,
+no CR-only line endings,thesis_exp/outputs/exp10_qdpr2_module_ablation/tables/exp10_ablation_monotonic_by_threshold.csv,PASS,
+LF line endings,thesis_exp/outputs/exp10_qdpr2_module_ablation/tables/exp10_ablation_monotonic_by_threshold.csv,PASS,
+not collapsed-line file,thesis_exp/outputs/exp10_qdpr2_module_ablation/tables/exp10_ablation_monotonic_by_threshold.csv,PASS,22
+not large one-line md/csv,thesis_exp/outputs/exp10_qdpr2_module_ablation/tables/exp10_ablation_monotonic_by_threshold.csv,PASS,lines=22; bytes=1159
+CSV readable,thesis_exp/outputs/exp10_qdpr2_module_ablation/tables/exp10_ablation_vs_existing_baselines.csv,PASS,
+no CRLF line endings,thesis_exp/outputs/exp10_qdpr2_module_ablation/tables/exp10_ablation_vs_existing_baselines.csv,PASS,
+no CR-only line endings,thesis_exp/outputs/exp10_qdpr2_module_ablation/tables/exp10_ablation_vs_existing_baselines.csv,PASS,
+LF line endings,thesis_exp/outputs/exp10_qdpr2_module_ablation/tables/exp10_ablation_vs_existing_baselines.csv,PASS,
+not collapsed-line file,thesis_exp/outputs/exp10_qdpr2_module_ablation/tables/exp10_ablation_vs_existing_baselines.csv,PASS,1
+not large one-line md/csv,thesis_exp/outputs/exp10_qdpr2_module_ablation/tables/exp10_ablation_vs_existing_baselines.csv,PASS,lines=1; bytes=103
 CSV readable,thesis_exp/outputs/exp10_qdpr2_module_ablation/tables/exp10_config_sanity.csv,PASS,
 no CRLF line endings,thesis_exp/outputs/exp10_qdpr2_module_ablation/tables/exp10_config_sanity.csv,PASS,
 no CR-only line endings,thesis_exp/outputs/exp10_qdpr2_module_ablation/tables/exp10_config_sanity.csv,PASS,
 LF line endings,thesis_exp/outputs/exp10_qdpr2_module_ablation/tables/exp10_config_sanity.csv,PASS,
-not collapsed-line file,thesis_exp/outputs/exp10_qdpr2_module_ablation/tables/exp10_config_sanity.csv,PASS,7
-not large one-line md/csv,thesis_exp/outputs/exp10_qdpr2_module_ablation/tables/exp10_config_sanity.csv,PASS,lines=7; bytes=1559
+not collapsed-line file,thesis_exp/outputs/exp10_qdpr2_module_ablation/tables/exp10_config_sanity.csv,PASS,8
+not large one-line md/csv,thesis_exp/outputs/exp10_qdpr2_module_ablation/tables/exp10_config_sanity.csv,PASS,lines=8; bytes=2496
+CSV readable,thesis_exp/outputs/exp10_qdpr2_module_ablation/tables/exp10_preflight_ablation_matrix.csv,PASS,
+no CRLF line endings,thesis_exp/outputs/exp10_qdpr2_module_ablation/tables/exp10_preflight_ablation_matrix.csv,PASS,
+no CR-only line endings,thesis_exp/outputs/exp10_qdpr2_module_ablation/tables/exp10_preflight_ablation_matrix.csv,PASS,
+LF line endings,thesis_exp/outputs/exp10_qdpr2_module_ablation/tables/exp10_preflight_ablation_matrix.csv,PASS,
+not collapsed-line file,thesis_exp/outputs/exp10_qdpr2_module_ablation/tables/exp10_preflight_ablation_matrix.csv,PASS,8
+not large one-line md/csv,thesis_exp/outputs/exp10_qdpr2_module_ablation/tables/exp10_preflight_ablation_matrix.csv,PASS,lines=8; bytes=1049
 CSV readable,thesis_exp/outputs/exp10_qdpr2_module_ablation/tables/exp10_qdb1_reference_metrics.csv,PASS,
 no CRLF line endings,thesis_exp/outputs/exp10_qdpr2_module_ablation/tables/exp10_qdb1_reference_metrics.csv,PASS,
 no CR-only line endings,thesis_exp/outputs/exp10_qdpr2_module_ablation/tables/exp10_qdb1_reference_metrics.csv,PASS,
@@ -131,5 +205,5 @@ CSV readable,thesis_exp/outputs/exp10_qdpr2_module_ablation/tables/readability_c
 no CRLF line endings,thesis_exp/outputs/exp10_qdpr2_module_ablation/tables/readability_check_exp10.csv,PASS,
 no CR-only line endings,thesis_exp/outputs/exp10_qdpr2_module_ablation/tables/readability_check_exp10.csv,PASS,
 LF line endings,thesis_exp/outputs/exp10_qdpr2_module_ablation/tables/readability_check_exp10.csv,PASS,
-not collapsed-line file,thesis_exp/outputs/exp10_qdpr2_module_ablation/tables/readability_check_exp10.csv,PASS,135
-not large one-line md/csv,thesis_exp/outputs/exp10_qdpr2_module_ablation/tables/readability_check_exp10.csv,PASS,lines=135; bytes=14071
+not collapsed-line file,thesis_exp/outputs/exp10_qdpr2_module_ablation/tables/readability_check_exp10.csv,PASS,209
+not large one-line md/csv,thesis_exp/outputs/exp10_qdpr2_module_ablation/tables/readability_check_exp10.csv,PASS,lines=209; bytes=22883

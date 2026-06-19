@@ -1,6 +1,11 @@
 exp_name: exp10_qdpr2_module_ablation
 ablation_name: point_only
+display_name: point_only
 run_id: EXP10_point_only
+dataloader_mode: pointwise
+strict_module_ablation: false
+removed_module: L_pair+L_anchor+L_mono
+active_losses: L_point
 dataset_id: A4_question_seed42_human_only
 split: question_seed42
 input_template: A4_question_answer_metric_rubric_metadata
@@ -26,6 +31,7 @@ lambda_point: 1.0
 lambda_pair: 0.0
 lambda_anchor: 0.0
 lambda_mono: 0.0
+force_pair_training: false
 w_min: 0.5
 w_max: 3.0
 max_length: 2048

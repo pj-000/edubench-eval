@@ -88,6 +88,7 @@ from thesis_exp.src.edujudge.utils.io import relpath, write_csv, write_json, wri
 class QDPR2TrainConfig:
     exp_name: str
     ablation_name: str
+    display_name: str
     run_id: str
     dataset_id: str
     split: str
@@ -114,6 +115,10 @@ class QDPR2TrainConfig:
     lambda_pair: float
     lambda_anchor: float
     lambda_mono: float
+    force_pair_training: bool
+    dataloader_mode: str
+    strict_module_ablation: bool
+    removed_module: str
     w_min: float
     w_max: float
     max_length: int
@@ -387,10 +392,16 @@ def save_checkpoint(
             "anchor_checkpoint_dir": relpath(config.qd_b1_checkpoint_dir),
             "experiment": config.exp_name,
             "ablation_name": config.ablation_name,
+            "display_name": config.display_name,
             "run_id": config.run_id,
             "head_type": config.head_type,
             "objective": config.objective,
             "loss": config.loss,
+            "removed_module": config.removed_module,
+            "strict_module_ablation": config.strict_module_ablation,
+            "force_pair_training": config.force_pair_training,
+            "use_pair_training": use_pair_training(config),
+            "dataloader_mode": resolved_dataloader_mode(config),
             "num_outputs": getattr(model, "num_outputs", 4),
             "hidden_size": getattr(model, "hidden_size", None),
             "state_dict": state_dict_path.name,
@@ -421,6 +432,7 @@ def normalize_run_files(output_dir: Path, config: QDPR2TrainConfig, status: str)
         {
             "experiment": config.exp_name,
             "ablation_name": config.ablation_name,
+            "display_name": config.display_name,
             "run_id": config.run_id,
             "status": status,
             "dataset_id": config.dataset_id,
@@ -431,6 +443,12 @@ def normalize_run_files(output_dir: Path, config: QDPR2TrainConfig, status: str)
             "head_type": config.head_type,
             "objective": config.objective,
             "loss": config.loss,
+            "removed_module": config.removed_module,
+            "strict_module_ablation": config.strict_module_ablation,
+            "force_pair_training": config.force_pair_training,
+            "use_pair_training": use_pair_training(config),
+            "dataloader_mode": resolved_dataloader_mode(config),
+            "expected_dataloader_mode": config.dataloader_mode,
             "synthetic_used": False,
             "best_epoch": best_metadata.get("best_epoch"),
             "best_global_step": best_metadata.get("best_global_step"),
@@ -453,10 +471,16 @@ def normalize_run_files(output_dir: Path, config: QDPR2TrainConfig, status: str)
         f"Status: `{status}`",
         f"Run ID: `{config.run_id}`",
         f"Ablation: `{config.ablation_name}`",
+        f"Display name: `{config.display_name}`",
         "Initialization: QD-B1 checkpoint only.",
         "Dataset: question_seed42 human-only A4 rows.",
         "Synthetic rows: none.",
-        f"Active losses: `{'+'.join(active_losses) if active_losses else 'none'}`",
+        f"Removed module: `{config.removed_module}`",
+        f"Strict module ablation: `{config.strict_module_ablation}`",
+        f"Force pair training: `{config.force_pair_training}`",
+        f"Use pair training: `{use_pair_training(config)}`",
+        f"Dataloader mode: `{resolved_dataloader_mode(config)}`",
+        f"Active losses: `{' + '.join(active_losses) if active_losses else 'none'}`",
         f"lambda_point: `{config.lambda_point}`",
         f"lambda_pair: `{config.lambda_pair}`",
         f"lambda_anchor: `{config.lambda_anchor}`",
@@ -498,6 +522,14 @@ def pair_build_config(config: QDPR2TrainConfig) -> QDPR2PairBuildConfig:
     )
 
 
+def use_pair_training(config: QDPR2TrainConfig) -> bool:
+    return bool(config.lambda_pair != 0.0 or config.force_pair_training)
+
+
+def resolved_dataloader_mode(config: QDPR2TrainConfig) -> str:
+    return "pair" if use_pair_training(config) else "pointwise"
+
+
 def loss_config_row(config: QDPR2TrainConfig, class_weights: list[float]) -> dict[str, Any]:
     active_losses = []
     if config.lambda_point != 0.0:
@@ -511,9 +543,16 @@ def loss_config_row(config: QDPR2TrainConfig, class_weights: list[float]) -> dic
     return {
         "exp_name": config.exp_name,
         "ablation_name": config.ablation_name,
+        "display_name": config.display_name,
         "run_id": config.run_id,
         "initialization": "QD-B1 checkpoint",
-        "active_losses": "+".join(active_losses) if active_losses else "none",
+        "active_losses": " + ".join(active_losses) if active_losses else "none",
+        "removed_module": config.removed_module,
+        "strict_module_ablation": config.strict_module_ablation,
+        "force_pair_training": config.force_pair_training,
+        "use_pair_training": use_pair_training(config),
+        "dataloader_mode": resolved_dataloader_mode(config),
+        "expected_dataloader_mode": config.dataloader_mode,
         "pointwise_loss": "weighted_ordinal_bce",
         "pairwise_loss": "softplus(m_ij - (r(win)-r(lose)))",
         "anchor_loss": "BCEWithLogits(current_logits, sigmoid(qd_b1_ref_logits))",
@@ -549,9 +588,15 @@ def train(config: QDPR2TrainConfig, preflight_only: bool = False) -> dict[str, A
     (config.output_dir / "tables").mkdir(parents=True, exist_ok=True)
     (config.output_dir / "logs").mkdir(parents=True, exist_ok=True)
     config.checkpoint_output_dir.mkdir(parents=True, exist_ok=True)
-    use_pair_training = config.lambda_pair != 0.0
+    pair_training_enabled = use_pair_training(config)
+    actual_dataloader_mode = "pair" if pair_training_enabled else "pointwise"
+    if config.dataloader_mode and config.dataloader_mode != actual_dataloader_mode:
+        raise ValueError(
+            f"dataloader_mode mismatch for {config.ablation_name}: "
+            f"config={config.dataloader_mode}, resolved={actual_dataloader_mode}"
+        )
     setup: dict[str, Any] = {"train_pairs": [], "dev_pairs": []}
-    if use_pair_training:
+    if pair_training_enabled:
         setup = prepare_qdpr2_setup(pair_build_config(config), write_shards=True)
     train_rows_full = read_split(config.data_dir, "train")
     weight_rows = write_pointwise_class_weights(train_rows_full, config.output_dir / "tables", config.w_min, config.w_max)
@@ -569,7 +614,12 @@ def train(config: QDPR2TrainConfig, preflight_only: bool = False) -> dict[str, A
                     "API called: no",
                     "Synthetic generated: no",
                     f"QD-B1 checkpoint: {relpath(config.qd_b1_checkpoint_dir)}",
-                    f"Pair training enabled: {use_pair_training}",
+                    f"Display name: {config.display_name}",
+                    f"Removed module: {config.removed_module}",
+                    f"Strict module ablation: {config.strict_module_ablation}",
+                    f"Force pair training: {config.force_pair_training}",
+                    f"Pair training enabled: {pair_training_enabled}",
+                    f"Dataloader mode: {actual_dataloader_mode}",
                     f"Train pairs: {len(setup.get('train_pairs', []))}",
                     f"Dev pairs: {len(setup.get('dev_pairs', []))}",
                     f"lambda_point: {config.lambda_point}",
@@ -581,7 +631,9 @@ def train(config: QDPR2TrainConfig, preflight_only: bool = False) -> dict[str, A
         )
         return {
             "status": "preflight_pass",
-            "pair_training_enabled": use_pair_training,
+            "pair_training_enabled": pair_training_enabled,
+            "force_pair_training": config.force_pair_training,
+            "dataloader_mode": actual_dataloader_mode,
             "train_pairs": len(setup.get("train_pairs", [])),
             "dev_pairs": len(setup.get("dev_pairs", [])),
         }
@@ -591,8 +643,8 @@ def train(config: QDPR2TrainConfig, preflight_only: bool = False) -> dict[str, A
     train_rows = limit_rows(train_rows_full, config.max_train_samples)
     dev_rows = limit_rows(read_split(config.data_dir, "dev"), config.max_eval_samples)
     test_rows = limit_rows(read_split(config.data_dir, "test"), config.max_eval_samples)
-    train_pairs = limit_rows(read_qdpr2_pair_shards("train"), config.max_train_pairs) if use_pair_training else []
-    dev_pairs = limit_rows(read_qdpr2_pair_shards("dev"), config.max_dev_pairs) if use_pair_training else []
+    train_pairs = limit_rows(read_qdpr2_pair_shards("train"), config.max_train_pairs) if pair_training_enabled else []
+    dev_pairs = limit_rows(read_qdpr2_pair_shards("dev"), config.max_dev_pairs) if pair_training_enabled else []
     model, reference_model, tokenizer = load_model_and_tokenizer(config, class_weights)
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     model.to(device)
@@ -602,7 +654,7 @@ def train(config: QDPR2TrainConfig, preflight_only: bool = False) -> dict[str, A
     test_loader = make_pointwise_dataloader(test_rows, tokenizer, config, "test", shuffle=False)
     train_loader = (
         make_pair_dataloader(train_pairs, tokenizer, config, shuffle=True)
-        if use_pair_training
+        if pair_training_enabled
         else make_pointwise_dataloader(train_rows, tokenizer, config, "train", shuffle=True)
     )
     best_dir = config.checkpoint_output_dir / "best"
@@ -626,7 +678,7 @@ def train(config: QDPR2TrainConfig, preflight_only: bool = False) -> dict[str, A
             optimizer.zero_grad(set_to_none=True)
             running_loss = 0.0
             for step, batch in enumerate(train_loader, start=1):
-                if use_pair_training:
+                if pair_training_enabled:
                     pair_metadata = batch.pop("pair_metadata")
                     batch_size = len(pair_metadata)
                     win_labels = batch.pop("win_labels").to(device)
@@ -682,6 +734,18 @@ def train(config: QDPR2TrainConfig, preflight_only: bool = False) -> dict[str, A
                     )
                 (loss / config.gradient_accumulation_steps).backward()
                 running_loss += float(loss.detach().cpu())
+                debug.update(
+                    {
+                        "lambda_point": config.lambda_point,
+                        "lambda_pair": config.lambda_pair,
+                        "lambda_anchor": config.lambda_anchor,
+                        "lambda_mono": config.lambda_mono,
+                        "force_pair_training": config.force_pair_training,
+                        "use_pair_training": pair_training_enabled,
+                        "dataloader_mode": actual_dataloader_mode,
+                        "strict_module_ablation": config.strict_module_ablation,
+                    }
+                )
                 loss_debug_history.append({"epoch": epoch + 1, "step": step, "global_step": global_step, **debug})
                 if step % config.gradient_accumulation_steps == 0 or step == len(train_loader):
                     torch.nn.utils.clip_grad_norm_(model.parameters(), config.max_grad_norm)
@@ -801,9 +865,17 @@ def make_config(args: argparse.Namespace) -> QDPR2TrainConfig:
     default_checkpoint_dir = qdpr2_checkpoint_dir(smoke=smoke)
     raw_output_dir = Path(raw["output_dir"]) if raw.get("output_dir") else default_output_dir
     raw_checkpoint_dir = Path(raw["checkpoint_output_dir"]) if raw.get("checkpoint_output_dir") else default_checkpoint_dir
+    ablation_name = str(raw.get("ablation_name", "full_qdpr2"))
+    lambda_point = float(raw.get("lambda_point", QDPR2_DEFAULT_LAMBDA_POINT))
+    lambda_pair = float(raw.get("lambda_pair", QDPR2_DEFAULT_LAMBDA_PAIR))
+    lambda_anchor = float(raw.get("lambda_anchor", QDPR2_DEFAULT_LAMBDA_ANCHOR))
+    lambda_mono = float(raw.get("lambda_mono", QDPR2_DEFAULT_LAMBDA_MONO))
+    force_pair_training = bool(raw.get("force_pair_training", False))
+    resolved_mode = "pair" if lambda_pair != 0.0 or force_pair_training else "pointwise"
     return QDPR2TrainConfig(
         exp_name=str(raw.get("exp_name", "Exp9 QD-PR2 anchored pairwise ordinal fine-tuning")),
-        ablation_name=str(raw.get("ablation_name", "full_qdpr2")),
+        ablation_name=ablation_name,
+        display_name=str(raw.get("display_name", ablation_name)),
         run_id=str(raw.get("run_id", QDPR2_RUN_ID)),
         dataset_id=str(raw.get("dataset_id", "A4_question_seed42_human_only")),
         split=str(raw.get("split", "question_seed42")),
@@ -826,10 +898,14 @@ def make_config(args: argparse.Namespace) -> QDPR2TrainConfig:
         low_high_margin=float(raw.get("low_high_margin", DEFAULT_LOW_HIGH_MARGIN)),
         low_high_weight=float(raw.get("low_high_weight", DEFAULT_LOW_HIGH_WEIGHT)),
         gap_weight=float(raw.get("gap_weight", DEFAULT_GAP_WEIGHT)),
-        lambda_point=float(raw.get("lambda_point", QDPR2_DEFAULT_LAMBDA_POINT)),
-        lambda_pair=float(raw.get("lambda_pair", QDPR2_DEFAULT_LAMBDA_PAIR)),
-        lambda_anchor=float(raw.get("lambda_anchor", QDPR2_DEFAULT_LAMBDA_ANCHOR)),
-        lambda_mono=float(raw.get("lambda_mono", QDPR2_DEFAULT_LAMBDA_MONO)),
+        lambda_point=lambda_point,
+        lambda_pair=lambda_pair,
+        lambda_anchor=lambda_anchor,
+        lambda_mono=lambda_mono,
+        force_pair_training=force_pair_training,
+        dataloader_mode=str(raw.get("dataloader_mode", resolved_mode)),
+        strict_module_ablation=bool(raw.get("strict_module_ablation", False)),
+        removed_module=str(raw.get("removed_module", "none")),
         w_min=float(raw.get("w_min", DEFAULT_W_MIN)),
         w_max=float(raw.get("w_max", DEFAULT_W_MAX)),
         max_length=args.max_length or int(raw.get("max_length", 2048)),

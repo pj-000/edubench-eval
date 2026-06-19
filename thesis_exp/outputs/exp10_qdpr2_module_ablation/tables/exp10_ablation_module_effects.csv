@@ -1,1 +1,1 @@
-comparison,ablation_name,metric,reference_value,ablation_value,delta,direction,improved
+comparison,ablation_name,display_name,removed_module,dataloader_mode,force_pair_training,strict_module_ablation,metric,reference_value,ablation_value,delta,direction,improved,interpretation

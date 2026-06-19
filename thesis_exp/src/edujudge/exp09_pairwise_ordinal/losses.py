@@ -269,12 +269,27 @@ def total_anchored_pairwise_training_loss(
             + float(lambda_anchor) * anchor_loss
             + float(lambda_mono) * mono_loss
         )
+        point_value = float(point_loss.detach().cpu())
+        pair_value = float(pair_loss.detach().cpu())
+        anchor_value = float(anchor_loss.detach().cpu())
+        mono_value = float(mono_loss.detach().cpu())
+        total_value = float(total.detach().cpu())
         debug = {
-            "L_total": float(total.detach().cpu()),
-            "L_point": float(point_loss.detach().cpu()),
+            "L_total": total_value,
+            "loss_total": total_value,
+            "L_point": point_value,
+            "loss_point": point_value,
+            "weighted_loss_point": float(lambda_point) * point_value,
             **pair_debug,
+            "loss_pair_raw": pair_value,
+            "loss_pair": pair_value,
+            "weighted_loss_pair": float(lambda_pair) * pair_value,
             **anchor_debug,
+            "loss_anchor": anchor_value,
+            "weighted_loss_anchor": float(lambda_anchor) * anchor_value,
             **mono_debug,
+            "loss_mono": mono_value,
+            "weighted_loss_mono": float(lambda_mono) * mono_value,
             **point_debug,
         }
         return total, debug
@@ -306,12 +321,26 @@ def total_anchored_pairwise_training_loss(
         + float(lambda_anchor) * anchor_loss
         + float(lambda_mono) * mono_loss
     )
+    point_value = float(point_loss)
+    pair_value = float(pair_loss)
+    anchor_value = float(anchor_loss)
+    mono_value = float(mono_loss)
     return total, {
         "L_total": total,
-        "L_point": float(point_loss),
+        "loss_total": total,
+        "L_point": point_value,
+        "loss_point": point_value,
+        "weighted_loss_point": float(lambda_point) * point_value,
         **pair_debug,
+        "loss_pair_raw": pair_value,
+        "loss_pair": pair_value,
+        "weighted_loss_pair": float(lambda_pair) * pair_value,
         **anchor_debug,
+        "loss_anchor": anchor_value,
+        "weighted_loss_anchor": float(lambda_anchor) * anchor_value,
         **mono_debug,
+        "loss_mono": mono_value,
+        "weighted_loss_mono": float(lambda_mono) * mono_value,
         **point_debug,
     }
 
@@ -340,33 +369,60 @@ def total_anchored_pointwise_training_loss(
     mono_loss, mono_debug = monotonic_regularization(logits)
     total = float(lambda_point) * point_loss + float(lambda_anchor) * anchor_loss + float(lambda_mono) * mono_loss
     if _is_torch_tensor(logits):
+        point_value = float(point_loss.detach().cpu())
+        anchor_value = float(anchor_loss.detach().cpu())
+        mono_value = float(mono_loss.detach().cpu())
+        total_value = float(total.detach().cpu())
         debug = {
-            "L_total": float(total.detach().cpu()),
-            "L_point": float(point_loss.detach().cpu()),
+            "L_total": total_value,
+            "loss_total": total_value,
+            "L_point": point_value,
+            "loss_point": point_value,
+            "weighted_loss_point": float(lambda_point) * point_value,
             "L_pair": 0.0,
             "weighted_L_pair": 0.0,
+            "loss_pair_raw": 0.0,
+            "loss_pair": 0.0,
+            "weighted_loss_pair": 0.0,
             "mean_pair_weight": 0.0,
             "mean_pair_margin": 0.0,
             "mean_score_gap": 0.0,
             "low_high_pair_loss": 0.0,
             "adjacent_pair_loss": 0.0,
             **anchor_debug,
+            "loss_anchor": anchor_value,
+            "weighted_loss_anchor": float(lambda_anchor) * anchor_value,
             **mono_debug,
+            "loss_mono": mono_value,
+            "weighted_loss_mono": float(lambda_mono) * mono_value,
             **point_debug,
         }
         return total, debug
+    point_value = float(point_loss)
+    anchor_value = float(anchor_loss)
+    mono_value = float(mono_loss)
     return float(total), {
         "L_total": float(total),
-        "L_point": float(point_loss),
+        "loss_total": float(total),
+        "L_point": point_value,
+        "loss_point": point_value,
+        "weighted_loss_point": float(lambda_point) * point_value,
         "L_pair": 0.0,
         "weighted_L_pair": 0.0,
+        "loss_pair_raw": 0.0,
+        "loss_pair": 0.0,
+        "weighted_loss_pair": 0.0,
         "mean_pair_weight": 0.0,
         "mean_pair_margin": 0.0,
         "mean_score_gap": 0.0,
         "low_high_pair_loss": 0.0,
         "adjacent_pair_loss": 0.0,
         **anchor_debug,
+        "loss_anchor": anchor_value,
+        "weighted_loss_anchor": float(lambda_anchor) * anchor_value,
         **mono_debug,
+        "loss_mono": mono_value,
+        "weighted_loss_mono": float(lambda_mono) * mono_value,
         **point_debug,
     }
 

@@ -19,6 +19,7 @@ from thesis_exp.src.edujudge.utils.io import relpath, write_csv, write_text
 
 SCRIPT_PATHS = [
     Path("thesis_exp/scripts/run_exp10_qdpr2_module_ablation.sh"),
+    Path("thesis_exp/scripts/run_exp10_qdpr2_module_ablation_smoke.sh"),
     Path("thesis_exp/scripts/sync_exp10_qdpr2_module_ablation_to_server.sh"),
 ]
 SOURCE_PATHS = [
@@ -26,8 +27,10 @@ SOURCE_PATHS = [
     Path("thesis_exp/src/edujudge/exp09_pairwise_ordinal/train_qdpr2_anchored_pairwise.py"),
     Path("thesis_exp/src/edujudge/exp10_qdpr2_module_ablation/__init__.py"),
     Path("thesis_exp/src/edujudge/exp10_qdpr2_module_ablation/collect_exp10_results.py"),
+    Path("thesis_exp/src/edujudge/exp10_qdpr2_module_ablation/preflight_exp10_ablation_matrix.py"),
     Path("thesis_exp/src/edujudge/exp10_qdpr2_module_ablation/sanity_check_exp10_setup.py"),
     Path("thesis_exp/src/edujudge/exp10_qdpr2_module_ablation/readability_check_exp10.py"),
+    Path("thesis_exp/src/edujudge/exp10_qdpr2_module_ablation/smoke_check_exp10.py"),
 ]
 TEXT_SUFFIXES = {".py", ".sh", ".md", ".csv", ".yaml", ".yml"}
 COLLAPSE_SUFFIXES = {".py", ".sh", ".md", ".csv"}

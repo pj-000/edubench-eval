@@ -12,20 +12,21 @@ Initialization: QD-B1 low-score weighted ordinal checkpoint.
 
 Ordinal form: independent cumulative logits for `P(y > t | x)`, `t=1,2,3,4`.
 
-This experiment evaluates QD-PR2 loss modules without using RLHF, PPO, GRPO, DPO, test-label
+This experiment evaluates QD-PR2 loss modules without external preference-tuning loops, test-label
 tuning, pair mining from dev/test, or checkpoint selection on test labels.
 
 | ablation | lambda_point | lambda_pair | lambda_anchor | lambda_mono | purpose |
 | --- | ---: | ---: | ---: | ---: | --- |
 | full_qdpr2 | 1.0 | 0.05 | 0.5 | 0.1 | Complete anchored pairwise ordinal calibration. |
-| no_pair | 1.0 | 0.0 | 0.5 | 0.1 | Test whether pairwise boundary learning lowers low-to-high risk. |
+| no_pair | 1.0 | 0.0 | 0.5 | 0.1 | Auxiliary diagnostic using the pointwise loader. |
+| no_pair_same_pair_batches | 1.0 | 0.0 | 0.5 | 0.1 | Strict L_pair ablation under identical pair-batch exposure. |
 | no_anchor | 1.0 | 0.05 | 0.0 | 0.1 | Test whether anchor protects pointwise calibration and MAE/QWK. |
 | no_mono | 1.0 | 0.05 | 0.5 | 0.0 | Test whether monotonic regularization controls threshold violations. |
 | point_only | 1.0 | 0.0 | 0.0 | 0.0 | Check whether gains come from another pointwise fine-tuning round. |
 | no_point_diagnostic | 0.0 | 0.05 | 0.5 | 0.1 | Diagnostic only; not a candidate final method. |
 
 Default run command on server. This uses GPUs `6,7`, assigns an ordered queue to each GPU, and runs
-all six ablations including the diagnostic run:
+all seven ablations including the diagnostic run:
 
 ```bash
 cd ~/edubench-eval-exp2

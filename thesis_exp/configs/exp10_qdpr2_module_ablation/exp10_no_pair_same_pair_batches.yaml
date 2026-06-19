@@ -1,22 +1,22 @@
 exp_name: exp10_qdpr2_module_ablation
-ablation_name: no_mono
-display_name: no_mono
-run_id: EXP10_no_mono
+ablation_name: no_pair_same_pair_batches
+display_name: no_pair_same_pair_batches
+run_id: EXP10_no_pair_same_pair_batches
 dataloader_mode: pair
 strict_module_ablation: true
-removed_module: L_mono
-active_losses: L_point + L_pair + L_anchor
+removed_module: L_pair
+active_losses: L_point + L_anchor + L_mono
 dataset_id: A4_question_seed42_human_only
 split: question_seed42
 input_template: A4_question_answer_metric_rubric_metadata
 model_name_or_path: /home/share/models/modelscope/Qwen/Qwen3-Reranker-0.6B
 data_dir: thesis_exp/outputs/exp06_question_disjoint_baselines/datasets/A4_question_answer_metric_rubric_metadata_question_seed42
-output_dir: thesis_exp/outputs/exp10_qdpr2_module_ablation/runs/no_mono
-checkpoint_output_dir: thesis_exp/artifacts/exp10_qdpr2_module_ablation/checkpoints/no_mono
+output_dir: thesis_exp/outputs/exp10_qdpr2_module_ablation/runs/no_pair_same_pair_batches
+checkpoint_output_dir: thesis_exp/artifacts/exp10_qdpr2_module_ablation/checkpoints/no_pair_same_pair_batches
 qd_b1_checkpoint_dir: thesis_exp/artifacts/exp06_question_disjoint_baselines/checkpoints/QD-B1_human_only_L1_weighted_ordinal/best
 head_type: independent_ordinal
 objective: qdpr2_module_ablation
-loss: weighted_ordinal_bce_plus_pairwise_anchor
+loss: weighted_ordinal_bce_plus_anchor_monotonic_strict_no_pair
 use_synthetic: false
 pair_dataset_size_train: 10000
 pair_dataset_size_dev: 3000
@@ -28,10 +28,10 @@ low_high_margin: 0.25
 low_high_weight: 1.0
 gap_weight: 0.5
 lambda_point: 1.0
-lambda_pair: 0.05
+lambda_pair: 0.0
 lambda_anchor: 0.5
-lambda_mono: 0.0
-force_pair_training: false
+lambda_mono: 0.1
+force_pair_training: true
 w_min: 0.5
 w_max: 3.0
 max_length: 2048

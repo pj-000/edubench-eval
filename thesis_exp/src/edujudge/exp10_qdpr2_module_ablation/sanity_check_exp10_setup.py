@@ -17,6 +17,7 @@ from thesis_exp.src.edujudge.exp10_qdpr2_module_ablation import (
     EXP10_CONFIG_DIR,
     EXP10_OUTPUT_DIR,
     EXP10_TABLES_DIR,
+    ablation_metadata,
     ensure_exp10_dirs,
 )
 from thesis_exp.src.edujudge.utils.io import relpath, write_csv, write_text
@@ -24,6 +25,7 @@ from thesis_exp.src.edujudge.utils.io import relpath, write_csv, write_text
 
 SCRIPT_PATHS = [
     Path("thesis_exp/scripts/run_exp10_qdpr2_module_ablation.sh"),
+    Path("thesis_exp/scripts/run_exp10_qdpr2_module_ablation_smoke.sh"),
     Path("thesis_exp/scripts/sync_exp10_qdpr2_module_ablation_to_server.sh"),
 ]
 SOURCE_PATHS = [
@@ -31,8 +33,10 @@ SOURCE_PATHS = [
     Path("thesis_exp/src/edujudge/exp09_pairwise_ordinal/train_qdpr2_anchored_pairwise.py"),
     Path("thesis_exp/src/edujudge/exp10_qdpr2_module_ablation/__init__.py"),
     Path("thesis_exp/src/edujudge/exp10_qdpr2_module_ablation/collect_exp10_results.py"),
+    Path("thesis_exp/src/edujudge/exp10_qdpr2_module_ablation/preflight_exp10_ablation_matrix.py"),
     Path("thesis_exp/src/edujudge/exp10_qdpr2_module_ablation/sanity_check_exp10_setup.py"),
     Path("thesis_exp/src/edujudge/exp10_qdpr2_module_ablation/readability_check_exp10.py"),
+    Path("thesis_exp/src/edujudge/exp10_qdpr2_module_ablation/smoke_check_exp10.py"),
 ]
 
 
@@ -62,12 +66,30 @@ def config_rows() -> list[dict[str, Any]]:
             for key, value in expected.items()
             if float(data.get(key, -9999)) != float(value)
         ]
+        meta = ablation_metadata(name)
+        for key in [
+            "display_name",
+            "dataloader_mode",
+            "force_pair_training",
+            "strict_module_ablation",
+            "removed_module",
+            "active_losses",
+        ]:
+            if str(data.get(key)) != str(meta[key]):
+                mismatches.append(f"{key}: expected {meta[key]}, got {data.get(key)}")
         status = "PASS" if not mismatches else "FAIL"
         rows.append(
             {
                 "ablation_name": name,
                 "config_path": relpath(path),
                 "status": status,
+                "display_name": data.get("display_name"),
+                "dataloader_mode": data.get("dataloader_mode"),
+                "force_pair_training": data.get("force_pair_training"),
+                "use_pair_training": meta["use_pair_training"],
+                "strict_module_ablation": data.get("strict_module_ablation"),
+                "removed_module": data.get("removed_module"),
+                "active_losses": data.get("active_losses"),
                 "lambda_point": data.get("lambda_point"),
                 "lambda_pair": data.get("lambda_pair"),
                 "lambda_anchor": data.get("lambda_anchor"),
