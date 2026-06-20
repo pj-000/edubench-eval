@@ -1,10 +1,10 @@
 # Exp10 QD-PR2 Module Ablation Sanity
 
-Status: `BLOCKED_MISSING_QDB1_CHECKPOINT`
+Status: `PASS`
 
 | check | status | details |
 | --- | --- | --- |
-| QD-B1 checkpoint exists | BLOCKED | BLOCKED_MISSING_QDB1_CHECKPOINT: thesis_exp/artifacts/exp06_question_disjoint_baselines/checkpoints/QD-B1_human_only_L1_weighted_ordinal/best missing ['state_dict.pt', 'exp05_head_metadata.json', 'tokenizer.json'] |
+| QD-B1 checkpoint exists | PASS | thesis_exp/artifacts/exp06_question_disjoint_baselines/checkpoints/QD-B1_human_only_L1_weighted_ordinal/best |
 | train split row count | PASS | 3326 |
 | train split has question identities | PASS | 118 |
 | train split has no synthetic rows | PASS |  |

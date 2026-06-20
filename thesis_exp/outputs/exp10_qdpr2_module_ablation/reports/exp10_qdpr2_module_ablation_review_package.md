@@ -38,10 +38,10 @@ low-score test subset is small and count-level interpretation is necessary.
 
 | ablation | status | loader | force pair | strict |
 | --- | --- | --- | ---: | ---: |
-| full_qdpr2 | missing | pair | False | False |
-| no_pair | missing | pointwise | False | False |
-| no_pair_same_pair_batches | missing | pair | True | True |
-| no_anchor | missing | pair | False | True |
-| no_mono | missing | pair | False | True |
-| point_only | missing | pointwise | False | False |
-| no_point_diagnostic | missing | pair | False | False |
+| full_qdpr2 | completed | pair | False | False |
+| no_pair | completed | pointwise | False | False |
+| no_pair_same_pair_batches | completed | pair | True | True |
+| no_anchor | completed | pair | False | True |
+| no_mono | completed | pair | False | True |
+| point_only | completed | pointwise | False | False |
+| no_point_diagnostic | completed | pair | False | False |
