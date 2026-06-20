@@ -1,0 +1,1 @@
+seed,selection_rule,selected_epoch,selected_global_step,rule_type,uses_test_for_selection,dev_MAE,dev_QWK,dev_low_to_high,dev_low_to_high_count,dev_soft_low_to_high,dev_label2_soft_low_to_high,dev_p_gt_3_low_mean,dev_monotonic_violation,selection_score,tie_breaker

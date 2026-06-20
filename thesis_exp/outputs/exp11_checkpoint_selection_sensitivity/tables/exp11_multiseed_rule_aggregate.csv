@@ -1,0 +1,9 @@
+selection_rule,num_seeds,mean_test_MAE,std_test_MAE,mean_test_QWK,std_test_QWK,mean_test_low_to_high,std_test_low_to_high,mean_test_low_to_high_count,mean_test_monotonic_violation,std_test_monotonic_violation
+dev_mae_min,0,nan,nan,nan,nan,nan,nan,nan,nan,nan
+dev_qwk_max,0,nan,nan,nan,nan,nan,nan,nan,nan,nan
+dev_low_to_high_min_diagnostic,0,nan,nan,nan,nan,nan,nan,nan,nan,nan
+mae_guard_soft_risk,0,nan,nan,nan,nan,nan,nan,nan,nan,nan
+mae_guard_label2_soft_risk,0,nan,nan,nan,nan,nan,nan,nan,nan,nan
+mae_guard_p_gt_3_low_mean,0,nan,nan,nan,nan,nan,nan,nan,nan,nan
+mae_guard_soft_risk_mono,0,nan,nan,nan,nan,nan,nan,nan,nan,nan
+last_epoch_diagnostic,0,nan,nan,nan,nan,nan,nan,nan,nan,nan

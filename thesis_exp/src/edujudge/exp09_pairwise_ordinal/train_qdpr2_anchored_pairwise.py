@@ -147,6 +147,11 @@ class QDPR2TrainConfig:
     log_steps: int
     progress_bar: bool
     smoke: bool
+    save_each_epoch: bool
+    eval_each_epoch: bool
+    keep_epoch_checkpoints_local: bool
+    selection_rules_enabled: bool
+    soft_risk_gamma: float
 
 
 def require_qd_b1_checkpoint(path: Path) -> None:
@@ -350,6 +355,127 @@ def evaluate(model: Any, dataloader: Any, device: Any, split: str, config: QDPR2
     for key, value in debug_totals.items():
         metrics[key] = value / steps if steps else float("nan")
     return EvalResult(metrics, predictions, logits_arr, probs_arr, labels_arr, targets_arr, record_ids)
+
+
+def _rate(count: int, total: int) -> float:
+    return float(count / total) if total else float("nan")
+
+
+def _mean(values: list[float]) -> float:
+    return float(np.mean(values)) if values else float("nan")
+
+
+def _sigmoid(value: float) -> float:
+    if value >= 0:
+        z = math.exp(-value)
+        return float(1.0 / (1.0 + z))
+    z = math.exp(value)
+    return float(z / (1.0 + z))
+
+
+def epoch_metric_row(result: EvalResult, config: QDPR2TrainConfig, epoch: int, global_step: int, diagnostic: bool) -> dict[str, Any]:
+    labels = [int(row["label_5"]) for row in result.predictions]
+    preds = [int(row["pred_label_5"]) for row in result.predictions]
+    low_indices = [idx for idx, label in enumerate(labels) if label <= 2]
+    label1_indices = [idx for idx, label in enumerate(labels) if label == 1]
+    label2_indices = [idx for idx, label in enumerate(labels) if label == 2]
+    low_to_high_count = sum(1 for idx in low_indices if preds[idx] >= 4)
+    label1_low_to_high_count = sum(1 for idx in label1_indices if preds[idx] >= 4)
+    label2_low_to_high_count = sum(1 for idx in label2_indices if preds[idx] >= 4)
+    probs = result.probs
+    pair_violations = probs[:, :-1] < probs[:, 1:] if probs.size else np.empty((0, 3), dtype=bool)
+    return {
+        "seed": config.seed,
+        "epoch": epoch,
+        "global_step": global_step,
+        "split": result.metrics["split"],
+        "diagnostic": diagnostic,
+        "MAE": result.metrics.get("MAE_label"),
+        "QWK": result.metrics.get("Quadratic Weighted Kappa"),
+        "Accuracy": result.metrics.get("Accuracy"),
+        "Acc@5": result.metrics.get("Acc@5"),
+        "low_to_high": _rate(low_to_high_count, len(low_indices)),
+        "low_to_high_count": low_to_high_count,
+        "true_low_score_count": len(low_indices),
+        "label1_low_to_high": _rate(label1_low_to_high_count, len(label1_indices)),
+        "label1_low_to_high_count": label1_low_to_high_count,
+        "label1_low_score_count": len(label1_indices),
+        "label2_low_to_high": _rate(label2_low_to_high_count, len(label2_indices)),
+        "label2_low_to_high_count": label2_low_to_high_count,
+        "label2_low_score_count": len(label2_indices),
+        "monotonic_violation": result.metrics.get("monotonic_violation_rate"),
+        "p1_lt_p2": float(np.mean(pair_violations[:, 0])) if pair_violations.size else float("nan"),
+        "p2_lt_p3": float(np.mean(pair_violations[:, 1])) if pair_violations.size else float("nan"),
+        "p3_lt_p4": float(np.mean(pair_violations[:, 2])) if pair_violations.size else float("nan"),
+    }
+
+
+def soft_risk_row(result: EvalResult, config: QDPR2TrainConfig, epoch: int, global_step: int, diagnostic: bool) -> dict[str, Any]:
+    gamma = float(config.soft_risk_gamma)
+    labels = [int(row["label_5"]) for row in result.predictions]
+    expected_scores = [float(row["pred_score_expected"]) for row in result.predictions]
+    p_gt_3_values = [float(row.get("prob_gt_3", float("nan"))) for row in result.predictions]
+    low_indices = [idx for idx, label in enumerate(labels) if label <= 2]
+    label2_indices = [idx for idx, label in enumerate(labels) if label == 2]
+    low_soft = [_sigmoid(gamma * (expected_scores[idx] - 3.5)) for idx in low_indices]
+    label2_soft = [_sigmoid(gamma * (expected_scores[idx] - 3.5)) for idx in label2_indices]
+    return {
+        "seed": config.seed,
+        "epoch": epoch,
+        "global_step": global_step,
+        "split": result.metrics["split"],
+        "diagnostic": diagnostic,
+        "gamma": gamma,
+        "soft_low_to_high": _mean(low_soft),
+        "p_gt_3_low_mean": _mean([p_gt_3_values[idx] for idx in low_indices]),
+        "label2_soft_low_to_high": _mean(label2_soft),
+        "label2_p_gt_3_mean": _mean([p_gt_3_values[idx] for idx in label2_indices]),
+    }
+
+
+def low_score_by_epoch_rows(result: EvalResult, config: QDPR2TrainConfig, epoch: int, global_step: int, diagnostic: bool) -> list[dict[str, Any]]:
+    labels = [int(row["label_5"]) for row in result.predictions]
+    preds = [int(row["pred_label_5"]) for row in result.predictions]
+    low_preds = [pred for label, pred in zip(labels, preds) if label <= 2]
+    total = len(low_preds)
+    return [
+        {
+            "seed": config.seed,
+            "epoch": epoch,
+            "global_step": global_step,
+            "split": result.metrics["split"],
+            "diagnostic": diagnostic,
+            "true_low_score_count": total,
+            "pred_label": pred_label,
+            "count": sum(1 for pred in low_preds if pred == pred_label),
+            "rate": _rate(sum(1 for pred in low_preds if pred == pred_label), total),
+        }
+        for pred_label in [1, 2, 3, 4, 5]
+    ]
+
+
+def write_epoch_diagnostic_tables(
+    output_dir: Path,
+    dev_metric_rows: list[dict[str, Any]],
+    test_metric_rows: list[dict[str, Any]],
+    dev_soft_rows: list[dict[str, Any]],
+    test_soft_rows: list[dict[str, Any]],
+    dev_low_rows: list[dict[str, Any]],
+    test_low_rows: list[dict[str, Any]],
+) -> None:
+    tables_dir = output_dir / "tables"
+    if dev_metric_rows:
+        write_csv(tables_dir / "epoch_metrics_dev.csv", dev_metric_rows)
+    if test_metric_rows:
+        write_csv(tables_dir / "epoch_metrics_test_diagnostic.csv", test_metric_rows)
+    if dev_soft_rows:
+        write_csv(tables_dir / "soft_risk_metrics_dev.csv", dev_soft_rows)
+    if test_soft_rows:
+        write_csv(tables_dir / "soft_risk_metrics_test_diagnostic.csv", test_soft_rows)
+    if dev_low_rows:
+        write_csv(tables_dir / "low_score_by_epoch_dev.csv", dev_low_rows)
+    if test_low_rows:
+        write_csv(tables_dir / "low_score_by_epoch_test_diagnostic.csv", test_low_rows)
 
 
 def selection_metric_value(metrics: dict[str, Any], config: QDPR2TrainConfig) -> float:
@@ -665,6 +791,12 @@ def train(config: QDPR2TrainConfig, preflight_only: bool = False) -> dict[str, A
     scheduler = get_cosine_schedule_with_warmup(optimizer, num_warmup_steps=warmup_steps, num_training_steps=total_steps)
     metrics_history: list[dict[str, Any]] = []
     loss_debug_history: list[dict[str, Any]] = []
+    epoch_dev_metric_rows: list[dict[str, Any]] = []
+    epoch_test_metric_rows: list[dict[str, Any]] = []
+    epoch_dev_soft_rows: list[dict[str, Any]] = []
+    epoch_test_soft_rows: list[dict[str, Any]] = []
+    epoch_dev_low_rows: list[dict[str, Any]] = []
+    epoch_test_low_rows: list[dict[str, Any]] = []
     best_score: float | None = None
     global_step = 0
     start = time.time()
@@ -765,6 +897,30 @@ def train(config: QDPR2TrainConfig, preflight_only: bool = False) -> dict[str, A
             dev_result.metrics["epoch"] = epoch + 1
             dev_result.metrics["global_step"] = global_step
             metrics_history.append(dev_result.metrics)
+            if config.save_each_epoch or config.eval_each_epoch or config.selection_rules_enabled:
+                epoch_dev_metric_rows.append(epoch_metric_row(dev_result, config, epoch + 1, global_step, diagnostic=False))
+                epoch_dev_soft_rows.append(soft_risk_row(dev_result, config, epoch + 1, global_step, diagnostic=False))
+                epoch_dev_low_rows.extend(low_score_by_epoch_rows(dev_result, config, epoch + 1, global_step, diagnostic=False))
+            if config.keep_epoch_checkpoints_local:
+                epoch_dir = config.checkpoint_output_dir / f"epoch_{epoch + 1:02d}"
+                save_checkpoint(model, tokenizer, epoch_dir, config, dev_result.metrics, class_weights)
+            if config.eval_each_epoch:
+                test_epoch_result = evaluate(model, test_loader, device, "test", config)
+                test_epoch_result.metrics["epoch"] = epoch + 1
+                test_epoch_result.metrics["global_step"] = global_step
+                epoch_test_metric_rows.append(epoch_metric_row(test_epoch_result, config, epoch + 1, global_step, diagnostic=True))
+                epoch_test_soft_rows.append(soft_risk_row(test_epoch_result, config, epoch + 1, global_step, diagnostic=True))
+                epoch_test_low_rows.extend(low_score_by_epoch_rows(test_epoch_result, config, epoch + 1, global_step, diagnostic=True))
+            if config.save_each_epoch or config.eval_each_epoch or config.selection_rules_enabled:
+                write_epoch_diagnostic_tables(
+                    config.output_dir,
+                    epoch_dev_metric_rows,
+                    epoch_test_metric_rows,
+                    epoch_dev_soft_rows,
+                    epoch_test_soft_rows,
+                    epoch_dev_low_rows,
+                    epoch_test_low_rows,
+                )
             selected = score_is_better(dev_result.metrics, best_score, config)
             print(
                 f"dev epoch={epoch + 1}: MAE_label={dev_result.metrics['MAE_label']:.4f}, "
@@ -838,6 +994,11 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--log_steps", type=int, default=5)
     parser.add_argument("--smoke", action="store_true")
     parser.add_argument("--preflight_only", action="store_true")
+    parser.add_argument("--save_each_epoch", action="store_true")
+    parser.add_argument("--eval_each_epoch", action="store_true")
+    parser.add_argument("--keep_epoch_checkpoints_local", action="store_true")
+    parser.add_argument("--selection_rules_enabled", action="store_true")
+    parser.add_argument("--soft_risk_gamma", type=float, default=None)
     parser.add_argument("--no_progress_bar", action="store_false", dest="progress_bar")
     parser.set_defaults(progress_bar=True)
     return parser.parse_args()
@@ -934,6 +1095,13 @@ def make_config(args: argparse.Namespace) -> QDPR2TrainConfig:
         log_steps=int(args.log_steps),
         progress_bar=bool(args.progress_bar),
         smoke=smoke,
+        save_each_epoch=bool(args.save_each_epoch or raw.get("save_each_epoch", False)),
+        eval_each_epoch=bool(args.eval_each_epoch or raw.get("eval_each_epoch", False)),
+        keep_epoch_checkpoints_local=bool(
+            args.keep_epoch_checkpoints_local or raw.get("keep_epoch_checkpoints_local", False)
+        ),
+        selection_rules_enabled=bool(args.selection_rules_enabled or raw.get("selection_rules_enabled", False)),
+        soft_risk_gamma=float(args.soft_risk_gamma if args.soft_risk_gamma is not None else raw.get("soft_risk_gamma", 4.0)),
     )
 
 

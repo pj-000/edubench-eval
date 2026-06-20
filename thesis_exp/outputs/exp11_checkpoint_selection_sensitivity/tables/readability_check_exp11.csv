@@ -1,0 +1,40 @@
+check_name,status,details
+py_compile thesis_exp/src/edujudge/exp09_pairwise_ordinal/train_qdpr2_anchored_pairwise.py,PASS,
+py_compile thesis_exp/src/edujudge/exp11_checkpoint_selection_sensitivity/__init__.py,PASS,
+py_compile thesis_exp/src/edujudge/exp11_checkpoint_selection_sensitivity/collect_exp11_results.py,PASS,
+py_compile thesis_exp/src/edujudge/exp11_checkpoint_selection_sensitivity/preflight_exp11.py,PASS,
+py_compile thesis_exp/src/edujudge/exp11_checkpoint_selection_sensitivity/readability_check_exp11.py,PASS,
+bash -n thesis_exp/scripts/run_exp11_checkpoint_selection_sensitivity.sh,PASS,
+bash -n thesis_exp/scripts/run_exp11_checkpoint_selection_sensitivity_smoke.sh,PASS,
+required table exp11_epoch_metrics_dev.csv,PASS,thesis_exp/outputs/exp11_checkpoint_selection_sensitivity/tables/exp11_epoch_metrics_dev.csv
+CSV readable exp11_epoch_metrics_dev.csv,PASS,
+required table exp11_epoch_metrics_test_diagnostic.csv,PASS,thesis_exp/outputs/exp11_checkpoint_selection_sensitivity/tables/exp11_epoch_metrics_test_diagnostic.csv
+CSV readable exp11_epoch_metrics_test_diagnostic.csv,PASS,
+required table exp11_soft_risk_metrics_dev.csv,PASS,thesis_exp/outputs/exp11_checkpoint_selection_sensitivity/tables/exp11_soft_risk_metrics_dev.csv
+CSV readable exp11_soft_risk_metrics_dev.csv,PASS,
+required table exp11_soft_risk_metrics_test_diagnostic.csv,PASS,thesis_exp/outputs/exp11_checkpoint_selection_sensitivity/tables/exp11_soft_risk_metrics_test_diagnostic.csv
+CSV readable exp11_soft_risk_metrics_test_diagnostic.csv,PASS,
+required table exp11_selection_rule_summary.csv,PASS,thesis_exp/outputs/exp11_checkpoint_selection_sensitivity/tables/exp11_selection_rule_summary.csv
+CSV readable exp11_selection_rule_summary.csv,PASS,
+required table exp11_selected_checkpoint_test_metrics.csv,PASS,thesis_exp/outputs/exp11_checkpoint_selection_sensitivity/tables/exp11_selected_checkpoint_test_metrics.csv
+CSV readable exp11_selected_checkpoint_test_metrics.csv,PASS,
+required table exp11_selection_rule_vs_dev_mae_baseline.csv,PASS,thesis_exp/outputs/exp11_checkpoint_selection_sensitivity/tables/exp11_selection_rule_vs_dev_mae_baseline.csv
+CSV readable exp11_selection_rule_vs_dev_mae_baseline.csv,PASS,
+required table exp11_run_config_summary.csv,PASS,thesis_exp/outputs/exp11_checkpoint_selection_sensitivity/tables/exp11_run_config_summary.csv
+CSV readable exp11_run_config_summary.csv,PASS,
+required table exp11_checkpoint_inventory.csv,PASS,thesis_exp/outputs/exp11_checkpoint_selection_sensitivity/tables/exp11_checkpoint_inventory.csv
+CSV readable exp11_checkpoint_inventory.csv,PASS,
+required table exp11_low_score_by_epoch_dev.csv,PASS,thesis_exp/outputs/exp11_checkpoint_selection_sensitivity/tables/exp11_low_score_by_epoch_dev.csv
+CSV readable exp11_low_score_by_epoch_dev.csv,PASS,
+required table exp11_low_score_by_epoch_test_diagnostic.csv,PASS,thesis_exp/outputs/exp11_checkpoint_selection_sensitivity/tables/exp11_low_score_by_epoch_test_diagnostic.csv
+CSV readable exp11_low_score_by_epoch_test_diagnostic.csv,PASS,
+required report exp11_checkpoint_selection_sensitivity_report.md,PASS,thesis_exp/outputs/exp11_checkpoint_selection_sensitivity/reports/exp11_checkpoint_selection_sensitivity_report.md
+required report exp11_checkpoint_selection_sensitivity_review_package.md,PASS,thesis_exp/outputs/exp11_checkpoint_selection_sensitivity/reports/exp11_checkpoint_selection_sensitivity_review_package.md
+uses_test_for_selection is always false,PASS,
+selection rules complete if any seed completed,PASS,[]
+selected checkpoint test metrics include each rule if any seed completed,PASS,[]
+test diagnostic table filename is explicit,PASS,
+report says test metrics are not used for selection,PASS,
+report mentions low-to-high,PASS,
+low-to-high has ratio and count columns,PASS,
+no heavy/raw artifacts under tracked Exp11 outputs,PASS,[]
