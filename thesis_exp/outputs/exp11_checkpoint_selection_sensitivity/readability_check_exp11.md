@@ -36,8 +36,8 @@ Status: `PASS`
 | required report exp11_checkpoint_selection_sensitivity_report.md | PASS | thesis_exp/outputs/exp11_checkpoint_selection_sensitivity/reports/exp11_checkpoint_selection_sensitivity_report.md |
 | required report exp11_checkpoint_selection_sensitivity_review_package.md | PASS | thesis_exp/outputs/exp11_checkpoint_selection_sensitivity/reports/exp11_checkpoint_selection_sensitivity_review_package.md |
 | uses_test_for_selection is always false | PASS |  |
-| selection rules complete if any seed completed | PASS | [] |
-| selected checkpoint test metrics include each rule if any seed completed | PASS | [] |
+| selection rules complete if any seed completed | PASS | ['dev_low_to_high_min_diagnostic', 'dev_mae_min', 'dev_qwk_max', 'last_epoch_diagnostic', 'mae_guard_label2_soft_risk', 'mae_guard_p_gt_3_low_mean', 'mae_guard_soft_risk', 'mae_guard_soft_risk_mono'] |
+| selected checkpoint test metrics include each rule if any seed completed | PASS | ['dev_low_to_high_min_diagnostic', 'dev_mae_min', 'dev_qwk_max', 'last_epoch_diagnostic', 'mae_guard_label2_soft_risk', 'mae_guard_p_gt_3_low_mean', 'mae_guard_soft_risk', 'mae_guard_soft_risk_mono'] |
 | test diagnostic table filename is explicit | PASS |  |
 | report says test metrics are not used for selection | PASS |  |
 | report mentions low-to-high | PASS |  |

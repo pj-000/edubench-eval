@@ -1,1 +1,25 @@
 seed,selection_rule,baseline_rule,selected_epoch,baseline_selected_epoch,delta_test_MAE,delta_test_QWK,delta_test_Acc@5,delta_test_low_to_high,delta_test_low_to_high_count,delta_test_monotonic_violation,interpretation
+42,dev_mae_min,dev_mae_min,3,3,0.0,0.0,0.0,0.0,0.0,0.0,No test low-to-high count change versus dev_mae_min under this seed.
+42,dev_qwk_max,dev_mae_min,3,3,0.0,0.0,0.0,0.0,0.0,0.0,No test low-to-high count change versus dev_mae_min under this seed.
+42,dev_low_to_high_min_diagnostic,dev_mae_min,3,3,0.0,0.0,0.0,0.0,0.0,0.0,No test low-to-high count change versus dev_mae_min under this seed.
+42,mae_guard_soft_risk,dev_mae_min,3,3,0.0,0.0,0.0,0.0,0.0,0.0,No test low-to-high count change versus dev_mae_min under this seed.
+42,mae_guard_label2_soft_risk,dev_mae_min,3,3,0.0,0.0,0.0,0.0,0.0,0.0,No test low-to-high count change versus dev_mae_min under this seed.
+42,mae_guard_p_gt_3_low_mean,dev_mae_min,3,3,0.0,0.0,0.0,0.0,0.0,0.0,No test low-to-high count change versus dev_mae_min under this seed.
+42,mae_guard_soft_risk_mono,dev_mae_min,3,3,0.0,0.0,0.0,0.0,0.0,0.0,No test low-to-high count change versus dev_mae_min under this seed.
+42,last_epoch_diagnostic,dev_mae_min,3,3,0.0,0.0,0.0,0.0,0.0,0.0,No test low-to-high count change versus dev_mae_min under this seed.
+43,dev_mae_min,dev_mae_min,3,3,0.0,0.0,0.0,0.0,0.0,0.0,No test low-to-high count change versus dev_mae_min under this seed.
+43,dev_qwk_max,dev_mae_min,3,3,0.0,0.0,0.0,0.0,0.0,0.0,No test low-to-high count change versus dev_mae_min under this seed.
+43,dev_low_to_high_min_diagnostic,dev_mae_min,3,3,0.0,0.0,0.0,0.0,0.0,0.0,No test low-to-high count change versus dev_mae_min under this seed.
+43,mae_guard_soft_risk,dev_mae_min,3,3,0.0,0.0,0.0,0.0,0.0,0.0,No test low-to-high count change versus dev_mae_min under this seed.
+43,mae_guard_label2_soft_risk,dev_mae_min,3,3,0.0,0.0,0.0,0.0,0.0,0.0,No test low-to-high count change versus dev_mae_min under this seed.
+43,mae_guard_p_gt_3_low_mean,dev_mae_min,3,3,0.0,0.0,0.0,0.0,0.0,0.0,No test low-to-high count change versus dev_mae_min under this seed.
+43,mae_guard_soft_risk_mono,dev_mae_min,3,3,0.0,0.0,0.0,0.0,0.0,0.0,No test low-to-high count change versus dev_mae_min under this seed.
+43,last_epoch_diagnostic,dev_mae_min,3,3,0.0,0.0,0.0,0.0,0.0,0.0,No test low-to-high count change versus dev_mae_min under this seed.
+44,dev_mae_min,dev_mae_min,1,1,0.0,0.0,0.0,0.0,0.0,0.0,No test low-to-high count change versus dev_mae_min under this seed.
+44,dev_qwk_max,dev_mae_min,1,1,0.0,0.0,0.0,0.0,0.0,0.0,No test low-to-high count change versus dev_mae_min under this seed.
+44,dev_low_to_high_min_diagnostic,dev_mae_min,1,1,0.0,0.0,0.0,0.0,0.0,0.0,No test low-to-high count change versus dev_mae_min under this seed.
+44,mae_guard_soft_risk,dev_mae_min,2,1,0.0030220610456331287,-0.0033862598547172995,-0.02759740259740262,-0.03225806451612906,-1.0,-0.015412511332728918,Lower post-hoc test low-to-high count than dev_mae_min under this seed.
+44,mae_guard_label2_soft_risk,dev_mae_min,2,1,0.0030220610456331287,-0.0033862598547172995,-0.02759740259740262,-0.03225806451612906,-1.0,-0.015412511332728918,Lower post-hoc test low-to-high count than dev_mae_min under this seed.
+44,mae_guard_p_gt_3_low_mean,dev_mae_min,3,1,0.0012088244182532626,-0.0025814053303611084,-0.016233766233766267,-0.03225806451612906,-1.0,-0.01631912964641885,Lower post-hoc test low-to-high count than dev_mae_min under this seed.
+44,mae_guard_soft_risk_mono,dev_mae_min,2,1,0.0030220610456331287,-0.0033862598547172995,-0.02759740259740262,-0.03225806451612906,-1.0,-0.015412511332728918,Lower post-hoc test low-to-high count than dev_mae_min under this seed.
+44,last_epoch_diagnostic,dev_mae_min,3,1,0.0012088244182532626,-0.0025814053303611084,-0.016233766233766267,-0.03225806451612906,-1.0,-0.01631912964641885,Lower post-hoc test low-to-high count than dev_mae_min under this seed.

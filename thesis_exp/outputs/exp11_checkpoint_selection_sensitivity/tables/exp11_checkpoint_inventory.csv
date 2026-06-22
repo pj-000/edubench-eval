@@ -1,1 +1,10 @@
 seed,epoch,global_step,checkpoint_path_local,checkpoint_exists,checkpoint_size_mb,git_tracked,note
+42,1,79,thesis_exp/runs/exp11_checkpoint_selection_sensitivity/seed_42/checkpoints/epoch_01,True,1151.6456127166748,False,Local ignored checkpoint directory under thesis_exp/runs.
+42,2,158,thesis_exp/runs/exp11_checkpoint_selection_sensitivity/seed_42/checkpoints/epoch_02,True,1151.6456184387207,False,Local ignored checkpoint directory under thesis_exp/runs.
+42,3,237,thesis_exp/runs/exp11_checkpoint_selection_sensitivity/seed_42/checkpoints/epoch_03,True,1151.6456146240234,False,Local ignored checkpoint directory under thesis_exp/runs.
+43,1,79,thesis_exp/runs/exp11_checkpoint_selection_sensitivity/seed_43/checkpoints/epoch_01,True,1151.6456127166748,False,Local ignored checkpoint directory under thesis_exp/runs.
+43,2,158,thesis_exp/runs/exp11_checkpoint_selection_sensitivity/seed_43/checkpoints/epoch_02,True,1151.6456174850464,False,Local ignored checkpoint directory under thesis_exp/runs.
+43,3,237,thesis_exp/runs/exp11_checkpoint_selection_sensitivity/seed_43/checkpoints/epoch_03,True,1151.6456146240234,False,Local ignored checkpoint directory under thesis_exp/runs.
+44,1,79,thesis_exp/runs/exp11_checkpoint_selection_sensitivity/seed_44/checkpoints/epoch_01,True,1151.6456127166748,False,Local ignored checkpoint directory under thesis_exp/runs.
+44,2,158,thesis_exp/runs/exp11_checkpoint_selection_sensitivity/seed_44/checkpoints/epoch_02,True,1151.6456146240234,False,Local ignored checkpoint directory under thesis_exp/runs.
+44,3,237,thesis_exp/runs/exp11_checkpoint_selection_sensitivity/seed_44/checkpoints/epoch_03,True,1151.6456155776978,False,Local ignored checkpoint directory under thesis_exp/runs.

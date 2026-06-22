@@ -1,15 +1,15 @@
 item,value,status,details
-repo_root,/Users/sss/edubench-eval,PASS,
-current_git_commit,64b9979f4fd9350478c715f07f944b65b7f65e02,PASS,
+repo_root,/home/jpang/edubench-eval-exp2,PASS,
+current_git_commit,4e95b0a4f1b41a0e7c43bbaf004e8561d136dc68,PASS,
 output_dir,thesis_exp/outputs/exp11_checkpoint_selection_sensitivity,PASS,
 local_run_root,thesis_exp/runs/exp11_checkpoint_selection_sensitivity,PASS,
 local_checkpoint_dir_ignored,thesis_exp/runs/exp11_checkpoint_selection_sensitivity,PASS,thesis_exp/.gitignore ignores runs/
 train_data_path,thesis_exp/outputs/exp06_question_disjoint_baselines/datasets/A4_question_answer_metric_rubric_metadata_question_seed42/train.jsonl,PASS,
 dev_data_path,thesis_exp/outputs/exp06_question_disjoint_baselines/datasets/A4_question_answer_metric_rubric_metadata_question_seed42/dev.jsonl,PASS,
 test_data_path,thesis_exp/outputs/exp06_question_disjoint_baselines/datasets/A4_question_answer_metric_rubric_metadata_question_seed42/test.jsonl,PASS,
-QD_B1_checkpoint_path,thesis_exp/artifacts/exp06_question_disjoint_baselines/checkpoints/QD-B1_human_only_L1_weighted_ordinal/best,BLOCKED,"requires state_dict.pt, exp05_head_metadata.json, tokenizer.json"
+QD_B1_checkpoint_path,thesis_exp/artifacts/exp06_question_disjoint_baselines/checkpoints/QD-B1_human_only_L1_weighted_ordinal/best,PASS,"requires state_dict.pt, exp05_head_metadata.json, tokenizer.json"
 model_name,/home/share/models/modelscope/Qwen/Qwen3-Reranker-0.6B,PASS,
-seed_list,42,PASS,
+seed_list,42 43 44,PASS,
 epochs,3,PASS,
 lambda_point,1.0,PASS,
 lambda_pair,0.05,PASS,
@@ -23,7 +23,11 @@ selection_rules,"dev_mae_min, dev_qwk_max, dev_low_to_high_min_diagnostic, mae_g
 gamma,4.0,PASS,
 delta,0.005,PASS,
 beta,0.2,PASS,
-gpu_assignment,"{""42"": ""6""}",PASS,
+gpu_assignment,"{""42"": ""6"", ""43"": ""7"", ""44"": ""6""}",PASS,
 formal_run_has_no_sample_caps,"{""MAX_DEV_PAIRS"": """", ""MAX_EVAL_SAMPLES"": """", ""MAX_TRAIN_PAIRS"": """", ""MAX_TRAIN_SAMPLES"": """"}",PASS,Formal Exp11 must not use sample or pair caps.
 seed_42_run_dir,thesis_exp/runs/exp11_checkpoint_selection_sensitivity/seed_42/run,PASS,
 seed_42_checkpoint_dir,thesis_exp/runs/exp11_checkpoint_selection_sensitivity/seed_42/checkpoints,PASS,local ignored checkpoint directory
+seed_43_run_dir,thesis_exp/runs/exp11_checkpoint_selection_sensitivity/seed_43/run,PASS,
+seed_43_checkpoint_dir,thesis_exp/runs/exp11_checkpoint_selection_sensitivity/seed_43/checkpoints,PASS,local ignored checkpoint directory
+seed_44_run_dir,thesis_exp/runs/exp11_checkpoint_selection_sensitivity/seed_44/run,PASS,
+seed_44_checkpoint_dir,thesis_exp/runs/exp11_checkpoint_selection_sensitivity/seed_44/checkpoints,PASS,local ignored checkpoint directory
