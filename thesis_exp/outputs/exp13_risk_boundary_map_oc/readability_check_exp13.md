@@ -1,0 +1,40 @@
+# Exp13 Readability Check
+
+Status: `PASS`
+
+| check | status | details |
+| --- | --- | --- |
+| py_compile thesis_exp/src/edujudge/exp09_pairwise_ordinal/train_qdpr2_anchored_pairwise.py | PASS |  |
+| py_compile thesis_exp/src/edujudge/exp09_pairwise_ordinal/losses.py | PASS |  |
+| py_compile thesis_exp/src/edujudge/exp13_risk_boundary_map_oc/__init__.py | PASS |  |
+| py_compile thesis_exp/src/edujudge/exp13_risk_boundary_map_oc/risk_boundary_losses.py | PASS |  |
+| py_compile thesis_exp/src/edujudge/exp13_risk_boundary_map_oc/preflight_exp13.py | PASS |  |
+| py_compile thesis_exp/src/edujudge/exp13_risk_boundary_map_oc/smoke_check_exp13.py | PASS |  |
+| py_compile thesis_exp/src/edujudge/exp13_risk_boundary_map_oc/collect_exp13_results.py | PASS |  |
+| py_compile thesis_exp/src/edujudge/exp13_risk_boundary_map_oc/readability_check_exp13.py | PASS |  |
+| bash -n thesis_exp/scripts/run_exp13_risk_boundary_map_oc.sh | PASS |  |
+| bash -n thesis_exp/scripts/run_exp13_risk_boundary_map_oc_smoke.sh | PASS |  |
+| bash -n thesis_exp/scripts/sync_exp13_risk_boundary_map_oc_to_server.sh | PASS |  |
+| required config exp13_point_pair_proj_l2h_lam0p10.yaml | PASS | thesis_exp/configs/exp13_risk_boundary_map_oc/exp13_point_pair_proj_l2h_lam0p10.yaml |
+| required config exp13_point_pair_proj_l2h_lam0p20.yaml | PASS | thesis_exp/configs/exp13_risk_boundary_map_oc/exp13_point_pair_proj_l2h_lam0p20.yaml |
+| required config exp13_point_pair_proj_l2h_lam0p40.yaml | PASS | thesis_exp/configs/exp13_risk_boundary_map_oc/exp13_point_pair_proj_l2h_lam0p40.yaml |
+| required config exp13_point_pair_proj_l2h_label2_w1p5_lam0p20.yaml | PASS | thesis_exp/configs/exp13_risk_boundary_map_oc/exp13_point_pair_proj_l2h_label2_w1p5_lam0p20.yaml |
+| required config exp13_point_pair_proj_l2h_lam0p20_no_mono.yaml | PASS | thesis_exp/configs/exp13_risk_boundary_map_oc/exp13_point_pair_proj_l2h_lam0p20_no_mono.yaml |
+| required config exp13_score_proj_l2h_lam0p20.yaml | PASS | thesis_exp/configs/exp13_risk_boundary_map_oc/exp13_score_proj_l2h_lam0p20.yaml |
+| required config exp13_map_oc_full_l2h_lam0p20.yaml | PASS | thesis_exp/configs/exp13_risk_boundary_map_oc/exp13_map_oc_full_l2h_lam0p20.yaml |
+| required config exp13_score_proj_t3_brier_lam0p05.yaml | PASS | thesis_exp/configs/exp13_risk_boundary_map_oc/exp13_score_proj_t3_brier_lam0p05.yaml |
+| required table exp13_dev_selection_ranking.csv | PASS | thesis_exp/outputs/exp13_risk_boundary_map_oc/tables/exp13_dev_selection_ranking.csv |
+| CSV readable exp13_dev_selection_ranking.csv | PASS |  |
+| required table exp13_formal_summary.csv | PASS | thesis_exp/outputs/exp13_risk_boundary_map_oc/tables/exp13_formal_summary.csv |
+| CSV readable exp13_formal_summary.csv | PASS |  |
+| required table exp13_run_config_summary.csv | PASS | thesis_exp/outputs/exp13_risk_boundary_map_oc/tables/exp13_run_config_summary.csv |
+| CSV readable exp13_run_config_summary.csv | PASS |  |
+| required report exp13_risk_boundary_map_oc_report.md | PASS | thesis_exp/outputs/exp13_risk_boundary_map_oc/reports/exp13_risk_boundary_map_oc_report.md |
+| required report exp13_preflight_report.md | PASS | thesis_exp/outputs/exp13_risk_boundary_map_oc/reports/exp13_preflight_report.md |
+| dev ranking has p_gt_3 risk fields | PASS |  |
+| dev ranking contains no test columns | PASS |  |
+| uses_test_for_selection is always false in dev ranking | PASS |  |
+| report says scout ranking is dev-only | PASS |  |
+| report mentions low-to-high | PASS |  |
+| report avoids overclaim | PASS |  |
+| no heavy/raw artifacts under tracked Exp13 outputs | PASS | [] |

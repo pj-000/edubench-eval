@@ -374,6 +374,21 @@ def total_anchored_pairwise_training_loss(
     use_projected_anchor: bool = False,
     use_raw_projection_consistency: bool = False,
     eta_proj: float = 0.1,
+    use_l2h_risk_loss: bool = False,
+    risk_score_source: str = "projected",
+    risk_threshold_t: int = 3,
+    risk_loss_type: str = "squared_hinge",
+    lambda_l2h_risk: float = 0.0,
+    risk_tau_label1: float = 0.35,
+    risk_tau_label2: float = 0.45,
+    risk_weight_label1: float = 1.0,
+    risk_weight_label2: float = 1.0,
+    risk_normalize_by_low_count: bool = True,
+    use_t3_calibration_loss: bool = False,
+    t3_calibration_loss_type: str = "brier",
+    lambda_t3_calibration: float = 0.0,
+    t3_score_source: str = "projected",
+    t3_low_negative_weight: float = 2.0,
 ) -> tuple[Any, dict[str, float]]:
     if _is_torch_tensor(win_logits):
         import torch
@@ -414,16 +429,54 @@ def total_anchored_pairwise_training_loss(
             mono_loss, mono_debug = raw_projection_consistency(point_logits, eta_proj=eta_proj)
         else:
             mono_loss, mono_debug = monotonic_regularization(point_logits)
+        if use_l2h_risk_loss:
+            from thesis_exp.src.edujudge.exp13_risk_boundary_map_oc.risk_boundary_losses import (
+                l2h_squared_hinge_risk_loss_from_logits,
+            )
+
+            risk_loss, risk_debug = l2h_squared_hinge_risk_loss_from_logits(
+                point_logits,
+                point_labels,
+                score_source=risk_score_source,
+                risk_threshold_t=risk_threshold_t,
+                risk_loss_type=risk_loss_type,
+                tau_label1=risk_tau_label1,
+                tau_label2=risk_tau_label2,
+                weight_label1=risk_weight_label1,
+                weight_label2=risk_weight_label2,
+                normalize_by_low_count=risk_normalize_by_low_count,
+            )
+        else:
+            risk_loss = point_logits.float().sum() * 0.0
+            risk_debug = {"L_l2h_risk": 0.0, "l2h_risk_loss": 0.0}
+        if use_t3_calibration_loss:
+            from thesis_exp.src.edujudge.exp13_risk_boundary_map_oc.risk_boundary_losses import t3_calibration_loss_from_logits
+
+            t3_loss, t3_debug = t3_calibration_loss_from_logits(
+                point_logits,
+                point_labels,
+                score_source=t3_score_source,
+                loss_type=t3_calibration_loss_type,
+                low_negative_weight=t3_low_negative_weight,
+                threshold_t=3,
+            )
+        else:
+            t3_loss = point_logits.float().sum() * 0.0
+            t3_debug = {"L_t3_calibration": 0.0, "t3_calibration_loss": 0.0}
         total = (
             float(lambda_point) * point_loss
             + float(lambda_pair) * pair_loss
             + float(lambda_anchor) * anchor_loss
             + float(lambda_mono) * mono_loss
+            + float(lambda_l2h_risk) * risk_loss
+            + float(lambda_t3_calibration) * t3_loss
         )
         point_value = float(point_loss.detach().cpu())
         pair_value = float(pair_loss.detach().cpu())
         anchor_value = float(anchor_loss.detach().cpu())
         mono_value = float(mono_loss.detach().cpu())
+        risk_value = float(risk_loss.detach().cpu())
+        t3_value = float(t3_loss.detach().cpu())
         total_value = float(total.detach().cpu())
         debug = {
             "L_total": total_value,
@@ -441,12 +494,22 @@ def total_anchored_pairwise_training_loss(
             **mono_debug,
             "loss_mono": mono_value,
             "weighted_loss_mono": float(lambda_mono) * mono_value,
+            **risk_debug,
+            "loss_l2h_risk": risk_value,
+            "weighted_loss_l2h_risk": float(lambda_l2h_risk) * risk_value,
+            **t3_debug,
+            "loss_t3_calibration": t3_value,
+            "weighted_loss_t3_calibration": float(lambda_t3_calibration) * t3_value,
             **point_debug,
             "projection_in_pair_score": 1.0 if projection_in_pair_score else 0.0,
             "projection_in_point_loss": 1.0 if projection_in_point_loss else 0.0,
             "projection_in_anchor": 1.0 if projection_in_anchor else 0.0,
             "use_projected_anchor": 1.0 if use_projected_anchor else 0.0,
             "use_raw_projection_consistency": 1.0 if use_raw_projection_consistency else 0.0,
+            "use_l2h_risk_loss": 1.0 if use_l2h_risk_loss else 0.0,
+            "lambda_l2h_risk": float(lambda_l2h_risk),
+            "use_t3_calibration_loss": 1.0 if use_t3_calibration_loss else 0.0,
+            "lambda_t3_calibration": float(lambda_t3_calibration),
         }
         return total, debug
     point_logits_arr = np.concatenate([np.asarray(win_logits), np.asarray(lose_logits)], axis=0)
@@ -485,16 +548,54 @@ def total_anchored_pairwise_training_loss(
         mono_loss, mono_debug = raw_projection_consistency(point_logits_arr, eta_proj=eta_proj)
     else:
         mono_loss, mono_debug = monotonic_regularization(point_logits_arr)
+    if use_l2h_risk_loss:
+        from thesis_exp.src.edujudge.exp13_risk_boundary_map_oc.risk_boundary_losses import (
+            l2h_squared_hinge_risk_loss_from_logits,
+        )
+
+        risk_loss, risk_debug = l2h_squared_hinge_risk_loss_from_logits(
+            point_logits_arr,
+            point_labels_arr,
+            score_source=risk_score_source,
+            risk_threshold_t=risk_threshold_t,
+            risk_loss_type=risk_loss_type,
+            tau_label1=risk_tau_label1,
+            tau_label2=risk_tau_label2,
+            weight_label1=risk_weight_label1,
+            weight_label2=risk_weight_label2,
+            normalize_by_low_count=risk_normalize_by_low_count,
+        )
+    else:
+        risk_loss = 0.0
+        risk_debug = {"L_l2h_risk": 0.0, "l2h_risk_loss": 0.0}
+    if use_t3_calibration_loss:
+        from thesis_exp.src.edujudge.exp13_risk_boundary_map_oc.risk_boundary_losses import t3_calibration_loss_from_logits
+
+        t3_loss, t3_debug = t3_calibration_loss_from_logits(
+            point_logits_arr,
+            point_labels_arr,
+            score_source=t3_score_source,
+            loss_type=t3_calibration_loss_type,
+            low_negative_weight=t3_low_negative_weight,
+            threshold_t=3,
+        )
+    else:
+        t3_loss = 0.0
+        t3_debug = {"L_t3_calibration": 0.0, "t3_calibration_loss": 0.0}
     total = float(
         float(lambda_point) * point_loss
         + float(lambda_pair) * pair_loss
         + float(lambda_anchor) * anchor_loss
         + float(lambda_mono) * mono_loss
+        + float(lambda_l2h_risk) * risk_loss
+        + float(lambda_t3_calibration) * t3_loss
     )
     point_value = float(point_loss)
     pair_value = float(pair_loss)
     anchor_value = float(anchor_loss)
     mono_value = float(mono_loss)
+    risk_value = float(risk_loss)
+    t3_value = float(t3_loss)
     return total, {
         "L_total": total,
         "loss_total": total,
@@ -511,12 +612,22 @@ def total_anchored_pairwise_training_loss(
         **mono_debug,
         "loss_mono": mono_value,
         "weighted_loss_mono": float(lambda_mono) * mono_value,
+        **risk_debug,
+        "loss_l2h_risk": risk_value,
+        "weighted_loss_l2h_risk": float(lambda_l2h_risk) * risk_value,
+        **t3_debug,
+        "loss_t3_calibration": t3_value,
+        "weighted_loss_t3_calibration": float(lambda_t3_calibration) * t3_value,
         **point_debug,
         "projection_in_pair_score": 1.0 if projection_in_pair_score else 0.0,
         "projection_in_point_loss": 1.0 if projection_in_point_loss else 0.0,
         "projection_in_anchor": 1.0 if projection_in_anchor else 0.0,
         "use_projected_anchor": 1.0 if use_projected_anchor else 0.0,
         "use_raw_projection_consistency": 1.0 if use_raw_projection_consistency else 0.0,
+        "use_l2h_risk_loss": 1.0 if use_l2h_risk_loss else 0.0,
+        "lambda_l2h_risk": float(lambda_l2h_risk),
+        "use_t3_calibration_loss": 1.0 if use_t3_calibration_loss else 0.0,
+        "lambda_t3_calibration": float(lambda_t3_calibration),
     }
 
 
@@ -533,6 +644,21 @@ def total_anchored_pointwise_training_loss(
     use_projected_anchor: bool = False,
     use_raw_projection_consistency: bool = False,
     eta_proj: float = 0.1,
+    use_l2h_risk_loss: bool = False,
+    risk_score_source: str = "projected",
+    risk_threshold_t: int = 3,
+    risk_loss_type: str = "squared_hinge",
+    lambda_l2h_risk: float = 0.0,
+    risk_tau_label1: float = 0.35,
+    risk_tau_label2: float = 0.45,
+    risk_weight_label1: float = 1.0,
+    risk_weight_label2: float = 1.0,
+    risk_normalize_by_low_count: bool = True,
+    use_t3_calibration_loss: bool = False,
+    t3_calibration_loss_type: str = "brier",
+    lambda_t3_calibration: float = 0.0,
+    t3_score_source: str = "projected",
+    t3_low_negative_weight: float = 2.0,
 ) -> tuple[Any, dict[str, float]]:
     """Pointwise-only anchored objective for lambda_pair=0 ablations."""
     if projection_in_point_loss:
@@ -556,11 +682,59 @@ def total_anchored_pointwise_training_loss(
         mono_loss, mono_debug = raw_projection_consistency(logits, eta_proj=eta_proj)
     else:
         mono_loss, mono_debug = monotonic_regularization(logits)
-    total = float(lambda_point) * point_loss + float(lambda_anchor) * anchor_loss + float(lambda_mono) * mono_loss
+    if use_l2h_risk_loss:
+        from thesis_exp.src.edujudge.exp13_risk_boundary_map_oc.risk_boundary_losses import (
+            l2h_squared_hinge_risk_loss_from_logits,
+        )
+
+        risk_loss, risk_debug = l2h_squared_hinge_risk_loss_from_logits(
+            logits,
+            labels,
+            score_source=risk_score_source,
+            risk_threshold_t=risk_threshold_t,
+            risk_loss_type=risk_loss_type,
+            tau_label1=risk_tau_label1,
+            tau_label2=risk_tau_label2,
+            weight_label1=risk_weight_label1,
+            weight_label2=risk_weight_label2,
+            normalize_by_low_count=risk_normalize_by_low_count,
+        )
+    elif _is_torch_tensor(logits):
+        risk_loss = logits.float().sum() * 0.0
+        risk_debug = {"L_l2h_risk": 0.0, "l2h_risk_loss": 0.0}
+    else:
+        risk_loss = 0.0
+        risk_debug = {"L_l2h_risk": 0.0, "l2h_risk_loss": 0.0}
+    if use_t3_calibration_loss:
+        from thesis_exp.src.edujudge.exp13_risk_boundary_map_oc.risk_boundary_losses import t3_calibration_loss_from_logits
+
+        t3_loss, t3_debug = t3_calibration_loss_from_logits(
+            logits,
+            labels,
+            score_source=t3_score_source,
+            loss_type=t3_calibration_loss_type,
+            low_negative_weight=t3_low_negative_weight,
+            threshold_t=3,
+        )
+    elif _is_torch_tensor(logits):
+        t3_loss = logits.float().sum() * 0.0
+        t3_debug = {"L_t3_calibration": 0.0, "t3_calibration_loss": 0.0}
+    else:
+        t3_loss = 0.0
+        t3_debug = {"L_t3_calibration": 0.0, "t3_calibration_loss": 0.0}
+    total = (
+        float(lambda_point) * point_loss
+        + float(lambda_anchor) * anchor_loss
+        + float(lambda_mono) * mono_loss
+        + float(lambda_l2h_risk) * risk_loss
+        + float(lambda_t3_calibration) * t3_loss
+    )
     if _is_torch_tensor(logits):
         point_value = float(point_loss.detach().cpu())
         anchor_value = float(anchor_loss.detach().cpu())
         mono_value = float(mono_loss.detach().cpu())
+        risk_value = float(risk_loss.detach().cpu())
+        t3_value = float(t3_loss.detach().cpu())
         total_value = float(total.detach().cpu())
         debug = {
             "L_total": total_value,
@@ -584,16 +758,28 @@ def total_anchored_pointwise_training_loss(
             **mono_debug,
             "loss_mono": mono_value,
             "weighted_loss_mono": float(lambda_mono) * mono_value,
+            **risk_debug,
+            "loss_l2h_risk": risk_value,
+            "weighted_loss_l2h_risk": float(lambda_l2h_risk) * risk_value,
+            **t3_debug,
+            "loss_t3_calibration": t3_value,
+            "weighted_loss_t3_calibration": float(lambda_t3_calibration) * t3_value,
             **point_debug,
             "projection_in_point_loss": 1.0 if projection_in_point_loss else 0.0,
             "projection_in_anchor": 1.0 if projection_in_anchor else 0.0,
             "use_projected_anchor": 1.0 if use_projected_anchor else 0.0,
             "use_raw_projection_consistency": 1.0 if use_raw_projection_consistency else 0.0,
+            "use_l2h_risk_loss": 1.0 if use_l2h_risk_loss else 0.0,
+            "lambda_l2h_risk": float(lambda_l2h_risk),
+            "use_t3_calibration_loss": 1.0 if use_t3_calibration_loss else 0.0,
+            "lambda_t3_calibration": float(lambda_t3_calibration),
         }
         return total, debug
     point_value = float(point_loss)
     anchor_value = float(anchor_loss)
     mono_value = float(mono_loss)
+    risk_value = float(risk_loss)
+    t3_value = float(t3_loss)
     return float(total), {
         "L_total": float(total),
         "loss_total": float(total),
@@ -616,11 +802,21 @@ def total_anchored_pointwise_training_loss(
         **mono_debug,
         "loss_mono": mono_value,
         "weighted_loss_mono": float(lambda_mono) * mono_value,
+        **risk_debug,
+        "loss_l2h_risk": risk_value,
+        "weighted_loss_l2h_risk": float(lambda_l2h_risk) * risk_value,
+        **t3_debug,
+        "loss_t3_calibration": t3_value,
+        "weighted_loss_t3_calibration": float(lambda_t3_calibration) * t3_value,
         **point_debug,
         "projection_in_point_loss": 1.0 if projection_in_point_loss else 0.0,
         "projection_in_anchor": 1.0 if projection_in_anchor else 0.0,
         "use_projected_anchor": 1.0 if use_projected_anchor else 0.0,
         "use_raw_projection_consistency": 1.0 if use_raw_projection_consistency else 0.0,
+        "use_l2h_risk_loss": 1.0 if use_l2h_risk_loss else 0.0,
+        "lambda_l2h_risk": float(lambda_l2h_risk),
+        "use_t3_calibration_loss": 1.0 if use_t3_calibration_loss else 0.0,
+        "lambda_t3_calibration": float(lambda_t3_calibration),
     }
 
 

@@ -1,0 +1,5 @@
+case,loss,L_l2h_risk,l2h_risk_loss,risk_active_low_count,risk_score_source_projected,risk_threshold_t,risk_tau_label1,risk_tau_label2,risk_weight_label1,risk_weight_label2,p_gt_3_low_mean,p_gt_3_label1_mean,p_gt_3_label2_mean,L_t3_calibration,t3_calibration_loss,t3_score_source_projected,t3_low_negative_weight,torch_backward_ok
+l2h_projected_squared_hinge,0.0606022631864957,0.0606022631864957,0.0606022631864957,2.0,1.0,3.0,0.35,0.45,1.0,1.0,0.6074768343032763,0.6899744811276125,0.52497918747894,,,,,
+no_low_batch,0.0,0.0,0.0,0.0,1.0,3.0,,,,,nan,nan,nan,,,,,
+t3_brier,0.36432887075477566,,,,,,,,,,0.6074768343032763,0.6899744811276125,0.52497918747894,0.36432887075477566,0.36432887075477566,1.0,2.0,
+torch_backward,0.0606022631864957,,,,,,,,,,,,,,,,,True

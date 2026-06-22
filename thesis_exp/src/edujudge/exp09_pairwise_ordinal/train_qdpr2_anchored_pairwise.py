@@ -141,6 +141,7 @@ class QDPR2TrainConfig:
     max_train_pairs: int | None
     max_dev_pairs: int | None
     eval_only: bool
+    eval_test: bool
     checkpoint_dir: Path | None
     selection_metric: str
     selection_mode: str
@@ -166,6 +167,22 @@ class QDPR2TrainConfig:
     use_raw_projection_consistency: bool
     eta_proj: float
     report_raw_and_projected_metrics: bool
+    use_l2h_risk_loss: bool
+    risk_score_source: str
+    risk_threshold_t: int
+    risk_loss_type: str
+    lambda_l2h_risk: float
+    risk_tau_label1: float
+    risk_tau_label2: float
+    risk_weight_label1: float
+    risk_weight_label2: float
+    risk_normalize_by_low_count: bool
+    report_risk_loss_terms: bool
+    use_t3_calibration_loss: bool
+    t3_calibration_loss_type: str
+    lambda_t3_calibration: float
+    t3_score_source: str
+    t3_low_negative_weight: float
 
 
 def require_qd_b1_checkpoint(path: Path) -> None:
@@ -451,6 +468,10 @@ def _mean(values: list[float]) -> float:
     return float(np.mean(values)) if values else float("nan")
 
 
+def _quantile(values: list[float], q: float) -> float:
+    return float(np.quantile(values, q)) if values else float("nan")
+
+
 def _sigmoid(value: float) -> float:
     if value >= 0:
         z = math.exp(-value)
@@ -465,9 +486,15 @@ def epoch_metric_row(result: EvalResult, config: QDPR2TrainConfig, epoch: int, g
     low_indices = [idx for idx, label in enumerate(labels) if label <= 2]
     label1_indices = [idx for idx, label in enumerate(labels) if label == 1]
     label2_indices = [idx for idx, label in enumerate(labels) if label == 2]
+    high_indices = [idx for idx, label in enumerate(labels) if label >= 4]
+    label4_indices = [idx for idx, label in enumerate(labels) if label == 4]
+    label5_indices = [idx for idx, label in enumerate(labels) if label == 5]
     low_to_high_count = sum(1 for idx in low_indices if preds[idx] >= 4)
     label1_low_to_high_count = sum(1 for idx in label1_indices if preds[idx] >= 4)
     label2_low_to_high_count = sum(1 for idx in label2_indices if preds[idx] >= 4)
+    high_to_low_count = sum(1 for idx in high_indices if preds[idx] <= 2)
+    label4_recall_count = sum(1 for idx in label4_indices if preds[idx] == 4)
+    label5_recall_count = sum(1 for idx in label5_indices if preds[idx] == 5)
     probs = result.probs
     pair_violations = probs[:, :-1] < probs[:, 1:] if probs.size else np.empty((0, 3), dtype=bool)
     decode_mode = str(result.metrics.get("decode_mode") or (result.predictions[0].get("decode_mode") if result.predictions else "raw"))
@@ -494,6 +521,15 @@ def epoch_metric_row(result: EvalResult, config: QDPR2TrainConfig, epoch: int, g
         "label2_low_to_high": _rate(label2_low_to_high_count, len(label2_indices)),
         "label2_low_to_high_count": label2_low_to_high_count,
         "label2_low_score_count": len(label2_indices),
+        "high_to_low": _rate(high_to_low_count, len(high_indices)),
+        "high_to_low_count": high_to_low_count,
+        "true_high_score_count": len(high_indices),
+        "label4_recall": _rate(label4_recall_count, len(label4_indices)),
+        "label4_recall_count": label4_recall_count,
+        "label4_count": len(label4_indices),
+        "label5_recall": _rate(label5_recall_count, len(label5_indices)),
+        "label5_recall_count": label5_recall_count,
+        "label5_count": len(label5_indices),
         "monotonic_violation": result.metrics.get("monotonic_violation_rate"),
         "p1_lt_p2": float(np.mean(pair_violations[:, 0])) if pair_violations.size else float("nan"),
         "p2_lt_p3": float(np.mean(pair_violations[:, 1])) if pair_violations.size else float("nan"),
@@ -510,9 +546,11 @@ def soft_risk_row(result: EvalResult, config: QDPR2TrainConfig, epoch: int, glob
     expected_scores = [float(row["pred_score_expected"]) for row in result.predictions]
     p_gt_3_values = [float(row.get("prob_gt_3", float("nan"))) for row in result.predictions]
     low_indices = [idx for idx, label in enumerate(labels) if label <= 2]
+    label1_indices = [idx for idx, label in enumerate(labels) if label == 1]
     label2_indices = [idx for idx, label in enumerate(labels) if label == 2]
     low_soft = [_sigmoid(gamma * (expected_scores[idx] - 3.5)) for idx in low_indices]
     label2_soft = [_sigmoid(gamma * (expected_scores[idx] - 3.5)) for idx in label2_indices]
+    low_p_gt_3 = [p_gt_3_values[idx] for idx in low_indices]
     return {
         "seed": config.seed,
         "epoch": epoch,
@@ -522,7 +560,12 @@ def soft_risk_row(result: EvalResult, config: QDPR2TrainConfig, epoch: int, glob
         "decode_mode": result.metrics.get("decode_mode", "raw"),
         "gamma": gamma,
         "soft_low_to_high": _mean(low_soft),
-        "p_gt_3_low_mean": _mean([p_gt_3_values[idx] for idx in low_indices]),
+        "p_gt_3_low_mean": _mean(low_p_gt_3),
+        "p_gt_3_label1_mean": _mean([p_gt_3_values[idx] for idx in label1_indices]),
+        "p_gt_3_label2_mean": _mean([p_gt_3_values[idx] for idx in label2_indices]),
+        "p_gt_3_low_q90": _quantile(low_p_gt_3, 0.90),
+        "p_gt_3_low_q95": _quantile(low_p_gt_3, 0.95),
+        "low_count_with_p_gt_3_over_0p5": sum(1 for value in low_p_gt_3 if value > 0.5),
         "label2_soft_low_to_high": _mean(label2_soft),
         "label2_p_gt_3_mean": _mean([p_gt_3_values[idx] for idx in label2_indices]),
     }
@@ -550,6 +593,26 @@ def low_score_by_epoch_rows(result: EvalResult, config: QDPR2TrainConfig, epoch:
     ]
 
 
+def prediction_distribution_rows(result: EvalResult, config: QDPR2TrainConfig, epoch: int, global_step: int, diagnostic: bool) -> list[dict[str, Any]]:
+    preds = [int(row["pred_label_5"]) for row in result.predictions]
+    total = len(preds)
+    return [
+        {
+            "seed": config.seed,
+            "epoch": epoch,
+            "global_step": global_step,
+            "split": result.metrics["split"],
+            "diagnostic": diagnostic,
+            "decode_mode": result.metrics.get("decode_mode", "raw"),
+            "total_count": total,
+            "pred_label": pred_label,
+            "count": sum(1 for pred in preds if pred == pred_label),
+            "rate": _rate(sum(1 for pred in preds if pred == pred_label), total),
+        }
+        for pred_label in [1, 2, 3, 4, 5]
+    ]
+
+
 def write_epoch_diagnostic_tables(
     output_dir: Path,
     dev_metric_rows: list[dict[str, Any]],
@@ -558,6 +621,8 @@ def write_epoch_diagnostic_tables(
     test_soft_rows: list[dict[str, Any]],
     dev_low_rows: list[dict[str, Any]],
     test_low_rows: list[dict[str, Any]],
+    dev_pred_rows: list[dict[str, Any]] | None = None,
+    test_pred_rows: list[dict[str, Any]] | None = None,
 ) -> None:
     tables_dir = output_dir / "tables"
     if dev_metric_rows:
@@ -572,6 +637,10 @@ def write_epoch_diagnostic_tables(
         write_csv(tables_dir / "low_score_by_epoch_dev.csv", dev_low_rows)
     if test_low_rows:
         write_csv(tables_dir / "low_score_by_epoch_test_diagnostic.csv", test_low_rows)
+    if dev_pred_rows:
+        write_csv(tables_dir / "prediction_distribution_dev.csv", dev_pred_rows)
+    if test_pred_rows:
+        write_csv(tables_dir / "prediction_distribution_test_diagnostic.csv", test_pred_rows)
 
 
 def selection_metric_value(metrics: dict[str, Any], config: QDPR2TrainConfig) -> float:
@@ -642,6 +711,8 @@ def save_checkpoint(
                 "lambda_pair": config.lambda_pair,
                 "lambda_anchor": config.lambda_anchor,
                 "lambda_mono": config.lambda_mono,
+                "lambda_l2h_risk": config.lambda_l2h_risk,
+                "lambda_t3_calibration": config.lambda_t3_calibration,
             },
             "projection": {
                 "use_monotone_projection": config.use_monotone_projection,
@@ -654,6 +725,22 @@ def save_checkpoint(
                 "use_raw_projection_consistency": config.use_raw_projection_consistency,
                 "eta_proj": config.eta_proj,
                 "report_raw_and_projected_metrics": config.report_raw_and_projected_metrics,
+            },
+            "risk_boundary": {
+                "use_l2h_risk_loss": config.use_l2h_risk_loss,
+                "risk_score_source": config.risk_score_source,
+                "risk_threshold_t": config.risk_threshold_t,
+                "risk_loss_type": config.risk_loss_type,
+                "risk_tau_label1": config.risk_tau_label1,
+                "risk_tau_label2": config.risk_tau_label2,
+                "risk_weight_label1": config.risk_weight_label1,
+                "risk_weight_label2": config.risk_weight_label2,
+                "risk_normalize_by_low_count": config.risk_normalize_by_low_count,
+                "report_risk_loss_terms": config.report_risk_loss_terms,
+                "use_t3_calibration_loss": config.use_t3_calibration_loss,
+                "t3_calibration_loss_type": config.t3_calibration_loss_type,
+                "t3_score_source": config.t3_score_source,
+                "t3_low_negative_weight": config.t3_low_negative_weight,
             },
         },
     )
@@ -702,6 +789,22 @@ def normalize_run_files(output_dir: Path, config: QDPR2TrainConfig, status: str)
             "use_projected_anchor": config.use_projected_anchor,
             "use_raw_projection_consistency": config.use_raw_projection_consistency,
             "eta_proj": config.eta_proj,
+            "eval_test": config.eval_test,
+            "use_l2h_risk_loss": config.use_l2h_risk_loss,
+            "risk_score_source": config.risk_score_source,
+            "risk_threshold_t": config.risk_threshold_t,
+            "risk_loss_type": config.risk_loss_type,
+            "lambda_l2h_risk": config.lambda_l2h_risk,
+            "risk_tau_label1": config.risk_tau_label1,
+            "risk_tau_label2": config.risk_tau_label2,
+            "risk_weight_label1": config.risk_weight_label1,
+            "risk_weight_label2": config.risk_weight_label2,
+            "risk_normalize_by_low_count": config.risk_normalize_by_low_count,
+            "use_t3_calibration_loss": config.use_t3_calibration_loss,
+            "t3_calibration_loss_type": config.t3_calibration_loss_type,
+            "lambda_t3_calibration": config.lambda_t3_calibration,
+            "t3_score_source": config.t3_score_source,
+            "t3_low_negative_weight": config.t3_low_negative_weight,
         },
     )
     active_losses = []
@@ -713,6 +816,10 @@ def normalize_run_files(output_dir: Path, config: QDPR2TrainConfig, status: str)
         active_losses.append("L_anchor")
     if config.lambda_mono != 0.0:
         active_losses.append("L_mono")
+    if config.use_l2h_risk_loss and config.lambda_l2h_risk != 0.0:
+        active_losses.append("L_l2h_risk")
+    if config.use_t3_calibration_loss and config.lambda_t3_calibration != 0.0:
+        active_losses.append("L_t3_calibration")
     lines = [
         f"# {config.exp_name} Run Summary",
         "",
@@ -733,6 +840,14 @@ def normalize_run_files(output_dir: Path, config: QDPR2TrainConfig, status: str)
         f"lambda_pair: `{config.lambda_pair}`",
         f"lambda_anchor: `{config.lambda_anchor}`",
         f"lambda_mono: `{config.lambda_mono}`",
+        f"lambda_l2h_risk: `{config.lambda_l2h_risk}`",
+        f"use_l2h_risk_loss: `{config.use_l2h_risk_loss}`",
+        f"risk_score_source: `{config.risk_score_source}`",
+        f"risk_threshold_t: `{config.risk_threshold_t}`",
+        f"risk_tau_label1: `{config.risk_tau_label1}`",
+        f"risk_tau_label2: `{config.risk_tau_label2}`",
+        f"use_t3_calibration_loss: `{config.use_t3_calibration_loss}`",
+        f"lambda_t3_calibration: `{config.lambda_t3_calibration}`",
         f"projection_in_decode: `{config.projection_in_decode}`",
         f"projection_in_pair_score: `{config.projection_in_pair_score}`",
         f"projection_in_point_loss: `{config.projection_in_point_loss}`",
@@ -793,6 +908,10 @@ def loss_config_row(config: QDPR2TrainConfig, class_weights: list[float]) -> dic
         active_losses.append("L_anchor")
     if config.lambda_mono != 0.0:
         active_losses.append("L_mono")
+    if config.use_l2h_risk_loss and config.lambda_l2h_risk != 0.0:
+        active_losses.append("L_l2h_risk")
+    if config.use_t3_calibration_loss and config.lambda_t3_calibration != 0.0:
+        active_losses.append("L_t3_calibration")
     return {
         "exp_name": config.exp_name,
         "ablation_name": config.ablation_name,
@@ -818,6 +937,22 @@ def loss_config_row(config: QDPR2TrainConfig, class_weights: list[float]) -> dic
         "use_projected_anchor": config.use_projected_anchor,
         "use_raw_projection_consistency": config.use_raw_projection_consistency,
         "eta_proj": config.eta_proj,
+        "risk_boundary_loss": "mean_{y<=2} w_y * max(0, score_t3 - tau_y)^2",
+        "use_l2h_risk_loss": config.use_l2h_risk_loss,
+        "risk_score_source": config.risk_score_source,
+        "risk_threshold_t": config.risk_threshold_t,
+        "risk_loss_type": config.risk_loss_type,
+        "lambda_l2h_risk": config.lambda_l2h_risk,
+        "risk_tau_label1": config.risk_tau_label1,
+        "risk_tau_label2": config.risk_tau_label2,
+        "risk_weight_label1": config.risk_weight_label1,
+        "risk_weight_label2": config.risk_weight_label2,
+        "risk_normalize_by_low_count": config.risk_normalize_by_low_count,
+        "t3_calibration_loss": config.t3_calibration_loss_type,
+        "use_t3_calibration_loss": config.use_t3_calibration_loss,
+        "lambda_t3_calibration": config.lambda_t3_calibration,
+        "t3_score_source": config.t3_score_source,
+        "t3_low_negative_weight": config.t3_low_negative_weight,
         "selection_rule": config.selection_rule,
         "selection_delta": config.selection_delta,
         "selection_decode_mode": config.selection_decode_mode,
@@ -825,6 +960,7 @@ def loss_config_row(config: QDPR2TrainConfig, class_weights: list[float]) -> dic
         "lambda_pair": config.lambda_pair,
         "lambda_anchor": config.lambda_anchor,
         "lambda_mono": config.lambda_mono,
+        "eval_test": config.eval_test,
         "class_weights": class_weights,
     }
 
@@ -890,6 +1026,13 @@ def train(config: QDPR2TrainConfig, preflight_only: bool = False) -> dict[str, A
                     f"lambda_pair: {config.lambda_pair}",
                     f"lambda_anchor: {config.lambda_anchor}",
                     f"lambda_mono: {config.lambda_mono}",
+                    f"lambda_l2h_risk: {config.lambda_l2h_risk}",
+                    f"use_l2h_risk_loss: {config.use_l2h_risk_loss}",
+                    f"risk_score_source: {config.risk_score_source}",
+                    f"risk_threshold_t: {config.risk_threshold_t}",
+                    f"use_t3_calibration_loss: {config.use_t3_calibration_loss}",
+                    f"lambda_t3_calibration: {config.lambda_t3_calibration}",
+                    f"eval_test: {config.eval_test}",
                     f"projection_method: {config.projection_method}",
                     f"projection_in_decode: {config.projection_in_decode}",
                     f"projection_in_pair_score: {config.projection_in_pair_score}",
@@ -913,7 +1056,7 @@ def train(config: QDPR2TrainConfig, preflight_only: bool = False) -> dict[str, A
     set_seed(config.seed)
     train_rows = limit_rows(train_rows_full, config.max_train_samples)
     dev_rows = limit_rows(read_split(config.data_dir, "dev"), config.max_eval_samples)
-    test_rows = limit_rows(read_split(config.data_dir, "test"), config.max_eval_samples)
+    test_rows = limit_rows(read_split(config.data_dir, "test"), config.max_eval_samples) if config.eval_test else []
     train_pairs = limit_rows(read_qdpr2_pair_shards("train"), config.max_train_pairs) if pair_training_enabled else []
     dev_pairs = limit_rows(read_qdpr2_pair_shards("dev"), config.max_dev_pairs) if pair_training_enabled else []
     model, reference_model, tokenizer = load_model_and_tokenizer(config, class_weights)
@@ -922,7 +1065,7 @@ def train(config: QDPR2TrainConfig, preflight_only: bool = False) -> dict[str, A
     if reference_model is not None:
         reference_model.to(device)
     dev_loader = make_pointwise_dataloader(dev_rows, tokenizer, config, "dev", shuffle=False)
-    test_loader = make_pointwise_dataloader(test_rows, tokenizer, config, "test", shuffle=False)
+    test_loader = make_pointwise_dataloader(test_rows, tokenizer, config, "test", shuffle=False) if config.eval_test else None
     train_loader = (
         make_pair_dataloader(train_pairs, tokenizer, config, shuffle=True)
         if pair_training_enabled
@@ -967,6 +1110,8 @@ def train(config: QDPR2TrainConfig, preflight_only: bool = False) -> dict[str, A
     epoch_test_soft_rows: list[dict[str, Any]] = []
     epoch_dev_low_rows: list[dict[str, Any]] = []
     epoch_test_low_rows: list[dict[str, Any]] = []
+    epoch_dev_pred_rows: list[dict[str, Any]] = []
+    epoch_test_pred_rows: list[dict[str, Any]] = []
     best_score: float | None = None
     global_step = 0
     start = time.time()
@@ -1019,6 +1164,21 @@ def train(config: QDPR2TrainConfig, preflight_only: bool = False) -> dict[str, A
                         use_projected_anchor=config.use_projected_anchor,
                         use_raw_projection_consistency=config.use_raw_projection_consistency,
                         eta_proj=config.eta_proj,
+                        use_l2h_risk_loss=config.use_l2h_risk_loss,
+                        risk_score_source=config.risk_score_source,
+                        risk_threshold_t=config.risk_threshold_t,
+                        risk_loss_type=config.risk_loss_type,
+                        lambda_l2h_risk=config.lambda_l2h_risk,
+                        risk_tau_label1=config.risk_tau_label1,
+                        risk_tau_label2=config.risk_tau_label2,
+                        risk_weight_label1=config.risk_weight_label1,
+                        risk_weight_label2=config.risk_weight_label2,
+                        risk_normalize_by_low_count=config.risk_normalize_by_low_count,
+                        use_t3_calibration_loss=config.use_t3_calibration_loss,
+                        t3_calibration_loss_type=config.t3_calibration_loss_type,
+                        lambda_t3_calibration=config.lambda_t3_calibration,
+                        t3_score_source=config.t3_score_source,
+                        t3_low_negative_weight=config.t3_low_negative_weight,
                     )
                 else:
                     batch.pop("metadata")
@@ -1044,6 +1204,21 @@ def train(config: QDPR2TrainConfig, preflight_only: bool = False) -> dict[str, A
                         use_projected_anchor=config.use_projected_anchor,
                         use_raw_projection_consistency=config.use_raw_projection_consistency,
                         eta_proj=config.eta_proj,
+                        use_l2h_risk_loss=config.use_l2h_risk_loss,
+                        risk_score_source=config.risk_score_source,
+                        risk_threshold_t=config.risk_threshold_t,
+                        risk_loss_type=config.risk_loss_type,
+                        lambda_l2h_risk=config.lambda_l2h_risk,
+                        risk_tau_label1=config.risk_tau_label1,
+                        risk_tau_label2=config.risk_tau_label2,
+                        risk_weight_label1=config.risk_weight_label1,
+                        risk_weight_label2=config.risk_weight_label2,
+                        risk_normalize_by_low_count=config.risk_normalize_by_low_count,
+                        use_t3_calibration_loss=config.use_t3_calibration_loss,
+                        t3_calibration_loss_type=config.t3_calibration_loss_type,
+                        lambda_t3_calibration=config.lambda_t3_calibration,
+                        t3_score_source=config.t3_score_source,
+                        t3_low_negative_weight=config.t3_low_negative_weight,
                     )
                 (loss / config.gradient_accumulation_steps).backward()
                 running_loss += float(loss.detach().cpu())
@@ -1063,6 +1238,12 @@ def train(config: QDPR2TrainConfig, preflight_only: bool = False) -> dict[str, A
                         "use_projected_anchor": config.use_projected_anchor,
                         "use_raw_projection_consistency": config.use_raw_projection_consistency,
                         "eta_proj": config.eta_proj,
+                        "use_l2h_risk_loss": config.use_l2h_risk_loss,
+                        "lambda_l2h_risk": config.lambda_l2h_risk,
+                        "risk_score_source": config.risk_score_source,
+                        "risk_threshold_t": config.risk_threshold_t,
+                        "use_t3_calibration_loss": config.use_t3_calibration_loss,
+                        "lambda_t3_calibration": config.lambda_t3_calibration,
                     }
                 )
                 loss_debug_history.append({"epoch": epoch + 1, "step": step, "global_step": global_step, **debug})
@@ -1094,10 +1275,11 @@ def train(config: QDPR2TrainConfig, preflight_only: bool = False) -> dict[str, A
                     epoch_dev_metric_rows.append(epoch_metric_row(result, config, epoch + 1, global_step, diagnostic=False))
                     epoch_dev_soft_rows.append(soft_risk_row(result, config, epoch + 1, global_step, diagnostic=False))
                     epoch_dev_low_rows.extend(low_score_by_epoch_rows(result, config, epoch + 1, global_step, diagnostic=False))
+                    epoch_dev_pred_rows.extend(prediction_distribution_rows(result, config, epoch + 1, global_step, diagnostic=False))
             if config.keep_epoch_checkpoints_local:
                 epoch_dir = config.checkpoint_output_dir / f"epoch_{epoch + 1:02d}"
                 save_checkpoint(model, tokenizer, epoch_dir, config, dev_result.metrics, class_weights)
-            if config.eval_each_epoch:
+            if config.eval_each_epoch and config.eval_test:
                 test_raw_result = evaluate(model, test_loader, device, "test", config)
                 test_results = [test_raw_result]
                 if config.report_raw_and_projected_metrics or config.projection_in_decode:
@@ -1108,6 +1290,7 @@ def train(config: QDPR2TrainConfig, preflight_only: bool = False) -> dict[str, A
                     epoch_test_metric_rows.append(epoch_metric_row(result, config, epoch + 1, global_step, diagnostic=True))
                     epoch_test_soft_rows.append(soft_risk_row(result, config, epoch + 1, global_step, diagnostic=True))
                     epoch_test_low_rows.extend(low_score_by_epoch_rows(result, config, epoch + 1, global_step, diagnostic=True))
+                    epoch_test_pred_rows.extend(prediction_distribution_rows(result, config, epoch + 1, global_step, diagnostic=True))
             if config.save_each_epoch or config.eval_each_epoch or config.selection_rules_enabled:
                 write_epoch_diagnostic_tables(
                     config.output_dir,
@@ -1117,6 +1300,8 @@ def train(config: QDPR2TrainConfig, preflight_only: bool = False) -> dict[str, A
                     epoch_test_soft_rows,
                     epoch_dev_low_rows,
                     epoch_test_low_rows,
+                    epoch_dev_pred_rows,
+                    epoch_test_pred_rows,
                 )
             selected = score_is_better(dev_result.metrics, best_score, config)
             print(
@@ -1140,10 +1325,15 @@ def train(config: QDPR2TrainConfig, preflight_only: bool = False) -> dict[str, A
         raise RuntimeError(f"Best checkpoint was not saved: {state_dict_path}")
     model.load_state_dict(torch.load(state_dict_path, map_location=device))
     dev_final_raw = evaluate(model, dev_loader, device, "dev", config)
-    test_result_raw = evaluate(model, test_loader, device, "test", config)
-    final_results = [dev_final_raw, test_result_raw]
+    final_results = [dev_final_raw]
+    test_result_raw = None
+    if config.eval_test:
+        test_result_raw = evaluate(model, test_loader, device, "test", config)
+        final_results.append(test_result_raw)
     if config.report_raw_and_projected_metrics or config.projection_in_decode:
-        final_results.extend([projected_eval_result(dev_final_raw, config), projected_eval_result(test_result_raw, config)])
+        final_results.append(projected_eval_result(dev_final_raw, config))
+        if test_result_raw is not None:
+            final_results.append(projected_eval_result(test_result_raw, config))
     for result in final_results:
         result.metrics["epoch"] = "best"
         result.metrics["global_step"] = global_step
@@ -1151,7 +1341,8 @@ def train(config: QDPR2TrainConfig, preflight_only: bool = False) -> dict[str, A
         save_predictions(config.output_dir, result, suffix=suffix)
         if result.metrics.get("decode_mode") == "raw":
             save_eval_arrays(config.output_dir, result.metrics["split"], result)
-    save_dev_test_npz(config.output_dir, dev_final_raw, test_result_raw)
+    if test_result_raw is not None:
+        save_dev_test_npz(config.output_dir, dev_final_raw, test_result_raw)
     save_metrics_history(config.output_dir, metrics_history)
     if loss_debug_history:
         write_csv(config.output_dir / "tables" / "loss_debug_history.csv", loss_debug_history)
@@ -1191,6 +1382,8 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--max_train_pairs", type=int, default=None)
     parser.add_argument("--max_dev_pairs", type=int, default=None)
     parser.add_argument("--eval_only", action="store_true")
+    parser.add_argument("--eval_test", action="store_true", default=None)
+    parser.add_argument("--no_eval_test", action="store_false", dest="eval_test")
     parser.add_argument("--checkpoint_dir", type=Path, default=None)
     parser.add_argument("--selection_metric", default=None)
     parser.add_argument("--selection_mode", choices=["min", "max"], default=None)
@@ -1294,6 +1487,7 @@ def make_config(args: argparse.Namespace) -> QDPR2TrainConfig:
         max_train_pairs=int(max_train_pairs) if max_train_pairs is not None else None,
         max_dev_pairs=int(max_dev_pairs) if max_dev_pairs is not None else None,
         eval_only=bool(args.eval_only),
+        eval_test=bool(args.eval_test if args.eval_test is not None else raw.get("eval_test", True)),
         checkpoint_dir=args.checkpoint_dir or (Path(raw["checkpoint_dir"]) if raw.get("checkpoint_dir") else None),
         selection_metric=str(args.selection_metric or raw.get("selection_metric", "dev_MAE_label")).replace("dev_", ""),
         selection_mode=str(args.selection_mode or raw.get("selection_direction", raw.get("checkpoint_selection_direction", "min"))),
@@ -1321,6 +1515,22 @@ def make_config(args: argparse.Namespace) -> QDPR2TrainConfig:
         use_raw_projection_consistency=bool(raw.get("use_raw_projection_consistency", False)),
         eta_proj=float(raw.get("eta_proj", 0.1)),
         report_raw_and_projected_metrics=bool(raw.get("report_raw_and_projected_metrics", False)),
+        use_l2h_risk_loss=bool(raw.get("use_l2h_risk_loss", False)),
+        risk_score_source=str(raw.get("risk_score_source", "projected")),
+        risk_threshold_t=int(raw.get("risk_threshold_t", 3)),
+        risk_loss_type=str(raw.get("risk_loss_type", "squared_hinge")),
+        lambda_l2h_risk=float(raw.get("lambda_l2h_risk", 0.0)),
+        risk_tau_label1=float(raw.get("risk_tau_label1", 0.35)),
+        risk_tau_label2=float(raw.get("risk_tau_label2", 0.45)),
+        risk_weight_label1=float(raw.get("risk_weight_label1", 1.0)),
+        risk_weight_label2=float(raw.get("risk_weight_label2", 1.0)),
+        risk_normalize_by_low_count=bool(raw.get("risk_normalize_by_low_count", True)),
+        report_risk_loss_terms=bool(raw.get("report_risk_loss_terms", False)),
+        use_t3_calibration_loss=bool(raw.get("use_t3_calibration_loss", False)),
+        t3_calibration_loss_type=str(raw.get("t3_calibration_loss_type", "brier")),
+        lambda_t3_calibration=float(raw.get("lambda_t3_calibration", 0.0)),
+        t3_score_source=str(raw.get("t3_score_source", "projected")),
+        t3_low_negative_weight=float(raw.get("t3_low_negative_weight", 2.0)),
     )
 
 
