@@ -141,8 +141,12 @@ class QDPR2TrainConfig:
     max_train_pairs: int | None
     max_dev_pairs: int | None
     eval_only: bool
+    checkpoint_dir: Path | None
     selection_metric: str
     selection_mode: str
+    selection_rule: str
+    selection_delta: float
+    selection_decode_mode: str
     num_workers: int
     log_steps: int
     progress_bar: bool
@@ -152,6 +156,16 @@ class QDPR2TrainConfig:
     keep_epoch_checkpoints_local: bool
     selection_rules_enabled: bool
     soft_risk_gamma: float
+    use_monotone_projection: bool
+    projection_method: str
+    projection_in_decode: bool
+    projection_in_pair_score: bool
+    projection_in_point_loss: bool
+    projection_in_anchor: bool
+    use_projected_anchor: bool
+    use_raw_projection_consistency: bool
+    eta_proj: float
+    report_raw_and_projected_metrics: bool
 
 
 def require_qd_b1_checkpoint(path: Path) -> None:
@@ -239,12 +253,18 @@ def load_model_and_tokenizer(config: QDPR2TrainConfig, class_weights: list[float
     from transformers import AutoModel, AutoTokenizer
 
     dtype = select_dtype(config, torch)
+    tokenizer_source = config.checkpoint_dir if config.checkpoint_dir and (config.checkpoint_dir / "tokenizer.json").exists() else config.qd_b1_checkpoint_dir
     tokenizer = AutoTokenizer.from_pretrained(
-        config.qd_b1_checkpoint_dir,
+        tokenizer_source,
         trust_remote_code=config.trust_remote_code,
         local_files_only=config.local_files_only,
     )
     model = build_model(torch, nn, AutoModel, config, dtype, class_weights)
+    if config.checkpoint_dir is not None:
+        state_dict_path = config.checkpoint_dir / "state_dict.pt"
+        if not state_dict_path.exists():
+            raise FileNotFoundError(f"Missing eval checkpoint state_dict.pt: {relpath(state_dict_path)}")
+        model.load_state_dict(torch.load(state_dict_path, map_location="cpu"))
     reference_model = None
     if config.lambda_anchor != 0.0:
         reference_model = build_model(torch, nn, AutoModel, config, dtype, class_weights)
@@ -332,6 +352,10 @@ def evaluate(model: Any, dataloader: Any, device: Any, split: str, config: QDPR2
                 prediction["head_type"] = "independent_ordinal"
                 prediction["objective"] = config.objective if config is not None else "anchored_risk_aware_pairwise_ordinal"
                 prediction["loss"] = config.loss if config is not None else "weighted_ordinal_bce_plus_pairwise_anchor_monotonic"
+                prediction["decode_mode"] = "raw"
+                prediction["projection_method"] = "none"
+                prediction["projection_l2_delta"] = 0.0
+                prediction["projection_linf_delta"] = 0.0
                 if config is not None:
                     prediction["run_id"] = config.run_id
                     prediction["ablation_name"] = config.ablation_name
@@ -354,7 +378,69 @@ def evaluate(model: Any, dataloader: Any, device: Any, split: str, config: QDPR2
     metrics["loss"] = total_loss / steps if steps else float("nan")
     for key, value in debug_totals.items():
         metrics[key] = value / steps if steps else float("nan")
+    metrics["decode_mode"] = "raw"
+    metrics["projection_method"] = "none"
     return EvalResult(metrics, predictions, logits_arr, probs_arr, labels_arr, targets_arr, record_ids)
+
+
+def projected_eval_result(result: EvalResult, config: QDPR2TrainConfig | None = None) -> EvalResult:
+    from thesis_exp.src.edujudge.exp12_monotonic_projection_map_oc.monotone_projection import project_nonincreasing_probs
+
+    raw_probs = np.asarray(result.probs, dtype=np.float64)
+    projected_probs = project_nonincreasing_probs(raw_probs) if raw_probs.size else np.empty((0, 4), dtype=np.float64)
+    projected_predictions: list[dict[str, Any]] = []
+    method = config.projection_method if config is not None else "pava"
+    for row, raw_row, projected in zip(result.predictions, raw_probs.tolist(), projected_probs.tolist()):
+        prediction = dict(row)
+        pred_label = 1 + sum(1 for prob in projected if prob > 0.5)
+        expected_score = 1.0 + float(sum(projected))
+        human_mean = float(prediction["human_mean_5"])
+        prediction["pred_label_5"] = int(pred_label)
+        prediction["pred_label"] = int(pred_label)
+        prediction["pred_score_5"] = float(pred_label)
+        prediction["pred_score_expected"] = expected_score
+        prediction["abs_error_label"] = abs(float(pred_label) - human_mean)
+        prediction["signed_error_label"] = float(pred_label) - human_mean
+        prediction["abs_error_expected"] = abs(float(expected_score) - human_mean)
+        prediction["signed_error_expected"] = float(expected_score) - human_mean
+        prediction["confidence"] = float(np.mean([abs(prob - 0.5) * 2 for prob in projected]))
+        prediction["monotonic_violation"] = monotonic_violation(projected)
+        prediction["decode_mode"] = "projected"
+        prediction["projection_method"] = method
+        delta = np.asarray(projected, dtype=np.float64) - np.asarray(raw_row, dtype=np.float64)
+        prediction["projection_l2_delta"] = float(np.sqrt(np.sum(delta * delta)))
+        prediction["projection_linf_delta"] = float(np.max(np.abs(delta)))
+        for idx, threshold in enumerate([1, 2, 3, 4]):
+            prediction[f"raw_prob_gt_{threshold}"] = float(raw_row[idx])
+            prediction[f"projected_prob_gt_{threshold}"] = float(projected[idx])
+            prediction[f"prob_gt_{threshold}"] = float(projected[idx])
+        projected_predictions.append(prediction)
+    metrics = compute_ordinal_metrics(projected_predictions)
+    metrics["split"] = result.metrics["split"]
+    metrics["loss"] = result.metrics.get("loss", float("nan"))
+    metrics["decode_mode"] = "projected"
+    metrics["projection_method"] = method
+    if projected_predictions:
+        metrics["mean_projection_l2_delta"] = float(np.mean([row["projection_l2_delta"] for row in projected_predictions]))
+        metrics["mean_projection_linf_delta"] = float(np.mean([row["projection_linf_delta"] for row in projected_predictions]))
+    else:
+        metrics["mean_projection_l2_delta"] = float("nan")
+        metrics["mean_projection_linf_delta"] = float("nan")
+    return EvalResult(
+        metrics,
+        projected_predictions,
+        result.logits,
+        np.asarray(projected_probs, dtype=np.float32),
+        result.labels,
+        result.target_values,
+        result.record_ids,
+    )
+
+
+def maybe_projected_result(result: EvalResult, config: QDPR2TrainConfig) -> EvalResult:
+    if config.projection_in_decode or config.report_raw_and_projected_metrics or config.selection_decode_mode == "projected":
+        return projected_eval_result(result, config)
+    return result
 
 
 def _rate(count: int, total: int) -> float:
@@ -384,12 +470,17 @@ def epoch_metric_row(result: EvalResult, config: QDPR2TrainConfig, epoch: int, g
     label2_low_to_high_count = sum(1 for idx in label2_indices if preds[idx] >= 4)
     probs = result.probs
     pair_violations = probs[:, :-1] < probs[:, 1:] if probs.size else np.empty((0, 3), dtype=bool)
+    decode_mode = str(result.metrics.get("decode_mode") or (result.predictions[0].get("decode_mode") if result.predictions else "raw"))
+    l2_deltas = [float(row.get("projection_l2_delta", 0.0)) for row in result.predictions]
+    linf_deltas = [float(row.get("projection_linf_delta", 0.0)) for row in result.predictions]
+    low_l2_deltas = [l2_deltas[idx] for idx in low_indices]
     return {
         "seed": config.seed,
         "epoch": epoch,
         "global_step": global_step,
         "split": result.metrics["split"],
         "diagnostic": diagnostic,
+        "decode_mode": decode_mode,
         "MAE": result.metrics.get("MAE_label"),
         "QWK": result.metrics.get("Quadratic Weighted Kappa"),
         "Accuracy": result.metrics.get("Accuracy"),
@@ -407,6 +498,9 @@ def epoch_metric_row(result: EvalResult, config: QDPR2TrainConfig, epoch: int, g
         "p1_lt_p2": float(np.mean(pair_violations[:, 0])) if pair_violations.size else float("nan"),
         "p2_lt_p3": float(np.mean(pair_violations[:, 1])) if pair_violations.size else float("nan"),
         "p3_lt_p4": float(np.mean(pair_violations[:, 2])) if pair_violations.size else float("nan"),
+        "mean_projection_l2_delta": _mean(l2_deltas),
+        "mean_projection_linf_delta": _mean(linf_deltas),
+        "low_score_mean_projection_l2_delta": _mean(low_l2_deltas),
     }
 
 
@@ -425,6 +519,7 @@ def soft_risk_row(result: EvalResult, config: QDPR2TrainConfig, epoch: int, glob
         "global_step": global_step,
         "split": result.metrics["split"],
         "diagnostic": diagnostic,
+        "decode_mode": result.metrics.get("decode_mode", "raw"),
         "gamma": gamma,
         "soft_low_to_high": _mean(low_soft),
         "p_gt_3_low_mean": _mean([p_gt_3_values[idx] for idx in low_indices]),
@@ -445,6 +540,7 @@ def low_score_by_epoch_rows(result: EvalResult, config: QDPR2TrainConfig, epoch:
             "global_step": global_step,
             "split": result.metrics["split"],
             "diagnostic": diagnostic,
+            "decode_mode": result.metrics.get("decode_mode", "raw"),
             "true_low_score_count": total,
             "pred_label": pred_label,
             "count": sum(1 for pred in low_preds if pred == pred_label),
@@ -536,6 +632,9 @@ def save_checkpoint(
             "best_selection_metric_name": f"dev_{config.selection_metric}",
             "best_selection_metric_value": selection_metric_value(metrics, config),
             "selection_direction": config.selection_mode,
+            "selection_rule": config.selection_rule,
+            "selection_delta": config.selection_delta,
+            "selection_decode_mode": config.selection_decode_mode,
             "synthetic_used": False,
             "class_weights": class_weights,
             "loss_weights": {
@@ -543,6 +642,18 @@ def save_checkpoint(
                 "lambda_pair": config.lambda_pair,
                 "lambda_anchor": config.lambda_anchor,
                 "lambda_mono": config.lambda_mono,
+            },
+            "projection": {
+                "use_monotone_projection": config.use_monotone_projection,
+                "projection_method": config.projection_method,
+                "projection_in_decode": config.projection_in_decode,
+                "projection_in_pair_score": config.projection_in_pair_score,
+                "projection_in_point_loss": config.projection_in_point_loss,
+                "projection_in_anchor": config.projection_in_anchor,
+                "use_projected_anchor": config.use_projected_anchor,
+                "use_raw_projection_consistency": config.use_raw_projection_consistency,
+                "eta_proj": config.eta_proj,
+                "report_raw_and_projected_metrics": config.report_raw_and_projected_metrics,
             },
         },
     )
@@ -580,6 +691,17 @@ def normalize_run_files(output_dir: Path, config: QDPR2TrainConfig, status: str)
             "best_global_step": best_metadata.get("best_global_step"),
             "selection_metric": config.selection_metric,
             "selection_direction": config.selection_mode,
+            "selection_rule": config.selection_rule,
+            "selection_delta": config.selection_delta,
+            "selection_decode_mode": config.selection_decode_mode,
+            "projection_method": config.projection_method,
+            "projection_in_decode": config.projection_in_decode,
+            "projection_in_pair_score": config.projection_in_pair_score,
+            "projection_in_point_loss": config.projection_in_point_loss,
+            "projection_in_anchor": config.projection_in_anchor,
+            "use_projected_anchor": config.use_projected_anchor,
+            "use_raw_projection_consistency": config.use_raw_projection_consistency,
+            "eta_proj": config.eta_proj,
         },
     )
     active_losses = []
@@ -611,6 +733,11 @@ def normalize_run_files(output_dir: Path, config: QDPR2TrainConfig, status: str)
         f"lambda_pair: `{config.lambda_pair}`",
         f"lambda_anchor: `{config.lambda_anchor}`",
         f"lambda_mono: `{config.lambda_mono}`",
+        f"projection_in_decode: `{config.projection_in_decode}`",
+        f"projection_in_pair_score: `{config.projection_in_pair_score}`",
+        f"projection_in_point_loss: `{config.projection_in_point_loss}`",
+        f"projection_in_anchor: `{config.projection_in_anchor}`",
+        f"selection_decode_mode: `{config.selection_decode_mode}`",
     ]
     write_text(output_dir / "run_summary.md", "\n".join(lines))
 
@@ -683,6 +810,17 @@ def loss_config_row(config: QDPR2TrainConfig, class_weights: list[float]) -> dic
         "pairwise_loss": "softplus(m_ij - (r(win)-r(lose)))",
         "anchor_loss": "BCEWithLogits(current_logits, sigmoid(qd_b1_ref_logits))",
         "monotonic_regularization": "mean_t max(0, p_{t+1}-p_t)",
+        "projection_method": config.projection_method,
+        "projection_in_decode": config.projection_in_decode,
+        "projection_in_pair_score": config.projection_in_pair_score,
+        "projection_in_point_loss": config.projection_in_point_loss,
+        "projection_in_anchor": config.projection_in_anchor,
+        "use_projected_anchor": config.use_projected_anchor,
+        "use_raw_projection_consistency": config.use_raw_projection_consistency,
+        "eta_proj": config.eta_proj,
+        "selection_rule": config.selection_rule,
+        "selection_delta": config.selection_delta,
+        "selection_decode_mode": config.selection_decode_mode,
         "lambda_point": config.lambda_point,
         "lambda_pair": config.lambda_pair,
         "lambda_anchor": config.lambda_anchor,
@@ -752,6 +890,13 @@ def train(config: QDPR2TrainConfig, preflight_only: bool = False) -> dict[str, A
                     f"lambda_pair: {config.lambda_pair}",
                     f"lambda_anchor: {config.lambda_anchor}",
                     f"lambda_mono: {config.lambda_mono}",
+                    f"projection_method: {config.projection_method}",
+                    f"projection_in_decode: {config.projection_in_decode}",
+                    f"projection_in_pair_score: {config.projection_in_pair_score}",
+                    f"projection_in_point_loss: {config.projection_in_point_loss}",
+                    f"projection_in_anchor: {config.projection_in_anchor}",
+                    f"selection_rule: {config.selection_rule}",
+                    f"selection_decode_mode: {config.selection_decode_mode}",
                 ]
             ),
         )
@@ -784,6 +929,31 @@ def train(config: QDPR2TrainConfig, preflight_only: bool = False) -> dict[str, A
         else make_pointwise_dataloader(train_rows, tokenizer, config, "train", shuffle=True)
     )
     best_dir = config.checkpoint_output_dir / "best"
+    if config.eval_only:
+        dev_raw = evaluate(model, dev_loader, device, "dev", config)
+        test_raw = evaluate(model, test_loader, device, "test", config)
+        dev_results = [dev_raw]
+        test_results = [test_raw]
+        if config.report_raw_and_projected_metrics or config.projection_in_decode:
+            dev_results.append(projected_eval_result(dev_raw, config))
+            test_results.append(projected_eval_result(test_raw, config))
+        for result in dev_results + test_results:
+            result.metrics["epoch"] = "eval"
+            result.metrics["global_step"] = 0
+            suffix = result.metrics["split"] if result.metrics.get("decode_mode") == "raw" else f"{result.metrics['split']}_projected"
+            save_predictions(config.output_dir, result, suffix=suffix)
+        write_epoch_diagnostic_tables(
+            config.output_dir,
+            [epoch_metric_row(result, config, 0, 0, diagnostic=False) for result in dev_results],
+            [epoch_metric_row(result, config, 0, 0, diagnostic=True) for result in test_results],
+            [soft_risk_row(result, config, 0, 0, diagnostic=False) for result in dev_results],
+            [soft_risk_row(result, config, 0, 0, diagnostic=True) for result in test_results],
+            [row for result in dev_results for row in low_score_by_epoch_rows(result, config, 0, 0, diagnostic=False)],
+            [row for result in test_results for row in low_score_by_epoch_rows(result, config, 0, 0, diagnostic=True)],
+        )
+        save_metric_tables(config.output_dir, dev_results + test_results)
+        normalize_run_files(config.output_dir, config, "eval_only")
+        return {"metrics": [result.metrics for result in dev_results + test_results], "best_dir": str(config.checkpoint_dir or "")}
     optimizer = AdamW(model.parameters(), lr=config.learning_rate, weight_decay=config.weight_decay)
     update_steps_per_epoch = math.ceil(len(train_loader) / config.gradient_accumulation_steps)
     total_steps = max(1, int(math.ceil(config.num_train_epochs * update_steps_per_epoch)))
@@ -843,6 +1013,12 @@ def train(config: QDPR2TrainConfig, preflight_only: bool = False) -> dict[str, A
                         low_high_margin=config.low_high_margin,
                         low_high_weight=config.low_high_weight,
                         gap_weight=config.gap_weight,
+                        projection_in_pair_score=config.projection_in_pair_score,
+                        projection_in_point_loss=config.projection_in_point_loss,
+                        projection_in_anchor=config.projection_in_anchor,
+                        use_projected_anchor=config.use_projected_anchor,
+                        use_raw_projection_consistency=config.use_raw_projection_consistency,
+                        eta_proj=config.eta_proj,
                     )
                 else:
                     batch.pop("metadata")
@@ -863,6 +1039,11 @@ def train(config: QDPR2TrainConfig, preflight_only: bool = False) -> dict[str, A
                         lambda_point=config.lambda_point,
                         lambda_anchor=config.lambda_anchor,
                         lambda_mono=config.lambda_mono,
+                        projection_in_point_loss=config.projection_in_point_loss,
+                        projection_in_anchor=config.projection_in_anchor,
+                        use_projected_anchor=config.use_projected_anchor,
+                        use_raw_projection_consistency=config.use_raw_projection_consistency,
+                        eta_proj=config.eta_proj,
                     )
                 (loss / config.gradient_accumulation_steps).backward()
                 running_loss += float(loss.detach().cpu())
@@ -876,6 +1057,12 @@ def train(config: QDPR2TrainConfig, preflight_only: bool = False) -> dict[str, A
                         "use_pair_training": pair_training_enabled,
                         "dataloader_mode": actual_dataloader_mode,
                         "strict_module_ablation": config.strict_module_ablation,
+                        "projection_in_pair_score": config.projection_in_pair_score,
+                        "projection_in_point_loss": config.projection_in_point_loss,
+                        "projection_in_anchor": config.projection_in_anchor,
+                        "use_projected_anchor": config.use_projected_anchor,
+                        "use_raw_projection_consistency": config.use_raw_projection_consistency,
+                        "eta_proj": config.eta_proj,
                     }
                 )
                 loss_debug_history.append({"epoch": epoch + 1, "step": step, "global_step": global_step, **debug})
@@ -893,24 +1080,34 @@ def train(config: QDPR2TrainConfig, preflight_only: bool = False) -> dict[str, A
                     if global_step >= total_steps:
                         break
             progress.newline()
-            dev_result = evaluate(model, dev_loader, device, "dev", config)
-            dev_result.metrics["epoch"] = epoch + 1
-            dev_result.metrics["global_step"] = global_step
+            dev_raw_result = evaluate(model, dev_loader, device, "dev", config)
+            dev_results = [dev_raw_result]
+            if config.report_raw_and_projected_metrics or config.projection_in_decode or config.selection_decode_mode == "projected":
+                dev_results.append(projected_eval_result(dev_raw_result, config))
+            for result in dev_results:
+                result.metrics["epoch"] = epoch + 1
+                result.metrics["global_step"] = global_step
+            dev_result = next((result for result in dev_results if result.metrics.get("decode_mode") == config.selection_decode_mode), dev_raw_result)
             metrics_history.append(dev_result.metrics)
             if config.save_each_epoch or config.eval_each_epoch or config.selection_rules_enabled:
-                epoch_dev_metric_rows.append(epoch_metric_row(dev_result, config, epoch + 1, global_step, diagnostic=False))
-                epoch_dev_soft_rows.append(soft_risk_row(dev_result, config, epoch + 1, global_step, diagnostic=False))
-                epoch_dev_low_rows.extend(low_score_by_epoch_rows(dev_result, config, epoch + 1, global_step, diagnostic=False))
+                for result in dev_results:
+                    epoch_dev_metric_rows.append(epoch_metric_row(result, config, epoch + 1, global_step, diagnostic=False))
+                    epoch_dev_soft_rows.append(soft_risk_row(result, config, epoch + 1, global_step, diagnostic=False))
+                    epoch_dev_low_rows.extend(low_score_by_epoch_rows(result, config, epoch + 1, global_step, diagnostic=False))
             if config.keep_epoch_checkpoints_local:
                 epoch_dir = config.checkpoint_output_dir / f"epoch_{epoch + 1:02d}"
                 save_checkpoint(model, tokenizer, epoch_dir, config, dev_result.metrics, class_weights)
             if config.eval_each_epoch:
-                test_epoch_result = evaluate(model, test_loader, device, "test", config)
-                test_epoch_result.metrics["epoch"] = epoch + 1
-                test_epoch_result.metrics["global_step"] = global_step
-                epoch_test_metric_rows.append(epoch_metric_row(test_epoch_result, config, epoch + 1, global_step, diagnostic=True))
-                epoch_test_soft_rows.append(soft_risk_row(test_epoch_result, config, epoch + 1, global_step, diagnostic=True))
-                epoch_test_low_rows.extend(low_score_by_epoch_rows(test_epoch_result, config, epoch + 1, global_step, diagnostic=True))
+                test_raw_result = evaluate(model, test_loader, device, "test", config)
+                test_results = [test_raw_result]
+                if config.report_raw_and_projected_metrics or config.projection_in_decode:
+                    test_results.append(projected_eval_result(test_raw_result, config))
+                for result in test_results:
+                    result.metrics["epoch"] = epoch + 1
+                    result.metrics["global_step"] = global_step
+                    epoch_test_metric_rows.append(epoch_metric_row(result, config, epoch + 1, global_step, diagnostic=True))
+                    epoch_test_soft_rows.append(soft_risk_row(result, config, epoch + 1, global_step, diagnostic=True))
+                    epoch_test_low_rows.extend(low_score_by_epoch_rows(result, config, epoch + 1, global_step, diagnostic=True))
             if config.save_each_epoch or config.eval_each_epoch or config.selection_rules_enabled:
                 write_epoch_diagnostic_tables(
                     config.output_dir,
@@ -925,7 +1122,8 @@ def train(config: QDPR2TrainConfig, preflight_only: bool = False) -> dict[str, A
             print(
                 f"dev epoch={epoch + 1}: MAE_label={dev_result.metrics['MAE_label']:.4f}, "
                 f"low_to_high={dev_result.metrics['low_to_high_rate']:.4f}, "
-                f"monotonic={dev_result.metrics['monotonic_violation_rate']:.4f}, selected={selected}",
+                f"monotonic={dev_result.metrics['monotonic_violation_rate']:.4f}, "
+                f"decode_mode={dev_result.metrics.get('decode_mode', 'raw')}, selected={selected}",
                 flush=True,
             )
             if selected:
@@ -941,23 +1139,28 @@ def train(config: QDPR2TrainConfig, preflight_only: bool = False) -> dict[str, A
     if not state_dict_path.exists():
         raise RuntimeError(f"Best checkpoint was not saved: {state_dict_path}")
     model.load_state_dict(torch.load(state_dict_path, map_location=device))
-    dev_final = evaluate(model, dev_loader, device, "dev", config)
-    test_result = evaluate(model, test_loader, device, "test", config)
-    for result in [dev_final, test_result]:
+    dev_final_raw = evaluate(model, dev_loader, device, "dev", config)
+    test_result_raw = evaluate(model, test_loader, device, "test", config)
+    final_results = [dev_final_raw, test_result_raw]
+    if config.report_raw_and_projected_metrics or config.projection_in_decode:
+        final_results.extend([projected_eval_result(dev_final_raw, config), projected_eval_result(test_result_raw, config)])
+    for result in final_results:
         result.metrics["epoch"] = "best"
         result.metrics["global_step"] = global_step
-        save_predictions(config.output_dir, result)
-        save_eval_arrays(config.output_dir, result.metrics["split"], result)
-    save_dev_test_npz(config.output_dir, dev_final, test_result)
+        suffix = result.metrics["split"] if result.metrics.get("decode_mode") == "raw" else f"{result.metrics['split']}_projected"
+        save_predictions(config.output_dir, result, suffix=suffix)
+        if result.metrics.get("decode_mode") == "raw":
+            save_eval_arrays(config.output_dir, result.metrics["split"], result)
+    save_dev_test_npz(config.output_dir, dev_final_raw, test_result_raw)
     save_metrics_history(config.output_dir, metrics_history)
     if loss_debug_history:
         write_csv(config.output_dir / "tables" / "loss_debug_history.csv", loss_debug_history)
         write_csv(config.output_dir / "logs" / "loss_debug_history.csv", loss_debug_history)
-    save_metric_tables(config.output_dir, [dev_final, test_result])
-    save_pairwise_diagnostics(config.output_dir, dev_pairs, dev_final, "dev")
+    save_metric_tables(config.output_dir, final_results)
+    save_pairwise_diagnostics(config.output_dir, dev_pairs, dev_final_raw, "dev")
     copy_dev_history_to_logs(config.output_dir)
     normalize_run_files(config.output_dir, config, "completed")
-    return {"metrics": [dev_final.metrics, test_result.metrics], "best_dir": str(best_dir)}
+    return {"metrics": [result.metrics for result in final_results], "best_dir": str(best_dir)}
 
 
 def parse_args() -> argparse.Namespace:
@@ -988,8 +1191,10 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--max_train_pairs", type=int, default=None)
     parser.add_argument("--max_dev_pairs", type=int, default=None)
     parser.add_argument("--eval_only", action="store_true")
+    parser.add_argument("--checkpoint_dir", type=Path, default=None)
     parser.add_argument("--selection_metric", default=None)
     parser.add_argument("--selection_mode", choices=["min", "max"], default=None)
+    parser.add_argument("--selection_decode_mode", choices=["raw", "projected"], default=None)
     parser.add_argument("--num_workers", type=int, default=0)
     parser.add_argument("--log_steps", type=int, default=5)
     parser.add_argument("--smoke", action="store_true")
@@ -1089,8 +1294,12 @@ def make_config(args: argparse.Namespace) -> QDPR2TrainConfig:
         max_train_pairs=int(max_train_pairs) if max_train_pairs is not None else None,
         max_dev_pairs=int(max_dev_pairs) if max_dev_pairs is not None else None,
         eval_only=bool(args.eval_only),
+        checkpoint_dir=args.checkpoint_dir or (Path(raw["checkpoint_dir"]) if raw.get("checkpoint_dir") else None),
         selection_metric=str(args.selection_metric or raw.get("selection_metric", "dev_MAE_label")).replace("dev_", ""),
         selection_mode=str(args.selection_mode or raw.get("selection_direction", raw.get("checkpoint_selection_direction", "min"))),
+        selection_rule=str(raw.get("selection_rule", "mae_guard_p_gt_3_low_mean")),
+        selection_delta=float(raw.get("selection_delta", 0.005)),
+        selection_decode_mode=str(args.selection_decode_mode or raw.get("selection_decode_mode", "raw")),
         num_workers=int(args.num_workers),
         log_steps=int(args.log_steps),
         progress_bar=bool(args.progress_bar),
@@ -1102,6 +1311,16 @@ def make_config(args: argparse.Namespace) -> QDPR2TrainConfig:
         ),
         selection_rules_enabled=bool(args.selection_rules_enabled or raw.get("selection_rules_enabled", False)),
         soft_risk_gamma=float(args.soft_risk_gamma if args.soft_risk_gamma is not None else raw.get("soft_risk_gamma", 4.0)),
+        use_monotone_projection=bool(raw.get("use_monotone_projection", False)),
+        projection_method=str(raw.get("projection_method", "pava")),
+        projection_in_decode=bool(raw.get("projection_in_decode", False)),
+        projection_in_pair_score=bool(raw.get("projection_in_pair_score", False)),
+        projection_in_point_loss=bool(raw.get("projection_in_point_loss", False)),
+        projection_in_anchor=bool(raw.get("projection_in_anchor", False)),
+        use_projected_anchor=bool(raw.get("use_projected_anchor", False)),
+        use_raw_projection_consistency=bool(raw.get("use_raw_projection_consistency", False)),
+        eta_proj=float(raw.get("eta_proj", 0.1)),
+        report_raw_and_projected_metrics=bool(raw.get("report_raw_and_projected_metrics", False)),
     )
 
 

@@ -31,12 +31,28 @@ def sigmoid(values: Any) -> Any:
 
 
 def scalar_score_from_logits(logits: Any) -> Any:
+    return scalar_score_from_logits_with_projection(logits, use_projection=False)
+
+
+def scalar_score_from_logits_with_projection(logits: Any, use_projection: bool = False) -> Any:
     if _is_torch_tensor(logits):
-        return 1.0 + sigmoid(logits.float()).sum(dim=-1)
+        probs = sigmoid(logits.float())
+        if use_projection:
+            from thesis_exp.src.edujudge.exp12_monotonic_projection_map_oc.monotone_projection import (
+                project_nonincreasing_probs_torch,
+            )
+
+            probs = project_nonincreasing_probs_torch(probs)
+        return 1.0 + probs.sum(dim=-1)
     arr = np.asarray(logits, dtype=np.float64)
     if arr.ndim != 2 or arr.shape[1] != 4:
         raise ValueError(f"Expected ordinal logits shape [batch,4], got {arr.shape}")
-    return 1.0 + sigmoid(arr).sum(axis=1)
+    probs = sigmoid(arr)
+    if use_projection:
+        from thesis_exp.src.edujudge.exp12_monotonic_projection_map_oc.monotone_projection import project_nonincreasing_probs
+
+        probs = project_nonincreasing_probs(probs)
+    return 1.0 + probs.sum(axis=1)
 
 
 def make_ordinal_targets(label_5: Any) -> Any:
@@ -121,6 +137,44 @@ def weighted_ordinal_bce(logits: Any, label_5: Any, class_weights: Any) -> tuple
     }
 
 
+def weighted_ordinal_bce_from_probs(probs: Any, label_5: Any, class_weights: Any) -> tuple[Any, dict[str, float]]:
+    """Weighted ordinal BCE on already-projected probabilities."""
+    if _is_torch_tensor(probs):
+        import torch
+        from torch.nn import functional as F
+
+        labels = label_5.reshape(-1).long().to(device=probs.device)
+        weights = torch.as_tensor(class_weights, dtype=probs.float().dtype, device=probs.device)
+        targets = make_ordinal_targets(labels).to(device=probs.device, dtype=probs.float().dtype)
+        clipped = probs.float().clamp(1e-6, 1.0 - 1e-6)
+        per_sample = F.binary_cross_entropy(clipped, targets, reduction="none").mean(dim=1)
+        sample_weights = weights[labels]
+        loss = (sample_weights * per_sample).sum() / sample_weights.sum().clamp_min(torch.finfo(sample_weights.dtype).eps)
+        debug = {
+            "mean_point_base_loss": float(per_sample.detach().mean().cpu()),
+            "mean_point_sample_weight": float(sample_weights.detach().mean().cpu()),
+            "min_point_sample_weight": float(sample_weights.detach().min().cpu()),
+            "max_point_sample_weight": float(sample_weights.detach().max().cpu()),
+            "point_loss_uses_projected_probs": 1.0,
+        }
+        return loss, debug
+    probs_arr = np.asarray(probs, dtype=np.float64)
+    labels = np.asarray(label_5, dtype=np.int64).reshape(-1)
+    targets = make_ordinal_targets(labels)
+    weights = np.asarray(class_weights, dtype=np.float64).reshape(-1)
+    clipped = np.clip(probs_arr, 1e-6, 1.0 - 1e-6)
+    per_sample = -np.mean(targets * np.log(clipped) + (1.0 - targets) * np.log(1.0 - clipped), axis=1)
+    sample_weights = weights[labels]
+    loss = float(np.sum(sample_weights * per_sample) / max(np.sum(sample_weights), 1e-12))
+    return loss, {
+        "mean_point_base_loss": float(np.mean(per_sample)),
+        "mean_point_sample_weight": float(np.mean(sample_weights)),
+        "min_point_sample_weight": float(np.min(sample_weights)),
+        "max_point_sample_weight": float(np.max(sample_weights)),
+        "point_loss_uses_projected_probs": 1.0,
+    }
+
+
 def pairwise_ordinal_loss(
     win_logits: Any,
     lose_logits: Any,
@@ -130,6 +184,7 @@ def pairwise_ordinal_loss(
     low_high_margin: float = DEFAULT_LOW_HIGH_MARGIN,
     low_high_weight: float = DEFAULT_LOW_HIGH_WEIGHT,
     gap_weight: float = DEFAULT_GAP_WEIGHT,
+    use_projected_score: bool = False,
 ) -> tuple[Any, dict[str, float]]:
     if _is_torch_tensor(win_logits):
         import torch
@@ -139,7 +194,9 @@ def pairwise_ordinal_loss(
         risk = low_high.to(device=win_logits.device).float().reshape(-1)
         margins = pair_margin(gap, risk, margin_scale, low_high_margin)
         weights = pair_weight(gap, risk, low_high_weight, gap_weight)
-        score_gap = scalar_score_from_logits(win_logits) - scalar_score_from_logits(lose_logits)
+        score_gap = scalar_score_from_logits_with_projection(win_logits, use_projected_score) - scalar_score_from_logits_with_projection(
+            lose_logits, use_projected_score
+        )
         losses = weights * F.softplus(margins - score_gap)
         loss = losses.mean()
         low_high_mask = risk > 0.5
@@ -152,13 +209,16 @@ def pairwise_ordinal_loss(
             "mean_score_gap": float(score_gap.detach().mean().cpu()),
             "low_high_pair_loss": float(losses[low_high_mask].detach().mean().cpu()) if bool(low_high_mask.any().detach().cpu()) else 0.0,
             "adjacent_pair_loss": float(losses[adjacent_mask].detach().mean().cpu()) if bool(adjacent_mask.any().detach().cpu()) else 0.0,
+            "pair_score_uses_projection": 1.0 if use_projected_score else 0.0,
         }
         return loss, debug
     gap_arr = np.asarray(label_gap, dtype=np.float64).reshape(-1)
     risk_arr = np.asarray(low_high, dtype=np.float64).reshape(-1)
     margins = pair_margin(gap_arr, risk_arr, margin_scale, low_high_margin)
     weights = pair_weight(gap_arr, risk_arr, low_high_weight, gap_weight)
-    score_gap = scalar_score_from_logits(win_logits) - scalar_score_from_logits(lose_logits)
+    score_gap = scalar_score_from_logits_with_projection(win_logits, use_projected_score) - scalar_score_from_logits_with_projection(
+        lose_logits, use_projected_score
+    )
     losses = weights * _stable_softplus(margins - score_gap)
     loss = float(np.mean(losses))
     return loss, {
@@ -169,6 +229,7 @@ def pairwise_ordinal_loss(
         "mean_score_gap": float(np.mean(score_gap)),
         "low_high_pair_loss": float(np.mean(losses[risk_arr > 0.5])) if np.any(risk_arr > 0.5) else 0.0,
         "adjacent_pair_loss": float(np.mean(losses[gap_arr == 1])) if np.any(gap_arr == 1) else 0.0,
+        "pair_score_uses_projection": 1.0 if use_projected_score else 0.0,
     }
 
 
@@ -219,6 +280,76 @@ def monotonic_regularization(logits: Any) -> tuple[Any, dict[str, float]]:
     }
 
 
+def projected_probs_from_logits(logits: Any) -> Any:
+    if _is_torch_tensor(logits):
+        from thesis_exp.src.edujudge.exp12_monotonic_projection_map_oc.monotone_projection import (
+            project_nonincreasing_probs_torch,
+        )
+
+        return project_nonincreasing_probs_torch(sigmoid(logits.float()))
+    from thesis_exp.src.edujudge.exp12_monotonic_projection_map_oc.monotone_projection import project_nonincreasing_probs
+
+    return project_nonincreasing_probs(sigmoid(np.asarray(logits, dtype=np.float64)))
+
+
+def anchor_projected_mse(logits: Any, ref_logits: Any, use_projected_anchor: bool) -> tuple[Any, dict[str, float]]:
+    if _is_torch_tensor(logits):
+        from torch.nn import functional as F
+
+        current_probs = projected_probs_from_logits(logits)
+        ref_probs = projected_probs_from_logits(ref_logits) if use_projected_anchor else sigmoid(ref_logits.float())
+        loss = F.mse_loss(current_probs.float(), ref_probs.detach().float(), reduction="mean")
+        return loss, {
+            "L_anchor": float(loss.detach().cpu()),
+            "mean_anchor_target_prob": float(ref_probs.detach().mean().cpu()),
+            "anchor_uses_projected_current": 1.0,
+            "anchor_uses_projected_reference": 1.0 if use_projected_anchor else 0.0,
+        }
+    current_probs = projected_probs_from_logits(logits)
+    ref_probs = projected_probs_from_logits(ref_logits) if use_projected_anchor else sigmoid(np.asarray(ref_logits, dtype=np.float64))
+    loss = float(np.mean((current_probs - ref_probs) ** 2)) if current_probs.size else 0.0
+    return loss, {
+        "L_anchor": loss,
+        "mean_anchor_target_prob": float(np.mean(ref_probs)) if np.asarray(ref_probs).size else 0.0,
+        "anchor_uses_projected_current": 1.0,
+        "anchor_uses_projected_reference": 1.0 if use_projected_anchor else 0.0,
+    }
+
+
+def raw_projection_consistency(logits: Any, eta_proj: float = 0.1) -> tuple[Any, dict[str, float]]:
+    if _is_torch_tensor(logits):
+        import torch
+
+        probs = sigmoid(logits.float())
+        projected = projected_probs_from_logits(logits)
+        order_loss = torch.relu(probs[:, 1:] - probs[:, :-1]).pow(2).mean()
+        delta_loss = (probs - projected).pow(2).mean()
+        loss = order_loss + float(eta_proj) * delta_loss
+        violation_rate = (probs[:, 1:] < probs[:, :-1]).float().mean()
+        actual_violation_rate = (probs[:, 1:] > probs[:, :-1]).float().mean()
+        return loss, {
+            "L_mono": float(loss.detach().cpu()),
+            "L_raw_order": float(order_loss.detach().cpu()),
+            "L_raw_proj_delta": float(delta_loss.detach().cpu()),
+            "eta_proj": float(eta_proj),
+            "mono_pair_violation_rate": float(actual_violation_rate.detach().cpu()),
+            "mono_pair_nonviolation_rate": float(violation_rate.detach().cpu()),
+        }
+    probs_arr = sigmoid(np.asarray(logits, dtype=np.float64))
+    projected_arr = projected_probs_from_logits(logits)
+    order_loss = np.maximum(0.0, probs_arr[:, 1:] - probs_arr[:, :-1]) ** 2
+    delta_loss = (probs_arr - projected_arr) ** 2
+    loss = float(np.mean(order_loss) + float(eta_proj) * np.mean(delta_loss))
+    return loss, {
+        "L_mono": loss,
+        "L_raw_order": float(np.mean(order_loss)),
+        "L_raw_proj_delta": float(np.mean(delta_loss)),
+        "eta_proj": float(eta_proj),
+        "mono_pair_violation_rate": float(np.mean(probs_arr[:, 1:] > probs_arr[:, :-1])),
+        "mono_pair_nonviolation_rate": float(np.mean(probs_arr[:, 1:] < probs_arr[:, :-1])),
+    }
+
+
 def total_anchored_pairwise_training_loss(
     win_logits: Any,
     lose_logits: Any,
@@ -237,13 +368,26 @@ def total_anchored_pairwise_training_loss(
     low_high_margin: float = DEFAULT_LOW_HIGH_MARGIN,
     low_high_weight: float = DEFAULT_LOW_HIGH_WEIGHT,
     gap_weight: float = DEFAULT_GAP_WEIGHT,
+    projection_in_pair_score: bool = False,
+    projection_in_point_loss: bool = False,
+    projection_in_anchor: bool = False,
+    use_projected_anchor: bool = False,
+    use_raw_projection_consistency: bool = False,
+    eta_proj: float = 0.1,
 ) -> tuple[Any, dict[str, float]]:
     if _is_torch_tensor(win_logits):
         import torch
 
         point_logits = torch.cat([win_logits, lose_logits], dim=0)
         point_labels = torch.cat([win_labels.reshape(-1), lose_labels.reshape(-1)], dim=0)
-        point_loss, point_debug = weighted_ordinal_bce(point_logits, point_labels, class_weights)
+        if projection_in_point_loss:
+            point_loss, point_debug = weighted_ordinal_bce_from_probs(
+                projected_probs_from_logits(point_logits),
+                point_labels,
+                class_weights,
+            )
+        else:
+            point_loss, point_debug = weighted_ordinal_bce(point_logits, point_labels, class_weights)
         pair_loss, pair_debug = pairwise_ordinal_loss(
             win_logits,
             lose_logits,
@@ -253,16 +397,23 @@ def total_anchored_pairwise_training_loss(
             low_high_margin,
             low_high_weight,
             gap_weight,
+            use_projected_score=projection_in_pair_score,
         )
         if float(lambda_anchor) != 0.0:
             if ref_win_logits is None or ref_lose_logits is None:
                 raise ValueError("lambda_anchor is non-zero but reference logits are missing.")
             ref_logits = torch.cat([ref_win_logits, ref_lose_logits], dim=0)
-            anchor_loss, anchor_debug = anchor_bce_with_logits(point_logits, ref_logits)
+            if projection_in_anchor:
+                anchor_loss, anchor_debug = anchor_projected_mse(point_logits, ref_logits, use_projected_anchor)
+            else:
+                anchor_loss, anchor_debug = anchor_bce_with_logits(point_logits, ref_logits)
         else:
             anchor_loss = point_logits.float().sum() * 0.0
             anchor_debug = {"L_anchor": 0.0, "mean_anchor_target_prob": 0.0}
-        mono_loss, mono_debug = monotonic_regularization(point_logits)
+        if use_raw_projection_consistency:
+            mono_loss, mono_debug = raw_projection_consistency(point_logits, eta_proj=eta_proj)
+        else:
+            mono_loss, mono_debug = monotonic_regularization(point_logits)
         total = (
             float(lambda_point) * point_loss
             + float(lambda_pair) * pair_loss
@@ -291,11 +442,23 @@ def total_anchored_pairwise_training_loss(
             "loss_mono": mono_value,
             "weighted_loss_mono": float(lambda_mono) * mono_value,
             **point_debug,
+            "projection_in_pair_score": 1.0 if projection_in_pair_score else 0.0,
+            "projection_in_point_loss": 1.0 if projection_in_point_loss else 0.0,
+            "projection_in_anchor": 1.0 if projection_in_anchor else 0.0,
+            "use_projected_anchor": 1.0 if use_projected_anchor else 0.0,
+            "use_raw_projection_consistency": 1.0 if use_raw_projection_consistency else 0.0,
         }
         return total, debug
     point_logits_arr = np.concatenate([np.asarray(win_logits), np.asarray(lose_logits)], axis=0)
     point_labels_arr = np.concatenate([np.asarray(win_labels).reshape(-1), np.asarray(lose_labels).reshape(-1)], axis=0)
-    point_loss, point_debug = weighted_ordinal_bce(point_logits_arr, point_labels_arr, class_weights)
+    if projection_in_point_loss:
+        point_loss, point_debug = weighted_ordinal_bce_from_probs(
+            projected_probs_from_logits(point_logits_arr),
+            point_labels_arr,
+            class_weights,
+        )
+    else:
+        point_loss, point_debug = weighted_ordinal_bce(point_logits_arr, point_labels_arr, class_weights)
     pair_loss, pair_debug = pairwise_ordinal_loss(
         win_logits,
         lose_logits,
@@ -305,16 +468,23 @@ def total_anchored_pairwise_training_loss(
         low_high_margin,
         low_high_weight,
         gap_weight,
+        use_projected_score=projection_in_pair_score,
     )
     if float(lambda_anchor) != 0.0:
         if ref_win_logits is None or ref_lose_logits is None:
             raise ValueError("lambda_anchor is non-zero but reference logits are missing.")
         ref_logits_arr = np.concatenate([np.asarray(ref_win_logits), np.asarray(ref_lose_logits)], axis=0)
-        anchor_loss, anchor_debug = anchor_bce_with_logits(point_logits_arr, ref_logits_arr)
+        if projection_in_anchor:
+            anchor_loss, anchor_debug = anchor_projected_mse(point_logits_arr, ref_logits_arr, use_projected_anchor)
+        else:
+            anchor_loss, anchor_debug = anchor_bce_with_logits(point_logits_arr, ref_logits_arr)
     else:
         anchor_loss = 0.0
         anchor_debug = {"L_anchor": 0.0, "mean_anchor_target_prob": 0.0}
-    mono_loss, mono_debug = monotonic_regularization(point_logits_arr)
+    if use_raw_projection_consistency:
+        mono_loss, mono_debug = raw_projection_consistency(point_logits_arr, eta_proj=eta_proj)
+    else:
+        mono_loss, mono_debug = monotonic_regularization(point_logits_arr)
     total = float(
         float(lambda_point) * point_loss
         + float(lambda_pair) * pair_loss
@@ -342,6 +512,11 @@ def total_anchored_pairwise_training_loss(
         "loss_mono": mono_value,
         "weighted_loss_mono": float(lambda_mono) * mono_value,
         **point_debug,
+        "projection_in_pair_score": 1.0 if projection_in_pair_score else 0.0,
+        "projection_in_point_loss": 1.0 if projection_in_point_loss else 0.0,
+        "projection_in_anchor": 1.0 if projection_in_anchor else 0.0,
+        "use_projected_anchor": 1.0 if use_projected_anchor else 0.0,
+        "use_raw_projection_consistency": 1.0 if use_raw_projection_consistency else 0.0,
     }
 
 
@@ -353,20 +528,34 @@ def total_anchored_pointwise_training_loss(
     lambda_point: float = 1.0,
     lambda_anchor: float = 0.0,
     lambda_mono: float = 0.0,
+    projection_in_point_loss: bool = False,
+    projection_in_anchor: bool = False,
+    use_projected_anchor: bool = False,
+    use_raw_projection_consistency: bool = False,
+    eta_proj: float = 0.1,
 ) -> tuple[Any, dict[str, float]]:
     """Pointwise-only anchored objective for lambda_pair=0 ablations."""
-    point_loss, point_debug = weighted_ordinal_bce(logits, labels, class_weights)
+    if projection_in_point_loss:
+        point_loss, point_debug = weighted_ordinal_bce_from_probs(projected_probs_from_logits(logits), labels, class_weights)
+    else:
+        point_loss, point_debug = weighted_ordinal_bce(logits, labels, class_weights)
     if float(lambda_anchor) != 0.0:
         if ref_logits is None:
             raise ValueError("lambda_anchor is non-zero but reference logits are missing.")
-        anchor_loss, anchor_debug = anchor_bce_with_logits(logits, ref_logits)
+        if projection_in_anchor:
+            anchor_loss, anchor_debug = anchor_projected_mse(logits, ref_logits, use_projected_anchor)
+        else:
+            anchor_loss, anchor_debug = anchor_bce_with_logits(logits, ref_logits)
     elif _is_torch_tensor(logits):
         anchor_loss = logits.float().sum() * 0.0
         anchor_debug = {"L_anchor": 0.0, "mean_anchor_target_prob": 0.0}
     else:
         anchor_loss = 0.0
         anchor_debug = {"L_anchor": 0.0, "mean_anchor_target_prob": 0.0}
-    mono_loss, mono_debug = monotonic_regularization(logits)
+    if use_raw_projection_consistency:
+        mono_loss, mono_debug = raw_projection_consistency(logits, eta_proj=eta_proj)
+    else:
+        mono_loss, mono_debug = monotonic_regularization(logits)
     total = float(lambda_point) * point_loss + float(lambda_anchor) * anchor_loss + float(lambda_mono) * mono_loss
     if _is_torch_tensor(logits):
         point_value = float(point_loss.detach().cpu())
@@ -396,6 +585,10 @@ def total_anchored_pointwise_training_loss(
             "loss_mono": mono_value,
             "weighted_loss_mono": float(lambda_mono) * mono_value,
             **point_debug,
+            "projection_in_point_loss": 1.0 if projection_in_point_loss else 0.0,
+            "projection_in_anchor": 1.0 if projection_in_anchor else 0.0,
+            "use_projected_anchor": 1.0 if use_projected_anchor else 0.0,
+            "use_raw_projection_consistency": 1.0 if use_raw_projection_consistency else 0.0,
         }
         return total, debug
     point_value = float(point_loss)
@@ -424,6 +617,10 @@ def total_anchored_pointwise_training_loss(
         "loss_mono": mono_value,
         "weighted_loss_mono": float(lambda_mono) * mono_value,
         **point_debug,
+        "projection_in_point_loss": 1.0 if projection_in_point_loss else 0.0,
+        "projection_in_anchor": 1.0 if projection_in_anchor else 0.0,
+        "use_projected_anchor": 1.0 if use_projected_anchor else 0.0,
+        "use_raw_projection_consistency": 1.0 if use_raw_projection_consistency else 0.0,
     }
 
 

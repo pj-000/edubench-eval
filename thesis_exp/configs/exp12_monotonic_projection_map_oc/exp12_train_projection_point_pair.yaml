@@ -1,0 +1,74 @@
+exp_name: exp12_monotonic_projection_map_oc
+ablation_name: train_projection_point_pair
+display_name: Exp12B projected point and pair
+run_id: EXP12B_train_projection_point_pair
+dataloader_mode: pair
+strict_module_ablation: false
+removed_module: none
+active_losses: L_point(projected) + L_pair(projected score) + L_anchor + L_raw_proj
+dataset_id: A4_question_seed42_human_only
+split: question_seed42
+input_template: A4_question_answer_metric_rubric_metadata
+model_name_or_path: /home/share/models/modelscope/Qwen/Qwen3-Reranker-0.6B
+data_dir: thesis_exp/outputs/exp06_question_disjoint_baselines/datasets/A4_question_answer_metric_rubric_metadata_question_seed42
+qd_b1_checkpoint_dir: thesis_exp/artifacts/exp06_question_disjoint_baselines/checkpoints/QD-B1_human_only_L1_weighted_ordinal/best
+head_type: independent_ordinal
+objective: map_oc_projected_point_pair
+loss: projected_ordinal_bce_plus_projected_pairwise_anchor_raw_projection_consistency
+use_synthetic: false
+pair_dataset_size_train: 10000
+pair_dataset_size_dev: 3000
+pair_sampling_seed: 42
+max_pairs_per_record: 80
+max_pairs_per_low_record: 100
+margin_scale: 1.0
+low_high_margin: 0.25
+low_high_weight: 1.0
+gap_weight: 0.5
+lambda_point: 1.0
+lambda_pair: 0.05
+lambda_anchor: 0.5
+lambda_mono: 0.1
+force_pair_training: false
+w_min: 0.5
+w_max: 3.0
+max_length: 2048
+epochs: 3
+learning_rate: 1.0e-5
+effective_batch_size: 128
+per_device_train_batch_size: 32
+per_device_eval_batch_size: 8
+gradient_accumulation_steps: 4
+weight_decay: 0.01
+warmup_ratio: 0.05
+gradient_checkpointing: true
+trust_remote_code: true
+local_files_only: false
+selection_metric: dev_MAE_label
+selection_direction: min
+selection_rule: mae_guard_p_gt_3_low_mean
+selection_delta: 0.005
+selection_decode_mode: projected
+soft_risk_gamma: 4.0
+use_monotone_projection: true
+projection_method: pava
+projection_in_decode: true
+projection_in_pair_score: true
+projection_in_point_loss: true
+projection_in_anchor: false
+use_projected_anchor: false
+use_raw_projection_consistency: true
+eta_proj: 0.1
+report_raw_and_projected_metrics: true
+save_each_epoch: true
+eval_each_epoch: true
+keep_epoch_checkpoints_local: true
+selection_rules_enabled: true
+smoke:
+  epochs: 1
+  batch_size: 2
+  gradient_accumulation_steps: 1
+  max_train_samples: 8
+  max_eval_samples: 8
+  max_train_pairs: 8
+  max_dev_pairs: 8

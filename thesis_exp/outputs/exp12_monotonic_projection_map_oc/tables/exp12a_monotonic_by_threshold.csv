@@ -1,0 +1,5 @@
+source,run_name,seed,epoch,split,decode_mode,monotonic_violation,p1_lt_p2,p2_lt_p3,p3_lt_p4
+exp12a,decode_projection_only,42,0,dev,projected,0.0,0.0,0.0,0.0
+exp12a,decode_projection_only,42,0,dev,raw,0.34778681120144533,0.28184281842818426,0.07497741644083107,0.014453477868112014
+exp12a,decode_projection_only,42,0,test,projected,0.0,0.0,0.0,0.0
+exp12a,decode_projection_only,42,0,test,raw,0.3526745240253853,0.30371713508612874,0.04623753399818677,0.011786038077969175
