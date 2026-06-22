@@ -8,6 +8,7 @@ import math
 import os
 import shutil
 import time
+from contextlib import contextmanager
 from dataclasses import asdict, dataclass
 from pathlib import Path
 from typing import Any
@@ -183,6 +184,22 @@ class QDPR2TrainConfig:
     lambda_t3_calibration: float
     t3_score_source: str
     t3_low_negative_weight: float
+
+
+@contextmanager
+def pair_shard_file_lock():
+    """Serialize writes/reads of shared QD-PR2 pair shards across parallel runs."""
+
+    import fcntl
+
+    QDPR2_PAIRS_DIR.mkdir(parents=True, exist_ok=True)
+    lock_path = QDPR2_PAIRS_DIR / ".pair_shards.lock"
+    with lock_path.open("w", encoding="utf-8") as handle:
+        fcntl.flock(handle.fileno(), fcntl.LOCK_EX)
+        try:
+            yield
+        finally:
+            fcntl.flock(handle.fileno(), fcntl.LOCK_UN)
 
 
 def require_qd_b1_checkpoint(path: Path) -> None:
@@ -996,8 +1013,13 @@ def train(config: QDPR2TrainConfig, preflight_only: bool = False) -> dict[str, A
             f"config={config.dataloader_mode}, resolved={actual_dataloader_mode}"
         )
     setup: dict[str, Any] = {"train_pairs": [], "dev_pairs": []}
+    train_pair_rows_full: list[dict[str, Any]] = []
+    dev_pair_rows_full: list[dict[str, Any]] = []
     if pair_training_enabled:
-        setup = prepare_qdpr2_setup(pair_build_config(config), write_shards=True)
+        with pair_shard_file_lock():
+            setup = prepare_qdpr2_setup(pair_build_config(config), write_shards=True)
+            train_pair_rows_full = read_qdpr2_pair_shards("train")
+            dev_pair_rows_full = read_qdpr2_pair_shards("dev")
     train_rows_full = read_split(config.data_dir, "train")
     weight_rows = write_pointwise_class_weights(train_rows_full, config.output_dir / "tables", config.w_min, config.w_max)
     class_weights = class_weight_vector(weight_rows)
@@ -1057,8 +1079,8 @@ def train(config: QDPR2TrainConfig, preflight_only: bool = False) -> dict[str, A
     train_rows = limit_rows(train_rows_full, config.max_train_samples)
     dev_rows = limit_rows(read_split(config.data_dir, "dev"), config.max_eval_samples)
     test_rows = limit_rows(read_split(config.data_dir, "test"), config.max_eval_samples) if config.eval_test else []
-    train_pairs = limit_rows(read_qdpr2_pair_shards("train"), config.max_train_pairs) if pair_training_enabled else []
-    dev_pairs = limit_rows(read_qdpr2_pair_shards("dev"), config.max_dev_pairs) if pair_training_enabled else []
+    train_pairs = limit_rows(train_pair_rows_full, config.max_train_pairs) if pair_training_enabled else []
+    dev_pairs = limit_rows(dev_pair_rows_full, config.max_dev_pairs) if pair_training_enabled else []
     model, reference_model, tokenizer = load_model_and_tokenizer(config, class_weights)
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     model.to(device)
