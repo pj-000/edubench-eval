@@ -1,2 +1,2 @@
-seed,selected_epoch,selected_global_step,checkpoint_dir,output_dir,gpu,status,reason
-42,3,237,thesis_exp/runs/exp11_checkpoint_selection_sensitivity/seed_42/checkpoints/epoch_03,thesis_exp/runs/exp12_monotonic_projection_map_oc/exp12a_decode_projection/seed_42/eval_epoch_03,6,COMPLETED,
+seed,status,reason,output_dir
+42,SKIPPED_COMPLETED,,thesis_exp/runs/exp12_monotonic_projection_map_oc/exp12a_decode_projection/seed_42/eval_epoch_03

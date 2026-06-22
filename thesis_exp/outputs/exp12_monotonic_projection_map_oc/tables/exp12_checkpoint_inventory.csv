@@ -1,1 +1,10 @@
-
+run_name,seed,epoch,global_step,checkpoint_path_local,checkpoint_exists,checkpoint_size_mb,git_tracked,note
+train_projection_score,42,1,79,thesis_exp/runs/exp12_monotonic_projection_map_oc/train_projection_score/seed_42/checkpoints/epoch_01,True,1151.6465291976929,False,Local ignored checkpoint directory under thesis_exp/runs.
+train_projection_score,42,2,158,thesis_exp/runs/exp12_monotonic_projection_map_oc/train_projection_score/seed_42/checkpoints/epoch_02,True,1151.6465339660645,False,Local ignored checkpoint directory under thesis_exp/runs.
+train_projection_score,42,3,237,thesis_exp/runs/exp12_monotonic_projection_map_oc/train_projection_score/seed_42/checkpoints/epoch_03,True,1151.6465349197388,False,Local ignored checkpoint directory under thesis_exp/runs.
+train_projection_point_pair,42,1,79,thesis_exp/runs/exp12_monotonic_projection_map_oc/train_projection_point_pair/seed_42/checkpoints/epoch_01,True,1151.6465635299683,False,Local ignored checkpoint directory under thesis_exp/runs.
+train_projection_point_pair,42,2,158,thesis_exp/runs/exp12_monotonic_projection_map_oc/train_projection_point_pair/seed_42/checkpoints/epoch_02,True,1151.6465673446655,False,Local ignored checkpoint directory under thesis_exp/runs.
+train_projection_point_pair,42,3,237,thesis_exp/runs/exp12_monotonic_projection_map_oc/train_projection_point_pair/seed_42/checkpoints/epoch_03,True,1151.646565437317,False,Local ignored checkpoint directory under thesis_exp/runs.
+map_oc_full,42,1,79,thesis_exp/runs/exp12_monotonic_projection_map_oc/map_oc_full/seed_42/checkpoints/epoch_01,True,1151.646427154541,False,Local ignored checkpoint directory under thesis_exp/runs.
+map_oc_full,42,2,158,thesis_exp/runs/exp12_monotonic_projection_map_oc/map_oc_full/seed_42/checkpoints/epoch_02,True,1151.646432876587,False,Local ignored checkpoint directory under thesis_exp/runs.
+map_oc_full,42,3,237,thesis_exp/runs/exp12_monotonic_projection_map_oc/map_oc_full/seed_42/checkpoints/epoch_03,True,1151.646432876587,False,Local ignored checkpoint directory under thesis_exp/runs.

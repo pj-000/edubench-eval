@@ -1,7 +1,7 @@
 # Exp12 Monotonic Projection / MAP-OC
 
 Exp12A status: `COMPLETED`
-Exp12B status: `NO_COMPLETED_TRAINING_RUNS`
+Exp12B status: `COMPLETED`
 
 This report uses dev-only checkpoint selection. Test metrics are final evaluation or post-hoc
 diagnostic only and are not used for checkpoint selection, tuning, or training decisions.
@@ -15,7 +15,14 @@ diagnostic only and are not used for checkpoint selection, tuning, or training d
 
 ## Exp12B Train-Time MAP-OC
 
-NO_COMPLETED_TRAINING_RUNS: Exp12B has not produced completed per-epoch metrics yet.
+| run | seed | selected epoch | test low-to-high | count | MAE | QWK | monotonic |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| map_oc_full | 42 | 3 | 0.4516 | 14 | 0.4204 | 0.5988 | 0.0000 |
+| train_projection_point_pair | 42 | 3 | 0.3871 | 12 | 0.4158 | 0.6108 | 0.0000 |
+| train_projection_score | 42 | 3 | 0.4194 | 13 | 0.4176 | 0.6063 | 0.0000 |
+
+If MAP-OC lowers monotonic violation but worsens low-to-high, this should be treated as a negative
+result. If it lowers low-to-high with MAE/QWK tradeoff, report both sides.
 
 ## Method Notes
 
