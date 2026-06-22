@@ -208,13 +208,47 @@ run_one() {
   ) 2>&1 | tee "${log_path}"
 }
 
-job_index=0
+jobs=()
 for run_name in "${RUN_ARRAY[@]}"; do
   for seed in "${SEED_ARRAY[@]}"; do
-    gpu="${GPU_ARRAY[$((job_index % ${#GPU_ARRAY[@]}))]}"
-    run_one "${run_name}" "${seed}" "${gpu}"
-    job_index=$((job_index + 1))
+    jobs+=("${run_name}:${seed}")
   done
+done
+
+run_gpu_queue() {
+  local gpu="$1"
+  shift
+  local queue=("$@")
+  if [[ "${#queue[@]}" -eq 0 ]]; then
+    echo "GPU ${gpu} queue is empty."
+    return 0
+  fi
+  echo "GPU ${gpu} queue: ${queue[*]}"
+  for item in "${queue[@]}"; do
+    local run_name="${item%%:*}"
+    local seed="${item##*:}"
+    run_one "${run_name}" "${seed}" "${gpu}"
+  done
+}
+
+pids=()
+names=()
+for gpu_index in "${!GPU_ARRAY[@]}"; do
+  gpu="${GPU_ARRAY[gpu_index]}"
+  queue=()
+  for ((job_index=gpu_index; job_index<${#jobs[@]}; job_index+=${#GPU_ARRAY[@]})); do
+    queue+=("${jobs[job_index]}")
+  done
+  run_gpu_queue "${gpu}" "${queue[@]}" &
+  pids+=("$!")
+  names+=("gpu_${gpu}")
+done
+
+for idx in "${!pids[@]}"; do
+  if ! wait "${pids[idx]}"; then
+    echo "Exp13 GPU queue failed: ${names[idx]}" >&2
+    exit 1
+  fi
 done
 
 python -m thesis_exp.src.edujudge.exp13_risk_boundary_map_oc.collect_exp13_results \
