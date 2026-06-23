@@ -1,9 +1,2 @@
 run_name,config_path,base_run,lambda_l2h_risk,risk_weight_label1,risk_weight_label2,lambda_mono,use_l2h_risk_loss,use_t3_calibration_loss,lambda_t3_calibration,projection_in_point_loss,projection_in_pair_score,projection_in_anchor,selection_rule
-point_pair_proj_l2h_lam0p10,thesis_exp/configs/exp13_risk_boundary_map_oc/exp13_point_pair_proj_l2h_lam0p10.yaml,train_projection_point_pair,0.1,1.0,1.0,0.1,True,False,0.0,True,True,False,mae_guard_p_gt_3_low_mean
-point_pair_proj_l2h_lam0p20,thesis_exp/configs/exp13_risk_boundary_map_oc/exp13_point_pair_proj_l2h_lam0p20.yaml,train_projection_point_pair,0.2,1.0,1.0,0.1,True,False,0.0,True,True,False,mae_guard_p_gt_3_low_mean
-point_pair_proj_l2h_lam0p40,thesis_exp/configs/exp13_risk_boundary_map_oc/exp13_point_pair_proj_l2h_lam0p40.yaml,train_projection_point_pair,0.4,1.0,1.0,0.1,True,False,0.0,True,True,False,mae_guard_p_gt_3_low_mean
-point_pair_proj_l2h_label2_w1p5_lam0p20,thesis_exp/configs/exp13_risk_boundary_map_oc/exp13_point_pair_proj_l2h_label2_w1p5_lam0p20.yaml,train_projection_point_pair,0.2,1.0,1.5,0.1,True,False,0.0,True,True,False,mae_guard_p_gt_3_low_mean
-point_pair_proj_l2h_lam0p20_no_mono,thesis_exp/configs/exp13_risk_boundary_map_oc/exp13_point_pair_proj_l2h_lam0p20_no_mono.yaml,train_projection_point_pair,0.2,1.0,1.0,0.0,True,False,0.0,True,True,False,mae_guard_p_gt_3_low_mean
 score_proj_l2h_lam0p20,thesis_exp/configs/exp13_risk_boundary_map_oc/exp13_score_proj_l2h_lam0p20.yaml,train_projection_score,0.2,1.0,1.0,0.1,True,False,0.0,False,True,False,mae_guard_p_gt_3_low_mean
-map_oc_full_l2h_lam0p20,thesis_exp/configs/exp13_risk_boundary_map_oc/exp13_map_oc_full_l2h_lam0p20.yaml,map_oc_full,0.2,1.0,1.0,0.1,True,False,0.0,True,True,True,mae_guard_p_gt_3_low_mean
-score_proj_t3_brier_lam0p05,thesis_exp/configs/exp13_risk_boundary_map_oc/exp13_score_proj_t3_brier_lam0p05.yaml,train_projection_score,0.0,1.0,1.0,0.1,False,True,0.05,False,True,False,mae_guard_p_gt_3_low_mean

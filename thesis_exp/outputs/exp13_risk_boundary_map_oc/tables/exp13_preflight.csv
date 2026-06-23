@@ -1,8 +1,8 @@
 item,value,status,details
 repo_root,/home/jpang/edubench-eval-exp2,PASS,
 current_git_commit,4e95b0a4f1b41a0e7c43bbaf004e8561d136dc68,PASS,
-mode,scout,PASS,
-eval_test,0,PASS,scout should be 0; formal should be 1
+mode,formal,PASS,
+eval_test,1,PASS,scout should be 0; formal should be 1
 output_dir,thesis_exp/outputs/exp13_risk_boundary_map_oc,PASS,
 local_run_root,thesis_exp/runs/exp13_risk_boundary_map_oc,PASS,
 local_checkpoint_dir_ignored,thesis_exp/runs/exp13_risk_boundary_map_oc,PASS,thesis_exp/.gitignore ignores runs/
@@ -10,33 +10,12 @@ train_data_path,thesis_exp/outputs/exp06_question_disjoint_baselines/datasets/A4
 dev_data_path,thesis_exp/outputs/exp06_question_disjoint_baselines/datasets/A4_question_answer_metric_rubric_metadata_question_seed42/dev.jsonl,PASS,
 test_data_path,thesis_exp/outputs/exp06_question_disjoint_baselines/datasets/A4_question_answer_metric_rubric_metadata_question_seed42/test.jsonl,PASS,
 QD_B1_checkpoint_path,thesis_exp/artifacts/exp06_question_disjoint_baselines/checkpoints/QD-B1_human_only_L1_weighted_ordinal/best,PASS,"requires state_dict.pt, exp05_head_metadata.json, tokenizer.json"
-seed_list,42,PASS,
+seed_list,42 43 44,PASS,
 gpu_list,6 7,PASS,
-run_list,point_pair_proj_l2h_lam0p10 point_pair_proj_l2h_lam0p20 point_pair_proj_l2h_lam0p40 point_pair_proj_l2h_label2_w1p5_lam0p20 point_pair_proj_l2h_lam0p20_no_mono score_proj_l2h_lam0p20 map_oc_full_l2h_lam0p20 score_proj_t3_brier_lam0p05,PASS,
+run_list,score_proj_l2h_lam0p20,PASS,
 epochs,3,PASS,
 selection_delta,0.005,PASS,
 formal_run_has_no_sample_caps,"{""MAX_DEV_PAIRS"": """", ""MAX_EVAL_SAMPLES"": """", ""MAX_TRAIN_PAIRS"": """", ""MAX_TRAIN_SAMPLES"": """"}",PASS,Formal/scout Exp13 scripts must not use sample or pair caps.
-config_point_pair_proj_l2h_lam0p10,thesis_exp/configs/exp13_risk_boundary_map_oc/exp13_point_pair_proj_l2h_lam0p10.yaml,PASS,
-point_pair_proj_l2h_lam0p10_risk_threshold_t,3,PASS,threshold tensor index is 2 in the loss implementation
-point_pair_proj_l2h_lam0p10_selection_rule,mae_guard_p_gt_3_low_mean,PASS,
-config_point_pair_proj_l2h_lam0p20,thesis_exp/configs/exp13_risk_boundary_map_oc/exp13_point_pair_proj_l2h_lam0p20.yaml,PASS,
-point_pair_proj_l2h_lam0p20_risk_threshold_t,3,PASS,threshold tensor index is 2 in the loss implementation
-point_pair_proj_l2h_lam0p20_selection_rule,mae_guard_p_gt_3_low_mean,PASS,
-config_point_pair_proj_l2h_lam0p40,thesis_exp/configs/exp13_risk_boundary_map_oc/exp13_point_pair_proj_l2h_lam0p40.yaml,PASS,
-point_pair_proj_l2h_lam0p40_risk_threshold_t,3,PASS,threshold tensor index is 2 in the loss implementation
-point_pair_proj_l2h_lam0p40_selection_rule,mae_guard_p_gt_3_low_mean,PASS,
-config_point_pair_proj_l2h_label2_w1p5_lam0p20,thesis_exp/configs/exp13_risk_boundary_map_oc/exp13_point_pair_proj_l2h_label2_w1p5_lam0p20.yaml,PASS,
-point_pair_proj_l2h_label2_w1p5_lam0p20_risk_threshold_t,3,PASS,threshold tensor index is 2 in the loss implementation
-point_pair_proj_l2h_label2_w1p5_lam0p20_selection_rule,mae_guard_p_gt_3_low_mean,PASS,
-config_point_pair_proj_l2h_lam0p20_no_mono,thesis_exp/configs/exp13_risk_boundary_map_oc/exp13_point_pair_proj_l2h_lam0p20_no_mono.yaml,PASS,
-point_pair_proj_l2h_lam0p20_no_mono_risk_threshold_t,3,PASS,threshold tensor index is 2 in the loss implementation
-point_pair_proj_l2h_lam0p20_no_mono_selection_rule,mae_guard_p_gt_3_low_mean,PASS,
 config_score_proj_l2h_lam0p20,thesis_exp/configs/exp13_risk_boundary_map_oc/exp13_score_proj_l2h_lam0p20.yaml,PASS,
 score_proj_l2h_lam0p20_risk_threshold_t,3,PASS,threshold tensor index is 2 in the loss implementation
 score_proj_l2h_lam0p20_selection_rule,mae_guard_p_gt_3_low_mean,PASS,
-config_map_oc_full_l2h_lam0p20,thesis_exp/configs/exp13_risk_boundary_map_oc/exp13_map_oc_full_l2h_lam0p20.yaml,PASS,
-map_oc_full_l2h_lam0p20_risk_threshold_t,3,PASS,threshold tensor index is 2 in the loss implementation
-map_oc_full_l2h_lam0p20_selection_rule,mae_guard_p_gt_3_low_mean,PASS,
-config_score_proj_t3_brier_lam0p05,thesis_exp/configs/exp13_risk_boundary_map_oc/exp13_score_proj_t3_brier_lam0p05.yaml,PASS,
-score_proj_t3_brier_lam0p05_risk_threshold_t,3,PASS,threshold tensor index is 2 in the loss implementation
-score_proj_t3_brier_lam0p05_selection_rule,mae_guard_p_gt_3_low_mean,PASS,
