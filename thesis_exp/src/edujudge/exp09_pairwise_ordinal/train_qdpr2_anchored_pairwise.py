@@ -184,6 +184,19 @@ class QDPR2TrainConfig:
     lambda_t3_calibration: float
     t3_score_source: str
     t3_low_negative_weight: float
+    use_l2h_logit_margin_loss: bool
+    lambda_l2h_logit_margin: float
+    logit_margin_risk_threshold_t: int
+    logit_margin_loss_type: str
+    margin_prob_label1: float
+    margin_prob_label2: float
+    margin_logit_label1: float | None
+    margin_logit_label2: float | None
+    logit_margin_weight_label1: float
+    logit_margin_weight_label2: float
+    logit_margin_tail_fraction: float
+    logit_margin_min_topk: int
+    report_logit_margin_terms: bool
 
 
 @contextmanager
@@ -562,12 +575,14 @@ def soft_risk_row(result: EvalResult, config: QDPR2TrainConfig, epoch: int, glob
     labels = [int(row["label_5"]) for row in result.predictions]
     expected_scores = [float(row["pred_score_expected"]) for row in result.predictions]
     p_gt_3_values = [float(row.get("prob_gt_3", float("nan"))) for row in result.predictions]
+    z3_values = [float(row.get("logit_gt_3", float("nan"))) for row in result.predictions]
     low_indices = [idx for idx, label in enumerate(labels) if label <= 2]
     label1_indices = [idx for idx, label in enumerate(labels) if label == 1]
     label2_indices = [idx for idx, label in enumerate(labels) if label == 2]
     low_soft = [_sigmoid(gamma * (expected_scores[idx] - 3.5)) for idx in low_indices]
     label2_soft = [_sigmoid(gamma * (expected_scores[idx] - 3.5)) for idx in label2_indices]
     low_p_gt_3 = [p_gt_3_values[idx] for idx in low_indices]
+    low_z3 = [z3_values[idx] for idx in low_indices]
     return {
         "seed": config.seed,
         "epoch": epoch,
@@ -583,6 +598,11 @@ def soft_risk_row(result: EvalResult, config: QDPR2TrainConfig, epoch: int, glob
         "p_gt_3_low_q90": _quantile(low_p_gt_3, 0.90),
         "p_gt_3_low_q95": _quantile(low_p_gt_3, 0.95),
         "low_count_with_p_gt_3_over_0p5": sum(1 for value in low_p_gt_3 if value > 0.5),
+        "low_z3_mean": _mean(low_z3),
+        "low_z3_q90": _quantile(low_z3, 0.90),
+        "low_z3_q95": _quantile(low_z3, 0.95),
+        "label1_z3_mean": _mean([z3_values[idx] for idx in label1_indices]),
+        "label2_z3_mean": _mean([z3_values[idx] for idx in label2_indices]),
         "label2_soft_low_to_high": _mean(label2_soft),
         "label2_p_gt_3_mean": _mean([p_gt_3_values[idx] for idx in label2_indices]),
     }
@@ -730,6 +750,7 @@ def save_checkpoint(
                 "lambda_mono": config.lambda_mono,
                 "lambda_l2h_risk": config.lambda_l2h_risk,
                 "lambda_t3_calibration": config.lambda_t3_calibration,
+                "lambda_l2h_logit_margin": config.lambda_l2h_logit_margin,
             },
             "projection": {
                 "use_monotone_projection": config.use_monotone_projection,
@@ -758,6 +779,19 @@ def save_checkpoint(
                 "t3_calibration_loss_type": config.t3_calibration_loss_type,
                 "t3_score_source": config.t3_score_source,
                 "t3_low_negative_weight": config.t3_low_negative_weight,
+                "use_l2h_logit_margin_loss": config.use_l2h_logit_margin_loss,
+                "lambda_l2h_logit_margin": config.lambda_l2h_logit_margin,
+                "logit_margin_risk_threshold_t": config.logit_margin_risk_threshold_t,
+                "logit_margin_loss_type": config.logit_margin_loss_type,
+                "margin_prob_label1": config.margin_prob_label1,
+                "margin_prob_label2": config.margin_prob_label2,
+                "margin_logit_label1": config.margin_logit_label1,
+                "margin_logit_label2": config.margin_logit_label2,
+                "logit_margin_weight_label1": config.logit_margin_weight_label1,
+                "logit_margin_weight_label2": config.logit_margin_weight_label2,
+                "logit_margin_tail_fraction": config.logit_margin_tail_fraction,
+                "logit_margin_min_topk": config.logit_margin_min_topk,
+                "report_logit_margin_terms": config.report_logit_margin_terms,
             },
         },
     )
@@ -822,6 +856,18 @@ def normalize_run_files(output_dir: Path, config: QDPR2TrainConfig, status: str)
             "lambda_t3_calibration": config.lambda_t3_calibration,
             "t3_score_source": config.t3_score_source,
             "t3_low_negative_weight": config.t3_low_negative_weight,
+            "use_l2h_logit_margin_loss": config.use_l2h_logit_margin_loss,
+            "lambda_l2h_logit_margin": config.lambda_l2h_logit_margin,
+            "logit_margin_risk_threshold_t": config.logit_margin_risk_threshold_t,
+            "logit_margin_loss_type": config.logit_margin_loss_type,
+            "margin_prob_label1": config.margin_prob_label1,
+            "margin_prob_label2": config.margin_prob_label2,
+            "margin_logit_label1": config.margin_logit_label1,
+            "margin_logit_label2": config.margin_logit_label2,
+            "logit_margin_weight_label1": config.logit_margin_weight_label1,
+            "logit_margin_weight_label2": config.logit_margin_weight_label2,
+            "logit_margin_tail_fraction": config.logit_margin_tail_fraction,
+            "logit_margin_min_topk": config.logit_margin_min_topk,
         },
     )
     active_losses = []
@@ -837,6 +883,10 @@ def normalize_run_files(output_dir: Path, config: QDPR2TrainConfig, status: str)
         active_losses.append("L_l2h_risk")
     if config.use_t3_calibration_loss and config.lambda_t3_calibration != 0.0:
         active_losses.append("L_t3_calibration")
+    if config.use_l2h_logit_margin_loss and config.lambda_l2h_logit_margin != 0.0:
+        active_losses.append("L_l2h_logit_margin")
+    if config.use_l2h_logit_margin_loss and config.lambda_l2h_logit_margin != 0.0:
+        active_losses.append("L_l2h_logit_margin")
     lines = [
         f"# {config.exp_name} Run Summary",
         "",
@@ -865,6 +915,9 @@ def normalize_run_files(output_dir: Path, config: QDPR2TrainConfig, status: str)
         f"risk_tau_label2: `{config.risk_tau_label2}`",
         f"use_t3_calibration_loss: `{config.use_t3_calibration_loss}`",
         f"lambda_t3_calibration: `{config.lambda_t3_calibration}`",
+        f"use_l2h_logit_margin_loss: `{config.use_l2h_logit_margin_loss}`",
+        f"lambda_l2h_logit_margin: `{config.lambda_l2h_logit_margin}`",
+        f"logit_margin_tail_fraction: `{config.logit_margin_tail_fraction}`",
         f"projection_in_decode: `{config.projection_in_decode}`",
         f"projection_in_pair_score: `{config.projection_in_pair_score}`",
         f"projection_in_point_loss: `{config.projection_in_point_loss}`",
@@ -970,6 +1023,19 @@ def loss_config_row(config: QDPR2TrainConfig, class_weights: list[float]) -> dic
         "lambda_t3_calibration": config.lambda_t3_calibration,
         "t3_score_source": config.t3_score_source,
         "t3_low_negative_weight": config.t3_low_negative_weight,
+        "logit_margin_loss": "mean_top_tail_{y<=2} w_y * max(0, z3 - m_y)^2",
+        "use_l2h_logit_margin_loss": config.use_l2h_logit_margin_loss,
+        "lambda_l2h_logit_margin": config.lambda_l2h_logit_margin,
+        "logit_margin_risk_threshold_t": config.logit_margin_risk_threshold_t,
+        "logit_margin_loss_type": config.logit_margin_loss_type,
+        "margin_prob_label1": config.margin_prob_label1,
+        "margin_prob_label2": config.margin_prob_label2,
+        "margin_logit_label1": config.margin_logit_label1,
+        "margin_logit_label2": config.margin_logit_label2,
+        "logit_margin_weight_label1": config.logit_margin_weight_label1,
+        "logit_margin_weight_label2": config.logit_margin_weight_label2,
+        "logit_margin_tail_fraction": config.logit_margin_tail_fraction,
+        "logit_margin_min_topk": config.logit_margin_min_topk,
         "selection_rule": config.selection_rule,
         "selection_delta": config.selection_delta,
         "selection_decode_mode": config.selection_decode_mode,
@@ -1054,6 +1120,9 @@ def train(config: QDPR2TrainConfig, preflight_only: bool = False) -> dict[str, A
                     f"risk_threshold_t: {config.risk_threshold_t}",
                     f"use_t3_calibration_loss: {config.use_t3_calibration_loss}",
                     f"lambda_t3_calibration: {config.lambda_t3_calibration}",
+                    f"use_l2h_logit_margin_loss: {config.use_l2h_logit_margin_loss}",
+                    f"lambda_l2h_logit_margin: {config.lambda_l2h_logit_margin}",
+                    f"logit_margin_tail_fraction: {config.logit_margin_tail_fraction}",
                     f"eval_test: {config.eval_test}",
                     f"projection_method: {config.projection_method}",
                     f"projection_in_decode: {config.projection_in_decode}",
@@ -1201,6 +1270,18 @@ def train(config: QDPR2TrainConfig, preflight_only: bool = False) -> dict[str, A
                         lambda_t3_calibration=config.lambda_t3_calibration,
                         t3_score_source=config.t3_score_source,
                         t3_low_negative_weight=config.t3_low_negative_weight,
+                        use_l2h_logit_margin_loss=config.use_l2h_logit_margin_loss,
+                        lambda_l2h_logit_margin=config.lambda_l2h_logit_margin,
+                        logit_margin_risk_threshold_t=config.logit_margin_risk_threshold_t,
+                        logit_margin_loss_type=config.logit_margin_loss_type,
+                        margin_prob_label1=config.margin_prob_label1,
+                        margin_prob_label2=config.margin_prob_label2,
+                        margin_logit_label1=config.margin_logit_label1,
+                        margin_logit_label2=config.margin_logit_label2,
+                        logit_margin_weight_label1=config.logit_margin_weight_label1,
+                        logit_margin_weight_label2=config.logit_margin_weight_label2,
+                        logit_margin_tail_fraction=config.logit_margin_tail_fraction,
+                        logit_margin_min_topk=config.logit_margin_min_topk,
                     )
                 else:
                     batch.pop("metadata")
@@ -1241,6 +1322,18 @@ def train(config: QDPR2TrainConfig, preflight_only: bool = False) -> dict[str, A
                         lambda_t3_calibration=config.lambda_t3_calibration,
                         t3_score_source=config.t3_score_source,
                         t3_low_negative_weight=config.t3_low_negative_weight,
+                        use_l2h_logit_margin_loss=config.use_l2h_logit_margin_loss,
+                        lambda_l2h_logit_margin=config.lambda_l2h_logit_margin,
+                        logit_margin_risk_threshold_t=config.logit_margin_risk_threshold_t,
+                        logit_margin_loss_type=config.logit_margin_loss_type,
+                        margin_prob_label1=config.margin_prob_label1,
+                        margin_prob_label2=config.margin_prob_label2,
+                        margin_logit_label1=config.margin_logit_label1,
+                        margin_logit_label2=config.margin_logit_label2,
+                        logit_margin_weight_label1=config.logit_margin_weight_label1,
+                        logit_margin_weight_label2=config.logit_margin_weight_label2,
+                        logit_margin_tail_fraction=config.logit_margin_tail_fraction,
+                        logit_margin_min_topk=config.logit_margin_min_topk,
                     )
                 (loss / config.gradient_accumulation_steps).backward()
                 running_loss += float(loss.detach().cpu())
@@ -1266,6 +1359,9 @@ def train(config: QDPR2TrainConfig, preflight_only: bool = False) -> dict[str, A
                         "risk_threshold_t": config.risk_threshold_t,
                         "use_t3_calibration_loss": config.use_t3_calibration_loss,
                         "lambda_t3_calibration": config.lambda_t3_calibration,
+                        "use_l2h_logit_margin_loss": config.use_l2h_logit_margin_loss,
+                        "lambda_l2h_logit_margin": config.lambda_l2h_logit_margin,
+                        "logit_margin_tail_fraction": config.logit_margin_tail_fraction,
                     }
                 )
                 loss_debug_history.append({"epoch": epoch + 1, "step": step, "global_step": global_step, **debug})
@@ -1553,6 +1649,19 @@ def make_config(args: argparse.Namespace) -> QDPR2TrainConfig:
         lambda_t3_calibration=float(raw.get("lambda_t3_calibration", 0.0)),
         t3_score_source=str(raw.get("t3_score_source", "projected")),
         t3_low_negative_weight=float(raw.get("t3_low_negative_weight", 2.0)),
+        use_l2h_logit_margin_loss=bool(raw.get("use_l2h_logit_margin_loss", False)),
+        lambda_l2h_logit_margin=float(raw.get("lambda_l2h_logit_margin", 0.0)),
+        logit_margin_risk_threshold_t=int(raw.get("logit_margin_risk_threshold_t", 3)),
+        logit_margin_loss_type=str(raw.get("logit_margin_loss_type", "squared_hinge")),
+        margin_prob_label1=float(raw.get("margin_prob_label1", 0.35)),
+        margin_prob_label2=float(raw.get("margin_prob_label2", 0.45)),
+        margin_logit_label1=float(raw["margin_logit_label1"]) if raw.get("margin_logit_label1") is not None else None,
+        margin_logit_label2=float(raw["margin_logit_label2"]) if raw.get("margin_logit_label2") is not None else None,
+        logit_margin_weight_label1=float(raw.get("logit_margin_weight_label1", 1.0)),
+        logit_margin_weight_label2=float(raw.get("logit_margin_weight_label2", 2.0)),
+        logit_margin_tail_fraction=float(raw.get("logit_margin_tail_fraction", 1.0)),
+        logit_margin_min_topk=int(raw.get("logit_margin_min_topk", 1)),
+        report_logit_margin_terms=bool(raw.get("report_logit_margin_terms", False)),
     )
 
 

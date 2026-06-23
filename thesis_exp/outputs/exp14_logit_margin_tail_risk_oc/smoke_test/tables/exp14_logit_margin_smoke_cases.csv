@@ -1,0 +1,5 @@
+case,loss,L_l2h_logit_margin,l2h_logit_margin_loss,low_logit_margin_active_count,low_logit_margin_tail_count,logit_margin_risk_threshold_t,logit_margin_tail_fraction,logit_margin_weight_label1,logit_margin_weight_label2,margin_prob_label1,margin_prob_label2,margin_logit_label1,margin_logit_label2,low_z3_mean,low_z3_q90,low_z3_q95,label1_z3_mean,label2_z3_mean,torch_backward_ok
+all_low,2.8395904532787077,2.8395904532787077,2.8395904532787077,3.0,3.0,3.0,1.0,1.0,2.0,0.35,0.45,-0.6190392084062235,-0.20067069546215124,0.7666666666666667,1.4400000000000002,1.52,0.8,0.75,
+top_tail_0p50,4.249251090993228,4.249251090993228,4.249251090993228,3.0,2.0,3.0,0.5,1.0,2.0,0.35,0.45,-0.6190392084062235,-0.20067069546215124,0.7666666666666667,1.4400000000000002,1.52,0.8,0.75,
+no_low_batch,0.0,0.0,0.0,0.0,0.0,3.0,0.5,,,,,-0.6190392084062235,-0.20067069546215124,nan,nan,nan,nan,nan,
+torch_backward,4.249251090993228,,,,,,,,,,,,,,,,,,True

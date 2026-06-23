@@ -1,0 +1,41 @@
+# Exp14 Readability Check
+
+Status: `PASS`
+
+| check | status | details |
+| --- | --- | --- |
+| py_compile thesis_exp/src/edujudge/exp09_pairwise_ordinal/train_qdpr2_anchored_pairwise.py | PASS |  |
+| py_compile thesis_exp/src/edujudge/exp09_pairwise_ordinal/losses.py | PASS |  |
+| py_compile thesis_exp/src/edujudge/exp14_logit_margin_tail_risk_oc/__init__.py | PASS |  |
+| py_compile thesis_exp/src/edujudge/exp14_logit_margin_tail_risk_oc/logit_margin_losses.py | PASS |  |
+| py_compile thesis_exp/src/edujudge/exp14_logit_margin_tail_risk_oc/preflight_exp14.py | PASS |  |
+| py_compile thesis_exp/src/edujudge/exp14_logit_margin_tail_risk_oc/smoke_check_exp14.py | PASS |  |
+| py_compile thesis_exp/src/edujudge/exp14_logit_margin_tail_risk_oc/collect_exp14_results.py | PASS |  |
+| py_compile thesis_exp/src/edujudge/exp14_logit_margin_tail_risk_oc/readability_check_exp14.py | PASS |  |
+| bash -n thesis_exp/scripts/run_exp14_logit_margin_tail_risk_oc.sh | PASS |  |
+| bash -n thesis_exp/scripts/run_exp14_logit_margin_tail_risk_oc_smoke.sh | PASS |  |
+| bash -n thesis_exp/scripts/sync_exp14_logit_margin_tail_risk_oc_to_server.sh | PASS |  |
+| required config exp14_score_logit_margin_lam0p01_alllow.yaml | PASS | thesis_exp/configs/exp14_logit_margin_tail_risk_oc/exp14_score_logit_margin_lam0p01_alllow.yaml |
+| required config exp14_score_logit_margin_lam0p02_alllow.yaml | PASS | thesis_exp/configs/exp14_logit_margin_tail_risk_oc/exp14_score_logit_margin_lam0p02_alllow.yaml |
+| required config exp14_score_logit_margin_lam0p05_alllow.yaml | PASS | thesis_exp/configs/exp14_logit_margin_tail_risk_oc/exp14_score_logit_margin_lam0p05_alllow.yaml |
+| required config exp14_score_tail_logit_margin_lam0p02_top0p50.yaml | PASS | thesis_exp/configs/exp14_logit_margin_tail_risk_oc/exp14_score_tail_logit_margin_lam0p02_top0p50.yaml |
+| required config exp14_score_tail_logit_margin_lam0p05_top0p50.yaml | PASS | thesis_exp/configs/exp14_logit_margin_tail_risk_oc/exp14_score_tail_logit_margin_lam0p05_top0p50.yaml |
+| required config exp14_score_tail_logit_margin_lam0p02_top0p25.yaml | PASS | thesis_exp/configs/exp14_logit_margin_tail_risk_oc/exp14_score_tail_logit_margin_lam0p02_top0p25.yaml |
+| required config exp14_point_pair_tail_logit_margin_lam0p02_top0p50.yaml | PASS | thesis_exp/configs/exp14_logit_margin_tail_risk_oc/exp14_point_pair_tail_logit_margin_lam0p02_top0p50.yaml |
+| required table exp14_dev_selection_ranking.csv | PASS | thesis_exp/outputs/exp14_logit_margin_tail_risk_oc/tables/exp14_dev_selection_ranking.csv |
+| CSV readable exp14_dev_selection_ranking.csv | PASS |  |
+| required table exp14_dev_selected_configs.csv | PASS | thesis_exp/outputs/exp14_logit_margin_tail_risk_oc/tables/exp14_dev_selected_configs.csv |
+| CSV readable exp14_dev_selected_configs.csv | PASS |  |
+| required table exp14_run_config_summary.csv | PASS | thesis_exp/outputs/exp14_logit_margin_tail_risk_oc/tables/exp14_run_config_summary.csv |
+| CSV readable exp14_run_config_summary.csv | PASS |  |
+| required table exp14_preflight.csv | PASS | thesis_exp/outputs/exp14_logit_margin_tail_risk_oc/tables/exp14_preflight.csv |
+| CSV readable exp14_preflight.csv | PASS |  |
+| required report exp14_logit_margin_tail_risk_oc_report.md | PASS | thesis_exp/outputs/exp14_logit_margin_tail_risk_oc/reports/exp14_logit_margin_tail_risk_oc_report.md |
+| required report exp14_preflight_report.md | PASS | thesis_exp/outputs/exp14_logit_margin_tail_risk_oc/reports/exp14_preflight_report.md |
+| dev ranking contains no test columns | PASS |  |
+| dev ranking has z3 fields | PASS |  |
+| uses_test_for_selection is always false in dev ranking | PASS |  |
+| report says scout ranking is dev-only | PASS |  |
+| report includes formal recommendation status | PASS |  |
+| report avoids overclaim | PASS |  |
+| no heavy/raw artifacts under tracked Exp14 outputs | PASS | [] |

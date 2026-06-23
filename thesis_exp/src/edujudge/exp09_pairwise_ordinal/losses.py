@@ -389,6 +389,18 @@ def total_anchored_pairwise_training_loss(
     lambda_t3_calibration: float = 0.0,
     t3_score_source: str = "projected",
     t3_low_negative_weight: float = 2.0,
+    use_l2h_logit_margin_loss: bool = False,
+    lambda_l2h_logit_margin: float = 0.0,
+    logit_margin_risk_threshold_t: int = 3,
+    logit_margin_loss_type: str = "squared_hinge",
+    margin_prob_label1: float = 0.35,
+    margin_prob_label2: float = 0.45,
+    margin_logit_label1: float | None = None,
+    margin_logit_label2: float | None = None,
+    logit_margin_weight_label1: float = 1.0,
+    logit_margin_weight_label2: float = 2.0,
+    logit_margin_tail_fraction: float = 1.0,
+    logit_margin_min_topk: int = 1,
 ) -> tuple[Any, dict[str, float]]:
     if _is_torch_tensor(win_logits):
         import torch
@@ -463,6 +475,28 @@ def total_anchored_pairwise_training_loss(
         else:
             t3_loss = point_logits.float().sum() * 0.0
             t3_debug = {"L_t3_calibration": 0.0, "t3_calibration_loss": 0.0}
+        if use_l2h_logit_margin_loss:
+            from thesis_exp.src.edujudge.exp14_logit_margin_tail_risk_oc.logit_margin_losses import (
+                l2h_logit_margin_tail_loss_from_logits,
+            )
+
+            logit_margin_loss, logit_margin_debug = l2h_logit_margin_tail_loss_from_logits(
+                point_logits,
+                point_labels,
+                risk_threshold_t=logit_margin_risk_threshold_t,
+                loss_type=logit_margin_loss_type,
+                margin_prob_label1=margin_prob_label1,
+                margin_prob_label2=margin_prob_label2,
+                margin_logit_label1=margin_logit_label1,
+                margin_logit_label2=margin_logit_label2,
+                weight_label1=logit_margin_weight_label1,
+                weight_label2=logit_margin_weight_label2,
+                tail_fraction=logit_margin_tail_fraction,
+                min_topk=logit_margin_min_topk,
+            )
+        else:
+            logit_margin_loss = point_logits.float().sum() * 0.0
+            logit_margin_debug = {"L_l2h_logit_margin": 0.0, "l2h_logit_margin_loss": 0.0}
         total = (
             float(lambda_point) * point_loss
             + float(lambda_pair) * pair_loss
@@ -470,6 +504,7 @@ def total_anchored_pairwise_training_loss(
             + float(lambda_mono) * mono_loss
             + float(lambda_l2h_risk) * risk_loss
             + float(lambda_t3_calibration) * t3_loss
+            + float(lambda_l2h_logit_margin) * logit_margin_loss
         )
         point_value = float(point_loss.detach().cpu())
         pair_value = float(pair_loss.detach().cpu())
@@ -477,6 +512,7 @@ def total_anchored_pairwise_training_loss(
         mono_value = float(mono_loss.detach().cpu())
         risk_value = float(risk_loss.detach().cpu())
         t3_value = float(t3_loss.detach().cpu())
+        logit_margin_value = float(logit_margin_loss.detach().cpu())
         total_value = float(total.detach().cpu())
         debug = {
             "L_total": total_value,
@@ -500,6 +536,9 @@ def total_anchored_pairwise_training_loss(
             **t3_debug,
             "loss_t3_calibration": t3_value,
             "weighted_loss_t3_calibration": float(lambda_t3_calibration) * t3_value,
+            **logit_margin_debug,
+            "loss_l2h_logit_margin": logit_margin_value,
+            "weighted_loss_l2h_logit_margin": float(lambda_l2h_logit_margin) * logit_margin_value,
             **point_debug,
             "projection_in_pair_score": 1.0 if projection_in_pair_score else 0.0,
             "projection_in_point_loss": 1.0 if projection_in_point_loss else 0.0,
@@ -510,6 +549,8 @@ def total_anchored_pairwise_training_loss(
             "lambda_l2h_risk": float(lambda_l2h_risk),
             "use_t3_calibration_loss": 1.0 if use_t3_calibration_loss else 0.0,
             "lambda_t3_calibration": float(lambda_t3_calibration),
+            "use_l2h_logit_margin_loss": 1.0 if use_l2h_logit_margin_loss else 0.0,
+            "lambda_l2h_logit_margin": float(lambda_l2h_logit_margin),
         }
         return total, debug
     point_logits_arr = np.concatenate([np.asarray(win_logits), np.asarray(lose_logits)], axis=0)
@@ -582,6 +623,28 @@ def total_anchored_pairwise_training_loss(
     else:
         t3_loss = 0.0
         t3_debug = {"L_t3_calibration": 0.0, "t3_calibration_loss": 0.0}
+    if use_l2h_logit_margin_loss:
+        from thesis_exp.src.edujudge.exp14_logit_margin_tail_risk_oc.logit_margin_losses import (
+            l2h_logit_margin_tail_loss_from_logits,
+        )
+
+        logit_margin_loss, logit_margin_debug = l2h_logit_margin_tail_loss_from_logits(
+            point_logits_arr,
+            point_labels_arr,
+            risk_threshold_t=logit_margin_risk_threshold_t,
+            loss_type=logit_margin_loss_type,
+            margin_prob_label1=margin_prob_label1,
+            margin_prob_label2=margin_prob_label2,
+            margin_logit_label1=margin_logit_label1,
+            margin_logit_label2=margin_logit_label2,
+            weight_label1=logit_margin_weight_label1,
+            weight_label2=logit_margin_weight_label2,
+            tail_fraction=logit_margin_tail_fraction,
+            min_topk=logit_margin_min_topk,
+        )
+    else:
+        logit_margin_loss = 0.0
+        logit_margin_debug = {"L_l2h_logit_margin": 0.0, "l2h_logit_margin_loss": 0.0}
     total = float(
         float(lambda_point) * point_loss
         + float(lambda_pair) * pair_loss
@@ -589,6 +652,7 @@ def total_anchored_pairwise_training_loss(
         + float(lambda_mono) * mono_loss
         + float(lambda_l2h_risk) * risk_loss
         + float(lambda_t3_calibration) * t3_loss
+        + float(lambda_l2h_logit_margin) * logit_margin_loss
     )
     point_value = float(point_loss)
     pair_value = float(pair_loss)
@@ -596,6 +660,7 @@ def total_anchored_pairwise_training_loss(
     mono_value = float(mono_loss)
     risk_value = float(risk_loss)
     t3_value = float(t3_loss)
+    logit_margin_value = float(logit_margin_loss)
     return total, {
         "L_total": total,
         "loss_total": total,
@@ -618,6 +683,9 @@ def total_anchored_pairwise_training_loss(
         **t3_debug,
         "loss_t3_calibration": t3_value,
         "weighted_loss_t3_calibration": float(lambda_t3_calibration) * t3_value,
+        **logit_margin_debug,
+        "loss_l2h_logit_margin": logit_margin_value,
+        "weighted_loss_l2h_logit_margin": float(lambda_l2h_logit_margin) * logit_margin_value,
         **point_debug,
         "projection_in_pair_score": 1.0 if projection_in_pair_score else 0.0,
         "projection_in_point_loss": 1.0 if projection_in_point_loss else 0.0,
@@ -628,6 +696,8 @@ def total_anchored_pairwise_training_loss(
         "lambda_l2h_risk": float(lambda_l2h_risk),
         "use_t3_calibration_loss": 1.0 if use_t3_calibration_loss else 0.0,
         "lambda_t3_calibration": float(lambda_t3_calibration),
+        "use_l2h_logit_margin_loss": 1.0 if use_l2h_logit_margin_loss else 0.0,
+        "lambda_l2h_logit_margin": float(lambda_l2h_logit_margin),
     }
 
 
@@ -659,6 +729,18 @@ def total_anchored_pointwise_training_loss(
     lambda_t3_calibration: float = 0.0,
     t3_score_source: str = "projected",
     t3_low_negative_weight: float = 2.0,
+    use_l2h_logit_margin_loss: bool = False,
+    lambda_l2h_logit_margin: float = 0.0,
+    logit_margin_risk_threshold_t: int = 3,
+    logit_margin_loss_type: str = "squared_hinge",
+    margin_prob_label1: float = 0.35,
+    margin_prob_label2: float = 0.45,
+    margin_logit_label1: float | None = None,
+    margin_logit_label2: float | None = None,
+    logit_margin_weight_label1: float = 1.0,
+    logit_margin_weight_label2: float = 2.0,
+    logit_margin_tail_fraction: float = 1.0,
+    logit_margin_min_topk: int = 1,
 ) -> tuple[Any, dict[str, float]]:
     """Pointwise-only anchored objective for lambda_pair=0 ablations."""
     if projection_in_point_loss:
@@ -722,12 +804,38 @@ def total_anchored_pointwise_training_loss(
     else:
         t3_loss = 0.0
         t3_debug = {"L_t3_calibration": 0.0, "t3_calibration_loss": 0.0}
+    if use_l2h_logit_margin_loss:
+        from thesis_exp.src.edujudge.exp14_logit_margin_tail_risk_oc.logit_margin_losses import (
+            l2h_logit_margin_tail_loss_from_logits,
+        )
+
+        logit_margin_loss, logit_margin_debug = l2h_logit_margin_tail_loss_from_logits(
+            logits,
+            labels,
+            risk_threshold_t=logit_margin_risk_threshold_t,
+            loss_type=logit_margin_loss_type,
+            margin_prob_label1=margin_prob_label1,
+            margin_prob_label2=margin_prob_label2,
+            margin_logit_label1=margin_logit_label1,
+            margin_logit_label2=margin_logit_label2,
+            weight_label1=logit_margin_weight_label1,
+            weight_label2=logit_margin_weight_label2,
+            tail_fraction=logit_margin_tail_fraction,
+            min_topk=logit_margin_min_topk,
+        )
+    elif _is_torch_tensor(logits):
+        logit_margin_loss = logits.float().sum() * 0.0
+        logit_margin_debug = {"L_l2h_logit_margin": 0.0, "l2h_logit_margin_loss": 0.0}
+    else:
+        logit_margin_loss = 0.0
+        logit_margin_debug = {"L_l2h_logit_margin": 0.0, "l2h_logit_margin_loss": 0.0}
     total = (
         float(lambda_point) * point_loss
         + float(lambda_anchor) * anchor_loss
         + float(lambda_mono) * mono_loss
         + float(lambda_l2h_risk) * risk_loss
         + float(lambda_t3_calibration) * t3_loss
+        + float(lambda_l2h_logit_margin) * logit_margin_loss
     )
     if _is_torch_tensor(logits):
         point_value = float(point_loss.detach().cpu())
@@ -735,6 +843,7 @@ def total_anchored_pointwise_training_loss(
         mono_value = float(mono_loss.detach().cpu())
         risk_value = float(risk_loss.detach().cpu())
         t3_value = float(t3_loss.detach().cpu())
+        logit_margin_value = float(logit_margin_loss.detach().cpu())
         total_value = float(total.detach().cpu())
         debug = {
             "L_total": total_value,
@@ -764,6 +873,9 @@ def total_anchored_pointwise_training_loss(
             **t3_debug,
             "loss_t3_calibration": t3_value,
             "weighted_loss_t3_calibration": float(lambda_t3_calibration) * t3_value,
+            **logit_margin_debug,
+            "loss_l2h_logit_margin": logit_margin_value,
+            "weighted_loss_l2h_logit_margin": float(lambda_l2h_logit_margin) * logit_margin_value,
             **point_debug,
             "projection_in_point_loss": 1.0 if projection_in_point_loss else 0.0,
             "projection_in_anchor": 1.0 if projection_in_anchor else 0.0,
@@ -773,6 +885,8 @@ def total_anchored_pointwise_training_loss(
             "lambda_l2h_risk": float(lambda_l2h_risk),
             "use_t3_calibration_loss": 1.0 if use_t3_calibration_loss else 0.0,
             "lambda_t3_calibration": float(lambda_t3_calibration),
+            "use_l2h_logit_margin_loss": 1.0 if use_l2h_logit_margin_loss else 0.0,
+            "lambda_l2h_logit_margin": float(lambda_l2h_logit_margin),
         }
         return total, debug
     point_value = float(point_loss)
@@ -780,6 +894,7 @@ def total_anchored_pointwise_training_loss(
     mono_value = float(mono_loss)
     risk_value = float(risk_loss)
     t3_value = float(t3_loss)
+    logit_margin_value = float(logit_margin_loss)
     return float(total), {
         "L_total": float(total),
         "loss_total": float(total),
@@ -808,6 +923,9 @@ def total_anchored_pointwise_training_loss(
         **t3_debug,
         "loss_t3_calibration": t3_value,
         "weighted_loss_t3_calibration": float(lambda_t3_calibration) * t3_value,
+        **logit_margin_debug,
+        "loss_l2h_logit_margin": logit_margin_value,
+        "weighted_loss_l2h_logit_margin": float(lambda_l2h_logit_margin) * logit_margin_value,
         **point_debug,
         "projection_in_point_loss": 1.0 if projection_in_point_loss else 0.0,
         "projection_in_anchor": 1.0 if projection_in_anchor else 0.0,
@@ -817,6 +935,8 @@ def total_anchored_pointwise_training_loss(
         "lambda_l2h_risk": float(lambda_l2h_risk),
         "use_t3_calibration_loss": 1.0 if use_t3_calibration_loss else 0.0,
         "lambda_t3_calibration": float(lambda_t3_calibration),
+        "use_l2h_logit_margin_loss": 1.0 if use_l2h_logit_margin_loss else 0.0,
+        "lambda_l2h_logit_margin": float(lambda_l2h_logit_margin),
     }
 
 
