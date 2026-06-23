@@ -6,8 +6,10 @@ py_compile thesis_exp/src/edujudge/exp13_risk_boundary_map_oc/risk_boundary_loss
 py_compile thesis_exp/src/edujudge/exp13_risk_boundary_map_oc/preflight_exp13.py,PASS,
 py_compile thesis_exp/src/edujudge/exp13_risk_boundary_map_oc/smoke_check_exp13.py,PASS,
 py_compile thesis_exp/src/edujudge/exp13_risk_boundary_map_oc/collect_exp13_results.py,PASS,
+py_compile thesis_exp/src/edujudge/exp13_risk_boundary_map_oc/validate_formal_lock.py,PASS,
 py_compile thesis_exp/src/edujudge/exp13_risk_boundary_map_oc/readability_check_exp13.py,PASS,
 bash -n thesis_exp/scripts/run_exp13_risk_boundary_map_oc.sh,PASS,
+bash -n thesis_exp/scripts/run_exp13_risk_boundary_map_oc_formal_locked.sh,PASS,
 bash -n thesis_exp/scripts/run_exp13_risk_boundary_map_oc_smoke.sh,PASS,
 bash -n thesis_exp/scripts/sync_exp13_risk_boundary_map_oc_to_server.sh,PASS,
 required config exp13_point_pair_proj_l2h_lam0p10.yaml,PASS,thesis_exp/configs/exp13_risk_boundary_map_oc/exp13_point_pair_proj_l2h_lam0p10.yaml
@@ -29,7 +31,12 @@ required report exp13_preflight_report.md,PASS,thesis_exp/outputs/exp13_risk_bou
 dev ranking has p_gt_3 risk fields,PASS,
 dev ranking contains no test columns,PASS,
 uses_test_for_selection is always false in dev ranking,PASS,
+dev selected configs contain no test columns,PASS,
 report says scout ranking is dev-only,PASS,
 report mentions low-to-high,PASS,
 report avoids overclaim,PASS,
+formal lock report exists,PASS,thesis_exp/outputs/exp13_risk_boundary_map_oc/reports/exp13_formal_lock_report.md
+formal lock report avoids overclaim,PASS,
+formal lock report states test is final evaluation only,PASS,
+formal summary test metrics are documented as final evaluation,PASS,
 no heavy/raw artifacts under tracked Exp13 outputs,PASS,[]

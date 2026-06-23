@@ -1,0 +1,16 @@
+locked_from_commit: 8457068
+locked_from_mode: scout
+selection_source: thesis_exp/outputs/exp13_risk_boundary_map_oc/tables/exp13_dev_selected_configs.csv
+locked_runs:
+  - score_proj_l2h_lam0p20
+locked_seeds:
+  - 42
+  - 43
+  - 44
+selection_rule: mae_guard_p_gt_3_low_mean
+selection_delta: 0.005
+eval_test: true
+notes:
+  - Formal config is locked using dev-only scout results.
+  - Test metrics must not be used for config selection, checkpoint selection, or tuning.
+  - Do not expand to all eight scout configs unless explicitly requested.

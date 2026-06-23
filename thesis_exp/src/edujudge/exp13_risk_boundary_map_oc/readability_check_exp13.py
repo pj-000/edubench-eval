@@ -8,7 +8,13 @@ import subprocess
 from pathlib import Path
 from typing import Any
 
-from thesis_exp.src.edujudge.exp13_risk_boundary_map_oc import EXP13_OUTPUT_DIR, EXP13_REPORTS_DIR, EXP13_TABLES_DIR, ensure_exp13_dirs
+from thesis_exp.src.edujudge.exp13_risk_boundary_map_oc import (
+    EXP13_CONFIG_DIR,
+    EXP13_OUTPUT_DIR,
+    EXP13_REPORTS_DIR,
+    EXP13_TABLES_DIR,
+    ensure_exp13_dirs,
+)
 from thesis_exp.src.edujudge.utils.io import relpath, write_csv, write_text
 
 
@@ -39,10 +45,12 @@ SOURCE_PATHS = [
     Path("thesis_exp/src/edujudge/exp13_risk_boundary_map_oc/preflight_exp13.py"),
     Path("thesis_exp/src/edujudge/exp13_risk_boundary_map_oc/smoke_check_exp13.py"),
     Path("thesis_exp/src/edujudge/exp13_risk_boundary_map_oc/collect_exp13_results.py"),
+    Path("thesis_exp/src/edujudge/exp13_risk_boundary_map_oc/validate_formal_lock.py"),
     Path("thesis_exp/src/edujudge/exp13_risk_boundary_map_oc/readability_check_exp13.py"),
 ]
 SCRIPT_PATHS = [
     Path("thesis_exp/scripts/run_exp13_risk_boundary_map_oc.sh"),
+    Path("thesis_exp/scripts/run_exp13_risk_boundary_map_oc_formal_locked.sh"),
     Path("thesis_exp/scripts/run_exp13_risk_boundary_map_oc_smoke.sh"),
     Path("thesis_exp/scripts/sync_exp13_risk_boundary_map_oc_to_server.sh"),
 ]
@@ -106,12 +114,46 @@ def main() -> None:
             all(str(row.get("uses_test_for_selection", "")).lower() == "false" for row in ranking_rows),
         )
 
+    selected_path = EXP13_TABLES_DIR / "exp13_dev_selected_configs.csv"
+    if selected_path.exists():
+        selected_headers = _csv_headers(selected_path)
+        add(rows, "dev selected configs contain no test columns", not any(header.startswith("test_") for header in selected_headers))
+
     report_path = EXP13_REPORTS_DIR / "exp13_risk_boundary_map_oc_report.md"
     if report_path.exists():
         text = report_path.read_text(encoding="utf-8").lower()
         add(rows, "report says scout ranking is dev-only", "dev-only" in text and "test metrics are not used" in text)
         add(rows, "report mentions low-to-high", "low-to-high" in text)
         add(rows, "report avoids overclaim", not any(word in text for word in ["proves", "solves", "guarantees"]))
+
+    formal_lock_path = EXP13_CONFIG_DIR / "exp13_formal_locked.yaml"
+    formal_lock_report = EXP13_REPORTS_DIR / "exp13_formal_lock_report.md"
+    if formal_lock_path.exists():
+        add(rows, "formal lock report exists", formal_lock_report.exists(), relpath(formal_lock_report))
+        if formal_lock_report.exists():
+            formal_text = formal_lock_report.read_text(encoding="utf-8").lower()
+            add(
+                rows,
+                "formal lock report avoids overclaim",
+                not any(word in formal_text for word in ["proves", "solves", "guarantees"]),
+            )
+            add(
+                rows,
+                "formal lock report states test is final evaluation only",
+                "test metrics are only for final held-out evaluation" in formal_text
+                and "no test labels are used for tuning" in formal_text,
+            )
+
+    formal_summary_path = EXP13_TABLES_DIR / "exp13_formal_summary.csv"
+    if formal_summary_path.exists() and formal_lock_path.exists():
+        formal_headers = _csv_headers(formal_summary_path)
+        if any(header.startswith("test_") for header in formal_headers):
+            formal_text = formal_lock_report.read_text(encoding="utf-8").lower() if formal_lock_report.exists() else ""
+            add(
+                rows,
+                "formal summary test metrics are documented as final evaluation",
+                "test metrics are only for final held-out evaluation" in formal_text,
+            )
 
     heavy = []
     for path in EXP13_OUTPUT_DIR.rglob("*"):

@@ -9,6 +9,7 @@ SEEDS="${SEEDS:-42}"
 GPU_LIST="${GPU_LIST:-6 7}"
 EPOCHS="${EPOCHS:-3}"
 EXP13_RUNS="${EXP13_RUNS:-point_pair_proj_l2h_lam0p10 point_pair_proj_l2h_lam0p20 point_pair_proj_l2h_lam0p40 point_pair_proj_l2h_label2_w1p5_lam0p20 point_pair_proj_l2h_lam0p20_no_mono score_proj_l2h_lam0p20 map_oc_full_l2h_lam0p20 score_proj_t3_brier_lam0p05}"
+EXP13_PARALLEL="${EXP13_PARALLEL:-1}"
 MODE="${MODE:-scout}"
 if [[ -z "${EVAL_TEST+x}" ]]; then
   if [[ "${MODE}" == "formal" ]]; then
@@ -111,6 +112,7 @@ EPOCHS=${EPOCHS}
 EXP13_RUNS=${EXP13_RUNS}
 SKIP_COMPLETED=${SKIP_COMPLETED}
 RESET_RUN_DIR=${RESET_RUN_DIR}
+EXP13_PARALLEL=${EXP13_PARALLEL}
 SELECTION_RULE=mae_guard_p_gt_3_low_mean
 SELECTION_DELTA=${SELECTION_DELTA}
 PER_DEVICE_TRAIN_BATCH_SIZE=${PER_DEVICE_TRAIN_BATCH_SIZE}
@@ -233,23 +235,37 @@ run_gpu_queue() {
 
 pids=()
 names=()
-for gpu_index in "${!GPU_ARRAY[@]}"; do
-  gpu="${GPU_ARRAY[gpu_index]}"
-  queue=()
-  for ((job_index=gpu_index; job_index<${#jobs[@]}; job_index+=${#GPU_ARRAY[@]})); do
-    queue+=("${jobs[job_index]}")
+if [[ "${EXP13_PARALLEL}" == "1" ]]; then
+  for gpu_index in "${!GPU_ARRAY[@]}"; do
+    gpu="${GPU_ARRAY[gpu_index]}"
+    queue=()
+    for ((job_index=gpu_index; job_index<${#jobs[@]}; job_index+=${#GPU_ARRAY[@]})); do
+      queue+=("${jobs[job_index]}")
+    done
+    run_gpu_queue "${gpu}" "${queue[@]}" &
+    pids+=("$!")
+    names+=("gpu_${gpu}")
   done
-  run_gpu_queue "${gpu}" "${queue[@]}" &
-  pids+=("$!")
-  names+=("gpu_${gpu}")
-done
 
-for idx in "${!pids[@]}"; do
-  if ! wait "${pids[idx]}"; then
-    echo "Exp13 GPU queue failed: ${names[idx]}" >&2
-    exit 1
-  fi
-done
+  for idx in "${!pids[@]}"; do
+    if ! wait "${pids[idx]}"; then
+      echo "Exp13 GPU queue failed: ${names[idx]}" >&2
+      exit 1
+    fi
+  done
+elif [[ "${EXP13_PARALLEL}" == "0" ]]; then
+  echo "Running Exp13 queue sequentially with round-robin GPU assignment."
+  for job_index in "${!jobs[@]}"; do
+    item="${jobs[job_index]}"
+    gpu="${GPU_ARRAY[$((job_index % ${#GPU_ARRAY[@]}))]}"
+    run_name="${item%%:*}"
+    seed="${item##*:}"
+    run_one "${run_name}" "${seed}" "${gpu}"
+  done
+else
+  echo "ERROR: EXP13_PARALLEL must be 0 or 1, got ${EXP13_PARALLEL}" >&2
+  exit 1
+fi
 
 python -m thesis_exp.src.edujudge.exp13_risk_boundary_map_oc.collect_exp13_results \
   --mode "${MODE}" \
