@@ -1,0 +1,24 @@
+experiment: exp15_posthoc_ordinal_calibration
+mode: dev_only_posthoc_diagnosis
+gpu_required: false
+default_sources:
+  - exp09_qdpr2_formal_best_arrays
+  - exp12_runs_if_arrays_exist
+  - exp13_runs_if_arrays_exist
+  - exp14_runs_if_arrays_exist
+selection_rule: pava_mae_guard_low_to_high_then_label2_then_calibration
+selection_delta: 0.005
+ece_bins: 10
+calibrators:
+  - raw_t0p50
+  - pava_t0p50
+  - isotonic_pava_t0p50
+  - global_temperature_pava
+  - all_threshold_decode_shift
+  - q3_threshold_decode_shift
+  - q3_logit_bias_pava
+guards:
+  - Fit calibrators using dev labels only.
+  - Do not use test metrics for calibrator selection, checkpoint selection, or tuning.
+  - Do not write raw predictions, logits, arrays, checkpoints, or weights.
+  - Treat test metrics as final diagnostic only.

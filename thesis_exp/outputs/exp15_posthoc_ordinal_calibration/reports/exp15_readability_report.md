@@ -1,0 +1,33 @@
+# Exp15 Readability Check
+
+Status: `PASS`
+
+| check | status | details |
+| --- | --- | --- |
+| py_compile thesis_exp/src/edujudge/exp15_posthoc_ordinal_calibration/__init__.py | PASS |  |
+| py_compile thesis_exp/src/edujudge/exp15_posthoc_ordinal_calibration/calibration.py | PASS |  |
+| py_compile thesis_exp/src/edujudge/exp15_posthoc_ordinal_calibration/run_exp15_posthoc_ordinal_calibration.py | PASS |  |
+| py_compile thesis_exp/src/edujudge/exp15_posthoc_ordinal_calibration/smoke_check_exp15.py | PASS |  |
+| py_compile thesis_exp/src/edujudge/exp15_posthoc_ordinal_calibration/readability_check_exp15.py | PASS |  |
+| bash -n thesis_exp/scripts/run_exp15_posthoc_ordinal_calibration.sh | PASS |  |
+| bash -n thesis_exp/scripts/sync_exp15_posthoc_ordinal_calibration_to_server.sh | PASS |  |
+| required config exp15_posthoc_ordinal_calibration.yaml | PASS | thesis_exp/configs/exp15_posthoc_ordinal_calibration/exp15_posthoc_ordinal_calibration.yaml |
+| required table exp15_source_inventory.csv | PASS | thesis_exp/outputs/exp15_posthoc_ordinal_calibration/tables/exp15_source_inventory.csv |
+| CSV readable exp15_source_inventory.csv | PASS |  |
+| required table exp15_calibration_dev_ranking.csv | PASS | thesis_exp/outputs/exp15_posthoc_ordinal_calibration/tables/exp15_calibration_dev_ranking.csv |
+| CSV readable exp15_calibration_dev_ranking.csv | PASS |  |
+| required table exp15_selected_calibrators.csv | PASS | thesis_exp/outputs/exp15_posthoc_ordinal_calibration/tables/exp15_selected_calibrators.csv |
+| CSV readable exp15_selected_calibrators.csv | PASS |  |
+| required table exp15_test_diagnostic_metrics.csv | PASS | thesis_exp/outputs/exp15_posthoc_ordinal_calibration/tables/exp15_test_diagnostic_metrics.csv |
+| CSV readable exp15_test_diagnostic_metrics.csv | PASS |  |
+| required table exp15_selected_test_metrics.csv | PASS | thesis_exp/outputs/exp15_posthoc_ordinal_calibration/tables/exp15_selected_test_metrics.csv |
+| CSV readable exp15_selected_test_metrics.csv | PASS |  |
+| required table exp15_prediction_distribution.csv | PASS | thesis_exp/outputs/exp15_posthoc_ordinal_calibration/tables/exp15_prediction_distribution.csv |
+| CSV readable exp15_prediction_distribution.csv | PASS |  |
+| required report exp15_posthoc_ordinal_calibration_report.md | PASS | thesis_exp/outputs/exp15_posthoc_ordinal_calibration/reports/exp15_posthoc_ordinal_calibration_report.md |
+| dev ranking contains no test columns | PASS |  |
+| dev ranking uses_test_for_selection false | PASS |  |
+| test metrics marked final diagnostic only | PASS |  |
+| report states dev-only diagnosis | PASS |  |
+| report avoids overclaim | PASS |  |
+| no heavy/raw artifacts under tracked Exp15 outputs | PASS | [] |

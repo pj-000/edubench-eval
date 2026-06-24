@@ -1,0 +1,4 @@
+case,status,details
+decode_shape,PASS,"[3, 4, 5]"
+brier_finite,PASS,0.13333935259554922
+isotonic_models,PASS,4

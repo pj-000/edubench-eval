@@ -1,0 +1,5 @@
+source_id,source_family,run_name,seed,arrays_dir,status,note
+exp09_qdpr2:formal:seed42,exp09_qdpr2,QD-PR2_AnchoredPairwiseOrdinal_human_only,42,thesis_exp/outputs/exp09_pairwise_ordinal_qdpr2/runs/QD-PR2_AnchoredPairwiseOrdinal_human_only/arrays,READY,Formal QD-PR2 best checkpoint arrays.
+exp13:score_proj_l2h_lam0p20:seed42,exp13,score_proj_l2h_lam0p20,42,thesis_exp/runs/exp13_risk_boundary_map_oc/formal/score_proj_l2h_lam0p20/seed_42/run/arrays,READY,
+exp13:score_proj_l2h_lam0p20:seed43,exp13,score_proj_l2h_lam0p20,43,thesis_exp/runs/exp13_risk_boundary_map_oc/formal/score_proj_l2h_lam0p20/seed_43/run/arrays,READY,
+exp13:score_proj_l2h_lam0p20:seed44,exp13,score_proj_l2h_lam0p20,44,thesis_exp/runs/exp13_risk_boundary_map_oc/formal/score_proj_l2h_lam0p20/seed_44/run/arrays,READY,
