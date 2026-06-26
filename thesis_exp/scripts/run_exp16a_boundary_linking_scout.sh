@@ -6,20 +6,21 @@ MODEL_NAME_OR_PATH="${MODEL_NAME_OR_PATH:-/home/share/models/modelscope/Qwen/Qwe
 SEED="${SEED:-42}"
 GPU_LIST="${GPU_LIST:-6 7}"
 EPOCHS="${EPOCHS:-3}"
-BATCH_SIZE="${BATCH_SIZE:-4}"
-GRAD_ACCUM_STEPS="${GRAD_ACCUM_STEPS:-8}"
+PER_DEVICE_TRAIN_BATCH_SIZE="${PER_DEVICE_TRAIN_BATCH_SIZE:-${BATCH_SIZE:-4}}"
+PER_DEVICE_EVAL_BATCH_SIZE="${PER_DEVICE_EVAL_BATCH_SIZE:-8}"
+GRADIENT_ACCUMULATION_STEPS="${GRADIENT_ACCUMULATION_STEPS:-${GRAD_ACCUM_STEPS:-32}}"
 LEARNING_RATE="${LEARNING_RATE:-1e-5}"
 WEIGHT_DECAY="${WEIGHT_DECAY:-0.01}"
 MAX_LENGTH_QUALITY="${MAX_LENGTH_QUALITY:-2048}"
 MAX_LENGTH_BOUNDARY="${MAX_LENGTH_BOUNDARY:-768}"
-FP16="${FP16:-1}"
-BF16="${BF16:-0}"
-GRADIENT_CHECKPOINTING="${GRADIENT_CHECKPOINTING:-0}"
+BF16="${BF16:-auto}"
+FP16="${FP16:-}"
+GRADIENT_CHECKPOINTING="${GRADIENT_CHECKPOINTING:-1}"
 AUTO_RETRY_OOM="${AUTO_RETRY_OOM:-1}"
-OOM_FALLBACK_BATCH_SIZE="${OOM_FALLBACK_BATCH_SIZE:-1}"
-OOM_FALLBACK_GRAD_ACCUM_STEPS="${OOM_FALLBACK_GRAD_ACCUM_STEPS:-32}"
+OOM_FALLBACK_BATCH_SIZE="${OOM_FALLBACK_BATCH_SIZE:-2}"
+OOM_FALLBACK_GRAD_ACCUM_STEPS="${OOM_FALLBACK_GRAD_ACCUM_STEPS:-64}"
 OOM_FALLBACK_GRADIENT_CHECKPOINTING="${OOM_FALLBACK_GRADIENT_CHECKPOINTING:-1}"
-LOG_EVERY_STEPS="${LOG_EVERY_STEPS:-25}"
+LOG_STEPS="${LOG_STEPS:-5}"
 SAVE_BEST_BY="${SAVE_BEST_BY:-dev_mae}"
 SKIP_COMPLETED="${SKIP_COMPLETED:-1}"
 RESET_RUN_DIR="${RESET_RUN_DIR:-0}"
@@ -73,24 +74,53 @@ if is_truthy "${FP16}" && is_truthy "${BF16}"; then
   exit 1
 fi
 
+precision_from_flags() {
+  local bf16_value="$1"
+  local fp16_value="$2"
+  if [[ "${bf16_value}" == "auto" ]]; then
+    echo "auto"
+  elif is_truthy "${bf16_value}"; then
+    echo "bf16"
+  elif is_truthy "${fp16_value}"; then
+    echo "fp16"
+  else
+    echo "fp32"
+  fi
+}
+
+PRECISION="$(precision_from_flags "${BF16}" "${FP16}")"
+EFFECTIVE_BATCH_SIZE=$((PER_DEVICE_TRAIN_BATCH_SIZE * GRADIENT_ACCUMULATION_STEPS))
+FALLBACK_EFFECTIVE_BATCH_SIZE=$((OOM_FALLBACK_BATCH_SIZE * OOM_FALLBACK_GRAD_ACCUM_STEPS))
+if [[ "${EFFECTIVE_BATCH_SIZE}" != "128" ]]; then
+  echo "ERROR: Exp16A effective batch size must remain 128, got ${EFFECTIVE_BATCH_SIZE}." >&2
+  exit 1
+fi
+if [[ "${FALLBACK_EFFECTIVE_BATCH_SIZE}" != "128" ]]; then
+  echo "ERROR: Exp16A OOM fallback effective batch size must remain 128, got ${FALLBACK_EFFECTIVE_BATCH_SIZE}." >&2
+  exit 1
+fi
+
 cat <<CONFIG
 Exp16A boundary linking scout
 MODEL_NAME_OR_PATH=${MODEL_NAME_OR_PATH}
 SEED=${SEED}
 GPU_LIST=${GPU_LIST}
 EPOCHS=${EPOCHS}
-BATCH_SIZE=${BATCH_SIZE}
-GRAD_ACCUM_STEPS=${GRAD_ACCUM_STEPS}
+PER_DEVICE_TRAIN_BATCH_SIZE=${PER_DEVICE_TRAIN_BATCH_SIZE}
+PER_DEVICE_EVAL_BATCH_SIZE=${PER_DEVICE_EVAL_BATCH_SIZE}
+GRADIENT_ACCUMULATION_STEPS=${GRADIENT_ACCUMULATION_STEPS}
+effective batch size=${EFFECTIVE_BATCH_SIZE}
 MAX_LENGTH_QUALITY=${MAX_LENGTH_QUALITY}
 MAX_LENGTH_BOUNDARY=${MAX_LENGTH_BOUNDARY}
-FP16=${FP16}
 BF16=${BF16}
+PRECISION=${PRECISION}
 GRADIENT_CHECKPOINTING=${GRADIENT_CHECKPOINTING}
 AUTO_RETRY_OOM=${AUTO_RETRY_OOM}
 OOM_FALLBACK_BATCH_SIZE=${OOM_FALLBACK_BATCH_SIZE}
 OOM_FALLBACK_GRAD_ACCUM_STEPS=${OOM_FALLBACK_GRAD_ACCUM_STEPS}
+OOM fallback effective batch size=${FALLBACK_EFFECTIVE_BATCH_SIZE}
 OOM_FALLBACK_GRADIENT_CHECKPOINTING=${OOM_FALLBACK_GRADIENT_CHECKPOINTING}
-LOG_EVERY_STEPS=${LOG_EVERY_STEPS}
+LOG_STEPS=${LOG_STEPS}
 EXP16A_VARIANTS=${EXP16A_VARIANTS}
 SKIP_COMPLETED=${SKIP_COMPLETED}
 RESET_RUN_DIR=${RESET_RUN_DIR}
@@ -104,12 +134,6 @@ run_train_attempt() {
   local gradient_checkpointing="$5"
   local attempt_name="$6"
   local attempt_args=()
-  if is_truthy "${FP16}"; then
-    attempt_args+=(--fp16)
-  fi
-  if is_truthy "${BF16}"; then
-    attempt_args+=(--bf16)
-  fi
   if is_truthy "${gradient_checkpointing}"; then
     attempt_args+=(--gradient_checkpointing)
   fi
@@ -124,6 +148,7 @@ run_train_attempt() {
     --max_length_quality "${MAX_LENGTH_QUALITY}" \
     --max_length_boundary "${MAX_LENGTH_BOUNDARY}" \
     --batch_size "${batch_size}" \
+    --eval_batch_size "${PER_DEVICE_EVAL_BATCH_SIZE}" \
     --grad_accum_steps "${grad_accum_steps}" \
     --epochs "${EPOCHS}" \
     --learning_rate "${LEARNING_RATE}" \
@@ -132,7 +157,8 @@ run_train_attempt() {
     --freeze_encoder false \
     --eval_every_epoch \
     --save_best_by "${SAVE_BEST_BY}" \
-    --log_every_steps "${LOG_EVERY_STEPS}" \
+    --precision "${PRECISION}" \
+    --log_steps "${LOG_STEPS}" \
     --trust_remote_code \
     "${attempt_args[@]}"
 }
@@ -155,11 +181,11 @@ run_one() {
   (
     export CUDA_VISIBLE_DEVICES="${gpu}"
     set +e
-    run_train_attempt "${variant}" "${output_dir}" "${BATCH_SIZE}" "${GRAD_ACCUM_STEPS}" "${GRADIENT_CHECKPOINTING}" "fast"
+    run_train_attempt "${variant}" "${output_dir}" "${PER_DEVICE_TRAIN_BATCH_SIZE}" "${GRADIENT_ACCUMULATION_STEPS}" "${GRADIENT_CHECKPOINTING}" "standard"
     status="$?"
     set -e
     if [[ "${status}" -ne 0 ]] && is_truthy "${AUTO_RETRY_OOM}"; then
-      echo "Exp16A ${variant} fast attempt failed with exit ${status}; retrying with OOM fallback profile."
+      echo "Exp16A ${variant} standard attempt failed with exit ${status}; retrying with OOM fallback profile."
       rm -rf "${output_dir}/checkpoint_best" \
         "${output_dir}/metrics_dev.json" \
         "${output_dir}/metrics_test.json" \

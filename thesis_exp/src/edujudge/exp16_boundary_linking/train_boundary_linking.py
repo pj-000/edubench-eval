@@ -86,19 +86,26 @@ def move_batch(batch: dict[str, Any], device: torch.device) -> dict[str, Any]:
 def autocast_context(args: Namespace, device: torch.device) -> Any:
     if device.type != "cuda":
         return nullcontext()
-    if bool(args.fp16):
+    precision = str(getattr(args, "precision", "fp32")).lower()
+    if precision == "auto":
+        precision = "bf16" if torch.cuda.is_bf16_supported() else "fp16"
+    if bool(getattr(args, "fp16", False)):
+        precision = "fp16"
+    if bool(getattr(args, "bf16", False)):
+        precision = "bf16"
+    if precision == "fp16":
         return torch.autocast(device_type="cuda", dtype=torch.float16)
-    if bool(args.bf16):
+    if precision == "bf16":
         return torch.autocast(device_type="cuda", dtype=torch.bfloat16)
     return nullcontext()
 
 
 def prediction_rows(outputs: dict[str, torch.Tensor], labels: torch.Tensor, samples: list[dict[str, Any]]) -> list[dict[str, Any]]:
-    probs = outputs["probs"].detach().cpu().numpy()
+    probs = outputs["probs"].detach().float().cpu().numpy()
     pred = outputs["pred_label"].detach().cpu().numpy()
-    s = outputs["quality_score_s"].detach().cpu().numpy()
-    tau = outputs["thresholds_tau"].detach().cpu().numpy()
-    alpha = outputs["scale_alpha"].detach().cpu().numpy()
+    s = outputs["quality_score_s"].detach().float().cpu().numpy()
+    tau = outputs["thresholds_tau"].detach().float().cpu().numpy()
+    alpha = outputs["scale_alpha"].detach().float().cpu().numpy()
     gold = labels.detach().cpu().numpy()
     rows = []
     for idx, sample in enumerate(samples):
@@ -130,12 +137,14 @@ def evaluate(
     loader: DataLoader,
     device: torch.device,
     split: str,
+    autocast_args: Namespace | None = None,
 ) -> tuple[dict[str, Any], list[dict[str, Any]], dict[str, Any], list[dict[str, Any]]]:
     model.eval()
+    context_args = autocast_args or Namespace(fp16=False, bf16=False, precision="fp32")
     predictions: list[dict[str, Any]] = []
     for batch in loader:
         batch = move_batch(batch, device)
-        with autocast_context(Namespace(fp16=False, bf16=False), device):
+        with autocast_context(context_args, device):
             outputs = model(
                 quality_input_ids=batch["quality_input_ids"],
                 quality_attention_mask=batch["quality_attention_mask"],
@@ -179,6 +188,7 @@ def build_arg_parser() -> argparse.ArgumentParser:
     parser.add_argument("--max_length_quality", type=int, default=2048)
     parser.add_argument("--max_length_boundary", type=int, default=768)
     parser.add_argument("--batch_size", type=int, default=4)
+    parser.add_argument("--eval_batch_size", type=int, default=8)
     parser.add_argument("--grad_accum_steps", type=int, default=1)
     parser.add_argument("--epochs", type=float, default=1.0)
     parser.add_argument("--learning_rate", type=float, default=1e-5)
@@ -187,6 +197,7 @@ def build_arg_parser() -> argparse.ArgumentParser:
     parser.add_argument("--class_weights", default="")
     parser.add_argument("--bf16", action="store_true")
     parser.add_argument("--fp16", action="store_true")
+    parser.add_argument("--precision", choices=["auto", "fp16", "bf16", "fp32"], default="fp32")
     parser.add_argument("--gradient_checkpointing", action="store_true")
     parser.add_argument("--freeze_encoder", type=str_to_bool, default=False)
     parser.add_argument("--eval_every_epoch", action="store_true")
@@ -194,7 +205,7 @@ def build_arg_parser() -> argparse.ArgumentParser:
     parser.add_argument("--max_train_steps", type=int, default=0)
     parser.add_argument("--max_train_samples", type=int, default=0)
     parser.add_argument("--max_eval_samples", type=int, default=0)
-    parser.add_argument("--log_every_steps", type=int, default=25)
+    parser.add_argument("--log_every_steps", "--log_steps", dest="log_every_steps", type=int, default=25)
     parser.add_argument("--trust_remote_code", action="store_true")
     parser.add_argument("--local_files_only", action="store_true")
     return parser
@@ -239,8 +250,8 @@ def run_training(args: Namespace) -> dict[str, Any]:
         shuffle=True,
         collate_fn=collator,
     )
-    dev_loader = DataLoader(BoundaryLinkingDataset(dev_samples), batch_size=int(args.batch_size), shuffle=False, collate_fn=collator)
-    test_loader = DataLoader(BoundaryLinkingDataset(test_samples), batch_size=int(args.batch_size), shuffle=False, collate_fn=collator)
+    dev_loader = DataLoader(BoundaryLinkingDataset(dev_samples), batch_size=int(args.eval_batch_size), shuffle=False, collate_fn=collator)
+    test_loader = DataLoader(BoundaryLinkingDataset(test_samples), batch_size=int(args.eval_batch_size), shuffle=False, collate_fn=collator)
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     model.to(device)
@@ -300,7 +311,11 @@ def run_training(args: Namespace) -> dict[str, Any]:
                     f"elapsed={elapsed/60:.1f}m eta={eta/60:.1f}m",
                     flush=True,
                 )
-        dev_metrics, _, _, _ = evaluate(model, dev_loader, device, split="dev")
+        if batch_count % int(args.grad_accum_steps) != 0 and (max_steps is None or global_step < max_steps):
+            optimizer.step()
+            optimizer.zero_grad(set_to_none=True)
+            global_step += 1
+        dev_metrics, _, _, _ = evaluate(model, dev_loader, device, split="dev", autocast_args=args)
         dev_metrics = {**dev_metrics, "epoch": epoch, "global_step": global_step, "train_loss": running_loss / max(1, batch_count)}
         print(
             f"[exp16a] epoch {epoch}/{epochs} dev "
@@ -320,8 +335,8 @@ def run_training(args: Namespace) -> dict[str, Any]:
 
     if best_state is not None:
         model.load_state_dict(best_state)
-    final_dev_metrics, dev_predictions, dev_stats, dev_by_metric = evaluate(model, dev_loader, device, split="dev")
-    final_test_metrics, test_predictions, test_stats, test_by_metric = evaluate(model, test_loader, device, split="test")
+    final_dev_metrics, dev_predictions, dev_stats, dev_by_metric = evaluate(model, dev_loader, device, split="dev", autocast_args=args)
+    final_test_metrics, test_predictions, test_stats, test_by_metric = evaluate(model, test_loader, device, split="test", autocast_args=args)
     final_dev_metrics = {**final_dev_metrics, "selected_by": args.save_best_by, "selected_score": best_score}
     final_test_metrics = {**final_test_metrics, "selected_by": args.save_best_by, "selected_score": best_score}
 
