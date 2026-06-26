@@ -15,6 +15,17 @@ def warn(message: str) -> None:
     print(f"WARNING: {message}")
 
 
+def str_to_bool(value: str | bool) -> bool:
+    if isinstance(value, bool):
+        return value
+    lowered = value.strip().lower()
+    if lowered in {"1", "true", "yes", "y"}:
+        return True
+    if lowered in {"0", "false", "no", "n"}:
+        return False
+    raise argparse.ArgumentTypeError(f"Expected true/false, got {value}")
+
+
 def load_config(run_dir: Path, config_path: Path | None) -> dict[str, Any]:
     path = config_path or run_dir / "config.json"
     if not path.exists():
@@ -29,6 +40,103 @@ def load_state_dict(path: Path) -> dict[str, Any]:
         return torch.load(path, map_location="cpu", weights_only=True)
     except TypeError:
         return torch.load(path, map_location="cpu")
+
+
+def move_tokenized(tokenized: dict[str, Any], device: Any) -> dict[str, Any]:
+    return {key: value.to(device) for key, value in tokenized.items()}
+
+
+def export_predictions_with_boundary_cache(
+    *,
+    model: Any,
+    tokenizer: Any,
+    samples: list[dict[str, Any]],
+    split: str,
+    device: Any,
+    batch_size: int,
+    max_length_quality: int,
+    max_length_boundary: int,
+    autocast_args: Namespace,
+) -> list[dict[str, Any]]:
+    import torch
+
+    from thesis_exp.src.edujudge.exp16_boundary_linking.train_boundary_linking import autocast_context
+
+    model.eval()
+    boundary_by_key: dict[str, str] = {}
+    for sample in samples:
+        key = str(sample["boundary_key"])
+        text = str(sample["boundary_text"])
+        if key in boundary_by_key and boundary_by_key[key] != text:
+            raise SystemExit(f"Boundary key collision or inconsistent boundary text for key={key}")
+        answer = str(sample.get("answer") or "").strip()
+        if answer and answer in text:
+            raise SystemExit(f"Boundary cache text leaked answer for sample_id={sample.get('sample_id')}")
+        boundary_by_key[key] = text
+
+    cached: dict[str, tuple[torch.Tensor, torch.Tensor]] = {}
+    keys = sorted(boundary_by_key)
+    with torch.no_grad():
+        for start in range(0, len(keys), batch_size):
+            batch_keys = keys[start : start + batch_size]
+            tokenized = tokenizer(
+                [boundary_by_key[key] for key in batch_keys],
+                padding=True,
+                truncation=True,
+                max_length=max_length_boundary,
+                return_tensors="pt",
+            )
+            tokenized = move_tokenized(tokenized, device)
+            with autocast_context(autocast_args, device):
+                boundary_h = model.encode(tokenized["input_ids"], tokenized["attention_mask"])
+                thresholds_tau, scale_alpha = model.ordered_thresholds(boundary_h)
+            thresholds_tau = thresholds_tau.detach().float().cpu()
+            scale_alpha = scale_alpha.detach().float().cpu()
+            for idx, key in enumerate(batch_keys):
+                cached[key] = (thresholds_tau[idx], scale_alpha[idx])
+
+        predictions: list[dict[str, Any]] = []
+        for start in range(0, len(samples), batch_size):
+            batch_samples = samples[start : start + batch_size]
+            quality = tokenizer(
+                [sample["quality_text"] for sample in batch_samples],
+                padding=True,
+                truncation=True,
+                max_length=max_length_quality,
+                return_tensors="pt",
+            )
+            quality = move_tokenized(quality, device)
+            with autocast_context(autocast_args, device):
+                quality_h = model.encode(quality["input_ids"], quality["attention_mask"])
+                quality_score_s = model.quality_head(quality_h).squeeze(-1)
+            quality_score_s = quality_score_s.detach().float().cpu()
+            tau = torch.stack([cached[str(sample["boundary_key"])][0] for sample in batch_samples], dim=0)
+            alpha = torch.stack([cached[str(sample["boundary_key"])][1] for sample in batch_samples], dim=0)
+            logits = alpha.unsqueeze(-1) * (quality_score_s.unsqueeze(-1) - tau)
+            probs = torch.sigmoid(logits)
+            pred_label = 1 + (probs > 0.5).sum(dim=-1)
+            for idx, sample in enumerate(batch_samples):
+                row = {
+                    "sample_id": sample["sample_id"],
+                    "question_key": sample["question_key"],
+                    "boundary_key": sample["boundary_key"],
+                    "metric": sample["metric"],
+                    "gold_label": int(sample["label"]),
+                    "pred_label": int(pred_label[idx].item()),
+                    "probs": [float(value) for value in probs[idx].tolist()],
+                    "quality_score_s": float(quality_score_s[idx].item()),
+                    "tau1": float(tau[idx, 0].item()),
+                    "tau2": float(tau[idx, 1].item()),
+                    "tau3": float(tau[idx, 2].item()),
+                    "tau4": float(tau[idx, 3].item()),
+                    "scale_alpha": float(alpha[idx].item()),
+                    "margin_tau2": float(quality_score_s[idx].item() - tau[idx, 1].item()),
+                    "margin_tau3": float(quality_score_s[idx].item() - tau[idx, 2].item()),
+                }
+                row["is_low_to_high"] = bool(row["gold_label"] <= 2 and row["pred_label"] >= 4)
+                predictions.append(row)
+    del split
+    return predictions
 
 
 def export_predictions(args: argparse.Namespace) -> dict[str, Any]:
@@ -63,6 +171,7 @@ def export_predictions(args: argparse.Namespace) -> dict[str, Any]:
     model.load_state_dict(load_state_dict(checkpoint_path))
     device = torch.device("cuda" if torch.cuda.is_available() and not args.cpu else "cpu")
     model.to(device)
+    model.eval()
 
     collator = BoundaryLinkingCollator(
         tokenizer,
@@ -82,17 +191,38 @@ def export_predictions(args: argparse.Namespace) -> dict[str, Any]:
             warn(f"missing {split} path: {relpath(path)}; skipping")
             continue
         samples = load_samples(path, variant=variant, boundary_fields=boundary_fields or None, limit=None)
-        loader = DataLoader(
-            BoundaryLinkingDataset(samples),
-            batch_size=int(args.batch_size or config.get("eval_batch_size", config.get("batch_size", 8))),
-            shuffle=False,
-            collate_fn=collator,
-        )
-        _, predictions, _, _ = evaluate(model, loader, device, split=split, autocast_args=eval_args)
+        batch_size = int(args.batch_size or config.get("eval_batch_size", config.get("batch_size", 8)))
+        if bool(args.use_boundary_cache):
+            if variant not in {"qmr", "metric_rubric"}:
+                raise SystemExit("--use_boundary_cache currently supports variant=qmr or metric_rubric only")
+            predictions = export_predictions_with_boundary_cache(
+                model=model,
+                tokenizer=tokenizer,
+                samples=samples,
+                split=split,
+                device=device,
+                batch_size=batch_size,
+                max_length_quality=int(args.max_length_quality or config.get("max_length_quality", 2048)),
+                max_length_boundary=int(args.max_length_boundary or config.get("max_length_boundary", 768)),
+                autocast_args=eval_args,
+            )
+        else:
+            loader = DataLoader(
+                BoundaryLinkingDataset(samples),
+                batch_size=batch_size,
+                shuffle=False,
+                collate_fn=collator,
+            )
+            _, predictions, _, _ = evaluate(model, loader, device, split=split, autocast_args=eval_args)
         output_path = output_dir / f"predictions_{split}.jsonl"
         write_jsonl(output_path, predictions)
         exported[split] = relpath(output_path)
-    return {"variant": variant, "run_dir": relpath(args.run_dir), "exported": exported}
+    return {
+        "variant": variant,
+        "run_dir": relpath(args.run_dir),
+        "use_boundary_cache": bool(args.use_boundary_cache),
+        "exported": exported,
+    }
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -112,6 +242,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--max_length_quality", type=int, default=0)
     parser.add_argument("--max_length_boundary", type=int, default=0)
     parser.add_argument("--precision", choices=["auto", "fp16", "bf16", "fp32"])
+    parser.add_argument("--use_boundary_cache", type=str_to_bool, default=False)
     parser.add_argument("--trust_remote_code", action="store_true")
     parser.add_argument("--local_files_only", action="store_true")
     parser.add_argument("--cpu", action="store_true")

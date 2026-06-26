@@ -13,6 +13,7 @@ from typing import Any
 import numpy as np
 
 from thesis_exp.src.edujudge.exp16_boundary_linking import EXP16_OUTPUT_DIR
+from thesis_exp.src.edujudge.exp16_boundary_linking.metrics import compute_metrics
 from thesis_exp.src.edujudge.utils.io import read_jsonl, relpath, write_csv, write_text
 
 
@@ -44,6 +45,11 @@ def std(values: list[float]) -> float:
 def med(values: list[float]) -> float:
     clean = [value for value in values if not math.isnan(value)]
     return float(median(clean)) if clean else float("nan")
+
+
+def percentile(values: list[float], q: float) -> float:
+    clean = [value for value in values if not math.isnan(value)]
+    return float(np.percentile(clean, q)) if clean else float("nan")
 
 
 def rate(num: int, den: int) -> float:
@@ -186,11 +192,36 @@ def boundary_stability(rows: list[dict[str, Any]], variant: str, split: str) -> 
     out: list[dict[str, Any]] = []
     for key, items in sorted(groups.items()):
         tau_values = [[safe_float(row.get(f"tau{idx}")) for row in items] for idx in range(1, 5)]
-        max_abs_diff = 0.0
-        for values in tau_values:
+        all_abs_diffs: list[float] = []
+        max_abs_diff = float("nan")
+        max_diff_tau_index = ""
+        for tau_index, values in enumerate(tau_values, start=1):
             clean = [value for value in values if not math.isnan(value)]
-            if clean:
-                max_abs_diff = max(max_abs_diff, max(clean) - min(clean))
+            tau_diffs = [
+                abs(clean[right] - clean[left])
+                for left in range(len(clean))
+                for right in range(left + 1, len(clean))
+            ]
+            if len(clean) == 1:
+                tau_diffs = [0.0]
+            all_abs_diffs.extend(tau_diffs)
+            if tau_diffs:
+                tau_max = max(tau_diffs)
+                if math.isnan(max_abs_diff) or tau_max > max_abs_diff:
+                    max_abs_diff = tau_max
+                    max_diff_tau_index = f"tau{tau_index}"
+        if not all_abs_diffs:
+            all_abs_diffs = [0.0]
+            max_abs_diff = 0.0
+            max_diff_tau_index = "tau1"
+        examples = sorted(
+            items,
+            key=lambda row: (
+                str(row.get("sample_id") or ""),
+                str(row.get("question_key") or ""),
+                str(row.get("metric") or ""),
+            ),
+        )[:5]
         out.append(
             {
                 "variant": variant,
@@ -203,7 +234,47 @@ def boundary_stability(rows: list[dict[str, Any]], variant: str, split: str) -> 
                 "std_tau2": std(tau_values[1]),
                 "std_tau3": std(tau_values[2]),
                 "std_tau4": std(tau_values[3]),
+                "mean_abs_tau_diff": mean(all_abs_diffs),
+                "p50_abs_tau_diff": percentile(all_abs_diffs, 50),
+                "p90_abs_tau_diff": percentile(all_abs_diffs, 90),
+                "p95_abs_tau_diff": percentile(all_abs_diffs, 95),
+                "p99_abs_tau_diff": percentile(all_abs_diffs, 99),
                 "max_abs_tau_diff": max_abs_diff,
+                "max_diff_tau_index": max_diff_tau_index,
+                "example_sample_ids": [str(row.get("sample_id") or "") for row in examples],
+                "example_question_keys": [str(row.get("question_key") or "") for row in examples],
+                "example_metrics": [str(row.get("metric") or "") for row in examples],
+            }
+        )
+    return out
+
+
+def overall_metric_rows(data: dict[tuple[str, str], list[dict[str, Any]]]) -> list[dict[str, Any]]:
+    rows: list[dict[str, Any]] = []
+    for (variant, split), predictions in sorted(data.items()):
+        metrics = compute_metrics(predictions, split=split)
+        rows.append({"variant": variant, **metrics})
+    return rows
+
+
+def stability_summary_rows(stability_rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    groups: dict[tuple[str, str], list[dict[str, Any]]] = defaultdict(list)
+    for row in stability_rows:
+        groups[(str(row.get("variant") or ""), str(row.get("split") or ""))].append(row)
+    out: list[dict[str, Any]] = []
+    for (variant, split), items in sorted(groups.items()):
+        max_diffs = [safe_float(row.get("max_abs_tau_diff")) for row in items]
+        out.append(
+            {
+                "variant": variant,
+                "split": split,
+                "group_count": len(items),
+                "unstable_group_count": sum(1 for value in max_diffs if value > 1e-5),
+                "warning_group_count": sum(1 for value in max_diffs if value > 1e-3),
+                "serious_warning_group_count": sum(1 for value in max_diffs if value > 1e-2),
+                "median_max_abs_tau_diff": percentile(max_diffs, 50),
+                "p95_max_abs_tau_diff": percentile(max_diffs, 95),
+                "max_max_abs_tau_diff": max([value for value in max_diffs if not math.isnan(value)], default=float("nan")),
             }
         )
     return out
@@ -261,6 +332,7 @@ def generate_report(
     margins: list[dict[str, Any]],
     metric_rows: list[dict[str, Any]],
     stability_rows: list[dict[str, Any]],
+    stability_summary: list[dict[str, Any]],
 ) -> None:
     lines: list[str] = [
         "# Exp16A-Diag Boundary Failure Diagnosis",
@@ -315,7 +387,17 @@ def generate_report(
             f"{fmt(row['mean_margin_tau3_for_low'])} |"
         )
     unstable = [row for row in stability_rows if safe_float(row["max_abs_tau_diff"]) > 1e-5]
+    warning = [row for row in stability_rows if safe_float(row["max_abs_tau_diff"]) > 1e-3]
+    serious = [row for row in stability_rows if safe_float(row["max_abs_tau_diff"]) > 1e-2]
     lines += ["", "## Boundary-Key Stability", ""]
+    lines += [
+        "Interpretation rule:",
+        "",
+        "- `< 1e-4`: treat as numerical noise.",
+        "- `> 1e-3`: warning; batch/order/numerical effects are no longer negligible.",
+        "- `> 1e-2`: serious warning; inspect cache/export implementation and boundary reuse.",
+        "",
+    ]
     if unstable:
         lines.append(
             f"WARNING: `{len(unstable)}` boundary_key groups have non-negligible tau variation "
@@ -324,6 +406,41 @@ def generate_report(
         )
     else:
         lines.append("All observed boundary_key groups have near-zero tau variation within tolerance.")
+    if serious:
+        lines.append(f"SERIOUS WARNING: `{len(serious)}` groups have `max_abs_tau_diff > 1e-2`.")
+    elif warning:
+        lines.append(f"WARNING: `{len(warning)}` groups have `max_abs_tau_diff > 1e-3`.")
+    else:
+        lines.append("All observed groups are below the `1e-3` warning threshold.")
+    lines += ["", "### Boundary-Key Stability Quantile Summary", ""]
+    lines.append(
+        "| variant | split | groups | unstable | warning | serious | median max diff | p95 max diff | max diff |"
+    )
+    lines.append("|---|---|---:|---:|---:|---:|---:|---:|---:|")
+    for row in stability_summary:
+        lines.append(
+            f"| `{row['variant']}` | {row['split']} | {row['group_count']} | {row['unstable_group_count']} | "
+            f"{row['warning_group_count']} | {row['serious_warning_group_count']} | "
+            f"{fmt(row['median_max_abs_tau_diff'], 6)} | {fmt(row['p95_max_abs_tau_diff'], 6)} | "
+            f"{fmt(row['max_max_abs_tau_diff'], 6)} |"
+        )
+    lines += ["", "### Top-20 Most Unstable Boundary-Key Groups", ""]
+    lines.append(
+        "| variant | split | n | max diff | tau | mean diff | p95 diff | boundary_key | examples |"
+    )
+    lines.append("|---|---|---:|---:|---|---:|---:|---|---|")
+    top_unstable = sorted(stability_rows, key=lambda row: safe_float(row.get("max_abs_tau_diff")), reverse=True)[:20]
+    for row in top_unstable:
+        examples = row.get("example_sample_ids", "")
+        if isinstance(examples, list):
+            examples_text = ", ".join(str(value) for value in examples[:3])
+        else:
+            examples_text = str(examples)
+        lines.append(
+            f"| `{row['variant']}` | {row['split']} | {row['n']} | {fmt(row['max_abs_tau_diff'], 6)} | "
+            f"{row.get('max_diff_tau_index', '')} | {fmt(row.get('mean_abs_tau_diff'), 6)} | "
+            f"{fmt(row.get('p95_abs_tau_diff'), 6)} | `{str(row['boundary_key'])[:12]}` | {examples_text} |"
+        )
     lines += [
         "",
         "## qmr vs metric_rubric",
@@ -353,12 +470,16 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
         metric_rows.extend(metric_failure_summary(rows, variant, split))
         stability_rows.extend(boundary_stability(rows, variant, split))
         dist_rows.extend(pred_distribution(rows, variant, split))
+    overall_rows = overall_metric_rows(data)
+    stability_summary = stability_summary_rows(stability_rows)
     write_csv(output_dir / "margins_by_label.csv", margins)
     write_csv(output_dir / "low_to_high_cases.csv", l2h_cases)
     write_csv(output_dir / "metric_failure_summary.csv", metric_rows)
     write_csv(output_dir / "boundary_key_stability.csv", stability_rows)
+    write_csv(output_dir / "boundary_key_stability_summary.csv", stability_summary)
     write_csv(output_dir / "pred_distribution_by_label.csv", dist_rows)
-    generate_report(output_dir, data, margins, metric_rows, stability_rows)
+    write_csv(output_dir / "overall_metrics.csv", overall_rows)
+    generate_report(output_dir, data, margins, metric_rows, stability_rows, stability_summary)
     return {"analyzed": len(data), "output_dir": relpath(output_dir)}
 
 

@@ -85,9 +85,50 @@ This diagnostic uses saved prediction files only. It does not load checkpoints o
 
 ## Boundary-Key Stability
 
+Interpretation rule:
+
+- `< 1e-4`: treat as numerical noise.
+- `> 1e-3`: warning; batch/order/numerical effects are no longer negligible.
+- `> 1e-2`: serious warning; inspect cache/export implementation and boundary reuse.
+
 WARNING: `229` boundary_key groups have non-negligible tau variation (`max_abs_tau_diff > 1e-5`).
 This is not a monotonicity violation; it means the same saved boundary context can still produce
 slightly different tau values across prediction rows.
+SERIOUS WARNING: `89` groups have `max_abs_tau_diff > 1e-2`.
+
+### Boundary-Key Stability Quantile Summary
+
+| variant | split | groups | unstable | warning | serious | median max diff | p95 max diff | max diff |
+|---|---|---:|---:|---:|---:|---:|---:|---:|
+| `metric_rubric` | dev | 24 | 16 | 16 | 7 | 0.004477 | 0.017705 | 0.026184 |
+| `metric_rubric` | test | 24 | 21 | 21 | 8 | 0.006787 | 0.023061 | 0.026184 |
+| `qmr` | dev | 224 | 99 | 96 | 42 | 0.000000 | 0.031530 | 0.058834 |
+| `qmr` | test | 222 | 93 | 93 | 32 | 0.000000 | 0.018538 | 0.051087 |
+
+### Top-20 Most Unstable Boundary-Key Groups
+
+| variant | split | n | max diff | tau | mean diff | p95 diff | boundary_key | examples |
+|---|---|---:|---:|---|---:|---:|---|---|
+| `qmr` | dev | 5 | 0.058834 | tau4 | 0.022316 | 0.058834 | `2ee62978bf08` | 143f844f0de67a82fe8b1355e71144c090c2a8b4, 9daae5db6dddbbda0ed534c93d6e903453c4ebe4, c066a767cda6a5b4af048ba3e374c8295bdd922d |
+| `qmr` | dev | 5 | 0.056682 | tau4 | 0.021798 | 0.056682 | `34f2a2f349a2` | 29743b55549957b2840fe53b5f703ce487b5c1ce, 443ba278d4c2d3652bff93c57e0dece256cce4d7, 5faf89cb0198762be0a7f4c56e46b827ab74def6 |
+| `qmr` | test | 5 | 0.051087 | tau4 | 0.015871 | 0.051087 | `d462b83bcf11` | 1759a711276fe47fb06f64cfcd905996d0665729, 2b5607dae4cb4c05da55b8706f3483149295b17e, 90b7d1926e47fc40035e61569b3c6c4c7287d54c |
+| `qmr` | dev | 5 | 0.049035 | tau4 | 0.016514 | 0.039135 | `62972a567e5f` | 09691f5315938a4adbf7895ed89748b85f462522, 387925329b013cabf37b462cae965a905dbccbe7, 9d751f7afec36098b7bef133117cd1747a954e18 |
+| `qmr` | dev | 5 | 0.043637 | tau3 | 0.019907 | 0.043637 | `92c2cb633e24` | 15a5c95f8d439088d6b196caf73638e76f0cdfda, 438c594ed058cc5c0705a71f4ed30835391a85a1, 7a864fd83c7c351a4a8ba76d82ffe42fde099021 |
+| `qmr` | dev | 5 | 0.042760 | tau3 | 0.015193 | 0.042760 | `1ddc60fb33f9` | 386128679d1defd89ca1103a9138eea17e2c7ad3, 5018e8582681cfc20328cedc0fc2b6aa2d6ea2c3, 58a5c8a775f59e853173fa90373bf683a3caec38 |
+| `qmr` | dev | 5 | 0.039721 | tau3 | 0.021706 | 0.039721 | `f4439a271cd8` | 0acfae215fbf65b18d9efae29cc65c39314c9fa7, 1e6be4d3a41606c04cd87c96e507d4e53e8f04e1, 2c52964714627fa961cc72666ebccf0da2ac765b |
+| `qmr` | dev | 5 | 0.038505 | tau2 | 0.012770 | 0.036895 | `912555bd2b4a` | 057fb10dadb0ef587ef63e8c0692fb069e747f33, 7f474f93d1bb8c2770cc7c8ab8464c1d7389c3cb, abd894527f401792d7a5cb4438ee15420de3ea1d |
+| `qmr` | dev | 5 | 0.035709 | tau3 | 0.018938 | 0.035709 | `6df27a99fbc2` | 053de98886f60ab5ec51e900d2ec93bc42fee4d5, 753287728aff9790683dbd25f511d837e41e54b6, 8bed9df40b0527c32f815e91c2df8cb414309911 |
+| `qmr` | dev | 5 | 0.035012 | tau2 | 0.013198 | 0.035012 | `9c0c0a7161c6` | 09f0a5e6798734f1859446596f6223faaa5d8495, 0e9def4fcbc41318c97e0055e6413b82dbe0a145, 8e78ca2c20375dd8efcf91036ac7efd7ca08d9b1 |
+| `qmr` | dev | 5 | 0.033892 | tau3 | 0.019552 | 0.033892 | `022e83b668d7` | 0361cc9784ec44f7e093970b9f81493a6df9adbc, 35e1d8543c7ce6e25676e1a90d134cf2212ab356, 50a23e9c860fdd45abf3315f64af742c6032bef8 |
+| `qmr` | dev | 5 | 0.033768 | tau2 | 0.011752 | 0.033768 | `38fc4f44f33d` | 130b9044b1debd72bd2bb3dabbcfc7081a1966bc, 1a015be39daf65db2c1ff112b72c2b04f851ac48, 4ebfdf536e6f81585029508942e48f3ede5bde12 |
+| `qmr` | test | 5 | 0.032300 | tau4 | 0.011803 | 0.032300 | `7cef03ed033b` | 323a91df656b63dc795e34769c0695bb4cf30656, 4120359499d292030549af56f9241bdf529b689b, 5546f1ea2b064f7348025fe8a8b6478851600ca6 |
+| `qmr` | dev | 5 | 0.031878 | tau3 | 0.009809 | 0.018460 | `518449ae5b6b` | 3191ea4612e1f06e74580be14689c4e60b3aa5ec, a0a401e9defc721901dffdbb9d9bcf0acaefb9a2, cd15da1795d9a9c658f6c9a7fddd059483bfbd8c |
+| `qmr` | test | 5 | 0.031425 | tau4 | 0.011527 | 0.031425 | `8ab6d5fbaf55` | 12747760c9e36c869507f117c7053340bdfad0cd, 238c21ac5f03fe2ff15e95d3e200c645782b3190, 43be896a6e5e7051694a81a781727c144ca0b282 |
+| `qmr` | test | 5 | 0.031250 | tau1 | 0.016356 | 0.031250 | `237ff5e6d432` | 674c0c6bbf476257e33649e7d303ac1697e09607, 8944f4a89dd8cf4e50ef83d63945e04592b52d80, adc3b10884081f459539cf757fa8f5710ca3ce75 |
+| `qmr` | test | 5 | 0.031250 | tau1 | 0.010807 | 0.031250 | `d4f7719927ce` | 4bc5d554ec0ee6b28528fe98b9c21a6bc10853bd, 7f52dd1d97f054bbb35033cf92a6e23ba1f65fdc, 8ebade06973f5ef215a59951c5feb5f063657b22 |
+| `qmr` | dev | 5 | 0.029556 | tau4 | 0.004939 | 0.029556 | `d5ff9fc8ea92` | 0b852b93df7d7ad0db7ec99d276d3e4c2e6d53c9, 16bea1c1cd9d748355b4747cb6ce241d7fcfbc2c, 590c7f542d0b4c8788f36aa8afe67719d4d593a3 |
+| `metric_rubric` | dev | 16 | 0.026184 | tau4 | 0.004428 | 0.026184 | `6049ce916c27` | 08878a554232c03876dcd910306e1aead6bc04c4, 17b2ac651081219e46d26ed2caee675d63e8e54b, 1a67eecdaf74f2088dc0d0122ffbd507d87e6ec4 |
+| `metric_rubric` | test | 43 | 0.026184 | tau4 | 0.007469 | 0.024584 | `6049ce916c27` | 009a70f14432d291d4ccb15a5281c1e8b7e4baf5, 025440cebee6f5ce51c1eb618e7ec69eaa724e5e, 094d533fd29ce8e42fe29bc8c70a86a007ddc194 |
 
 ## qmr vs metric_rubric
 
