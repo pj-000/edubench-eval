@@ -6,6 +6,7 @@ import argparse
 import copy
 import json
 import random
+import time
 from contextlib import nullcontext
 from argparse import Namespace
 from pathlib import Path
@@ -193,6 +194,7 @@ def build_arg_parser() -> argparse.ArgumentParser:
     parser.add_argument("--max_train_steps", type=int, default=0)
     parser.add_argument("--max_train_samples", type=int, default=0)
     parser.add_argument("--max_eval_samples", type=int, default=0)
+    parser.add_argument("--log_every_steps", type=int, default=25)
     parser.add_argument("--trust_remote_code", action="store_true")
     parser.add_argument("--local_files_only", action="store_true")
     return parser
@@ -261,6 +263,14 @@ def run_training(args: Namespace) -> dict[str, Any]:
         optimizer.zero_grad(set_to_none=True)
         running_loss = 0.0
         batch_count = 0
+        epoch_start = time.time()
+        total_batches = len(train_loader)
+        log_every_steps = max(1, int(getattr(args, "log_every_steps", 25)))
+        print(
+            f"[exp16a] epoch {epoch}/{epochs} start "
+            f"batches={total_batches} batch_size={int(args.batch_size)} grad_accum={int(args.grad_accum_steps)}",
+            flush=True,
+        )
         for batch_idx, batch in enumerate(train_loader, start=1):
             batch = move_batch(batch, device)
             with autocast_context(args, device):
@@ -280,8 +290,24 @@ def run_training(args: Namespace) -> dict[str, Any]:
                 global_step += 1
                 if max_steps is not None and global_step >= max_steps:
                     break
+            if batch_idx == 1 or batch_idx % log_every_steps == 0 or batch_idx == total_batches:
+                elapsed = time.time() - epoch_start
+                rate = batch_idx / max(elapsed, 1e-6)
+                eta = (total_batches - batch_idx) / max(rate, 1e-6)
+                print(
+                    f"[exp16a] epoch {epoch}/{epochs} batch {batch_idx}/{total_batches} "
+                    f"loss={float(loss.detach().cpu()):.4f} global_step={global_step} "
+                    f"elapsed={elapsed/60:.1f}m eta={eta/60:.1f}m",
+                    flush=True,
+                )
         dev_metrics, _, _, _ = evaluate(model, dev_loader, device, split="dev")
         dev_metrics = {**dev_metrics, "epoch": epoch, "global_step": global_step, "train_loss": running_loss / max(1, batch_count)}
+        print(
+            f"[exp16a] epoch {epoch}/{epochs} dev "
+            f"MAE={float(dev_metrics['MAE']):.4f} QWK={float(dev_metrics['QWK']):.4f} "
+            f"low_to_high={dev_metrics['low_to_high_count']}/{dev_metrics['true_low_n']}",
+            flush=True,
+        )
         history.append(dev_metrics)
         better, score = score_is_better(dev_metrics, best_score, args.save_best_by)
         if better:

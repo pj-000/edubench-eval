@@ -100,7 +100,10 @@ class BoundaryLinkingOrdinalModel(nn.Module):
         boundary_attention_mask: torch.Tensor,
     ) -> dict[str, torch.Tensor]:
         quality_h = self.encode(quality_input_ids, quality_attention_mask)
-        boundary_h = self.encode(boundary_input_ids, boundary_attention_mask)
+        if self.variant == "global":
+            boundary_h = torch.zeros_like(quality_h)
+        else:
+            boundary_h = self.encode(boundary_input_ids, boundary_attention_mask)
         quality_score_s = self.quality_head(quality_h).squeeze(-1)
         thresholds_tau, scale_alpha = self.ordered_thresholds(boundary_h)
         logits = scale_alpha.unsqueeze(-1) * (quality_score_s.unsqueeze(-1) - thresholds_tau)

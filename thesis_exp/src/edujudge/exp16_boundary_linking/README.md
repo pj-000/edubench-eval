@@ -99,8 +99,10 @@ The scout script defaults to the Qwen3-Reranker-0.6B path used by earlier thesis
 experiments. By default, it queues all four variants across GPU 6 and GPU 7:
 `global`, `metric_rubric`, `qmr`, and `qmr_meta`.
 
-The default scout memory profile is set for 24 GB RTX 3090 cards:
-`BATCH_SIZE=1`, `GRAD_ACCUM_STEPS=32`, `FP16=1`, and
+The default scout profile is tuned for 24 GB RTX 3090 cards:
+`BATCH_SIZE=4`, `GRAD_ACCUM_STEPS=8`, `FP16=1`, and
+`GRADIENT_CHECKPOINTING=0`. If a long batch still hits OOM, the script retries
+that variant with `BATCH_SIZE=1`, `GRAD_ACCUM_STEPS=32`, and
 `GRADIENT_CHECKPOINTING=1`.
 
 To run only one variant:

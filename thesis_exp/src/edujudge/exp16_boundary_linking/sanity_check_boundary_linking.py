@@ -104,6 +104,7 @@ def run_sanity(output_dir: Path, variant: str = "qmr_meta") -> list[dict[str, An
         max_train_steps=2,
         max_train_samples=8,
         max_eval_samples=8,
+        log_every_steps=1,
         trust_remote_code=False,
         local_files_only=False,
     )
