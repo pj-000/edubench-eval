@@ -77,9 +77,12 @@ def compute_metrics(predictions: list[dict[str, Any]], split: str) -> dict[str, 
     for label in [1, 2, 3, 4, 5]:
         denom = sum(1 for value in gold if value == label)
         hit = sum(1 for g, p in zip(gold, pred) if g == label and p == label)
-        metrics[f"recall_label_{label}"] = _safe_rate(hit, denom)
+        label_recall = _safe_rate(hit, denom)
+        metrics[f"label{label}_recall"] = label_recall
+        metrics[f"recall_label_{label}"] = label_recall
         metrics[f"n_label_{label}"] = denom
-    metrics["Acc@5"] = metrics["recall_label_5"]
+    metrics["Label5_Recall"] = metrics["label5_recall"]
+    metrics["Acc@5"] = metrics["Accuracy"]
     return metrics
 
 

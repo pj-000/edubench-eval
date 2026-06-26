@@ -117,9 +117,19 @@ def run_sanity(output_dir: Path, variant: str = "qmr_meta") -> list[dict[str, An
     )
     if (dry_run_dir / "predictions_dev.jsonl").exists():
         pred_rows = read_jsonl(dry_run_dir / "predictions_dev.jsonl")
-        required = {"quality_score_s", "tau1", "tau2", "tau3", "tau4", "margin_tau2", "margin_tau3", "is_low_to_high"}
+        required = {
+            "boundary_key",
+            "quality_score_s",
+            "tau1",
+            "tau2",
+            "tau3",
+            "tau4",
+            "margin_tau2",
+            "margin_tau3",
+            "is_low_to_high",
+        }
         present = set(pred_rows[0]) if pred_rows else set()
-        _add(rows, "predictions contain s/tau/margins/risk fields", required.issubset(present), sorted(required - present))
+        _add(rows, "predictions contain boundary key plus s/tau/margins/risk fields", required.issubset(present), sorted(required - present))
     write_csv(output_dir / "sanity_check_boundary_linking.csv", rows)
     lines = ["# Exp16A Boundary Linking Sanity", ""]
     lines.extend(f"- {row['check']}: {row['status']} ({row['details']})" for row in rows)

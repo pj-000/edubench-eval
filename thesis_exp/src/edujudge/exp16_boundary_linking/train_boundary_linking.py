@@ -104,6 +104,7 @@ def prediction_rows(outputs: dict[str, torch.Tensor], labels: torch.Tensor, samp
         row = {
             "sample_id": sample["sample_id"],
             "question_key": sample["question_key"],
+            "boundary_key": sample["boundary_key"],
             "metric": sample["metric"],
             "gold_label": int(gold[idx]),
             "pred_label": int(pred[idx]),

@@ -14,7 +14,7 @@ from thesis_exp.src.edujudge.utils.io import read_jsonl
 
 
 LABELS = [1, 2, 3, 4, 5]
-DEFAULT_QUALITY_FIELDS = ("metadata", "question", "answer", "metric", "rubric")
+DEFAULT_QUALITY_FIELDS = ("question", "answer", "metric", "rubric", "metadata")
 VARIANT_BOUNDARY_FIELDS = {
     "global": (),
     "metric_rubric": ("metric", "rubric"),
@@ -39,6 +39,10 @@ def question_key(row: dict[str, Any]) -> str:
         return explicit
     question = _clean(row.get("question"))
     return hashlib.sha1(question.encode("utf-8")).hexdigest() if question else row_id(row)
+
+
+def boundary_key(boundary_text: str) -> str:
+    return hashlib.sha1(boundary_text.encode("utf-8")).hexdigest()
 
 
 def label_5(row: dict[str, Any]) -> int:
@@ -127,6 +131,7 @@ def make_sample(row: dict[str, Any], variant: str = "qmr_meta", boundary_fields:
         "human_mean_5": row.get("human_mean_5"),
         "quality_text": quality_text,
         "boundary_text": boundary_text,
+        "boundary_key": boundary_key(boundary_text),
         "answer": answer,
         "scenario_canonical": _clean(row.get("scenario_canonical") or row.get("scenario")),
         "subject_canonical": _clean(row.get("subject_canonical") or row.get("subject")),

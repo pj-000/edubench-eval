@@ -71,6 +71,10 @@ Exp16A uses:
 - `scenario_canonical`, `subject_canonical`, `education_level_canonical`, and
   `language` as metadata when available.
 
+The default quality text order is `question`, `answer`, `metric`, `rubric`,
+and `metadata`, matching the A4 standardized scorer input. Boundary text never
+contains `answer`.
+
 ## Sanity Check
 
 ```bash
@@ -116,7 +120,17 @@ Each run writes under `thesis_exp/outputs/exp16_boundary_linking/`:
 - `config.json`
 
 Predictions include `quality_score_s`, `tau1..tau4`, `margin_tau2`,
-`margin_tau3`, and `is_low_to_high`.
+`margin_tau3`, `is_low_to_high`, and `boundary_key`. `boundary_key` is a SHA1
+hash of `boundary_text`; it allows analysis of whether answers under the same
+question/rubric context share the same generated boundary without exposing the
+answer.
+
+Metric naming:
+
+- `Accuracy` is exact five-class accuracy.
+- `label5_recall` / `Label5_Recall` is recall among true label-5 samples.
+- `Acc@5` is kept only as a compatibility alias of `Accuracy` for Exp16A; new
+  tables should prefer `Accuracy` and `label5_recall`.
 
 ## Dev-Only Selection Rule
 
