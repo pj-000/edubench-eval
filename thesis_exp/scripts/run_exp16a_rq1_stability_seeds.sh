@@ -8,15 +8,12 @@ GPU_LIST="${GPU_LIST:-6 7}"
 EXP16A_VARIANTS="${EXP16A_VARIANTS:-qmr metric_rubric}"
 EPOCHS="${EPOCHS:-3}"
 PER_DEVICE_TRAIN_BATCH_SIZE="${PER_DEVICE_TRAIN_BATCH_SIZE:-4}"
-PER_DEVICE_EVAL_BATCH_SIZE="${PER_DEVICE_EVAL_BATCH_SIZE:-8}"
 GRADIENT_ACCUMULATION_STEPS="${GRADIENT_ACCUMULATION_STEPS:-32}"
 LEARNING_RATE="${LEARNING_RATE:-1e-5}"
 WEIGHT_DECAY="${WEIGHT_DECAY:-0.01}"
 MAX_LENGTH_QUALITY="${MAX_LENGTH_QUALITY:-2048}"
 MAX_LENGTH_BOUNDARY="${MAX_LENGTH_BOUNDARY:-768}"
 BF16="${BF16:-auto}"
-GRADIENT_CHECKPOINTING="${GRADIENT_CHECKPOINTING:-1}"
-LOG_STEPS="${LOG_STEPS:-5}"
 SAVE_BEST_BY="${SAVE_BEST_BY:-dev_mae}"
 SKIP_COMPLETED="${SKIP_COMPLETED:-1}"
 RESET_RUN_DIR="${RESET_RUN_DIR:-0}"
@@ -40,8 +37,8 @@ Outputs:
   thesis_exp/outputs/exp16_boundary_linking/scout_seed44/{qmr,metric_rubric}/
 
 Environment overrides are supported for SEEDS, GPU_LIST, EPOCHS,
-PER_DEVICE_TRAIN_BATCH_SIZE, PER_DEVICE_EVAL_BATCH_SIZE,
-GRADIENT_ACCUMULATION_STEPS, LEARNING_RATE, BF16, and GRADIENT_CHECKPOINTING.
+PER_DEVICE_TRAIN_BATCH_SIZE, GRADIENT_ACCUMULATION_STEPS, LEARNING_RATE,
+and BF16.
 USAGE
 }
 
@@ -84,10 +81,12 @@ if [[ "${EFFECTIVE_BATCH_SIZE}" != "128" ]]; then
   exit 1
 fi
 
-gc_args=()
-if [[ "${GRADIENT_CHECKPOINTING}" == "1" ]]; then
-  gc_args+=(--gradient_checkpointing)
-fi
+precision_args=()
+case "${BF16}" in
+  1|true|TRUE|True|auto|AUTO|Auto|bf16|BF16)
+    precision_args+=(--bf16)
+    ;;
+esac
 
 cat <<CONFIG
 Exp16A RQ1 stability seeds
@@ -97,11 +96,9 @@ GPU_LIST=${GPU_LIST}
 EXP16A_VARIANTS=${EXP16A_VARIANTS}
 EPOCHS=${EPOCHS}
 PER_DEVICE_TRAIN_BATCH_SIZE=${PER_DEVICE_TRAIN_BATCH_SIZE}
-PER_DEVICE_EVAL_BATCH_SIZE=${PER_DEVICE_EVAL_BATCH_SIZE}
 GRADIENT_ACCUMULATION_STEPS=${GRADIENT_ACCUMULATION_STEPS}
 effective batch size=${EFFECTIVE_BATCH_SIZE}
 BF16=${BF16}
-GRADIENT_CHECKPOINTING=${GRADIENT_CHECKPOINTING}
 SAVE_BEST_BY=${SAVE_BEST_BY}
 SKIP_COMPLETED=${SKIP_COMPLETED}
 RESET_RUN_DIR=${RESET_RUN_DIR}
@@ -135,7 +132,6 @@ run_one() {
       --max_length_quality "${MAX_LENGTH_QUALITY}" \
       --max_length_boundary "${MAX_LENGTH_BOUNDARY}" \
       --batch_size "${PER_DEVICE_TRAIN_BATCH_SIZE}" \
-      --eval_batch_size "${PER_DEVICE_EVAL_BATCH_SIZE}" \
       --grad_accum_steps "${GRADIENT_ACCUMULATION_STEPS}" \
       --epochs "${EPOCHS}" \
       --learning_rate "${LEARNING_RATE}" \
@@ -144,10 +140,8 @@ run_one() {
       --freeze_encoder false \
       --eval_every_epoch \
       --save_best_by "${SAVE_BEST_BY}" \
-      --precision "${BF16}" \
-      --log_steps "${LOG_STEPS}" \
       --trust_remote_code \
-      "${gc_args[@]}"
+      "${precision_args[@]}"
   ) 2>&1 | tee "${log_path}"
 }
 
