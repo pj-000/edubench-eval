@@ -14,6 +14,7 @@ WEIGHT_DECAY="${WEIGHT_DECAY:-0.01}"
 MAX_LENGTH_QUALITY="${MAX_LENGTH_QUALITY:-2048}"
 MAX_LENGTH_BOUNDARY="${MAX_LENGTH_BOUNDARY:-768}"
 BF16="${BF16:-auto}"
+GRADIENT_CHECKPOINTING="${GRADIENT_CHECKPOINTING:-1}"
 SAVE_BEST_BY="${SAVE_BEST_BY:-dev_mae}"
 SKIP_COMPLETED="${SKIP_COMPLETED:-1}"
 RESET_RUN_DIR="${RESET_RUN_DIR:-0}"
@@ -38,7 +39,7 @@ Outputs:
 
 Environment overrides are supported for SEEDS, GPU_LIST, EPOCHS,
 PER_DEVICE_TRAIN_BATCH_SIZE, GRADIENT_ACCUMULATION_STEPS, LEARNING_RATE,
-and BF16.
+BF16, and GRADIENT_CHECKPOINTING.
 USAGE
 }
 
@@ -87,6 +88,10 @@ case "${BF16}" in
     precision_args+=(--bf16)
     ;;
 esac
+gc_args=()
+if [[ "${GRADIENT_CHECKPOINTING}" == "1" || "${GRADIENT_CHECKPOINTING}" == "true" || "${GRADIENT_CHECKPOINTING}" == "TRUE" || "${GRADIENT_CHECKPOINTING}" == "True" ]]; then
+  gc_args+=(--gradient_checkpointing)
+fi
 
 cat <<CONFIG
 Exp16A RQ1 stability seeds
@@ -99,6 +104,7 @@ PER_DEVICE_TRAIN_BATCH_SIZE=${PER_DEVICE_TRAIN_BATCH_SIZE}
 GRADIENT_ACCUMULATION_STEPS=${GRADIENT_ACCUMULATION_STEPS}
 effective batch size=${EFFECTIVE_BATCH_SIZE}
 BF16=${BF16}
+GRADIENT_CHECKPOINTING=${GRADIENT_CHECKPOINTING}
 SAVE_BEST_BY=${SAVE_BEST_BY}
 SKIP_COMPLETED=${SKIP_COMPLETED}
 RESET_RUN_DIR=${RESET_RUN_DIR}
@@ -141,6 +147,7 @@ run_one() {
       --eval_every_epoch \
       --save_best_by "${SAVE_BEST_BY}" \
       --trust_remote_code \
+      "${gc_args[@]}" \
       "${precision_args[@]}"
   ) 2>&1 | tee "${log_path}"
 }
