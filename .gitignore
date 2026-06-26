@@ -20,3 +20,7 @@ thesis_exp/outputs/exp09_pairwise_ordinal_qdpr2/pairs/
 thesis_exp/outputs/exp09_pairwise_ordinal_qdpr2/runs/
 thesis_exp/outputs/exp09_pairwise_ordinal_qdpr2/smoke_test/
 thesis_exp/outputs/exp09_pairwise_ordinal_qdpr2/logs/
+
+# Exp16A generated run artifacts contain raw predictions/checkpoints and stay local/server-side.
+thesis_exp/outputs/exp16_boundary_linking/runs/
+thesis_exp/outputs/exp16_boundary_linking/sanity/
