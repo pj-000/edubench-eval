@@ -4,18 +4,17 @@ This report summarizes qmr and metric_rubric dev stability across available seed
 warnings, not failures.
 
 Requested seeds: `42, 43, 44`.
-Available rows: `2`.
+Available rows: `6`.
 
 ## Aggregate
 
 | variant | n seeds | mean MAE | std MAE | mean QWK | std QWK | mean low-to-high | mean label2 recall | monotonic zero |
 |---|---:|---:|---:|---:|---:|---:|---:|---|
-| `qmr` | 1 | 0.3993 | 0.0000 | 0.5532 | 0.0000 | 0.5088 | 0.0000 | True |
-| `metric_rubric` | 1 | 0.4237 | 0.0000 | 0.5274 | 0.0000 | 0.5789 | 0.0000 | True |
+| `qmr` | 3 | 0.4342 | 0.0308 | 0.4718 | 0.0728 | 0.6316 | 0.0000 | True |
+| `metric_rubric` | 3 | 0.4435 | 0.0250 | 0.4674 | 0.0532 | 0.6491 | 0.0000 | True |
 
 ## Interpretation
 
-- Multi-seed stability is not yet established; run seed 43/44 before making a stability claim.
 - qmr has lower available-seed dev MAE than metric_rubric.
 - qmr has lower available-seed low-to-high rate.
 - label2 recall remains zero for both variants in the available seeds.
