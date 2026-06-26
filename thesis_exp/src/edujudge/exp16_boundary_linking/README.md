@@ -88,12 +88,18 @@ The sanity check uses a tiny random local encoder and verifies:
 ## Scout Template
 
 ```bash
-./thesis_exp/scripts/run_exp16a_boundary_linking_scout.sh qmr_meta
+./thesis_exp/scripts/run_exp16a_boundary_linking_scout.sh
 ```
 
 The scout script defaults to the Qwen3-Reranker-0.6B path used by earlier thesis
-experiments. It runs one selected variant at a time. The other three variant
-commands are listed as comments in the script.
+experiments. By default, it queues all four variants across GPU 6 and GPU 7:
+`global`, `metric_rubric`, `qmr`, and `qmr_meta`.
+
+To run only one variant:
+
+```bash
+./thesis_exp/scripts/run_exp16a_boundary_linking_scout.sh qmr_meta
+```
 
 ## Outputs
 
