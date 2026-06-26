@@ -1,0 +1,3 @@
+variant,n_seeds,mean_MAE,std_MAE,mean_QWK,std_QWK,mean_low_to_high_rate,std_low_to_high_rate,mean_label1_recall,mean_label2_recall,mean_label5_recall,all_monotonic_zero
+qmr,1,0.3992773261065944,0.0,0.5532253604287027,0.0,0.5087719298245614,0.0,0.47368421052631576,0.0,0.8183453237410072,True
+metric_rubric,1,0.42366757000903343,0.0,0.5274086704845666,0.0,0.5789473684210527,0.0,0.6842105263157895,0.0,0.8381294964028777,True
