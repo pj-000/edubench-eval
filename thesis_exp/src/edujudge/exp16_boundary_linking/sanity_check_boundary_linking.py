@@ -97,6 +97,7 @@ def run_sanity(output_dir: Path, variant: str = "qmr_meta") -> list[dict[str, An
         class_weights="",
         bf16=False,
         fp16=False,
+        gradient_checkpointing=False,
         freeze_encoder=False,
         eval_every_epoch=True,
         save_best_by="dev_mae",

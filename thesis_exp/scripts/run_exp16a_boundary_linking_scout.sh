@@ -6,12 +6,15 @@ MODEL_NAME_OR_PATH="${MODEL_NAME_OR_PATH:-/home/share/models/modelscope/Qwen/Qwe
 SEED="${SEED:-42}"
 GPU_LIST="${GPU_LIST:-6 7}"
 EPOCHS="${EPOCHS:-3}"
-BATCH_SIZE="${BATCH_SIZE:-4}"
-GRAD_ACCUM_STEPS="${GRAD_ACCUM_STEPS:-8}"
+BATCH_SIZE="${BATCH_SIZE:-1}"
+GRAD_ACCUM_STEPS="${GRAD_ACCUM_STEPS:-32}"
 LEARNING_RATE="${LEARNING_RATE:-1e-5}"
 WEIGHT_DECAY="${WEIGHT_DECAY:-0.01}"
 MAX_LENGTH_QUALITY="${MAX_LENGTH_QUALITY:-2048}"
 MAX_LENGTH_BOUNDARY="${MAX_LENGTH_BOUNDARY:-768}"
+FP16="${FP16:-1}"
+BF16="${BF16:-0}"
+GRADIENT_CHECKPOINTING="${GRADIENT_CHECKPOINTING:-1}"
 SAVE_BEST_BY="${SAVE_BEST_BY:-dev_mae}"
 SKIP_COMPLETED="${SKIP_COMPLETED:-1}"
 RESET_RUN_DIR="${RESET_RUN_DIR:-0}"
@@ -34,6 +37,7 @@ if [[ -f "${HOME}/miniconda3/bin/activate" ]]; then
 fi
 
 export TOKENIZERS_PARALLELISM="${TOKENIZERS_PARALLELISM:-false}"
+export PYTORCH_CUDA_ALLOC_CONF="${PYTORCH_CUDA_ALLOC_CONF:-expandable_segments:True}"
 
 read -r -a VARIANT_ARRAY <<< "${EXP16A_VARIANTS}"
 read -r -a GPU_ARRAY <<< "${GPU_LIST//,/ }"
@@ -55,6 +59,21 @@ for variant in "${VARIANT_ARRAY[@]}"; do
       ;;
   esac
 done
+if [[ "${FP16}" =~ ^(1|true|TRUE|yes|YES)$ && "${BF16}" =~ ^(1|true|TRUE|yes|YES)$ ]]; then
+  echo "ERROR: enable only one of FP16 or BF16." >&2
+  exit 1
+fi
+
+EXTRA_TRAIN_ARGS=()
+if [[ "${FP16}" =~ ^(1|true|TRUE|yes|YES)$ ]]; then
+  EXTRA_TRAIN_ARGS+=(--fp16)
+fi
+if [[ "${BF16}" =~ ^(1|true|TRUE|yes|YES)$ ]]; then
+  EXTRA_TRAIN_ARGS+=(--bf16)
+fi
+if [[ "${GRADIENT_CHECKPOINTING}" =~ ^(1|true|TRUE|yes|YES)$ ]]; then
+  EXTRA_TRAIN_ARGS+=(--gradient_checkpointing)
+fi
 
 cat <<CONFIG
 Exp16A boundary linking scout
@@ -64,6 +83,11 @@ GPU_LIST=${GPU_LIST}
 EPOCHS=${EPOCHS}
 BATCH_SIZE=${BATCH_SIZE}
 GRAD_ACCUM_STEPS=${GRAD_ACCUM_STEPS}
+MAX_LENGTH_QUALITY=${MAX_LENGTH_QUALITY}
+MAX_LENGTH_BOUNDARY=${MAX_LENGTH_BOUNDARY}
+FP16=${FP16}
+BF16=${BF16}
+GRADIENT_CHECKPOINTING=${GRADIENT_CHECKPOINTING}
 EXP16A_VARIANTS=${EXP16A_VARIANTS}
 SKIP_COMPLETED=${SKIP_COMPLETED}
 RESET_RUN_DIR=${RESET_RUN_DIR}
@@ -104,7 +128,8 @@ run_one() {
       --freeze_encoder false \
       --eval_every_epoch \
       --save_best_by "${SAVE_BEST_BY}" \
-      --trust_remote_code
+      --trust_remote_code \
+      "${EXTRA_TRAIN_ARGS[@]}"
 
     python -m thesis_exp.src.edujudge.exp16_boundary_linking.analyze_boundaries \
       --predictions_path "${output_dir}/predictions_dev.jsonl" \

@@ -186,6 +186,7 @@ def build_arg_parser() -> argparse.ArgumentParser:
     parser.add_argument("--class_weights", default="")
     parser.add_argument("--bf16", action="store_true")
     parser.add_argument("--fp16", action="store_true")
+    parser.add_argument("--gradient_checkpointing", action="store_true")
     parser.add_argument("--freeze_encoder", type=str_to_bool, default=False)
     parser.add_argument("--eval_every_epoch", action="store_true")
     parser.add_argument("--save_best_by", choices=["dev_mae", "dev_qwk"], default="dev_mae")
@@ -215,6 +216,11 @@ def run_training(args: Namespace) -> dict[str, Any]:
         trust_remote_code=bool(args.trust_remote_code),
         local_files_only=bool(args.local_files_only),
     )
+    if bool(getattr(args, "gradient_checkpointing", False)):
+        if hasattr(model.encoder.config, "use_cache"):
+            model.encoder.config.use_cache = False
+        if hasattr(model.encoder, "gradient_checkpointing_enable"):
+            model.encoder.gradient_checkpointing_enable()
     if bool(args.freeze_encoder):
         for param in model.encoder.parameters():
             param.requires_grad = False
