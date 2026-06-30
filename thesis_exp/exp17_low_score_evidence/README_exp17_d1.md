@@ -90,6 +90,25 @@ Generated lightweight files:
 - `human_rationale_recovery/d1_human_rationale_by_metric.csv`
 - `human_rationale_recovery/d1_human_rationale_recovery_report.md`
 
+## Re-annotate D1 with Recovered Rationales
+
+After rationale recovery, rerun D1 annotation and summary with the recovered
+human reasons as the primary evidence:
+
+```bash
+./thesis_exp/scripts/run_exp17_d1_human_rationale_reannotation.sh
+```
+
+Generated lightweight files:
+
+- `d1_hidden_failure_annotation_template_filled_human_rationale_recovered.csv`
+- `d1_human_rationale_reannotation_report.md`
+- `summary_human_rationale_recovered/d1_failure_mode_summary.csv`
+- `summary_human_rationale_recovered/d1_trainability_summary.csv`
+- `summary_human_rationale_recovered/d1_question_group_failure_summary.csv`
+- `summary_human_rationale_recovered/d1_enter_exp17a_decision.json`
+- `summary_human_rationale_recovered/exp17_d1_hidden_failure_report.md`
+
 ## Exp17-A Decision Rule
 
 The default rule recommends entering Exp17-A when:
