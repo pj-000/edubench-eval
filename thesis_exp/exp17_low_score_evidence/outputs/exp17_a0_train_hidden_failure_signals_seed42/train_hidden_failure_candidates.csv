@@ -1,0 +1,1881 @@
+sample_id,question_key,question_group_id,metric,language,subject,gold_label,human_1,human_2,human_3,human_agreement_pattern,question,answer,rubric,metadata,recovered_reason_summary,rationale_match_status,rationale_score_phrase,rationale_score_phrase_consistency,score_phrase_conflict_flag,hidden_failure_candidate_type,failure_mode_auto,confidence_weight,recommended_training_use
+59057a57e3dbc47128b4e0c6da46964f722a411f,ba35192a049e868eedae5ba310638e7e75c9f363,ba35192a049e868eedae5ba310638e7e75c9f363,"Motivation, Guidance & Positive Feedback",en,Basic Medicine,2,2.0,2.0,3.0,2.0/2.0/3.0,"Question: Which of the following is the primary function of hemoglobin in the human body?
+Original Answer: To fight infections by destroying bacteria.
+You are providing error-correction services for the student's response. Based on this question and the original answer, provide the ""Corrected Answer"" and ""Error Explanation"", in JSON format.","{
+  ""Corrected Answer"": ""To transport oxygen from the lungs to the rest of the body and to help remove carbon dioxide."",
+  ""Error Explanation"": ""The original answer incorrectly attributes the function of fighting infections to hemoglobin, which is not its primary role. Hemoglobin's main function is to carry oxygen throughout the body and assist in the removal of carbon dioxide.""
+}","[""5: Strongly supportive and encouraging; consistently uses constructive and positive language; offers highly effective heuristic guidance instead of simply giving answers."", ""4: Generally supportive tone and positive language; provides useful guidance though occasionally too direct."", ""3: A mix of encouragement and neutral/critical language; guidance is inconsistent—sometimes helpful, sometimes overly direct or lacking."", ""2: Lacks encouragement and support; language is neutral or mildly negative; rarely guides, often just answers or remains unhelpful."", ""1: Negative or discouraging tone; no motivation or support; fails to guide or gives misleading suggestions.""]","Scenario: Error Correction
+Subject: Basic Medicine
+Education Level: Undergraduate
+Language: en
+Metric Group: Pedagogical Application",,question_answer_unmatched,,no_score_phrase,0,unclear,unclear,0.2000,review_only
+4153d3a9a2b62778bf32e38aa33be57d0215987d,ba35192a049e868eedae5ba310638e7e75c9f363,ba35192a049e868eedae5ba310638e7e75c9f363,"Motivation, Guidance & Positive Feedback",en,Basic Medicine,2,2.0,2.0,2.0,2.0/2.0/2.0,"Question: Which of the following is the primary function of hemoglobin in the human body?
+Original Answer: To fight infections by destroying bacteria.
+You are providing error-correction services for the student's response. Based on this question and the original answer, provide the ""Corrected Answer"" and ""Error Explanation"", in JSON format.","```json
+{
+  ""Corrected Answer"": ""To transport oxygen from the lungs to the tissues and to carry carbon dioxide from the tissues back to the lungs."",
+  ""Error Explanation"": ""The original answer incorrectly identifies the primary function of hemoglobin as fighting infections by destroying bacteria. This is not the role of hemoglobin. Hemoglobin is a protein in red blood cells that is responsible for transporting oxygen from the lungs to the body's tissues and returning carbon dioxide from the tissues back to the lungs. The immune system, not hemoglobin, is responsible for fighting infections.""
+}
+```","[""5: Strongly supportive and encouraging; consistently uses constructive and positive language; offers highly effective heuristic guidance instead of simply giving answers."", ""4: Generally supportive tone and positive language; provides useful guidance though occasionally too direct."", ""3: A mix of encouragement and neutral/critical language; guidance is inconsistent—sometimes helpful, sometimes overly direct or lacking."", ""2: Lacks encouragement and support; language is neutral or mildly negative; rarely guides, often just answers or remains unhelpful."", ""1: Negative or discouraging tone; no motivation or support; fails to guide or gives misleading suggestions.""]","Scenario: Error Correction
+Subject: Basic Medicine
+Education Level: Undergraduate
+Language: en
+Metric Group: Pedagogical Application",,question_answer_unmatched,,no_score_phrase,0,unclear,unclear,0.2000,review_only
+1947f424625d896777f4dbddef16ab9afb7730aa,5190426b37344a5dd70adf4894aacc1fb868cdff,5190426b37344a5dd70adf4894aacc1fb868cdff,Reasoning Process Rigor,en,Basic Medicine,1,1.0,1.0,1.0,1.0/1.0/1.0,"Question: True or False: The human liver has the capacity to regenerate after surgical removal of a portion of its tissue.
+Student's Answer: True
+Please provide ""Score"", ""Scoring Details"", and ""Personalized Feedback"" based on the question and student's answer, in JSON format.","{
+  ""Score"": 1,
+  ""Scoring Details"": ""The student answered correctly. The liver indeed has an impressive regenerative capacity, which is one of the most remarkable features of this organ."",
+  ""Personalized Feedback"": ""Your understanding is correct! The liver is unique among internal organs for its ability to regenerate. This means that even if a significant portion of the liver is removed during surgery (such as in the case of a liver transplant), the remaining part can grow back to its original size and function. Keep up the good work!""
+}","[""5: Reasoning is complete, clear, and rigorous; all steps are correct; arguments are strong and free of logical fallacies."", ""4: Reasoning is largely correct and logically coherent with minor issues in individual steps or details that do not affect the conclusion."", ""3: Reasoning is visible but contains unclear logic, missing steps, or insufficient argumentation, affecting the overall outcome."", ""2: Reasoning has major logical flaws, confusion in steps, or critical omissions; reliability is low."", ""1: Virtually no valid reasoning; logic is chaotic; steps are incorrect or irrelevant.""]","Scenario: Automatic Grading
+Subject: Basic Medicine
+Education Level: Undergraduate
+Language: en
+Metric Group: Factual & Reasoning Accuracy",,question_answer_unmatched,,no_score_phrase,0,unclear,unclear,0.2000,review_only
+7b2343c0fac6f79059007d116f746842fe6a6637,5190426b37344a5dd70adf4894aacc1fb868cdff,5190426b37344a5dd70adf4894aacc1fb868cdff,Reasoning Process Rigor,en,Basic Medicine,1,1.0,1.0,1.0,1.0/1.0/1.0,"Question: True or False: The human liver has the capacity to regenerate after surgical removal of a portion of its tissue.
+Student's Answer: True
+Please provide ""Score"", ""Scoring Details"", and ""Personalized Feedback"" based on the question and student's answer, in JSON format.","```json
+{
+  ""Score"": 1,
+  ""Scoring Details"": {
+    ""Correctness"": true,
+    ""Explanation"": ""The student's answer is correct. The human liver does indeed have a remarkable ability to regenerate after partial removal, a process known as hepatic regeneration.""
+  },
+  ""Personalized Feedback"": {
+    ""Feedback"": ""Great job! Your answer is accurate. The liver's regenerative capabilities are one of the most impressive features of human anatomy. It can regenerate up to 75% of its lost mass within about two weeks if a portion is surgically removed. Keep up the good work!""
+  }
+}
+```","[""5: Reasoning is complete, clear, and rigorous; all steps are correct; arguments are strong and free of logical fallacies."", ""4: Reasoning is largely correct and logically coherent with minor issues in individual steps or details that do not affect the conclusion."", ""3: Reasoning is visible but contains unclear logic, missing steps, or insufficient argumentation, affecting the overall outcome."", ""2: Reasoning has major logical flaws, confusion in steps, or critical omissions; reliability is low."", ""1: Virtually no valid reasoning; logic is chaotic; steps are incorrect or irrelevant.""]","Scenario: Automatic Grading
+Subject: Basic Medicine
+Education Level: Undergraduate
+Language: en
+Metric Group: Factual & Reasoning Accuracy",无推理过程。,metric_rationale_recovered,,no_score_phrase,0,weak_evidence_positive,insufficient_evidence,0.8500,weak_evidence_positive
+ba114a1a8452ac012af5a1940b242d85f38538d3,578358b94591dcdb7b73304c5498c56a12d9c95d,578358b94591dcdb7b73304c5498c56a12d9c95d,"Motivation, Guidance & Positive Feedback",en,Law,2,2.0,2.0,3.0,2.0/2.0/3.0,"Question: Which legal principle is primarily concerned with the prevention of double jeopardy in the United States?
+Original Answer: The principle of stare decisis.
+You are providing error-correction services for the student's response. Based on this question and the original answer, provide the ""Corrected Answer"" and ""Error Explanation"", in JSON format.","{
+    ""Corrected Answer"": ""The Double Jeopardy Clause of the Fifth Amendment."",
+    ""Error Explanation"": ""Stare decisis refers to the principle of adhering to precedent in judicial decision-making, unrelated to double jeopardy. The legal principle preventing double jeopardy (being tried twice for the same offense) is explicitly enshrined in the Double Jeopardy Clause of the Fifth Amendment to the U.S. Constitution.""
+}","[""5: Strongly supportive and encouraging; consistently uses constructive and positive language; offers highly effective heuristic guidance instead of simply giving answers."", ""4: Generally supportive tone and positive language; provides useful guidance though occasionally too direct."", ""3: A mix of encouragement and neutral/critical language; guidance is inconsistent—sometimes helpful, sometimes overly direct or lacking."", ""2: Lacks encouragement and support; language is neutral or mildly negative; rarely guides, often just answers or remains unhelpful."", ""1: Negative or discouraging tone; no motivation or support; fails to guide or gives misleading suggestions.""]","Scenario: Error Correction
+Subject: Law
+Education Level: PhD
+Language: en
+Metric Group: Pedagogical Application",语言客观专业，通过明确法律条款引导学习者关注宪法细节，虽未直接激励，但隐含对法律条文深入理解的支持。 / 语言客观专业，通过明确法律条款引导学习者关注宪法细节，虽未直接激励但隐含对法律条文的深入理解支持。,metric_rationale_recovered,,no_score_phrase,0,weak_evidence_positive,surface_fluent_but_hidden_defect,0.8500,weak_evidence_positive
+bd384e01426757c4dd86e755a75d5ef86fe6e59f,5190426b37344a5dd70adf4894aacc1fb868cdff,5190426b37344a5dd70adf4894aacc1fb868cdff,Reasoning Process Rigor,en,Basic Medicine,1,1.0,1.0,1.0,1.0/1.0/1.0,"Question: True or False: The human liver has the capacity to regenerate after surgical removal of a portion of its tissue.
+Student's Answer: True
+Please provide ""Score"", ""Scoring Details"", and ""Personalized Feedback"" based on the question and student's answer, in JSON format.","```json
+{
+  ""Score"": 1,
+  ""ScoringDetails"": {
+    ""Accuracy"": 1,
+    ""Explanation"": ""The student's answer is correct. The human liver indeed has a remarkable ability to regenerate. After a portion of the liver is removed, the remaining tissue can grow back to its original size and function, making the statement true.""
+  },
+  ""PersonalizedFeedback"": ""Great job! Your understanding of the liver's regenerative capabilities is accurate. This is an important biological fact that highlights the liver's unique and vital role in the body. Keep up the good work!""
+}
+```","[""5: Reasoning is complete, clear, and rigorous; all steps are correct; arguments are strong and free of logical fallacies."", ""4: Reasoning is largely correct and logically coherent with minor issues in individual steps or details that do not affect the conclusion."", ""3: Reasoning is visible but contains unclear logic, missing steps, or insufficient argumentation, affecting the overall outcome."", ""2: Reasoning has major logical flaws, confusion in steps, or critical omissions; reliability is low."", ""1: Virtually no valid reasoning; logic is chaotic; steps are incorrect or irrelevant.""]","Scenario: Automatic Grading
+Subject: Basic Medicine
+Education Level: Undergraduate
+Language: en
+Metric Group: Factual & Reasoning Accuracy",无推理过程。,metric_rationale_recovered,,no_score_phrase,0,weak_evidence_positive,insufficient_evidence,0.8500,weak_evidence_positive
+49318c4f0d2ec2244ac543b0db468afaf9a85d1b,5190426b37344a5dd70adf4894aacc1fb868cdff,5190426b37344a5dd70adf4894aacc1fb868cdff,Reasoning Process Rigor,en,Basic Medicine,1,1.0,1.0,1.0,1.0/1.0/1.0,"Question: True or False: The human liver has the capacity to regenerate after surgical removal of a portion of its tissue.
+Student's Answer: True
+Please provide ""Score"", ""Scoring Details"", and ""Personalized Feedback"" based on the question and student's answer, in JSON format.","```json
+{
+    ""Score"": ""100%"",
+    ""Scoring Details"": {
+        ""Correctness"": ""The student's answer is correct. The human liver does have the capacity to regenerate after partial surgical removal."",
+        ""Reasoning"": ""The liver is unique among human organs in its ability to regenerate lost tissue. Surgical removal of up to 70% of the liver can trigger regeneration, restoring full function and mass within weeks to months under healthy conditions."",
+        ""Additional Context"": ""This regenerative capacity depends on the absence of chronic liver disease (e.g., cirrhosis) and other health factors.""
+    },
+    ""Personalized Feedback"": ""Great job! Your answer is correct. The liver's regenerative ability is a remarkable biological process. While other organs scar or lose function after damage, healthy liver tissue can regrow to replace surgically removed portions. Keep in mind that this process requires healthy baseline liver function—chronic diseases like cirrhosis impair regeneration. You demonstrated a strong understanding of this key concept!""
+}
+```","[""5: Reasoning is complete, clear, and rigorous; all steps are correct; arguments are strong and free of logical fallacies."", ""4: Reasoning is largely correct and logically coherent with minor issues in individual steps or details that do not affect the conclusion."", ""3: Reasoning is visible but contains unclear logic, missing steps, or insufficient argumentation, affecting the overall outcome."", ""2: Reasoning has major logical flaws, confusion in steps, or critical omissions; reliability is low."", ""1: Virtually no valid reasoning; logic is chaotic; steps are incorrect or irrelevant.""]","Scenario: Automatic Grading
+Subject: Basic Medicine
+Education Level: Undergraduate
+Language: en
+Metric Group: Factual & Reasoning Accuracy",,question_answer_unmatched,,no_score_phrase,0,unclear,unclear,0.2000,review_only
+7dfd63e7375e5474e2df047ebe282cf4ba8661b8,5190426b37344a5dd70adf4894aacc1fb868cdff,5190426b37344a5dd70adf4894aacc1fb868cdff,Reasoning Process Rigor,en,Basic Medicine,1,1.0,1.0,1.0,1.0/1.0/1.0,"Question: True or False: The human liver has the capacity to regenerate after surgical removal of a portion of its tissue.
+Student's Answer: True
+Please provide ""Score"", ""Scoring Details"", and ""Personalized Feedback"" based on the question and student's answer, in JSON format.","```json
+{
+  ""Score"": 1,
+  ""Scoring Details"": {
+    ""Correctness"": ""The student's answer is correct. The human liver indeed has the remarkable ability to regenerate after surgical removal of a portion of its tissue."",
+    ""Explanation"": ""The liver is unique among human organs in its ability to regenerate. After partial hepatectomy (surgical removal of a portion of the liver), the remaining liver tissue can grow back to its original size and function. This regenerative capacity is due to the liver's ability to activate hepatocytes (liver cells) to proliferate and restore the lost tissue.""
+  },
+  ""Personalized Feedback"": ""Great job! Your answer is correct. The liver's ability to regenerate is a fascinating aspect of human biology. This regenerative capacity is crucial for recovery after liver surgery or injury. Keep up the good work in your studies!""
+}
+```","[""5: Reasoning is complete, clear, and rigorous; all steps are correct; arguments are strong and free of logical fallacies."", ""4: Reasoning is largely correct and logically coherent with minor issues in individual steps or details that do not affect the conclusion."", ""3: Reasoning is visible but contains unclear logic, missing steps, or insufficient argumentation, affecting the overall outcome."", ""2: Reasoning has major logical flaws, confusion in steps, or critical omissions; reliability is low."", ""1: Virtually no valid reasoning; logic is chaotic; steps are incorrect or irrelevant.""]","Scenario: Automatic Grading
+Subject: Basic Medicine
+Education Level: Undergraduate
+Language: en
+Metric Group: Factual & Reasoning Accuracy",无推理过程。,metric_rationale_recovered,,no_score_phrase,0,weak_evidence_positive,insufficient_evidence,0.8500,weak_evidence_positive
+fa439d530a93932f4cf8a09f743d80c44e18e0b8,aa48c48cd6bf14c4713397de0e37c7971495e79d,aa48c48cd6bf14c4713397de0e37c7971495e79d,Content Relevance & Scope Control,en,Mathematics,2,2.0,2.0,2.0,2.0/2.0/2.0,"Subject:Mathematics
+Education Level:PhD
+Question:In the context of complex analysis, consider the function f(z) = z^2 + 1. Which of the following statements is true regarding its singularities?
+A) f(z) has no singularities.
+B) f(z) has a removable singularity at z = 0.
+C) f(z) has a pole of order 2 at z = i.
+D) f(z) has an essential singularity at infinity.
+. Please generate the corresponding answer based on the question. ""Answer"":, in JSON format.","{
+  ""Answer"": ""A) f(z) has no singularities.""
+}","[""5: Content is highly relevant to the specified topic/theme/question; strictly within required difficulty/scope/discipline without redundant or irrelevant information."", ""4: Overall relevance is high; scope control is good with possibly a small amount of slightly off-topic or mildly overreaching information."", ""3: Mostly relevant, but includes some off-topic or out-of-scope content; scope control needs improvement."", ""2: Poor relevance; includes a significant amount of irrelevant information or is largely outside scope."", ""1: Content is largely irrelevant or completely outside the specified scope.""]","Scenario: Question Answering
+Subject: Mathematics
+Education Level: PhD
+Language: en
+Metric Group: Scenario Adaptability",答案与复分析PhD级问题严重脱节，未识别无穷远点奇点特性。 / 该答案未能达到复分析PhD级别的问题要求，特别是未能识别出无穷远点的奇点特性。 / 答案与复分析 PhD 级别问题存在严重脱节，未能识别无穷远点的奇点特性。,metric_rationale_recovered,,no_score_phrase,0,weak_evidence_positive,task_constraint_violation,0.8500,weak_evidence_positive
+0578273c54e1a724084529ebbc385f1bdd1076ea,aa48c48cd6bf14c4713397de0e37c7971495e79d,aa48c48cd6bf14c4713397de0e37c7971495e79d,Basic Factual Accuracy,en,Mathematics,1,1.0,1.0,1.0,1.0/1.0/1.0,"Subject:Mathematics
+Education Level:PhD
+Question:In the context of complex analysis, consider the function f(z) = z^2 + 1. Which of the following statements is true regarding its singularities?
+A) f(z) has no singularities.
+B) f(z) has a removable singularity at z = 0.
+C) f(z) has a pole of order 2 at z = i.
+D) f(z) has an essential singularity at infinity.
+. Please generate the corresponding answer based on the question. ""Answer"":, in JSON format.","{
+  ""Answer"": ""A) f(z) has no singularities.""
+}","[""5: All stated factual elements (definitions, formulas, dates, terms, syntax, etc.) are completely accurate."", ""4: Vast majority of facts are correct; possibly contains very minor, non-critical typos or omissions."", ""3: Most facts are correct, but there are some notable factual errors that require review."", ""2: Contains several or key factual inaccuracies; information is not trustworthy."", ""1: Riddled with factual errors; information is completely incorrect or misleading.""]","Scenario: Question Answering
+Subject: Mathematics
+Education Level: PhD
+Language: en
+Metric Group: Factual & Reasoning Accuracy",多项式函数在无穷远点必有奇点，选项A完全错误。 / 选项A错误，因为多项式函数在无穷远点必然存在奇点。 / 多项式函数在无穷远点必为奇点，选项 A 的表述存在根本性错误。,metric_rationale_recovered,,no_score_phrase,0,weak_evidence_positive,surface_fluent_but_hidden_defect,0.8500,weak_evidence_positive
+0a86fc4b2478f8c922c1ab7ce85590f94b9d2136,aa48c48cd6bf14c4713397de0e37c7971495e79d,aa48c48cd6bf14c4713397de0e37c7971495e79d,Reasoning Process Rigor,en,Mathematics,1,1.0,1.0,1.0,1.0/1.0/1.0,"Subject:Mathematics
+Education Level:PhD
+Question:In the context of complex analysis, consider the function f(z) = z^2 + 1. Which of the following statements is true regarding its singularities?
+A) f(z) has no singularities.
+B) f(z) has a removable singularity at z = 0.
+C) f(z) has a pole of order 2 at z = i.
+D) f(z) has an essential singularity at infinity.
+. Please generate the corresponding answer based on the question. ""Answer"":, in JSON format.","{
+  ""Answer"": ""A) f(z) has no singularities.""
+}","[""5: Reasoning is complete, clear, and rigorous; all steps are correct; arguments are strong and free of logical fallacies."", ""4: Reasoning is largely correct and logically coherent with minor issues in individual steps or details that do not affect the conclusion."", ""3: Reasoning is visible but contains unclear logic, missing steps, or insufficient argumentation, affecting the overall outcome."", ""2: Reasoning has major logical flaws, confusion in steps, or critical omissions; reliability is low."", ""1: Virtually no valid reasoning; logic is chaotic; steps are incorrect or irrelevant.""]","Scenario: Question Answering
+Subject: Mathematics
+Education Level: PhD
+Language: en
+Metric Group: Factual & Reasoning Accuracy",完全缺失推理链条，直接给出错误结论，无任何论证过程。 / 缺乏论证过程。 / 未提供推理过程或理论依据，仅给出选项，无法验证逻辑链条的完整性，严谨性不足。,metric_rationale_recovered,,no_score_phrase,0,weak_evidence_positive,missing_key_point,0.8500,weak_evidence_positive
+6a65ddfebb3698d3eb20f814a761580fa2f8be48,aa48c48cd6bf14c4713397de0e37c7971495e79d,aa48c48cd6bf14c4713397de0e37c7971495e79d,Content Relevance & Scope Control,en,Mathematics,2,2.0,2.0,2.0,2.0/2.0/2.0,"Subject:Mathematics
+Education Level:PhD
+Question:In the context of complex analysis, consider the function f(z) = z^2 + 1. Which of the following statements is true regarding its singularities?
+A) f(z) has no singularities.
+B) f(z) has a removable singularity at z = 0.
+C) f(z) has a pole of order 2 at z = i.
+D) f(z) has an essential singularity at infinity.
+. Please generate the corresponding answer based on the question. ""Answer"":, in JSON format.","```json
+{
+  ""answer"": ""A) f(z) has no singularities.""
+}
+```","[""5: Content is highly relevant to the specified topic/theme/question; strictly within required difficulty/scope/discipline without redundant or irrelevant information."", ""4: Overall relevance is high; scope control is good with possibly a small amount of slightly off-topic or mildly overreaching information."", ""3: Mostly relevant, but includes some off-topic or out-of-scope content; scope control needs improvement."", ""2: Poor relevance; includes a significant amount of irrelevant information or is largely outside scope."", ""1: Content is largely irrelevant or completely outside the specified scope.""]","Scenario: Question Answering
+Subject: Mathematics
+Education Level: PhD
+Language: en
+Metric Group: Scenario Adaptability",答案与复分析PhD级问题严重脱节，未识别无穷远点奇点特性。 / 对于复分析PhD级别的问题，该答案严重偏离主题，并且没有识别无穷远点的奇点特性。 / 针对复分析 PhD 级别的问题，该答案存在严重的主题偏离，且未能识别无穷远点的奇点特性。,metric_rationale_recovered,,no_score_phrase,0,weak_evidence_positive,surface_fluent_but_hidden_defect,0.8500,weak_evidence_positive
+5238e123a16a826d9dd25c0454890d96db10099a,aa48c48cd6bf14c4713397de0e37c7971495e79d,aa48c48cd6bf14c4713397de0e37c7971495e79d,Basic Factual Accuracy,en,Mathematics,1,1.0,1.0,1.0,1.0/1.0/1.0,"Subject:Mathematics
+Education Level:PhD
+Question:In the context of complex analysis, consider the function f(z) = z^2 + 1. Which of the following statements is true regarding its singularities?
+A) f(z) has no singularities.
+B) f(z) has a removable singularity at z = 0.
+C) f(z) has a pole of order 2 at z = i.
+D) f(z) has an essential singularity at infinity.
+. Please generate the corresponding answer based on the question. ""Answer"":, in JSON format.","```json
+{
+  ""answer"": ""A) f(z) has no singularities.""
+}
+```","[""5: All stated factual elements (definitions, formulas, dates, terms, syntax, etc.) are completely accurate."", ""4: Vast majority of facts are correct; possibly contains very minor, non-critical typos or omissions."", ""3: Most facts are correct, but there are some notable factual errors that require review."", ""2: Contains several or key factual inaccuracies; information is not trustworthy."", ""1: Riddled with factual errors; information is completely incorrect or misleading.""]","Scenario: Question Answering
+Subject: Mathematics
+Education Level: PhD
+Language: en
+Metric Group: Factual & Reasoning Accuracy",多项式函数在无穷远点必有奇点，选项A完全错误。 / 选项A的表述有误，多项式函数在无穷远点必定存在奇点。 / 存在关键事实错误：误将 “hybrids” 归为替代品（实际属同类产品），且未提及五力模型创始人（Porter）。,metric_rationale_recovered,,no_score_phrase,0,answer_key_dependent,answer_key_or_reference_mismatch,0.7500,pairwise_low
+44a426bf4f453df7ea5b7ac85d6f0e801f9ba296,aa48c48cd6bf14c4713397de0e37c7971495e79d,aa48c48cd6bf14c4713397de0e37c7971495e79d,Reasoning Process Rigor,en,Mathematics,1,1.0,1.0,1.0,1.0/1.0/1.0,"Subject:Mathematics
+Education Level:PhD
+Question:In the context of complex analysis, consider the function f(z) = z^2 + 1. Which of the following statements is true regarding its singularities?
+A) f(z) has no singularities.
+B) f(z) has a removable singularity at z = 0.
+C) f(z) has a pole of order 2 at z = i.
+D) f(z) has an essential singularity at infinity.
+. Please generate the corresponding answer based on the question. ""Answer"":, in JSON format.","```json
+{
+  ""answer"": ""A) f(z) has no singularities.""
+}
+```","[""5: Reasoning is complete, clear, and rigorous; all steps are correct; arguments are strong and free of logical fallacies."", ""4: Reasoning is largely correct and logically coherent with minor issues in individual steps or details that do not affect the conclusion."", ""3: Reasoning is visible but contains unclear logic, missing steps, or insufficient argumentation, affecting the overall outcome."", ""2: Reasoning has major logical flaws, confusion in steps, or critical omissions; reliability is low."", ""1: Virtually no valid reasoning; logic is chaotic; steps are incorrect or irrelevant.""]","Scenario: Question Answering
+Subject: Mathematics
+Education Level: PhD
+Language: en
+Metric Group: Factual & Reasoning Accuracy",完全缺失推理链条，直接给出错误结论，无任何论证过程。 / 缺乏论证过程。 / 未提供推理过程或理论依据，仅给出选项，无法验证逻辑链条的完整性，严谨性不足。,metric_rationale_recovered,,no_score_phrase,0,weak_evidence_positive,missing_key_point,0.8500,weak_evidence_positive
+6c703c046a9b97419785484bb1dd5d5b81ccd77a,aa48c48cd6bf14c4713397de0e37c7971495e79d,aa48c48cd6bf14c4713397de0e37c7971495e79d,Reasoning Process Rigor,en,Mathematics,1,1.0,1.0,1.0,1.0/1.0/1.0,"Subject:Mathematics
+Education Level:PhD
+Question:In the context of complex analysis, consider the function f(z) = z^2 + 1. Which of the following statements is true regarding its singularities?
+A) f(z) has no singularities.
+B) f(z) has a removable singularity at z = 0.
+C) f(z) has a pole of order 2 at z = i.
+D) f(z) has an essential singularity at infinity.
+. Please generate the corresponding answer based on the question. ""Answer"":, in JSON format.","```json
+{
+  ""Answer"": ""A""
+}
+```","[""5: Reasoning is complete, clear, and rigorous; all steps are correct; arguments are strong and free of logical fallacies."", ""4: Reasoning is largely correct and logically coherent with minor issues in individual steps or details that do not affect the conclusion."", ""3: Reasoning is visible but contains unclear logic, missing steps, or insufficient argumentation, affecting the overall outcome."", ""2: Reasoning has major logical flaws, confusion in steps, or critical omissions; reliability is low."", ""1: Virtually no valid reasoning; logic is chaotic; steps are incorrect or irrelevant.""]","Scenario: Question Answering
+Subject: Mathematics
+Education Level: PhD
+Language: en
+Metric Group: Factual & Reasoning Accuracy",,question_answer_unmatched,,no_score_phrase,0,unclear,unclear,0.2000,review_only
+3e6317e0a4cd57573a6c971fc945cfc7ee52148a,7bdbfc3be37d434120cd61c75738b9ba4e2b67ad,7bdbfc3be37d434120cd61c75738b9ba4e2b67ad,Reasoning Process Rigor,en,Applied Economics,1,1.0,1.0,1.0,1.0/1.0/1.0,"Subject:Applied Economics
+Education Level:Undergraduate
+Question:Which of the following is considered a limitation of using Gross Domestic Product (GDP) as a measure of economic welfare?
+A) GDP accounts for income distribution among residents of a country.
+B) GDP includes non-market transactions such as volunteer work and household labor.
+C) GDP does not account for environmental degradation and resource depletion.
+D) GDP measures the total market value of all final goods and services produced in a country.
+. Please generate the corresponding answer based on the question. ""Answer"":, in JSON format.","{
+  ""Answer"": ""C) GDP does not account for environmental degradation and resource depletion.""
+}","[""5: Reasoning is complete, clear, and rigorous; all steps are correct; arguments are strong and free of logical fallacies."", ""4: Reasoning is largely correct and logically coherent with minor issues in individual steps or details that do not affect the conclusion."", ""3: Reasoning is visible but contains unclear logic, missing steps, or insufficient argumentation, affecting the overall outcome."", ""2: Reasoning has major logical flaws, confusion in steps, or critical omissions; reliability is low."", ""1: Virtually no valid reasoning; logic is chaotic; steps are incorrect or irrelevant.""]","Scenario: Question Answering
+Subject: Applied Economics
+Education Level: Undergraduate
+Language: en
+Metric Group: Factual & Reasoning Accuracy",缺少推理过程 / 无推理过程。 / 仅给出选项 C，未阐述 GDP 忽略环境成本为何构成局限性，缺乏必要推理过程。,metric_rationale_recovered,,no_score_phrase,0,weak_evidence_positive,missing_key_point,0.8500,weak_evidence_positive
+f0c153c819601d3c479c51f48b2acd66132d1e5f,7bdbfc3be37d434120cd61c75738b9ba4e2b67ad,7bdbfc3be37d434120cd61c75738b9ba4e2b67ad,Reasoning Process Rigor,en,Applied Economics,1,1.0,1.0,1.0,1.0/1.0/1.0,"Subject:Applied Economics
+Education Level:Undergraduate
+Question:Which of the following is considered a limitation of using Gross Domestic Product (GDP) as a measure of economic welfare?
+A) GDP accounts for income distribution among residents of a country.
+B) GDP includes non-market transactions such as volunteer work and household labor.
+C) GDP does not account for environmental degradation and resource depletion.
+D) GDP measures the total market value of all final goods and services produced in a country.
+. Please generate the corresponding answer based on the question. ""Answer"":, in JSON format.","```json
+{
+  ""answer"": ""C) GDP does not account for environmental degradation and resource depletion.""
+}
+```","[""5: Reasoning is complete, clear, and rigorous; all steps are correct; arguments are strong and free of logical fallacies."", ""4: Reasoning is largely correct and logically coherent with minor issues in individual steps or details that do not affect the conclusion."", ""3: Reasoning is visible but contains unclear logic, missing steps, or insufficient argumentation, affecting the overall outcome."", ""2: Reasoning has major logical flaws, confusion in steps, or critical omissions; reliability is low."", ""1: Virtually no valid reasoning; logic is chaotic; steps are incorrect or irrelevant.""]","Scenario: Question Answering
+Subject: Applied Economics
+Education Level: Undergraduate
+Language: en
+Metric Group: Factual & Reasoning Accuracy",,question_answer_unmatched,,no_score_phrase,0,unclear,unclear,0.2000,review_only
+4042b14600691c9b29b70d916e9db910c058d891,7bdbfc3be37d434120cd61c75738b9ba4e2b67ad,7bdbfc3be37d434120cd61c75738b9ba4e2b67ad,Reasoning Process Rigor,en,Applied Economics,1,1.0,1.0,1.0,1.0/1.0/1.0,"Subject:Applied Economics
+Education Level:Undergraduate
+Question:Which of the following is considered a limitation of using Gross Domestic Product (GDP) as a measure of economic welfare?
+A) GDP accounts for income distribution among residents of a country.
+B) GDP includes non-market transactions such as volunteer work and household labor.
+C) GDP does not account for environmental degradation and resource depletion.
+D) GDP measures the total market value of all final goods and services produced in a country.
+. Please generate the corresponding answer based on the question. ""Answer"":, in JSON format.","{
+  ""answer"": ""C) GDP does not account for environmental degradation and resource depletion.""
+}","[""5: Reasoning is complete, clear, and rigorous; all steps are correct; arguments are strong and free of logical fallacies."", ""4: Reasoning is largely correct and logically coherent with minor issues in individual steps or details that do not affect the conclusion."", ""3: Reasoning is visible but contains unclear logic, missing steps, or insufficient argumentation, affecting the overall outcome."", ""2: Reasoning has major logical flaws, confusion in steps, or critical omissions; reliability is low."", ""1: Virtually no valid reasoning; logic is chaotic; steps are incorrect or irrelevant.""]","Scenario: Question Answering
+Subject: Applied Economics
+Education Level: Undergraduate
+Language: en
+Metric Group: Factual & Reasoning Accuracy",缺少推理过程 / 无推理过程。 / 未提供推理步骤。,metric_rationale_recovered,,no_score_phrase,0,weak_evidence_positive,missing_key_point,0.8500,weak_evidence_positive
+76909e50052e68bb729ed62933a86559f6a7c036,7bdbfc3be37d434120cd61c75738b9ba4e2b67ad,7bdbfc3be37d434120cd61c75738b9ba4e2b67ad,Reasoning Process Rigor,en,Applied Economics,1,1.0,1.0,1.0,1.0/1.0/1.0,"Subject:Applied Economics
+Education Level:Undergraduate
+Question:Which of the following is considered a limitation of using Gross Domestic Product (GDP) as a measure of economic welfare?
+A) GDP accounts for income distribution among residents of a country.
+B) GDP includes non-market transactions such as volunteer work and household labor.
+C) GDP does not account for environmental degradation and resource depletion.
+D) GDP measures the total market value of all final goods and services produced in a country.
+. Please generate the corresponding answer based on the question. ""Answer"":, in JSON format.","```json
+{
+  ""Answer"": ""C) GDP does not account for environmental degradation and resource depletion.""
+}
+```","[""5: Reasoning is complete, clear, and rigorous; all steps are correct; arguments are strong and free of logical fallacies."", ""4: Reasoning is largely correct and logically coherent with minor issues in individual steps or details that do not affect the conclusion."", ""3: Reasoning is visible but contains unclear logic, missing steps, or insufficient argumentation, affecting the overall outcome."", ""2: Reasoning has major logical flaws, confusion in steps, or critical omissions; reliability is low."", ""1: Virtually no valid reasoning; logic is chaotic; steps are incorrect or irrelevant.""]","Scenario: Question Answering
+Subject: Applied Economics
+Education Level: Undergraduate
+Language: en
+Metric Group: Factual & Reasoning Accuracy",缺少推理过程 / 无推理过程。 / 未展开详细论证，推理简略。,metric_rationale_recovered,,no_score_phrase,0,weak_evidence_positive,missing_key_point,0.8500,weak_evidence_positive
+2805e4237ccaed90f917ee91a5c2c44743bbd1b1,7bdbfc3be37d434120cd61c75738b9ba4e2b67ad,7bdbfc3be37d434120cd61c75738b9ba4e2b67ad,Reasoning Process Rigor,en,Applied Economics,1,1.0,1.0,1.0,1.0/1.0/1.0,"Subject:Applied Economics
+Education Level:Undergraduate
+Question:Which of the following is considered a limitation of using Gross Domestic Product (GDP) as a measure of economic welfare?
+A) GDP accounts for income distribution among residents of a country.
+B) GDP includes non-market transactions such as volunteer work and household labor.
+C) GDP does not account for environmental degradation and resource depletion.
+D) GDP measures the total market value of all final goods and services produced in a country.
+. Please generate the corresponding answer based on the question. ""Answer"":, in JSON format.","```json
+{
+  ""Answer"": ""C) GDP does not account for environmental degradation and resource depletion.""
+}
+```","[""5: Reasoning is complete, clear, and rigorous; all steps are correct; arguments are strong and free of logical fallacies."", ""4: Reasoning is largely correct and logically coherent with minor issues in individual steps or details that do not affect the conclusion."", ""3: Reasoning is visible but contains unclear logic, missing steps, or insufficient argumentation, affecting the overall outcome."", ""2: Reasoning has major logical flaws, confusion in steps, or critical omissions; reliability is low."", ""1: Virtually no valid reasoning; logic is chaotic; steps are incorrect or irrelevant.""]","Scenario: Question Answering
+Subject: Applied Economics
+Education Level: Undergraduate
+Language: en
+Metric Group: Factual & Reasoning Accuracy",缺少推理过程 / 无推理过程。 / 未展开详细论证，推理简略。,metric_rationale_recovered,,no_score_phrase,0,weak_evidence_positive,missing_key_point,0.8500,weak_evidence_positive
+d7038665e81daff68cadf97e16d4c3e3c3fe543d,50a125b94d56b250cab34175d4465b85ca2df963,50a125b94d56b250cab34175d4465b85ca2df963,Reasoning Process Rigor,en,Psychology,1,1.0,1.0,1.0,1.0/1.0/1.0,"Subject:Psychology
+Education Level:PhD
+Question:Which of the following theories best explains the mechanism of action of selective serotonin reuptake inhibitors (SSRIs) in the treatment of depression?
+A) Dopamine Hypothesis
+B) Monoamine Hypothesis
+C) Neurogenesis Hypothesis
+D) Glutamate Hypothesis
+. Please generate the corresponding answer based on the question. ""Answer"":, in JSON format.","```json
+{
+  ""Answer"": ""B) Monoamine Hypothesis""
+}
+```","[""5: Reasoning is complete, clear, and rigorous; all steps are correct; arguments are strong and free of logical fallacies."", ""4: Reasoning is largely correct and logically coherent with minor issues in individual steps or details that do not affect the conclusion."", ""3: Reasoning is visible but contains unclear logic, missing steps, or insufficient argumentation, affecting the overall outcome."", ""2: Reasoning has major logical flaws, confusion in steps, or critical omissions; reliability is low."", ""1: Virtually no valid reasoning; logic is chaotic; steps are incorrect or irrelevant.""]","Scenario: Question Answering
+Subject: Psychology
+Education Level: PhD
+Language: en
+Metric Group: Factual & Reasoning Accuracy",仅给出答案，未呈现推理过程。 / 无推理过程。 / 直接给出了答案，缺乏必要的推理过程。,metric_rationale_recovered,,no_score_phrase,0,weak_evidence_positive,insufficient_evidence,0.8500,weak_evidence_positive
+74489511928922f9b0aa06c74a3c42dabf84217e,50a125b94d56b250cab34175d4465b85ca2df963,50a125b94d56b250cab34175d4465b85ca2df963,Reasoning Process Rigor,en,Psychology,1,1.0,1.0,1.0,1.0/1.0/1.0,"Subject:Psychology
+Education Level:PhD
+Question:Which of the following theories best explains the mechanism of action of selective serotonin reuptake inhibitors (SSRIs) in the treatment of depression?
+A) Dopamine Hypothesis
+B) Monoamine Hypothesis
+C) Neurogenesis Hypothesis
+D) Glutamate Hypothesis
+. Please generate the corresponding answer based on the question. ""Answer"":, in JSON format.","```json
+{
+  ""Answer"": ""B) Monoamine Hypothesis""
+}
+```","[""5: Reasoning is complete, clear, and rigorous; all steps are correct; arguments are strong and free of logical fallacies."", ""4: Reasoning is largely correct and logically coherent with minor issues in individual steps or details that do not affect the conclusion."", ""3: Reasoning is visible but contains unclear logic, missing steps, or insufficient argumentation, affecting the overall outcome."", ""2: Reasoning has major logical flaws, confusion in steps, or critical omissions; reliability is low."", ""1: Virtually no valid reasoning; logic is chaotic; steps are incorrect or irrelevant.""]","Scenario: Question Answering
+Subject: Psychology
+Education Level: PhD
+Language: en
+Metric Group: Factual & Reasoning Accuracy",仅给出答案，未呈现推理过程。 / 无推理过程。 / 直接给出了答案，缺乏必要的推理过程。,metric_rationale_recovered,,no_score_phrase,0,weak_evidence_positive,insufficient_evidence,0.8500,weak_evidence_positive
+5680bbfccbc4637e7c9c7e3d63698aaf2b4fa213,50a125b94d56b250cab34175d4465b85ca2df963,50a125b94d56b250cab34175d4465b85ca2df963,Reasoning Process Rigor,en,Psychology,1,1.0,1.0,1.0,1.0/1.0/1.0,"Subject:Psychology
+Education Level:PhD
+Question:Which of the following theories best explains the mechanism of action of selective serotonin reuptake inhibitors (SSRIs) in the treatment of depression?
+A) Dopamine Hypothesis
+B) Monoamine Hypothesis
+C) Neurogenesis Hypothesis
+D) Glutamate Hypothesis
+. Please generate the corresponding answer based on the question. ""Answer"":, in JSON format.","```json
+{
+  ""Answer"": ""B) Monoamine Hypothesis""
+}
+```","[""5: Reasoning is complete, clear, and rigorous; all steps are correct; arguments are strong and free of logical fallacies."", ""4: Reasoning is largely correct and logically coherent with minor issues in individual steps or details that do not affect the conclusion."", ""3: Reasoning is visible but contains unclear logic, missing steps, or insufficient argumentation, affecting the overall outcome."", ""2: Reasoning has major logical flaws, confusion in steps, or critical omissions; reliability is low."", ""1: Virtually no valid reasoning; logic is chaotic; steps are incorrect or irrelevant.""]","Scenario: Question Answering
+Subject: Psychology
+Education Level: PhD
+Language: en
+Metric Group: Factual & Reasoning Accuracy",仅给出答案，未呈现推理过程。 / 无推理过程。 / 直接给出了答案，缺乏必要的推理过程。,metric_rationale_recovered,,no_score_phrase,0,weak_evidence_positive,insufficient_evidence,0.8500,weak_evidence_positive
+6358300a1312a268220578a420e801d4c75e9525,50a125b94d56b250cab34175d4465b85ca2df963,50a125b94d56b250cab34175d4465b85ca2df963,Reasoning Process Rigor,en,Psychology,1,1.0,1.0,1.0,1.0/1.0/1.0,"Subject:Psychology
+Education Level:PhD
+Question:Which of the following theories best explains the mechanism of action of selective serotonin reuptake inhibitors (SSRIs) in the treatment of depression?
+A) Dopamine Hypothesis
+B) Monoamine Hypothesis
+C) Neurogenesis Hypothesis
+D) Glutamate Hypothesis
+. Please generate the corresponding answer based on the question. ""Answer"":, in JSON format.","```json
+{
+    ""Answer"": ""B) Monoamine Hypothesis""
+}
+```","[""5: Reasoning is complete, clear, and rigorous; all steps are correct; arguments are strong and free of logical fallacies."", ""4: Reasoning is largely correct and logically coherent with minor issues in individual steps or details that do not affect the conclusion."", ""3: Reasoning is visible but contains unclear logic, missing steps, or insufficient argumentation, affecting the overall outcome."", ""2: Reasoning has major logical flaws, confusion in steps, or critical omissions; reliability is low."", ""1: Virtually no valid reasoning; logic is chaotic; steps are incorrect or irrelevant.""]","Scenario: Question Answering
+Subject: Psychology
+Education Level: PhD
+Language: en
+Metric Group: Factual & Reasoning Accuracy",仅给出答案，未呈现推理过程。 / 无推理过程。 / 直接给出了答案，缺乏必要的推理过程。,metric_rationale_recovered,,no_score_phrase,0,weak_evidence_positive,insufficient_evidence,0.8500,weak_evidence_positive
+c71ebb1ec30fb320cce5e1315b2181603bc9f769,14e6dfb98fe659be9bca96d36b8e8c3b5beda0d4,14e6dfb98fe659be9bca96d36b8e8c3b5beda0d4,Reasoning Process Rigor,en,Computer Science,1,1.0,1.0,1.0,1.0/1.0/1.0,"Subject:Computer Science
+Education Level:Undergraduate
+Question:What is the time complexity of the quicksort algorithm in the average case scenario?
+. Please generate the corresponding answer based on the question. ""Answer"":, in JSON format.","```json
+{
+  ""Answer"": {
+    ""Time_Complexity_Average_Case"": ""O(n log n)""
+  }
+}
+```","[""5: Reasoning is complete, clear, and rigorous; all steps are correct; arguments are strong and free of logical fallacies."", ""4: Reasoning is largely correct and logically coherent with minor issues in individual steps or details that do not affect the conclusion."", ""3: Reasoning is visible but contains unclear logic, missing steps, or insufficient argumentation, affecting the overall outcome."", ""2: Reasoning has major logical flaws, confusion in steps, or critical omissions; reliability is low."", ""1: Virtually no valid reasoning; logic is chaotic; steps are incorrect or irrelevant.""]","Scenario: Question Answering
+Subject: Computer Science
+Education Level: Undergraduate
+Language: en
+Metric Group: Factual & Reasoning Accuracy",,question_answer_unmatched,,no_score_phrase,0,unclear,unclear,0.2000,review_only
+a2963f0bafecf877ce9d9f85ccd07d324522a500,14e6dfb98fe659be9bca96d36b8e8c3b5beda0d4,14e6dfb98fe659be9bca96d36b8e8c3b5beda0d4,Reasoning Process Rigor,en,Computer Science,1,1.0,1.0,1.0,1.0/1.0/1.0,"Subject:Computer Science
+Education Level:Undergraduate
+Question:What is the time complexity of the quicksort algorithm in the average case scenario?
+. Please generate the corresponding answer based on the question. ""Answer"":, in JSON format.","{
+  ""answer"": ""The average case time complexity of the quicksort algorithm is O(n log n), where n is the number of elements being sorted.""
+}","[""5: Reasoning is complete, clear, and rigorous; all steps are correct; arguments are strong and free of logical fallacies."", ""4: Reasoning is largely correct and logically coherent with minor issues in individual steps or details that do not affect the conclusion."", ""3: Reasoning is visible but contains unclear logic, missing steps, or insufficient argumentation, affecting the overall outcome."", ""2: Reasoning has major logical flaws, confusion in steps, or critical omissions; reliability is low."", ""1: Virtually no valid reasoning; logic is chaotic; steps are incorrect or irrelevant.""]","Scenario: Question Answering
+Subject: Computer Science
+Education Level: Undergraduate
+Language: en
+Metric Group: Factual & Reasoning Accuracy",答案直接给出了结论，但没有展示推理过程。 / 未展示任何推理过程。 / 答案仅呈现最终结论，未对得出结论的推理过程加以展示。,metric_rationale_recovered,,no_score_phrase,0,weak_evidence_positive,insufficient_evidence,0.8500,weak_evidence_positive
+d0507dfe7e307caffb26489559bc360d53ac357d,1fbaba4fd0689522a2df03a5be806cfca5328f00,1fbaba4fd0689522a2df03a5be806cfca5328f00,Reasoning Process Rigor,en,Crop Science,1,1.0,1.0,1.0,1.0/1.0/1.0,"Subject:Crop Science
+Education Level:Undergraduate
+Question:Which of the following is a primary macronutrient essential for plant growth?
+A) Iron
+B) Magnesium
+C) Nitrogen
+D) Zinc
+. Please generate the corresponding answer based on the question. ""Answer"":, in JSON format.","{
+  ""Answer"": ""C) Nitrogen""
+}","[""5: Reasoning is complete, clear, and rigorous; all steps are correct; arguments are strong and free of logical fallacies."", ""4: Reasoning is largely correct and logically coherent with minor issues in individual steps or details that do not affect the conclusion."", ""3: Reasoning is visible but contains unclear logic, missing steps, or insufficient argumentation, affecting the overall outcome."", ""2: Reasoning has major logical flaws, confusion in steps, or critical omissions; reliability is low."", ""1: Virtually no valid reasoning; logic is chaotic; steps are incorrect or irrelevant.""]","Scenario: Question Answering
+Subject: Crop Science
+Education Level: Undergraduate
+Language: en
+Metric Group: Factual & Reasoning Accuracy",,question_answer_unmatched,,no_score_phrase,0,unclear,unclear,0.2000,review_only
+b21b8c3ac37ecaa0e26ae36e530a7f7c75594d53,14e6dfb98fe659be9bca96d36b8e8c3b5beda0d4,14e6dfb98fe659be9bca96d36b8e8c3b5beda0d4,Reasoning Process Rigor,en,Computer Science,1,1.0,1.0,1.0,1.0/1.0/1.0,"Subject:Computer Science
+Education Level:Undergraduate
+Question:What is the time complexity of the quicksort algorithm in the average case scenario?
+. Please generate the corresponding answer based on the question. ""Answer"":, in JSON format.","```json
+{
+  ""Answer"": ""The time complexity of the quicksort algorithm in the average case scenario is O(n log n), where n is the number of elements in the array to be sorted.""
+}
+```","[""5: Reasoning is complete, clear, and rigorous; all steps are correct; arguments are strong and free of logical fallacies."", ""4: Reasoning is largely correct and logically coherent with minor issues in individual steps or details that do not affect the conclusion."", ""3: Reasoning is visible but contains unclear logic, missing steps, or insufficient argumentation, affecting the overall outcome."", ""2: Reasoning has major logical flaws, confusion in steps, or critical omissions; reliability is low."", ""1: Virtually no valid reasoning; logic is chaotic; steps are incorrect or irrelevant.""]","Scenario: Question Answering
+Subject: Computer Science
+Education Level: Undergraduate
+Language: en
+Metric Group: Factual & Reasoning Accuracy",答案直接给出了结论，但没有展示推理过程。 / 答案直接给出结论，缺少必要的推理过程。 / 答案只是给出了结论，缺乏相应的推理步骤呈现。,metric_rationale_recovered,,no_score_phrase,0,weak_evidence_positive,missing_key_point,0.8500,weak_evidence_positive
+198938e2f622bb0de4883a3dc7e56f75c8a0dc9b,1fbaba4fd0689522a2df03a5be806cfca5328f00,1fbaba4fd0689522a2df03a5be806cfca5328f00,Reasoning Process Rigor,en,Crop Science,1,1.0,1.0,1.0,1.0/1.0/1.0,"Subject:Crop Science
+Education Level:Undergraduate
+Question:Which of the following is a primary macronutrient essential for plant growth?
+A) Iron
+B) Magnesium
+C) Nitrogen
+D) Zinc
+. Please generate the corresponding answer based on the question. ""Answer"":, in JSON format.","```json
+{
+  ""answer"": ""C) Nitrogen""
+}
+```","[""5: Reasoning is complete, clear, and rigorous; all steps are correct; arguments are strong and free of logical fallacies."", ""4: Reasoning is largely correct and logically coherent with minor issues in individual steps or details that do not affect the conclusion."", ""3: Reasoning is visible but contains unclear logic, missing steps, or insufficient argumentation, affecting the overall outcome."", ""2: Reasoning has major logical flaws, confusion in steps, or critical omissions; reliability is low."", ""1: Virtually no valid reasoning; logic is chaotic; steps are incorrect or irrelevant.""]","Scenario: Question Answering
+Subject: Crop Science
+Education Level: Undergraduate
+Language: en
+Metric Group: Factual & Reasoning Accuracy",没有给出推理过程 / 无推理过程。 / 仅给出结论，未说明选择氮的依据（如在植物生理中的核心作用），逻辑链条缺失。,metric_rationale_recovered,,no_score_phrase,0,weak_evidence_positive,missing_key_point,0.8500,weak_evidence_positive
+4c1781a47196920cfbd9a98a60533436add7af41,14e6dfb98fe659be9bca96d36b8e8c3b5beda0d4,14e6dfb98fe659be9bca96d36b8e8c3b5beda0d4,Reasoning Process Rigor,en,Computer Science,1,1.0,1.0,1.0,1.0/1.0/1.0,"Subject:Computer Science
+Education Level:Undergraduate
+Question:What is the time complexity of the quicksort algorithm in the average case scenario?
+. Please generate the corresponding answer based on the question. ""Answer"":, in JSON format.","{
+  ""Answer"": ""The time complexity of the quicksort algorithm in the average case scenario is O(n log n), where n represents the number of elements being sorted. This assumes that the pivot selection allows for a relatively even split of the data.""
+}","[""5: Reasoning is complete, clear, and rigorous; all steps are correct; arguments are strong and free of logical fallacies."", ""4: Reasoning is largely correct and logically coherent with minor issues in individual steps or details that do not affect the conclusion."", ""3: Reasoning is visible but contains unclear logic, missing steps, or insufficient argumentation, affecting the overall outcome."", ""2: Reasoning has major logical flaws, confusion in steps, or critical omissions; reliability is low."", ""1: Virtually no valid reasoning; logic is chaotic; steps are incorrect or irrelevant.""]","Scenario: Question Answering
+Subject: Computer Science
+Education Level: Undergraduate
+Language: en
+Metric Group: Factual & Reasoning Accuracy",按照要求仅给出结果，没有推理过程。 / 答案直接给出结论，缺少必要的推理过程。 / 答案呈现 “结论空降” 问题：未展开论证的前提条件、推导路径或原理引用（如未说明判断所依据的定理、模型或数据逻辑），直接输出最终结论，缺乏 “为何如此” 的逻辑展开过程。,metric_rationale_recovered,,no_score_phrase,0,weak_evidence_positive,missing_key_point,0.8500,weak_evidence_positive
+674bc19324921890f8c1245b4760b0909fc05534,1fbaba4fd0689522a2df03a5be806cfca5328f00,1fbaba4fd0689522a2df03a5be806cfca5328f00,Reasoning Process Rigor,en,Crop Science,1,1.0,1.0,1.0,1.0/1.0/1.0,"Subject:Crop Science
+Education Level:Undergraduate
+Question:Which of the following is a primary macronutrient essential for plant growth?
+A) Iron
+B) Magnesium
+C) Nitrogen
+D) Zinc
+. Please generate the corresponding answer based on the question. ""Answer"":, in JSON format.","```json
+{
+  ""Answer"": ""C) Nitrogen""
+}
+```","[""5: Reasoning is complete, clear, and rigorous; all steps are correct; arguments are strong and free of logical fallacies."", ""4: Reasoning is largely correct and logically coherent with minor issues in individual steps or details that do not affect the conclusion."", ""3: Reasoning is visible but contains unclear logic, missing steps, or insufficient argumentation, affecting the overall outcome."", ""2: Reasoning has major logical flaws, confusion in steps, or critical omissions; reliability is low."", ""1: Virtually no valid reasoning; logic is chaotic; steps are incorrect or irrelevant.""]","Scenario: Question Answering
+Subject: Crop Science
+Education Level: Undergraduate
+Language: en
+Metric Group: Factual & Reasoning Accuracy",没有给出推理过程 / 无推理过程。 / 仅给出结论，未说明选择氮的依据（如在植物生理中的核心作用），逻辑链条缺失。,metric_rationale_recovered,,no_score_phrase,0,weak_evidence_positive,missing_key_point,0.8500,weak_evidence_positive
+76bc906a5fe27bf73c1ae0b0f77aa2945732d489,1fbaba4fd0689522a2df03a5be806cfca5328f00,1fbaba4fd0689522a2df03a5be806cfca5328f00,Reasoning Process Rigor,en,Crop Science,1,1.0,1.0,1.0,1.0/1.0/1.0,"Subject:Crop Science
+Education Level:Undergraduate
+Question:Which of the following is a primary macronutrient essential for plant growth?
+A) Iron
+B) Magnesium
+C) Nitrogen
+D) Zinc
+. Please generate the corresponding answer based on the question. ""Answer"":, in JSON format.","{
+  ""answer"": ""C) Nitrogen""
+}","[""5: Reasoning is complete, clear, and rigorous; all steps are correct; arguments are strong and free of logical fallacies."", ""4: Reasoning is largely correct and logically coherent with minor issues in individual steps or details that do not affect the conclusion."", ""3: Reasoning is visible but contains unclear logic, missing steps, or insufficient argumentation, affecting the overall outcome."", ""2: Reasoning has major logical flaws, confusion in steps, or critical omissions; reliability is low."", ""1: Virtually no valid reasoning; logic is chaotic; steps are incorrect or irrelevant.""]","Scenario: Question Answering
+Subject: Crop Science
+Education Level: Undergraduate
+Language: en
+Metric Group: Factual & Reasoning Accuracy",,question_answer_unmatched,,no_score_phrase,0,unclear,unclear,0.2000,review_only
+ffbcfd835bce6f2c49e6ba425055824d75949505,14e6dfb98fe659be9bca96d36b8e8c3b5beda0d4,14e6dfb98fe659be9bca96d36b8e8c3b5beda0d4,Reasoning Process Rigor,en,Computer Science,2,2.0,2.0,2.0,2.0/2.0/2.0,"Subject:Computer Science
+Education Level:Undergraduate
+Question:What is the time complexity of the quicksort algorithm in the average case scenario?
+. Please generate the corresponding answer based on the question. ""Answer"":, in JSON format.","```json
+{
+  ""Answer"": {
+    ""time_complexity"": {
+      ""average_case"": ""O(n log n)"",
+      ""explanation"": ""Quicksort's average case time complexity is O(n log n) due to the algorithm's divide-and-conquer strategy. On average, the pivot selection divides the array into two roughly equal parts, leading to logarithmic recursion depth. Each partitioning step takes linear time (O(n)), resulting in an overall complexity of O(n log n). This assumes balanced partitioning, which is statistically likely with random pivot selection.""
+    }
+  }
+}
+```","[""5: Reasoning is complete, clear, and rigorous; all steps are correct; arguments are strong and free of logical fallacies."", ""4: Reasoning is largely correct and logically coherent with minor issues in individual steps or details that do not affect the conclusion."", ""3: Reasoning is visible but contains unclear logic, missing steps, or insufficient argumentation, affecting the overall outcome."", ""2: Reasoning has major logical flaws, confusion in steps, or critical omissions; reliability is low."", ""1: Virtually no valid reasoning; logic is chaotic; steps are incorrect or irrelevant.""]","Scenario: Question Answering
+Subject: Computer Science
+Education Level: Undergraduate
+Language: en
+Metric Group: Factual & Reasoning Accuracy",,question_answer_unmatched,,no_score_phrase,0,unclear,unclear,0.2000,review_only
+9473740ab3e011ac08772a84e106e72f4d38f137,1fbaba4fd0689522a2df03a5be806cfca5328f00,1fbaba4fd0689522a2df03a5be806cfca5328f00,Reasoning Process Rigor,en,Crop Science,1,1.0,1.0,1.0,1.0/1.0/1.0,"Subject:Crop Science
+Education Level:Undergraduate
+Question:Which of the following is a primary macronutrient essential for plant growth?
+A) Iron
+B) Magnesium
+C) Nitrogen
+D) Zinc
+. Please generate the corresponding answer based on the question. ""Answer"":, in JSON format.","```json
+{
+    ""Answer"": ""C) Nitrogen""
+}
+```","[""5: Reasoning is complete, clear, and rigorous; all steps are correct; arguments are strong and free of logical fallacies."", ""4: Reasoning is largely correct and logically coherent with minor issues in individual steps or details that do not affect the conclusion."", ""3: Reasoning is visible but contains unclear logic, missing steps, or insufficient argumentation, affecting the overall outcome."", ""2: Reasoning has major logical flaws, confusion in steps, or critical omissions; reliability is low."", ""1: Virtually no valid reasoning; logic is chaotic; steps are incorrect or irrelevant.""]","Scenario: Question Answering
+Subject: Crop Science
+Education Level: Undergraduate
+Language: en
+Metric Group: Factual & Reasoning Accuracy",没有给出推理过程 / 无推理过程。 / 仅给出结论，未说明选择氮的依据（如在植物生理中的核心作用），逻辑链条缺失。,metric_rationale_recovered,,no_score_phrase,0,weak_evidence_positive,missing_key_point,0.8500,weak_evidence_positive
+9b98fbe73d713149b38df9e497e2ad0a0a022c91,f6cf3e1b280ca78c17a557b97001a3fea411a738,f6cf3e1b280ca78c17a557b97001a3fea411a738,Higher-Order Thinking & Skill Development,en,Aquaculture,2,3.0,2.0,2.0,3.0/2.0/2.0,"Subject:Aquaculture
+Education Level:Undergraduate
+Knowledge Point:Aquaculture involves the farming of aquatic organisms, including fish, mollusks, crustaceans, and aquatic plants. It encompasses breeding, rearing, and harvesting in controlled environments.
+Question Type:Single Choice
+.Generate a corresponding question based on subject, education level, knowledge point, and question type. Return ""Question"" and ""Provided Reasoning"" in JSON format.","```json
+{
+  ""Question"": ""What does aquaculture primarily involve?"",
+  ""ProvidedReasoning"": ""This question tests the basic understanding of what aquaculture entails at the undergraduate level. It focuses on the core definition which includes the farming of aquatic organisms such as fish, mollusks, crustaceans, and aquatic plants, covering activities like breeding, rearing, and harvesting in controlled environments.""
+}
+```","[""5: Skillfully designed to promote critical/creative thinking, problem-solving, or transfer of knowledge (e.g., through open-ended questions, comparative analysis, case study, project-based tasks)."", ""4: Includes guiding questions or moderately challenging tasks that positively support the development of higher-order thinking (e.g., analysis, evaluation, application)."", ""3: Some attempt to encourage higher-order thinking (e.g., simple reflective questions), but limited in depth and scope; mainly focused on rote understanding or basic application."", ""2: Interaction/content mostly revolves around memory and comprehension; rarely addresses higher-order thinking tasks."", ""1: Completely ignores higher-order skill development; encourages rote memorization and repetition; may inhibit thinking flexibility.""]","Scenario: Question Generation
+Subject: Aquaculture
+Education Level: Undergraduate
+Language: en
+Metric Group: Pedagogical Application",问题仅考查基础概念记忆，推理未涉及分析、评估等高阶思维，整体偏重知识复述。 / 题目为简单概念复现，仅考查记忆层面，未涉及分析、应用等高阶思维培养。,metric_rationale_recovered,,no_score_phrase,0,weak_evidence_positive,insufficient_evidence,0.8500,weak_evidence_positive
+3b5a8c4295de94d52db9f719bd2bf0ff725b74bc,f6cf3e1b280ca78c17a557b97001a3fea411a738,f6cf3e1b280ca78c17a557b97001a3fea411a738,Higher-Order Thinking & Skill Development,en,Aquaculture,2,2.0,2.0,3.0,2.0/2.0/3.0,"Subject:Aquaculture
+Education Level:Undergraduate
+Knowledge Point:Aquaculture involves the farming of aquatic organisms, including fish, mollusks, crustaceans, and aquatic plants. It encompasses breeding, rearing, and harvesting in controlled environments.
+Question Type:Single Choice
+.Generate a corresponding question based on subject, education level, knowledge point, and question type. Return ""Question"" and ""Provided Reasoning"" in JSON format.","```json
+{
+  ""Question"": ""Which of the following best describes the primary focus of aquaculture?"",
+  ""Provided Reasoning"": ""Aquaculture is the practice of farming aquatic organisms such as fish, mollusks, crustaceans, and aquatic plants in controlled environments. This includes activities like breeding, rearing, and harvesting. The question is designed to test the undergraduate student's understanding of the fundamental concept of aquaculture.""
+}
+```","[""5: Skillfully designed to promote critical/creative thinking, problem-solving, or transfer of knowledge (e.g., through open-ended questions, comparative analysis, case study, project-based tasks)."", ""4: Includes guiding questions or moderately challenging tasks that positively support the development of higher-order thinking (e.g., analysis, evaluation, application)."", ""3: Some attempt to encourage higher-order thinking (e.g., simple reflective questions), but limited in depth and scope; mainly focused on rote understanding or basic application."", ""2: Interaction/content mostly revolves around memory and comprehension; rarely addresses higher-order thinking tasks."", ""1: Completely ignores higher-order skill development; encourages rote memorization and repetition; may inhibit thinking flexibility.""]","Scenario: Question Generation
+Subject: Aquaculture
+Education Level: Undergraduate
+Language: en
+Metric Group: Pedagogical Application",,question_answer_unmatched,,no_score_phrase,0,unclear,unclear,0.2000,review_only
+365e8b4c9ee703d23dee95e59be31577a15cacc8,5f10a3a85e0efd1be4f1e1773e836f0ef17e29b2,5f10a3a85e0efd1be4f1e1773e836f0ef17e29b2,Higher-Order Thinking & Skill Development,en,Physical Education,2,2.0,2.0,2.0,2.0/2.0/2.0,"Subject:Physical Education
+Education Level:Undergraduate
+Knowledge Point:The FITT principle is a foundational concept in physical education that stands for Frequency, Intensity, Time, and Type. It is used to structure exercise programs to improve fitness levels effectively.
+Question Type:Short Answer
+.Generate a corresponding question based on subject, education level, knowledge point, and question type. Return ""Question"" and ""Provided Reasoning"" in JSON format.","```json
+{
+  ""Question"": ""Explain the FITT principle and how each component (Frequency, Intensity, Time, and Type) contributes to designing an effective exercise program."",
+  ""Provided Reasoning"": ""This question is appropriate for an undergraduate level in Physical Education as it requires a foundational understanding of the FITT principle, which is essential for structuring exercise programs. The question prompts students to explain each component and its role in improving fitness levels, aligning with the knowledge point and the short answer format.""
+}
+```","[""5: Skillfully designed to promote critical/creative thinking, problem-solving, or transfer of knowledge (e.g., through open-ended questions, comparative analysis, case study, project-based tasks)."", ""4: Includes guiding questions or moderately challenging tasks that positively support the development of higher-order thinking (e.g., analysis, evaluation, application)."", ""3: Some attempt to encourage higher-order thinking (e.g., simple reflective questions), but limited in depth and scope; mainly focused on rote understanding or basic application."", ""2: Interaction/content mostly revolves around memory and comprehension; rarely addresses higher-order thinking tasks."", ""1: Completely ignores higher-order skill development; encourages rote memorization and repetition; may inhibit thinking flexibility.""]","Scenario: Question Generation
+Subject: Physical Education
+Education Level: Undergraduate
+Language: en
+Metric Group: Pedagogical Application",问题仅要求解释作用，侧重知识理解与复述，未涉及方案设计或问题解决等高阶任务，对批判性思维的培养作用有限。 / 问题要求 “解释作用”，侧重知识理解与复述，未涉及方案设计或问题解决等高阶任务，对批判性思维的促进有限。 / 问题考查知识理解与基础应用能力（如要素与计划的关联），但仅要求 “解释作用”，未涉及场景化设计或问题解决等更高阶思维。,metric_rationale_recovered,,no_score_phrase,0,weak_evidence_positive,task_constraint_violation,0.8500,weak_evidence_positive
+f51251a778d6f6601796be0ed017d6173d91d44b,7d31b9d0eef59066afff9ba848a799e2668bbed2,7d31b9d0eef59066afff9ba848a799e2668bbed2,Higher-Order Thinking & Skill Development,en,Basic Medicine,2,2.0,2.0,2.0,2.0/2.0/2.0,"Subject:Basic Medicine
+Education Level:Master
+Knowledge Point:The renin-angiotensin-aldosterone system (RAAS) plays a crucial role in regulating blood pressure and fluid balance in the body.
+Question Type:Single Choice
+.Generate a corresponding question based on subject, education level, knowledge point, and question type. Return ""Question"" and ""Provided Reasoning"" in JSON format.","```json
+{
+  ""Question"": ""Which of the following best describes the primary function of the renin-angiotensin-aldosterone system (RAAS)?"",
+  ""Options"": [
+    ""A. Regulating blood glucose levels"",
+    ""B. Controlling body temperature"",
+    ""C. Maintaining blood pressure and fluid balance"",
+    ""D. Managing immune responses""
+  ],
+  ""Correct Answer"": ""C. Maintaining blood pressure and fluid balance"",
+  ""Provided Reasoning"": ""The renin-angiotensin-aldosterone system (RAAS) is a hormone system that plays a critical role in regulating blood pressure and fluid balance. It achieves this by controlling blood volume and systemic vascular resistance. When blood pressure drops, the kidneys release renin, which initiates a cascade of reactions leading to the production of angiotensin II. Angiotensin II causes blood vessels to constrict, increasing blood pressure, and stimulates the release of aldosterone, which promotes sodium and water retention in the kidneys, further increasing blood volume and pressure.""
+}
+```","[""5: Skillfully designed to promote critical/creative thinking, problem-solving, or transfer of knowledge (e.g., through open-ended questions, comparative analysis, case study, project-based tasks)."", ""4: Includes guiding questions or moderately challenging tasks that positively support the development of higher-order thinking (e.g., analysis, evaluation, application)."", ""3: Some attempt to encourage higher-order thinking (e.g., simple reflective questions), but limited in depth and scope; mainly focused on rote understanding or basic application."", ""2: Interaction/content mostly revolves around memory and comprehension; rarely addresses higher-order thinking tasks."", ""1: Completely ignores higher-order skill development; encourages rote memorization and repetition; may inhibit thinking flexibility.""]","Scenario: Question Generation
+Subject: Basic Medicine
+Education Level: Master
+Language: en
+Metric Group: Pedagogical Application",题目通过设置干扰选项（如血糖、免疫相关内容）引导学生提升分析能力，但问题本身仍属于基础层面考查。 / 题目考查基础概念识别（记忆层面），未涉及分析 / 评估等高阶思维（如对比 RAAS 与其他系统的协同作用）。 / 题目为直接选择功能描述的基础题，侧重知识复述，未涉及病例分析、机制对比等高阶思维训练。,metric_rationale_recovered,,no_score_phrase,0,weak_evidence_positive,surface_fluent_but_hidden_defect,0.8500,weak_evidence_positive
+92910121cc180752d916f726d12fa5537c40dd88,182ead73c7c9bef64c812e1c3366635156817f15,182ead73c7c9bef64c812e1c3366635156817f15,Scenario Element Integration,en,Mathematics,2,2.0,2.0,3.0,2.0/2.0/3.0,"Question: What is the value of 5 + 3?
+
+Please provide reasoning based on this question. Do not provide the answer directly.. ""Reasoning Provided"":, return in JSON format","```json
+{
+  ""Reasoning Provided"": ""To solve the problem, we need to perform a basic addition operation. Addition is a fundamental arithmetic operation where we combine two or more numbers to find their total. In this case, we are adding the numbers 5 and 3. We start by taking the number 5 and then adding 3 to it. The result will be the sum of these two numbers.""
+}
+```","[""5: Fully integrated all key scenario elements (e.g., student history, learning preferences); output is highly personalized and well-matched to the teaching context."", ""4: Used major scenario elements effectively; response is targeted, possibly overlooks minor details but does not affect overall results."", ""3: Some use of scenario information, but integration is shallow; personalization or contextual fit is average."", ""2: Only surface-level reference to scenario information; did not integrate core elements effectively; weak contextual connection."", ""1: Completely ignored scenario-specific information; output is generic, templated, and irrelevant to the scenario.""]","Scenario: Idea Provision
+Subject: Mathematics
+Education Level: Elementary School
+Language: en
+Metric Group: Scenario Adaptability",,question_answer_unmatched,,no_score_phrase,0,unclear,unclear,0.2000,review_only
+b32ef4e0d4df64758a36c00f66d44107809101c3,182ead73c7c9bef64c812e1c3366635156817f15,182ead73c7c9bef64c812e1c3366635156817f15,Higher-Order Thinking & Skill Development,en,Mathematics,2,2.0,2.0,3.0,2.0/2.0/3.0,"Question: What is the value of 5 + 3?
+
+Please provide reasoning based on this question. Do not provide the answer directly.. ""Reasoning Provided"":, return in JSON format","```json
+{
+  ""Reasoning Provided"": ""To solve the problem, we need to perform a basic addition operation. Addition is a fundamental arithmetic operation where we combine two or more numbers to find their total. In this case, we are adding the numbers 5 and 3. We start by taking the number 5 and then adding 3 to it. The result will be the sum of these two numbers.""
+}
+```","[""5: Skillfully designed to promote critical/creative thinking, problem-solving, or transfer of knowledge (e.g., through open-ended questions, comparative analysis, case study, project-based tasks)."", ""4: Includes guiding questions or moderately challenging tasks that positively support the development of higher-order thinking (e.g., analysis, evaluation, application)."", ""3: Some attempt to encourage higher-order thinking (e.g., simple reflective questions), but limited in depth and scope; mainly focused on rote understanding or basic application."", ""2: Interaction/content mostly revolves around memory and comprehension; rarely addresses higher-order thinking tasks."", ""1: Completely ignores higher-order skill development; encourages rote memorization and repetition; may inhibit thinking flexibility.""]","Scenario: Idea Provision
+Subject: Mathematics
+Education Level: Elementary School
+Language: en
+Metric Group: Pedagogical Application",,question_answer_unmatched,,no_score_phrase,0,unclear,unclear,0.2000,review_only
+02169e6cc6f86f682c0b04047827e32859533603,182ead73c7c9bef64c812e1c3366635156817f15,182ead73c7c9bef64c812e1c3366635156817f15,Scenario Element Integration,en,Mathematics,2,2.0,2.0,2.0,2.0/2.0/2.0,"Question: What is the value of 5 + 3?
+
+Please provide reasoning based on this question. Do not provide the answer directly.. ""Reasoning Provided"":, return in JSON format","{
+  ""Reasoning Provided"": ""To find the value of 5 + 3, one would start with the number 5 and then add 3 to it. This operation is based on the principle of addition, which combines two quantities into a single quantity. In this case, you are combining a group of 5 items with another group of 3 items, resulting in a total count that represents the sum of these two numbers. The process involves counting up from 5 by 3 more units, or simply recalling the sum if it's a known fact.""
+}","[""5: Fully integrated all key scenario elements (e.g., student history, learning preferences); output is highly personalized and well-matched to the teaching context."", ""4: Used major scenario elements effectively; response is targeted, possibly overlooks minor details but does not affect overall results."", ""3: Some use of scenario information, but integration is shallow; personalization or contextual fit is average."", ""2: Only surface-level reference to scenario information; did not integrate core elements effectively; weak contextual connection."", ""1: Completely ignored scenario-specific information; output is generic, templated, and irrelevant to the scenario.""]","Scenario: Idea Provision
+Subject: Mathematics
+Education Level: Elementary School
+Language: en
+Metric Group: Scenario Adaptability",问题本身未提供个性化场景信息，答案采用通用教学表述（如“one would start with the number 5”），虽合理但未体现主动构建教学场景的努力。 / 通用推理没有结合学生水平，如用实物举例，缺乏个性化场景适配。 / 通用推理未结合学生水平（如面向小学生未用实物举例），个性化场景适配不足。,metric_rationale_recovered,,no_score_phrase,0,weak_evidence_positive,insufficient_evidence,0.8500,weak_evidence_positive
+6cc46157fcf2aa5b87cd72293be48481a7e5dacc,0e09c1d8b75a16ca2c50f1bccf73028ae1d691ea,0e09c1d8b75a16ca2c50f1bccf73028ae1d691ea,Instruction Following & Task Completion,en,Theoretical Economics,2,2.0,2.0,3.0,2.0/2.0/3.0,"Question: Explain the concept of Nash Equilibrium in game theory and provide an example.
+Student's Answer: Nash Equilibrium is a situation in a game where each player's strategy is optimal given the strategies of all other players. No player can benefit by changing their strategy while the other players keep theirs unchanged. An example would be the Prisoner's Dilemma, where both prisoners choose to betray each other although they would receive a better outcome if they both stayed silent.
+Please provide ""Score"", ""Scoring Details"", and ""Personalized Feedback"" based on the question and student's answer, in JSON format.","```json
+{
+  ""Score"": 4,
+  ""ScoringDetails"": {
+    ""ConceptUnderstanding"": 2,
+    ""ExampleRelevance"": 2,
+    ""ExplanationClarity"": 1,
+    ""TotalPossiblePoints"": 5
+  },
+  ""PersonalizedFeedback"": {
+    ""Positive"": ""You correctly identified the concept of Nash Equilibrium and provided a relevant example, the Prisoner's Dilemma. Your explanation that no player can benefit by changing their strategy while others keep theirs unchanged is accurate."",
+    ""ImprovementAreas"": ""To improve your answer, consider elaborating more on what makes a strategy 'optimal' in the context of Nash Equilibrium. Additionally, you could provide a brief setup of the Prisoner's Dilemma to clarify how it exemplifies a Nash Equilibrium, making your explanation more comprehensive and easier to understand for someone unfamiliar with the topic.""
+  }
+}
+```
+
+This feedback structure provides a clear breakdown of the student's performance, highlighting both strengths and areas for improvement.","[""5: Fully understood and precisely executed all instructions; achieved core task with perfect accuracy; output format is fully compliant."", ""4: Accurately understood main instructions and correctly completed the task; core goals are well achieved; format is mostly correct with only minor omissions or deviations."", ""3: Understood the general intent but may miss some details; task largely completed but with some inaccuracies or omissions; formatting attempts present but with notable flaws."", ""2: Misunderstood part of the instruction; low task completion or major errors; formatting mostly incorrect."", ""1: Completely misunderstood or ignored instructions; task not completed or totally incorrect; formatting is chaotic or irrelevant.""]","Scenario: Automatic Grading
+Subject: Theoretical Economics
+Education Level: Undergraduate
+Language: en
+Metric Group: Scenario Adaptability",定义和举例部分已经完成，但评分项 “TotalPossiblePoints” 设置为5分不恰当，影响了任务的整体完成度。 / 虽完成定义与举例，但评分项 “TotalPossiblePoints” 设为 5 不合理，任务完成度低。,metric_rationale_recovered,5分,score_phrase_conflict,1,weak_evidence_positive,task_constraint_violation,0.8500,weak_evidence_positive
+d669073d100a7f3755e1ce0ec3bd63e9b6c54e34,0e09c1d8b75a16ca2c50f1bccf73028ae1d691ea,0e09c1d8b75a16ca2c50f1bccf73028ae1d691ea,Error Identification & Correction Precision,en,Theoretical Economics,2,2.0,2.0,2.0,2.0/2.0/2.0,"Question: Explain the concept of Nash Equilibrium in game theory and provide an example.
+Student's Answer: Nash Equilibrium is a situation in a game where each player's strategy is optimal given the strategies of all other players. No player can benefit by changing their strategy while the other players keep theirs unchanged. An example would be the Prisoner's Dilemma, where both prisoners choose to betray each other although they would receive a better outcome if they both stayed silent.
+Please provide ""Score"", ""Scoring Details"", and ""Personalized Feedback"" based on the question and student's answer, in JSON format.","```json
+{
+  ""Score"": 4,
+  ""ScoringDetails"": {
+    ""ConceptUnderstanding"": 2,
+    ""ExampleRelevance"": 2,
+    ""ExplanationClarity"": 1,
+    ""TotalPossiblePoints"": 5
+  },
+  ""PersonalizedFeedback"": {
+    ""Positive"": ""You correctly identified the concept of Nash Equilibrium and provided a relevant example, the Prisoner's Dilemma. Your explanation that no player can benefit by changing their strategy while others keep theirs unchanged is accurate."",
+    ""ImprovementAreas"": ""To improve your answer, consider elaborating more on what makes a strategy 'optimal' in the context of Nash Equilibrium. Additionally, you could provide a brief setup of the Prisoner's Dilemma to clarify how it exemplifies a Nash Equilibrium, making your explanation more comprehensive and easier to understand for someone unfamiliar with the topic.""
+  }
+}
+```
+
+This feedback structure provides a clear breakdown of the student's performance, highlighting both strengths and areas for improvement.","[""5: Precisely identified all errors (no omission or false positives); provided completely correct, clear, and optimal correction suggestions."", ""4: Correctly located most major errors; suggestions are generally accurate and effective with only minor omissions or less-than-perfect advice."", ""3: Identified some errors but with clear omissions or false positives; suggestions are partially correct but may lack clarity, completeness or optimality."", ""2: Inaccurate error detection with critical omissions or many false positives; suggestions contain errors or are hard to comprehend."", ""1: Completely failed to detect errors; provided entirely incorrect or misleading correction advice.""]","Scenario: Automatic Grading
+Subject: Theoretical Economics
+Education Level: Undergraduate
+Language: en
+Metric Group: Factual & Reasoning Accuracy",非纠错场景下，评分缺乏依据，建议合理，但评分体系混乱。 / 非纠错场景，评分无依据，建议合理但评分体系混乱。 / 非纠错场景下，评分缺乏明确依据，建议虽合理但评分体系逻辑混乱，未体现评分标准与反馈内容的关联性。,metric_rationale_recovered,,no_score_phrase,0,weak_evidence_positive,insufficient_evidence,0.8500,weak_evidence_positive
+bc6c8aae4e012e80e2052e4e76cb7093dc61ed19,182ead73c7c9bef64c812e1c3366635156817f15,182ead73c7c9bef64c812e1c3366635156817f15,Scenario Element Integration,en,Mathematics,2,2.0,2.0,2.0,2.0/2.0/2.0,"Question: What is the value of 5 + 3?
+
+Please provide reasoning based on this question. Do not provide the answer directly.. ""Reasoning Provided"":, return in JSON format","```json
+{
+  ""Reasoning Provided"": ""The problem requires adding two numbers, 5 and 3. To solve this, one can start with the number 5 and count upward by 3 units: 5 (as the starting point), then 6 (1), 7 (2), and 8 (3). This sequential counting confirms the total. Alternatively, combining 5 individual units with 3 individual units results in 8 units when counted together. Both methods validate the sum without discrepancies.""
+}
+```","[""5: Fully integrated all key scenario elements (e.g., student history, learning preferences); output is highly personalized and well-matched to the teaching context."", ""4: Used major scenario elements effectively; response is targeted, possibly overlooks minor details but does not affect overall results."", ""3: Some use of scenario information, but integration is shallow; personalization or contextual fit is average."", ""2: Only surface-level reference to scenario information; did not integrate core elements effectively; weak contextual connection."", ""1: Completely ignored scenario-specific information; output is generic, templated, and irrelevant to the scenario.""]","Scenario: Idea Provision
+Subject: Mathematics
+Education Level: Elementary School
+Language: en
+Metric Group: Scenario Adaptability",,question_answer_unmatched,,no_score_phrase,0,unclear,unclear,0.2000,review_only
+7a5ae2c79851e40cccaf47deb5d4953023576ec9,b8341c9d33cad1b053ba0bafa03c407e4791c4da,b8341c9d33cad1b053ba0bafa03c407e4791c4da,Scenario Element Integration,en,Business Administration,2,2.0,2.0,2.0,2.0/2.0/2.0,"Question: Explain how Porter's Five Forces framework can be used to analyze the competitive environment of an industry.
+
+Please provide reasoning based on this question. Do not provide the answer directly.. ""Reasoning Provided"":, return in JSON format","{
+  ""reasoning"": ""Porter's Five Forces is a framework for analyzing the competitive environment of an industry, which helps in understanding where power lies in a business situation. The analysis involves assessing five key areas: the threat of new entrants, the bargaining power of suppliers, the bargaining power of buyers, the threat of substitute products or services, and the intensity of competitive rivalry. By examining these forces, one can identify the strengths and weaknesses of an industry as well as opportunities and threats. For instance, if the barriers to entry are low, it might indicate that the threat of new entrants is high, potentially increasing competition. Similarly, when buyers have significant bargaining power, it may pressure companies to lower their prices or improve their offerings. Understanding how these forces interact within a specific industry allows businesses to develop strategies that capitalize on their strengths while mitigating potential risks, ultimately aiming for a more sustainable competitive advantage.""
+}","[""5: Fully integrated all key scenario elements (e.g., student history, learning preferences); output is highly personalized and well-matched to the teaching context."", ""4: Used major scenario elements effectively; response is targeted, possibly overlooks minor details but does not affect overall results."", ""3: Some use of scenario information, but integration is shallow; personalization or contextual fit is average."", ""2: Only surface-level reference to scenario information; did not integrate core elements effectively; weak contextual connection."", ""1: Completely ignored scenario-specific information; output is generic, templated, and irrelevant to the scenario.""]","Scenario: Idea Provision
+Subject: Business Administration
+Education Level: Undergraduate
+Language: en
+Metric Group: Scenario Adaptability",由于未提供具体场景要素（如学生之前回答、学习偏好等），推理内容未结合相关场景，仅就模型本身进行分析 / 因为没有提供具体的场景要素（如学生之前的回答、学习偏好等），推理内容未能结合相关场景，只是单纯地分析了模型本身。 / 因未提供具体场景要素（如学生之前的回答、学习偏好等），推理内容仅停留在模型本身的一般性分析。,metric_rationale_recovered,,no_score_phrase,0,weak_evidence_positive,insufficient_evidence,0.8500,weak_evidence_positive
+78a2f1f17b59206fae3cdedb6b11a9fef084b670,b8341c9d33cad1b053ba0bafa03c407e4791c4da,b8341c9d33cad1b053ba0bafa03c407e4791c4da,Higher-Order Thinking & Skill Development,en,Business Administration,2,2.0,2.0,3.0,2.0/2.0/3.0,"Question: Explain how Porter's Five Forces framework can be used to analyze the competitive environment of an industry.
+
+Please provide reasoning based on this question. Do not provide the answer directly.. ""Reasoning Provided"":, return in JSON format","{
+  ""reasoning"": ""Porter's Five Forces is a framework for analyzing the competitive environment of an industry, which helps in understanding where power lies in a business situation. The analysis involves assessing five key areas: the threat of new entrants, the bargaining power of suppliers, the bargaining power of buyers, the threat of substitute products or services, and the intensity of competitive rivalry. By examining these forces, one can identify the strengths and weaknesses of an industry as well as opportunities and threats. For instance, if the barriers to entry are low, it might indicate that the threat of new entrants is high, potentially increasing competition. Similarly, when buyers have significant bargaining power, it may pressure companies to lower their prices or improve their offerings. Understanding how these forces interact within a specific industry allows businesses to develop strategies that capitalize on their strengths while mitigating potential risks, ultimately aiming for a more sustainable competitive advantage.""
+}","[""5: Skillfully designed to promote critical/creative thinking, problem-solving, or transfer of knowledge (e.g., through open-ended questions, comparative analysis, case study, project-based tasks)."", ""4: Includes guiding questions or moderately challenging tasks that positively support the development of higher-order thinking (e.g., analysis, evaluation, application)."", ""3: Some attempt to encourage higher-order thinking (e.g., simple reflective questions), but limited in depth and scope; mainly focused on rote understanding or basic application."", ""2: Interaction/content mostly revolves around memory and comprehension; rarely addresses higher-order thinking tasks."", ""1: Completely ignores higher-order skill development; encourages rote memorization and repetition; may inhibit thinking flexibility.""]","Scenario: Idea Provision
+Subject: Business Administration
+Education Level: Undergraduate
+Language: en
+Metric Group: Pedagogical Application",推理内容主要是对模型的解释和应用分析，在促进批判性思维、创新思维等高阶思维发展方面作用有限 / 推理过程侧重模型阐释与应用解析，在培养批判性、创新性等高阶思维方面成效有限。,metric_rationale_recovered,,no_score_phrase,0,weak_evidence_positive,insufficient_evidence,0.8500,weak_evidence_positive
+b98b50d95782304d48d08ccbe6eda435ec3f66c7,b8341c9d33cad1b053ba0bafa03c407e4791c4da,b8341c9d33cad1b053ba0bafa03c407e4791c4da,Scenario Element Integration,en,Business Administration,2,2.0,2.0,3.0,2.0/2.0/3.0,"Question: Explain how Porter's Five Forces framework can be used to analyze the competitive environment of an industry.
+
+Please provide reasoning based on this question. Do not provide the answer directly.. ""Reasoning Provided"":, return in JSON format","```json
+{
+  ""Reasoning Provided"": ""To answer this question, it is essential to understand the components of Porter's Five Forces framework and how they interact to shape the competitive environment of an industry. The framework includes five forces: 1) the threat of new entrants, 2) the bargaining power of suppliers, 3) the bargaining power of buyers, 4) the threat of substitute products or services, and 5) the intensity of competitive rivalry. Each force influences the industry's profitability and competitive dynamics. The explanation should focus on how these forces can be systematically analyzed to assess the attractiveness and challenges within an industry. Additionally, it should highlight how businesses can use this analysis to identify opportunities, mitigate risks, and develop strategies to gain a competitive advantage.""
+}
+```","[""5: Fully integrated all key scenario elements (e.g., student history, learning preferences); output is highly personalized and well-matched to the teaching context."", ""4: Used major scenario elements effectively; response is targeted, possibly overlooks minor details but does not affect overall results."", ""3: Some use of scenario information, but integration is shallow; personalization or contextual fit is average."", ""2: Only surface-level reference to scenario information; did not integrate core elements effectively; weak contextual connection."", ""1: Completely ignored scenario-specific information; output is generic, templated, and irrelevant to the scenario.""]","Scenario: Idea Provision
+Subject: Business Administration
+Education Level: Undergraduate
+Language: en
+Metric Group: Scenario Adaptability",没有提及任何场景要素（如学生之前回答、学习偏好等），属于通用型分析，可评 3 分。 / 由于没有结合任何场景要素（如学生之前的回答、学习偏好等），答案属于通用型分析。,metric_rationale_recovered,评 3 分; 3 分,consistent_with_recovered_score_or_10pt_mapping,0,weak_evidence_positive,surface_fluent_but_hidden_defect,0.8500,weak_evidence_positive
+a5b76b94f849ef3c81364bfd2a49a16777a2d7fa,b8341c9d33cad1b053ba0bafa03c407e4791c4da,b8341c9d33cad1b053ba0bafa03c407e4791c4da,Reasoning Process Rigor,en,Business Administration,2,2.0,2.0,1.0,2.0/2.0/1.0,"Question: Explain how Porter's Five Forces framework can be used to analyze the competitive environment of an industry.
+
+Please provide reasoning based on this question. Do not provide the answer directly.. ""Reasoning Provided"":, return in JSON format","```json
+{
+  ""Reasoning Provided"": ""To answer this question, it is essential to understand the components of Porter's Five Forces framework and how they interact to shape the competitive environment of an industry. The framework includes five forces: 1) the threat of new entrants, 2) the bargaining power of suppliers, 3) the bargaining power of buyers, 4) the threat of substitute products or services, and 5) the intensity of competitive rivalry. Each force influences the industry's profitability and competitive dynamics. The explanation should focus on how these forces can be systematically analyzed to assess the attractiveness and challenges within an industry. Additionally, it should highlight how businesses can use this analysis to identify opportunities, mitigate risks, and develop strategies to gain a competitive advantage.""
+}
+```","[""5: Reasoning is complete, clear, and rigorous; all steps are correct; arguments are strong and free of logical fallacies."", ""4: Reasoning is largely correct and logically coherent with minor issues in individual steps or details that do not affect the conclusion."", ""3: Reasoning is visible but contains unclear logic, missing steps, or insufficient argumentation, affecting the overall outcome."", ""2: Reasoning has major logical flaws, confusion in steps, or critical omissions; reliability is low."", ""1: Virtually no valid reasoning; logic is chaotic; steps are incorrect or irrelevant.""]","Scenario: Idea Provision
+Subject: Business Administration
+Education Level: Undergraduate
+Language: en
+Metric Group: Factual & Reasoning Accuracy",仅提出了分析的方向和要点，未进行实际的推理分析过程，逻辑链条不完整，可评 3 分。 / 分析仅提出方向和要点，缺乏实际推理过程，逻辑链条不完整。,metric_rationale_recovered,评 3 分; 3 分,consistent_with_recovered_score_or_10pt_mapping,0,weak_evidence_positive,insufficient_evidence,0.8500,weak_evidence_positive
+13af8e6896f2be6cf223e45bf4f1652fe39fe7d3,b8341c9d33cad1b053ba0bafa03c407e4791c4da,b8341c9d33cad1b053ba0bafa03c407e4791c4da,Higher-Order Thinking & Skill Development,en,Business Administration,2,2.0,2.0,2.0,2.0/2.0/2.0,"Question: Explain how Porter's Five Forces framework can be used to analyze the competitive environment of an industry.
+
+Please provide reasoning based on this question. Do not provide the answer directly.. ""Reasoning Provided"":, return in JSON format","```json
+{
+  ""Reasoning Provided"": ""To answer this question, it is essential to understand the components of Porter's Five Forces framework and how they interact to shape the competitive environment of an industry. The framework includes five forces: 1) the threat of new entrants, 2) the bargaining power of suppliers, 3) the bargaining power of buyers, 4) the threat of substitute products or services, and 5) the intensity of competitive rivalry. Each force influences the industry's profitability and competitive dynamics. The explanation should focus on how these forces can be systematically analyzed to assess the attractiveness and challenges within an industry. Additionally, it should highlight how businesses can use this analysis to identify opportunities, mitigate risks, and develop strategies to gain a competitive advantage.""
+}
+```","[""5: Skillfully designed to promote critical/creative thinking, problem-solving, or transfer of knowledge (e.g., through open-ended questions, comparative analysis, case study, project-based tasks)."", ""4: Includes guiding questions or moderately challenging tasks that positively support the development of higher-order thinking (e.g., analysis, evaluation, application)."", ""3: Some attempt to encourage higher-order thinking (e.g., simple reflective questions), but limited in depth and scope; mainly focused on rote understanding or basic application."", ""2: Interaction/content mostly revolves around memory and comprehension; rarely addresses higher-order thinking tasks."", ""1: Completely ignores higher-order skill development; encourages rote memorization and repetition; may inhibit thinking flexibility.""]","Scenario: Idea Provision
+Subject: Business Administration
+Education Level: Undergraduate
+Language: en
+Metric Group: Pedagogical Application",只是对分析问题的要点进行概括，未设计能促进高阶思维的内容，可评 3 分。 / 仅概括分析要点，未设计促进高阶思维的内容。 / 未涉及任何高阶思维活动（如评估、对比），仅完成知识复述，思维培养缺失。,metric_rationale_recovered,评 3 分; 3 分,consistent_with_recovered_score_or_10pt_mapping,0,weak_evidence_positive,missing_key_point,0.8500,weak_evidence_positive
+b51fe8038ded98685f2c18b27990ce26056dfc17,b8341c9d33cad1b053ba0bafa03c407e4791c4da,b8341c9d33cad1b053ba0bafa03c407e4791c4da,Scenario Element Integration,en,Business Administration,2,2.0,2.0,2.0,2.0/2.0/2.0,"Question: Explain how Porter's Five Forces framework can be used to analyze the competitive environment of an industry.
+
+Please provide reasoning based on this question. Do not provide the answer directly.. ""Reasoning Provided"":, return in JSON format","{
+  ""reasoning"": ""Porter's Five Forces framework is a strategic planning tool used to analyze the competitive forces at work in an industry. It helps companies understand the competitive intensity and profitability of their industry by examining five key factors: Threat of New Entrants, Bargaining Power of Suppliers, Bargaining Power of Buyers, Threat of Substitute Products or Services, and Competitive Rivalry among existing competitors. Each force provides insights into the potential impact on the industry and the strategies that firms might adopt to improve their position within it. For example, if the threat of new entrants is high, firms may need to invest heavily in brand loyalty or product differentiation. If the bargaining power of suppliers is strong, firms may face higher costs and need to explore alternative supply sources or negotiate better terms. By assessing these forces, managers can gain a clearer picture of the challenges and opportunities facing their business and make more informed decisions about market entry, pricing, and product development.""
+}","[""5: Fully integrated all key scenario elements (e.g., student history, learning preferences); output is highly personalized and well-matched to the teaching context."", ""4: Used major scenario elements effectively; response is targeted, possibly overlooks minor details but does not affect overall results."", ""3: Some use of scenario information, but integration is shallow; personalization or contextual fit is average."", ""2: Only surface-level reference to scenario information; did not integrate core elements effectively; weak contextual connection."", ""1: Completely ignored scenario-specific information; output is generic, templated, and irrelevant to the scenario.""]","Scenario: Idea Provision
+Subject: Business Administration
+Education Level: Undergraduate
+Language: en
+Metric Group: Scenario Adaptability",未结合任何场景要素（如学生回答、学习偏好等），属于一般性知识讲解，可评 3 分。 / 由于未结合任何场景要素（如学生的回答、学习偏好等），答案属于一般性的知识讲解，可评为 3 分。 / 由于未结合任何场景要素（如学生的回答、学习偏好等），答案属于泛化的知识讲解。,metric_rationale_recovered,评 3 分; 3 分,consistent_with_recovered_score_or_10pt_mapping,0,weak_evidence_positive,surface_fluent_but_hidden_defect,0.8500,weak_evidence_positive
+1b5df375ab0c6d48d21dc9a88fd408b29454ff67,b8341c9d33cad1b053ba0bafa03c407e4791c4da,b8341c9d33cad1b053ba0bafa03c407e4791c4da,Higher-Order Thinking & Skill Development,en,Business Administration,2,2.0,2.0,2.0,2.0/2.0/2.0,"Question: Explain how Porter's Five Forces framework can be used to analyze the competitive environment of an industry.
+
+Please provide reasoning based on this question. Do not provide the answer directly.. ""Reasoning Provided"":, return in JSON format","{
+  ""reasoning"": ""Porter's Five Forces framework is a strategic planning tool used to analyze the competitive forces at work in an industry. It helps companies understand the competitive intensity and profitability of their industry by examining five key factors: Threat of New Entrants, Bargaining Power of Suppliers, Bargaining Power of Buyers, Threat of Substitute Products or Services, and Competitive Rivalry among existing competitors. Each force provides insights into the potential impact on the industry and the strategies that firms might adopt to improve their position within it. For example, if the threat of new entrants is high, firms may need to invest heavily in brand loyalty or product differentiation. If the bargaining power of suppliers is strong, firms may face higher costs and need to explore alternative supply sources or negotiate better terms. By assessing these forces, managers can gain a clearer picture of the challenges and opportunities facing their business and make more informed decisions about market entry, pricing, and product development.""
+}","[""5: Skillfully designed to promote critical/creative thinking, problem-solving, or transfer of knowledge (e.g., through open-ended questions, comparative analysis, case study, project-based tasks)."", ""4: Includes guiding questions or moderately challenging tasks that positively support the development of higher-order thinking (e.g., analysis, evaluation, application)."", ""3: Some attempt to encourage higher-order thinking (e.g., simple reflective questions), but limited in depth and scope; mainly focused on rote understanding or basic application."", ""2: Interaction/content mostly revolves around memory and comprehension; rarely addresses higher-order thinking tasks."", ""1: Completely ignores higher-order skill development; encourages rote memorization and repetition; may inhibit thinking flexibility.""]","Scenario: Idea Provision
+Subject: Business Administration
+Education Level: Undergraduate
+Language: en
+Metric Group: Pedagogical Application",未设计能促进高阶思维的内容，仅简单说明模型应用，可评 3 分。 / 未设计能促进高阶思维的内容，仅简单说明模型应用，可评 3 分。。 / 仅简单说明模型应用，未设计促进高阶思维的内容。,metric_rationale_recovered,评 3 分; 3 分,consistent_with_recovered_score_or_10pt_mapping,0,weak_evidence_positive,surface_fluent_but_hidden_defect,0.8500,weak_evidence_positive
+61725aede8ed2f1879dae36d9b4f8a751b64787b,b8341c9d33cad1b053ba0bafa03c407e4791c4da,b8341c9d33cad1b053ba0bafa03c407e4791c4da,Scenario Element Integration,en,Business Administration,2,2.0,2.0,2.0,2.0/2.0/2.0,"Question: Explain how Porter's Five Forces framework can be used to analyze the competitive environment of an industry.
+
+Please provide reasoning based on this question. Do not provide the answer directly.. ""Reasoning Provided"":, return in JSON format","{
+""reasoning"": ""Porter's Five Forces framework is a tool for analyzing the competitive landscape of an industry by identifying and assessing five key competitive forces. These forces help to determine the attractiveness of an industry and the profitability of its potential returns. The first force is the threat of new entrants, which evaluates how easy or difficult it is for new competitors to enter the market. High barriers to entry, such as capital requirements, regulatory restrictions, and customer loyalty to existing brands, can limit new competition. The second force is the threat of substitute products or services, which considers the availability and appeal of alternative offerings that can satisfy similar needs. If there are many viable substitutes, the bargaining power of suppliers and buyers increases, and the industry's profitability decreases. The third force is the bargaining power of suppliers, which looks at how much control suppliers have over the price and quality of inputs. Suppliers with limited alternatives can exert significant pressure on companies within the industry. The fourth force is the bargaining power of buyers, which assesses the ability of customers to drive down prices or demand higher quality. This is often influenced by the number of buyers, their purchasing volume, and the cost of switching to another supplier. The fifth and final force is the intensity of competitive rivalry, which examines the level of competition between existing firms in the industry. Factors such as the number of competitors, the rate of industry growth, and the degree of product differentiation all contribute to the intensity of rivalry. By examining these five forces, businesses can gain insights into the strengths and weaknesses of their competitive position within an industry and make more informed strategic decisions.""
+}","[""5: Fully integrated all key scenario elements (e.g., student history, learning preferences); output is highly personalized and well-matched to the teaching context."", ""4: Used major scenario elements effectively; response is targeted, possibly overlooks minor details but does not affect overall results."", ""3: Some use of scenario information, but integration is shallow; personalization or contextual fit is average."", ""2: Only surface-level reference to scenario information; did not integrate core elements effectively; weak contextual connection."", ""1: Completely ignored scenario-specific information; output is generic, templated, and irrelevant to the scenario.""]","Scenario: Idea Provision
+Subject: Business Administration
+Education Level: Undergraduate
+Language: en
+Metric Group: Scenario Adaptability",,question_answer_unmatched,,no_score_phrase,0,unclear,unclear,0.2000,review_only
+971ddfe627f76a7b8e9a9e2c3def60171e09b44a,b8341c9d33cad1b053ba0bafa03c407e4791c4da,b8341c9d33cad1b053ba0bafa03c407e4791c4da,Higher-Order Thinking & Skill Development,en,Business Administration,2,2.0,2.0,2.0,2.0/2.0/2.0,"Question: Explain how Porter's Five Forces framework can be used to analyze the competitive environment of an industry.
+
+Please provide reasoning based on this question. Do not provide the answer directly.. ""Reasoning Provided"":, return in JSON format","{
+""reasoning"": ""Porter's Five Forces framework is a tool for analyzing the competitive landscape of an industry by identifying and assessing five key competitive forces. These forces help to determine the attractiveness of an industry and the profitability of its potential returns. The first force is the threat of new entrants, which evaluates how easy or difficult it is for new competitors to enter the market. High barriers to entry, such as capital requirements, regulatory restrictions, and customer loyalty to existing brands, can limit new competition. The second force is the threat of substitute products or services, which considers the availability and appeal of alternative offerings that can satisfy similar needs. If there are many viable substitutes, the bargaining power of suppliers and buyers increases, and the industry's profitability decreases. The third force is the bargaining power of suppliers, which looks at how much control suppliers have over the price and quality of inputs. Suppliers with limited alternatives can exert significant pressure on companies within the industry. The fourth force is the bargaining power of buyers, which assesses the ability of customers to drive down prices or demand higher quality. This is often influenced by the number of buyers, their purchasing volume, and the cost of switching to another supplier. The fifth and final force is the intensity of competitive rivalry, which examines the level of competition between existing firms in the industry. Factors such as the number of competitors, the rate of industry growth, and the degree of product differentiation all contribute to the intensity of rivalry. By examining these five forces, businesses can gain insights into the strengths and weaknesses of their competitive position within an industry and make more informed strategic decisions.""
+}","[""5: Skillfully designed to promote critical/creative thinking, problem-solving, or transfer of knowledge (e.g., through open-ended questions, comparative analysis, case study, project-based tasks)."", ""4: Includes guiding questions or moderately challenging tasks that positively support the development of higher-order thinking (e.g., analysis, evaluation, application)."", ""3: Some attempt to encourage higher-order thinking (e.g., simple reflective questions), but limited in depth and scope; mainly focused on rote understanding or basic application."", ""2: Interaction/content mostly revolves around memory and comprehension; rarely addresses higher-order thinking tasks."", ""1: Completely ignores higher-order skill development; encourages rote memorization and repetition; may inhibit thinking flexibility.""]","Scenario: Idea Provision
+Subject: Business Administration
+Education Level: Undergraduate
+Language: en
+Metric Group: Pedagogical Application",,question_answer_unmatched,,no_score_phrase,0,unclear,unclear,0.2000,review_only
+06861366641747d8214ceee8efb257daab5915fd,b8341c9d33cad1b053ba0bafa03c407e4791c4da,b8341c9d33cad1b053ba0bafa03c407e4791c4da,Scenario Element Integration,en,Business Administration,2,2.0,2.0,2.0,2.0/2.0/2.0,"Question: Explain how Porter's Five Forces framework can be used to analyze the competitive environment of an industry.
+
+Please provide reasoning based on this question. Do not provide the answer directly.. ""Reasoning Provided"":, return in JSON format","```json
+{
+  ""Reasoning Provided"": {
+    ""Understanding the Framework"": ""Recalling that Porter's Five Forces include Threat of New Entrants, Supplier Power, Buyer Power, Threat of Substitutes, and Industry Rivalry, and that each force must be dissected to evaluate its impact on competition."",
+    ""Analyzing Each Force"": {
+      ""Threat of New Entrants"": ""Considering factors like barriers to entry (e.g., capital, regulations, brand loyalty) and how low barriers increase competitive pressure."",
+      ""Supplier Power"": ""Evaluating supplier concentration, uniqueness of inputs, and switching costs to determine if suppliers can dictate terms or prices."",
+      ""Buyer Power"": ""Assessing buyer concentration, price sensitivity, and availability of alternatives to gauge if buyers can demand lower prices or better terms."",
+      ""Threat of Substitutes"": ""Identifying alternative products/services and their price-performance trade-offs, which could limit an industry's pricing power."",
+      ""Industry Rivalry"": ""Examining factors like market saturation, growth rate, and differentiation to understand the intensity of competition among existing firms.""
+    },
+    ""Interconnections"": ""Recognizing that forces are interdependent; e.g., high buyer power might exacerbate rivalry, or low entry barriers could increase substitute threats."",
+    ""Strategic Implications"": ""Linking the analysis to strategic decisions (e.g., entering/exiting markets, differentiation strategies, supply chain adjustments) based on the collective strength of the forces."",
+    ""Purpose and Limitations"": ""Acknowledging the framework's goal (assessing industry attractiveness/profitability) and its limitations (static analysis, indirect factors like technological change).""
+  }
+}
+```","[""5: Fully integrated all key scenario elements (e.g., student history, learning preferences); output is highly personalized and well-matched to the teaching context."", ""4: Used major scenario elements effectively; response is targeted, possibly overlooks minor details but does not affect overall results."", ""3: Some use of scenario information, but integration is shallow; personalization or contextual fit is average."", ""2: Only surface-level reference to scenario information; did not integrate core elements effectively; weak contextual connection."", ""1: Completely ignored scenario-specific information; output is generic, templated, and irrelevant to the scenario.""]","Scenario: Idea Provision
+Subject: Business Administration
+Education Level: Undergraduate
+Language: en
+Metric Group: Scenario Adaptability",,question_answer_unmatched,,no_score_phrase,0,unclear,unclear,0.2000,review_only
+ef7be96d3b20f985cb175937b67d094d4d204dcc,ffed2f3bb93a32c1cf81521951774f896b3283f4,ffed2f3bb93a32c1cf81521951774f896b3283f4,Scenario Element Integration,en,Biology,2,2.0,2.0,2.0,2.0/2.0/2.0,"Question: Which part of the plant is responsible for photosynthesis?
+A) Roots
+B) Stems
+C) Leaves
+D) Flowers
+
+Please provide reasoning based on this question. Do not provide the answer directly.. ""Reasoning Provided"":, return in JSON format","{
+  ""reasoning"": ""Photosynthesis is the process by which plants convert light energy into chemical energy. It primarily occurs in the chloroplasts of plant cells, which are found predominantly in the leaves. Leaves have a high concentration of chlorophyll, the green pigment that captures light energy, and they contain a large surface area for maximizing light exposure. Roots absorb water and nutrients, stems transport these resources and provide structural support, and flowers are involved in reproductive processes, but none of these parts are directly responsible for the conversion of light into chemical energy.""
+}","[""5: Fully integrated all key scenario elements (e.g., student history, learning preferences); output is highly personalized and well-matched to the teaching context."", ""4: Used major scenario elements effectively; response is targeted, possibly overlooks minor details but does not affect overall results."", ""3: Some use of scenario information, but integration is shallow; personalization or contextual fit is average."", ""2: Only surface-level reference to scenario information; did not integrate core elements effectively; weak contextual connection."", ""1: Completely ignored scenario-specific information; output is generic, templated, and irrelevant to the scenario.""]","Scenario: Idea Provision
+Subject: Biology
+Education Level: Elementary School
+Language: en
+Metric Group: Scenario Adaptability",未明确结合场景要素（如学生背景或偏好），个性化不足。 / 答案没有明确结合场景要素（例如学生的背景或偏好），个性化程度不足。 / 未明确纳入学生背景、学习偏好等场景要素，内容个性化维度欠缺。,metric_rationale_recovered,,no_score_phrase,0,weak_evidence_positive,surface_fluent_but_hidden_defect,0.8500,weak_evidence_positive
+ccdab1ce8e955bdbf2224a22c0f14a10db6718ab,ffed2f3bb93a32c1cf81521951774f896b3283f4,ffed2f3bb93a32c1cf81521951774f896b3283f4,Scenario Element Integration,en,Biology,2,2.0,2.0,2.0,2.0/2.0/2.0,"Question: Which part of the plant is responsible for photosynthesis?
+A) Roots
+B) Stems
+C) Leaves
+D) Flowers
+
+Please provide reasoning based on this question. Do not provide the answer directly.. ""Reasoning Provided"":, return in JSON format","{
+    ""reasoning_provided"": ""Photosynthesis is the process by which plants convert light energy into chemical energy that can later be released to fuel the plant's activities. This process primarily occurs in the leaves of the plant where there are specialized structures called chloroplasts that contain chlorophyll, the pigment responsible for capturing light energy. The roots, stems, and flowers each have their own roles in plant physiology but are not the primary sites for photosynthesis.""
+}","[""5: Fully integrated all key scenario elements (e.g., student history, learning preferences); output is highly personalized and well-matched to the teaching context."", ""4: Used major scenario elements effectively; response is targeted, possibly overlooks minor details but does not affect overall results."", ""3: Some use of scenario information, but integration is shallow; personalization or contextual fit is average."", ""2: Only surface-level reference to scenario information; did not integrate core elements effectively; weak contextual connection."", ""1: Completely ignored scenario-specific information; output is generic, templated, and irrelevant to the scenario.""]","Scenario: Idea Provision
+Subject: Biology
+Education Level: Elementary School
+Language: en
+Metric Group: Scenario Adaptability",未结合场景要素（如学生背景或偏好），个性化不足。 / 答案没有明确结合场景要素（例如学生的背景或偏好），个性化程度不足。 / 缺乏对场景要素（如学生个体特征或需求偏好）的针对性结合，个性化程度不足。,metric_rationale_recovered,,no_score_phrase,0,weak_evidence_positive,surface_fluent_but_hidden_defect,0.8500,weak_evidence_positive
+26347fdbe0a04b7bfbc0e5079be670bb041a82f8,2c3431500658778ea0788f7745c59f0b024746a9,2c3431500658778ea0788f7745c59f0b024746a9,Scenario Element Integration,en,Crop Science,2,3.0,2.0,2.0,3.0/2.0/2.0,"Question: Which of the following factors is most crucial for determining the success of a crop in a particular region?
+A) Soil pH
+B) Seed variety
+C) Irrigation method
+D) Climate conditions
+
+Please provide reasoning based on this question. Do not provide the answer directly.. ""Reasoning Provided"":, return in JSON format","```json
+{
+  ""Reasoning Provided"": {
+    ""Analysis of Options"": {
+      ""A) Soil pH"": {
+        ""Role"": ""Affects nutrient availability and plant health."",
+        ""Adjustability"": ""Can be modified with amendments like lime or sulfur."",
+        ""Limitation"": ""Manageable but secondary if climate is unsuitable.""
+      },
+      ""B) Seed variety"": {
+        ""Role"": ""Determines adaptability, yield, and disease resistance."",
+        ""Dependency"": ""Requires alignment with regional conditions (e.g., drought tolerance)."",
+        ""Limitation"": ""Effectiveness depends on broader environmental factors like climate.""
+      },
+      ""C) Irrigation method"": {
+        ""Role"": ""Influences water efficiency and root health."",
+        ""Control"": ""Human-managed but constrained by water availability (climate-dependent)."",
+        ""Limitation"": ""Less critical in regions with adequate natural rainfall.""
+      },
+      ""D) Climate conditions"": {
+        ""Role"": ""Dictates temperature, rainfall, sunlight, and growing season length."",
+        ""Impact"": ""Sets fundamental limits on crop viability (e.g., tropical vs. temperate crops)."",
+        ""Control"": ""Non-negotiable; farmers must select crops suited to the climate.""
+      }
+    },
+    ""Conclusion"": {
+      ""Key Reasoning"": ""Climate conditions (D) establish the baseline for crop success. While other factors (soil pH, seed variety, irrigation) can be optimized, they are secondary to the unmodifiable constraints imposed by climate. For example, crops requiring specific temperature ranges or rainfall patterns cannot thrive outside those climatic boundaries, regardless of adjustments to other variables.""
+    }
+  }
+}
+```","[""5: Fully integrated all key scenario elements (e.g., student history, learning preferences); output is highly personalized and well-matched to the teaching context."", ""4: Used major scenario elements effectively; response is targeted, possibly overlooks minor details but does not affect overall results."", ""3: Some use of scenario information, but integration is shallow; personalization or contextual fit is average."", ""2: Only surface-level reference to scenario information; did not integrate core elements effectively; weak contextual connection."", ""1: Completely ignored scenario-specific information; output is generic, templated, and irrelevant to the scenario.""]","Scenario: Idea Provision
+Subject: Crop Science
+Education Level: Undergraduate
+Language: en
+Metric Group: Scenario Adaptability",答案没有使用场景特定的信息，也没有结合额外的场景要素。 / 未使用场景相关特定信息，缺乏对场景要素的整合与应用。,metric_rationale_recovered,,no_score_phrase,0,weak_evidence_positive,surface_fluent_but_hidden_defect,0.8500,weak_evidence_positive
+1905d9dcdf2880df39d9d380624436abd892da5a,ffed2f3bb93a32c1cf81521951774f896b3283f4,ffed2f3bb93a32c1cf81521951774f896b3283f4,Scenario Element Integration,en,Biology,2,2.0,2.0,2.0,2.0/2.0/2.0,"Question: Which part of the plant is responsible for photosynthesis?
+A) Roots
+B) Stems
+C) Leaves
+D) Flowers
+
+Please provide reasoning based on this question. Do not provide the answer directly.. ""Reasoning Provided"":, return in JSON format","{
+  ""reasoning"": ""Photosynthesis is a process by which plants, algae, and some bacteria convert light energy into chemical energy. This process primarily requires sunlight, water, and carbon dioxide to produce oxygen and glucose. The location where this transformation takes place in a plant must be exposed to sunlight to effectively carry out the process. Among the options given, one part of the plant is particularly adapted for capturing light and contains chloroplasts, which are essential for photosynthesis. Considering the function and structure of each option - roots, stems, leaves, and flowers - we can deduce which part is best suited for conducting photosynthesis based on its exposure to light and the presence of necessary cellular components.""
+}","[""5: Fully integrated all key scenario elements (e.g., student history, learning preferences); output is highly personalized and well-matched to the teaching context."", ""4: Used major scenario elements effectively; response is targeted, possibly overlooks minor details but does not affect overall results."", ""3: Some use of scenario information, but integration is shallow; personalization or contextual fit is average."", ""2: Only surface-level reference to scenario information; did not integrate core elements effectively; weak contextual connection."", ""1: Completely ignored scenario-specific information; output is generic, templated, and irrelevant to the scenario.""]","Scenario: Idea Provision
+Subject: Biology
+Education Level: Elementary School
+Language: en
+Metric Group: Scenario Adaptability",未结合场景要素（如学生背景或偏好），个性化不足。 / 未参考学生背景、偏好等场景要素，导致个性化内容缺失。 / 未将学生背景、偏好等场景信息融入分析，导致内容普适性强而个性化弱。,metric_rationale_recovered,,no_score_phrase,0,weak_evidence_positive,missing_key_point,0.8500,weak_evidence_positive
+c17a610f41afcb064ec903fbafb4e67c2fafd59e,ffed2f3bb93a32c1cf81521951774f896b3283f4,ffed2f3bb93a32c1cf81521951774f896b3283f4,Scenario Element Integration,en,Biology,2,2.0,2.0,2.0,2.0/2.0/2.0,"Question: Which part of the plant is responsible for photosynthesis?
+A) Roots
+B) Stems
+C) Leaves
+D) Flowers
+
+Please provide reasoning based on this question. Do not provide the answer directly.. ""Reasoning Provided"":, return in JSON format","```json
+{
+  ""Reasoning Provided"": ""To determine which part of the plant is responsible for photosynthesis, we need to understand the process of photosynthesis and the role of different plant structures. Photosynthesis is the process by which plants convert light energy into chemical energy, primarily using carbon dioxide and water. This process requires specialized structures that can capture light efficiently and have the necessary cellular machinery to perform the chemical reactions. Let's analyze each option: A) Roots - Roots are primarily responsible for absorbing water and nutrients from the soil, but they are not exposed to light and lack the structures needed for photosynthesis. B) Stems - While stems can sometimes perform photosynthesis, especially in plants with green stems, their primary role is to support the plant and transport water, nutrients, and food. C) Leaves - Leaves are typically flat and broad, maximizing their surface area to capture sunlight. They contain chloroplasts, the organelles where photosynthesis occurs, making them the primary site for this process. D) Flowers - Flowers are involved in reproduction and are not primarily designed for photosynthesis. Based on these considerations, the part of the plant most specialized for photosynthesis is likely the one that is optimized for light capture and contains chloroplasts.""
+}
+```","[""5: Fully integrated all key scenario elements (e.g., student history, learning preferences); output is highly personalized and well-matched to the teaching context."", ""4: Used major scenario elements effectively; response is targeted, possibly overlooks minor details but does not affect overall results."", ""3: Some use of scenario information, but integration is shallow; personalization or contextual fit is average."", ""2: Only surface-level reference to scenario information; did not integrate core elements effectively; weak contextual connection."", ""1: Completely ignored scenario-specific information; output is generic, templated, and irrelevant to the scenario.""]","Scenario: Idea Provision
+Subject: Biology
+Education Level: Elementary School
+Language: en
+Metric Group: Scenario Adaptability",,question_answer_unmatched,,no_score_phrase,0,unclear,unclear,0.2000,review_only
+3f9f3a828b886a38e49aaea66516138ddb71f9d8,ffed2f3bb93a32c1cf81521951774f896b3283f4,ffed2f3bb93a32c1cf81521951774f896b3283f4,Scenario Element Integration,en,Biology,2,2.0,2.0,2.0,2.0/2.0/2.0,"Question: Which part of the plant is responsible for photosynthesis?
+A) Roots
+B) Stems
+C) Leaves
+D) Flowers
+
+Please provide reasoning based on this question. Do not provide the answer directly.. ""Reasoning Provided"":, return in JSON format","```json
+{
+  ""Reasoning Provided"": {
+    ""Photosynthesis Process"": ""Photosynthesis converts sunlight into energy using chlorophyll, requiring light, carbon dioxide, and water."",
+    ""Roots Function"": ""Roots anchor the plant and absorb water/nutrients but lack chlorophyll and light exposure, ruling out A."",
+    ""Stems Function"": ""Stems transport nutrients and may photosynthesize in some plants (e.g., cacti), but are not the primary site in most plants, making B less likely."",
+    ""Leaves Function"": ""Leaves contain abundant chlorophyll, have structures like stomata for gas exchange, and are adapted for maximizing sunlight absorption, strongly supporting C."",
+    ""Flowers Function"": ""Flowers focus on reproduction, not photosynthesis, eliminating D."",
+    ""Conclusion"": ""While exceptions exist, leaves are the primary photosynthetic organ in most plants.""
+  }
+}
+```","[""5: Fully integrated all key scenario elements (e.g., student history, learning preferences); output is highly personalized and well-matched to the teaching context."", ""4: Used major scenario elements effectively; response is targeted, possibly overlooks minor details but does not affect overall results."", ""3: Some use of scenario information, but integration is shallow; personalization or contextual fit is average."", ""2: Only surface-level reference to scenario information; did not integrate core elements effectively; weak contextual connection."", ""1: Completely ignored scenario-specific information; output is generic, templated, and irrelevant to the scenario.""]","Scenario: Idea Provision
+Subject: Biology
+Education Level: Elementary School
+Language: en
+Metric Group: Scenario Adaptability",,question_answer_unmatched,,no_score_phrase,0,unclear,unclear,0.2000,review_only
+d47f50d9f862f2b3b38b2bce2d879ce46d379e2b,6ae2184d2c28a7dffc1319a61a68cf2584970be2,6ae2184d2c28a7dffc1319a61a68cf2584970be2,Content Relevance & Scope Control,en,General Pedagogy,2,2.0,2.0,2.0,2.0/2.0/2.0,"Knowledge Point: Constructivist Learning Theory
+Based on this knowledge point, provide ""Teaching Materials"": Teaching materials should include teaching objectives, key points and difficulties, classroom activity design, etc., in JSON format.","Here is an example of how you might structure teaching materials based on the constructivist learning theory in JSON format. This example focuses on a high school biology class about plant cell structure.
+
+```json
+{
+  ""Course"": ""Biology"",
+  ""Topic"": ""Plant Cell Structure"",
+  ""GradeLevel"": ""High School"",
+  ""ConstructivistLearningTheory"": true,
+  ""TeachingObjectives"": {
+    ""OverallObjective"": ""Students will be able to understand and explain the unique features of plant cells that differentiate them from animal cells."",
+    ""SpecificObjectives"": [
+      ""Identify and describe the main parts of a plant cell, including chloroplasts, cell wall, and vacuole."",
+      ""Compare and contrast plant and animal cells."",
+      ""Conduct experiments to observe and analyze the functions of different components of a plant cell.""
+    ]
+  },
+  ""KeyPointsAndDifficulties"": {
+    ""KeyPoints"": [
+      ""The presence and function of chloroplasts in photosynthesis."",
+      ""The role of the cell wall in providing structural support and protection."",
+      ""The importance of the large central vacuole for storing water and maintaining cell turgor.""
+    ],
+    ""Difficulties"": [
+      ""Understanding the microscopic level of cellular structures."",
+      ""Differentiating between the various organelles and their specific roles."",
+      ""Applying theoretical knowledge to practical experimental setups.""
+    ]
+  },
+  ""ClassroomActivityDesign"": {
+    ""Introduction"": {
+      ""Activity"": ""Discussion and Brainstorming"",
+      ""Description"": ""Begin with a discussion about what students already know about cells and plants. Encourage brainstorming ideas about why plants have unique structures compared to animals.""
+    },
+    ""MainActivities"": [
+      {
+        ""Activity"": ""Interactive Model Building"",
+        ""Description"": ""Provide students with materials to build physical models of plant cells, emphasizing the placement and function of each part. Discuss as a group after construction.""
+      },
+      {
+        ""Activity"": ""Microscope Observation"",
+        ""Description"": ""Use microscopes to observe actual plant cells. Have students draw and label what they see, focusing on distinguishing features like chloroplasts and the cell wall.""
+      },
+      {
+        ""Activity"": ""Comparative Analysis"",
+        ""Description"": ""Compare observed plant cells with images or slides of animal cells. Facilitate a discussion on the differences and their implications.""
+      }
+    ],
+    ""Conclusion"": {
+      ""Activity"": ""Group Presentation"",
+      ""Description"": ""Divide students into groups and have each present their findings from the day's activities, focusing on the unique aspects of plant cells and their functions.""
+    }
+  }
+}
+```
+
+This JSON object provides a structured approach to teaching plant cell structure using constructivist learning principles, which emphasize active learning, collaboration, and the application of knowledge in real-world contexts.","[""5: Content is highly relevant to the specified topic/theme/question; strictly within required difficulty/scope/discipline without redundant or irrelevant information."", ""4: Overall relevance is high; scope control is good with possibly a small amount of slightly off-topic or mildly overreaching information."", ""3: Mostly relevant, but includes some off-topic or out-of-scope content; scope control needs improvement."", ""2: Poor relevance; includes a significant amount of irrelevant information or is largely outside scope."", ""1: Content is largely irrelevant or completely outside the specified scope.""]","Scenario: Teaching Material Generation
+Subject: General Pedagogy
+Education Level: Undergraduate
+Language: en
+Metric Group: Scenario Adaptability",,question_answer_unmatched,,no_score_phrase,0,unclear,unclear,0.2000,review_only
+0a2cdf9b3f6bdc6f89db168c31be1e2a31b9ba5e,0e09c1d8b75a16ca2c50f1bccf73028ae1d691ea,0e09c1d8b75a16ca2c50f1bccf73028ae1d691ea,Error Identification & Correction Precision,en,Theoretical Economics,2,2.0,2.0,2.0,2.0/2.0/2.0,"Question: Explain the concept of Nash Equilibrium in game theory and provide an example.
+Student's Answer: Nash Equilibrium is a situation in a game where each player's strategy is optimal given the strategies of all other players. No player can benefit by changing their strategy while the other players keep theirs unchanged. An example would be the Prisoner's Dilemma, where both prisoners choose to betray each other although they would receive a better outcome if they both stayed silent.
+Please provide ""Score"", ""Scoring Details"", and ""Personalized Feedback"" based on the question and student's answer, in JSON format.","```json
+{
+  ""Score"": 8,
+  ""Scoring Details"": {
+    ""Correctness"": 2,
+    ""Explanation"": 3,
+    ""ExampleAccuracy"": 1,
+    ""Clarity"": 2
+  },
+  ""PersonalizedFeedback"": [
+    ""The concept of Nash Equilibrium is correctly identified, which is a significant step."",
+    ""However, the explanation could be more detailed. It might help to mention that in a Nash Equilibrium, each player has no incentive to deviate from their chosen strategy, assuming the other players' strategies remain unchanged."",
+    ""The example provided is accurate, but it could be elaborated further. For instance, you could describe the payoff matrix for the Prisoner's Dilemma and explain why the equilibrium occurs at the point where both prisoners betray each other, even though mutual cooperation would yield a better outcome."",
+    ""Your answer is clear enough, but providing more context or additional details would improve its comprehensiveness.""
+  ]
+}
+```","[""5: Precisely identified all errors (no omission or false positives); provided completely correct, clear, and optimal correction suggestions."", ""4: Correctly located most major errors; suggestions are generally accurate and effective with only minor omissions or less-than-perfect advice."", ""3: Identified some errors but with clear omissions or false positives; suggestions are partially correct but may lack clarity, completeness or optimality."", ""2: Inaccurate error detection with critical omissions or many false positives; suggestions contain errors or are hard to comprehend."", ""1: Completely failed to detect errors; provided entirely incorrect or misleading correction advice.""]","Scenario: Automatic Grading
+Subject: Theoretical Economics
+Education Level: Undergraduate
+Language: en
+Metric Group: Factual & Reasoning Accuracy",,question_answer_unmatched,,no_score_phrase,0,unclear,unclear,0.2000,review_only
+107a460ba82cd473b9a08a5d43257a7f1d336874,0e09c1d8b75a16ca2c50f1bccf73028ae1d691ea,0e09c1d8b75a16ca2c50f1bccf73028ae1d691ea,Error Identification & Correction Precision,en,Theoretical Economics,2,2.0,2.0,2.0,2.0/2.0/2.0,"Question: Explain the concept of Nash Equilibrium in game theory and provide an example.
+Student's Answer: Nash Equilibrium is a situation in a game where each player's strategy is optimal given the strategies of all other players. No player can benefit by changing their strategy while the other players keep theirs unchanged. An example would be the Prisoner's Dilemma, where both prisoners choose to betray each other although they would receive a better outcome if they both stayed silent.
+Please provide ""Score"", ""Scoring Details"", and ""Personalized Feedback"" based on the question and student's answer, in JSON format.","```json
+{
+  ""Score"": 8,
+  ""Scoring Details"": {
+    ""Concept Explanation"": 4,
+    ""Example Provided"": 4,
+    ""Clarity and Accuracy"": 0
+  },
+  ""Personalized Feedback"": ""Your explanation of Nash Equilibrium is accurate and concise, capturing the essence of the concept well. The example of the Prisoner's Dilemma is also appropriate and effectively illustrates the idea of Nash Equilibrium. However, the explanation could be slightly improved by mentioning that in Nash Equilibrium, no player has an incentive to deviate unilaterally from their strategy. Additionally, while the example is correct, it might be beneficial to briefly explain why both prisoners choosing to betray each other constitutes a Nash Equilibrium. Overall, good job!""
+}
+```","[""5: Precisely identified all errors (no omission or false positives); provided completely correct, clear, and optimal correction suggestions."", ""4: Correctly located most major errors; suggestions are generally accurate and effective with only minor omissions or less-than-perfect advice."", ""3: Identified some errors but with clear omissions or false positives; suggestions are partially correct but may lack clarity, completeness or optimality."", ""2: Inaccurate error detection with critical omissions or many false positives; suggestions contain errors or are hard to comprehend."", ""1: Completely failed to detect errors; provided entirely incorrect or misleading correction advice.""]","Scenario: Automatic Grading
+Subject: Theoretical Economics
+Education Level: Undergraduate
+Language: en
+Metric Group: Factual & Reasoning Accuracy",错误认为需补充定义，学生已涵盖要点。 / 误判需要补充定义，学生已准确回答要点。 / 错误认为需补充定义，学生答案已涵盖相关要点，反馈与实际内容不符。,metric_rationale_recovered,,no_score_phrase,0,weak_evidence_positive,surface_fluent_but_hidden_defect,0.8500,weak_evidence_positive
+25a37166756d804397ce1540111f9b80f5bd477b,c367d1e3134b022584248f014a7b59640f1df7fb,c367d1e3134b022584248f014a7b59640f1df7fb,Higher-Order Thinking & Skill Development,zh,Clinical Medicine,2,2.0,2.0,2.0,2.0/2.0/2.0,"学生画像：学生的画像：{'姓名': '王小明', '年龄': 21, '年级': '大三', '专业': '临床医学', '学习风格': '偏好视觉学习', '兴趣': '外科手术、病理学', '当前挑战': '在解剖学应用上有困难', '目标': '提高解剖学的实际应用能力'}
+请根据学生画像，为每位学生生成 ‘个性化的学习内容或任务’:,以json格式返回","```json
+{
+  ""学生"": {
+    ""姓名"": ""王小明"",
+    ""年龄"": 21,
+    ""年级"": ""大三"",
+    ""专业"": ""临床医学"",
+    ""个性化学习内容或任务"": [
+      {
+        ""学习风格"": ""偏好视觉学习"",
+        ""内容"": ""观看高质量的解剖学视频教程，包括详细的3D解剖模型动画。"",
+        ""任务"": ""完成每个视频后的在线测验，检验对解剖知识的理解。""
+      },
+      {
+        ""兴趣"": ""外科手术"",
+        ""内容"": ""研究外科手术相关的解剖结构和操作技巧。"",
+        ""任务"": ""参与模拟手术训练，实际操作相关解剖部位。""
+      },
+      {
+        ""兴趣"": ""病理学"",
+        ""内容"": ""了解与解剖学相关的常见病理变化及其影响。"",
+        ""任务"": ""查阅病理学文献，总结并制作解剖学与病理学关联的知识卡片。""
+      },
+      {
+        ""当前挑战"": ""在解剖学应用上有困难"",
+        ""内容"": ""加强实践操作，通过实验室练习提高解剖技能。"",
+        ""任务"": ""每周至少完成一次解剖学实验，记录实验过程和心得。""
+      },
+      {
+        ""目标"": ""提高解剖学的实际应用能力"",
+        ""内容"": ""将解剖学知识应用于临床病例分析中。"",
+        ""任务"": ""选择几个典型病例进行分析，结合解剖学知识提出初步诊断建议。""
+      }
+    ]
+  }
+}
+```","[""5分： 交互或内容设计巧妙，能显著促进学生的批判性思维、创新思维、问题解决或知识迁移应用能力（例如通过开放性问题、对比分析、案例探究、项目式任务等）。"", ""4分： 能提出引导性问题或设计有一定挑战性的任务，对培养学生的高阶思维和能力（如分析、评估、应用）有积极作用。"", ""3分： 在促进高阶思维方面有所尝试（如提出一些简单的思考题），但深度和广度有限，效果不明显，整体仍偏重知识复述或简单应用。"", ""2分： 交互或内容主要停留在基础知识记忆和理解层面，很少或未能涉及需要高阶思维的活动或问题。"", ""1分： 完全忽视高阶思维培养，仅限于死记硬背或简单重复，甚至可能因提供过于简化或固化的答案而阻碍思维发展。""]","Scenario: Personalized Learning Support
+Subject: Clinical Medicine
+Education Level: Undergraduate
+Language: zh
+Metric Group: Pedagogical Application","病例分析任务有一定挑战性，但缺乏系统性高阶能力培养设计。 / 任务集中于信息复现，""提出诊断建议""缺乏临床思维引导设计。 / 任务以“观看、记录、总结”为主，未涉及解剖学知识的临床转化（如“手术方案设计”“并发症预防”），完全忽视批判性思维与问题解决能力培养。",metric_rationale_recovered,,no_score_phrase,0,weak_evidence_positive,surface_fluent_but_hidden_defect,0.8500,weak_evidence_positive
+f5dbe00c4a0fb5c4c818e8c652cdcdec09c3d65a,33f24cdef61905293c51bb59ca561c1f2cef3965,33f24cdef61905293c51bb59ca561c1f2cef3965,"Motivation, Guidance & Positive Feedback",zh,History,2,2.0,2.0,3.0,2.0/2.0/3.0,"问题：请简述第二次世界大战的主要参战国和其领导者。
+原答案：第二次世界大战的主要参战国包括德国的希特勒、美国的罗斯福、法国的拿破仑和苏联的列宁。
+你为学生的回答进行纠错服务.请根据这个问题和原答案给出""纠错后答案""和""纠错说明"":,以json格式返回","```json
+{
+  ""纠错后答案"": {
+    ""主要参战国"": [
+      ""德国"": ""希特勒"",
+      ""意大利"": ""墨索里尼"",
+      ""日本"": ""东条英机"",
+      ""美国"": ""罗斯福"",
+      ""英国"": ""丘吉尔"",
+      ""苏联"": ""斯大林""
+    ]
+  },
+  ""纠错说明"": {
+    ""拿破仑"": ""拿破仑是法国历史上的人物，活跃在19世纪初期，并未参与第二次世界大战。因此，原答案中提到的‘法国的拿破仑’是错误的。"",
+    ""列宁"": ""列宁是俄国革命家，主要活动时期是在20世纪初，他于1924年去世，因此在第二次世界大战期间已经不在世。第二次世界大战中苏联的主要领导者是斯大林，而非列宁。""
+  }
+}
+```","[""5分： 始终体现出强烈的鼓励和支持态度，语言积极、富有建设性；在需要时提供非常有效的启发式引导，而非直接给答案。"", ""4分： 整体体现出鼓励和支持，语言积极正面；能提供有效的引导，偶尔可能过于直接。"", ""3分： 兼具鼓励和中性/批评性语言，积极性一般；引导有时有效，有时直接给答案或引导不足。"", ""2分： 缺乏鼓励和支持，语言偏中性甚至略显负面；很少提供有效引导，倾向于直接给答案或不给帮助。"", ""1分： 语言消极、打击性强，完全没有鼓励；无视引导需求，或提供错误引导。""]","Scenario: Error Correction
+Subject: History
+Education Level: Middle School
+Language: zh
+Metric Group: Pedagogical Application",,question_answer_unmatched,,no_score_phrase,0,unclear,unclear,0.2000,review_only
+630a88341b60ad40afcd43bf6bf3967c515b8803,33f24cdef61905293c51bb59ca561c1f2cef3965,33f24cdef61905293c51bb59ca561c1f2cef3965,"Motivation, Guidance & Positive Feedback",zh,History,2,2.0,2.0,2.0,2.0/2.0/2.0,"问题：请简述第二次世界大战的主要参战国和其领导者。
+原答案：第二次世界大战的主要参战国包括德国的希特勒、美国的罗斯福、法国的拿破仑和苏联的列宁。
+你为学生的回答进行纠错服务.请根据这个问题和原答案给出""纠错后答案""和""纠错说明"":,以json格式返回","```json
+{
+  ""纠错后答案"": ""第二次世界大战的主要参战国包括德国的阿道夫·希特勒、美国的富兰克林·罗斯福、英国的温斯顿·丘吉尔以及苏联的约瑟夫·斯大林。"",
+  ""纠错说明"": {
+    ""法国的拿破仑"": ""拿破仑是19世纪初的人物，与二战无关。正确的应该是提到英国及其领导人温斯顿·丘吉尔，在二战期间他领导了英国对抗轴心国。"",
+    ""苏联的列宁"": ""列宁在1924年就已经去世，而苏联在二战时期的领导人是约瑟夫·斯大林。""
+  }
+}
+```","[""5分： 始终体现出强烈的鼓励和支持态度，语言积极、富有建设性；在需要时提供非常有效的启发式引导，而非直接给答案。"", ""4分： 整体体现出鼓励和支持，语言积极正面；能提供有效的引导，偶尔可能过于直接。"", ""3分： 兼具鼓励和中性/批评性语言，积极性一般；引导有时有效，有时直接给答案或引导不足。"", ""2分： 缺乏鼓励和支持，语言偏中性甚至略显负面；很少提供有效引导，倾向于直接给答案或不给帮助。"", ""1分： 语言消极、打击性强，完全没有鼓励；无视引导需求，或提供错误引导。""]","Scenario: Error Correction
+Subject: History
+Education Level: Middle School
+Language: zh
+Metric Group: Pedagogical Application",仅进行纠错，未体现对学习者的鼓励和支持，未使用积极建设性语言，未引导思考，激励引导不足。 / 未使用积极语言，反馈内容单薄（如“正确的应该是提到英国”），缺乏对历史学习方法的引导（如“对比不同阵营领导人”）。,metric_rationale_recovered,,no_score_phrase,0,weak_evidence_positive,surface_fluent_but_hidden_defect,0.8500,weak_evidence_positive
+63ab64773fb76fbe6cba302eed79041a8316bb7c,33f24cdef61905293c51bb59ca561c1f2cef3965,33f24cdef61905293c51bb59ca561c1f2cef3965,"Motivation, Guidance & Positive Feedback",zh,History,2,2.0,2.0,3.0,2.0/2.0/3.0,"问题：请简述第二次世界大战的主要参战国和其领导者。
+原答案：第二次世界大战的主要参战国包括德国的希特勒、美国的罗斯福、法国的拿破仑和苏联的列宁。
+你为学生的回答进行纠错服务.请根据这个问题和原答案给出""纠错后答案""和""纠错说明"":,以json格式返回","{
+    ""纠错后答案"": ""第二次世界大战的主要参战国包括德国、美国、法国和苏联。其领导者分别是德国的阿道夫·希特勒、美国的富兰克林·罗斯福、法国的夏尔·戴高乐和苏联的约瑟夫·斯大林。"",
+    ""纠错说明"": ""原答案中存在以下错误：1. 拿破仑是19世纪法国皇帝，与二战无关；2. 列宁是苏联的创始人，但他在1924年去世，并未参与二战；3. 法国在二战期间的领导者是夏尔·戴高乐，而非拿破仑；4. 苏联在二战期间的领导者是约瑟夫·斯大林，而非列宁。纠错后的答案准确反映了二战主要参战国及其当时的领导者。""
+}","[""5分： 始终体现出强烈的鼓励和支持态度，语言积极、富有建设性；在需要时提供非常有效的启发式引导，而非直接给答案。"", ""4分： 整体体现出鼓励和支持，语言积极正面；能提供有效的引导，偶尔可能过于直接。"", ""3分： 兼具鼓励和中性/批评性语言，积极性一般；引导有时有效，有时直接给答案或引导不足。"", ""2分： 缺乏鼓励和支持，语言偏中性甚至略显负面；很少提供有效引导，倾向于直接给答案或不给帮助。"", ""1分： 语言消极、打击性强，完全没有鼓励；无视引导需求，或提供错误引导。""]","Scenario: Error Correction
+Subject: History
+Education Level: Middle School
+Language: zh
+Metric Group: Pedagogical Application",答案仅专注于纠错，未体现对学生的鼓励和支持，没有使用积极、建设性的语言，也未引导学生进行深入思考，激励引导方面表现不足。,metric_rationale_recovered,,no_score_phrase,0,weak_evidence_positive,surface_fluent_but_hidden_defect,0.8500,weak_evidence_positive
+f0c923e09065792432b0f588a7eb74ea86409797,33f24cdef61905293c51bb59ca561c1f2cef3965,33f24cdef61905293c51bb59ca561c1f2cef3965,"Motivation, Guidance & Positive Feedback",zh,History,2,2.0,2.0,2.0,2.0/2.0/2.0,"问题：请简述第二次世界大战的主要参战国和其领导者。
+原答案：第二次世界大战的主要参战国包括德国的希特勒、美国的罗斯福、法国的拿破仑和苏联的列宁。
+你为学生的回答进行纠错服务.请根据这个问题和原答案给出""纠错后答案""和""纠错说明"":,以json格式返回","```json
+{
+    ""纠错后答案"": ""第二次世界大战的主要参战国及其领导者包括：德国的阿道夫·希特勒（Adolf Hitler）、美国的富兰克林·罗斯福（Franklin D. Roosevelt）、英国的温斯顿·丘吉尔（Winston Churchill）、苏联的约瑟夫·斯大林（Joseph Stalin）、意大利的贝尼托·墨索里尼（Benito Mussolini）和日本的裕仁天皇（昭和天皇，实际军事决策者为东条英机）。法国在战争初期被德国占领，后分为维希法国（菲利普·贝当）和自由法国（夏尔·戴高乐）两部分。"",
+    ""纠错说明"": {
+        ""原答案错误1"": ""法国领导人拿破仑属于19世纪，与二战无关。纠错后补充维希法国（贝当）和自由法国（戴高乐）。"",
+        ""原答案错误2"": ""苏联领导人列宁于1924年逝世，二战期间苏联领导人为斯大林。"",
+        ""补充遗漏"": ""原答案未提及英国（丘吉尔）、意大利（墨索里尼）、日本（裕仁天皇/东条英机）等关键参战国。"",
+        ""时间线说明"": ""二战发生于1939-1945年，需确保人物与事件时间相符（如罗斯福为美国战时总统，1945年病逝后由杜鲁门接任）。""
+    }
+}
+```","[""5分： 始终体现出强烈的鼓励和支持态度，语言积极、富有建设性；在需要时提供非常有效的启发式引导，而非直接给答案。"", ""4分： 整体体现出鼓励和支持，语言积极正面；能提供有效的引导，偶尔可能过于直接。"", ""3分： 兼具鼓励和中性/批评性语言，积极性一般；引导有时有效，有时直接给答案或引导不足。"", ""2分： 缺乏鼓励和支持，语言偏中性甚至略显负面；很少提供有效引导，倾向于直接给答案或不给帮助。"", ""1分： 语言消极、打击性强，完全没有鼓励；无视引导需求，或提供错误引导。""]","Scenario: Error Correction
+Subject: History
+Education Level: Middle School
+Language: zh
+Metric Group: Pedagogical Application",主要完成纠错任务，未体现对学习者的鼓励和支持，未使用积极建设性语言，未引导深入思考，激励引导方面不足。 / 反馈仅完成错误修正功能，缺少学习激励元素，未采用建设性表达方式，缺乏思维拓展引导，正向引导效果欠佳。,metric_rationale_recovered,,no_score_phrase,0,weak_evidence_positive,missing_key_point,0.8500,weak_evidence_positive
+a5b40ba0a800e6ec0da88e7d0591d092caa41ae1,fdcc493923c6536e26519ec07f9693ca405da624,fdcc493923c6536e26519ec07f9693ca405da624,"Motivation, Guidance & Positive Feedback",zh,English,2,2.0,2.0,3.0,2.0/2.0/3.0,"问题：What is the past tense of the verb 'run'?
+原答案：The past tense of 'run' is 'runned'.
+你为学生的回答进行纠错服务.请根据这个问题和原答案给出""纠错后答案""和""纠错说明"":,以json格式返回","```json
+{
+  ""纠错后答案"": ""The past tense of 'run' is 'ran'."",
+  ""纠错说明"": ""原答案错误地将 'run' 的过去式拼写为 'runned'，正确的拼写是 'ran'。""
+}
+```","[""5分： 始终体现出强烈的鼓励和支持态度，语言积极、富有建设性；在需要时提供非常有效的启发式引导，而非直接给答案。"", ""4分： 整体体现出鼓励和支持，语言积极正面；能提供有效的引导，偶尔可能过于直接。"", ""3分： 兼具鼓励和中性/批评性语言，积极性一般；引导有时有效，有时直接给答案或引导不足。"", ""2分： 缺乏鼓励和支持，语言偏中性甚至略显负面；很少提供有效引导，倾向于直接给答案或不给帮助。"", ""1分： 语言消极、打击性强，完全没有鼓励；无视引导需求，或提供错误引导。""]","Scenario: Error Correction
+Subject: English
+Education Level: Elementary School
+Language: zh
+Metric Group: Pedagogical Application","使用否定词""错误地""，缺乏建设性指导（如建议学习方法）。 / 完全缺失正向引导，建议改为""你的尝试体现了对规则动词的理解，接下来我们重点突破不规则动词""。",metric_rationale_recovered,,no_score_phrase,0,weak_evidence_positive,missing_key_point,0.8500,weak_evidence_positive
+08554936f4982f9a49b0ecb237ab00fa29370010,0a3152b6a40fc98b07a15855ba40ec0882507e78,0a3152b6a40fc98b07a15855ba40ec0882507e78,Error Identification & Correction Precision,zh,History,2,2.0,2.0,2.0,2.0/2.0/2.0,"问题：在研究中世纪封建制度发展的过程中，下列哪些因素对其演变起到了关键作用？（可选择多个）
+A. 农奴制
+B. 城市化进程
+C. 十字军东征
+D. 文艺复兴
+E. 黑死病的流行
+F. 军事科技的进步
+学生的答案：['A', 'C', 'E', 'F']
+请根据问题和学生答案给出""评分"":""评分细节"":""个性化反馈"":,以json格式返回","```json
+{
+  ""评分"": 3,
+  ""评分细节"": {
+    ""正确答案"": [""A"", ""C"", ""E"", ""F""],
+    ""学生答案"": [""A"", ""C"", ""E"", ""F""],
+    ""未选中但正确的选项"": [],
+    ""错误选中的选项"": []
+  },
+  ""个性化反馈"": [
+    ""你的答案是正确的。农奴制、十字军东征、黑死病的流行以及军事科技的进步确实对中世纪封建制度的发展产生了重要影响。""
+  ]
+}
+```","[""5分： 精准定位所有错误（无遗漏、无误报），给出的纠正建议完全正确、清晰且是最优或非常好的方案。"", ""4分： 准确定位了大部分主要错误，纠正建议基本正确有效，可能遗漏极少数次要错误或建议不够完美。"", ""3分： 定位了部分错误但有明显遗漏或误报，纠正建议部分正确但可能不够清晰、完整或并非最佳方案。"", ""2分： 错误定位不准确，遗漏了关键错误或大量误报，纠正建议存在错误或难以理解。"", ""1分： 完全未能识别错误，或给出了完全错误的纠正建议，起到了误导作用。""]","Scenario: Automatic Grading
+Subject: History
+Education Level: PhD
+Language: zh
+Metric Group: Factual & Reasoning Accuracy","未充分利用""未选中但正确""字段，导致错失深入分析B/D选项错误根源的重要机会。 / 空置""未选中但正确""字段，错失分析B/D选项错误原因的机会。 / 未识别任何错误（包括可能存在的F误选），纠正建议功能失效。",metric_rationale_recovered,,no_score_phrase,0,format_auxiliary,format_violation,0.9000,format_auxiliary
+90ed1a72c758f575b39f863d5ac03313ac9b197e,04c137c5aec1fd5e3fc9bc4897bc62409a8e32e7,04c137c5aec1fd5e3fc9bc4897bc62409a8e32e7,Error Identification & Correction Precision,zh,Computer Science,1,1.0,1.0,1.0,1.0/1.0/1.0,"问题：在分布式系统中，一致性模型的重要性是什么？以下哪个选项最好地描述了它的作用？
+
+A) 提高系统的吞吐量
+B) 确保所有节点之间的数据保持一致
+C) 降低系统的响应时间
+D) 提高系统的可扩展性
+学生的答案：B) 确保所有节点之间的数据保持一致
+请根据问题和学生答案给出""评分"":""评分细节"":""个性化反馈"":,以json格式返回","```json
+{
+  ""评分"": 1,
+  ""评分细节"": {
+    ""正确答案"": ""B) 确保所有节点之间的数据保持一致"",
+    ""解释"": ""在分布式系统中，一致性模型的重要性在于确保所有节点之间的数据保持一致。这是分布式系统设计中的关键问题之一，因为分布式系统中的各个节点可能会独立地处理数据，并且需要保证这些数据的一致性。例如，CAP定理中的“一致性”（Consistency）就是指在分布式系统中，所有的读操作都能看到写操作的结果，即数据的一致性。""
+  },
+  ""个性化反馈"": {
+    ""积极反馈"": ""你的选择是正确的。确保所有节点之间的数据保持一致是分布式系统设计中的一个重要目标。"",
+    ""改进建议"": ""除此之外，你还可以了解一下一致性模型在提高系统性能、可扩展性和吞吐量方面的作用，这些都是分布式系统设计中需要考虑的因素。但在这个问题中，确保数据一致性是最直接的答案。""
+  }
+}
+```","[""5分： 精准定位所有错误（无遗漏、无误报），给出的纠正建议完全正确、清晰且是最优或非常好的方案。"", ""4分： 准确定位了大部分主要错误，纠正建议基本正确有效，可能遗漏极少数次要错误或建议不够完美。"", ""3分： 定位了部分错误但有明显遗漏或误报，纠正建议部分正确但可能不够清晰、完整或并非最佳方案。"", ""2分： 错误定位不准确，遗漏了关键错误或大量误报，纠正建议存在错误或难以理解。"", ""1分： 完全未能识别错误，或给出了完全错误的纠正建议，起到了误导作用。""]","Scenario: Automatic Grading
+Subject: Computer Science
+Education Level: Master
+Language: zh
+Metric Group: Factual & Reasoning Accuracy","评分""1""与反馈内容存在逻辑冲突。 / 严重逻辑矛盾：判定内容正确却标注1分（通常1分对应完全错误），可能造成评分认知混乱。需统一采用布尔值或百分制，避免混合使用。 / 完全误判学生答案的正确性，将正确回答标记为错误，存在 “漏报正确答案” 和 “误报错误” 的双重错误。纠正建议（如 “了解一致性模型在性能中的作用”）与学生实际错误无关，精确性完全丧失。",metric_rationale_recovered,1分,consistent_with_recovered_score_or_10pt_mapping,0,weak_evidence_positive,surface_fluent_but_hidden_defect,0.8500,weak_evidence_positive
+1d5f77fabc222d72e4fb87f25eb3e5c41e786cf4,85398269c1c07a9498c3eae4b08315e4db78a74e,85398269c1c07a9498c3eae4b08315e4db78a74e,Error Identification & Correction Precision,zh,General Pedagogy,1,1.0,1.0,1.0,1.0/1.0/1.0,"问题：在教育学中，哪个教学方法最强调学生的主动参与？
+学生的答案：合作学习法
+请根据问题和学生答案给出""评分"":""评分细节"":""个性化反馈"":,以json格式返回","```json
+{
+  ""评分"": ""部分正确"",
+  ""评分细节"": ""合作学习法确实强调学生的主动参与，但它并不是唯一强调学生主动参与的教学方法。其他方法如项目式学习、探究式学习等也强调学生的主动参与。"",
+  ""个性化反馈"": ""你的答案部分正确。合作学习法确实强调学生的主动参与，这是一个很好的选择。然而，还有其他教学方法如项目式学习和探究式学习也强调学生的主动参与。你可以考虑这些方法，以便更全面地理解教育学中强调学生主动参与的各种教学策略。继续加油！""
+}
+```","[""5分： 精准定位所有错误（无遗漏、无误报），给出的纠正建议完全正确、清晰且是最优或非常好的方案。"", ""4分： 准确定位了大部分主要错误，纠正建议基本正确有效，可能遗漏极少数次要错误或建议不够完美。"", ""3分： 定位了部分错误但有明显遗漏或误报，纠正建议部分正确但可能不够清晰、完整或并非最佳方案。"", ""2分： 错误定位不准确，遗漏了关键错误或大量误报，纠正建议存在错误或难以理解。"", ""1分： 完全未能识别错误，或给出了完全错误的纠正建议，起到了误导作用。""]","Scenario: Automatic Grading
+Subject: General Pedagogy
+Education Level: Undergraduate
+Language: zh
+Metric Group: Factual & Reasoning Accuracy",没有纠错场景。 / 未设置错误纠正环节。,metric_rationale_recovered,,no_score_phrase,0,weak_evidence_positive,surface_fluent_but_hidden_defect,0.8500,weak_evidence_positive
+18551ba0c6e7b3ad2bd30333ae0aad09b79b9c98,80b4f169dced8f900b4d6467567222045b1c13a3,80b4f169dced8f900b4d6467567222045b1c13a3,Basic Factual Accuracy,zh,Mathematics,2,2.0,2.0,2.0,2.0/2.0/2.0,"问题：选择以下具有微分同胚性质的函数类别：（可多选）
+A. 二次多项式函数
+B. 余弦函数
+C. 指数函数
+D. 常数函数
+E. 三次多项式函数
+学生的答案：['C', 'E']
+请根据问题和学生答案给出""评分"":""评分细节"":""个性化反馈"":,以json格式返回","```json
+{
+    ""评分"": ""部分正确"",
+    ""评分细节"": {
+        ""C"": ""正确"",
+        ""E"": ""正确"",
+        ""A"": ""未选择"",
+        ""B"": ""未选择"",
+        ""D"": ""未选择""
+    },
+    ""个性化反馈"": ""你的答案中选择了指数函数（C）和三次多项式函数（E），这两个函数确实具有微分同胚性质，这是正确的。然而，你忽略了二次多项式函数（A）和常数函数（D），它们也是具有微分同胚性质的函数。余弦函数（B）在某些区间内可能不具有微分同胚性质，因此不选择它是正确的。建议你复习一下微分同胚的定义和相关函数的性质，以便更全面地理解这一概念。""
+}
+```","[""5分： 所有涉及的客观事实（定义、公式、日期、名词、代码语法等）完全准确无误。"", ""4分： 绝大部分事实准确，可能存在个别极其微小的、非关键性的笔误或疏漏。"", ""3分： 大部分事实准确，但存在少量明显的事实错误，需要核查。"", ""2分： 包含较多或关键性的事实错误，信息不可靠。"", ""1分： 充斥着大量事实错误，信息完全错误或误导。""]","Scenario: Automatic Grading
+Subject: Mathematics
+Education Level: PhD
+Language: zh
+Metric Group: Factual & Reasoning Accuracy",存在严重事实错误：二次多项式函数（如f(x)=x²）导数为0处不可逆，常数函数不是双射，均不符合微分同胚定义。错误引导会影响学生认知。 / 严重事实错误：二次函数非单射，常数函数非满射，均不满足微分同胚条件。 / 核心判断错误：二次多项式（A）非单射、常数函数（D）非单射，均不满足微分同胚条件，答案却认为其正确，存在关键性事实错误。,metric_rationale_recovered,,no_score_phrase,0,answer_key_dependent,answer_key_or_reference_mismatch,0.7500,pairwise_low
+17e0ba51820c815389e5f672d6bed2ca748a8775,80b4f169dced8f900b4d6467567222045b1c13a3,80b4f169dced8f900b4d6467567222045b1c13a3,Error Identification & Correction Precision,zh,Mathematics,2,2.0,2.0,1.0,2.0/2.0/1.0,"问题：选择以下具有微分同胚性质的函数类别：（可多选）
+A. 二次多项式函数
+B. 余弦函数
+C. 指数函数
+D. 常数函数
+E. 三次多项式函数
+学生的答案：['C', 'E']
+请根据问题和学生答案给出""评分"":""评分细节"":""个性化反馈"":,以json格式返回","```json
+{
+    ""评分"": ""部分正确"",
+    ""评分细节"": {
+        ""C"": ""正确"",
+        ""E"": ""正确"",
+        ""A"": ""未选择"",
+        ""B"": ""未选择"",
+        ""D"": ""未选择""
+    },
+    ""个性化反馈"": ""你的答案中选择了指数函数（C）和三次多项式函数（E），这两个函数确实具有微分同胚性质，这是正确的。然而，你忽略了二次多项式函数（A）和常数函数（D），它们也是具有微分同胚性质的函数。余弦函数（B）在某些区间内可能不具有微分同胚性质，因此不选择它是正确的。建议你复习一下微分同胚的定义和相关函数的性质，以便更全面地理解这一概念。""
+}
+```","[""5分： 精准定位所有错误（无遗漏、无误报），给出的纠正建议完全正确、清晰且是最优或非常好的方案。"", ""4分： 准确定位了大部分主要错误，纠正建议基本正确有效，可能遗漏极少数次要错误或建议不够完美。"", ""3分： 定位了部分错误但有明显遗漏或误报，纠正建议部分正确但可能不够清晰、完整或并非最佳方案。"", ""2分： 错误定位不准确，遗漏了关键错误或大量误报，纠正建议存在错误或难以理解。"", ""1分： 完全未能识别错误，或给出了完全错误的纠正建议，起到了误导作用。""]","Scenario: Automatic Grading
+Subject: Mathematics
+Education Level: PhD
+Language: zh
+Metric Group: Factual & Reasoning Accuracy","错误标记A/D为正确答案，未能准确定位学生真实错误。纠正建议与事实不符，可能产生误导。 / 错误指导学生复习错误内容，可能强化""抛物线是微分同胚""的错误认知。",metric_rationale_recovered,,no_score_phrase,0,weak_evidence_positive,surface_fluent_but_hidden_defect,0.8500,weak_evidence_positive
+994d4e155a8f105839639aba605151175ef4de88,0a3152b6a40fc98b07a15855ba40ec0882507e78,0a3152b6a40fc98b07a15855ba40ec0882507e78,Error Identification & Correction Precision,zh,History,1,1.0,1.0,1.0,1.0/1.0/1.0,"问题：在研究中世纪封建制度发展的过程中，下列哪些因素对其演变起到了关键作用？（可选择多个）
+A. 农奴制
+B. 城市化进程
+C. 十字军东征
+D. 文艺复兴
+E. 黑死病的流行
+F. 军事科技的进步
+学生的答案：['A', 'C', 'E', 'F']
+请根据问题和学生答案给出""评分"":""评分细节"":""个性化反馈"":,以json格式返回","```json
+{
+  ""评分"": 3,
+  ""评分细节"": ""学生正确选择了四个因素中的三个，但漏掉了对城市化进程的影响。"",
+  ""个性化反馈"": ""您的回答非常接近完全正确。您准确地指出了农奴制、十字军东征、黑死病的流行以及军事科技的进步对中世纪封建制度演变的关键影响。然而，城市化进程同样是一个重要的因素，它促进了经济和社会结构的变化，进一步削弱了封建制度的基础。希望您能更加全面地考虑各个因素的影响。""
+}
+```","[""5分： 精准定位所有错误（无遗漏、无误报），给出的纠正建议完全正确、清晰且是最优或非常好的方案。"", ""4分： 准确定位了大部分主要错误，纠正建议基本正确有效，可能遗漏极少数次要错误或建议不够完美。"", ""3分： 定位了部分错误但有明显遗漏或误报，纠正建议部分正确但可能不够清晰、完整或并非最佳方案。"", ""2分： 错误定位不准确，遗漏了关键错误或大量误报，纠正建议存在错误或难以理解。"", ""1分： 完全未能识别错误，或给出了完全错误的纠正建议，起到了误导作用。""]","Scenario: Automatic Grading
+Subject: History
+Education Level: PhD
+Language: zh
+Metric Group: Factual & Reasoning Accuracy",,question_answer_unmatched,,no_score_phrase,0,unclear,unclear,0.2000,review_only
+c0d4f41ccf2066449887e86887cb7b8903269b2a,80b4f169dced8f900b4d6467567222045b1c13a3,80b4f169dced8f900b4d6467567222045b1c13a3,Content Relevance & Scope Control,zh,Mathematics,2,2.0,2.0,2.0,2.0/2.0/2.0,"问题：选择以下具有微分同胚性质的函数类别：（可多选）
+A. 二次多项式函数
+B. 余弦函数
+C. 指数函数
+D. 常数函数
+E. 三次多项式函数
+学生的答案：['C', 'E']
+请根据问题和学生答案给出""评分"":""评分细节"":""个性化反馈"":,以json格式返回","```json
+{
+  ""评分"": 1,
+  ""评分细节"": {
+    ""正确选项"": [""B"", ""E""],
+    ""学生选择"": [""C"", ""E""]
+  },
+  ""个性化反馈"": [
+    ""你的选择中包括了指数函数，这是一个正确的选项。但是，你没有选择余弦函数，这也是一个具有微分同胚性质的函数类别。余弦函数在某些区间内是微分同胚的，而三次多项式函数通常不具备这种性质。建议你进一步了解不同函数类别的微分同胚特性。""
+  ]
+}
+```","[""5分： 内容与指定知识点/主题/问题高度相关，且严格控制在要求的难度、范围、学科内，无冗余或无关信息。"", ""4分： 内容主体相关，范围控制良好，可能包含极少量轻微超纲或关联度稍弱的信息。"", ""3分： 内容大部分相关，但包含一些偏离主题或超出范围的部分，范围控制不够精确。"", ""2分： 内容相关性较差，包含较多无关信息，或严重超出指定范围。"", ""1分： 内容基本不相关，或完全脱离指定范围。""]","Scenario: Automatic Grading
+Subject: Mathematics
+Education Level: PhD
+Language: zh
+Metric Group: Scenario Adaptability",错误判定余弦函数（B）为正确选项，混淆局部微分同胚（如限制定义域）与整体性质。建议内容偏离微分同胚核心判定标准。 / 严重超纲：将余弦函数视为同胚，忽略其周期性和非单射特性。 / 核心判断错误（B为正确选项），内容偏离微分同胚定义，引入无关讨论（余弦函数区间限定），范围控制完全失效。,metric_rationale_recovered,,no_score_phrase,0,weak_evidence_positive,surface_fluent_but_hidden_defect,0.8500,weak_evidence_positive
+34d1c2d12a4242a8a26ed4f998ae1f08b3210cdf,80b4f169dced8f900b4d6467567222045b1c13a3,80b4f169dced8f900b4d6467567222045b1c13a3,Basic Factual Accuracy,zh,Mathematics,1,2.0,1.0,1.0,2.0/1.0/1.0,"问题：选择以下具有微分同胚性质的函数类别：（可多选）
+A. 二次多项式函数
+B. 余弦函数
+C. 指数函数
+D. 常数函数
+E. 三次多项式函数
+学生的答案：['C', 'E']
+请根据问题和学生答案给出""评分"":""评分细节"":""个性化反馈"":,以json格式返回","```json
+{
+  ""评分"": 1,
+  ""评分细节"": {
+    ""正确选项"": [""B"", ""E""],
+    ""学生选择"": [""C"", ""E""]
+  },
+  ""个性化反馈"": [
+    ""你的选择中包括了指数函数，这是一个正确的选项。但是，你没有选择余弦函数，这也是一个具有微分同胚性质的函数类别。余弦函数在某些区间内是微分同胚的，而三次多项式函数通常不具备这种性质。建议你进一步了解不同函数类别的微分同胚特性。""
+  ]
+}
+```","[""5分： 所有涉及的客观事实（定义、公式、日期、名词、代码语法等）完全准确无误。"", ""4分： 绝大部分事实准确，可能存在个别极其微小的、非关键性的笔误或疏漏。"", ""3分： 大部分事实准确，但存在少量明显的事实错误，需要核查。"", ""2分： 包含较多或关键性的事实错误，信息不可靠。"", ""1分： 充斥着大量事实错误，信息完全错误或误导。""]","Scenario: Automatic Grading
+Subject: Mathematics
+Education Level: PhD
+Language: zh
+Metric Group: Factual & Reasoning Accuracy",双重错误：误判B正确且E错误，与微分同胚理论完全相悖。 / 错误认为余弦函数（B）具有微分同胚性质（周期函数非单射），且否定指数函数（C）的正确性，存在双重事实错误，信息不可靠。,metric_rationale_recovered,,no_score_phrase,0,answer_key_dependent,answer_key_or_reference_mismatch,0.7500,pairwise_low
+1bd5e1ce094da34aea6531591c2674bd221634b6,80b4f169dced8f900b4d6467567222045b1c13a3,80b4f169dced8f900b4d6467567222045b1c13a3,Reasoning Process Rigor,zh,Mathematics,2,2.0,2.0,1.0,2.0/2.0/1.0,"问题：选择以下具有微分同胚性质的函数类别：（可多选）
+A. 二次多项式函数
+B. 余弦函数
+C. 指数函数
+D. 常数函数
+E. 三次多项式函数
+学生的答案：['C', 'E']
+请根据问题和学生答案给出""评分"":""评分细节"":""个性化反馈"":,以json格式返回","```json
+{
+  ""评分"": 1,
+  ""评分细节"": {
+    ""正确选项"": [""B"", ""E""],
+    ""学生选择"": [""C"", ""E""]
+  },
+  ""个性化反馈"": [
+    ""你的选择中包括了指数函数，这是一个正确的选项。但是，你没有选择余弦函数，这也是一个具有微分同胚性质的函数类别。余弦函数在某些区间内是微分同胚的，而三次多项式函数通常不具备这种性质。建议你进一步了解不同函数类别的微分同胚特性。""
+  ]
+}
+```","[""5分： 推理逻辑链条完整、清晰、严密，步骤正确无误，论证充分有力，无逻辑跳跃或漏洞。"", ""4分： 推理过程主体正确且逻辑清晰，可能在个别步骤的表述或论证细节上略有瑕疵，但不影响最终结论的有效性。"", ""3分： 推理过程大体可见，但存在一些逻辑不清、步骤缺失或论证不足之处，结论可能受到影响。"", ""2分： 推理过程存在明显的逻辑错误、步骤混乱或严重缺失，难以得出正确或可靠的结论。"", ""1分： 几乎没有有效的推理过程，逻辑混乱，步骤完全错误或不相关。""]","Scenario: Automatic Grading
+Subject: Mathematics
+Education Level: PhD
+Language: zh
+Metric Group: Factual & Reasoning Accuracy","未建立有效论证逻辑，错误结论缺乏数学推导支撑。如""三次多项式通常不具备性质""的表述未说明判定依据。 / 未建立余弦函数在受限区间才构成局部同胚的关键论证。",metric_rationale_recovered,,no_score_phrase,0,weak_evidence_positive,insufficient_evidence,0.8500,weak_evidence_positive
+0c74a66a6f9ecee5580723b73f7741a8f05e1352,80b4f169dced8f900b4d6467567222045b1c13a3,80b4f169dced8f900b4d6467567222045b1c13a3,Error Identification & Correction Precision,zh,Mathematics,1,2.0,1.0,1.0,2.0/1.0/1.0,"问题：选择以下具有微分同胚性质的函数类别：（可多选）
+A. 二次多项式函数
+B. 余弦函数
+C. 指数函数
+D. 常数函数
+E. 三次多项式函数
+学生的答案：['C', 'E']
+请根据问题和学生答案给出""评分"":""评分细节"":""个性化反馈"":,以json格式返回","```json
+{
+  ""评分"": 1,
+  ""评分细节"": {
+    ""正确选项"": [""B"", ""E""],
+    ""学生选择"": [""C"", ""E""]
+  },
+  ""个性化反馈"": [
+    ""你的选择中包括了指数函数，这是一个正确的选项。但是，你没有选择余弦函数，这也是一个具有微分同胚性质的函数类别。余弦函数在某些区间内是微分同胚的，而三次多项式函数通常不具备这种性质。建议你进一步了解不同函数类别的微分同胚特性。""
+  ]
+}
+```","[""5分： 精准定位所有错误（无遗漏、无误报），给出的纠正建议完全正确、清晰且是最优或非常好的方案。"", ""4分： 准确定位了大部分主要错误，纠正建议基本正确有效，可能遗漏极少数次要错误或建议不够完美。"", ""3分： 定位了部分错误但有明显遗漏或误报，纠正建议部分正确但可能不够清晰、完整或并非最佳方案。"", ""2分： 错误定位不准确，遗漏了关键错误或大量误报，纠正建议存在错误或难以理解。"", ""1分： 完全未能识别错误，或给出了完全错误的纠正建议，起到了误导作用。""]","Scenario: Automatic Grading
+Subject: Mathematics
+Education Level: PhD
+Language: zh
+Metric Group: Factual & Reasoning Accuracy",完全颠倒正确选项判断，产生严重误导。 / 未识别自身对B、C的误判，反而纠正学生“未选B”，完全误导；对E的判断（“通常不具备”）与事实不符（特定三次多项式可满足），错误定位与纠正双重失败。,metric_rationale_recovered,,no_score_phrase,0,weak_evidence_positive,surface_fluent_but_hidden_defect,0.8500,weak_evidence_positive
+f33e86ba6eaa5281c801dea1ed174135a7d4c0da,ce9b05f8b8c3c09bfac56ea4f5f177bac9474ddb,ce9b05f8b8c3c09bfac56ea4f5f177bac9474ddb,Basic Factual Accuracy,zh,Basic Medicine,2,2.0,2.0,2.0,2.0/2.0/2.0,"问题：在神经生理学中，动作电位的过程中不包括以下哪一个步骤？
+A) 去极化
+B) 再极化
+C) 超极化
+D) 钙离子流入细胞
+学生的答案：C) 超极化
+请根据问题和学生答案给出""评分"":""评分细节"":""个性化反馈"":,以json格式返回","{
+    ""评分"": ""错误"",
+    ""评分细节"": ""学生的答案选择了C) 超极化，这是不正确的。在动作电位的过程中，超极化是一个关键步骤，它发生在再极化之后，使膜电位低于静息电位。"",
+    ""个性化反馈"": ""感谢你的回答！在动作电位的过程中，确实包括去极化、再极化和超极化等步骤。然而，你选择的C) 超极化实际上是动作电位的一个组成部分。正确的答案应该是D) 钙离子流入细胞，因为钙离子的流入并不是动作电位的直接步骤，而是与神经递质释放等后续过程相关。建议你复习动作电位的各个阶段，特别是超极化的作用。继续加油！""
+}","[""5分： 所有涉及的客观事实（定义、公式、日期、名词、代码语法等）完全准确无误。"", ""4分： 绝大部分事实准确，可能存在个别极其微小的、非关键性的笔误或疏漏。"", ""3分： 大部分事实准确，但存在少量明显的事实错误，需要核查。"", ""2分： 包含较多或关键性的事实错误，信息不可靠。"", ""1分： 充斥着大量事实错误，信息完全错误或误导。""]","Scenario: Automatic Grading
+Subject: Basic Medicine
+Education Level: Master
+Language: zh
+Metric Group: Factual & Reasoning Accuracy","学生认为 “超极化” 不属于动作电位步骤，与事实不符（超极化是动作电位后阶段）。评分细节中明确 “超极化是关键步骤”，指出学生事实性错误。 / 错误陈述""超极化是动作电位的关键步骤""（实际超极化属于后电位，非动作电位主阶段），关键事实存在严重错误。 / 错误陈述""超极化是动作电位关键步骤""（实际属于后电位阶段，非动作电位核心过程），核心概念存在重大偏差。",metric_rationale_recovered,,no_score_phrase,0,weak_evidence_positive,surface_fluent_but_hidden_defect,0.8500,weak_evidence_positive
+1c013ab584f1c5a49f0e03d8517d29eb909322be,ce9b05f8b8c3c09bfac56ea4f5f177bac9474ddb,ce9b05f8b8c3c09bfac56ea4f5f177bac9474ddb,Error Identification & Correction Precision,zh,Basic Medicine,1,1.0,1.0,1.0,1.0/1.0/1.0,"问题：在神经生理学中，动作电位的过程中不包括以下哪一个步骤？
+A) 去极化
+B) 再极化
+C) 超极化
+D) 钙离子流入细胞
+学生的答案：C) 超极化
+请根据问题和学生答案给出""评分"":""评分细节"":""个性化反馈"":,以json格式返回","```json
+{
+  ""评分"": ""正确"",
+  ""评分细节"": ""学生选择了C) 超极化，这是正确的。在动作电位的过程中，确实不包括超极化作为其直接步骤。动作电位主要包括去极化、达到阈值后钠离子快速内流导致的动作电位上升相、随后的再极化过程（钾离子外流），以及之后的恢复期。钙离子流入细胞虽然不是所有神经元动作电位的一部分，但在某些特定类型的神经信号传导中扮演重要角色，比如突触传递时。但是，根据题目给定的选项来看，'钙离子流入细胞'更常被提及于突触传递而非动作电位本身的过程描述中，因此本题的最佳答案是C) 超极化。"",
+  ""个性化反馈"": ""你的理解非常准确！记住，在神经元的动作电位过程中，我们主要关注的是膜电位从静息状态到去极化再到复极化的转变。超极化通常是与抑制性突触后电位相关的现象，而不是动作电位的标准组成部分。继续加油，你对这一领域的掌握看起来很好！""
+}
+```","[""5分： 精准定位所有错误（无遗漏、无误报），给出的纠正建议完全正确、清晰且是最优或非常好的方案。"", ""4分： 准确定位了大部分主要错误，纠正建议基本正确有效，可能遗漏极少数次要错误或建议不够完美。"", ""3分： 定位了部分错误但有明显遗漏或误报，纠正建议部分正确但可能不够清晰、完整或并非最佳方案。"", ""2分： 错误定位不准确，遗漏了关键错误或大量误报，纠正建议存在错误或难以理解。"", ""1分： 完全未能识别错误，或给出了完全错误的纠正建议，起到了误导作用。""]","Scenario: Automatic Grading
+Subject: Basic Medicine
+Education Level: Master
+Language: zh
+Metric Group: Factual & Reasoning Accuracy",完全错误：将正确答案判为错误，错误答案判为正确。 / 问题不涉及纠错场景，按规则强制评分。答案未涉及相关内容，符合低分标准。 / 完全未能识别学生误选C的错误，反而肯定其答案，存在严重误报，纠正建议误导性强。,metric_rationale_recovered,,no_score_phrase,0,weak_evidence_positive,surface_fluent_but_hidden_defect,0.8500,weak_evidence_positive
+3fdc81f613bf237c32a80d3fb798df97d4a1a3ab,2315014220e7c1c5fbc4751aea0a196884f3ace8,2315014220e7c1c5fbc4751aea0a196884f3ace8,Instruction Following & Task Completion,zh,Theoretical Economics,2,3.0,2.0,2.0,3.0/2.0/2.0,"问题：解释“需求弹性”的概念及其在经济学中的重要性。
+学生的答案：需求弹性是指需求量对价格变化的反应程度。在经济学中，它很重要，因为它帮助企业了解价格变动对销售额的影响，也帮助政府制定税收政策。
+请根据问题和学生答案给出""评分"":""评分细节"":""个性化反馈"":,以json格式返回","```json
+{
+  ""评分"": 75,
+  ""评分细节"": {
+    ""定义准确性"": 80,
+    ""重要性阐述"": 70
+  },
+  ""个性化反馈"": ""你的回答准确地捕捉到了需求弹性的核心概念，即需求量对价格变化的敏感度。然而，对于需求弹性的重要性，你可以进一步扩展，比如提及它如何影响企业的定价策略、生产决策以及市场竞争力等。此外，也可以探讨需求弹性在资源分配和消费者福利方面的作用。""
+}
+```","[""5分： 完全理解并精准执行所有指令，完美达成核心任务目标，格式完全符合要求。"", ""4分： 准确理解主要指令，正确执行任务，核心目标达成度高，格式基本符合要求，可能有极少细节遗漏或偏差。"", ""3分： 理解了指令大意但可能忽略部分细节，任务基本完成但存在一些不准确或遗漏之处，格式有明显尝试但存在较多偏差。"", ""2分： 对指令理解有偏差，任务完成度低或有严重错误，格式多数不符合要求。"", ""1分： 完全误解或无视指令，任务未完成或完全错误，格式混乱或不相关。""]","Scenario: Automatic Grading
+Subject: Theoretical Economics
+Education Level: Undergraduate
+Language: zh
+Metric Group: Scenario Adaptability",采用百分制（75分）完全偏离10分制要求，数据结构严重失范。 / 评分“75”违反“1-10分”指令要求，格式错误；评分细节使用百分制，任务执行存在根本性偏差。,metric_rationale_recovered,75分; 10分; 1-10分,score_phrase_conflict,1,format_auxiliary,format_violation,0.8500,format_auxiliary
+3bcc02fdb1dc40baccc625e0649658243cccf44d,ce9b05f8b8c3c09bfac56ea4f5f177bac9474ddb,ce9b05f8b8c3c09bfac56ea4f5f177bac9474ddb,Basic Factual Accuracy,zh,Basic Medicine,2,2.0,1.0,2.0,2.0/1.0/2.0,"问题：在神经生理学中，动作电位的过程中不包括以下哪一个步骤？
+A) 去极化
+B) 再极化
+C) 超极化
+D) 钙离子流入细胞
+学生的答案：C) 超极化
+请根据问题和学生答案给出""评分"":""评分细节"":""个性化反馈"":,以json格式返回","```json
+{
+  ""评分"": ""错误"",
+  ""评分细节"": {
+    ""正确答案"": ""D) 钙离子流入细胞"",
+    ""学生答案"": ""C) 超极化"",
+    ""知识点解析"": ""动作电位的核心阶段包括：1) **去极化**（钠离子快速内流），2) **再极化/复极化**（钾离子外流，恢复静息电位），3) **超极化**（短暂膜电位低于静息值，属于后电位的一部分）。选项D的“钙离子流入细胞”主要发生在突触末梢的神经递质释放阶段，而非动作电位本身的主要过程。"",
+    ""学生误解"": ""学生可能误认为超极化是动作电位的“非必要步骤”或与静息电位混淆，但实际上超极化是动作电位恢复过程中的关键阶段。""
+  },
+  ""个性化反馈"": ""动作电位的核心步骤包括去极化、再极化和超极化（选项A、B、C均为正确步骤）。钙离子内流（选项D）主要参与突触传递，而非动作电位的直接产生。请结合离子通道的开放顺序（钠→钾→钙）和动作电位各阶段的生理意义进行复习，强化对超极化作为“后电位”的理解。""
+}
+```","[""5分： 所有涉及的客观事实（定义、公式、日期、名词、代码语法等）完全准确无误。"", ""4分： 绝大部分事实准确，可能存在个别极其微小的、非关键性的笔误或疏漏。"", ""3分： 大部分事实准确，但存在少量明显的事实错误，需要核查。"", ""2分： 包含较多或关键性的事实错误，信息不可靠。"", ""1分： 充斥着大量事实错误，信息完全错误或误导。""]","Scenario: Automatic Grading
+Subject: Basic Medicine
+Education Level: Master
+Language: zh
+Metric Group: Factual & Reasoning Accuracy",,question_answer_unmatched,,no_score_phrase,0,unclear,unclear,0.2000,review_only
+f54280d4caeef0bdadc941acfcd5f7fede5d6838,ce9b05f8b8c3c09bfac56ea4f5f177bac9474ddb,ce9b05f8b8c3c09bfac56ea4f5f177bac9474ddb,Instruction Following & Task Completion,zh,Basic Medicine,1,1.0,1.0,1.0,1.0/1.0/1.0,"问题：在神经生理学中，动作电位的过程中不包括以下哪一个步骤？
+A) 去极化
+B) 再极化
+C) 超极化
+D) 钙离子流入细胞
+学生的答案：C) 超极化
+请根据问题和学生答案给出""评分"":""评分细节"":""个性化反馈"":,以json格式返回","```json
+{
+  ""评分"": 1,
+  ""评分细节"": {
+    ""正确答案"": ""D) 钙离子流入细胞"",
+    ""解释"": ""在神经生理学中，动作电位的过程主要包括去极化、复极化和超射（或称为反极化）等阶段。钙离子流入细胞并不是动作电位过程中的一个标准步骤。""
+  },
+  ""个性化反馈"": {
+    ""建议"": ""你的选择是正确的。在动作电位过程中，确实不包括钙离子流入细胞这一步骤。钙离子在神经元的信号传导中有重要作用，但它们主要参与的是神经递质释放的过程，而不是动作电位的产生和传播。""
+  }
+}
+```","[""5分： 完全理解并精准执行所有指令，完美达成核心任务目标，格式完全符合要求。"", ""4分： 准确理解主要指令，正确执行任务，核心目标达成度高，格式基本符合要求，可能有极少细节遗漏或偏差。"", ""3分： 理解了指令大意但可能忽略部分细节，任务基本完成但存在一些不准确或遗漏之处，格式有明显尝试但存在较多偏差。"", ""2分： 对指令理解有偏差，任务完成度低或有严重错误，格式多数不符合要求。"", ""1分： 完全误解或无视指令，任务未完成或完全错误，格式混乱或不相关。""]","Scenario: Automatic Grading
+Subject: Basic Medicine
+Education Level: Master
+Language: zh
+Metric Group: Scenario Adaptability","完全错误：将正确答案C误判为正确，且使用数字评分违反题干要求的""正确/错误""判定格式。 / 仅给出数值评分，未按题目要求以文字说明正误，完全偏离答题指令。 / 评分“1”与反馈“选择正确”矛盾，任务执行完全错误；格式虽分点但逻辑混乱，违背指令要求。",metric_rationale_recovered,,no_score_phrase,0,format_auxiliary,task_constraint_violation,0.8500,format_auxiliary
+b5f54f2d11493dd41a74e9e2274d26451a958dcc,ce9b05f8b8c3c09bfac56ea4f5f177bac9474ddb,ce9b05f8b8c3c09bfac56ea4f5f177bac9474ddb,Content Relevance & Scope Control,zh,Basic Medicine,1,1.0,2.0,1.0,1.0/2.0/1.0,"问题：在神经生理学中，动作电位的过程中不包括以下哪一个步骤？
+A) 去极化
+B) 再极化
+C) 超极化
+D) 钙离子流入细胞
+学生的答案：C) 超极化
+请根据问题和学生答案给出""评分"":""评分细节"":""个性化反馈"":,以json格式返回","```json
+{
+  ""评分"": 1,
+  ""评分细节"": {
+    ""正确答案"": ""D) 钙离子流入细胞"",
+    ""解释"": ""在神经生理学中，动作电位的过程主要包括去极化、复极化和超射（或称为反极化）等阶段。钙离子流入细胞并不是动作电位过程中的一个标准步骤。""
+  },
+  ""个性化反馈"": {
+    ""建议"": ""你的选择是正确的。在动作电位过程中，确实不包括钙离子流入细胞这一步骤。钙离子在神经元的信号传导中有重要作用，但它们主要参与的是神经递质释放的过程，而不是动作电位的产生和传播。""
+  }
+}
+```","[""5分： 内容与指定知识点/主题/问题高度相关，且严格控制在要求的难度、范围、学科内，无冗余或无关信息。"", ""4分： 内容主体相关，范围控制良好，可能包含极少量轻微超纲或关联度稍弱的信息。"", ""3分： 内容大部分相关，但包含一些偏离主题或超出范围的部分，范围控制不够精确。"", ""2分： 内容相关性较差，包含较多无关信息，或严重超出指定范围。"", ""1分： 内容基本不相关，或完全脱离指定范围。""]","Scenario: Automatic Grading
+Subject: Basic Medicine
+Education Level: Master
+Language: zh
+Metric Group: Scenario Adaptability","内容混乱：既声称""你的选择是正确的""，又显示""正确答案是D""。 / 内容混淆超射与超极化概念（称“超射为动作电位阶段”），且错误肯定学生误选C，相关性完全失效。",metric_rationale_recovered,,no_score_phrase,0,weak_evidence_positive,surface_fluent_but_hidden_defect,0.8500,weak_evidence_positive
+9fdf5ac4ce9e42b699e040bcc32841d72d8c9e07,ce9b05f8b8c3c09bfac56ea4f5f177bac9474ddb,ce9b05f8b8c3c09bfac56ea4f5f177bac9474ddb,Basic Factual Accuracy,zh,Basic Medicine,1,1.0,1.0,1.0,1.0/1.0/1.0,"问题：在神经生理学中，动作电位的过程中不包括以下哪一个步骤？
+A) 去极化
+B) 再极化
+C) 超极化
+D) 钙离子流入细胞
+学生的答案：C) 超极化
+请根据问题和学生答案给出""评分"":""评分细节"":""个性化反馈"":,以json格式返回","```json
+{
+  ""评分"": 1,
+  ""评分细节"": {
+    ""正确答案"": ""D) 钙离子流入细胞"",
+    ""解释"": ""在神经生理学中，动作电位的过程主要包括去极化、复极化和超射（或称为反极化）等阶段。钙离子流入细胞并不是动作电位过程中的一个标准步骤。""
+  },
+  ""个性化反馈"": {
+    ""建议"": ""你的选择是正确的。在动作电位过程中，确实不包括钙离子流入细胞这一步骤。钙离子在神经元的信号传导中有重要作用，但它们主要参与的是神经递质释放的过程，而不是动作电位的产生和传播。""
+  }
+}
+```","[""5分： 所有涉及的客观事实（定义、公式、日期、名词、代码语法等）完全准确无误。"", ""4分： 绝大部分事实准确，可能存在个别极其微小的、非关键性的笔误或疏漏。"", ""3分： 大部分事实准确，但存在少量明显的事实错误，需要核查。"", ""2分： 包含较多或关键性的事实错误，信息不可靠。"", ""1分： 充斥着大量事实错误，信息完全错误或误导。""]","Scenario: Automatic Grading
+Subject: Basic Medicine
+Education Level: Master
+Language: zh
+Metric Group: Factual & Reasoning Accuracy",双重矛盾：同时认定学生答案正确和错误，基础事实完全错误。 / 学生误认为 “超极化不属于动作电位步骤”（实际属于），而反馈称其正确，存在双重事实错误；“超射” 与 “超极化” 概念混淆（解析中误将 “超射” 作为动作电位阶段，实为去极化峰值阶段的别称），事实表述混乱。 / 错误认为钙离子流入“不属动作电位”（正确），但错误肯定学生选C（超极化属动作电位），事实表述自相矛盾，信息误导性强。,metric_rationale_recovered,,no_score_phrase,0,answer_key_dependent,answer_key_or_reference_mismatch,0.7500,pairwise_low
+e2c88c65f2542bab93dbf50c022a42b356f788d2,ce9b05f8b8c3c09bfac56ea4f5f177bac9474ddb,ce9b05f8b8c3c09bfac56ea4f5f177bac9474ddb,Reasoning Process Rigor,zh,Basic Medicine,1,1.0,2.0,1.0,1.0/2.0/1.0,"问题：在神经生理学中，动作电位的过程中不包括以下哪一个步骤？
+A) 去极化
+B) 再极化
+C) 超极化
+D) 钙离子流入细胞
+学生的答案：C) 超极化
+请根据问题和学生答案给出""评分"":""评分细节"":""个性化反馈"":,以json格式返回","```json
+{
+  ""评分"": 1,
+  ""评分细节"": {
+    ""正确答案"": ""D) 钙离子流入细胞"",
+    ""解释"": ""在神经生理学中，动作电位的过程主要包括去极化、复极化和超射（或称为反极化）等阶段。钙离子流入细胞并不是动作电位过程中的一个标准步骤。""
+  },
+  ""个性化反馈"": {
+    ""建议"": ""你的选择是正确的。在动作电位过程中，确实不包括钙离子流入细胞这一步骤。钙离子在神经元的信号传导中有重要作用，但它们主要参与的是神经递质释放的过程，而不是动作电位的产生和传播。""
+  }
+}
+```","[""5分： 推理逻辑链条完整、清晰、严密，步骤正确无误，论证充分有力，无逻辑跳跃或漏洞。"", ""4分： 推理过程主体正确且逻辑清晰，可能在个别步骤的表述或论证细节上略有瑕疵，但不影响最终结论的有效性。"", ""3分： 推理过程大体可见，但存在一些逻辑不清、步骤缺失或论证不足之处，结论可能受到影响。"", ""2分： 推理过程存在明显的逻辑错误、步骤混乱或严重缺失，难以得出正确或可靠的结论。"", ""1分： 几乎没有有效的推理过程，逻辑混乱，步骤完全错误或不相关。""]","Scenario: Automatic Grading
+Subject: Basic Medicine
+Education Level: Master
+Language: zh
+Metric Group: Factual & Reasoning Accuracy",逻辑完全崩溃：自相矛盾的评分标准与解释。 / 无任何推理过程，仅罗列概念，逻辑混乱，无法支撑结论。,metric_rationale_recovered,,no_score_phrase,0,weak_evidence_positive,insufficient_evidence,0.8500,weak_evidence_positive
+4f22bf04948dfebf09ef963ef74d98df56ffdb57,ce9b05f8b8c3c09bfac56ea4f5f177bac9474ddb,ce9b05f8b8c3c09bfac56ea4f5f177bac9474ddb,Error Identification & Correction Precision,zh,Basic Medicine,1,1.0,1.0,1.0,1.0/1.0/1.0,"问题：在神经生理学中，动作电位的过程中不包括以下哪一个步骤？
+A) 去极化
+B) 再极化
+C) 超极化
+D) 钙离子流入细胞
+学生的答案：C) 超极化
+请根据问题和学生答案给出""评分"":""评分细节"":""个性化反馈"":,以json格式返回","```json
+{
+  ""评分"": 1,
+  ""评分细节"": {
+    ""正确答案"": ""D) 钙离子流入细胞"",
+    ""解释"": ""在神经生理学中，动作电位的过程主要包括去极化、复极化和超射（或称为反极化）等阶段。钙离子流入细胞并不是动作电位过程中的一个标准步骤。""
+  },
+  ""个性化反馈"": {
+    ""建议"": ""你的选择是正确的。在动作电位过程中，确实不包括钙离子流入细胞这一步骤。钙离子在神经元的信号传导中有重要作用，但它们主要参与的是神经递质释放的过程，而不是动作电位的产生和传播。""
+  }
+}
+```","[""5分： 精准定位所有错误（无遗漏、无误报），给出的纠正建议完全正确、清晰且是最优或非常好的方案。"", ""4分： 准确定位了大部分主要错误，纠正建议基本正确有效，可能遗漏极少数次要错误或建议不够完美。"", ""3分： 定位了部分错误但有明显遗漏或误报，纠正建议部分正确但可能不够清晰、完整或并非最佳方案。"", ""2分： 错误定位不准确，遗漏了关键错误或大量误报，纠正建议存在错误或难以理解。"", ""1分： 完全未能识别错误，或给出了完全错误的纠正建议，起到了误导作用。""]","Scenario: Automatic Grading
+Subject: Basic Medicine
+Education Level: Master
+Language: zh
+Metric Group: Factual & Reasoning Accuracy",完全错误：评分系统混乱导致无法有效识别错误。 / 问题不涉及纠错场景，按规则强制评分。答案未涉及相关内容，符合低分标准。 / 完全误判学生答案正确性，将错误答案视为正确，存在双重误报，纠正建议完全错误。,metric_rationale_recovered,,no_score_phrase,0,weak_evidence_positive,surface_fluent_but_hidden_defect,0.8500,weak_evidence_positive
+378f7b2160c791b11e16c3dd68d76ed1363a3ff6,ce9b05f8b8c3c09bfac56ea4f5f177bac9474ddb,ce9b05f8b8c3c09bfac56ea4f5f177bac9474ddb,"Motivation, Guidance & Positive Feedback",zh,Basic Medicine,2,2.0,2.0,1.0,2.0/2.0/1.0,"问题：在神经生理学中，动作电位的过程中不包括以下哪一个步骤？
+A) 去极化
+B) 再极化
+C) 超极化
+D) 钙离子流入细胞
+学生的答案：C) 超极化
+请根据问题和学生答案给出""评分"":""评分细节"":""个性化反馈"":,以json格式返回","```json
+{
+  ""评分"": 1,
+  ""评分细节"": {
+    ""正确答案"": ""D) 钙离子流入细胞"",
+    ""解释"": ""在神经生理学中，动作电位的过程主要包括去极化、复极化和超射（或称为反极化）等阶段。钙离子流入细胞并不是动作电位过程中的一个标准步骤。""
+  },
+  ""个性化反馈"": {
+    ""建议"": ""你的选择是正确的。在动作电位过程中，确实不包括钙离子流入细胞这一步骤。钙离子在神经元的信号传导中有重要作用，但它们主要参与的是神经递质释放的过程，而不是动作电位的产生和传播。""
+  }
+}
+```","[""5分： 始终体现出强烈的鼓励和支持态度，语言积极、富有建设性；在需要时提供非常有效的启发式引导，而非直接给答案。"", ""4分： 整体体现出鼓励和支持，语言积极正面；能提供有效的引导，偶尔可能过于直接。"", ""3分： 兼具鼓励和中性/批评性语言，积极性一般；引导有时有效，有时直接给答案或引导不足。"", ""2分： 缺乏鼓励和支持，语言偏中性甚至略显负面；很少提供有效引导，倾向于直接给答案或不给帮助。"", ""1分： 语言消极、打击性强，完全没有鼓励；无视引导需求，或提供错误引导。""]","Scenario: Automatic Grading
+Subject: Basic Medicine
+Education Level: Master
+Language: zh
+Metric Group: Pedagogical Application","反馈结构混乱，""你的选择是正确的""与客观事实矛盾，存在严重误导。 / 反馈以""你的选择正确""开头，但后续使用被动语态（""它们主要参与""），互动性弱。",metric_rationale_recovered,,no_score_phrase,0,weak_evidence_positive,surface_fluent_but_hidden_defect,0.8500,weak_evidence_positive
+65890fb994cef054dc75e0e6dd4c1b3e2d91805d,2315014220e7c1c5fbc4751aea0a196884f3ace8,2315014220e7c1c5fbc4751aea0a196884f3ace8,Instruction Following & Task Completion,zh,Theoretical Economics,2,2.0,2.0,2.0,2.0/2.0/2.0,"问题：解释“需求弹性”的概念及其在经济学中的重要性。
+学生的答案：需求弹性是指需求量对价格变化的反应程度。在经济学中，它很重要，因为它帮助企业了解价格变动对销售额的影响，也帮助政府制定税收政策。
+请根据问题和学生答案给出""评分"":""评分细节"":""个性化反馈"":,以json格式返回","```json
+{
+  ""评分"": 3,
+  ""评分细节"": {
+    ""概念解释准确性"": 2,
+    ""完整性"": 2,
+    ""逻辑清晰度"": 2
+  },
+  ""个性化反馈"": [
+    ""概念解释准确性较高，但可以进一步明确需求弹性的具体定义，例如提到需求弹性是衡量需求量随价格变化而变化的程度的一个指标。"",
+    ""答案较为简略，建议增加更多关于需求弹性的类型（如价格弹性、收入弹性等）以及其在实际经济活动中的应用实例。"",
+    ""逻辑清晰度尚可，但可以更详细地说明需求弹性对企业决策和政府政策的具体影响，使答案更加全面。""
+  ]
+}
+```","[""5分： 完全理解并精准执行所有指令，完美达成核心任务目标，格式完全符合要求。"", ""4分： 准确理解主要指令，正确执行任务，核心目标达成度高，格式基本符合要求，可能有极少细节遗漏或偏差。"", ""3分： 理解了指令大意但可能忽略部分细节，任务基本完成但存在一些不准确或遗漏之处，格式有明显尝试但存在较多偏差。"", ""2分： 对指令理解有偏差，任务完成度低或有严重错误，格式多数不符合要求。"", ""1分： 完全误解或无视指令，任务未完成或完全错误，格式混乱或不相关。""]","Scenario: Automatic Grading
+Subject: Theoretical Economics
+Education Level: Undergraduate
+Language: zh
+Metric Group: Scenario Adaptability","评分为单数字但""评分细节""项分值未汇总说明，且""个性化反馈""为数组而非字符串，格式错误。 / 混合数值与列表格式，""个性化反馈""使用数组违反JSON结构要求。 / 评分项与反馈内容逻辑一致（如“逻辑清晰度2”对应反馈“逻辑尚可”），但总分“3”与分项得分（2+2+2=6）矛盾，格式规范性不足。",metric_rationale_recovered,,no_score_phrase,0,format_auxiliary,format_violation,0.9000,format_auxiliary
+eca00ddc55d718efe2435adde78462ed09661b7c,93a5ca2decc82169ec51fce4735b568ddb829c8a,93a5ca2decc82169ec51fce4735b568ddb829c8a,Reasoning Process Rigor,zh,History,1,1.0,1.0,1.0,1.0/1.0/1.0,"学科:历史学
+学制级别:大学
+问题：以下哪一事件标志着英格兰光荣革命的结束？
+A. 1688年詹姆斯二世的逃亡
+B. 1689年权利法案的通过
+C. 1690年博因河战役
+D. 1694年玛丽二世去世
+.请根据问题生成对应的答案。""答案"":,以json格式返回","```json
+{
+  ""答案"": ""B. 1689年权利法案的通过""
+}
+```","[""5分： 推理逻辑链条完整、清晰、严密，步骤正确无误，论证充分有力，无逻辑跳跃或漏洞。"", ""4分： 推理过程主体正确且逻辑清晰，可能在个别步骤的表述或论证细节上略有瑕疵，但不影响最终结论的有效性。"", ""3分： 推理过程大体可见，但存在一些逻辑不清、步骤缺失或论证不足之处，结论可能受到影响。"", ""2分： 推理过程存在明显的逻辑错误、步骤混乱或严重缺失，难以得出正确或可靠的结论。"", ""1分： 几乎没有有效的推理过程，逻辑混乱，步骤完全错误或不相关。""]","Scenario: Question Answering
+Subject: History
+Education Level: Undergraduate
+Language: zh
+Metric Group: Factual & Reasoning Accuracy",虽然答案最终结论完全正确，但是没有看到完整的推理过程。 / 缺少针对答案的推理过程。 / 未建立事件与革命结束的逻辑关联（如：未解释法案通过如何终结革命）。,metric_rationale_recovered,,no_score_phrase,0,weak_evidence_positive,missing_key_point,0.8500,weak_evidence_positive
+f941bd555946d5f670146c0ddba2b00c76cfee04,93a5ca2decc82169ec51fce4735b568ddb829c8a,93a5ca2decc82169ec51fce4735b568ddb829c8a,Reasoning Process Rigor,zh,History,1,1.0,1.0,1.0,1.0/1.0/1.0,"学科:历史学
+学制级别:大学
+问题：以下哪一事件标志着英格兰光荣革命的结束？
+A. 1688年詹姆斯二世的逃亡
+B. 1689年权利法案的通过
+C. 1690年博因河战役
+D. 1694年玛丽二世去世
+.请根据问题生成对应的答案。""答案"":,以json格式返回","```json
+{""答案"": ""B""}
+```","[""5分： 推理逻辑链条完整、清晰、严密，步骤正确无误，论证充分有力，无逻辑跳跃或漏洞。"", ""4分： 推理过程主体正确且逻辑清晰，可能在个别步骤的表述或论证细节上略有瑕疵，但不影响最终结论的有效性。"", ""3分： 推理过程大体可见，但存在一些逻辑不清、步骤缺失或论证不足之处，结论可能受到影响。"", ""2分： 推理过程存在明显的逻辑错误、步骤混乱或严重缺失，难以得出正确或可靠的结论。"", ""1分： 几乎没有有效的推理过程，逻辑混乱，步骤完全错误或不相关。""]","Scenario: Question Answering
+Subject: History
+Education Level: Undergraduate
+Language: zh
+Metric Group: Factual & Reasoning Accuracy",答案仅给出了选项字母，未展示完整的推理链条或解释。 / 完全缺失推理过程，仅以选项符号作答。 / 该问题为选择题，未涉及推理过程。,metric_rationale_recovered,,no_score_phrase,0,weak_evidence_positive,missing_key_point,0.8500,weak_evidence_positive
+4d02a34fe7fc1a2f65e5defcbeec26283b13ada9,93a5ca2decc82169ec51fce4735b568ddb829c8a,93a5ca2decc82169ec51fce4735b568ddb829c8a,Reasoning Process Rigor,zh,History,1,1.0,1.0,1.0,1.0/1.0/1.0,"学科:历史学
+学制级别:大学
+问题：以下哪一事件标志着英格兰光荣革命的结束？
+A. 1688年詹姆斯二世的逃亡
+B. 1689年权利法案的通过
+C. 1690年博因河战役
+D. 1694年玛丽二世去世
+.请根据问题生成对应的答案。""答案"":,以json格式返回","```json
+{
+  ""答案"": ""B. 1689年权利法案的通过""
+}
+```","[""5分： 推理逻辑链条完整、清晰、严密，步骤正确无误，论证充分有力，无逻辑跳跃或漏洞。"", ""4分： 推理过程主体正确且逻辑清晰，可能在个别步骤的表述或论证细节上略有瑕疵，但不影响最终结论的有效性。"", ""3分： 推理过程大体可见，但存在一些逻辑不清、步骤缺失或论证不足之处，结论可能受到影响。"", ""2分： 推理过程存在明显的逻辑错误、步骤混乱或严重缺失，难以得出正确或可靠的结论。"", ""1分： 几乎没有有效的推理过程，逻辑混乱，步骤完全错误或不相关。""]","Scenario: Question Answering
+Subject: History
+Education Level: Undergraduate
+Language: zh
+Metric Group: Factual & Reasoning Accuracy",虽然答案最终结论完全正确，但是没有看到完整的推理过程。 / 缺少针对答案的推理过程。 / 未建立事件与革命结束的逻辑关联（如：未解释法案通过如何终结革命）。,metric_rationale_recovered,,no_score_phrase,0,weak_evidence_positive,missing_key_point,0.8500,weak_evidence_positive
+61ce1005760ba6b25779f26dec03b15d4d61f5ec,93a5ca2decc82169ec51fce4735b568ddb829c8a,93a5ca2decc82169ec51fce4735b568ddb829c8a,Reasoning Process Rigor,zh,History,1,1.0,1.0,1.0,1.0/1.0/1.0,"学科:历史学
+学制级别:大学
+问题：以下哪一事件标志着英格兰光荣革命的结束？
+A. 1688年詹姆斯二世的逃亡
+B. 1689年权利法案的通过
+C. 1690年博因河战役
+D. 1694年玛丽二世去世
+.请根据问题生成对应的答案。""答案"":,以json格式返回","```json
+{
+  ""答案"": ""B. 1689年权利法案的通过""
+}
+```","[""5分： 推理逻辑链条完整、清晰、严密，步骤正确无误，论证充分有力，无逻辑跳跃或漏洞。"", ""4分： 推理过程主体正确且逻辑清晰，可能在个别步骤的表述或论证细节上略有瑕疵，但不影响最终结论的有效性。"", ""3分： 推理过程大体可见，但存在一些逻辑不清、步骤缺失或论证不足之处，结论可能受到影响。"", ""2分： 推理过程存在明显的逻辑错误、步骤混乱或严重缺失，难以得出正确或可靠的结论。"", ""1分： 几乎没有有效的推理过程，逻辑混乱，步骤完全错误或不相关。""]","Scenario: Question Answering
+Subject: History
+Education Level: Undergraduate
+Language: zh
+Metric Group: Factual & Reasoning Accuracy",虽然答案最终结论完全正确，但是没有看到完整的推理过程。 / 缺少针对答案的推理过程。 / 未建立事件与革命结束的逻辑关联（如：未解释法案通过如何终结革命）。,metric_rationale_recovered,,no_score_phrase,0,weak_evidence_positive,missing_key_point,0.8500,weak_evidence_positive
+cc218e690fef26eec817bb03c4ad9a759d05825e,93a5ca2decc82169ec51fce4735b568ddb829c8a,93a5ca2decc82169ec51fce4735b568ddb829c8a,Reasoning Process Rigor,zh,History,1,1.0,1.0,1.0,1.0/1.0/1.0,"学科:历史学
+学制级别:大学
+问题：以下哪一事件标志着英格兰光荣革命的结束？
+A. 1688年詹姆斯二世的逃亡
+B. 1689年权利法案的通过
+C. 1690年博因河战役
+D. 1694年玛丽二世去世
+.请根据问题生成对应的答案。""答案"":,以json格式返回","```json
+{
+  ""答案"": ""B. 1689年权利法案的通过""
+}
+```","[""5分： 推理逻辑链条完整、清晰、严密，步骤正确无误，论证充分有力，无逻辑跳跃或漏洞。"", ""4分： 推理过程主体正确且逻辑清晰，可能在个别步骤的表述或论证细节上略有瑕疵，但不影响最终结论的有效性。"", ""3分： 推理过程大体可见，但存在一些逻辑不清、步骤缺失或论证不足之处，结论可能受到影响。"", ""2分： 推理过程存在明显的逻辑错误、步骤混乱或严重缺失，难以得出正确或可靠的结论。"", ""1分： 几乎没有有效的推理过程，逻辑混乱，步骤完全错误或不相关。""]","Scenario: Question Answering
+Subject: History
+Education Level: Undergraduate
+Language: zh
+Metric Group: Factual & Reasoning Accuracy",虽然答案最终结论完全正确，但是没有看到完整的推理过程。 / 缺少针对答案的推理过程。 / 未建立事件与革命结束的逻辑关联（如：未解释法案通过如何终结革命）。,metric_rationale_recovered,,no_score_phrase,0,weak_evidence_positive,missing_key_point,0.8500,weak_evidence_positive
+a78d41fd92d092509e201d4cb468bba833ecdf3a,3b26f4f8f9f7314ee644e63efa2173afbb702c33,3b26f4f8f9f7314ee644e63efa2173afbb702c33,Reasoning Process Rigor,zh,Law,1,1.0,1.0,1.0,1.0/1.0/1.0,"学科:法学
+学制级别:博士
+问题：在国际法中，以下哪一个原则主要用于解决国家之间的领土争端？
+A. 不干涉内政原则
+B. 自决原则
+C. 先占原则
+D. 互惠原则
+.请根据问题生成对应的答案。""答案"":,以json格式返回","```json
+{
+  ""答案"": ""C. 先占原则""
+}
+```","[""5分： 推理逻辑链条完整、清晰、严密，步骤正确无误，论证充分有力，无逻辑跳跃或漏洞。"", ""4分： 推理过程主体正确且逻辑清晰，可能在个别步骤的表述或论证细节上略有瑕疵，但不影响最终结论的有效性。"", ""3分： 推理过程大体可见，但存在一些逻辑不清、步骤缺失或论证不足之处，结论可能受到影响。"", ""2分： 推理过程存在明显的逻辑错误、步骤混乱或严重缺失，难以得出正确或可靠的结论。"", ""1分： 几乎没有有效的推理过程，逻辑混乱，步骤完全错误或不相关。""]","Scenario: Question Answering
+Subject: Law
+Education Level: PhD
+Language: zh
+Metric Group: Factual & Reasoning Accuracy",完全未提供任何推理过程，仅呈现结论，无法评估逻辑链条完整性。 / 未提供任何解析，无法展现博士层级应有的法律解释能力（如未援引《奥本海国际法》第2卷第3章关于领土取得的论述）。 / 仅提供答案未展示推理，如未解释为何排除选项B（自决原则需以存在被压迫民族为前提）。,metric_rationale_recovered,,no_score_phrase,0,weak_evidence_positive,insufficient_evidence,0.8500,weak_evidence_positive
+c1507d3c6bb859e46a5fcae0e2d5475886c36187,3b26f4f8f9f7314ee644e63efa2173afbb702c33,3b26f4f8f9f7314ee644e63efa2173afbb702c33,Reasoning Process Rigor,zh,Law,1,1.0,1.0,1.0,1.0/1.0/1.0,"学科:法学
+学制级别:博士
+问题：在国际法中，以下哪一个原则主要用于解决国家之间的领土争端？
+A. 不干涉内政原则
+B. 自决原则
+C. 先占原则
+D. 互惠原则
+.请根据问题生成对应的答案。""答案"":,以json格式返回","{
+    ""答案"": ""C. 先占原则""
+}","[""5分： 推理逻辑链条完整、清晰、严密，步骤正确无误，论证充分有力，无逻辑跳跃或漏洞。"", ""4分： 推理过程主体正确且逻辑清晰，可能在个别步骤的表述或论证细节上略有瑕疵，但不影响最终结论的有效性。"", ""3分： 推理过程大体可见，但存在一些逻辑不清、步骤缺失或论证不足之处，结论可能受到影响。"", ""2分： 推理过程存在明显的逻辑错误、步骤混乱或严重缺失，难以得出正确或可靠的结论。"", ""1分： 几乎没有有效的推理过程，逻辑混乱，步骤完全错误或不相关。""]","Scenario: Question Answering
+Subject: Law
+Education Level: PhD
+Language: zh
+Metric Group: Factual & Reasoning Accuracy",,question_answer_unmatched,,no_score_phrase,0,unclear,unclear,0.2000,review_only
+89f8c6ed8c1b947a44510dcc18b38a1d97571453,3b26f4f8f9f7314ee644e63efa2173afbb702c33,3b26f4f8f9f7314ee644e63efa2173afbb702c33,Basic Factual Accuracy,zh,Law,2,2.0,1.0,2.0,2.0/1.0/2.0,"学科:法学
+学制级别:博士
+问题：在国际法中，以下哪一个原则主要用于解决国家之间的领土争端？
+A. 不干涉内政原则
+B. 自决原则
+C. 先占原则
+D. 互惠原则
+.请根据问题生成对应的答案。""答案"":,以json格式返回","```json
+{
+  ""答案"": ""B. 自决原则""
+}
+```
+
+注解：自决原则是国际法中的一个重要原则，尤其适用于处理殖民地独立、民族分离等问题，也常用于解决某些领土争端。不过，在解决具体的领土争端时，国际社会也可能会采用其他多种方法和原则，包括但不限于协商、仲裁、调解等。题目所列选项中，最符合解决领土争端的是自决原则。但是，需要指出的是，先占原则（C）更多是在历史上被使用，现代国际法实践中较少见到。不干涉内政原则（A）主要涉及国家主权和内部事务的尊重，而互惠原则（D）通常与条约义务相关，它们都不是专门用来解决领土争端的主要原则。","[""5分： 所有涉及的客观事实（定义、公式、日期、名词、代码语法等）完全准确无误。"", ""4分： 绝大部分事实准确，可能存在个别极其微小的、非关键性的笔误或疏漏。"", ""3分： 大部分事实准确，但存在少量明显的事实错误，需要核查。"", ""2分： 包含较多或关键性的事实错误，信息不可靠。"", ""1分： 充斥着大量事实错误，信息完全错误或误导。""]","Scenario: Question Answering
+Subject: Law
+Education Level: PhD
+Language: zh
+Metric Group: Factual & Reasoning Accuracy","错误选择B项，自决原则仅适用于人民自决权（ICJ西撒哈拉咨询意见），与主权国家间领土争端无关；且注解中""先占原则现代少用""的表述忽视国际法院在2002年利吉丹岛案中的适用。 / 答案中提到的自决原则确实是国际法中的一个原则，但将其描述为主要用于解决国家之间领土争端的原则是不准确的，因为自决原则更多关联于殖民地独立和民族分离等问题。",metric_rationale_recovered,,no_score_phrase,0,weak_evidence_positive,surface_fluent_but_hidden_defect,0.8500,weak_evidence_positive
+bdfb1901aed7bfddbd4bcd0898854e7ecfd4513c,3b26f4f8f9f7314ee644e63efa2173afbb702c33,3b26f4f8f9f7314ee644e63efa2173afbb702c33,Reasoning Process Rigor,zh,Law,2,2.0,1.0,2.0,2.0/1.0/2.0,"学科:法学
+学制级别:博士
+问题：在国际法中，以下哪一个原则主要用于解决国家之间的领土争端？
+A. 不干涉内政原则
+B. 自决原则
+C. 先占原则
+D. 互惠原则
+.请根据问题生成对应的答案。""答案"":,以json格式返回","```json
+{
+  ""答案"": ""B. 自决原则""
+}
+```
+
+注解：自决原则是国际法中的一个重要原则，尤其适用于处理殖民地独立、民族分离等问题，也常用于解决某些领土争端。不过，在解决具体的领土争端时，国际社会也可能会采用其他多种方法和原则，包括但不限于协商、仲裁、调解等。题目所列选项中，最符合解决领土争端的是自决原则。但是，需要指出的是，先占原则（C）更多是在历史上被使用，现代国际法实践中较少见到。不干涉内政原则（A）主要涉及国家主权和内部事务的尊重，而互惠原则（D）通常与条约义务相关，它们都不是专门用来解决领土争端的主要原则。","[""5分： 推理逻辑链条完整、清晰、严密，步骤正确无误，论证充分有力，无逻辑跳跃或漏洞。"", ""4分： 推理过程主体正确且逻辑清晰，可能在个别步骤的表述或论证细节上略有瑕疵，但不影响最终结论的有效性。"", ""3分： 推理过程大体可见，但存在一些逻辑不清、步骤缺失或论证不足之处，结论可能受到影响。"", ""2分： 推理过程存在明显的逻辑错误、步骤混乱或严重缺失，难以得出正确或可靠的结论。"", ""1分： 几乎没有有效的推理过程，逻辑混乱，步骤完全错误或不相关。""]","Scenario: Question Answering
+Subject: Law
+Education Level: PhD
+Language: zh
+Metric Group: Factual & Reasoning Accuracy","推理存在根本性逻辑断裂：将自决原则适用范围扩大至国家间争议，且未辨析""有效占领""与""人民自决""的法理差异（参见《维也纳条约法公约》第52条）。 / 答案的解析部分虽然有一定的推理，但推理过程存在明显错误，认为自决原则最符合解决领土争端，而实际上先占原则更直接相关，逻辑不严谨。",metric_rationale_recovered,,no_score_phrase,0,weak_evidence_positive,insufficient_evidence,0.8500,weak_evidence_positive
+dcf321c484e4128628a7517762ccaf72fc0916d8,3b26f4f8f9f7314ee644e63efa2173afbb702c33,3b26f4f8f9f7314ee644e63efa2173afbb702c33,Reasoning Process Rigor,zh,Law,1,1.0,1.0,1.0,1.0/1.0/1.0,"学科:法学
+学制级别:博士
+问题：在国际法中，以下哪一个原则主要用于解决国家之间的领土争端？
+A. 不干涉内政原则
+B. 自决原则
+C. 先占原则
+D. 互惠原则
+.请根据问题生成对应的答案。""答案"":,以json格式返回","```json
+{
+  ""答案"": ""C. 先占原则""
+}
+```","[""5分： 推理逻辑链条完整、清晰、严密，步骤正确无误，论证充分有力，无逻辑跳跃或漏洞。"", ""4分： 推理过程主体正确且逻辑清晰，可能在个别步骤的表述或论证细节上略有瑕疵，但不影响最终结论的有效性。"", ""3分： 推理过程大体可见，但存在一些逻辑不清、步骤缺失或论证不足之处，结论可能受到影响。"", ""2分： 推理过程存在明显的逻辑错误、步骤混乱或严重缺失，难以得出正确或可靠的结论。"", ""1分： 几乎没有有效的推理过程，逻辑混乱，步骤完全错误或不相关。""]","Scenario: Question Answering
+Subject: Law
+Education Level: PhD
+Language: zh
+Metric Group: Factual & Reasoning Accuracy",完全未提供任何推理过程，仅呈现结论，无法评估逻辑链条完整性。 / 未提供任何解析，无法展现博士层级应有的法律解释能力（如未援引《奥本海国际法》第2卷第3章关于领土取得的论述）。 / 仅提供答案未展示推理，如未解释为何排除选项B（自决原则需以存在被压迫民族为前提）。,metric_rationale_recovered,,no_score_phrase,0,weak_evidence_positive,insufficient_evidence,0.8500,weak_evidence_positive
+4d603e5ed030c00413f35f1852ebb1859d5dc6be,ac1c8ccfcd59afb588cbe2e820ef540a695ec312,ac1c8ccfcd59afb588cbe2e820ef540a695ec312,Reasoning Process Rigor,zh,Clinical Medicine,1,1.0,1.0,1.0,1.0/1.0/1.0,"学科:临床医学
+学制级别:硕士
+问题：以下哪种药物最常用于治疗急性心肌梗死？
+A) 阿司匹林
+B) 布洛芬
+C) 对乙酰氨基酚
+D) 洛伐他汀
+.请根据问题生成对应的答案。""答案"":,以json格式返回","```json
+{
+  ""答案"": ""A) 阿司匹林""
+}
+```","[""5分： 推理逻辑链条完整、清晰、严密，步骤正确无误，论证充分有力，无逻辑跳跃或漏洞。"", ""4分： 推理过程主体正确且逻辑清晰，可能在个别步骤的表述或论证细节上略有瑕疵，但不影响最终结论的有效性。"", ""3分： 推理过程大体可见，但存在一些逻辑不清、步骤缺失或论证不足之处，结论可能受到影响。"", ""2分： 推理过程存在明显的逻辑错误、步骤混乱或严重缺失，难以得出正确或可靠的结论。"", ""1分： 几乎没有有效的推理过程，逻辑混乱，步骤完全错误或不相关。""]","Scenario: Question Answering
+Subject: Clinical Medicine
+Education Level: Master
+Language: zh
+Metric Group: Factual & Reasoning Accuracy",答案没有给出推理过程 / 未说明选择依据（如未对比其他选项的作用机制：布洛芬可能干扰阿司匹林抗血小板效应）。 / 缺失病理生理学解释（如未说明阿司匹林通过抑制COX-1阻断血栓素A2合成的机制）。,metric_rationale_recovered,,no_score_phrase,0,weak_evidence_positive,missing_key_point,0.8500,weak_evidence_positive
+992ac0fdbb258d7a1438e8ee29db7096365cf8ca,ac1c8ccfcd59afb588cbe2e820ef540a695ec312,ac1c8ccfcd59afb588cbe2e820ef540a695ec312,Reasoning Process Rigor,zh,Clinical Medicine,1,1.0,1.0,1.0,1.0/1.0/1.0,"学科:临床医学
+学制级别:硕士
+问题：以下哪种药物最常用于治疗急性心肌梗死？
+A) 阿司匹林
+B) 布洛芬
+C) 对乙酰氨基酚
+D) 洛伐他汀
+.请根据问题生成对应的答案。""答案"":,以json格式返回","```json
+{
+  ""答案"": ""A) 阿司匹林""
+}
+```","[""5分： 推理逻辑链条完整、清晰、严密，步骤正确无误，论证充分有力，无逻辑跳跃或漏洞。"", ""4分： 推理过程主体正确且逻辑清晰，可能在个别步骤的表述或论证细节上略有瑕疵，但不影响最终结论的有效性。"", ""3分： 推理过程大体可见，但存在一些逻辑不清、步骤缺失或论证不足之处，结论可能受到影响。"", ""2分： 推理过程存在明显的逻辑错误、步骤混乱或严重缺失，难以得出正确或可靠的结论。"", ""1分： 几乎没有有效的推理过程，逻辑混乱，步骤完全错误或不相关。""]","Scenario: Question Answering
+Subject: Clinical Medicine
+Education Level: Master
+Language: zh
+Metric Group: Factual & Reasoning Accuracy",答案没有给出推理过程 / 未说明选择依据（如未对比其他选项的作用机制：布洛芬可能干扰阿司匹林抗血小板效应）。 / 缺失病理生理学解释（如未说明阿司匹林通过抑制COX-1阻断血栓素A2合成的机制）。,metric_rationale_recovered,,no_score_phrase,0,weak_evidence_positive,missing_key_point,0.8500,weak_evidence_positive
+b62bc6a3bc8db6a39e2d347c263aa392be416138,ac1c8ccfcd59afb588cbe2e820ef540a695ec312,ac1c8ccfcd59afb588cbe2e820ef540a695ec312,Reasoning Process Rigor,zh,Clinical Medicine,1,1.0,1.0,1.0,1.0/1.0/1.0,"学科:临床医学
+学制级别:硕士
+问题：以下哪种药物最常用于治疗急性心肌梗死？
+A) 阿司匹林
+B) 布洛芬
+C) 对乙酰氨基酚
+D) 洛伐他汀
+.请根据问题生成对应的答案。""答案"":,以json格式返回","```json
+{
+  ""答案"": ""A) 阿司匹林""
+}
+```","[""5分： 推理逻辑链条完整、清晰、严密，步骤正确无误，论证充分有力，无逻辑跳跃或漏洞。"", ""4分： 推理过程主体正确且逻辑清晰，可能在个别步骤的表述或论证细节上略有瑕疵，但不影响最终结论的有效性。"", ""3分： 推理过程大体可见，但存在一些逻辑不清、步骤缺失或论证不足之处，结论可能受到影响。"", ""2分： 推理过程存在明显的逻辑错误、步骤混乱或严重缺失，难以得出正确或可靠的结论。"", ""1分： 几乎没有有效的推理过程，逻辑混乱，步骤完全错误或不相关。""]","Scenario: Question Answering
+Subject: Clinical Medicine
+Education Level: Master
+Language: zh
+Metric Group: Factual & Reasoning Accuracy",答案没有给出推理过程 / 未说明选择依据（如未对比其他选项的作用机制：布洛芬可能干扰阿司匹林抗血小板效应）。 / 缺失病理生理学解释（如未说明阿司匹林通过抑制COX-1阻断血栓素A2合成的机制）。,metric_rationale_recovered,,no_score_phrase,0,weak_evidence_positive,missing_key_point,0.8500,weak_evidence_positive
+8ff264a74369c7106935fc453add4b92d95a8b87,ac1c8ccfcd59afb588cbe2e820ef540a695ec312,ac1c8ccfcd59afb588cbe2e820ef540a695ec312,Reasoning Process Rigor,zh,Clinical Medicine,1,1.0,1.0,1.0,1.0/1.0/1.0,"学科:临床医学
+学制级别:硕士
+问题：以下哪种药物最常用于治疗急性心肌梗死？
+A) 阿司匹林
+B) 布洛芬
+C) 对乙酰氨基酚
+D) 洛伐他汀
+.请根据问题生成对应的答案。""答案"":,以json格式返回","```json
+{
+  ""答案"": ""A) 阿司匹林""
+}
+```","[""5分： 推理逻辑链条完整、清晰、严密，步骤正确无误，论证充分有力，无逻辑跳跃或漏洞。"", ""4分： 推理过程主体正确且逻辑清晰，可能在个别步骤的表述或论证细节上略有瑕疵，但不影响最终结论的有效性。"", ""3分： 推理过程大体可见，但存在一些逻辑不清、步骤缺失或论证不足之处，结论可能受到影响。"", ""2分： 推理过程存在明显的逻辑错误、步骤混乱或严重缺失，难以得出正确或可靠的结论。"", ""1分： 几乎没有有效的推理过程，逻辑混乱，步骤完全错误或不相关。""]","Scenario: Question Answering
+Subject: Clinical Medicine
+Education Level: Master
+Language: zh
+Metric Group: Factual & Reasoning Accuracy",答案没有给出推理过程 / 未说明选择依据（如未对比其他选项的作用机制：布洛芬可能干扰阿司匹林抗血小板效应）。 / 缺失病理生理学解释（如未说明阿司匹林通过抑制COX-1阻断血栓素A2合成的机制）。,metric_rationale_recovered,,no_score_phrase,0,weak_evidence_positive,missing_key_point,0.8500,weak_evidence_positive
+c7c27202cecaf2f4efd7487760add595085e4712,ac1c8ccfcd59afb588cbe2e820ef540a695ec312,ac1c8ccfcd59afb588cbe2e820ef540a695ec312,Reasoning Process Rigor,zh,Clinical Medicine,1,1.0,1.0,1.0,1.0/1.0/1.0,"学科:临床医学
+学制级别:硕士
+问题：以下哪种药物最常用于治疗急性心肌梗死？
+A) 阿司匹林
+B) 布洛芬
+C) 对乙酰氨基酚
+D) 洛伐他汀
+.请根据问题生成对应的答案。""答案"":,以json格式返回","```json
+{""答案"": ""A) 阿司匹林""}
+```","[""5分： 推理逻辑链条完整、清晰、严密，步骤正确无误，论证充分有力，无逻辑跳跃或漏洞。"", ""4分： 推理过程主体正确且逻辑清晰，可能在个别步骤的表述或论证细节上略有瑕疵，但不影响最终结论的有效性。"", ""3分： 推理过程大体可见，但存在一些逻辑不清、步骤缺失或论证不足之处，结论可能受到影响。"", ""2分： 推理过程存在明显的逻辑错误、步骤混乱或严重缺失，难以得出正确或可靠的结论。"", ""1分： 几乎没有有效的推理过程，逻辑混乱，步骤完全错误或不相关。""]","Scenario: Question Answering
+Subject: Clinical Medicine
+Education Level: Master
+Language: zh
+Metric Group: Factual & Reasoning Accuracy",答案没有给出推理过程 / 未阐述药物禁忌证（如活动性出血患者需调整用药）等深度临床思维要素。 / 答案仅给出了最终结果，没有推理过程。,metric_rationale_recovered,,no_score_phrase,0,weak_evidence_positive,insufficient_evidence,0.8500,weak_evidence_positive
+8b2201addbda2de262f29b819d9d4a430827f8c8,379759b00c0ded53ca5135bf363df1ca0f8ae778,379759b00c0ded53ca5135bf363df1ca0f8ae778,Reasoning Process Rigor,zh,Physical Education,1,1.0,1.0,1.0,1.0/1.0/1.0,"学科:体育教育学
+学制级别:硕士
+问题：在体育教育学中，以下哪些因素可能影响学生的运动参与度？(请选择所有适用的选项)
+A. 学校的体育设施条件
+B. 学生的家庭背景
+C. 教师的教学风格
+D. 学生的个人兴趣
+E. 学校的地理位置
+.请根据问题生成对应的答案。""答案"":,以json格式返回","```json
+{
+  ""影响学生运动参与度的因素"": [
+    ""学校的体育设施条件"",
+    ""学生的家庭背景"",
+    ""教师的教学风格"",
+    ""学生的个人兴趣""
+  ]
+}
+```","[""5分： 推理逻辑链条完整、清晰、严密，步骤正确无误，论证充分有力，无逻辑跳跃或漏洞。"", ""4分： 推理过程主体正确且逻辑清晰，可能在个别步骤的表述或论证细节上略有瑕疵，但不影响最终结论的有效性。"", ""3分： 推理过程大体可见，但存在一些逻辑不清、步骤缺失或论证不足之处，结论可能受到影响。"", ""2分： 推理过程存在明显的逻辑错误、步骤混乱或严重缺失，难以得出正确或可靠的结论。"", ""1分： 几乎没有有效的推理过程，逻辑混乱，步骤完全错误或不相关。""]","Scenario: Question Answering
+Subject: Physical Education
+Education Level: Master
+Language: zh
+Metric Group: Factual & Reasoning Accuracy",缺少推理过程 / 仅列出选项，未提供任何逻辑推导或证据支持，不符合推理过程要求。 / 答案中未给出推理过程，仅直接列出了因素。,metric_rationale_recovered,,no_score_phrase,0,weak_evidence_positive,missing_key_point,0.8500,weak_evidence_positive
+ff8336b754ae2926d754192bf5a2f0c7ca6ba2a5,379759b00c0ded53ca5135bf363df1ca0f8ae778,379759b00c0ded53ca5135bf363df1ca0f8ae778,Reasoning Process Rigor,zh,Physical Education,1,1.0,1.0,1.0,1.0/1.0/1.0,"学科:体育教育学
+学制级别:硕士
+问题：在体育教育学中，以下哪些因素可能影响学生的运动参与度？(请选择所有适用的选项)
+A. 学校的体育设施条件
+B. 学生的家庭背景
+C. 教师的教学风格
+D. 学生的个人兴趣
+E. 学校的地理位置
+.请根据问题生成对应的答案。""答案"":,以json格式返回","```json
+{
+  ""答案"": [""A"", ""B"", ""C"", ""D"", ""E""]
+}
+```","[""5分： 推理逻辑链条完整、清晰、严密，步骤正确无误，论证充分有力，无逻辑跳跃或漏洞。"", ""4分： 推理过程主体正确且逻辑清晰，可能在个别步骤的表述或论证细节上略有瑕疵，但不影响最终结论的有效性。"", ""3分： 推理过程大体可见，但存在一些逻辑不清、步骤缺失或论证不足之处，结论可能受到影响。"", ""2分： 推理过程存在明显的逻辑错误、步骤混乱或严重缺失，难以得出正确或可靠的结论。"", ""1分： 几乎没有有效的推理过程，逻辑混乱，步骤完全错误或不相关。""]","Scenario: Question Answering
+Subject: Physical Education
+Education Level: Master
+Language: zh
+Metric Group: Factual & Reasoning Accuracy",,question_answer_unmatched,,no_score_phrase,0,unclear,unclear,0.2000,review_only
+6ba52ada98a9a51312929f9f19f6c7227cd562eb,3f583749c39a53d68120dd4302b4c6888f5dd6d7,3f583749c39a53d68120dd4302b4c6888f5dd6d7,Reasoning Process Rigor,zh,Physics,1,1.0,1.0,1.0,1.0/1.0/1.0,"学科:物理学
+学制级别:博士
+问题：在广义相对论的框架下，以下哪种情况最有可能导致时空奇点的出现？
+A) 电磁场的存在
+B) 大质量恒星的核心塌缩
+C) 宇宙学常数为零
+D) 低能粒子在真空中的运动
+.请根据问题生成对应的答案。""答案"":,以json格式返回","```json
+{
+  ""答案"": ""B) 大质量恒星的核心塌缩""
+}
+```","[""5分： 推理逻辑链条完整、清晰、严密，步骤正确无误，论证充分有力，无逻辑跳跃或漏洞。"", ""4分： 推理过程主体正确且逻辑清晰，可能在个别步骤的表述或论证细节上略有瑕疵，但不影响最终结论的有效性。"", ""3分： 推理过程大体可见，但存在一些逻辑不清、步骤缺失或论证不足之处，结论可能受到影响。"", ""2分： 推理过程存在明显的逻辑错误、步骤混乱或严重缺失，难以得出正确或可靠的结论。"", ""1分： 几乎没有有效的推理过程，逻辑混乱，步骤完全错误或不相关。""]","Scenario: Question Answering
+Subject: Physics
+Education Level: PhD
+Language: zh
+Metric Group: Factual & Reasoning Accuracy",仅给出答案，无推理过程，逻辑链条不完整 。 / 无推理过程。 / 未发现推理过程。,metric_rationale_recovered,,no_score_phrase,0,weak_evidence_positive,insufficient_evidence,0.8500,weak_evidence_positive
+9695560e94c04bb151b514cc850a85eb10394a00,3f583749c39a53d68120dd4302b4c6888f5dd6d7,3f583749c39a53d68120dd4302b4c6888f5dd6d7,Reasoning Process Rigor,zh,Physics,1,1.0,1.0,1.0,1.0/1.0/1.0,"学科:物理学
+学制级别:博士
+问题：在广义相对论的框架下，以下哪种情况最有可能导致时空奇点的出现？
+A) 电磁场的存在
+B) 大质量恒星的核心塌缩
+C) 宇宙学常数为零
+D) 低能粒子在真空中的运动
+.请根据问题生成对应的答案。""答案"":,以json格式返回","```json
+{
+  ""answer"": ""B) 大质量恒星的核心塌缩""
+}
+```","[""5分： 推理逻辑链条完整、清晰、严密，步骤正确无误，论证充分有力，无逻辑跳跃或漏洞。"", ""4分： 推理过程主体正确且逻辑清晰，可能在个别步骤的表述或论证细节上略有瑕疵，但不影响最终结论的有效性。"", ""3分： 推理过程大体可见，但存在一些逻辑不清、步骤缺失或论证不足之处，结论可能受到影响。"", ""2分： 推理过程存在明显的逻辑错误、步骤混乱或严重缺失，难以得出正确或可靠的结论。"", ""1分： 几乎没有有效的推理过程，逻辑混乱，步骤完全错误或不相关。""]","Scenario: Question Answering
+Subject: Physics
+Education Level: PhD
+Language: zh
+Metric Group: Factual & Reasoning Accuracy",仅给出答案，无推理过程，逻辑链条不完整 。 / 无推理过程。 / 没有推理过程。,metric_rationale_recovered,,no_score_phrase,0,weak_evidence_positive,insufficient_evidence,0.8500,weak_evidence_positive
+0f9bdd1ac2b116a1f087a68008be1d0a38cb8ab1,3f583749c39a53d68120dd4302b4c6888f5dd6d7,3f583749c39a53d68120dd4302b4c6888f5dd6d7,Reasoning Process Rigor,zh,Physics,1,1.0,1.0,1.0,1.0/1.0/1.0,"学科:物理学
+学制级别:博士
+问题：在广义相对论的框架下，以下哪种情况最有可能导致时空奇点的出现？
+A) 电磁场的存在
+B) 大质量恒星的核心塌缩
+C) 宇宙学常数为零
+D) 低能粒子在真空中的运动
+.请根据问题生成对应的答案。""答案"":,以json格式返回","```json
+{
+  ""答案"": ""B) 大质量恒星的核心塌缩""
+}
+```","[""5分： 推理逻辑链条完整、清晰、严密，步骤正确无误，论证充分有力，无逻辑跳跃或漏洞。"", ""4分： 推理过程主体正确且逻辑清晰，可能在个别步骤的表述或论证细节上略有瑕疵，但不影响最终结论的有效性。"", ""3分： 推理过程大体可见，但存在一些逻辑不清、步骤缺失或论证不足之处，结论可能受到影响。"", ""2分： 推理过程存在明显的逻辑错误、步骤混乱或严重缺失，难以得出正确或可靠的结论。"", ""1分： 几乎没有有效的推理过程，逻辑混乱，步骤完全错误或不相关。""]","Scenario: Question Answering
+Subject: Physics
+Education Level: PhD
+Language: zh
+Metric Group: Factual & Reasoning Accuracy",仅给出答案，无推理过程，逻辑链条不完整 。 / 无推理过程。 / 未发现推理过程。,metric_rationale_recovered,,no_score_phrase,0,weak_evidence_positive,insufficient_evidence,0.8500,weak_evidence_positive
+38c7ddb254e471811c6a5a57cccae37cc6d4656e,3f583749c39a53d68120dd4302b4c6888f5dd6d7,3f583749c39a53d68120dd4302b4c6888f5dd6d7,Reasoning Process Rigor,zh,Physics,1,1.0,1.0,1.0,1.0/1.0/1.0,"学科:物理学
+学制级别:博士
+问题：在广义相对论的框架下，以下哪种情况最有可能导致时空奇点的出现？
+A) 电磁场的存在
+B) 大质量恒星的核心塌缩
+C) 宇宙学常数为零
+D) 低能粒子在真空中的运动
+.请根据问题生成对应的答案。""答案"":,以json格式返回","```json
+{
+  ""答案"": ""B""
+}
+```","[""5分： 推理逻辑链条完整、清晰、严密，步骤正确无误，论证充分有力，无逻辑跳跃或漏洞。"", ""4分： 推理过程主体正确且逻辑清晰，可能在个别步骤的表述或论证细节上略有瑕疵，但不影响最终结论的有效性。"", ""3分： 推理过程大体可见，但存在一些逻辑不清、步骤缺失或论证不足之处，结论可能受到影响。"", ""2分： 推理过程存在明显的逻辑错误、步骤混乱或严重缺失，难以得出正确或可靠的结论。"", ""1分： 几乎没有有效的推理过程，逻辑混乱，步骤完全错误或不相关。""]","Scenario: Question Answering
+Subject: Physics
+Education Level: PhD
+Language: zh
+Metric Group: Factual & Reasoning Accuracy",,question_answer_unmatched,,no_score_phrase,0,unclear,unclear,0.2000,review_only
