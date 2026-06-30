@@ -1,0 +1,13 @@
+metric,n,label2_n,label2_l2h_count,r_2_to_h,label2_mean_s,label2_mean_g_i3
+Instruction Following & Task Completion,200,7,7,1.0,2.109375,4.398435119884446
+"Clarity, Simplicity & Inspiration",90,4,4,1.0,2.009765625,3.406318143859835
+Error Identification & Correction Precision,35,4,4,1.0,1.84375,4.428238723674269
+Scenario Element Integration,115,4,4,1.0,1.888671875,1.8884975818650673
+Reasoning Process Rigor,84,3,3,1.0,1.375,2.5991044654711573
+Basic Factual Accuracy,130,2,2,1.0,2.154296875,4.729248458182667
+Content Relevance & Scope Control,125,2,2,1.0,2.296875,5.739638080277331
+"Motivation, Guidance & Positive Feedback",60,4,1,0.25,1.515625,-0.7266684472928517
+Domain Knowledge Accuracy,65,0,0,nan,nan,nan
+Higher-Order Thinking & Skill Development,83,7,0,0.0,0.5651506696428571,-1.5160133876221786
+"Personalization, Adaptation & Learning Support",70,1,0,0.0,0.32421875,-0.27369730921668634
+Role & Tone Consistency,50,0,0,nan,nan,nan
