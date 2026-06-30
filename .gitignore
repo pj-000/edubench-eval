@@ -7,11 +7,21 @@ thesis_exp/artifacts/
 **/*.bin
 **/*.pt
 **/*.pth
+**/*.ckpt
+**/*.checkpoint
+**/*.npy
+**/*.npz
+**/*.log
 **/optimizer.pt
 **/scheduler.pt
 **/trainer_state.json
 **/rng_state.pth
 **/hf_cache/
+**/raw_predictions/
+**/raw_predictions*.jsonl
+**/*raw_prediction*.jsonl
+**/predictions*.jsonl
+**/*_predictions*.jsonl
 wandb/
 runs/
 
@@ -24,3 +34,7 @@ thesis_exp/outputs/exp09_pairwise_ordinal_qdpr2/logs/
 # Exp16A generated run artifacts contain raw predictions/checkpoints and stay local/server-side.
 thesis_exp/outputs/exp16_boundary_linking/runs/
 thesis_exp/outputs/exp16_boundary_linking/sanity/
+
+# Exp17-D1 hidden failure audit generated files stay local/server-side.
+thesis_exp/exp17_low_score_evidence/outputs/*
+!thesis_exp/exp17_low_score_evidence/outputs/.gitignore
