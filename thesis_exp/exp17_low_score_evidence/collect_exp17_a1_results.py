@@ -123,8 +123,9 @@ def write_report(output_dir: Path, dev_rows: list[dict[str, Any]], evidence_rows
     lines = [
         "# Exp17-A1 Evidence Head Scout Report",
         "",
-        "Exp17-A1 trains a hidden-failure evidence head `h` under Exp16A qmr boundary linking. "
-        "`h` is diagnostic only and does not modify the ordinal scoring path.",
+        "Exp17-A1 keeps the Exp16A qmr ordinal decision function unchanged while adding a hidden-failure "
+        "evidence head `h`. Joint A1 configs fine-tune the base model with an auxiliary evidence objective; "
+        "A1F is a frozen-base probe that trains only the evidence head.",
         "",
         "## Guardrails",
         "",
@@ -132,6 +133,8 @@ def write_report(output_dir: Path, dev_rows: list[dict[str, Any]], evidence_rows
         "- Dev D1 annotations are used only for dev evidence evaluation.",
         "- Human rationale text is not used as model input.",
         "- The evidence head does not suppress or alter `s`.",
+        "- `A1_0_baseline` is a continued-training ordinal control, not the frozen original Exp16A checkpoint.",
+        "- `A1_6_random_positive_control` samples random low-label positives, not arbitrary non-low positives.",
         "",
         "## Completed Configs",
         "",

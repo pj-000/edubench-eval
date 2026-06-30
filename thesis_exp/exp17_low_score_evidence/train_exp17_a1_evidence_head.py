@@ -1,8 +1,9 @@
 """Train Exp17-A1 hidden-failure evidence head under boundary linking.
 
-Exp17-A1 keeps the Exp16A boundary-linking scoring path unchanged. The
-additional evidence head is trained from train-side A0 weak labels only and is
-used for diagnosis, not for score suppression.
+Exp17-A1 keeps the Exp16A boundary-linking decision function unchanged. Most
+configs jointly fine-tune Boundary Linking with an auxiliary evidence objective;
+the frozen-probe config trains only the evidence head. In all configs, `h` is
+used for diagnosis and never suppresses the ordinal score.
 """
 
 from __future__ import annotations
@@ -56,6 +57,13 @@ SCOUT_CONFIGS: dict[str, dict[str, Any]] = {
     "A1_4": {"beta": 0.10, "neg_ratio": 2, "positive_mode": "a0_weak"},
     "A1_5_all_low_aux_baseline": {"beta": 0.10, "neg_ratio": 4, "positive_mode": "all_low_aux"},
     "A1_6_random_positive_control": {"beta": 0.10, "neg_ratio": 4, "positive_mode": "random_positive_control"},
+    "A1F_1_frozen_base_beta_0p10": {
+        "beta": 0.10,
+        "neg_ratio": 4,
+        "positive_mode": "a0_weak",
+        "freeze_base": True,
+        "train_evidence_head_only": True,
+    },
 }
 
 DEV_METRIC_FIELDS = [
@@ -83,6 +91,11 @@ EVIDENCE_FIELDS = [
     "mean_h_d1_hidden",
     "mean_h_d1_controls",
     "mean_h_d1_possible_conflict",
+    "mean_h_d1_evidence_positive",
+    "mean_h_d1_pairwise_low",
+    "mean_h_d1_format_auxiliary",
+    "h_auc_d1_evidence_positive_vs_controls",
+    "h_auc_d1_pairwise_low_vs_controls",
     "mean_h_marketing_group",
     "mean_h_non_marketing_group",
     "mean_h_train_weak_positive",
@@ -360,6 +373,7 @@ def prediction_rows(outputs: dict[str, torch.Tensor], labels: torch.Tensor, samp
             "scale_alpha": float(alpha[idx]),
             "margin_tau2": float(s[idx] - tau[idx, 1]),
             "margin_tau3": float(s[idx] - tau[idx, 2]),
+            "g_i3": float(alpha[idx] * (s[idx] - tau[idx, 2])),
             "evidence_h": float(h[idx]),
         }
         row["is_low_to_high"] = bool(row["gold_label"] <= 2 and row["pred_label"] >= 4)
@@ -410,7 +424,7 @@ def dev_metric_row(config_name: str, seed: int, beta: float, neg_ratio: int, pre
         "monotonic_violation_rate": metrics.get("monotonic_violation_rate"),
         "mean_s_label2": safe_mean([float(row["quality_score_s"]) for row in label2]),
         "mean_s_label4_5": safe_mean([float(row["quality_score_s"]) for row in high]),
-        "mean_g_i3_label2": safe_mean([float(row["margin_tau3"]) for row in label2]),
+        "mean_g_i3_label2": safe_mean([float(row["g_i3"]) for row in label2]),
     }
 
 
@@ -419,8 +433,10 @@ def load_dev_eval_sets(d1_dir: Path) -> dict[str, set[str]]:
     controls_path = d1_dir / "d1_matched_case_control_review.csv"
     hidden: set[str] = set()
     possible_conflict: set[str] = set()
-    marketing: set[str] = set()
-    non_marketing: set[str] = set()
+    evidence_positive: set[str] = set()
+    pairwise_low: set[str] = set()
+    format_auxiliary: set[str] = set()
+    groups: dict[str, set[str]] = {}
     if annotation_path.exists():
         for row in read_csv_rows(annotation_path):
             sid = row.get("sample_id", "")
@@ -432,11 +448,14 @@ def load_dev_eval_sets(d1_dir: Path) -> dict[str, set[str]]:
                 possible_conflict.add(sid)
             elif use in {"evidence_positive", "pairwise_low", "format_auxiliary"}:
                 hidden.add(sid)
-            question = (row.get("question", "") + " " + row.get("subject", "")).lower()
-            if "marketing manager" in question or "marketing" in question:
-                marketing.add(sid)
-            else:
-                non_marketing.add(sid)
+                if use == "evidence_positive":
+                    evidence_positive.add(sid)
+                elif use == "pairwise_low":
+                    pairwise_low.add(sid)
+                elif use == "format_auxiliary":
+                    format_auxiliary.add(sid)
+            group_id = row.get("question_group_id") or row.get("question_key") or "unknown"
+            groups.setdefault(group_id, set()).add(sid)
     controls: set[str] = set()
     if controls_path.exists():
         for row in read_csv_rows(controls_path):
@@ -446,8 +465,11 @@ def load_dev_eval_sets(d1_dir: Path) -> dict[str, set[str]]:
         "hidden": hidden,
         "controls": controls,
         "possible_conflict": possible_conflict,
-        "marketing": marketing,
-        "non_marketing": non_marketing,
+        "evidence_positive": evidence_positive,
+        "pairwise_low": pairwise_low,
+        "format_auxiliary": format_auxiliary,
+        "dominant_group": max(groups.values(), key=len) if groups else set(),
+        "non_dominant_group": set().union(*groups.values()) - max(groups.values(), key=len) if groups else set(),
     }
 
 
@@ -467,6 +489,8 @@ def evidence_eval_row(
     train_by_id = {row["sample_id"]: row for row in train_predictions}
     hidden_values = [float(dev_by_id[sid]["evidence_h"]) for sid in d1_sets["hidden"] if sid in dev_by_id]
     control_values = [float(dev_by_id[sid]["evidence_h"]) for sid in d1_sets["controls"] if sid in dev_by_id]
+    evidence_positive_values = [float(dev_by_id[sid]["evidence_h"]) for sid in d1_sets["evidence_positive"] if sid in dev_by_id]
+    pairwise_low_values = [float(dev_by_id[sid]["evidence_h"]) for sid in d1_sets["pairwise_low"] if sid in dev_by_id]
     train_pos = {sid for sid, item in evidence_labels.items() if item["target"] == 1.0}
     train_neg = {sid for sid, item in evidence_labels.items() if item["target"] == 0.0}
     return {
@@ -476,8 +500,13 @@ def evidence_eval_row(
         "mean_h_d1_hidden": safe_mean(hidden_values),
         "mean_h_d1_controls": safe_mean(control_values),
         "mean_h_d1_possible_conflict": mean_h(dev_by_id, d1_sets["possible_conflict"]),
-        "mean_h_marketing_group": mean_h(dev_by_id, d1_sets["marketing"]),
-        "mean_h_non_marketing_group": mean_h(dev_by_id, d1_sets["non_marketing"]),
+        "mean_h_d1_evidence_positive": safe_mean(evidence_positive_values),
+        "mean_h_d1_pairwise_low": safe_mean(pairwise_low_values),
+        "mean_h_d1_format_auxiliary": mean_h(dev_by_id, d1_sets["format_auxiliary"]),
+        "h_auc_d1_evidence_positive_vs_controls": rank_auc(evidence_positive_values, control_values),
+        "h_auc_d1_pairwise_low_vs_controls": rank_auc(pairwise_low_values, control_values),
+        "mean_h_marketing_group": mean_h(dev_by_id, d1_sets["dominant_group"]),
+        "mean_h_non_marketing_group": mean_h(dev_by_id, d1_sets["non_dominant_group"]),
         "mean_h_train_weak_positive": mean_h(train_by_id, train_pos),
         "mean_h_train_clean_high": mean_h(train_by_id, train_neg),
         "evidence_delta_hidden_minus_control": safe_mean(hidden_values) - safe_mean(control_values),
@@ -497,7 +526,7 @@ def case_score_rows(predictions: list[dict[str, Any]]) -> list[dict[str, Any]]:
                 "tau3": row["tau3"],
                 "tau4": row["tau4"],
                 "alpha": row["scale_alpha"],
-                "g_i3": row["margin_tau3"],
+                "g_i3": row["g_i3"],
                 "h": row["evidence_h"],
                 "question_key": row["question_key"],
                 "metric": row["metric"],
@@ -565,6 +594,8 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--fp16", action="store_true")
     parser.add_argument("--precision", choices=["auto", "fp16", "bf16", "fp32"], default="fp32")
     parser.add_argument("--gradient_checkpointing", action="store_true")
+    parser.add_argument("--freeze_base", action="store_true")
+    parser.add_argument("--train_evidence_head_only", action="store_true")
     parser.add_argument("--save_best_by", choices=["dev_mae", "dev_qwk"], default="dev_mae")
     parser.add_argument("--max_train_steps", type=int, default=0)
     parser.add_argument("--max_train_samples", type=int, default=0)
@@ -580,6 +611,10 @@ def train_one(args: Namespace) -> dict[str, Any]:
     beta = float(cfg["beta"])
     neg_ratio = int(cfg["neg_ratio"])
     positive_mode = str(cfg["positive_mode"])
+    freeze_base = bool(args.freeze_base or cfg.get("freeze_base", False))
+    train_evidence_head_only = bool(args.train_evidence_head_only or cfg.get("train_evidence_head_only", False))
+    if train_evidence_head_only:
+        freeze_base = True
     run_dir = Path(args.output_dir) / "runs" / args.config_name / f"seed_{args.seed}"
     run_dir.mkdir(parents=True, exist_ok=True)
 
@@ -593,6 +628,9 @@ def train_one(args: Namespace) -> dict[str, Any]:
     )
     model = EvidenceBoundaryLinkingModel(base)
     init_status = load_init_checkpoint(model, Path(args.init_checkpoint), bool(args.allow_missing_init_checkpoint))
+    if freeze_base:
+        for param in model.base.parameters():
+            param.requires_grad = False
     if bool(args.gradient_checkpointing):
         if hasattr(model.base.encoder.config, "use_cache"):
             model.base.encoder.config.use_cache = False
@@ -622,7 +660,12 @@ def train_one(args: Namespace) -> dict[str, Any]:
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     model.to(device)
-    optimizer = torch.optim.AdamW(model.parameters(), lr=float(args.learning_rate), weight_decay=float(args.weight_decay))
+    trainable_params = [param for param in model.parameters() if param.requires_grad]
+    if not trainable_params:
+        raise RuntimeError("No trainable parameters for Exp17-A1.")
+    optimizer = torch.optim.AdamW(trainable_params, lr=float(args.learning_rate), weight_decay=float(args.weight_decay))
+    trainable_base_params = sum(param.numel() for param in model.base.parameters() if param.requires_grad)
+    trainable_evidence_head_params = sum(param.numel() for param in model.evidence_head.parameters() if param.requires_grad)
 
     best_state: dict[str, torch.Tensor] | None = None
     best_score: float | None = None
@@ -641,7 +684,8 @@ def train_one(args: Namespace) -> dict[str, Any]:
         print(
             f"[exp17-a1] {args.config_name} epoch {epoch}/{epochs} start "
             f"batches={total_batches} batch_size={args.batch_size} grad_accum={args.grad_accum_steps} "
-            f"beta={beta} neg_ratio=1:{neg_ratio}",
+            f"beta={beta} neg_ratio=1:{neg_ratio} freeze_base={freeze_base} "
+            f"head_only={train_evidence_head_only}",
             flush=True,
         )
         for batch_idx, batch in enumerate(train_loader, start=1):
@@ -655,7 +699,7 @@ def train_one(args: Namespace) -> dict[str, Any]:
                 )
                 loss_ord = ordinal_bce_loss(outputs["logits"], batch["targets"], batch["labels"], class_weights=None)
                 loss_hfe = evidence_loss(outputs, batch)
-                loss = loss_ord + beta * loss_hfe
+                loss = loss_hfe if train_evidence_head_only else loss_ord + beta * loss_hfe
             (loss / int(args.grad_accum_steps)).backward()
             running["loss"] += float(loss.detach().cpu())
             running["ord"] += float(loss_ord.detach().cpu())
@@ -735,6 +779,10 @@ def train_one(args: Namespace) -> dict[str, Any]:
             "init_status": init_status,
             "scout_config": cfg,
             "evidence_info": evidence_info,
+            "freeze_base": freeze_base,
+            "train_evidence_head_only": train_evidence_head_only,
+            "trainable_base_params": trainable_base_params,
+            "trainable_evidence_head_params": trainable_evidence_head_params,
             "best_metrics": best_metrics,
             "test_read": False,
             "dev_annotation_used_as_train_label": False,
@@ -752,6 +800,10 @@ def train_one(args: Namespace) -> dict[str, Any]:
         f"- beta: {beta}",
         f"- neg_ratio: 1:{neg_ratio}",
         f"- positive_mode: `{positive_mode}`",
+        f"- freeze_base: `{freeze_base}`",
+        f"- train_evidence_head_only: `{train_evidence_head_only}`",
+        f"- trainable_base_params: {trainable_base_params}",
+        f"- trainable_evidence_head_params: {trainable_evidence_head_params}",
         f"- init_checkpoint: `{relpath(args.init_checkpoint)}`",
         f"- init_status: `{init_status}`",
         f"- positive_count: {evidence_info['positive_count']}",
@@ -771,12 +823,17 @@ def train_one(args: Namespace) -> dict[str, Any]:
         f"- mean_h_d1_hidden: {evidence_row['mean_h_d1_hidden']}",
         f"- mean_h_d1_controls: {evidence_row['mean_h_d1_controls']}",
         f"- evidence_delta_hidden_minus_control: {evidence_row['evidence_delta_hidden_minus_control']}",
+        f"- mean_h_d1_evidence_positive: {evidence_row['mean_h_d1_evidence_positive']}",
+        f"- mean_h_d1_pairwise_low: {evidence_row['mean_h_d1_pairwise_low']}",
+        f"- mean_h_d1_format_auxiliary: {evidence_row['mean_h_d1_format_auxiliary']}",
         "",
         "## Guardrails",
         "",
         "- No test split is read.",
         "- Dev D1 annotation is used only for dev evidence evaluation, never as train labels.",
         "- Human rationale text is not used as model input.",
+        "- Joint configs fine-tune the base model with an auxiliary evidence objective.",
+        "- Frozen-probe configs train only the evidence head.",
         "- The evidence head does not modify the ordinal scoring path.",
     ]
     (run_dir / "exp17_a1_report.md").write_text("\n".join(report_lines), encoding="utf-8")

@@ -21,7 +21,7 @@ LOG_STEPS="${LOG_STEPS:-5}"
 SAVE_BEST_BY="${SAVE_BEST_BY:-dev_mae}"
 SKIP_COMPLETED="${SKIP_COMPLETED:-1}"
 RESET_RUN_DIR="${RESET_RUN_DIR:-0}"
-EXP17_A1_CONFIGS="${EXP17_A1_CONFIGS:-A1_0_baseline A1_1 A1_2 A1_3 A1_4 A1_5_all_low_aux_baseline A1_6_random_positive_control}"
+EXP17_A1_CONFIGS="${EXP17_A1_CONFIGS:-A1_0_baseline A1_1 A1_2 A1_3 A1_4 A1_5_all_low_aux_baseline A1_6_random_positive_control A1F_1_frozen_base_beta_0p10}"
 OUTPUT_DIR="${OUTPUT_DIR:-thesis_exp/exp17_low_score_evidence/outputs/exp17_a1_evidence_head_seed42}"
 A0_DIR="${A0_DIR:-thesis_exp/exp17_low_score_evidence/outputs/exp17_a0_train_hidden_failure_signals_seed42}"
 D1_DIR="${D1_DIR:-thesis_exp/exp17_low_score_evidence/outputs/d1_hidden_failure_audit_seed42_dev}"
@@ -54,7 +54,7 @@ if [[ "${#GPU_ARRAY[@]}" -lt 1 ]]; then
 fi
 for config in "${CONFIG_ARRAY[@]}"; do
   case "${config}" in
-    A1_0_baseline|A1_1|A1_2|A1_3|A1_4|A1_5_all_low_aux_baseline|A1_6_random_positive_control) ;;
+    A1_0_baseline|A1_1|A1_2|A1_3|A1_4|A1_5_all_low_aux_baseline|A1_6_random_positive_control|A1F_1_frozen_base_beta_0p10) ;;
     *)
       echo "ERROR: unknown Exp17-A1 config '${config}'" >&2
       exit 1
