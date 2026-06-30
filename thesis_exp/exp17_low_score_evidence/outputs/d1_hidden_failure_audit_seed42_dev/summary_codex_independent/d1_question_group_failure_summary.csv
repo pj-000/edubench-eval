@@ -1,0 +1,11 @@
+question_group_id,metric,n_cases,dominant_failure_mode,dominant_failure_mode_rate,rubric_linked_rate,hidden_failure_rate,possible_label_conflict_rate,strong_or_weak_train_signal_rate,recommended_group_use
+14ba3cb00f998348fe1c491eab066379d3bf192b,Instruction Following & Task Completion,5,possible_label_conflict,1.0000,0.0000,0.0000,1.0000,0.0000,review_or_downweight
+14ba3cb00f998348fe1c491eab066379d3bf192b,"Clarity, Simplicity & Inspiration",4,insufficient_evidence,1.0000,1.0000,1.0000,0.0000,0.0000,pairwise_or_review
+14ba3cb00f998348fe1c491eab066379d3bf192b,Error Identification & Correction Precision,4,possible_label_conflict,1.0000,0.0000,0.0000,1.0000,0.0000,review_or_downweight
+14ba3cb00f998348fe1c491eab066379d3bf192b,Scenario Element Integration,4,surface_fluent_but_hidden_defect,1.0000,1.0000,1.0000,0.0000,1.0000,evidence_positive_candidate
+14ba3cb00f998348fe1c491eab066379d3bf192b,Reasoning Process Rigor,3,insufficient_evidence,1.0000,1.0000,1.0000,0.0000,0.0000,pairwise_or_review
+9d1179a873f8e7454e4075453ea96fee9e73ecff,Basic Factual Accuracy,2,possible_label_conflict,1.0000,0.0000,0.0000,1.0000,0.0000,review_or_downweight
+9d1179a873f8e7454e4075453ea96fee9e73ecff,Content Relevance & Scope Control,2,possible_label_conflict,1.0000,0.0000,0.0000,1.0000,0.0000,review_or_downweight
+1bbfb9a5f532b875aaa1b5a1500fb88535b21a51,"Motivation, Guidance & Positive Feedback",1,format_violation,1.0000,1.0000,0.0000,0.0000,0.0000,format_auxiliary_candidate
+9d1179a873f8e7454e4075453ea96fee9e73ecff,Instruction Following & Task Completion,1,possible_label_conflict,1.0000,0.0000,0.0000,1.0000,0.0000,review_or_downweight
+9dcad11d15cc245e5dabc70ec2358208f1139f70,Instruction Following & Task Completion,1,possible_label_conflict,1.0000,0.0000,0.0000,1.0000,0.0000,review_or_downweight

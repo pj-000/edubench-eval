@@ -1,0 +1,9 @@
+{
+  "enter_exp17a_recommendation": false,
+  "max_question_group_rate": 0.7407407407407407,
+  "possible_label_conflict_rate": 0.5555555555555556,
+  "recommendation_reason": "rubric_linked_hidden_failure_rate < 0.60; possible_label_conflict_rate > 0.35; strong_or_weak_train_signal_rate < 0.50; WARNING: Failure cases are highly concentrated in one question group; Exp17-A must use train-side weak labels and should avoid question_key-specific features.",
+  "rubric_linked_hidden_failure_rate": 0.4074074074074074,
+  "strong_or_weak_train_signal_rate": 0.14814814814814814,
+  "total_cases": 27
+}

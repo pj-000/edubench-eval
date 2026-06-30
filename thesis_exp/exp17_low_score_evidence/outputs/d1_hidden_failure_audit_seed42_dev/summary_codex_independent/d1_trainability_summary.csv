@@ -1,0 +1,8 @@
+trainability_manual,n,rate,recommended_action
+strong_train_signal,0,0.0000,Use as evidence-positive weak supervision after train-side expansion.
+weak_train_signal,4,0.1481,Use with lower weight or as auxiliary evidence signal.
+format_auxiliary_signal,1,0.0370,Use for format/task-constraint auxiliary supervision.
+pairwise_only,7,0.2593,Use in matched hard-negative or pairwise separation only.
+downweight_or_exclude,0,0.0000,Downweight or exclude from evidence-positive labels.
+review_only,15,0.5556,Keep for qualitative analysis; do not train from it.
+unclear,0,0.0000,Needs more review before training use.

@@ -1,0 +1,10 @@
+failure_mode,n,rate,rubric_linked_n,rubric_linked_rate,hidden_failure_n,hidden_failure_rate,possible_label_conflict_n,possible_label_conflict_rate,strong_train_signal_n,weak_train_signal_n,format_auxiliary_signal_n,pairwise_only_n,downweight_or_exclude_n,review_only_n
+format_violation,1,0.0370,1,1.0000,0,0.0000,0,0.0000,0,0,1,0,0,0
+task_constraint_violation,0,0.0000,0,0.0000,0,0.0000,0,0.0000,0,0,0,0,0,0
+factual_or_rubric_mismatch,0,0.0000,0,0.0000,0,0.0000,0,0.0000,0,0,0,0,0,0
+surface_fluent_but_hidden_defect,4,0.1481,4,1.0000,4,1.0000,0,0.0000,0,4,0,0,0,0
+missing_key_point,0,0.0000,0,0.0000,0,0.0000,0,0.0000,0,0,0,0,0,0
+insufficient_evidence,7,0.2593,7,1.0000,7,1.0000,0,0.0000,0,0,0,7,0,0
+possible_label_conflict,15,0.5556,0,0.0000,0,0.0000,15,1.0000,0,0,0,0,0,15
+other,0,0.0000,0,0.0000,0,0.0000,0,0.0000,0,0,0,0,0,0
+unclear,0,0.0000,0,0.0000,0,0.0000,0,0.0000,0,0,0,0,0,0
