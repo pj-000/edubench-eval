@@ -63,6 +63,7 @@ SCOUT_CONFIGS: dict[str, dict[str, Any]] = {
         "positive_mode": "a0_weak",
         "freeze_base": True,
         "train_evidence_head_only": True,
+        "checkpoint_selection": "latest",
     },
 }
 
@@ -98,6 +99,10 @@ EVIDENCE_FIELDS = [
     "h_auc_d1_pairwise_low_vs_controls",
     "mean_h_marketing_group",
     "mean_h_non_marketing_group",
+    "dominant_question_group_id",
+    "dominant_question_group_size",
+    "mean_h_dominant_question_group",
+    "mean_h_non_dominant_question_group",
     "mean_h_train_weak_positive",
     "mean_h_train_clean_high",
     "evidence_delta_hidden_minus_control",
@@ -303,6 +308,9 @@ def build_evidence_labels(
         "positive_mode": positive_mode,
         "positive_count": len(positive_ids),
         "negative_count": sum(1 for item in labels.values() if item["target"] == 0.0),
+        "signal_count": len(labels),
+        "train_count": len(train_by_id),
+        "signal_fraction": safe_rate(len(labels), len(train_by_id)),
         "requested_neg_ratio": neg_ratio,
         "a0_weak_positive_count": len(a0_weak),
     }
@@ -461,6 +469,12 @@ def load_dev_eval_sets(d1_dir: Path) -> dict[str, set[str]]:
         for row in read_csv_rows(controls_path):
             if row.get("case_sample_id") in hidden and row.get("control_sample_id"):
                 controls.add(row["control_sample_id"])
+    dominant_group_id = ""
+    dominant_group: set[str] = set()
+    if groups:
+        dominant_group_id, dominant_group = max(groups.items(), key=lambda item: len(item[1]))
+    all_group_ids = set().union(*groups.values()) if groups else set()
+    non_dominant_group = all_group_ids - dominant_group
     return {
         "hidden": hidden,
         "controls": controls,
@@ -468,8 +482,9 @@ def load_dev_eval_sets(d1_dir: Path) -> dict[str, set[str]]:
         "evidence_positive": evidence_positive,
         "pairwise_low": pairwise_low,
         "format_auxiliary": format_auxiliary,
-        "dominant_group": max(groups.values(), key=len) if groups else set(),
-        "non_dominant_group": set().union(*groups.values()) - max(groups.values(), key=len) if groups else set(),
+        "dominant_group": dominant_group,
+        "non_dominant_group": non_dominant_group,
+        "dominant_group_id": {dominant_group_id} if dominant_group_id else set(),
     }
 
 
@@ -507,6 +522,10 @@ def evidence_eval_row(
         "h_auc_d1_pairwise_low_vs_controls": rank_auc(pairwise_low_values, control_values),
         "mean_h_marketing_group": mean_h(dev_by_id, d1_sets["dominant_group"]),
         "mean_h_non_marketing_group": mean_h(dev_by_id, d1_sets["non_dominant_group"]),
+        "dominant_question_group_id": next(iter(d1_sets["dominant_group_id"]), ""),
+        "dominant_question_group_size": len(d1_sets["dominant_group"]),
+        "mean_h_dominant_question_group": mean_h(dev_by_id, d1_sets["dominant_group"]),
+        "mean_h_non_dominant_question_group": mean_h(dev_by_id, d1_sets["non_dominant_group"]),
         "mean_h_train_weak_positive": mean_h(train_by_id, train_pos),
         "mean_h_train_clean_high": mean_h(train_by_id, train_neg),
         "evidence_delta_hidden_minus_control": safe_mean(hidden_values) - safe_mean(control_values),
@@ -537,6 +556,9 @@ def case_score_rows(predictions: list[dict[str, Any]]) -> list[dict[str, Any]]:
 
 
 def score_is_better(metrics: dict[str, Any], best: float | None, save_best_by: str) -> tuple[bool, float]:
+    if save_best_by == "latest":
+        score = float(metrics.get("epoch", 0))
+        return True, score
     if save_best_by == "dev_qwk":
         score = float(metrics["QWK"])
         return best is None or score > best, score
@@ -596,7 +618,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--gradient_checkpointing", action="store_true")
     parser.add_argument("--freeze_base", action="store_true")
     parser.add_argument("--train_evidence_head_only", action="store_true")
-    parser.add_argument("--save_best_by", choices=["dev_mae", "dev_qwk"], default="dev_mae")
+    parser.add_argument("--save_best_by", choices=["dev_mae", "dev_qwk", "latest"], default="dev_mae")
     parser.add_argument("--max_train_steps", type=int, default=0)
     parser.add_argument("--max_train_samples", type=int, default=0)
     parser.add_argument("--max_eval_samples", type=int, default=0)
@@ -615,6 +637,7 @@ def train_one(args: Namespace) -> dict[str, Any]:
     train_evidence_head_only = bool(args.train_evidence_head_only or cfg.get("train_evidence_head_only", False))
     if train_evidence_head_only:
         freeze_base = True
+    save_best_by = str(cfg.get("checkpoint_selection") or args.save_best_by)
     run_dir = Path(args.output_dir) / "runs" / args.config_name / f"seed_{args.seed}"
     run_dir.mkdir(parents=True, exist_ok=True)
 
@@ -657,6 +680,17 @@ def train_one(args: Namespace) -> dict[str, Any]:
     dev_loader = DataLoader(BoundaryLinkingDataset(dev_samples), batch_size=int(args.eval_batch_size), shuffle=False, collate_fn=collator)
     signal_samples = [sample for sample in train_samples if float(sample.get("evidence_mask", 0.0)) > 0]
     signal_loader = DataLoader(BoundaryLinkingDataset(signal_samples), batch_size=int(args.eval_batch_size), shuffle=False, collate_fn=collator)
+    signal_train_loader = (
+        DataLoader(
+            BoundaryLinkingDataset(signal_samples),
+            batch_size=int(args.batch_size),
+            shuffle=True,
+            collate_fn=collator,
+        )
+        if signal_samples
+        else None
+    )
+    active_train_loader = signal_train_loader if train_evidence_head_only and signal_train_loader is not None else train_loader
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     model.to(device)
@@ -680,7 +714,8 @@ def train_one(args: Namespace) -> dict[str, Any]:
         running = {"loss": 0.0, "ord": 0.0, "hfe": 0.0}
         batch_count = 0
         start = time.time()
-        total_batches = len(train_loader)
+        total_batches = len(active_train_loader)
+        signal_iter = iter(signal_train_loader) if signal_train_loader is not None else None
         print(
             f"[exp17-a1] {args.config_name} epoch {epoch}/{epochs} start "
             f"batches={total_batches} batch_size={args.batch_size} grad_accum={args.grad_accum_steps} "
@@ -688,7 +723,7 @@ def train_one(args: Namespace) -> dict[str, Any]:
             f"head_only={train_evidence_head_only}",
             flush=True,
         )
-        for batch_idx, batch in enumerate(train_loader, start=1):
+        for batch_idx, batch in enumerate(active_train_loader, start=1):
             batch = move_evidence_batch(batch, device)
             with autocast_context(args, device):
                 outputs = model(
@@ -698,7 +733,24 @@ def train_one(args: Namespace) -> dict[str, Any]:
                     boundary_attention_mask=batch["boundary_attention_mask"],
                 )
                 loss_ord = ordinal_bce_loss(outputs["logits"], batch["targets"], batch["labels"], class_weights=None)
-                loss_hfe = evidence_loss(outputs, batch)
+                if train_evidence_head_only:
+                    loss_hfe = evidence_loss(outputs, batch)
+                elif beta > 0.0 and signal_train_loader is not None and signal_iter is not None:
+                    try:
+                        signal_batch = next(signal_iter)
+                    except StopIteration:
+                        signal_iter = iter(signal_train_loader)
+                        signal_batch = next(signal_iter)
+                    signal_batch = move_evidence_batch(signal_batch, device)
+                    signal_outputs = model(
+                        quality_input_ids=signal_batch["quality_input_ids"],
+                        quality_attention_mask=signal_batch["quality_attention_mask"],
+                        boundary_input_ids=signal_batch["boundary_input_ids"],
+                        boundary_attention_mask=signal_batch["boundary_attention_mask"],
+                    )
+                    loss_hfe = evidence_loss(signal_outputs, signal_batch)
+                else:
+                    loss_hfe = outputs["evidence_logit"].sum() * 0.0
                 loss = loss_hfe if train_evidence_head_only else loss_ord + beta * loss_hfe
             (loss / int(args.grad_accum_steps)).backward()
             running["loss"] += float(loss.detach().cpu())
@@ -742,7 +794,7 @@ def train_one(args: Namespace) -> dict[str, Any]:
             flush=True,
         )
         history.append(dev_metrics)
-        better, score = score_is_better(dev_metrics, best_score, args.save_best_by)
+        better, score = score_is_better(dev_metrics, best_score, save_best_by)
         if better:
             best_score = score
             best_metrics = dev_metrics
@@ -779,8 +831,13 @@ def train_one(args: Namespace) -> dict[str, Any]:
             "init_status": init_status,
             "scout_config": cfg,
             "evidence_info": evidence_info,
+            "train_sample_count": len(train_samples),
+            "signal_sample_count": len(signal_samples),
+            "signal_train_batch_count": len(signal_train_loader) if signal_train_loader is not None else 0,
+            "hfe_training_mode": "signal_only" if train_evidence_head_only else "full_ordinal_plus_signal_balanced_hfe",
             "freeze_base": freeze_base,
             "train_evidence_head_only": train_evidence_head_only,
+            "checkpoint_selection": save_best_by,
             "trainable_base_params": trainable_base_params,
             "trainable_evidence_head_params": trainable_evidence_head_params,
             "best_metrics": best_metrics,
@@ -808,6 +865,11 @@ def train_one(args: Namespace) -> dict[str, Any]:
         f"- init_status: `{init_status}`",
         f"- positive_count: {evidence_info['positive_count']}",
         f"- negative_count: {evidence_info['negative_count']}",
+        f"- signal_count: {evidence_info['signal_count']}",
+        f"- signal_fraction: {evidence_info['signal_fraction']}",
+        f"- signal_train_batch_count: {len(signal_train_loader) if signal_train_loader is not None else 0}",
+        f"- hfe_training_mode: `{'signal_only' if train_evidence_head_only else 'full_ordinal_plus_signal_balanced_hfe'}`",
+        f"- checkpoint_selection: `{save_best_by}`",
         "",
         "## Dev Metrics",
         "",
@@ -826,6 +888,8 @@ def train_one(args: Namespace) -> dict[str, Any]:
         f"- mean_h_d1_evidence_positive: {evidence_row['mean_h_d1_evidence_positive']}",
         f"- mean_h_d1_pairwise_low: {evidence_row['mean_h_d1_pairwise_low']}",
         f"- mean_h_d1_format_auxiliary: {evidence_row['mean_h_d1_format_auxiliary']}",
+        f"- dominant_question_group_id: `{evidence_row['dominant_question_group_id']}`",
+        f"- dominant_question_group_size: {evidence_row['dominant_question_group_size']}",
         "",
         "## Guardrails",
         "",
@@ -834,6 +898,7 @@ def train_one(args: Namespace) -> dict[str, Any]:
         "- Human rationale text is not used as model input.",
         "- Joint configs fine-tune the base model with an auxiliary evidence objective.",
         "- Frozen-probe configs train only the evidence head.",
+        "- Frozen-probe configs use latest checkpoint selection because h does not affect dev MAE/QWK.",
         "- The evidence head does not modify the ordinal scoring path.",
     ]
     (run_dir / "exp17_a1_report.md").write_text("\n".join(report_lines), encoding="utf-8")
