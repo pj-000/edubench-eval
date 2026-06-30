@@ -63,6 +63,33 @@ Generated files:
 - `d1_enter_exp17a_decision.json`
 - `exp17_d1_hidden_failure_report.md`
 
+## Recover Original Human Rationales
+
+The current fork already contains original human rationale files under
+`5-grades/`, for example:
+
+- `5-grades/5_merge_human_metric_en.jsonl`
+- `5-grades/5_merge_human_metric_zh.jsonl`
+- `5-grades/5_human_1.jsonl`
+- `5-grades/5_human_2.jsonl`
+- `5-grades/5_human_3.jsonl`
+
+The modeling table used by Exp16/Exp17 is derived from `results_merge.jsonl`.
+That merged table keeps human scores but does not keep the original `reason`
+field. Therefore D1 should recover these rationales before deciding whether a
+label-2 high-prediction case is a hidden failure or a possible label conflict.
+
+```bash
+./thesis_exp/scripts/run_exp17_d1_human_rationale_recovery.sh
+```
+
+Generated lightweight files:
+
+- `human_rationale_recovery/d1_human_rationale_recovered.csv`
+- `human_rationale_recovery/d1_human_rationale_by_question_group.csv`
+- `human_rationale_recovery/d1_human_rationale_by_metric.csv`
+- `human_rationale_recovery/d1_human_rationale_recovery_report.md`
+
 ## Exp17-A Decision Rule
 
 The default rule recommends entering Exp17-A when:
