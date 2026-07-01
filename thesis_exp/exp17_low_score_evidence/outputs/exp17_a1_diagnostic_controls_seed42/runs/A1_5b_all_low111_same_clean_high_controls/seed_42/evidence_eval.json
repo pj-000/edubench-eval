@@ -1,0 +1,22 @@
+{
+  "config_name": "A1_5b_all_low111_same_clean_high_controls",
+  "dominant_question_group_id": "14ba3cb00f998348fe1c491eab066379d3bf192b",
+  "dominant_question_group_size": 20,
+  "evidence_delta_hidden_minus_control": 0.0026606372278979717,
+  "h_auc_d1_evidence_positive_vs_controls": 0.4340277777777778,
+  "h_auc_d1_hidden_vs_controls": 0.5122863247863247,
+  "h_auc_d1_pairwise_low_vs_controls": 0.5462962962962963,
+  "mean_h_d1_controls": 0.1637963189019097,
+  "mean_h_d1_evidence_positive": 0.14849853515625,
+  "mean_h_d1_format_auxiliary": 0.07373046875,
+  "mean_h_d1_hidden": 0.16645695612980768,
+  "mean_h_d1_pairwise_low": 0.17429315476190477,
+  "mean_h_d1_possible_conflict": 0.1279296875,
+  "mean_h_dominant_question_group": 0.1720703125,
+  "mean_h_marketing_group": 0.1720703125,
+  "mean_h_non_dominant_question_group": 0.14491489955357142,
+  "mean_h_non_marketing_group": 0.14491489955357142,
+  "mean_h_train_clean_high": 0.08469511689366521,
+  "mean_h_train_weak_positive": 0.7495513091216216,
+  "seed": 42
+}

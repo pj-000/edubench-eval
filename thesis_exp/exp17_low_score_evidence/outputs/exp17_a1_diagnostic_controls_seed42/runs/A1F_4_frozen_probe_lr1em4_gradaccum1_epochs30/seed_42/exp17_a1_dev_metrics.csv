@@ -1,0 +1,2 @@
+config_name,seed,beta,neg_ratio,MAE,QWK,accuracy,low_to_high_count,low_to_high_rate,label2_recall,label2_pred_ge4_rate,monotonic_violation_rate,mean_s_label2,mean_s_label4_5,mean_g_i3_label2
+A1F_4_frozen_probe_lr1em4_gradaccum1_epochs30,42,0.1,1:4,0.3992773261065944,0.5532253604287027,0.6766034327009937,29,0.5087719298245614,0.0,0.7105263157894737,0.0,1.6080129523026316,2.645903346147487,2.2315644285102425
