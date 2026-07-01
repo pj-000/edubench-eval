@@ -1,0 +1,18 @@
+{
+  "recommended_configs": [
+    "all_a0_pairs",
+    "same_subject_only",
+    "high_weight_only_p75",
+    "same_subject_high_weight_p75",
+    "exclude_format_auxiliary",
+    "exclude_answer_key_dependent",
+    "weak_evidence_only",
+    "missing_key_point_only",
+    "factual_or_rubric_mismatch_only",
+    "insufficient_evidence_only",
+    "random_low_high_pairs",
+    "random_matched_metric_rubric",
+    "random_matched_metric_rubric_subject",
+    "same_question_group_upper_bound"
+  ]
+}

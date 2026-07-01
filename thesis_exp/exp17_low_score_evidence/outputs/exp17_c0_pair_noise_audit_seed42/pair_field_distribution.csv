@@ -1,0 +1,40 @@
+field_name,value,n,rate
+low_candidate_type,weak_evidence_positive,380,0.9047619047619048
+low_candidate_type,answer_key_dependent,20,0.047619047619047616
+low_candidate_type,format_auxiliary,20,0.047619047619047616
+recommended_pair_use,evidence_pair,380,0.9047619047619048
+recommended_pair_use,pairwise_low,20,0.047619047619047616
+recommended_pair_use,format_auxiliary_pair,20,0.047619047619047616
+low_failure_mode_auto,surface_fluent_but_hidden_defect,125,0.2976190476190476
+low_failure_mode_auto,missing_key_point,125,0.2976190476190476
+low_failure_mode_auto,insufficient_evidence,115,0.27380952380952384
+low_failure_mode_auto,task_constraint_violation,20,0.047619047619047616
+low_failure_mode_auto,answer_key_or_reference_mismatch,20,0.047619047619047616
+low_failure_mode_auto,format_violation,15,0.03571428571428571
+metric,Reasoning Process Rigor,195,0.4642857142857143
+metric,Error Identification & Correction Precision,45,0.10714285714285714
+metric,Scenario Element Integration,40,0.09523809523809523
+metric,Basic Factual Accuracy,35,0.08333333333333333
+metric,Higher-Order Thinking & Skill Development,35,0.08333333333333333
+metric,"Motivation, Guidance & Positive Feedback",30,0.07142857142857142
+metric,Content Relevance & Scope Control,20,0.047619047619047616
+metric,Instruction Following & Task Completion,20,0.047619047619047616
+subject,Mathematics,65,0.15476190476190477
+subject,Basic Medicine,60,0.14285714285714285
+subject,History,45,0.10714285714285714
+subject,Business Administration,35,0.08333333333333333
+subject,Clinical Medicine,30,0.07142857142857142
+subject,Law,25,0.05952380952380952
+subject,Theoretical Economics,25,0.05952380952380952
+subject,Applied Economics,20,0.047619047619047616
+subject,Psychology,20,0.047619047619047616
+subject,Computer Science,20,0.047619047619047616
+subject,Crop Science,20,0.047619047619047616
+subject,Biology,15,0.03571428571428571
+subject,Physics,15,0.03571428571428571
+subject,Physical Education,10,0.023809523809523808
+subject,Aquaculture,5,0.011904761904761904
+subject,English,5,0.011904761904761904
+subject,General Pedagogy,5,0.011904761904761904
+language,en,210,0.5
+language,zh,210,0.5

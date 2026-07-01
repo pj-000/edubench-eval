@@ -1,0 +1,2 @@
+n_pairs,same_metric_rate,same_language_rate,same_rubric_hash_rate,same_subject_rate,same_question_group_rate,same_boundary_key_rate,pair_weight_mean,pair_weight_p25,pair_weight_p50,pair_weight_p75,pair_weight_p90,pair_weight_max
+420,1.0,1.0,1.0,0.5142857142857142,0.0,0.0,0.588149761904762,0.5503,0.5712,0.6434,0.66433,0.7493

@@ -1,0 +1,15 @@
+pair_source,available_pair_count,status
+all_a0_pairs,420,ok
+same_subject_only,216,ok
+high_weight_only_p75,106,ok
+same_subject_high_weight_p75,73,ok
+exclude_format_auxiliary,400,ok
+exclude_answer_key_dependent,400,ok
+weak_evidence_only,380,ok
+missing_key_point_only,125,ok
+factual_or_rubric_mismatch_only,20,too_small_for_training_but_ok_for_diagnostic
+insufficient_evidence_only,115,ok
+random_low_high_pairs,420,ok
+random_matched_metric_rubric,420,ok
+random_matched_metric_rubric_subject,216,ok
+same_question_group_upper_bound,123,ok

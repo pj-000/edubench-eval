@@ -22,10 +22,11 @@ LOG_STEPS="${LOG_STEPS:-5}"
 SAVE_BEST_BY="${SAVE_BEST_BY:-dev_mae}"
 SKIP_COMPLETED="${SKIP_COMPLETED:-1}"
 RESET_RUN_DIR="${RESET_RUN_DIR:-0}"
-C0_CONFIGS="${C0_CONFIGS:-C0_0_ordinal_continue C0_1_all_pairs_gamma0p02_m0p2 C0_2_all_pairs_gamma0p05_m0p2 C0_3_all_pairs_gamma0p10_m0p2 C0_4_pairwise_low_only_gamma0p05_m0p2 C0_5_evidence_positive_plus_pairwise_low_gamma0p05_m0p2 C0_6_random_pair_control_gamma0p05_m0p2}"
+C0_CONFIGS="${C0_CONFIGS:-C0_0_ordinal_continue C0_1_all_pairs_gamma0p02_m0p2 C0_2_all_pairs_gamma0p05_m0p2 C0_3_all_pairs_gamma0p10_m0p2 C0_7_same_subject_only_gamma0p05_m0p2 C0_8_high_weight_only_gamma0p05_m0p2 C0_9_same_subject_high_weight_gamma0p05_m0p2 C0_10_exclude_format_auxiliary_gamma0p05_m0p2 C0_11_exclude_answer_key_dependent_gamma0p05_m0p2 C0_12_random_matched_metric_rubric_gamma0p05_m0p2 C0_13_random_matched_metric_rubric_subject_gamma0p05_m0p2 C0_6_random_pair_control_gamma0p05_m0p2 C0_14_same_question_group_upper_bound_gamma0p05_m0p2}"
 OUTPUT_DIR="${OUTPUT_DIR:-thesis_exp/exp17_low_score_evidence/outputs/exp17_c0_pairwise_separation_seed42}"
 A0_DIR="${A0_DIR:-thesis_exp/exp17_low_score_evidence/outputs/exp17_a0_train_hidden_failure_signals_seed42}"
 D1_DIR="${D1_DIR:-thesis_exp/exp17_low_score_evidence/outputs/d1_hidden_failure_audit_seed42_dev}"
+PAIR_AUDIT_DIR="${PAIR_AUDIT_DIR:-thesis_exp/exp17_low_score_evidence/outputs/exp17_c0_pair_noise_audit_seed42}"
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(cd "${SCRIPT_DIR}/../.." && pwd)"
@@ -61,7 +62,15 @@ for config in "${CONFIG_ARRAY[@]}"; do
     C0_3_all_pairs_gamma0p10_m0p2|\
     C0_4_pairwise_low_only_gamma0p05_m0p2|\
     C0_5_evidence_positive_plus_pairwise_low_gamma0p05_m0p2|\
-    C0_6_random_pair_control_gamma0p05_m0p2) ;;
+    C0_6_random_pair_control_gamma0p05_m0p2|\
+    C0_7_same_subject_only_gamma0p05_m0p2|\
+    C0_8_high_weight_only_gamma0p05_m0p2|\
+    C0_9_same_subject_high_weight_gamma0p05_m0p2|\
+    C0_10_exclude_format_auxiliary_gamma0p05_m0p2|\
+    C0_11_exclude_answer_key_dependent_gamma0p05_m0p2|\
+    C0_12_random_matched_metric_rubric_gamma0p05_m0p2|\
+    C0_13_random_matched_metric_rubric_subject_gamma0p05_m0p2|\
+    C0_14_same_question_group_upper_bound_gamma0p05_m0p2) ;;
     *)
       echo "ERROR: unknown Exp17-C0 config '${config}'" >&2
       exit 1
@@ -98,6 +107,38 @@ if [[ ! -f "${INIT_CHECKPOINT}" ]]; then
   exit 1
 fi
 
+python thesis_exp/exp17_low_score_evidence/analyze_exp17_c0_pair_noise.py \
+  --pairs "${A0_DIR}/train_hidden_failure_pairs.csv" \
+  --train-jsonl thesis_exp/data/splits/question_seed42/train.jsonl \
+  --out-dir "${PAIR_AUDIT_DIR}" \
+  --seed "${SEED}"
+
+SAME_QUESTION_PAIR_COUNT="$(python - <<PY
+import csv
+from pathlib import Path
+path = Path("${PAIR_AUDIT_DIR}") / "pair_source_candidate_counts.csv"
+count = 0
+if path.exists():
+    with path.open(encoding="utf-8", newline="") as f:
+        for row in csv.DictReader(f):
+            if row.get("pair_source") == "same_question_group_upper_bound":
+                count = int(float(row.get("available_pair_count") or 0))
+                break
+print(count)
+PY
+)"
+if [[ "${SAME_QUESTION_PAIR_COUNT}" -lt 1 ]]; then
+  filtered=()
+  for config in "${CONFIG_ARRAY[@]}"; do
+    if [[ "${config}" == "C0_14_same_question_group_upper_bound_gamma0p05_m0p2" ]]; then
+      echo "WARNING: skipping C0_14_same_question_group_upper_bound_gamma0p05_m0p2 because no same-question upper-bound pairs are available." >&2
+    else
+      filtered+=("${config}")
+    fi
+  done
+  CONFIG_ARRAY=("${filtered[@]}")
+fi
+
 cat <<CONFIG
 Exp17-C0 pairwise-low quality separation scout
 MODEL_NAME_OR_PATH=${MODEL_NAME_OR_PATH}
@@ -117,6 +158,7 @@ GRADIENT_CHECKPOINTING=${GRADIENT_CHECKPOINTING}
 LOG_STEPS=${LOG_STEPS}
 C0_CONFIGS=${C0_CONFIGS}
 OUTPUT_DIR=${OUTPUT_DIR}
+PAIR_AUDIT_DIR=${PAIR_AUDIT_DIR}
 CONFIG
 
 run_one() {

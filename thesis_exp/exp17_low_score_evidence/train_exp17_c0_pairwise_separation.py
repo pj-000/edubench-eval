@@ -5,13 +5,19 @@ from __future__ import annotations
 import argparse
 import copy
 import csv
+import hashlib
 import json
 import math
 import random
+import sys
 import time
 from argparse import Namespace
 from pathlib import Path
 from typing import Any
+
+REPO_ROOT = Path(__file__).resolve().parents[2]
+if str(REPO_ROOT) not in sys.path:
+    sys.path.insert(0, str(REPO_ROOT))
 
 import numpy as np
 import torch
@@ -60,6 +66,45 @@ C0_CONFIGS: dict[str, dict[str, Any]] = {
         "temperature": 0.2,
         "pair_source": "random_low_high_pairs",
     },
+    "C0_7_same_subject_only_gamma0p05_m0p2": {"gamma": 0.05, "margin": 0.2, "temperature": 0.2, "pair_source": "same_subject_only"},
+    "C0_8_high_weight_only_gamma0p05_m0p2": {"gamma": 0.05, "margin": 0.2, "temperature": 0.2, "pair_source": "high_weight_only_p75"},
+    "C0_9_same_subject_high_weight_gamma0p05_m0p2": {
+        "gamma": 0.05,
+        "margin": 0.2,
+        "temperature": 0.2,
+        "pair_source": "same_subject_high_weight_p75",
+    },
+    "C0_10_exclude_format_auxiliary_gamma0p05_m0p2": {
+        "gamma": 0.05,
+        "margin": 0.2,
+        "temperature": 0.2,
+        "pair_source": "exclude_format_auxiliary",
+    },
+    "C0_11_exclude_answer_key_dependent_gamma0p05_m0p2": {
+        "gamma": 0.05,
+        "margin": 0.2,
+        "temperature": 0.2,
+        "pair_source": "exclude_answer_key_dependent",
+    },
+    "C0_12_random_matched_metric_rubric_gamma0p05_m0p2": {
+        "gamma": 0.05,
+        "margin": 0.2,
+        "temperature": 0.2,
+        "pair_source": "random_matched_metric_rubric",
+    },
+    "C0_13_random_matched_metric_rubric_subject_gamma0p05_m0p2": {
+        "gamma": 0.05,
+        "margin": 0.2,
+        "temperature": 0.2,
+        "pair_source": "random_matched_metric_rubric_subject",
+    },
+    "C0_14_same_question_group_upper_bound_gamma0p05_m0p2": {
+        "gamma": 0.05,
+        "margin": 0.2,
+        "temperature": 0.2,
+        "pair_source": "same_question_group_upper_bound",
+        "allow_empty_pairs": True,
+    },
 }
 
 DEV_FIELDS = [
@@ -88,12 +133,22 @@ PAIR_FIELDS = [
     "pair_source",
     "train_pair_count",
     "dev_d1_pair_count",
+    "margin",
     "train_pair_gap_mean",
     "train_pair_gap_p10",
-    "train_pair_gap_violation_rate",
+    "train_pair_gap_violation_rate_at_margin",
     "dev_d1_s_gap_control_minus_hidden_mean",
-    "dev_d1_s_gap_control_minus_hidden_p10",
+    "dev_d1_s_gap_control_minus_hidden_median",
     "dev_d1_s_gap_violation_rate",
+    "dev_d1_g_i3_hidden_mean",
+    "dev_d1_g_i3_control_mean",
+    "d1_hidden_vs_control_s_auc",
+    "d1_pairwise_low_vs_control_s_auc",
+    "d1_evidence_positive_vs_control_s_auc",
+    "pair_source_available_pair_count",
+    "pair_weight_mean",
+    "pair_weight_p50",
+    "pair_weight_p75",
 ]
 
 
@@ -125,6 +180,98 @@ def row_id(row: dict[str, Any]) -> str:
 
 def row_label(row: dict[str, Any]) -> int:
     return int(float(row.get("label_5", row.get("label", 0))))
+
+
+def truthy(value: Any) -> bool:
+    return str(value).strip().lower() in {"1", "true", "yes", "y"}
+
+
+def text_hash(value: Any) -> str:
+    return hashlib.sha1(str(value or "").strip().encode("utf-8")).hexdigest()
+
+
+def sample_subject(sample: dict[str, Any]) -> str:
+    return str(sample.get("subject_canonical") or sample.get("subject") or "").strip()
+
+
+def sample_group_key(sample: dict[str, Any]) -> str:
+    return str(sample.get("question_group_id") or sample.get("question_key") or "").strip()
+
+
+def sample_match_key(sample: dict[str, Any], include_subject: bool = False) -> tuple[str, ...]:
+    key = (
+        str(sample.get("metric") or "").strip(),
+        str(sample.get("language") or "").strip(),
+        text_hash(sample.get("rubric_text") or sample.get("rubric") or ""),
+    )
+    if include_subject:
+        return (*key, sample_subject(sample))
+    return key
+
+
+def sample_len(sample: dict[str, Any]) -> int:
+    return len(str(sample.get("answer") or "").split())
+
+
+def rows_p75(rows: list[dict[str, str]]) -> float:
+    values = [safe_float(row.get("pair_weight"), float("nan")) for row in rows]
+    values = [value for value in values if not math.isnan(value)]
+    return percentile(values, 75) if values else float("inf")
+
+
+def make_pair_row(low_id: str, high_id: str, weight: float, use: str, candidate_type: str, mode: str) -> dict[str, Any]:
+    return {
+        "low_sample_id": low_id,
+        "high_sample_id": high_id,
+        "pair_weight": weight,
+        "recommended_pair_use": use,
+        "low_candidate_type": candidate_type,
+        "low_failure_mode_auto": mode,
+    }
+
+
+def random_matched_pairs(train_samples: list[dict[str, Any]], target_n: int, seed: int, include_subject: bool) -> list[dict[str, Any]]:
+    rng = random.Random(seed + (17 if include_subject else 11))
+    lows = [sample for sample in train_samples if int(sample["label"]) <= 2]
+    highs = [sample for sample in train_samples if int(sample["label"]) >= 4]
+    high_by_key: dict[tuple[str, ...], list[dict[str, Any]]] = {}
+    for sample in highs:
+        high_by_key.setdefault(sample_match_key(sample, include_subject=include_subject), []).append(sample)
+    candidates: list[tuple[dict[str, Any], list[dict[str, Any]]]] = []
+    for low in lows:
+        matched = high_by_key.get(sample_match_key(low, include_subject=include_subject), [])
+        if matched:
+            candidates.append((low, matched))
+    if not candidates:
+        return []
+    selected: list[dict[str, Any]] = []
+    for _ in range(max(0, target_n)):
+        low, high_pool = rng.choice(candidates)
+        high = min(rng.sample(high_pool, k=len(high_pool)), key=lambda item: abs(sample_len(item) - sample_len(low)))
+        selected.append(make_pair_row(low["sample_id"], high["sample_id"], 1.0, "random_matched_control", "random_low", "random_control"))
+    return selected
+
+
+def same_question_group_pairs(train_samples: list[dict[str, Any]], seed: int) -> list[dict[str, Any]]:
+    del seed
+    groups: dict[tuple[str, str, str], dict[str, list[dict[str, Any]]]] = {}
+    for sample in train_samples:
+        group = sample_group_key(sample)
+        if not group:
+            continue
+        key = (group, str(sample.get("metric") or ""), text_hash(sample.get("rubric_text") or ""))
+        bucket = groups.setdefault(key, {"low": [], "high": []})
+        if int(sample["label"]) <= 2:
+            bucket["low"].append(sample)
+        elif int(sample["label"]) >= 4:
+            bucket["high"].append(sample)
+    pairs: list[dict[str, Any]] = []
+    for bucket in groups.values():
+        for low in bucket["low"]:
+            high_pool = sorted(bucket["high"], key=lambda item: abs(sample_len(item) - sample_len(low)))[:5]
+            for high in high_pool:
+                pairs.append(make_pair_row(low["sample_id"], high["sample_id"], 1.0, "same_question_upper_bound", "same_question_low", "upper_bound"))
+    return pairs
 
 
 def load_init_checkpoint(model: BoundaryLinkingOrdinalModel, path: Path) -> str:
@@ -220,36 +367,68 @@ def load_a0_pairs(a0_dir: Path, pair_source: str, train_samples: list[dict[str, 
     by_id = {sample["sample_id"]: sample for sample in train_samples}
     path = a0_dir / "train_hidden_failure_pairs.csv"
     rows = read_csv_rows(path) if path.exists() else []
+    valid_rows = [row for row in rows if row.get("low_sample_id", "") in by_id and row.get("high_sample_id", "") in by_id]
+    p75 = rows_p75(valid_rows)
     if pair_source == "none":
         return []
     if pair_source == "all_a0_pairs":
-        selected = rows
+        selected = valid_rows
     elif pair_source == "pairwise_low_only":
-        selected = [row for row in rows if row.get("recommended_pair_use") == "pairwise_low"]
+        selected = [row for row in valid_rows if row.get("recommended_pair_use") == "pairwise_low"]
     elif pair_source == "evidence_positive_plus_pairwise_low":
         selected = [
             row
-            for row in rows
+            for row in valid_rows
             if row.get("recommended_pair_use") == "pairwise_low"
             or row.get("low_candidate_type") in {"weak_evidence_positive", "strong_evidence_positive"}
         ]
+    elif pair_source == "same_subject_only":
+        selected = [row for row in valid_rows if truthy(row.get("same_subject"))]
+    elif pair_source == "high_weight_only_p75":
+        selected = [row for row in valid_rows if safe_float(row.get("pair_weight"), 0.0) >= p75]
+    elif pair_source == "same_subject_high_weight_p75":
+        selected = [row for row in valid_rows if truthy(row.get("same_subject")) and safe_float(row.get("pair_weight"), 0.0) >= p75]
+    elif pair_source == "exclude_format_auxiliary":
+        selected = [
+            row
+            for row in valid_rows
+            if row.get("low_candidate_type") != "format_auxiliary" and row.get("low_failure_mode_auto") != "format_violation"
+        ]
+    elif pair_source == "exclude_answer_key_dependent":
+        selected = [
+            row
+            for row in valid_rows
+            if row.get("low_candidate_type") != "answer_key_dependent"
+            and row.get("low_failure_mode_auto") != "answer_key_or_reference_mismatch"
+        ]
+    elif pair_source == "weak_evidence_only":
+        selected = [row for row in valid_rows if row.get("low_candidate_type") in {"weak_evidence_positive", "strong_evidence_positive"}]
+    elif pair_source == "missing_key_point_only":
+        selected = [row for row in valid_rows if "missing_key_point" in row.get("low_failure_mode_auto", "")]
+    elif pair_source == "factual_or_rubric_mismatch_only":
+        selected = [
+            row
+            for row in valid_rows
+            if "factual_or_rubric_mismatch" in row.get("low_failure_mode_auto", "")
+            or "answer_key_or_reference_mismatch" in row.get("low_failure_mode_auto", "")
+        ]
+    elif pair_source == "insufficient_evidence_only":
+        selected = [row for row in valid_rows if "insufficient_evidence" in row.get("low_failure_mode_auto", "")]
     elif pair_source == "random_low_high_pairs":
         rng = random.Random(seed)
         low_ids = [sid for sid, sample in by_id.items() if int(sample["label"]) <= 2]
         high_ids = [sid for sid, sample in by_id.items() if int(sample["label"]) >= 4]
-        target_n = sum(1 for row in rows if row.get("low_sample_id") in by_id and row.get("high_sample_id") in by_id)
+        target_n = len(valid_rows)
         selected = []
-        for _ in range(target_n):
-            selected.append(
-                {
-                    "low_sample_id": rng.choice(low_ids),
-                    "high_sample_id": rng.choice(high_ids),
-                    "pair_weight": 1.0,
-                    "recommended_pair_use": "random_control",
-                    "low_candidate_type": "random_low",
-                    "low_failure_mode_auto": "random_control",
-                }
-            )
+        if low_ids and high_ids:
+            for _ in range(target_n):
+                selected.append(make_pair_row(rng.choice(low_ids), rng.choice(high_ids), 1.0, "random_control", "random_low", "random_control"))
+    elif pair_source == "random_matched_metric_rubric":
+        selected = random_matched_pairs(train_samples, len(valid_rows), seed, include_subject=False)
+    elif pair_source == "random_matched_metric_rubric_subject":
+        selected = random_matched_pairs(train_samples, len([row for row in valid_rows if truthy(row.get("same_subject"))]), seed, include_subject=True)
+    elif pair_source == "same_question_group_upper_bound":
+        selected = same_question_group_pairs(train_samples, seed)
     else:
         raise ValueError(f"Unsupported pair_source: {pair_source}")
 
@@ -266,6 +445,7 @@ def load_a0_pairs(a0_dir: Path, pair_source: str, train_samples: list[dict[str, 
                     "recommended_pair_use": row.get("recommended_pair_use", ""),
                     "low_candidate_type": row.get("low_candidate_type", ""),
                     "low_failure_mode_auto": row.get("low_failure_mode_auto", ""),
+                    "source_row": row,
                 }
             )
     return pairs
@@ -327,41 +507,116 @@ def score_is_better(metrics: dict[str, Any], best: float | None, save_best_by: s
     return best is None or score < best, score
 
 
-def load_dev_d1_pairs(d1_dir: Path) -> list[tuple[str, str]]:
+def load_dev_d1_pairs(d1_dir: Path) -> list[dict[str, str]]:
     path = d1_dir / "d1_matched_case_control_review.csv"
     if not path.exists():
         return []
+    annotation_paths = [
+        d1_dir / "d1_hidden_failure_annotation_template_filled_human_rationale_recovered.csv",
+        d1_dir / "d1_hidden_failure_annotation_template_filled_codex_independent.csv",
+        d1_dir / "d1_hidden_failure_annotation_template_filled.csv",
+    ]
+    annotations: dict[str, dict[str, str]] = {}
+    for annotation_path in annotation_paths:
+        if annotation_path.exists():
+            annotations = {row.get("sample_id", ""): row for row in read_csv_rows(annotation_path)}
+            break
     rows = read_csv_rows(path)
-    pairs: list[tuple[str, str]] = []
+    pairs: list[dict[str, str]] = []
     seen: set[tuple[str, str]] = set()
     for row in rows:
         pair = (row.get("case_sample_id", ""), row.get("control_sample_id", ""))
         if all(pair) and pair not in seen:
-            pairs.append(pair)
+            annotation = annotations.get(pair[0], {})
+            pairs.append(
+                {
+                    "case": pair[0],
+                    "control": pair[1],
+                    "primary_failure_mode_manual": annotation.get("primary_failure_mode_manual", ""),
+                    "recommended_training_use_manual": annotation.get("recommended_training_use_manual", ""),
+                    "trainability_manual": annotation.get("trainability_manual", ""),
+                }
+            )
             seen.add(pair)
     return pairs
 
 
-def pair_eval_row(config_name: str, seed: int, pair_source: str, train_pairs: list[dict[str, Any]], train_pair_predictions: dict[str, float], dev_predictions: list[dict[str, Any]], d1_pairs: list[tuple[str, str]]) -> dict[str, Any]:
+def separation_auc(case_scores: list[float], control_scores: list[float]) -> float:
+    if not case_scores or not control_scores:
+        return float("nan")
+    wins = 0.0
+    total = 0
+    for case_score in case_scores:
+        for control_score in control_scores:
+            total += 1
+            if control_score > case_score:
+                wins += 1.0
+            elif control_score == case_score:
+                wins += 0.5
+    return wins / total if total else float("nan")
+
+
+def pair_weights(train_pairs: list[dict[str, Any]]) -> list[float]:
+    return [float(pair.get("weight", 1.0)) for pair in train_pairs]
+
+
+def pair_eval_row(
+    config_name: str,
+    seed: int,
+    pair_source: str,
+    margin: float,
+    train_pairs: list[dict[str, Any]],
+    train_pair_predictions: dict[str, float],
+    dev_predictions: list[dict[str, Any]],
+    d1_pairs: list[dict[str, str]],
+) -> dict[str, Any]:
     train_gaps = [
         train_pair_predictions[pair["high"]["sample_id"]] - train_pair_predictions[pair["low"]["sample_id"]]
         for pair in train_pairs
         if pair["high"]["sample_id"] in train_pair_predictions and pair["low"]["sample_id"] in train_pair_predictions
     ]
     dev_s = {row["sample_id"]: float(row["quality_score_s"]) for row in dev_predictions}
-    dev_gaps = [dev_s[control] - dev_s[case] for case, control in d1_pairs if case in dev_s and control in dev_s]
+    dev_g = {row["sample_id"]: float(row.get("g_i3", float("nan"))) for row in dev_predictions}
+    usable_d1_pairs = [pair for pair in d1_pairs if pair["case"] in dev_s and pair["control"] in dev_s]
+    dev_gaps = [dev_s[pair["control"]] - dev_s[pair["case"]] for pair in usable_d1_pairs]
+    case_scores = [dev_s[pair["case"]] for pair in usable_d1_pairs]
+    control_scores = [dev_s[pair["control"]] for pair in usable_d1_pairs]
+    pairwise_low_pairs = [pair for pair in usable_d1_pairs if pair.get("recommended_training_use_manual") == "pairwise_low"]
+    evidence_pairs = [
+        pair
+        for pair in usable_d1_pairs
+        if pair.get("recommended_training_use_manual") in {"evidence_positive", "weak_evidence_positive"}
+        or pair.get("trainability_manual") in {"strong_train_signal", "weak_train_signal"}
+    ]
+    weights = pair_weights(train_pairs)
     return {
         "config_name": config_name,
         "seed": seed,
         "pair_source": pair_source,
         "train_pair_count": len(train_pairs),
         "dev_d1_pair_count": len(dev_gaps),
+        "margin": margin,
         "train_pair_gap_mean": safe_mean(train_gaps),
         "train_pair_gap_p10": percentile(train_gaps, 10),
-        "train_pair_gap_violation_rate": sum(1 for gap in train_gaps if gap < 0.2) / len(train_gaps) if train_gaps else float("nan"),
+        "train_pair_gap_violation_rate_at_margin": sum(1 for gap in train_gaps if gap < margin) / len(train_gaps) if train_gaps else float("nan"),
         "dev_d1_s_gap_control_minus_hidden_mean": safe_mean(dev_gaps),
-        "dev_d1_s_gap_control_minus_hidden_p10": percentile(dev_gaps, 10),
+        "dev_d1_s_gap_control_minus_hidden_median": percentile(dev_gaps, 50),
         "dev_d1_s_gap_violation_rate": sum(1 for gap in dev_gaps if gap <= 0.0) / len(dev_gaps) if dev_gaps else float("nan"),
+        "dev_d1_g_i3_hidden_mean": safe_mean([dev_g[pair["case"]] for pair in usable_d1_pairs if pair["case"] in dev_g]),
+        "dev_d1_g_i3_control_mean": safe_mean([dev_g[pair["control"]] for pair in usable_d1_pairs if pair["control"] in dev_g]),
+        "d1_hidden_vs_control_s_auc": separation_auc(case_scores, control_scores),
+        "d1_pairwise_low_vs_control_s_auc": separation_auc(
+            [dev_s[pair["case"]] for pair in pairwise_low_pairs],
+            [dev_s[pair["control"]] for pair in pairwise_low_pairs],
+        ),
+        "d1_evidence_positive_vs_control_s_auc": separation_auc(
+            [dev_s[pair["case"]] for pair in evidence_pairs],
+            [dev_s[pair["control"]] for pair in evidence_pairs],
+        ),
+        "pair_source_available_pair_count": len(train_pairs),
+        "pair_weight_mean": safe_mean(weights),
+        "pair_weight_p50": percentile(weights, 50),
+        "pair_weight_p75": percentile(weights, 75),
     }
 
 
@@ -394,6 +649,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--max_eval_samples", type=int, default=0)
     parser.add_argument("--max_train_steps", type=int, default=0)
     parser.add_argument("--log_steps", type=int, default=5)
+    parser.add_argument("--allow_empty_pairs", action="store_true")
     parser.add_argument("--trust_remote_code", action="store_true")
     parser.add_argument("--local_files_only", action="store_true")
     return parser
@@ -429,6 +685,12 @@ def train_one(args: Namespace) -> dict[str, Any]:
     train_loader = DataLoader(BoundaryLinkingDataset(train_samples), batch_size=int(args.batch_size), shuffle=True, collate_fn=collator)
     dev_loader = DataLoader(BoundaryLinkingDataset(dev_samples), batch_size=int(args.eval_batch_size), shuffle=False, collate_fn=collator)
     train_pairs = load_a0_pairs(args.a0_dir, pair_source, train_samples, int(args.seed))
+    allow_empty_pairs = bool(args.allow_empty_pairs or cfg.get("allow_empty_pairs", False))
+    if gamma > 0.0 and not train_pairs and not allow_empty_pairs:
+        raise RuntimeError(
+            f"Exp17-C0 config {args.config_name} pair_source={pair_source} produced 0 train pairs. "
+            "Use --allow_empty_pairs only for diagnostics."
+        )
     pair_loader = (
         DataLoader(PairDataset(train_pairs), batch_size=int(args.pair_batch_size), shuffle=True, collate_fn=PairCollator(collator))
         if train_pairs
@@ -542,7 +804,16 @@ def train_one(args: Namespace) -> dict[str, Any]:
     train_pair_loader = DataLoader(BoundaryLinkingDataset(train_pair_samples), batch_size=int(args.eval_batch_size), shuffle=False, collate_fn=collator)
     _, train_pair_preds = evaluate_model(model, train_pair_loader, device, args) if train_pair_samples else ({}, [])
     train_s = {row["sample_id"]: float(row["quality_score_s"]) for row in train_pair_preds}
-    pair_row = pair_eval_row(args.config_name, int(args.seed), pair_source, train_pairs, train_s, dev_predictions, load_dev_d1_pairs(args.d1_dir))
+    pair_row = pair_eval_row(
+        args.config_name,
+        int(args.seed),
+        pair_source,
+        margin,
+        train_pairs,
+        train_s,
+        dev_predictions,
+        load_dev_d1_pairs(args.d1_dir),
+    )
     dev_row = dev_metric_row(args.config_name, int(args.seed), cfg, dev_predictions)
 
     write_json(run_dir / "metrics_dev.json", final_metrics)
@@ -561,10 +832,13 @@ def train_one(args: Namespace) -> dict[str, Any]:
             "init_status": init_status,
             "c0_config": cfg,
             "train_pair_count": len(train_pairs),
+            "available_pair_count": len(train_pairs),
             "best_metrics": best_metrics,
             "test_read": False,
             "dev_annotation_used_as_train_label": False,
             "human_rationale_used_as_ranker_input": False,
+            "hidden_failure_evidence_head": False,
+            "suppression": False,
             "pair_loss_applies_to": "quality_score_s_only",
         },
     )
@@ -593,6 +867,7 @@ def train_one(args: Namespace) -> dict[str, Any]:
         "",
         f"- train_pair_gap_mean: {pair_row['train_pair_gap_mean']}",
         f"- dev_d1_s_gap_control_minus_hidden_mean: {pair_row['dev_d1_s_gap_control_minus_hidden_mean']}",
+        f"- d1_hidden_vs_control_s_auc: {pair_row['d1_hidden_vs_control_s_auc']}",
         "",
         "## Guardrails",
         "",
