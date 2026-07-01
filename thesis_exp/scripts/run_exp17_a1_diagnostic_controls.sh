@@ -21,8 +21,8 @@ LOG_STEPS="${LOG_STEPS:-5}"
 SAVE_BEST_BY="${SAVE_BEST_BY:-dev_mae}"
 SKIP_COMPLETED="${SKIP_COMPLETED:-1}"
 RESET_RUN_DIR="${RESET_RUN_DIR:-0}"
-EXP17_A1_CONFIGS="${EXP17_A1_CONFIGS:-A1_0_baseline A1_1 A1_2 A1_3 A1_4 A1_5_all_low_aux_baseline A1_6_random_positive_control A1F_1_frozen_base_beta_0p10}"
-OUTPUT_DIR="${OUTPUT_DIR:-thesis_exp/exp17_low_score_evidence/outputs/exp17_a1_evidence_head_seed42}"
+EXP17_A1_CONFIGS="${EXP17_A1_CONFIGS:-A1F_2_frozen_probe_lr1em3_gradaccum1_epochs20 A1F_3_frozen_probe_lr3em4_gradaccum1_epochs20 A1F_4_frozen_probe_lr1em4_gradaccum1_epochs30 A1_5a_all_low_downsample76_same_neg_pool A1_5b_all_low111_same_clean_high_controls A1_1b_a0_weak_random_high_negatives}"
+OUTPUT_DIR="${OUTPUT_DIR:-thesis_exp/exp17_low_score_evidence/outputs/exp17_a1_diagnostic_controls_seed42}"
 A0_DIR="${A0_DIR:-thesis_exp/exp17_low_score_evidence/outputs/exp17_a0_train_hidden_failure_signals_seed42}"
 D1_DIR="${D1_DIR:-thesis_exp/exp17_low_score_evidence/outputs/d1_hidden_failure_audit_seed42_dev}"
 
@@ -54,11 +54,15 @@ if [[ "${#GPU_ARRAY[@]}" -lt 1 ]]; then
 fi
 for config in "${CONFIG_ARRAY[@]}"; do
   case "${config}" in
-    A1_0_baseline|A1_1|A1_2|A1_3|A1_4|A1_5_all_low_aux_baseline|A1_6_random_positive_control|A1F_1_frozen_base_beta_0p10|\
-    A1F_2_frozen_probe_lr1em3_gradaccum1_epochs20|A1F_3_frozen_probe_lr3em4_gradaccum1_epochs20|A1F_4_frozen_probe_lr1em4_gradaccum1_epochs30|\
-    A1_5a_all_low_downsample76_same_neg_pool|A1_5b_all_low111_same_clean_high_controls|A1_1b_a0_weak_random_high_negatives) ;;
+    A1F_2_frozen_probe_lr1em3_gradaccum1_epochs20|\
+    A1F_3_frozen_probe_lr3em4_gradaccum1_epochs20|\
+    A1F_4_frozen_probe_lr1em4_gradaccum1_epochs30|\
+    A1_5a_all_low_downsample76_same_neg_pool|\
+    A1_5b_all_low111_same_clean_high_controls|\
+    A1_1b_a0_weak_random_high_negatives|\
+    A1_0_baseline|A1_1|A1_2|A1_3|A1_4|A1_5_all_low_aux_baseline|A1_6_random_positive_control|A1F_1_frozen_base_beta_0p10) ;;
     *)
-      echo "ERROR: unknown Exp17-A1 config '${config}'" >&2
+      echo "ERROR: unknown Exp17-A1 diagnostic config '${config}'" >&2
       exit 1
       ;;
   esac
@@ -88,34 +92,29 @@ precision_from_flags() {
 }
 
 PRECISION="$(precision_from_flags "${BF16}" "${FP16}")"
-EFFECTIVE_BATCH_SIZE=$((PER_DEVICE_TRAIN_BATCH_SIZE * GRADIENT_ACCUMULATION_STEPS))
-if [[ "${EFFECTIVE_BATCH_SIZE}" != "128" ]]; then
-  echo "ERROR: Exp17-A1 effective batch size must remain 128, got ${EFFECTIVE_BATCH_SIZE}." >&2
-  exit 1
-fi
 
 if [[ ! -f "${INIT_CHECKPOINT}" ]]; then
   cat >&2 <<MSG
 ERROR: missing Exp16A qmr init checkpoint:
   ${INIT_CHECKPOINT}
 
-Exp17-A1 must start from the Exp16A qmr boundary-linking checkpoint.
+Exp17-A1 diagnostics must start from the Exp16A qmr boundary-linking checkpoint.
 Run/sync Exp16A qmr seed42 first, or set INIT_CHECKPOINT explicitly.
 MSG
   exit 1
 fi
 
 cat <<CONFIG
-Exp17-A1 evidence-head scout
+Exp17-A1 diagnostic controls
 MODEL_NAME_OR_PATH=${MODEL_NAME_OR_PATH}
 INIT_CHECKPOINT=${INIT_CHECKPOINT}
 SEED=${SEED}
 GPU_LIST=${GPU_LIST}
-EPOCHS=${EPOCHS}
-PER_DEVICE_TRAIN_BATCH_SIZE=${PER_DEVICE_TRAIN_BATCH_SIZE}
-PER_DEVICE_EVAL_BATCH_SIZE=${PER_DEVICE_EVAL_BATCH_SIZE}
-GRADIENT_ACCUMULATION_STEPS=${GRADIENT_ACCUMULATION_STEPS}
-effective batch size=${EFFECTIVE_BATCH_SIZE}
+BASE_EPOCHS=${EPOCHS}
+BASE_PER_DEVICE_TRAIN_BATCH_SIZE=${PER_DEVICE_TRAIN_BATCH_SIZE}
+BASE_PER_DEVICE_EVAL_BATCH_SIZE=${PER_DEVICE_EVAL_BATCH_SIZE}
+BASE_GRADIENT_ACCUMULATION_STEPS=${GRADIENT_ACCUMULATION_STEPS}
+BASE_LEARNING_RATE=${LEARNING_RATE}
 MAX_LENGTH_QUALITY=${MAX_LENGTH_QUALITY}
 MAX_LENGTH_BOUNDARY=${MAX_LENGTH_BOUNDARY}
 BF16=${BF16}
@@ -124,6 +123,9 @@ GRADIENT_CHECKPOINTING=${GRADIENT_CHECKPOINTING}
 LOG_STEPS=${LOG_STEPS}
 EXP17_A1_CONFIGS=${EXP17_A1_CONFIGS}
 OUTPUT_DIR=${OUTPUT_DIR}
+
+Note: A1F_2/3/4 override learning rate, epochs, and grad accumulation inside
+train_exp17_a1_evidence_head.py for a real frozen linear-probe diagnostic.
 CONFIG
 
 run_one() {
@@ -131,9 +133,9 @@ run_one() {
   local gpu="$2"
   local run_dir="${OUTPUT_DIR}/runs/${config}/seed_${SEED}"
   local log_dir="${run_dir}/logs"
-  local log_path="${log_dir}/train_exp17_a1_${config}_seed_${SEED}_gpu${gpu}.log"
+  local log_path="${log_dir}/train_exp17_a1_diag_${config}_seed_${SEED}_gpu${gpu}.log"
   if [[ "${SKIP_COMPLETED}" == "1" && "${RESET_RUN_DIR}" != "1" && -f "${run_dir}/metrics_dev.json" && -f "${run_dir}/evidence_eval.json" ]]; then
-    echo "Skipping Exp17-A1 ${config} seed ${SEED}: completed outputs found at ${run_dir}"
+    echo "Skipping Exp17-A1 diagnostic ${config} seed ${SEED}: completed outputs found at ${run_dir}"
     return 0
   fi
   if [[ "${RESET_RUN_DIR}" == "1" ]]; then
@@ -144,7 +146,7 @@ run_one() {
   if is_truthy "${GRADIENT_CHECKPOINTING}"; then
     gc_args+=(--gradient_checkpointing)
   fi
-  echo "Starting Exp17-A1 ${config} seed ${SEED} on GPU ${gpu}; log=${log_path}"
+  echo "Starting Exp17-A1 diagnostic ${config} seed ${SEED} on GPU ${gpu}; log=${log_path}"
   (
     export CUDA_VISIBLE_DEVICES="${gpu}"
     python thesis_exp/exp17_low_score_evidence/train_exp17_a1_evidence_head.py \
@@ -209,4 +211,4 @@ python thesis_exp/exp17_low_score_evidence/collect_exp17_a1_results.py \
   --seed "${SEED}" \
   --configs "${CONFIG_ARRAY[@]}"
 
-echo "Exp17-A1 scout completed for configs: ${EXP17_A1_CONFIGS}"
+echo "Exp17-A1 diagnostic controls completed for configs: ${EXP17_A1_CONFIGS}"

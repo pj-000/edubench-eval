@@ -81,8 +81,15 @@ def success_flags(dev_rows: list[dict[str, Any]], evidence_rows: list[dict[str, 
     dev_by_config = {row["config_name"]: row for row in dev_rows}
     ev_by_config = {row["config_name"]: row for row in evidence_rows}
     baseline = dev_by_config.get("A1_0_baseline")
-    filtered = [name for name in ["A1_1", "A1_2", "A1_3", "A1_4"] if name in dev_by_config and name in ev_by_config]
-    controls = [name for name in ["A1_5_all_low_aux_baseline", "A1_6_random_positive_control"] if name in ev_by_config]
+    filtered_names = ["A1_1", "A1_2", "A1_3", "A1_4", "A1_1b_a0_weak_random_high_negatives"]
+    control_names = [
+        "A1_5_all_low_aux_baseline",
+        "A1_5a_all_low_downsample76_same_neg_pool",
+        "A1_5b_all_low111_same_clean_high_controls",
+        "A1_6_random_positive_control",
+    ]
+    filtered = [name for name in filtered_names if name in dev_by_config and name in ev_by_config]
+    controls = [name for name in control_names if name in ev_by_config]
     best = best_config([dev_by_config[name] for name in filtered], [ev_by_config[name] for name in filtered]) if filtered else None
     if not best:
         return {"a1_success": False, "reason": "no completed A0-filtered A1 configs"}

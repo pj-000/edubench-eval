@@ -65,6 +65,54 @@ SCOUT_CONFIGS: dict[str, dict[str, Any]] = {
         "train_evidence_head_only": True,
         "checkpoint_selection": "latest",
     },
+    "A1F_2_frozen_probe_lr1em3_gradaccum1_epochs20": {
+        "beta": 0.10,
+        "neg_ratio": 4,
+        "positive_mode": "a0_weak",
+        "freeze_base": True,
+        "train_evidence_head_only": True,
+        "checkpoint_selection": "latest",
+        "learning_rate": 1e-3,
+        "grad_accum_steps": 1,
+        "epochs": 20,
+    },
+    "A1F_3_frozen_probe_lr3em4_gradaccum1_epochs20": {
+        "beta": 0.10,
+        "neg_ratio": 4,
+        "positive_mode": "a0_weak",
+        "freeze_base": True,
+        "train_evidence_head_only": True,
+        "checkpoint_selection": "latest",
+        "learning_rate": 3e-4,
+        "grad_accum_steps": 1,
+        "epochs": 20,
+    },
+    "A1F_4_frozen_probe_lr1em4_gradaccum1_epochs30": {
+        "beta": 0.10,
+        "neg_ratio": 4,
+        "positive_mode": "a0_weak",
+        "freeze_base": True,
+        "train_evidence_head_only": True,
+        "checkpoint_selection": "latest",
+        "learning_rate": 1e-4,
+        "grad_accum_steps": 1,
+        "epochs": 30,
+    },
+    "A1_5a_all_low_downsample76_same_neg_pool": {
+        "beta": 0.10,
+        "neg_ratio": 4,
+        "positive_mode": "all_low_downsample_a0_count_same_neg_pool",
+    },
+    "A1_5b_all_low111_same_clean_high_controls": {
+        "beta": 0.10,
+        "neg_ratio": 4,
+        "positive_mode": "all_low_same_clean_high_controls",
+    },
+    "A1_1b_a0_weak_random_high_negatives": {
+        "beta": 0.10,
+        "neg_ratio": 4,
+        "positive_mode": "a0_weak_random_high_negatives",
+    },
 }
 
 DEV_METRIC_FIELDS = [
@@ -206,6 +254,62 @@ def sample_id(row: dict[str, Any]) -> str:
     return str(row.get("sample_id") or row.get("record_id") or row.get("id") or "")
 
 
+def row_key(row: dict[str, Any]) -> tuple[str, str, str]:
+    metric = str(row.get("metric") or row.get("metric_canonical") or row.get("metric_raw") or "")
+    language = str(row.get("language") or "")
+    subject = str(row.get("subject") or row.get("subject_canonical") or row.get("subject_raw") or "")
+    return (metric, language, subject)
+
+
+def row_label(row: dict[str, Any]) -> int:
+    return int(float(row.get("label_5", row.get("label", row.get("gold_label", 0)))))
+
+
+def pick_clean_high_controls(
+    positive_rows: list[dict[str, Any]],
+    control_rows: list[dict[str, str]],
+    desired_negatives: int,
+    neg_ratio: int,
+    rng: random.Random,
+) -> list[dict[str, str]]:
+    grouped_controls: dict[tuple[str, str, str], list[dict[str, str]]] = {}
+    for row in control_rows:
+        grouped_controls.setdefault(row_key(row), []).append(row)
+
+    selected_negatives: list[dict[str, str]] = []
+    used_negatives: set[str] = set()
+    positives_for_matching = list(positive_rows)
+    rng.shuffle(positives_for_matching)
+    per_positive = max(1, int(neg_ratio))
+    for pos in positives_for_matching:
+        pool = list(grouped_controls.get(row_key(pos)) or control_rows)
+        rng.shuffle(pool)
+        added_for_positive = 0
+        for control in pool:
+            cid = control.get("sample_id", "")
+            if cid and cid not in used_negatives:
+                selected_negatives.append(control)
+                used_negatives.add(cid)
+                added_for_positive += 1
+            if len(selected_negatives) >= desired_negatives:
+                break
+            if added_for_positive >= per_positive:
+                break
+        if len(selected_negatives) >= desired_negatives:
+            break
+    if len(selected_negatives) < desired_negatives:
+        pool = list(control_rows)
+        rng.shuffle(pool)
+        for control in pool:
+            cid = control.get("sample_id", "")
+            if cid and cid not in used_negatives:
+                selected_negatives.append(control)
+                used_negatives.add(cid)
+            if len(selected_negatives) >= desired_negatives:
+                break
+    return selected_negatives
+
+
 def build_evidence_labels(
     train_rows: list[dict[str, Any]],
     a0_dir: Path,
@@ -224,6 +328,8 @@ def build_evidence_labels(
         and row.get("recommended_training_use") == "weak_evidence_positive"
     ]
     rng = random.Random(seed)
+    low_ids = [sid for sid, row in train_by_id.items() if row_label(row) <= 2]
+    high_ids = [sid for sid, row in train_by_id.items() if row_label(row) >= 4]
 
     if positive_mode == "a0_weak":
         positive_rows = a0_weak
@@ -234,12 +340,31 @@ def build_evidence_labels(
             if row.get("sample_id") in train_by_id
         }
     elif positive_mode == "all_low_aux":
-        positive_ids = [sid for sid, row in train_by_id.items() if int(float(row.get("label_5", row.get("label", 0)))) <= 2]
+        positive_ids = low_ids
+        positive_rows = [train_by_id[sid] for sid in positive_ids]
         positive_weights = {sid: 1.0 for sid in positive_ids}
+    elif positive_mode == "all_low_downsample_a0_count_same_neg_pool":
+        shuffled = list(low_ids)
+        rng.shuffle(shuffled)
+        positive_ids = shuffled[: len(a0_weak)]
+        positive_rows = [train_by_id[sid] for sid in positive_ids]
+        positive_weights = {sid: 1.0 for sid in positive_ids}
+    elif positive_mode == "all_low_same_clean_high_controls":
+        positive_ids = low_ids
+        positive_rows = [train_by_id[sid] for sid in positive_ids]
+        positive_weights = {sid: 1.0 for sid in positive_ids}
+    elif positive_mode == "a0_weak_random_high_negatives":
+        positive_rows = a0_weak
+        positive_ids = [row["sample_id"] for row in positive_rows if row.get("sample_id") in train_by_id]
+        positive_weights = {
+            row["sample_id"]: max(0.05, safe_float(row.get("confidence_weight"), 1.0))
+            for row in positive_rows
+            if row.get("sample_id") in train_by_id
+        }
     elif positive_mode == "random_positive_control":
-        low_ids = [sid for sid, row in train_by_id.items() if int(float(row.get("label_5", row.get("label", 0)))) <= 2]
         rng.shuffle(low_ids)
         positive_ids = low_ids[: len(a0_weak)]
+        positive_rows = [train_by_id[sid] for sid in positive_ids]
         positive_weights = {sid: 1.0 for sid in positive_ids}
     else:
         raise ValueError(f"Unsupported positive_mode: {positive_mode}")
@@ -247,52 +372,13 @@ def build_evidence_labels(
     positive_ids = sorted(set(positive_ids))
     desired_negatives = max(1, len(positive_ids) * int(neg_ratio))
     control_rows = [row for row in controls if row.get("sample_id") in train_by_id]
-    grouped_controls: dict[tuple[str, str, str], list[dict[str, str]]] = {}
-    for row in control_rows:
-        key = (row.get("metric", ""), row.get("language", ""), row.get("subject", ""))
-        grouped_controls.setdefault(key, []).append(row)
 
     selected_negatives: list[dict[str, str]] = []
-    used_negatives: set[str] = set()
-    if positive_mode == "all_low_aux":
-        high_ids = [sid for sid, row in train_by_id.items() if int(float(row.get("label_5", row.get("label", 0)))) >= 4]
+    if positive_mode in {"all_low_aux", "a0_weak_random_high_negatives"}:
         rng.shuffle(high_ids)
         selected_negatives = [{"sample_id": sid, "clean_high_confidence_weight": "1.0"} for sid in high_ids[:desired_negatives]]
     else:
-        positives_for_matching = [
-            row
-            for row in candidates
-            if row.get("sample_id") in positive_ids
-        ]
-        rng.shuffle(positives_for_matching)
-        per_positive = max(1, int(neg_ratio))
-        for pos in positives_for_matching:
-            key = (pos.get("metric", ""), pos.get("language", ""), pos.get("subject", ""))
-            pool = list(grouped_controls.get(key) or control_rows)
-            rng.shuffle(pool)
-            added_for_positive = 0
-            for control in pool:
-                cid = control.get("sample_id", "")
-                if cid and cid not in used_negatives:
-                    selected_negatives.append(control)
-                    used_negatives.add(cid)
-                    added_for_positive += 1
-                if len(selected_negatives) >= desired_negatives:
-                    break
-                if added_for_positive >= per_positive:
-                    break
-            if len(selected_negatives) >= desired_negatives:
-                break
-        if len(selected_negatives) < desired_negatives:
-            pool = list(control_rows)
-            rng.shuffle(pool)
-            for control in pool:
-                cid = control.get("sample_id", "")
-                if cid and cid not in used_negatives:
-                    selected_negatives.append(control)
-                    used_negatives.add(cid)
-                if len(selected_negatives) >= desired_negatives:
-                    break
+        selected_negatives = pick_clean_high_controls(positive_rows, control_rows, desired_negatives, neg_ratio, rng)
 
     labels: dict[str, dict[str, float]] = {}
     for sid in positive_ids:
@@ -313,6 +399,9 @@ def build_evidence_labels(
         "signal_fraction": safe_rate(len(labels), len(train_by_id)),
         "requested_neg_ratio": neg_ratio,
         "a0_weak_positive_count": len(a0_weak),
+        "all_low_positive_count": len(low_ids),
+        "high_label_pool_count": len(high_ids),
+        "negative_pool": "random_y_ge_4" if positive_mode in {"all_low_aux", "a0_weak_random_high_negatives"} else "a0_clean_high_controls",
     }
     return labels, info
 
@@ -628,8 +717,27 @@ def build_parser() -> argparse.ArgumentParser:
     return parser
 
 
+def apply_config_overrides(args: Namespace, cfg: dict[str, Any]) -> None:
+    """Let named diagnostic configs pin trainer knobs while keeping CLI defaults simple."""
+    for key in [
+        "batch_size",
+        "eval_batch_size",
+        "grad_accum_steps",
+        "epochs",
+        "learning_rate",
+        "weight_decay",
+        "save_best_by",
+        "max_train_steps",
+        "max_train_samples",
+        "max_eval_samples",
+    ]:
+        if key in cfg:
+            setattr(args, key, cfg[key])
+
+
 def train_one(args: Namespace) -> dict[str, Any]:
     cfg = SCOUT_CONFIGS[args.config_name]
+    apply_config_overrides(args, cfg)
     beta = float(cfg["beta"])
     neg_ratio = int(cfg["neg_ratio"])
     positive_mode = str(cfg["positive_mode"])
