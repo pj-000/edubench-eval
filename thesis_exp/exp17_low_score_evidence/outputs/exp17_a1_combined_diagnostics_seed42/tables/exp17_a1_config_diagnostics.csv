@@ -1,0 +1,15 @@
+config_name,source_dir,positive_mode,negative_pool,positive_count,negative_count,signal_count,learning_rate,epochs,grad_accum_steps,freeze_base,train_evidence_head_only,checkpoint_selection,test_read,dev_annotation_used_as_train_label,human_rationale_used_as_model_input
+A1_0_baseline,primary,a0_weak,,76,304,380,1e-05,3.0,32,False,False,dev_mae,False,False,False
+A1_1,primary,a0_weak,,76,304,380,1e-05,3.0,32,False,False,dev_mae,False,False,False
+A1_2,primary,a0_weak,,76,304,380,1e-05,3.0,32,False,False,dev_mae,False,False,False
+A1_3,primary,a0_weak,,76,304,380,1e-05,3.0,32,False,False,dev_mae,False,False,False
+A1_4,primary,a0_weak,,76,152,228,1e-05,3.0,32,False,False,dev_mae,False,False,False
+A1_5_all_low_aux_baseline,primary,all_low_aux,,111,444,555,1e-05,3.0,32,False,False,dev_mae,False,False,False
+A1_6_random_positive_control,primary,random_positive_control,,76,304,380,1e-05,3.0,32,False,False,dev_mae,False,False,False
+A1F_1_frozen_base_beta_0p10,primary,a0_weak,,76,304,380,1e-05,3.0,32,True,True,latest,False,False,False
+A1F_2_frozen_probe_lr1em3_gradaccum1_epochs20,diagnostic,a0_weak,a0_clean_high_controls,76,304,380,0.001,20,1,True,True,latest,False,False,False
+A1F_3_frozen_probe_lr3em4_gradaccum1_epochs20,diagnostic,a0_weak,a0_clean_high_controls,76,304,380,0.0003,20,1,True,True,latest,False,False,False
+A1F_4_frozen_probe_lr1em4_gradaccum1_epochs30,diagnostic,a0_weak,a0_clean_high_controls,76,304,380,0.0001,30,1,True,True,latest,False,False,False
+A1_5a_all_low_downsample76_same_neg_pool,diagnostic,all_low_downsample_a0_count_same_neg_pool,a0_clean_high_controls,76,304,380,1e-05,3.0,32,False,False,dev_mae,False,False,False
+A1_5b_all_low111_same_clean_high_controls,diagnostic,all_low_same_clean_high_controls,a0_clean_high_controls,111,444,555,1e-05,3.0,32,False,False,dev_mae,False,False,False
+A1_1b_a0_weak_random_high_negatives,diagnostic,a0_weak_random_high_negatives,random_y_ge_4,76,304,380,1e-05,3.0,32,False,False,dev_mae,False,False,False

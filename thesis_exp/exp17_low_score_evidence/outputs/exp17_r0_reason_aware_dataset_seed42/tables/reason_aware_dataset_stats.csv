@@ -1,0 +1,17 @@
+metric,value
+train_redacted_sample_count,80
+dev_redacted_eval_sample_count,27
+train_candidate_count,111
+train_usable_count,84
+max_question_group_rate,0.1
+score_phrase_conflict_count,2
+rationale_length_mean_words,5.0375
+rationale_length_p50_words,5
+rationale_length_max_words,11
+safe_for_sft,True
+failure_type::answer_key_or_reference_mismatch,4
+failure_type::format_violation,3
+failure_type::insufficient_evidence,20
+failure_type::missing_key_point,24
+failure_type::surface_fluent_but_hidden_defect,25
+failure_type::task_constraint_violation,4

@@ -1,0 +1,22 @@
+{
+  "a1_0_low_to_high_rate": 0.49122807017543857,
+  "a1_success": false,
+  "a1f_high_lr_solved_undertraining": false,
+  "all_low_advantage_after_fair_controls": false,
+  "best_a0_filtered_auc": 0.5592948717948718,
+  "best_a0_filtered_config": "A1_1b_a0_weak_random_high_negatives",
+  "best_a1f_auc": 0.4732905982905983,
+  "best_a1f_config": "A1F_1_frozen_base_beta_0p10",
+  "best_all_low_auc": 0.5731837606837606,
+  "best_all_low_config": "A1_5_all_low_aux_baseline",
+  "best_fair_all_low_auc": 0.5122863247863247,
+  "best_fair_all_low_config": "A1_5b_all_low111_same_clean_high_controls",
+  "best_filtered_hidden_control_delta": 0.008294912484975964,
+  "best_filtered_label2_recall": 0.0,
+  "best_filtered_low_to_high_rate": 0.543859649122807,
+  "best_filtered_mae_degradation_vs_a1_0": 0.005420054200542035,
+  "best_filtered_qwk_degradation_vs_a1_0": 0.007036033503016181,
+  "enter_b1_suppression": false,
+  "final_decision": "A1_failed_move_to_C0",
+  "move_to_c0_pairwise_separation": true
+}
