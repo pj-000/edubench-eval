@@ -137,94 +137,164 @@ def best_candidate(dev_rows: list[dict[str, Any]], pair_rows: list[dict[str, Any
     return candidates[0][-1]
 
 
-def config_success(row: dict[str, Any], pair_row: dict[str, Any], base: dict[str, Any]) -> bool:
+RANDOM_PAIR_SOURCES = {"random_low_high_pairs", "random_matched_metric_rubric", "random_matched_metric_rubric_subject"}
+UPPER_BOUND_PAIR_SOURCE = "same_question_group_upper_bound"
+
+
+def within_quality_guard(row: dict[str, Any], base: dict[str, Any]) -> bool:
     base_mae = safe_float(base.get("MAE"))
     base_qwk = safe_float(base.get("QWK"))
-    base_l2h = safe_float(base.get("low_to_high_rate"))
     mae = safe_float(row.get("MAE"))
     qwk = safe_float(row.get("QWK"))
-    l2h = safe_float(row.get("low_to_high_rate"))
-    label2 = safe_float(row.get("label2_recall"))
     mono = safe_float(row.get("monotonic_violation_rate"))
-    auc = safe_float(pair_row.get("d1_hidden_vs_control_s_auc"))
     return (
         mono == 0.0
         and (math.isnan(base_mae) or mae <= base_mae + 0.02)
         and (math.isnan(base_qwk) or qwk >= base_qwk - 0.02)
-        and ((not math.isnan(base_l2h) and l2h <= base_l2h - 0.05) or label2 > 0 or (not math.isnan(auc) and auc >= 0.60))
     )
 
 
-def config_by_pair_source(dev_rows: list[dict[str, Any]], pair_source: str) -> dict[str, Any]:
-    for row in dev_rows:
-        if row.get("pair_source") == pair_source:
-            return row
-    return {}
+def risk_success_for(row: dict[str, Any], base: dict[str, Any]) -> bool:
+    base_l2h = safe_float(base.get("low_to_high_rate"))
+    l2h = safe_float(row.get("low_to_high_rate"))
+    label2 = safe_float(row.get("label2_recall"))
+    return within_quality_guard(row, base) and ((not math.isnan(base_l2h) and l2h <= base_l2h - 0.05) or label2 > 0)
+
+
+def latent_success_for(row: dict[str, Any], pair_row: dict[str, Any], base: dict[str, Any], base_pair: dict[str, Any]) -> bool:
+    base_g = safe_float(base.get("mean_g_i3_label2"))
+    base_gap = safe_float(base_pair.get("dev_d1_s_gap_control_minus_hidden_mean"))
+    g = safe_float(row.get("mean_g_i3_label2"))
+    gap = safe_float(pair_row.get("dev_d1_s_gap_control_minus_hidden_mean"))
+    auc = safe_float(pair_row.get("d1_hidden_vs_control_s_auc"))
+    return within_quality_guard(row, base) and (
+        (not math.isnan(base_gap) and not math.isnan(gap) and gap > base_gap)
+        or (not math.isnan(auc) and auc >= 0.60)
+        or (not math.isnan(base_g) and not math.isnan(g) and g < base_g)
+    )
+
+
+def row_pair_source(row: dict[str, Any]) -> str:
+    return str(row.get("pair_source", ""))
+
+
+def is_main_real_config(row: dict[str, Any]) -> bool:
+    source = row_pair_source(row)
+    return source not in {"none", UPPER_BOUND_PAIR_SOURCE, *RANDOM_PAIR_SOURCES}
+
+
+def beats_random_matched(row: dict[str, Any], pair_row: dict[str, Any], random_row: dict[str, Any], random_pair: dict[str, Any]) -> bool:
+    l2h = safe_float(row.get("low_to_high_rate"))
+    random_l2h = safe_float(random_row.get("low_to_high_rate"))
+    gap = safe_float(pair_row.get("dev_d1_s_gap_control_minus_hidden_mean"))
+    random_gap = safe_float(random_pair.get("dev_d1_s_gap_control_minus_hidden_mean"))
+    auc = safe_float(pair_row.get("d1_hidden_vs_control_s_auc"))
+    random_auc = safe_float(random_pair.get("d1_hidden_vs_control_s_auc"))
+    return (
+        (not math.isnan(l2h) and not math.isnan(random_l2h) and l2h < random_l2h)
+        or (not math.isnan(gap) and not math.isnan(random_gap) and gap > random_gap)
+        or (not math.isnan(auc) and not math.isnan(random_auc) and auc > random_auc)
+    )
+
+
+def select_best(rows: list[dict[str, Any]], pair: dict[str, dict[str, Any]], base: dict[str, Any], base_pair: dict[str, Any]) -> str:
+    candidates = []
+    for row in rows:
+        name = str(row.get("config_name", ""))
+        pair_row = pair.get(name, {})
+        risk = risk_success_for(row, base)
+        latent = latent_success_for(row, pair_row, base, base_pair)
+        label2 = safe_float(row.get("label2_recall"))
+        l2h = safe_float(row.get("low_to_high_rate"))
+        gap = safe_float(pair_row.get("dev_d1_s_gap_control_minus_hidden_mean"))
+        auc = safe_float(pair_row.get("d1_hidden_vs_control_s_auc"))
+        mae = safe_float(row.get("MAE"))
+        qwk = safe_float(row.get("QWK"))
+        candidates.append((not risk, not latent, math.isnan(label2), -label2 if not math.isnan(label2) else 0, l2h, -auc if not math.isnan(auc) else 0, -gap if not math.isnan(gap) else 0, mae, -qwk, name))
+    if not candidates:
+        return ""
+    candidates.sort()
+    return candidates[0][-1]
 
 
 def decision(dev_rows: list[dict[str, Any]], pair_rows: list[dict[str, Any]]) -> dict[str, Any]:
     dev = by_config(dev_rows)
     pair = by_config(pair_rows)
     base = dev.get("C0_0_ordinal_continue", {})
-    best = best_candidate(dev_rows, pair_rows)
-    best_dev = dev.get(best, {})
-    best_pair = pair.get(best, {})
+    base_pair = pair.get("C0_0_ordinal_continue", {})
+    main_rows = [row for row in dev_rows if is_main_real_config(row)]
+    upper_rows = [row for row in dev_rows if row_pair_source(row) == UPPER_BOUND_PAIR_SOURCE]
+    best_main = select_best(main_rows, pair, base, base_pair)
+    best_upper = select_best(upper_rows, pair, base, base_pair)
+    best_dev = dev.get(best_main, {})
+    best_pair = pair.get(best_main, {})
     base_mae = safe_float(base.get("MAE"))
     base_qwk = safe_float(base.get("QWK"))
     base_l2h = safe_float(base.get("low_to_high_rate"))
     base_g = safe_float(base.get("mean_g_i3_label2"))
-    base_gap = safe_float(pair.get("C0_0_ordinal_continue", {}).get("dev_d1_s_gap_control_minus_hidden_mean"))
+    base_gap = safe_float(base_pair.get("dev_d1_s_gap_control_minus_hidden_mean"))
     mae = safe_float(best_dev.get("MAE"))
     qwk = safe_float(best_dev.get("QWK"))
     l2h = safe_float(best_dev.get("low_to_high_rate"))
     label2 = safe_float(best_dev.get("label2_recall"))
-    mono = safe_float(best_dev.get("monotonic_violation_rate"))
     g = safe_float(best_dev.get("mean_g_i3_label2"))
     gap = safe_float(best_pair.get("dev_d1_s_gap_control_minus_hidden_mean"))
-    random_control = dev.get("C0_6_random_pair_control_gamma0p05_m0p2", {})
-    random_pair = pair.get("C0_6_random_pair_control_gamma0p05_m0p2", {})
     random_matched = dev.get("C0_12_random_matched_metric_rubric_gamma0p05_m0p2", {})
     random_matched_pair = pair.get("C0_12_random_matched_metric_rubric_gamma0p05_m0p2", {})
     same_subject_high = dev.get("C0_9_same_subject_high_weight_gamma0p05_m0p2", {})
     same_question = dev.get("C0_14_same_question_group_upper_bound_gamma0p05_m0p2", {})
-    a0_beats_random = (
-        (not math.isnan(l2h) and not math.isnan(safe_float(random_matched.get("low_to_high_rate"))) and l2h < safe_float(random_matched.get("low_to_high_rate")))
-        or (
-            not math.isnan(gap)
-            and not math.isnan(safe_float(random_matched_pair.get("dev_d1_s_gap_control_minus_hidden_mean")))
-            and gap > safe_float(random_matched_pair.get("dev_d1_s_gap_control_minus_hidden_mean"))
-        )
+    main_latent_success = any(latent_success_for(row, pair.get(str(row.get("config_name")), {}), base, base_pair) for row in main_rows)
+    main_risk_success = any(risk_success_for(row, base) for row in main_rows)
+    upper_success = any(
+        risk_success_for(row, base) or latent_success_for(row, pair.get(str(row.get("config_name")), {}), base, base_pair)
+        for row in upper_rows
     )
-    success = bool(best) and config_success(best_dev, best_pair, base) and a0_beats_random
+    best_main_beats_random = bool(best_main) and beats_random_matched(best_dev, best_pair, random_matched, random_matched_pair)
+    any_main_beats_random = any(
+        beats_random_matched(row, pair.get(str(row.get("config_name")), {}), random_matched, random_matched_pair)
+        for row in main_rows
+    )
+    main_method_success = main_risk_success and best_main_beats_random
     all_pairs_ok = any(
-        config_success(row, pair.get(str(row.get("config_name")), {}), base)
+        risk_success_for(row, base) or latent_success_for(row, pair.get(str(row.get("config_name")), {}), base, base_pair)
         for row in dev_rows
         if row.get("pair_source") == "all_a0_pairs"
     )
     strict_ok = any(
-        config_success(row, pair.get(str(row.get("config_name")), {}), base)
+        risk_success_for(row, base) or latent_success_for(row, pair.get(str(row.get("config_name")), {}), base, base_pair)
         for row in dev_rows
         if row.get("pair_source") in {"same_subject_only", "high_weight_only_p75", "same_subject_high_weight_p75"}
     )
-    same_subject_high_ok = config_success(same_subject_high, pair.get("C0_9_same_subject_high_weight_gamma0p05_m0p2", {}), base) if same_subject_high else False
-    same_question_ok = config_success(same_question, pair.get("C0_14_same_question_group_upper_bound_gamma0p05_m0p2", {}), base) if same_question else False
+    same_subject_high_ok = (
+        risk_success_for(same_subject_high, base)
+        or latent_success_for(same_subject_high, pair.get("C0_9_same_subject_high_weight_gamma0p05_m0p2", {}), base, base_pair)
+        if same_subject_high
+        else False
+    )
+    same_question_ok = (
+        risk_success_for(same_question, base)
+        or latent_success_for(same_question, pair.get("C0_14_same_question_group_upper_bound_gamma0p05_m0p2", {}), base, base_pair)
+        if same_question
+        else False
+    )
     real_ok = any(
-        config_success(row, pair.get(str(row.get("config_name")), {}), base)
-        for row in dev_rows
-        if row.get("pair_source") not in {"none", "random_low_high_pairs", "random_matched_metric_rubric", "random_matched_metric_rubric_subject"}
+        risk_success_for(row, base) or latent_success_for(row, pair.get(str(row.get("config_name")), {}), base, base_pair)
+        for row in main_rows
     )
     random_ok = any(
-        config_success(row, pair.get(str(row.get("config_name")), {}), base)
+        risk_success_for(row, base) or latent_success_for(row, pair.get(str(row.get("config_name")), {}), base, base_pair)
         for row in dev_rows
-        if row.get("pair_source") in {"random_low_high_pairs", "random_matched_metric_rubric", "random_matched_metric_rubric_subject"}
+        if row.get("pair_source") in RANDOM_PAIR_SOURCES
     )
-    if success:
-        category = "C0_success"
+    if main_method_success:
+        category = "C0_success_risk"
     elif same_question_ok and not all_pairs_ok and not strict_ok:
         category = "C0_cross_question_noise_likely"
     elif same_subject_high_ok and not all_pairs_ok:
         category = "C0_pair_noise_likely"
-    elif random_ok and not a0_beats_random:
+    elif main_latent_success and not main_risk_success:
+        category = "C0_latent_success_only"
+    elif random_ok and not any_main_beats_random:
         category = "C0_no_specific_pair_signal"
     elif not real_ok and not random_ok:
         category = "C0_failed_method_or_backbone"
@@ -232,9 +302,14 @@ def decision(dev_rows: list[dict[str, Any]], pair_rows: list[dict[str, Any]]) ->
         category = "C0_inconclusive"
     return {
         "final_decision": category,
-        "c0_success": bool(success),
-        "best_config": best,
-        "enter_c1": bool(success),
+        "latent_success": bool(main_latent_success),
+        "risk_success": bool(main_risk_success),
+        "main_method_success": bool(main_method_success),
+        "c0_success": bool(main_method_success),
+        "best_config": best_main,
+        "best_main_config": best_main,
+        "best_upper_bound_config": best_upper,
+        "enter_c1": bool(main_method_success),
         "enter_b1": False,
         "mae_degradation_vs_c0_0": mae - base_mae if not math.isnan(base_mae) else float("nan"),
         "qwk_degradation_vs_c0_0": base_qwk - qwk if not math.isnan(base_qwk) else float("nan"),
@@ -242,7 +317,8 @@ def decision(dev_rows: list[dict[str, Any]], pair_rows: list[dict[str, Any]]) ->
         "label2_recall": label2,
         "mean_g_i3_label2_delta_vs_c0_0": g - base_g if not math.isnan(base_g) else float("nan"),
         "dev_d1_s_gap_delta_vs_c0_0": gap - base_gap if not math.isnan(base_gap) else float("nan"),
-        "a0_pairs_outperform_random_matched_metric_rubric": a0_beats_random,
+        "a0_pairs_outperform_random_matched_metric_rubric": bool(any_main_beats_random),
+        "upper_bound_diagnostic_success": bool(upper_success),
     }
 
 
@@ -303,7 +379,11 @@ def write_report(output_dir: Path, dev_rows: list[dict[str, Any]], pair_rows: li
             "## Decision",
             "",
             f"- final_decision: `{dec['final_decision']}`",
-            f"- best_config: `{dec['best_config']}`",
+            f"- best_main_config: `{dec['best_main_config']}`",
+            f"- best_upper_bound_config: `{dec['best_upper_bound_config']}`",
+            f"- latent_success: `{dec['latent_success']}`",
+            f"- risk_success: `{dec['risk_success']}`",
+            f"- main_method_success: `{dec['main_method_success']}`",
             f"- c0_success: `{dec['c0_success']}`",
             f"- enter_c1: `{dec['enter_c1']}`",
             f"- enter_b1: `{dec['enter_b1']}`",
@@ -311,6 +391,16 @@ def write_report(output_dir: Path, dev_rows: list[dict[str, Any]], pair_rows: li
             f"- mean_g_i3_label2_delta_vs_c0_0: {fmt(dec['mean_g_i3_label2_delta_vs_c0_0'])}",
             f"- dev_d1_s_gap_delta_vs_c0_0: {fmt(dec['dev_d1_s_gap_delta_vs_c0_0'])}",
             f"- A0 pairs outperform random matched metric/rubric control: `{dec['a0_pairs_outperform_random_matched_metric_rubric']}`",
+            f"- upper_bound_diagnostic_success: `{dec['upper_bound_diagnostic_success']}`",
+            "",
+            "## Decision Questions",
+            "",
+            f"- Did any main C0 config achieve risk success? `{dec['risk_success']}`",
+            f"- Did any main C0 config achieve latent success? `{dec['latent_success']}`",
+            f"- Did same_question_group_upper_bound only succeed? `{dec['upper_bound_diagnostic_success'] and not dec['latent_success'] and not dec['risk_success']}`",
+            f"- Are A0 pairs better than random matched metric/rubric controls? `{dec['a0_pairs_outperform_random_matched_metric_rubric']}`",
+            f"- Should we proceed to C1? `{dec['enter_c1']}`",
+            f"- Should we still block B1 suppression? `{not dec['enter_b1']}`",
             "",
             "C0 must pass the success gate before any B1 suppression experiment.",
         ]

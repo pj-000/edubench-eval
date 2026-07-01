@@ -259,7 +259,8 @@ def same_question_group_pairs(train_samples: list[dict[str, Any]], seed: int) ->
         group = sample_group_key(sample)
         if not group:
             continue
-        key = (group, str(sample.get("metric") or ""), text_hash(sample.get("rubric_text") or ""))
+        rubric_text = sample.get("rubric_text") or sample.get("rubric") or sample.get("rubric_canonical") or ""
+        key = (group, str(sample.get("metric") or ""), text_hash(rubric_text))
         bucket = groups.setdefault(key, {"low": [], "high": []})
         if int(sample["label"]) <= 2:
             bucket["low"].append(sample)
