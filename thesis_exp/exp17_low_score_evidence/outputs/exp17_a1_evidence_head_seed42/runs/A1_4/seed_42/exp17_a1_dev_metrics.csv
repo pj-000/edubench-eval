@@ -1,0 +1,2 @@
+config_name,seed,beta,neg_ratio,MAE,QWK,accuracy,low_to_high_count,low_to_high_rate,label2_recall,label2_pred_ge4_rate,monotonic_violation_rate,mean_s_label2,mean_s_label4_5,mean_g_i3_label2
+A1_4,42,0.1,1:2,0.39295392953929537,0.5529664029484868,0.6793134598012647,28,0.49122807017543857,0.0,0.6842105263157895,0.0,1.9830129523026316,2.5430087296420303,2.0015435399193513
