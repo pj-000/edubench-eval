@@ -1,0 +1,6 @@
+prompt_config,failure_type_micro_f1,failure_type_macro_f1,missing_key_point_recall,factual_or_rubric_mismatch_recall,insufficient_evidence_recall,task_constraint_violation_recall,no_major_failure_rate_on_controls
+R0C_0_exact_r0a_reproduction,0.0,0.0,0.0,0.0,0.0,0.0,1.0
+R0C_1_balanced_failure_first,0.0784313725490196,0.037142857142857144,0.07692307692307693,0.25,0.0,0.0,0.3055555555555556
+R0C_2_evidence_required_cap,0.0784313725490196,0.035555555555555556,0.07692307692307693,0.25,0.0,0.0,0.08333333333333333
+R0C_3_two_pass_balanced,0.04,0.022222222222222223,0.07692307692307693,0.0,0.0,0.0,0.19444444444444445
+R0C_4_high_score_protection,0.11538461538461539,0.04750000000000001,0.07692307692307693,0.5,0.0,0.0,0.3611111111111111

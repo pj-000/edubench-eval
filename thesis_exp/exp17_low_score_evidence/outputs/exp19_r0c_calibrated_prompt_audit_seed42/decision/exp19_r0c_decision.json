@@ -1,0 +1,17 @@
+{
+  "best_prompt_config": "R0C_2_evidence_required_cap",
+  "calibrated_prompt_success": false,
+  "d1_hidden_pred_ge4_best": 0.15384615384615385,
+  "dev_MAE_best": 2.1802536231884058,
+  "dev_QWK_best": -0.022202015881943815,
+  "dev_high_to_low_best": 0.8740740740740741,
+  "dev_label2_recall_best": 0.8421052631578947,
+  "dev_label5_recall_best": 0.02158273381294964,
+  "dev_low_to_high_best": 0.22807017543859648,
+  "dev_signed_bias_best": -2.0643115942028984,
+  "lock_prompt_for_test_all": false,
+  "parse_success_best": 0.997289972899729,
+  "proceed_to_lora": true,
+  "reason": "Prompt improves low-to-high meaningfully, but calibration or high-score protection remains weak.",
+  "recommended_lora_variant": "score + failure evidence + score_cap LoRA/SFT"
+}
