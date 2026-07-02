@@ -1,0 +1,20 @@
+{
+  "a0_pairs_outperform_random_matched_metric_rubric": true,
+  "best_config": "C0_2_all_pairs_gamma0p05_m0p2",
+  "best_main_config": "C0_2_all_pairs_gamma0p05_m0p2",
+  "best_upper_bound_config": "C0_14_same_question_group_upper_bound_gamma0p05_m0p2",
+  "c0_success": true,
+  "dev_d1_s_gap_delta_vs_c0_0": -0.03452932098765432,
+  "enter_b1": false,
+  "enter_c1": true,
+  "final_decision": "C0_success_risk",
+  "label2_recall": 0.0,
+  "latent_success": true,
+  "low_to_high_delta_vs_c0_0": -0.052631578947368474,
+  "mae_degradation_vs_c0_0": -0.0018066847335140301,
+  "main_method_success": true,
+  "mean_g_i3_label2_delta_vs_c0_0": 0.9360744635525506,
+  "qwk_degradation_vs_c0_0": -0.006687674106462316,
+  "risk_success": true,
+  "upper_bound_diagnostic_success": true
+}
