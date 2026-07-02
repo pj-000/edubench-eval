@@ -1,0 +1,5 @@
+prompt_config,failure_type_micro_f1,failure_type_macro_f1,missing_key_point_recall,factual_or_rubric_mismatch_recall,insufficient_evidence_recall,task_constraint_violation_recall,no_major_failure_rate_on_controls
+R0B_0_direct_reproduction,0.13043478260869565,0.06143790849673203,0.15384615384615385,0.25,0.0,0.0,0.3611111111111111
+R0B_1_failure_first,0.1568627450980392,0.06084656084656084,0.07692307692307693,0.75,0.0,0.0,0.25
+R0B_2_rubric_clause_first,0.11538461538461539,0.046913580246913576,0.07692307692307693,0.5,0.0,0.0,0.25
+R0B_3_conservative_low_score_cap,0.08,0.03472222222222222,0.07692307692307693,0.25,0.0,0.0,0.08333333333333333

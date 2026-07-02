@@ -1,0 +1,12 @@
+{
+  "best_prompt_config": "R0B_3_conservative_low_score_cap",
+  "d1_hidden_pred_ge4_best": 0.07692307692307693,
+  "dev_label2_recall_best": 0.868421052631579,
+  "dev_low_to_high_best": 0.15789473684210525,
+  "lock_prompt_for_test_all": true,
+  "parse_success_best": 1.0,
+  "proceed_to_lora": false,
+  "prompt_audit_success": true,
+  "reason": "Prompt audit passes all gates; lock this prompt for held-out evaluation.",
+  "recommended_lora_variant": ""
+}

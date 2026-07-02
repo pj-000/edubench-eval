@@ -1,0 +1,49 @@
+prompt_config,split,metric,n,MAE,QWK,low_to_high_count,low_to_high_rate,label2_recall,mean_pred_low
+R0B_0_direct_reproduction,dev,Basic Factual Accuracy,130,1.7615384615384615,0.054962866197353466,0,0.0,1.0,2.0
+R0B_0_direct_reproduction,dev,"Clarity, Simplicity & Inspiration",90,1.9777777777777779,0.010367577756833168,0,0.0,1.0,2.0
+R0B_0_direct_reproduction,dev,Content Relevance & Scope Control,125,1.432,0.012146588958675153,1,0.5,0.5,3.5
+R0B_0_direct_reproduction,dev,Domain Knowledge Accuracy,65,1.0769230769230769,0.06378600823045277,0,nan,nan,nan
+R0B_0_direct_reproduction,dev,Error Identification & Correction Precision,35,1.9142857142857144,-0.11473788328387724,4,0.8,0.0,3.6
+R0B_0_direct_reproduction,dev,Higher-Order Thinking & Skill Development,83,1.4939759036144578,0.04388370817334075,0,0.0,1.0,2.0
+R0B_0_direct_reproduction,dev,Instruction Following & Task Completion,200,2.345,-0.029192237518659958,1,0.14285714285714285,0.8571428571428571,2.4285714285714284
+R0B_0_direct_reproduction,dev,"Motivation, Guidance & Positive Feedback",60,1.65,-0.020967741935483675,2,0.2222222222222222,0.75,2.4444444444444446
+R0B_0_direct_reproduction,dev,"Personalization, Adaptation & Learning Support",70,1.2714285714285714,-0.013986013986013957,0,0.0,1.0,2.0
+R0B_0_direct_reproduction,dev,Reasoning Process Rigor,84,1.630952380952381,-0.06871035940803383,8,0.5,1.0,3.0625
+R0B_0_direct_reproduction,dev,Role & Tone Consistency,50,1.88,0.016782505509408407,0,nan,nan,nan
+R0B_0_direct_reproduction,dev,Scenario Element Integration,115,1.991304347826087,0.03134182174338884,0,0.0,1.0,2.0
+R0B_1_failure_first,dev,Basic Factual Accuracy,130,2.376923076923077,-0.00039325742273388364,0,0.0,1.0,2.0
+R0B_1_failure_first,dev,"Clarity, Simplicity & Inspiration",90,1.7444444444444445,0.04493053502808164,0,0.0,1.0,2.0
+R0B_1_failure_first,dev,Content Relevance & Scope Control,125,1.576,0.020638257213835387,0,0.0,1.0,2.0
+R0B_1_failure_first,dev,Domain Knowledge Accuracy,65,1.1846153846153846,0.08286150804349768,0,nan,nan,nan
+R0B_1_failure_first,dev,Error Identification & Correction Precision,35,2.3714285714285714,0.018768328445747717,0,0.0,1.0,2.0
+R0B_1_failure_first,dev,Higher-Order Thinking & Skill Development,83,1.0843373493975903,0.14410930652229947,2,0.2857142857142857,0.7142857142857143,2.5714285714285716
+R0B_1_failure_first,dev,Instruction Following & Task Completion,200,2.075,-0.008632013510977421,1,0.14285714285714285,0.8571428571428571,2.4285714285714284
+R0B_1_failure_first,dev,"Motivation, Guidance & Positive Feedback",60,1.7166666666666666,-0.016871165644171793,2,0.2222222222222222,0.75,2.4444444444444446
+R0B_1_failure_first,dev,"Personalization, Adaptation & Learning Support",70,1.2857142857142858,0.09248863940122964,0,0.0,1.0,2.0
+R0B_1_failure_first,dev,Reasoning Process Rigor,84,1.869047619047619,-0.20810697868783934,8,0.5,1.0,3.3125
+R0B_1_failure_first,dev,Role & Tone Consistency,50,1.82,0.017078811599359534,0,nan,nan,nan
+R0B_1_failure_first,dev,Scenario Element Integration,115,1.0521739130434782,0.15637735849056622,0,0.0,1.0,2.0
+R0B_2_rubric_clause_first,dev,Basic Factual Accuracy,130,2.5153846153846153,0.010739297093596778,0,0.0,1.0,2.0
+R0B_2_rubric_clause_first,dev,"Clarity, Simplicity & Inspiration",90,1.8,0.03564177757726139,0,0.0,1.0,2.0
+R0B_2_rubric_clause_first,dev,Content Relevance & Scope Control,125,1.928,0.006585258968862084,0,0.0,1.0,2.0
+R0B_2_rubric_clause_first,dev,Domain Knowledge Accuracy,65,1.353846153846154,-0.015463095807428662,0,nan,nan,nan
+R0B_2_rubric_clause_first,dev,Error Identification & Correction Precision,35,2.342857142857143,-0.049566294919454634,1,0.2,1.0,2.6
+R0B_2_rubric_clause_first,dev,Higher-Order Thinking & Skill Development,83,1.216867469879518,0.18419766494705403,0,0.0,1.0,2.0
+R0B_2_rubric_clause_first,dev,Instruction Following & Task Completion,200,2.17,-0.02092352092352101,0,0.0,1.0,2.0
+R0B_2_rubric_clause_first,dev,"Motivation, Guidance & Positive Feedback",60,1.65,0.01225114854517606,2,0.2222222222222222,0.75,2.5555555555555554
+R0B_2_rubric_clause_first,dev,"Personalization, Adaptation & Learning Support",70,1.9428571428571428,-0.0046972860125260585,0,0.0,1.0,2.0
+R0B_2_rubric_clause_first,dev,Reasoning Process Rigor,84,1.8333333333333333,-0.1355149568359768,8,0.5,1.0,3.375
+R0B_2_rubric_clause_first,dev,Role & Tone Consistency,50,1.28,0.16611074049366237,0,nan,nan,nan
+R0B_2_rubric_clause_first,dev,Scenario Element Integration,115,2.243478260869565,0.009933774834437248,0,0.0,1.0,2.0
+R0B_3_conservative_low_score_cap,dev,Basic Factual Accuracy,130,2.2846153846153845,-0.003379979802559774,0,0.0,0.0,3.0
+R0B_3_conservative_low_score_cap,dev,"Clarity, Simplicity & Inspiration",90,1.6,0.0336435218324983,0,0.0,1.0,2.0
+R0B_3_conservative_low_score_cap,dev,Content Relevance & Scope Control,125,0.84,0.05280505623704512,1,0.5,0.5,3.5
+R0B_3_conservative_low_score_cap,dev,Domain Knowledge Accuracy,65,1.4615384615384615,-0.021066012893852903,0,nan,nan,nan
+R0B_3_conservative_low_score_cap,dev,Error Identification & Correction Precision,35,2.4285714285714284,0.009243212016175617,0,0.0,1.0,2.0
+R0B_3_conservative_low_score_cap,dev,Higher-Order Thinking & Skill Development,83,0.8192771084337349,0.3803352584871108,0,0.0,1.0,2.0
+R0B_3_conservative_low_score_cap,dev,Instruction Following & Task Completion,200,2.28,-0.030679076180627263,1,0.14285714285714285,0.8571428571428571,2.4285714285714284
+R0B_3_conservative_low_score_cap,dev,"Motivation, Guidance & Positive Feedback",60,1.5666666666666667,0.09832134292565953,1,0.1111111111111111,0.75,2.2222222222222223
+R0B_3_conservative_low_score_cap,dev,"Personalization, Adaptation & Learning Support",70,1.5285714285714285,-0.11696600860917306,0,0.0,1.0,2.0
+R0B_3_conservative_low_score_cap,dev,Reasoning Process Rigor,84,1.4642857142857142,-0.01612903225806428,6,0.375,1.0,3.125
+R0B_3_conservative_low_score_cap,dev,Role & Tone Consistency,50,1.9,-0.03750651154714357,0,nan,nan,nan
+R0B_3_conservative_low_score_cap,dev,Scenario Element Integration,115,1.3304347826086957,0.0903276334682156,0,0.0,1.0,2.0
