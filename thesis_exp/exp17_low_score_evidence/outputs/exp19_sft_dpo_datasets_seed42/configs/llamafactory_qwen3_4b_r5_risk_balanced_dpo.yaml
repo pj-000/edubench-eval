@@ -3,9 +3,9 @@ trust_remote_code: true
 stage: dpo
 do_train: true
 finetuning_type: lora
-adapter_name_or_path: saves/edubench/qwen3-4b/r2_reason_score_lora
+adapter_name_or_path: saves/edubench/qwen3-4b/r2_reason_score_balanced_lora
 ref_model: /home/jpang/models/modelscope/Qwen/Qwen3-4B
-ref_model_adapters: saves/edubench/qwen3-4b/r2_reason_score_lora
+ref_model_adapters: saves/edubench/qwen3-4b/r2_reason_score_balanced_lora
 dataset_dir: thesis_exp/exp17_low_score_evidence/outputs/exp19_sft_dpo_datasets_seed42
 dataset: edubench_r5_risk_balanced_dpo_train
 template: qwen3_nothink

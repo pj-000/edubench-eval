@@ -1,7 +1,7 @@
 # Exp19 LLaMA-Factory Dataset Validation
 
 - dataset_dir: `thesis_exp/exp17_low_score_evidence/outputs/exp19_sft_dpo_datasets_seed42`
-- dataset_info: `thesis_exp/exp17_low_score_evidence/outputs/exp19_sft_dpo_datasets_seed42/dataset_info_snippet.json`
+- dataset_info: `thesis_exp/exp17_low_score_evidence/outputs/exp19_sft_dpo_datasets_seed42/dataset_info.json`
 - datasets checked: 9
 - recovered rationale strings checked: 80
 - total user-prompt leakage count: 0

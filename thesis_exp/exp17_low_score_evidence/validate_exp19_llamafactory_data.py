@@ -189,7 +189,9 @@ def main() -> None:
     parser.add_argument("--max-records", type=int, default=0, help="0 means validate all records.")
     args = parser.parse_args()
 
-    dataset_info_path = args.dataset_info or (args.dataset_dir / "dataset_info_snippet.json")
+    dataset_info_path = args.dataset_info or (args.dataset_dir / "dataset_info.json")
+    if not dataset_info_path.exists() and args.dataset_info is None:
+        dataset_info_path = args.dataset_dir / "dataset_info_snippet.json"
     errors: list[str] = []
     info = load_json(dataset_info_path)
     if not isinstance(info, dict):

@@ -606,9 +606,9 @@ def dpo_config(dataset_name: str, output_subdir: str, dataset_dir: Path) -> str:
             "stage": "dpo",
             "do_train": True,
             "finetuning_type": "lora",
-            "adapter_name_or_path": "saves/edubench/qwen3-4b/r2_reason_score_lora",
+            "adapter_name_or_path": "saves/edubench/qwen3-4b/r2_reason_score_balanced_lora",
             "ref_model": MODEL_PATH,
-            "ref_model_adapters": "saves/edubench/qwen3-4b/r2_reason_score_lora",
+            "ref_model_adapters": "saves/edubench/qwen3-4b/r2_reason_score_balanced_lora",
             "dataset_dir": str(dataset_dir),
             "dataset": dataset_name,
             "template": "qwen3_nothink",
@@ -972,7 +972,9 @@ def build_datasets(args: argparse.Namespace) -> dict[str, Any]:
         redacted_dpo_filtered_sample(train_rows, dpo_prefs, limit, "high_to_low_protection"),
     )
 
-    write_json(args.out_dir / "dataset_info_snippet.json", dataset_info_snippet())
+    dataset_info = dataset_info_snippet()
+    write_json(args.out_dir / "dataset_info.json", dataset_info)
+    write_json(args.out_dir / "dataset_info_snippet.json", dataset_info)
     write_configs(args.out_dir / "configs", args.out_dir)
     dataset_rows = [
         {"dataset": DATASET_NAMES["r1"], "count": len(r1), "kind": "sft_natural"},
