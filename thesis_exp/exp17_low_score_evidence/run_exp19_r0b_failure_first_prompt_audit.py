@@ -15,6 +15,7 @@ import math
 import random
 import re
 import sys
+import time
 from collections import Counter, defaultdict
 from pathlib import Path
 from statistics import median
@@ -513,6 +514,8 @@ def run_vllm_predictions(
     predictions = list(done.values())
     tasks = all_tasks(rows, prompt_configs)
     pending = [(cfg, row) for cfg, row in tasks if prediction_key(cfg, row["sample_id"]) not in done]
+    started_at = time.monotonic()
+    total_pending = len(pending)
     for start in range(0, len(pending), int(args.batch_size)):
         batch = pending[start : start + int(args.batch_size)]
         prompts = [
@@ -532,10 +535,7 @@ def run_vllm_predictions(
             )
             append_prediction(internal_path, pred_row)
             predictions.append(pred_row)
-        print(
-            f"[exp19-r0b] vllm generated {min(start + len(batch), len(pending))}/{len(pending)} pending",
-            flush=True,
-        )
+        print(progress_message("vllm", min(start + len(batch), total_pending), total_pending, started_at), flush=True)
     return predictions
 
 
@@ -570,6 +570,8 @@ def run_transformers_predictions(
     predictions = list(done.values())
     tasks = all_tasks(rows, prompt_configs)
     pending = [(cfg, row) for cfg, row in tasks if prediction_key(cfg, row["sample_id"]) not in done]
+    started_at = time.monotonic()
+    total_pending = len(pending)
     for start in range(0, len(pending), int(args.batch_size)):
         batch = pending[start : start + int(args.batch_size)]
         prompts = [
@@ -599,7 +601,7 @@ def run_transformers_predictions(
             append_prediction(internal_path, pred_row)
             predictions.append(pred_row)
         print(
-            f"[exp19-r0b] transformers generated {min(start + len(batch), len(pending))}/{len(pending)} pending",
+            progress_message("transformers", min(start + len(batch), total_pending), total_pending, started_at),
             flush=True,
         )
     return predictions
@@ -1040,6 +1042,31 @@ def infer_backend_from_predictions(predictions: Iterable[dict[str, Any]], fallba
     if len(seen) == 1:
         return next(iter(seen))
     return "+".join(sorted(seen))
+
+
+def format_duration(seconds: float) -> str:
+    if math.isnan(seconds) or seconds < 0:
+        return "NA"
+    seconds = int(round(seconds))
+    hours, remainder = divmod(seconds, 3600)
+    minutes, secs = divmod(remainder, 60)
+    if hours:
+        return f"{hours}h{minutes:02d}m{secs:02d}s"
+    if minutes:
+        return f"{minutes}m{secs:02d}s"
+    return f"{secs}s"
+
+
+def progress_message(prefix: str, current: int, total: int, started_at: float) -> str:
+    elapsed = max(time.monotonic() - started_at, 1e-9)
+    rate = current / elapsed if current > 0 else 0.0
+    remaining = max(total - current, 0)
+    eta = remaining / rate if rate > 0 else float("nan")
+    percent = safe_rate(current * 100.0, total)
+    return (
+        f"[exp19-r0b] {prefix} generated {current}/{total} "
+        f"({fmt(percent)}%) speed={rate:.2f}/s elapsed={format_duration(elapsed)} eta={format_duration(eta)}"
+    )
 
 
 def build_parser() -> argparse.ArgumentParser:
