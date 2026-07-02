@@ -1,0 +1,21 @@
+{
+  "a0_pairs_outperform_random_matched_metric_rubric": true,
+  "baseline_config": "C0b_0_init_no_train_eval",
+  "best_config": "C0b_1_all_pairs_raw_s_gamma0p01_freeze_boundary",
+  "best_main_config": "C0b_1_all_pairs_raw_s_gamma0p01_freeze_boundary",
+  "best_upper_bound_config": "",
+  "c0_success": false,
+  "dev_d1_s_gap_delta_vs_c0_0": -0.4346042209201389,
+  "enter_b1": false,
+  "enter_c1": false,
+  "final_decision": "C0_latent_success_only",
+  "label2_recall": 0.0,
+  "latent_success": true,
+  "low_to_high_delta_vs_c0_0": 0.0,
+  "mae_degradation_vs_c0_0": -0.004516711833784992,
+  "main_method_success": false,
+  "mean_g_i3_label2_delta_vs_c0_0": -0.3862541812521063,
+  "qwk_degradation_vs_c0_0": -0.007621868420746747,
+  "risk_success": false,
+  "upper_bound_diagnostic_success": false
+}
