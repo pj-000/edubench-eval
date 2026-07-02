@@ -1,0 +1,16 @@
+{
+  "dev_count_read_for_guardrail": 1107,
+  "high_label_count": 2918,
+  "high_score_protection_count": 2918,
+  "leakage_count": 0,
+  "leakage_reasons_checked": 80,
+  "low_example_fraction": 0.03337342152736019,
+  "low_label_count": 111,
+  "matched_a0_candidate_count": 111,
+  "matched_a0_high_control_count": 2656,
+  "max_question_group_rate": 0.01503307276007216,
+  "safe_for_dpo": true,
+  "safe_for_sft": true,
+  "train_count": 3326,
+  "usable_failure_targets": 84
+}

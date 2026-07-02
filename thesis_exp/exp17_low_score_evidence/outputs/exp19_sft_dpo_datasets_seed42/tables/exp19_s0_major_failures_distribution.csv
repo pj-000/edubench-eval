@@ -1,0 +1,9 @@
+metric,value,count
+major_failures,no_major_failure,2918
+major_failures,insufficient_evidence,320
+major_failures,unclear,27
+major_failures,surface_fluent_but_hidden_defect,25
+major_failures,missing_key_point,25
+major_failures,task_constraint_violation,4
+major_failures,answer_key_or_reference_mismatch,4
+major_failures,format_violation,3

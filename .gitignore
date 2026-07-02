@@ -38,3 +38,8 @@ thesis_exp/outputs/exp16_boundary_linking/sanity/
 # Exp17-D1 hidden failure audit generated files stay local/server-side.
 thesis_exp/exp17_low_score_evidence/outputs/*
 !thesis_exp/exp17_low_score_evidence/outputs/.gitignore
+
+# Exp19-S0 full raw training JSON stays local, but lightweight review
+# artifacts are safe to commit for format/QC review.
+!thesis_exp/exp17_low_score_evidence/outputs/exp19_sft_dpo_datasets_seed42/
+thesis_exp/exp17_low_score_evidence/outputs/exp19_sft_dpo_datasets_seed42/data/

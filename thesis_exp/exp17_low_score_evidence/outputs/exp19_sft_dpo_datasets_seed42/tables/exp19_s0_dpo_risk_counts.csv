@@ -1,0 +1,4 @@
+risk_type,original_count,expanded_count
+high_to_low_protection,2918,5836
+low_to_high,111,333
+mid_score_calibration,297,297

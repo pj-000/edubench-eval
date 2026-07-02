@@ -1,2 +1,13 @@
 *
 !.gitignore
+!exp19_sft_dpo_datasets_seed42/
+exp19_sft_dpo_datasets_seed42/data/
+!exp19_sft_dpo_datasets_seed42/configs/
+!exp19_sft_dpo_datasets_seed42/configs/**
+!exp19_sft_dpo_datasets_seed42/dataset_info_snippet.json
+!exp19_sft_dpo_datasets_seed42/redacted_samples/
+!exp19_sft_dpo_datasets_seed42/redacted_samples/**
+!exp19_sft_dpo_datasets_seed42/reports/
+!exp19_sft_dpo_datasets_seed42/reports/**
+!exp19_sft_dpo_datasets_seed42/tables/
+!exp19_sft_dpo_datasets_seed42/tables/**

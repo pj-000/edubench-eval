@@ -1,0 +1,40 @@
+{
+  "edubench_r1_score_only_train": {
+    "columns": {
+      "messages": "messages"
+    },
+    "file_name": "thesis_exp/exp17_low_score_evidence/outputs/exp19_sft_dpo_datasets_seed42/data/edubench_r1_score_only_train.json",
+    "formatting": "sharegpt"
+  },
+  "edubench_r2_reason_score_train": {
+    "columns": {
+      "messages": "messages"
+    },
+    "file_name": "thesis_exp/exp17_low_score_evidence/outputs/exp19_sft_dpo_datasets_seed42/data/edubench_r2_reason_score_train.json",
+    "formatting": "sharegpt"
+  },
+  "edubench_r3_reason_rationale_train": {
+    "columns": {
+      "messages": "messages"
+    },
+    "file_name": "thesis_exp/exp17_low_score_evidence/outputs/exp19_sft_dpo_datasets_seed42/data/edubench_r3_reason_rationale_train.json",
+    "formatting": "sharegpt"
+  },
+  "edubench_r4_shuffled_reason_control_train": {
+    "columns": {
+      "messages": "messages"
+    },
+    "file_name": "thesis_exp/exp17_low_score_evidence/outputs/exp19_sft_dpo_datasets_seed42/data/edubench_r4_shuffled_reason_control_train.json",
+    "formatting": "sharegpt"
+  },
+  "edubench_r5_risk_balanced_dpo_train": {
+    "columns": {
+      "chosen": "chosen",
+      "messages": "messages",
+      "rejected": "rejected"
+    },
+    "file_name": "thesis_exp/exp17_low_score_evidence/outputs/exp19_sft_dpo_datasets_seed42/data/edubench_r5_risk_balanced_dpo_train.json",
+    "formatting": "sharegpt",
+    "ranking": true
+  }
+}
