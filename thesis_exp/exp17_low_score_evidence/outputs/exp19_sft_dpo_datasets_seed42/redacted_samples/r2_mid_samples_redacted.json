@@ -1,0 +1,462 @@
+[
+  {
+    "input_redacted": {
+      "answer_hash": "7818404e63e1124681541bd094029ffd4e65ba62",
+      "answer_preview": "```json { \"Learning Path Planning\": { \"Short-term Goals\": [ \"Focus on understanding basic econometric models through vis...",
+      "gold_label": 3,
+      "language": "en",
+      "metric": "Scenario Element Integration",
+      "question_group": "8cdf1aba67fd11f6ef4d3de526d6c99b7ecebfd4",
+      "question_hash": "e6900e61cf9dc216fe9f5b24eb1cd0af80e62c68",
+      "question_preview": "{'Name': 'Alex Johnson', 'Age': 21, 'Current Education Level': 'Undergraduate', 'Current Skill Level': 'Intermediate', '...",
+      "rubric_hash": "ac0cfa3792b9866ecaf4c25bfc92511d9d852145",
+      "sample_id": "5b26cbf6ea42fc58b395d13eed217da190d3e2f0",
+      "subject": "Applied Economics"
+    },
+    "target_redacted": {
+      "major_failures": [
+        "partial_or_incomplete"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    }
+  },
+  {
+    "input_redacted": {
+      "answer_hash": "790f7a3b21162c027ed785c69b936c8b0c545170",
+      "answer_preview": "```json { \"StudentProfile\": { \"Name\": \"Alex Johnson\", \"Age\": 17, \"CurrentEducationLevel\": \"High School Junior\", \"Current...",
+      "gold_label": 3,
+      "language": "en",
+      "metric": "Personalization, Adaptation & Learning Support",
+      "question_group": "639f94d782b2c115eb52a4aae8b943c69735f697",
+      "question_hash": "c3763de6076b8793e2c985670b84a61dd55067eb",
+      "question_preview": "{'Name': 'Alex Johnson', 'Age': 17, 'Current Education Level': 'High School Junior', 'Current Skill Level in History': '...",
+      "rubric_hash": "44f43049f025820bcd1dfbf7680edd947a678fea",
+      "sample_id": "d5838f98752f0c4852522f35c4db829fe51c993f",
+      "subject": "History"
+    },
+    "target_redacted": {
+      "major_failures": [
+        "partial_or_incomplete"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    }
+  },
+  {
+    "input_redacted": {
+      "answer_hash": "0a5874f46a7aabe8f89dcca233fb66a5ebac670d",
+      "answer_preview": "```json { \"Learning Path Planning\": { \"Short-term Goals\": [ \"Focus on understanding basic genetic processes through visu...",
+      "gold_label": 3,
+      "language": "en",
+      "metric": "Personalization, Adaptation & Learning Support",
+      "question_group": "002cfcd8c1ac3ea32c6f46646c8bc2e1059c0500",
+      "question_hash": "843d8420c9133c70400811c2913e2b0d4050196a",
+      "question_preview": "{'Name': 'Alex Johnson', 'Age': 20, 'Current Skill Level': 'Intermediate', 'Learning Goals': ['Understand cellular biolo...",
+      "rubric_hash": "44f43049f025820bcd1dfbf7680edd947a678fea",
+      "sample_id": "b966b87c284f1074537ded5ff767608734561911",
+      "subject": "Biology"
+    },
+    "target_redacted": {
+      "major_failures": [
+        "partial_or_incomplete"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    }
+  },
+  {
+    "input_redacted": {
+      "answer_hash": "cf33314cd4a8fcefda2d4d2c19a434ba5df837e8",
+      "answer_preview": "```json { \"Learning Path Planning\": { \"Phase 1: Foundational Knowledge\": [ \"Introduction to Aquaculture: Principles and ...",
+      "gold_label": 3,
+      "language": "en",
+      "metric": "Personalization, Adaptation & Learning Support",
+      "question_group": "041e24355921f74d38dc4cfa218e38b1295f9100",
+      "question_hash": "02a95a68a5405bb0ea3bcb7c714f1eb6ec2b9940",
+      "question_preview": "{'Name': 'Alex Johnson', 'Age': 22, 'Education Level': 'Undergraduate', 'Current Skill Level': 'Intermediate', 'Learning...",
+      "rubric_hash": "44f43049f025820bcd1dfbf7680edd947a678fea",
+      "sample_id": "5bba98b7791a392b7874b20b0f328a745845ae7c",
+      "subject": "Aquaculture"
+    },
+    "target_redacted": {
+      "major_failures": [
+        "partial_or_incomplete"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    }
+  },
+  {
+    "input_redacted": {
+      "answer_hash": "9fbe691c77f00e7804d267423ab62d6924877e77",
+      "answer_preview": "```json { \"Learning Path Planning\": { \"Short-term Goals\": [ \"Focus on mastering reaction mechanisms through visual aids ...",
+      "gold_label": 3,
+      "language": "en",
+      "metric": "Personalization, Adaptation & Learning Support",
+      "question_group": "cfaf5a22b6aa096b0f93a01fee71a64a309c8b48",
+      "question_hash": "6ef707c48e84f57718b1d80c02c4967437bdf9c1",
+      "question_preview": "{'Name': 'Alex Johnson', 'Current Level': 'High School Senior', 'Learning Goals': 'To improve understanding of organic c...",
+      "rubric_hash": "44f43049f025820bcd1dfbf7680edd947a678fea",
+      "sample_id": "fcdfcef4282766582ea0035b4fc424fc7885afad",
+      "subject": "Chemistry"
+    },
+    "target_redacted": {
+      "major_failures": [
+        "partial_or_incomplete"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    }
+  },
+  {
+    "input_redacted": {
+      "answer_hash": "e8c5aba57090c4e9851e20c864546d3437e9fb36",
+      "answer_preview": "Here is a personalized learning plan based on Alex Johnson's profile, formatted as requested in JSON: ```json { \"Persona...",
+      "gold_label": 3,
+      "language": "en",
+      "metric": "Higher-Order Thinking & Skill Development",
+      "question_group": "5a8663d57769fe35066bd7a0879ffa16b30fef1f",
+      "question_hash": "1f654bbcc191187919ba822de1e7cf5d4755c884",
+      "question_preview": "Student Profile: Student Profile: {'Name': 'Alex Johnson', 'Year': 'Sophomore', 'Major': 'Chemical Engineering', 'Streng...",
+      "rubric_hash": "efd8930d133668c42385bdc62ada9fc34b260538",
+      "sample_id": "b964c643ca86d6b40fdfa27d27cebca463b607e4",
+      "subject": "Chemistry"
+    },
+    "target_redacted": {
+      "major_failures": [
+        "partial_or_incomplete"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    }
+  },
+  {
+    "input_redacted": {
+      "answer_hash": "4f449f687edf22b119707b56c698535537f727ca",
+      "answer_preview": "```json { \"personalized_learning_content\": [ { \"task\": \"Data Analysis Project\", \"description\": \"Conduct a data analysis ...",
+      "gold_label": 3,
+      "language": "en",
+      "metric": "Higher-Order Thinking & Skill Development",
+      "question_group": "1aa181bce1f718f6c1980cd975c0621670e3e5c9",
+      "question_hash": "be7c9423979eb0b14bdfea8fd45b893145830f22",
+      "question_preview": "Student Profile: Student Profile: {'Name': 'Alex Johnson', 'Research Focus': 'Sustainable aquaculture practices in marin...",
+      "rubric_hash": "efd8930d133668c42385bdc62ada9fc34b260538",
+      "sample_id": "38d70b6e4574e86f730b29404adbf643018d7ab1",
+      "subject": "Aquaculture"
+    },
+    "target_redacted": {
+      "major_failures": [
+        "partial_or_incomplete"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    }
+  },
+  {
+    "input_redacted": {
+      "answer_hash": "a92c768cf8484be29ab13510a734ffe4a97e6994",
+      "answer_preview": "```json { \"Personalized_Learning_Content\": [ { \"Task\": \"Watch a series of visual tutorials on organic chemistry concepts...",
+      "gold_label": 3,
+      "language": "en",
+      "metric": "Higher-Order Thinking & Skill Development",
+      "question_group": "5a8663d57769fe35066bd7a0879ffa16b30fef1f",
+      "question_hash": "1f654bbcc191187919ba822de1e7cf5d4755c884",
+      "question_preview": "Student Profile: Student Profile: {'Name': 'Alex Johnson', 'Year': 'Sophomore', 'Major': 'Chemical Engineering', 'Streng...",
+      "rubric_hash": "efd8930d133668c42385bdc62ada9fc34b260538",
+      "sample_id": "a2adba53cd9770ebbfeac5f9c6a614e381ec0109",
+      "subject": "Chemistry"
+    },
+    "target_redacted": {
+      "major_failures": [
+        "partial_or_incomplete"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    }
+  },
+  {
+    "input_redacted": {
+      "answer_hash": "651e665abc70a3667f434a93d74e916d9ca98d8a",
+      "answer_preview": "{ \"Corrected Answer\": \"To transport oxygen from the lungs to the rest of the body and to help remove carbon dioxide.\", \"...",
+      "gold_label": 3,
+      "language": "en",
+      "metric": "Instruction Following & Task Completion",
+      "question_group": "ba35192a049e868eedae5ba310638e7e75c9f363",
+      "question_hash": "8e28ed4de02c4b0328f0abea618c5f53334af88d",
+      "question_preview": "Question: Which of the following is the primary function of hemoglobin in the human body? Original Answer: To fight infe...",
+      "rubric_hash": "a14797eaa80ea764fabf950019166678639967fc",
+      "sample_id": "8e068efec60220e2373adb4de434e5114b181788",
+      "subject": "Basic Medicine"
+    },
+    "target_redacted": {
+      "major_failures": [
+        "partial_or_incomplete"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    }
+  },
+  {
+    "input_redacted": {
+      "answer_hash": "651e665abc70a3667f434a93d74e916d9ca98d8a",
+      "answer_preview": "{ \"Corrected Answer\": \"To transport oxygen from the lungs to the rest of the body and to help remove carbon dioxide.\", \"...",
+      "gold_label": 3,
+      "language": "en",
+      "metric": "Scenario Element Integration",
+      "question_group": "ba35192a049e868eedae5ba310638e7e75c9f363",
+      "question_hash": "8e28ed4de02c4b0328f0abea618c5f53334af88d",
+      "question_preview": "Question: Which of the following is the primary function of hemoglobin in the human body? Original Answer: To fight infe...",
+      "rubric_hash": "ac0cfa3792b9866ecaf4c25bfc92511d9d852145",
+      "sample_id": "40999f48788f0503f5f5235ca07aac5cd3cccbd3",
+      "subject": "Basic Medicine"
+    },
+    "target_redacted": {
+      "major_failures": [
+        "partial_or_incomplete"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    }
+  },
+  {
+    "input_redacted": {
+      "answer_hash": "651e665abc70a3667f434a93d74e916d9ca98d8a",
+      "answer_preview": "{ \"Corrected Answer\": \"To transport oxygen from the lungs to the rest of the body and to help remove carbon dioxide.\", \"...",
+      "gold_label": 3,
+      "language": "en",
+      "metric": "Error Identification & Correction Precision",
+      "question_group": "ba35192a049e868eedae5ba310638e7e75c9f363",
+      "question_hash": "8e28ed4de02c4b0328f0abea618c5f53334af88d",
+      "question_preview": "Question: Which of the following is the primary function of hemoglobin in the human body? Original Answer: To fight infe...",
+      "rubric_hash": "f6fa164afa8eeb1cc44254e9782d8922a32aaa4e",
+      "sample_id": "43f746e5a4869d1a639dedbf10e38c65aa279648",
+      "subject": "Basic Medicine"
+    },
+    "target_redacted": {
+      "major_failures": [
+        "partial_or_incomplete"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    }
+  },
+  {
+    "input_redacted": {
+      "answer_hash": "651e665abc70a3667f434a93d74e916d9ca98d8a",
+      "answer_preview": "{ \"Corrected Answer\": \"To transport oxygen from the lungs to the rest of the body and to help remove carbon dioxide.\", \"...",
+      "gold_label": 3,
+      "language": "en",
+      "metric": "Clarity, Simplicity & Inspiration",
+      "question_group": "ba35192a049e868eedae5ba310638e7e75c9f363",
+      "question_hash": "8e28ed4de02c4b0328f0abea618c5f53334af88d",
+      "question_preview": "Question: Which of the following is the primary function of hemoglobin in the human body? Original Answer: To fight infe...",
+      "rubric_hash": "de66ad25f5597285bf2cee001e0b10dba7a037b6",
+      "sample_id": "8341e93909c0704df94f772a62c2864d3bbd1a62",
+      "subject": "Basic Medicine"
+    },
+    "target_redacted": {
+      "major_failures": [
+        "partial_or_incomplete"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    }
+  },
+  {
+    "input_redacted": {
+      "answer_hash": "6a9b9dbf13296bc55535cd92070dd739cc206c31",
+      "answer_preview": "```json { \"Student\": { \"Name\": \"Alex Johnson\", \"Age\": 24, \"Background\": \"Bachelor's degree in Sports Science, currently ...",
+      "gold_label": 3,
+      "language": "en",
+      "metric": "Content Relevance & Scope Control",
+      "question_group": "ebf6383ccf11081172d762d21b7079671bd2437d",
+      "question_hash": "e1c338ccd1246f0020b79b7bdba3127bbec512a7",
+      "question_preview": "Student Profile: Student Profile: {'Name': 'Alex Johnson', 'Age': 24, 'Background': \"Alex has a Bachelor's degree in Spo...",
+      "rubric_hash": "5a76bccd19bd94e4eb2aaf284a87b0dff9ac4127",
+      "sample_id": "b1fd5b2872a558a7c71e67f37efda975293ba376",
+      "subject": "Physical Education"
+    },
+    "target_redacted": {
+      "major_failures": [
+        "partial_or_incomplete"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    }
+  },
+  {
+    "input_redacted": {
+      "answer_hash": "13d277dcb69207d2c771b90cfe9bc875b0dfbc21",
+      "answer_preview": "```json { \"Corrected Answer\": \"To transport oxygen from the lungs to the rest of the body and to carry carbon dioxide fr...",
+      "gold_label": 3,
+      "language": "en",
+      "metric": "Motivation, Guidance & Positive Feedback",
+      "question_group": "ba35192a049e868eedae5ba310638e7e75c9f363",
+      "question_hash": "8e28ed4de02c4b0328f0abea618c5f53334af88d",
+      "question_preview": "Question: Which of the following is the primary function of hemoglobin in the human body? Original Answer: To fight infe...",
+      "rubric_hash": "85529ff77a1aa88d7a8579cca9e14e9d5b2d1af1",
+      "sample_id": "b35164feee7ca33d667104dc2618142463a5c7f5",
+      "subject": "Basic Medicine"
+    },
+    "target_redacted": {
+      "major_failures": [
+        "partial_or_incomplete"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    }
+  },
+  {
+    "input_redacted": {
+      "answer_hash": "aac2fa4fbe9e2d1c7f49c8a09a4bfeadf5a7b232",
+      "answer_preview": "```json { \"Corrected Answer\": \"To transport oxygen from the lungs to the tissues and to carry carbon dioxide from the ti...",
+      "gold_label": 3,
+      "language": "en",
+      "metric": "Instruction Following & Task Completion",
+      "question_group": "ba35192a049e868eedae5ba310638e7e75c9f363",
+      "question_hash": "8e28ed4de02c4b0328f0abea618c5f53334af88d",
+      "question_preview": "Question: Which of the following is the primary function of hemoglobin in the human body? Original Answer: To fight infe...",
+      "rubric_hash": "a14797eaa80ea764fabf950019166678639967fc",
+      "sample_id": "be1321d38b36c49839edea52e657a1b0dabcf94a",
+      "subject": "Basic Medicine"
+    },
+    "target_redacted": {
+      "major_failures": [
+        "partial_or_incomplete"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    }
+  },
+  {
+    "input_redacted": {
+      "answer_hash": "aac2fa4fbe9e2d1c7f49c8a09a4bfeadf5a7b232",
+      "answer_preview": "```json { \"Corrected Answer\": \"To transport oxygen from the lungs to the tissues and to carry carbon dioxide from the ti...",
+      "gold_label": 3,
+      "language": "en",
+      "metric": "Scenario Element Integration",
+      "question_group": "ba35192a049e868eedae5ba310638e7e75c9f363",
+      "question_hash": "8e28ed4de02c4b0328f0abea618c5f53334af88d",
+      "question_preview": "Question: Which of the following is the primary function of hemoglobin in the human body? Original Answer: To fight infe...",
+      "rubric_hash": "ac0cfa3792b9866ecaf4c25bfc92511d9d852145",
+      "sample_id": "fb181d623ba59567ed2e7160c64104c5c9a49672",
+      "subject": "Basic Medicine"
+    },
+    "target_redacted": {
+      "major_failures": [
+        "partial_or_incomplete"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    }
+  },
+  {
+    "input_redacted": {
+      "answer_hash": "aac2fa4fbe9e2d1c7f49c8a09a4bfeadf5a7b232",
+      "answer_preview": "```json { \"Corrected Answer\": \"To transport oxygen from the lungs to the tissues and to carry carbon dioxide from the ti...",
+      "gold_label": 3,
+      "language": "en",
+      "metric": "Reasoning Process Rigor",
+      "question_group": "ba35192a049e868eedae5ba310638e7e75c9f363",
+      "question_hash": "8e28ed4de02c4b0328f0abea618c5f53334af88d",
+      "question_preview": "Question: Which of the following is the primary function of hemoglobin in the human body? Original Answer: To fight infe...",
+      "rubric_hash": "b3bd64fec9b8cd51f4bac7251a02ad19e7755dd4",
+      "sample_id": "538dae80e3b261274dffac761529746f6c2d64c5",
+      "subject": "Basic Medicine"
+    },
+    "target_redacted": {
+      "major_failures": [
+        "partial_or_incomplete"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    }
+  },
+  {
+    "input_redacted": {
+      "answer_hash": "aac2fa4fbe9e2d1c7f49c8a09a4bfeadf5a7b232",
+      "answer_preview": "```json { \"Corrected Answer\": \"To transport oxygen from the lungs to the tissues and to carry carbon dioxide from the ti...",
+      "gold_label": 3,
+      "language": "en",
+      "metric": "Error Identification & Correction Precision",
+      "question_group": "ba35192a049e868eedae5ba310638e7e75c9f363",
+      "question_hash": "8e28ed4de02c4b0328f0abea618c5f53334af88d",
+      "question_preview": "Question: Which of the following is the primary function of hemoglobin in the human body? Original Answer: To fight infe...",
+      "rubric_hash": "f6fa164afa8eeb1cc44254e9782d8922a32aaa4e",
+      "sample_id": "6315a1b25d8d9b18cd9028878fcd897509359765",
+      "subject": "Basic Medicine"
+    },
+    "target_redacted": {
+      "major_failures": [
+        "partial_or_incomplete"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    }
+  },
+  {
+    "input_redacted": {
+      "answer_hash": "aac2fa4fbe9e2d1c7f49c8a09a4bfeadf5a7b232",
+      "answer_preview": "```json { \"Corrected Answer\": \"To transport oxygen from the lungs to the tissues and to carry carbon dioxide from the ti...",
+      "gold_label": 3,
+      "language": "en",
+      "metric": "Clarity, Simplicity & Inspiration",
+      "question_group": "ba35192a049e868eedae5ba310638e7e75c9f363",
+      "question_hash": "8e28ed4de02c4b0328f0abea618c5f53334af88d",
+      "question_preview": "Question: Which of the following is the primary function of hemoglobin in the human body? Original Answer: To fight infe...",
+      "rubric_hash": "de66ad25f5597285bf2cee001e0b10dba7a037b6",
+      "sample_id": "ac29e7b4bf83e43e69ae10ecaaa42c645220193e",
+      "subject": "Basic Medicine"
+    },
+    "target_redacted": {
+      "major_failures": [
+        "partial_or_incomplete"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    }
+  },
+  {
+    "input_redacted": {
+      "answer_hash": "99d4cab55bd7102529685d815fa0b4c9d0e4bfce",
+      "answer_preview": "{ \"Corrected Answer\": \"The acceleration due to gravity is not the same at all altitudes on Earth; it decreases as altitu...",
+      "gold_label": 3,
+      "language": "en",
+      "metric": "Motivation, Guidance & Positive Feedback",
+      "question_group": "ab6bb9f4466b3c5fe1f7f2ed3ec527b9dc3b6304",
+      "question_hash": "210a2d099e60f359f3925574b5b26040a094ff5a",
+      "question_preview": "Question: Which of the following statements is true about the acceleration due to gravity on Earth? Original Answer: The...",
+      "rubric_hash": "85529ff77a1aa88d7a8579cca9e14e9d5b2d1af1",
+      "sample_id": "80b206d487a4c9e39d68a0e0b12091aabe420729",
+      "subject": "Physics"
+    },
+    "target_redacted": {
+      "major_failures": [
+        "partial_or_incomplete"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    }
+  }
+]

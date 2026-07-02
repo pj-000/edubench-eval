@@ -7,6 +7,7 @@ lora_rank: 16
 lora_alpha: 32
 lora_dropout: 0.05
 lora_target: all
+dataset_dir: thesis_exp/exp17_low_score_evidence/outputs/exp19_sft_dpo_datasets_seed42
 dataset: edubench_r2_reason_score_train
 template: qwen3_nothink
 cutoff_len: 4096

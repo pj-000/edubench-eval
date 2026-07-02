@@ -17,22 +17,30 @@ split is not read.
 
 ## Dataset Counts
 
-- edubench_r1_score_only_train: 3326 (sft)
-- edubench_r2_reason_score_train: 3326 (sft)
-- edubench_r3_reason_rationale_train: 3326 (sft)
-- edubench_r4_shuffled_reason_control_train: 3326 (sft)
-- edubench_r5_risk_balanced_dpo_train: 6466 (dpo)
+- edubench_r1_score_only_train: 3326 (sft_natural)
+- edubench_r2_reason_score_train: 3326 (sft_natural)
+- edubench_r3_reason_rationale_train: 3326 (sft_natural)
+- edubench_r4_shuffled_reason_control_train: 3326 (sft_control)
+- edubench_r2_reason_score_balanced_train: 3000 (sft_balanced)
+- edubench_r3_reason_rationale_balanced_train: 3000 (sft_balanced)
+- edubench_r2_clean_reason_score_balanced_train: 3000 (sft_clean_balanced)
+- edubench_r5_risk_balanced_dpo_train: 3000 (dpo_risk_balanced)
+- edubench_r5_high_protection_dpo_control_train: 6466 (dpo_control)
 
 ## DPO Risk Counts
 
-- high_to_low_protection: original=2918, expanded=5836
-- low_to_high: original=111, expanded=333
-- mid_score_calibration: original=297, expanded=297
+- edubench_r5_risk_balanced_dpo_train / high_to_low_protection: original=2918, expanded=1200
+- edubench_r5_risk_balanced_dpo_train / low_to_high: original=111, expanded=1200
+- edubench_r5_risk_balanced_dpo_train / mid_score_calibration: original=297, expanded=600
+- edubench_r5_high_protection_dpo_control_train / high_to_low_protection: original=2918, expanded=5836
+- edubench_r5_high_protection_dpo_control_train / low_to_high: original=111, expanded=333
+- edubench_r5_high_protection_dpo_control_train / mid_score_calibration: original=297, expanded=297
 
 ## Distribution Summary
 
 - label distribution: {'1': 58, '2': 53, '3': 297, '4': 1163, '5': 1755}
-- major failures distribution: {'no_major_failure': 2918, 'insufficient_evidence': 320, 'unclear': 27, 'surface_fluent_but_hidden_defect': 25, 'missing_key_point': 25, 'task_constraint_violation': 4, 'answer_key_or_reference_mismatch': 4, 'format_violation': 3}
+- SFT train distribution note: natural datasets preserve the original long-tail distribution; balanced datasets use explicit risk-aware sampling and must not be interpreted as the raw data distribution.
+- major failures distribution: {'no_major_failure': 2918, 'partial_or_incomplete': 297, 'unclear': 27, 'surface_fluent_but_hidden_defect': 25, 'missing_key_point': 25, 'insufficient_evidence': 23, 'task_constraint_violation': 4, 'answer_key_or_reference_mismatch': 4, 'format_violation': 3}
 - score cap distribution: {'None': 2918, '3': 297, '1': 58, '2': 53}
 - rubric_satisfied distribution: {'True': 2918, 'False': 408}
 - max question_group/question_key rate: 0.0150

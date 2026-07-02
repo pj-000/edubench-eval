@@ -1,0 +1,682 @@
+[
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "unclear"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "input_redacted": {
+      "answer_hash": "651e665abc70a3667f434a93d74e916d9ca98d8a",
+      "answer_preview": "{ \"Corrected Answer\": \"To transport oxygen from the lungs to the rest of the body and to help remove carbon dioxide.\", \"...",
+      "gold_label": 2,
+      "language": "en",
+      "metric": "Motivation, Guidance & Positive Feedback",
+      "question_group": "ba35192a049e868eedae5ba310638e7e75c9f363",
+      "question_hash": "8e28ed4de02c4b0328f0abea618c5f53334af88d",
+      "question_preview": "Question: Which of the following is the primary function of hemoglobin in the human body? Original Answer: To fight infe...",
+      "rubric_hash": "85529ff77a1aa88d7a8579cca9e14e9d5b2d1af1",
+      "sample_id": "59057a57e3dbc47128b4e0c6da46964f722a411f",
+      "subject": "Basic Medicine"
+    },
+    "oversample_copies_in_control": 3,
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "risk_type": "low_to_high",
+    "weight_bucket": "high"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "unclear"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "input_redacted": {
+      "answer_hash": "aac2fa4fbe9e2d1c7f49c8a09a4bfeadf5a7b232",
+      "answer_preview": "```json { \"Corrected Answer\": \"To transport oxygen from the lungs to the tissues and to carry carbon dioxide from the ti...",
+      "gold_label": 2,
+      "language": "en",
+      "metric": "Motivation, Guidance & Positive Feedback",
+      "question_group": "ba35192a049e868eedae5ba310638e7e75c9f363",
+      "question_hash": "8e28ed4de02c4b0328f0abea618c5f53334af88d",
+      "question_preview": "Question: Which of the following is the primary function of hemoglobin in the human body? Original Answer: To fight infe...",
+      "rubric_hash": "85529ff77a1aa88d7a8579cca9e14e9d5b2d1af1",
+      "sample_id": "4153d3a9a2b62778bf32e38aa33be57d0215987d",
+      "subject": "Basic Medicine"
+    },
+    "oversample_copies_in_control": 3,
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "risk_type": "low_to_high",
+    "weight_bucket": "high"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "unclear"
+      ],
+      "rubric_satisfied": false,
+      "score": 1,
+      "score_cap": 1
+    },
+    "input_redacted": {
+      "answer_hash": "aaf939f2f67853d5b3d2d2c9aaaa8520b6a40845",
+      "answer_preview": "{ \"Score\": 1, \"Scoring Details\": \"The student answered correctly. The liver indeed has an impressive regenerative capaci...",
+      "gold_label": 1,
+      "language": "en",
+      "metric": "Reasoning Process Rigor",
+      "question_group": "5190426b37344a5dd70adf4894aacc1fb868cdff",
+      "question_hash": "d3ee241a1460e0a9049c6552823a7e054c971557",
+      "question_preview": "Question: True or False: The human liver has the capacity to regenerate after surgical removal of a portion of its tissu...",
+      "rubric_hash": "b3bd64fec9b8cd51f4bac7251a02ad19e7755dd4",
+      "sample_id": "1947f424625d896777f4dbddef16ab9afb7730aa",
+      "subject": "Basic Medicine"
+    },
+    "oversample_copies_in_control": 3,
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "risk_type": "low_to_high",
+    "weight_bucket": "high"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "insufficient_evidence"
+      ],
+      "rubric_satisfied": false,
+      "score": 1,
+      "score_cap": 1
+    },
+    "input_redacted": {
+      "answer_hash": "f5117cb931d302bcfb9d8a0c44fe7a81a0af31a7",
+      "answer_preview": "```json { \"Score\": 1, \"Scoring Details\": { \"Correctness\": true, \"Explanation\": \"The student's answer is correct. The hum...",
+      "gold_label": 1,
+      "language": "en",
+      "metric": "Reasoning Process Rigor",
+      "question_group": "5190426b37344a5dd70adf4894aacc1fb868cdff",
+      "question_hash": "d3ee241a1460e0a9049c6552823a7e054c971557",
+      "question_preview": "Question: True or False: The human liver has the capacity to regenerate after surgical removal of a portion of its tissu...",
+      "rubric_hash": "b3bd64fec9b8cd51f4bac7251a02ad19e7755dd4",
+      "sample_id": "7b2343c0fac6f79059007d116f746842fe6a6637",
+      "subject": "Basic Medicine"
+    },
+    "oversample_copies_in_control": 3,
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "risk_type": "low_to_high",
+    "weight_bucket": "high"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "surface_fluent_but_hidden_defect"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "input_redacted": {
+      "answer_hash": "790f7588178938f4a4b4f377fdf44b4103af807e",
+      "answer_preview": "{ \"Corrected Answer\": \"The Double Jeopardy Clause of the Fifth Amendment.\", \"Error Explanation\": \"Stare decisis refers t...",
+      "gold_label": 2,
+      "language": "en",
+      "metric": "Motivation, Guidance & Positive Feedback",
+      "question_group": "578358b94591dcdb7b73304c5498c56a12d9c95d",
+      "question_hash": "ddf4579e5aaccf0ede6824516a2034e8d14d1298",
+      "question_preview": "Question: Which legal principle is primarily concerned with the prevention of double jeopardy in the United States? Orig...",
+      "rubric_hash": "85529ff77a1aa88d7a8579cca9e14e9d5b2d1af1",
+      "sample_id": "ba114a1a8452ac012af5a1940b242d85f38538d3",
+      "subject": "Law"
+    },
+    "oversample_copies_in_control": 3,
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "risk_type": "low_to_high",
+    "weight_bucket": "high"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "insufficient_evidence"
+      ],
+      "rubric_satisfied": false,
+      "score": 1,
+      "score_cap": 1
+    },
+    "input_redacted": {
+      "answer_hash": "d86c1aca3d6e6f2f712632806876a65aa8fdb39f",
+      "answer_preview": "```json { \"Score\": 1, \"ScoringDetails\": { \"Accuracy\": 1, \"Explanation\": \"The student's answer is correct. The human live...",
+      "gold_label": 1,
+      "language": "en",
+      "metric": "Reasoning Process Rigor",
+      "question_group": "5190426b37344a5dd70adf4894aacc1fb868cdff",
+      "question_hash": "d3ee241a1460e0a9049c6552823a7e054c971557",
+      "question_preview": "Question: True or False: The human liver has the capacity to regenerate after surgical removal of a portion of its tissu...",
+      "rubric_hash": "b3bd64fec9b8cd51f4bac7251a02ad19e7755dd4",
+      "sample_id": "bd384e01426757c4dd86e755a75d5ef86fe6e59f",
+      "subject": "Basic Medicine"
+    },
+    "oversample_copies_in_control": 3,
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "risk_type": "low_to_high",
+    "weight_bucket": "high"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "unclear"
+      ],
+      "rubric_satisfied": false,
+      "score": 1,
+      "score_cap": 1
+    },
+    "input_redacted": {
+      "answer_hash": "f08d98494037ca88aa95b0a011bbc7922ee6102c",
+      "answer_preview": "```json { \"Score\": \"100%\", \"Scoring Details\": { \"Correctness\": \"The student's answer is correct. The human liver does ha...",
+      "gold_label": 1,
+      "language": "en",
+      "metric": "Reasoning Process Rigor",
+      "question_group": "5190426b37344a5dd70adf4894aacc1fb868cdff",
+      "question_hash": "d3ee241a1460e0a9049c6552823a7e054c971557",
+      "question_preview": "Question: True or False: The human liver has the capacity to regenerate after surgical removal of a portion of its tissu...",
+      "rubric_hash": "b3bd64fec9b8cd51f4bac7251a02ad19e7755dd4",
+      "sample_id": "49318c4f0d2ec2244ac543b0db468afaf9a85d1b",
+      "subject": "Basic Medicine"
+    },
+    "oversample_copies_in_control": 3,
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "risk_type": "low_to_high",
+    "weight_bucket": "high"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "insufficient_evidence"
+      ],
+      "rubric_satisfied": false,
+      "score": 1,
+      "score_cap": 1
+    },
+    "input_redacted": {
+      "answer_hash": "a3363331de0ca94bcea33a37db093d010c16f039",
+      "answer_preview": "```json { \"Score\": 1, \"Scoring Details\": { \"Correctness\": \"The student's answer is correct. The human liver indeed has t...",
+      "gold_label": 1,
+      "language": "en",
+      "metric": "Reasoning Process Rigor",
+      "question_group": "5190426b37344a5dd70adf4894aacc1fb868cdff",
+      "question_hash": "d3ee241a1460e0a9049c6552823a7e054c971557",
+      "question_preview": "Question: True or False: The human liver has the capacity to regenerate after surgical removal of a portion of its tissu...",
+      "rubric_hash": "b3bd64fec9b8cd51f4bac7251a02ad19e7755dd4",
+      "sample_id": "7dfd63e7375e5474e2df047ebe282cf4ba8661b8",
+      "subject": "Basic Medicine"
+    },
+    "oversample_copies_in_control": 3,
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "risk_type": "low_to_high",
+    "weight_bucket": "high"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "task_constraint_violation"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "input_redacted": {
+      "answer_hash": "db3041d410276006aee5aa6a0ab30da47dba0f68",
+      "answer_preview": "{ \"Answer\": \"A) f(z) has no singularities.\" }",
+      "gold_label": 2,
+      "language": "en",
+      "metric": "Content Relevance & Scope Control",
+      "question_group": "aa48c48cd6bf14c4713397de0e37c7971495e79d",
+      "question_hash": "06012c00f4d4755831817a5ab75bb317943a38b1",
+      "question_preview": "Subject:Mathematics Education Level:PhD Question:In the context of complex analysis, consider the function f(z) = z^2 + ...",
+      "rubric_hash": "5a76bccd19bd94e4eb2aaf284a87b0dff9ac4127",
+      "sample_id": "fa439d530a93932f4cf8a09f743d80c44e18e0b8",
+      "subject": "Mathematics"
+    },
+    "oversample_copies_in_control": 3,
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "risk_type": "low_to_high",
+    "weight_bucket": "high"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "surface_fluent_but_hidden_defect"
+      ],
+      "rubric_satisfied": false,
+      "score": 1,
+      "score_cap": 1
+    },
+    "input_redacted": {
+      "answer_hash": "db3041d410276006aee5aa6a0ab30da47dba0f68",
+      "answer_preview": "{ \"Answer\": \"A) f(z) has no singularities.\" }",
+      "gold_label": 1,
+      "language": "en",
+      "metric": "Basic Factual Accuracy",
+      "question_group": "aa48c48cd6bf14c4713397de0e37c7971495e79d",
+      "question_hash": "06012c00f4d4755831817a5ab75bb317943a38b1",
+      "question_preview": "Subject:Mathematics Education Level:PhD Question:In the context of complex analysis, consider the function f(z) = z^2 + ...",
+      "rubric_hash": "daebfb9529f9b5338cd603fe8cef21787409ff1a",
+      "sample_id": "0578273c54e1a724084529ebbc385f1bdd1076ea",
+      "subject": "Mathematics"
+    },
+    "oversample_copies_in_control": 3,
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "risk_type": "low_to_high",
+    "weight_bucket": "high"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "missing_key_point"
+      ],
+      "rubric_satisfied": false,
+      "score": 1,
+      "score_cap": 1
+    },
+    "input_redacted": {
+      "answer_hash": "db3041d410276006aee5aa6a0ab30da47dba0f68",
+      "answer_preview": "{ \"Answer\": \"A) f(z) has no singularities.\" }",
+      "gold_label": 1,
+      "language": "en",
+      "metric": "Reasoning Process Rigor",
+      "question_group": "aa48c48cd6bf14c4713397de0e37c7971495e79d",
+      "question_hash": "06012c00f4d4755831817a5ab75bb317943a38b1",
+      "question_preview": "Subject:Mathematics Education Level:PhD Question:In the context of complex analysis, consider the function f(z) = z^2 + ...",
+      "rubric_hash": "b3bd64fec9b8cd51f4bac7251a02ad19e7755dd4",
+      "sample_id": "0a86fc4b2478f8c922c1ab7ce85590f94b9d2136",
+      "subject": "Mathematics"
+    },
+    "oversample_copies_in_control": 3,
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "risk_type": "low_to_high",
+    "weight_bucket": "high"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "surface_fluent_but_hidden_defect"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "input_redacted": {
+      "answer_hash": "cc2e6bddbcc6533c25a1880f84176bf670955a1b",
+      "answer_preview": "```json { \"answer\": \"A) f(z) has no singularities.\" } ```",
+      "gold_label": 2,
+      "language": "en",
+      "metric": "Content Relevance & Scope Control",
+      "question_group": "aa48c48cd6bf14c4713397de0e37c7971495e79d",
+      "question_hash": "06012c00f4d4755831817a5ab75bb317943a38b1",
+      "question_preview": "Subject:Mathematics Education Level:PhD Question:In the context of complex analysis, consider the function f(z) = z^2 + ...",
+      "rubric_hash": "5a76bccd19bd94e4eb2aaf284a87b0dff9ac4127",
+      "sample_id": "6a65ddfebb3698d3eb20f814a761580fa2f8be48",
+      "subject": "Mathematics"
+    },
+    "oversample_copies_in_control": 3,
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "risk_type": "low_to_high",
+    "weight_bucket": "high"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "answer_key_or_reference_mismatch"
+      ],
+      "rubric_satisfied": false,
+      "score": 1,
+      "score_cap": 1
+    },
+    "input_redacted": {
+      "answer_hash": "cc2e6bddbcc6533c25a1880f84176bf670955a1b",
+      "answer_preview": "```json { \"answer\": \"A) f(z) has no singularities.\" } ```",
+      "gold_label": 1,
+      "language": "en",
+      "metric": "Basic Factual Accuracy",
+      "question_group": "aa48c48cd6bf14c4713397de0e37c7971495e79d",
+      "question_hash": "06012c00f4d4755831817a5ab75bb317943a38b1",
+      "question_preview": "Subject:Mathematics Education Level:PhD Question:In the context of complex analysis, consider the function f(z) = z^2 + ...",
+      "rubric_hash": "daebfb9529f9b5338cd603fe8cef21787409ff1a",
+      "sample_id": "5238e123a16a826d9dd25c0454890d96db10099a",
+      "subject": "Mathematics"
+    },
+    "oversample_copies_in_control": 3,
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "risk_type": "low_to_high",
+    "weight_bucket": "high"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "missing_key_point"
+      ],
+      "rubric_satisfied": false,
+      "score": 1,
+      "score_cap": 1
+    },
+    "input_redacted": {
+      "answer_hash": "cc2e6bddbcc6533c25a1880f84176bf670955a1b",
+      "answer_preview": "```json { \"answer\": \"A) f(z) has no singularities.\" } ```",
+      "gold_label": 1,
+      "language": "en",
+      "metric": "Reasoning Process Rigor",
+      "question_group": "aa48c48cd6bf14c4713397de0e37c7971495e79d",
+      "question_hash": "06012c00f4d4755831817a5ab75bb317943a38b1",
+      "question_preview": "Subject:Mathematics Education Level:PhD Question:In the context of complex analysis, consider the function f(z) = z^2 + ...",
+      "rubric_hash": "b3bd64fec9b8cd51f4bac7251a02ad19e7755dd4",
+      "sample_id": "44a426bf4f453df7ea5b7ac85d6f0e801f9ba296",
+      "subject": "Mathematics"
+    },
+    "oversample_copies_in_control": 3,
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "risk_type": "low_to_high",
+    "weight_bucket": "high"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "unclear"
+      ],
+      "rubric_satisfied": false,
+      "score": 1,
+      "score_cap": 1
+    },
+    "input_redacted": {
+      "answer_hash": "5f6d76c8d7787125b29fb903d52aca212dc0c640",
+      "answer_preview": "```json { \"Answer\": \"A\" } ```",
+      "gold_label": 1,
+      "language": "en",
+      "metric": "Reasoning Process Rigor",
+      "question_group": "aa48c48cd6bf14c4713397de0e37c7971495e79d",
+      "question_hash": "06012c00f4d4755831817a5ab75bb317943a38b1",
+      "question_preview": "Subject:Mathematics Education Level:PhD Question:In the context of complex analysis, consider the function f(z) = z^2 + ...",
+      "rubric_hash": "b3bd64fec9b8cd51f4bac7251a02ad19e7755dd4",
+      "sample_id": "6c703c046a9b97419785484bb1dd5d5b81ccd77a",
+      "subject": "Mathematics"
+    },
+    "oversample_copies_in_control": 3,
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "risk_type": "low_to_high",
+    "weight_bucket": "high"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "missing_key_point"
+      ],
+      "rubric_satisfied": false,
+      "score": 1,
+      "score_cap": 1
+    },
+    "input_redacted": {
+      "answer_hash": "22b15a739854e52a6c4a1c9f407cd075555b55f8",
+      "answer_preview": "{ \"Answer\": \"C) GDP does not account for environmental degradation and resource depletion.\" }",
+      "gold_label": 1,
+      "language": "en",
+      "metric": "Reasoning Process Rigor",
+      "question_group": "7bdbfc3be37d434120cd61c75738b9ba4e2b67ad",
+      "question_hash": "397378d45465ed93a09dedc087cd9564d5a15348",
+      "question_preview": "Subject:Applied Economics Education Level:Undergraduate Question:Which of the following is considered a limitation of us...",
+      "rubric_hash": "b3bd64fec9b8cd51f4bac7251a02ad19e7755dd4",
+      "sample_id": "3e6317e0a4cd57573a6c971fc945cfc7ee52148a",
+      "subject": "Applied Economics"
+    },
+    "oversample_copies_in_control": 3,
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "risk_type": "low_to_high",
+    "weight_bucket": "high"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "unclear"
+      ],
+      "rubric_satisfied": false,
+      "score": 1,
+      "score_cap": 1
+    },
+    "input_redacted": {
+      "answer_hash": "184d3bffb45f1b97fc2cf803405356570ecaf0dc",
+      "answer_preview": "```json { \"answer\": \"C) GDP does not account for environmental degradation and resource depletion.\" } ```",
+      "gold_label": 1,
+      "language": "en",
+      "metric": "Reasoning Process Rigor",
+      "question_group": "7bdbfc3be37d434120cd61c75738b9ba4e2b67ad",
+      "question_hash": "397378d45465ed93a09dedc087cd9564d5a15348",
+      "question_preview": "Subject:Applied Economics Education Level:Undergraduate Question:Which of the following is considered a limitation of us...",
+      "rubric_hash": "b3bd64fec9b8cd51f4bac7251a02ad19e7755dd4",
+      "sample_id": "f0c153c819601d3c479c51f48b2acd66132d1e5f",
+      "subject": "Applied Economics"
+    },
+    "oversample_copies_in_control": 3,
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "risk_type": "low_to_high",
+    "weight_bucket": "high"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "missing_key_point"
+      ],
+      "rubric_satisfied": false,
+      "score": 1,
+      "score_cap": 1
+    },
+    "input_redacted": {
+      "answer_hash": "32d21fde2392fa778d082fd2ae3554886f4aacc5",
+      "answer_preview": "{ \"answer\": \"C) GDP does not account for environmental degradation and resource depletion.\" }",
+      "gold_label": 1,
+      "language": "en",
+      "metric": "Reasoning Process Rigor",
+      "question_group": "7bdbfc3be37d434120cd61c75738b9ba4e2b67ad",
+      "question_hash": "397378d45465ed93a09dedc087cd9564d5a15348",
+      "question_preview": "Subject:Applied Economics Education Level:Undergraduate Question:Which of the following is considered a limitation of us...",
+      "rubric_hash": "b3bd64fec9b8cd51f4bac7251a02ad19e7755dd4",
+      "sample_id": "4042b14600691c9b29b70d916e9db910c058d891",
+      "subject": "Applied Economics"
+    },
+    "oversample_copies_in_control": 3,
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "risk_type": "low_to_high",
+    "weight_bucket": "high"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "missing_key_point"
+      ],
+      "rubric_satisfied": false,
+      "score": 1,
+      "score_cap": 1
+    },
+    "input_redacted": {
+      "answer_hash": "29306415740c7c1e3d64fd4e2821628b71f74d70",
+      "answer_preview": "```json { \"Answer\": \"C) GDP does not account for environmental degradation and resource depletion.\" } ```",
+      "gold_label": 1,
+      "language": "en",
+      "metric": "Reasoning Process Rigor",
+      "question_group": "7bdbfc3be37d434120cd61c75738b9ba4e2b67ad",
+      "question_hash": "397378d45465ed93a09dedc087cd9564d5a15348",
+      "question_preview": "Subject:Applied Economics Education Level:Undergraduate Question:Which of the following is considered a limitation of us...",
+      "rubric_hash": "b3bd64fec9b8cd51f4bac7251a02ad19e7755dd4",
+      "sample_id": "76909e50052e68bb729ed62933a86559f6a7c036",
+      "subject": "Applied Economics"
+    },
+    "oversample_copies_in_control": 3,
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "risk_type": "low_to_high",
+    "weight_bucket": "high"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "missing_key_point"
+      ],
+      "rubric_satisfied": false,
+      "score": 1,
+      "score_cap": 1
+    },
+    "input_redacted": {
+      "answer_hash": "29306415740c7c1e3d64fd4e2821628b71f74d70",
+      "answer_preview": "```json { \"Answer\": \"C) GDP does not account for environmental degradation and resource depletion.\" } ```",
+      "gold_label": 1,
+      "language": "en",
+      "metric": "Reasoning Process Rigor",
+      "question_group": "7bdbfc3be37d434120cd61c75738b9ba4e2b67ad",
+      "question_hash": "397378d45465ed93a09dedc087cd9564d5a15348",
+      "question_preview": "Subject:Applied Economics Education Level:Undergraduate Question:Which of the following is considered a limitation of us...",
+      "rubric_hash": "b3bd64fec9b8cd51f4bac7251a02ad19e7755dd4",
+      "sample_id": "2805e4237ccaed90f917ee91a5c2c44743bbd1b1",
+      "subject": "Applied Economics"
+    },
+    "oversample_copies_in_control": 3,
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "risk_type": "low_to_high",
+    "weight_bucket": "high"
+  }
+]

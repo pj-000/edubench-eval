@@ -7,7 +7,7 @@ adapter_name_or_path: saves/edubench/qwen3-4b/r2_reason_score_lora
 ref_model: /home/jpang/models/modelscope/Qwen/Qwen3-4B
 ref_model_adapters: saves/edubench/qwen3-4b/r2_reason_score_lora
 dataset_dir: thesis_exp/exp17_low_score_evidence/outputs/exp19_sft_dpo_datasets_seed42
-dataset: edubench_r5_risk_balanced_dpo_train
+dataset: edubench_r5_high_protection_dpo_control_train
 template: qwen3_nothink
 cutoff_len: 4096
 overwrite_cache: true
@@ -15,7 +15,7 @@ preprocessing_num_workers: 16
 pref_loss: sigmoid
 pref_beta: 0.1
 pref_ftx: 0.1
-output_dir: saves/edubench/qwen3-4b/r5_risk_balanced_dpo
+output_dir: saves/edubench/qwen3-4b/r5_high_protection_dpo_control
 logging_steps: 10
 save_steps: 100
 save_only_model: true

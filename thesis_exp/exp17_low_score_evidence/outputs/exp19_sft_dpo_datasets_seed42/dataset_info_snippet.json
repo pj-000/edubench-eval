@@ -3,29 +3,116 @@
     "columns": {
       "messages": "messages"
     },
-    "file_name": "thesis_exp/exp17_low_score_evidence/outputs/exp19_sft_dpo_datasets_seed42/data/edubench_r1_score_only_train.json",
-    "formatting": "sharegpt"
+    "file_name": "data/edubench_r1_score_only_train.json",
+    "formatting": "sharegpt",
+    "tags": {
+      "assistant_tag": "assistant",
+      "content_tag": "content",
+      "role_tag": "role",
+      "system_tag": "system",
+      "user_tag": "user"
+    }
+  },
+  "edubench_r2_clean_reason_score_balanced_train": {
+    "columns": {
+      "messages": "messages"
+    },
+    "file_name": "data/edubench_r2_clean_reason_score_balanced_train.json",
+    "formatting": "sharegpt",
+    "tags": {
+      "assistant_tag": "assistant",
+      "content_tag": "content",
+      "role_tag": "role",
+      "system_tag": "system",
+      "user_tag": "user"
+    }
+  },
+  "edubench_r2_reason_score_balanced_train": {
+    "columns": {
+      "messages": "messages"
+    },
+    "file_name": "data/edubench_r2_reason_score_balanced_train.json",
+    "formatting": "sharegpt",
+    "tags": {
+      "assistant_tag": "assistant",
+      "content_tag": "content",
+      "role_tag": "role",
+      "system_tag": "system",
+      "user_tag": "user"
+    }
   },
   "edubench_r2_reason_score_train": {
     "columns": {
       "messages": "messages"
     },
-    "file_name": "thesis_exp/exp17_low_score_evidence/outputs/exp19_sft_dpo_datasets_seed42/data/edubench_r2_reason_score_train.json",
-    "formatting": "sharegpt"
+    "file_name": "data/edubench_r2_reason_score_train.json",
+    "formatting": "sharegpt",
+    "tags": {
+      "assistant_tag": "assistant",
+      "content_tag": "content",
+      "role_tag": "role",
+      "system_tag": "system",
+      "user_tag": "user"
+    }
+  },
+  "edubench_r3_reason_rationale_balanced_train": {
+    "columns": {
+      "messages": "messages"
+    },
+    "file_name": "data/edubench_r3_reason_rationale_balanced_train.json",
+    "formatting": "sharegpt",
+    "tags": {
+      "assistant_tag": "assistant",
+      "content_tag": "content",
+      "role_tag": "role",
+      "system_tag": "system",
+      "user_tag": "user"
+    }
   },
   "edubench_r3_reason_rationale_train": {
     "columns": {
       "messages": "messages"
     },
-    "file_name": "thesis_exp/exp17_low_score_evidence/outputs/exp19_sft_dpo_datasets_seed42/data/edubench_r3_reason_rationale_train.json",
-    "formatting": "sharegpt"
+    "file_name": "data/edubench_r3_reason_rationale_train.json",
+    "formatting": "sharegpt",
+    "tags": {
+      "assistant_tag": "assistant",
+      "content_tag": "content",
+      "role_tag": "role",
+      "system_tag": "system",
+      "user_tag": "user"
+    }
   },
   "edubench_r4_shuffled_reason_control_train": {
     "columns": {
       "messages": "messages"
     },
-    "file_name": "thesis_exp/exp17_low_score_evidence/outputs/exp19_sft_dpo_datasets_seed42/data/edubench_r4_shuffled_reason_control_train.json",
-    "formatting": "sharegpt"
+    "file_name": "data/edubench_r4_shuffled_reason_control_train.json",
+    "formatting": "sharegpt",
+    "tags": {
+      "assistant_tag": "assistant",
+      "content_tag": "content",
+      "role_tag": "role",
+      "system_tag": "system",
+      "user_tag": "user"
+    }
+  },
+  "edubench_r5_high_protection_dpo_control_train": {
+    "columns": {
+      "chosen": "chosen",
+      "messages": "messages",
+      "rejected": "rejected"
+    },
+    "file_name": "data/edubench_r5_high_protection_dpo_control_train.json",
+    "formatting": "sharegpt",
+    "ranking": true,
+    "tags": {
+      "assistant_tag": "assistant",
+      "content_tag": "content",
+      "role_tag": "role",
+      "system_tag": "system",
+      "user_tag": "user"
+    }
   },
   "edubench_r5_risk_balanced_dpo_train": {
     "columns": {
@@ -33,8 +120,15 @@
       "messages": "messages",
       "rejected": "rejected"
     },
-    "file_name": "thesis_exp/exp17_low_score_evidence/outputs/exp19_sft_dpo_datasets_seed42/data/edubench_r5_risk_balanced_dpo_train.json",
+    "file_name": "data/edubench_r5_risk_balanced_dpo_train.json",
     "formatting": "sharegpt",
-    "ranking": true
+    "ranking": true,
+    "tags": {
+      "assistant_tag": "assistant",
+      "content_tag": "content",
+      "role_tag": "role",
+      "system_tag": "system",
+      "user_tag": "user"
+    }
   }
 }

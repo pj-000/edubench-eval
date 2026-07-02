@@ -14,8 +14,6 @@
       "subject": "Biology"
     },
     "target_redacted": {
-      "brief_reason_hash": "2ed593669e5143fb1c55d03cdf84a611232a6c3a",
-      "brief_reason_present": true,
       "major_failures": [
         "no_major_failure"
       ],
@@ -39,10 +37,8 @@
       "subject": "Biology"
     },
     "target_redacted": {
-      "brief_reason_hash": "19ae9db271a5b90f0946adff5c6f9fb50d8fcfdf",
-      "brief_reason_present": true,
       "major_failures": [
-        "partial_or_incomplete"
+        "no_major_failure"
       ],
       "rubric_satisfied": true,
       "score": 4,
@@ -64,8 +60,6 @@
       "subject": "Biology"
     },
     "target_redacted": {
-      "brief_reason_hash": "2ed593669e5143fb1c55d03cdf84a611232a6c3a",
-      "brief_reason_present": true,
       "major_failures": [
         "no_major_failure"
       ],
@@ -89,8 +83,6 @@
       "subject": "Physics"
     },
     "target_redacted": {
-      "brief_reason_hash": "2ed593669e5143fb1c55d03cdf84a611232a6c3a",
-      "brief_reason_present": true,
       "major_failures": [
         "no_major_failure"
       ],
@@ -114,8 +106,6 @@
       "subject": "Physics"
     },
     "target_redacted": {
-      "brief_reason_hash": "2ed593669e5143fb1c55d03cdf84a611232a6c3a",
-      "brief_reason_present": true,
       "major_failures": [
         "no_major_failure"
       ],
@@ -139,8 +129,6 @@
       "subject": "Physics"
     },
     "target_redacted": {
-      "brief_reason_hash": "2ed593669e5143fb1c55d03cdf84a611232a6c3a",
-      "brief_reason_present": true,
       "major_failures": [
         "no_major_failure"
       ],
@@ -164,8 +152,6 @@
       "subject": "Applied Economics"
     },
     "target_redacted": {
-      "brief_reason_hash": "2ed593669e5143fb1c55d03cdf84a611232a6c3a",
-      "brief_reason_present": true,
       "major_failures": [
         "no_major_failure"
       ],
@@ -189,8 +175,6 @@
       "subject": "Applied Economics"
     },
     "target_redacted": {
-      "brief_reason_hash": "2ed593669e5143fb1c55d03cdf84a611232a6c3a",
-      "brief_reason_present": true,
       "major_failures": [
         "no_major_failure"
       ],
@@ -214,8 +198,6 @@
       "subject": "Applied Economics"
     },
     "target_redacted": {
-      "brief_reason_hash": "2ed593669e5143fb1c55d03cdf84a611232a6c3a",
-      "brief_reason_present": true,
       "major_failures": [
         "no_major_failure"
       ],
@@ -239,8 +221,6 @@
       "subject": "Applied Economics"
     },
     "target_redacted": {
-      "brief_reason_hash": "2ed593669e5143fb1c55d03cdf84a611232a6c3a",
-      "brief_reason_present": true,
       "major_failures": [
         "no_major_failure"
       ],
@@ -264,8 +244,6 @@
       "subject": "Applied Economics"
     },
     "target_redacted": {
-      "brief_reason_hash": "2ed593669e5143fb1c55d03cdf84a611232a6c3a",
-      "brief_reason_present": true,
       "major_failures": [
         "no_major_failure"
       ],
@@ -289,8 +267,6 @@
       "subject": "Applied Economics"
     },
     "target_redacted": {
-      "brief_reason_hash": "2ed593669e5143fb1c55d03cdf84a611232a6c3a",
-      "brief_reason_present": true,
       "major_failures": [
         "no_major_failure"
       ],
@@ -314,8 +290,6 @@
       "subject": "Physics"
     },
     "target_redacted": {
-      "brief_reason_hash": "2ed593669e5143fb1c55d03cdf84a611232a6c3a",
-      "brief_reason_present": true,
       "major_failures": [
         "no_major_failure"
       ],
@@ -339,8 +313,6 @@
       "subject": "Physics"
     },
     "target_redacted": {
-      "brief_reason_hash": "2ed593669e5143fb1c55d03cdf84a611232a6c3a",
-      "brief_reason_present": true,
       "major_failures": [
         "no_major_failure"
       ],
@@ -364,10 +336,8 @@
       "subject": "Physics"
     },
     "target_redacted": {
-      "brief_reason_hash": "19ae9db271a5b90f0946adff5c6f9fb50d8fcfdf",
-      "brief_reason_present": true,
       "major_failures": [
-        "partial_or_incomplete"
+        "no_major_failure"
       ],
       "rubric_satisfied": true,
       "score": 5,
@@ -389,10 +359,8 @@
       "subject": "History"
     },
     "target_redacted": {
-      "brief_reason_hash": "037308ee9d5dd43dbab5b89925937bbb8dab4a3f",
-      "brief_reason_present": true,
       "major_failures": [
-        "unclear"
+        "no_major_failure"
       ],
       "rubric_satisfied": true,
       "score": 4,
@@ -414,8 +382,6 @@
       "subject": "History"
     },
     "target_redacted": {
-      "brief_reason_hash": "2ed593669e5143fb1c55d03cdf84a611232a6c3a",
-      "brief_reason_present": true,
       "major_failures": [
         "no_major_failure"
       ],
@@ -439,8 +405,6 @@
       "subject": "History"
     },
     "target_redacted": {
-      "brief_reason_hash": "2ed593669e5143fb1c55d03cdf84a611232a6c3a",
-      "brief_reason_present": true,
       "major_failures": [
         "no_major_failure"
       ],
@@ -464,10 +428,8 @@
       "subject": "Biology"
     },
     "target_redacted": {
-      "brief_reason_hash": "19ae9db271a5b90f0946adff5c6f9fb50d8fcfdf",
-      "brief_reason_present": true,
       "major_failures": [
-        "partial_or_incomplete"
+        "no_major_failure"
       ],
       "rubric_satisfied": true,
       "score": 4,
@@ -489,8 +451,6 @@
       "subject": "Biology"
     },
     "target_redacted": {
-      "brief_reason_hash": "2ed593669e5143fb1c55d03cdf84a611232a6c3a",
-      "brief_reason_present": true,
       "major_failures": [
         "no_major_failure"
       ],

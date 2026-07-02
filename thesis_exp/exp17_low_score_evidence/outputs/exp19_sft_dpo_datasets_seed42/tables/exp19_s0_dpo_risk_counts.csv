@@ -1,4 +1,7 @@
-risk_type,original_count,expanded_count
-high_to_low_protection,2918,5836
-low_to_high,111,333
-mid_score_calibration,297,297
+dataset,risk_type,original_count,expanded_count
+edubench_r5_risk_balanced_dpo_train,high_to_low_protection,2918,1200
+edubench_r5_risk_balanced_dpo_train,low_to_high,111,1200
+edubench_r5_risk_balanced_dpo_train,mid_score_calibration,297,600
+edubench_r5_high_protection_dpo_control_train,high_to_low_protection,2918,5836
+edubench_r5_high_protection_dpo_control_train,low_to_high,111,333
+edubench_r5_high_protection_dpo_control_train,mid_score_calibration,297,297

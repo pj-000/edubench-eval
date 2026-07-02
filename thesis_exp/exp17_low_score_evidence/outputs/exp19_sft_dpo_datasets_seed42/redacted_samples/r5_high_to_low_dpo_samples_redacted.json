@@ -1,5 +1,13 @@
 [
   {
+    "chosen_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    },
     "input_redacted": {
       "answer_hash": "8344a1bf5fa8d5d8dd16e0c8b9b30126091db67a",
       "answer_preview": "{ \"Learning_Path_Planning\": { \"Short_Term\": [ {\"Objective\": \"Improve basic understanding of cellular biology\", \"Activiti...",
@@ -13,18 +21,27 @@
       "sample_id": "22fc3538594bd7f6426d96df9de31645e099e5df",
       "subject": "Biology"
     },
-    "target_redacted": {
-      "brief_reason_hash": "2ed593669e5143fb1c55d03cdf84a611232a6c3a",
-      "brief_reason_present": true,
+    "oversample_copies_in_control": 2,
+    "rejected_redacted": {
+      "major_failures": [
+        "missing_key_point"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "risk_type": "high_to_low_protection",
+    "weight_bucket": "high"
+  },
+  {
+    "chosen_redacted": {
       "major_failures": [
         "no_major_failure"
       ],
       "rubric_satisfied": true,
       "score": 4,
       "score_cap": null
-    }
-  },
-  {
+    },
     "input_redacted": {
       "answer_hash": "8344a1bf5fa8d5d8dd16e0c8b9b30126091db67a",
       "answer_preview": "{ \"Learning_Path_Planning\": { \"Short_Term\": [ {\"Objective\": \"Improve basic understanding of cellular biology\", \"Activiti...",
@@ -38,18 +55,27 @@
       "sample_id": "00f03652813873e800443b4e84091ed05063eb49",
       "subject": "Biology"
     },
-    "target_redacted": {
-      "brief_reason_hash": "19ae9db271a5b90f0946adff5c6f9fb50d8fcfdf",
-      "brief_reason_present": true,
+    "oversample_copies_in_control": 2,
+    "rejected_redacted": {
       "major_failures": [
-        "partial_or_incomplete"
+        "missing_key_point"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "risk_type": "high_to_low_protection",
+    "weight_bucket": "high"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "no_major_failure"
       ],
       "rubric_satisfied": true,
       "score": 4,
       "score_cap": null
-    }
-  },
-  {
+    },
     "input_redacted": {
       "answer_hash": "8344a1bf5fa8d5d8dd16e0c8b9b30126091db67a",
       "answer_preview": "{ \"Learning_Path_Planning\": { \"Short_Term\": [ {\"Objective\": \"Improve basic understanding of cellular biology\", \"Activiti...",
@@ -63,18 +89,27 @@
       "sample_id": "51e5f21cbcf3748b0c03279f49b625af32cd9b0b",
       "subject": "Biology"
     },
-    "target_redacted": {
-      "brief_reason_hash": "2ed593669e5143fb1c55d03cdf84a611232a6c3a",
-      "brief_reason_present": true,
+    "oversample_copies_in_control": 2,
+    "rejected_redacted": {
+      "major_failures": [
+        "missing_key_point"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "risk_type": "high_to_low_protection",
+    "weight_bucket": "high"
+  },
+  {
+    "chosen_redacted": {
       "major_failures": [
         "no_major_failure"
       ],
       "rubric_satisfied": true,
       "score": 4,
       "score_cap": null
-    }
-  },
-  {
+    },
     "input_redacted": {
       "answer_hash": "2818e2b51cbcbe991e8fdf37b38e427ce588d317",
       "answer_preview": "{ \"Learning_Path_Planning\": { \"Short_Term\": { \"Objective\": \"Master introductory physics concepts\", \"Activities\": [ {\"Typ...",
@@ -88,18 +123,27 @@
       "sample_id": "a946b20864b31d0ab6a9e953e7ef387da3543466",
       "subject": "Physics"
     },
-    "target_redacted": {
-      "brief_reason_hash": "2ed593669e5143fb1c55d03cdf84a611232a6c3a",
-      "brief_reason_present": true,
+    "oversample_copies_in_control": 2,
+    "rejected_redacted": {
+      "major_failures": [
+        "missing_key_point"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "risk_type": "high_to_low_protection",
+    "weight_bucket": "high"
+  },
+  {
+    "chosen_redacted": {
       "major_failures": [
         "no_major_failure"
       ],
       "rubric_satisfied": true,
       "score": 4,
       "score_cap": null
-    }
-  },
-  {
+    },
     "input_redacted": {
       "answer_hash": "2818e2b51cbcbe991e8fdf37b38e427ce588d317",
       "answer_preview": "{ \"Learning_Path_Planning\": { \"Short_Term\": { \"Objective\": \"Master introductory physics concepts\", \"Activities\": [ {\"Typ...",
@@ -113,18 +157,27 @@
       "sample_id": "605a39edf2ab4a11d8237e2d71382f0ab7c40100",
       "subject": "Physics"
     },
-    "target_redacted": {
-      "brief_reason_hash": "2ed593669e5143fb1c55d03cdf84a611232a6c3a",
-      "brief_reason_present": true,
+    "oversample_copies_in_control": 2,
+    "rejected_redacted": {
+      "major_failures": [
+        "missing_key_point"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "risk_type": "high_to_low_protection",
+    "weight_bucket": "high"
+  },
+  {
+    "chosen_redacted": {
       "major_failures": [
         "no_major_failure"
       ],
       "rubric_satisfied": true,
       "score": 4,
       "score_cap": null
-    }
-  },
-  {
+    },
     "input_redacted": {
       "answer_hash": "2818e2b51cbcbe991e8fdf37b38e427ce588d317",
       "answer_preview": "{ \"Learning_Path_Planning\": { \"Short_Term\": { \"Objective\": \"Master introductory physics concepts\", \"Activities\": [ {\"Typ...",
@@ -138,18 +191,27 @@
       "sample_id": "4abb5320624308bb074fe6932d7ef7c088b0dd41",
       "subject": "Physics"
     },
-    "target_redacted": {
-      "brief_reason_hash": "2ed593669e5143fb1c55d03cdf84a611232a6c3a",
-      "brief_reason_present": true,
+    "oversample_copies_in_control": 2,
+    "rejected_redacted": {
+      "major_failures": [
+        "missing_key_point"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "risk_type": "high_to_low_protection",
+    "weight_bucket": "high"
+  },
+  {
+    "chosen_redacted": {
       "major_failures": [
         "no_major_failure"
       ],
       "rubric_satisfied": true,
       "score": 4,
       "score_cap": null
-    }
-  },
-  {
+    },
     "input_redacted": {
       "answer_hash": "fab73f6da6f8caf42bc7e32b80de303483ad39a1",
       "answer_preview": "{ \"Learning Path Planning\": { \"Short Term (Next 3 Months)\": { \"Focus Areas\": [\"Quantitative Analysis Techniques\", \"Intro...",
@@ -163,18 +225,27 @@
       "sample_id": "079d3cbeeacbfeccd949183b375b3198418e4959",
       "subject": "Applied Economics"
     },
-    "target_redacted": {
-      "brief_reason_hash": "2ed593669e5143fb1c55d03cdf84a611232a6c3a",
-      "brief_reason_present": true,
+    "oversample_copies_in_control": 2,
+    "rejected_redacted": {
+      "major_failures": [
+        "missing_key_point"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "risk_type": "high_to_low_protection",
+    "weight_bucket": "high"
+  },
+  {
+    "chosen_redacted": {
       "major_failures": [
         "no_major_failure"
       ],
       "rubric_satisfied": true,
       "score": 4,
       "score_cap": null
-    }
-  },
-  {
+    },
     "input_redacted": {
       "answer_hash": "fab73f6da6f8caf42bc7e32b80de303483ad39a1",
       "answer_preview": "{ \"Learning Path Planning\": { \"Short Term (Next 3 Months)\": { \"Focus Areas\": [\"Quantitative Analysis Techniques\", \"Intro...",
@@ -188,18 +259,27 @@
       "sample_id": "ad2ae52c3ad75dc2ec01f807575b120f0db739c4",
       "subject": "Applied Economics"
     },
-    "target_redacted": {
-      "brief_reason_hash": "2ed593669e5143fb1c55d03cdf84a611232a6c3a",
-      "brief_reason_present": true,
+    "oversample_copies_in_control": 2,
+    "rejected_redacted": {
+      "major_failures": [
+        "missing_key_point"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "risk_type": "high_to_low_protection",
+    "weight_bucket": "high"
+  },
+  {
+    "chosen_redacted": {
       "major_failures": [
         "no_major_failure"
       ],
       "rubric_satisfied": true,
       "score": 4,
       "score_cap": null
-    }
-  },
-  {
+    },
     "input_redacted": {
       "answer_hash": "fab73f6da6f8caf42bc7e32b80de303483ad39a1",
       "answer_preview": "{ \"Learning Path Planning\": { \"Short Term (Next 3 Months)\": { \"Focus Areas\": [\"Quantitative Analysis Techniques\", \"Intro...",
@@ -213,18 +293,27 @@
       "sample_id": "149f9441c4d8d11ab5ae76d131041560ce986240",
       "subject": "Applied Economics"
     },
-    "target_redacted": {
-      "brief_reason_hash": "2ed593669e5143fb1c55d03cdf84a611232a6c3a",
-      "brief_reason_present": true,
+    "oversample_copies_in_control": 2,
+    "rejected_redacted": {
+      "major_failures": [
+        "missing_key_point"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "risk_type": "high_to_low_protection",
+    "weight_bucket": "high"
+  },
+  {
+    "chosen_redacted": {
       "major_failures": [
         "no_major_failure"
       ],
       "rubric_satisfied": true,
-      "score": 4,
+      "score": 5,
       "score_cap": null
-    }
-  },
-  {
+    },
     "input_redacted": {
       "answer_hash": "6d206fa95794fc5d83922751e6cf7c2625f72852",
       "answer_preview": "```json { \"Learning Path Planning\": { \"Short-Term Goals (0-3 Months)\": [ { \"Goal\": \"Improve understanding of econometric...",
@@ -238,18 +327,27 @@
       "sample_id": "696ba193025f25d05c1b1f8dfad77c2ca28f12c4",
       "subject": "Applied Economics"
     },
-    "target_redacted": {
-      "brief_reason_hash": "2ed593669e5143fb1c55d03cdf84a611232a6c3a",
-      "brief_reason_present": true,
+    "oversample_copies_in_control": 2,
+    "rejected_redacted": {
+      "major_failures": [
+        "missing_key_point"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "risk_type": "high_to_low_protection",
+    "weight_bucket": "high"
+  },
+  {
+    "chosen_redacted": {
       "major_failures": [
         "no_major_failure"
       ],
       "rubric_satisfied": true,
-      "score": 5,
+      "score": 4,
       "score_cap": null
-    }
-  },
-  {
+    },
     "input_redacted": {
       "answer_hash": "6d206fa95794fc5d83922751e6cf7c2625f72852",
       "answer_preview": "```json { \"Learning Path Planning\": { \"Short-Term Goals (0-3 Months)\": [ { \"Goal\": \"Improve understanding of econometric...",
@@ -263,18 +361,27 @@
       "sample_id": "e78781ba44e7ccd99d93c2d2256495034a753f86",
       "subject": "Applied Economics"
     },
-    "target_redacted": {
-      "brief_reason_hash": "2ed593669e5143fb1c55d03cdf84a611232a6c3a",
-      "brief_reason_present": true,
+    "oversample_copies_in_control": 2,
+    "rejected_redacted": {
+      "major_failures": [
+        "missing_key_point"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "risk_type": "high_to_low_protection",
+    "weight_bucket": "high"
+  },
+  {
+    "chosen_redacted": {
       "major_failures": [
         "no_major_failure"
       ],
       "rubric_satisfied": true,
       "score": 4,
       "score_cap": null
-    }
-  },
-  {
+    },
     "input_redacted": {
       "answer_hash": "6d206fa95794fc5d83922751e6cf7c2625f72852",
       "answer_preview": "```json { \"Learning Path Planning\": { \"Short-Term Goals (0-3 Months)\": [ { \"Goal\": \"Improve understanding of econometric...",
@@ -288,18 +395,27 @@
       "sample_id": "579c7161d23186114c709867acce054ec73e0531",
       "subject": "Applied Economics"
     },
-    "target_redacted": {
-      "brief_reason_hash": "2ed593669e5143fb1c55d03cdf84a611232a6c3a",
-      "brief_reason_present": true,
+    "oversample_copies_in_control": 2,
+    "rejected_redacted": {
+      "major_failures": [
+        "missing_key_point"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "risk_type": "high_to_low_protection",
+    "weight_bucket": "high"
+  },
+  {
+    "chosen_redacted": {
       "major_failures": [
         "no_major_failure"
       ],
       "rubric_satisfied": true,
-      "score": 4,
+      "score": 5,
       "score_cap": null
-    }
-  },
-  {
+    },
     "input_redacted": {
       "answer_hash": "7dff168b92e9db23de7f6a451bc94d510d92a3b8",
       "answer_preview": "```json { \"StudentProfile\": { \"Name\": \"Alex Johnson\", \"Age\": 19, \"CurrentEducationLevel\": \"Undergraduate, Year 1\", \"Curr...",
@@ -313,18 +429,27 @@
       "sample_id": "f2dd13eea21d86717259e3f2ae658125c15e93a5",
       "subject": "Physics"
     },
-    "target_redacted": {
-      "brief_reason_hash": "2ed593669e5143fb1c55d03cdf84a611232a6c3a",
-      "brief_reason_present": true,
+    "oversample_copies_in_control": 2,
+    "rejected_redacted": {
+      "major_failures": [
+        "missing_key_point"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "risk_type": "high_to_low_protection",
+    "weight_bucket": "high"
+  },
+  {
+    "chosen_redacted": {
       "major_failures": [
         "no_major_failure"
       ],
       "rubric_satisfied": true,
       "score": 5,
       "score_cap": null
-    }
-  },
-  {
+    },
     "input_redacted": {
       "answer_hash": "7dff168b92e9db23de7f6a451bc94d510d92a3b8",
       "answer_preview": "```json { \"StudentProfile\": { \"Name\": \"Alex Johnson\", \"Age\": 19, \"CurrentEducationLevel\": \"Undergraduate, Year 1\", \"Curr...",
@@ -338,18 +463,27 @@
       "sample_id": "24b68778c68222dd38199329a102b2c36aaca014",
       "subject": "Physics"
     },
-    "target_redacted": {
-      "brief_reason_hash": "2ed593669e5143fb1c55d03cdf84a611232a6c3a",
-      "brief_reason_present": true,
+    "oversample_copies_in_control": 2,
+    "rejected_redacted": {
+      "major_failures": [
+        "missing_key_point"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "risk_type": "high_to_low_protection",
+    "weight_bucket": "high"
+  },
+  {
+    "chosen_redacted": {
       "major_failures": [
         "no_major_failure"
       ],
       "rubric_satisfied": true,
       "score": 5,
       "score_cap": null
-    }
-  },
-  {
+    },
     "input_redacted": {
       "answer_hash": "7dff168b92e9db23de7f6a451bc94d510d92a3b8",
       "answer_preview": "```json { \"StudentProfile\": { \"Name\": \"Alex Johnson\", \"Age\": 19, \"CurrentEducationLevel\": \"Undergraduate, Year 1\", \"Curr...",
@@ -363,18 +497,27 @@
       "sample_id": "7073c82cd9bf9cb523e855ec7578c31a064b29db",
       "subject": "Physics"
     },
-    "target_redacted": {
-      "brief_reason_hash": "19ae9db271a5b90f0946adff5c6f9fb50d8fcfdf",
-      "brief_reason_present": true,
+    "oversample_copies_in_control": 2,
+    "rejected_redacted": {
       "major_failures": [
-        "partial_or_incomplete"
+        "missing_key_point"
       ],
-      "rubric_satisfied": true,
-      "score": 5,
-      "score_cap": null
-    }
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "risk_type": "high_to_low_protection",
+    "weight_bucket": "high"
   },
   {
+    "chosen_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    },
     "input_redacted": {
       "answer_hash": "c26cc296a5d36e39cac2e6d07aee6e85d00005b3",
       "answer_preview": "{ \"Learning_Path_Planning\": { \"Short_Term_Goals\": [ \"Complete an overview of key events in the 20th century.\", \"Engage i...",
@@ -388,18 +531,27 @@
       "sample_id": "eb284da4d05b5674af9f47a017caa8f1d9ab9dcf",
       "subject": "History"
     },
-    "target_redacted": {
-      "brief_reason_hash": "037308ee9d5dd43dbab5b89925937bbb8dab4a3f",
-      "brief_reason_present": true,
+    "oversample_copies_in_control": 2,
+    "rejected_redacted": {
       "major_failures": [
-        "unclear"
+        "missing_key_point"
       ],
-      "rubric_satisfied": true,
-      "score": 4,
-      "score_cap": null
-    }
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "risk_type": "high_to_low_protection",
+    "weight_bucket": "high"
   },
   {
+    "chosen_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
     "input_redacted": {
       "answer_hash": "c26cc296a5d36e39cac2e6d07aee6e85d00005b3",
       "answer_preview": "{ \"Learning_Path_Planning\": { \"Short_Term_Goals\": [ \"Complete an overview of key events in the 20th century.\", \"Engage i...",
@@ -413,18 +565,27 @@
       "sample_id": "0204872bcf4cd4b4d4937c12c2cd77f0171376ab",
       "subject": "History"
     },
-    "target_redacted": {
-      "brief_reason_hash": "2ed593669e5143fb1c55d03cdf84a611232a6c3a",
-      "brief_reason_present": true,
+    "oversample_copies_in_control": 2,
+    "rejected_redacted": {
+      "major_failures": [
+        "missing_key_point"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "risk_type": "high_to_low_protection",
+    "weight_bucket": "high"
+  },
+  {
+    "chosen_redacted": {
       "major_failures": [
         "no_major_failure"
       ],
       "rubric_satisfied": true,
-      "score": 5,
+      "score": 4,
       "score_cap": null
-    }
-  },
-  {
+    },
     "input_redacted": {
       "answer_hash": "c26cc296a5d36e39cac2e6d07aee6e85d00005b3",
       "answer_preview": "{ \"Learning_Path_Planning\": { \"Short_Term_Goals\": [ \"Complete an overview of key events in the 20th century.\", \"Engage i...",
@@ -438,18 +599,27 @@
       "sample_id": "877ca91093f413ef2586e714ebe9b6ecb22c9fbb",
       "subject": "History"
     },
-    "target_redacted": {
-      "brief_reason_hash": "2ed593669e5143fb1c55d03cdf84a611232a6c3a",
-      "brief_reason_present": true,
+    "oversample_copies_in_control": 2,
+    "rejected_redacted": {
+      "major_failures": [
+        "missing_key_point"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "risk_type": "high_to_low_protection",
+    "weight_bucket": "high"
+  },
+  {
+    "chosen_redacted": {
       "major_failures": [
         "no_major_failure"
       ],
       "rubric_satisfied": true,
       "score": 4,
       "score_cap": null
-    }
-  },
-  {
+    },
     "input_redacted": {
       "answer_hash": "86eeb6411697fdbec3f0dbfc72047efdff9e9585",
       "answer_preview": "```json { \"Learning Path Planning\": { \"Week 1-4\": { \"Cellular Biology\": [ \"Basics of Cell Structure and Function\", \"Cell...",
@@ -463,18 +633,27 @@
       "sample_id": "bf19ea328afae37aa116eb7ffee1bea59330c821",
       "subject": "Biology"
     },
-    "target_redacted": {
-      "brief_reason_hash": "19ae9db271a5b90f0946adff5c6f9fb50d8fcfdf",
-      "brief_reason_present": true,
+    "oversample_copies_in_control": 2,
+    "rejected_redacted": {
       "major_failures": [
-        "partial_or_incomplete"
+        "missing_key_point"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "risk_type": "high_to_low_protection",
+    "weight_bucket": "high"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "no_major_failure"
       ],
       "rubric_satisfied": true,
       "score": 4,
       "score_cap": null
-    }
-  },
-  {
+    },
     "input_redacted": {
       "answer_hash": "86eeb6411697fdbec3f0dbfc72047efdff9e9585",
       "answer_preview": "```json { \"Learning Path Planning\": { \"Week 1-4\": { \"Cellular Biology\": [ \"Basics of Cell Structure and Function\", \"Cell...",
@@ -488,15 +667,16 @@
       "sample_id": "1bf1b0ebe13512c39a7f0573ceaedf2231646bac",
       "subject": "Biology"
     },
-    "target_redacted": {
-      "brief_reason_hash": "2ed593669e5143fb1c55d03cdf84a611232a6c3a",
-      "brief_reason_present": true,
+    "oversample_copies_in_control": 2,
+    "rejected_redacted": {
       "major_failures": [
-        "no_major_failure"
+        "missing_key_point"
       ],
-      "rubric_satisfied": true,
-      "score": 4,
-      "score_cap": null
-    }
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "risk_type": "high_to_low_protection",
+    "weight_bucket": "high"
   }
 ]

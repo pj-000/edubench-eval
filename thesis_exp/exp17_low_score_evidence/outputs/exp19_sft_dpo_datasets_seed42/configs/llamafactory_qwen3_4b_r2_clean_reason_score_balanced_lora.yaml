@@ -8,12 +8,12 @@ lora_alpha: 32
 lora_dropout: 0.05
 lora_target: all
 dataset_dir: thesis_exp/exp17_low_score_evidence/outputs/exp19_sft_dpo_datasets_seed42
-dataset: edubench_r4_shuffled_reason_control_train
+dataset: edubench_r2_clean_reason_score_balanced_train
 template: qwen3_nothink
 cutoff_len: 4096
 overwrite_cache: true
 preprocessing_num_workers: 16
-output_dir: saves/edubench/qwen3-4b/r4_shuffled_reason_lora
+output_dir: saves/edubench/qwen3-4b/r2_clean_reason_score_balanced_lora
 logging_steps: 10
 save_steps: 100
 save_only_model: true
