@@ -34,6 +34,14 @@ C0_CONFIG_NAMES = [
     "C0_12_random_matched_metric_rubric_gamma0p05_m0p2",
     "C0_13_random_matched_metric_rubric_subject_gamma0p05_m0p2",
     "C0_14_same_question_group_upper_bound_gamma0p05_m0p2",
+    "C0b_0_init_no_train_eval",
+    "C0b_1_all_pairs_raw_s_gamma0p01_freeze_boundary",
+    "C0b_2_all_pairs_raw_s_gamma0p02_freeze_boundary",
+    "C0b_3_evidence_pairs_raw_s_gamma0p02_freeze_boundary",
+    "C0b_4_random_pair_raw_s_gamma0p02_freeze_boundary",
+    "C0b_5_all_pairs_g3detach_gamma0p01",
+    "C0b_6_all_pairs_g3detach_gamma0p02",
+    "C0b_7_random_matched_g3detach_gamma0p02",
 ]
 DEV_FIELDS = [
     "config_name",
@@ -42,6 +50,8 @@ DEV_FIELDS = [
     "margin",
     "temperature",
     "pair_source",
+    "freeze_boundary_tower",
+    "pair_loss_space",
     "MAE",
     "QWK",
     "accuracy",
@@ -178,6 +188,13 @@ def row_pair_source(row: dict[str, Any]) -> str:
     return str(row.get("pair_source", ""))
 
 
+def first_by_pair_source(rows: list[dict[str, Any]], pair_source: str) -> dict[str, Any]:
+    for row in rows:
+        if row_pair_source(row) == pair_source:
+            return row
+    return {}
+
+
 def is_main_real_config(row: dict[str, Any]) -> bool:
     source = row_pair_source(row)
     return source not in {"none", UPPER_BOUND_PAIR_SOURCE, *RANDOM_PAIR_SOURCES}
@@ -220,8 +237,9 @@ def select_best(rows: list[dict[str, Any]], pair: dict[str, dict[str, Any]], bas
 def decision(dev_rows: list[dict[str, Any]], pair_rows: list[dict[str, Any]]) -> dict[str, Any]:
     dev = by_config(dev_rows)
     pair = by_config(pair_rows)
-    base = dev.get("C0_0_ordinal_continue", {})
-    base_pair = pair.get("C0_0_ordinal_continue", {})
+    baseline_name = "C0b_0_init_no_train_eval" if "C0b_0_init_no_train_eval" in dev else "C0_0_ordinal_continue"
+    base = dev.get(baseline_name, {})
+    base_pair = pair.get(baseline_name, {})
     main_rows = [row for row in dev_rows if is_main_real_config(row)]
     upper_rows = [row for row in dev_rows if row_pair_source(row) == UPPER_BOUND_PAIR_SOURCE]
     best_main = select_best(main_rows, pair, base, base_pair)
@@ -239,8 +257,8 @@ def decision(dev_rows: list[dict[str, Any]], pair_rows: list[dict[str, Any]]) ->
     label2 = safe_float(best_dev.get("label2_recall"))
     g = safe_float(best_dev.get("mean_g_i3_label2"))
     gap = safe_float(best_pair.get("dev_d1_s_gap_control_minus_hidden_mean"))
-    random_matched = dev.get("C0_12_random_matched_metric_rubric_gamma0p05_m0p2", {})
-    random_matched_pair = pair.get("C0_12_random_matched_metric_rubric_gamma0p05_m0p2", {})
+    random_matched = first_by_pair_source(dev_rows, "random_matched_metric_rubric")
+    random_matched_pair = pair.get(str(random_matched.get("config_name", "")), {})
     same_subject_high = dev.get("C0_9_same_subject_high_weight_gamma0p05_m0p2", {})
     same_question = dev.get("C0_14_same_question_group_upper_bound_gamma0p05_m0p2", {})
     main_latent_success = any(latent_success_for(row, pair.get(str(row.get("config_name")), {}), base, base_pair) for row in main_rows)
@@ -306,6 +324,7 @@ def decision(dev_rows: list[dict[str, Any]], pair_rows: list[dict[str, Any]]) ->
         "risk_success": bool(main_risk_success),
         "main_method_success": bool(main_method_success),
         "c0_success": bool(main_method_success),
+        "baseline_config": baseline_name,
         "best_config": best_main,
         "best_main_config": best_main,
         "best_upper_bound_config": best_upper,
@@ -339,14 +358,15 @@ def write_report(output_dir: Path, dev_rows: list[dict[str, Any]], pair_rows: li
         "",
         "## Completed Configs",
         "",
-        "| config | pair source | MAE | QWK | low-to-high | label2 recall | mean g_i3 label2 | D1 s gap | D1 s AUC | train pair gap | train pairs |",
-        "|---|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|",
+        "| config | pair source | loss space | freeze boundary | MAE | QWK | low-to-high | label2 recall | mean g_i3 label2 | D1 s gap | D1 s AUC | train pair gap | train pairs |",
+        "|---|---|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|",
     ]
     for row in sorted(dev_rows, key=lambda item: item.get("config_name", "")):
         name = row["config_name"]
         pr = pair.get(name, {})
         lines.append(
-            f"| `{name}` | `{row.get('pair_source')}` | {fmt(row.get('MAE'))} | {fmt(row.get('QWK'))} | {fmt(row.get('low_to_high_rate'))} | "
+            f"| `{name}` | `{row.get('pair_source')}` | `{row.get('pair_loss_space', '')}` | `{row.get('freeze_boundary_tower', '')}` | "
+            f"{fmt(row.get('MAE'))} | {fmt(row.get('QWK'))} | {fmt(row.get('low_to_high_rate'))} | "
             f"{fmt(row.get('label2_recall'))} | {fmt(row.get('mean_g_i3_label2'))} | "
             f"{fmt(pr.get('dev_d1_s_gap_control_minus_hidden_mean'))} | {fmt(pr.get('d1_hidden_vs_control_s_auc'))} | "
             f"{fmt(pr.get('train_pair_gap_mean'))} | {fmt(pr.get('train_pair_count'), 0)} |"
@@ -379,6 +399,7 @@ def write_report(output_dir: Path, dev_rows: list[dict[str, Any]], pair_rows: li
             "## Decision",
             "",
             f"- final_decision: `{dec['final_decision']}`",
+            f"- baseline_config: `{dec['baseline_config']}`",
             f"- best_main_config: `{dec['best_main_config']}`",
             f"- best_upper_bound_config: `{dec['best_upper_bound_config']}`",
             f"- latent_success: `{dec['latent_success']}`",

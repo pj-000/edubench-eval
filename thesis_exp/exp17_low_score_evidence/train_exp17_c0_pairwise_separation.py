@@ -105,6 +105,71 @@ C0_CONFIGS: dict[str, dict[str, Any]] = {
         "pair_source": "same_question_group_upper_bound",
         "allow_empty_pairs": True,
     },
+    "C0b_0_init_no_train_eval": {
+        "gamma": 0.0,
+        "margin": 0.2,
+        "temperature": 0.2,
+        "pair_source": "none",
+        "no_train_eval": True,
+        "pair_loss_space": "raw_s",
+        "freeze_boundary_tower": False,
+    },
+    "C0b_1_all_pairs_raw_s_gamma0p01_freeze_boundary": {
+        "gamma": 0.01,
+        "margin": 0.2,
+        "temperature": 0.2,
+        "pair_source": "all_a0_pairs",
+        "pair_loss_space": "raw_s",
+        "freeze_boundary_tower": True,
+    },
+    "C0b_2_all_pairs_raw_s_gamma0p02_freeze_boundary": {
+        "gamma": 0.02,
+        "margin": 0.2,
+        "temperature": 0.2,
+        "pair_source": "all_a0_pairs",
+        "pair_loss_space": "raw_s",
+        "freeze_boundary_tower": True,
+    },
+    "C0b_3_evidence_pairs_raw_s_gamma0p02_freeze_boundary": {
+        "gamma": 0.02,
+        "margin": 0.2,
+        "temperature": 0.2,
+        "pair_source": "evidence_positive_plus_pairwise_low",
+        "pair_loss_space": "raw_s",
+        "freeze_boundary_tower": True,
+    },
+    "C0b_4_random_pair_raw_s_gamma0p02_freeze_boundary": {
+        "gamma": 0.02,
+        "margin": 0.2,
+        "temperature": 0.2,
+        "pair_source": "random_low_high_pairs",
+        "pair_loss_space": "raw_s",
+        "freeze_boundary_tower": True,
+    },
+    "C0b_5_all_pairs_g3detach_gamma0p01": {
+        "gamma": 0.01,
+        "margin": 0.2,
+        "temperature": 0.2,
+        "pair_source": "all_a0_pairs",
+        "pair_loss_space": "g3_detached",
+        "freeze_boundary_tower": False,
+    },
+    "C0b_6_all_pairs_g3detach_gamma0p02": {
+        "gamma": 0.02,
+        "margin": 0.2,
+        "temperature": 0.2,
+        "pair_source": "all_a0_pairs",
+        "pair_loss_space": "g3_detached",
+        "freeze_boundary_tower": False,
+    },
+    "C0b_7_random_matched_g3detach_gamma0p02": {
+        "gamma": 0.02,
+        "margin": 0.2,
+        "temperature": 0.2,
+        "pair_source": "random_matched_metric_rubric",
+        "pair_loss_space": "g3_detached",
+        "freeze_boundary_tower": False,
+    },
 }
 
 DEV_FIELDS = [
@@ -114,6 +179,8 @@ DEV_FIELDS = [
     "margin",
     "temperature",
     "pair_source",
+    "freeze_boundary_tower",
+    "pair_loss_space",
     "MAE",
     "QWK",
     "accuracy",
@@ -149,6 +216,26 @@ PAIR_FIELDS = [
     "pair_weight_mean",
     "pair_weight_p50",
     "pair_weight_p75",
+]
+
+DIAGNOSTIC_PREDICTION_FIELDS = [
+    "sample_id",
+    "gold_label",
+    "pred_label",
+    "quality_score_s",
+    "tau1",
+    "tau2",
+    "tau3",
+    "tau4",
+    "scale_alpha",
+    "g_i3",
+    "margin_tau3",
+    "question_key",
+    "metric",
+    "rubric_hash",
+    "boundary_key",
+    "is_d1_hidden",
+    "d1_failure_mode",
 ]
 
 
@@ -302,6 +389,7 @@ def prediction_rows(outputs: dict[str, torch.Tensor], labels: torch.Tensor, samp
             "question_key": sample["question_key"],
             "boundary_key": sample["boundary_key"],
             "metric": sample["metric"],
+            "rubric_hash": text_hash(sample.get("rubric_text") or sample.get("rubric") or ""),
             "gold_label": int(gold[idx]),
             "pred_label": int(pred[idx]),
             "probs": [float(value) for value in probs[idx].tolist()],
@@ -337,7 +425,14 @@ def evaluate_model(model: BoundaryLinkingOrdinalModel, loader: DataLoader, devic
     return compute_metrics(predictions, split="dev"), predictions
 
 
-def dev_metric_row(config_name: str, seed: int, cfg: dict[str, Any], predictions: list[dict[str, Any]]) -> dict[str, Any]:
+def dev_metric_row(
+    config_name: str,
+    seed: int,
+    cfg: dict[str, Any],
+    predictions: list[dict[str, Any]],
+    freeze_boundary_tower: bool = False,
+    pair_loss_space: str = "raw_s",
+) -> dict[str, Any]:
     metrics = compute_metrics(predictions, split="dev")
     label2 = [row for row in predictions if int(row["gold_label"]) == 2]
     high = [row for row in predictions if int(row["gold_label"]) >= 4]
@@ -350,6 +445,8 @@ def dev_metric_row(config_name: str, seed: int, cfg: dict[str, Any], predictions
         "margin": cfg["margin"],
         "temperature": cfg["temperature"],
         "pair_source": cfg["pair_source"],
+        "freeze_boundary_tower": freeze_boundary_tower,
+        "pair_loss_space": pair_loss_space,
         "MAE": metrics.get("MAE"),
         "QWK": metrics.get("QWK"),
         "accuracy": metrics.get("Accuracy"),
@@ -494,8 +591,25 @@ def pair_sep_loss(model: BoundaryLinkingOrdinalModel, pair_batch: dict[str, Any]
             boundary_attention_mask=high["boundary_attention_mask"],
         )
         gap = high_out["quality_score_s"] - low_out["quality_score_s"]
+        if str(getattr(args, "pair_loss_space", "raw_s")) == "g3_detached":
+            low_u = low_out["scale_alpha"].detach() * (low_out["quality_score_s"] - low_out["thresholds_tau"][:, 2].detach())
+            high_u = high_out["scale_alpha"].detach() * (high_out["quality_score_s"] - high_out["thresholds_tau"][:, 2].detach())
+            gap = high_u - low_u
         raw = F.softplus((float(margin) - gap) / max(float(temperature), 1e-6))
         return (raw * weights).sum() / weights.sum().clamp_min(1e-8)
+
+
+def freeze_boundary_tower(model: BoundaryLinkingOrdinalModel) -> None:
+    for module_name in ["start_head", "inc_head", "scale_head"]:
+        module = getattr(model, module_name, None)
+        if module is not None:
+            for param in module.parameters():
+                param.requires_grad = False
+    for param_name in ["global_start", "global_inc_raw"]:
+        param = getattr(model, param_name, None)
+        if param is not None:
+            param.requires_grad = False
+    setattr(model, "freeze_boundary_tower", True)
 
 
 def score_is_better(metrics: dict[str, Any], best: float | None, save_best_by: str) -> tuple[bool, float]:
@@ -559,6 +673,49 @@ def separation_auc(case_scores: list[float], control_scores: list[float]) -> flo
 
 def pair_weights(train_pairs: list[dict[str, Any]]) -> list[float]:
     return [float(pair.get("weight", 1.0)) for pair in train_pairs]
+
+
+def load_d1_hidden_annotations(d1_dir: Path) -> dict[str, dict[str, str]]:
+    candidate_paths = [
+        d1_dir / "d1_hidden_failure_annotation_template_filled_human_rationale_recovered.csv",
+        d1_dir / "d1_hidden_failure_annotation_template_filled_codex_independent.csv",
+        d1_dir / "d1_hidden_failure_annotation_template_filled.csv",
+        d1_dir / "summary_human_rationale_recovered" / "d1_failure_mode_summary.csv",
+    ]
+    for path in candidate_paths:
+        if path.exists() and path.name.startswith("d1_hidden_failure"):
+            return {row.get("sample_id", ""): row for row in read_csv_rows(path)}
+    return {}
+
+
+def diagnostic_prediction_rows(predictions: list[dict[str, Any]], d1_dir: Path) -> list[dict[str, Any]]:
+    annotations = load_d1_hidden_annotations(d1_dir)
+    rows: list[dict[str, Any]] = []
+    for row in predictions:
+        annotation = annotations.get(str(row.get("sample_id", "")), {})
+        failure_mode = annotation.get("primary_failure_mode_manual") or annotation.get("failure_mode") or ""
+        rows.append(
+            {
+                "sample_id": row.get("sample_id", ""),
+                "gold_label": row.get("gold_label", ""),
+                "pred_label": row.get("pred_label", ""),
+                "quality_score_s": row.get("quality_score_s", ""),
+                "tau1": row.get("tau1", ""),
+                "tau2": row.get("tau2", ""),
+                "tau3": row.get("tau3", ""),
+                "tau4": row.get("tau4", ""),
+                "scale_alpha": row.get("scale_alpha", ""),
+                "g_i3": row.get("g_i3", ""),
+                "margin_tau3": row.get("margin_tau3", ""),
+                "question_key": row.get("question_key", ""),
+                "metric": row.get("metric", ""),
+                "rubric_hash": row.get("rubric_hash", ""),
+                "boundary_key": row.get("boundary_key", ""),
+                "is_d1_hidden": bool(annotation),
+                "d1_failure_mode": failure_mode,
+            }
+        )
+    return rows
 
 
 def pair_eval_row(
@@ -651,6 +808,9 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--max_train_steps", type=int, default=0)
     parser.add_argument("--log_steps", type=int, default=5)
     parser.add_argument("--allow_empty_pairs", action="store_true")
+    parser.add_argument("--freeze_boundary_tower", "--freeze-boundary-tower", action="store_true")
+    parser.add_argument("--pair_loss_space", "--pair-loss-space", choices=["raw_s", "g3_detached"], default="")
+    parser.add_argument("--export_diagnostic_predictions", "--export-diagnostic-predictions", action="store_true")
     parser.add_argument("--trust_remote_code", action="store_true")
     parser.add_argument("--local_files_only", action="store_true")
     return parser
@@ -662,6 +822,10 @@ def train_one(args: Namespace) -> dict[str, Any]:
     margin = float(cfg["margin"])
     temperature = float(cfg["temperature"])
     pair_source = str(cfg["pair_source"])
+    freeze_boundary = bool(args.freeze_boundary_tower or cfg.get("freeze_boundary_tower", False))
+    pair_loss_space = str(args.pair_loss_space or cfg.get("pair_loss_space", "raw_s"))
+    args.freeze_boundary_tower = freeze_boundary
+    args.pair_loss_space = pair_loss_space
     run_dir = Path(args.output_dir) / "runs" / args.config_name / f"seed_{args.seed}"
     run_dir.mkdir(parents=True, exist_ok=True)
 
@@ -674,6 +838,8 @@ def train_one(args: Namespace) -> dict[str, Any]:
         local_files_only=bool(args.local_files_only),
     )
     init_status = load_init_checkpoint(model, Path(args.init_checkpoint))
+    if freeze_boundary:
+        freeze_boundary_tower(model)
     if bool(args.gradient_checkpointing):
         if hasattr(model.encoder.config, "use_cache"):
             model.encoder.config.use_cache = False
@@ -700,7 +866,8 @@ def train_one(args: Namespace) -> dict[str, Any]:
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     model.to(device)
-    optimizer = torch.optim.AdamW(model.parameters(), lr=float(args.learning_rate), weight_decay=float(args.weight_decay))
+    trainable_params = [param for param in model.parameters() if param.requires_grad]
+    optimizer = torch.optim.AdamW(trainable_params, lr=float(args.learning_rate), weight_decay=float(args.weight_decay))
 
     best_state: dict[str, torch.Tensor] | None = None
     best_score: float | None = None
@@ -709,7 +876,9 @@ def train_one(args: Namespace) -> dict[str, Any]:
     global_step = 0
     max_steps = int(args.max_train_steps) if int(args.max_train_steps) > 0 else None
     epochs = int(np.ceil(float(args.epochs)))
-    for epoch in range(1, epochs + 1):
+    if bool(cfg.get("no_train_eval", False)):
+        history.append({"epoch": 0, "global_step": 0, "no_train_eval": True})
+    for epoch in ([] if bool(cfg.get("no_train_eval", False)) else range(1, epochs + 1)):
         model.train()
         optimizer.zero_grad(set_to_none=True)
         running = {"loss": 0.0, "ord": 0.0, "sep": 0.0}
@@ -720,7 +889,8 @@ def train_one(args: Namespace) -> dict[str, Any]:
         print(
             f"[exp17-c0] {args.config_name} epoch {epoch}/{epochs} start batches={total_batches} "
             f"batch_size={args.batch_size} pair_batch_size={args.pair_batch_size} grad_accum={args.grad_accum_steps} "
-            f"gamma={gamma} pair_source={pair_source} pairs={len(train_pairs)}",
+            f"gamma={gamma} pair_source={pair_source} pair_loss_space={pair_loss_space} "
+            f"freeze_boundary={freeze_boundary} pairs={len(train_pairs)}",
             flush=True,
         )
         for batch_idx, batch in enumerate(train_loader, start=1):
@@ -815,7 +985,7 @@ def train_one(args: Namespace) -> dict[str, Any]:
         dev_predictions,
         load_dev_d1_pairs(args.d1_dir),
     )
-    dev_row = dev_metric_row(args.config_name, int(args.seed), cfg, dev_predictions)
+    dev_row = dev_metric_row(args.config_name, int(args.seed), cfg, dev_predictions, freeze_boundary, pair_loss_space)
 
     write_json(run_dir / "metrics_dev.json", final_metrics)
     write_json(run_dir / "training_history.json", history)
@@ -832,6 +1002,8 @@ def train_one(args: Namespace) -> dict[str, Any]:
             "init_checkpoint": relpath(args.init_checkpoint),
             "init_status": init_status,
             "c0_config": cfg,
+            "freeze_boundary_tower": freeze_boundary,
+            "pair_loss_space": pair_loss_space,
             "train_pair_count": len(train_pairs),
             "available_pair_count": len(train_pairs),
             "best_metrics": best_metrics,
@@ -840,11 +1012,18 @@ def train_one(args: Namespace) -> dict[str, Any]:
             "human_rationale_used_as_ranker_input": False,
             "hidden_failure_evidence_head": False,
             "suppression": False,
-            "pair_loss_applies_to": "quality_score_s_only",
+            "pair_loss_applies_to": pair_loss_space,
+            "pair_loss_backpropagates_through": "quality_score_s",
         },
     )
     write_csv(run_dir / "exp17_c0_dev_metrics.csv", [dev_row], fieldnames=DEV_FIELDS)
     write_csv(run_dir / "exp17_c0_pair_eval.csv", [pair_row], fieldnames=PAIR_FIELDS)
+    if bool(args.export_diagnostic_predictions):
+        write_csv(
+            run_dir / "diagnostic_predictions_dev.csv",
+            diagnostic_prediction_rows(dev_predictions, Path(args.d1_dir)),
+            fieldnames=DIAGNOSTIC_PREDICTION_FIELDS,
+        )
     write_text_report = [
         "# Exp17-C0 Pairwise Separation Run",
         "",
@@ -853,6 +1032,8 @@ def train_one(args: Namespace) -> dict[str, Any]:
         f"- margin: {margin}",
         f"- temperature: {temperature}",
         f"- pair_source: `{pair_source}`",
+        f"- pair_loss_space: `{pair_loss_space}`",
+        f"- freeze_boundary_tower: `{freeze_boundary}`",
         f"- train_pair_count: {len(train_pairs)}",
         f"- selected_by: `{args.save_best_by}`",
         "",
@@ -875,7 +1056,7 @@ def train_one(args: Namespace) -> dict[str, Any]:
         "- Test split is not read.",
         "- Dev D1 annotations are used only for evaluation.",
         "- Human rationale text is not used as ranker input.",
-        "- Pairwise separation loss applies only to quality score `s`.",
+        "- Pairwise separation loss backpropagates only through quality score `s`; `g3_detached` freezes boundary terms inside the pair loss.",
     ]
     (run_dir / "exp17_c0_report.md").write_text("\n".join(write_text_report), encoding="utf-8")
     print(json.dumps({"status": "COMPLETED", "config_name": args.config_name, "run_dir": relpath(run_dir)}, ensure_ascii=False, sort_keys=True))

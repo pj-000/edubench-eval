@@ -30,6 +30,7 @@ class BoundaryLinkingOrdinalModel(nn.Module):
         self.scale_head = nn.Linear(self.hidden_size, 1)
         self.global_start = nn.Parameter(torch.tensor(-1.5))
         self.global_inc_raw = nn.Parameter(torch.tensor([0.0, 0.0, 0.0, 0.0]))
+        self.freeze_boundary_tower = False
 
     @classmethod
     def from_model_name(
@@ -102,6 +103,9 @@ class BoundaryLinkingOrdinalModel(nn.Module):
         quality_h = self.encode(quality_input_ids, quality_attention_mask)
         if self.variant == "global":
             boundary_h = torch.zeros_like(quality_h)
+        elif getattr(self, "freeze_boundary_tower", False):
+            with torch.no_grad():
+                boundary_h = self.encode(boundary_input_ids, boundary_attention_mask)
         else:
             boundary_h = self.encode(boundary_input_ids, boundary_attention_mask)
         quality_score_s = self.quality_head(quality_h).squeeze(-1)
