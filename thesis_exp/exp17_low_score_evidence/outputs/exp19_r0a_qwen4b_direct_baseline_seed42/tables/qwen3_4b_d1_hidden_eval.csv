@@ -1,0 +1,2 @@
+evaluator,n_d1_cases,mean_pred_d1_hidden,pred_ge4_rate_d1_hidden,pred_5_rate_d1_hidden,label2_recall_d1,mean_pred_matched_controls,hidden_control_score_gap
+Qwen3-4B-Instruct-direct,26,4.384615384615385,0.7692307692307693,0.7692307692307693,0.15384615384615385,4.666666666666667,0.08641975308641975

@@ -1,0 +1,13 @@
+{
+  "backend": "vllm",
+  "direct_baseline_success": false,
+  "label2_recall_all": 0.05309734513274336,
+  "low_to_high_all": 0.8040201005025126,
+  "model_name_or_path": "/home/jpang/models/modelscope/Qwen/Qwen3-4B",
+  "n_total": 5536,
+  "parse_success_rate_all": 1.0,
+  "proceed_to_failure_first_prompt": true,
+  "proceed_to_lora": false,
+  "prompt_fixed": true,
+  "reason": "Direct baseline is a reference baseline unless it lowers low-to-high and recovers label2 recall."
+}
