@@ -15,6 +15,6 @@
 - edubench_r2_reason_score_train: count=3326, ranking=False, leakage=0, labels={'1': 58, '2': 53, '3': 297, '4': 1163, '5': 1755}
 - edubench_r3_reason_rationale_balanced_train: count=3000, ranking=False, leakage=0, labels={'1': 471, '2': 429, '3': 525, '4': 624, '5': 951}
 - edubench_r3_reason_rationale_train: count=3326, ranking=False, leakage=0, labels={'1': 58, '2': 53, '3': 297, '4': 1163, '5': 1755}
-- edubench_r4_shuffled_reason_control_train: count=3326, ranking=False, leakage=0, labels={'1': 58, '2': 53, '3': 297, '4': 1163, '5': 1755}
+- edubench_r4_shuffled_reason_control_train: count=3000, ranking=False, leakage=0, labels={'1': 482, '2': 418, '3': 525, '4': 619, '5': 956}
 - edubench_r5_high_protection_dpo_control_train: count=6466, ranking=True, leakage=0, labels={}
 - edubench_r5_risk_balanced_dpo_train: count=3000, ranking=True, leakage=0, labels={}

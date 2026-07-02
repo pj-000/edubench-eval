@@ -15,7 +15,7 @@ from a usable SFT adapter.
 |---|---:|---:|---|
 | R1 | `edubench_r1_score_only_train` | 3326 | Score-only SFT baseline |
 | R2 | `edubench_r2_reason_score_balanced_train` | 3000 | Main balanced structured supervision |
-| R4 | `edubench_r4_shuffled_reason_control_train` | 3326 | Shuffled reason/failure control |
+| R4 | `edubench_r4_shuffled_reason_control_train` | 3000 | Balanced shuffled reason/failure control |
 
 The original train distribution is high-score dominated. Balanced datasets are training sampling
 strategies only; final evaluation must use the original question-disjoint dev/test distributions.
@@ -49,4 +49,3 @@ With one GPU per run, the effective batch size per run is `2 * 4 = 8`.
 cd ~/edubench-eval-exp2
 ./thesis_exp/scripts/run_exp19_sft_first_round.sh
 ```
-

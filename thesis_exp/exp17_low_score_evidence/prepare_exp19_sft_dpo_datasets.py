@@ -909,7 +909,6 @@ def build_datasets(args: argparse.Namespace) -> dict[str, Any]:
     r1 = [sft_example(row, target) for row, target in zip(train_rows, r1_targets)]
     r2 = [sft_example(row, target) for row, target in zip(train_rows, r2_targets)]
     r3 = [sft_example(row, target) for row, target in zip(train_rows, r3_targets)]
-    r4 = [sft_example(row, target) for row, target in zip(train_rows, r4_targets)]
     r2_balanced_indices = build_balanced_indices(train_rows, r2_targets, rng, args.balanced_total, clean_low_only=False)
     r3_balanced_indices = build_balanced_indices(train_rows, r3_targets, rng, args.balanced_total, clean_low_only=False)
     r2_clean_balanced_indices = build_balanced_indices(
@@ -918,6 +917,7 @@ def build_datasets(args: argparse.Namespace) -> dict[str, Any]:
     r2_balanced = build_sft_from_indices(train_rows, r2_targets, r2_balanced_indices)
     r3_balanced = build_sft_from_indices(train_rows, r3_targets, r3_balanced_indices)
     r2_clean_balanced = build_sft_from_indices(train_rows, r2_targets, r2_clean_balanced_indices)
+    r4 = build_sft_from_indices(train_rows, r4_targets, r2_balanced_indices)
 
     dpo_prefs = [dpo_chosen_rejected(row, candidates.get(sample_id(row))) for row in train_rows]
     r5_high_control, dpo_control_original_counts, dpo_control_expanded_counts = build_dpo_high_protection_control(
@@ -980,7 +980,7 @@ def build_datasets(args: argparse.Namespace) -> dict[str, Any]:
         {"dataset": DATASET_NAMES["r1"], "count": len(r1), "kind": "sft_natural"},
         {"dataset": DATASET_NAMES["r2"], "count": len(r2), "kind": "sft_natural"},
         {"dataset": DATASET_NAMES["r3"], "count": len(r3), "kind": "sft_natural"},
-        {"dataset": DATASET_NAMES["r4"], "count": len(r4), "kind": "sft_control"},
+        {"dataset": DATASET_NAMES["r4"], "count": len(r4), "kind": "sft_balanced_control"},
         {"dataset": DATASET_NAMES["r2_balanced"], "count": len(r2_balanced), "kind": "sft_balanced"},
         {"dataset": DATASET_NAMES["r3_balanced"], "count": len(r3_balanced), "kind": "sft_balanced"},
         {"dataset": DATASET_NAMES["r2_clean_balanced"], "count": len(r2_clean_balanced), "kind": "sft_clean_balanced"},
