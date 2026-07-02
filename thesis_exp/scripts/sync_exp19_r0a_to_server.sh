@@ -4,7 +4,7 @@ set -euo pipefail
 SERVER_HOST="${SERVER_HOST:-jpang@39.103.98.135}"
 SERVER_PORT="${SERVER_PORT:-23722}"
 SERVER_REPO="${SERVER_REPO:-~/edubench-eval-exp2}"
-CONDA_ENV="${CONDA_ENV:-llama_factory}"
+CONDA_ENV="${CONDA_ENV:-vllm_qwen_env}"
 RSYNC_SSH="ssh -p ${SERVER_PORT} -o BatchMode=yes -o ConnectTimeout=10 -o ServerAliveInterval=5 -o ServerAliveCountMax=2"
 SSH_OPTS=(
   -p "${SERVER_PORT}"

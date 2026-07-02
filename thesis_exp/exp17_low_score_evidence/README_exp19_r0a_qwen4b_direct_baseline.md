@@ -52,6 +52,9 @@ cd ~/edubench-eval-exp2
 ./thesis_exp/scripts/run_exp19_r0a_qwen4b_direct_baseline.sh
 ```
 
+It also defaults to the server conda environment `vllm_qwen_env`, which has
+`vllm`, `torch`, and `transformers` installed.
+
 For Qwen3 models, the script disables thinking by default so the model can
 return the required short JSON score. Set `ENABLE_THINKING=1` only for a
 separate diagnostic run, not for the fixed R0A direct baseline.

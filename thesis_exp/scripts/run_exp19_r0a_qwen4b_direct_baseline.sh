@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-CONDA_ENV="${CONDA_ENV:-llama_factory}"
+CONDA_ENV="${CONDA_ENV:-vllm_qwen_env}"
 MODEL_NAME_OR_PATH="${MODEL_NAME_OR_PATH:-/home/jpang/models/modelscope/Qwen/Qwen3-4B}"
 BACKEND="${BACKEND:-vllm}"
 GPU_ID="${GPU_ID:-1}"
@@ -33,6 +33,7 @@ if [[ -f "${HOME}/miniconda3/bin/activate" ]]; then
 fi
 
 export CUDA_VISIBLE_DEVICES="${GPU_ID}"
+export CUDA_DEVICE_ORDER="${CUDA_DEVICE_ORDER:-PCI_BUS_ID}"
 export TOKENIZERS_PARALLELISM="${TOKENIZERS_PARALLELISM:-false}"
 
 args=(
