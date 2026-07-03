@@ -1,0 +1,5 @@
+run_name,run_label,n,score_json_parse_rate,major_failures_parse_rate,score_cap_parse_rate,rubric_satisfied_parse_rate,valid_full_schema_rate,no_major_failure_rate,score_cap_nonnull_rate
+r1b_score_only_balanced,R1b score-only balanced,1107,1.0,0.0,0.0,0.0,0.0,0.0,0.0
+r2n_reason_score_natural,R2n reason-score natural,1107,1.0,1.0,1.0,1.0,0.938572719060524,0.926829268292683,0.07317073170731707
+r2c_clean_reason_score_balanced,R2c clean reason-score balanced,1107,1.0,1.0,1.0,1.0,0.941282746160795,0.9322493224932249,0.06775067750677506
+r4b_shuffled_reason_balanced,R4b shuffled reason balanced,1107,1.0,1.0,1.0,1.0,1.0,1.0,0.10659439927732611

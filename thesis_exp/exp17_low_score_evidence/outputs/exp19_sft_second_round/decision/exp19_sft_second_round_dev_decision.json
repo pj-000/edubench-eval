@@ -1,0 +1,20 @@
+{
+  "best_low_risk_run": "r4b_shuffled_reason_balanced",
+  "best_overall_run": "r2n_reason_score_natural",
+  "metrics_used": {
+    "r1b_label2_recall": 0.0,
+    "r1b_low_to_high": 0.5263157894736842,
+    "r2c_d1_pred_ge4": 1.0,
+    "r2c_label2_recall": 0.0,
+    "r2c_low_to_high": 0.5964912280701754,
+    "r2n_low_to_high": 0.5263157894736842,
+    "r4b_d1_pred_ge4": 0.8461538461538461,
+    "r4b_label2_recall": 0.05263157894736842,
+    "r4b_low_to_high": 0.47368421052631576
+  },
+  "proceed_to_dpo": true,
+  "proceed_to_r3": false,
+  "r2c_beats_r1b": false,
+  "r2c_beats_r4b": false,
+  "reason": "Score-only balanced or shuffled-reason control is stronger on low-risk metrics; prefer risk-balanced DPO or target-schema revision before R3."
+}

@@ -1,0 +1,6 @@
+{
+  "r1b_score_only_balanced": "thesis_exp/exp17_low_score_evidence/outputs/exp19_sft_second_round/dev_predictions/r1b_score_only_balanced/generated_predictions.jsonl",
+  "r2c_clean_reason_score_balanced": "thesis_exp/exp17_low_score_evidence/outputs/exp19_sft_second_round/dev_predictions/r2c_clean_reason_score_balanced/generated_predictions.jsonl",
+  "r2n_reason_score_natural": "thesis_exp/exp17_low_score_evidence/outputs/exp19_sft_second_round/dev_predictions/r2n_reason_score_natural/generated_predictions.jsonl",
+  "r4b_shuffled_reason_balanced": "thesis_exp/exp17_low_score_evidence/outputs/exp19_sft_second_round/dev_predictions/r4b_shuffled_reason_balanced/generated_predictions.jsonl"
+}

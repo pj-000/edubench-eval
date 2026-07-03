@@ -1,0 +1,5 @@
+run_name,run_label,split,n,parse_success_count,parse_success_rate,json_parse_count,regex_fallback_count,failed_count,prediction_file
+r1b_score_only_balanced,R1b score-only balanced,dev,1107,1107,1.0,1107,0,0,thesis_exp/exp17_low_score_evidence/outputs/exp19_sft_second_round/dev_predictions/r1b_score_only_balanced/generated_predictions.jsonl
+r2n_reason_score_natural,R2n reason-score natural,dev,1107,1107,1.0,1107,0,0,thesis_exp/exp17_low_score_evidence/outputs/exp19_sft_second_round/dev_predictions/r2n_reason_score_natural/generated_predictions.jsonl
+r2c_clean_reason_score_balanced,R2c clean reason-score balanced,dev,1107,1107,1.0,1107,0,0,thesis_exp/exp17_low_score_evidence/outputs/exp19_sft_second_round/dev_predictions/r2c_clean_reason_score_balanced/generated_predictions.jsonl
+r4b_shuffled_reason_balanced,R4b shuffled reason balanced,dev,1107,1107,1.0,1107,0,0,thesis_exp/exp17_low_score_evidence/outputs/exp19_sft_second_round/dev_predictions/r4b_shuffled_reason_balanced/generated_predictions.jsonl
