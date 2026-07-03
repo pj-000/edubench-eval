@@ -1,0 +1,4 @@
+risk_type,n,chosen_score_mean,rejected_score_mean,score_gap_mean,chosen_has_failure_rate,rejected_has_failure_rate,chosen_no_major_failure_rate,rejected_no_major_failure_rate,chosen_score_cap_nonnull_rate,rejected_score_cap_nonnull_rate
+low_to_high,1200,1.4608333333333334,2.029166666666667,0.5683333333333334,1.0,0.0,0.0,0.9725,1.0,0.795
+high_to_low_protection,1200,4.634166666666666,2.7225,1.9116666666666666,0.0,0.6516666666666666,1.0,0.021666666666666667,0.0,0.9991666666666666
+mid_score_calibration,600,3.0,2.933333333333333,2.0,0.0,0.5166666666666667,0.0,0.48333333333333334,1.0,0.5166666666666667

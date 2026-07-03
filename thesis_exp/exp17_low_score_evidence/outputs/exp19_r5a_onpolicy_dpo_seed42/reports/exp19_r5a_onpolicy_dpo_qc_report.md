@@ -1,7 +1,11 @@
-# Exp19-R5A On-Policy Risk-Balanced DPO QC Report
+# Exp19-R5A Risk-Balanced Synthetic-Template DPO Scout QC Report
 
 Exp19-R5A constructs DPO preference pairs from the train split only. It does not train, read test,
 or use dev/D1 annotations for training.
+
+R5A is **not strictly on-policy**: actual model-output rejected responses are limited, while
+template rejected responses dominate. Treat R5A as a DPO pipeline scout/control, not as the main DPO
+experiment.
 
 ## Summary
 
@@ -12,9 +16,10 @@ or use dev/D1 annotations for training.
 - exact human-rationale leakage count in prompts: 0
 - low_to_high rejected validity rate: 1.0000
 - high_to_low rejected validity rate: 1.0000
-- dataset ready for DPO: `True`
-- recommended main DPO init: `r2c_clean_reason_score_balanced` because it learned train-side failure structure.
-- recommended baseline DPO init: `r1b_score_only_balanced` to test whether structured SFT initialization matters.
+- dataset ready for DPO pipeline scout: `True`
+- dataset ready for main DPO: `False`
+- better name: `risk-balanced synthetic-template DPO scout`.
+- R5B rejection-mined hybrid DPO should be used before claiming a main DPO result.
 
 ## Pair Counts
 

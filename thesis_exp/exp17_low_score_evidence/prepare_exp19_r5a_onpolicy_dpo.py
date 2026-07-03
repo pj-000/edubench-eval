@@ -1,9 +1,10 @@
-"""Prepare Exp19-R5A on-policy risk-balanced DPO data and QC.
+"""Prepare Exp19-R5A risk-balanced synthetic-template DPO scout data and QC.
 
 This script constructs DPO preference pairs from the train split only. It does
-not train a model, read test, or use dev/D1 annotations for training. Full DPO
-JSON is written under the gitignored output/data directory; committed artifacts
-are limited to QC tables, configs, reports, and redacted samples.
+not train a model, read test, or use dev/D1 annotations for training. R5A is not
+strictly on-policy because most rejected responses are template fallback. Full
+DPO JSON is written under the gitignored output/data directory; committed
+artifacts are limited to QC tables, configs, reports, and redacted samples.
 """
 
 from __future__ import annotations
@@ -570,17 +571,21 @@ def report_text(
     high_pairs = [pair for pair in pairs if pair["risk_type"] == "high_to_low_protection"]
     low_valid = sum(1 for pair in low_pairs if is_low_to_high_rejected(target_from_message(pair["rejected"])))
     high_valid = sum(1 for pair in high_pairs if is_high_to_low_rejected(target_from_message(pair["rejected"])))
-    ready = (
+    scout_ready = (
         total > 0
         and leakage_count == 0
         and all(int(row["expanded_count"]) > 0 for row in count_rows)
         and safe_rate(low_valid, len(low_pairs)) >= 0.95
         and safe_rate(high_valid, len(high_pairs)) >= 0.95
     )
+    actual_rate = safe_rate(actual_model_count, total)
+    main_ready = scout_ready and actual_rate >= 0.30
     lines = [
-        "# Exp19-R5A On-Policy Risk-Balanced DPO QC Report",
+        "# Exp19-R5A Risk-Balanced Synthetic-Template DPO Scout QC Report",
         "",
         "Exp19-R5A constructs DPO preference pairs from the train split only. It does not train, read test, or use dev/D1 annotations for training.",
+        "",
+        "R5A is **not strictly on-policy**: actual model-output rejected responses are limited, while template rejected responses dominate. Treat R5A as a DPO pipeline scout/control, not as the main DPO experiment.",
         "",
         "## Summary",
         "",
@@ -591,9 +596,10 @@ def report_text(
         f"- exact human-rationale leakage count in prompts: {leakage_count}",
         f"- low_to_high rejected validity rate: {fmt(safe_rate(low_valid, len(low_pairs)))}",
         f"- high_to_low rejected validity rate: {fmt(safe_rate(high_valid, len(high_pairs)))}",
-        f"- dataset ready for DPO: `{ready}`",
-        "- recommended main DPO init: `r2c_clean_reason_score_balanced` because it learned train-side failure structure.",
-        "- recommended baseline DPO init: `r1b_score_only_balanced` to test whether structured SFT initialization matters.",
+        f"- dataset ready for DPO pipeline scout: `{scout_ready}`",
+        f"- dataset ready for main DPO: `{main_ready}`",
+        "- better name: `risk-balanced synthetic-template DPO scout`.",
+        "- R5B rejection-mined hybrid DPO should be used before claiming a main DPO result.",
         "",
         "## Pair Counts",
         "",
@@ -627,7 +633,7 @@ def report_text(
             "- Dev/D1 annotations are not read by this script and must remain evaluation-only.",
         ]
     )
-    return "\n".join(lines), ready
+    return "\n".join(lines), main_ready
 
 
 def build(args: argparse.Namespace) -> dict[str, Any]:
@@ -677,7 +683,7 @@ def build(args: argparse.Namespace) -> dict[str, Any]:
 
 
 def build_parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(description="Prepare Exp19-R5A on-policy risk-balanced DPO data.")
+    parser = argparse.ArgumentParser(description="Prepare Exp19-R5A risk-balanced synthetic-template DPO scout data.")
     parser.add_argument("--train-jsonl", type=Path, default=DEFAULT_TRAIN_JSONL)
     parser.add_argument("--a0-candidates", type=Path, default=DEFAULT_A0_CANDIDATES)
     parser.add_argument("--a0-high-controls", type=Path, default=DEFAULT_A0_HIGH_CONTROLS)

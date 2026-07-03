@@ -1,0 +1,4 @@
+risk_type,original_count,expanded_count,target_fraction,actual_fraction
+low_to_high,90,1200,0.4,0.4
+high_to_low_protection,2723,1200,0.4,0.4
+mid_score_calibration,297,600,0.2,0.2

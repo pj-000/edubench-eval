@@ -1,0 +1,502 @@
+[
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "partial_or_incomplete"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    },
+    "oversample_copy_index": 539,
+    "prompt_hash": "c9dc25840d4452af5659d1d1de5c634a2868eda2",
+    "prompt_preview": "Question: 焦虑级别：重度焦虑 对话内容：[{'学生': '最近我总觉得压力特别大，尤其是物理课的时候，只要想到学习物理就特别焦虑。'}, {'助理': '我听到你似乎在为物理课感到担心。能不能具体说一下是什么让你特别焦虑呢？'}, {'学生': '我一直觉得物理很难，对于公式和计算都不太理解，而且考试的时候总是出错。'}, {'助理': '理解复杂",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "rejected_source": "hard_synthetic_mid_high",
+    "risk_type": "mid_score_calibration",
+    "sample_id": "50d81f63985c92c26f4fe6cb13645f6e57952cb4"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "partial_or_incomplete"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    },
+    "oversample_copy_index": 13,
+    "prompt_hash": "f118b1dc9cca4bb0329b2cb9c55d2f5f00f7d81a",
+    "prompt_preview": "Question: 焦虑程度：重度焦虑 对话内容：学生：我最近总是觉得很害怕，语文课上也总是紧张，担心自己读不好。 智能体：我听到你的担心了，这种感觉很难受。能告诉我是什么让你特别害怕吗？ 学生：我总觉得老师会批评我，还有同学们会笑话我。 智能体：感谢你的分享，这种担心确实让人很紧张。但我相信老师和同学们都希望你能进步，而不是批评或嘲笑你。你有没有尝试过和老",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "missing_key_point"
+      ],
+      "rubric_satisfied": false,
+      "score": 1,
+      "score_cap": 1
+    },
+    "rejected_source": "hard_synthetic_mid_low",
+    "risk_type": "mid_score_calibration",
+    "sample_id": "bf41c9b09af103d1b24918798734c010e80eddfc"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "partial_or_incomplete"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    },
+    "oversample_copy_index": 274,
+    "prompt_hash": "30ab9299ae712518b33a84924b8bd59985e158c8",
+    "prompt_preview": "Question: Question: Which of the following factors is most crucial for determining the success of a crop in a particular region? A) Soil pH B) Seed variety C) Irrigation method D) ",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "rejected_source": "hard_synthetic_mid_high",
+    "risk_type": "mid_score_calibration",
+    "sample_id": "90e2dc006c55c677efcd3a103d36ec2a56ef40d1"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "partial_or_incomplete"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    },
+    "oversample_copy_index": 549,
+    "prompt_hash": "b63b70c87f093462c40e0b687624e80f9db9fb8c",
+    "prompt_preview": "Question: 学科:数学 学制级别:小学 知识点：简单的加法运算 问题类型：单选题 .请根据学科,学制级别,知识点,问题类型生成一个对应的问题。\"问题\"和\"提供的思路\":,以json格式返回 Answer: ```json { \"问题\": \"小明有3个苹果，小红给了他2个苹果，现在小明一共有多少个苹果？\", \"提供的思路\": \"这是一个简单的加法运算问",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "rejected_source": "hard_synthetic_mid_high",
+    "risk_type": "mid_score_calibration",
+    "sample_id": "455000acf9427c815c9177ac052af53992f31cf9"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "partial_or_incomplete"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    },
+    "oversample_copy_index": 179,
+    "prompt_hash": "67658bdb73070a902c9134063a631334348ea5e4",
+    "prompt_preview": "Question: Question: Which part of the plant is responsible for photosynthesis? A) Roots B) Stems C) Leaves D) Flowers Please provide reasoning based on this question. Do not provid",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "rejected_source": "hard_synthetic_mid_high",
+    "risk_type": "mid_score_calibration",
+    "sample_id": "6195cd84a8bf06d5a3608b3bb6561111e242ace6"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "partial_or_incomplete"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    },
+    "oversample_copy_index": 63,
+    "prompt_hash": "c3aa856558f592d4ec76ee43261b24e72d8dbfad",
+    "prompt_preview": "Question: 焦虑级别：重度焦虑 对话内容：[{'学生': '最近我总觉得压力特别大，尤其是物理课的时候，只要想到学习物理就特别焦虑。'}, {'助理': '我听到你似乎在为物理课感到担心。能不能具体说一下是什么让你特别焦虑呢？'}, {'学生': '我一直觉得物理很难，对于公式和计算都不太理解，而且考试的时候总是出错。'}, {'助理': '理解复杂",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "rejected_source": "hard_synthetic_mid_high",
+    "risk_type": "mid_score_calibration",
+    "sample_id": "c8ac6f54960398dc8e5b01ceec5f870d662eb61d"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "partial_or_incomplete"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    },
+    "oversample_copy_index": 86,
+    "prompt_hash": "57c333da389bab4fc05b17efc12a020ae339de98",
+    "prompt_preview": "Question: Student Profile: Student Profile: {'Name': 'Alex Johnson', 'Year': 'Sophomore', 'Major': 'Chemical Engineering', 'Strengths': ['Strong analytical skills', 'Good grasp of ",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "missing_key_point"
+      ],
+      "rubric_satisfied": false,
+      "score": 1,
+      "score_cap": 1
+    },
+    "rejected_source": "hard_synthetic_mid_low",
+    "risk_type": "mid_score_calibration",
+    "sample_id": "b964c643ca86d6b40fdfa27d27cebca463b607e4"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "partial_or_incomplete"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    },
+    "oversample_copy_index": 450,
+    "prompt_hash": "93e01eb3df5ff195532edf4e1e74acdeed67824c",
+    "prompt_preview": "Question: Question: Which of the following is the primary function of hemoglobin in the human body? Original Answer: To fight infections by destroying bacteria. You are providing e",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "rejected_source": "hard_synthetic_mid_high",
+    "risk_type": "mid_score_calibration",
+    "sample_id": "538dae80e3b261274dffac761529746f6c2d64c5"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "partial_or_incomplete"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    },
+    "oversample_copy_index": 358,
+    "prompt_hash": "b9eb5ebddcb62c58a858756e2d13e0e5409c92fc",
+    "prompt_preview": "Question: 问题：解释“需求弹性”的概念及其在经济学中的重要性。 学生的答案：需求弹性是指需求量对价格变化的反应程度。在经济学中，它很重要，因为它帮助企业了解价格变动对销售额的影响，也帮助政府制定税收政策。 请根据问题和学生答案给出\"评分\":\"评分细节\":\"个性化反馈\":,以json格式返回 Answer: ```json { \"评分\": 3, \"评",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "rejected_source": "hard_synthetic_mid_high",
+    "risk_type": "mid_score_calibration",
+    "sample_id": "f3ef8dd194a45041253112ab21cbcbfaf06673e4"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "partial_or_incomplete"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    },
+    "oversample_copy_index": 536,
+    "prompt_hash": "18b6f15daa26740dcf9bffee8884463c435ccd80",
+    "prompt_preview": "Question: 学生画像：学生的画像：{'姓名': '陈伟', '年龄': 25, '性别': '男', '学习背景': '本科毕业于军事战略学专业', '兴趣': ['战术分析', '无人机技术', '国际军事合作'], '目标': '成为一名优秀的军事顾问', '学习方式': '喜欢自主学习和小组讨论，适应能力强', '优势': ['逻辑思维能力强'",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "rejected_source": "hard_synthetic_mid_high",
+    "risk_type": "mid_score_calibration",
+    "sample_id": "2de05bdc40242686c8f207e6c7717bcf07cfe5d5"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "partial_or_incomplete"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    },
+    "oversample_copy_index": 431,
+    "prompt_hash": "d21c71cc28423434b3d5c774de895cb407e81078",
+    "prompt_preview": "Question: Question: Explain the strategic significance of high ground in military operations. Please provide reasoning based on this question. Do not provide the answer directly.. ",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "missing_key_point"
+      ],
+      "rubric_satisfied": false,
+      "score": 1,
+      "score_cap": 1
+    },
+    "rejected_source": "hard_synthetic_mid_low",
+    "risk_type": "mid_score_calibration",
+    "sample_id": "661f9b91a67dbdfa38a6b511275e3e1b208be433"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "partial_or_incomplete"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    },
+    "oversample_copy_index": 596,
+    "prompt_hash": "d4396cde1e15288d0c86eda63c35da64c38dd2b4",
+    "prompt_preview": "Question: 问题：考虑一个有机分子，其含有羧基(-COOH)和酯基(-COOR')。请解释该分子在酸性和碱性条件下的水解反应机理，并讨论不同条件下的反应产物。 请根据这个问题提供思路。\"提供的思路\":,以json格式返回 Answer: ```json { \"问题分析\": { \"有机分子结构\": \"该有机分子含有羧基(-COOH)和酯基(-COOR'",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "missing_key_point"
+      ],
+      "rubric_satisfied": false,
+      "score": 1,
+      "score_cap": 1
+    },
+    "rejected_source": "hard_synthetic_mid_low",
+    "risk_type": "mid_score_calibration",
+    "sample_id": "591ef6bd7f41497a637e31f0d6ce5f6a98ce6982"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "partial_or_incomplete"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    },
+    "oversample_copy_index": 181,
+    "prompt_hash": "f118b1dc9cca4bb0329b2cb9c55d2f5f00f7d81a",
+    "prompt_preview": "Question: 焦虑程度：重度焦虑 对话内容：学生：我最近总是觉得很害怕，语文课上也总是紧张，担心自己读不好。 智能体：我听到你的担心了，这种感觉很难受。能告诉我是什么让你特别害怕吗？ 学生：我总觉得老师会批评我，还有同学们会笑话我。 智能体：感谢你的分享，这种担心确实让人很紧张。但我相信老师和同学们都希望你能进步，而不是批评或嘲笑你。你有没有尝试过和老",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "rejected_source": "hard_synthetic_mid_high",
+    "risk_type": "mid_score_calibration",
+    "sample_id": "5853d6890e7f1c409e96fca384248afc2b2cdee2"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "partial_or_incomplete"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    },
+    "oversample_copy_index": 326,
+    "prompt_hash": "e1a1b2106205063d3542148c8d90fab4aef474c5",
+    "prompt_preview": "Question: Question: Which part of the plant is responsible for photosynthesis? A) Roots B) Stems C) Leaves D) Flowers Please provide reasoning based on this question. Do not provid",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "missing_key_point"
+      ],
+      "rubric_satisfied": false,
+      "score": 1,
+      "score_cap": 1
+    },
+    "rejected_source": "hard_synthetic_mid_low",
+    "risk_type": "mid_score_calibration",
+    "sample_id": "a356107aea60ba977be7125cd35c33031b5c1dd5"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "partial_or_incomplete"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    },
+    "oversample_copy_index": 351,
+    "prompt_hash": "9d66defc927577bbf018651882646d6dc75aaf97",
+    "prompt_preview": "Question: Question: Which of the following statements is true about the acceleration due to gravity on Earth? Original Answer: The acceleration due to gravity is the same at all al",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "rejected_source": "hard_synthetic_mid_high",
+    "risk_type": "mid_score_calibration",
+    "sample_id": "ec1b7e863165c056507715224ded755e27611ace"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "partial_or_incomplete"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    },
+    "oversample_copy_index": 514,
+    "prompt_hash": "909a67a0e5032ac9be29db40ba8ce670ca54ce1b",
+    "prompt_preview": "Question: 焦虑级别：轻度焦虑 对话内容：[{'学生': '我最近感觉有些焦虑，面对博士阶段的学习压力，有些时候会觉得吃力。'}, {'智能体': '我理解，这么高强度的课程和研究任务，难免会让人感到压力重重。你有没有哪些具体方面觉得特别挑战呢？'}, {'学生': '主要是我在实验设计和数据分析上有时候感到不太自信，担心自己的研究不能达到预期效果。",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "missing_key_point"
+      ],
+      "rubric_satisfied": false,
+      "score": 1,
+      "score_cap": 1
+    },
+    "rejected_source": "hard_synthetic_mid_low",
+    "risk_type": "mid_score_calibration",
+    "sample_id": "ec9a7870c5ca6a68b1ba47d38ed2852f9d6a317e"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "partial_or_incomplete"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    },
+    "oversample_copy_index": 186,
+    "prompt_hash": "e374946bcdca3f7e427792f2cbee8a578a7c86c2",
+    "prompt_preview": "Question: Question: Explain the concept of Nash Equilibrium in game theory and provide an example. Student's Answer: Nash Equilibrium is a situation in a game where each player's s",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "rejected_source": "hard_synthetic_mid_high",
+    "risk_type": "mid_score_calibration",
+    "sample_id": "88b5d66ecdaa22219bcf781219d169f927292631"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "partial_or_incomplete"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    },
+    "oversample_copy_index": 439,
+    "prompt_hash": "f71c6a693ba5841ccbd85b9d697b27384f2a8f8b",
+    "prompt_preview": "Question: 焦虑程度：重度焦虑 对话内容：学生：我最近总是觉得很害怕，语文课上也总是紧张，担心自己读不好。 智能体：我听到你的担心了，这种感觉很难受。能告诉我是什么让你特别害怕吗？ 学生：我总觉得老师会批评我，还有同学们会笑话我。 智能体：感谢你的分享，这种担心确实让人很紧张。但我相信老师和同学们都希望你能进步，而不是批评或嘲笑你。你有没有尝试过和老",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "missing_key_point"
+      ],
+      "rubric_satisfied": false,
+      "score": 1,
+      "score_cap": 1
+    },
+    "rejected_source": "hard_synthetic_mid_low",
+    "risk_type": "mid_score_calibration",
+    "sample_id": "c685d8e5b0da6bfa956d00f4097bd67474be8114"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "partial_or_incomplete"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    },
+    "oversample_copy_index": 570,
+    "prompt_hash": "b0562d4bc7a34ee65ae4dc63e6e8e6ace4551508",
+    "prompt_preview": "Question: 学生画像：学生的画像：{'姓名': '李明', '年龄': 26, '背景': '本科工商管理学士，具有两年政府部门工作经验', '学习目标': '深入理解公共政策制定及其影响，提升数据分析能力用于政策评估', '兴趣': '社科研究，政策分析，社会经济发展', '学习风格': '偏向实践，喜欢通过案例学习', '挑战': '数据分析技能",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "rejected_source": "hard_synthetic_mid_high",
+    "risk_type": "mid_score_calibration",
+    "sample_id": "c47fe550f9e8a93f5d824e5d34982611b6e7188b"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "partial_or_incomplete"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    },
+    "oversample_copy_index": 409,
+    "prompt_hash": "e54c71e83cfcb7f48a9fa7c9eb8def01f80e6753",
+    "prompt_preview": "Question: Question: What is the value of 5 + 3? Please provide reasoning based on this question. Do not provide the answer directly.. \"Reasoning Provided\":, return in JSON format A",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "rejected_source": "hard_synthetic_mid_high",
+    "risk_type": "mid_score_calibration",
+    "sample_id": "02fbb97fff18ecab49d50cbe8910f97d308edf43"
+  }
+]

@@ -22,6 +22,11 @@ thesis_exp/artifacts/
 **/*raw_prediction*.jsonl
 **/predictions*.jsonl
 **/*_predictions*.jsonl
+thesis_exp/exp17_low_score_evidence/outputs/**/data/*.json
+thesis_exp/exp17_low_score_evidence/outputs/**/predictions/*.jsonl
+thesis_exp/exp17_low_score_evidence/outputs/**/raw_generations/**
+thesis_exp/exp17_low_score_evidence/outputs/**/logs/**
+thesis_exp/exp17_low_score_evidence/outputs/**/predict_logs/**
 wandb/
 runs/
 

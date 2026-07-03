@@ -1,5 +1,14 @@
 *
 !.gitignore
+
+# Global guardrails for Exp17/Exp19 generated raw artifacts. Lightweight
+# reports/tables/configs are explicitly re-included by experiment blocks below.
+**/data/*.json
+**/predictions/*.jsonl
+**/raw_generations/**
+**/logs/**
+**/predict_logs/**
+
 !exp19_sft_dpo_datasets_seed42/
 exp19_sft_dpo_datasets_seed42/data/
 !exp19_sft_dpo_datasets_seed42/configs/
@@ -46,8 +55,9 @@ exp19_sft_train_dev_diagnostics_seed42/*
 !exp19_sft_train_dev_diagnostics_seed42/decision/
 !exp19_sft_train_dev_diagnostics_seed42/decision/**
 
-# Exp19-R5A keeps full DPO JSON local/server-side, while allowing lightweight
-# QC tables, configs, reports, and redacted samples to be reviewed.
+# Exp19-R5A is a risk-balanced synthetic-template DPO scout. It keeps full DPO
+# JSON local/server-side, while allowing lightweight QC tables, configs,
+# reports, and redacted samples to be reviewed.
 !exp19_r5a_onpolicy_dpo_seed42/
 exp19_r5a_onpolicy_dpo_seed42/*
 !exp19_r5a_onpolicy_dpo_seed42/configs/
@@ -59,3 +69,17 @@ exp19_r5a_onpolicy_dpo_seed42/*
 !exp19_r5a_onpolicy_dpo_seed42/reports/**
 !exp19_r5a_onpolicy_dpo_seed42/tables/
 !exp19_r5a_onpolicy_dpo_seed42/tables/**
+
+# Exp19-R5B keeps full rejection-mined DPO JSON local/server-side, while
+# allowing lightweight QC tables, configs, reports, and redacted samples.
+!exp19_r5b_rejection_mined_dpo_seed42/
+exp19_r5b_rejection_mined_dpo_seed42/*
+!exp19_r5b_rejection_mined_dpo_seed42/configs/
+!exp19_r5b_rejection_mined_dpo_seed42/configs/**
+!exp19_r5b_rejection_mined_dpo_seed42/dataset_info_r5b_snippet.json
+!exp19_r5b_rejection_mined_dpo_seed42/redacted_samples/
+!exp19_r5b_rejection_mined_dpo_seed42/redacted_samples/**
+!exp19_r5b_rejection_mined_dpo_seed42/reports/
+!exp19_r5b_rejection_mined_dpo_seed42/reports/**
+!exp19_r5b_rejection_mined_dpo_seed42/tables/
+!exp19_r5b_rejection_mined_dpo_seed42/tables/**

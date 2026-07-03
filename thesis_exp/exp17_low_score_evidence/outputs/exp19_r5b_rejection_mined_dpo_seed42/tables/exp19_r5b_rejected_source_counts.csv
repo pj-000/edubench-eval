@@ -1,0 +1,13 @@
+rejected_source,rejected_category,risk_type,n
+r1b,actual_model,high_to_low_protection,35
+r2c,actual_model,high_to_low_protection,18
+r2n,actual_model,high_to_low_protection,15
+r4b,actual_model,high_to_low_protection,28
+hard_synthetic_conservative_insufficient,hard_synthetic,high_to_low_protection,778
+hard_synthetic_conservative_unclear,hard_synthetic,high_to_low_protection,326
+r2n,actual_model,low_to_high,153
+r4b,actual_model,low_to_high,954
+hard_synthetic_high_no_failure,hard_synthetic,low_to_high,60
+hard_synthetic_high_unclear,hard_synthetic,low_to_high,33
+hard_synthetic_mid_high,hard_synthetic,mid_score_calibration,290
+hard_synthetic_mid_low,hard_synthetic,mid_score_calibration,310
