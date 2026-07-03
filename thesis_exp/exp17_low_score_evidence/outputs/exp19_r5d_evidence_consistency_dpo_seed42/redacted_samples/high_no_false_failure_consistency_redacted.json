@@ -1,0 +1,482 @@
+[
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "prompt_hash": "1205a5d56e11effcfb74c39c8746263e5052144a",
+    "prompt_preview": "Question: 学生画像：学生的画像：{'姓名': '张伟', '年龄': 28, '学习背景': '在教育学领域有丰富的研究经历，尤其关注学生的个体差异和教育公平问题。已发表多篇相关论文。', '学习风格': '偏好阅读学术期刊和参与教育研讨会，喜欢通过讨论深化理解，比较善于理论联系实际。', '个人兴趣': '对教育技术在教师培训中的应用感兴趣，积极",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "insufficient_evidence"
+      ],
+      "rubric_satisfied": false,
+      "score": 4,
+      "score_cap": 3
+    },
+    "rejected_source": "hard_synthetic_high_false_failure_score4",
+    "risk_type": "high_no_false_failure_consistency",
+    "sample_id": "17f8d9a64e6c4f3c76aaf3036c19d92284104f26"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    },
+    "prompt_hash": "893c3c4cc6ddc7872604775de71a0f3e605b5bc2",
+    "prompt_preview": "Question: 学生画像：学生的画像：{'姓名': '李华', '年龄': 21, '专业年级': '水产养殖专业三年级', '学习风格': '喜欢实践操作，动手能力强', '兴趣': '对鱼类繁殖和养殖技术感兴趣', '挑战': '理论知识消化较慢，需要更多视觉化材料', '目标': '希望在毕业前能够独立设计一个水产养殖方案'} 请根据学生画像，为每",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "unclear"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    },
+    "rejected_source": "hard_synthetic_high_false_failure_score3",
+    "risk_type": "high_no_false_failure_consistency",
+    "sample_id": "9483d0c63d5b5f5ef267eb6b2ae9c0a29b9730ce"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "prompt_hash": "77c6c95c46a421c650424d3d5f51b4c0308fb85f",
+    "prompt_preview": "Question: Knowledge Point: The Influence of Surrealism on Modern Literature Based on this knowledge point, provide \"Teaching Materials\": Teaching materials should include teaching ",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "unclear"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    },
+    "rejected_source": "hard_synthetic_high_false_failure_score3",
+    "risk_type": "high_no_false_failure_consistency",
+    "sample_id": "3b3d310be2e1aeb1e25fdd7932836157c4375643"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "prompt_hash": "cb4189991d008997b848c3b32154f6d535638be6",
+    "prompt_preview": "Question: Anxiety Level: Mild Anxiety Dialogue with Student: [{'Agent': 'Hi! How are you feeling today? Is there anything on your mind?'}, {'Student': \"Hey, I'm doing okay, but I'm",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "unclear"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    },
+    "rejected_source": "hard_synthetic_high_false_failure_score3",
+    "risk_type": "high_no_false_failure_consistency",
+    "sample_id": "1536b1dea98b5811c4fb9279bde7f526ed04fd34"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "prompt_hash": "4b8949ae91117f67e696c578a211a21ef9b89870",
+    "prompt_preview": "Question: Knowledge Point: Thermodynamics in Chemical Reactions Based on this knowledge point, provide \"Teaching Materials\": Teaching materials should include teaching objectives, ",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "insufficient_evidence"
+      ],
+      "rubric_satisfied": false,
+      "score": 4,
+      "score_cap": 3
+    },
+    "rejected_source": "hard_synthetic_high_false_failure_score4",
+    "risk_type": "high_no_false_failure_consistency",
+    "sample_id": "80fbd39ccc3c22ddfbff72d4142abe4f77546388"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    },
+    "prompt_hash": "e8d3c5185c4f5e3d869152d35c3f4fc205c7b1d3",
+    "prompt_preview": "Question: Subject:Basic Medicine Education Level:Master Knowledge Point:The renin-angiotensin-aldosterone system (RAAS) plays a crucial role in regulating blood pressure and fluid ",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "unclear"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    },
+    "rejected_source": "hard_synthetic_high_false_failure_score3",
+    "risk_type": "high_no_false_failure_consistency",
+    "sample_id": "dbca1f51e7928fdb21ceb9fe9568ecacec4e62d0"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "prompt_hash": "8dbe27db9aca1b0f2912dfd1a6b581cfc4b8f2b5",
+    "prompt_preview": "Question: Knowledge Point: Thermodynamics in Chemical Reactions Based on this knowledge point, provide \"Teaching Materials\": Teaching materials should include teaching objectives, ",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "unclear"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    },
+    "rejected_source": "hard_synthetic_high_false_failure_score3",
+    "risk_type": "high_no_false_failure_consistency",
+    "sample_id": "aa34dabf6ad26876c1aa1dcff6b36568dfdeffb4"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "prompt_hash": "7ee5d8fee5a9304a7dc5159038b78f8d6cc9918b",
+    "prompt_preview": "Question: {'Name': 'Alex Johnson', 'Age': 19, 'Current Education Level': 'Undergraduate, Year 1', 'Current Skill Level': 'Introductory Physics', 'Learning Goals': 'To gain a compre",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "unclear"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    },
+    "rejected_source": "hard_synthetic_high_false_failure_score3",
+    "risk_type": "high_no_false_failure_consistency",
+    "sample_id": "df7098bda7679c74c37ca5b76bf75913c679fc03"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "prompt_hash": "eb8a17142e860e00c5745881258e69540818e32f",
+    "prompt_preview": "Question: 问题：以下哪位教育学家提出了“最近发展区”理论？ 原答案：约翰·杜威 你为学生的回答进行纠错服务.请根据这个问题和原答案给出\"纠错后答案\"和\"纠错说明\":,以json格式返回 Answer: ```json { \"纠错后答案\": \"维果茨基\", \"纠错说明\": \"原答案错误。约翰·杜威是美国著名的实用主义哲学家、教育家，他提出了‘做中学’",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "unclear"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    },
+    "rejected_source": "hard_synthetic_high_false_failure_score3",
+    "risk_type": "high_no_false_failure_consistency",
+    "sample_id": "8862dd4bf20f04d3027e9c3a720565d9600b0c34"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "prompt_hash": "f5b47ac4004647ea89542dd7aead6f57a8a99001",
+    "prompt_preview": "Question: Question: Explain how Porter's Five Forces framework can be used to analyze the competitive environment of an industry. Please provide reasoning based on this question. D",
+    "rejected_category": "actual_model",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    },
+    "rejected_source": "r4b",
+    "risk_type": "high_no_false_failure_consistency",
+    "sample_id": "874e3dd49ba2fe235b29db3bbdf3f1b4613f8c32"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    },
+    "prompt_hash": "3f1ea54277e4b2cd9bf107898054bac2887a524d",
+    "prompt_preview": "Question: Question: Explain the difference between a stack and a queue data structure. Original Answer: A stack is a data structure that follows the First In, First Out (FIFO) prin",
+    "rejected_category": "actual_model",
+    "rejected_redacted": {
+      "major_failures": [
+        "partial_or_incomplete"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    },
+    "rejected_source": "r2n",
+    "risk_type": "high_no_false_failure_consistency",
+    "sample_id": "f9a8f9c517bb56b72b3aff5719b59755c7e3ff7d"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "prompt_hash": "ff8619a556eb52178f76cb946f95189dba361522",
+    "prompt_preview": "Question: Subject:Psychology Education Level:Undergraduate Knowledge Point:Cognitive dissonance is a psychological concept that refers to the discomfort experienced when holding tw",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "insufficient_evidence"
+      ],
+      "rubric_satisfied": false,
+      "score": 4,
+      "score_cap": 3
+    },
+    "rejected_source": "hard_synthetic_high_false_failure_score4",
+    "risk_type": "high_no_false_failure_consistency",
+    "sample_id": "f5e57af4c75a0101a1358f9f1cef192ea8b86b98"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    },
+    "prompt_hash": "5765ad1d6e9ba908db3f6553b11194aa03aec64a",
+    "prompt_preview": "Question: 知识点：作物生长模型的参数优化 请根据这个知识点给出\"教学素材\":教学素材需要包括教学目标、重点难点、课堂活动设计等,以json格式返回 Answer: ```json { \"教学目标\": [ \"理解作物生长模型的基本概念及其在农业中的应用。\", \"掌握作物生长模型参数优化的常用方法。\", \"能够运用优化算法对作物生长模型的参数进行优化。",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "unclear"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    },
+    "rejected_source": "hard_synthetic_high_false_failure_score3",
+    "risk_type": "high_no_false_failure_consistency",
+    "sample_id": "d306e53da891acc3e0e566bc2a99dedeca289e2d"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "prompt_hash": "64272545788215b12f172f975d9d855b1da7bcbd",
+    "prompt_preview": "Question: Question: Explain how Porter's Five Forces framework can be used to analyze the competitive environment of an industry. Please provide reasoning based on this question. D",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "insufficient_evidence"
+      ],
+      "rubric_satisfied": false,
+      "score": 4,
+      "score_cap": 3
+    },
+    "rejected_source": "hard_synthetic_high_false_failure_score4",
+    "risk_type": "high_no_false_failure_consistency",
+    "sample_id": "648ef96647864dcd47815ba4eae29223ae945b3c"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    },
+    "prompt_hash": "a36222ca5bdd0c62f55b4d37bc3b567d15d14fb8",
+    "prompt_preview": "Question: Knowledge Point: Schrodinger Equation in Quantum Mechanics Based on this knowledge point, provide \"Teaching Materials\": Teaching materials should include teaching objecti",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "unclear"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    },
+    "rejected_source": "hard_synthetic_high_false_failure_score3",
+    "risk_type": "high_no_false_failure_consistency",
+    "sample_id": "91c00929e142e23493c19aff5dead23539c897d5"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "prompt_hash": "bb4daf57b8246634eb4e21c3b2be01eaf49c5a63",
+    "prompt_preview": "Question: Question: Which of the following factors is most crucial for determining the success of a crop in a particular region? A) Soil pH B) Seed variety C) Irrigation method D) ",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "insufficient_evidence"
+      ],
+      "rubric_satisfied": false,
+      "score": 4,
+      "score_cap": 3
+    },
+    "rejected_source": "hard_synthetic_high_false_failure_score4",
+    "risk_type": "high_no_false_failure_consistency",
+    "sample_id": "442ab34434be5d5d0a5ccfefa007b86b000b7a09"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    },
+    "prompt_hash": "8df61781fa22be5e65654e04c78557e74bcd1118",
+    "prompt_preview": "Question: 知识点：光合作用在作物生长中的作用 请根据这个知识点给出\"教学素材\":教学素材需要包括教学目标、重点难点、课堂活动设计等,以json格式返回 Answer: ```json { \"教学目标\": [ \"理解光合作用的基本概念及其在作物生长中的重要性。\", \"掌握光合作用的主要过程及其对作物产量和质量的影响。\", \"能够分析不同环境因素对光合",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "unclear"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    },
+    "rejected_source": "hard_synthetic_high_false_failure_score3",
+    "risk_type": "high_no_false_failure_consistency",
+    "sample_id": "943a31577bccc4f64059e89a7ac924d90365ddb5"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "prompt_hash": "cae412b0ba4ca8006a68c09c2f58facce1ecb04a",
+    "prompt_preview": "Question: {'Name': 'Alex Johnson', 'Age': 21, 'Current Education Level': 'Undergraduate', 'Current Skill Level': 'Intermediate', 'Learning Goals': ['Understand the application of e",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "insufficient_evidence"
+      ],
+      "rubric_satisfied": false,
+      "score": 4,
+      "score_cap": 3
+    },
+    "rejected_source": "hard_synthetic_high_false_failure_score4",
+    "risk_type": "high_no_false_failure_consistency",
+    "sample_id": "2fb2e7b662bd63032405fac81132e33579f49cab"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    },
+    "prompt_hash": "f0fce98fd468f928718868d6c121da680fcd5a0e",
+    "prompt_preview": "Question: 问题：请简述第二次世界大战的主要参战国和其领导者。 原答案：第二次世界大战的主要参战国包括德国的希特勒、美国的罗斯福、法国的拿破仑和苏联的列宁。 你为学生的回答进行纠错服务.请根据这个问题和原答案给出\"纠错后答案\"和\"纠错说明\":,以json格式返回 Answer: ```json { \"纠错后答案\": \"第二次世界大战的主要参战国及其领",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "insufficient_evidence"
+      ],
+      "rubric_satisfied": false,
+      "score": 4,
+      "score_cap": 3
+    },
+    "rejected_source": "hard_synthetic_high_false_failure_score4",
+    "risk_type": "high_no_false_failure_consistency",
+    "sample_id": "8816ddb3fb187e7c06a450e9e2a1fd45db337afc"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "prompt_hash": "da5806fcb2c91d9f7717ebe31ef2eb0880421157",
+    "prompt_preview": "Question: 焦虑程度：重度焦虑 对话内容：学生：我最近总是觉得很害怕，语文课上也总是紧张，担心自己读不好。 智能体：我听到你的担心了，这种感觉很难受。能告诉我是什么让你特别害怕吗？ 学生：我总觉得老师会批评我，还有同学们会笑话我。 智能体：感谢你的分享，这种担心确实让人很紧张。但我相信老师和同学们都希望你能进步，而不是批评或嘲笑你。你有没有尝试过和老",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "insufficient_evidence"
+      ],
+      "rubric_satisfied": false,
+      "score": 4,
+      "score_cap": 3
+    },
+    "rejected_source": "hard_synthetic_high_false_failure_score4",
+    "risk_type": "high_no_false_failure_consistency",
+    "sample_id": "5399ae9cd4c12c565b8ad648b06395dcd3d72dca"
+  }
+]

@@ -1,0 +1,502 @@
+[
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "insufficient_evidence"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "dataset_variant": "r5c_main",
+    "prompt_hash": "2afb40d42549da96477bf02dd3a2bebd0691ebf9",
+    "prompt_preview": "Question: Question: What is the value of 5 + 3? Please provide reasoning based on this question. Do not provide the answer directly.. \"Reasoning Provided\":, return in JSON format A",
+    "rejected_category": "actual_model",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    },
+    "rejected_source": "r2n",
+    "risk_type": "low_to_high_score_risk",
+    "sample_id": "02169e6cc6f86f682c0b04047827e32859533603"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "missing_key_point"
+      ],
+      "rubric_satisfied": false,
+      "score": 1,
+      "score_cap": 1
+    },
+    "dataset_variant": "r5c_main",
+    "prompt_hash": "0e5334c817fe62b511d0c6e8a0b57c1a7a7da119",
+    "prompt_preview": "Question: 学科:历史学 学制级别:大学 问题：以下哪一事件标志着英格兰光荣革命的结束？ A. 1688年詹姆斯二世的逃亡 B. 1689年权利法案的通过 C. 1690年博因河战役 D. 1694年玛丽二世去世 .请根据问题生成对应的答案。\"答案\":,以json格式返回 Answer: ```json {\"答案\": \"B\"} ``` Evaluat",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    },
+    "rejected_source": "hard_synthetic_score4_no_failure",
+    "risk_type": "low_to_high_score_risk",
+    "sample_id": "f941bd555946d5f670146c0ddba2b00c76cfee04"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "missing_key_point"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "dataset_variant": "r5c_main",
+    "prompt_hash": "60b09b58b9ddbc6ad7161ba0b5817270e9741585",
+    "prompt_preview": "Question: 问题：请简述第二次世界大战的主要参战国和其领导者。 原答案：第二次世界大战的主要参战国包括德国的希特勒、美国的罗斯福、法国的拿破仑和苏联的列宁。 你为学生的回答进行纠错服务.请根据这个问题和原答案给出\"纠错后答案\"和\"纠错说明\":,以json格式返回 Answer: ```json { \"纠错后答案\": \"第二次世界大战的主要参战国及其领",
+    "rejected_category": "actual_model",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    },
+    "rejected_source": "r2n",
+    "risk_type": "low_to_high_score_risk",
+    "sample_id": "f0c923e09065792432b0f588a7eb74ea86409797"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "insufficient_evidence"
+      ],
+      "rubric_satisfied": false,
+      "score": 1,
+      "score_cap": 1
+    },
+    "dataset_variant": "r5c_main",
+    "prompt_hash": "ffacb6899fdeb97f295a4b0c99a0530413525295",
+    "prompt_preview": "Question: Subject:Psychology Education Level:PhD Question:Which of the following theories best explains the mechanism of action of selective serotonin reuptake inhibitors (SSRIs) i",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    },
+    "rejected_source": "hard_synthetic_score4_no_failure",
+    "risk_type": "low_to_high_score_risk",
+    "sample_id": "5680bbfccbc4637e7c9c7e3d63698aaf2b4fa213"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "missing_key_point"
+      ],
+      "rubric_satisfied": false,
+      "score": 1,
+      "score_cap": 1
+    },
+    "dataset_variant": "r5c_main",
+    "prompt_hash": "146c12324041587b5b021800f20568d5f7eac8c6",
+    "prompt_preview": "Question: 学科:临床医学 学制级别:硕士 问题：以下哪种药物最常用于治疗急性心肌梗死？ A) 阿司匹林 B) 布洛芬 C) 对乙酰氨基酚 D) 洛伐他汀 .请根据问题生成对应的答案。\"答案\":,以json格式返回 Answer: ```json { \"答案\": \"A) 阿司匹林\" } ``` Evaluation metric: Reasoning",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    },
+    "rejected_source": "hard_synthetic_score4_no_failure",
+    "risk_type": "low_to_high_score_risk",
+    "sample_id": "8ff264a74369c7106935fc453add4b92d95a8b87"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "missing_key_point"
+      ],
+      "rubric_satisfied": false,
+      "score": 1,
+      "score_cap": 1
+    },
+    "dataset_variant": "r5c_main",
+    "prompt_hash": "8086d61491a70de01a0779ca4b1220d7838ad7ab",
+    "prompt_preview": "Question: Subject:Applied Economics Education Level:Undergraduate Question:Which of the following is considered a limitation of using Gross Domestic Product (GDP) as a measure of e",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    },
+    "rejected_source": "hard_synthetic_score4_no_failure",
+    "risk_type": "low_to_high_score_risk",
+    "sample_id": "2805e4237ccaed90f917ee91a5c2c44743bbd1b1"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "surface_fluent_but_hidden_defect"
+      ],
+      "rubric_satisfied": false,
+      "score": 1,
+      "score_cap": 1
+    },
+    "dataset_variant": "r5c_main",
+    "prompt_hash": "fe48d3e4e17cd8c631999fcb05c41b322b9c3110",
+    "prompt_preview": "Question: 问题：在神经生理学中，动作电位的过程中不包括以下哪一个步骤？ A) 去极化 B) 再极化 C) 超极化 D) 钙离子流入细胞 学生的答案：C) 超极化 请根据问题和学生答案给出\"评分\":\"评分细节\":\"个性化反馈\":,以json格式返回 Answer: ```json { \"评分\": 1, \"评分细节\": { \"正确答案\": \"D) 钙离",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    },
+    "rejected_source": "hard_synthetic_score4_no_failure",
+    "risk_type": "low_to_high_score_risk",
+    "sample_id": "4f22bf04948dfebf09ef963ef74d98df56ffdb57"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "surface_fluent_but_hidden_defect"
+      ],
+      "rubric_satisfied": false,
+      "score": 1,
+      "score_cap": 1
+    },
+    "dataset_variant": "r5c_main",
+    "prompt_hash": "fb48b7ec514f568684a478b4f132cff13f8bac3c",
+    "prompt_preview": "Question: Subject:Mathematics Education Level:PhD Question:In the context of complex analysis, consider the function f(z) = z^2 + 1. Which of the following statements is true regar",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    },
+    "rejected_source": "hard_synthetic_score4_no_failure",
+    "risk_type": "low_to_high_score_risk",
+    "sample_id": "0578273c54e1a724084529ebbc385f1bdd1076ea"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "insufficient_evidence"
+      ],
+      "rubric_satisfied": false,
+      "score": 1,
+      "score_cap": 1
+    },
+    "dataset_variant": "r5c_main",
+    "prompt_hash": "0a0df6adb39ecd85adfe74baec0918ab82cf7bdb",
+    "prompt_preview": "Question: 学科:物理学 学制级别:博士 问题：在广义相对论的框架下，以下哪种情况最有可能导致时空奇点的出现？ A) 电磁场的存在 B) 大质量恒星的核心塌缩 C) 宇宙学常数为零 D) 低能粒子在真空中的运动 .请根据问题生成对应的答案。\"答案\":,以json格式返回 Answer: ```json { \"answer\": \"B) 大质量恒星的核心",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    },
+    "rejected_source": "hard_synthetic_score4_no_failure",
+    "risk_type": "low_to_high_score_risk",
+    "sample_id": "9695560e94c04bb151b514cc850a85eb10394a00"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "surface_fluent_but_hidden_defect"
+      ],
+      "rubric_satisfied": false,
+      "score": 1,
+      "score_cap": 1
+    },
+    "dataset_variant": "r5c_main",
+    "prompt_hash": "d99ba1760035dfd9575ceb43cad009829e66c02d",
+    "prompt_preview": "Question: 问题：在分布式系统中，一致性模型的重要性是什么？以下哪个选项最好地描述了它的作用？ A) 提高系统的吞吐量 B) 确保所有节点之间的数据保持一致 C) 降低系统的响应时间 D) 提高系统的可扩展性 学生的答案：B) 确保所有节点之间的数据保持一致 请根据问题和学生答案给出\"评分\":\"评分细节\":\"个性化反馈\":,以json格式返回 Ans",
+    "rejected_category": "actual_model",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    },
+    "rejected_source": "r2n",
+    "risk_type": "low_to_high_score_risk",
+    "sample_id": "90ed1a72c758f575b39f863d5ac03313ac9b197e"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "surface_fluent_but_hidden_defect"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "dataset_variant": "r5c_main",
+    "prompt_hash": "1cdade8828891d49b81c8d203d65009b811de708",
+    "prompt_preview": "Question: Question: Explain the concept of Nash Equilibrium in game theory and provide an example. Student's Answer: Nash Equilibrium is a situation in a game where each player's s",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    },
+    "rejected_source": "hard_synthetic_score4_no_failure",
+    "risk_type": "low_to_high_score_risk",
+    "sample_id": "107a460ba82cd473b9a08a5d43257a7f1d336874"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "surface_fluent_but_hidden_defect"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "dataset_variant": "r5c_main",
+    "prompt_hash": "035be24cdca419071f7b16b4bcc981b07797ca50",
+    "prompt_preview": "Question: Question: Explain how Porter's Five Forces framework can be used to analyze the competitive environment of an industry. Please provide reasoning based on this question. D",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    },
+    "rejected_source": "hard_synthetic_score4_no_failure",
+    "risk_type": "low_to_high_score_risk",
+    "sample_id": "1b5df375ab0c6d48d21dc9a88fd408b29454ff67"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "surface_fluent_but_hidden_defect"
+      ],
+      "rubric_satisfied": false,
+      "score": 1,
+      "score_cap": 1
+    },
+    "dataset_variant": "r5c_main",
+    "prompt_hash": "d99ba1760035dfd9575ceb43cad009829e66c02d",
+    "prompt_preview": "Question: 问题：在分布式系统中，一致性模型的重要性是什么？以下哪个选项最好地描述了它的作用？ A) 提高系统的吞吐量 B) 确保所有节点之间的数据保持一致 C) 降低系统的响应时间 D) 提高系统的可扩展性 学生的答案：B) 确保所有节点之间的数据保持一致 请根据问题和学生答案给出\"评分\":\"评分细节\":\"个性化反馈\":,以json格式返回 Ans",
+    "rejected_category": "actual_model",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    },
+    "rejected_source": "r2n",
+    "risk_type": "low_to_high_score_risk",
+    "sample_id": "90ed1a72c758f575b39f863d5ac03313ac9b197e"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "missing_key_point"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "dataset_variant": "r5c_main",
+    "prompt_hash": "60b09b58b9ddbc6ad7161ba0b5817270e9741585",
+    "prompt_preview": "Question: 问题：请简述第二次世界大战的主要参战国和其领导者。 原答案：第二次世界大战的主要参战国包括德国的希特勒、美国的罗斯福、法国的拿破仑和苏联的列宁。 你为学生的回答进行纠错服务.请根据这个问题和原答案给出\"纠错后答案\"和\"纠错说明\":,以json格式返回 Answer: ```json { \"纠错后答案\": \"第二次世界大战的主要参战国及其领",
+    "rejected_category": "actual_model",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    },
+    "rejected_source": "r2n",
+    "risk_type": "low_to_high_score_risk",
+    "sample_id": "f0c923e09065792432b0f588a7eb74ea86409797"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "task_constraint_violation"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "dataset_variant": "r5c_main",
+    "prompt_hash": "1f5573375f1bc4e41094280160c8b6c609c1c3f6",
+    "prompt_preview": "Question: Subject:Physical Education Education Level:Undergraduate Knowledge Point:The FITT principle is a foundational concept in physical education that stands for Frequency, Int",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    },
+    "rejected_source": "hard_synthetic_score4_no_failure",
+    "risk_type": "low_to_high_score_risk",
+    "sample_id": "365e8b4c9ee703d23dee95e59be31577a15cacc8"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "surface_fluent_but_hidden_defect"
+      ],
+      "rubric_satisfied": false,
+      "score": 1,
+      "score_cap": 1
+    },
+    "dataset_variant": "r5c_main",
+    "prompt_hash": "2f8617e012e1559a551469068cd53b609c890395",
+    "prompt_preview": "Question: 问题：选择以下具有微分同胚性质的函数类别：（可多选） A. 二次多项式函数 B. 余弦函数 C. 指数函数 D. 常数函数 E. 三次多项式函数 学生的答案：['C', 'E'] 请根据问题和学生答案给出\"评分\":\"评分细节\":\"个性化反馈\":,以json格式返回 Answer: ```json { \"评分\": 1, \"评分细节\": { ",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    },
+    "rejected_source": "hard_synthetic_score4_no_failure",
+    "risk_type": "low_to_high_score_risk",
+    "sample_id": "0c74a66a6f9ecee5580723b73f7741a8f05e1352"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "insufficient_evidence"
+      ],
+      "rubric_satisfied": false,
+      "score": 1,
+      "score_cap": 1
+    },
+    "dataset_variant": "r5c_main",
+    "prompt_hash": "51e6b994b72ad41c329e9ac0d6490cc806d4a4c9",
+    "prompt_preview": "Question: 学科:物理学 学制级别:博士 问题：在广义相对论的框架下，以下哪种情况最有可能导致时空奇点的出现？ A) 电磁场的存在 B) 大质量恒星的核心塌缩 C) 宇宙学常数为零 D) 低能粒子在真空中的运动 .请根据问题生成对应的答案。\"答案\":,以json格式返回 Answer: ```json { \"答案\": \"B) 大质量恒星的核心塌缩\" ",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    },
+    "rejected_source": "hard_synthetic_score4_no_failure",
+    "risk_type": "low_to_high_score_risk",
+    "sample_id": "6ba52ada98a9a51312929f9f19f6c7227cd562eb"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "insufficient_evidence"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "dataset_variant": "r5c_main",
+    "prompt_hash": "e2bf225f73a506b78a8fc27bbf3c425898923a5d",
+    "prompt_preview": "Question: Subject:Aquaculture Education Level:Undergraduate Knowledge Point:Aquaculture involves the farming of aquatic organisms, including fish, mollusks, crustaceans, and aquati",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    },
+    "rejected_source": "hard_synthetic_score4_no_failure",
+    "risk_type": "low_to_high_score_risk",
+    "sample_id": "9b98fbe73d713149b38df9e497e2ad0a0a022c91"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "surface_fluent_but_hidden_defect"
+      ],
+      "rubric_satisfied": false,
+      "score": 1,
+      "score_cap": 1
+    },
+    "dataset_variant": "r5c_main",
+    "prompt_hash": "fe48d3e4e17cd8c631999fcb05c41b322b9c3110",
+    "prompt_preview": "Question: 问题：在神经生理学中，动作电位的过程中不包括以下哪一个步骤？ A) 去极化 B) 再极化 C) 超极化 D) 钙离子流入细胞 学生的答案：C) 超极化 请根据问题和学生答案给出\"评分\":\"评分细节\":\"个性化反馈\":,以json格式返回 Answer: ```json { \"评分\": 1, \"评分细节\": { \"正确答案\": \"D) 钙离",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    },
+    "rejected_source": "hard_synthetic_score4_no_failure",
+    "risk_type": "low_to_high_score_risk",
+    "sample_id": "4f22bf04948dfebf09ef963ef74d98df56ffdb57"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "insufficient_evidence"
+      ],
+      "rubric_satisfied": false,
+      "score": 1,
+      "score_cap": 1
+    },
+    "dataset_variant": "r5c_main",
+    "prompt_hash": "5b44e682517409e9860f3e90f5f62bb29836301b",
+    "prompt_preview": "Question: Subject:Computer Science Education Level:Undergraduate Question:What is the time complexity of the quicksort algorithm in the average case scenario? . Please generate the",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    },
+    "rejected_source": "hard_synthetic_score4_no_failure",
+    "risk_type": "low_to_high_score_risk",
+    "sample_id": "a2963f0bafecf877ce9d9f85ccd07d324522a500"
+  }
+]

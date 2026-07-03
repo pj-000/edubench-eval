@@ -1,0 +1,3 @@
+risk_type,original_count,expanded_count,actual_fraction
+low_failure_evidence_consistency,108,1500,0.5
+high_no_false_failure_consistency,2719,1500,0.5

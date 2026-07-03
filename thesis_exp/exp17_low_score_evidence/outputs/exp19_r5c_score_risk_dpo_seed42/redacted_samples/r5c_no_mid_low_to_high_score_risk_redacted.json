@@ -1,0 +1,502 @@
+[
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "surface_fluent_but_hidden_defect"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "dataset_variant": "r5c_no_mid",
+    "prompt_hash": "02f344e55fcc6d14295737a97dc7915c5cf0626f",
+    "prompt_preview": "Question: Subject:Mathematics Education Level:PhD Question:In the context of complex analysis, consider the function f(z) = z^2 + 1. Which of the following statements is true regar",
+    "rejected_category": "actual_model",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "rejected_source": "r2n",
+    "risk_type": "low_to_high_score_risk",
+    "sample_id": "6a65ddfebb3698d3eb20f814a761580fa2f8be48"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "surface_fluent_but_hidden_defect"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "dataset_variant": "r5c_no_mid",
+    "prompt_hash": "4fd03b604a3d4ad1f092ab6cf7a6b551c244f419",
+    "prompt_preview": "Question: 问题：选择以下具有微分同胚性质的函数类别：（可多选） A. 二次多项式函数 B. 余弦函数 C. 指数函数 D. 常数函数 E. 三次多项式函数 学生的答案：['C', 'E'] 请根据问题和学生答案给出\"评分\":\"评分细节\":\"个性化反馈\":,以json格式返回 Answer: ```json { \"评分\": \"部分正确\", \"评分细节",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    },
+    "rejected_source": "hard_synthetic_score4_no_failure",
+    "risk_type": "low_to_high_score_risk",
+    "sample_id": "17e0ba51820c815389e5f672d6bed2ca748a8775"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "insufficient_evidence"
+      ],
+      "rubric_satisfied": false,
+      "score": 1,
+      "score_cap": 1
+    },
+    "dataset_variant": "r5c_no_mid",
+    "prompt_hash": "bdfc813dc99a70edb52d4e91932c56527b6bcd35",
+    "prompt_preview": "Question: 问题：在神经生理学中，动作电位的过程中不包括以下哪一个步骤？ A) 去极化 B) 再极化 C) 超极化 D) 钙离子流入细胞 学生的答案：C) 超极化 请根据问题和学生答案给出\"评分\":\"评分细节\":\"个性化反馈\":,以json格式返回 Answer: ```json { \"评分\": 1, \"评分细节\": { \"正确答案\": \"D) 钙离",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    },
+    "rejected_source": "hard_synthetic_score4_no_failure",
+    "risk_type": "low_to_high_score_risk",
+    "sample_id": "e2c88c65f2542bab93dbf50c022a42b356f788d2"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "missing_key_point"
+      ],
+      "rubric_satisfied": false,
+      "score": 1,
+      "score_cap": 1
+    },
+    "dataset_variant": "r5c_no_mid",
+    "prompt_hash": "146c12324041587b5b021800f20568d5f7eac8c6",
+    "prompt_preview": "Question: 学科:临床医学 学制级别:硕士 问题：以下哪种药物最常用于治疗急性心肌梗死？ A) 阿司匹林 B) 布洛芬 C) 对乙酰氨基酚 D) 洛伐他汀 .请根据问题生成对应的答案。\"答案\":,以json格式返回 Answer: ```json { \"答案\": \"A) 阿司匹林\" } ``` Evaluation metric: Reasoning",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    },
+    "rejected_source": "hard_synthetic_score4_no_failure",
+    "risk_type": "low_to_high_score_risk",
+    "sample_id": "8ff264a74369c7106935fc453add4b92d95a8b87"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "task_constraint_violation"
+      ],
+      "rubric_satisfied": false,
+      "score": 1,
+      "score_cap": 1
+    },
+    "dataset_variant": "r5c_no_mid",
+    "prompt_hash": "4f8ffdfa301a455e13d111b67db77e34382d8054",
+    "prompt_preview": "Question: 问题：在神经生理学中，动作电位的过程中不包括以下哪一个步骤？ A) 去极化 B) 再极化 C) 超极化 D) 钙离子流入细胞 学生的答案：C) 超极化 请根据问题和学生答案给出\"评分\":\"评分细节\":\"个性化反馈\":,以json格式返回 Answer: ```json { \"评分\": 1, \"评分细节\": { \"正确答案\": \"D) 钙离",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    },
+    "rejected_source": "hard_synthetic_score4_no_failure",
+    "risk_type": "low_to_high_score_risk",
+    "sample_id": "f54280d4caeef0bdadc941acfcd5f7fede5d6838"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "surface_fluent_but_hidden_defect"
+      ],
+      "rubric_satisfied": false,
+      "score": 1,
+      "score_cap": 1
+    },
+    "dataset_variant": "r5c_no_mid",
+    "prompt_hash": "28bd3012c658b1c93d08b13333f3a9b7c607c429",
+    "prompt_preview": "Question: 问题：在神经生理学中，动作电位的过程中不包括以下哪一个步骤？ A) 去极化 B) 再极化 C) 超极化 D) 钙离子流入细胞 学生的答案：C) 超极化 请根据问题和学生答案给出\"评分\":\"评分细节\":\"个性化反馈\":,以json格式返回 Answer: ```json { \"评分\": \"正确\", \"评分细节\": \"学生选择了C) 超极化，",
+    "rejected_category": "actual_model",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    },
+    "rejected_source": "r2n",
+    "risk_type": "low_to_high_score_risk",
+    "sample_id": "1c013ab584f1c5a49f0e03d8517d29eb909322be"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "missing_key_point"
+      ],
+      "rubric_satisfied": false,
+      "score": 1,
+      "score_cap": 1
+    },
+    "dataset_variant": "r5c_no_mid",
+    "prompt_hash": "6668b0f1da892b4090b030251db457a66fe47b1d",
+    "prompt_preview": "Question: 学科:临床医学 学制级别:硕士 问题：以下哪种药物最常用于治疗急性心肌梗死？ A) 阿司匹林 B) 布洛芬 C) 对乙酰氨基酚 D) 洛伐他汀 .请根据问题生成对应的答案。\"答案\":,以json格式返回 Answer: ```json { \"答案\": \"A) 阿司匹林\" } ``` Evaluation metric: Reasoning",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    },
+    "rejected_source": "hard_synthetic_score4_no_failure",
+    "risk_type": "low_to_high_score_risk",
+    "sample_id": "b62bc6a3bc8db6a39e2d347c263aa392be416138"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "missing_key_point"
+      ],
+      "rubric_satisfied": false,
+      "score": 1,
+      "score_cap": 1
+    },
+    "dataset_variant": "r5c_no_mid",
+    "prompt_hash": "8086d61491a70de01a0779ca4b1220d7838ad7ab",
+    "prompt_preview": "Question: Subject:Applied Economics Education Level:Undergraduate Question:Which of the following is considered a limitation of using Gross Domestic Product (GDP) as a measure of e",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    },
+    "rejected_source": "hard_synthetic_score4_no_failure",
+    "risk_type": "low_to_high_score_risk",
+    "sample_id": "2805e4237ccaed90f917ee91a5c2c44743bbd1b1"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "insufficient_evidence"
+      ],
+      "rubric_satisfied": false,
+      "score": 1,
+      "score_cap": 1
+    },
+    "dataset_variant": "r5c_no_mid",
+    "prompt_hash": "583745808538328880e7762cd667014e75ad54f6",
+    "prompt_preview": "Question: Subject:Psychology Education Level:PhD Question:Which of the following theories best explains the mechanism of action of selective serotonin reuptake inhibitors (SSRIs) i",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    },
+    "rejected_source": "hard_synthetic_score4_no_failure",
+    "risk_type": "low_to_high_score_risk",
+    "sample_id": "d7038665e81daff68cadf97e16d4c3e3c3fe543d"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "insufficient_evidence"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "dataset_variant": "r5c_no_mid",
+    "prompt_hash": "25c37705c2a48b4708be146936bd8eb7ebb6fa44",
+    "prompt_preview": "Question: Question: Explain how Porter's Five Forces framework can be used to analyze the competitive environment of an industry. Please provide reasoning based on this question. D",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    },
+    "rejected_source": "hard_synthetic_score4_no_failure",
+    "risk_type": "low_to_high_score_risk",
+    "sample_id": "7a5ae2c79851e40cccaf47deb5d4953023576ec9"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "missing_key_point"
+      ],
+      "rubric_satisfied": false,
+      "score": 1,
+      "score_cap": 1
+    },
+    "dataset_variant": "r5c_no_mid",
+    "prompt_hash": "b8f274fad6814f82efe60a9f0c6ea22a24eca169",
+    "prompt_preview": "Question: Subject:Applied Economics Education Level:Undergraduate Question:Which of the following is considered a limitation of using Gross Domestic Product (GDP) as a measure of e",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    },
+    "rejected_source": "hard_synthetic_score4_no_failure",
+    "risk_type": "low_to_high_score_risk",
+    "sample_id": "4042b14600691c9b29b70d916e9db910c058d891"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "missing_key_point"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "dataset_variant": "r5c_no_mid",
+    "prompt_hash": "ee484846ac54582b64d13b332e056989d06e449d",
+    "prompt_preview": "Question: 问题：What is the past tense of the verb 'run'? 原答案：The past tense of 'run' is 'runned'. 你为学生的回答进行纠错服务.请根据这个问题和原答案给出\"纠错后答案\"和\"纠错说明\":,以json格式返回 Answer: ```json { \"纠错后答案\": \"The",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    },
+    "rejected_source": "hard_synthetic_score4_no_failure",
+    "risk_type": "low_to_high_score_risk",
+    "sample_id": "a5b40ba0a800e6ec0da88e7d0591d092caa41ae1"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "missing_key_point"
+      ],
+      "rubric_satisfied": false,
+      "score": 1,
+      "score_cap": 1
+    },
+    "dataset_variant": "r5c_no_mid",
+    "prompt_hash": "549f1e77eb458e9087363ce4d56e97c5b5ae9e81",
+    "prompt_preview": "Question: Subject:Applied Economics Education Level:Undergraduate Question:Which of the following is considered a limitation of using Gross Domestic Product (GDP) as a measure of e",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    },
+    "rejected_source": "hard_synthetic_score4_no_failure",
+    "risk_type": "low_to_high_score_risk",
+    "sample_id": "3e6317e0a4cd57573a6c971fc945cfc7ee52148a"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "missing_key_point"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "dataset_variant": "r5c_no_mid",
+    "prompt_hash": "f4ced55116935a9d7d731be5f2dfc89429252924",
+    "prompt_preview": "Question: Question: Explain how Porter's Five Forces framework can be used to analyze the competitive environment of an industry. Please provide reasoning based on this question. D",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    },
+    "rejected_source": "hard_synthetic_score4_no_failure",
+    "risk_type": "low_to_high_score_risk",
+    "sample_id": "13af8e6896f2be6cf223e45bf4f1652fe39fe7d3"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "missing_key_point"
+      ],
+      "rubric_satisfied": false,
+      "score": 1,
+      "score_cap": 1
+    },
+    "dataset_variant": "r5c_no_mid",
+    "prompt_hash": "8908425556f1a53089ef39c6600e1cdfc1ad9348",
+    "prompt_preview": "Question: 学科:历史学 学制级别:大学 问题：以下哪一事件标志着英格兰光荣革命的结束？ A. 1688年詹姆斯二世的逃亡 B. 1689年权利法案的通过 C. 1690年博因河战役 D. 1694年玛丽二世去世 .请根据问题生成对应的答案。\"答案\":,以json格式返回 Answer: ```json { \"答案\": \"B. 1689年权利法案的通",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    },
+    "rejected_source": "hard_synthetic_score4_no_failure",
+    "risk_type": "low_to_high_score_risk",
+    "sample_id": "eca00ddc55d718efe2435adde78462ed09661b7c"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "missing_key_point"
+      ],
+      "rubric_satisfied": false,
+      "score": 1,
+      "score_cap": 1
+    },
+    "dataset_variant": "r5c_no_mid",
+    "prompt_hash": "b8f274fad6814f82efe60a9f0c6ea22a24eca169",
+    "prompt_preview": "Question: Subject:Applied Economics Education Level:Undergraduate Question:Which of the following is considered a limitation of using Gross Domestic Product (GDP) as a measure of e",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    },
+    "rejected_source": "hard_synthetic_score4_no_failure",
+    "risk_type": "low_to_high_score_risk",
+    "sample_id": "4042b14600691c9b29b70d916e9db910c058d891"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "task_constraint_violation"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "dataset_variant": "r5c_no_mid",
+    "prompt_hash": "d1af21b72389b3fab63a01359dea4e55f501303a",
+    "prompt_preview": "Question: Question: Explain the concept of Nash Equilibrium in game theory and provide an example. Student's Answer: Nash Equilibrium is a situation in a game where each player's s",
+    "rejected_category": "actual_model",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    },
+    "rejected_source": "r2n",
+    "risk_type": "low_to_high_score_risk",
+    "sample_id": "6cc46157fcf2aa5b87cd72293be48481a7e5dacc"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "missing_key_point"
+      ],
+      "rubric_satisfied": false,
+      "score": 1,
+      "score_cap": 1
+    },
+    "dataset_variant": "r5c_no_mid",
+    "prompt_hash": "6668b0f1da892b4090b030251db457a66fe47b1d",
+    "prompt_preview": "Question: 学科:临床医学 学制级别:硕士 问题：以下哪种药物最常用于治疗急性心肌梗死？ A) 阿司匹林 B) 布洛芬 C) 对乙酰氨基酚 D) 洛伐他汀 .请根据问题生成对应的答案。\"答案\":,以json格式返回 Answer: ```json { \"答案\": \"A) 阿司匹林\" } ``` Evaluation metric: Reasoning",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    },
+    "rejected_source": "hard_synthetic_score4_no_failure",
+    "risk_type": "low_to_high_score_risk",
+    "sample_id": "b62bc6a3bc8db6a39e2d347c263aa392be416138"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "missing_key_point"
+      ],
+      "rubric_satisfied": false,
+      "score": 1,
+      "score_cap": 1
+    },
+    "dataset_variant": "r5c_no_mid",
+    "prompt_hash": "1264a7db2f835bcfaa4d25d09f33c068b22f0552",
+    "prompt_preview": "Question: Subject:Crop Science Education Level:Undergraduate Question:Which of the following is a primary macronutrient essential for plant growth? A) Iron B) Magnesium C) Nitrogen",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    },
+    "rejected_source": "hard_synthetic_score4_no_failure",
+    "risk_type": "low_to_high_score_risk",
+    "sample_id": "674bc19324921890f8c1245b4760b0909fc05534"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "surface_fluent_but_hidden_defect"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "dataset_variant": "r5c_no_mid",
+    "prompt_hash": "3fa222afab4ae1351c93d8f9eb62fd532ea4085d",
+    "prompt_preview": "Question: Question: Which of the following factors is most crucial for determining the success of a crop in a particular region? A) Soil pH B) Seed variety C) Irrigation method D) ",
+    "rejected_category": "actual_model",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "rejected_source": "r2n",
+    "risk_type": "low_to_high_score_risk",
+    "sample_id": "26347fdbe0a04b7bfbc0e5079be670bb041a82f8"
+  }
+]

@@ -1,0 +1,502 @@
+[
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "insufficient_evidence"
+      ],
+      "rubric_satisfied": false,
+      "score": 1,
+      "score_cap": 1
+    },
+    "dataset_variant": "r5e_main",
+    "prompt_hash": "583745808538328880e7762cd667014e75ad54f6",
+    "prompt_preview": "Question: Subject:Psychology Education Level:PhD Question:Which of the following theories best explains the mechanism of action of selective serotonin reuptake inhibitors (SSRIs) i",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    },
+    "rejected_source": "hard_synthetic_score4_no_failure",
+    "risk_type": "low_to_high_score_risk",
+    "sample_id": "d7038665e81daff68cadf97e16d4c3e3c3fe543d"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "insufficient_evidence"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "dataset_variant": "r5e_main",
+    "prompt_hash": "25c37705c2a48b4708be146936bd8eb7ebb6fa44",
+    "prompt_preview": "Question: Question: Explain how Porter's Five Forces framework can be used to analyze the competitive environment of an industry. Please provide reasoning based on this question. D",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    },
+    "rejected_source": "hard_synthetic_score4_no_failure",
+    "risk_type": "low_to_high_score_risk",
+    "sample_id": "7a5ae2c79851e40cccaf47deb5d4953023576ec9"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "surface_fluent_but_hidden_defect"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "dataset_variant": "r5e_main",
+    "prompt_hash": "1cdade8828891d49b81c8d203d65009b811de708",
+    "prompt_preview": "Question: Question: Explain the concept of Nash Equilibrium in game theory and provide an example. Student's Answer: Nash Equilibrium is a situation in a game where each player's s",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    },
+    "rejected_source": "hard_synthetic_score4_no_failure",
+    "risk_type": "low_to_high_score_risk",
+    "sample_id": "107a460ba82cd473b9a08a5d43257a7f1d336874"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "insufficient_evidence"
+      ],
+      "rubric_satisfied": false,
+      "score": 1,
+      "score_cap": 1
+    },
+    "dataset_variant": "r5e_main",
+    "prompt_hash": "5b44e682517409e9860f3e90f5f62bb29836301b",
+    "prompt_preview": "Question: Subject:Computer Science Education Level:Undergraduate Question:What is the time complexity of the quicksort algorithm in the average case scenario? . Please generate the",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    },
+    "rejected_source": "hard_synthetic_score4_no_failure",
+    "risk_type": "low_to_high_score_risk",
+    "sample_id": "a2963f0bafecf877ce9d9f85ccd07d324522a500"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "surface_fluent_but_hidden_defect"
+      ],
+      "rubric_satisfied": false,
+      "score": 1,
+      "score_cap": 1
+    },
+    "dataset_variant": "r5e_main",
+    "prompt_hash": "fe48d3e4e17cd8c631999fcb05c41b322b9c3110",
+    "prompt_preview": "Question: 问题：在神经生理学中，动作电位的过程中不包括以下哪一个步骤？ A) 去极化 B) 再极化 C) 超极化 D) 钙离子流入细胞 学生的答案：C) 超极化 请根据问题和学生答案给出\"评分\":\"评分细节\":\"个性化反馈\":,以json格式返回 Answer: ```json { \"评分\": 1, \"评分细节\": { \"正确答案\": \"D) 钙离",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    },
+    "rejected_source": "hard_synthetic_score4_no_failure",
+    "risk_type": "low_to_high_score_risk",
+    "sample_id": "4f22bf04948dfebf09ef963ef74d98df56ffdb57"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "missing_key_point"
+      ],
+      "rubric_satisfied": false,
+      "score": 1,
+      "score_cap": 1
+    },
+    "dataset_variant": "r5e_main",
+    "prompt_hash": "35fa155248451c597525b6179721a4aed5dc10a4",
+    "prompt_preview": "Question: 学科:临床医学 学制级别:硕士 问题：以下哪种药物最常用于治疗急性心肌梗死？ A) 阿司匹林 B) 布洛芬 C) 对乙酰氨基酚 D) 洛伐他汀 .请根据问题生成对应的答案。\"答案\":,以json格式返回 Answer: ```json { \"答案\": \"A) 阿司匹林\" } ``` Evaluation metric: Reasoning",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    },
+    "rejected_source": "hard_synthetic_score4_no_failure",
+    "risk_type": "low_to_high_score_risk",
+    "sample_id": "992ac0fdbb258d7a1438e8ee29db7096365cf8ca"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "missing_key_point"
+      ],
+      "rubric_satisfied": false,
+      "score": 1,
+      "score_cap": 1
+    },
+    "dataset_variant": "r5e_main",
+    "prompt_hash": "f6684ca72a06854879f1eaa2c2a6bf9beee800c4",
+    "prompt_preview": "Question: 学科:体育教育学 学制级别:硕士 问题：在体育教育学中，以下哪些因素可能影响学生的运动参与度？(请选择所有适用的选项) A. 学校的体育设施条件 B. 学生的家庭背景 C. 教师的教学风格 D. 学生的个人兴趣 E. 学校的地理位置 .请根据问题生成对应的答案。\"答案\":,以json格式返回 Answer: ```json { \"影响学生",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    },
+    "rejected_source": "hard_synthetic_score4_no_failure",
+    "risk_type": "low_to_high_score_risk",
+    "sample_id": "8b2201addbda2de262f29b819d9d4a430827f8c8"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "surface_fluent_but_hidden_defect"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "dataset_variant": "r5e_main",
+    "prompt_hash": "6e24d505cb81d18c6b101f232685119f1c6d4fd8",
+    "prompt_preview": "Question: Question: Which part of the plant is responsible for photosynthesis? A) Roots B) Stems C) Leaves D) Flowers Please provide reasoning based on this question. Do not provid",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    },
+    "rejected_source": "hard_synthetic_score4_no_failure",
+    "risk_type": "low_to_high_score_risk",
+    "sample_id": "ccdab1ce8e955bdbf2224a22c0f14a10db6718ab"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "surface_fluent_but_hidden_defect"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "dataset_variant": "r5e_main",
+    "prompt_hash": "f3e040f2c36d527a4d9b05f7463c74d9a6a92b6a",
+    "prompt_preview": "Question: 问题：请简述第二次世界大战的主要参战国和其领导者。 原答案：第二次世界大战的主要参战国包括德国的希特勒、美国的罗斯福、法国的拿破仑和苏联的列宁。 你为学生的回答进行纠错服务.请根据这个问题和原答案给出\"纠错后答案\"和\"纠错说明\":,以json格式返回 Answer: { \"纠错后答案\": \"第二次世界大战的主要参战国包括德国、美国、法国和",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    },
+    "rejected_source": "hard_synthetic_score4_no_failure",
+    "risk_type": "low_to_high_score_risk",
+    "sample_id": "63ab64773fb76fbe6cba302eed79041a8316bb7c"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "surface_fluent_but_hidden_defect"
+      ],
+      "rubric_satisfied": false,
+      "score": 1,
+      "score_cap": 1
+    },
+    "dataset_variant": "r5e_main",
+    "prompt_hash": "fe48d3e4e17cd8c631999fcb05c41b322b9c3110",
+    "prompt_preview": "Question: 问题：在神经生理学中，动作电位的过程中不包括以下哪一个步骤？ A) 去极化 B) 再极化 C) 超极化 D) 钙离子流入细胞 学生的答案：C) 超极化 请根据问题和学生答案给出\"评分\":\"评分细节\":\"个性化反馈\":,以json格式返回 Answer: ```json { \"评分\": 1, \"评分细节\": { \"正确答案\": \"D) 钙离",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    },
+    "rejected_source": "hard_synthetic_score4_no_failure",
+    "risk_type": "low_to_high_score_risk",
+    "sample_id": "4f22bf04948dfebf09ef963ef74d98df56ffdb57"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "missing_key_point"
+      ],
+      "rubric_satisfied": false,
+      "score": 1,
+      "score_cap": 1
+    },
+    "dataset_variant": "r5e_main",
+    "prompt_hash": "8086d61491a70de01a0779ca4b1220d7838ad7ab",
+    "prompt_preview": "Question: Subject:Applied Economics Education Level:Undergraduate Question:Which of the following is considered a limitation of using Gross Domestic Product (GDP) as a measure of e",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    },
+    "rejected_source": "hard_synthetic_score4_no_failure",
+    "risk_type": "low_to_high_score_risk",
+    "sample_id": "2805e4237ccaed90f917ee91a5c2c44743bbd1b1"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "task_constraint_violation"
+      ],
+      "rubric_satisfied": false,
+      "score": 1,
+      "score_cap": 1
+    },
+    "dataset_variant": "r5e_main",
+    "prompt_hash": "4f8ffdfa301a455e13d111b67db77e34382d8054",
+    "prompt_preview": "Question: 问题：在神经生理学中，动作电位的过程中不包括以下哪一个步骤？ A) 去极化 B) 再极化 C) 超极化 D) 钙离子流入细胞 学生的答案：C) 超极化 请根据问题和学生答案给出\"评分\":\"评分细节\":\"个性化反馈\":,以json格式返回 Answer: ```json { \"评分\": 1, \"评分细节\": { \"正确答案\": \"D) 钙离",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    },
+    "rejected_source": "hard_synthetic_score4_no_failure",
+    "risk_type": "low_to_high_score_risk",
+    "sample_id": "f54280d4caeef0bdadc941acfcd5f7fede5d6838"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "missing_key_point"
+      ],
+      "rubric_satisfied": false,
+      "score": 1,
+      "score_cap": 1
+    },
+    "dataset_variant": "r5e_main",
+    "prompt_hash": "7a7e2d53a6af1eaa55e6a922a6a30bc49b288108",
+    "prompt_preview": "Question: 学科:历史学 学制级别:大学 问题：以下哪一事件标志着英格兰光荣革命的结束？ A. 1688年詹姆斯二世的逃亡 B. 1689年权利法案的通过 C. 1690年博因河战役 D. 1694年玛丽二世去世 .请根据问题生成对应的答案。\"答案\":,以json格式返回 Answer: ```json { \"答案\": \"B. 1689年权利法案的通",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    },
+    "rejected_source": "hard_synthetic_score4_no_failure",
+    "risk_type": "low_to_high_score_risk",
+    "sample_id": "4d02a34fe7fc1a2f65e5defcbeec26283b13ada9"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "missing_key_point"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "dataset_variant": "r5e_main",
+    "prompt_hash": "ee484846ac54582b64d13b332e056989d06e449d",
+    "prompt_preview": "Question: 问题：What is the past tense of the verb 'run'? 原答案：The past tense of 'run' is 'runned'. 你为学生的回答进行纠错服务.请根据这个问题和原答案给出\"纠错后答案\"和\"纠错说明\":,以json格式返回 Answer: ```json { \"纠错后答案\": \"The",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    },
+    "rejected_source": "hard_synthetic_score4_no_failure",
+    "risk_type": "low_to_high_score_risk",
+    "sample_id": "a5b40ba0a800e6ec0da88e7d0591d092caa41ae1"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "surface_fluent_but_hidden_defect"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "dataset_variant": "r5e_main",
+    "prompt_hash": "792e3b4e208f720342edc2d09221db5add4d5cf7",
+    "prompt_preview": "Question: 问题：在神经生理学中，动作电位的过程中不包括以下哪一个步骤？ A) 去极化 B) 再极化 C) 超极化 D) 钙离子流入细胞 学生的答案：C) 超极化 请根据问题和学生答案给出\"评分\":\"评分细节\":\"个性化反馈\":,以json格式返回 Answer: ```json { \"评分\": 1, \"评分细节\": { \"正确答案\": \"D) 钙离",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    },
+    "rejected_source": "hard_synthetic_score4_no_failure",
+    "risk_type": "low_to_high_score_risk",
+    "sample_id": "378f7b2160c791b11e16c3dd68d76ed1363a3ff6"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "surface_fluent_but_hidden_defect"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "dataset_variant": "r5e_main",
+    "prompt_hash": "4fd03b604a3d4ad1f092ab6cf7a6b551c244f419",
+    "prompt_preview": "Question: 问题：选择以下具有微分同胚性质的函数类别：（可多选） A. 二次多项式函数 B. 余弦函数 C. 指数函数 D. 常数函数 E. 三次多项式函数 学生的答案：['C', 'E'] 请根据问题和学生答案给出\"评分\":\"评分细节\":\"个性化反馈\":,以json格式返回 Answer: ```json { \"评分\": \"部分正确\", \"评分细节",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    },
+    "rejected_source": "hard_synthetic_score4_no_failure",
+    "risk_type": "low_to_high_score_risk",
+    "sample_id": "17e0ba51820c815389e5f672d6bed2ca748a8775"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "insufficient_evidence"
+      ],
+      "rubric_satisfied": false,
+      "score": 1,
+      "score_cap": 1
+    },
+    "dataset_variant": "r5e_main",
+    "prompt_hash": "10142e2bdab44f605b6be9fca57d7f573e5cdad1",
+    "prompt_preview": "Question: 学科:物理学 学制级别:博士 问题：在广义相对论的框架下，以下哪种情况最有可能导致时空奇点的出现？ A) 电磁场的存在 B) 大质量恒星的核心塌缩 C) 宇宙学常数为零 D) 低能粒子在真空中的运动 .请根据问题生成对应的答案。\"答案\":,以json格式返回 Answer: ```json { \"答案\": \"B) 大质量恒星的核心塌缩\" ",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    },
+    "rejected_source": "hard_synthetic_score4_no_failure",
+    "risk_type": "low_to_high_score_risk",
+    "sample_id": "0f9bdd1ac2b116a1f087a68008be1d0a38cb8ab1"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "missing_key_point"
+      ],
+      "rubric_satisfied": false,
+      "score": 1,
+      "score_cap": 1
+    },
+    "dataset_variant": "r5e_main",
+    "prompt_hash": "a4a800099d244f27f2e731f05886ad562a1cdc68",
+    "prompt_preview": "Question: 学科:临床医学 学制级别:硕士 问题：以下哪种药物最常用于治疗急性心肌梗死？ A) 阿司匹林 B) 布洛芬 C) 对乙酰氨基酚 D) 洛伐他汀 .请根据问题生成对应的答案。\"答案\":,以json格式返回 Answer: ```json { \"答案\": \"A) 阿司匹林\" } ``` Evaluation metric: Reasoning",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    },
+    "rejected_source": "hard_synthetic_score4_no_failure",
+    "risk_type": "low_to_high_score_risk",
+    "sample_id": "4d603e5ed030c00413f35f1852ebb1859d5dc6be"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "insufficient_evidence"
+      ],
+      "rubric_satisfied": false,
+      "score": 1,
+      "score_cap": 1
+    },
+    "dataset_variant": "r5e_main",
+    "prompt_hash": "bfbb49bad40af78b445f342f2784dacb80ea56c1",
+    "prompt_preview": "Question: Question: True or False: The human liver has the capacity to regenerate after surgical removal of a portion of its tissue. Student's Answer: True Please provide \"Score\", ",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    },
+    "rejected_source": "hard_synthetic_score4_no_failure",
+    "risk_type": "low_to_high_score_risk",
+    "sample_id": "7b2343c0fac6f79059007d116f746842fe6a6637"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "missing_key_point"
+      ],
+      "rubric_satisfied": false,
+      "score": 1,
+      "score_cap": 1
+    },
+    "dataset_variant": "r5e_main",
+    "prompt_hash": "8086d61491a70de01a0779ca4b1220d7838ad7ab",
+    "prompt_preview": "Question: Subject:Applied Economics Education Level:Undergraduate Question:Which of the following is considered a limitation of using Gross Domestic Product (GDP) as a measure of e",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    },
+    "rejected_source": "hard_synthetic_score4_no_failure",
+    "risk_type": "low_to_high_score_risk",
+    "sample_id": "2805e4237ccaed90f917ee91a5c2c44743bbd1b1"
+  }
+]

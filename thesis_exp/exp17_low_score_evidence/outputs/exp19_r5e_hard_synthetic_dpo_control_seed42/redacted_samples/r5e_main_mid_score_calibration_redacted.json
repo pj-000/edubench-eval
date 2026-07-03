@@ -1,0 +1,502 @@
+[
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "partial_or_incomplete"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    },
+    "dataset_variant": "r5e_main",
+    "prompt_hash": "724e5983ca3564e7a8930f575caa8f289607ca8d",
+    "prompt_preview": "Question: Subject:Physical Education Education Level:Undergraduate Knowledge Point:The FITT principle is a foundational concept in physical education that stands for Frequency, Int",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "rejected_source": "hard_synthetic_mid_high5",
+    "risk_type": "mid_score_calibration",
+    "sample_id": "9244fd8961a537574c99075f27020808b8899d64"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "partial_or_incomplete"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    },
+    "dataset_variant": "r5e_main",
+    "prompt_hash": "301f8b61967e6497b29d9c39a4a5b73ffc3cbc10",
+    "prompt_preview": "Question: Question: Explain how Porter's Five Forces framework can be used to analyze the competitive environment of an industry. Please provide reasoning based on this question. D",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "missing_key_point"
+      ],
+      "rubric_satisfied": false,
+      "score": 1,
+      "score_cap": 1
+    },
+    "rejected_source": "hard_synthetic_mid_low1",
+    "risk_type": "mid_score_calibration",
+    "sample_id": "a37abff5770cacb87d058dba9bd6df3bb94b41bb"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "partial_or_incomplete"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    },
+    "dataset_variant": "r5e_main",
+    "prompt_hash": "764342a088c8c1ab0cf9bc2acf638c84d4b49ac9",
+    "prompt_preview": "Question: {'Name': 'Alex Johnson', 'Age': 20, 'Current Skill Level': 'Intermediate', 'Learning Goals': ['Understand cellular biology', 'Master genetics concepts', 'Prepare for adva",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "missing_key_point"
+      ],
+      "rubric_satisfied": false,
+      "score": 1,
+      "score_cap": 1
+    },
+    "rejected_source": "hard_synthetic_mid_low1",
+    "risk_type": "mid_score_calibration",
+    "sample_id": "b966b87c284f1074537ded5ff767608734561911"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "partial_or_incomplete"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    },
+    "dataset_variant": "r5e_main",
+    "prompt_hash": "0e3098f97993fcee097483cccda9349dc0ab074d",
+    "prompt_preview": "Question: 学生画像：学生的画像：{'姓名': '李华', '年龄': 24, '背景': '教育学本科毕业，擅长理论分析，对实践策略较弱', '学习目标': '深入理解教育学原理，提升实践应用能力', '兴趣爱好': '阅读教育学相关书籍，参与教育实验项目'} 请根据学生画像，为每位学生生成 ‘个性化的学习内容或任务’:,以json格式返回 Ans",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "missing_key_point"
+      ],
+      "rubric_satisfied": false,
+      "score": 1,
+      "score_cap": 1
+    },
+    "rejected_source": "hard_synthetic_mid_low1",
+    "risk_type": "mid_score_calibration",
+    "sample_id": "c7010dc1869821c2cd44abce044376705da24015"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "partial_or_incomplete"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    },
+    "dataset_variant": "r5e_main",
+    "prompt_hash": "850761f30edbaaf0a0ac94e8b72ea7cdeade6737",
+    "prompt_preview": "Question: Question: Explain the concept of 'New Public Management' (NPM) and its impact on traditional public administration practices. Original Answer: New Public Management is a ",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "missing_key_point"
+      ],
+      "rubric_satisfied": false,
+      "score": 1,
+      "score_cap": 1
+    },
+    "rejected_source": "hard_synthetic_mid_low1",
+    "risk_type": "mid_score_calibration",
+    "sample_id": "7d007f22d2d732357abb72dcc9f68159727bf5f0"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "partial_or_incomplete"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    },
+    "dataset_variant": "r5e_main",
+    "prompt_hash": "19e5701a19ec40c4d058fb5187d692780b869443",
+    "prompt_preview": "Question: 焦虑级别：轻度焦虑 对话内容：[{'学生': '我最近感觉有些焦虑，面对博士阶段的学习压力，有些时候会觉得吃力。'}, {'智能体': '我理解，这么高强度的课程和研究任务，难免会让人感到压力重重。你有没有哪些具体方面觉得特别挑战呢？'}, {'学生': '主要是我在实验设计和数据分析上有时候感到不太自信，担心自己的研究不能达到预期效果。",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "missing_key_point"
+      ],
+      "rubric_satisfied": false,
+      "score": 1,
+      "score_cap": 1
+    },
+    "rejected_source": "hard_synthetic_mid_low1",
+    "risk_type": "mid_score_calibration",
+    "sample_id": "07d0c1c07ded69e274c83bd72ea55ec64f25a208"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "partial_or_incomplete"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    },
+    "dataset_variant": "r5e_main",
+    "prompt_hash": "8ede8dd4ccbd66821d60ba06dc5a4ce26548eac0",
+    "prompt_preview": "Question: Subject:Military Science Education Level:Master Question:Analyze the strategic significance of electromagnetic spectrum operations (EMSO) in contemporary military conflic",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "rejected_source": "hard_synthetic_mid_high5",
+    "risk_type": "mid_score_calibration",
+    "sample_id": "b384d600d0b2d604bcddebf61314cb5b8422e579"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "partial_or_incomplete"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    },
+    "dataset_variant": "r5e_main",
+    "prompt_hash": "caed230a7fe6036cc21623070df09604887d8598",
+    "prompt_preview": "Question: Anxiety Level: Severe Anxiety Dialogue with Student: [{'Agent': 'Hi there! How are you feeling today?'}, {'Student': \"Honestly, I'm really stressed out. I'm struggling wi",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "rejected_source": "hard_synthetic_mid_high5",
+    "risk_type": "mid_score_calibration",
+    "sample_id": "4a94159b2cfae1127c979628b87af3087401a413"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "partial_or_incomplete"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    },
+    "dataset_variant": "r5e_main",
+    "prompt_hash": "db5795e1d9b7ecebd555961cbfa2c807243bb9f5",
+    "prompt_preview": "Question: Question: Explain how plate tectonics can lead to the formation of mountains. Please provide reasoning based on this question. Do not provide the answer directly.. \"Reaso",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "missing_key_point"
+      ],
+      "rubric_satisfied": false,
+      "score": 1,
+      "score_cap": 1
+    },
+    "rejected_source": "hard_synthetic_mid_low1",
+    "risk_type": "mid_score_calibration",
+    "sample_id": "472e71b7c7e9392a0c5998c0f6a22fd595e276bf"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "partial_or_incomplete"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    },
+    "dataset_variant": "r5e_main",
+    "prompt_hash": "bc206d71aa744cd8a800643a1bde45753ddc65dc",
+    "prompt_preview": "Question: Subject:Public Administration Education Level:PhD Knowledge Point:Public administration at the PhD level often involves understanding complex governance structures, polic",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "missing_key_point"
+      ],
+      "rubric_satisfied": false,
+      "score": 1,
+      "score_cap": 1
+    },
+    "rejected_source": "hard_synthetic_mid_low1",
+    "risk_type": "mid_score_calibration",
+    "sample_id": "b7504093180d34c83459d539f1535f19496c6b2f"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "partial_or_incomplete"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    },
+    "dataset_variant": "r5e_main",
+    "prompt_hash": "bc46748ae5398fd952e6d32dc8cb1221c2ce17f5",
+    "prompt_preview": "Question: Anxiety Level: Moderate Anxiety Dialogue with Student: [{'Agent': 'Hi there! How are you feeling about your Computer Science studies lately?'}, {'Student': \"Honestly, I'm",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "rejected_source": "hard_synthetic_mid_high5",
+    "risk_type": "mid_score_calibration",
+    "sample_id": "dd43afdd47f0db627b8c4dfec04e464ceaf3aceb"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "partial_or_incomplete"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    },
+    "dataset_variant": "r5e_main",
+    "prompt_hash": "9d8d9ded24120054f4087d34b1e30d3d78ed7710",
+    "prompt_preview": "Question: 学科:体育教育学 学制级别:硕士 问题：在体育教育学中，以下哪些因素可能影响学生的运动参与度？(请选择所有适用的选项) A. 学校的体育设施条件 B. 学生的家庭背景 C. 教师的教学风格 D. 学生的个人兴趣 E. 学校的地理位置 .请根据问题生成对应的答案。\"答案\":,以json格式返回 Answer: ```json { \"答案\":",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "missing_key_point"
+      ],
+      "rubric_satisfied": false,
+      "score": 1,
+      "score_cap": 1
+    },
+    "rejected_source": "hard_synthetic_mid_low1",
+    "risk_type": "mid_score_calibration",
+    "sample_id": "fffa05299a3e4e39cc5e0f7ed5f19265b1a10c65"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "partial_or_incomplete"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    },
+    "dataset_variant": "r5e_main",
+    "prompt_hash": "2ace1146ed232a2864b0a2a0f07bb28b8bacdb8f",
+    "prompt_preview": "Question: 学生画像：学生的画像：{'姓名': '张伟', '年龄': 28, '学习背景': '在教育学领域有丰富的研究经历，尤其关注学生的个体差异和教育公平问题。已发表多篇相关论文。', '学习风格': '偏好阅读学术期刊和参与教育研讨会，喜欢通过讨论深化理解，比较善于理论联系实际。', '个人兴趣': '对教育技术在教师培训中的应用感兴趣，积极",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "missing_key_point"
+      ],
+      "rubric_satisfied": false,
+      "score": 1,
+      "score_cap": 1
+    },
+    "rejected_source": "hard_synthetic_mid_low1",
+    "risk_type": "mid_score_calibration",
+    "sample_id": "c536e13929e9115989ee06635a0f956c9f726dd3"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "partial_or_incomplete"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    },
+    "dataset_variant": "r5e_main",
+    "prompt_hash": "0b0364fd8bee2ca95870ce48479afe4c2461e52d",
+    "prompt_preview": "Question: 学生画像：学生的画像：{'姓名': '李明', '年龄': 26, '背景': '本科工商管理学士，具有两年政府部门工作经验', '学习目标': '深入理解公共政策制定及其影响，提升数据分析能力用于政策评估', '兴趣': '社科研究，政策分析，社会经济发展', '学习风格': '偏向实践，喜欢通过案例学习', '挑战': '数据分析技能",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "rejected_source": "hard_synthetic_mid_high5",
+    "risk_type": "mid_score_calibration",
+    "sample_id": "3943bdcf7fdf08eb1418b4235d84d913ba48b7b3"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "partial_or_incomplete"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    },
+    "dataset_variant": "r5e_main",
+    "prompt_hash": "8f53a1bbb53efb7d96fac1363c428eb93838fbbc",
+    "prompt_preview": "Question: 问题：选择以下具有微分同胚性质的函数类别：（可多选） A. 二次多项式函数 B. 余弦函数 C. 指数函数 D. 常数函数 E. 三次多项式函数 学生的答案：['C', 'E'] 请根据问题和学生答案给出\"评分\":\"评分细节\":\"个性化反馈\":,以json格式返回 Answer: ```json { \"评分\": \"部分正确\", \"评分细节",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "missing_key_point"
+      ],
+      "rubric_satisfied": false,
+      "score": 1,
+      "score_cap": 1
+    },
+    "rejected_source": "hard_synthetic_mid_low1",
+    "risk_type": "mid_score_calibration",
+    "sample_id": "383b9271df1c2ad71738d8b844d01caf8672fb88"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "partial_or_incomplete"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    },
+    "dataset_variant": "r5e_main",
+    "prompt_hash": "8c02fb3c70bf189ac2bbedf9ec6e363a60251807",
+    "prompt_preview": "Question: Question: Which of the following is the primary function of hemoglobin in the human body? Original Answer: To fight infections by destroying bacteria. You are providing e",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "missing_key_point"
+      ],
+      "rubric_satisfied": false,
+      "score": 1,
+      "score_cap": 1
+    },
+    "rejected_source": "hard_synthetic_mid_low1",
+    "risk_type": "mid_score_calibration",
+    "sample_id": "be1321d38b36c49839edea52e657a1b0dabcf94a"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "partial_or_incomplete"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    },
+    "dataset_variant": "r5e_main",
+    "prompt_hash": "e16e4bbd0d35cd5b065b611cee3f85b6db6f53da",
+    "prompt_preview": "Question: 知识点：社会认同理论 请根据这个知识点给出\"教学素材\":教学素材需要包括教学目标、重点难点、课堂活动设计等,以json格式返回 Answer: ```json { \"教学目标\": [ \"理解社会认同理论的基本概念和核心观点\", \"掌握社会认同理论在现实生活中的应用\", \"培养学生分析和解决社会问题的能力\" ], \"重点难点\": { \"重点",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "rejected_source": "hard_synthetic_mid_high5",
+    "risk_type": "mid_score_calibration",
+    "sample_id": "991844007373cdf6d7dfa84a0cdc16b5cb68386a"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "partial_or_incomplete"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    },
+    "dataset_variant": "r5e_main",
+    "prompt_hash": "6e0dfc8f2d2d8aa5864752d4c33552b6c0716257",
+    "prompt_preview": "Question: 学科:基础医学 学制级别:硕士 知识点：肌肉收缩的生理机制 问题类型：多选题 .请根据学科,学制级别,知识点,问题类型生成一个对应的问题。\"问题\"和\"提供的思路\":,以json格式返回 Answer: ```json { \"问题\": \"关于肌肉收缩的生理机制，下列哪些描述是正确的？\", \"提供的思路\": [ { \"选项\": \"A. 肌肉收",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "rejected_source": "hard_synthetic_mid_high5",
+    "risk_type": "mid_score_calibration",
+    "sample_id": "e411072cba646476b2d7c17b7ff2d3ae5cbf9c7d"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "partial_or_incomplete"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    },
+    "dataset_variant": "r5e_main",
+    "prompt_hash": "2228b863bfc8f6f5970d6a62252644a10642f348",
+    "prompt_preview": "Question: 问题：以下哪项是公共管理学中对公共政策评估的主要方法之一？ A) 实验设计 B) 案例研究 C) 文献综述 D) 参与观察 原答案：C) 文献综述 你为学生的回答进行纠错服务.请根据这个问题和原答案给出\"纠错后答案\"和\"纠错说明\":,以json格式返回 Answer: ```json { \"纠错后答案\": \"B) 案例研究\", \"纠错说明",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "rejected_source": "hard_synthetic_mid_high5",
+    "risk_type": "mid_score_calibration",
+    "sample_id": "0f2007f68e23fac6a5086f99717c2dd2cb723596"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "partial_or_incomplete"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    },
+    "dataset_variant": "r5e_main",
+    "prompt_hash": "f84617fce533cf1bd7e8e19e31f9ca86d69f76b2",
+    "prompt_preview": "Question: 学生画像：学生的画像：{'姓名': '李明', '年级': '大二', '专业': '数学与应用数学', '学习风格': '视觉学习者，喜欢利用图表和图形理解概念', '学习目标': '提高微积分和线性代数的应用能力', '学习挑战': '在抽象概念的理解上有所困难，需要更多实际应用的例子'} 请根据学生画像，为每位学生生成 ‘个性化的学",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "rejected_source": "hard_synthetic_mid_high5",
+    "risk_type": "mid_score_calibration",
+    "sample_id": "d966e3a80e7b4a71ce4100e4a77752a9b8bedde2"
+  }
+]

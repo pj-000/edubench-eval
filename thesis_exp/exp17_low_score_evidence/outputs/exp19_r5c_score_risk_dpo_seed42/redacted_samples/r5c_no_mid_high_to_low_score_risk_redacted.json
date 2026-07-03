@@ -1,0 +1,502 @@
+[
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "dataset_variant": "r5c_no_mid",
+    "prompt_hash": "28dac7bb4e2d71469117804b3dbbe63178e2c0b6",
+    "prompt_preview": "Question: Subject:Public Administration Education Level:PhD Knowledge Point:Public administration at the PhD level often involves understanding complex governance structures, polic",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "unclear"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "rejected_source": "hard_synthetic_score2_conservative_failure",
+    "risk_type": "high_to_low_score_risk",
+    "sample_id": "32297e4c1ad2c54b6544697581f3bc669971a811"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "dataset_variant": "r5c_no_mid",
+    "prompt_hash": "070f3d50b2192b255f34644bf249cbd11e76cc1b",
+    "prompt_preview": "Question: 问题：考虑一个有机分子，其含有羧基(-COOH)和酯基(-COOR')。请解释该分子在酸性和碱性条件下的水解反应机理，并讨论不同条件下的反应产物。 请根据这个问题提供思路。\"提供的思路\":,以json格式返回 Answer: ```json { \"思路\": { \"问题分析\": \"分子同时含有羧基(-COOH)和酯基(-COOR')，需分别",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "insufficient_evidence"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    },
+    "rejected_source": "hard_synthetic_score3_conservative_failure",
+    "risk_type": "high_to_low_score_risk",
+    "sample_id": "b9af7e5a6e508474db01d998d8ef1661892c2b08"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "dataset_variant": "r5c_no_mid",
+    "prompt_hash": "eff5c9b7410b0e1208301b2a924489daf50b66c7",
+    "prompt_preview": "Question: 学科:心理学 学制级别:大学 知识点：社会认知理论中的自我效能感 问题类型：多选题 .请根据学科,学制级别,知识点,问题类型生成一个对应的问题。\"问题\"和\"提供的思路\":,以json格式返回 Answer: ```json { \"问题\": \"根据社会认知理论中的自我效能感，以下哪些因素可能影响个体的自我效能感？\", \"提供的思路\": [ ",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "unclear"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "rejected_source": "hard_synthetic_score2_conservative_failure",
+    "risk_type": "high_to_low_score_risk",
+    "sample_id": "9b9a06b910b0a827011c60ed32f8c6f1c2295120"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    },
+    "dataset_variant": "r5c_no_mid",
+    "prompt_hash": "dc6a7911e4dba55b352fec7fc17daef9cbbf0689",
+    "prompt_preview": "Question: 学科:心理学 学制级别:大学 知识点：社会认知理论中的自我效能感 问题类型：多选题 .请根据学科,学制级别,知识点,问题类型生成一个对应的问题。\"问题\"和\"提供的思路\":,以json格式返回 Answer: ```json { \"问题\": \"在社会认知理论中，以下哪些选项能够提高个体的自我效能感？\", \"提供的思路\": [ \"通过成功经验",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "unclear"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "rejected_source": "hard_synthetic_score2_conservative_failure",
+    "risk_type": "high_to_low_score_risk",
+    "sample_id": "1e967bb0b191a7e30189b7eba13271d803147da4"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "dataset_variant": "r5c_no_mid",
+    "prompt_hash": "b4e4d1f809e7c88bee4e3e7d4dfaab73692c46cb",
+    "prompt_preview": "Question: 问题：What is the past tense of the verb 'run'? 原答案：The past tense of 'run' is 'runned'. 你为学生的回答进行纠错服务.请根据这个问题和原答案给出\"纠错后答案\"和\"纠错说明\":,以json格式返回 Answer: ```json { \"纠错后答案\": \"The",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "insufficient_evidence"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    },
+    "rejected_source": "hard_synthetic_score3_conservative_failure",
+    "risk_type": "high_to_low_score_risk",
+    "sample_id": "81a15bc3f61f5a6826ac82ef9ebca276bae6a696"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "dataset_variant": "r5c_no_mid",
+    "prompt_hash": "9e0b68fd177f125200ec778103986ad7e80d7236",
+    "prompt_preview": "Question: Knowledge Point: The Influence of Surrealism on Modern Literature Based on this knowledge point, provide \"Teaching Materials\": Teaching materials should include teaching ",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "insufficient_evidence"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    },
+    "rejected_source": "hard_synthetic_score3_conservative_failure",
+    "risk_type": "high_to_low_score_risk",
+    "sample_id": "d1cb339147998c03ad09881d6362e1fbf9e906de"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    },
+    "dataset_variant": "r5c_no_mid",
+    "prompt_hash": "a0d63259a3d5ef5820ca85b9e139f865eece4d5e",
+    "prompt_preview": "Question: Question: What is the value of 5 + 3? Please provide reasoning based on this question. Do not provide the answer directly.. \"Reasoning Provided\":, return in JSON format A",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "insufficient_evidence"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    },
+    "rejected_source": "hard_synthetic_score3_conservative_failure",
+    "risk_type": "high_to_low_score_risk",
+    "sample_id": "ea7c73d44bee68b6c63a68f0126a03764720d317"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    },
+    "dataset_variant": "r5c_no_mid",
+    "prompt_hash": "9a710a3a2871c5dcab40ee9110dba4be953ec41c",
+    "prompt_preview": "Question: 焦虑程度：重度焦虑 对话内容：学生：我最近总是觉得很害怕，语文课上也总是紧张，担心自己读不好。 智能体：我听到你的担心了，这种感觉很难受。能告诉我是什么让你特别害怕吗？ 学生：我总觉得老师会批评我，还有同学们会笑话我。 智能体：感谢你的分享，这种担心确实让人很紧张。但我相信老师和同学们都希望你能进步，而不是批评或嘲笑你。你有没有尝试过和老",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "unclear"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "rejected_source": "hard_synthetic_score2_conservative_failure",
+    "risk_type": "high_to_low_score_risk",
+    "sample_id": "7af9e84f641bdd689f9ea4f982358a3cfbeafa5f"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    },
+    "dataset_variant": "r5c_no_mid",
+    "prompt_hash": "c18b997022fd666383e6a464e42f0880c71a9614",
+    "prompt_preview": "Question: Question: Explain how plate tectonics can lead to the formation of mountains. Please provide reasoning based on this question. Do not provide the answer directly.. \"Reaso",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "unclear"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "rejected_source": "hard_synthetic_score2_conservative_failure",
+    "risk_type": "high_to_low_score_risk",
+    "sample_id": "fef8aac8776a2f5df36e402f5b89a525ba5d57d2"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "dataset_variant": "r5c_no_mid",
+    "prompt_hash": "34e5a4cf3ee3eb8535f02b4804d8fefbd1252e83",
+    "prompt_preview": "Question: 学科:文学与艺术 学制级别:博士 知识点：后现代主义文学理论 问题类型：单选题 .请根据学科,学制级别,知识点,问题类型生成一个对应的问题。\"问题\"和\"提供的思路\":,以json格式返回 Answer: ```json { \"问题\": \"下列哪一项不是后现代主义文学理论的主要特征？\", \"提供的思路\": { \"选项A\": \"对宏大叙事的怀",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "insufficient_evidence"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    },
+    "rejected_source": "hard_synthetic_score3_conservative_failure",
+    "risk_type": "high_to_low_score_risk",
+    "sample_id": "033c60ce75db4441ba76414ef486a2b23cce4daf"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    },
+    "dataset_variant": "r5c_no_mid",
+    "prompt_hash": "7d99ea4564ea4b3729299187309fcd3d8a217619",
+    "prompt_preview": "Question: 问题：请简述第二次世界大战的主要参战国和其领导者。 原答案：第二次世界大战的主要参战国包括德国的希特勒、美国的罗斯福、法国的拿破仑和苏联的列宁。 你为学生的回答进行纠错服务.请根据这个问题和原答案给出\"纠错后答案\"和\"纠错说明\":,以json格式返回 Answer: { \"纠错后答案\": \"第二次世界大战的主要参战国包括德国、美国、法国和",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "insufficient_evidence"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    },
+    "rejected_source": "hard_synthetic_score3_conservative_failure",
+    "risk_type": "high_to_low_score_risk",
+    "sample_id": "a9ca05918382cd1a4d254527623ff14b50074eb2"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "dataset_variant": "r5c_no_mid",
+    "prompt_hash": "800f10fefe23ad04df3ea7173617339dbe339220",
+    "prompt_preview": "Question: 学科:心理学 学制级别:大学 知识点：社会认知理论中的自我效能感 问题类型：多选题 .请根据学科,学制级别,知识点,问题类型生成一个对应的问题。\"问题\"和\"提供的思路\":,以json格式返回 Answer: ```json { \"问题\": \"根据社会认知理论中的自我效能感，以下哪些选项是自我效能感对个体行为的主要影响？（多选）\", \"提供",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "unclear"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "rejected_source": "hard_synthetic_score2_conservative_failure",
+    "risk_type": "high_to_low_score_risk",
+    "sample_id": "90cc5791898b6b2f8ea9d980a2f9aa9a26ea0baa"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "dataset_variant": "r5c_no_mid",
+    "prompt_hash": "1de9bb4247a5ac1003e8c74d4e39a8825d3acc64",
+    "prompt_preview": "Question: Question: What is the value of 5 + 3? Please provide reasoning based on this question. Do not provide the answer directly.. \"Reasoning Provided\":, return in JSON format A",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "unclear"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "rejected_source": "hard_synthetic_score2_conservative_failure",
+    "risk_type": "high_to_low_score_risk",
+    "sample_id": "b986403c63f16eaf326e6a5d6864ab20bec5b7cb"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "dataset_variant": "r5c_no_mid",
+    "prompt_hash": "f09eb0b42ffc16cd6e37c62a9ac34da6eda68c0a",
+    "prompt_preview": "Question: Subject:Military Science Education Level:Master Question:Analyze the strategic significance of electromagnetic spectrum operations (EMSO) in contemporary military conflic",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "insufficient_evidence"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    },
+    "rejected_source": "hard_synthetic_score3_conservative_failure",
+    "risk_type": "high_to_low_score_risk",
+    "sample_id": "3bc28d7363dc4747045c6f5b9a7871c12c1edf36"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    },
+    "dataset_variant": "r5c_no_mid",
+    "prompt_hash": "e63c62c437a0c879dfeac6b3d8bc130cdb3f2275",
+    "prompt_preview": "Question: Student Profile: Student Profile: {'Name': 'Alex Johnson', 'Age': 20, 'Year': 'Junior', 'Background': 'Strong interest in social justice and community engagement, prefers",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "insufficient_evidence"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    },
+    "rejected_source": "hard_synthetic_score3_conservative_failure",
+    "risk_type": "high_to_low_score_risk",
+    "sample_id": "9fbf7dbec19da5f6f5f0e760e181c7e23fbd80ae"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "dataset_variant": "r5c_no_mid",
+    "prompt_hash": "51cca2e43060243b89dd7a48e55e23259a669ed0",
+    "prompt_preview": "Question: 学科:临床医学 学制级别:硕士 问题：以下哪种药物最常用于治疗急性心肌梗死？ A) 阿司匹林 B) 布洛芬 C) 对乙酰氨基酚 D) 洛伐他汀 .请根据问题生成对应的答案。\"答案\":,以json格式返回 Answer: ```json { \"答案\": \"A) 阿司匹林\" } ``` Evaluation metric: Basic Fac",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "unclear"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "rejected_source": "hard_synthetic_score2_conservative_failure",
+    "risk_type": "high_to_low_score_risk",
+    "sample_id": "412a365318ed4cf03c437da7f17e3fabbaa7127f"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    },
+    "dataset_variant": "r5c_no_mid",
+    "prompt_hash": "477f9a450249d78960d0e5805740c6bb615005bc",
+    "prompt_preview": "Question: 学生画像：学生的画像：{'姓名': '李华', '年龄': 24, '背景': '教育学本科毕业，擅长理论分析，对实践策略较弱', '学习目标': '深入理解教育学原理，提升实践应用能力', '兴趣爱好': '阅读教育学相关书籍，参与教育实验项目'} 请根据学生画像，为每位学生生成 ‘个性化的学习内容或任务’:,以json格式返回 Ans",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "insufficient_evidence"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    },
+    "rejected_source": "hard_synthetic_score3_conservative_failure",
+    "risk_type": "high_to_low_score_risk",
+    "sample_id": "a8ecd32ec82f0235899ec257115800eeb64b0955"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "dataset_variant": "r5c_no_mid",
+    "prompt_hash": "9056c4c4e23db4f7ab78a2d8c7408d19ec83652b",
+    "prompt_preview": "Question: 问题：在研究中世纪封建制度发展的过程中，下列哪些因素对其演变起到了关键作用？（可选择多个） A. 农奴制 B. 城市化进程 C. 十字军东征 D. 文艺复兴 E. 黑死病的流行 F. 军事科技的进步 学生的答案：['A', 'C', 'E', 'F'] 请根据问题和学生答案给出\"评分\":\"评分细节\":\"个性化反馈\":,以json格式返回 ",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "insufficient_evidence"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    },
+    "rejected_source": "hard_synthetic_score3_conservative_failure",
+    "risk_type": "high_to_low_score_risk",
+    "sample_id": "2562d2f9291bccd950fc44eadc429f25efc482df"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    },
+    "dataset_variant": "r5c_no_mid",
+    "prompt_hash": "96ba699f9482a815667a285d792112c025a39220",
+    "prompt_preview": "Question: 问题：解释“需求弹性”的概念及其在经济学中的重要性。 学生的答案：需求弹性是指需求量对价格变化的反应程度。在经济学中，它很重要，因为它帮助企业了解价格变动对销售额的影响，也帮助政府制定税收政策。 请根据问题和学生答案给出\"评分\":\"评分细节\":\"个性化反馈\":,以json格式返回 Answer: ```json { \"评分\": 8, \"评",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "insufficient_evidence"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    },
+    "rejected_source": "hard_synthetic_score3_conservative_failure",
+    "risk_type": "high_to_low_score_risk",
+    "sample_id": "3cdde12207ae884f8277f44fbf883427ce65b8e3"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    },
+    "dataset_variant": "r5c_no_mid",
+    "prompt_hash": "7e0d3465dd29abee8059535771b261fae1eec7d0",
+    "prompt_preview": "Question: Knowledge Point: Constructivist Learning Theory Based on this knowledge point, provide \"Teaching Materials\": Teaching materials should include teaching objectives, key po",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "insufficient_evidence"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    },
+    "rejected_source": "hard_synthetic_score3_conservative_failure",
+    "risk_type": "high_to_low_score_risk",
+    "sample_id": "1aa700f78b83a12addf591daabdf638f5b60da8f"
+  }
+]

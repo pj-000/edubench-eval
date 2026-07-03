@@ -1,0 +1,6 @@
+dataset_variant,risk_type,original_count,expanded_count,actual_fraction
+r5c_main,high_to_low_score_risk,2659,1350,0.45
+r5c_main,low_to_high_score_risk,80,1350,0.45
+r5c_main,mid_score_calibration,297,300,0.1
+r5c_no_mid,high_to_low_score_risk,2659,1500,0.5
+r5c_no_mid,low_to_high_score_risk,80,1500,0.5

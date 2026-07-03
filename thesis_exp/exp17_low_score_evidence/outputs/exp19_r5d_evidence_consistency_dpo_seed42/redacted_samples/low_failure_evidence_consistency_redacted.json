@@ -1,0 +1,482 @@
+[
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "format_violation"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "prompt_hash": "c90b0a4c6da3b719c935adfaece27600ca91fefd",
+    "prompt_preview": "Question: 问题：解释“需求弹性”的概念及其在经济学中的重要性。 学生的答案：需求弹性是指需求量对价格变化的反应程度。在经济学中，它很重要，因为它帮助企业了解价格变动对销售额的影响，也帮助政府制定税收政策。 请根据问题和学生答案给出\"评分\":\"评分细节\":\"个性化反馈\":,以json格式返回 Answer: ```json { \"评分\": 75, \"",
+    "rejected_category": "actual_model",
+    "rejected_redacted": {
+      "major_failures": [
+        "partial_or_incomplete"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    },
+    "rejected_source": "r2n",
+    "risk_type": "low_failure_evidence_consistency",
+    "sample_id": "3fdc81f613bf237c32a80d3fb798df97d4a1a3ab"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "missing_key_point"
+      ],
+      "rubric_satisfied": false,
+      "score": 1,
+      "score_cap": 1
+    },
+    "prompt_hash": "35fa155248451c597525b6179721a4aed5dc10a4",
+    "prompt_preview": "Question: 学科:临床医学 学制级别:硕士 问题：以下哪种药物最常用于治疗急性心肌梗死？ A) 阿司匹林 B) 布洛芬 C) 对乙酰氨基酚 D) 洛伐他汀 .请根据问题生成对应的答案。\"答案\":,以json格式返回 Answer: ```json { \"答案\": \"A) 阿司匹林\" } ``` Evaluation metric: Reasoning",
+    "rejected_category": "actual_model",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": false,
+      "score": 1,
+      "score_cap": 1
+    },
+    "rejected_source": "r4b",
+    "risk_type": "low_failure_evidence_consistency",
+    "sample_id": "992ac0fdbb258d7a1438e8ee29db7096365cf8ca"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "insufficient_evidence"
+      ],
+      "rubric_satisfied": false,
+      "score": 1,
+      "score_cap": 1
+    },
+    "prompt_hash": "994c2bdaf1356496ec298b8c15ae785621bc725d",
+    "prompt_preview": "Question: Subject:Psychology Education Level:PhD Question:Which of the following theories best explains the mechanism of action of selective serotonin reuptake inhibitors (SSRIs) i",
+    "rejected_category": "actual_model",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": false,
+      "score": 1,
+      "score_cap": 1
+    },
+    "rejected_source": "r4b",
+    "risk_type": "low_failure_evidence_consistency",
+    "sample_id": "6358300a1312a268220578a420e801d4c75e9525"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "insufficient_evidence"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "prompt_hash": "056ca164ed4e82c8d50b29ea612850e46684a02c",
+    "prompt_preview": "Question: Question: Explain how Porter's Five Forces framework can be used to analyze the competitive environment of an industry. Please provide reasoning based on this question. D",
+    "rejected_category": "actual_model",
+    "rejected_redacted": {
+      "major_failures": [
+        "partial_or_incomplete"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    },
+    "rejected_source": "r2n",
+    "risk_type": "low_failure_evidence_consistency",
+    "sample_id": "78a2f1f17b59206fae3cdedb6b11a9fef084b670"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "insufficient_evidence"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "prompt_hash": "e2bf225f73a506b78a8fc27bbf3c425898923a5d",
+    "prompt_preview": "Question: Subject:Aquaculture Education Level:Undergraduate Knowledge Point:Aquaculture involves the farming of aquatic organisms, including fish, mollusks, crustaceans, and aquati",
+    "rejected_category": "actual_model",
+    "rejected_redacted": {
+      "major_failures": [
+        "partial_or_incomplete"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    },
+    "rejected_source": "r2n",
+    "risk_type": "low_failure_evidence_consistency",
+    "sample_id": "9b98fbe73d713149b38df9e497e2ad0a0a022c91"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "surface_fluent_but_hidden_defect"
+      ],
+      "rubric_satisfied": false,
+      "score": 1,
+      "score_cap": 1
+    },
+    "prompt_hash": "228b640b1ea4f388aa703c492c91256f042aab08",
+    "prompt_preview": "Question: 问题：在神经生理学中，动作电位的过程中不包括以下哪一个步骤？ A) 去极化 B) 再极化 C) 超极化 D) 钙离子流入细胞 学生的答案：C) 超极化 请根据问题和学生答案给出\"评分\":\"评分细节\":\"个性化反馈\":,以json格式返回 Answer: ```json { \"评分\": 1, \"评分细节\": { \"正确答案\": \"D) 钙离",
+    "rejected_category": "actual_model",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": false,
+      "score": 1,
+      "score_cap": 1
+    },
+    "rejected_source": "r4b",
+    "risk_type": "low_failure_evidence_consistency",
+    "sample_id": "b5f54f2d11493dd41a74e9e2274d26451a958dcc"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "task_constraint_violation"
+      ],
+      "rubric_satisfied": false,
+      "score": 1,
+      "score_cap": 1
+    },
+    "prompt_hash": "4f8ffdfa301a455e13d111b67db77e34382d8054",
+    "prompt_preview": "Question: 问题：在神经生理学中，动作电位的过程中不包括以下哪一个步骤？ A) 去极化 B) 再极化 C) 超极化 D) 钙离子流入细胞 学生的答案：C) 超极化 请根据问题和学生答案给出\"评分\":\"评分细节\":\"个性化反馈\":,以json格式返回 Answer: ```json { \"评分\": 1, \"评分细节\": { \"正确答案\": \"D) 钙离",
+    "rejected_category": "actual_model",
+    "rejected_redacted": {
+      "major_failures": [
+        "partial_or_incomplete"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    },
+    "rejected_source": "r2n",
+    "risk_type": "low_failure_evidence_consistency",
+    "sample_id": "f54280d4caeef0bdadc941acfcd5f7fede5d6838"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "missing_key_point"
+      ],
+      "rubric_satisfied": false,
+      "score": 1,
+      "score_cap": 1
+    },
+    "prompt_hash": "288db7584f3117555643fa63dbc2767b16772806",
+    "prompt_preview": "Question: 学科:历史学 学制级别:大学 问题：以下哪一事件标志着英格兰光荣革命的结束？ A. 1688年詹姆斯二世的逃亡 B. 1689年权利法案的通过 C. 1690年博因河战役 D. 1694年玛丽二世去世 .请根据问题生成对应的答案。\"答案\":,以json格式返回 Answer: ```json { \"答案\": \"B. 1689年权利法案的通",
+    "rejected_category": "actual_model",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": false,
+      "score": 1,
+      "score_cap": 1
+    },
+    "rejected_source": "r4b",
+    "risk_type": "low_failure_evidence_consistency",
+    "sample_id": "cc218e690fef26eec817bb03c4ad9a759d05825e"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "surface_fluent_but_hidden_defect"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "prompt_hash": "035be24cdca419071f7b16b4bcc981b07797ca50",
+    "prompt_preview": "Question: Question: Explain how Porter's Five Forces framework can be used to analyze the competitive environment of an industry. Please provide reasoning based on this question. D",
+    "rejected_category": "actual_model",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "rejected_source": "r4b",
+    "risk_type": "low_failure_evidence_consistency",
+    "sample_id": "1b5df375ab0c6d48d21dc9a88fd408b29454ff67"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "surface_fluent_but_hidden_defect"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "prompt_hash": "e045f95d73390b93a23539a9a4c7b18f8d03533c",
+    "prompt_preview": "Question: 问题：在神经生理学中，动作电位的过程中不包括以下哪一个步骤？ A) 去极化 B) 再极化 C) 超极化 D) 钙离子流入细胞 学生的答案：C) 超极化 请根据问题和学生答案给出\"评分\":\"评分细节\":\"个性化反馈\":,以json格式返回 Answer: { \"评分\": \"错误\", \"评分细节\": \"学生的答案选择了C) 超极化，这是不正确",
+    "rejected_category": "actual_model",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "rejected_source": "r4b",
+    "risk_type": "low_failure_evidence_consistency",
+    "sample_id": "f33e86ba6eaa5281c801dea1ed174135a7d4c0da"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "surface_fluent_but_hidden_defect"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "prompt_hash": "20320e7b761dd0fd1535aa530e812bd6718e9580",
+    "prompt_preview": "Question: Question: Which part of the plant is responsible for photosynthesis? A) Roots B) Stems C) Leaves D) Flowers Please provide reasoning based on this question. Do not provid",
+    "rejected_category": "actual_model",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "rejected_source": "r4b",
+    "risk_type": "low_failure_evidence_consistency",
+    "sample_id": "ef7be96d3b20f985cb175937b67d094d4d204dcc"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "surface_fluent_but_hidden_defect"
+      ],
+      "rubric_satisfied": false,
+      "score": 1,
+      "score_cap": 1
+    },
+    "prompt_hash": "f7dc7ac4e6652c71de6f997b2cdab528eab35b59",
+    "prompt_preview": "Question: 问题：在教育学中，哪个教学方法最强调学生的主动参与？ 学生的答案：合作学习法 请根据问题和学生答案给出\"评分\":\"评分细节\":\"个性化反馈\":,以json格式返回 Answer: ```json { \"评分\": \"部分正确\", \"评分细节\": \"合作学习法确实强调学生的主动参与，但它并不是唯一强调学生主动参与的教学方法。其他方法如项目式学",
+    "rejected_category": "actual_model",
+    "rejected_redacted": {
+      "major_failures": [
+        "partial_or_incomplete"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    },
+    "rejected_source": "r2n",
+    "risk_type": "low_failure_evidence_consistency",
+    "sample_id": "1d5f77fabc222d72e4fb87f25eb3e5c41e786cf4"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "surface_fluent_but_hidden_defect"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "prompt_hash": "b3cf8a61f5afe62e45cd429a918b1d34639c4fdc",
+    "prompt_preview": "Question: 学科:法学 学制级别:博士 问题：在国际法中，以下哪一个原则主要用于解决国家之间的领土争端？ A. 不干涉内政原则 B. 自决原则 C. 先占原则 D. 互惠原则 .请根据问题生成对应的答案。\"答案\":,以json格式返回 Answer: ```json { \"答案\": \"B. 自决原则\" } ``` 注解：自决原则是国际法中的一个重要原",
+    "rejected_category": "actual_model",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "rejected_source": "r4b",
+    "risk_type": "low_failure_evidence_consistency",
+    "sample_id": "89f8c6ed8c1b947a44510dcc18b38a1d97571453"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "insufficient_evidence"
+      ],
+      "rubric_satisfied": false,
+      "score": 1,
+      "score_cap": 1
+    },
+    "prompt_hash": "bfbb49bad40af78b445f342f2784dacb80ea56c1",
+    "prompt_preview": "Question: Question: True or False: The human liver has the capacity to regenerate after surgical removal of a portion of its tissue. Student's Answer: True Please provide \"Score\", ",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 2,
+      "score_cap": null
+    },
+    "rejected_source": "hard_synthetic_low_no_failure_inconsistent",
+    "risk_type": "low_failure_evidence_consistency",
+    "sample_id": "7b2343c0fac6f79059007d116f746842fe6a6637"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "missing_key_point"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "prompt_hash": "60b09b58b9ddbc6ad7161ba0b5817270e9741585",
+    "prompt_preview": "Question: 问题：请简述第二次世界大战的主要参战国和其领导者。 原答案：第二次世界大战的主要参战国包括德国的希特勒、美国的罗斯福、法国的拿破仑和苏联的列宁。 你为学生的回答进行纠错服务.请根据这个问题和原答案给出\"纠错后答案\"和\"纠错说明\":,以json格式返回 Answer: ```json { \"纠错后答案\": \"第二次世界大战的主要参战国及其领",
+    "rejected_category": "actual_model",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "rejected_source": "r4b",
+    "risk_type": "low_failure_evidence_consistency",
+    "sample_id": "f0c923e09065792432b0f588a7eb74ea86409797"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "surface_fluent_but_hidden_defect"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "prompt_hash": "20320e7b761dd0fd1535aa530e812bd6718e9580",
+    "prompt_preview": "Question: Question: Which part of the plant is responsible for photosynthesis? A) Roots B) Stems C) Leaves D) Flowers Please provide reasoning based on this question. Do not provid",
+    "rejected_category": "actual_model",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "rejected_source": "r4b",
+    "risk_type": "low_failure_evidence_consistency",
+    "sample_id": "ef7be96d3b20f985cb175937b67d094d4d204dcc"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "surface_fluent_but_hidden_defect"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "prompt_hash": "1cdade8828891d49b81c8d203d65009b811de708",
+    "prompt_preview": "Question: Question: Explain the concept of Nash Equilibrium in game theory and provide an example. Student's Answer: Nash Equilibrium is a situation in a game where each player's s",
+    "rejected_category": "actual_model",
+    "rejected_redacted": {
+      "major_failures": [
+        "partial_or_incomplete"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    },
+    "rejected_source": "r2n",
+    "risk_type": "low_failure_evidence_consistency",
+    "sample_id": "107a460ba82cd473b9a08a5d43257a7f1d336874"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "surface_fluent_but_hidden_defect"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "prompt_hash": "792e3b4e208f720342edc2d09221db5add4d5cf7",
+    "prompt_preview": "Question: 问题：在神经生理学中，动作电位的过程中不包括以下哪一个步骤？ A) 去极化 B) 再极化 C) 超极化 D) 钙离子流入细胞 学生的答案：C) 超极化 请根据问题和学生答案给出\"评分\":\"评分细节\":\"个性化反馈\":,以json格式返回 Answer: ```json { \"评分\": 1, \"评分细节\": { \"正确答案\": \"D) 钙离",
+    "rejected_category": "actual_model",
+    "rejected_redacted": {
+      "major_failures": [
+        "partial_or_incomplete"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    },
+    "rejected_source": "r2n",
+    "risk_type": "low_failure_evidence_consistency",
+    "sample_id": "378f7b2160c791b11e16c3dd68d76ed1363a3ff6"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "missing_key_point"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "prompt_hash": "ee484846ac54582b64d13b332e056989d06e449d",
+    "prompt_preview": "Question: 问题：What is the past tense of the verb 'run'? 原答案：The past tense of 'run' is 'runned'. 你为学生的回答进行纠错服务.请根据这个问题和原答案给出\"纠错后答案\"和\"纠错说明\":,以json格式返回 Answer: ```json { \"纠错后答案\": \"The",
+    "rejected_category": "actual_model",
+    "rejected_redacted": {
+      "major_failures": [
+        "partial_or_incomplete"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    },
+    "rejected_source": "r2n",
+    "risk_type": "low_failure_evidence_consistency",
+    "sample_id": "a5b40ba0a800e6ec0da88e7d0591d092caa41ae1"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "insufficient_evidence"
+      ],
+      "rubric_satisfied": false,
+      "score": 1,
+      "score_cap": 1
+    },
+    "prompt_hash": "ffacb6899fdeb97f295a4b0c99a0530413525295",
+    "prompt_preview": "Question: Subject:Psychology Education Level:PhD Question:Which of the following theories best explains the mechanism of action of selective serotonin reuptake inhibitors (SSRIs) i",
+    "rejected_category": "actual_model",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": false,
+      "score": 1,
+      "score_cap": 1
+    },
+    "rejected_source": "r4b",
+    "risk_type": "low_failure_evidence_consistency",
+    "sample_id": "5680bbfccbc4637e7c9c7e3d63698aaf2b4fa213"
+  }
+]

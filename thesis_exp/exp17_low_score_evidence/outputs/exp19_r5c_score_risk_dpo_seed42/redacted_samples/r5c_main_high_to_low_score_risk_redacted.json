@@ -1,0 +1,502 @@
+[
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "dataset_variant": "r5c_main",
+    "prompt_hash": "2a3971004e2e4c71a6a4d97d073034a8552c1f1c",
+    "prompt_preview": "Question: Subject:Applied Economics Education Level:Undergraduate Question:Which of the following is considered a limitation of using Gross Domestic Product (GDP) as a measure of e",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "unclear"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "rejected_source": "hard_synthetic_score2_conservative_failure",
+    "risk_type": "high_to_low_score_risk",
+    "sample_id": "0676331be88dbae14fe2c13e851ee2124e60a350"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "dataset_variant": "r5c_main",
+    "prompt_hash": "e297b407009c2ff79f846a7b809ef59bcde057d1",
+    "prompt_preview": "Question: Question: What is the value of 5 + 3? Please provide reasoning based on this question. Do not provide the answer directly.. \"Reasoning Provided\":, return in JSON format A",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "insufficient_evidence"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    },
+    "rejected_source": "hard_synthetic_score3_conservative_failure",
+    "risk_type": "high_to_low_score_risk",
+    "sample_id": "8e15c208261f6518bf5b8170861ab73a386d6856"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "dataset_variant": "r5c_main",
+    "prompt_hash": "fd0c1243557b549bb045aee87ce10b238ad41589",
+    "prompt_preview": "Question: 问题：以下哪项是公共管理学中对公共政策评估的主要方法之一？ A) 实验设计 B) 案例研究 C) 文献综述 D) 参与观察 原答案：C) 文献综述 你为学生的回答进行纠错服务.请根据这个问题和原答案给出\"纠错后答案\"和\"纠错说明\":,以json格式返回 Answer: { \"纠错后答案\": \"A) 实验设计\", \"纠错说明\": \"在公共管",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "unclear"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "rejected_source": "hard_synthetic_score2_conservative_failure",
+    "risk_type": "high_to_low_score_risk",
+    "sample_id": "6754a8636ce3e8ccd64682888d97500059a2886a"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "dataset_variant": "r5c_main",
+    "prompt_hash": "bfa6f3cded3215f7400b88ee79eedb4887f3e953",
+    "prompt_preview": "Question: Subject:Crop Science Education Level:Undergraduate Question:Which of the following is a primary macronutrient essential for plant growth? A) Iron B) Magnesium C) Nitrogen",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "insufficient_evidence"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    },
+    "rejected_source": "hard_synthetic_score3_conservative_failure",
+    "risk_type": "high_to_low_score_risk",
+    "sample_id": "5f2d081a6ec22635eab62fc1c0502409bd08995b"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    },
+    "dataset_variant": "r5c_main",
+    "prompt_hash": "165e0e9f1b8c59d3074f849aa68b865b41628ca8",
+    "prompt_preview": "Question: Question: Which of the following is the primary function of hemoglobin in the human body? Original Answer: To fight infections by destroying bacteria. You are providing e",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "insufficient_evidence"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    },
+    "rejected_source": "hard_synthetic_score3_conservative_failure",
+    "risk_type": "high_to_low_score_risk",
+    "sample_id": "3a80ac3ab17c73cc8471ae7a27562f9d5b484cf2"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "dataset_variant": "r5c_main",
+    "prompt_hash": "b86439d6ae7eee3ad01fe9001647511903801d99",
+    "prompt_preview": "Question: Question: True or False: The Andes Mountains are located in North America. Student's Answer: True Please provide \"Score\", \"Scoring Details\", and \"Personalized Feedback\" b",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "insufficient_evidence"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    },
+    "rejected_source": "hard_synthetic_score3_conservative_failure",
+    "risk_type": "high_to_low_score_risk",
+    "sample_id": "118543b6ffd1f0b7fc57b078ffd51c77f796b610"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "dataset_variant": "r5c_main",
+    "prompt_hash": "f64152d1fdbb49cd3aeca883b9685f3aebeba1fe",
+    "prompt_preview": "Question: 学科:基础医学 学制级别:硕士 知识点：肌肉收缩的生理机制 问题类型：多选题 .请根据学科,学制级别,知识点,问题类型生成一个对应的问题。\"问题\"和\"提供的思路\":,以json格式返回 Answer: ```json { \"问题\": \"骨骼肌收缩过程中，下列哪些步骤是必须的？\", \"提供的思路\": { \"正确选项\": [ \"A. 动作电位",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "insufficient_evidence"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    },
+    "rejected_source": "hard_synthetic_score3_conservative_failure",
+    "risk_type": "high_to_low_score_risk",
+    "sample_id": "ed69bf5ff1e315dff3c3a84cf09eee826702a9df"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "dataset_variant": "r5c_main",
+    "prompt_hash": "faa63e0d74a79c00fa49c9949bbcc43064c715c7",
+    "prompt_preview": "Question: 问题：在神经生理学中，动作电位的过程中不包括以下哪一个步骤？ A) 去极化 B) 再极化 C) 超极化 D) 钙离子流入细胞 学生的答案：C) 超极化 请根据问题和学生答案给出\"评分\":\"评分细节\":\"个性化反馈\":,以json格式返回 Answer: ```json { \"评分\": \"正确\", \"评分细节\": \"学生选择了C) 超极化，",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "unclear"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "rejected_source": "hard_synthetic_score2_conservative_failure",
+    "risk_type": "high_to_low_score_risk",
+    "sample_id": "b177cd12f5802ffcfe6e4bd5646563bba8eed056"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "dataset_variant": "r5c_main",
+    "prompt_hash": "3c8f6dd5b3a401507afd1403551dfefa993ac26d",
+    "prompt_preview": "Question: 知识点：公共管理中的决策过程 请根据这个知识点给出\"教学素材\":教学素材需要包括教学目标、重点难点、课堂活动设计等,以json格式返回 Answer: ```json { \"教学目标\": { \"知识目标\": [ \"理解公共管理决策过程的基本概念、阶段及其重要性\", \"掌握常见的决策模型（如理性决策模型、渐进决策模型等）及其适用场景\", \"",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "insufficient_evidence"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    },
+    "rejected_source": "hard_synthetic_score3_conservative_failure",
+    "risk_type": "high_to_low_score_risk",
+    "sample_id": "f72da5203814330e5452c42519e9114a2384132d"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "dataset_variant": "r5c_main",
+    "prompt_hash": "1a2c2bd689ae512a31782cafad43cff3f3ad9651",
+    "prompt_preview": "Question: Question: Explain the role of microRNAs in the regulation of gene expression in eukaryotic cells. Student's Answer: MicroRNAs (miRNAs) are small, non-coding RNA molecules",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "insufficient_evidence"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    },
+    "rejected_source": "hard_synthetic_score3_conservative_failure",
+    "risk_type": "high_to_low_score_risk",
+    "sample_id": "9bb0f9bf673d529cb98d2605003a40be71be9af8"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "dataset_variant": "r5c_main",
+    "prompt_hash": "9acdca90c2bb180654787885dd059b289e79895a",
+    "prompt_preview": "Question: Subject:Theoretical Economics Education Level:Undergraduate Question:What is the Nash Equilibrium in a game theory context, and how can it be identified in a simple two-p",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "unclear"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "rejected_source": "hard_synthetic_score2_conservative_failure",
+    "risk_type": "high_to_low_score_risk",
+    "sample_id": "2ad81da0b635e7bcdd0c80fdf5edadb5458710cd"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "dataset_variant": "r5c_main",
+    "prompt_hash": "66b61f731b49405c50b58d078c5072389849d3ce",
+    "prompt_preview": "Question: 问题：以下哪项是公共管理学中对公共政策评估的主要方法之一？ A) 实验设计 B) 案例研究 C) 文献综述 D) 参与观察 原答案：C) 文献综述 你为学生的回答进行纠错服务.请根据这个问题和原答案给出\"纠错后答案\"和\"纠错说明\":,以json格式返回 Answer: ```json { \"纠错后答案\": \"A) 实验设计\", \"纠错说明",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "unclear"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "rejected_source": "hard_synthetic_score2_conservative_failure",
+    "risk_type": "high_to_low_score_risk",
+    "sample_id": "0347526cae737a75caf2cfaa5723714c406643db"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "dataset_variant": "r5c_main",
+    "prompt_hash": "7e3eac80d13ece8a6514bafa79da041dc799eff0",
+    "prompt_preview": "Question: 学科:数学 学制级别:小学 知识点：简单分数的比较 问题类型：单选题 .请根据学科,学制级别,知识点,问题类型生成一个对应的问题。\"问题\"和\"提供的思路\":,以json格式返回 Answer: ```json { \"问题\": \"比较下列两个分数的大小：1/4 和 3/8\", \"提供的思路\": \"要比较这两个分数的大小，可以将它们转换为具有",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "insufficient_evidence"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    },
+    "rejected_source": "hard_synthetic_score3_conservative_failure",
+    "risk_type": "high_to_low_score_risk",
+    "sample_id": "c6f9b614829bbf6287387082a97a55d8efea304d"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    },
+    "dataset_variant": "r5c_main",
+    "prompt_hash": "19df9a755bfc30c03fd82423c22895775cfbf539",
+    "prompt_preview": "Question: {'姓名': '张伟', '年级': '大四', '专业': '临床医学', '当前能力水平': {'理论知识': '较强', '临床技能': '中等', '科研能力': '较弱', '沟通与人际交往能力': '强'}, '学习目标': '准备研究生入学考试，增强临床实习经验，提高科研能力', '知识薄弱点': ['临床技能操作', '科",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "unclear"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "rejected_source": "hard_synthetic_score2_conservative_failure",
+    "risk_type": "high_to_low_score_risk",
+    "sample_id": "7a09942ceb56f1cd2c5c4a7085e52323e1d30d4a"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    },
+    "dataset_variant": "r5c_main",
+    "prompt_hash": "ba40fab4c4132085289997b9517eb3280bac0943",
+    "prompt_preview": "Question: Subject:Public Administration Education Level:PhD Knowledge Point:Public administration at the PhD level often involves understanding complex governance structures, polic",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "insufficient_evidence"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    },
+    "rejected_source": "hard_synthetic_score3_conservative_failure",
+    "risk_type": "high_to_low_score_risk",
+    "sample_id": "6c6b75b007bd8ed31f921ed8d673bc0f98822113"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "dataset_variant": "r5c_main",
+    "prompt_hash": "3492b4676657a193a7af92726dd427947afb7745",
+    "prompt_preview": "Question: Subject:Computer Science Education Level:Undergraduate Question:What is the time complexity of the quicksort algorithm in the average case scenario? . Please generate the",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "unclear"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "rejected_source": "hard_synthetic_score2_conservative_failure",
+    "risk_type": "high_to_low_score_risk",
+    "sample_id": "83c669abd92faa60c29e5a8377fd8e067d1d33f8"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "dataset_variant": "r5c_main",
+    "prompt_hash": "60c3aec0b1b32ddb93ba271cc97fe2815f7009a3",
+    "prompt_preview": "Question: 知识点：社会认同理论 请根据这个知识点给出\"教学素材\":教学素材需要包括教学目标、重点难点、课堂活动设计等,以json格式返回 Answer: ```json { \"教学素材\": { \"教学目标\": { \"知识目标\": \"理解社会认同理论的核心概念，包括社会分类、社会比较、积极区分及其对个体行为和群体关系的影响。\", \"能力目标\": \"能",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "unclear"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "rejected_source": "hard_synthetic_score2_conservative_failure",
+    "risk_type": "high_to_low_score_risk",
+    "sample_id": "d9d189b9c57b91e4d4ad28cd4ae0d4af0da0d57b"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    },
+    "dataset_variant": "r5c_main",
+    "prompt_hash": "c4fe9c7e01c078280f54992f91726288216dd391",
+    "prompt_preview": "Question: 焦虑级别：重度焦虑 对话内容：[{'学生': '最近我总觉得压力特别大，尤其是物理课的时候，只要想到学习物理就特别焦虑。'}, {'助理': '我听到你似乎在为物理课感到担心。能不能具体说一下是什么让你特别焦虑呢？'}, {'学生': '我一直觉得物理很难，对于公式和计算都不太理解，而且考试的时候总是出错。'}, {'助理': '理解复杂",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "insufficient_evidence"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    },
+    "rejected_source": "hard_synthetic_score3_conservative_failure",
+    "risk_type": "high_to_low_score_risk",
+    "sample_id": "72bd264269882f4a9c028af7fe9459d82d2a1550"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "dataset_variant": "r5c_main",
+    "prompt_hash": "0fbab52cf49aaa55d4b3d78ae29c2ad4c290e20a",
+    "prompt_preview": "Question: 学科:文学与艺术 学制级别:博士 知识点：后现代主义文学理论 问题类型：单选题 .请根据学科,学制级别,知识点,问题类型生成一个对应的问题。\"问题\"和\"提供的思路\":,以json格式返回 Answer: ```json { \"问题\": \"以下哪位后现代主义理论家提出了‘对宏大叙事的怀疑’（incredulity toward metana",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "insufficient_evidence"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    },
+    "rejected_source": "hard_synthetic_score3_conservative_failure",
+    "risk_type": "high_to_low_score_risk",
+    "sample_id": "10bebb57df6c4136960d96848703e0a07835ea1a"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "dataset_variant": "r5c_main",
+    "prompt_hash": "134065751afc03501d1f5024a1e5efa357b6a2c9",
+    "prompt_preview": "Question: Question: Explain the role of microRNAs in the regulation of gene expression in eukaryotic cells. Student's Answer: MicroRNAs (miRNAs) are small, non-coding RNA molecules",
+    "rejected_category": "hard_synthetic",
+    "rejected_redacted": {
+      "major_failures": [
+        "insufficient_evidence"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    },
+    "rejected_source": "hard_synthetic_score3_conservative_failure",
+    "risk_type": "high_to_low_score_risk",
+    "sample_id": "bbf00c682349c24b21ce0c89c071fd906223ebb3"
+  }
+]

@@ -1,0 +1,6 @@
+dataset_variant,risk_type,n,validity_rate,low_rejected_score_ge4_rate,low_rejected_score3_no_failure_capnull_rate,high_rejected_score_le2_rate,high_rejected_score3_failure_cap_le3_rate
+r5c_main,high_to_low_score_risk,1350,1.0,,,0.3503703703703704,0.6496296296296297
+r5c_main,low_to_high_score_risk,1350,1.0,1.0,0.0,,
+r5c_main,mid_score_calibration,300,1.0,,,,
+r5c_no_mid,high_to_low_score_risk,1500,1.0,,,0.352,0.648
+r5c_no_mid,low_to_high_score_risk,1500,1.0,1.0,0.0,,

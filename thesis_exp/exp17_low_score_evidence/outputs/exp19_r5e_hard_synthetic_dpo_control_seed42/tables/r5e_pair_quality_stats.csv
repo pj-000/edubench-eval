@@ -1,0 +1,4 @@
+dataset_variant,risk_type,n,chosen_score_mean,rejected_score_mean,score_gap_mean,actual_model_rejected_rate,hard_synthetic_rate,validity_rate
+r5e_main,high_to_low_score_risk,1350,4.6755555555555555,2.6466666666666665,2.028888888888889,0.0,1.0,1.0
+r5e_main,low_to_high_score_risk,1350,1.4274074074074075,4.0,2.5725925925925925,0.0,1.0,1.0
+r5e_main,mid_score_calibration,300,3.0,2.8666666666666667,2.0,0.0,1.0,1.0
