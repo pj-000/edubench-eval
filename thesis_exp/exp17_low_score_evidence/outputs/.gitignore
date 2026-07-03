@@ -23,3 +23,12 @@ exp19_sft_first_round/*
 !exp19_sft_first_round/tables/**
 !exp19_sft_first_round/decision/
 !exp19_sft_first_round/decision/**
+
+# Exp19 second-round SFT keeps logs/checkpoints/adapters local/server-side, while
+# allowing lightweight training summaries to be reviewed.
+!exp19_sft_second_round/
+exp19_sft_second_round/*
+!exp19_sft_second_round/reports/
+!exp19_sft_second_round/reports/**
+!exp19_sft_second_round/tables/
+!exp19_sft_second_round/tables/**

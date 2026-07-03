@@ -1,0 +1,5 @@
+run_name,run_label,completed,output_dir,log_file,trainer_global_step,last_logged_loss
+r1b_score_only_balanced,R1b score-only balanced,True,saves/edubench/qwen3-4b/r1_score_only_balanced_lora,thesis_exp/exp17_low_score_evidence/outputs/exp19_sft_second_round/logs/train_r1b_score_only_balanced_gpu0.log,1125,0.0202
+r2n_reason_score_natural,R2n reason-score natural,True,saves/edubench/qwen3-4b/r2_reason_score_natural_lora,thesis_exp/exp17_low_score_evidence/outputs/exp19_sft_second_round/logs/train_r2n_reason_score_natural_gpu1.log,1248,0.0148
+r2c_clean_reason_score_balanced,R2c clean reason-score balanced,True,saves/edubench/qwen3-4b/r2_clean_reason_score_balanced_lora,thesis_exp/exp17_low_score_evidence/outputs/exp19_sft_second_round/logs/train_r2c_clean_reason_score_balanced_gpu2.log,1125,0.0062
+r4b_shuffled_reason_balanced,R4b shuffled reason balanced,True,saves/edubench/qwen3-4b/r4_shuffled_reason_balanced_lora,thesis_exp/exp17_low_score_evidence/outputs/exp19_sft_second_round/logs/train_r4b_shuffled_reason_balanced_gpu3.log,1125,0.0107
