@@ -1,0 +1,64 @@
+sample_id,generated_count,score_risk_rejected_count,evidence_risk_rejected_count,used_score_risk_pairs,failure_mode_auto,metric,language
+26347fdbe0a04b7bfbc0e5079be670bb041a82f8,16,4,4,4,surface_fluent_but_hidden_defect,Scenario Element Integration,en
+7dfd63e7375e5474e2df047ebe282cf4ba8661b8,16,4,4,4,insufficient_evidence,Reasoning Process Rigor,en
+a5b76b94f849ef3c81364bfd2a49a16777a2d7fa,16,1,1,1,insufficient_evidence,Reasoning Process Rigor,en
+7b2343c0fac6f79059007d116f746842fe6a6637,16,2,2,2,insufficient_evidence,Reasoning Process Rigor,en
+f0c923e09065792432b0f588a7eb74ea86409797,16,3,3,3,missing_key_point,"Motivation, Guidance & Positive Feedback",zh
+02169e6cc6f86f682c0b04047827e32859533603,16,1,1,1,insufficient_evidence,Scenario Element Integration,en
+90ed1a72c758f575b39f863d5ac03313ac9b197e,16,4,4,4,surface_fluent_but_hidden_defect,Error Identification & Correction Precision,zh
+1c013ab584f1c5a49f0e03d8517d29eb909322be,16,4,4,4,surface_fluent_but_hidden_defect,Error Identification & Correction Precision,zh
+89f8c6ed8c1b947a44510dcc18b38a1d97571453,16,3,3,3,surface_fluent_but_hidden_defect,Basic Factual Accuracy,zh
+6a65ddfebb3698d3eb20f814a761580fa2f8be48,16,3,3,3,surface_fluent_but_hidden_defect,Content Relevance & Scope Control,en
+b51fe8038ded98685f2c18b27990ce26056dfc17,16,1,1,1,surface_fluent_but_hidden_defect,Scenario Element Integration,en
+1b5df375ab0c6d48d21dc9a88fd408b29454ff67,16,0,0,0,surface_fluent_but_hidden_defect,Higher-Order Thinking & Skill Development,en
+7a5ae2c79851e40cccaf47deb5d4953023576ec9,16,0,0,0,insufficient_evidence,Scenario Element Integration,en
+78a2f1f17b59206fae3cdedb6b11a9fef084b670,16,0,0,0,insufficient_evidence,Higher-Order Thinking & Skill Development,en
+f51251a778d6f6601796be0ed017d6173d91d44b,16,3,3,3,surface_fluent_but_hidden_defect,Higher-Order Thinking & Skill Development,en
+d669073d100a7f3755e1ce0ec3bd63e9b6c54e34,16,0,0,0,insufficient_evidence,Error Identification & Correction Precision,en
+b98b50d95782304d48d08ccbe6eda435ec3f66c7,16,1,1,1,surface_fluent_but_hidden_defect,Scenario Element Integration,en
+13af8e6896f2be6cf223e45bf4f1652fe39fe7d3,16,0,0,0,missing_key_point,Higher-Order Thinking & Skill Development,en
+1905d9dcdf2880df39d9d380624436abd892da5a,16,1,1,1,missing_key_point,Scenario Element Integration,en
+107a460ba82cd473b9a08a5d43257a7f1d336874,16,1,1,1,surface_fluent_but_hidden_defect,Error Identification & Correction Precision,en
+25a37166756d804397ce1540111f9b80f5bd477b,16,0,0,0,surface_fluent_but_hidden_defect,Higher-Order Thinking & Skill Development,zh
+ef7be96d3b20f985cb175937b67d094d4d204dcc,16,1,1,1,surface_fluent_but_hidden_defect,Scenario Element Integration,en
+bd384e01426757c4dd86e755a75d5ef86fe6e59f,16,2,2,2,insufficient_evidence,Reasoning Process Rigor,en
+ccdab1ce8e955bdbf2224a22c0f14a10db6718ab,16,0,0,0,surface_fluent_but_hidden_defect,Scenario Element Integration,en
+9b98fbe73d713149b38df9e497e2ad0a0a022c91,16,2,2,2,insufficient_evidence,Higher-Order Thinking & Skill Development,en
+ba114a1a8452ac012af5a1940b242d85f38538d3,16,0,0,0,surface_fluent_but_hidden_defect,"Motivation, Guidance & Positive Feedback",en
+17e0ba51820c815389e5f672d6bed2ca748a8775,16,0,0,0,surface_fluent_but_hidden_defect,Error Identification & Correction Precision,zh
+bdfb1901aed7bfddbd4bcd0898854e7ecfd4513c,16,0,0,0,insufficient_evidence,Reasoning Process Rigor,zh
+f33e86ba6eaa5281c801dea1ed174135a7d4c0da,16,0,0,0,surface_fluent_but_hidden_defect,Basic Factual Accuracy,zh
+b5f54f2d11493dd41a74e9e2274d26451a958dcc,16,0,0,0,surface_fluent_but_hidden_defect,Content Relevance & Scope Control,zh
+e2c88c65f2542bab93dbf50c022a42b356f788d2,16,0,0,0,insufficient_evidence,Reasoning Process Rigor,zh
+4f22bf04948dfebf09ef963ef74d98df56ffdb57,16,0,0,0,surface_fluent_but_hidden_defect,Error Identification & Correction Precision,zh
+378f7b2160c791b11e16c3dd68d76ed1363a3ff6,16,0,0,0,surface_fluent_but_hidden_defect,"Motivation, Guidance & Positive Feedback",zh
+63ab64773fb76fbe6cba302eed79041a8316bb7c,16,0,0,0,surface_fluent_but_hidden_defect,"Motivation, Guidance & Positive Feedback",zh
+4c1781a47196920cfbd9a98a60533436add7af41,16,0,0,0,missing_key_point,Reasoning Process Rigor,en
+1d5f77fabc222d72e4fb87f25eb3e5c41e786cf4,16,2,2,2,surface_fluent_but_hidden_defect,Error Identification & Correction Precision,zh
+630a88341b60ad40afcd43bf6bf3967c515b8803,16,1,1,1,surface_fluent_but_hidden_defect,"Motivation, Guidance & Positive Feedback",zh
+c0d4f41ccf2066449887e86887cb7b8903269b2a,16,1,1,1,surface_fluent_but_hidden_defect,Content Relevance & Scope Control,zh
+1bd5e1ce094da34aea6531591c2674bd221634b6,16,0,0,0,insufficient_evidence,Reasoning Process Rigor,zh
+0c74a66a6f9ecee5580723b73f7741a8f05e1352,16,1,1,1,surface_fluent_but_hidden_defect,Error Identification & Correction Precision,zh
+b21b8c3ac37ecaa0e26ae36e530a7f7c75594d53,16,0,0,0,missing_key_point,Reasoning Process Rigor,en
+a2963f0bafecf877ce9d9f85ccd07d324522a500,16,0,0,0,insufficient_evidence,Reasoning Process Rigor,en
+a5b40ba0a800e6ec0da88e7d0591d092caa41ae1,16,0,0,0,missing_key_point,"Motivation, Guidance & Positive Feedback",zh
+76909e50052e68bb729ed62933a86559f6a7c036,16,0,0,0,missing_key_point,Reasoning Process Rigor,en
+2805e4237ccaed90f917ee91a5c2c44743bbd1b1,16,0,0,0,missing_key_point,Reasoning Process Rigor,en
+8b2201addbda2de262f29b819d9d4a430827f8c8,16,0,0,0,missing_key_point,Reasoning Process Rigor,zh
+3e6317e0a4cd57573a6c971fc945cfc7ee52148a,16,0,0,0,missing_key_point,Reasoning Process Rigor,en
+4042b14600691c9b29b70d916e9db910c058d891,16,0,0,0,missing_key_point,Reasoning Process Rigor,en
+44a426bf4f453df7ea5b7ac85d6f0e801f9ba296,16,0,0,0,missing_key_point,Reasoning Process Rigor,en
+6358300a1312a268220578a420e801d4c75e9525,16,0,0,0,insufficient_evidence,Reasoning Process Rigor,en
+d7038665e81daff68cadf97e16d4c3e3c3fe543d,16,0,0,0,insufficient_evidence,Reasoning Process Rigor,en
+74489511928922f9b0aa06c74a3c42dabf84217e,16,0,0,0,insufficient_evidence,Reasoning Process Rigor,en
+5680bbfccbc4637e7c9c7e3d63698aaf2b4fa213,16,0,0,0,insufficient_evidence,Reasoning Process Rigor,en
+0578273c54e1a724084529ebbc385f1bdd1076ea,16,1,1,1,surface_fluent_but_hidden_defect,Basic Factual Accuracy,en
+0a86fc4b2478f8c922c1ab7ce85590f94b9d2136,16,0,0,0,missing_key_point,Reasoning Process Rigor,en
+9473740ab3e011ac08772a84e106e72f4d38f137,16,0,0,0,missing_key_point,Reasoning Process Rigor,en
+9695560e94c04bb151b514cc850a85eb10394a00,16,0,0,0,insufficient_evidence,Reasoning Process Rigor,zh
+198938e2f622bb0de4883a3dc7e56f75c8a0dc9b,16,0,0,0,missing_key_point,Reasoning Process Rigor,en
+674bc19324921890f8c1245b4760b0909fc05534,16,0,0,0,missing_key_point,Reasoning Process Rigor,en
+eca00ddc55d718efe2435adde78462ed09661b7c,16,0,0,0,missing_key_point,Reasoning Process Rigor,zh
+4d02a34fe7fc1a2f65e5defcbeec26283b13ada9,16,0,0,0,missing_key_point,Reasoning Process Rigor,zh
+61ce1005760ba6b25779f26dec03b15d4d61f5ec,16,0,0,0,missing_key_point,Reasoning Process Rigor,zh
+cc218e690fef26eec817bb03c4ad9a759d05825e,16,0,0,0,missing_key_point,Reasoning Process Rigor,zh

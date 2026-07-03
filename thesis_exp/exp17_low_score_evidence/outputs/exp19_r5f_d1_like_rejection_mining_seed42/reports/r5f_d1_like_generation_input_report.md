@@ -8,7 +8,7 @@ Human rationale is not included in the model prompt.
 - language filter: `all`
 - min answer chars: 40
 - require model-high D2 prediction: `False`
-- D2 prediction map available for samples: 0
+- D2 prediction map available for samples: 80
 
 ## Failure Modes
 
