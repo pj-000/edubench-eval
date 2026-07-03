@@ -12,3 +12,12 @@ exp19_sft_dpo_datasets_seed42/data/
 !exp19_sft_dpo_datasets_seed42/reports/**
 !exp19_sft_dpo_datasets_seed42/tables/
 !exp19_sft_dpo_datasets_seed42/tables/**
+
+# Exp19 first-round SFT evaluation keeps raw model outputs/logs local, while
+# allowing lightweight summary tables/reports to be reviewed.
+!exp19_sft_first_round/
+exp19_sft_first_round/*
+!exp19_sft_first_round/reports/
+!exp19_sft_first_round/reports/**
+!exp19_sft_first_round/tables/
+!exp19_sft_first_round/tables/**
