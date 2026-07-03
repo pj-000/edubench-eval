@@ -34,3 +34,14 @@ exp19_sft_second_round/*
 !exp19_sft_second_round/tables/**
 !exp19_sft_second_round/decision/
 !exp19_sft_second_round/decision/**
+
+# Exp19-SFT-D2 keeps prompt subsets, raw predictions, logs, and configs local,
+# while allowing lightweight diagnostic summaries to be reviewed.
+!exp19_sft_train_dev_diagnostics_seed42/
+exp19_sft_train_dev_diagnostics_seed42/*
+!exp19_sft_train_dev_diagnostics_seed42/reports/
+!exp19_sft_train_dev_diagnostics_seed42/reports/**
+!exp19_sft_train_dev_diagnostics_seed42/tables/
+!exp19_sft_train_dev_diagnostics_seed42/tables/**
+!exp19_sft_train_dev_diagnostics_seed42/decision/
+!exp19_sft_train_dev_diagnostics_seed42/decision/**
