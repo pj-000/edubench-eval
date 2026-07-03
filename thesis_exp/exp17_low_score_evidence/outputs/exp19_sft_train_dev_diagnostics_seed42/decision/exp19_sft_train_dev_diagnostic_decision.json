@@ -1,0 +1,11 @@
+{
+  "decision_category": "failure_learned_on_train_not_dev",
+  "guardrail": "No test/all_5536 evaluation is recommended by D2.",
+  "r2c_dev_d1_hidden_major_failure_nonempty_rate": 0.0,
+  "r2c_dev_d1_hidden_pred_ge4_rate": 1.0,
+  "r2c_dev_label2_pred_ge4_rate": 0.7631578947368421,
+  "r2c_train_low_reasoned_major_failure_nonempty_rate": 1.0,
+  "recommend_all_5536": false,
+  "recommend_test": false,
+  "recommendation": "DPO or data augmentation, but do not run test/all_5536 yet."
+}
