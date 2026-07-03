@@ -133,3 +133,34 @@ exp19_r5_dpo_scout/*
 !exp19_r5_dpo_scout/tables/**
 !exp19_r5_dpo_scout/decision/
 !exp19_r5_dpo_scout/decision/**
+
+# Exp19-R5 next scout keeps runtime train/predict configs, logs, raw
+# predictions, and checkpoints local/server-side. Commit only lightweight
+# validation tables, reports, and decision JSON.
+!exp19_r5_next_scout/
+exp19_r5_next_scout/*
+!exp19_r5_next_scout/reports/
+!exp19_r5_next_scout/reports/**
+!exp19_r5_next_scout/tables/
+!exp19_r5_next_scout/tables/**
+!exp19_r5_next_scout/decision/
+!exp19_r5_next_scout/decision/**
+
+# Exp19-R5F targeted rejection mining keeps generated prompts, raw sampled
+# generations, logs, predictions, and full DPO JSON local/server-side. Commit
+# only QC summaries, configs, snippets, references without raw text, and
+# redacted samples.
+!exp19_r5f_d1_like_rejection_mining_seed42/
+exp19_r5f_d1_like_rejection_mining_seed42/*
+!exp19_r5f_d1_like_rejection_mining_seed42/configs/
+!exp19_r5f_d1_like_rejection_mining_seed42/configs/**
+!exp19_r5f_d1_like_rejection_mining_seed42/dataset_info_r5f_generation_snippet.json
+!exp19_r5f_d1_like_rejection_mining_seed42/dataset_info_r5f_snippet.json
+!exp19_r5f_d1_like_rejection_mining_seed42/redacted_samples/
+!exp19_r5f_d1_like_rejection_mining_seed42/redacted_samples/**
+!exp19_r5f_d1_like_rejection_mining_seed42/references/
+!exp19_r5f_d1_like_rejection_mining_seed42/references/**
+!exp19_r5f_d1_like_rejection_mining_seed42/reports/
+!exp19_r5f_d1_like_rejection_mining_seed42/reports/**
+!exp19_r5f_d1_like_rejection_mining_seed42/tables/
+!exp19_r5f_d1_like_rejection_mining_seed42/tables/**
