@@ -1,0 +1,5 @@
+run_name,run_label,completed,output_dir,log_file,max_steps,pref_beta,last_logged_loss
+r5f2_main_from_r1b,R5F2 score-risk main DPO from R1b,True,saves/edubench/qwen3-4b/r5f2_score_risk_main_from_r1b_maxsteps100_lora,thesis_exp/exp17_low_score_evidence/outputs/exp19_r5f2_dpo_scout/logs/train_r5f2_main_from_r1b_gpu0.log,100,0.05,0.6506
+r5f2_main_from_r2c,R5F2 score-risk main DPO from R2c,True,saves/edubench/qwen3-4b/r5f2_score_risk_main_from_r2c_maxsteps100_lora,thesis_exp/exp17_low_score_evidence/outputs/exp19_r5f2_dpo_scout/logs/train_r5f2_main_from_r2c_gpu1.log,100,0.05,0.3005
+r5f2_real_only_from_r1b,R5F2 real-only diagnostic DPO from R1b,True,saves/edubench/qwen3-4b/r5f2_real_only_small_from_r1b_maxsteps100_lora,thesis_exp/exp17_low_score_evidence/outputs/exp19_r5f2_dpo_scout/logs/train_r5f2_real_only_from_r1b_gpu2.log,100,0.05,0.2832
+r5f2_real_only_from_r2c,R5F2 real-only diagnostic DPO from R2c,True,saves/edubench/qwen3-4b/r5f2_real_only_small_from_r2c_maxsteps100_lora,thesis_exp/exp17_low_score_evidence/outputs/exp19_r5f2_dpo_scout/logs/train_r5f2_real_only_from_r2c_gpu3.log,100,0.05,0.2313

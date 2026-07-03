@@ -1,0 +1,74 @@
+{
+  "guardrails": {
+    "d1_used_for_eval_only": true,
+    "human_rationale_not_in_prompt": true,
+    "no_test_read": true,
+    "plus_evidence_dataset_not_trained": true
+  },
+  "r5f2_main_from_r1b_vs_init": {
+    "MAE_delta": -0.010840108401084014,
+    "QWK_delta": 0.004375713872020404,
+    "d1_pred_ge4_improvement": null,
+    "high_to_low_delta": 0.0,
+    "label2_recall_delta": 0.0,
+    "low_to_high_improvement": 0.01754385964912275,
+    "success": false
+  },
+  "r5f2_main_from_r1b_vs_r5e_control": {
+    "MAE_delta": -0.0072267389340560095,
+    "QWK_delta": 0.00022957467050299663,
+    "beats": false,
+    "d1_pred_ge4_advantage": -0.0,
+    "low_to_high_advantage": -0.0
+  },
+  "r5f2_main_from_r1b_vs_real_only": {
+    "MAE_delta": -0.0072267389340560095,
+    "QWK_delta": -0.0076353405906136596,
+    "beats": false,
+    "d1_pred_ge4_advantage": -0.038461538461538436,
+    "low_to_high_advantage": -0.01754385964912286
+  },
+  "r5f2_main_from_r2c_vs_init": {
+    "MAE_delta": 0.01626016260162605,
+    "QWK_delta": 0.017405170549134708,
+    "d1_pred_ge4_improvement": null,
+    "high_to_low_delta": 0.012698412698412698,
+    "label2_recall_delta": 0.07894736842105263,
+    "low_to_high_improvement": 0.07017543859649122,
+    "success": false
+  },
+  "r5f2_main_from_r2c_vs_r5e_control": {
+    "MAE_delta": -0.015356820234869006,
+    "QWK_delta": 0.023481734063694026,
+    "beats": false,
+    "d1_pred_ge4_advantage": -0.0,
+    "low_to_high_advantage": 0.01754385964912286
+  },
+  "r5f2_main_from_r2c_vs_real_only": {
+    "MAE_delta": -0.23667570009033423,
+    "QWK_delta": 0.11252987787793434,
+    "beats": false,
+    "d1_pred_ge4_advantage": -0.42307692307692313,
+    "low_to_high_advantage": -0.2631578947368421
+  },
+  "r5f2_real_only_from_r1b_vs_init": {
+    "MAE_delta": -0.0036133694670280048,
+    "QWK_delta": 0.012011054462634063,
+    "d1_pred_ge4_improvement": null,
+    "high_to_low_delta": 0.0,
+    "label2_recall_delta": 0.05263157894736842,
+    "low_to_high_improvement": 0.03508771929824561,
+    "success": false
+  },
+  "r5f2_real_only_from_r2c_vs_init": {
+    "MAE_delta": 0.2529358626919603,
+    "QWK_delta": -0.09512470732879963,
+    "d1_pred_ge4_improvement": null,
+    "high_to_low_delta": 0.08465608465608465,
+    "label2_recall_delta": 0.3157894736842105,
+    "low_to_high_improvement": 0.3333333333333333,
+    "success": false
+  },
+  "reason": "R5F2 gives some risk-side movement, but it does not pass the guarded full-DPO rule.",
+  "recommendation": "continue_rejection_mining_or_adjust_dpo"
+}

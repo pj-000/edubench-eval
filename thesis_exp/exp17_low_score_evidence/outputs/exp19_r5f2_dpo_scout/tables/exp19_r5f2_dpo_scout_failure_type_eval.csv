@@ -1,0 +1,11 @@
+run_name,failure_type_micro_f1,failure_type_macro_f1,major_failure_nonempty_rate_on_d1_hidden,no_major_failure_rate_on_controls,score_cap_nonnull_rate_on_d1_hidden
+r5f2_main_from_r1b,0.0,0.0,0.0,0.0,0.0
+r5f2_main_from_r2c,0.0,0.0,0.038461538461538464,0.8055555555555556,0.038461538461538464
+r5f2_real_only_from_r1b,0.0,0.0,0.0,0.0,0.0
+r5f2_real_only_from_r2c,0.0,0.0,0.23076923076923078,0.5833333333333334,0.46153846153846156
+r5c_from_r1b,0.0,0.0,0.0,0.0,
+r5c_from_r2c,0.0,0.0,0.038461538461538464,0.8055555555555556,
+r5e_from_r2c,0.0,0.0,0.038461538461538464,0.8333333333333334,
+r5e_from_r1b,0.0,0.0,0.0,0.0,
+r5c_no_mid_from_r1b,0.0,0.0,0.0,0.0,
+r5c_no_mid_from_r2c,0.0,0.0,0.038461538461538464,0.8055555555555556,

@@ -147,6 +147,16 @@ def fmt(value: Any, digits: int = 4) -> str:
     return f"{val:.{digits}f}"
 
 
+def json_safe(value: Any) -> Any:
+    if isinstance(value, float):
+        return value if math.isfinite(value) else None
+    if isinstance(value, dict):
+        return {key: json_safe(item) for key, item in value.items()}
+    if isinstance(value, list):
+        return [json_safe(item) for item in value]
+    return value
+
+
 def by_run(rows: list[dict[str, Any]]) -> dict[str, dict[str, Any]]:
     return {str(row.get("run_name", "")): row for row in rows}
 
@@ -481,7 +491,7 @@ def collect(args: argparse.Namespace) -> dict[str, Any]:
         args.allow_missing_predictions,
     )
     prior_summary = append_prior_rows(args, metric_rows, d1_rows, failure_rows)
-    decision = make_decision(metric_rows, d1_rows)
+    decision = json_safe(make_decision(metric_rows, d1_rows))
     write_csv(args.out_dir / "tables" / "exp19_r5f2_dpo_scout_dev_metrics.csv", metric_rows, METRIC_FIELDS)
     write_csv(args.out_dir / "tables" / "exp19_r5f2_dpo_scout_d1_hidden_eval.csv", d1_rows, D1_FIELDS)
     write_csv(args.out_dir / "tables" / "exp19_r5f2_dpo_scout_failure_type_eval.csv", failure_rows, FAILURE_FIELDS)
