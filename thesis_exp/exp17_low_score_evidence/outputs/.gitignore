@@ -32,3 +32,5 @@ exp19_sft_second_round/*
 !exp19_sft_second_round/reports/**
 !exp19_sft_second_round/tables/
 !exp19_sft_second_round/tables/**
+!exp19_sft_second_round/decision/
+!exp19_sft_second_round/decision/**

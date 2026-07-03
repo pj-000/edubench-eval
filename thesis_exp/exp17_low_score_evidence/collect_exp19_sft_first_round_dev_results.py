@@ -682,7 +682,7 @@ def run_by_name(rows: list[dict[str, Any]], name: str) -> dict[str, Any]:
     return next((row for row in rows if row.get("run_name") == name), {})
 
 
-def decision_json(metric_rows: list[dict[str, Any]], d1_rows: list[dict[str, Any]]) -> dict[str, Any]:
+def first_round_decision_json(metric_rows: list[dict[str, Any]], d1_rows: list[dict[str, Any]]) -> dict[str, Any]:
     r1 = run_by_name(metric_rows, "r1_score_only_natural")
     r2 = run_by_name(metric_rows, "r2_reason_score_balanced")
     r4 = run_by_name(metric_rows, "r4_shuffled_reason_control")
@@ -750,6 +750,105 @@ def decision_json(metric_rows: list[dict[str, Any]], d1_rows: list[dict[str, Any
     }
 
 
+def second_round_decision_json(metric_rows: list[dict[str, Any]], d1_rows: list[dict[str, Any]]) -> dict[str, Any]:
+    r1b = run_by_name(metric_rows, "r1b_score_only_balanced")
+    r2n = run_by_name(metric_rows, "r2n_reason_score_natural")
+    r2c = run_by_name(metric_rows, "r2c_clean_reason_score_balanced")
+    r4b = run_by_name(metric_rows, "r4b_shuffled_reason_balanced")
+    r2c_d1 = run_by_name(d1_rows, "r2c_clean_reason_score_balanced")
+    r4b_d1 = run_by_name(d1_rows, "r4b_shuffled_reason_balanced")
+
+    def value(row: dict[str, Any], key: str) -> float:
+        return safe_float(row.get(key))
+
+    runs_sorted_mae = sorted(metric_rows, key=lambda row: value(row, "MAE"))
+    runs_sorted_l2h = sorted(metric_rows, key=lambda row: value(row, "low_to_high_rate"))
+    best_overall = runs_sorted_mae[0]["run_name"] if runs_sorted_mae else ""
+    best_low_risk = runs_sorted_l2h[0]["run_name"] if runs_sorted_l2h else ""
+
+    r2c_vs_r1b_quality_guard = bool(
+        value(r2c, "MAE") <= value(r1b, "MAE") + 0.10
+        and value(r2c, "high_to_low_rate") <= value(r1b, "high_to_low_rate") + 0.10
+    )
+    r2c_beats_r1b = bool(
+        value(r2c, "low_to_high_rate") < value(r1b, "low_to_high_rate")
+        and value(r2c, "label2_recall") >= value(r1b, "label2_recall")
+        and r2c_vs_r1b_quality_guard
+    )
+    r2c_preserves_vs_r4b = bool(
+        value(r2c, "MAE") <= value(r4b, "MAE") + 0.02 and value(r2c, "QWK") >= value(r4b, "QWK") - 0.02
+    )
+    d1_comparable = not math.isnan(value(r2c_d1, "pred_ge4_rate_d1_hidden")) and not math.isnan(
+        value(r4b_d1, "pred_ge4_rate_d1_hidden")
+    )
+    r2c_risk_better_than_r4b = value(r2c, "low_to_high_rate") < value(r4b, "low_to_high_rate") or (
+        d1_comparable and value(r2c_d1, "pred_ge4_rate_d1_hidden") < value(r4b_d1, "pred_ge4_rate_d1_hidden")
+    )
+    r2c_beats_r4b = bool(r2c_risk_better_than_r4b and r2c_preserves_vs_r4b)
+    proceed_to_r3 = bool(r2c_beats_r1b and r2c_beats_r4b)
+    proceed_to_dpo = bool(not proceed_to_r3 and best_low_risk in {"r1b_score_only_balanced", "r4b_shuffled_reason_balanced"})
+    reason = (
+        "R2c beats R1b and the fair shuffled R4b control; clean reason supervision is promising, so R3 can be considered."
+        if proceed_to_r3
+        else (
+            "Score-only balanced or shuffled-reason control is stronger on low-risk metrics; prefer risk-balanced DPO or target-schema revision before R3."
+            if proceed_to_dpo
+            else "Second-round ablation is inconclusive; inspect schema quality and per-label behavior before moving to R3/DPO."
+        )
+    )
+    return {
+        "best_overall_run": best_overall,
+        "best_low_risk_run": best_low_risk,
+        "r2c_beats_r1b": r2c_beats_r1b,
+        "r2c_beats_r4b": r2c_beats_r4b,
+        "proceed_to_r3": proceed_to_r3,
+        "proceed_to_dpo": proceed_to_dpo,
+        "reason": reason,
+        "metrics_used": {
+            "r1b_low_to_high": json_metric(r1b.get("low_to_high_rate")),
+            "r2n_low_to_high": json_metric(r2n.get("low_to_high_rate")),
+            "r2c_low_to_high": json_metric(r2c.get("low_to_high_rate")),
+            "r4b_low_to_high": json_metric(r4b.get("low_to_high_rate")),
+            "r1b_label2_recall": json_metric(r1b.get("label2_recall")),
+            "r2c_label2_recall": json_metric(r2c.get("label2_recall")),
+            "r4b_label2_recall": json_metric(r4b.get("label2_recall")),
+            "r2c_d1_pred_ge4": json_metric(r2c_d1.get("pred_ge4_rate_d1_hidden")),
+            "r4b_d1_pred_ge4": json_metric(r4b_d1.get("pred_ge4_rate_d1_hidden")),
+        },
+    }
+
+
+def decision_json(metric_rows: list[dict[str, Any]], d1_rows: list[dict[str, Any]], mode: str) -> dict[str, Any]:
+    if mode == "none":
+        return {}
+    if mode == "second_round":
+        return second_round_decision_json(metric_rows, d1_rows)
+    return first_round_decision_json(metric_rows, d1_rows)
+
+
+def load_runs(args: argparse.Namespace) -> dict[str, str]:
+    if args.run_manifest:
+        data = json.loads(args.run_manifest.read_text(encoding="utf-8"))
+    elif args.run_manifest_json:
+        data = json.loads(args.run_manifest_json)
+    else:
+        return dict(RUNS)
+    if isinstance(data, dict):
+        return {str(key): str(value) for key, value in data.items()}
+    if isinstance(data, list):
+        runs: dict[str, str] = {}
+        for item in data:
+            if not isinstance(item, dict):
+                raise ValueError("run manifest list items must be objects")
+            name = clean_text(item.get("run_name") or item.get("name"))
+            label = clean_text(item.get("run_label") or item.get("label") or name)
+            if not name:
+                raise ValueError("run manifest item missing run_name")
+            runs[name] = label
+        return runs
+    raise ValueError("run manifest must be a mapping or a list of run objects")
+
+
 def write_report(
     out_dir: Path,
     metric_rows: list[dict[str, Any]],
@@ -758,11 +857,14 @@ def write_report(
     failure_rows: list[dict[str, Any]],
     structured_rows: list[dict[str, Any]],
     decision: dict[str, Any],
+    report_title: str,
+    report_description: str,
+    report_path: Path,
 ) -> None:
     lines = [
-        "# Exp19 First-Round SFT Dev Evaluation",
+        f"# {report_title}",
         "",
-        "This report summarizes LLaMA-Factory `do_predict` outputs for R1/R2/R4 on the original dev split.",
+        report_description,
         "Raw generated predictions remain in gitignored `dev_predictions/` directories.",
         "",
         "| run | n | parse | MAE | QWK | bias | exact | low-to-high | label2 recall | label5 recall |",
@@ -782,17 +884,21 @@ def write_report(
             f"({fmt(row['parse_success_rate'])}), json={row['json_parse_count']}, "
             f"regex={row['regex_fallback_count']}, failed={row['failed_count']}"
         )
+    if decision:
+        lines.extend(
+            [
+                "",
+                "## Interpretation",
+                "",
+                f"- best overall run by MAE: `{decision.get('best_overall_run', '')}`.",
+                f"- best low-risk run by low-to-high: `{decision.get('best_low_risk_run', '')}`.",
+                f"- proceed to R3: `{decision.get('proceed_to_r3')}`.",
+                f"- proceed to DPO: `{decision.get('proceed_to_dpo')}`.",
+                f"- recommendation: {decision.get('reason')}",
+            ]
+        )
     lines.extend(
         [
-            "",
-            "## Interpretation",
-            "",
-            "- R1 is score-only natural SFT.",
-            "- R2 is the non-control reason-score balanced SFT run.",
-            "- R4 is a shuffled-reason control; if R4 matches or beats R2, reason semantics are not proven.",
-            f"- R2 beats R1: `{decision.get('r2_beats_r1')}`.",
-            f"- R2 beats R4: `{decision.get('r2_beats_r4')}`.",
-            f"- recommendation: {decision.get('reason')}",
             "",
             "## D1 Hidden Evaluation",
             "",
@@ -834,11 +940,12 @@ def write_report(
             "- D1 annotations are used only as evaluation references, not as model prompts or training labels.",
         ]
     )
-    write_text(out_dir / "reports" / "exp19_sft_first_round_dev_report.md", "\n".join(lines))
+    write_text(report_path, "\n".join(lines))
 
 
 def collect(args: argparse.Namespace) -> dict[str, Any]:
     reference = read_csv_rows(args.reference_csv)
+    runs = load_runs(args)
     metric_rows: list[dict[str, Any]] = []
     label_rows: list[dict[str, Any]] = []
     parse_rows: list[dict[str, Any]] = []
@@ -850,7 +957,7 @@ def collect(args: argparse.Namespace) -> dict[str, Any]:
     parsed_rows_all: list[dict[str, Any]] = []
     prediction_files: dict[str, str] = {}
 
-    for run_name, run_label in RUNS.items():
+    for run_name, run_label in runs.items():
         run_dir = args.prediction_root / run_name
         prediction_file = find_prediction_file(run_dir)
         prediction_files[run_name] = str(prediction_file)
@@ -870,21 +977,37 @@ def collect(args: argparse.Namespace) -> dict[str, Any]:
         parsed_rows_all.extend(parsed_rows)
 
     tables_dir = args.out_dir / "tables"
-    write_csv(tables_dir / "exp19_sft_first_round_dev_metrics.csv", metric_rows, METRIC_FIELDS)
-    write_csv(tables_dir / "exp19_sft_first_round_dev_label_metrics.csv", label_rows, LABEL_FIELDS)
-    write_csv(tables_dir / "exp19_sft_first_round_dev_parse_summary.csv", parse_rows, PARSE_FIELDS)
-    write_csv(tables_dir / "exp19_sft_first_round_dev_by_metric.csv", metric_group_rows)
-    write_csv(tables_dir / "exp19_sft_first_round_dev_by_language.csv", language_group_rows)
-    decision = decision_json(metric_rows, d1_rows) if args.write_structured_eval else {}
+    prefix = args.file_prefix
+    write_csv(tables_dir / f"{prefix}_metrics.csv", metric_rows, METRIC_FIELDS)
+    write_csv(tables_dir / f"{prefix}_label_metrics.csv", label_rows, LABEL_FIELDS)
+    write_csv(tables_dir / f"{prefix}_parse_summary.csv", parse_rows, PARSE_FIELDS)
+    write_csv(tables_dir / f"{prefix}_by_metric.csv", metric_group_rows)
+    write_csv(tables_dir / f"{prefix}_by_language.csv", language_group_rows)
+    decision = decision_json(metric_rows, d1_rows, args.decision_mode) if args.write_structured_eval else {}
     if args.write_structured_eval:
-        write_csv(tables_dir / "exp19_sft_first_round_dev_d1_hidden_eval.csv", d1_rows, D1_FIELDS)
-        write_csv(tables_dir / "exp19_sft_first_round_dev_failure_type_eval.csv", failure_rows, FAILURE_TYPE_FIELDS)
-        write_csv(tables_dir / "exp19_sft_first_round_dev_structured_parse.csv", structured_rows, STRUCTURED_PARSE_FIELDS)
-        write_json(args.out_dir / "decision" / "exp19_sft_first_round_dev_decision.json", decision)
+        write_csv(tables_dir / f"{prefix}_d1_hidden_eval.csv", d1_rows, D1_FIELDS)
+        write_csv(tables_dir / f"{prefix}_failure_type_eval.csv", failure_rows, FAILURE_TYPE_FIELDS)
+        write_csv(tables_dir / f"{prefix}_structured_parse.csv", structured_rows, STRUCTURED_PARSE_FIELDS)
+        write_json(args.out_dir / "decision" / f"{prefix}_decision.json", decision)
     if args.write_parsed_csv:
-        write_csv(args.out_dir / "diagnostics" / "exp19_sft_first_round_dev_parsed_predictions.csv", parsed_rows_all)
-    write_json(args.out_dir / "reports" / "exp19_sft_first_round_dev_prediction_files.json", prediction_files)
-    write_report(args.out_dir, metric_rows, parse_rows, d1_rows, failure_rows, structured_rows, decision)
+        write_csv(args.out_dir / "diagnostics" / f"{prefix}_parsed_predictions.csv", parsed_rows_all)
+    write_json(args.out_dir / "reports" / f"{prefix}_prediction_files.json", prediction_files)
+    report_title = args.report_title or "Exp19 First-Round SFT Dev Evaluation"
+    report_description = args.report_description or (
+        "This report summarizes LLaMA-Factory `do_predict` outputs on the original dev split."
+    )
+    write_report(
+        args.out_dir,
+        metric_rows,
+        parse_rows,
+        d1_rows,
+        failure_rows,
+        structured_rows,
+        decision,
+        report_title,
+        report_description,
+        args.out_dir / "reports" / f"{prefix}_report.md",
+    )
     return {"runs": len(metric_rows), "prediction_files": prediction_files, "decision": decision}
 
 
@@ -894,6 +1017,12 @@ def main() -> None:
     parser.add_argument("--prediction-root", type=Path, default=DEFAULT_OUTPUT_DIR / "dev_predictions")
     parser.add_argument("--reference-csv", type=Path, default=DEFAULT_REFERENCE)
     parser.add_argument("--d1-dir", type=Path, default=DEFAULT_D1_DIR)
+    parser.add_argument("--run-manifest", type=Path, default=None)
+    parser.add_argument("--run-manifest-json", default="")
+    parser.add_argument("--file-prefix", default="exp19_sft_first_round_dev")
+    parser.add_argument("--report-title", default="")
+    parser.add_argument("--report-description", default="")
+    parser.add_argument("--decision-mode", choices=["first_round", "second_round", "none"], default="first_round")
     parser.add_argument("--write-parsed-csv", action="store_true")
     parser.add_argument("--write-structured-eval", action="store_true")
     args = parser.parse_args()
