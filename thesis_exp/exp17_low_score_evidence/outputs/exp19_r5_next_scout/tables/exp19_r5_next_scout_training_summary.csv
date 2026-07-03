@@ -1,0 +1,4 @@
+run_name,run_label,completed,output_dir,log_file,max_steps,pref_beta,last_logged_loss
+r5e_from_r1b,R5E hard-synthetic DPO control from R1b,True,saves/edubench/qwen3-4b/r5e_dpo_control_scout_from_r1b_maxsteps100_lora,thesis_exp/exp17_low_score_evidence/outputs/exp19_r5_next_scout/logs/train_r5e_from_r1b_gpu0.log,100,0.05,0.6604
+r5c_no_mid_from_r1b,R5C no-mid score-risk DPO from R1b,True,saves/edubench/qwen3-4b/r5c_no_mid_dpo_scout_from_r1b_maxsteps100_lora,thesis_exp/exp17_low_score_evidence/outputs/exp19_r5_next_scout/logs/train_r5c_no_mid_from_r1b_gpu1.log,100,0.05,0.5805
+r5c_no_mid_from_r2c,R5C no-mid score-risk DPO from R2c,True,saves/edubench/qwen3-4b/r5c_no_mid_dpo_scout_from_r2c_maxsteps100_lora,thesis_exp/exp17_low_score_evidence/outputs/exp19_r5_next_scout/logs/train_r5c_no_mid_from_r2c_gpu2.log,100,0.05,0.1697

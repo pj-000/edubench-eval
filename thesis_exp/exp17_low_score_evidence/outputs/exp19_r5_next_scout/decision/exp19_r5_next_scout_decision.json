@@ -1,0 +1,25 @@
+{
+  "guardrails": {
+    "d1_used_for_eval_only": true,
+    "human_rationale_not_in_prompt": true,
+    "no_test_read": true
+  },
+  "r5c_no_mid_from_r1b_vs_r5c_main": {
+    "MAE_delta": 0.0027100271002710175,
+    "QWK_delta": -0.000824302525169962,
+    "d1_pred_ge4_improvement": -0.0,
+    "low_to_high_improvement": -0.0
+  },
+  "r5c_no_mid_from_r2c_vs_r5c_main": {
+    "MAE_delta": 0.018066847335140024,
+    "QWK_delta": -0.03087885742558638,
+    "d1_pred_ge4_improvement": -0.0,
+    "low_to_high_improvement": -0.03508771929824561
+  },
+  "r5e_from_r1b_vs_r5c_from_r1b": {
+    "low_to_high_abs_gap": 0.01754385964912286,
+    "similar": true
+  },
+  "reason": "R5E from R1b is close to R5C from R1b; synthetic-control effects remain a concern.",
+  "recommendation": "prioritize_r5f_rejection_mining"
+}
