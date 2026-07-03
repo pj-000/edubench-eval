@@ -9,6 +9,7 @@ OUT_DIR="${OUT_DIR:-thesis_exp/exp17_low_score_evidence/outputs/exp19_sft_second
 LOG_DIR="${LOG_DIR:-${OUT_DIR}/logs}"
 TABLE_DIR="${TABLE_DIR:-${OUT_DIR}/tables}"
 SKIP_COMPLETED="${SKIP_COMPLETED:-1}"
+CLEAN_CHECKPOINTS_AFTER_TRAIN="${CLEAN_CHECKPOINTS_AFTER_TRAIN:-1}"
 
 RUN_NAMES=(
   "r1b_score_only_balanced"
@@ -104,6 +105,7 @@ CONFIG_DIR=${CONFIG_DIR}
 OUT_DIR=${OUT_DIR}
 LOG_DIR=${LOG_DIR}
 SKIP_COMPLETED=${SKIP_COMPLETED}
+CLEAN_CHECKPOINTS_AFTER_TRAIN=${CLEAN_CHECKPOINTS_AFTER_TRAIN}
 
 Runs:
   R1b: score-only balanced
@@ -150,6 +152,9 @@ run_one() {
 
   echo "Starting ${run_label} on GPU ${gpu_id}; config=${config_path}; log=${log_path}"
   CUDA_VISIBLE_DEVICES="${gpu_id}" llamafactory-cli train "${config_path}" 2>&1 | tee "${log_path}"
+  if [[ "${CLEAN_CHECKPOINTS_AFTER_TRAIN}" == "1" ]]; then
+    find "${output_dir}" -mindepth 1 -maxdepth 1 -type d -name 'checkpoint-*' -print -exec rm -rf {} +
+  fi
   echo "Completed ${run_label} on GPU ${gpu_id}"
 }
 
