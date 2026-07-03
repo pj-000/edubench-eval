@@ -164,3 +164,23 @@ exp19_r5f_d1_like_rejection_mining_seed42/*
 !exp19_r5f_d1_like_rejection_mining_seed42/reports/**
 !exp19_r5f_d1_like_rejection_mining_seed42/tables/
 !exp19_r5f_d1_like_rejection_mining_seed42/tables/**
+
+# Exp19-R5F2 expanded rejection mining keeps generated prompts, raw sampled
+# generations, logs, predictions, and full DPO JSON local/server-side. Commit
+# only QC summaries, configs, snippets, decisions, references without raw text,
+# and redacted samples.
+!exp19_r5f2_rejection_mining_seed42/
+exp19_r5f2_rejection_mining_seed42/*
+!exp19_r5f2_rejection_mining_seed42/configs/
+!exp19_r5f2_rejection_mining_seed42/configs/**
+!exp19_r5f2_rejection_mining_seed42/decision/
+!exp19_r5f2_rejection_mining_seed42/decision/**
+!exp19_r5f2_rejection_mining_seed42/dataset_info*_snippet.json
+!exp19_r5f2_rejection_mining_seed42/redacted_samples/
+!exp19_r5f2_rejection_mining_seed42/redacted_samples/**
+!exp19_r5f2_rejection_mining_seed42/references/
+!exp19_r5f2_rejection_mining_seed42/references/**
+!exp19_r5f2_rejection_mining_seed42/reports/
+!exp19_r5f2_rejection_mining_seed42/reports/**
+!exp19_r5f2_rejection_mining_seed42/tables/
+!exp19_r5f2_rejection_mining_seed42/tables/**

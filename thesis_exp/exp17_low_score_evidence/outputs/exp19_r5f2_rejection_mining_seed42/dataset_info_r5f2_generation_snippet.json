@@ -1,0 +1,16 @@
+{
+  "edubench_exp19_r5f2_generation_train": {
+    "columns": {
+      "messages": "messages"
+    },
+    "file_name": "data/edubench_exp19_r5f2_generation_train.json",
+    "formatting": "sharegpt",
+    "tags": {
+      "assistant_tag": "assistant",
+      "content_tag": "content",
+      "role_tag": "role",
+      "system_tag": "system",
+      "user_tag": "user"
+    }
+  }
+}
