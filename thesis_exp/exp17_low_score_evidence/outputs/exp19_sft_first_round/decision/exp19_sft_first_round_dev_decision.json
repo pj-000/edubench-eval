@@ -1,0 +1,20 @@
+{
+  "best_low_risk_run": "r4_shuffled_reason_control",
+  "best_overall_run": "r1_score_only_natural",
+  "metrics_used": {
+    "r1_label2_recall": 0.0,
+    "r1_low_to_high": 0.543859649122807,
+    "r2_d1_pred_ge4": 1.0,
+    "r2_label2_recall": 0.0,
+    "r2_low_to_high": 0.5614035087719298,
+    "r4_d1_pred_ge4": 0.7307692307692307,
+    "r4_label2_recall": 0.05263157894736842,
+    "r4_low_to_high": 0.38596491228070173
+  },
+  "proceed_to_dpo": false,
+  "proceed_to_r3": false,
+  "proceed_to_second_round_ablation": true,
+  "r2_beats_r1": false,
+  "r2_beats_r4": false,
+  "reason": "R4 shuffled control is competitive with or better than R2; do second-round SFT ablation before R3/DPO."
+}

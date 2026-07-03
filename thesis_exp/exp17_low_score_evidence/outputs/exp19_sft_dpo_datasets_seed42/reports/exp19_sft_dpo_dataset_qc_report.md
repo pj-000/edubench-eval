@@ -17,13 +17,16 @@ split is not read.
 
 ## Dataset Counts
 
+- edubench_exp19_dev_score_eval: 1107 (sft_dev_eval_reference)
 - edubench_r1_score_only_train: 3326 (sft_natural)
+- edubench_r1_score_only_balanced_train: 3000 (sft_balanced_ablation)
 - edubench_r2_reason_score_train: 3326 (sft_natural)
 - edubench_r3_reason_rationale_train: 3326 (sft_natural)
 - edubench_r4_shuffled_reason_control_train: 3000 (sft_balanced_control)
 - edubench_r2_reason_score_balanced_train: 3000 (sft_balanced)
 - edubench_r3_reason_rationale_balanced_train: 3000 (sft_balanced)
 - edubench_r2_clean_reason_score_balanced_train: 3000 (sft_clean_balanced)
+- edubench_r4_shuffled_reason_balanced_train: 3000 (sft_clean_balanced_control)
 - edubench_r5_risk_balanced_dpo_train: 3000 (dpo_risk_balanced)
 - edubench_r5_high_protection_dpo_control_train: 6466 (dpo_control)
 
@@ -40,6 +43,7 @@ split is not read.
 
 - label distribution: {'1': 58, '2': 53, '3': 297, '4': 1163, '5': 1755}
 - SFT train distribution note: natural datasets preserve the original long-tail distribution; balanced datasets use explicit risk-aware sampling and must not be interpreted as the raw data distribution.
+- second-round ablation datasets: R1b isolates balanced sampling, R2n isolates natural reason-score training, R2c uses cleaner low-failure targets, and R4b is a fair shuffled-reason balanced control.
 - major failures distribution: {'no_major_failure': 2918, 'partial_or_incomplete': 297, 'unclear': 27, 'surface_fluent_but_hidden_defect': 25, 'missing_key_point': 25, 'insufficient_evidence': 23, 'task_constraint_violation': 4, 'answer_key_or_reference_mismatch': 4, 'format_violation': 3}
 - score cap distribution: {'None': 2918, '3': 297, '1': 58, '2': 53}
 - rubric_satisfied distribution: {'True': 2918, 'False': 408}

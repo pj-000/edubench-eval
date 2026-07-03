@@ -1,0 +1,4 @@
+run_name,run_label,n,score_json_parse_rate,major_failures_parse_rate,score_cap_parse_rate,rubric_satisfied_parse_rate,valid_full_schema_rate,no_major_failure_rate,score_cap_nonnull_rate
+r1_score_only_natural,R1 score-only natural,1107,1.0,0.0,0.0,0.0,0.0,0.0,0.0
+r2_reason_score_balanced,R2 reason-score balanced,1107,1.0,1.0,1.0,1.0,0.926829268292683,0.9159891598915989,0.08401084010840108
+r4_shuffled_reason_control,R4 shuffled reason control,1107,1.0,1.0,1.0,1.0,1.0,1.0,0.0948509485094851

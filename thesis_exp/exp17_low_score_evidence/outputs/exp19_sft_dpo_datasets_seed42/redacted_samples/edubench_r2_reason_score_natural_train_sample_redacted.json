@@ -1,0 +1,462 @@
+[
+  {
+    "input_redacted": {
+      "answer_hash": "8344a1bf5fa8d5d8dd16e0c8b9b30126091db67a",
+      "answer_preview": "{ \"Learning_Path_Planning\": { \"Short_Term\": [ {\"Objective\": \"Improve basic understanding of cellular biology\", \"Activiti...",
+      "gold_label": 4,
+      "language": "en",
+      "metric": "Instruction Following & Task Completion",
+      "question_group": "002cfcd8c1ac3ea32c6f46646c8bc2e1059c0500",
+      "question_hash": "843d8420c9133c70400811c2913e2b0d4050196a",
+      "question_preview": "{'Name': 'Alex Johnson', 'Age': 20, 'Current Skill Level': 'Intermediate', 'Learning Goals': ['Understand cellular biolo...",
+      "rubric_hash": "a14797eaa80ea764fabf950019166678639967fc",
+      "sample_id": "22fc3538594bd7f6426d96df9de31645e099e5df",
+      "subject": "Biology"
+    },
+    "target_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    }
+  },
+  {
+    "input_redacted": {
+      "answer_hash": "8344a1bf5fa8d5d8dd16e0c8b9b30126091db67a",
+      "answer_preview": "{ \"Learning_Path_Planning\": { \"Short_Term\": [ {\"Objective\": \"Improve basic understanding of cellular biology\", \"Activiti...",
+      "gold_label": 4,
+      "language": "en",
+      "metric": "Scenario Element Integration",
+      "question_group": "002cfcd8c1ac3ea32c6f46646c8bc2e1059c0500",
+      "question_hash": "843d8420c9133c70400811c2913e2b0d4050196a",
+      "question_preview": "{'Name': 'Alex Johnson', 'Age': 20, 'Current Skill Level': 'Intermediate', 'Learning Goals': ['Understand cellular biolo...",
+      "rubric_hash": "ac0cfa3792b9866ecaf4c25bfc92511d9d852145",
+      "sample_id": "00f03652813873e800443b4e84091ed05063eb49",
+      "subject": "Biology"
+    },
+    "target_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    }
+  },
+  {
+    "input_redacted": {
+      "answer_hash": "8344a1bf5fa8d5d8dd16e0c8b9b30126091db67a",
+      "answer_preview": "{ \"Learning_Path_Planning\": { \"Short_Term\": [ {\"Objective\": \"Improve basic understanding of cellular biology\", \"Activiti...",
+      "gold_label": 4,
+      "language": "en",
+      "metric": "Personalization, Adaptation & Learning Support",
+      "question_group": "002cfcd8c1ac3ea32c6f46646c8bc2e1059c0500",
+      "question_hash": "843d8420c9133c70400811c2913e2b0d4050196a",
+      "question_preview": "{'Name': 'Alex Johnson', 'Age': 20, 'Current Skill Level': 'Intermediate', 'Learning Goals': ['Understand cellular biolo...",
+      "rubric_hash": "44f43049f025820bcd1dfbf7680edd947a678fea",
+      "sample_id": "51e5f21cbcf3748b0c03279f49b625af32cd9b0b",
+      "subject": "Biology"
+    },
+    "target_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    }
+  },
+  {
+    "input_redacted": {
+      "answer_hash": "2818e2b51cbcbe991e8fdf37b38e427ce588d317",
+      "answer_preview": "{ \"Learning_Path_Planning\": { \"Short_Term\": { \"Objective\": \"Master introductory physics concepts\", \"Activities\": [ {\"Typ...",
+      "gold_label": 4,
+      "language": "en",
+      "metric": "Instruction Following & Task Completion",
+      "question_group": "71e2133d3049be048126f45752ada952a3208a9f",
+      "question_hash": "c80f0636b964464c48aed9a52c9841c979032af6",
+      "question_preview": "{'Name': 'Alex Johnson', 'Age': 19, 'Current Education Level': 'Undergraduate, Year 1', 'Current Skill Level': 'Introduc...",
+      "rubric_hash": "a14797eaa80ea764fabf950019166678639967fc",
+      "sample_id": "a946b20864b31d0ab6a9e953e7ef387da3543466",
+      "subject": "Physics"
+    },
+    "target_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    }
+  },
+  {
+    "input_redacted": {
+      "answer_hash": "2818e2b51cbcbe991e8fdf37b38e427ce588d317",
+      "answer_preview": "{ \"Learning_Path_Planning\": { \"Short_Term\": { \"Objective\": \"Master introductory physics concepts\", \"Activities\": [ {\"Typ...",
+      "gold_label": 4,
+      "language": "en",
+      "metric": "Scenario Element Integration",
+      "question_group": "71e2133d3049be048126f45752ada952a3208a9f",
+      "question_hash": "c80f0636b964464c48aed9a52c9841c979032af6",
+      "question_preview": "{'Name': 'Alex Johnson', 'Age': 19, 'Current Education Level': 'Undergraduate, Year 1', 'Current Skill Level': 'Introduc...",
+      "rubric_hash": "ac0cfa3792b9866ecaf4c25bfc92511d9d852145",
+      "sample_id": "605a39edf2ab4a11d8237e2d71382f0ab7c40100",
+      "subject": "Physics"
+    },
+    "target_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    }
+  },
+  {
+    "input_redacted": {
+      "answer_hash": "2818e2b51cbcbe991e8fdf37b38e427ce588d317",
+      "answer_preview": "{ \"Learning_Path_Planning\": { \"Short_Term\": { \"Objective\": \"Master introductory physics concepts\", \"Activities\": [ {\"Typ...",
+      "gold_label": 4,
+      "language": "en",
+      "metric": "Personalization, Adaptation & Learning Support",
+      "question_group": "71e2133d3049be048126f45752ada952a3208a9f",
+      "question_hash": "c80f0636b964464c48aed9a52c9841c979032af6",
+      "question_preview": "{'Name': 'Alex Johnson', 'Age': 19, 'Current Education Level': 'Undergraduate, Year 1', 'Current Skill Level': 'Introduc...",
+      "rubric_hash": "44f43049f025820bcd1dfbf7680edd947a678fea",
+      "sample_id": "4abb5320624308bb074fe6932d7ef7c088b0dd41",
+      "subject": "Physics"
+    },
+    "target_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    }
+  },
+  {
+    "input_redacted": {
+      "answer_hash": "fab73f6da6f8caf42bc7e32b80de303483ad39a1",
+      "answer_preview": "{ \"Learning Path Planning\": { \"Short Term (Next 3 Months)\": { \"Focus Areas\": [\"Quantitative Analysis Techniques\", \"Intro...",
+      "gold_label": 4,
+      "language": "en",
+      "metric": "Instruction Following & Task Completion",
+      "question_group": "8cdf1aba67fd11f6ef4d3de526d6c99b7ecebfd4",
+      "question_hash": "e6900e61cf9dc216fe9f5b24eb1cd0af80e62c68",
+      "question_preview": "{'Name': 'Alex Johnson', 'Age': 21, 'Current Education Level': 'Undergraduate', 'Current Skill Level': 'Intermediate', '...",
+      "rubric_hash": "a14797eaa80ea764fabf950019166678639967fc",
+      "sample_id": "079d3cbeeacbfeccd949183b375b3198418e4959",
+      "subject": "Applied Economics"
+    },
+    "target_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    }
+  },
+  {
+    "input_redacted": {
+      "answer_hash": "fab73f6da6f8caf42bc7e32b80de303483ad39a1",
+      "answer_preview": "{ \"Learning Path Planning\": { \"Short Term (Next 3 Months)\": { \"Focus Areas\": [\"Quantitative Analysis Techniques\", \"Intro...",
+      "gold_label": 4,
+      "language": "en",
+      "metric": "Scenario Element Integration",
+      "question_group": "8cdf1aba67fd11f6ef4d3de526d6c99b7ecebfd4",
+      "question_hash": "e6900e61cf9dc216fe9f5b24eb1cd0af80e62c68",
+      "question_preview": "{'Name': 'Alex Johnson', 'Age': 21, 'Current Education Level': 'Undergraduate', 'Current Skill Level': 'Intermediate', '...",
+      "rubric_hash": "ac0cfa3792b9866ecaf4c25bfc92511d9d852145",
+      "sample_id": "ad2ae52c3ad75dc2ec01f807575b120f0db739c4",
+      "subject": "Applied Economics"
+    },
+    "target_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    }
+  },
+  {
+    "input_redacted": {
+      "answer_hash": "fab73f6da6f8caf42bc7e32b80de303483ad39a1",
+      "answer_preview": "{ \"Learning Path Planning\": { \"Short Term (Next 3 Months)\": { \"Focus Areas\": [\"Quantitative Analysis Techniques\", \"Intro...",
+      "gold_label": 4,
+      "language": "en",
+      "metric": "Personalization, Adaptation & Learning Support",
+      "question_group": "8cdf1aba67fd11f6ef4d3de526d6c99b7ecebfd4",
+      "question_hash": "e6900e61cf9dc216fe9f5b24eb1cd0af80e62c68",
+      "question_preview": "{'Name': 'Alex Johnson', 'Age': 21, 'Current Education Level': 'Undergraduate', 'Current Skill Level': 'Intermediate', '...",
+      "rubric_hash": "44f43049f025820bcd1dfbf7680edd947a678fea",
+      "sample_id": "149f9441c4d8d11ab5ae76d131041560ce986240",
+      "subject": "Applied Economics"
+    },
+    "target_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    }
+  },
+  {
+    "input_redacted": {
+      "answer_hash": "6d206fa95794fc5d83922751e6cf7c2625f72852",
+      "answer_preview": "```json { \"Learning Path Planning\": { \"Short-Term Goals (0-3 Months)\": [ { \"Goal\": \"Improve understanding of econometric...",
+      "gold_label": 5,
+      "language": "en",
+      "metric": "Instruction Following & Task Completion",
+      "question_group": "8cdf1aba67fd11f6ef4d3de526d6c99b7ecebfd4",
+      "question_hash": "e6900e61cf9dc216fe9f5b24eb1cd0af80e62c68",
+      "question_preview": "{'Name': 'Alex Johnson', 'Age': 21, 'Current Education Level': 'Undergraduate', 'Current Skill Level': 'Intermediate', '...",
+      "rubric_hash": "a14797eaa80ea764fabf950019166678639967fc",
+      "sample_id": "696ba193025f25d05c1b1f8dfad77c2ca28f12c4",
+      "subject": "Applied Economics"
+    },
+    "target_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    }
+  },
+  {
+    "input_redacted": {
+      "answer_hash": "6d206fa95794fc5d83922751e6cf7c2625f72852",
+      "answer_preview": "```json { \"Learning Path Planning\": { \"Short-Term Goals (0-3 Months)\": [ { \"Goal\": \"Improve understanding of econometric...",
+      "gold_label": 4,
+      "language": "en",
+      "metric": "Scenario Element Integration",
+      "question_group": "8cdf1aba67fd11f6ef4d3de526d6c99b7ecebfd4",
+      "question_hash": "e6900e61cf9dc216fe9f5b24eb1cd0af80e62c68",
+      "question_preview": "{'Name': 'Alex Johnson', 'Age': 21, 'Current Education Level': 'Undergraduate', 'Current Skill Level': 'Intermediate', '...",
+      "rubric_hash": "ac0cfa3792b9866ecaf4c25bfc92511d9d852145",
+      "sample_id": "e78781ba44e7ccd99d93c2d2256495034a753f86",
+      "subject": "Applied Economics"
+    },
+    "target_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    }
+  },
+  {
+    "input_redacted": {
+      "answer_hash": "6d206fa95794fc5d83922751e6cf7c2625f72852",
+      "answer_preview": "```json { \"Learning Path Planning\": { \"Short-Term Goals (0-3 Months)\": [ { \"Goal\": \"Improve understanding of econometric...",
+      "gold_label": 4,
+      "language": "en",
+      "metric": "Personalization, Adaptation & Learning Support",
+      "question_group": "8cdf1aba67fd11f6ef4d3de526d6c99b7ecebfd4",
+      "question_hash": "e6900e61cf9dc216fe9f5b24eb1cd0af80e62c68",
+      "question_preview": "{'Name': 'Alex Johnson', 'Age': 21, 'Current Education Level': 'Undergraduate', 'Current Skill Level': 'Intermediate', '...",
+      "rubric_hash": "44f43049f025820bcd1dfbf7680edd947a678fea",
+      "sample_id": "579c7161d23186114c709867acce054ec73e0531",
+      "subject": "Applied Economics"
+    },
+    "target_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    }
+  },
+  {
+    "input_redacted": {
+      "answer_hash": "7dff168b92e9db23de7f6a451bc94d510d92a3b8",
+      "answer_preview": "```json { \"StudentProfile\": { \"Name\": \"Alex Johnson\", \"Age\": 19, \"CurrentEducationLevel\": \"Undergraduate, Year 1\", \"Curr...",
+      "gold_label": 5,
+      "language": "en",
+      "metric": "Instruction Following & Task Completion",
+      "question_group": "71e2133d3049be048126f45752ada952a3208a9f",
+      "question_hash": "c80f0636b964464c48aed9a52c9841c979032af6",
+      "question_preview": "{'Name': 'Alex Johnson', 'Age': 19, 'Current Education Level': 'Undergraduate, Year 1', 'Current Skill Level': 'Introduc...",
+      "rubric_hash": "a14797eaa80ea764fabf950019166678639967fc",
+      "sample_id": "f2dd13eea21d86717259e3f2ae658125c15e93a5",
+      "subject": "Physics"
+    },
+    "target_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    }
+  },
+  {
+    "input_redacted": {
+      "answer_hash": "7dff168b92e9db23de7f6a451bc94d510d92a3b8",
+      "answer_preview": "```json { \"StudentProfile\": { \"Name\": \"Alex Johnson\", \"Age\": 19, \"CurrentEducationLevel\": \"Undergraduate, Year 1\", \"Curr...",
+      "gold_label": 5,
+      "language": "en",
+      "metric": "Scenario Element Integration",
+      "question_group": "71e2133d3049be048126f45752ada952a3208a9f",
+      "question_hash": "c80f0636b964464c48aed9a52c9841c979032af6",
+      "question_preview": "{'Name': 'Alex Johnson', 'Age': 19, 'Current Education Level': 'Undergraduate, Year 1', 'Current Skill Level': 'Introduc...",
+      "rubric_hash": "ac0cfa3792b9866ecaf4c25bfc92511d9d852145",
+      "sample_id": "24b68778c68222dd38199329a102b2c36aaca014",
+      "subject": "Physics"
+    },
+    "target_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    }
+  },
+  {
+    "input_redacted": {
+      "answer_hash": "7dff168b92e9db23de7f6a451bc94d510d92a3b8",
+      "answer_preview": "```json { \"StudentProfile\": { \"Name\": \"Alex Johnson\", \"Age\": 19, \"CurrentEducationLevel\": \"Undergraduate, Year 1\", \"Curr...",
+      "gold_label": 5,
+      "language": "en",
+      "metric": "Personalization, Adaptation & Learning Support",
+      "question_group": "71e2133d3049be048126f45752ada952a3208a9f",
+      "question_hash": "c80f0636b964464c48aed9a52c9841c979032af6",
+      "question_preview": "{'Name': 'Alex Johnson', 'Age': 19, 'Current Education Level': 'Undergraduate, Year 1', 'Current Skill Level': 'Introduc...",
+      "rubric_hash": "44f43049f025820bcd1dfbf7680edd947a678fea",
+      "sample_id": "7073c82cd9bf9cb523e855ec7578c31a064b29db",
+      "subject": "Physics"
+    },
+    "target_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    }
+  },
+  {
+    "input_redacted": {
+      "answer_hash": "c26cc296a5d36e39cac2e6d07aee6e85d00005b3",
+      "answer_preview": "{ \"Learning_Path_Planning\": { \"Short_Term_Goals\": [ \"Complete an overview of key events in the 20th century.\", \"Engage i...",
+      "gold_label": 4,
+      "language": "en",
+      "metric": "Instruction Following & Task Completion",
+      "question_group": "639f94d782b2c115eb52a4aae8b943c69735f697",
+      "question_hash": "c3763de6076b8793e2c985670b84a61dd55067eb",
+      "question_preview": "{'Name': 'Alex Johnson', 'Age': 17, 'Current Education Level': 'High School Junior', 'Current Skill Level in History': '...",
+      "rubric_hash": "a14797eaa80ea764fabf950019166678639967fc",
+      "sample_id": "eb284da4d05b5674af9f47a017caa8f1d9ab9dcf",
+      "subject": "History"
+    },
+    "target_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    }
+  },
+  {
+    "input_redacted": {
+      "answer_hash": "c26cc296a5d36e39cac2e6d07aee6e85d00005b3",
+      "answer_preview": "{ \"Learning_Path_Planning\": { \"Short_Term_Goals\": [ \"Complete an overview of key events in the 20th century.\", \"Engage i...",
+      "gold_label": 5,
+      "language": "en",
+      "metric": "Scenario Element Integration",
+      "question_group": "639f94d782b2c115eb52a4aae8b943c69735f697",
+      "question_hash": "c3763de6076b8793e2c985670b84a61dd55067eb",
+      "question_preview": "{'Name': 'Alex Johnson', 'Age': 17, 'Current Education Level': 'High School Junior', 'Current Skill Level in History': '...",
+      "rubric_hash": "ac0cfa3792b9866ecaf4c25bfc92511d9d852145",
+      "sample_id": "0204872bcf4cd4b4d4937c12c2cd77f0171376ab",
+      "subject": "History"
+    },
+    "target_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    }
+  },
+  {
+    "input_redacted": {
+      "answer_hash": "c26cc296a5d36e39cac2e6d07aee6e85d00005b3",
+      "answer_preview": "{ \"Learning_Path_Planning\": { \"Short_Term_Goals\": [ \"Complete an overview of key events in the 20th century.\", \"Engage i...",
+      "gold_label": 4,
+      "language": "en",
+      "metric": "Personalization, Adaptation & Learning Support",
+      "question_group": "639f94d782b2c115eb52a4aae8b943c69735f697",
+      "question_hash": "c3763de6076b8793e2c985670b84a61dd55067eb",
+      "question_preview": "{'Name': 'Alex Johnson', 'Age': 17, 'Current Education Level': 'High School Junior', 'Current Skill Level in History': '...",
+      "rubric_hash": "44f43049f025820bcd1dfbf7680edd947a678fea",
+      "sample_id": "877ca91093f413ef2586e714ebe9b6ecb22c9fbb",
+      "subject": "History"
+    },
+    "target_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    }
+  },
+  {
+    "input_redacted": {
+      "answer_hash": "86eeb6411697fdbec3f0dbfc72047efdff9e9585",
+      "answer_preview": "```json { \"Learning Path Planning\": { \"Week 1-4\": { \"Cellular Biology\": [ \"Basics of Cell Structure and Function\", \"Cell...",
+      "gold_label": 4,
+      "language": "en",
+      "metric": "Instruction Following & Task Completion",
+      "question_group": "002cfcd8c1ac3ea32c6f46646c8bc2e1059c0500",
+      "question_hash": "843d8420c9133c70400811c2913e2b0d4050196a",
+      "question_preview": "{'Name': 'Alex Johnson', 'Age': 20, 'Current Skill Level': 'Intermediate', 'Learning Goals': ['Understand cellular biolo...",
+      "rubric_hash": "a14797eaa80ea764fabf950019166678639967fc",
+      "sample_id": "bf19ea328afae37aa116eb7ffee1bea59330c821",
+      "subject": "Biology"
+    },
+    "target_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    }
+  },
+  {
+    "input_redacted": {
+      "answer_hash": "86eeb6411697fdbec3f0dbfc72047efdff9e9585",
+      "answer_preview": "```json { \"Learning Path Planning\": { \"Week 1-4\": { \"Cellular Biology\": [ \"Basics of Cell Structure and Function\", \"Cell...",
+      "gold_label": 4,
+      "language": "en",
+      "metric": "Scenario Element Integration",
+      "question_group": "002cfcd8c1ac3ea32c6f46646c8bc2e1059c0500",
+      "question_hash": "843d8420c9133c70400811c2913e2b0d4050196a",
+      "question_preview": "{'Name': 'Alex Johnson', 'Age': 20, 'Current Skill Level': 'Intermediate', 'Learning Goals': ['Understand cellular biolo...",
+      "rubric_hash": "ac0cfa3792b9866ecaf4c25bfc92511d9d852145",
+      "sample_id": "1bf1b0ebe13512c39a7f0573ceaedf2231646bac",
+      "subject": "Biology"
+    },
+    "target_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    }
+  }
+]

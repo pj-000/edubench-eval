@@ -21,3 +21,5 @@ exp19_sft_first_round/*
 !exp19_sft_first_round/reports/**
 !exp19_sft_first_round/tables/
 !exp19_sft_first_round/tables/**
+!exp19_sft_first_round/decision/
+!exp19_sft_first_round/decision/**

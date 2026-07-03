@@ -41,14 +41,17 @@ MODEL_PATH = "/home/jpang/models/modelscope/Qwen/Qwen3-4B"
 SYSTEM_PROMPT = "You are an educational assessment evaluator. Return only valid JSON."
 DATASET_NAMES = {
     "r1": "edubench_r1_score_only_train",
+    "r1_balanced": "edubench_r1_score_only_balanced_train",
     "r2": "edubench_r2_reason_score_train",
     "r3": "edubench_r3_reason_rationale_train",
     "r4": "edubench_r4_shuffled_reason_control_train",
     "r2_balanced": "edubench_r2_reason_score_balanced_train",
     "r3_balanced": "edubench_r3_reason_rationale_balanced_train",
     "r2_clean_balanced": "edubench_r2_clean_reason_score_balanced_train",
+    "r4_shuffled_balanced": "edubench_r4_shuffled_reason_balanced_train",
     "r5": "edubench_r5_risk_balanced_dpo_train",
     "r5_high_control": "edubench_r5_high_protection_dpo_control_train",
+    "dev_eval": "edubench_exp19_dev_score_eval",
 }
 OPENAI_TAGS = {
     "role_tag": "role",
@@ -366,6 +369,48 @@ def build_sft_from_indices(
     return [sft_example(rows[idx], targets[idx]) for idx in indices]
 
 
+def redacted_sft_from_indices(
+    rows: list[dict[str, Any]],
+    targets: list[dict[str, Any]],
+    indices: list[int],
+    limit: int,
+) -> list[dict[str, Any]]:
+    out = []
+    for idx in indices[:limit]:
+        out.append({"input_redacted": redacted_input(rows[idx]), "target_redacted": redacted_target(targets[idx])})
+    return out
+
+
+def target_label_counter(targets: list[dict[str, Any]], indices: list[int] | None = None) -> Counter[str]:
+    if indices is None:
+        return Counter(str(clamp_score(target.get("score"))) for target in targets)
+    return Counter(str(clamp_score(targets[idx].get("score"))) for idx in indices)
+
+
+def target_field_distribution(
+    dataset_name: str,
+    targets: list[dict[str, Any]],
+    indices: list[int] | None,
+    field: str,
+) -> list[dict[str, Any]]:
+    selected = (targets[idx] for idx in indices) if indices is not None else iter(targets)
+    counter: Counter[str] = Counter()
+    for target in selected:
+        value = target.get(field)
+        if isinstance(value, list):
+            if not value:
+                counter.update([""])
+            else:
+                counter.update(str(item) for item in value)
+        else:
+            counter.update([str(value)])
+    total = sum(counter.values())
+    return [
+        {"dataset": dataset_name, "field": field, "value": key, "count": count, "rate": count / total if total else 0.0}
+        for key, count in counter.most_common()
+    ]
+
+
 def build_dpo_high_protection_control(
     rows: list[dict[str, Any]],
     prefs: list[tuple[dict[str, Any], dict[str, Any], str, str, int]],
@@ -538,13 +583,16 @@ def dpo_dataset_entry(file_name: str) -> dict[str, Any]:
 
 def dataset_info_snippet() -> dict[str, Any]:
     return {
+        DATASET_NAMES["dev_eval"]: sft_dataset_entry("data/edubench_exp19_dev_score_eval.json"),
         DATASET_NAMES["r1"]: sft_dataset_entry("data/edubench_r1_score_only_train.json"),
+        DATASET_NAMES["r1_balanced"]: sft_dataset_entry("data/edubench_r1_score_only_balanced_train.json"),
         DATASET_NAMES["r2"]: sft_dataset_entry("data/edubench_r2_reason_score_train.json"),
         DATASET_NAMES["r3"]: sft_dataset_entry("data/edubench_r3_reason_rationale_train.json"),
         DATASET_NAMES["r4"]: sft_dataset_entry("data/edubench_r4_shuffled_reason_control_train.json"),
         DATASET_NAMES["r2_balanced"]: sft_dataset_entry("data/edubench_r2_reason_score_balanced_train.json"),
         DATASET_NAMES["r3_balanced"]: sft_dataset_entry("data/edubench_r3_reason_rationale_balanced_train.json"),
         DATASET_NAMES["r2_clean_balanced"]: sft_dataset_entry("data/edubench_r2_clean_reason_score_balanced_train.json"),
+        DATASET_NAMES["r4_shuffled_balanced"]: sft_dataset_entry("data/edubench_r4_shuffled_reason_balanced_train.json"),
         DATASET_NAMES["r5"]: dpo_dataset_entry("data/edubench_r5_risk_balanced_dpo_train.json"),
         DATASET_NAMES["r5_high_control"]: dpo_dataset_entry("data/edubench_r5_high_protection_dpo_control_train.json"),
     }
@@ -562,9 +610,8 @@ def yaml_from_mapping(mapping: dict[str, Any]) -> str:
     return "\n".join(f"{key}: {yaml_scalar(value)}" for key, value in mapping.items()) + "\n"
 
 
-def sft_config(dataset_name: str, output_subdir: str, dataset_dir: Path) -> str:
-    return yaml_from_mapping(
-        {
+def sft_config(dataset_name: str, output_subdir: str, dataset_dir: Path, max_steps: int | None = None) -> str:
+    mapping: dict[str, Any] = {
             "model_name_or_path": MODEL_PATH,
             "trust_remote_code": True,
             "stage": "sft",
@@ -595,7 +642,11 @@ def sft_config(dataset_name: str, output_subdir: str, dataset_dir: Path) -> str:
             "bf16": True,
             "gradient_checkpointing": True,
         }
-    )
+    if max_steps is not None:
+        mapping["max_steps"] = max_steps
+        mapping["num_train_epochs"] = 1
+        mapping["output_dir"] = f"saves/edubench/qwen3-4b/{output_subdir}"
+    return yaml_from_mapping(mapping)
 
 
 def dpo_config(dataset_name: str, output_subdir: str, dataset_dir: Path) -> str:
@@ -665,6 +716,18 @@ def write_configs(config_dir: Path, dataset_dir: Path) -> None:
         sft_config(DATASET_NAMES["r2_clean_balanced"], "r2_clean_reason_score_balanced_lora", dataset_dir),
     )
     write_text(
+        config_dir / "llamafactory_qwen3_4b_r1_score_only_balanced_lora.yaml",
+        sft_config(DATASET_NAMES["r1_balanced"], "r1_score_only_balanced_lora", dataset_dir),
+    )
+    write_text(
+        config_dir / "llamafactory_qwen3_4b_r2_reason_score_natural_lora.yaml",
+        sft_config(DATASET_NAMES["r2"], "r2_reason_score_natural_lora", dataset_dir),
+    )
+    write_text(
+        config_dir / "llamafactory_qwen3_4b_r4_shuffled_reason_balanced_lora.yaml",
+        sft_config(DATASET_NAMES["r4_shuffled_balanced"], "r4_shuffled_reason_balanced_lora", dataset_dir),
+    )
+    write_text(
         config_dir / "llamafactory_qwen3_4b_r5_risk_balanced_dpo.yaml",
         dpo_config(DATASET_NAMES["r5"], "r5_risk_balanced_dpo", dataset_dir),
     )
@@ -672,6 +735,32 @@ def write_configs(config_dir: Path, dataset_dir: Path) -> None:
         config_dir / "llamafactory_qwen3_4b_r5_high_protection_dpo_control.yaml",
         dpo_config(DATASET_NAMES["r5_high_control"], "r5_high_protection_dpo_control", dataset_dir),
     )
+    smoke_dir = config_dir / "smoke"
+    smoke_dir.mkdir(parents=True, exist_ok=True)
+    smoke_configs = [
+        (
+            "smoke_llamafactory_qwen3_4b_r1_score_only_balanced_lora.yaml",
+            DATASET_NAMES["r1_balanced"],
+            "smoke_r1_score_only_balanced_lora",
+        ),
+        (
+            "smoke_llamafactory_qwen3_4b_r2_reason_score_natural_lora.yaml",
+            DATASET_NAMES["r2"],
+            "smoke_r2_reason_score_natural_lora",
+        ),
+        (
+            "smoke_llamafactory_qwen3_4b_r2_clean_reason_score_balanced_lora.yaml",
+            DATASET_NAMES["r2_clean_balanced"],
+            "smoke_r2_clean_reason_score_balanced_lora",
+        ),
+        (
+            "smoke_llamafactory_qwen3_4b_r4_shuffled_reason_balanced_lora.yaml",
+            DATASET_NAMES["r4_shuffled_balanced"],
+            "smoke_r4_shuffled_reason_balanced_lora",
+        ),
+    ]
+    for filename, dataset_name, output_subdir in smoke_configs:
+        write_text(smoke_dir / filename, sft_config(dataset_name, output_subdir, dataset_dir, max_steps=2))
 
 
 def check_reason_leakage(rows: list[dict[str, Any]], candidates: dict[str, dict[str, str]]) -> tuple[int, int]:
@@ -716,6 +805,7 @@ def build_qc_report(
     dataset_rows: list[dict[str, Any]],
     dpo_count_sets: dict[str, tuple[Counter[str], Counter[str]]],
     sft_label_count_sets: dict[str, Counter[str]],
+    sft_target_sets: dict[str, tuple[list[dict[str, Any]], list[int] | None]],
 ) -> dict[str, Any]:
     label_counts = distribution(train_rows, lambda r: str(clamp_score(r.get("label_5"))))
     language_counts = distribution(train_rows, language)
@@ -790,6 +880,16 @@ def build_qc_report(
                 }
             )
     write_csv(tables_dir / "exp19_s0_sft_label_distribution_by_dataset.csv", sft_label_rows)
+    major_failure_rows: list[dict[str, Any]] = []
+    score_cap_rows: list[dict[str, Any]] = []
+    rubric_satisfied_rows: list[dict[str, Any]] = []
+    for dataset_name, (targets, indices) in sft_target_sets.items():
+        major_failure_rows.extend(target_field_distribution(dataset_name, targets, indices, "major_failures"))
+        score_cap_rows.extend(target_field_distribution(dataset_name, targets, indices, "score_cap"))
+        rubric_satisfied_rows.extend(target_field_distribution(dataset_name, targets, indices, "rubric_satisfied"))
+    write_csv(tables_dir / "exp19_s0_major_failures_distribution_by_dataset.csv", major_failure_rows)
+    write_csv(tables_dir / "exp19_s0_score_cap_distribution_by_dataset.csv", score_cap_rows)
+    write_csv(tables_dir / "exp19_s0_rubric_satisfied_distribution_by_dataset.csv", rubric_satisfied_rows)
     write_csv(tables_dir / "exp19_s0_dataset_counts.csv", dataset_rows)
 
     summary = {
@@ -850,6 +950,7 @@ def build_qc_report(
             "",
             f"- label distribution: {dict(sorted(label_counts.items()))}",
             f"- SFT train distribution note: natural datasets preserve the original long-tail distribution; balanced datasets use explicit risk-aware sampling and must not be interpreted as the raw data distribution.",
+            "- second-round ablation datasets: R1b isolates balanced sampling, R2n isolates natural reason-score training, R2c uses cleaner low-failure targets, and R4b is a fair shuffled-reason balanced control.",
             f"- major failures distribution: {dict(failures.most_common())}",
             f"- score cap distribution: {dict(score_caps.most_common())}",
             f"- rubric_satisfied distribution: {dict(rubric_satisfied.most_common())}",
@@ -905,19 +1006,35 @@ def build_datasets(args: argparse.Namespace) -> dict[str, Any]:
                 "brief_reason": bundle["brief_reason"],
             }
         )
+    r4b_bundles = list(reason_bundles)
+    rng.shuffle(r4b_bundles)
+    r4b_targets = []
+    for row, original_target, bundle in zip(train_rows, r2_targets, r4b_bundles):
+        r4b_targets.append(
+            {
+                "score": clamp_score(row.get("label_5")),
+                "major_failures": bundle["major_failures"],
+                "score_cap": original_target["score_cap"],
+                "rubric_satisfied": original_target["rubric_satisfied"],
+                "brief_reason": bundle["brief_reason"],
+            }
+        )
 
     r1 = [sft_example(row, target) for row, target in zip(train_rows, r1_targets)]
     r2 = [sft_example(row, target) for row, target in zip(train_rows, r2_targets)]
     r3 = [sft_example(row, target) for row, target in zip(train_rows, r3_targets)]
+    dev_eval = [sft_example(row, score_only_target(row)) for row in dev_rows]
     r2_balanced_indices = build_balanced_indices(train_rows, r2_targets, rng, args.balanced_total, clean_low_only=False)
     r3_balanced_indices = build_balanced_indices(train_rows, r3_targets, rng, args.balanced_total, clean_low_only=False)
     r2_clean_balanced_indices = build_balanced_indices(
         train_rows, r2_targets, rng, args.balanced_total, clean_low_only=True
     )
+    r1_balanced = build_sft_from_indices(train_rows, r1_targets, r2_balanced_indices)
     r2_balanced = build_sft_from_indices(train_rows, r2_targets, r2_balanced_indices)
     r3_balanced = build_sft_from_indices(train_rows, r3_targets, r3_balanced_indices)
     r2_clean_balanced = build_sft_from_indices(train_rows, r2_targets, r2_clean_balanced_indices)
     r4 = build_sft_from_indices(train_rows, r4_targets, r2_balanced_indices)
+    r4b_shuffled_balanced = build_sft_from_indices(train_rows, r4b_targets, r2_clean_balanced_indices)
 
     dpo_prefs = [dpo_chosen_rejected(row, candidates.get(sample_id(row))) for row in train_rows]
     r5_high_control, dpo_control_original_counts, dpo_control_expanded_counts = build_dpo_high_protection_control(
@@ -930,21 +1047,40 @@ def build_datasets(args: argparse.Namespace) -> dict[str, Any]:
     data_dir = args.out_dir / "data"
     redacted_dir = args.out_dir / "redacted_samples"
     write_json_array(data_dir / "edubench_r1_score_only_train.json", r1)
+    write_json_array(data_dir / "edubench_r1_score_only_balanced_train.json", r1_balanced)
     write_json_array(data_dir / "edubench_r2_reason_score_train.json", r2)
     write_json_array(data_dir / "edubench_r3_reason_rationale_train.json", r3)
     write_json_array(data_dir / "edubench_r4_shuffled_reason_control_train.json", r4)
     write_json_array(data_dir / "edubench_r2_reason_score_balanced_train.json", r2_balanced)
     write_json_array(data_dir / "edubench_r3_reason_rationale_balanced_train.json", r3_balanced)
     write_json_array(data_dir / "edubench_r2_clean_reason_score_balanced_train.json", r2_clean_balanced)
+    write_json_array(data_dir / "edubench_r4_shuffled_reason_balanced_train.json", r4b_shuffled_balanced)
     write_json_array(data_dir / "edubench_r5_risk_balanced_dpo_train.json", r5)
     write_json_array(data_dir / "edubench_r5_high_protection_dpo_control_train.json", r5_high_control)
+    write_json_array(data_dir / "edubench_exp19_dev_score_eval.json", dev_eval)
 
     limit = args.max_redacted_samples
     write_json(redacted_dir / "edubench_r1_score_only_train_sample_redacted.json", redacted_sft_sample(train_rows, r1_targets, limit))
+    write_json(
+        redacted_dir / "edubench_r1_score_only_balanced_train_sample_redacted.json",
+        redacted_sft_from_indices(train_rows, r1_targets, r2_balanced_indices, limit),
+    )
     write_json(redacted_dir / "edubench_r2_reason_score_train_sample_redacted.json", redacted_sft_sample(train_rows, r2_targets, limit))
+    write_json(
+        redacted_dir / "edubench_r2_reason_score_natural_train_sample_redacted.json",
+        redacted_sft_sample(train_rows, r2_targets, limit),
+    )
     write_json(
         redacted_dir / "edubench_r3_reason_rationale_train_sample_redacted.json",
         redacted_sft_sample(train_rows, r3_targets, limit),
+    )
+    write_json(
+        redacted_dir / "edubench_r2_clean_reason_score_balanced_train_sample_redacted.json",
+        redacted_sft_from_indices(train_rows, r2_targets, r2_clean_balanced_indices, limit),
+    )
+    write_json(
+        redacted_dir / "edubench_r4_shuffled_reason_balanced_train_sample_redacted.json",
+        redacted_sft_from_indices(train_rows, r4b_targets, r2_clean_balanced_indices, limit),
     )
     write_json(
         redacted_dir / "edubench_r4_shuffled_reason_control_train_sample_redacted.json",
@@ -977,13 +1113,16 @@ def build_datasets(args: argparse.Namespace) -> dict[str, Any]:
     write_json(args.out_dir / "dataset_info_snippet.json", dataset_info)
     write_configs(args.out_dir / "configs", args.out_dir)
     dataset_rows = [
+        {"dataset": DATASET_NAMES["dev_eval"], "count": len(dev_eval), "kind": "sft_dev_eval_reference"},
         {"dataset": DATASET_NAMES["r1"], "count": len(r1), "kind": "sft_natural"},
+        {"dataset": DATASET_NAMES["r1_balanced"], "count": len(r1_balanced), "kind": "sft_balanced_ablation"},
         {"dataset": DATASET_NAMES["r2"], "count": len(r2), "kind": "sft_natural"},
         {"dataset": DATASET_NAMES["r3"], "count": len(r3), "kind": "sft_natural"},
         {"dataset": DATASET_NAMES["r4"], "count": len(r4), "kind": "sft_balanced_control"},
         {"dataset": DATASET_NAMES["r2_balanced"], "count": len(r2_balanced), "kind": "sft_balanced"},
         {"dataset": DATASET_NAMES["r3_balanced"], "count": len(r3_balanced), "kind": "sft_balanced"},
         {"dataset": DATASET_NAMES["r2_clean_balanced"], "count": len(r2_clean_balanced), "kind": "sft_clean_balanced"},
+        {"dataset": DATASET_NAMES["r4_shuffled_balanced"], "count": len(r4b_shuffled_balanced), "kind": "sft_clean_balanced_control"},
         {"dataset": DATASET_NAMES["r5"], "count": len(r5), "kind": "dpo_risk_balanced"},
         {"dataset": DATASET_NAMES["r5_high_control"], "count": len(r5_high_control), "kind": "dpo_control"},
     ]
@@ -992,10 +1131,21 @@ def build_datasets(args: argparse.Namespace) -> dict[str, Any]:
         DATASET_NAMES["r5_high_control"]: (dpo_control_original_counts, dpo_control_expanded_counts),
     }
     sft_label_count_sets = {
+        DATASET_NAMES["r1"]: target_label_counter(r1_targets),
+        DATASET_NAMES["r1_balanced"]: target_label_counter(r1_targets, r2_balanced_indices),
         DATASET_NAMES["r2"]: Counter(str(clamp_score(row.get("label_5"))) for row in train_rows),
         DATASET_NAMES["r2_balanced"]: Counter(str(clamp_score(train_rows[idx].get("label_5"))) for idx in r2_balanced_indices),
         DATASET_NAMES["r3_balanced"]: Counter(str(clamp_score(train_rows[idx].get("label_5"))) for idx in r3_balanced_indices),
         DATASET_NAMES["r2_clean_balanced"]: Counter(str(clamp_score(train_rows[idx].get("label_5"))) for idx in r2_clean_balanced_indices),
+        DATASET_NAMES["r4_shuffled_balanced"]: target_label_counter(r4b_targets, r2_clean_balanced_indices),
+    }
+    sft_target_sets = {
+        DATASET_NAMES["r1"]: (r1_targets, None),
+        DATASET_NAMES["r1_balanced"]: (r1_targets, r2_balanced_indices),
+        DATASET_NAMES["r2"]: (r2_targets, None),
+        DATASET_NAMES["r2_balanced"]: (r2_targets, r2_balanced_indices),
+        DATASET_NAMES["r2_clean_balanced"]: (r2_targets, r2_clean_balanced_indices),
+        DATASET_NAMES["r4_shuffled_balanced"]: (r4b_targets, r2_clean_balanced_indices),
     }
     summary = build_qc_report(
         args.out_dir,
@@ -1009,18 +1159,22 @@ def build_datasets(args: argparse.Namespace) -> dict[str, Any]:
         dataset_rows,
         dpo_count_sets,
         sft_label_count_sets,
+        sft_target_sets,
     )
     summary.update(
         {
             "r1_count": len(r1),
+            "r1_balanced_count": len(r1_balanced),
             "r2_count": len(r2),
             "r3_count": len(r3),
             "r4_count": len(r4),
             "r2_balanced_count": len(r2_balanced),
             "r3_balanced_count": len(r3_balanced),
             "r2_clean_balanced_count": len(r2_clean_balanced),
+            "r4_shuffled_balanced_count": len(r4b_shuffled_balanced),
             "r5_count": len(r5),
             "r5_high_control_count": len(r5_high_control),
+            "dev_eval_count": len(dev_eval),
             "out_dir": str(args.out_dir),
         }
     )

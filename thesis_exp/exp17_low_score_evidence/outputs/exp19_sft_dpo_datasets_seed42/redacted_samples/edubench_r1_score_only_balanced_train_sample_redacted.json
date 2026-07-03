@@ -1,0 +1,362 @@
+[
+  {
+    "input_redacted": {
+      "answer_hash": "08123d2aac1f9fadcf4320671e8199989a582fd7",
+      "answer_preview": "```json { \"纠错后答案\": \"The past tense of 'run' is 'ran'.\", \"纠错说明\": \"原答案错误地将 'run' 的过去式拼写为 'runned'，正确的拼写是 'ran'。\" } ```",
+      "gold_label": 2,
+      "language": "zh",
+      "metric": "Motivation, Guidance & Positive Feedback",
+      "question_group": "fdcc493923c6536e26519ec07f9693ca405da624",
+      "question_hash": "f18b295c63bee185f0702b6dd90878f13b3d6958",
+      "question_preview": "问题：What is the past tense of the verb 'run'? 原答案：The past tense of 'run' is 'runned'. 你为学生的回答进行纠错服务.请根据这个问题和原答案给出\"纠错后答案\"...",
+      "rubric_hash": "9ae04cc5e9a9c5cb7edf5ca00783cc9f44903a1e",
+      "sample_id": "a5b40ba0a800e6ec0da88e7d0591d092caa41ae1",
+      "subject": "English"
+    },
+    "target_redacted": {
+      "score": 2
+    }
+  },
+  {
+    "input_redacted": {
+      "answer_hash": "bc21af3ad0b67f5276677c9b181e1c442e435d21",
+      "answer_preview": "```json { \"情绪状态分析\": { \"情绪类型\": \"重度焦虑\", \"具体表现\": \"学生表现出对语文课的极度紧张和害怕，担心自己表现不佳，害怕被老师批评和同学嘲笑。\", \"潜在原因\": \"可能源于对自我表现的高要求、对他人评价的过...",
+      "gold_label": 4,
+      "language": "zh",
+      "metric": "Motivation, Guidance & Positive Feedback",
+      "question_group": "45442251171c1d3111ce5a7fbf8f6ec696ceee0a",
+      "question_hash": "26f1251e2a18f75650093dbf2686a62046afc4b6",
+      "question_preview": "焦虑程度：重度焦虑 对话内容：学生：我最近总是觉得很害怕，语文课上也总是紧张，担心自己读不好。 智能体：我听到你的担心了，这种感觉很难受。能告诉我是什么让你特别害怕吗？ 学生：我总觉得老师会批评我，还有同学们会笑话我。 智能体：感谢你的分享...",
+      "rubric_hash": "9ae04cc5e9a9c5cb7edf5ca00783cc9f44903a1e",
+      "sample_id": "47b79bcfe0b71a84474bac66b790b8424bd5a5b8",
+      "subject": "Literature and Art"
+    },
+    "target_redacted": {
+      "score": 4
+    }
+  },
+  {
+    "input_redacted": {
+      "answer_hash": "49b2293cb0119940099c61dace9735f4d7a0700f",
+      "answer_preview": "{ \"reasoning\": \"Climate conditions play a fundamental role in determining the success of a crop in a particular region. ...",
+      "gold_label": 5,
+      "language": "en",
+      "metric": "Clarity, Simplicity & Inspiration",
+      "question_group": "2c3431500658778ea0788f7745c59f0b024746a9",
+      "question_hash": "7fe9fe3ede65426d365ffb8e5864c7fdce0307e3",
+      "question_preview": "Question: Which of the following factors is most crucial for determining the success of a crop in a particular region? A...",
+      "rubric_hash": "de66ad25f5597285bf2cee001e0b10dba7a037b6",
+      "sample_id": "442ab34434be5d5d0a5ccfefa007b86b000b7a09",
+      "subject": "Crop Science"
+    },
+    "target_redacted": {
+      "score": 5
+    }
+  },
+  {
+    "input_redacted": {
+      "answer_hash": "cfa9f4f39330ad6c122882ff5fb96cad0e1ac100",
+      "answer_preview": "{ \"纠错后答案\": \"列夫·维果茨基\", \"纠错说明\": \"原答案中提到的约翰·杜威虽然是一位著名的教育学家，但他并非‘最近发展区’理论的提出者。该理论实际上是由苏联心理学家列夫·维果茨基（Lev Vygotsky）提出的。维果茨基认为，...",
+      "gold_label": 5,
+      "language": "zh",
+      "metric": "Scenario Element Integration",
+      "question_group": "4cfe6cf5c0f826d38b6a22898e51a72f140e9f28",
+      "question_hash": "72e82272a84f820394ecfab036b20d20719b4812",
+      "question_preview": "问题：以下哪位教育学家提出了“最近发展区”理论？ 原答案：约翰·杜威 你为学生的回答进行纠错服务.请根据这个问题和原答案给出\"纠错后答案\"和\"纠错说明\":,以json格式返回",
+      "rubric_hash": "c3a664a6fe7d584cedb3876133bfbe9fe25ebc52",
+      "sample_id": "c3713e98d463049a7de8d4819906d65ec23c74ad",
+      "subject": "General Pedagogy"
+    },
+    "target_redacted": {
+      "score": 5
+    }
+  },
+  {
+    "input_redacted": {
+      "answer_hash": "55939d64e4ef9f5fae2f411306a975a460acac25",
+      "answer_preview": "```json { \"评分\": \"正确\", \"评分细节\": \"学生选择了B选项，即'确保所有节点之间的数据保持一致'作为一致性模型在分布式系统中的作用。这是正确的选择。\", \"个性化反馈\": \"你的答案是正确的！一致性模型确实是用来保证分布...",
+      "gold_label": 5,
+      "language": "zh",
+      "metric": "Basic Factual Accuracy",
+      "question_group": "04c137c5aec1fd5e3fc9bc4897bc62409a8e32e7",
+      "question_hash": "b7d38b3ed89c70748e04fff56d93a83b398f7fdc",
+      "question_preview": "问题：在分布式系统中，一致性模型的重要性是什么？以下哪个选项最好地描述了它的作用？ A) 提高系统的吞吐量 B) 确保所有节点之间的数据保持一致 C) 降低系统的响应时间 D) 提高系统的可扩展性 学生的答案：B) 确保所有节点之间的数据保...",
+      "rubric_hash": "fedb7c17248bec534b7386a493fe73aed0535fb4",
+      "sample_id": "bad279c6c00c8a0b32d28789b01172d379af6de5",
+      "subject": "Computer Science"
+    },
+    "target_redacted": {
+      "score": 5
+    }
+  },
+  {
+    "input_redacted": {
+      "answer_hash": "a234b0b6daaa6f07bbeafbed50de6c56869575d4",
+      "answer_preview": "```json { \"Reasoning Provided\": \"To solve the problem, we need to perform a basic addition operation. Addition is a fund...",
+      "gold_label": 2,
+      "language": "en",
+      "metric": "Scenario Element Integration",
+      "question_group": "182ead73c7c9bef64c812e1c3366635156817f15",
+      "question_hash": "e14aa9e63b091927d9ed6119dea8d772c217ce65",
+      "question_preview": "Question: What is the value of 5 + 3? Please provide reasoning based on this question. Do not provide the answer directl...",
+      "rubric_hash": "ac0cfa3792b9866ecaf4c25bfc92511d9d852145",
+      "sample_id": "92910121cc180752d916f726d12fa5537c40dd88",
+      "subject": "Mathematics"
+    },
+    "target_redacted": {
+      "score": 2
+    }
+  },
+  {
+    "input_redacted": {
+      "answer_hash": "184d3bffb45f1b97fc2cf803405356570ecaf0dc",
+      "answer_preview": "```json { \"answer\": \"C) GDP does not account for environmental degradation and resource depletion.\" } ```",
+      "gold_label": 1,
+      "language": "en",
+      "metric": "Reasoning Process Rigor",
+      "question_group": "7bdbfc3be37d434120cd61c75738b9ba4e2b67ad",
+      "question_hash": "397378d45465ed93a09dedc087cd9564d5a15348",
+      "question_preview": "Subject:Applied Economics Education Level:Undergraduate Question:Which of the following is considered a limitation of us...",
+      "rubric_hash": "b3bd64fec9b8cd51f4bac7251a02ad19e7755dd4",
+      "sample_id": "f0c153c819601d3c479c51f48b2acd66132d1e5f",
+      "subject": "Applied Economics"
+    },
+    "target_redacted": {
+      "score": 1
+    }
+  },
+  {
+    "input_redacted": {
+      "answer_hash": "b31f8119b72f272b66f211a2b183d531865ffbef",
+      "answer_preview": "```json { \"Score\": 5, \"Scoring Details\": { \"Accuracy of Information\": 2, \"Comprehensiveness\": 2, \"Clarity and Coherence\"...",
+      "gold_label": 5,
+      "language": "en",
+      "metric": "Error Identification & Correction Precision",
+      "question_group": "dd136878ae93aa36b80dca8d0b02cf25011b6f5e",
+      "question_hash": "0119b342841ac2705989dca35b80c24f517edbe7",
+      "question_preview": "Question: Explain the role of microRNAs in the regulation of gene expression in eukaryotic cells. Student's Answer: Micr...",
+      "rubric_hash": "f6fa164afa8eeb1cc44254e9782d8922a32aaa4e",
+      "sample_id": "9f01d326636e7c3a7474f87252477c04a1d4c368",
+      "subject": "Biology"
+    },
+    "target_redacted": {
+      "score": 5
+    }
+  },
+  {
+    "input_redacted": {
+      "answer_hash": "7c14e3ccef08527247948db7c9db5c6e3c01e0e5",
+      "answer_preview": "{ \"reasoning\": \"This question is asking for the sum of two numbers, 5 and 3. In basic arithmetic, when we add two number...",
+      "gold_label": 3,
+      "language": "en",
+      "metric": "Scenario Element Integration",
+      "question_group": "182ead73c7c9bef64c812e1c3366635156817f15",
+      "question_hash": "e14aa9e63b091927d9ed6119dea8d772c217ce65",
+      "question_preview": "Question: What is the value of 5 + 3? Please provide reasoning based on this question. Do not provide the answer directl...",
+      "rubric_hash": "ac0cfa3792b9866ecaf4c25bfc92511d9d852145",
+      "sample_id": "d188f4704428dec364a97a491930337f3ca4d844",
+      "subject": "Mathematics"
+    },
+    "target_redacted": {
+      "score": 3
+    }
+  },
+  {
+    "input_redacted": {
+      "answer_hash": "4624f4379746580b33227ed7f98fad94febdad69",
+      "answer_preview": "```json { \"个性化学习内容或任务\": [ { \"任务名称\": \"军事历史研究\", \"任务描述\": \"深入研究20世纪以来的重大军事冲突和战略决策，撰写一篇关于某一特定战役或军事战略的论文，以弥补对历史背景了解不足的弱点。\" }, ...",
+      "gold_label": 4,
+      "language": "zh",
+      "metric": "Scenario Element Integration",
+      "question_group": "b06d28e5864bc255da6f173e9c0968968b7c4bae",
+      "question_hash": "526b2b642016f3a850a6aecee62ab20556c12c2b",
+      "question_preview": "学生画像：学生的画像：{'姓名': '陈伟', '年龄': 25, '性别': '男', '学习背景': '本科毕业于军事战略学专业', '兴趣': ['战术分析', '无人机技术', '国际军事合作'], '目标': '成为一名优秀的军事...",
+      "rubric_hash": "c3a664a6fe7d584cedb3876133bfbe9fe25ebc52",
+      "sample_id": "c15259e0b7bfe6565e5d6a36174e954566446dbd",
+      "subject": "Military Science"
+    },
+    "target_redacted": {
+      "score": 4
+    }
+  },
+  {
+    "input_redacted": {
+      "answer_hash": "a92c768cf8484be29ab13510a734ffe4a97e6994",
+      "answer_preview": "```json { \"Personalized_Learning_Content\": [ { \"Task\": \"Watch a series of visual tutorials on organic chemistry concepts...",
+      "gold_label": 4,
+      "language": "en",
+      "metric": "Personalization, Adaptation & Learning Support",
+      "question_group": "5a8663d57769fe35066bd7a0879ffa16b30fef1f",
+      "question_hash": "1f654bbcc191187919ba822de1e7cf5d4755c884",
+      "question_preview": "Student Profile: Student Profile: {'Name': 'Alex Johnson', 'Year': 'Sophomore', 'Major': 'Chemical Engineering', 'Streng...",
+      "rubric_hash": "44f43049f025820bcd1dfbf7680edd947a678fea",
+      "sample_id": "360455e8767307329feaafbc43ecbceb7ddd92a9",
+      "subject": "Chemistry"
+    },
+    "target_redacted": {
+      "score": 4
+    }
+  },
+  {
+    "input_redacted": {
+      "answer_hash": "acadfbf91c16986e403a542dd2d92d9817e27073",
+      "answer_preview": "```json { \"Personalized Learning Content\": [ { \"Category\": \"Social Justice & Community Engagement\", \"Task\": \"Community E...",
+      "gold_label": 5,
+      "language": "en",
+      "metric": "Content Relevance & Scope Control",
+      "question_group": "804029b5d919d29e068ec94c9a5ba55942e9caf1",
+      "question_hash": "10e19f5aa36649070eafd526665cca479fe14959",
+      "question_preview": "Student Profile: Student Profile: {'Name': 'Alex Johnson', 'Age': 20, 'Year': 'Junior', 'Background': 'Strong interest i...",
+      "rubric_hash": "5a76bccd19bd94e4eb2aaf284a87b0dff9ac4127",
+      "sample_id": "8ff4eb6efb5c34a34f521b42840e1c08d3cf89f2",
+      "subject": "Sociology"
+    },
+    "target_redacted": {
+      "score": 5
+    }
+  },
+  {
+    "input_redacted": {
+      "answer_hash": "f862c9f21875179816ca84995257e3bb00504124",
+      "answer_preview": "```json { \"思路\": { \"反应条件对比\": { \"酸性条件\": { \"机理概述\": \"在酸性条件下，酯基(-COOR')会优先发生水解反应。这是因为羧基(-COOH)在酸性环境下不易进一步质子化，而酯键则相对容易受到攻击。\", ...",
+      "gold_label": 4,
+      "language": "zh",
+      "metric": "Scenario Element Integration",
+      "question_group": "f7f8e6254e81a50cd0db26f7a0b465bd860ee691",
+      "question_hash": "6fd29795cc3ad500cbd6c54cdcc248654aba77b9",
+      "question_preview": "问题：考虑一个有机分子，其含有羧基(-COOH)和酯基(-COOR')。请解释该分子在酸性和碱性条件下的水解反应机理，并讨论不同条件下的反应产物。 请根据这个问题提供思路。\"提供的思路\":,以json格式返回",
+      "rubric_hash": "c3a664a6fe7d584cedb3876133bfbe9fe25ebc52",
+      "sample_id": "1bcb43f0f25bc467b364e6490bccb2aef243e1f9",
+      "subject": "Chemistry"
+    },
+    "target_redacted": {
+      "score": 4
+    }
+  },
+  {
+    "input_redacted": {
+      "answer_hash": "9060533f8763f4bb2bf00dd69143666658ae077d",
+      "answer_preview": "```json { \"问题\": \"骨骼肌收缩过程中，下列哪些步骤是必须的？\", \"提供的思路\": { \"正确选项\": [ \"A. 动作电位沿横小管传至三联体，触发肌质网释放Ca²⁺\", \"B. Ca²⁺与肌钙蛋白结合，导致原肌球蛋白构象改变...",
+      "gold_label": 3,
+      "language": "zh",
+      "metric": "Higher-Order Thinking & Skill Development",
+      "question_group": "b0ec9ece1525000e58e3539446f4c4e03dc1c08f",
+      "question_hash": "1b9bdd18a9f6b4d193ca45c349140467b7af210c",
+      "question_preview": "学科:基础医学 学制级别:硕士 知识点：肌肉收缩的生理机制 问题类型：多选题 .请根据学科,学制级别,知识点,问题类型生成一个对应的问题。\"问题\"和\"提供的思路\":,以json格式返回",
+      "rubric_hash": "6521b711eb4a617b61ae31685dd331123b3dae1f",
+      "sample_id": "2ed45722479091f389547e035aff9e50cbba46f2",
+      "subject": "Basic Medicine"
+    },
+    "target_redacted": {
+      "score": 3
+    }
+  },
+  {
+    "input_redacted": {
+      "answer_hash": "9472208365da8bceeb03f8d04b4e7c52479110b6",
+      "answer_preview": "```json { \"思路分析\": { \"生物学因素 (A)\": \"生理需求、激素水平、神经递质等直接影响动机，如饥饿驱动觅食行为。\", \"社会文化因素 (B)\": \"文化规范、家庭期望、群体压力等塑造动机方向，如集体主义文化中的合作动机。...",
+      "gold_label": 3,
+      "language": "zh",
+      "metric": "Scenario Element Integration",
+      "question_group": "c34b4b93df3897791871cecbdbfe43662163e9fe",
+      "question_hash": "3621b405ca4dd22e7485151bb7bccdb7edf23b32",
+      "question_preview": "问题：以下哪些因素可能影响个体的行为动机？请选择所有适用的选项。 A) 生物学因素 B) 社会文化因素 C) 认知因素 D) 环境因素 E) 遗传因素 请根据这个问题提供思路。\"提供的思路\":,以json格式返回",
+      "rubric_hash": "c3a664a6fe7d584cedb3876133bfbe9fe25ebc52",
+      "sample_id": "f48d9fff4e2a55c54a44c40094006957991ca1b9",
+      "subject": "Psychology"
+    },
+    "target_redacted": {
+      "score": 3
+    }
+  },
+  {
+    "input_redacted": {
+      "answer_hash": "05a1e98ea779aff821053ed0c0125bc01108c4f7",
+      "answer_preview": "```json { \"Score\": 7, \"Scoring Details\": { \"Content Accuracy\": 8, \"Completeness\": 6, \"Clarity\": 7, \"Depth of Explanation...",
+      "gold_label": 4,
+      "language": "en",
+      "metric": "Instruction Following & Task Completion",
+      "question_group": "9170c4d4b31f4dd5c699c2524cc746bd54865e83",
+      "question_hash": "1cd803423beed2f896c7135c5449733b4800e59f",
+      "question_preview": "Question: Discuss the role of neurotransmitters in the regulation of mood, and how imbalances can lead to mood disorders...",
+      "rubric_hash": "a14797eaa80ea764fabf950019166678639967fc",
+      "sample_id": "d8d3e50584498483ccd5224f4198185604e32533",
+      "subject": "Psychology"
+    },
+    "target_redacted": {
+      "score": 4
+    }
+  },
+  {
+    "input_redacted": {
+      "answer_hash": "c82c4fd8e57237cdeb962485fb5a656d07e22983",
+      "answer_preview": "```json { \"情绪状态分析\": { \"情绪类型\": \"轻度焦虑\", \"主要表现\": \"面对博士阶段的学习压力，感到吃力，特别是在实验设计和数据分析上缺乏自信，担心研究效果。\", \"情绪来源\": \"高强度的课程和研究任务，以及对自身能...",
+      "gold_label": 4,
+      "language": "zh",
+      "metric": "Personalization, Adaptation & Learning Support",
+      "question_group": "e826870afe4da21943336b7b1c30736bf7fbb8f1",
+      "question_hash": "37a7cbbbb4dc5a22852b15bfaddaf36b31164418",
+      "question_preview": "焦虑级别：轻度焦虑 对话内容：[{'学生': '我最近感觉有些焦虑，面对博士阶段的学习压力，有些时候会觉得吃力。'}, {'智能体': '我理解，这么高强度的课程和研究任务，难免会让人感到压力重重。你有没有哪些具体方面觉得特别挑战呢？'},...",
+      "rubric_hash": "eedd9a16a33d141283e07471406679f851f64e78",
+      "sample_id": "3a5e33210fd977f5c8bc6df5dc98a0402f4663ac",
+      "subject": "Basic Medicine"
+    },
+    "target_redacted": {
+      "score": 4
+    }
+  },
+  {
+    "input_redacted": {
+      "answer_hash": "0ed10ffb9001fff8f674789b32466bb55ddcd8a7",
+      "answer_preview": "```json { \"Question\": \"What does aquaculture primarily involve?\", \"ProvidedReasoning\": \"This question tests the basic un...",
+      "gold_label": 4,
+      "language": "en",
+      "metric": "Instruction Following & Task Completion",
+      "question_group": "f6cf3e1b280ca78c17a557b97001a3fea411a738",
+      "question_hash": "e9562442ca8653bb150912e74946fa40a664c689",
+      "question_preview": "Subject:Aquaculture Education Level:Undergraduate Knowledge Point:Aquaculture involves the farming of aquatic organisms,...",
+      "rubric_hash": "a14797eaa80ea764fabf950019166678639967fc",
+      "sample_id": "158caa31ca6e88364f048ce5dea0ef48c45eb5f2",
+      "subject": "Aquaculture"
+    },
+    "target_redacted": {
+      "score": 4
+    }
+  },
+  {
+    "input_redacted": {
+      "answer_hash": "d0bf48a1f3497aa4e58a86afec8adc6a84943aaa",
+      "answer_preview": "```json { \"纠错后答案\": \"A) 实验设计\", \"纠错说明\": \"在公共管理学中，公共政策评估的主要方法包括实验设计、案例研究、文献综述以及参与观察等多种。但是，实验设计作为一种能够通过控制变量来更准确地测量政策效果的方法，在科...",
+      "gold_label": 5,
+      "language": "zh",
+      "metric": "Motivation, Guidance & Positive Feedback",
+      "question_group": "ac5843a5b2798e8500cac73be37d8147d820498f",
+      "question_hash": "1464ea3c6b7955684c15259ca4e22953bb6a9c72",
+      "question_preview": "问题：以下哪项是公共管理学中对公共政策评估的主要方法之一？ A) 实验设计 B) 案例研究 C) 文献综述 D) 参与观察 原答案：C) 文献综述 你为学生的回答进行纠错服务.请根据这个问题和原答案给出\"纠错后答案\"和\"纠错说明\":,以js...",
+      "rubric_hash": "9ae04cc5e9a9c5cb7edf5ca00783cc9f44903a1e",
+      "sample_id": "0347526cae737a75caf2cfaa5723714c406643db",
+      "subject": "Public Administration"
+    },
+    "target_redacted": {
+      "score": 5
+    }
+  },
+  {
+    "input_redacted": {
+      "answer_hash": "471d05dadd7d68536b3993616d0976add9f78443",
+      "answer_preview": "```json { \"Corrected Answer\": \"The principle of double jeopardy.\", \"Error Explanation\": \"The original answer, 'The princ...",
+      "gold_label": 5,
+      "language": "en",
+      "metric": "Scenario Element Integration",
+      "question_group": "578358b94591dcdb7b73304c5498c56a12d9c95d",
+      "question_hash": "ddf4579e5aaccf0ede6824516a2034e8d14d1298",
+      "question_preview": "Question: Which legal principle is primarily concerned with the prevention of double jeopardy in the United States? Orig...",
+      "rubric_hash": "ac0cfa3792b9866ecaf4c25bfc92511d9d852145",
+      "sample_id": "98bddb1f27871c0ec4652b7b8d50af677296677f",
+      "subject": "Law"
+    },
+    "target_redacted": {
+      "score": 5
+    }
+  }
+]

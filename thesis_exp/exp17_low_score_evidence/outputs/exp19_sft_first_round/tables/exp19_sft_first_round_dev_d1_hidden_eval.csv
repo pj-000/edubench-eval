@@ -1,0 +1,4 @@
+run_name,run_label,n_d1_cases,mean_pred_d1_hidden,pred_ge4_rate_d1_hidden,pred_5_rate_d1_hidden,label2_recall_d1,matched_control_mean_pred,hidden_control_score_gap
+r1_score_only_natural,R1 score-only natural,26,4.769230769230769,1.0,0.7692307692307693,0.0,4.444444444444445,-0.5679012345679012
+r2_reason_score_balanced,R2 reason-score balanced,26,4.923076923076923,1.0,0.9230769230769231,0.0,4.444444444444445,-0.5925925925925926
+r4_shuffled_reason_control,R4 shuffled reason control,26,4.153846153846154,0.7307692307692307,0.5384615384615384,0.038461538461538464,4.166666666666667,-0.2716049382716049

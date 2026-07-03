@@ -1,0 +1,4 @@
+run_name,run_label,failure_type_micro_f1,failure_type_macro_f1,missing_key_point_recall,factual_or_rubric_mismatch_recall,insufficient_evidence_recall,task_constraint_violation_recall,no_major_failure_rate_on_controls,major_failure_nonempty_rate_on_d1_hidden,major_failure_nonempty_rate_on_high_controls
+r1_score_only_natural,R1 score-only natural,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+r2_reason_score_balanced,R2 reason-score balanced,0.0,0.0,0.0,0.0,0.0,0.0,0.9444444444444444,0.0,0.0
+r4_shuffled_reason_control,R4 shuffled reason control,0.0,0.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0

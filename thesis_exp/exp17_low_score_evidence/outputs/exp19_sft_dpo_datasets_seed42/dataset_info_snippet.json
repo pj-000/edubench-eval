@@ -13,6 +13,20 @@
       "user_tag": "user"
     }
   },
+  "edubench_r1_score_only_balanced_train": {
+    "columns": {
+      "messages": "messages"
+    },
+    "file_name": "data/edubench_r1_score_only_balanced_train.json",
+    "formatting": "sharegpt",
+    "tags": {
+      "assistant_tag": "assistant",
+      "content_tag": "content",
+      "role_tag": "role",
+      "system_tag": "system",
+      "user_tag": "user"
+    }
+  },
   "edubench_r1_score_only_train": {
     "columns": {
       "messages": "messages"
@@ -88,6 +102,20 @@
       "messages": "messages"
     },
     "file_name": "data/edubench_r3_reason_rationale_train.json",
+    "formatting": "sharegpt",
+    "tags": {
+      "assistant_tag": "assistant",
+      "content_tag": "content",
+      "role_tag": "role",
+      "system_tag": "system",
+      "user_tag": "user"
+    }
+  },
+  "edubench_r4_shuffled_reason_balanced_train": {
+    "columns": {
+      "messages": "messages"
+    },
+    "file_name": "data/edubench_r4_shuffled_reason_balanced_train.json",
     "formatting": "sharegpt",
     "tags": {
       "assistant_tag": "assistant",

@@ -1,0 +1,502 @@
+[
+  {
+    "input_redacted": {
+      "answer_hash": "49ad9132db4a2737b3c4d430b857595c7c43f11c",
+      "answer_preview": "```json { \"问题\": \"比较下列两个分数的大小：1/4 和 3/8\", \"提供的思路\": \"要比较这两个分数的大小，可以将它们转换为具有相同分母的形式，或者直接计算它们的小数值进行比较。在这里，我们可以找到一个共同的分母，即8，然...",
+      "gold_label": 5,
+      "language": "zh",
+      "metric": "Content Relevance & Scope Control",
+      "question_group": "770c45352988affabdaebdbaa7ba14d12f370c74",
+      "question_hash": "de9e6feab117bbb97bb5afd155596e729dd7768c",
+      "question_preview": "学科:数学 学制级别:小学 知识点：简单分数的比较 问题类型：单选题 .请根据学科,学制级别,知识点,问题类型生成一个对应的问题。\"问题\"和\"提供的思路\":,以json格式返回",
+      "rubric_hash": "1c59f6d5851ffd911d0ec1b1c76cbbe11eec0315",
+      "sample_id": "651acc29d442aad5e4ef3f0eb52c85d05aa4f447",
+      "subject": "Mathematics"
+    },
+    "target_redacted": {
+      "brief_reason_hash": "2ed593669e5143fb1c55d03cdf84a611232a6c3a",
+      "brief_reason_present": true,
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    }
+  },
+  {
+    "input_redacted": {
+      "answer_hash": "1398d5cf49e05efee05f6756445d58854a3be059",
+      "answer_preview": "```json { \"评分\": 80, \"评分细节\": { \"正确性\": 70, \"理由\": \"合作学习法确实非常强调学生的主动参与。在这种方法中，学生通过小组合作共同完成任务或解决问题，每个人都有机会表达自己的观点并倾听他人的意见，这有助...",
+      "gold_label": 3,
+      "language": "zh",
+      "metric": "Reasoning Process Rigor",
+      "question_group": "85398269c1c07a9498c3eae4b08315e4db78a74e",
+      "question_hash": "8bbe0e542bd716728b8abab76948d633172169af",
+      "question_preview": "问题：在教育学中，哪个教学方法最强调学生的主动参与？ 学生的答案：合作学习法 请根据问题和学生答案给出\"评分\":\"评分细节\":\"个性化反馈\":,以json格式返回",
+      "rubric_hash": "b7f8c5225c371cc3eb0b44c1d62d92c1873d9375",
+      "sample_id": "1f2d8fe881d417229ae2a2b1a9c0a1aa3a09d541",
+      "subject": "General Pedagogy"
+    },
+    "target_redacted": {
+      "brief_reason_hash": "2ed593669e5143fb1c55d03cdf84a611232a6c3a",
+      "brief_reason_present": true,
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    }
+  },
+  {
+    "input_redacted": {
+      "answer_hash": "a4d02f95195ea32536a54b04500d695b3ecc4ca8",
+      "answer_preview": "```json { \"Answer\": \"B) Monoamine Hypothesis\" } ```",
+      "gold_label": 1,
+      "language": "en",
+      "metric": "Reasoning Process Rigor",
+      "question_group": "50a125b94d56b250cab34175d4465b85ca2df963",
+      "question_hash": "f7a566e3991b1c58e5f137d8863e0dfae80f6607",
+      "question_preview": "Subject:Psychology Education Level:PhD Question:Which of the following theories best explains the mechanism of action of...",
+      "rubric_hash": "b3bd64fec9b8cd51f4bac7251a02ad19e7755dd4",
+      "sample_id": "5680bbfccbc4637e7c9c7e3d63698aaf2b4fa213",
+      "subject": "Psychology"
+    },
+    "target_redacted": {
+      "brief_reason_hash": "2ed593669e5143fb1c55d03cdf84a611232a6c3a",
+      "brief_reason_present": true,
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": false,
+      "score": 1,
+      "score_cap": 1
+    }
+  },
+  {
+    "input_redacted": {
+      "answer_hash": "b3fb9b077bce7ba852ff3654e5e6717f7202d547",
+      "answer_preview": "```json { \"评分\": \"部分正确\", \"评分细节\": { \"C\": \"正确\", \"E\": \"正确\", \"A\": \"未选择\", \"B\": \"未选择\", \"D\": \"未选择\" }, \"个性化反馈\": \"你的答案中选择了指数函数（C）和...",
+      "gold_label": 2,
+      "language": "zh",
+      "metric": "Basic Factual Accuracy",
+      "question_group": "80b4f169dced8f900b4d6467567222045b1c13a3",
+      "question_hash": "1a0a4b8bbfc2c0be4e0c9d55c5375baec8cf0e0b",
+      "question_preview": "问题：选择以下具有微分同胚性质的函数类别：（可多选） A. 二次多项式函数 B. 余弦函数 C. 指数函数 D. 常数函数 E. 三次多项式函数 学生的答案：['C', 'E'] 请根据问题和学生答案给出\"评分\":\"评分细节\":\"个性化反馈...",
+      "rubric_hash": "fedb7c17248bec534b7386a493fe73aed0535fb4",
+      "sample_id": "18551ba0c6e7b3ad2bd30333ae0aad09b79b9c98",
+      "subject": "Mathematics"
+    },
+    "target_redacted": {
+      "brief_reason_hash": "2ed593669e5143fb1c55d03cdf84a611232a6c3a",
+      "brief_reason_present": true,
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    }
+  },
+  {
+    "input_redacted": {
+      "answer_hash": "768d6894e5666a19998a40cf3925a94528912225",
+      "answer_preview": "```json { \"Question\": \"Which of the following best describes the concept of social capital in sociology?\", \"Options\": [ ...",
+      "gold_label": 5,
+      "language": "en",
+      "metric": "Basic Factual Accuracy",
+      "question_group": "6ee4a63a27ca8efb648e5b9a6d471b40f538089f",
+      "question_hash": "b144328ed93ce17709dd15ec00cf80a851c3fa17",
+      "question_preview": "Subject:Sociology Education Level:PhD Knowledge Point:The concept of 'social capital' has been extensively discussed in ...",
+      "rubric_hash": "daebfb9529f9b5338cd603fe8cef21787409ff1a",
+      "sample_id": "bbdb5c830df2876a384cfeb727206af149a26f3a",
+      "subject": "Sociology"
+    },
+    "target_redacted": {
+      "brief_reason_hash": "2ed593669e5143fb1c55d03cdf84a611232a6c3a",
+      "brief_reason_present": true,
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    }
+  },
+  {
+    "input_redacted": {
+      "answer_hash": "a92c768cf8484be29ab13510a734ffe4a97e6994",
+      "answer_preview": "```json { \"Personalized_Learning_Content\": [ { \"Task\": \"Watch a series of visual tutorials on organic chemistry concepts...",
+      "gold_label": 3,
+      "language": "en",
+      "metric": "Higher-Order Thinking & Skill Development",
+      "question_group": "5a8663d57769fe35066bd7a0879ffa16b30fef1f",
+      "question_hash": "1f654bbcc191187919ba822de1e7cf5d4755c884",
+      "question_preview": "Student Profile: Student Profile: {'Name': 'Alex Johnson', 'Year': 'Sophomore', 'Major': 'Chemical Engineering', 'Streng...",
+      "rubric_hash": "efd8930d133668c42385bdc62ada9fc34b260538",
+      "sample_id": "a2adba53cd9770ebbfeac5f9c6a614e381ec0109",
+      "subject": "Chemistry"
+    },
+    "target_redacted": {
+      "brief_reason_hash": "2ed593669e5143fb1c55d03cdf84a611232a6c3a",
+      "brief_reason_present": true,
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    }
+  },
+  {
+    "input_redacted": {
+      "answer_hash": "261ca5f9e4b4ceede6b2756eea25e5904447aaf8",
+      "answer_preview": "{ \"Answer\": \"The time complexity of the quicksort algorithm in the average case scenario is O(n log n), where n represen...",
+      "gold_label": 1,
+      "language": "en",
+      "metric": "Reasoning Process Rigor",
+      "question_group": "14e6dfb98fe659be9bca96d36b8e8c3b5beda0d4",
+      "question_hash": "7815309274657d86db8320a902eee849d10a5e69",
+      "question_preview": "Subject:Computer Science Education Level:Undergraduate Question:What is the time complexity of the quicksort algorithm i...",
+      "rubric_hash": "b3bd64fec9b8cd51f4bac7251a02ad19e7755dd4",
+      "sample_id": "4c1781a47196920cfbd9a98a60533436add7af41",
+      "subject": "Computer Science"
+    },
+    "target_redacted": {
+      "brief_reason_hash": "2ed593669e5143fb1c55d03cdf84a611232a6c3a",
+      "brief_reason_present": true,
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": false,
+      "score": 1,
+      "score_cap": 1
+    }
+  },
+  {
+    "input_redacted": {
+      "answer_hash": "46d1c45534d651afb2fe059d2dbcfa1f5464cf3e",
+      "answer_preview": "```json { \"Answer\": \"B) Monoamine Hypothesis\" } ```",
+      "gold_label": 1,
+      "language": "en",
+      "metric": "Reasoning Process Rigor",
+      "question_group": "50a125b94d56b250cab34175d4465b85ca2df963",
+      "question_hash": "f7a566e3991b1c58e5f137d8863e0dfae80f6607",
+      "question_preview": "Subject:Psychology Education Level:PhD Question:Which of the following theories best explains the mechanism of action of...",
+      "rubric_hash": "b3bd64fec9b8cd51f4bac7251a02ad19e7755dd4",
+      "sample_id": "6358300a1312a268220578a420e801d4c75e9525",
+      "subject": "Psychology"
+    },
+    "target_redacted": {
+      "brief_reason_hash": "2ed593669e5143fb1c55d03cdf84a611232a6c3a",
+      "brief_reason_present": true,
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": false,
+      "score": 1,
+      "score_cap": 1
+    }
+  },
+  {
+    "input_redacted": {
+      "answer_hash": "cc2e6bddbcc6533c25a1880f84176bf670955a1b",
+      "answer_preview": "```json { \"answer\": \"A) f(z) has no singularities.\" } ```",
+      "gold_label": 3,
+      "language": "en",
+      "metric": "Instruction Following & Task Completion",
+      "question_group": "aa48c48cd6bf14c4713397de0e37c7971495e79d",
+      "question_hash": "06012c00f4d4755831817a5ab75bb317943a38b1",
+      "question_preview": "Subject:Mathematics Education Level:PhD Question:In the context of complex analysis, consider the function f(z) = z^2 + ...",
+      "rubric_hash": "a14797eaa80ea764fabf950019166678639967fc",
+      "sample_id": "79578290b5204df5e21b484daeb9c2ff5857f8a8",
+      "subject": "Mathematics"
+    },
+    "target_redacted": {
+      "brief_reason_hash": "2ed593669e5143fb1c55d03cdf84a611232a6c3a",
+      "brief_reason_present": true,
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    }
+  },
+  {
+    "input_redacted": {
+      "answer_hash": "611a45cdbdf88815a8e40ba73905ecc12e1e492c",
+      "answer_preview": "```json { \"Corrected Answer\": \"The Starry Night\", \"Error Explanation\": \"The original answer, 'The Persistence of Memory,...",
+      "gold_label": 5,
+      "language": "en",
+      "metric": "Reasoning Process Rigor",
+      "question_group": "f705a20fd802b901fb36788b9a24a96983b5ab1e",
+      "question_hash": "9e6d653b2f90a6f45e22211318de3941da20aa5c",
+      "question_preview": "Question: Which of the following paintings is attributed to Vincent van Gogh? Original Answer: The Persistence of Memory...",
+      "rubric_hash": "b3bd64fec9b8cd51f4bac7251a02ad19e7755dd4",
+      "sample_id": "4978f5241456e2ee86edcd30fcfd3d32b927e3bf",
+      "subject": "Literature and Art"
+    },
+    "target_redacted": {
+      "brief_reason_hash": "2ed593669e5143fb1c55d03cdf84a611232a6c3a",
+      "brief_reason_present": true,
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    }
+  },
+  {
+    "input_redacted": {
+      "answer_hash": "36361a6a5ae02fd8a495f1168cd3f75d00c502c5",
+      "answer_preview": "{ \"reasoning\": [ \"High ground provides a tactical advantage in military operations as it allows forces to have a better ...",
+      "gold_label": 4,
+      "language": "en",
+      "metric": "Instruction Following & Task Completion",
+      "question_group": "3355c2772a62c5b8736da4f74d3aa9f79fde0f3d",
+      "question_hash": "94fd01dcddeeb12d54edafff58cb91f363fcf68f",
+      "question_preview": "Question: Explain the strategic significance of high ground in military operations. Please provide reasoning based on th...",
+      "rubric_hash": "a14797eaa80ea764fabf950019166678639967fc",
+      "sample_id": "30aa239a190fb45dd8a9fd2f71ebe39b8bc3c764",
+      "subject": "Military Science"
+    },
+    "target_redacted": {
+      "brief_reason_hash": "2ed593669e5143fb1c55d03cdf84a611232a6c3a",
+      "brief_reason_present": true,
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    }
+  },
+  {
+    "input_redacted": {
+      "answer_hash": "2b01ee68c17e6ce118257dbb5500180674690409",
+      "answer_preview": "Here is a JSON formatted response for teaching materials related to thermodynamics in chemical reactions: ```json { \"Cou...",
+      "gold_label": 5,
+      "language": "en",
+      "metric": "Content Relevance & Scope Control",
+      "question_group": "a05fd196db01a4397d849484b969f6bf2f5c0712",
+      "question_hash": "07e810780ee94815b862abc40b1565be074a68fa",
+      "question_preview": "Knowledge Point: Thermodynamics in Chemical Reactions Based on this knowledge point, provide \"Teaching Materials\": Teach...",
+      "rubric_hash": "5a76bccd19bd94e4eb2aaf284a87b0dff9ac4127",
+      "sample_id": "9a809024159ce73993fe96151c4d6e941213ce24",
+      "subject": "Chemistry"
+    },
+    "target_redacted": {
+      "brief_reason_hash": "2ed593669e5143fb1c55d03cdf84a611232a6c3a",
+      "brief_reason_present": true,
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    }
+  },
+  {
+    "input_redacted": {
+      "answer_hash": "0a522e1a9bcd11d3884951a027a4a48e4c222551",
+      "answer_preview": "{ \"Reasoning Provided\": \"New Public Management (NPM) is a broad set of ideas and practices aimed at making the public se...",
+      "gold_label": 5,
+      "language": "en",
+      "metric": "Instruction Following & Task Completion",
+      "question_group": "4acd2f421d6a5a424b3461cdf88a6e42db9e26d0",
+      "question_hash": "f6ccfa95e5fe49ecb9cfbbf6d461714fa8d5a1c2",
+      "question_preview": "Question: Which of the following principles is central to the concept of New Public Management (NPM)? Please provide rea...",
+      "rubric_hash": "a14797eaa80ea764fabf950019166678639967fc",
+      "sample_id": "a0fac572005a701a61b075857bf62319aa6291e7",
+      "subject": "Public Administration"
+    },
+    "target_redacted": {
+      "brief_reason_hash": "2ed593669e5143fb1c55d03cdf84a611232a6c3a",
+      "brief_reason_present": true,
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    }
+  },
+  {
+    "input_redacted": {
+      "answer_hash": "3e4ebd9a3eee1dd94014415d3f92eabd304b298f",
+      "answer_preview": "```json { \"问题\": \"根据社会认知理论中的自我效能感，以下哪些因素可能影响个体的自我效能感？\", \"提供的思路\": [ \"1. 过去的成功经验：个体在特定任务上的成功经历会增强其自我效能感。\", \"2. 替代性经验：观察他人成功...",
+      "gold_label": 4,
+      "language": "zh",
+      "metric": "Higher-Order Thinking & Skill Development",
+      "question_group": "e3a1cd273545f8678ebc10a163f908053480c7bc",
+      "question_hash": "09a6c9a0f3b23506d6c4f7bfc819ff18726bf65b",
+      "question_preview": "学科:心理学 学制级别:大学 知识点：社会认知理论中的自我效能感 问题类型：多选题 .请根据学科,学制级别,知识点,问题类型生成一个对应的问题。\"问题\"和\"提供的思路\":,以json格式返回",
+      "rubric_hash": "6521b711eb4a617b61ae31685dd331123b3dae1f",
+      "sample_id": "7b901d6b17d594fc711dc1074ce82ae41e01649f",
+      "subject": "Psychology"
+    },
+    "target_redacted": {
+      "brief_reason_hash": "2ed593669e5143fb1c55d03cdf84a611232a6c3a",
+      "brief_reason_present": true,
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    }
+  },
+  {
+    "input_redacted": {
+      "answer_hash": "825b937d9ef9cf88915d27d7ce04ff177a332f6e",
+      "answer_preview": "```json { \"问题\": \"以下哪些因素会影响个体的自我效能感？\", \"提供的思路\": [ \"思考自我效能感的定义，即个人对自己完成某项任务或达成特定目标的能力的信心。\", \"回顾社会认知理论中关于自我效能感来源的相关内容，包括但不限...",
+      "gold_label": 5,
+      "language": "zh",
+      "metric": "Clarity, Simplicity & Inspiration",
+      "question_group": "e3a1cd273545f8678ebc10a163f908053480c7bc",
+      "question_hash": "09a6c9a0f3b23506d6c4f7bfc819ff18726bf65b",
+      "question_preview": "学科:心理学 学制级别:大学 知识点：社会认知理论中的自我效能感 问题类型：多选题 .请根据学科,学制级别,知识点,问题类型生成一个对应的问题。\"问题\"和\"提供的思路\":,以json格式返回",
+      "rubric_hash": "2672b5bac5221fb33c9574246396615686242004",
+      "sample_id": "84bff6e6f472427cdc2d23729eae208875bf8d9e",
+      "subject": "Psychology"
+    },
+    "target_redacted": {
+      "brief_reason_hash": "2ed593669e5143fb1c55d03cdf84a611232a6c3a",
+      "brief_reason_present": true,
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    }
+  },
+  {
+    "input_redacted": {
+      "answer_hash": "14a9cc5a14ff1bda482e6efb5368473cb87328a5",
+      "answer_preview": "```json { \"问题\": \"在运动学习与技能习得过程中，菲茨和波斯纳（Fitts & Posner）提出的技能习得三阶段模型不包括以下哪个阶段？\", \"提供的思路\": { \"知识点定位\": \"运动学习理论中经典的三阶段模型（认知阶段、...",
+      "gold_label": 5,
+      "language": "zh",
+      "metric": "Domain Knowledge Accuracy",
+      "question_group": "85c4c4f06a98174d52ae51ed006345fe8dc8f85b",
+      "question_hash": "56bb9f09e0a573298a5cc6c18afb956f0af18d67",
+      "question_preview": "学科:体育教育学 学制级别:大学 知识点：运动学习与技能习得 问题类型：单选题 .请根据学科,学制级别,知识点,问题类型生成一个对应的问题。\"问题\"和\"提供的思路\":,以json格式返回",
+      "rubric_hash": "50fadbea1e2ef89d7ec90f47b38e9ea1b3c551cf",
+      "sample_id": "8585c108b76825593440bd615a77fa0b234cda51",
+      "subject": "Physical Education"
+    },
+    "target_redacted": {
+      "brief_reason_hash": "2ed593669e5143fb1c55d03cdf84a611232a6c3a",
+      "brief_reason_present": true,
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    }
+  },
+  {
+    "input_redacted": {
+      "answer_hash": "a35ca607e31d06fa82caf9dacee3e56d2858ea3e",
+      "answer_preview": "```json { \"Score\": 85, \"Scoring Details\": { \"Content Accuracy\": 20, \"Comprehensiveness\": 15, \"Clarity and Organization\":...",
+      "gold_label": 5,
+      "language": "en",
+      "metric": "Content Relevance & Scope Control",
+      "question_group": "9170c4d4b31f4dd5c699c2524cc746bd54865e83",
+      "question_hash": "1cd803423beed2f896c7135c5449733b4800e59f",
+      "question_preview": "Question: Discuss the role of neurotransmitters in the regulation of mood, and how imbalances can lead to mood disorders...",
+      "rubric_hash": "5a76bccd19bd94e4eb2aaf284a87b0dff9ac4127",
+      "sample_id": "420820bb25d418dab7019c649aed8fbf6a85a310",
+      "subject": "Psychology"
+    },
+    "target_redacted": {
+      "brief_reason_hash": "2ed593669e5143fb1c55d03cdf84a611232a6c3a",
+      "brief_reason_present": true,
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    }
+  },
+  {
+    "input_redacted": {
+      "answer_hash": "9b823f9f0a7336501b5739f8705d289cc8c96372",
+      "answer_preview": "```json { \"答案\": \"A) 阿司匹林\" } ```",
+      "gold_label": 1,
+      "language": "zh",
+      "metric": "Reasoning Process Rigor",
+      "question_group": "ac1c8ccfcd59afb588cbe2e820ef540a695ec312",
+      "question_hash": "8d39244408caa6f5d76529b800d7a08ddb6cb58b",
+      "question_preview": "学科:临床医学 学制级别:硕士 问题：以下哪种药物最常用于治疗急性心肌梗死？ A) 阿司匹林 B) 布洛芬 C) 对乙酰氨基酚 D) 洛伐他汀 .请根据问题生成对应的答案。\"答案\":,以json格式返回",
+      "rubric_hash": "b7f8c5225c371cc3eb0b44c1d62d92c1873d9375",
+      "sample_id": "8ff264a74369c7106935fc453add4b92d95a8b87",
+      "subject": "Clinical Medicine"
+    },
+    "target_redacted": {
+      "brief_reason_hash": "2ed593669e5143fb1c55d03cdf84a611232a6c3a",
+      "brief_reason_present": true,
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": false,
+      "score": 1,
+      "score_cap": 1
+    }
+  },
+  {
+    "input_redacted": {
+      "answer_hash": "17e00a2d1c48bdaf68ab63ccea46e1c66f62e453",
+      "answer_preview": "```json { \"教学目标\": [ \"理解线粒体的基本结构和功能\", \"掌握线粒体在生物能量代谢中的核心作用\", \"了解线粒体功能异常与疾病的关系\", \"培养学生科学探究和实验设计的能力\" ], \"重点难点\": { \"重点\": [ \"线...",
+      "gold_label": 4,
+      "language": "zh",
+      "metric": "Higher-Order Thinking & Skill Development",
+      "question_group": "71a14244232914c689e46f4d03977b3ac0067a23",
+      "question_hash": "330966d00941d469812f7d3d598d64657825d780",
+      "question_preview": "知识点：线粒体功能与生物能量代谢调控 请根据这个知识点给出\"教学素材\":教学素材需要包括教学目标、重点难点、课堂活动设计等,以json格式返回",
+      "rubric_hash": "6521b711eb4a617b61ae31685dd331123b3dae1f",
+      "sample_id": "15ebc21b34c28a1af8a9a8f8e689e89d2f8e20b5",
+      "subject": "Biology"
+    },
+    "target_redacted": {
+      "brief_reason_hash": "19ae9db271a5b90f0946adff5c6f9fb50d8fcfdf",
+      "brief_reason_present": true,
+      "major_failures": [
+        "partial_or_incomplete"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    }
+  },
+  {
+    "input_redacted": {
+      "answer_hash": "cc326d48e8f4102b6f240bfe47b6d8e2ae5d6be8",
+      "answer_preview": "```json { \"Reasoning Provided\": { \"Key Concepts of NPM\": [ \"Modernization of the public sector through private sector pr...",
+      "gold_label": 5,
+      "language": "en",
+      "metric": "Reasoning Process Rigor",
+      "question_group": "4acd2f421d6a5a424b3461cdf88a6e42db9e26d0",
+      "question_hash": "f6ccfa95e5fe49ecb9cfbbf6d461714fa8d5a1c2",
+      "question_preview": "Question: Which of the following principles is central to the concept of New Public Management (NPM)? Please provide rea...",
+      "rubric_hash": "b3bd64fec9b8cd51f4bac7251a02ad19e7755dd4",
+      "sample_id": "feb59297d9b8606715716038969482eba1bef496",
+      "subject": "Public Administration"
+    },
+    "target_redacted": {
+      "brief_reason_hash": "2ed593669e5143fb1c55d03cdf84a611232a6c3a",
+      "brief_reason_present": true,
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    }
+  }
+]
