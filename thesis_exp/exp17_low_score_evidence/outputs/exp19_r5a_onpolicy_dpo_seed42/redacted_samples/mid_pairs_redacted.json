@@ -1,0 +1,482 @@
+[
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "partial_or_incomplete"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    },
+    "oversample_copy_index": 83,
+    "prompt_hash": "a7db5f5e460226abc2fb854143a56f7e8bcb56ef",
+    "prompt_preview": "Question: 学生画像：学生的画像：{'姓名': '张伟', '年龄': 28, '学习背景': '在教育学领域有丰富的研究经历，尤其关注学生的个体差异和教育公平问题。已发表多篇相关论文。', '学习风格': '偏好阅读学术期刊和参与教育研讨会，喜欢通过讨论深化理解，比较善于理论联系实际。', '个人兴趣': '对教育技术在教师培训中的应用感兴趣，积极",
+    "rejected_redacted": {
+      "major_failures": [
+        "missing_key_point"
+      ],
+      "rubric_satisfied": false,
+      "score": 1,
+      "score_cap": 1
+    },
+    "rejected_source": "template_extreme",
+    "risk_type": "mid_score_calibration",
+    "sample_id": "abbf8d48dac23e2a07fd47d5e1bd865b3265e2a1"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "partial_or_incomplete"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    },
+    "oversample_copy_index": 206,
+    "prompt_hash": "094aa23ffa0fe4bc7b68720ddcfea9fa2b2a11b2",
+    "prompt_preview": "Question: 学生画像：学生的画像：{'姓名': '陈伟', '年龄': 25, '性别': '男', '学习背景': '本科毕业于军事战略学专业', '兴趣': ['战术分析', '无人机技术', '国际军事合作'], '目标': '成为一名优秀的军事顾问', '学习方式': '喜欢自主学习和小组讨论，适应能力强', '优势': ['逻辑思维能力强'",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "rejected_source": "template_extreme",
+    "risk_type": "mid_score_calibration",
+    "sample_id": "7b4dc145a0d7ea22d04dc65b88f38d95d593fc61"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "partial_or_incomplete"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    },
+    "oversample_copy_index": 597,
+    "prompt_hash": "caed230a7fe6036cc21623070df09604887d8598",
+    "prompt_preview": "Question: Anxiety Level: Severe Anxiety Dialogue with Student: [{'Agent': 'Hi there! How are you feeling today?'}, {'Student': \"Honestly, I'm really stressed out. I'm struggling wi",
+    "rejected_redacted": {
+      "major_failures": [
+        "missing_key_point"
+      ],
+      "rubric_satisfied": false,
+      "score": 1,
+      "score_cap": 1
+    },
+    "rejected_source": "template_extreme",
+    "risk_type": "mid_score_calibration",
+    "sample_id": "4a94159b2cfae1127c979628b87af3087401a413"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "partial_or_incomplete"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    },
+    "oversample_copy_index": 16,
+    "prompt_hash": "704c2d75bd2a900502740ec047fc40bfb6019992",
+    "prompt_preview": "Question: {'姓名': '张伟', '年级': '大四', '学校': '某知名医学院', '当前能力水平': '具备扎实的基础医学知识，临床技能较为薄弱', '学习目标': '提高临床诊断能力，准备考取执业医师资格证', '知识薄弱点': ['心血管系统疾病诊断', '影像学基础', '药理学应用'], '学习习惯': '习惯于通过视频学习，偏好",
+    "rejected_redacted": {
+      "major_failures": [
+        "missing_key_point"
+      ],
+      "rubric_satisfied": false,
+      "score": 1,
+      "score_cap": 1
+    },
+    "rejected_source": "template_extreme",
+    "risk_type": "mid_score_calibration",
+    "sample_id": "a6a61e243a1f0c09ac86c3557bd39377eff935bc"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "partial_or_incomplete"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    },
+    "oversample_copy_index": 224,
+    "prompt_hash": "9f6b30948b21b54c3f6771f2993703611f6c3c4e",
+    "prompt_preview": "Question: 问题：请简述第二次世界大战的主要参战国和其领导者。 原答案：第二次世界大战的主要参战国包括德国的希特勒、美国的罗斯福、法国的拿破仑和苏联的列宁。 你为学生的回答进行纠错服务.请根据这个问题和原答案给出\"纠错后答案\"和\"纠错说明\":,以json格式返回 Answer: { \"纠错后答案\": \"第二次世界大战的主要参战国包括德国、美国、法国和",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "rejected_source": "template_extreme",
+    "risk_type": "mid_score_calibration",
+    "sample_id": "8643d5e766e61e091b7bbdbf4c8b085333b7b506"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "partial_or_incomplete"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    },
+    "oversample_copy_index": 484,
+    "prompt_hash": "ea8058c2352b2cc1d58374d1c7c1679b2a695158",
+    "prompt_preview": "Question: 学科:数学 学制级别:小学 知识点：简单的加法运算 问题类型：单选题 .请根据学科,学制级别,知识点,问题类型生成一个对应的问题。\"问题\"和\"提供的思路\":,以json格式返回 Answer: ```json { \"问题\": \"小明有3个苹果，妈妈又给了他2个苹果，现在小明一共有多少个苹果？\", \"提供的思路\": \"首先确定题目中给出的数",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "rejected_source": "template_extreme",
+    "risk_type": "mid_score_calibration",
+    "sample_id": "34af3f6c55143ab052bed80facb20eba8beb1f1e"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "partial_or_incomplete"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    },
+    "oversample_copy_index": 470,
+    "prompt_hash": "6441fbe631172302dbc280e8a21197db13f99ed5",
+    "prompt_preview": "Question: 问题：请解释'Romeo and Juliet'中，为什么罗密欧和朱丽叶的爱情故事被认为是悲剧。 原答案：因为他们在一起很幸福，但不能公开。 你为学生的回答进行纠错服务.请根据这个问题和原答案给出\"纠错后答案\"和\"纠错说明\":,以json格式返回 Answer: { \"纠错后答案\": \"罗密欧与朱丽叶的爱情故事被认定为悲剧是因为他们的爱情",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "rejected_source": "template_extreme",
+    "risk_type": "mid_score_calibration",
+    "sample_id": "5f49408dc946e20b53fc778272f6d7e03620edfc"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "partial_or_incomplete"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    },
+    "oversample_copy_index": 478,
+    "prompt_hash": "e060f073fc8d390274ba74a2aee6ea9eb9e0c4eb",
+    "prompt_preview": "Question: Question: Which Chinese dynasty is known for the construction of the majority of the Great Wall of China as it stands today? Please provide reasoning based on this questi",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "rejected_source": "template_extreme",
+    "risk_type": "mid_score_calibration",
+    "sample_id": "28a779a21a758af0faed4e8ef1afb404cd9c7df0"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "partial_or_incomplete"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    },
+    "oversample_copy_index": 536,
+    "prompt_hash": "f87d3c52cac5027b626cbc249e7ae4a3abb8ccb0",
+    "prompt_preview": "Question: 学生画像：学生的画像：{'姓名': '王小明', '年龄': 21, '年级': '大三', '专业': '临床医学', '学习风格': '偏好视觉学习', '兴趣': '外科手术、病理学', '当前挑战': '在解剖学应用上有困难', '目标': '提高解剖学的实际应用能力'} 请根据学生画像，为每位学生生成 ‘个性化的学习内容或任务’",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "rejected_source": "template_extreme",
+    "risk_type": "mid_score_calibration",
+    "sample_id": "5a38b37d7e551b0103f988938291c5b350a6b54b"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "partial_or_incomplete"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    },
+    "oversample_copy_index": 558,
+    "prompt_hash": "d377286164fe0ec284db4e4799cbaa1812401e53",
+    "prompt_preview": "Question: 问题：解释“需求弹性”的概念及其在经济学中的重要性。 学生的答案：需求弹性是指需求量对价格变化的反应程度。在经济学中，它很重要，因为它帮助企业了解价格变动对销售额的影响，也帮助政府制定税收政策。 请根据问题和学生答案给出\"评分\":\"评分细节\":\"个性化反馈\":,以json格式返回 Answer: ```json { \"评分\": \"8/10",
+    "rejected_redacted": {
+      "major_failures": [
+        "missing_key_point"
+      ],
+      "rubric_satisfied": false,
+      "score": 1,
+      "score_cap": 1
+    },
+    "rejected_source": "template_extreme",
+    "risk_type": "mid_score_calibration",
+    "sample_id": "eaa9089fe9e9d4183a95984a195a70b1baae237e"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "partial_or_incomplete"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    },
+    "oversample_copy_index": 51,
+    "prompt_hash": "835bdc9da54e50b3eef60e7b811328f67c0d44be",
+    "prompt_preview": "Question: 问题：在神经生理学中，动作电位的过程中不包括以下哪一个步骤？ A) 去极化 B) 再极化 C) 超极化 D) 钙离子流入细胞 学生的答案：C) 超极化 请根据问题和学生答案给出\"评分\":\"评分细节\":\"个性化反馈\":,以json格式返回 Answer: ```json { \"评分\": \"错误\", \"评分细节\": \"学生对动作电位过程的理解",
+    "rejected_redacted": {
+      "major_failures": [
+        "missing_key_point"
+      ],
+      "rubric_satisfied": false,
+      "score": 1,
+      "score_cap": 1
+    },
+    "rejected_source": "template_extreme",
+    "risk_type": "mid_score_calibration",
+    "sample_id": "e5085f20635b4ca16ae03413aa98a0cd17b9bc77"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "partial_or_incomplete"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    },
+    "oversample_copy_index": 411,
+    "prompt_hash": "c6dfd060c967cd69251b75c3193a887c49d4409a",
+    "prompt_preview": "Question: Knowledge Point: Mechanisms of Drug Resistance in Cancer Therapy Based on this knowledge point, provide \"Teaching Materials\": Teaching materials should include teaching o",
+    "rejected_redacted": {
+      "major_failures": [
+        "missing_key_point"
+      ],
+      "rubric_satisfied": false,
+      "score": 1,
+      "score_cap": 1
+    },
+    "rejected_source": "template_extreme",
+    "risk_type": "mid_score_calibration",
+    "sample_id": "481a18d6d4711b12ee76a9f0a8d37f55d25df1c4"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "partial_or_incomplete"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    },
+    "oversample_copy_index": 419,
+    "prompt_hash": "20b99cda1a10a44ef71d10bd3bbc72d020bcc24e",
+    "prompt_preview": "Question: 学生画像：学生的画像：{'姓名': '李明', '年龄': 26, '背景': '本科工商管理学士，具有两年政府部门工作经验', '学习目标': '深入理解公共政策制定及其影响，提升数据分析能力用于政策评估', '兴趣': '社科研究，政策分析，社会经济发展', '学习风格': '偏向实践，喜欢通过案例学习', '挑战': '数据分析技能",
+    "rejected_redacted": {
+      "major_failures": [
+        "missing_key_point"
+      ],
+      "rubric_satisfied": false,
+      "score": 1,
+      "score_cap": 1
+    },
+    "rejected_source": "template_extreme",
+    "risk_type": "mid_score_calibration",
+    "sample_id": "3fee2a253c18f9f9b27ace74b1b8fdeee90bb6cc"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "partial_or_incomplete"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    },
+    "oversample_copy_index": 44,
+    "prompt_hash": "7f96ff31aafa0bf435e029ccb2495b6fd2727906",
+    "prompt_preview": "Question: 问题：在研究中世纪封建制度发展的过程中，下列哪些因素对其演变起到了关键作用？（可选择多个） A. 农奴制 B. 城市化进程 C. 十字军东征 D. 文艺复兴 E. 黑死病的流行 F. 军事科技的进步 学生的答案：['A', 'C', 'E', 'F'] 请根据问题和学生答案给出\"评分\":\"评分细节\":\"个性化反馈\":,以json格式返回 ",
+    "rejected_redacted": {
+      "major_failures": [
+        "missing_key_point"
+      ],
+      "rubric_satisfied": false,
+      "score": 1,
+      "score_cap": 1
+    },
+    "rejected_source": "template_extreme",
+    "risk_type": "mid_score_calibration",
+    "sample_id": "b0e59d6589f82e0c9cdfd2b5b5df6961f5e8536d"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "partial_or_incomplete"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    },
+    "oversample_copy_index": 276,
+    "prompt_hash": "db5795e1d9b7ecebd555961cbfa2c807243bb9f5",
+    "prompt_preview": "Question: Question: Explain how plate tectonics can lead to the formation of mountains. Please provide reasoning based on this question. Do not provide the answer directly.. \"Reaso",
+    "rejected_redacted": {
+      "major_failures": [
+        "missing_key_point"
+      ],
+      "rubric_satisfied": false,
+      "score": 1,
+      "score_cap": 1
+    },
+    "rejected_source": "template_extreme",
+    "risk_type": "mid_score_calibration",
+    "sample_id": "472e71b7c7e9392a0c5998c0f6a22fd595e276bf"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "partial_or_incomplete"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    },
+    "oversample_copy_index": 54,
+    "prompt_hash": "91bc822fa3f3329543d3d27b29ee3bf0c85e89e5",
+    "prompt_preview": "Question: 问题：以下哪项是公共管理学中对公共政策评估的主要方法之一？ A) 实验设计 B) 案例研究 C) 文献综述 D) 参与观察 原答案：C) 文献综述 你为学生的回答进行纠错服务.请根据这个问题和原答案给出\"纠错后答案\"和\"纠错说明\":,以json格式返回 Answer: ```json { \"纠错后答案\": \"B) 案例研究\", \"纠错说明",
+    "rejected_redacted": {
+      "major_failures": [
+        "missing_key_point"
+      ],
+      "rubric_satisfied": false,
+      "score": 1,
+      "score_cap": 1
+    },
+    "rejected_source": "template_extreme",
+    "risk_type": "mid_score_calibration",
+    "sample_id": "5dae917ce9c547b3426ad08f3ed26568e65e1f4a"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "partial_or_incomplete"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    },
+    "oversample_copy_index": 201,
+    "prompt_hash": "0a2b6b8d8ded287a9191bd0ecf8d65dfe33564b3",
+    "prompt_preview": "Question: 问题：What is the past tense of the verb 'run'? 原答案：The past tense of 'run' is 'runned'. 你为学生的回答进行纠错服务.请根据这个问题和原答案给出\"纠错后答案\"和\"纠错说明\":,以json格式返回 Answer: ```json { \"纠错后答案\": \"The",
+    "rejected_redacted": {
+      "major_failures": [
+        "missing_key_point"
+      ],
+      "rubric_satisfied": false,
+      "score": 1,
+      "score_cap": 1
+    },
+    "rejected_source": "template_extreme",
+    "risk_type": "mid_score_calibration",
+    "sample_id": "b1987810320f7989fa113926111f1e252ac3545f"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "partial_or_incomplete"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    },
+    "oversample_copy_index": 314,
+    "prompt_hash": "3a57584f0fd0f574e4ff742079e1d2393b1cb99f",
+    "prompt_preview": "Question: {'姓名': '李明', '年级': '大二', '专业': '法学', '已修课程': ['法理学', '宪法学', '民法总论'], '学习目标': '提高刑法理解，准备国家司法考试', '学习习惯': '通过案例分析学习，较少参加讨论，习惯阅读教科书', '薄弱点': '刑法条文的具体应用和理解'} 请根据学生画像给出\"学习路径规划",
+    "rejected_redacted": {
+      "major_failures": [
+        "missing_key_point"
+      ],
+      "rubric_satisfied": false,
+      "score": 1,
+      "score_cap": 1
+    },
+    "rejected_source": "template_extreme",
+    "risk_type": "mid_score_calibration",
+    "sample_id": "9fece69ba2dccb933ebb6f1a23cc10ff95b16128"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "partial_or_incomplete"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    },
+    "oversample_copy_index": 420,
+    "prompt_hash": "b1d34bfccf3baf3c6d30a89e9dcb12f5d281f83c",
+    "prompt_preview": "Question: 问题：分析1960年代美国民权运动的主要原因和影响。请特别关注不同社会团体的角色以及运动带来的政策变革。 学生的答案：1960年代美国民权运动的主要原因包括种族歧视和社会不平等的长期存在，尤其是黑人群体在寻求平等权利方面所面临的困难。同时，经济因素和国际压力在一定程度上也推动了运动的发展。不同社会团体在这场运动中发挥了不同的角色。黑人社区",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "rejected_source": "template_extreme",
+    "risk_type": "mid_score_calibration",
+    "sample_id": "e97ea162acb1eec66bd23b4327995c3696ea9f02"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "partial_or_incomplete"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    },
+    "oversample_copy_index": 62,
+    "prompt_hash": "cc9d6443f51d0f7d48f708bc94bbea77b93dc2f0",
+    "prompt_preview": "Question: 问题：请解释'Romeo and Juliet'中，为什么罗密欧和朱丽叶的爱情故事被认为是悲剧。 原答案：因为他们在一起很幸福，但不能公开。 你为学生的回答进行纠错服务.请根据这个问题和原答案给出\"纠错后答案\"和\"纠错说明\":,以json格式返回 Answer: { \"纠错后答案\": \"罗密欧与朱丽叶的爱情故事被认定为悲剧是因为他们的爱情",
+    "rejected_redacted": {
+      "major_failures": [
+        "missing_key_point"
+      ],
+      "rubric_satisfied": false,
+      "score": 1,
+      "score_cap": 1
+    },
+    "rejected_source": "template_extreme",
+    "risk_type": "mid_score_calibration",
+    "sample_id": "fd3852cd29110b0b60e2d65167f9d239770c5bab"
+  }
+]

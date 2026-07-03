@@ -1,0 +1,482 @@
+[
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "task_constraint_violation"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "oversample_copy_index": 121,
+    "prompt_hash": "d1af21b72389b3fab63a01359dea4e55f501303a",
+    "prompt_preview": "Question: Question: Explain the concept of Nash Equilibrium in game theory and provide an example. Student's Answer: Nash Equilibrium is a situation in a game where each player's s",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    },
+    "rejected_source": "r2n",
+    "risk_type": "low_to_high",
+    "sample_id": "6cc46157fcf2aa5b87cd72293be48481a7e5dacc"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "surface_fluent_but_hidden_defect"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "oversample_copy_index": 1013,
+    "prompt_hash": "179d0f3e9c60826a2e3d4699e82ca34f95abd8f1",
+    "prompt_preview": "Question: Question: Explain how Porter's Five Forces framework can be used to analyze the competitive environment of an industry. Please provide reasoning based on this question. D",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "rejected_source": "template_high_no_failure",
+    "risk_type": "low_to_high",
+    "sample_id": "b51fe8038ded98685f2c18b27990ce26056dfc17"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "missing_key_point"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "oversample_copy_index": 462,
+    "prompt_hash": "edd5b3f96414d47f24d0b97ae95430558dd06d82",
+    "prompt_preview": "Question: Question: Which part of the plant is responsible for photosynthesis? A) Roots B) Stems C) Leaves D) Flowers Please provide reasoning based on this question. Do not provid",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "rejected_source": "template_high_no_failure",
+    "risk_type": "low_to_high",
+    "sample_id": "1905d9dcdf2880df39d9d380624436abd892da5a"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "missing_key_point"
+      ],
+      "rubric_satisfied": false,
+      "score": 1,
+      "score_cap": 1
+    },
+    "oversample_copy_index": 24,
+    "prompt_hash": "b9487873d2376373ad993fde269a40c5bd7c5a9c",
+    "prompt_preview": "Question: Subject:Crop Science Education Level:Undergraduate Question:Which of the following is a primary macronutrient essential for plant growth? A) Iron B) Magnesium C) Nitrogen",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "rejected_source": "template_high_no_failure",
+    "risk_type": "low_to_high",
+    "sample_id": "198938e2f622bb0de4883a3dc7e56f75c8a0dc9b"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "surface_fluent_but_hidden_defect"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "oversample_copy_index": 58,
+    "prompt_hash": "3a5de2835a8c511aaf8075c81d20fcc1dfa85974",
+    "prompt_preview": "Question: 问题：请简述第二次世界大战的主要参战国和其领导者。 原答案：第二次世界大战的主要参战国包括德国的希特勒、美国的罗斯福、法国的拿破仑和苏联的列宁。 你为学生的回答进行纠错服务.请根据这个问题和原答案给出\"纠错后答案\"和\"纠错说明\":,以json格式返回 Answer: ```json { \"纠错后答案\": \"第二次世界大战的主要参战国包括德",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "rejected_source": "template_high_no_failure",
+    "risk_type": "low_to_high",
+    "sample_id": "630a88341b60ad40afcd43bf6bf3967c515b8803"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "missing_key_point"
+      ],
+      "rubric_satisfied": false,
+      "score": 1,
+      "score_cap": 1
+    },
+    "oversample_copy_index": 357,
+    "prompt_hash": "a4a800099d244f27f2e731f05886ad562a1cdc68",
+    "prompt_preview": "Question: 学科:临床医学 学制级别:硕士 问题：以下哪种药物最常用于治疗急性心肌梗死？ A) 阿司匹林 B) 布洛芬 C) 对乙酰氨基酚 D) 洛伐他汀 .请根据问题生成对应的答案。\"答案\":,以json格式返回 Answer: ```json { \"答案\": \"A) 阿司匹林\" } ``` Evaluation metric: Reasoning",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "rejected_source": "template_high_no_failure",
+    "risk_type": "low_to_high",
+    "sample_id": "4d603e5ed030c00413f35f1852ebb1859d5dc6be"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "surface_fluent_but_hidden_defect"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "oversample_copy_index": 146,
+    "prompt_hash": "4fd03b604a3d4ad1f092ab6cf7a6b551c244f419",
+    "prompt_preview": "Question: 问题：选择以下具有微分同胚性质的函数类别：（可多选） A. 二次多项式函数 B. 余弦函数 C. 指数函数 D. 常数函数 E. 三次多项式函数 学生的答案：['C', 'E'] 请根据问题和学生答案给出\"评分\":\"评分细节\":\"个性化反馈\":,以json格式返回 Answer: ```json { \"评分\": \"部分正确\", \"评分细节",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "rejected_source": "template_high_no_failure",
+    "risk_type": "low_to_high",
+    "sample_id": "17e0ba51820c815389e5f672d6bed2ca748a8775"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "missing_key_point"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "oversample_copy_index": 729,
+    "prompt_hash": "60b09b58b9ddbc6ad7161ba0b5817270e9741585",
+    "prompt_preview": "Question: 问题：请简述第二次世界大战的主要参战国和其领导者。 原答案：第二次世界大战的主要参战国包括德国的希特勒、美国的罗斯福、法国的拿破仑和苏联的列宁。 你为学生的回答进行纠错服务.请根据这个问题和原答案给出\"纠错后答案\"和\"纠错说明\":,以json格式返回 Answer: ```json { \"纠错后答案\": \"第二次世界大战的主要参战国及其领",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    },
+    "rejected_source": "r2n",
+    "risk_type": "low_to_high",
+    "sample_id": "f0c923e09065792432b0f588a7eb74ea86409797"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "missing_key_point"
+      ],
+      "rubric_satisfied": false,
+      "score": 1,
+      "score_cap": 1
+    },
+    "oversample_copy_index": 532,
+    "prompt_hash": "6668b0f1da892b4090b030251db457a66fe47b1d",
+    "prompt_preview": "Question: 学科:临床医学 学制级别:硕士 问题：以下哪种药物最常用于治疗急性心肌梗死？ A) 阿司匹林 B) 布洛芬 C) 对乙酰氨基酚 D) 洛伐他汀 .请根据问题生成对应的答案。\"答案\":,以json格式返回 Answer: ```json { \"答案\": \"A) 阿司匹林\" } ``` Evaluation metric: Reasoning",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "rejected_source": "template_high_no_failure",
+    "risk_type": "low_to_high",
+    "sample_id": "b62bc6a3bc8db6a39e2d347c263aa392be416138"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "missing_key_point"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "oversample_copy_index": 1017,
+    "prompt_hash": "edd5b3f96414d47f24d0b97ae95430558dd06d82",
+    "prompt_preview": "Question: Question: Which part of the plant is responsible for photosynthesis? A) Roots B) Stems C) Leaves D) Flowers Please provide reasoning based on this question. Do not provid",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "rejected_source": "template_high_no_failure",
+    "risk_type": "low_to_high",
+    "sample_id": "1905d9dcdf2880df39d9d380624436abd892da5a"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "insufficient_evidence"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "oversample_copy_index": 785,
+    "prompt_hash": "3eddc674a68f5db7f277a536fbfb8c64acbab42b",
+    "prompt_preview": "Question: Question: Explain how Porter's Five Forces framework can be used to analyze the competitive environment of an industry. Please provide reasoning based on this question. D",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    },
+    "rejected_source": "r2n",
+    "risk_type": "low_to_high",
+    "sample_id": "a5b76b94f849ef3c81364bfd2a49a16777a2d7fa"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "insufficient_evidence"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "oversample_copy_index": 964,
+    "prompt_hash": "3eddc674a68f5db7f277a536fbfb8c64acbab42b",
+    "prompt_preview": "Question: Question: Explain how Porter's Five Forces framework can be used to analyze the competitive environment of an industry. Please provide reasoning based on this question. D",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    },
+    "rejected_source": "r2n",
+    "risk_type": "low_to_high",
+    "sample_id": "a5b76b94f849ef3c81364bfd2a49a16777a2d7fa"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "format_violation"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "oversample_copy_index": 1115,
+    "prompt_hash": "c90b0a4c6da3b719c935adfaece27600ca91fefd",
+    "prompt_preview": "Question: 问题：解释“需求弹性”的概念及其在经济学中的重要性。 学生的答案：需求弹性是指需求量对价格变化的反应程度。在经济学中，它很重要，因为它帮助企业了解价格变动对销售额的影响，也帮助政府制定税收政策。 请根据问题和学生答案给出\"评分\":\"评分细节\":\"个性化反馈\":,以json格式返回 Answer: ```json { \"评分\": 75, \"",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "rejected_source": "template_high_no_failure",
+    "risk_type": "low_to_high",
+    "sample_id": "3fdc81f613bf237c32a80d3fb798df97d4a1a3ab"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "surface_fluent_but_hidden_defect"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "oversample_copy_index": 41,
+    "prompt_hash": "d170fd02149eab10d6f32bbc36b84b7a848d846f",
+    "prompt_preview": "Question: Subject:Basic Medicine Education Level:Master Knowledge Point:The renin-angiotensin-aldosterone system (RAAS) plays a crucial role in regulating blood pressure and fluid ",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "rejected_source": "template_high_no_failure",
+    "risk_type": "low_to_high",
+    "sample_id": "f51251a778d6f6601796be0ed017d6173d91d44b"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "missing_key_point"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "oversample_copy_index": 44,
+    "prompt_hash": "edd5b3f96414d47f24d0b97ae95430558dd06d82",
+    "prompt_preview": "Question: Question: Which part of the plant is responsible for photosynthesis? A) Roots B) Stems C) Leaves D) Flowers Please provide reasoning based on this question. Do not provid",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "rejected_source": "template_high_no_failure",
+    "risk_type": "low_to_high",
+    "sample_id": "1905d9dcdf2880df39d9d380624436abd892da5a"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "missing_key_point"
+      ],
+      "rubric_satisfied": false,
+      "score": 1,
+      "score_cap": 1
+    },
+    "oversample_copy_index": 526,
+    "prompt_hash": "3342ba44c247a2b45f4bedd79b8a6ddf8e0d7ddd",
+    "prompt_preview": "Question: Subject:Applied Economics Education Level:Undergraduate Question:Which of the following is considered a limitation of using Gross Domestic Product (GDP) as a measure of e",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "rejected_source": "template_high_no_failure",
+    "risk_type": "low_to_high",
+    "sample_id": "76909e50052e68bb729ed62933a86559f6a7c036"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "missing_key_point"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "oversample_copy_index": 64,
+    "prompt_hash": "f4ced55116935a9d7d731be5f2dfc89429252924",
+    "prompt_preview": "Question: Question: Explain how Porter's Five Forces framework can be used to analyze the competitive environment of an industry. Please provide reasoning based on this question. D",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "rejected_source": "template_high_no_failure",
+    "risk_type": "low_to_high",
+    "sample_id": "13af8e6896f2be6cf223e45bf4f1652fe39fe7d3"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "insufficient_evidence"
+      ],
+      "rubric_satisfied": false,
+      "score": 1,
+      "score_cap": 1
+    },
+    "oversample_copy_index": 1,
+    "prompt_hash": "19702334254ef18c650e9b3b0b0e9e8f45a9df11",
+    "prompt_preview": "Question: Subject:Psychology Education Level:PhD Question:Which of the following theories best explains the mechanism of action of selective serotonin reuptake inhibitors (SSRIs) i",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "rejected_source": "template_high_no_failure",
+    "risk_type": "low_to_high",
+    "sample_id": "74489511928922f9b0aa06c74a3c42dabf84217e"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "missing_key_point"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "oversample_copy_index": 1037,
+    "prompt_hash": "edd5b3f96414d47f24d0b97ae95430558dd06d82",
+    "prompt_preview": "Question: Question: Which part of the plant is responsible for photosynthesis? A) Roots B) Stems C) Leaves D) Flowers Please provide reasoning based on this question. Do not provid",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "rejected_source": "template_high_no_failure",
+    "risk_type": "low_to_high",
+    "sample_id": "1905d9dcdf2880df39d9d380624436abd892da5a"
+  },
+  {
+    "chosen_redacted": {
+      "major_failures": [
+        "missing_key_point"
+      ],
+      "rubric_satisfied": false,
+      "score": 1,
+      "score_cap": 1
+    },
+    "oversample_copy_index": 600,
+    "prompt_hash": "b9487873d2376373ad993fde269a40c5bd7c5a9c",
+    "prompt_preview": "Question: Subject:Crop Science Education Level:Undergraduate Question:Which of the following is a primary macronutrient essential for plant growth? A) Iron B) Magnesium C) Nitrogen",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "rejected_source": "template_high_no_failure",
+    "risk_type": "low_to_high",
+    "sample_id": "198938e2f622bb0de4883a3dc7e56f75c8a0dc9b"
+  }
+]

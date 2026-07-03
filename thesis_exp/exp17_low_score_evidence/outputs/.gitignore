@@ -45,3 +45,17 @@ exp19_sft_train_dev_diagnostics_seed42/*
 !exp19_sft_train_dev_diagnostics_seed42/tables/**
 !exp19_sft_train_dev_diagnostics_seed42/decision/
 !exp19_sft_train_dev_diagnostics_seed42/decision/**
+
+# Exp19-R5A keeps full DPO JSON local/server-side, while allowing lightweight
+# QC tables, configs, reports, and redacted samples to be reviewed.
+!exp19_r5a_onpolicy_dpo_seed42/
+exp19_r5a_onpolicy_dpo_seed42/*
+!exp19_r5a_onpolicy_dpo_seed42/configs/
+!exp19_r5a_onpolicy_dpo_seed42/configs/**
+!exp19_r5a_onpolicy_dpo_seed42/dataset_info_r5a_snippet.json
+!exp19_r5a_onpolicy_dpo_seed42/redacted_samples/
+!exp19_r5a_onpolicy_dpo_seed42/redacted_samples/**
+!exp19_r5a_onpolicy_dpo_seed42/reports/
+!exp19_r5a_onpolicy_dpo_seed42/reports/**
+!exp19_r5a_onpolicy_dpo_seed42/tables/
+!exp19_r5a_onpolicy_dpo_seed42/tables/**

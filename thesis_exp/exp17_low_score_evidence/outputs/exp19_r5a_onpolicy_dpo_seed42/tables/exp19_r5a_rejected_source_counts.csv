@@ -1,0 +1,8 @@
+rejected_source,risk_type,n
+r1b,high_to_low_protection,1
+r2c,high_to_low_protection,1
+r4b,high_to_low_protection,4
+template_low_false_failure,high_to_low_protection,1194
+r2n,low_to_high,165
+template_high_no_failure,low_to_high,1035
+template_extreme,mid_score_calibration,600
