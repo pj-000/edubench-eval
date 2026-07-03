@@ -1,0 +1,38 @@
+{
+  "decision": "need_more_rejection_mining",
+  "guardrails": {
+    "d1_used_for_eval_only": true,
+    "human_rationale_not_in_prompt": true,
+    "no_test_read": true
+  },
+  "r5c_from_r1b": {
+    "MAE_delta": -0.010840108401084014,
+    "QWK_delta": 0.014905201754186193,
+    "high_to_low_delta": 0.0,
+    "label2_recall_delta": 0.02631578947368421,
+    "low_to_high_improvement": 0.03508771929824561,
+    "success": false
+  },
+  "r5c_from_r2c": {
+    "MAE_delta": 0.03252032520325204,
+    "QWK_delta": -0.012217407714569806,
+    "high_to_low_delta": 0.013756613756613757,
+    "label2_recall_delta": 0.02631578947368421,
+    "low_to_high_improvement": 0.07017543859649122,
+    "success": true
+  },
+  "r5d_from_r2c": {
+    "MAE_delta": -0.009033423667569984,
+    "failure_type_micro_f1_delta": 0.0,
+    "high_to_low_delta": 0.0,
+    "major_failure_nonempty_delta": 0.0,
+    "success": false
+  },
+  "r5e_vs_r5c_from_r2c": {
+    "MAE_gap": 0.0009033423667569873,
+    "label2_recall_gap": 0.0,
+    "low_to_high_gap": 0.01754385964912286,
+    "similar": true
+  },
+  "reason": "There is some risk-side movement, but the scout does not meet the full success rule."
+}
