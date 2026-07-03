@@ -121,3 +121,15 @@ exp19_r5e_hard_synthetic_dpo_control_seed42/*
 !exp19_r5e_hard_synthetic_dpo_control_seed42/reports/**
 !exp19_r5e_hard_synthetic_dpo_control_seed42/tables/
 !exp19_r5e_hard_synthetic_dpo_control_seed42/tables/**
+
+# Exp19-R5 DPO scout keeps runtime train/predict configs, logs, raw
+# predictions, and checkpoints local/server-side. Commit only lightweight
+# validation tables, reports, and final decision JSON.
+!exp19_r5_dpo_scout/
+exp19_r5_dpo_scout/*
+!exp19_r5_dpo_scout/reports/
+!exp19_r5_dpo_scout/reports/**
+!exp19_r5_dpo_scout/tables/
+!exp19_r5_dpo_scout/tables/**
+!exp19_r5_dpo_scout/decision/
+!exp19_r5_dpo_scout/decision/**

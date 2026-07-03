@@ -48,3 +48,14 @@ thesis_exp/exp17_low_score_evidence/outputs/*
 # artifacts are safe to commit for format/QC review.
 !thesis_exp/exp17_low_score_evidence/outputs/exp19_sft_dpo_datasets_seed42/
 thesis_exp/exp17_low_score_evidence/outputs/exp19_sft_dpo_datasets_seed42/data/
+
+# Exp19-R5 DPO scout keeps checkpoints/logs/raw predictions local, while
+# allowing lightweight validation and dev summary artifacts.
+!thesis_exp/exp17_low_score_evidence/outputs/exp19_r5_dpo_scout/
+thesis_exp/exp17_low_score_evidence/outputs/exp19_r5_dpo_scout/*
+!thesis_exp/exp17_low_score_evidence/outputs/exp19_r5_dpo_scout/tables/
+!thesis_exp/exp17_low_score_evidence/outputs/exp19_r5_dpo_scout/tables/**
+!thesis_exp/exp17_low_score_evidence/outputs/exp19_r5_dpo_scout/reports/
+!thesis_exp/exp17_low_score_evidence/outputs/exp19_r5_dpo_scout/reports/**
+!thesis_exp/exp17_low_score_evidence/outputs/exp19_r5_dpo_scout/decision/
+!thesis_exp/exp17_low_score_evidence/outputs/exp19_r5_dpo_scout/decision/**
