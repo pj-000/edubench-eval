@@ -1,0 +1,1002 @@
+[
+  {
+    "candidate_pool": "pool_b_all_train_low",
+    "chosen_redacted": {
+      "major_failures": [
+        "unclear"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "dataset_variant": "r5f2_score_risk",
+    "prompt_hash": "9482f66c0627e697872521394de37f37c430adb9",
+    "prompt_preview": "Question: 问题：在神经生理学中，动作电位的过程中不包括以下哪一个步骤？ A) 去极化 B) 再极化 C) 超极化 D) 钙离子流入细胞 学生的答案：C) 超极化 请根据问题和学生答案给出\"评分\":\"评分细节\":\"个性化反馈\":,以json格式返回 Answer: ```json { \"评分\": \"错误\", \"评分细节\": { \"正确答案\": \"D)",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "rejected_source": "r2c_clean_reason_score_balanced_sample6",
+    "risk_type": "low_to_high_score_risk",
+    "sample_id": "3bcc02fdb1dc40baccc625e0649658243cccf44d"
+  },
+  {
+    "candidate_pool": "pool_b_all_train_low",
+    "chosen_redacted": {
+      "major_failures": [
+        "unclear"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "dataset_variant": "r5f2_score_risk",
+    "prompt_hash": "9482f66c0627e697872521394de37f37c430adb9",
+    "prompt_preview": "Question: 问题：在神经生理学中，动作电位的过程中不包括以下哪一个步骤？ A) 去极化 B) 再极化 C) 超极化 D) 钙离子流入细胞 学生的答案：C) 超极化 请根据问题和学生答案给出\"评分\":\"评分细节\":\"个性化反馈\":,以json格式返回 Answer: ```json { \"评分\": \"错误\", \"评分细节\": { \"正确答案\": \"D)",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    },
+    "rejected_source": "r2n_reason_score_natural_sample7",
+    "risk_type": "low_to_high_score_risk",
+    "sample_id": "3bcc02fdb1dc40baccc625e0649658243cccf44d"
+  },
+  {
+    "candidate_pool": "pool_a_strict_d1_like_low",
+    "chosen_redacted": {
+      "major_failures": [
+        "insufficient_evidence"
+      ],
+      "rubric_satisfied": false,
+      "score": 1,
+      "score_cap": 1
+    },
+    "dataset_variant": "r5f2_score_risk",
+    "prompt_hash": "5b44e682517409e9860f3e90f5f62bb29836301b",
+    "prompt_preview": "Question: Subject:Computer Science Education Level:Undergraduate Question:What is the time complexity of the quicksort algorithm in the average case scenario? . Please generate the",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "rejected_source": "r0a_direct_qwen3_4b_sample6",
+    "risk_type": "low_to_high_score_risk",
+    "sample_id": "a2963f0bafecf877ce9d9f85ccd07d324522a500"
+  },
+  {
+    "candidate_pool": "pool_a_strict_d1_like_low",
+    "chosen_redacted": {
+      "major_failures": [
+        "missing_key_point"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "dataset_variant": "r5f2_score_risk",
+    "prompt_hash": "60b09b58b9ddbc6ad7161ba0b5817270e9741585",
+    "prompt_preview": "Question: 问题：请简述第二次世界大战的主要参战国和其领导者。 原答案：第二次世界大战的主要参战国包括德国的希特勒、美国的罗斯福、法国的拿破仑和苏联的列宁。 你为学生的回答进行纠错服务.请根据这个问题和原答案给出\"纠错后答案\"和\"纠错说明\":,以json格式返回 Answer: ```json { \"纠错后答案\": \"第二次世界大战的主要参战国及其领",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    },
+    "rejected_source": "r2n_reason_score_natural_sample3",
+    "risk_type": "low_to_high_score_risk",
+    "sample_id": "f0c923e09065792432b0f588a7eb74ea86409797"
+  },
+  {
+    "candidate_pool": "pool_b_all_train_low",
+    "chosen_redacted": {
+      "major_failures": [
+        "unclear"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "dataset_variant": "r5f2_score_risk",
+    "prompt_hash": "9482f66c0627e697872521394de37f37c430adb9",
+    "prompt_preview": "Question: 问题：在神经生理学中，动作电位的过程中不包括以下哪一个步骤？ A) 去极化 B) 再极化 C) 超极化 D) 钙离子流入细胞 学生的答案：C) 超极化 请根据问题和学生答案给出\"评分\":\"评分细节\":\"个性化反馈\":,以json格式返回 Answer: ```json { \"评分\": \"错误\", \"评分细节\": { \"正确答案\": \"D)",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    },
+    "rejected_source": "r2n_reason_score_natural_sample2",
+    "risk_type": "low_to_high_score_risk",
+    "sample_id": "3bcc02fdb1dc40baccc625e0649658243cccf44d"
+  },
+  {
+    "candidate_pool": "pool_b_all_train_low",
+    "chosen_redacted": {
+      "major_failures": [
+        "unclear"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "dataset_variant": "r5f2_score_risk",
+    "prompt_hash": "f9ac8fae8efbae16a6623eef52063d370d4727aa",
+    "prompt_preview": "Question: Question: What is the value of 5 + 3? Please provide reasoning based on this question. Do not provide the answer directly.. \"Reasoning Provided\":, return in JSON format A",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "rejected_source": "r0a_direct_qwen3_4b_sample4",
+    "risk_type": "low_to_high_score_risk",
+    "sample_id": "b32ef4e0d4df64758a36c00f66d44107809101c3"
+  },
+  {
+    "candidate_pool": "pool_a_strict_d1_like_low",
+    "chosen_redacted": {
+      "major_failures": [
+        "surface_fluent_but_hidden_defect"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "dataset_variant": "r5f2_score_risk",
+    "prompt_hash": "644b332a7769016801069d5956f5de769a407dc1",
+    "prompt_preview": "Question: Question: Which legal principle is primarily concerned with the prevention of double jeopardy in the United States? Original Answer: The principle of stare decisis. You a",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "rejected_source": "r0a_direct_qwen3_4b_sample2",
+    "risk_type": "low_to_high_score_risk",
+    "sample_id": "ba114a1a8452ac012af5a1940b242d85f38538d3"
+  },
+  {
+    "candidate_pool": "pool_b_all_train_low",
+    "chosen_redacted": {
+      "major_failures": [
+        "unclear"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "dataset_variant": "r5f2_score_risk",
+    "prompt_hash": "7e78a8b80590423bc531f72d054c880202f00744",
+    "prompt_preview": "Question: Question: Which of the following is the primary function of hemoglobin in the human body? Original Answer: To fight infections by destroying bacteria. You are providing e",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "rejected_source": "r0a_direct_qwen3_4b_sample5",
+    "risk_type": "low_to_high_score_risk",
+    "sample_id": "59057a57e3dbc47128b4e0c6da46964f722a411f"
+  },
+  {
+    "candidate_pool": "pool_a_strict_d1_like_low",
+    "chosen_redacted": {
+      "major_failures": [
+        "surface_fluent_but_hidden_defect"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "dataset_variant": "r5f2_score_risk",
+    "prompt_hash": "1cdade8828891d49b81c8d203d65009b811de708",
+    "prompt_preview": "Question: Question: Explain the concept of Nash Equilibrium in game theory and provide an example. Student's Answer: Nash Equilibrium is a situation in a game where each player's s",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "rejected_source": "r0a_direct_qwen3_4b_sample8",
+    "risk_type": "low_to_high_score_risk",
+    "sample_id": "107a460ba82cd473b9a08a5d43257a7f1d336874"
+  },
+  {
+    "candidate_pool": "pool_b_all_train_low",
+    "chosen_redacted": {
+      "major_failures": [
+        "unclear"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "dataset_variant": "r5f2_score_risk",
+    "prompt_hash": "24f05eef2696597cd855d2406a70b0f377c197b4",
+    "prompt_preview": "Question: Question: Explain the concept of Nash Equilibrium in game theory and provide an example. Student's Answer: Nash Equilibrium is a situation in a game where each player's s",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "rejected_source": "r0a_direct_qwen3_4b_sample6",
+    "risk_type": "low_to_high_score_risk",
+    "sample_id": "0a2cdf9b3f6bdc6f89db168c31be1e2a31b9ba5e"
+  },
+  {
+    "candidate_pool": "pool_a_strict_d1_like_low",
+    "chosen_redacted": {
+      "major_failures": [
+        "insufficient_evidence"
+      ],
+      "rubric_satisfied": false,
+      "score": 1,
+      "score_cap": 1
+    },
+    "dataset_variant": "r5f2_score_risk",
+    "prompt_hash": "fe8f725fb528d380dd26603326429f7f3ca8ae9d",
+    "prompt_preview": "Question: Question: True or False: The human liver has the capacity to regenerate after surgical removal of a portion of its tissue. Student's Answer: True Please provide \"Score\", ",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "rejected_source": "r0a_direct_qwen3_4b_sample4",
+    "risk_type": "low_to_high_score_risk",
+    "sample_id": "bd384e01426757c4dd86e755a75d5ef86fe6e59f"
+  },
+  {
+    "candidate_pool": "pool_b_all_train_low",
+    "chosen_redacted": {
+      "major_failures": [
+        "unclear"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "dataset_variant": "r5f2_score_risk",
+    "prompt_hash": "71335e7f6dc78a1486fdb83ba04d2ab6a5f9a330",
+    "prompt_preview": "Question: Question: Which part of the plant is responsible for photosynthesis? A) Roots B) Stems C) Leaves D) Flowers Please provide reasoning based on this question. Do not provid",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "rejected_source": "r0a_direct_qwen3_4b_sample4",
+    "risk_type": "low_to_high_score_risk",
+    "sample_id": "3f9f3a828b886a38e49aaea66516138ddb71f9d8"
+  },
+  {
+    "candidate_pool": "pool_a_strict_d1_like_low",
+    "chosen_redacted": {
+      "major_failures": [
+        "missing_key_point"
+      ],
+      "rubric_satisfied": false,
+      "score": 1,
+      "score_cap": 1
+    },
+    "dataset_variant": "r5f2_score_risk",
+    "prompt_hash": "e1ae350ddb6407d039f8a83a933fde7df678053e",
+    "prompt_preview": "Question: Subject:Computer Science Education Level:Undergraduate Question:What is the time complexity of the quicksort algorithm in the average case scenario? . Please generate the",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "rejected_source": "r0a_direct_qwen3_4b_sample5",
+    "risk_type": "low_to_high_score_risk",
+    "sample_id": "b21b8c3ac37ecaa0e26ae36e530a7f7c75594d53"
+  },
+  {
+    "candidate_pool": "pool_b_all_train_low",
+    "chosen_redacted": {
+      "major_failures": [
+        "task_constraint_violation"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "dataset_variant": "r5f2_score_risk",
+    "prompt_hash": "1f5573375f1bc4e41094280160c8b6c609c1c3f6",
+    "prompt_preview": "Question: Subject:Physical Education Education Level:Undergraduate Knowledge Point:The FITT principle is a foundational concept in physical education that stands for Frequency, Int",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    },
+    "rejected_source": "r0a_direct_qwen3_4b_sample11",
+    "risk_type": "low_to_high_score_risk",
+    "sample_id": "365e8b4c9ee703d23dee95e59be31577a15cacc8"
+  },
+  {
+    "candidate_pool": "pool_a_strict_d1_like_low",
+    "chosen_redacted": {
+      "major_failures": [
+        "surface_fluent_but_hidden_defect"
+      ],
+      "rubric_satisfied": false,
+      "score": 1,
+      "score_cap": 1
+    },
+    "dataset_variant": "r5f2_score_risk",
+    "prompt_hash": "f7dc7ac4e6652c71de6f997b2cdab528eab35b59",
+    "prompt_preview": "Question: 问题：在教育学中，哪个教学方法最强调学生的主动参与？ 学生的答案：合作学习法 请根据问题和学生答案给出\"评分\":\"评分细节\":\"个性化反馈\":,以json格式返回 Answer: ```json { \"评分\": \"部分正确\", \"评分细节\": \"合作学习法确实强调学生的主动参与，但它并不是唯一强调学生主动参与的教学方法。其他方法如项目式学",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    },
+    "rejected_source": "r2n_reason_score_natural_sample11",
+    "risk_type": "low_to_high_score_risk",
+    "sample_id": "1d5f77fabc222d72e4fb87f25eb3e5c41e786cf4"
+  },
+  {
+    "candidate_pool": "pool_b_all_train_low",
+    "chosen_redacted": {
+      "major_failures": [
+        "unclear"
+      ],
+      "rubric_satisfied": false,
+      "score": 1,
+      "score_cap": 1
+    },
+    "dataset_variant": "r5f2_score_risk",
+    "prompt_hash": "76aee017a8d3962a4669d8bfcc5826a73dddf367",
+    "prompt_preview": "Question: Question: True or False: The human liver has the capacity to regenerate after surgical removal of a portion of its tissue. Student's Answer: True Please provide \"Score\", ",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "rejected_source": "r0a_direct_qwen3_4b_sample11",
+    "risk_type": "low_to_high_score_risk",
+    "sample_id": "1947f424625d896777f4dbddef16ab9afb7730aa"
+  },
+  {
+    "candidate_pool": "pool_a_strict_d1_like_low",
+    "chosen_redacted": {
+      "major_failures": [
+        "surface_fluent_but_hidden_defect"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "dataset_variant": "r5f2_score_risk",
+    "prompt_hash": "20320e7b761dd0fd1535aa530e812bd6718e9580",
+    "prompt_preview": "Question: Question: Which part of the plant is responsible for photosynthesis? A) Roots B) Stems C) Leaves D) Flowers Please provide reasoning based on this question. Do not provid",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "rejected_source": "r0a_direct_qwen3_4b_sample9",
+    "risk_type": "low_to_high_score_risk",
+    "sample_id": "ef7be96d3b20f985cb175937b67d094d4d204dcc"
+  },
+  {
+    "candidate_pool": "pool_a_strict_d1_like_low",
+    "chosen_redacted": {
+      "major_failures": [
+        "surface_fluent_but_hidden_defect"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "dataset_variant": "r5f2_score_risk",
+    "prompt_hash": "09802e9ffd558226901f477ea1f53dfb04d93314",
+    "prompt_preview": "Question: Question: Explain how Porter's Five Forces framework can be used to analyze the competitive environment of an industry. Please provide reasoning based on this question. D",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "rejected_source": "r0a_direct_qwen3_4b_sample1",
+    "risk_type": "low_to_high_score_risk",
+    "sample_id": "b98b50d95782304d48d08ccbe6eda435ec3f66c7"
+  },
+  {
+    "candidate_pool": "pool_b_all_train_low",
+    "chosen_redacted": {
+      "major_failures": [
+        "unclear"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "dataset_variant": "r5f2_score_risk",
+    "prompt_hash": "67770ae3ce5b1f610a82c6366eccb1bffe4d7ce0",
+    "prompt_preview": "Question: Question: What is the value of 5 + 3? Please provide reasoning based on this question. Do not provide the answer directly.. \"Reasoning Provided\":, return in JSON format A",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "rejected_source": "r0a_direct_qwen3_4b_sample9",
+    "risk_type": "low_to_high_score_risk",
+    "sample_id": "bc6c8aae4e012e80e2052e4e76cb7093dc61ed19"
+  },
+  {
+    "candidate_pool": "pool_b_all_train_low",
+    "chosen_redacted": {
+      "major_failures": [
+        "unclear"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "dataset_variant": "r5f2_score_risk",
+    "prompt_hash": "3339c2340f41e7ef658f850c94b520759811b994",
+    "prompt_preview": "Question: Question: Explain how Porter's Five Forces framework can be used to analyze the competitive environment of an industry. Please provide reasoning based on this question. D",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    },
+    "rejected_source": "r2n_reason_score_natural_sample1",
+    "risk_type": "low_to_high_score_risk",
+    "sample_id": "06861366641747d8214ceee8efb257daab5915fd"
+  },
+  {
+    "candidate_pool": "pool_b_all_train_low",
+    "chosen_redacted": {
+      "major_failures": [
+        "unclear"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "dataset_variant": "r5f2_score_risk",
+    "prompt_hash": "e3df5e7cf8e3d7d242ce7587c4b42646208b407a",
+    "prompt_preview": "Question: Question: Explain how Porter's Five Forces framework can be used to analyze the competitive environment of an industry. Please provide reasoning based on this question. D",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "rejected_source": "r0a_direct_qwen3_4b_sample6",
+    "risk_type": "low_to_high_score_risk",
+    "sample_id": "971ddfe627f76a7b8e9a9e2c3def60171e09b44a"
+  },
+  {
+    "candidate_pool": "pool_b_all_train_low",
+    "chosen_redacted": {
+      "major_failures": [
+        "format_violation"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "dataset_variant": "r5f2_score_risk",
+    "prompt_hash": "882b4c62d834f96db40f04a862a14264cff2c7e4",
+    "prompt_preview": "Question: 问题：解释“需求弹性”的概念及其在经济学中的重要性。 学生的答案：需求弹性是指需求量对价格变化的反应程度。在经济学中，它很重要，因为它帮助企业了解价格变动对销售额的影响，也帮助政府制定税收政策。 请根据问题和学生答案给出\"评分\":\"评分细节\":\"个性化反馈\":,以json格式返回 Answer: ```json { \"评分\": 3, \"评",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    },
+    "rejected_source": "r2n_reason_score_natural_sample9",
+    "risk_type": "low_to_high_score_risk",
+    "sample_id": "65890fb994cef054dc75e0e6dd4c1b3e2d91805d"
+  },
+  {
+    "candidate_pool": "pool_b_all_train_low",
+    "chosen_redacted": {
+      "major_failures": [
+        "unclear"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "dataset_variant": "r5f2_score_risk",
+    "prompt_hash": "f9ac8fae8efbae16a6623eef52063d370d4727aa",
+    "prompt_preview": "Question: Question: What is the value of 5 + 3? Please provide reasoning based on this question. Do not provide the answer directly.. \"Reasoning Provided\":, return in JSON format A",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "rejected_source": "r0a_direct_qwen3_4b_sample9",
+    "risk_type": "low_to_high_score_risk",
+    "sample_id": "b32ef4e0d4df64758a36c00f66d44107809101c3"
+  },
+  {
+    "candidate_pool": "pool_a_strict_d1_like_low",
+    "chosen_redacted": {
+      "major_failures": [
+        "surface_fluent_but_hidden_defect"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "dataset_variant": "r5f2_score_risk",
+    "prompt_hash": "02f344e55fcc6d14295737a97dc7915c5cf0626f",
+    "prompt_preview": "Question: Subject:Mathematics Education Level:PhD Question:In the context of complex analysis, consider the function f(z) = z^2 + 1. Which of the following statements is true regar",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "rejected_source": "r2n_reason_score_natural_sample11",
+    "risk_type": "low_to_high_score_risk",
+    "sample_id": "6a65ddfebb3698d3eb20f814a761580fa2f8be48"
+  },
+  {
+    "candidate_pool": "pool_b_all_train_low",
+    "chosen_redacted": {
+      "major_failures": [
+        "task_constraint_violation"
+      ],
+      "rubric_satisfied": false,
+      "score": 1,
+      "score_cap": 1
+    },
+    "dataset_variant": "r5f2_score_risk",
+    "prompt_hash": "4f8ffdfa301a455e13d111b67db77e34382d8054",
+    "prompt_preview": "Question: 问题：在神经生理学中，动作电位的过程中不包括以下哪一个步骤？ A) 去极化 B) 再极化 C) 超极化 D) 钙离子流入细胞 学生的答案：C) 超极化 请根据问题和学生答案给出\"评分\":\"评分细节\":\"个性化反馈\":,以json格式返回 Answer: ```json { \"评分\": 1, \"评分细节\": { \"正确答案\": \"D) 钙离",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    },
+    "rejected_source": "r2n_reason_score_natural_sample5",
+    "risk_type": "low_to_high_score_risk",
+    "sample_id": "f54280d4caeef0bdadc941acfcd5f7fede5d6838"
+  },
+  {
+    "candidate_pool": "pool_a_strict_d1_like_low",
+    "chosen_redacted": {
+      "major_failures": [
+        "surface_fluent_but_hidden_defect"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "dataset_variant": "r5f2_score_risk",
+    "prompt_hash": "20320e7b761dd0fd1535aa530e812bd6718e9580",
+    "prompt_preview": "Question: Question: Which part of the plant is responsible for photosynthesis? A) Roots B) Stems C) Leaves D) Flowers Please provide reasoning based on this question. Do not provid",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "rejected_source": "r0a_direct_qwen3_4b_sample5",
+    "risk_type": "low_to_high_score_risk",
+    "sample_id": "ef7be96d3b20f985cb175937b67d094d4d204dcc"
+  },
+  {
+    "candidate_pool": "pool_a_strict_d1_like_low",
+    "chosen_redacted": {
+      "major_failures": [
+        "missing_key_point"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "dataset_variant": "r5f2_score_risk",
+    "prompt_hash": "60b09b58b9ddbc6ad7161ba0b5817270e9741585",
+    "prompt_preview": "Question: 问题：请简述第二次世界大战的主要参战国和其领导者。 原答案：第二次世界大战的主要参战国包括德国的希特勒、美国的罗斯福、法国的拿破仑和苏联的列宁。 你为学生的回答进行纠错服务.请根据这个问题和原答案给出\"纠错后答案\"和\"纠错说明\":,以json格式返回 Answer: ```json { \"纠错后答案\": \"第二次世界大战的主要参战国及其领",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    },
+    "rejected_source": "r2n_reason_score_natural_sample1",
+    "risk_type": "low_to_high_score_risk",
+    "sample_id": "f0c923e09065792432b0f588a7eb74ea86409797"
+  },
+  {
+    "candidate_pool": "pool_a_strict_d1_like_low",
+    "chosen_redacted": {
+      "major_failures": [
+        "surface_fluent_but_hidden_defect"
+      ],
+      "rubric_satisfied": false,
+      "score": 1,
+      "score_cap": 1
+    },
+    "dataset_variant": "r5f2_score_risk",
+    "prompt_hash": "28bd3012c658b1c93d08b13333f3a9b7c607c429",
+    "prompt_preview": "Question: 问题：在神经生理学中，动作电位的过程中不包括以下哪一个步骤？ A) 去极化 B) 再极化 C) 超极化 D) 钙离子流入细胞 学生的答案：C) 超极化 请根据问题和学生答案给出\"评分\":\"评分细节\":\"个性化反馈\":,以json格式返回 Answer: ```json { \"评分\": \"正确\", \"评分细节\": \"学生选择了C) 超极化，",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    },
+    "rejected_source": "r2n_reason_score_natural_sample4",
+    "risk_type": "low_to_high_score_risk",
+    "sample_id": "1c013ab584f1c5a49f0e03d8517d29eb909322be"
+  },
+  {
+    "candidate_pool": "pool_a_strict_d1_like_low",
+    "chosen_redacted": {
+      "major_failures": [
+        "missing_key_point"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "dataset_variant": "r5f2_score_risk",
+    "prompt_hash": "edd5b3f96414d47f24d0b97ae95430558dd06d82",
+    "prompt_preview": "Question: Question: Which part of the plant is responsible for photosynthesis? A) Roots B) Stems C) Leaves D) Flowers Please provide reasoning based on this question. Do not provid",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "rejected_source": "r0a_direct_qwen3_4b_sample0",
+    "risk_type": "low_to_high_score_risk",
+    "sample_id": "1905d9dcdf2880df39d9d380624436abd892da5a"
+  },
+  {
+    "candidate_pool": "pool_a_strict_d1_like_low",
+    "chosen_redacted": {
+      "major_failures": [
+        "insufficient_evidence"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "dataset_variant": "r5f2_score_risk",
+    "prompt_hash": "3eddc674a68f5db7f277a536fbfb8c64acbab42b",
+    "prompt_preview": "Question: Question: Explain how Porter's Five Forces framework can be used to analyze the competitive environment of an industry. Please provide reasoning based on this question. D",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    },
+    "rejected_source": "r2n_reason_score_natural_sample8",
+    "risk_type": "low_to_high_score_risk",
+    "sample_id": "a5b76b94f849ef3c81364bfd2a49a16777a2d7fa"
+  },
+  {
+    "candidate_pool": "pool_b_all_train_low",
+    "chosen_redacted": {
+      "major_failures": [
+        "unclear"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "dataset_variant": "r5f2_score_risk",
+    "prompt_hash": "ca58ead4857c512b335bf5172b9a24ffb958f387",
+    "prompt_preview": "Question: Knowledge Point: Constructivist Learning Theory Based on this knowledge point, provide \"Teaching Materials\": Teaching materials should include teaching objectives, key po",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    },
+    "rejected_source": "r2c_clean_reason_score_balanced_sample11",
+    "risk_type": "low_to_high_score_risk",
+    "sample_id": "d47f50d9f862f2b3b38b2bce2d879ce46d379e2b"
+  },
+  {
+    "candidate_pool": "pool_a_strict_d1_like_low",
+    "chosen_redacted": {
+      "major_failures": [
+        "insufficient_evidence"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "dataset_variant": "r5f2_score_risk",
+    "prompt_hash": "25c37705c2a48b4708be146936bd8eb7ebb6fa44",
+    "prompt_preview": "Question: Question: Explain how Porter's Five Forces framework can be used to analyze the competitive environment of an industry. Please provide reasoning based on this question. D",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "rejected_source": "r0a_direct_qwen3_4b_sample7",
+    "risk_type": "low_to_high_score_risk",
+    "sample_id": "7a5ae2c79851e40cccaf47deb5d4953023576ec9"
+  },
+  {
+    "candidate_pool": "pool_b_all_train_low",
+    "chosen_redacted": {
+      "major_failures": [
+        "unclear"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "dataset_variant": "r5f2_score_risk",
+    "prompt_hash": "37d095eeae73612bf0362f62aa93425cc342c8f6",
+    "prompt_preview": "Question: Question: What is the value of 5 + 3? Please provide reasoning based on this question. Do not provide the answer directly.. \"Reasoning Provided\":, return in JSON format A",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "rejected_source": "r0a_direct_qwen3_4b_sample3",
+    "risk_type": "low_to_high_score_risk",
+    "sample_id": "92910121cc180752d916f726d12fa5537c40dd88"
+  },
+  {
+    "candidate_pool": "pool_a_strict_d1_like_low",
+    "chosen_redacted": {
+      "major_failures": [
+        "surface_fluent_but_hidden_defect"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "dataset_variant": "r5f2_score_risk",
+    "prompt_hash": "20320e7b761dd0fd1535aa530e812bd6718e9580",
+    "prompt_preview": "Question: Question: Which part of the plant is responsible for photosynthesis? A) Roots B) Stems C) Leaves D) Flowers Please provide reasoning based on this question. Do not provid",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    },
+    "rejected_source": "r2n_reason_score_natural_sample7",
+    "risk_type": "low_to_high_score_risk",
+    "sample_id": "ef7be96d3b20f985cb175937b67d094d4d204dcc"
+  },
+  {
+    "candidate_pool": "pool_a_strict_d1_like_low",
+    "chosen_redacted": {
+      "major_failures": [
+        "surface_fluent_but_hidden_defect"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "dataset_variant": "r5f2_score_risk",
+    "prompt_hash": "6e24d505cb81d18c6b101f232685119f1c6d4fd8",
+    "prompt_preview": "Question: Question: Which part of the plant is responsible for photosynthesis? A) Roots B) Stems C) Leaves D) Flowers Please provide reasoning based on this question. Do not provid",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    },
+    "rejected_source": "r2n_reason_score_natural_sample5",
+    "risk_type": "low_to_high_score_risk",
+    "sample_id": "ccdab1ce8e955bdbf2224a22c0f14a10db6718ab"
+  },
+  {
+    "candidate_pool": "pool_b_all_train_low",
+    "chosen_redacted": {
+      "major_failures": [
+        "format_violation"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "dataset_variant": "r5f2_score_risk",
+    "prompt_hash": "882b4c62d834f96db40f04a862a14264cff2c7e4",
+    "prompt_preview": "Question: 问题：解释“需求弹性”的概念及其在经济学中的重要性。 学生的答案：需求弹性是指需求量对价格变化的反应程度。在经济学中，它很重要，因为它帮助企业了解价格变动对销售额的影响，也帮助政府制定税收政策。 请根据问题和学生答案给出\"评分\":\"评分细节\":\"个性化反馈\":,以json格式返回 Answer: ```json { \"评分\": 3, \"评",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    },
+    "rejected_source": "r2n_reason_score_natural_sample5",
+    "risk_type": "low_to_high_score_risk",
+    "sample_id": "65890fb994cef054dc75e0e6dd4c1b3e2d91805d"
+  },
+  {
+    "candidate_pool": "pool_b_all_train_low",
+    "chosen_redacted": {
+      "major_failures": [
+        "unclear"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "dataset_variant": "r5f2_score_risk",
+    "prompt_hash": "67770ae3ce5b1f610a82c6366eccb1bffe4d7ce0",
+    "prompt_preview": "Question: Question: What is the value of 5 + 3? Please provide reasoning based on this question. Do not provide the answer directly.. \"Reasoning Provided\":, return in JSON format A",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    },
+    "rejected_source": "r2c_clean_reason_score_balanced_sample1",
+    "risk_type": "low_to_high_score_risk",
+    "sample_id": "bc6c8aae4e012e80e2052e4e76cb7093dc61ed19"
+  },
+  {
+    "candidate_pool": "pool_a_strict_d1_like_low",
+    "chosen_redacted": {
+      "major_failures": [
+        "surface_fluent_but_hidden_defect"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "dataset_variant": "r5f2_score_risk",
+    "prompt_hash": "6e24d505cb81d18c6b101f232685119f1c6d4fd8",
+    "prompt_preview": "Question: Question: Which part of the plant is responsible for photosynthesis? A) Roots B) Stems C) Leaves D) Flowers Please provide reasoning based on this question. Do not provid",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    },
+    "rejected_source": "r0a_direct_qwen3_4b_sample8",
+    "risk_type": "low_to_high_score_risk",
+    "sample_id": "ccdab1ce8e955bdbf2224a22c0f14a10db6718ab"
+  },
+  {
+    "candidate_pool": "pool_a_strict_d1_like_low",
+    "chosen_redacted": {
+      "major_failures": [
+        "surface_fluent_but_hidden_defect"
+      ],
+      "rubric_satisfied": false,
+      "score": 1,
+      "score_cap": 1
+    },
+    "dataset_variant": "r5f2_score_risk",
+    "prompt_hash": "d99ba1760035dfd9575ceb43cad009829e66c02d",
+    "prompt_preview": "Question: 问题：在分布式系统中，一致性模型的重要性是什么？以下哪个选项最好地描述了它的作用？ A) 提高系统的吞吐量 B) 确保所有节点之间的数据保持一致 C) 降低系统的响应时间 D) 提高系统的可扩展性 学生的答案：B) 确保所有节点之间的数据保持一致 请根据问题和学生答案给出\"评分\":\"评分细节\":\"个性化反馈\":,以json格式返回 Ans",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    },
+    "rejected_source": "r2n_reason_score_natural_sample3",
+    "risk_type": "low_to_high_score_risk",
+    "sample_id": "90ed1a72c758f575b39f863d5ac03313ac9b197e"
+  },
+  {
+    "candidate_pool": "pool_b_all_train_low",
+    "chosen_redacted": {
+      "major_failures": [
+        "unclear"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "dataset_variant": "r5f2_score_risk",
+    "prompt_hash": "5b1daeb30b26573da27e7d41d2a1ef516997a021",
+    "prompt_preview": "Question: Question: Which of the following is the primary function of hemoglobin in the human body? Original Answer: To fight infections by destroying bacteria. You are providing e",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    },
+    "rejected_source": "r2n_reason_score_natural_sample5",
+    "risk_type": "low_to_high_score_risk",
+    "sample_id": "4153d3a9a2b62778bf32e38aa33be57d0215987d"
+  }
+]

@@ -1,0 +1,4 @@
+dataset,pairs,unique_source_samples,unique_low_samples,unique_rejected_payloads,duplicate_rejected_payload_rate,chosen_score_mean,rejected_score_mean,risk_type_high_to_low_score_risk,risk_type_low_to_high_score_risk
+edubench_r5f2_score_risk_main_dpo_train,1110,619,64,6,0.9945945945945946,3.210810810810811,3.4954954954954953,555,555
+edubench_r5f2_score_risk_plus_evidence_dpo_train,1110,619,64,6,0.9945945945945946,3.210810810810811,3.4954954954954953,555,555
+edubench_r5f2_real_only_small_dpo_train,555,64,64,2,0.9963963963963964,1.7693693693693693,4.663063063063063,,555

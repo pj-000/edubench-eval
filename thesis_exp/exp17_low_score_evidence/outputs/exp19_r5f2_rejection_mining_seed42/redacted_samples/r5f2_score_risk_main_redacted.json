@@ -1,0 +1,1002 @@
+[
+  {
+    "candidate_pool": "pool_a_strict_d1_like_low",
+    "chosen_redacted": {
+      "major_failures": [
+        "surface_fluent_but_hidden_defect"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "dataset_variant": "r5f2_score_risk",
+    "prompt_hash": "b3cf8a61f5afe62e45cd429a918b1d34639c4fdc",
+    "prompt_preview": "Question: 学科:法学 学制级别:博士 问题：在国际法中，以下哪一个原则主要用于解决国家之间的领土争端？ A. 不干涉内政原则 B. 自决原则 C. 先占原则 D. 互惠原则 .请根据问题生成对应的答案。\"答案\":,以json格式返回 Answer: ```json { \"答案\": \"B. 自决原则\" } ``` 注解：自决原则是国际法中的一个重要原",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "rejected_source": "r2n_reason_score_natural_sample3",
+    "risk_type": "low_to_high_score_risk",
+    "sample_id": "89f8c6ed8c1b947a44510dcc18b38a1d97571453"
+  },
+  {
+    "candidate_pool": "clean_high_control",
+    "chosen_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    },
+    "dataset_variant": "r5f2_score_risk_main",
+    "prompt_hash": "1c6503713056d100879faa70faac1196bf9d5d20",
+    "prompt_preview": "Question: 学科:生物 学制级别:小学 问题：请简述为什么植物需要阳光才能生长？ .请根据问题生成对应的答案。\"答案\":,以json格式返回 Answer: ```json { \"答案\": \"植物需要阳光才能生长，因为阳光是植物进行光合作用的能量来源。光合作用是植物将二氧化碳和水转化为葡萄糖和氧气的过程，葡萄糖为植物提供生长所需的能量和物质。阳光中的",
+    "rejected_redacted": {
+      "major_failures": [
+        "missing_key_point"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 2
+    },
+    "rejected_source": "hard_synthetic_high_to_low",
+    "risk_type": "high_to_low_score_risk",
+    "sample_id": "f176a392375ddd1dcb167da896327cde37fedf5f"
+  },
+  {
+    "candidate_pool": "clean_high_control",
+    "chosen_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "dataset_variant": "r5f2_score_risk_main",
+    "prompt_hash": "221e737b5624bc2d5c735c4229cbd69b4dd03579",
+    "prompt_preview": "Question: Subject:Military Science Education Level:Master Question:Analyze the strategic significance of electromagnetic spectrum operations (EMSO) in contemporary military conflic",
+    "rejected_redacted": {
+      "major_failures": [
+        "insufficient_evidence"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 2
+    },
+    "rejected_source": "hard_synthetic_high_to_low",
+    "risk_type": "high_to_low_score_risk",
+    "sample_id": "1d2b1d94a4c8852ae52bd6ca2182b811e62015bb"
+  },
+  {
+    "candidate_pool": "clean_high_control",
+    "chosen_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "dataset_variant": "r5f2_score_risk_main",
+    "prompt_hash": "f149a00a9336693a5a7b7a282a855a83a61a0c57",
+    "prompt_preview": "Question: Question: Discuss the role of neurotransmitters in the regulation of mood, and how imbalances can lead to mood disorders. Student's Answer: Neurotransmitters are chemical",
+    "rejected_redacted": {
+      "major_failures": [
+        "insufficient_evidence"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "rejected_source": "hard_synthetic_high_to_low",
+    "risk_type": "high_to_low_score_risk",
+    "sample_id": "6f808bdebb33be81918cc13a50c143f915a43afd"
+  },
+  {
+    "candidate_pool": "clean_high_control",
+    "chosen_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    },
+    "dataset_variant": "r5f2_score_risk_main",
+    "prompt_hash": "77d6e665782b0975fe90ba15720f4df93a8889e5",
+    "prompt_preview": "Question: 问题：考虑一个有机分子，其含有羧基(-COOH)和酯基(-COOR')。请解释该分子在酸性和碱性条件下的水解反应机理，并讨论不同条件下的反应产物。 请根据这个问题提供思路。\"提供的思路\":,以json格式返回 Answer: { \"思路\": { \"背景信息\": \"该分子同时含有羧基(-COOH)和酯基(-COOR')，这样的结构使得它既可",
+    "rejected_redacted": {
+      "major_failures": [
+        "insufficient_evidence"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "rejected_source": "hard_synthetic_high_to_low",
+    "risk_type": "high_to_low_score_risk",
+    "sample_id": "a162e24f978936b5c7d9deb605c0328d43240cf9"
+  },
+  {
+    "candidate_pool": "pool_b_all_train_low",
+    "chosen_redacted": {
+      "major_failures": [
+        "unclear"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "dataset_variant": "r5f2_score_risk",
+    "prompt_hash": "37d095eeae73612bf0362f62aa93425cc342c8f6",
+    "prompt_preview": "Question: Question: What is the value of 5 + 3? Please provide reasoning based on this question. Do not provide the answer directly.. \"Reasoning Provided\":, return in JSON format A",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "rejected_source": "r0a_direct_qwen3_4b_sample9",
+    "risk_type": "low_to_high_score_risk",
+    "sample_id": "92910121cc180752d916f726d12fa5537c40dd88"
+  },
+  {
+    "candidate_pool": "pool_a_strict_d1_like_low",
+    "chosen_redacted": {
+      "major_failures": [
+        "insufficient_evidence"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "dataset_variant": "r5f2_score_risk",
+    "prompt_hash": "e2bf225f73a506b78a8fc27bbf3c425898923a5d",
+    "prompt_preview": "Question: Subject:Aquaculture Education Level:Undergraduate Knowledge Point:Aquaculture involves the farming of aquatic organisms, including fish, mollusks, crustaceans, and aquati",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "rejected_source": "r0a_direct_qwen3_4b_sample8",
+    "risk_type": "low_to_high_score_risk",
+    "sample_id": "9b98fbe73d713149b38df9e497e2ad0a0a022c91"
+  },
+  {
+    "candidate_pool": "clean_high_control",
+    "chosen_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "dataset_variant": "r5f2_score_risk_main",
+    "prompt_hash": "0b79f51d8b133fa6f684bbe9e7bc8a096596c752",
+    "prompt_preview": "Question: 问题：一个质量为2 kg的物体以5 m/s的速度在水平面上滑动，遇到摩擦力停止。假设摩擦力为10 N，求物体滑动的距离。 原答案：物体滑动的距离是1米。 你为学生的回答进行纠错服务.请根据这个问题和原答案给出\"纠错后答案\"和\"纠错说明\":,以json格式返回 Answer: ```json { \"纠错后答案\": { \"距离\": 2.5, ",
+    "rejected_redacted": {
+      "major_failures": [
+        "missing_key_point"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "rejected_source": "hard_synthetic_high_to_low",
+    "risk_type": "high_to_low_score_risk",
+    "sample_id": "88898b282f7c1d8583c5de1bdfbed681729281e7"
+  },
+  {
+    "candidate_pool": "clean_high_control",
+    "chosen_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "dataset_variant": "r5f2_score_risk_main",
+    "prompt_hash": "28e42c024d891b7c2403dfdb21354ead53c2ce85",
+    "prompt_preview": "Question: Question: Which of the following statements is true about the acceleration due to gravity on Earth? Original Answer: The acceleration due to gravity is the same at all al",
+    "rejected_redacted": {
+      "major_failures": [
+        "missing_key_point"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "rejected_source": "hard_synthetic_high_to_low",
+    "risk_type": "high_to_low_score_risk",
+    "sample_id": "31bbbd8f328d8b2a5cc0b95fe6045baa07492695"
+  },
+  {
+    "candidate_pool": "pool_a_strict_d1_like_low",
+    "chosen_redacted": {
+      "major_failures": [
+        "surface_fluent_but_hidden_defect"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "dataset_variant": "r5f2_score_risk",
+    "prompt_hash": "1cdade8828891d49b81c8d203d65009b811de708",
+    "prompt_preview": "Question: Question: Explain the concept of Nash Equilibrium in game theory and provide an example. Student's Answer: Nash Equilibrium is a situation in a game where each player's s",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    },
+    "rejected_source": "r0a_direct_qwen3_4b_sample5",
+    "risk_type": "low_to_high_score_risk",
+    "sample_id": "107a460ba82cd473b9a08a5d43257a7f1d336874"
+  },
+  {
+    "candidate_pool": "clean_high_control",
+    "chosen_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    },
+    "dataset_variant": "r5f2_score_risk_main",
+    "prompt_hash": "fdb03800d4822a4db0dacac2e24f15e1619a871c",
+    "prompt_preview": "Question: Subject:Physical Education Education Level:Undergraduate Knowledge Point:The FITT principle is a foundational concept in physical education that stands for Frequency, Int",
+    "rejected_redacted": {
+      "major_failures": [
+        "insufficient_evidence"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 2
+    },
+    "rejected_source": "hard_synthetic_high_to_low",
+    "risk_type": "high_to_low_score_risk",
+    "sample_id": "3ce2ca30197ac4cca032a67ec918ad651e0fc2d7"
+  },
+  {
+    "candidate_pool": "pool_b_all_train_low",
+    "chosen_redacted": {
+      "major_failures": [
+        "unclear"
+      ],
+      "rubric_satisfied": false,
+      "score": 1,
+      "score_cap": 1
+    },
+    "dataset_variant": "r5f2_score_risk",
+    "prompt_hash": "e7c7670e56227add57b024d55c5c20edd21272fb",
+    "prompt_preview": "Question: 问题：在研究中世纪封建制度发展的过程中，下列哪些因素对其演变起到了关键作用？（可选择多个） A. 农奴制 B. 城市化进程 C. 十字军东征 D. 文艺复兴 E. 黑死病的流行 F. 军事科技的进步 学生的答案：['A', 'C', 'E', 'F'] 请根据问题和学生答案给出\"评分\":\"评分细节\":\"个性化反馈\":,以json格式返回 ",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    },
+    "rejected_source": "r2c_clean_reason_score_balanced_sample5",
+    "risk_type": "low_to_high_score_risk",
+    "sample_id": "994d4e155a8f105839639aba605151175ef4de88"
+  },
+  {
+    "candidate_pool": "pool_b_all_train_low",
+    "chosen_redacted": {
+      "major_failures": [
+        "unclear"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "dataset_variant": "r5f2_score_risk",
+    "prompt_hash": "67770ae3ce5b1f610a82c6366eccb1bffe4d7ce0",
+    "prompt_preview": "Question: Question: What is the value of 5 + 3? Please provide reasoning based on this question. Do not provide the answer directly.. \"Reasoning Provided\":, return in JSON format A",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "rejected_source": "r0a_direct_qwen3_4b_sample6",
+    "risk_type": "low_to_high_score_risk",
+    "sample_id": "bc6c8aae4e012e80e2052e4e76cb7093dc61ed19"
+  },
+  {
+    "candidate_pool": "pool_b_all_train_low",
+    "chosen_redacted": {
+      "major_failures": [
+        "unclear"
+      ],
+      "rubric_satisfied": false,
+      "score": 1,
+      "score_cap": 1
+    },
+    "dataset_variant": "r5f2_score_risk",
+    "prompt_hash": "76aee017a8d3962a4669d8bfcc5826a73dddf367",
+    "prompt_preview": "Question: Question: True or False: The human liver has the capacity to regenerate after surgical removal of a portion of its tissue. Student's Answer: True Please provide \"Score\", ",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "rejected_source": "r0a_direct_qwen3_4b_sample4",
+    "risk_type": "low_to_high_score_risk",
+    "sample_id": "1947f424625d896777f4dbddef16ab9afb7730aa"
+  },
+  {
+    "candidate_pool": "pool_a_strict_d1_like_low",
+    "chosen_redacted": {
+      "major_failures": [
+        "insufficient_evidence"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "dataset_variant": "r5f2_score_risk",
+    "prompt_hash": "2afb40d42549da96477bf02dd3a2bebd0691ebf9",
+    "prompt_preview": "Question: Question: What is the value of 5 + 3? Please provide reasoning based on this question. Do not provide the answer directly.. \"Reasoning Provided\":, return in JSON format A",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "rejected_source": "r0a_direct_qwen3_4b_sample9",
+    "risk_type": "low_to_high_score_risk",
+    "sample_id": "02169e6cc6f86f682c0b04047827e32859533603"
+  },
+  {
+    "candidate_pool": "pool_b_all_train_low",
+    "chosen_redacted": {
+      "major_failures": [
+        "unclear"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "dataset_variant": "r5f2_score_risk",
+    "prompt_hash": "71335e7f6dc78a1486fdb83ba04d2ab6a5f9a330",
+    "prompt_preview": "Question: Question: Which part of the plant is responsible for photosynthesis? A) Roots B) Stems C) Leaves D) Flowers Please provide reasoning based on this question. Do not provid",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "rejected_source": "r0a_direct_qwen3_4b_sample9",
+    "risk_type": "low_to_high_score_risk",
+    "sample_id": "3f9f3a828b886a38e49aaea66516138ddb71f9d8"
+  },
+  {
+    "candidate_pool": "pool_a_strict_d1_like_low",
+    "chosen_redacted": {
+      "major_failures": [
+        "insufficient_evidence"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "dataset_variant": "r5f2_score_risk",
+    "prompt_hash": "f47ff99ce7db749dc99eb48d6c4a1400834f825a",
+    "prompt_preview": "Question: Question: Explain the concept of Nash Equilibrium in game theory and provide an example. Student's Answer: Nash Equilibrium is a situation in a game where each player's s",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    },
+    "rejected_source": "r0a_direct_qwen3_4b_sample0",
+    "risk_type": "low_to_high_score_risk",
+    "sample_id": "d669073d100a7f3755e1ce0ec3bd63e9b6c54e34"
+  },
+  {
+    "candidate_pool": "pool_a_strict_d1_like_low",
+    "chosen_redacted": {
+      "major_failures": [
+        "surface_fluent_but_hidden_defect"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "dataset_variant": "r5f2_score_risk",
+    "prompt_hash": "792e3b4e208f720342edc2d09221db5add4d5cf7",
+    "prompt_preview": "Question: 问题：在神经生理学中，动作电位的过程中不包括以下哪一个步骤？ A) 去极化 B) 再极化 C) 超极化 D) 钙离子流入细胞 学生的答案：C) 超极化 请根据问题和学生答案给出\"评分\":\"评分细节\":\"个性化反馈\":,以json格式返回 Answer: ```json { \"评分\": 1, \"评分细节\": { \"正确答案\": \"D) 钙离",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    },
+    "rejected_source": "r2n_reason_score_natural_sample0",
+    "risk_type": "low_to_high_score_risk",
+    "sample_id": "378f7b2160c791b11e16c3dd68d76ed1363a3ff6"
+  },
+  {
+    "candidate_pool": "clean_high_control",
+    "chosen_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    },
+    "dataset_variant": "r5f2_score_risk_main",
+    "prompt_hash": "9f4a6ccabce661d09b4159f5e05c5b756d18b95b",
+    "prompt_preview": "Question: Knowledge Point: Constructivist Learning Theory Based on this knowledge point, provide \"Teaching Materials\": Teaching materials should include teaching objectives, key po",
+    "rejected_redacted": {
+      "major_failures": [
+        "missing_key_point"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 2
+    },
+    "rejected_source": "hard_synthetic_high_to_low",
+    "risk_type": "high_to_low_score_risk",
+    "sample_id": "6c3fadcf1fc18d1f75f5d05a38d2eb55b6fddc91"
+  },
+  {
+    "candidate_pool": "clean_high_control",
+    "chosen_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    },
+    "dataset_variant": "r5f2_score_risk_main",
+    "prompt_hash": "2c1009aa0e733fb99ab6f6a5c6099b3059baf6c4",
+    "prompt_preview": "Question: 问题：考虑一个两部门经济模型，其中一个部门生产消费品，另一个部门生产资本品。假设资本品的生产需要使用消费品作为投入，并且有一个固定的资本折旧率。请分析如何在这个模型中达到动态效率，即如何选择消费和资本的生产以最大化社会福利。 请根据这个问题提供思路。\"提供的思路\":,以json格式返回 Answer: ```json { \"问题描述\": ",
+    "rejected_redacted": {
+      "major_failures": [
+        "missing_key_point"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 2
+    },
+    "rejected_source": "hard_synthetic_high_to_low",
+    "risk_type": "high_to_low_score_risk",
+    "sample_id": "f7619818d9611ef31edb2a5f467f6fcc5bdb9787"
+  },
+  {
+    "candidate_pool": "pool_a_strict_d1_like_low",
+    "chosen_redacted": {
+      "major_failures": [
+        "missing_key_point"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "dataset_variant": "r5f2_score_risk",
+    "prompt_hash": "edd5b3f96414d47f24d0b97ae95430558dd06d82",
+    "prompt_preview": "Question: Question: Which part of the plant is responsible for photosynthesis? A) Roots B) Stems C) Leaves D) Flowers Please provide reasoning based on this question. Do not provid",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "rejected_source": "r0a_direct_qwen3_4b_sample4",
+    "risk_type": "low_to_high_score_risk",
+    "sample_id": "1905d9dcdf2880df39d9d380624436abd892da5a"
+  },
+  {
+    "candidate_pool": "pool_a_strict_d1_like_low",
+    "chosen_redacted": {
+      "major_failures": [
+        "missing_key_point"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "dataset_variant": "r5f2_score_risk",
+    "prompt_hash": "edd5b3f96414d47f24d0b97ae95430558dd06d82",
+    "prompt_preview": "Question: Question: Which part of the plant is responsible for photosynthesis? A) Roots B) Stems C) Leaves D) Flowers Please provide reasoning based on this question. Do not provid",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "rejected_source": "r0a_direct_qwen3_4b_sample1",
+    "risk_type": "low_to_high_score_risk",
+    "sample_id": "1905d9dcdf2880df39d9d380624436abd892da5a"
+  },
+  {
+    "candidate_pool": "clean_high_control",
+    "chosen_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    },
+    "dataset_variant": "r5f2_score_risk_main",
+    "prompt_hash": "e9ccd08e63b70ddaeec75227e5ef342dca40b361",
+    "prompt_preview": "Question: Knowledge Point: The Influence of Surrealism on Modern Literature Based on this knowledge point, provide \"Teaching Materials\": Teaching materials should include teaching ",
+    "rejected_redacted": {
+      "major_failures": [
+        "insufficient_evidence"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "rejected_source": "hard_synthetic_high_to_low",
+    "risk_type": "high_to_low_score_risk",
+    "sample_id": "93a0a17318a65abf401d6c369a62fdd620726504"
+  },
+  {
+    "candidate_pool": "pool_a_strict_d1_like_low",
+    "chosen_redacted": {
+      "major_failures": [
+        "missing_key_point"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "dataset_variant": "r5f2_score_risk",
+    "prompt_hash": "f4ced55116935a9d7d731be5f2dfc89429252924",
+    "prompt_preview": "Question: Question: Explain how Porter's Five Forces framework can be used to analyze the competitive environment of an industry. Please provide reasoning based on this question. D",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    },
+    "rejected_source": "r2n_reason_score_natural_sample7",
+    "risk_type": "low_to_high_score_risk",
+    "sample_id": "13af8e6896f2be6cf223e45bf4f1652fe39fe7d3"
+  },
+  {
+    "candidate_pool": "pool_b_all_train_low",
+    "chosen_redacted": {
+      "major_failures": [
+        "unclear"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "dataset_variant": "r5f2_score_risk",
+    "prompt_hash": "67770ae3ce5b1f610a82c6366eccb1bffe4d7ce0",
+    "prompt_preview": "Question: Question: What is the value of 5 + 3? Please provide reasoning based on this question. Do not provide the answer directly.. \"Reasoning Provided\":, return in JSON format A",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "rejected_source": "r0a_direct_qwen3_4b_sample1",
+    "risk_type": "low_to_high_score_risk",
+    "sample_id": "bc6c8aae4e012e80e2052e4e76cb7093dc61ed19"
+  },
+  {
+    "candidate_pool": "clean_high_control",
+    "chosen_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "dataset_variant": "r5f2_score_risk_main",
+    "prompt_hash": "02d577839a4dbcb03c02520213afc83078233ac6",
+    "prompt_preview": "Question: Student Profile: Student Profile: {'Name': 'Alex Johnson', 'Year': 'Sophomore', 'Major': 'Chemical Engineering', 'Strengths': ['Strong analytical skills', 'Good grasp of ",
+    "rejected_redacted": {
+      "major_failures": [
+        "missing_key_point"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "rejected_source": "hard_synthetic_high_to_low",
+    "risk_type": "high_to_low_score_risk",
+    "sample_id": "53d4ecc9789fee71e233f3dc79ed3c570cb15ffd"
+  },
+  {
+    "candidate_pool": "pool_a_strict_d1_like_low",
+    "chosen_redacted": {
+      "major_failures": [
+        "surface_fluent_but_hidden_defect"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "dataset_variant": "r5f2_score_risk",
+    "prompt_hash": "179d0f3e9c60826a2e3d4699e82ca34f95abd8f1",
+    "prompt_preview": "Question: Question: Explain how Porter's Five Forces framework can be used to analyze the competitive environment of an industry. Please provide reasoning based on this question. D",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "rejected_source": "r0a_direct_qwen3_4b_sample5",
+    "risk_type": "low_to_high_score_risk",
+    "sample_id": "b51fe8038ded98685f2c18b27990ce26056dfc17"
+  },
+  {
+    "candidate_pool": "clean_high_control",
+    "chosen_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "dataset_variant": "r5f2_score_risk_main",
+    "prompt_hash": "a14af5d2e26172cfb91cfb0f987f63d3fef5293c",
+    "prompt_preview": "Question: Subject:Mathematics Education Level:PhD Question:In the context of complex analysis, consider the function f(z) = z^2 + 1. Which of the following statements is true regar",
+    "rejected_redacted": {
+      "major_failures": [
+        "missing_key_point"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "rejected_source": "hard_synthetic_high_to_low",
+    "risk_type": "high_to_low_score_risk",
+    "sample_id": "4728bae254e8f20277330544b79ef3b14f06b5f6"
+  },
+  {
+    "candidate_pool": "clean_high_control",
+    "chosen_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    },
+    "dataset_variant": "r5f2_score_risk_main",
+    "prompt_hash": "ca15c841e48f8c44fae331e044300046e881bebd",
+    "prompt_preview": "Question: 问题：请解释'Romeo and Juliet'中，为什么罗密欧和朱丽叶的爱情故事被认为是悲剧。 原答案：因为他们在一起很幸福，但不能公开。 你为学生的回答进行纠错服务.请根据这个问题和原答案给出\"纠错后答案\"和\"纠错说明\":,以json格式返回 Answer: { \"纠错后答案\": \"罗密欧与朱丽叶的爱情故事被认定为悲剧是因为他们的爱情",
+    "rejected_redacted": {
+      "major_failures": [
+        "insufficient_evidence"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "rejected_source": "hard_synthetic_high_to_low",
+    "risk_type": "high_to_low_score_risk",
+    "sample_id": "0bbda1b32177d392e03e3007b17b914b5240974a"
+  },
+  {
+    "candidate_pool": "pool_b_all_train_low",
+    "chosen_redacted": {
+      "major_failures": [
+        "unclear"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "dataset_variant": "r5f2_score_risk",
+    "prompt_hash": "7e78a8b80590423bc531f72d054c880202f00744",
+    "prompt_preview": "Question: Question: Which of the following is the primary function of hemoglobin in the human body? Original Answer: To fight infections by destroying bacteria. You are providing e",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    },
+    "rejected_source": "r2n_reason_score_natural_sample7",
+    "risk_type": "low_to_high_score_risk",
+    "sample_id": "59057a57e3dbc47128b4e0c6da46964f722a411f"
+  },
+  {
+    "candidate_pool": "clean_high_control",
+    "chosen_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "dataset_variant": "r5f2_score_risk_main",
+    "prompt_hash": "98402275b99a1530d0ff123c9fd2dd250d978c29",
+    "prompt_preview": "Question: 学科:水产养殖 学制级别:大学 知识点：水质管理在水产养殖中的重要性 问题类型：简答题 .请根据学科,学制级别,知识点,问题类型生成一个对应的问题。\"问题\"和\"提供的思路\":,以json格式返回 Answer: ```json { \"问题\": \"水质管理在水产养殖中为何如此重要？请简述其主要作用。\", \"提供的思路\": [\"水质对鱼类和其",
+    "rejected_redacted": {
+      "major_failures": [
+        "missing_key_point"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "rejected_source": "hard_synthetic_high_to_low",
+    "risk_type": "high_to_low_score_risk",
+    "sample_id": "6116697ad0fd60926b2f63e11b9ea85193df1b26"
+  },
+  {
+    "candidate_pool": "clean_high_control",
+    "chosen_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "dataset_variant": "r5f2_score_risk_main",
+    "prompt_hash": "5de991bf604876041332a5e307190ec0f3a685f3",
+    "prompt_preview": "Question: Question: True or False: The sum of the interior angles of a triangle is 180 degrees. Student's Answer: True Please provide \"Score\", \"Scoring Details\", and \"Personalized ",
+    "rejected_redacted": {
+      "major_failures": [
+        "missing_key_point"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "rejected_source": "hard_synthetic_high_to_low",
+    "risk_type": "high_to_low_score_risk",
+    "sample_id": "41f3cae79f5df41d44971543e9bb4a9c8231a2cf"
+  },
+  {
+    "candidate_pool": "pool_b_all_train_low",
+    "chosen_redacted": {
+      "major_failures": [
+        "task_constraint_violation"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "dataset_variant": "r5f2_score_risk",
+    "prompt_hash": "d1af21b72389b3fab63a01359dea4e55f501303a",
+    "prompt_preview": "Question: Question: Explain the concept of Nash Equilibrium in game theory and provide an example. Student's Answer: Nash Equilibrium is a situation in a game where each player's s",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "rejected_source": "r0a_direct_qwen3_4b_sample11",
+    "risk_type": "low_to_high_score_risk",
+    "sample_id": "6cc46157fcf2aa5b87cd72293be48481a7e5dacc"
+  },
+  {
+    "candidate_pool": "clean_high_control",
+    "chosen_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "dataset_variant": "r5f2_score_risk_main",
+    "prompt_hash": "257b8942b63ae35fc424fd4b63f59ee1f087bc8b",
+    "prompt_preview": "Question: Knowledge Point: Advanced Recirculating Aquaculture Systems (RAS) Design and Management Based on this knowledge point, provide \"Teaching Materials\": Teaching materials sh",
+    "rejected_redacted": {
+      "major_failures": [
+        "missing_key_point"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "rejected_source": "hard_synthetic_high_to_low",
+    "risk_type": "high_to_low_score_risk",
+    "sample_id": "6dfc9ebbb333e5a8a7afbf31dd39b4653277a524"
+  },
+  {
+    "candidate_pool": "clean_high_control",
+    "chosen_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    },
+    "dataset_variant": "r5f2_score_risk_main",
+    "prompt_hash": "7c41bbb883f741f8498a3acbef40d5729db51e0d",
+    "prompt_preview": "Question: 问题：解释“需求弹性”的概念及其在经济学中的重要性。 学生的答案：需求弹性是指需求量对价格变化的反应程度。在经济学中，它很重要，因为它帮助企业了解价格变动对销售额的影响，也帮助政府制定税收政策。 请根据问题和学生答案给出\"评分\":\"评分细节\":\"个性化反馈\":,以json格式返回 Answer: ```json { \"评分\": 8, \"评",
+    "rejected_redacted": {
+      "major_failures": [
+        "insufficient_evidence"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "rejected_source": "hard_synthetic_high_to_low",
+    "risk_type": "high_to_low_score_risk",
+    "sample_id": "086476c9341a592ab1465a74a10e6569c9152d6d"
+  },
+  {
+    "candidate_pool": "clean_high_control",
+    "chosen_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    },
+    "dataset_variant": "r5f2_score_risk_main",
+    "prompt_hash": "8b1b842dd1fb96069bcc543109534ab6abc78492",
+    "prompt_preview": "Question: Knowledge Point: The Influence of Surrealism on Modern Literature Based on this knowledge point, provide \"Teaching Materials\": Teaching materials should include teaching ",
+    "rejected_redacted": {
+      "major_failures": [
+        "missing_key_point"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 2
+    },
+    "rejected_source": "hard_synthetic_high_to_low",
+    "risk_type": "high_to_low_score_risk",
+    "sample_id": "4f1a7fde187e57291e0d237ca0379f8cfbafae2d"
+  },
+  {
+    "candidate_pool": "clean_high_control",
+    "chosen_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "dataset_variant": "r5f2_score_risk_main",
+    "prompt_hash": "9f084a63c6d52e457447533d1becb984c35bf981",
+    "prompt_preview": "Question: 问题：以下哪位教育学家提出了“最近发展区”理论？ 原答案：约翰·杜威 你为学生的回答进行纠错服务.请根据这个问题和原答案给出\"纠错后答案\"和\"纠错说明\":,以json格式返回 Answer: { \"纠错后答案\": \"维果茨基\", \"纠错说明\": \"提出'最近发展区'理论的是苏联心理学家、教育家维果茨基，而非美国实用主义哲学家和教育家约翰·",
+    "rejected_redacted": {
+      "major_failures": [
+        "insufficient_evidence"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "rejected_source": "hard_synthetic_high_to_low",
+    "risk_type": "high_to_low_score_risk",
+    "sample_id": "50de2f0548f11969c4ac2ab539cedd794553dcd1"
+  },
+  {
+    "candidate_pool": "clean_high_control",
+    "chosen_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "dataset_variant": "r5f2_score_risk_main",
+    "prompt_hash": "efca4e531a6be4e32485e0e7c36234b7cd6fe87f",
+    "prompt_preview": "Question: Knowledge Point: The Influence of Surrealism on Modern Literature Based on this knowledge point, provide \"Teaching Materials\": Teaching materials should include teaching ",
+    "rejected_redacted": {
+      "major_failures": [
+        "missing_key_point"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 2
+    },
+    "rejected_source": "hard_synthetic_high_to_low",
+    "risk_type": "high_to_low_score_risk",
+    "sample_id": "4bb215866d0fffe48e95a8df963f398fdfd602ec"
+  },
+  {
+    "candidate_pool": "pool_a_strict_d1_like_low",
+    "chosen_redacted": {
+      "major_failures": [
+        "surface_fluent_but_hidden_defect"
+      ],
+      "rubric_satisfied": false,
+      "score": 1,
+      "score_cap": 1
+    },
+    "dataset_variant": "r5f2_score_risk",
+    "prompt_hash": "28bd3012c658b1c93d08b13333f3a9b7c607c429",
+    "prompt_preview": "Question: 问题：在神经生理学中，动作电位的过程中不包括以下哪一个步骤？ A) 去极化 B) 再极化 C) 超极化 D) 钙离子流入细胞 学生的答案：C) 超极化 请根据问题和学生答案给出\"评分\":\"评分细节\":\"个性化反馈\":,以json格式返回 Answer: ```json { \"评分\": \"正确\", \"评分细节\": \"学生选择了C) 超极化，",
+    "rejected_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "rejected_source": "r2n_reason_score_natural_sample10",
+    "risk_type": "low_to_high_score_risk",
+    "sample_id": "1c013ab584f1c5a49f0e03d8517d29eb909322be"
+  },
+  {
+    "candidate_pool": "clean_high_control",
+    "chosen_redacted": {
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    },
+    "dataset_variant": "r5f2_score_risk_main",
+    "prompt_hash": "b00eb478f9f402e72514881a6d1f54986efae14b",
+    "prompt_preview": "Question: 学科:数学 学制级别:小学 知识点：简单的加法运算 问题类型：单选题 .请根据学科,学制级别,知识点,问题类型生成一个对应的问题。\"问题\"和\"提供的思路\":,以json格式返回 Answer: ```json { \"问题\": \"小明有3个苹果，妈妈又给了他2个苹果，现在小明一共有多少个苹果？\", \"提供的思路\": \"首先确定题目中给出的数",
+    "rejected_redacted": {
+      "major_failures": [
+        "insufficient_evidence"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 2
+    },
+    "rejected_source": "hard_synthetic_high_to_low",
+    "risk_type": "high_to_low_score_risk",
+    "sample_id": "f9b7df672c22cc9b32ae03126964fb6283488e26"
+  }
+]

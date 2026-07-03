@@ -1,0 +1,14 @@
+{
+  "guardrails": {
+    "dev_d1_not_used_as_train_label": true,
+    "human_rationale_not_in_prompt": true,
+    "no_test_read": true
+  },
+  "min_ready_pairs": 300,
+  "min_ready_samples": 50,
+  "ready_for_main_scout": true,
+  "ready_for_real_only_scout": true,
+  "recommendation": "train_r5f2_scout",
+  "score_risk_pairs": 555,
+  "unique_low_samples": 64
+}
