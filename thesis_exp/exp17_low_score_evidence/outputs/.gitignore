@@ -182,6 +182,41 @@ exp19_r5g_dpo_scout/*
 !exp19_r5g_dpo_scout/decision/
 !exp19_r5g_dpo_scout/decision/**
 
+# Exp19-R5G transition diagnostics commit only lightweight summary tables and
+# reports. Raw prediction files stay local/server-side.
+!exp19_r5g_transition_diagnostics/
+exp19_r5g_transition_diagnostics/*
+!exp19_r5g_transition_diagnostics/reports/
+!exp19_r5g_transition_diagnostics/reports/**
+!exp19_r5g_transition_diagnostics/tables/
+!exp19_r5g_transition_diagnostics/tables/**
+!exp19_r5g_transition_diagnostics/decision/
+!exp19_r5g_transition_diagnostics/decision/**
+
+# Exp19-R5H two-stage DPO keeps full DPO JSON local/server-side. Commit only
+# configs, snippets, QC tables, reports, and decisions.
+!exp19_r5h_two_stage_dpo_seed42/
+exp19_r5h_two_stage_dpo_seed42/*
+!exp19_r5h_two_stage_dpo_seed42/configs/
+!exp19_r5h_two_stage_dpo_seed42/configs/**
+!exp19_r5h_two_stage_dpo_seed42/dataset_info_r5h_snippet.json
+!exp19_r5h_two_stage_dpo_seed42/reports/
+!exp19_r5h_two_stage_dpo_seed42/reports/**
+!exp19_r5h_two_stage_dpo_seed42/tables/
+!exp19_r5h_two_stage_dpo_seed42/tables/**
+
+# Exp19-R5H DPO scout keeps runtime train/predict configs, logs, raw
+# predictions, and checkpoints local/server-side. Commit only lightweight
+# validation tables, reports, and decision JSON.
+!exp19_r5h_dpo_scout/
+exp19_r5h_dpo_scout/*
+!exp19_r5h_dpo_scout/reports/
+!exp19_r5h_dpo_scout/reports/**
+!exp19_r5h_dpo_scout/tables/
+!exp19_r5h_dpo_scout/tables/**
+!exp19_r5h_dpo_scout/decision/
+!exp19_r5h_dpo_scout/decision/**
+
 # Exp19-R5F targeted rejection mining keeps generated prompts, raw sampled
 # generations, logs, predictions, and full DPO JSON local/server-side. Commit
 # only QC summaries, configs, snippets, references without raw text, and

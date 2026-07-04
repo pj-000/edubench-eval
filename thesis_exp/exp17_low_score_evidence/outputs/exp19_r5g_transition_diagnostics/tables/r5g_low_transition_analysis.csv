@@ -1,0 +1,58 @@
+sample_id,gold_label,metric,language,is_d1_hidden,pred_r2c,pred_r4b,pred_r5f2_real,pred_r5g_a3,pred_r5g_b1,fixed_by_r5f2_real,fixed_by_a3,fixed_by_b1,worsened_by_a3
+a9fb1437d7ef739f816e75d995054de210ca96a8,2,Instruction Following & Task Completion,en,False,5,5,4,5,5,False,False,False,False
+ae218f59b2bdc08b36e9d5fc14db12e76a7af21e,2,"Motivation, Guidance & Positive Feedback",en,False,3,3,3,3,3,False,False,False,False
+d8a2ee217054b586513ab4f66cfb23ec46e5d333,2,"Motivation, Guidance & Positive Feedback",en,False,3,3,3,3,3,False,False,False,False
+6b1d22832f8c2d9e51459ade117c52581ec16bf8,2,Instruction Following & Task Completion,en,True,5,5,5,5,5,False,False,False,False
+ab6c4ba7b5065f647c29431814feeb3a00e9c7b0,2,Scenario Element Integration,en,True,5,5,3,4,3,True,False,True,False
+057fb10dadb0ef587ef63e8c0692fb069e747f33,2,Reasoning Process Rigor,en,True,5,5,3,5,4,True,False,False,False
+d827928fc39a06825d345c6f8c0685eba89b65cd,2,Error Identification & Correction Precision,en,True,5,5,5,5,5,False,False,False,False
+c8f82a756a23aa9b5e70f52f867ac392e2aec089,2,"Clarity, Simplicity & Inspiration",en,True,5,5,4,4,4,False,False,False,False
+293b29a2622713babcb8a2dbc341d9f224d6c8b2,1,"Motivation, Guidance & Positive Feedback",en,False,3,3,3,3,3,False,False,False,False
+60084a95316f0f87040c9c1c0c24a16be077aa06,2,Instruction Following & Task Completion,en,True,5,5,5,5,5,False,False,False,False
+bb99da8830bc11b1828c4a9637d65ecb7ee71420,2,Scenario Element Integration,en,True,5,5,2,3,3,True,True,True,False
+b6b6dda03618d53072e9cb795d23ca1a8dc79a57,2,Reasoning Process Rigor,en,True,5,5,4,5,5,False,False,False,False
+760fc72a43fcce0f05f6e57f16c28416ee7a2536,2,Error Identification & Correction Precision,en,True,5,5,5,5,5,False,False,False,False
+1bdcdd67d27147705080e74bea8e7252e9ce95bb,2,"Clarity, Simplicity & Inspiration",en,True,5,5,4,5,5,False,False,False,False
+b90c66a2b2bfd098d8c48fac5c5abeb2d37b630f,1,"Motivation, Guidance & Positive Feedback",en,False,3,3,3,3,3,False,False,False,False
+02257ff2c77501987e43989cc8c71a017fb39dad,2,Instruction Following & Task Completion,en,True,5,5,5,5,5,False,False,False,False
+fceb9659e6f4b3b5648c977ec612b79ae8a6ae29,2,Scenario Element Integration,en,True,4,5,2,3,2,True,True,True,False
+28cb100bda849f499ad3ad11500b7d1b494be4a7,2,Error Identification & Correction Precision,en,True,5,5,3,5,5,True,False,False,False
+e9b358073140893a17f069d26d8fe2adc338f088,2,"Clarity, Simplicity & Inspiration",en,True,4,5,4,4,4,False,False,False,False
+d7dfad3fc42945cc563185c1a18e2e2af3b22a5a,1,"Motivation, Guidance & Positive Feedback",en,False,3,3,3,3,3,False,False,False,False
+308181498ec49e2d421c165fdf652ef8991f34f9,2,Instruction Following & Task Completion,en,True,5,5,5,5,5,False,False,False,False
+6304a049e36db27cde8ac17418f406f0b8d94687,2,Scenario Element Integration,en,True,5,5,2,3,3,True,True,True,False
+abd894527f401792d7a5cb4438ee15420de3ea1d,2,Reasoning Process Rigor,en,True,5,5,3,5,5,True,False,False,False
+f45ee7ba1b382a63c9d4d3f14889365d54dc1cbd,2,Error Identification & Correction Precision,en,True,5,5,5,5,5,False,False,False,False
+a7f69c77078e9926635bb2b77ebdd28d5733ae36,2,"Clarity, Simplicity & Inspiration",en,True,5,5,4,5,5,False,False,False,False
+2a2df83ec113e46b0061b47e958a73b62cd3f358,1,"Motivation, Guidance & Positive Feedback",en,False,3,3,3,3,3,False,False,False,False
+46e715a2df1e392b0e0ddb3fee67f5a339e5e608,2,"Motivation, Guidance & Positive Feedback",en,True,4,4,2,2,4,True,True,False,False
+3e9b912912a634cbb8efa9dff2aa3d76b50565c8,2,"Motivation, Guidance & Positive Feedback",en,False,4,4,3,3,4,True,True,False,False
+445b2809aae28589a26054f762f72053905f1f3e,1,Reasoning Process Rigor,en,False,1,1,1,1,1,False,False,False,False
+13b1d7ece3374577cc37e22e71c8766b4225fe21,1,Reasoning Process Rigor,en,False,1,1,1,1,1,False,False,False,False
+3783f563820e72434b75d23f81fd58fb010931f7,2,Content Relevance & Scope Control,en,True,5,2,2,2,2,True,True,True,False
+a30876aee5bfcd792a475f60264f22dfc7b74b91,2,Basic Factual Accuracy,en,True,5,1,1,5,5,True,False,False,False
+74b53a524e1eefdcbd05d43135aa8c054f6099b9,1,Reasoning Process Rigor,en,False,1,1,1,1,1,False,False,False,False
+ef78fd201463e8b8c8effb75791995b76b888807,1,Reasoning Process Rigor,en,False,1,1,1,1,1,False,False,False,False
+9ab1bf35a1c05a0d05b45d75620e919312780063,2,Instruction Following & Task Completion,en,True,5,5,3,5,5,True,False,False,False
+f93c70f6bc17688bb1aa72c33100e1716657dc59,2,Content Relevance & Scope Control,en,True,5,3,5,5,5,False,False,False,False
+ec3c258a92d9ea146d07d5b2d54170aa37b10793,2,Basic Factual Accuracy,en,True,5,3,5,5,5,False,False,False,False
+e77b4e71d88f1ac753379a5028ba01c13218095e,2,Higher-Order Thinking & Skill Development,en,False,3,3,2,3,3,False,False,False,False
+9ca1faa5965fe160e47bb334d28dd981016e4305,2,Higher-Order Thinking & Skill Development,en,False,3,2,2,2,3,False,False,False,False
+ec75161444c125a6b67e00b6d4823e1dbf2af100,2,Higher-Order Thinking & Skill Development,en,False,3,3,2,2,2,False,False,False,False
+81b0a87bc2607bc381b6f4590571dc027e82c028,2,Higher-Order Thinking & Skill Development,en,False,3,3,2,2,2,False,False,False,False
+c93c29089980f3858f31a6bb1a8a55568d3b750e,2,Higher-Order Thinking & Skill Development,en,False,3,3,2,2,2,False,False,False,False
+8f28634f559001ad29fab2c43154693a97781300,2,Higher-Order Thinking & Skill Development,en,False,3,3,3,3,3,False,False,False,False
+bedcf746b3175551acc7aaad35440acd6b5b1f69,2,Higher-Order Thinking & Skill Development,en,False,3,3,2,3,3,False,False,False,False
+04bfbf54a7eeef628f3799e10e300520dcee17ca,2,Instruction Following & Task Completion,zh,True,5,4,2,4,5,True,False,False,False
+4275823dfe4094d4b8e9887797ef050094c4f2c1,1,Error Identification & Correction Precision,zh,False,5,4,2,3,2,True,True,True,False
+e74e422bba24c22c7145a2d8e010496e37ab2c15,1,"Motivation, Guidance & Positive Feedback",zh,False,5,4,3,5,5,True,False,False,False
+424183cbce35426146e3037b190e0a1967c66c16,2,"Personalization, Adaptation & Learning Support",zh,False,4,4,3,3,3,True,True,True,False
+618e3f9ac563987d77505bfb7715b02ff3150ea8,1,Reasoning Process Rigor,zh,False,4,1,1,1,1,True,True,True,False
+fc2ff7d26cadf548e85bec147fb18b5675d6ddb3,1,Reasoning Process Rigor,zh,False,1,1,1,1,1,False,False,False,False
+0aaf39ad6c02e6ae4963e2255bdf55dc096aecb8,1,Reasoning Process Rigor,zh,False,1,1,1,1,1,False,False,False,False
+a6a20cc15a6ffb4d18de47f6e62cd3fbe0823c08,1,Reasoning Process Rigor,zh,False,1,1,1,1,1,False,False,False,False
+dddcdb1af8c488b9ca8258a052e3119137a1d6a4,1,Reasoning Process Rigor,zh,False,4,1,1,1,1,True,True,True,False
+0e85df678d2092614f074c1c9abafdbde1b0b352,1,Reasoning Process Rigor,zh,False,1,1,1,1,1,False,False,False,False
+5252cdfa0172dbf77581c3e43c3b94262cf1b3b6,1,Reasoning Process Rigor,zh,False,1,1,1,1,1,False,False,False,False
+9a45c2ae20eb3b0f2c13614c2df867017d21da04,1,Reasoning Process Rigor,zh,False,4,1,1,1,1,True,True,True,False
+504d54b92c1d0c638a58b810bfbc7bacf92dff06,1,Reasoning Process Rigor,zh,False,1,1,1,1,1,False,False,False,False

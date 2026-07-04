@@ -1,0 +1,946 @@
+sample_id,gold_label,metric,language,pred_r2c,pred_r5f2_real,pred_r5g_a3,high_to_low_r5f2_real,high_to_low_a3
+51b966d61a762bbb396c629686ef62b121525bae,4,Instruction Following & Task Completion,en,4,4,4,False,False
+595ad2f7159ac18f38534303b13a476abbbb4f51,4,Scenario Element Integration,en,4,3,4,False,False
+6ba1d9fdc2898cfa44f877e7724b403d08eaac96,4,"Personalization, Adaptation & Learning Support",en,4,3,3,False,False
+56482e327fad5d766b7b04796be08239f87c4c07,5,Instruction Following & Task Completion,en,4,4,4,False,False
+27609c94a5bd2cd2dcacbd764f2d834df9d0bd83,4,Scenario Element Integration,en,4,2,2,True,True
+426a79b32e0b6b9a32abc8f2246ab9ebb83d7e01,4,"Personalization, Adaptation & Learning Support",en,4,2,4,True,False
+66ed54a9423fdc853c2d708828160ec51c93ca2e,5,Instruction Following & Task Completion,en,5,5,5,False,False
+be99fc5c194acd065de431a73eab09f1d7e86947,4,Scenario Element Integration,en,5,4,5,False,False
+7175a2ca5335b82598f8cf6ff459922c22013bf1,4,"Personalization, Adaptation & Learning Support",en,5,4,5,False,False
+86ff78fd1c6dc3098b2f30f46717fede9790131d,4,Instruction Following & Task Completion,en,5,5,5,False,False
+6442e6a2ff5144c096a3c01cf2f4c3cf062c519f,4,Scenario Element Integration,en,5,4,5,False,False
+2344f7712481acb079590b1b052c58451eaafdc7,4,"Personalization, Adaptation & Learning Support",en,5,5,5,False,False
+78478eb10f92fecf6933c2d893afaa1aac103c02,5,Instruction Following & Task Completion,en,5,5,5,False,False
+6ba37c4d830f3851a0b554022e6520886dd894a8,5,Scenario Element Integration,en,5,5,5,False,False
+3262276c0eeb8d6c72d67e57acb6d9596c783bf3,5,"Personalization, Adaptation & Learning Support",en,5,5,5,False,False
+52fe2ddd3f0de180f118658a1307ea966b4fa1d6,4,Instruction Following & Task Completion,en,4,4,4,False,False
+691f9ac6bbf74f97501f6fab4d57792dd9c5d610,4,Scenario Element Integration,en,4,3,4,False,False
+dad353af0c9f2d64222cbd99f626f49968148547,4,"Personalization, Adaptation & Learning Support",en,4,3,4,False,False
+44f05b0c67bebf0448cccd826c22d15782c45738,4,Instruction Following & Task Completion,en,5,4,4,False,False
+782057f8ff32a09cc88426c644a4eddaafbeb027,4,Scenario Element Integration,en,4,2,4,True,False
+c54968846ebdc39afca78b0761e80832937eccec,4,"Personalization, Adaptation & Learning Support",en,4,3,4,False,False
+36b7456a8780fed1fbcc8cfff7a6868ddbcb9054,5,Instruction Following & Task Completion,en,5,5,5,False,False
+2857c422b25e3a1582e6e07b3c53ed322fe1e90f,5,Scenario Element Integration,en,5,5,5,False,False
+5f7cc781f63751977be92751240ab8201c2a6281,5,"Personalization, Adaptation & Learning Support",en,5,5,5,False,False
+0e3a7302489b5e6490e9d62a528344bd8a65c6ce,5,Instruction Following & Task Completion,en,5,5,5,False,False
+bb7c90de0f34544630e4984fe378212c62e1088b,5,Scenario Element Integration,en,5,2,5,True,False
+51c3c1538b7880b3a2c9c204f0964979ad93d173,5,"Personalization, Adaptation & Learning Support",en,5,5,5,False,False
+7e2ae90d53f6e3687fbbba1e3b958b61b374423d,4,Scenario Element Integration,en,4,2,2,True,True
+3769d73767b20049216c6a533b1c67b2a3e182e0,4,"Personalization, Adaptation & Learning Support",en,4,3,3,False,False
+6bc36b99f77c520d1812a8ede03437e7a66317eb,4,Instruction Following & Task Completion,en,5,4,4,False,False
+3239929756f65d31c8c6b1ed02062015917ea315,4,Scenario Element Integration,en,4,3,4,False,False
+705fd38053f7334c2ce5f831f9c982ecbcc7eab5,4,"Personalization, Adaptation & Learning Support",en,4,3,3,False,False
+4c646c69440f2582b479b0a5eafd80a31a54ae7e,5,Instruction Following & Task Completion,en,4,4,4,False,False
+309dbcee61fbb30c0b749345e67ff54f7f3b4a42,4,Scenario Element Integration,en,4,3,3,False,False
+f8996cb3f1b29c051e2822c915df9efabcd21119,4,"Personalization, Adaptation & Learning Support",en,3,3,3,False,False
+5c83b5dbf9d1c83e4b46f713ea2e18b6206bf619,4,Instruction Following & Task Completion,en,5,4,5,False,False
+0e54ffac34fa7f91e6f677878bf2da9c344ba8ed,5,Content Relevance & Scope Control,en,5,5,5,False,False
+33d42d9c6d79c6370c06ea92d1b865c586ab91ec,4,Scenario Element Integration,en,4,2,4,True,False
+71b469efb8ab7f3123f2562e5d6781e58ed1172c,4,"Personalization, Adaptation & Learning Support",en,4,3,4,False,False
+a6eb08529faccf8c0ab39bc97552c8a0308cb6fa,4,Instruction Following & Task Completion,en,5,5,5,False,False
+4de2b4a56d08474a6a48fe50b18570426d8612a7,5,Scenario Element Integration,en,5,3,4,False,False
+3460f3e8bca3efe9b185114ebe11e37178d17617,5,"Personalization, Adaptation & Learning Support",en,5,3,4,False,False
+52c007fafe18ddccafe1125ba38c1240dbad1413,4,Instruction Following & Task Completion,en,5,5,5,False,False
+4dae68eec2954a26d0633f29635baf0027a759a1,4,Scenario Element Integration,en,5,2,5,True,False
+18c5df34b40da1e1f9cb84a5efd33a149ad0da21,4,"Personalization, Adaptation & Learning Support",en,5,5,5,False,False
+75077596e274ffc21186e7cb30eefece28d48574,4,Higher-Order Thinking & Skill Development,en,4,3,4,False,False
+d351b48addc76c4650e2f98a96c0bf4025fed4ee,5,Instruction Following & Task Completion,en,5,5,5,False,False
+c36f42b5e02b15aa25ffd76544c3a62564e45215,5,Scenario Element Integration,en,5,5,5,False,False
+5e21d131a92ff092aa054488ce8c85638904335f,5,"Personalization, Adaptation & Learning Support",en,5,5,5,False,False
+e9145f13a2d7884f86ff16cd4ce3a146853591d2,5,Instruction Following & Task Completion,en,5,5,5,False,False
+b4051701f15c19e1e4885b4986ab9a2dedd830f9,5,Content Relevance & Scope Control,en,5,5,5,False,False
+1e74f853fe7c30e4846473b3f9fb848763ceda29,5,Scenario Element Integration,en,5,3,5,False,False
+6d3bf89865dddddc9f005194c830e21f70ed590d,5,"Personalization, Adaptation & Learning Support",en,5,3,5,False,False
+553531d3d130f5709489cadb68bc6984b07fcacd,5,Instruction Following & Task Completion,en,5,5,5,False,False
+7023b6e6a13670710feb642a8d4467fdb4aabe77,5,Content Relevance & Scope Control,en,5,5,5,False,False
+dfe9abfbe0d98ace49e2edbd954b024228066950,5,Scenario Element Integration,en,5,4,5,False,False
+4c536b78c14e58b06b44b7cb1af405183cb6072e,5,"Personalization, Adaptation & Learning Support",en,5,5,5,False,False
+d3b62e4922934a331ee467af58956ba7bdc0c1e7,4,Higher-Order Thinking & Skill Development,en,4,3,3,False,False
+2b5d6b8e980e52f5fffe0dfbd34963e32a0b7c30,5,Instruction Following & Task Completion,en,5,5,5,False,False
+3d00b0d340de438e79d019d08863de3ab7a3bfd9,5,Scenario Element Integration,en,5,5,5,False,False
+1ab82ed57ffbffe927fd5019c7e8c6f8b9ae5cb0,5,"Personalization, Adaptation & Learning Support",en,5,5,5,False,False
+58cbbe2785f9e4d80dfced3bc57ff0fe1b51e75b,5,Instruction Following & Task Completion,en,5,5,5,False,False
+a131305ca30b6feb6781bc33fcfb74b3878753e2,5,Content Relevance & Scope Control,en,5,5,5,False,False
+ba7b570ac1e1c9a88025a5727e0a7d0fefd42249,5,Scenario Element Integration,en,5,5,5,False,False
+59d3d3b3a54562ba6ff30d2ca7b9ba58960e62de,5,"Personalization, Adaptation & Learning Support",en,5,5,5,False,False
+8a9287ce0b662a5aecb93854576d3c2c92ae4449,4,Higher-Order Thinking & Skill Development,en,5,4,4,False,False
+bffed78fd170c0878afb6b8d0dee003f855dd924,4,Instruction Following & Task Completion,en,4,4,4,False,False
+e22f6c5fd09b90b215fe142820614c57cd3e4cca,5,Content Relevance & Scope Control,en,5,4,4,False,False
+90ab1fab6294705465f5517962d87415f4222398,4,Scenario Element Integration,en,4,3,3,False,False
+6093f8b841baad5d4b8765f948bf290b2ef95e8c,4,"Personalization, Adaptation & Learning Support",en,4,3,4,False,False
+270134347e26def037f794824be5a922a7e62e86,4,Instruction Following & Task Completion,en,5,4,4,False,False
+4c1130b7c4bb5997bdbbca6f1c02e2811677d398,5,Content Relevance & Scope Control,en,5,4,4,False,False
+dc8f649af96999dc3da7ce3850f8c122d175522b,4,Scenario Element Integration,en,4,3,4,False,False
+928fa07b01dfc11b1e2746501c13afde05ebb32b,4,"Personalization, Adaptation & Learning Support",en,4,3,4,False,False
+73d7f7bac1ca01853869efe76727d8a445b32a92,4,Higher-Order Thinking & Skill Development,en,4,2,4,True,False
+9288b079e2f0b3b0f60741c88fee643c9aa92776,4,Instruction Following & Task Completion,en,5,4,5,False,False
+0b77c5abc4a8a8768d88f6f2a2e6088eecace9b7,4,Content Relevance & Scope Control,en,5,4,5,False,False
+999bbe315165a288b99dcb1c843b471bc77652ff,4,Scenario Element Integration,en,4,4,4,False,False
+71bbe496949221e291fec4b3e8718ac8348f2f23,4,"Personalization, Adaptation & Learning Support",en,4,4,4,False,False
+dba6c26025411f8ad63c65b17e2804d7b1ad5a72,4,Instruction Following & Task Completion,en,5,5,5,False,False
+d7b17f6de05fafbeef844a9f4b5fc2d2cbdb3dd7,5,Content Relevance & Scope Control,en,5,4,4,False,False
+3983592200e1e021b9b0d50bee40b71f248583d6,4,Scenario Element Integration,en,4,3,4,False,False
+0ce247e0de711805c743e7e99382dc8d2fb4593a,4,"Personalization, Adaptation & Learning Support",en,4,3,4,False,False
+083c79bb9f232d7b5022e70c3c15051ff2225f3d,4,Higher-Order Thinking & Skill Development,en,4,3,3,False,False
+8a61472168f00a3f54f2cb63d372aeed8902f469,5,Instruction Following & Task Completion,en,5,4,5,False,False
+9e7a13a7d03b21cdfb44917fdaafd7137dd1c7f7,5,Content Relevance & Scope Control,en,5,4,5,False,False
+996947257b8dd730b64898e3de4ac96ce6bf2bc6,5,Scenario Element Integration,en,4,2,4,True,False
+8ab6e252d06c28460d39c3d8f26b5f3e61b60e02,5,"Personalization, Adaptation & Learning Support",en,4,4,4,False,False
+c5695150bc6ca1152aa74777a2ae435865d0c857,4,Instruction Following & Task Completion,en,5,5,5,False,False
+15036cee3910b1d3e36f12928aaab82dcb1ff0e5,5,Content Relevance & Scope Control,en,5,5,5,False,False
+307318a1c64b45a333161858c42bb2363f51dd79,4,Scenario Element Integration,en,4,3,4,False,False
+2161f032a42bd67f3ad128f74052af47b10d5eb0,4,"Personalization, Adaptation & Learning Support",en,5,3,4,False,False
+ae0daa8f1a22591ee054c662d9cb8e58c39a8e35,4,Higher-Order Thinking & Skill Development,en,4,3,3,False,False
+89d633ab874ebd4323884ef8d7edad725a8275b6,4,Instruction Following & Task Completion,en,5,5,5,False,False
+5cfdd253698da1891c412f413b92c704ee7c5b6e,5,Content Relevance & Scope Control,en,5,5,5,False,False
+b3cf682236b1e8b8ca71935908d13ff6aeec9772,4,Scenario Element Integration,en,5,4,5,False,False
+87962140e691ac108e1ec39b9ce21d1903572beb,4,"Personalization, Adaptation & Learning Support",en,5,5,5,False,False
+6be6b109bcf3e7f8245db9e094f9c2a5ca3426a4,4,Higher-Order Thinking & Skill Development,en,4,4,4,False,False
+09bda9e251bb85ffe968f63e24305e35669887f8,5,Instruction Following & Task Completion,en,5,5,5,False,False
+5d82f34baf2ec31594473f397a90becf86b0fac3,5,Content Relevance & Scope Control,en,5,5,5,False,False
+1635c38594f892a587564cc33f944325faa2fb17,5,Scenario Element Integration,en,5,5,5,False,False
+ee93be697d59ab0021bba76b2455b63a1237dfe6,5,"Personalization, Adaptation & Learning Support",en,5,5,5,False,False
+b0928be835fcdfce40f01c966480287812bc07bb,5,Higher-Order Thinking & Skill Development,en,5,5,5,False,False
+8b0dbf11e73a494234bd99c189a86964bfd2c161,4,Instruction Following & Task Completion,en,5,5,5,False,False
+11189f6d9f72eaf16a26cb523a1fa71f32ecc5ba,5,Content Relevance & Scope Control,en,5,5,5,False,False
+12bcd4b81301c8060ad287927889a9a1b7c967ea,4,Scenario Element Integration,en,5,5,5,False,False
+b1d868af417a0ddfa44b01acfe45c2d0e82ca4d6,4,"Personalization, Adaptation & Learning Support",en,5,5,5,False,False
+2ee5e990d06823aa70715e5ebae37a102d6239a3,4,Higher-Order Thinking & Skill Development,en,5,5,5,False,False
+bac076b8c1a50169c66069f680b1363c54bd10f0,4,Instruction Following & Task Completion,en,5,4,5,False,False
+8395a14f7769f2c12f7355771c3d20683df50f01,5,Content Relevance & Scope Control,en,5,4,5,False,False
+aa51a6e2746f1fcbe8087c77e5921505d913deca,4,"Personalization, Adaptation & Learning Support",en,4,3,4,False,False
+cefc3b28c1e9b3ba02ca11c478f52ba01bd1b7d5,5,Instruction Following & Task Completion,en,5,5,5,False,False
+ee5f8da555ce849b1616411f4262a97080a9fb1d,5,Scenario Element Integration,en,4,2,2,True,True
+daca188a992cdea92dbb0bf3a259addd67c69e1f,5,Basic Factual Accuracy,en,5,5,5,False,False
+b81a8658be702db34706022b0507df71f90a99ae,4,Reasoning Process Rigor,en,5,5,5,False,False
+6d3c359010a9cee9b0ede96fcda05fd3a977fe0b,5,Error Identification & Correction Precision,en,5,5,5,False,False
+0dc6906fee0bb1c5aed6b972356f92f74351371a,4,"Clarity, Simplicity & Inspiration",en,5,4,5,False,False
+126326f70e5a81482328ac0006e1bf2f318d6492,4,"Motivation, Guidance & Positive Feedback",en,3,3,3,False,False
+079ea342cccf68aed2ef06f1585d82aab1079558,5,Instruction Following & Task Completion,en,5,5,5,False,False
+e843b080b93452ab33172197cf1f7cfbe107404a,4,Scenario Element Integration,en,5,2,3,True,False
+b18a1f1d23d987ec094dbecacc97dd5632f7900d,5,Basic Factual Accuracy,en,5,5,5,False,False
+d5b69d007a8473ffba013605baf41ccca7b92e42,4,Reasoning Process Rigor,en,5,1,5,True,False
+826f4a754ef78699c156eb23a391595f979599ba,5,Error Identification & Correction Precision,en,5,5,5,False,False
+89790e6344a0762a5402a95789244565e99e1042,4,"Clarity, Simplicity & Inspiration",en,5,4,5,False,False
+79ddbe8e3c99a05bbb70d66c8beecbb3be1024ff,5,Instruction Following & Task Completion,en,5,5,5,False,False
+153a4b8462651307f2ce3e7e1c711c6b567062cb,4,Scenario Element Integration,en,5,3,4,False,False
+3c2dd4467156dd2a24f9110627bd72149ceba9fb,5,Basic Factual Accuracy,en,5,5,5,False,False
+bf6a4f3620f92a487e089b259c86f181e850df7f,4,Reasoning Process Rigor,en,5,1,5,True,False
+43a9c3acf8d0294710159ad663920972e6214e81,5,Error Identification & Correction Precision,en,5,5,5,False,False
+22ef4391e2317071d735cc89cefc61714f67ab96,4,"Clarity, Simplicity & Inspiration",en,5,4,4,False,False
+6b12d1a8edcc430e1f1e5bd7aa3057b931f825d8,5,Instruction Following & Task Completion,en,5,5,5,False,False
+dc527d0535973541ede5794711ce6792d8ea0269,4,Scenario Element Integration,en,5,2,4,True,False
+1e7ba6c46901544f873313cfbb5a871b34c1e010,5,Basic Factual Accuracy,en,5,5,5,False,False
+1c585c8ee352fa034b4740658f3baabc61788388,4,Reasoning Process Rigor,en,5,1,5,True,False
+341ec752bc9edf871dcaf9a387af619b1e7ccb82,5,Error Identification & Correction Precision,en,5,5,5,False,False
+5eb8c53e3c4907a01f2b56b7834d0e69e8fdfcba,4,"Clarity, Simplicity & Inspiration",en,5,4,4,False,False
+8d3e3f58f3253f93e1c1e9a90e18fbdfb941b6ca,5,Instruction Following & Task Completion,en,5,5,5,False,False
+44d7bab57f702b1ca8d7bda1f1e54868f6348a53,5,Scenario Element Integration,en,5,3,5,False,False
+15db6e31d1124097d66ec9cd7a95a7d14ebfc139,5,Basic Factual Accuracy,en,5,5,5,False,False
+21fc942aa30e56dfd0ae8041a05581cb7f014e4f,4,Reasoning Process Rigor,en,5,5,5,False,False
+79c93e933d6ec54be05b7d9732a0dd50971aac3b,5,Error Identification & Correction Precision,en,5,5,5,False,False
+fec243d0892771f4eb5fa6ad45e6db5046360180,5,"Clarity, Simplicity & Inspiration",en,5,4,4,False,False
+8f8e641739964bb19eb80e88977c4e9dc3c9c9e1,5,Instruction Following & Task Completion,en,5,5,5,False,False
+6c03d9af88ae68d610e8207efd74dce103d26fac,5,Scenario Element Integration,en,5,2,5,True,False
+df922f9e5d1b0d1bb520f0068dd88664b23aa35a,5,Basic Factual Accuracy,en,5,5,5,False,False
+a241d7380c2f8b9c10c24ab02152d71c68e218fd,5,Reasoning Process Rigor,en,5,5,5,False,False
+13b1e2173cb2645f9ebce1bd5d744b84879bb0f7,5,Error Identification & Correction Precision,en,5,5,5,False,False
+56cd7d501fa0da131b89c0094fd3a0e81eaf6ef3,5,"Clarity, Simplicity & Inspiration",en,5,4,5,False,False
+2452ff7492aac4ffa1242727afb75520330e1f51,4,"Motivation, Guidance & Positive Feedback",en,3,3,3,False,False
+72e833bd7aa39813d50ab9ddd6c15f9ea603d939,5,Instruction Following & Task Completion,en,5,5,5,False,False
+dd2e258d37e704b141c48cab487875f17f393d58,4,Scenario Element Integration,en,5,3,3,False,False
+528c937e7934d0c0d05a639ff35bbdfd86772c04,5,Basic Factual Accuracy,en,5,5,5,False,False
+5024080b04317278763bd48e5dd0446471073041,4,Reasoning Process Rigor,en,5,3,5,False,False
+cdbaf1e12d79a7aa4971888eff19f88d4e0d6bb0,4,Error Identification & Correction Precision,en,5,5,5,False,False
+f8bf4aa0d0c24fa970a3d47004236f3fb8ebe12e,4,"Clarity, Simplicity & Inspiration",en,5,4,4,False,False
+574212794931a862e5706314d6706ff53823a374,4,Instruction Following & Task Completion,en,5,5,5,False,False
+aaaba74692030cad02129005059966125e558485,5,Scenario Element Integration,en,5,3,3,False,False
+316ae41792e4f5abe66ac1f6772385ec2bd9e726,5,Basic Factual Accuracy,en,5,5,5,False,False
+4805aa9e98ef4869db8c55342f35dd5e06812a50,5,Reasoning Process Rigor,en,5,5,5,False,False
+d4ca700a5f3fd3f9c1585f284e585fc10ad528be,5,Error Identification & Correction Precision,en,5,3,5,False,False
+58c8b9749496f43925892db648de6c8d9eedaccf,4,"Clarity, Simplicity & Inspiration",en,5,4,5,False,False
+f8b5e811eb5f1dc75efacdfd58201bb7d7588594,5,Instruction Following & Task Completion,en,5,5,5,False,False
+d25453017634b135f26b681920e24c1a6f832f40,4,Scenario Element Integration,en,5,2,3,True,False
+7d4f7490663e186cdab032dab80e53ff4fae519a,5,Basic Factual Accuracy,en,5,5,5,False,False
+870c6c9f9f989fcb688ae37b93fe1861e9cb3474,5,Reasoning Process Rigor,en,5,1,5,True,False
+81e72dd5a6968dca6f28a58733fab59bc2a08fa4,5,Error Identification & Correction Precision,en,5,2,5,True,False
+eeada516c692a0b73f7b3a0e1188ceb325f85369,5,"Clarity, Simplicity & Inspiration",en,5,4,5,False,False
+04c31fa13883962d65bef8857b19dc86380943f3,4,"Motivation, Guidance & Positive Feedback",en,3,3,3,False,False
+bd4f785926cfe2f36f1081e1f0168c17702513e9,5,Instruction Following & Task Completion,en,5,5,5,False,False
+a65240963ea80ec66fcfb880b7fb1a038929b87a,5,Scenario Element Integration,en,5,3,5,False,False
+7276608895f9cc272ebf23b8b9827a30d1b97716,5,Basic Factual Accuracy,en,5,5,5,False,False
+b711587e67e59281b10a8a878703b4d78c181575,5,Reasoning Process Rigor,en,5,1,5,True,False
+32c9b97ca3f57f01c47b348a8c6e66fdec4bc8d7,5,Error Identification & Correction Precision,en,5,5,5,False,False
+6d6f7be3fb57fe5e5321a97ebeb38411d25dc945,5,"Clarity, Simplicity & Inspiration",en,5,4,5,False,False
+5eee75d842daa87f3fa742ec882669b25702604c,5,Instruction Following & Task Completion,en,5,5,5,False,False
+443ba278d4c2d3652bff93c57e0dece256cce4d7,5,Scenario Element Integration,en,5,2,4,True,False
+c318bf116bc7fe0dc4e859730abc36513275c018,5,Basic Factual Accuracy,en,5,5,5,False,False
+cb93fda98f57d4db90cb7673e1e4cfaf39155843,5,Reasoning Process Rigor,en,5,5,5,False,False
+5aa7db955bdabd250fb65dde93dfb3467c4c6690,5,Error Identification & Correction Precision,en,5,5,5,False,False
+6f69d16a1bd5a87839aa89987dcb783548a5125d,5,"Clarity, Simplicity & Inspiration",en,5,4,4,False,False
+143f844f0de67a82fe8b1355e71144c090c2a8b4,4,"Motivation, Guidance & Positive Feedback",en,3,2,3,True,False
+fc1c3e687f0cdfba2afed289c598fade72b34bc9,5,Basic Factual Accuracy,en,5,5,5,False,False
+45645dbe123db7df18458e20501dc8e106e728ae,5,Instruction Following & Task Completion,en,5,5,5,False,False
+29743b55549957b2840fe53b5f703ce487b5c1ce,5,Scenario Element Integration,en,5,2,3,True,False
+9d751f7afec36098b7bef133117cd1747a954e18,5,Basic Factual Accuracy,en,5,5,5,False,False
+9118e731205534c41de61b4be8ab65a577c9ed70,5,Reasoning Process Rigor,en,5,5,5,False,False
+205860f49fbbdb76a083c0bcc3058a75eaf20b9c,5,Error Identification & Correction Precision,en,5,5,5,False,False
+7e43d6f8c0a0433d422b221ea38ff4df179d7bac,5,Instruction Following & Task Completion,en,5,5,5,False,False
+968353503905a6f84dfbfcd17863dfbced0f733e,5,Scenario Element Integration,en,4,3,3,False,False
+fc894abf0ff18c55fa2bb69f60c0f0743d71ef46,5,Basic Factual Accuracy,en,5,5,5,False,False
+b1e9c331164e7615cd159410d7a8f70b289cfea7,5,Error Identification & Correction Precision,en,5,5,5,False,False
+2467aa95e191a3f0e29eb2bccb2e3d23072a6771,5,"Clarity, Simplicity & Inspiration",en,4,4,4,False,False
+286faceb0c2eb2319ab5c1879d88438d14b2fa4b,5,Instruction Following & Task Completion,en,5,5,5,False,False
+a6ede4e45ed73bb113661c042eaa2657d2c8a7e3,5,Scenario Element Integration,en,5,2,2,True,True
+f9735fad9435d56fe412848bc2d575b6c8d72aea,5,Basic Factual Accuracy,en,5,5,5,False,False
+5a2938a0bc25df75bad5608d62bdcead1a3cc2f9,5,Reasoning Process Rigor,en,5,1,5,True,False
+95cb2b46f49afd9d64abbd5e004f7f2725213dbb,5,Error Identification & Correction Precision,en,5,5,5,False,False
+9daae5db6dddbbda0ed534c93d6e903453c4ebe4,4,"Motivation, Guidance & Positive Feedback",en,3,2,2,True,True
+3c0774e9c360c45fb6d45e170933cc7e514adf24,5,Instruction Following & Task Completion,en,5,5,5,False,False
+f2e802fd89d37276932483f52f0f8fe764449c3f,5,Scenario Element Integration,en,5,3,3,False,False
+2540dfc92a2f17f1fb0daff991cfc02032759b0f,5,Basic Factual Accuracy,en,5,5,5,False,False
+8d26a0b9da96a3f842dff1661731d8f4a4d7ad7e,4,Reasoning Process Rigor,en,5,3,4,False,False
+19bbead301279b17d6bee4a7da1cf212f8468f88,4,Error Identification & Correction Precision,en,5,4,5,False,False
+141305b0f6ac6a7027a2552676f5b4fe02d4300d,4,"Clarity, Simplicity & Inspiration",en,4,3,4,False,False
+847a186e4ea3ad87903fcfadc9e1623342af17e5,5,Instruction Following & Task Completion,en,5,5,5,False,False
+b1357ace8601a2948a59ba53e4db152ae7bcbf86,5,Scenario Element Integration,en,5,2,5,True,False
+09691f5315938a4adbf7895ed89748b85f462522,5,Basic Factual Accuracy,en,5,5,5,False,False
+576ae6d1bf1610e84f05adc42f9b88765c5d1739,5,Reasoning Process Rigor,en,5,5,5,False,False
+cdcbff582615113bfdf618b714ffcf72affc8eb8,5,Error Identification & Correction Precision,en,5,5,5,False,False
+c066a767cda6a5b4af048ba3e374c8295bdd922d,4,"Motivation, Guidance & Positive Feedback",en,3,3,3,False,False
+2d529f5348843a8e17a8c8336a2a5118ff29caef,5,Instruction Following & Task Completion,en,5,5,5,False,False
+86b5a03d2d7f127785981d1f4d7b6d13683d2754,4,Scenario Element Integration,en,5,2,5,True,False
+a1a4ac45adbd5cdf37466dddd987f6a5411a8de4,5,Basic Factual Accuracy,en,5,5,5,False,False
+26e892fcf6c188eb5096a0a1e31cc483e8348100,4,Reasoning Process Rigor,en,5,5,5,False,False
+a73bbadcc3b328e34d0c1fb3299812ed84727aeb,5,Error Identification & Correction Precision,en,5,5,5,False,False
+0be55a7eed07d9967a869a1769c844eb9a7f792e,4,"Clarity, Simplicity & Inspiration",en,5,4,4,False,False
+127807fca101a85b646df37dbef6bca224ac38db,5,Instruction Following & Task Completion,en,5,5,5,False,False
+63c0fec670fa4c2f5082b109f671e8b973b3fbb2,5,Scenario Element Integration,en,5,3,5,False,False
+8e2f6f879e6f5f0447a992901728e1b52466b4c4,5,Basic Factual Accuracy,en,5,5,5,False,False
+93313797bf7227e255d9a50d36f5f34b1c25f32a,5,Reasoning Process Rigor,en,5,5,5,False,False
+2f7e5a6c20ddb6a918fb8b3232458b32981cb117,5,Error Identification & Correction Precision,en,5,5,5,False,False
+e5447e81f777b67d05b13ea23b83c804175dacbc,4,"Clarity, Simplicity & Inspiration",en,5,4,5,False,False
+f0f2a02416200f6c3ac10cb0e638d5d7f496e945,5,Instruction Following & Task Completion,en,5,5,5,False,False
+5faf89cb0198762be0a7f4c56e46b827ab74def6,5,Scenario Element Integration,en,5,2,5,True,False
+387925329b013cabf37b462cae965a905dbccbe7,5,Basic Factual Accuracy,en,5,5,5,False,False
+a6b62393f6b5df94e266e4f4403296d86277cf25,5,Reasoning Process Rigor,en,5,5,5,False,False
+71bbee2ad113371d91bbfb5f8fb5275b41a6e10c,5,Error Identification & Correction Precision,en,5,5,5,False,False
+d7f1cd28ff0ab9a380c4fd48de0d706f11357093,5,"Clarity, Simplicity & Inspiration",en,5,5,5,False,False
+db044ca72cfbbb9293543c83651276c024c6a44b,4,"Motivation, Guidance & Positive Feedback",en,3,3,3,False,False
+382c4b8e70b5493d0ecd2d39c09ae59074ef7f47,5,Instruction Following & Task Completion,en,5,5,5,False,False
+819f72ae050e2798fed4553636ef4b6931b92a7d,5,Scenario Element Integration,en,5,3,5,False,False
+1d4141391bd54331044874cf2ed15682d8c806ae,5,Basic Factual Accuracy,en,5,5,5,False,False
+50775e8e9c9d6dcf7392c015389e4acee2a6794a,5,Reasoning Process Rigor,en,5,5,5,False,False
+52cf57fea5b7df7596de8ca5cd924c883d72b510,5,Error Identification & Correction Precision,en,5,5,5,False,False
+6de2fe5f08f97b04365b855320fdfe3acd6c3e08,5,"Clarity, Simplicity & Inspiration",en,5,5,5,False,False
+ee4eff0a5467bcc1b967d7c8e04fe3cd69aeefef,5,Instruction Following & Task Completion,en,5,2,3,True,False
+494058dd6c1512887b0c7ab69cb0757835603dba,5,Content Relevance & Scope Control,en,5,2,5,True,False
+913594e0643f71ed7aed8ba1f7c29dd99fb6f349,5,Basic Factual Accuracy,en,5,1,1,True,True
+7794ee2b6d9b5567e3a7ad6b4457fa02a51206c3,4,Reasoning Process Rigor,en,5,1,1,True,True
+9259d6feeca223cb6d959b6feecb6c843e8154b6,4,Instruction Following & Task Completion,en,4,3,3,False,False
+2576429e3b85b3ba3f64ec6e0037a531353f8c74,5,Content Relevance & Scope Control,en,5,3,4,False,False
+cc9938bfcd1c6cc7a9c479b5889a6d9f8a1da64d,5,Basic Factual Accuracy,en,5,2,2,True,True
+b6eb6a3179f08f55f88820e5b6d2052d33ba7abc,4,Reasoning Process Rigor,en,4,1,1,True,True
+32f2d5c34c17b59b85939674f191671f8a76e38b,5,Error Identification & Correction Precision,en,4,2,2,True,True
+6ad1196ba99ab13678800b6c7ac4e80da7517fd4,4,"Motivation, Guidance & Positive Feedback",en,4,3,3,False,False
+73afea9ca9893266c2b147977e2bc6cb794b82bc,4,Instruction Following & Task Completion,en,5,3,5,False,False
+9856ff9249dcfbd099d60760f883e4af1afdeb0d,5,Content Relevance & Scope Control,en,5,5,5,False,False
+327136f09fa436125af9b9e6ad607199fc7a35e2,5,Basic Factual Accuracy,en,5,1,5,True,False
+7be63681d03810e3490ec9b998cb76268f37f886,4,Reasoning Process Rigor,en,5,1,5,True,False
+c7e30dcfa47407d9233ee60aaecddbba73babcf5,5,Error Identification & Correction Precision,en,5,2,5,True,False
+169c6de36f9ec41994ebc46f238086bca687a0d1,4,"Motivation, Guidance & Positive Feedback",en,4,4,4,False,False
+ce5c7cd72cc7131a0620c9e4446244252c8e5ceb,5,Instruction Following & Task Completion,en,5,3,5,False,False
+bbd8fe34d3db1925fa68024a660d12814f4b5e04,5,Content Relevance & Scope Control,en,5,2,5,True,False
+715decc773d6cf89e90f36d65bc539dd5eac342b,5,Basic Factual Accuracy,en,5,1,1,True,True
+9c58da6abb7c19e4f54e0534591d50cc04033d1e,5,Reasoning Process Rigor,en,5,1,1,True,True
+c598854a27a833bf74f367d7745152d70abade27,5,Error Identification & Correction Precision,en,5,2,2,True,True
+7320d3d61b91ae07796c40d46581206f9c2a5dc2,4,"Motivation, Guidance & Positive Feedback",en,4,4,4,False,False
+2c46d57ff857de28a762167ef4084c992f318918,4,Instruction Following & Task Completion,en,4,3,3,False,False
+a70058bff1b86615315d397fbc4afd3a29154902,5,Content Relevance & Scope Control,en,4,3,3,False,False
+35b302530cd777e53a3649e1929f901eedf8cf46,5,Basic Factual Accuracy,en,4,3,4,False,False
+6c10fe476b6f1d0dcb5504d4b80b07be38cad0f0,4,Reasoning Process Rigor,en,3,3,3,False,False
+cb010125edfc5a63ee89bb2218c09d356a4dca9a,5,Error Identification & Correction Precision,en,4,3,3,False,False
+9d304a8ec4d3ff5052a3b9d9fcc6172aac00795b,5,Instruction Following & Task Completion,en,5,4,4,False,False
+af85def4367b2861a8db75cec0434ee360305a85,5,Content Relevance & Scope Control,en,5,5,5,False,False
+63ef352520516968ae3a698b2ea0c5958c044aa2,5,Basic Factual Accuracy,en,5,1,1,True,True
+3cfa3e9fa8caddbc61e60cab7d869f660614b95b,5,Reasoning Process Rigor,en,5,1,1,True,True
+680c2d6218874f5470c9a3aa212a6958c64ab524,5,Error Identification & Correction Precision,en,4,1,1,True,True
+b0c497725a1c16ade47cdd78566707f9a9d8f56c,4,"Motivation, Guidance & Positive Feedback",en,4,4,4,False,False
+20b6c353348bf6455daf7c488443ac92d0d10f09,4,Instruction Following & Task Completion,en,4,3,3,False,False
+5919def205f8dded95495cc5ba2330357da27435,5,Content Relevance & Scope Control,en,4,3,3,False,False
+3a88e0767ab7a97541e0ade09a6ea4240f079485,5,Basic Factual Accuracy,en,4,3,3,False,False
+e8eaac2d34fe22bfaeea169dbdf5be45c09c1213,4,Reasoning Process Rigor,en,3,3,3,False,False
+8cb9efe829771844b2e4a666ca9af11f790b84b2,5,Error Identification & Correction Precision,en,4,3,3,False,False
+819436b778a953bcfa00f42eb9e6db5af48fb638,4,"Motivation, Guidance & Positive Feedback",en,4,3,3,False,False
+c01ebd087ffbd4b1ade74ee225a6c2faddd458b8,4,Instruction Following & Task Completion,en,4,2,4,True,False
+f9cef5ad1ade3908365e5424240b3154d1c1eca6,5,Content Relevance & Scope Control,en,4,3,4,False,False
+584cb8ac832472c981145135cdcc05113d9f8e7a,5,Basic Factual Accuracy,en,4,3,4,False,False
+74abc3ab3ef7bbf31ba32833edffa4309ca487bd,4,Reasoning Process Rigor,en,4,3,3,False,False
+aca58944d92ee8b156b037d9d72636f6118852c6,5,Error Identification & Correction Precision,en,4,3,3,False,False
+f139d0a733e08fab9604f98e1c086625d1f681f0,4,Instruction Following & Task Completion,en,4,3,4,False,False
+a7871d9421a4934af732bcbc24eaeb6f49d54045,4,Content Relevance & Scope Control,en,4,3,3,False,False
+58e284422378a438d4f700f735ba4020a0130f6f,5,Basic Factual Accuracy,en,4,3,3,False,False
+35ddcedc9d91d33995989073e9ea8a7a3dc79463,4,Reasoning Process Rigor,en,3,3,3,False,False
+0a12a95fbc5fd52ee81bec06be2ae22570f04ad6,5,Error Identification & Correction Precision,en,4,2,3,True,False
+4dd02cc677565b675307c1d1329f08feef7b06f6,4,Instruction Following & Task Completion,en,4,3,4,False,False
+c27661142ea1441824e1bf904baebfdbdb1c9ba6,4,Content Relevance & Scope Control,en,4,4,4,False,False
+d37bb087964545b6242eaad017fa9694a6b0395a,5,Basic Factual Accuracy,en,5,5,5,False,False
+75c703cb64c32588bbfec08a053b275976121fdd,4,Reasoning Process Rigor,en,3,3,3,False,False
+c16017c2c5c9fec5267f5e92076110262ad72098,5,Error Identification & Correction Precision,en,4,2,4,True,False
+a575b0012cf5329def9f19bf58328a443b54ffe8,4,"Motivation, Guidance & Positive Feedback",en,4,3,4,False,False
+7de125d40549e0cf9fd6659ea972a70a867f3c59,5,Instruction Following & Task Completion,en,5,5,5,False,False
+9dabd112ebaa537905da4fa4b12775e725b35318,5,Content Relevance & Scope Control,en,5,5,5,False,False
+c7ea506a79c93fc888c9e7b3a0e60d57f70354ce,5,Basic Factual Accuracy,en,5,5,5,False,False
+590c7f542d0b4c8788f36aa8afe67719d4d593a3,5,Reasoning Process Rigor,en,5,1,4,True,False
+bd790e840c9b27fc074fc241de621260a664b7b9,5,Instruction Following & Task Completion,en,5,5,5,False,False
+8e953a5700c39a0be3b2aad24fb0f2837619fb2e,5,Content Relevance & Scope Control,en,5,5,5,False,False
+bd52d56cf867da462615a8bdaed59cd47848f4d9,5,Basic Factual Accuracy,en,5,5,5,False,False
+b8bc85412230c34c0facedf78b34819e13db4e3c,5,Reasoning Process Rigor,en,5,1,5,True,False
+2c1eaffd0a25512d9825a4dfaff69fc507f807c3,5,Instruction Following & Task Completion,en,5,5,5,False,False
+2195c34216ff51d5f073d140b9251ece2a6fded1,5,Content Relevance & Scope Control,en,5,5,5,False,False
+519ee513d0ba75f07c32de489c262207ad0174a6,5,Basic Factual Accuracy,en,5,5,5,False,False
+0b852b93df7d7ad0db7ec99d276d3e4c2e6d53c9,5,Reasoning Process Rigor,en,5,5,5,False,False
+564c004d17ec353900c970a515508e4542627d2a,5,Content Relevance & Scope Control,en,5,5,5,False,False
+3321ae50d1d869368d0b2e943fd5a3ffb564c457,5,Basic Factual Accuracy,en,5,5,5,False,False
+d8e8e26f6c3d6ff605a84b04154f643fae910fa3,5,Reasoning Process Rigor,en,5,1,5,True,False
+40261c5d71731d4fe73ae74efdd572a29d9d03fb,5,Content Relevance & Scope Control,en,5,5,5,False,False
+bbe18ea4cc2d9724fc5646c2f63940ffbba54cc3,5,Basic Factual Accuracy,en,5,5,5,False,False
+16bea1c1cd9d748355b4747cb6ce241d7fcfbc2c,5,Reasoning Process Rigor,en,5,5,5,False,False
+84e9eae8bd763da23ac2be7f583337182ba740ad,5,Instruction Following & Task Completion,en,5,5,5,False,False
+1ca4631202d9b8c6ab5a90eb3e5165a88638131e,5,Content Relevance & Scope Control,en,5,5,5,False,False
+b0d71b8770992f24db4e73ecdaecf45b5d9a650a,5,Basic Factual Accuracy,en,5,5,5,False,False
+0525eeb3debdf218d99f9fb489738873d8788cea,5,Instruction Following & Task Completion,en,5,5,5,False,False
+276ef7d9aadd5735ceac2d05c26067a283767c12,5,Content Relevance & Scope Control,en,5,5,5,False,False
+4db2dec4d98ab6e294ef19dd64c116bca9f781e5,5,Basic Factual Accuracy,en,5,5,5,False,False
+b6f21ab2a58616e1c3b9b47d7afafb3f3bdb406c,5,Instruction Following & Task Completion,en,5,5,5,False,False
+e6875b7f437b1b12babd7dc0342ecd844d65689a,5,Content Relevance & Scope Control,en,5,5,5,False,False
+a69763703e28ba45687d29d852189c8fe82119d1,5,Basic Factual Accuracy,en,5,5,5,False,False
+9d77a355d4290ad7c08782c8db510be43e69a8c4,4,Instruction Following & Task Completion,en,5,4,5,False,False
+a19c21c89b520b79bb1773c75b4eec1435aa6798,5,Content Relevance & Scope Control,en,5,5,5,False,False
+40788c2f81bf1d81516f1b6d55832e236f5ffb72,5,Basic Factual Accuracy,en,5,5,5,False,False
+d1c99c738e8f49c5b33faf4d0ec8334b4c1b8fbd,5,Domain Knowledge Accuracy,en,4,4,4,False,False
+72165e1e7401d326a7ca07eea3934d2f4cde1fdf,4,Instruction Following & Task Completion,en,5,5,5,False,False
+c5441683c87cc0848c5202ab7c57c7b520786c09,5,Content Relevance & Scope Control,en,5,5,5,False,False
+0cefce5f9ceda21ff09a2b560ac5f021af4d813b,5,Basic Factual Accuracy,en,5,5,5,False,False
+499c3aa3f71a4972478a06aa506800a6215529da,4,Domain Knowledge Accuracy,en,5,2,5,True,False
+417b3acdb47d8f3efe175fc86ed792809a4b6476,4,"Clarity, Simplicity & Inspiration",en,4,4,4,False,False
+b1b63af278b0246ae361ca2554c0123af5858309,5,Instruction Following & Task Completion,en,5,5,5,False,False
+33534a2ef1fe3e60e78c5a7c76a617916fb74fa3,5,Content Relevance & Scope Control,en,5,5,5,False,False
+0b2c86c42fde681a69044495da150d96bb40a326,5,Basic Factual Accuracy,en,5,5,5,False,False
+f20cf328992247d61770ecf31045a9074d1b64de,5,Domain Knowledge Accuracy,en,5,4,5,False,False
+313921b3cf3e5953c2053884573a295cc80db6b1,5,"Clarity, Simplicity & Inspiration",en,4,4,4,False,False
+84fa1390f1d17d0eaf1525c33cc8d29cff99cc46,4,Higher-Order Thinking & Skill Development,en,3,2,3,True,False
+cbc9d7752e8e342057e3b50dfef334b08b296f67,5,Instruction Following & Task Completion,en,5,5,5,False,False
+2165556c5f8faa1cadefce0e1262014b51d3b062,5,Content Relevance & Scope Control,en,5,5,5,False,False
+c833b34b745815d17eecf16af3328993869f3bb3,5,Basic Factual Accuracy,en,5,5,5,False,False
+47976d64bff060311b90e73ab45ea42dbb944af0,5,Domain Knowledge Accuracy,en,5,4,5,False,False
+27485c398204d82432bad1e7dcad3678dd621587,5,"Clarity, Simplicity & Inspiration",en,4,4,4,False,False
+674a002b365c63754008c72fecf4173f9ba9ab32,5,Instruction Following & Task Completion,en,5,5,5,False,False
+c48fe7a3c4e461710c64f66e94bf3edbb047b166,5,Content Relevance & Scope Control,en,5,5,5,False,False
+81359a2d496902b60dffac51b8018e2f94126d3c,5,Basic Factual Accuracy,en,5,5,5,False,False
+8c19edb34a318f53760e435b21d41b942b1a502f,5,Domain Knowledge Accuracy,en,5,5,5,False,False
+64dea26f1411f4aaa8b819f0cd1a947559918444,5,"Clarity, Simplicity & Inspiration",en,5,4,5,False,False
+efa15b556a193955af16f3ca1503c8ffb6182c50,5,Higher-Order Thinking & Skill Development,en,3,3,3,False,False
+478fbde6f5ac49d8668249c4e9241f4e4bade71a,4,Instruction Following & Task Completion,en,5,4,5,False,False
+a12c16adabea20ad1306a813bcd1dbc01f0f05b9,5,Content Relevance & Scope Control,en,5,5,5,False,False
+eb06f844398ec1dad636397a65f539fd39b77922,5,Basic Factual Accuracy,en,5,1,5,True,False
+cc39fa978fcb8db5a57189641e7d32b52a4c1550,4,Domain Knowledge Accuracy,en,5,1,4,True,False
+10ddb194dc8a7b401723ce4674bd7fe1ff7507a5,4,"Clarity, Simplicity & Inspiration",en,4,2,4,True,False
+ed1ed6efe4d8fab922a89101cbf1704a41016606,4,Instruction Following & Task Completion,en,5,5,5,False,False
+d2f65882f02fa91dded25472d4d422bc99b12f95,5,Content Relevance & Scope Control,en,5,5,5,False,False
+8b1c80432df2cb06af189b4c0e0c3fa2832e5b22,5,Basic Factual Accuracy,en,5,5,5,False,False
+31881c483e1c1ec37c250e1660678aaeedf6b99c,4,Domain Knowledge Accuracy,en,4,1,4,True,False
+2f84429af336637e9ed08b5f77edf6a2c4bd4e95,4,"Clarity, Simplicity & Inspiration",en,4,4,4,False,False
+096af3eaf9413160d2c1faee1be36f3106ca7bbc,4,Instruction Following & Task Completion,en,5,4,5,False,False
+1ff8aacd98b9e55677569241fa43c4b09a0f034a,5,Content Relevance & Scope Control,en,5,5,5,False,False
+ada09e12084110087a4399890595ca2dac743f6a,5,Basic Factual Accuracy,en,5,5,5,False,False
+75549d80e6fb89c758dfe6f146095178a9861d52,4,Domain Knowledge Accuracy,en,4,1,4,True,False
+9da3acd35ee7f98e3174d64e473ec0e7368b7282,4,"Clarity, Simplicity & Inspiration",en,4,4,4,False,False
+eee1d20de2b95902f6ea1b93d2f0e6bfaed1524c,5,Instruction Following & Task Completion,en,5,5,5,False,False
+c75f6deee9870ad2fa8ef5f87be93104860226af,5,Content Relevance & Scope Control,en,5,5,5,False,False
+24e0f2807fe00c764b95f7378f12172bfc90549b,5,Basic Factual Accuracy,en,5,5,5,False,False
+7c803f5f38a1a1733cab990cba9d9b343422487a,5,Domain Knowledge Accuracy,en,4,4,4,False,False
+6f00d15bc370dbabcebe9588a3d17eb2057d08c5,4,"Clarity, Simplicity & Inspiration",en,4,4,4,False,False
+f2ce9bdbbf6be947ffa4940b026ab08df8a0ab47,4,Instruction Following & Task Completion,en,5,4,5,False,False
+50a23e9c860fdd45abf3315f64af742c6032bef8,5,Content Relevance & Scope Control,en,5,5,5,False,False
+01d0b075c22a91eb1bf30d05c97ab4256ed7d960,5,Basic Factual Accuracy,en,5,5,5,False,False
+4e65f525a8557fd761df8b180ed03b44a971d1c9,4,Domain Knowledge Accuracy,en,5,3,4,False,False
+da7da1fe037120418968b65b914f310ca597fc4b,4,"Clarity, Simplicity & Inspiration",en,4,4,4,False,False
+fd226f16a0ab9e7659d3c6e4769613ff79072c83,5,Instruction Following & Task Completion,en,5,5,5,False,False
+22c983381cfb1b2a9de38372fa6f8de8e74deca8,5,Content Relevance & Scope Control,en,5,5,5,False,False
+4fd76e3b524e47cc7a29cb43ec98c25ca2111ce5,5,Basic Factual Accuracy,en,5,5,5,False,False
+c4c8f15891fd7b4e8b49adbf1f31af461c380abe,5,Domain Knowledge Accuracy,en,5,5,5,False,False
+85f0ab545c00d664197658a14a814f33a8584d37,5,"Clarity, Simplicity & Inspiration",en,4,4,4,False,False
+18e95d926183f5c9bcee205bd317af448c9b4bbb,5,Instruction Following & Task Completion,en,5,5,5,False,False
+0361cc9784ec44f7e093970b9f81493a6df9adbc,5,Content Relevance & Scope Control,en,5,5,5,False,False
+59b131903b405f6903cc727c4109ce7d2d208a68,5,Basic Factual Accuracy,en,5,5,5,False,False
+6ce6189683670ce940f06a567041d84316a0c661,5,Domain Knowledge Accuracy,en,5,2,4,True,False
+a0a401e9defc721901dffdbb9d9bcf0acaefb9a2,4,"Clarity, Simplicity & Inspiration",en,4,4,4,False,False
+41755f9daf1b97b4889d6229b5d740bec63ca8fc,5,Instruction Following & Task Completion,en,5,5,5,False,False
+761686f62e89e406a7cbcaece20f5c7fcdb248e7,5,Content Relevance & Scope Control,en,5,5,5,False,False
+9b9ee2e1500f7071f755ec9db5b2e5ddfc811b03,5,Basic Factual Accuracy,en,5,5,5,False,False
+c6c9ef300f2d86bedabb31539e9681345c074a47,4,Domain Knowledge Accuracy,en,5,5,5,False,False
+cd15da1795d9a9c658f6c9a7fddd059483bfbd8c,4,"Clarity, Simplicity & Inspiration",en,4,4,4,False,False
+c1d534993ecef38cf455154e43ff0459ae92db1e,5,Instruction Following & Task Completion,en,5,5,5,False,False
+35e1d8543c7ce6e25676e1a90d134cf2212ab356,5,Content Relevance & Scope Control,en,5,5,5,False,False
+e3f2ee7444bfa8e8b102675788e59656fb51625e,5,Basic Factual Accuracy,en,5,5,5,False,False
+319b18e60a2d998aa62c179158604f83d1a468bd,4,Domain Knowledge Accuracy,en,5,5,5,False,False
+3191ea4612e1f06e74580be14689c4e60b3aa5ec,4,"Clarity, Simplicity & Inspiration",en,5,4,4,False,False
+6dd1d319d9e48e5e531488c90ee9c99b8afd57be,5,Instruction Following & Task Completion,en,5,5,5,False,False
+be1cf42816f45ee5291902d593f7f23cfeefb9ee,5,Content Relevance & Scope Control,en,5,5,5,False,False
+e102fe04ee7ab89d5257f99fb7aafc0eb440280c,5,Basic Factual Accuracy,en,5,5,5,False,False
+480466fdd7989f9b3076d5422b132884b7d2c714,5,Domain Knowledge Accuracy,en,5,2,5,True,False
+ddce6ec3d217964298b2e3ebc7c495ab12ec95bd,4,"Clarity, Simplicity & Inspiration",en,4,3,4,False,False
+3bd7ecd106f3ccefb9b426fa5747775e9c8eadcf,5,Instruction Following & Task Completion,en,5,5,5,False,False
+9fdd98d4deb798398f67d5832672bf1badbf84bc,5,Role & Tone Consistency,en,5,5,5,False,False
+9d84b53e7cebc8d2a121afd20786b11b8acb8952,5,Scenario Element Integration,en,4,2,4,True,False
+3c256877061063a3040c4a253cb8f6a76ca5ee24,5,"Motivation, Guidance & Positive Feedback",en,4,3,4,False,False
+79b8f59080f7ac520c7e680a7bcdd78025f551ea,5,"Personalization, Adaptation & Learning Support",en,4,3,4,False,False
+4f681917b842b874abbca3b774e3ea046482448a,5,Instruction Following & Task Completion,en,5,5,5,False,False
+f020276d16479f8b2f9ab19515d59950843a1fb8,5,Role & Tone Consistency,en,5,5,5,False,False
+e5d83dd1f4f339f7db58fb2a743814744f6144cb,5,Scenario Element Integration,en,4,4,4,False,False
+942977edb2d26a4d17407d33ccb5194ae2f8771e,5,"Motivation, Guidance & Positive Feedback",en,4,4,4,False,False
+7f5ab56a715e85d77d9949a888ee38075566ab9f,5,"Personalization, Adaptation & Learning Support",en,5,4,4,False,False
+22144913c3e6a579bef0f73dcf423cf1da40b96b,5,Instruction Following & Task Completion,en,5,5,5,False,False
+93d126c0a2f73ad392102a1486155d1c187f1f4d,5,Role & Tone Consistency,en,5,4,5,False,False
+aa89954ec47df560b0afa4dddc4806b6db9e17fe,5,Scenario Element Integration,en,4,3,3,False,False
+64f6a0824a7a8adbbcf76e68cfe83a2788f443af,5,"Motivation, Guidance & Positive Feedback",en,4,3,4,False,False
+ad14023eebac62d6ea845efe3a15e166e42f1539,5,"Personalization, Adaptation & Learning Support",en,4,3,3,False,False
+e3727237f85e88bde39f1ec2148031781af1fc84,5,Instruction Following & Task Completion,en,5,5,5,False,False
+4bea7d31269509f9619fcb288d810a8287a0b4a6,5,Role & Tone Consistency,en,5,5,5,False,False
+1b76ad30062f7fbff6f46a2e5b8183da200a2122,5,Scenario Element Integration,en,4,2,4,True,False
+d71a3322ca162b4a144273345dbc965030871e71,5,"Motivation, Guidance & Positive Feedback",en,4,4,4,False,False
+46c0558ecff993e3a0f17db240e55fd52e98d3a2,5,"Personalization, Adaptation & Learning Support",en,5,4,4,False,False
+131489c6bd31f72e830c1c5f2e157ce00e795d5c,5,Instruction Following & Task Completion,en,5,5,5,False,False
+f8ca84f92b4c307d8affb9ef2434213fdfd4ef49,5,Role & Tone Consistency,en,5,5,5,False,False
+7c7ddf6dcdaccc915d37c8279752c0e907888165,5,Scenario Element Integration,en,5,2,5,True,False
+8032537608758659ad9aa7b6dfcabcb6d1c62410,5,"Motivation, Guidance & Positive Feedback",en,5,5,5,False,False
+c02cabed27bb4d6d7eb5cffbddf923e6f051dd62,5,"Personalization, Adaptation & Learning Support",en,5,5,5,False,False
+30e9e7087eeab6d14b9a098b4479e1d4e9ba9368,5,Instruction Following & Task Completion,en,5,5,5,False,False
+b151da59f8b4640d4bc916575804fa02c1651ec3,5,Role & Tone Consistency,en,5,5,5,False,False
+0bf50da591b0093b48a6b1069868c7a60c1dce30,5,Scenario Element Integration,en,4,2,2,True,True
+9d52a5b600a0ca0d9a1d08a2fab3a1cda327f185,5,"Motivation, Guidance & Positive Feedback",en,5,2,4,True,False
+4f909ce8ee9ae2e8d91986090220a057e4a27cd2,5,"Personalization, Adaptation & Learning Support",en,5,3,4,False,False
+16347fef06c53ca8eaedd19d42981268fd906ca9,5,Instruction Following & Task Completion,en,5,5,5,False,False
+5e1a2e4e77932cfa357c8261843841676f2cac2f,5,Role & Tone Consistency,en,5,5,5,False,False
+e5aae9db6bf48c9645854e1c3da9c635458612f8,5,Scenario Element Integration,en,5,2,5,True,False
+e7fd449c1c265c87f0a5fe6376da7dfca94439ab,5,"Motivation, Guidance & Positive Feedback",en,5,5,5,False,False
+0e02bd863554bbd67bdb44ef1f4ca3d8f75efbf9,5,"Personalization, Adaptation & Learning Support",en,5,5,5,False,False
+4fa47ca9ea0f0a9b652e66e6e7e0837668a8fe6c,5,Instruction Following & Task Completion,en,5,5,5,False,False
+d15a143939b7a1b0e5e8e1162c365f6b97e84f45,5,Role & Tone Consistency,en,5,5,5,False,False
+fe17c32e7e6013c6a221d1ed8914a33d779944b2,5,Scenario Element Integration,en,5,5,5,False,False
+2bc7d38a21b7dba688eb1d90a3ea72edab4016f8,5,"Motivation, Guidance & Positive Feedback",en,5,5,5,False,False
+2f2b8f8fa02a506938840601a6a634dc21be7a7b,5,"Personalization, Adaptation & Learning Support",en,5,5,5,False,False
+fc5a6938cce07d13f4003135d521c16204761dd7,5,Instruction Following & Task Completion,en,5,5,5,False,False
+947a14cb1d885674e4f52c0ea6af16f910dc37b7,5,Role & Tone Consistency,en,5,5,5,False,False
+b4cf7ac5834f887b70d2850c4c1651892cbad21e,5,Scenario Element Integration,en,5,5,5,False,False
+d15322bc66794cdac4ac14cdf4146e9e443d4588,5,"Motivation, Guidance & Positive Feedback",en,5,5,5,False,False
+c81289516911a0d45cd99c69be0da22e6a3dc57b,5,"Personalization, Adaptation & Learning Support",en,5,5,5,False,False
+1dad1f103d575cf011469211eb4e75ca18c1f58c,5,Instruction Following & Task Completion,en,5,5,5,False,False
+4114009a0c88d7adb6d2ccb60fc8d2ee6eaf0924,5,Role & Tone Consistency,en,5,5,5,False,False
+a40d6aacebdac536fe3151b972e3506138b6f878,5,Scenario Element Integration,en,5,5,5,False,False
+d9700bf442e4e8960618d1b35d8d1c69f81ff657,5,"Motivation, Guidance & Positive Feedback",en,5,5,5,False,False
+4513e89a6f70a4cb2d88196ca4e80b945d45195c,5,"Personalization, Adaptation & Learning Support",en,5,5,5,False,False
+3ac1f6af04ad2e5b95eb588b1605386b435480cd,5,Instruction Following & Task Completion,en,4,4,4,False,False
+9a951864cc5a626629265d69d2505f0bd578343e,4,Role & Tone Consistency,en,4,4,4,False,False
+12a721555646f2bc1bdde7137c421699e886cec8,5,Content Relevance & Scope Control,en,5,5,5,False,False
+b522c529af1d84c4bcf0efea835ee353d79c9e39,5,Basic Factual Accuracy,en,5,5,5,False,False
+2058d90d7868632a64ce73c7ce394556d4bfd060,4,Domain Knowledge Accuracy,en,4,4,4,False,False
+0cb99948c8ab495d1a97aaaa416412554b561a09,4,"Clarity, Simplicity & Inspiration",en,4,4,4,False,False
+cd265f4dd18a40db12b54bca26b1dbc0ac8fee73,4,Higher-Order Thinking & Skill Development,en,4,3,3,False,False
+741a40076201baac6306e14cb6843a4b524ef853,4,Instruction Following & Task Completion,en,4,4,4,False,False
+1b8a3ddece0727927a9d1d06c3ca7ebc8ab2b4d7,4,Role & Tone Consistency,en,4,4,4,False,False
+ff5696da7330a8055688d8d5c990534f9add747a,4,Content Relevance & Scope Control,en,5,5,5,False,False
+053de98886f60ab5ec51e900d2ec93bc42fee4d5,5,Basic Factual Accuracy,en,5,5,5,False,False
+d465daf49753c2cd02013f6bc47b041b008cfdeb,4,Domain Knowledge Accuracy,en,4,4,4,False,False
+0d1b1588f0fcf0b1b3bd1c8f17d0412a21dd7475,4,"Clarity, Simplicity & Inspiration",en,4,4,4,False,False
+e740057e9bad15bb4c62fb771bda9b222bbaf4b4,4,Higher-Order Thinking & Skill Development,en,4,3,3,False,False
+b18d8098711a1b94593a4e829e2aa28d8d25962f,5,Instruction Following & Task Completion,en,5,5,5,False,False
+795619151ddc977bb5ef9ba48002aba8b46d4253,5,Role & Tone Consistency,en,4,4,4,False,False
+166b5b87b1cd2f4b0e1d0c0a2dd1d0be808952e9,5,Content Relevance & Scope Control,en,5,5,5,False,False
+acbd7c0a911a0d5e8b5300f5bc9f0db0f53fbf31,5,Basic Factual Accuracy,en,5,5,5,False,False
+2213d699b1f910533c7acc3fa94e0a39be51694e,5,Domain Knowledge Accuracy,en,5,4,5,False,False
+997e366a12b89645468cb1f173f21f9f47a02405,4,"Clarity, Simplicity & Inspiration",en,4,4,4,False,False
+000d57850edca504fd2b6997de4252496a616b32,4,Higher-Order Thinking & Skill Development,en,4,3,4,False,False
+973a13d377aaeb479267c5ed5f7873d7ad64c4e6,5,Instruction Following & Task Completion,en,5,4,4,False,False
+32fa3d2704ef491ae8ed42da82419fea6b040869,5,Role & Tone Consistency,en,4,4,4,False,False
+2e7a78ad2158de40302b74642fe0e381e3ae6e3a,5,Content Relevance & Scope Control,en,5,5,5,False,False
+8bed9df40b0527c32f815e91c2df8cb414309911,5,Basic Factual Accuracy,en,5,5,5,False,False
+7d2855df3ceacb6af7a545357b1898b053507c5c,4,Domain Knowledge Accuracy,en,4,4,4,False,False
+137f438c14436b33e346bd76126788df4d88edea,5,"Clarity, Simplicity & Inspiration",en,4,4,4,False,False
+ea01c73c0eb8a0a858c05a7b786d844226a3e2cf,4,Higher-Order Thinking & Skill Development,en,5,3,4,False,False
+7bb9431190ed9f8c2b3ea8c170eb424447045e0c,5,Instruction Following & Task Completion,en,5,5,5,False,False
+d043eaa7ea8dcc2bae59685bdac5f72910f901cd,4,Role & Tone Consistency,en,4,4,4,False,False
+5063b4be5e44875d8ab0987178625ea6bf670f3d,5,Content Relevance & Scope Control,en,5,5,5,False,False
+6993dbf42df8c34a84df55e8c9887c5ab665044d,5,Basic Factual Accuracy,en,5,5,5,False,False
+c611516aad2bcbfd8dd44f1e7420df5439889cfa,4,Domain Knowledge Accuracy,en,5,5,5,False,False
+b17e83e996ea231506f59c0b2b680d8e6c628543,4,"Clarity, Simplicity & Inspiration",en,4,4,4,False,False
+9f0ec953865cb042a43bb1dabb1112a94d5830fe,4,Higher-Order Thinking & Skill Development,en,5,4,5,False,False
+e98e09ca47d9a64bcbad1a57efad4f219ad7f65c,4,Instruction Following & Task Completion,en,5,4,5,False,False
+2941ddc83908859b94adc63b1db6be55cb157e01,4,Role & Tone Consistency,en,4,4,4,False,False
+ed0a8817384f1413236190ad9561eeb846f9aa6e,5,Content Relevance & Scope Control,en,5,5,5,False,False
+753287728aff9790683dbd25f511d837e41e54b6,5,Basic Factual Accuracy,en,5,5,5,False,False
+1aeef6741398006350b8b3301e05b3e3a4ff2b57,4,Domain Knowledge Accuracy,en,5,4,5,False,False
+d16866e0d659f3722371dff32ec7bec1f8524a14,4,"Clarity, Simplicity & Inspiration",en,4,4,4,False,False
+4f25d8089cb8572d19f8b8a60f93614d3d61fff9,4,Higher-Order Thinking & Skill Development,en,4,3,4,False,False
+bb72e4c2ff44b3e67aee2671de4c5ea7368a462d,4,Instruction Following & Task Completion,en,5,5,5,False,False
+edd6baee5dca5586cbb88303b6113ee911e83b90,4,Role & Tone Consistency,en,4,4,4,False,False
+1d8607c54940f25d9ae824bf01fe3de63e7ed97f,4,Content Relevance & Scope Control,en,5,5,5,False,False
+ed656571aed632d0099a778c90006ff71882b47a,4,Basic Factual Accuracy,en,5,5,5,False,False
+7a865479d4ee6f8a6dcf3d3255c58c102ab16d52,4,Domain Knowledge Accuracy,en,5,5,5,False,False
+1e0da22ec6803d653e1ca42a83e237d81135121d,4,Instruction Following & Task Completion,en,5,5,5,False,False
+1bfed681c8635373df721e395168f6b0e8c295a5,4,Role & Tone Consistency,en,4,4,4,False,False
+c7988e5253cdef80d88cb119db952ff779d5fc1c,4,Basic Factual Accuracy,en,5,5,5,False,False
+e1b5432671683f5d3c54302ed6566a460989ac38,4,Domain Knowledge Accuracy,en,5,4,4,False,False
+a5abca4b0f03dc7759312e7c40a0ed0f935678ff,4,"Clarity, Simplicity & Inspiration",en,4,4,4,False,False
+c436dd7dd0e0941d3afc236c3ac3ed9b3fb69bc3,5,Instruction Following & Task Completion,en,5,5,5,False,False
+13664f7c3034b3fe0a9e64cc4346abecb67b9c4a,5,Role & Tone Consistency,en,5,4,4,False,False
+26fa56740a95fd7ac1451a75e2a993327e52558d,5,Content Relevance & Scope Control,en,5,5,5,False,False
+edfeb288870fd1d77de4ab6dae2bbb8daa84107d,5,Basic Factual Accuracy,en,5,5,5,False,False
+c2c0f3be0da225fc229d15b73a07b33a14daa1b9,5,Domain Knowledge Accuracy,en,5,5,5,False,False
+6c7345188b0f96efedc96ed487df43a5d668abf9,5,"Clarity, Simplicity & Inspiration",en,5,4,5,False,False
+e1d1a2517bbc4d3cf0fbd9fcf0fdac14d59ec5f0,5,Higher-Order Thinking & Skill Development,en,5,5,5,False,False
+a92ed07caceb882b7947af059bd01e3f5e227d4a,5,Instruction Following & Task Completion,en,5,5,5,False,False
+4386f5c35943562735ad2ecdc8029fb119ed9cc3,5,Role & Tone Consistency,en,5,4,5,False,False
+23c63c519d88e43bb8aba33db25df450907c5851,5,Content Relevance & Scope Control,en,5,5,5,False,False
+9670ad1b4a2c241322b081b0f5544d66086c95c9,5,Basic Factual Accuracy,en,5,5,5,False,False
+7317c341a08f382bbba658ce3febd83329efc025,5,Domain Knowledge Accuracy,en,5,5,5,False,False
+e74301cb3efff6322e159cf6c3490cb0586f8932,5,Instruction Following & Task Completion,en,5,5,5,False,False
+cbbeefc8289bc29cba362b195b79a70732aaf241,4,Role & Tone Consistency,en,4,4,4,False,False
+e58e27126da9e7693d5c15435cd68c9b7549b4c9,5,Basic Factual Accuracy,en,5,5,5,False,False
+e5c0617de97105cf7c5509f7604026cb62c7bd23,5,Higher-Order Thinking & Skill Development,en,4,2,4,True,False
+201a94e1e2ed32d07460c8f8459dea32dd92cd3f,5,Instruction Following & Task Completion,en,5,5,5,False,False
+6c54adfcb6a1be65ae1e00ff3d1ad3cb5027b9b4,5,Role & Tone Consistency,en,4,4,4,False,False
+a88b753f6b8137c340011e7af4c5fe079e25e728,5,Content Relevance & Scope Control,en,5,5,5,False,False
+ff962d48ea2230c915f78fcd33f2b496293aaa0a,5,Basic Factual Accuracy,en,5,5,5,False,False
+f4ead2c836901c114ed6f02251236ef11bd43161,5,Domain Knowledge Accuracy,en,5,5,5,False,False
+80d87849be4cb096778f8c5ee5fbf338b2411176,5,"Clarity, Simplicity & Inspiration",en,4,4,4,False,False
+073dfe0638223eeadd32be6289ad5f1f752d8898,5,Higher-Order Thinking & Skill Development,en,4,4,4,False,False
+aa3c391809bea453d78a12298bc7b261bbe2b0ea,5,Instruction Following & Task Completion,en,5,5,5,False,False
+d7c6b61b301ed8b64852d3f8e47fd5b2aac70a10,5,Role & Tone Consistency,en,5,5,5,False,False
+d6c190a89e1b50ee1a4383487115cc6c3fe3e6f0,5,Content Relevance & Scope Control,en,5,5,5,False,False
+9073c66997294fd1d861506545cc33819d02258e,5,Basic Factual Accuracy,en,5,5,5,False,False
+df7cc2db06c7a09bb6e4624180240c6f0115473d,5,Domain Knowledge Accuracy,en,5,5,5,False,False
+e67cc7cfdcb4c272527aa3a636db1ed329a6652b,5,"Clarity, Simplicity & Inspiration",en,5,5,5,False,False
+b610b6e7840386a2923cfdcb8c692716ee4d2419,5,Instruction Following & Task Completion,en,5,5,5,False,False
+7859cb9c01364f31af32c29ad42ae7f65f1358de,5,Role & Tone Consistency,en,4,4,4,False,False
+451fd748755046d1d2c70739f52d2f1d7a39dead,5,Content Relevance & Scope Control,en,5,5,5,False,False
+f7530243a262fc87fa282d975c9f6fa973c778da,5,Basic Factual Accuracy,en,5,5,5,False,False
+9ea3651c8679638d3f92d616b86ef663ad370e09,5,Domain Knowledge Accuracy,en,4,4,4,False,False
+961aa95ef2e1cca41ee380a3ea315542d97fef9e,5,"Clarity, Simplicity & Inspiration",en,4,4,4,False,False
+41445f678913ba59782d7c28d29a286ec10b1f94,4,Higher-Order Thinking & Skill Development,en,4,2,4,True,False
+e01e4988a30507f46dccf773bbe59ad155d9a896,5,Instruction Following & Task Completion,en,5,5,5,False,False
+d13aafbd55aca44c0af2bc33e4c5c54ebbc3b7a7,5,Role & Tone Consistency,en,4,4,4,False,False
+f2506915f4e994de73f69428481fe33268585814,5,Basic Factual Accuracy,en,5,5,5,False,False
+b14f62303f68f549ea0df4cafb95b4d4ce98d7a6,4,Domain Knowledge Accuracy,en,5,4,5,False,False
+a7dd52d042f08a5dc8b2c78fc2247a4184132593,4,"Clarity, Simplicity & Inspiration",en,4,4,4,False,False
+1d0b529d6f94b045a14e6240101710739b3977d7,4,Higher-Order Thinking & Skill Development,en,3,3,3,False,False
+2fe2a12537b91a00f7da295e6eac05e4c3325822,4,Instruction Following & Task Completion,zh,4,4,4,False,False
+7b1bab23a7688b82f6d17a35c2048197109ce885,5,Content Relevance & Scope Control,zh,5,4,5,False,False
+928b579aa20917905acd68ff0b7bf8bc945843d4,4,Scenario Element Integration,zh,4,3,4,False,False
+8859bda98ffdac3abedfcd7093a4b4117555c53e,4,Instruction Following & Task Completion,zh,4,4,4,False,False
+d168415fa3e1c11ee6d064eb370cc205efdabfa4,4,Content Relevance & Scope Control,zh,5,4,5,False,False
+b5ada97b91c1359187785f829d28e6dad51fc255,4,Scenario Element Integration,zh,4,4,4,False,False
+d4ef5ff38e043d701705391a3e25a1186109d5eb,4,Higher-Order Thinking & Skill Development,zh,4,4,4,False,False
+5dc1207e9d7054be9b16780c5e27f7912d2f6f4b,5,Instruction Following & Task Completion,zh,5,5,5,False,False
+c1dd8fb97857f432c69ec3ae0cad55eee3389813,5,Content Relevance & Scope Control,zh,5,5,5,False,False
+1c021dab0b46fd2823e258030ac395f1eecc7f52,5,Scenario Element Integration,zh,5,5,5,False,False
+aa913cd84a11f253fb0156e2ec5eefc27d6f16bf,5,"Personalization, Adaptation & Learning Support",zh,5,5,5,False,False
+161556ab705771c656fc0055400df7ca28d80565,5,Higher-Order Thinking & Skill Development,zh,5,5,5,False,False
+b2adf2304f8e74441fe73dd665fdb462a17ac02d,4,Instruction Following & Task Completion,zh,4,4,4,False,False
+2f3c2d48094a28d39d42a49beb854e2893a8e4e3,4,Instruction Following & Task Completion,zh,4,3,3,False,False
+7e7c5d49aa193798e707c4f13c5e8082244bcbc7,4,Content Relevance & Scope Control,zh,4,4,4,False,False
+51e85f9ea1c6da188e097c592acd902e7c2bbd07,4,Instruction Following & Task Completion,zh,4,4,4,False,False
+2a61eea34ad14234ab5dd98f4be0e7c917db0a96,5,Content Relevance & Scope Control,zh,5,5,5,False,False
+6837629a2b6848e97e15b5cb1123a245d33dee53,4,Scenario Element Integration,zh,4,4,4,False,False
+97a789fbb98745342b6b8fa43f5f02f5af74760c,4,Domain Knowledge Accuracy,zh,4,4,4,False,False
+6448cc4ede1bc9054405e143f1ee6cae8f3fc45c,4,Reasoning Process Rigor,zh,4,4,4,False,False
+440bd3f1cfd7e65ef89be6c7c9ea83fd5decd7e6,4,"Clarity, Simplicity & Inspiration",zh,4,4,4,False,False
+6958813f59767988ad832a1ecac9ecc2c209efaf,4,Instruction Following & Task Completion,zh,4,3,3,False,False
+19b35527faabd8716c3ffd67fe770ebaaff40677,4,Content Relevance & Scope Control,zh,4,3,4,False,False
+2d59d1c11af2bf37756b7407b9e1bef125817840,4,Scenario Element Integration,zh,4,3,3,False,False
+8f57be48d0c3dfcdd0415568ec6006c150b83a58,5,Basic Factual Accuracy,zh,4,3,4,False,False
+cd93a07996da3a604c060ffd6cee055405614a13,4,"Clarity, Simplicity & Inspiration",zh,4,3,3,False,False
+4e0edf8d1e9c7b232b29ade3de072cca00c7bb23,5,Instruction Following & Task Completion,zh,4,4,4,False,False
+842531afe79978d770e77379d0aaebd16d0e8dda,4,Content Relevance & Scope Control,zh,5,5,5,False,False
+794e2a6499eb21e20ef2ca6e74de14f35effe64d,4,Scenario Element Integration,zh,4,3,3,False,False
+2cf3945f4c725b7d3e3ff3db9c99acdfce7603cd,5,Basic Factual Accuracy,zh,5,5,5,False,False
+3d05d8d95ea3cb3c0e7d5be5283f9a64bfe147c3,4,Domain Knowledge Accuracy,zh,4,4,4,False,False
+19afccebddb0e7b667e153563142d3558cfe7a93,4,Reasoning Process Rigor,zh,4,3,4,False,False
+f33f7bcb37946bf6dfdbc3ec8dd49305b0916a22,4,"Clarity, Simplicity & Inspiration",zh,4,4,4,False,False
+8d6ee94dbee574cad4af4c07158c0a5487acd85a,4,Higher-Order Thinking & Skill Development,zh,4,3,4,False,False
+319db632eb1ea33f1076c4bcb858d109f028e146,4,Instruction Following & Task Completion,zh,4,4,4,False,False
+af309831fd24a899e902b658468d91ba1b8b3351,5,Content Relevance & Scope Control,zh,5,5,5,False,False
+3d93ce90fbaa10a8b4e4d036fc464e7372e51add,4,Scenario Element Integration,zh,4,3,4,False,False
+22952bb4baf5430935586a06b2d267b4c1cef934,5,Basic Factual Accuracy,zh,5,5,5,False,False
+8dc6ee824bff4859017c9284307b1a563c521e93,4,Reasoning Process Rigor,zh,4,3,4,False,False
+1f17186aaca72516a7fe062b58a806ed6ea8ccc2,5,"Clarity, Simplicity & Inspiration",zh,5,4,4,False,False
+e5aaba4ede8ac446a52ea6ee18bbf021eadbffa9,5,Instruction Following & Task Completion,zh,4,4,4,False,False
+553ee2bbab1db8e8193cb67b426fb90f74fe3e0a,5,Content Relevance & Scope Control,zh,5,5,5,False,False
+20c856a8762239184460b39c1e7746869b72a288,4,Scenario Element Integration,zh,4,3,3,False,False
+d0f691487d2cb9dd30f585ae20dee15a15a7e90c,5,Basic Factual Accuracy,zh,5,5,5,False,False
+d282e920cd565d941c0f18deec534743a7340a3b,4,Domain Knowledge Accuracy,zh,4,4,4,False,False
+1cad4f148e7afb83699e886c0f90da77b2aa7e9a,4,Reasoning Process Rigor,zh,4,3,4,False,False
+2f93be24f5149265700da43173176dfd7f7aa59b,4,"Clarity, Simplicity & Inspiration",zh,5,4,5,False,False
+586822cbf9d7088d3a9025040795dd1e934a777f,4,Higher-Order Thinking & Skill Development,zh,4,3,3,False,False
+cbc79e62a6f60cf7c09a1f2f7641e64ce123d229,5,Instruction Following & Task Completion,zh,5,5,5,False,False
+0ce9064626a547d3d423ef91c43b8e51755ada22,5,Content Relevance & Scope Control,zh,5,5,5,False,False
+b57e75b6db3c315a586f2af83cf162630f0e185f,4,Scenario Element Integration,zh,4,4,4,False,False
+73ac20a43d386a9efa1336e21d2f0ee64d285aa5,5,Basic Factual Accuracy,zh,5,5,5,False,False
+43293ba87a7615ddb0b8dda41922d2308215cd5a,5,Domain Knowledge Accuracy,zh,5,4,4,False,False
+e024597dd73119309161b15f0dfbcf30ef380f00,5,Reasoning Process Rigor,zh,5,4,5,False,False
+9462e44f2bbaf870ebf16235c8801c26ec8cebc0,4,"Clarity, Simplicity & Inspiration",zh,5,4,5,False,False
+9fd44474e41741f1ce6bb005f66cda230c951fae,4,Instruction Following & Task Completion,zh,4,3,4,False,False
+be6511ca11b9d0fe39582e296de6436e91334df2,5,Content Relevance & Scope Control,zh,5,5,5,False,False
+c649f2159cac9f51e8e322ab44bd185102b19290,4,Scenario Element Integration,zh,4,3,4,False,False
+edc0020b09c8a294f057ce2b0e9d7ab202ff91d3,5,Basic Factual Accuracy,zh,5,5,5,False,False
+dcff649a74ec524b7ffef17b5aaec5ff6a23ffac,5,Domain Knowledge Accuracy,zh,4,3,4,False,False
+8ec856cbe2b919bcee384014a9ce48d8b71e52fd,4,Reasoning Process Rigor,zh,4,3,4,False,False
+ce578e469c377039a30f011449ce947782819a99,4,"Clarity, Simplicity & Inspiration",zh,4,3,4,False,False
+91f4788814e9fcc91b7af3a44ad65d2d958c07ec,5,Instruction Following & Task Completion,zh,5,5,5,False,False
+210b7987b2d557e14ae0ccd8b6b5400221a12b83,5,Content Relevance & Scope Control,zh,5,5,5,False,False
+4636dcd0011a3366d7bd82f89368e54f8dfcfc93,5,Scenario Element Integration,zh,5,5,5,False,False
+f3dec97b5a224422a3e4ed5938cf6f97ee32348e,5,Basic Factual Accuracy,zh,5,5,5,False,False
+7ae4ef627e113161486f17893bff4b2d6eaf3c93,5,Domain Knowledge Accuracy,zh,5,5,5,False,False
+5ac1e2b53db439f42aa437cabbe8f7304681d3a0,4,Reasoning Process Rigor,zh,5,5,5,False,False
+1a7cb84288f2aefb7dbd2d2cfe3754d6492dfbb2,4,"Clarity, Simplicity & Inspiration",zh,5,5,5,False,False
+85ad79e3f01e01cef8880a02efcbc11488b493f5,5,Higher-Order Thinking & Skill Development,zh,5,5,5,False,False
+92899202d2071bacecc71830854edb2a143b3a7e,5,Instruction Following & Task Completion,zh,4,4,4,False,False
+4c51c3a532e7f5c624845b801d9d2881b812fa1d,5,Content Relevance & Scope Control,zh,5,5,5,False,False
+03d911f33db9c7b54892f2b1a8ca1197e41354c1,4,Scenario Element Integration,zh,4,4,4,False,False
+5dfc98599baf8173838e58a86dc899ae0eccab82,5,Basic Factual Accuracy,zh,5,5,5,False,False
+b8e935e27c3341d3e979ca566e0c50e6d5c7eb3f,5,Domain Knowledge Accuracy,zh,4,4,4,False,False
+8408c7ab491bebac71d9baa76f71abfe93883ac3,5,Reasoning Process Rigor,zh,4,4,4,False,False
+0d46d17e0317c366484af3095b20c524aaee3ca2,4,"Clarity, Simplicity & Inspiration",zh,5,4,5,False,False
+7f2b3bf8487f3eb9d26327e91fd661a3d0d09c29,5,Instruction Following & Task Completion,zh,5,4,5,False,False
+cda8c0190171ce902638311d566d4927985c3094,5,Content Relevance & Scope Control,zh,5,5,5,False,False
+2c8ce054940dca1461e00e046e5c17b2be51f5e4,4,Scenario Element Integration,zh,4,4,4,False,False
+b7f44e092f46f982b08b06dd03ad2c64a10661d7,5,Basic Factual Accuracy,zh,5,5,5,False,False
+ee42ecd1154fe2538aa720b1ebccae890e1c1295,5,Domain Knowledge Accuracy,zh,5,4,4,False,False
+163e13fed61f40abae66fe52c3b2b6b0ddcff584,5,Reasoning Process Rigor,zh,5,4,5,False,False
+ac19325a489d56bcf3548230f3b4289881d11fdd,4,"Clarity, Simplicity & Inspiration",zh,5,5,5,False,False
+c3e2d70f8bb8cf4106948f7473e5625fa70a04a7,4,Instruction Following & Task Completion,zh,4,3,4,False,False
+0acfae215fbf65b18d9efae29cc65c39314c9fa7,5,Content Relevance & Scope Control,zh,5,5,5,False,False
+aefd8a4f811d682cb81d834bbb70767de67fe015,4,Scenario Element Integration,zh,4,3,3,False,False
+8b0960f12507e1b3e48b5a31c9801096300a7355,5,Basic Factual Accuracy,zh,5,5,5,False,False
+e69a26814d3590fa41a1c1d4c5891f2ce4b097c4,4,Domain Knowledge Accuracy,zh,4,4,4,False,False
+2bbef2cdab940b126a0a18896f38321789074b3b,4,Reasoning Process Rigor,zh,4,3,4,False,False
+5a8d33f601817e4daf95adc4073c5d3b9cfc4645,4,"Clarity, Simplicity & Inspiration",zh,4,4,4,False,False
+7426b13d766bb57eba3b526ddc080de2b24c1b5c,4,Higher-Order Thinking & Skill Development,zh,4,3,3,False,False
+9c3966a42c8e88132a5d49a63ae39a032f6f53a6,5,Instruction Following & Task Completion,zh,5,4,4,False,False
+2c52964714627fa961cc72666ebccf0da2ac765b,5,Content Relevance & Scope Control,zh,5,5,5,False,False
+438c594ed058cc5c0705a71f4ed30835391a85a1,5,Scenario Element Integration,zh,4,3,3,False,False
+63fd73045d31beadbace9450e724f9ddce2f5dbe,5,Basic Factual Accuracy,zh,5,5,5,False,False
+e3253981a557e2f539c9b33aeac32bcd9832317b,5,Domain Knowledge Accuracy,zh,4,4,4,False,False
+d17387c6a01d920faeed0223b391690dfec44b0d,4,Reasoning Process Rigor,zh,4,4,4,False,False
+0a2b551b462f6f24d7bd7929223e546e494d419c,5,"Clarity, Simplicity & Inspiration",zh,5,4,4,False,False
+16c8659136cb3055549733cae9aa9e118ebd8175,4,Higher-Order Thinking & Skill Development,zh,4,3,4,False,False
+4232e56f076d88a51c7768074d03b503eeef6f42,5,Instruction Following & Task Completion,zh,4,4,4,False,False
+3299ea3016e4406ae4252b7b0d3651b701480ac2,4,Content Relevance & Scope Control,zh,5,5,5,False,False
+15a5c95f8d439088d6b196caf73638e76f0cdfda,4,Scenario Element Integration,zh,4,3,3,False,False
+4663ee5c34865d4a75438df31399fd2f3f965fb8,4,Basic Factual Accuracy,zh,5,5,5,False,False
+5823b14c69c678794882808b30642a2dc552d7f9,4,Domain Knowledge Accuracy,zh,4,4,4,False,False
+7d305d435db98fa64cda653b0fb79eaf60c0cc90,4,Reasoning Process Rigor,zh,4,3,3,False,False
+6c54d0ed649e8ac8ff20206c988c6acc1febd8ed,5,"Clarity, Simplicity & Inspiration",zh,4,4,4,False,False
+03eaab12a03a161693cdae93f04e88f87c670bb7,4,Instruction Following & Task Completion,zh,5,4,4,False,False
+1e6be4d3a41606c04cd87c96e507d4e53e8f04e1,5,Content Relevance & Scope Control,zh,5,5,5,False,False
+d03debc54eb0662629ea463a4625df235203eba7,4,Scenario Element Integration,zh,4,3,4,False,False
+a3c2ff0a8698eb0973b3b9d3e5fb726193c7a38f,4,Basic Factual Accuracy,zh,5,5,5,False,False
+ec0da539497408ba90da4bbf7d4637b72684bc52,4,Domain Knowledge Accuracy,zh,4,4,4,False,False
+d7f1023b641a98960d1710357ea66bf37b874ce6,4,Reasoning Process Rigor,zh,4,3,4,False,False
+9d5b55f0ac81fc3ff4b36d4409e2408686e53aaa,5,"Clarity, Simplicity & Inspiration",zh,5,4,5,False,False
+f39304efac68a2dd3bc2b3d761f1797e3f1eb014,4,Instruction Following & Task Completion,zh,5,4,5,False,False
+0795911801d8484e3269e88e83494fe544417969,5,Content Relevance & Scope Control,zh,5,5,5,False,False
+dd315879b245f3d0b111eb28d1c2fa9b4630b952,4,Scenario Element Integration,zh,4,3,4,False,False
+7f37fee3f9ed0e37e537716a958157f5d64878c6,5,Basic Factual Accuracy,zh,5,5,5,False,False
+0254a2bc0811e4f3ec351229fb7036087d9966e7,4,Domain Knowledge Accuracy,zh,5,4,4,False,False
+93af60b4e5c057e7e9f91368ff9bb5946909881c,4,Reasoning Process Rigor,zh,5,4,5,False,False
+5861fc5a69181b5806a00e81102268d2037df019,4,"Clarity, Simplicity & Inspiration",zh,5,4,4,False,False
+16e8063adc889ce5d9fb20532f241873dde19994,5,Instruction Following & Task Completion,zh,5,5,5,False,False
+7f7e0f2728b8cd2ada1dd690e81e1aea59fba159,5,Content Relevance & Scope Control,zh,5,5,5,False,False
+7a864fd83c7c351a4a8ba76d82ffe42fde099021,5,Scenario Element Integration,zh,5,3,5,False,False
+134eaa403105a047e3df08f30d9aa8b39f9d9533,5,Basic Factual Accuracy,zh,5,5,5,False,False
+2510fcffaa716f093f5e5758d7cfb4ca5828b973,5,Domain Knowledge Accuracy,zh,5,5,5,False,False
+ffcba1e42f02a5f87179844100ffdd162c0db1d8,5,Reasoning Process Rigor,zh,5,5,5,False,False
+eb5f62b247c05933d3b30e45de071994c1fffb35,5,"Clarity, Simplicity & Inspiration",zh,5,5,5,False,False
+460f4c636231eaf300a76050cf161f6f582ed000,5,Higher-Order Thinking & Skill Development,zh,5,3,5,False,False
+b1ed1551fb64109c649d132072b91421fa64262a,5,Instruction Following & Task Completion,zh,5,5,5,False,False
+7bda569042e77c4532bd833275284d962d9669c0,5,Content Relevance & Scope Control,zh,5,5,5,False,False
+e3002731070fb0b6438de45edfdfdb776913f7fe,4,Scenario Element Integration,zh,4,4,4,False,False
+e0e590979bf2046e0aed9447dc1061ef6176b07c,5,Basic Factual Accuracy,zh,5,5,5,False,False
+ad3c5d82ec20d4e4222cdc271f2a94ae07432a46,4,Domain Knowledge Accuracy,zh,5,4,5,False,False
+ae46183fb6acfd5a5f389f5ba2e6b871bbcdbd9f,4,Reasoning Process Rigor,zh,5,1,5,True,False
+659a4067624436b861e71d7c32ca3abae5666a23,5,"Clarity, Simplicity & Inspiration",zh,5,4,5,False,False
+6b9989afde3332ecad769128c9483e615cc791e2,4,Higher-Order Thinking & Skill Development,zh,4,2,3,True,False
+2f4842305d37bfc111594a079e18fd8759dffa86,5,Instruction Following & Task Completion,zh,5,5,5,False,False
+90b2b9e4e8dc65d0da91e009f41de5634a4c4d66,5,Content Relevance & Scope Control,zh,5,5,5,False,False
+b629bbd15dd7c27646f81074b705cce20ea0d8c1,5,Scenario Element Integration,zh,5,4,4,False,False
+d65bc22e203c2a94b0294b6872e3005431e2642e,5,Basic Factual Accuracy,zh,5,5,5,False,False
+2223066ffe01c78953123cbdd744921082af093e,5,Domain Knowledge Accuracy,zh,5,5,5,False,False
+1ebdc6d1cfe0a19943af4f299ff37fcfca8ee94d,5,Reasoning Process Rigor,zh,5,5,5,False,False
+9f011ddabacb347fc553e1ac5601880c0322919d,5,"Clarity, Simplicity & Inspiration",zh,5,5,5,False,False
+5e2235c0b8c2b46c2194198f7017e817ed1b80af,4,Higher-Order Thinking & Skill Development,zh,4,4,4,False,False
+d3043bf233c82bee05bc75560db99fe71640b3f1,5,Instruction Following & Task Completion,zh,5,5,5,False,False
+c6866f9d8c8bf05d076588cfb21ff13339a86139,5,Content Relevance & Scope Control,zh,5,5,5,False,False
+575e42cbb30bb2dac2f1ac77ee7d98c6924b64a4,5,Scenario Element Integration,zh,4,4,4,False,False
+1785248425093de86dff5e4908433a504840a7ff,5,Basic Factual Accuracy,zh,5,5,5,False,False
+02789727b2e117e08a4e240edba2522b63e4488e,5,Domain Knowledge Accuracy,zh,5,5,5,False,False
+1ca008969a399a32fddcaeafd542cbdba0facc42,5,Reasoning Process Rigor,zh,5,5,5,False,False
+4d8f816525e5bdd9ab950133a464634122cfd157,5,"Clarity, Simplicity & Inspiration",zh,5,5,5,False,False
+945c95f22b76230ce2eab06abe15afd4c22d7bf3,5,Higher-Order Thinking & Skill Development,zh,4,3,4,False,False
+512a279966843f184fc5f455bbd76687acb5efb7,5,Instruction Following & Task Completion,zh,5,5,5,False,False
+1c867abafa78a7a72e4d8273de23733481a8954e,5,Content Relevance & Scope Control,zh,5,5,5,False,False
+14bcc38ca9ba3a632bf357542df42ec1307aba70,4,Scenario Element Integration,zh,4,4,4,False,False
+95051d47048042f0f5af652aa1aa125cc8f02f29,5,Basic Factual Accuracy,zh,5,5,5,False,False
+193638e21b0df598431439108421763063986f7c,4,Domain Knowledge Accuracy,zh,5,4,5,False,False
+ce6d9086f4eba89fe7c9a7ae79a0ddd53a26221c,5,Reasoning Process Rigor,zh,5,5,5,False,False
+549b07847f71f3b8345efb0bf3d6b374fe80b268,4,"Clarity, Simplicity & Inspiration",zh,5,4,5,False,False
+3ad5e4ede19f3a153a48f1478e4f5076054d930e,4,Higher-Order Thinking & Skill Development,zh,4,3,4,False,False
+0abbcd07707451e2be7d5522d8cb3c339bcfc0dd,4,Instruction Following & Task Completion,zh,4,4,4,False,False
+91522628b7b3c2ce5824d287fa402d86e609cab1,4,Role & Tone Consistency,zh,4,4,4,False,False
+ede2194174c88a58228513a9ad5533921cddce70,5,Content Relevance & Scope Control,zh,5,4,5,False,False
+130b9044b1debd72bd2bb3dabbcfc7081a1966bc,4,Basic Factual Accuracy,zh,5,4,4,False,False
+145663a08ae3d3a61ce278698ea82ccb75e7638c,4,Domain Knowledge Accuracy,zh,4,4,4,False,False
+a6abf6825cd5f13b61297edc79d4e71ef406065b,4,"Clarity, Simplicity & Inspiration",zh,4,4,4,False,False
+63d65310e4b5510385d40480c9f3ae3a8541d26b,4,Higher-Order Thinking & Skill Development,zh,4,4,4,False,False
+efe5fa764eb847421975a683f9084691ff3b0164,5,Instruction Following & Task Completion,zh,5,5,5,False,False
+41ea84faa50b4e80b37141524088cea0085c90ca,5,Role & Tone Consistency,zh,4,4,4,False,False
+53cec973af6b23b7476316323bbe8efdc434489e,5,Content Relevance & Scope Control,zh,5,5,5,False,False
+501ceb4748ee83b1e21db4ef13fd66e9e9dd3c22,4,Basic Factual Accuracy,zh,5,5,5,False,False
+15c5bfcf0b24eb7094793b7e2d2050cc60bbf64b,5,Domain Knowledge Accuracy,zh,5,5,5,False,False
+f9d309ae6d87dfa412349e823e497a638af84f55,5,"Clarity, Simplicity & Inspiration",zh,5,5,5,False,False
+0618ee749a296e32260659ce9bd1d7d7fb33217e,5,Higher-Order Thinking & Skill Development,zh,5,5,5,False,False
+17bebcf93d7811230be946b32dfc4ecfe12a08d3,4,Instruction Following & Task Completion,zh,4,4,4,False,False
+7a53d8265663c503136bd7d4b1246df45851740b,4,Role & Tone Consistency,zh,4,4,4,False,False
+34a819020f008157393114f8cd97c480450f0af2,4,Content Relevance & Scope Control,zh,5,4,4,False,False
+4ebfdf536e6f81585029508942e48f3ede5bde12,4,Basic Factual Accuracy,zh,5,4,5,False,False
+865e5e6c78bbeaa8b3b4857ff16e0ea6ae11974c,4,Domain Knowledge Accuracy,zh,4,4,4,False,False
+1ad92ba92563ce88073715cd707631d4a8b24b44,4,"Clarity, Simplicity & Inspiration",zh,4,4,4,False,False
+2c83cf28af3f7db10caf3ec0bd2bbe59e56d10ff,4,Higher-Order Thinking & Skill Development,zh,4,4,4,False,False
+5c5bbf929d7eeb62f9dbbe508c081b7880021396,4,Role & Tone Consistency,zh,4,4,4,False,False
+89b456372f604b5b62b94e97bb1bbace0256c5b8,4,Content Relevance & Scope Control,zh,5,4,5,False,False
+a2223837d3c166e9ddf4d12cf2dd1471fc858668,4,"Clarity, Simplicity & Inspiration",zh,4,4,4,False,False
+b43d9b8275ccda915b2b0cc0c468fa462f5ddcd7,4,Instruction Following & Task Completion,zh,4,2,2,True,True
+233095d131923fdbd1a715adf8a8da5e1071937e,5,Content Relevance & Scope Control,zh,5,5,5,False,False
+b4dc58b82f5b48b120f6d6541db6e4246873327a,5,Basic Factual Accuracy,zh,5,3,4,False,False
+588c6ef26d7976e58f0eeed1401f2ceb9995c378,4,Reasoning Process Rigor,zh,4,3,3,False,False
+ca026f2dbe94d0689a0534a7c6ed9ad08b957e64,4,Instruction Following & Task Completion,zh,4,4,4,False,False
+6544254c0cbe1ddf63750f5fb99d1f4f9fc539f2,4,Role & Tone Consistency,zh,4,4,4,False,False
+e1a8d7808c3257d320bb7d89f82414d5def9c86c,4,Content Relevance & Scope Control,zh,5,4,5,False,False
+f75f15878b7f985fea4c549f8b86786fe7fbf951,4,Basic Factual Accuracy,zh,5,4,4,False,False
+b0430aec23b45608112d498ef50f06edf07b9f58,4,Domain Knowledge Accuracy,zh,4,4,4,False,False
+7612c7c4d4c32e39ceba6810fa125063d1c80de5,5,"Clarity, Simplicity & Inspiration",zh,4,4,4,False,False
+093859561cd29aefd7cfa32e2c78b6c00a38b2ff,5,Higher-Order Thinking & Skill Development,zh,4,3,4,False,False
+b4c1f9718ffb3a6bf6426b2fe64a0ff846f32a4b,4,Basic Factual Accuracy,zh,5,3,5,False,False
+3434b903f53604964c593c7fd9afe179d5b0ae82,4,Instruction Following & Task Completion,zh,4,4,4,False,False
+5d228a4247c55f5290ace959a5419a0241a30f50,4,Role & Tone Consistency,zh,4,4,4,False,False
+62a0d7fe19af77402cc9c6461b607bd758ecf879,5,Content Relevance & Scope Control,zh,4,4,4,False,False
+282afb1460b781e8afd1fbe053996ec05a3c290b,5,Basic Factual Accuracy,zh,4,4,4,False,False
+519f619fbf9b5c11ac17d3ab10d5e6e72959c87f,4,Domain Knowledge Accuracy,zh,4,4,4,False,False
+35ebb6325761470a0fc0e7017ae1cbd7cbf40694,4,"Clarity, Simplicity & Inspiration",zh,4,4,4,False,False
+c1584650534ce5831cad6788c555b9520bfc1cea,4,Higher-Order Thinking & Skill Development,zh,4,3,3,False,False
+4e945a50eef2dd2fa5d591e5df4719657dd09fc7,5,Instruction Following & Task Completion,zh,5,5,5,False,False
+e0c7ed5c16449e4352cdc37b2f600506845440fe,5,Role & Tone Consistency,zh,4,4,4,False,False
+683e17f986724a31044a6e66de76caff2eaded09,5,Content Relevance & Scope Control,zh,5,5,5,False,False
+acf238cbb0c342afd14a7bdbc247409610f23901,5,Basic Factual Accuracy,zh,5,5,5,False,False
+a34d9a55c60cdd2f2dc8cf82856bac7d897a14ba,5,Domain Knowledge Accuracy,zh,5,5,5,False,False
+8fc72c3f12c65cfad6e6916bed23e5a999f6fdac,5,"Clarity, Simplicity & Inspiration",zh,5,5,5,False,False
+62adeb43753fd7aaad789ae8c32e8d694ed8a1b7,5,Higher-Order Thinking & Skill Development,zh,5,5,5,False,False
+d6afab4967dca702c4f5c7ff772542eaeae75622,4,Instruction Following & Task Completion,zh,4,4,4,False,False
+c4a13134940f65574814b27f1e5442425e9cdf91,4,Role & Tone Consistency,zh,4,4,4,False,False
+375f90ccd3da374b89f3daa9025ae862536c0f5d,4,Content Relevance & Scope Control,zh,5,4,4,False,False
+c45d00735e2cc54959b7b51c8643ffdd36d25525,4,Basic Factual Accuracy,zh,5,5,5,False,False
+1f8eb19a651955b13709769abfdd0b57ad9d248c,4,"Clarity, Simplicity & Inspiration",zh,4,4,4,False,False
+4a4a6c90cff0e5a35cd7812d72b21af0d9f99e87,4,Higher-Order Thinking & Skill Development,zh,4,3,3,False,False
+ea3d92063eef1ffbf781d5c4cb99b99ebb35979a,4,Instruction Following & Task Completion,zh,4,4,4,False,False
+f660b7371f6daa0687d6076231948f712d167fe1,4,Role & Tone Consistency,zh,4,4,4,False,False
+daf8b5c126e4676aa35e7e57b206d4156c2bfdbe,4,Content Relevance & Scope Control,zh,4,4,4,False,False
+de7add3873056b3ebdc67a8af3c6498c927d9003,5,Basic Factual Accuracy,zh,4,4,4,False,False
+357f4a4a83788c724ab7c563c4a69a2bff304a76,4,Domain Knowledge Accuracy,zh,4,4,4,False,False
+37a5458a2ac6773676667a841859478ae89b4b35,4,"Clarity, Simplicity & Inspiration",zh,4,4,4,False,False
+740961dcd62c2052be14fb76ea8c0a3f9814b7cf,4,Higher-Order Thinking & Skill Development,zh,4,3,3,False,False
+f6beeb9c247a9ec2e0bbb9d952d31ba2c9b12828,5,Instruction Following & Task Completion,zh,4,4,4,False,False
+eed1ce6daa2ac318dc8ec1d7176398601cc674a1,4,Role & Tone Consistency,zh,4,4,4,False,False
+5be9fc11513905c4487f771e586d8a719687ce1b,5,Content Relevance & Scope Control,zh,4,4,4,False,False
+88fa34995834037d720b8003f24f8b34ed9d343c,5,Basic Factual Accuracy,zh,4,4,4,False,False
+cbb12b90983260da2928afe2509f16f9e709c9be,5,Domain Knowledge Accuracy,zh,4,4,4,False,False
+fc3ae7421bd1acc8b52b27ee627d70fff4109666,4,"Clarity, Simplicity & Inspiration",zh,4,4,4,False,False
+538597a93d19fa0f45ee524ba6919071273e72fa,5,Higher-Order Thinking & Skill Development,zh,4,3,4,False,False
+8e8542e577d48d0f307ce706ca5ef97c0c1fb8f4,4,Instruction Following & Task Completion,zh,4,4,4,False,False
+2c73b177cb34751029dd971792871dc090a6f531,4,Role & Tone Consistency,zh,4,4,4,False,False
+3e10b174e185fface59704e77248df67267c740e,4,Scenario Element Integration,zh,4,3,3,False,False
+dddba4624ea122c7be7d5723e885a4c9e8cf3b48,4,"Motivation, Guidance & Positive Feedback",zh,4,4,4,False,False
+b3b649323d202ca1887bb851c6a9533f43049ea9,4,Instruction Following & Task Completion,zh,4,3,3,False,False
+598093e0377806429f316e30a4df5e8505ba1a0e,4,Role & Tone Consistency,zh,4,4,4,False,False
+f390752888ed72e840aeffd3d34a7fe640d01619,4,Scenario Element Integration,zh,4,3,3,False,False
+17b2ac651081219e46d26ed2caee675d63e8e54b,4,"Motivation, Guidance & Positive Feedback",zh,4,3,4,False,False
+45ba8bce5a78f31723407665d7f013e28b7c19a4,4,"Personalization, Adaptation & Learning Support",zh,3,3,3,False,False
+b31f49bcc6b6bd5309b5c70882c4d493ac195974,4,Instruction Following & Task Completion,zh,5,5,5,False,False
+0112721b014104978a66accce072f2b6212d64c8,5,Role & Tone Consistency,zh,5,5,5,False,False
+79c8f2a7f10ba714cce9fe6931f69d1e3e5db74e,5,Scenario Element Integration,zh,5,5,5,False,False
+f55305177095911043beed93623379df2aa1bd5b,4,"Motivation, Guidance & Positive Feedback",zh,5,5,5,False,False
+f838e1db795797035278bb4065bc0990271ef64a,5,"Personalization, Adaptation & Learning Support",zh,5,5,5,False,False
+532321b4a6bf30a192ad6399c1fd17cb023523f4,5,Instruction Following & Task Completion,zh,5,5,5,False,False
+e241f4f0fb22f882ab8a5f2259ceb0a97a8b81e1,5,Role & Tone Consistency,zh,5,5,5,False,False
+9d763ced3cc507fc22acf2b8b08da92dbd182604,5,Scenario Element Integration,zh,5,4,5,False,False
+60f9e773ff656ae6d89e4774388b734ac6c7013e,5,"Motivation, Guidance & Positive Feedback",zh,5,5,5,False,False
+36b010fba7be2a5f0a4411861e79004f802657bf,5,"Personalization, Adaptation & Learning Support",zh,5,4,5,False,False
+3bf54b647d7259d3c3c09a57b9860ae10cd75796,4,Role & Tone Consistency,zh,4,4,4,False,False
+49ab912a5af1034fa29ae2a9855927385c5f04a6,5,Instruction Following & Task Completion,zh,4,3,3,False,False
+a1010920bb84605efc5c329d31b73ae6f8df35e2,4,Role & Tone Consistency,zh,4,4,4,False,False
+943e4d82abeb610c59741621177535dc0e9032b6,4,Scenario Element Integration,zh,4,3,3,False,False
+bbadb1d73fdf7a4b32ed7746776a9e0715493e6f,4,"Motivation, Guidance & Positive Feedback",zh,4,3,4,False,False
+b14079546b474a99a1c0a4cc762d04a1a27c2bc8,5,"Personalization, Adaptation & Learning Support",zh,3,3,3,False,False
+0468aaf6345aa42dad1d7fa61a664f6a0bbb5439,4,Instruction Following & Task Completion,zh,4,3,3,False,False
+81bac283cb22a620a6d12cc58b3f6c3d249eb187,4,Role & Tone Consistency,zh,4,4,4,False,False
+ff8fa7621691ed4c60f0bceab03ee63bf2d1e329,4,Scenario Element Integration,zh,4,3,3,False,False
+08878a554232c03876dcd910306e1aead6bc04c4,4,"Motivation, Guidance & Positive Feedback",zh,4,2,2,True,True
+0617e15353714d8e70bb076a5058c1e095a1e90f,4,"Personalization, Adaptation & Learning Support",zh,4,3,3,False,False
+9dd36c74818299fa78c6778c942ccfd16b316deb,5,Instruction Following & Task Completion,zh,4,3,3,False,False
+c5feea1bc9414d3bc2011d05c99036d49c63d3a1,5,Role & Tone Consistency,zh,4,4,4,False,False
+202a9972ab93b79955ed99e40b0b8a5fbbf6d2c5,5,Scenario Element Integration,zh,3,3,3,False,False
+7dba21d1e102b768cbc0388e64831b55b257b710,4,"Motivation, Guidance & Positive Feedback",zh,4,3,4,False,False
+20dd2fbee2c251e7323d8ed8db1fd35af6b3fd7a,4,"Personalization, Adaptation & Learning Support",zh,3,3,3,False,False
+fccf578e0b47c47603ceef2e0ccb617921f94531,4,Content Relevance & Scope Control,zh,4,3,4,False,False
+11016d742fce73e51065518f84a28f9aa10fcebb,4,Basic Factual Accuracy,zh,4,3,4,False,False
+050f125c5e01db36bfdf94540457c87a0724bdff,4,Reasoning Process Rigor,zh,4,3,3,False,False
+4b49b0f2c491115e12eb79dcaed91eeae799f0c4,5,Instruction Following & Task Completion,zh,5,5,5,False,False
+6e03c9f3773c0e5825331cb5ff1e24ec72599c69,5,Role & Tone Consistency,zh,5,5,5,False,False
+4729d4c19f550e5f665583ccc774618ee5dc644b,5,Scenario Element Integration,zh,5,5,5,False,False
+6c4d621f8eebaae6fb14cc8175b06b00f7d31824,5,"Motivation, Guidance & Positive Feedback",zh,5,5,5,False,False
+541524ac5425cd4f926d2f502ff18ec82cde5a11,5,"Personalization, Adaptation & Learning Support",zh,5,5,5,False,False
+e885219319aea0b8fb8a6a0facb16789e99cb061,4,Scenario Element Integration,zh,3,3,3,False,False
+aa787955ddf382cee7a589ddf58dfc8d9ab1a2f1,4,Instruction Following & Task Completion,zh,4,4,4,False,False
+a670155d2123bb11e3bc86e63c07a5976ae51f2c,4,Role & Tone Consistency,zh,4,4,4,False,False
+4df14a52dac3f5a7056041a5786925a64d92321c,4,Scenario Element Integration,zh,4,3,3,False,False
+3fcd5f76dae69b2471d0757a6a599f41f21355b4,4,"Motivation, Guidance & Positive Feedback",zh,4,3,4,False,False
+f2f9247097a5afad3325ba6ffeed7b72677dd0c5,4,"Personalization, Adaptation & Learning Support",zh,4,3,3,False,False
+7cddd2766bd24fe492905f1f9e0d61d84804c860,4,Instruction Following & Task Completion,zh,5,4,5,False,False
+3825fbd67a294095accef3089e550a0cd4b00701,5,Content Relevance & Scope Control,zh,5,5,5,False,False
+d2856d8b21fecacb7aecaf6d89c836057dfe5dd6,5,Basic Factual Accuracy,zh,5,5,5,False,False
+836946cb93066c09f58e1ec7e0eef32b25aa674f,5,Instruction Following & Task Completion,zh,5,5,5,False,False
+077f58776d4ab6a467cb6de9b411497d9d50fd50,5,Content Relevance & Scope Control,zh,5,5,5,False,False
+eb2591f85b8d01a435d62d461e0098fd6bedc0ba,5,Basic Factual Accuracy,zh,5,5,5,False,False
+c442136a886ea40809e78583fabb26e7eceae437,4,Instruction Following & Task Completion,zh,5,5,5,False,False
+0b628dd7b72ea3a3d011a771f81e46fb7be07a04,5,Content Relevance & Scope Control,zh,5,5,5,False,False
+a0c9081c05362f96b670f0a00f10e48498c8bde1,5,Basic Factual Accuracy,zh,5,5,5,False,False
+57805407de0b2cf499c37c2f62e674de9f476565,5,Instruction Following & Task Completion,zh,5,5,5,False,False
+afa72b6efc43fc58a27f847559b9588f87de9a98,5,Content Relevance & Scope Control,zh,5,5,5,False,False
+9b560121acdf7388682e05327b94c0588d7533ce,5,Basic Factual Accuracy,zh,5,5,5,False,False
+1b29434c8b143670e17398249b387bea78970cd5,5,Content Relevance & Scope Control,zh,5,5,5,False,False
+111169cd461add4443b69738a5952b0cb49aabab,5,Basic Factual Accuracy,zh,5,3,5,False,False
+4a383a22159d193b06d75a8724cf6b04ea7491af,5,Instruction Following & Task Completion,zh,5,5,5,False,False
+6758d248f3b97fbf6d7b1ff6bb1c13cc354acd42,5,Content Relevance & Scope Control,zh,5,5,5,False,False
+f2f5c876484994dc1ec569b5a75d64c42f556b83,5,Basic Factual Accuracy,zh,5,5,5,False,False
+659c8a4f3fa929c641fe90f8f17755b052c639ff,5,Instruction Following & Task Completion,zh,5,5,5,False,False
+84551261edb9b9148ffe38f7fdb491ae2dd2c465,5,Content Relevance & Scope Control,zh,5,5,5,False,False
+c2439c94724ea27738170535de37bbea00c74871,5,Basic Factual Accuracy,zh,5,5,5,False,False
+fb886a4238645d33ae906216c3b2492b96432ab0,4,Reasoning Process Rigor,zh,5,4,5,False,False
+5ef7e2778ab556b488151e78b8c13fdf36f26fd9,4,Instruction Following & Task Completion,zh,5,5,5,False,False
+1afb3eea6b1be6912157829de591d76d06033a85,5,Content Relevance & Scope Control,zh,5,5,5,False,False
+af7273e3ec6a7834e4c308d15fea6c85ab8f22bd,5,Basic Factual Accuracy,zh,5,5,5,False,False
+8b932bc1fb15d6f3c7a373403e5bdd7b24ec9c35,5,Instruction Following & Task Completion,zh,5,4,4,False,False
+88a746365df35af2b5688810bb3bc1a2e70d75fa,5,Content Relevance & Scope Control,zh,5,3,5,False,False
+dc16153c3ff13cfb475559216b926b0ebdc316f2,5,Basic Factual Accuracy,zh,5,1,5,True,False
+34db0fb298a82d4d8be9b442f633c75a0138f554,4,Instruction Following & Task Completion,zh,5,3,5,False,False
+ca3ded769a9f4c72fe8d932a2bd22937f99db323,5,Content Relevance & Scope Control,zh,5,5,5,False,False
+bb8b8eecaed74fd071a9638390bafe7e93778983,5,Basic Factual Accuracy,zh,5,5,5,False,False
+241f608505c2c42c6ab9ad2668fc95b4e4ebda1d,4,Reasoning Process Rigor,zh,4,1,4,True,False
+16e3dd9c3124d367413288a199d951a42af022b8,5,Instruction Following & Task Completion,zh,5,4,4,False,False
+ae54c6f7736678254bed24ee25460167a8dd0f85,4,Content Relevance & Scope Control,zh,5,5,5,False,False
+55c5bf0b5181e3df38c28335bce74e9835e2e6f9,5,Basic Factual Accuracy,zh,5,5,5,False,False
+5292b7258bdd68d0c99e643b495372c15e6b78ad,4,Reasoning Process Rigor,zh,4,3,4,False,False
+36d4dead06286bb02098389b244aae42f72d7e2c,5,Content Relevance & Scope Control,zh,5,5,5,False,False
+debea221d9d25c841e2836940f68a1884e1399f3,5,Basic Factual Accuracy,zh,5,1,5,True,False
+29496f6abb9af5dca4d0d3353bc959a46e07028c,5,Content Relevance & Scope Control,zh,5,5,5,False,False
+224b7f0def389d373a9c1fce777566f094691054,5,Basic Factual Accuracy,zh,5,5,5,False,False
+7652a04eb797da08ed75f2614c5a912a76b26b19,4,Reasoning Process Rigor,zh,5,1,4,True,False
+e15ce7160b02e77cc526e952202fc7d5091f9662,4,Instruction Following & Task Completion,zh,5,5,5,False,False
+48abb216125921f2c6d993e1e65c8da7670a6f94,5,Content Relevance & Scope Control,zh,5,5,5,False,False
+f91816da64ab2988360e28b11e9d102230391d64,5,Basic Factual Accuracy,zh,5,5,5,False,False
+caa315858ac7eaa9b33ad3d4f8a75f6e6c49366d,5,Reasoning Process Rigor,zh,5,1,5,True,False
+232a8be784fe1cd44079ec0d618530806eca433f,5,Instruction Following & Task Completion,zh,5,5,5,False,False
+8a55042ee67d2ce005b52f9ee63d5fa36525c460,5,Content Relevance & Scope Control,zh,5,5,5,False,False
+f7aba4353b2070b2444d42e17f527c87baeee41f,5,Basic Factual Accuracy,zh,5,5,5,False,False
+c10f8ca6b6c436776aee40326328ff0a6bbd9fe1,4,Reasoning Process Rigor,zh,5,1,5,True,False
+72a5f93f185d9c264ece068480a741b1fde467cc,4,Instruction Following & Task Completion,zh,4,2,2,True,True
+151c7419cc9cf9e8272a174d8881dde89a012010,4,Content Relevance & Scope Control,zh,4,3,3,False,False
+2ebfd3b72f91ecc8ab0f33c950550d5cb7a900dc,4,Reasoning Process Rigor,zh,3,3,3,False,False
+6c193b1112a21c5e764e5de5f1a944ca25405881,5,Instruction Following & Task Completion,zh,4,4,4,False,False
+d66a5bb268668934f2f7bbcc3cdceb0bf7311dc0,5,Content Relevance & Scope Control,zh,5,5,5,False,False
+cd8ad17d3ecb61762dea044193549f44d09e6b46,5,Basic Factual Accuracy,zh,5,5,5,False,False
+d0508a564ec4de968664028b681f71bedd106b20,4,Domain Knowledge Accuracy,zh,4,3,4,False,False
+d441db6cc1bfce0a54dbf9a5036903cf250c7fc4,4,"Clarity, Simplicity & Inspiration",zh,4,3,4,False,False
+8fdb8537dbff2a09e2f266e1a9538080a1c4c00e,4,Instruction Following & Task Completion,zh,5,4,4,False,False
+f56db70ced9ec2e57494815fa1bdb9fee227faee,4,Content Relevance & Scope Control,zh,5,5,5,False,False
+d17bff04b117f0834e00bcab7f8d126d4539af08,5,Basic Factual Accuracy,zh,5,5,5,False,False
+0e9def4fcbc41318c97e0055e6413b82dbe0a145,4,Domain Knowledge Accuracy,zh,4,4,4,False,False
+7051a8b2785ac0e8a1a8046414fecadcda0d03ac,4,"Clarity, Simplicity & Inspiration",zh,4,4,4,False,False
+b9f39ab8150653e46faf5a5d68c610a7c19c4823,5,Instruction Following & Task Completion,zh,5,5,5,False,False
+93a8364c511993acdfe35e9c1a1b21c2fe479f3a,5,Content Relevance & Scope Control,zh,5,5,5,False,False
+502395a4fe89fddef1a763a890d7f893cee37aa6,5,Basic Factual Accuracy,zh,5,5,5,False,False
+ccd92ac0d3daa976b0ddd1109f22c93c6021552d,5,Domain Knowledge Accuracy,zh,4,4,4,False,False
+8d8af876959cb555a6edb37518942cfdf79c398e,5,"Clarity, Simplicity & Inspiration",zh,5,4,5,False,False
+4965b83ea860b4ebedbc872653c73c75f193559e,4,Higher-Order Thinking & Skill Development,zh,4,3,3,False,False
+7c9d89348cf2e2abaca9c93771205bb3de4c18db,5,Instruction Following & Task Completion,zh,5,4,5,False,False
+b879405b0ccf2967cb2d22d4baaaac6353f95d10,5,Content Relevance & Scope Control,zh,5,5,5,False,False
+4b3cdec18fff6e37c3cb1bf7c1fcca1b65b3187e,5,Basic Factual Accuracy,zh,5,5,5,False,False
+8e78ca2c20375dd8efcf91036ac7efd7ca08d9b1,5,Domain Knowledge Accuracy,zh,4,4,4,False,False
+ab7eb612cd08228f5e26575e9944eb978c29ffba,5,"Clarity, Simplicity & Inspiration",zh,5,4,5,False,False
+4c7ef63ae57017f7deaf05b78813b2ae0c8751c4,5,Higher-Order Thinking & Skill Development,zh,4,3,3,False,False
+96423ef47608ed2a7b784c23eba1f95498778e2d,4,Instruction Following & Task Completion,zh,5,5,5,False,False
+a7ebea5bc9fce06d395f67772236bdefa7346c5a,5,Content Relevance & Scope Control,zh,5,5,5,False,False
+9baa21ce7ea5ab220e8dd4582ddd4097387cae8d,5,Basic Factual Accuracy,zh,5,5,5,False,False
+09f0a5e6798734f1859446596f6223faaa5d8495,5,Domain Knowledge Accuracy,zh,5,4,4,False,False
+8dde15c58b2da916db8807274205030d8567c500,4,"Clarity, Simplicity & Inspiration",zh,5,5,5,False,False
+aa73478e629120ef36e33b2fd8170b9bf06261c2,4,Higher-Order Thinking & Skill Development,zh,4,3,3,False,False
+5267ae4000d94daa58f9e9c429796d141e6667fc,4,Instruction Following & Task Completion,zh,4,4,4,False,False
+1a174a8600d384c959294d9fc9e627f37a2cebeb,4,Scenario Element Integration,zh,4,4,4,False,False
+43c6dd3ff6e14007116e64f43ace527dc69dd898,4,"Personalization, Adaptation & Learning Support",zh,4,3,4,False,False
+6741852e8f60aa5515db3c0f9ea13ebc98f771b0,4,Instruction Following & Task Completion,zh,4,4,4,False,False
+0f4aca6d0c04bab4aae3e576f33ab84d3675934d,4,Scenario Element Integration,zh,4,4,4,False,False
+ec22f98571ddb783079f322bcf919c90c2705a12,4,"Personalization, Adaptation & Learning Support",zh,4,3,4,False,False
+1032b59f780c39c41a6f9fd1bbb178fcc370bbdb,4,Instruction Following & Task Completion,zh,4,4,4,False,False
+dafc17044109004fa32808a3fa0d3f5131027a1b,4,Scenario Element Integration,zh,4,4,4,False,False
+7ff5e56e8a0cfe152373579cbe3ce4ebdeacfe3d,4,"Personalization, Adaptation & Learning Support",zh,4,3,4,False,False
+075727c51062c073b8a7606c029cdfae90f3b5b0,4,Instruction Following & Task Completion,zh,5,5,5,False,False
+e3300214169b9259e6d8e0198ad1c8f863ee8e5a,4,Scenario Element Integration,zh,5,5,5,False,False
+7564dd790b1c92c74642155df440e6226de46b1a,4,"Personalization, Adaptation & Learning Support",zh,5,5,5,False,False
+927b4703db4e17f97244cc968010b7d2a2928d1e,5,Instruction Following & Task Completion,zh,5,5,5,False,False
+bb4a42e90aaacbba6c7eb324238dae1739bd2243,5,Scenario Element Integration,zh,5,5,5,False,False
+afe9900083b9dbf11c93f8d5c627f163248cf76a,5,"Personalization, Adaptation & Learning Support",zh,5,5,5,False,False
+58a5c8a775f59e853173fa90373bf683a3caec38,5,Instruction Following & Task Completion,zh,4,4,4,False,False
+70bc395136ddfa5ba2a374325939175dd43d6a4b,4,Scenario Element Integration,zh,4,3,4,False,False
+2ed82113ad331f6e1d0cacbf6ec02bcac06706a8,4,"Personalization, Adaptation & Learning Support",zh,4,3,3,False,False
+6cf7a134311a558740a2da3e342d310610c49680,4,Instruction Following & Task Completion,zh,5,4,4,False,False
+1e861956c7cbef2f3d89afc35ea5d4318f6a3ed9,5,Scenario Element Integration,zh,4,4,4,False,False
+462e7bfc2512a100b727b17f11c4522948e2d0aa,4,"Personalization, Adaptation & Learning Support",zh,4,4,4,False,False
+5018e8582681cfc20328cedc0fc2b6aa2d6ea2c3,4,Instruction Following & Task Completion,zh,4,4,4,False,False
+6b2a23da9b82a51aedf87caeeaf6694a0cdafe60,4,Scenario Element Integration,zh,4,3,3,False,False
+6d5f44623ac91e559f99545e1d50183f361e354b,4,"Personalization, Adaptation & Learning Support",zh,4,3,3,False,False
+d68702c73d862c5acc0a37a087d3f5f530aa3500,5,Instruction Following & Task Completion,zh,5,5,5,False,False
+97424cbf754dd66652f5681ddb4125186d078307,5,Scenario Element Integration,zh,5,5,5,False,False
+84331405977a53a5c42d21331d9e0abf2b89b4e6,5,"Personalization, Adaptation & Learning Support",zh,5,4,5,False,False
+386128679d1defd89ca1103a9138eea17e2c7ad3,5,Instruction Following & Task Completion,zh,5,5,5,False,False
+93c8c9170ce68a71c2683e4dcf1ae7122a7e0656,5,Scenario Element Integration,zh,5,5,5,False,False
+e8cf8bda3cafda1cb0a4579bfbddb0377f617387,5,"Personalization, Adaptation & Learning Support",zh,5,5,5,False,False
+ff742c0a318a49eeb2891001416b9efd1777d579,5,Content Relevance & Scope Control,zh,5,5,5,False,False
+0c474f400c448567de8227ed48f24250fd39fc03,5,Basic Factual Accuracy,zh,5,5,5,False,False
+58ae036ffe33095ebda2507c619a73b8d5ab1182,5,Reasoning Process Rigor,zh,5,3,5,False,False
+c81c3e3c8c78e6cc6bb05db4145d06a5d978a435,4,Instruction Following & Task Completion,zh,3,3,3,False,False
+ef25e45f4f417aeae04d895900f9bfa0146baa3b,4,Role & Tone Consistency,zh,4,4,4,False,False
+1f737a3df3c8b4ed428118a89ad31413cb383f6a,4,Scenario Element Integration,zh,4,3,3,False,False
+1a67eecdaf74f2088dc0d0122ffbd507d87e6ec4,5,"Motivation, Guidance & Positive Feedback",zh,4,3,3,False,False
+260068a88c7e72713274ce0e0caec721b968ff2a,4,"Personalization, Adaptation & Learning Support",zh,3,3,3,False,False
+e403dd396cbf627a525068341bc83e768fc7b74e,4,Instruction Following & Task Completion,zh,4,3,3,False,False
+9db70e8bfa60f41cb1a905d163ade7b197a3f994,4,Role & Tone Consistency,zh,4,4,4,False,False
+a4fa7a9d6d43413f101cb3d1991e9f1870dba2be,4,"Motivation, Guidance & Positive Feedback",zh,4,4,4,False,False
+1ee9f50c557bcad77965a3209e6fd8fdb6a9bc17,4,Instruction Following & Task Completion,zh,3,3,3,False,False
+e99f12d1d74906cd2db8387f96aedd75a408aee4,4,Role & Tone Consistency,zh,4,3,4,False,False
+c004f279306ed79cbf1d6252bc587bd5eb824f1f,4,Scenario Element Integration,zh,3,3,3,False,False
+f657ef9e34c9e8985161c9088addc88d1c06232b,4,"Motivation, Guidance & Positive Feedback",zh,4,3,3,False,False
+d8c8aa1000c5615c55525a3e95a668bddef491cb,4,Instruction Following & Task Completion,zh,4,3,4,False,False
+acad23362d88226bf88db63f940a0fb1c4188b61,4,Role & Tone Consistency,zh,4,4,4,False,False
+1a158110b668cbe4fac1ffc0423cb11c4fc73e2a,4,Scenario Element Integration,zh,4,3,3,False,False
+916d2c5798784d2feaf30c713f073e14a49a5813,4,"Motivation, Guidance & Positive Feedback",zh,4,3,4,False,False

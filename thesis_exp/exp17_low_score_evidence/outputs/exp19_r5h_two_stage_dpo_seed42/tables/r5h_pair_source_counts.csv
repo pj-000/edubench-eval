@@ -1,0 +1,5 @@
+source_file,exists,rows,matching_high_pairs,new_unique_high_pairs
+thesis_exp/exp17_low_score_evidence/outputs/exp19_r5f2_rejection_mining_seed42/data/edubench_r5f2_score_risk_main_dpo_train.json,True,1110,555,555
+thesis_exp/exp17_low_score_evidence/outputs/exp19_r5g_risk_calibrated_dpo_seed42/data/edubench_r5g_ratio_70_30_dpo_train.json,True,793,238,0
+thesis_exp/exp17_low_score_evidence/outputs/exp19_r5g_risk_calibrated_dpo_seed42/data/edubench_r5g_ratio_60_40_dpo_train.json,True,925,370,0
+thesis_exp/exp17_low_score_evidence/outputs/exp19_r5g_risk_calibrated_dpo_seed42/data/edubench_r5g_ratio_50_50_dpo_train.json,True,1110,555,0
