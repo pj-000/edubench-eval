@@ -1,0 +1,100 @@
+{
+  "best_by_low_high_mae_qwk": "r5h_h1_from_r5f2_real_highprotect_s10_b0p02_lr1e6",
+  "guardrails": {
+    "d1_used_for_eval_only": true,
+    "human_rationale_not_in_prompt": true,
+    "no_test_read": true
+  },
+  "passed_runs": [],
+  "reason": "low risk remains controlled but high-protection is too weak.",
+  "recommendation": "continue_or_stop_by_tradeoff",
+  "run_evaluations": {
+    "r5h_h1_from_r5f2_real_highprotect_s10_b0p02_lr1e6": {
+      "checks": {
+        "MAE": false,
+        "QWK": false,
+        "d1_pred_ge4": true,
+        "high_to_low": false,
+        "label2_recall": true,
+        "label5_recall": false,
+        "low_to_high": true
+      },
+      "passed": false,
+      "score": 3
+    },
+    "r5h_h2_from_r5f2_real_highprotect_s20_b0p02_lr1e6": {
+      "checks": {
+        "MAE": false,
+        "QWK": false,
+        "d1_pred_ge4": true,
+        "high_to_low": false,
+        "label2_recall": true,
+        "label5_recall": false,
+        "low_to_high": true
+      },
+      "passed": false,
+      "score": 3
+    },
+    "r5h_h3_from_r5f2_real_highprotect_s30_b0p02_lr1e6": {
+      "checks": {
+        "MAE": false,
+        "QWK": false,
+        "d1_pred_ge4": true,
+        "high_to_low": false,
+        "label2_recall": true,
+        "label5_recall": false,
+        "low_to_high": true
+      },
+      "passed": false,
+      "score": 3
+    },
+    "r5h_h4_from_r5f2_real_highprotect_s20_b0p03_lr2e6": {
+      "checks": {
+        "MAE": false,
+        "QWK": false,
+        "d1_pred_ge4": true,
+        "high_to_low": false,
+        "label2_recall": true,
+        "label5_recall": false,
+        "low_to_high": true
+      },
+      "passed": false,
+      "score": 3
+    },
+    "r5h_h5_from_r5g_a3_highprotect_s20_b0p02_lr1e6": {
+      "checks": {
+        "MAE": true,
+        "QWK": true,
+        "d1_pred_ge4": false,
+        "high_to_low": true,
+        "label2_recall": false,
+        "label5_recall": true,
+        "low_to_high": false
+      },
+      "passed": false,
+      "score": 4
+    },
+    "r5h_h6_from_r5g_a3_highprotect_s30_b0p02_lr1e6": {
+      "checks": {
+        "MAE": true,
+        "QWK": true,
+        "d1_pred_ge4": false,
+        "high_to_low": true,
+        "label2_recall": false,
+        "label5_recall": true,
+        "low_to_high": false
+      },
+      "passed": false,
+      "score": 4
+    }
+  },
+  "thresholds": {
+    "MAE_max": 0.5,
+    "QWK_min": 0.5,
+    "d1_pred_ge4_rate_max": 0.65,
+    "high_to_low_rate_max": 0.04,
+    "label2_recall_min": 0.2,
+    "label5_recall_min": 0.75,
+    "low_to_high_rate_max": 0.35
+  }
+}
