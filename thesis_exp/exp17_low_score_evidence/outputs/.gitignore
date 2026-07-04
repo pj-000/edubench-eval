@@ -217,6 +217,17 @@ exp19_r5h_dpo_scout/*
 !exp19_r5h_dpo_scout/decision/
 !exp19_r5h_dpo_scout/decision/**
 
+# Exp20 dual-model risk gate uses existing dev predictions and commits only
+# lightweight gate tables, reports, and decision JSON.
+!exp20_dual_model_risk_gate_seed42/
+exp20_dual_model_risk_gate_seed42/*
+!exp20_dual_model_risk_gate_seed42/reports/
+!exp20_dual_model_risk_gate_seed42/reports/**
+!exp20_dual_model_risk_gate_seed42/tables/
+!exp20_dual_model_risk_gate_seed42/tables/**
+!exp20_dual_model_risk_gate_seed42/decision/
+!exp20_dual_model_risk_gate_seed42/decision/**
+
 # Exp19-R5F targeted rejection mining keeps generated prompts, raw sampled
 # generations, logs, predictions, and full DPO JSON local/server-side. Commit
 # only QC summaries, configs, snippets, references without raw text, and

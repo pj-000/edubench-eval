@@ -1,0 +1,46 @@
+{
+  "abstention_success": {
+    "coverage_min": 0.85,
+    "d1_hidden_pred_ge4_covered_max": 0.5,
+    "low_to_high_covered_max": 0.3
+  },
+  "abstention_success_count": 0,
+  "best_abstention_rule": {
+    "D1_hidden_pred_ge4_covered": 0.75,
+    "coverage": 0.931345980126468,
+    "flag_rate_on_gold_high": 0.06666666666666667,
+    "low_to_high_covered": 0.32,
+    "risk_model": "r5h_h1_from_r5f2_real_highprotect_s10_b0p02_lr1e6",
+    "rule": "gap_abstain",
+    "score_model": "r5g_a3_real_only_s50_b0p05_lr5em6"
+  },
+  "best_downgrade_rule": {
+    "D1_hidden_pred_ge4": 0.46153846153846156,
+    "MAE": 0.48419150858175247,
+    "QWK": 0.5247366352936773,
+    "high_to_low": 0.006349206349206349,
+    "label2_recall": 0.05263157894736842,
+    "label5_recall": 0.7517985611510791,
+    "low_to_high": 0.2807017543859649,
+    "risk_model": "r5h_h1_from_r5f2_real_highprotect_s10_b0p02_lr1e6",
+    "rule": "gap_downgrade_to_3",
+    "score_model": "r4b_shuffled_reason_balanced"
+  },
+  "downgrade_success": {
+    "high_to_low_max": 0.05,
+    "label2_recall_min": 0.2,
+    "label5_recall_min": 0.7,
+    "low_to_high_max": 0.35,
+    "mae_qwk_delta_max": 0.05
+  },
+  "downgrade_success_count": 0,
+  "guardrails": {
+    "d1_used_for_eval_only": true,
+    "human_rationale_not_used_as_decision_input": true,
+    "no_test_read": true,
+    "no_training": true
+  },
+  "missing_prediction_runs": [],
+  "reason": "Both abstention and downgrade fail the current success criteria.",
+  "recommendation": "d1_like_data_expansion_not_more_dpo"
+}
