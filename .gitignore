@@ -153,6 +153,17 @@ thesis_exp/exp17_low_score_evidence/outputs/exp20_dual_model_risk_gate_seed42/*
 !thesis_exp/exp17_low_score_evidence/outputs/exp20_dual_model_risk_gate_seed42/decision/
 !thesis_exp/exp17_low_score_evidence/outputs/exp20_dual_model_risk_gate_seed42/decision/**
 
+# Exp20B risk-coverage frontier uses existing dev predictions and commits only
+# lightweight frontier tables, reports, and decision JSON.
+!thesis_exp/exp17_low_score_evidence/outputs/exp20b_risk_coverage_frontier_seed42/
+thesis_exp/exp17_low_score_evidence/outputs/exp20b_risk_coverage_frontier_seed42/*
+!thesis_exp/exp17_low_score_evidence/outputs/exp20b_risk_coverage_frontier_seed42/tables/
+!thesis_exp/exp17_low_score_evidence/outputs/exp20b_risk_coverage_frontier_seed42/tables/**
+!thesis_exp/exp17_low_score_evidence/outputs/exp20b_risk_coverage_frontier_seed42/reports/
+!thesis_exp/exp17_low_score_evidence/outputs/exp20b_risk_coverage_frontier_seed42/reports/**
+!thesis_exp/exp17_low_score_evidence/outputs/exp20b_risk_coverage_frontier_seed42/decision/
+!thesis_exp/exp17_low_score_evidence/outputs/exp20b_risk_coverage_frontier_seed42/decision/**
+
 # Exp19-R5F keeps generated prompts, raw generations, logs, predictions, and
 # full DPO JSON local/server-side. Commit only QC summaries, configs, snippets,
 # references without raw text, and redacted samples.

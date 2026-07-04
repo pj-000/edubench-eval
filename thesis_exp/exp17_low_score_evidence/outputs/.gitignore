@@ -228,6 +228,17 @@ exp20_dual_model_risk_gate_seed42/*
 !exp20_dual_model_risk_gate_seed42/decision/
 !exp20_dual_model_risk_gate_seed42/decision/**
 
+# Exp20B risk-coverage frontier uses existing dev predictions and commits only
+# lightweight frontier tables, reports, and decision JSON.
+!exp20b_risk_coverage_frontier_seed42/
+exp20b_risk_coverage_frontier_seed42/*
+!exp20b_risk_coverage_frontier_seed42/reports/
+!exp20b_risk_coverage_frontier_seed42/reports/**
+!exp20b_risk_coverage_frontier_seed42/tables/
+!exp20b_risk_coverage_frontier_seed42/tables/**
+!exp20b_risk_coverage_frontier_seed42/decision/
+!exp20b_risk_coverage_frontier_seed42/decision/**
+
 # Exp19-R5F targeted rejection mining keeps generated prompts, raw sampled
 # generations, logs, predictions, and full DPO JSON local/server-side. Commit
 # only QC summaries, configs, snippets, references without raw text, and
