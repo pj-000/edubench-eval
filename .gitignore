@@ -164,6 +164,17 @@ thesis_exp/exp17_low_score_evidence/outputs/exp20b_risk_coverage_frontier_seed42
 !thesis_exp/exp17_low_score_evidence/outputs/exp20b_risk_coverage_frontier_seed42/decision/
 !thesis_exp/exp17_low_score_evidence/outputs/exp20b_risk_coverage_frontier_seed42/decision/**
 
+# Exp20C best-rule case audit commits lightweight case-transition summaries
+# only. No raw predictions, logs, checkpoints, or full JSONL.
+!thesis_exp/exp17_low_score_evidence/outputs/exp20c_best_rule_case_audit_seed42/
+thesis_exp/exp17_low_score_evidence/outputs/exp20c_best_rule_case_audit_seed42/*
+!thesis_exp/exp17_low_score_evidence/outputs/exp20c_best_rule_case_audit_seed42/tables/
+!thesis_exp/exp17_low_score_evidence/outputs/exp20c_best_rule_case_audit_seed42/tables/**
+!thesis_exp/exp17_low_score_evidence/outputs/exp20c_best_rule_case_audit_seed42/reports/
+!thesis_exp/exp17_low_score_evidence/outputs/exp20c_best_rule_case_audit_seed42/reports/**
+!thesis_exp/exp17_low_score_evidence/outputs/exp20c_best_rule_case_audit_seed42/decision/
+!thesis_exp/exp17_low_score_evidence/outputs/exp20c_best_rule_case_audit_seed42/decision/**
+
 # Exp19-R5F keeps generated prompts, raw generations, logs, predictions, and
 # full DPO JSON local/server-side. Commit only QC summaries, configs, snippets,
 # references without raw text, and redacted samples.

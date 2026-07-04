@@ -1,0 +1,8 @@
+audit_bucket,count,rate_all,rate_among_flagged,d1_hidden_count,gold_low_count,gold_high_count
+unchanged_or_safe,1042,0.941282746160795,0.0,5,34,904
+downgraded_gold_high_to_3,41,0.037037037037037035,0.8541666666666666,0,0,41
+residual_d1_pred_ge4,16,0.014453477868112014,0.0,16,16,0
+rescued_d1_low_to_high,5,0.004516711833785004,0.10416666666666667,5,5,0
+downgraded_gold_mid_to_3,1,0.0009033423667570009,0.020833333333333332,0,0,0
+rescued_low_to_high,1,0.0009033423667570009,0.020833333333333332,0,1,0
+residual_low_to_high,1,0.0009033423667570009,0.0,0,1,0

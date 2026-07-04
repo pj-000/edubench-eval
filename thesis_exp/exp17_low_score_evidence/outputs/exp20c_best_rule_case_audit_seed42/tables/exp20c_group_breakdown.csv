@@ -1,0 +1,78 @@
+group_field,group_value,n,flagged_count,flagged_rate,baseline_low_to_high_count,rescued_low_to_high_count,rescued_low_to_high_rate,gold_high_downgraded_to_3_count,gold_high_downgraded_to_3_rate,flagged_gold_high_rate,d1_hidden_count,d1_hidden_residual_pred_ge4_count,d1_hidden_residual_pred_ge4_rate
+metric,Instruction Following & Task Completion,200,4,0.02,7,1,0.14285714285714285,3,0.016574585635359115,0.75,6,5,0.8333333333333334
+metric,Basic Factual Accuracy,130,5,0.038461538461538464,2,1,0.5,4,0.03305785123966942,0.8,2,1,0.5
+metric,Content Relevance & Scope Control,125,2,0.016,1,0,0.0,2,0.017094017094017096,1.0,2,1,0.5
+metric,Scenario Element Integration,115,13,0.11304347826086956,1,0,0.0,13,0.12380952380952381,1.0,4,1,0.25
+metric,"Clarity, Simplicity & Inspiration",90,0,0.0,4,0,0.0,0,0.0,nan,4,4,1.0
+metric,Reasoning Process Rigor,84,15,0.17857142857142858,3,2,0.6666666666666666,13,0.20634920634920634,0.8666666666666667,3,1,0.3333333333333333
+metric,Higher-Order Thinking & Skill Development,83,1,0.012048192771084338,0,0,nan,1,0.021739130434782608,1.0,0,0,nan
+metric,"Personalization, Adaptation & Learning Support",70,1,0.014285714285714285,0,0,nan,1,0.016666666666666666,1.0,0,0,nan
+metric,Domain Knowledge Accuracy,65,2,0.03076923076923077,0,0,nan,2,0.03333333333333333,1.0,0,0,nan
+metric,"Motivation, Guidance & Positive Feedback",60,1,0.016666666666666666,1,1,1.0,0,0.0,0.0,1,0,0.0
+metric,Role & Tone Consistency,50,0,0.0,0,0,nan,0,0.0,nan,0,0,nan
+metric,Error Identification & Correction Precision,35,4,0.11428571428571428,4,1,0.25,2,0.06896551724137931,0.5,4,3,0.75
+language,en,637,36,0.0565149136577708,21,5,0.23809523809523808,30,0.055865921787709494,0.8333333333333334,25,15,0.6
+language,zh,470,12,0.02553191489361702,2,1,0.5,11,0.02696078431372549,0.9166666666666666,1,1,1.0
+subject,Literature and Art,123,8,0.06504065040650407,0,0,nan,8,0.07272727272727272,1.0,0,0,nan
+subject,Biology,100,2,0.02,0,0,nan,2,0.022988505747126436,1.0,0,0,nan
+subject,Physics,98,6,0.061224489795918366,0,0,nan,6,0.07317073170731707,1.0,0,0,nan
+subject,Business Administration,90,4,0.044444444444444446,17,3,0.17647058823529413,0,0.0,0.0,20,13,0.65
+subject,Mathematics,90,0,0.0,0,0,nan,0,0.0,nan,0,0,nan
+subject,Basic Medicine,65,1,0.015384615384615385,0,0,nan,1,0.017857142857142856,1.0,0,0,nan
+subject,Crop Science,56,6,0.10714285714285714,2,1,0.5,5,0.11627906976744186,0.8333333333333334,1,1,1.0
+subject,History,50,2,0.04,4,2,0.5,0,0.0,0.0,5,2,0.4
+subject,Public Administration,40,2,0.05,0,0,nan,2,0.05263157894736842,1.0,0,0,nan
+subject,Applied Economics,35,4,0.11428571428571428,0,0,nan,4,0.13333333333333333,1.0,0,0,nan
+subject,Aquaculture,35,0,0.0,0,0,nan,0,0.0,nan,0,0,nan
+subject,Chemistry,35,3,0.08571428571428572,0,0,nan,3,0.0967741935483871,1.0,0,0,nan
+subject,General Pedagogy,35,5,0.14285714285714285,0,0,nan,5,0.15151515151515152,1.0,0,0,nan
+subject,Law,35,0,0.0,0,0,nan,0,0.0,nan,0,0,nan
+subject,Psychology,35,0,0.0,0,0,nan,0,0.0,nan,0,0,nan
+subject,Military Science,30,1,0.03333333333333333,0,0,nan,1,0.038461538461538464,1.0,0,0,nan
+subject,Theoretical Economics,30,1,0.03333333333333333,0,0,nan,1,0.04,1.0,0,0,nan
+subject,Automation,25,2,0.08,0,0,nan,2,0.08,1.0,0,0,nan
+subject,Chinese,25,0,0.0,0,0,nan,0,0.0,nan,0,0,nan
+subject,Clinical Medicine,25,0,0.0,0,0,nan,0,0.0,nan,0,0,nan
+subject,Computer Science,20,0,0.0,0,0,nan,0,0.0,nan,0,0,nan
+subject,English,15,1,0.06666666666666667,0,0,nan,1,0.07142857142857142,1.0,0,0,nan
+subject,Geography,15,0,0.0,0,0,nan,0,0.0,nan,0,0,nan
+question_group_id,2d32cd48b30f377b72a5069840cb071adf7553ca,40,0,0.0,0,0,nan,0,0.0,nan,0,0,nan
+question_group_id,9cf4454fa7d0f685a64a0967fe74cf6967ba4589,40,1,0.025,0,0,nan,1,0.02564102564102564,1.0,0,0,nan
+question_group_id,b523d065b505435167aeeb8ac570753d31f61486,40,2,0.05,0,0,nan,2,0.05263157894736842,1.0,0,0,nan
+question_group_id,fdee3eafe1a0b0c9952436eb5c8fd2bb759f6b98,40,0,0.0,0,0,nan,0,0.0,nan,0,0,nan
+question_group_id,14ba3cb00f998348fe1c491eab066379d3bf192b,35,4,0.11428571428571428,17,3,0.17647058823529413,0,0.0,0.0,19,13,0.6842105263157895
+question_group_id,2ec99513585fa81b368b7ede0183cc73436f33c5,35,0,0.0,0,0,nan,0,0.0,nan,0,0,nan
+question_group_id,59ebbf3dea3260ad127a568cf1a6514d5611e0d9,35,0,0.0,0,0,nan,0,0.0,nan,0,0,nan
+question_group_id,64465da5babb6f11f1382962a213791b28164276,35,0,0.0,0,0,nan,0,0.0,nan,0,0,nan
+question_group_id,7fbb27443c683b93e375c9423d106612d34f5fce,35,0,0.0,0,0,nan,0,0.0,nan,0,0,nan
+question_group_id,8f1c5aeed95abdf2d61b5100731052698e7f33a9,35,5,0.14285714285714285,0,0,nan,5,0.15151515151515152,1.0,0,0,nan
+question_group_id,b0da9c125b65bfebc8e09ded7ca84db38fdc06ae,35,0,0.0,0,0,nan,0,0.0,nan,0,0,nan
+question_group_id,db2ee72b5e9852d8371685f637458d2b6f933ae8,35,3,0.08571428571428572,0,0,nan,3,0.0967741935483871,1.0,0,0,nan
+question_group_id,e4d01b85df4567e5140f2b386f947d196784e009,35,4,0.11428571428571428,0,0,nan,4,0.13333333333333333,1.0,0,0,nan
+question_group_id,bd2b8ecc9401f3b7b41a53bb89b2c8375428ff11,34,3,0.08823529411764706,0,0,nan,3,0.10344827586206896,1.0,0,0,nan
+question_group_id,1bbfb9a5f532b875aaa1b5a1500fb88535b21a51,30,0,0.0,0,0,nan,0,0.0,nan,1,0,0.0
+question_group_id,3bde34d7d722994a823dfe59375b0708f8ffa30d,30,0,0.0,0,0,nan,0,0.0,nan,0,0,nan
+question_group_id,6dfa5410ccd6bff4e82457549f460215c4105f79,30,1,0.03333333333333333,0,0,nan,1,0.038461538461538464,1.0,0,0,nan
+question_group_id,985d78ba4991a939fdc1da22aedc7db26d96a046,30,0,0.0,0,0,nan,0,0.0,nan,0,0,nan
+question_group_id,bea4c701b5b8016ddc3f538300508271dc4dda99,30,1,0.03333333333333333,0,0,nan,1,0.04,1.0,0,0,nan
+question_group_id,c5e865a068a848238f34733509b1d670a4295978,28,6,0.21428571428571427,0,0,nan,6,0.21428571428571427,1.0,0,0,nan
+question_group_id,7295afb9c4022f59a3b8b3e7ad39fe7f9a8b5701,25,2,0.08,0,0,nan,2,0.08,1.0,0,0,nan
+question_group_id,c305b07d3e5049944f2cbd8512d5e2a0d2096f3d,25,2,0.08,0,0,nan,2,0.09090909090909091,1.0,0,0,nan
+question_group_id,c6f22cd80053c6902385b62c5044122204f5cfb6,25,0,0.0,0,0,nan,0,0.0,nan,0,0,nan
+question_group_id,cfb26a1ae869d03990b3020ce7e70075cd0c65dc,25,0,0.0,0,0,nan,0,0.0,nan,0,0,nan
+question_group_id,d04e77ea904a8a27d914aadf24446d13fcf617b1,25,0,0.0,0,0,nan,0,0.0,nan,0,0,nan
+question_group_id,dce5454bf2b5c13c559f20834dd7587652290d56,25,0,0.0,0,0,nan,0,0.0,nan,0,0,nan
+question_group_id,e9eed454440c46c02b5f277a4e07dca9df17a713,25,0,0.0,0,0,nan,0,0.0,nan,0,0,nan
+question_group_id,f0c5d4db7f494adcb9a74877d7432cc57370c219,25,0,0.0,0,0,nan,0,0.0,nan,0,0,nan
+question_group_id,65ad2514e326632aed11da0c1bba1c5d71ade9d7,23,0,0.0,0,0,nan,0,0.0,nan,0,0,nan
+question_group_id,9dcad11d15cc245e5dabc70ec2358208f1139f70,22,3,0.13636363636363635,2,1,0.5,2,0.14285714285714285,0.6666666666666666,1,1,1.0
+question_group_id,01e981e006d5cc3c46452c8e47a7071211cd9c78,20,0,0.0,0,0,nan,0,0.0,nan,0,0,nan
+question_group_id,331a7a211e46b10b48878cc0084924654a80202c,20,2,0.1,0,0,nan,2,0.1111111111111111,1.0,0,0,nan
+question_group_id,9d1179a873f8e7454e4075453ea96fee9e73ecff,20,2,0.1,4,2,0.5,0,0.0,0.0,5,2,0.4
+question_group_id,a2a51fd5b290f9fd0d1f9205256d33eacba0c4e6,20,2,0.1,0,0,nan,2,0.125,1.0,0,0,nan
+question_group_id,b62e6f2789e2f37733ad215d58a732b9fd77c233,20,4,0.2,0,0,nan,4,0.23529411764705882,1.0,0,0,nan
+question_group_id,35926f81037efd0b4c59ccf56bbc2c9f7d71e0e2,15,0,0.0,0,0,nan,0,0.0,nan,0,0,nan
+question_group_id,af118a044e3b1291ec846f46ee9e224b55ec6e7a,15,0,0.0,0,0,nan,0,0.0,nan,0,0,nan
+question_group_id,bbbb87022034ec8c0b0a3e1103b6d447bd1cdf3f,15,1,0.06666666666666667,0,0,nan,1,0.07142857142857142,1.0,0,0,nan
+question_group_id,d85626a0a96aed611307ec6a9dcca72eae3aa425,15,0,0.0,0,0,nan,0,0.0,nan,0,0,nan
+question_group_id,fb39ec4c6f2f2003805ff213bc0dfbf8ce1be2df,15,0,0.0,0,0,nan,0,0.0,nan,0,0,nan

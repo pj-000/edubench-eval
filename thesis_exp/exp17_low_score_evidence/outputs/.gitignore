@@ -239,6 +239,17 @@ exp20b_risk_coverage_frontier_seed42/*
 !exp20b_risk_coverage_frontier_seed42/decision/
 !exp20b_risk_coverage_frontier_seed42/decision/**
 
+# Exp20C best-rule case audit commits lightweight case-transition summaries
+# only. No raw predictions, logs, checkpoints, or full JSONL.
+!exp20c_best_rule_case_audit_seed42/
+exp20c_best_rule_case_audit_seed42/*
+!exp20c_best_rule_case_audit_seed42/reports/
+!exp20c_best_rule_case_audit_seed42/reports/**
+!exp20c_best_rule_case_audit_seed42/tables/
+!exp20c_best_rule_case_audit_seed42/tables/**
+!exp20c_best_rule_case_audit_seed42/decision/
+!exp20c_best_rule_case_audit_seed42/decision/**
+
 # Exp19-R5F targeted rejection mining keeps generated prompts, raw sampled
 # generations, logs, predictions, and full DPO JSON local/server-side. Commit
 # only QC summaries, configs, snippets, references without raw text, and
