@@ -158,6 +158,30 @@ exp19_r5f2_dpo_scout/*
 !exp19_r5f2_dpo_scout/decision/
 !exp19_r5f2_dpo_scout/decision/**
 
+# Exp19-R5G risk-calibrated DPO keeps full DPO JSON local/server-side. Commit
+# only configs, dataset snippets, QC tables, reports, and decisions.
+!exp19_r5g_risk_calibrated_dpo_seed42/
+exp19_r5g_risk_calibrated_dpo_seed42/*
+!exp19_r5g_risk_calibrated_dpo_seed42/configs/
+!exp19_r5g_risk_calibrated_dpo_seed42/configs/**
+!exp19_r5g_risk_calibrated_dpo_seed42/dataset_info_r5g_snippet.json
+!exp19_r5g_risk_calibrated_dpo_seed42/reports/
+!exp19_r5g_risk_calibrated_dpo_seed42/reports/**
+!exp19_r5g_risk_calibrated_dpo_seed42/tables/
+!exp19_r5g_risk_calibrated_dpo_seed42/tables/**
+
+# Exp19-R5G DPO scout keeps runtime train/predict configs, logs, raw
+# predictions, and checkpoints local/server-side. Commit only lightweight
+# validation tables, reports, and decision JSON.
+!exp19_r5g_dpo_scout/
+exp19_r5g_dpo_scout/*
+!exp19_r5g_dpo_scout/reports/
+!exp19_r5g_dpo_scout/reports/**
+!exp19_r5g_dpo_scout/tables/
+!exp19_r5g_dpo_scout/tables/**
+!exp19_r5g_dpo_scout/decision/
+!exp19_r5g_dpo_scout/decision/**
+
 # Exp19-R5F targeted rejection mining keeps generated prompts, raw sampled
 # generations, logs, predictions, and full DPO JSON local/server-side. Commit
 # only QC summaries, configs, snippets, references without raw text, and

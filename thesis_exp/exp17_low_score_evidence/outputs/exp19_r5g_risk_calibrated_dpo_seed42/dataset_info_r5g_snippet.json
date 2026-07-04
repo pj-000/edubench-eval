@@ -1,0 +1,70 @@
+{
+  "edubench_r5g_ratio_50_50_dpo_train": {
+    "columns": {
+      "chosen": "chosen",
+      "messages": "messages",
+      "rejected": "rejected"
+    },
+    "file_name": "data/edubench_r5g_ratio_50_50_dpo_train.json",
+    "formatting": "sharegpt",
+    "ranking": true,
+    "tags": {
+      "assistant_tag": "assistant",
+      "content_tag": "content",
+      "role_tag": "role",
+      "system_tag": "system",
+      "user_tag": "user"
+    }
+  },
+  "edubench_r5g_ratio_60_40_dpo_train": {
+    "columns": {
+      "chosen": "chosen",
+      "messages": "messages",
+      "rejected": "rejected"
+    },
+    "file_name": "data/edubench_r5g_ratio_60_40_dpo_train.json",
+    "formatting": "sharegpt",
+    "ranking": true,
+    "tags": {
+      "assistant_tag": "assistant",
+      "content_tag": "content",
+      "role_tag": "role",
+      "system_tag": "system",
+      "user_tag": "user"
+    }
+  },
+  "edubench_r5g_ratio_70_30_dpo_train": {
+    "columns": {
+      "chosen": "chosen",
+      "messages": "messages",
+      "rejected": "rejected"
+    },
+    "file_name": "data/edubench_r5g_ratio_70_30_dpo_train.json",
+    "formatting": "sharegpt",
+    "ranking": true,
+    "tags": {
+      "assistant_tag": "assistant",
+      "content_tag": "content",
+      "role_tag": "role",
+      "system_tag": "system",
+      "user_tag": "user"
+    }
+  },
+  "edubench_r5g_real_only_dpo_train": {
+    "columns": {
+      "chosen": "chosen",
+      "messages": "messages",
+      "rejected": "rejected"
+    },
+    "file_name": "data/edubench_r5g_real_only_dpo_train.json",
+    "formatting": "sharegpt",
+    "ranking": true,
+    "tags": {
+      "assistant_tag": "assistant",
+      "content_tag": "content",
+      "role_tag": "role",
+      "system_tag": "system",
+      "user_tag": "user"
+    }
+  }
+}

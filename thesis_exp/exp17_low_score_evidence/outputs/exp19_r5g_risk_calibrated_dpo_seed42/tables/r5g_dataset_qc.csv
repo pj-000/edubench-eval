@@ -1,0 +1,5 @@
+dataset,n,low_to_high_count,high_to_low_count,low_ratio,high_ratio,actual_rejected_count,hard_synthetic_count,unique_source_sample_ids,unique_rejected_sources,unique_pair_hashes,duplicate_pair_rate
+edubench_r5g_real_only_dpo_train,555,555,0,1.0,0.0,555,0,64,45,555,0.0
+edubench_r5g_ratio_70_30_dpo_train,793,555,238,0.699873896595208,0.30012610340479196,555,238,302,46,793,0.0
+edubench_r5g_ratio_60_40_dpo_train,925,555,370,0.6,0.4,555,370,434,46,925,0.0
+edubench_r5g_ratio_50_50_dpo_train,1110,555,555,0.5,0.5,555,555,619,46,1110,0.0

@@ -1,0 +1,7 @@
+run_name,dataset,dataset_family,max_steps,pref_beta,learning_rate,output_dir
+r5g_a1_real_only_s25_b0p03_lr2em6,edubench_r5g_real_only_dpo_train,real_only,25,0.03,2.0e-6,saves/edubench/qwen3-4b/r5g_a1_real_only_s25_b0p03_lr2em6_lora
+r5g_a2_real_only_s50_b0p03_lr2em6,edubench_r5g_real_only_dpo_train,real_only,50,0.03,2.0e-6,saves/edubench/qwen3-4b/r5g_a2_real_only_s50_b0p03_lr2em6_lora
+r5g_a3_real_only_s50_b0p05_lr5em6,edubench_r5g_real_only_dpo_train,real_only,50,0.05,5.0e-6,saves/edubench/qwen3-4b/r5g_a3_real_only_s50_b0p05_lr5em6_lora
+r5g_b1_ratio70_30_s100_b0p03_lr5em6,edubench_r5g_ratio_70_30_dpo_train,ratio_70_30,100,0.03,5.0e-6,saves/edubench/qwen3-4b/r5g_b1_ratio70_30_s100_b0p03_lr5em6_lora
+r5g_b2_ratio60_40_s100_b0p03_lr5em6,edubench_r5g_ratio_60_40_dpo_train,ratio_60_40,100,0.03,5.0e-6,saves/edubench/qwen3-4b/r5g_b2_ratio60_40_s100_b0p03_lr5em6_lora
+r5g_b3_ratio50_50_s100_b0p03_lr5em6,edubench_r5g_ratio_50_50_dpo_train,ratio_50_50,100,0.03,5.0e-6,saves/edubench/qwen3-4b/r5g_b3_ratio50_50_s100_b0p03_lr5em6_lora
