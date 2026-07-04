@@ -1,0 +1,1 @@
+sample_id,split,candidate_type,question_key,metric,language,subject,gold_label,score_model_pred,risk_model_pred,score_risk_gap,question_preview,answer_preview,rubric_preview,manual_should_flag,manual_final_action,manual_failure_type,manual_score_cap,manual_label_conflict,manual_notes

@@ -250,6 +250,20 @@ exp20c_best_rule_case_audit_seed42/*
 !exp20c_best_rule_case_audit_seed42/decision/
 !exp20c_best_rule_case_audit_seed42/decision/**
 
+# Exp21 D1-like annotation candidate construction commits only lightweight
+# audit/candidate CSVs, reports, and decision JSON. Full prediction prompts,
+# configs, logs, and raw train predictions stay local/server-side.
+!exp21_d1_like_risk_annotation_seed42/
+exp21_d1_like_risk_annotation_seed42/*
+!exp21_d1_like_risk_annotation_seed42/dev_audit/
+!exp21_d1_like_risk_annotation_seed42/dev_audit/**
+!exp21_d1_like_risk_annotation_seed42/train_candidates/
+!exp21_d1_like_risk_annotation_seed42/train_candidates/**
+!exp21_d1_like_risk_annotation_seed42/reports/
+!exp21_d1_like_risk_annotation_seed42/reports/**
+!exp21_d1_like_risk_annotation_seed42/decision/
+!exp21_d1_like_risk_annotation_seed42/decision/**
+
 # Exp19-R5F targeted rejection mining keeps generated prompts, raw sampled
 # generations, logs, predictions, and full DPO JSON local/server-side. Commit
 # only QC summaries, configs, snippets, references without raw text, and

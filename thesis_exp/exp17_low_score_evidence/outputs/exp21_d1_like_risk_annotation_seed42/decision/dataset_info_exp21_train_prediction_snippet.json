@@ -1,0 +1,16 @@
+{
+  "edubench_exp21_train_score_eval": {
+    "columns": {
+      "messages": "messages"
+    },
+    "file_name": "edubench_exp21_train_score_eval.json",
+    "formatting": "sharegpt",
+    "tags": {
+      "assistant_tag": "assistant",
+      "content_tag": "content",
+      "role_tag": "role",
+      "system_tag": "system",
+      "user_tag": "user"
+    }
+  }
+}
