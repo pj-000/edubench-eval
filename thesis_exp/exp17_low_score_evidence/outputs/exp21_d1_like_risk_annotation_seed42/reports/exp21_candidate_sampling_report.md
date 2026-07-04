@@ -20,28 +20,31 @@ and does not use human rationale as model input.
 
 ## Train Prediction Availability
 
-- train_predictions_available: False
-- Train score/risk predictions are missing, so Exp21 generated LLaMA-Factory prediction assets.
-- prediction_dataset: `thesis_exp/exp17_low_score_evidence/outputs/exp21_d1_like_risk_annotation_seed42/train_prediction_data/edubench_exp21_train_score_eval.json`
-- score_config: `thesis_exp/exp17_low_score_evidence/outputs/exp21_d1_like_risk_annotation_seed42/train_predict_configs/r5g_a3_real_only_s50_b0p05_lr5em6.yaml`
-- risk_config: `thesis_exp/exp17_low_score_evidence/outputs/exp21_d1_like_risk_annotation_seed42/train_predict_configs/r5h_h1_from_r5f2_real_highprotect_s10_b0p02_lr1e6.yaml`
-- Run `./thesis_exp/scripts/run_exp21_train_predictions.sh`, then rerun this Exp21 constructor.
+- train_predictions_available: True
 
 ## Train Annotation Candidates
 
-- No train candidates sampled yet because train predictions are missing.
+- sampled_train_clean_high_controls: 50
+- sampled_train_high_false_positive_candidates: 80
+- sampled_train_high_risk_low_candidates: 1
+- sampled_train_mid_borderline_candidates: 27
+- train_clean_high_controls: 2083
+- train_high_false_positive_candidates: 479
+- train_high_risk_low_candidates: 1
+- train_mid_borderline_candidates: 27
 
 ## Dominant Metrics / Languages
 
-- Not available until train prediction mining is complete.
+- metrics: Basic Factual Accuracy=64, Content Relevance & Scope Control=21, Clarity, Simplicity & Inspiration=20, Domain Knowledge Accuracy=17, Error Identification & Correction Precision=14, Higher-Order Thinking & Skill Development=8, Motivation, Guidance & Positive Feedback=6, Instruction Following & Task Completion=5
+- languages: en=87, zh=71
 
 ## Decision
 
 - dev_audit_ready: True
-- train_annotation_ready: False
-- need_train_prediction_generation: True
-- recommended_manual_annotation_count: 0
-- next_step: `run_train_predictions`
+- train_annotation_ready: True
+- need_train_prediction_generation: False
+- recommended_manual_annotation_count: 158
+- next_step: `manual_annotation`
 
 ## Guardrails
 

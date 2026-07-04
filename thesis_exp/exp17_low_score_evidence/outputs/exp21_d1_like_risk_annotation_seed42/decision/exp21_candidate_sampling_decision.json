@@ -14,18 +14,20 @@
     "no_test_read": true,
     "no_training": true
   },
-  "need_train_prediction_generation": true,
-  "next_step": "run_train_predictions",
-  "prediction_assets": {
-    "dataset_info": "thesis_exp/exp17_low_score_evidence/outputs/exp21_d1_like_risk_annotation_seed42/train_prediction_data/dataset_info.json",
-    "prediction_dataset": "thesis_exp/exp17_low_score_evidence/outputs/exp21_d1_like_risk_annotation_seed42/train_prediction_data/edubench_exp21_train_score_eval.json",
-    "risk_adapter": "saves/edubench/qwen3-4b/r5h_h1_from_r5f2_real_highprotect_s10_b0p02_lr1e6_lora",
-    "risk_config": "thesis_exp/exp17_low_score_evidence/outputs/exp21_d1_like_risk_annotation_seed42/train_predict_configs/r5h_h1_from_r5f2_real_highprotect_s10_b0p02_lr1e6.yaml",
-    "score_adapter": "saves/edubench/qwen3-4b/r5g_a3_real_only_s50_b0p05_lr5em6_lora",
-    "score_config": "thesis_exp/exp17_low_score_evidence/outputs/exp21_d1_like_risk_annotation_seed42/train_predict_configs/r5g_a3_real_only_s50_b0p05_lr5em6.yaml"
+  "need_train_prediction_generation": false,
+  "next_step": "manual_annotation",
+  "prediction_assets": {},
+  "recommended_manual_annotation_count": 158,
+  "train_annotation_ready": true,
+  "train_candidate_counts": {
+    "sampled_train_clean_high_controls": 50,
+    "sampled_train_high_false_positive_candidates": 80,
+    "sampled_train_high_risk_low_candidates": 1,
+    "sampled_train_mid_borderline_candidates": 27,
+    "train_clean_high_controls": 2083,
+    "train_high_false_positive_candidates": 479,
+    "train_high_risk_low_candidates": 1,
+    "train_mid_borderline_candidates": 27
   },
-  "recommended_manual_annotation_count": 0,
-  "train_annotation_ready": false,
-  "train_candidate_counts": {},
-  "train_predictions_available": false
+  "train_predictions_available": true
 }
