@@ -1,0 +1,101 @@
+{
+  "best_by_low_to_high_mae_qwk": "r5g_a3_real_only_s50_b0p05_lr5em6",
+  "guardrails": {
+    "d1_used_for_eval_only": true,
+    "human_rationale_not_in_prompt": true,
+    "no_test_read": true
+  },
+  "passed_runs": [],
+  "reason": "No R5G run passes the risk-calibrated success rule.",
+  "recommendation": "continue_risk_calibration",
+  "risk_frontier_runs": [],
+  "run_evaluations": {
+    "r5g_a1_real_only_s25_b0p03_lr2em6": {
+      "checks": {
+        "MAE": true,
+        "QWK": true,
+        "d1_pred_ge4": false,
+        "high_to_low": true,
+        "label2_recall": false,
+        "label5_recall": true,
+        "low_to_high": false
+      },
+      "passed": false,
+      "score": 4
+    },
+    "r5g_a2_real_only_s50_b0p03_lr2em6": {
+      "checks": {
+        "MAE": true,
+        "QWK": true,
+        "d1_pred_ge4": false,
+        "high_to_low": true,
+        "label2_recall": false,
+        "label5_recall": true,
+        "low_to_high": false
+      },
+      "passed": false,
+      "score": 4
+    },
+    "r5g_a3_real_only_s50_b0p05_lr5em6": {
+      "checks": {
+        "MAE": true,
+        "QWK": true,
+        "d1_pred_ge4": false,
+        "high_to_low": true,
+        "label2_recall": true,
+        "label5_recall": true,
+        "low_to_high": false
+      },
+      "passed": false,
+      "score": 5
+    },
+    "r5g_b1_ratio70_30_s100_b0p03_lr5em6": {
+      "checks": {
+        "MAE": true,
+        "QWK": false,
+        "d1_pred_ge4": false,
+        "high_to_low": true,
+        "label2_recall": false,
+        "label5_recall": true,
+        "low_to_high": false
+      },
+      "passed": false,
+      "score": 3
+    },
+    "r5g_b2_ratio60_40_s100_b0p03_lr5em6": {
+      "checks": {
+        "MAE": true,
+        "QWK": true,
+        "d1_pred_ge4": false,
+        "high_to_low": true,
+        "label2_recall": false,
+        "label5_recall": true,
+        "low_to_high": false
+      },
+      "passed": false,
+      "score": 4
+    },
+    "r5g_b3_ratio50_50_s100_b0p03_lr5em6": {
+      "checks": {
+        "MAE": true,
+        "QWK": true,
+        "d1_pred_ge4": false,
+        "high_to_low": true,
+        "label2_recall": false,
+        "label5_recall": true,
+        "low_to_high": false
+      },
+      "passed": false,
+      "score": 4
+    }
+  },
+  "thresholds": {
+    "MAE_max": 0.5,
+    "QWK_min": 0.5,
+    "d1_pred_ge4_rate_max": 0.7,
+    "high_to_low_rate_max": 0.04,
+    "label2_recall_min": 0.15,
+    "label5_recall_min": 0.75,
+    "low_to_high_rate_max": 0.4
+  }
+}
