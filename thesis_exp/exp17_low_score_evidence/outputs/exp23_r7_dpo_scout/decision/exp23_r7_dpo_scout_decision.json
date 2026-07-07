@@ -1,0 +1,5 @@
+{
+  "available": false,
+  "reason": "R7D and R7E predictions are both required for the primary Exp23 comparison.",
+  "recommendation": "wait_for_primary_predictions"
+}

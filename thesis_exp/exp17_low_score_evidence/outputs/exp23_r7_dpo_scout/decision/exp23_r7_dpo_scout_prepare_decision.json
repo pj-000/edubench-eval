@@ -1,0 +1,10 @@
+{
+  "auxiliary_run": "r7f_score_reason_consistency_s100_b0p03_lr5em6",
+  "dev_labels_used_for_training": false,
+  "human_reason_in_prompt": false,
+  "next_command": "./thesis_exp/scripts/run_exp23_r7_dpo_scout_train.sh",
+  "primary_comparison": "r7d_reason_real_s100_b0p03_lr5em6 vs r7e_matched_score_only_s100_b0p03_lr5em6",
+  "requires_gpu_for_training": true,
+  "status": "READY_FOR_SCOUT_TRAINING",
+  "test_read": false
+}

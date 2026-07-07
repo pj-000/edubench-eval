@@ -1,0 +1,7 @@
+source,dataset_variant,dataset_name,pairs,not_train_sample_id_count,not_train_question_key_count,dev_sample_id_overlap,dev_question_key_overlap,test_sample_id_overlap,test_question_key_overlap,human_reason_in_prompt_count,leakage_pass,dev_rows_read_for_id_guard_only,test_rows_read_for_id_guard_only,dev_test_label_read
+r7,r7a_score_only_reason_covered,edubench_r7a_score_only_reason_covered_real_dpo_train,749,0,0,0,0,0,0,0,True,,,
+r7,r7b_human_reason_chosen,edubench_r7b_human_reason_chosen_real_score_dpo_train,749,0,0,0,0,0,0,0,True,,,
+r7,r7c_low_high_human_reason_chosen,edubench_r7c_low_high_human_reason_chosen_real_score_dpo_train,429,0,0,0,0,0,0,0,True,,,
+r7,r7d_strict_label_consistent_reason,edubench_r7d_strict_label_consistent_reason_real_dpo_train,429,0,0,0,0,0,0,0,True,,,
+exp22,,edubench_r7e_matched_score_only_strict_real_dpo_train,429,,,0,0,0,0,0,True,1107,1103,False
+exp22,,edubench_r7f_score_reason_consistency_dpo_train,856,,,0,0,0,0,0,True,1107,1103,False

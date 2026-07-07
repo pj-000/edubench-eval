@@ -1,0 +1,3 @@
+run_name,init_adapter,dpo_dataset,n,parse_success_rate,MAE,QWK,Signed_Bias,Exact_Match,low_to_high_count,low_to_high_rate,high_to_low_count,high_to_low_rate,label2_recall,label5_recall
+r2c_clean_reason_score_balanced,r2c_clean_reason_score_balanced,none_init_baseline,1107,1.0,0.4218608852755194,0.49819753672553424,0.21951219512195122,0.6711833785004516,34,0.5964912280701754,0,0.0,0.0,0.8435251798561151
+r4b_shuffled_reason_balanced,r4b_shuffled_reason_balanced,none_init_baseline,1107,1.0,0.4074074074074074,0.5616693468988669,0.14001806684733514,0.6802168021680217,27,0.47368421052631576,6,0.006349206349206349,0.05263157894736842,0.8363309352517986
