@@ -1,0 +1,12 @@
+{
+  "d1_hidden_cases": 26,
+  "dev_rows_read": 1107,
+  "low_score_cases": 57,
+  "missing_prediction_runs": [],
+  "next_step": "src_dpo_or_train_only_hidden_failure_expansion",
+  "raw_answers_or_reasons_written": false,
+  "raw_predictions_written": false,
+  "reason": "ORC-B changes too few DPO0 low-score predictions and does not reduce low-to-high.",
+  "recommendation": "do_not_rerun_exp24_as_is",
+  "test_read": false
+}

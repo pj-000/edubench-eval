@@ -1,0 +1,6 @@
+comparison,base_run,target_run,n,changed_count,changed_rate,mean_abs_pred_delta,low_to_high_fixed_count,low_to_high_worsened_count,high_to_low_reduced_count,high_to_low_added_count
+dpo0_vs_r2c,r2c,dpo0,1107,141,0.12737127371273713,0.16350496838301717,0,19,0,10
+orc_b_vs_dpo0,dpo0,orc_b,1105,20,0.01809954751131222,0.02262443438914027,0,1,1,1
+orc_b_noreason_vs_dpo0,dpo0,orc_b_noreason,1107,17,0.015356820234869015,0.018970189701897018,1,1,0,2
+orc_b_vs_r7e,r7e,orc_b,1105,252,0.22805429864253393,0.2515837104072398,2,7,4,4
+r7d_vs_r7e,r7e,r7d,1103,426,0.386219401631913,0.4932003626473255,16,6,7,41

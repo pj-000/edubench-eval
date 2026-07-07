@@ -1,0 +1,15 @@
+metric,language,low_n,low_to_high_r2c,low_to_high_r4b,low_to_high_r7d,low_to_high_r7e,low_to_high_dpo0,low_to_high_orc_b
+Basic Factual Accuracy,en,2,1.0,0.0,1.0,1.0,1.0,1.0
+"Clarity, Simplicity & Inspiration",en,4,1.0,1.0,0.75,1.0,1.0,1.0
+Content Relevance & Scope Control,en,2,1.0,0.0,1.0,0.5,1.0,1.0
+Error Identification & Correction Precision,en,4,1.0,1.0,0.25,1.0,1.0,0.75
+Error Identification & Correction Precision,zh,1,1.0,1.0,1.0,1.0,1.0,1.0
+Higher-Order Thinking & Skill Development,en,7,0.0,0.0,0.2857142857142857,0.7142857142857143,0.42857142857142855,0.5714285714285714
+Instruction Following & Task Completion,en,6,1.0,1.0,0.6666666666666666,1.0,1.0,1.0
+Instruction Following & Task Completion,zh,1,1.0,1.0,1.0,1.0,1.0,1.0
+"Motivation, Guidance & Positive Feedback",en,8,0.25,0.25,0.625,1.0,1.0,1.0
+"Motivation, Guidance & Positive Feedback",zh,1,1.0,1.0,1.0,1.0,1.0,1.0
+"Personalization, Adaptation & Learning Support",zh,1,1.0,1.0,1.0,1.0,1.0,1.0
+Reasoning Process Rigor,en,7,0.42857142857142855,0.42857142857142855,0.5714285714285714,1.0,1.0,1.0
+Reasoning Process Rigor,zh,9,0.3333333333333333,0.0,1.0,0.4444444444444444,1.0,1.0
+Scenario Element Integration,en,4,1.0,1.0,0.75,1.0,1.0,1.0
