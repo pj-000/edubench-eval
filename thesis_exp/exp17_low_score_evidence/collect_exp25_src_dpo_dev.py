@@ -63,6 +63,27 @@ RUNS = [
         "dataset": "r7h_structured_mixed",
         "method_role": "optional_r4b_init",
     },
+    {
+        "run_name": "exp25_r4_field_b1_ftx0_mixed_r2c",
+        "run_label": "Exp25R4 field SRC mixed beta1 R2C",
+        "init_adapter": "r2c_clean_reason_score_balanced",
+        "dataset": "r7h_structured_mixed",
+        "method_role": "field_masked_src_dpo_beta1",
+    },
+    {
+        "run_name": "exp25_r4_field_b3_ftx0_mixed_r2c",
+        "run_label": "Exp25R4 field SRC mixed beta3 R2C",
+        "init_adapter": "r2c_clean_reason_score_balanced",
+        "dataset": "r7h_structured_mixed",
+        "method_role": "field_masked_src_dpo_beta3",
+    },
+    {
+        "run_name": "exp25_r4_field_b1_ftx0_score_r2c",
+        "run_label": "Exp25R4 field SRC score-only beta1 R2C",
+        "init_adapter": "r2c_clean_reason_score_balanced",
+        "dataset": "r7h_score_mismatch_only",
+        "method_role": "field_masked_score_mismatch_beta1_optional",
+    },
 ]
 
 
@@ -247,7 +268,9 @@ def load_training_summaries(summary_dir: Path, runs: list[dict[str, str]]) -> li
                 "completed_steps": data.get("completed_steps", ""),
                 "learning_rate": data.get("learning_rate", ""),
                 "beta": data.get("beta", ""),
+                "margin": data.get("margin", ""),
                 "pref_ftx": data.get("pref_ftx", ""),
+                "logp_mode": data.get("logp_mode", ""),
                 "length_normalized_logp": data.get("length_normalized_logp", ""),
                 "initial_mean_delta_step1": data.get("initial_mean_delta_step1", ""),
                 "mean_weight_all_pairs": data.get("mean_weight_all_pairs", ""),

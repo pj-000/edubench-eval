@@ -11,6 +11,7 @@ from __future__ import annotations
 import argparse
 import json
 import random
+import re
 import sys
 import time
 from collections import Counter
@@ -39,6 +40,7 @@ DEFAULT_PRED_DIR = Path(
     "thesis_exp/exp17_low_score_evidence/outputs/exp25_structured_src_dpo_seed42/"
     "dev_predictions/exp25_src_score_mismatch_r2c"
 )
+FIELD_RE = re.compile(r'"(?P<field>reason|major_failures|failure_tag_source|score_cap|score)":')
 
 
 def require_training_deps() -> tuple[Any, Any, Any, Any, Any, Any]:
@@ -86,19 +88,96 @@ def chat_prompt(tokenizer: Any, messages: list[dict[str, str]]) -> str:
     return "\n\n".join(parts)
 
 
-def sequence_features(tokenizer: Any, prompt_text: str, target_text: str, max_length: int) -> dict[str, list[int]]:
+def choose_fields(negative_type: str) -> set[str]:
+    if negative_type in {"score_mismatch_same_reason", "high_protection_score_mismatch"}:
+        return {"score_cap", "score"}
+    if negative_type == "reason_mismatch_same_score":
+        return {"reason"}
+    if negative_type == "low_failure_erasure_counterfactual":
+        return {"major_failures", "failure_tag_source", "score_cap", "score"}
+    return {"reason", "major_failures", "failure_tag_source", "score_cap", "score"}
+
+
+def value_end(text: str, start: int) -> int:
+    quote = False
+    escape = False
+    depth = 0
+    for idx in range(start, len(text)):
+        ch = text[idx]
+        if quote:
+            if escape:
+                escape = False
+            elif ch == "\\":
+                escape = True
+            elif ch == '"':
+                quote = False
+            continue
+        if ch == '"':
+            quote = True
+        elif ch in "[{":
+            depth += 1
+        elif ch in "]}":
+            if depth == 0:
+                return idx
+            depth -= 1
+        elif ch == "," and depth == 0:
+            return idx
+    return len(text)
+
+
+def selected_char_spans(target_text: str, fields: set[str]) -> list[tuple[int, int]]:
+    spans: list[tuple[int, int]] = []
+    for match in FIELD_RE.finditer(target_text):
+        if match.group("field") not in fields:
+            continue
+        spans.append((match.start(), value_end(target_text, match.end())))
+    return spans
+
+
+def overlaps(span: tuple[int, int], spans: list[tuple[int, int]]) -> bool:
+    start, end = span
+    return any(start < b and end > a for a, b in spans)
+
+
+def sequence_features(
+    tokenizer: Any,
+    prompt_text: str,
+    target_text: str,
+    max_length: int,
+    logp_mode: str = "full",
+    selected_fields: set[str] | None = None,
+) -> dict[str, list[int]]:
     eos = tokenizer.eos_token or ""
     prompt_ids = tokenizer(prompt_text, add_special_tokens=False).input_ids
-    target_ids = tokenizer(target_text + eos, add_special_tokens=False).input_ids
+    target_encoded = tokenizer(
+        target_text + eos,
+        add_special_tokens=False,
+        return_offsets_mapping=(logp_mode == "field"),
+    )
+    target_ids = target_encoded.input_ids
     if not target_ids:
         target_ids = [tokenizer.eos_token_id]
+    target_labels = list(target_ids)
+    if logp_mode == "field":
+        spans = selected_char_spans(target_text, selected_fields or set())
+        offsets = getattr(target_encoded, "offset_mapping", []) or [(0, 0)] * len(target_ids)
+        masked_labels: list[int] = []
+        for token_id, offset in zip(target_ids, offsets):
+            if offset == (0, 0) or not overlaps(offset, spans):
+                masked_labels.append(-100)
+            else:
+                masked_labels.append(token_id)
+        if any(label != -100 for label in masked_labels):
+            target_labels = masked_labels
     if len(prompt_ids) + len(target_ids) > max_length:
         keep_prompt = max(1, max_length - len(target_ids))
         prompt_ids = prompt_ids[-keep_prompt:]
         if len(prompt_ids) + len(target_ids) > max_length:
-            target_ids = target_ids[: max(1, max_length - len(prompt_ids))]
+            keep_target = max(1, max_length - len(prompt_ids))
+            target_ids = target_ids[:keep_target]
+            target_labels = target_labels[:keep_target]
     input_ids = prompt_ids + target_ids
-    labels = [-100] * len(prompt_ids) + target_ids
+    labels = [-100] * len(prompt_ids) + target_labels
     return {"input_ids": input_ids, "labels": labels}
 
 
@@ -116,15 +195,31 @@ class SRCDataset:
         self.items: list[EncodedItem] = []
         for row in rows:
             prompt = chat_prompt(tokenizer, row["messages"])
-            chosen = sequence_features(tokenizer, prompt, assistant_content(row["chosen"]), args.cutoff_len)
-            rejected = sequence_features(tokenizer, prompt, assistant_content(row["rejected"]), args.cutoff_len)
+            negative_type = clean(row.get("negative_type"))
+            fields = choose_fields(negative_type)
+            chosen = sequence_features(
+                tokenizer,
+                prompt,
+                assistant_content(row["chosen"]),
+                args.cutoff_len,
+                args.logp_mode,
+                fields,
+            )
+            rejected = sequence_features(
+                tokenizer,
+                prompt,
+                assistant_content(row["rejected"]),
+                args.cutoff_len,
+                args.logp_mode,
+                fields,
+            )
             self.items.append(
                 EncodedItem(
                     chosen=chosen,
                     rejected=rejected,
                     weight=float(row.get("pair_weight") or 1.0),
                     pair_id=clean(row.get("pair_id")),
-                    negative_type=clean(row.get("negative_type")),
+                    negative_type=negative_type,
                 )
             )
 
@@ -256,7 +351,7 @@ def train(args: argparse.Namespace) -> dict[str, Any]:
                 ref_chosen_logp, _ = avg_logp_and_nll(ref_model, batch, "chosen", F)
                 ref_rejected_logp, _ = avg_logp_and_nll(ref_model, batch, "rejected", F)
             delta = (chosen_logp - rejected_logp) - (ref_chosen_logp - ref_rejected_logp)
-            src_loss = (weights * F.softplus(-args.beta * delta)).sum() / weights.sum().clamp(min=1.0)
+            src_loss = (weights * F.softplus(-(args.beta * delta - args.margin))).sum() / weights.sum().clamp(min=1.0)
             loss = src_loss + args.pref_ftx * chosen_nll
             (loss / args.gradient_accumulation_steps).backward()
             micro_step += 1
@@ -313,7 +408,9 @@ def train(args: argparse.Namespace) -> dict[str, Any]:
         "per_device_train_batch_size": args.per_device_train_batch_size,
         "gradient_accumulation_steps": args.gradient_accumulation_steps,
         "beta": args.beta,
+        "margin": args.margin,
         "pref_ftx": args.pref_ftx,
+        "logp_mode": args.logp_mode,
         "length_normalized_logp": True,
         "initial_mean_delta_step1": initial_mean_delta_step1,
         "mean_weight_all_pairs": sum(item_weights) / max(len(item_weights), 1),
@@ -395,6 +492,7 @@ def build_parser() -> argparse.ArgumentParser:
         default=Path("thesis_exp/exp17_low_score_evidence/outputs/exp25_structured_src_dpo_seed42/training_summaries"),
     )
     parser.add_argument("--cutoff-len", type=int, default=4096)
+    parser.add_argument("--logp-mode", choices=["full", "field"], default="full")
     parser.add_argument("--max-steps", type=int, default=100)
     parser.add_argument("--learning-rate", type=float, default=5e-6)
     parser.add_argument("--per-device-train-batch-size", type=int, default=1)
@@ -408,6 +506,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--gradient-checkpointing", action="store_true", default=True)
     parser.add_argument("--no-gradient-checkpointing", dest="gradient_checkpointing", action="store_false")
     parser.add_argument("--beta", type=float, default=0.03)
+    parser.add_argument("--margin", type=float, default=0.0)
     parser.add_argument("--pref-ftx", type=float, default=0.05)
     parser.add_argument("--max-train-examples", type=int, default=0)
     parser.add_argument("--max-predict-examples", type=int, default=0)
