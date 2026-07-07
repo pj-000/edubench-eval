@@ -7,6 +7,11 @@ Human rationales are auxiliary targets, not contrasted directly against rejected
 
 | run | dataset | parse | MAE | QWK | low-to-high | high-to-low | label2 recall | label5 recall | D1 pred>=4 |
 |---|---|---:|---:|---:|---:|---:|---:|---:|---:|
+| `exp24_dpo0_r2c` | `r7g_orc_score_channel_reason_aux` | 1.0000 | 0.4734 | 0.3144 | 0.9298 | 0.0106 | 0.0526 | 0.8129 | 1.0000 |
+| `exp24_orc_a_r2c` | `r7g_orc_score_channel_reason_aux` | 0.9991 | 0.4720 | 0.3034 | 0.9298 | 0.0095 | 0.0000 | 0.8237 | 1.0000 |
+| `exp24_orc_b_r2c` | `r7g_orc_score_channel_reason_aux` | 0.9982 | 0.4688 | 0.3013 | 0.9298 | 0.0095 | 0.0000 | 0.8255 | 0.9615 |
+| `exp24_orc_b_noreason_r2c` | `r7g_orc_score_channel_reason_aux` | 1.0000 | 0.4724 | 0.3050 | 0.9298 | 0.0127 | 0.0000 | 0.8129 | 1.0000 |
+| `exp24_orc_c_r2c` | `r7g_orc_score_channel_reason_aux` | 0.9991 | 0.4729 | 0.2926 | 0.9298 | 0.0095 | 0.0000 | 0.8255 | 1.0000 |
 | `r2c_clean_reason_score_balanced` | `none_init_baseline` | 1.0000 | 0.4219 | 0.4982 | 0.5965 | 0.0000 | 0.0000 | 0.8435 | 1.0000 |
 | `r4b_shuffled_reason_balanced` | `none_init_baseline` | 1.0000 | 0.4074 | 0.5617 | 0.4737 | 0.0063 | 0.0526 | 0.8363 | 0.8462 |
 | `r7d_reason_real_s100_b0p03_lr5em6` | `human_reason_real_error` | 0.9964 | 0.5739 | 0.3258 | 0.6842 | 0.0455 | 0.2632 | 0.7986 | 0.6923 |
@@ -17,16 +22,21 @@ Human rationales are auxiliary targets, not contrasted directly against rejected
 
 | run | completed | steps | alpha_lh | alpha_hl | alpha_d | margin_lh | margin_hl | margin_d | lambda_reason | init delta | mean weight | mean margin | peak MB | last loss |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
-| `exp24_dpo0_r2c` | False | / |  |  |  |  |  |  |  | nan | nan | nan | nan | nan |
-| `exp24_orc_a_r2c` | False | / |  |  |  |  |  |  |  | nan | nan | nan | nan | nan |
-| `exp24_orc_b_r2c` | False | / |  |  |  |  |  |  |  | nan | nan | nan | nan | nan |
-| `exp24_orc_b_noreason_r2c` | False | / |  |  |  |  |  |  |  | nan | nan | nan | nan | nan |
-| `exp24_orc_c_r2c` | False | / |  |  |  |  |  |  |  | nan | nan | nan | nan | nan |
+| `exp24_dpo0_r2c` | True | 100/100 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | -0.0625 | 1.0000 | 0.0000 | 18190.7168 | 0.7112 |
+| `exp24_orc_a_r2c` | True | 100/100 | 1.0 | 0.75 | 0.15 | 0.05 | 0.05 | 0.03 | 0.03 | -0.0312 | 1.8529 | 0.0741 | 18862.7461 | 0.7786 |
+| `exp24_orc_b_r2c` | True | 100/100 | 1.5 | 1.0 | 0.2 | 0.1 | 0.05 | 0.05 | 0.03 | -0.0312 | 2.1457 | 0.1177 | 18862.7461 | 0.7781 |
+| `exp24_orc_b_noreason_r2c` | True | 100/100 | 1.5 | 1.0 | 0.2 | 0.1 | 0.05 | 0.05 | 0.0 | -0.0625 | 2.1457 | 0.1177 | 18190.7168 | 0.7110 |
+| `exp24_orc_c_r2c` | True | 100/100 | 1.0 | 1.0 | 0.2 | 0.05 | 0.1 | 0.05 | 0.05 | -0.0312 | 2.0051 | 0.1188 | 18862.7461 | 0.8178 |
 
 ## Structured Failure Diagnostics
 
 | run | failure micro-F1 | D1 nonempty failure | score_cap nonnull |
 |---|---:|---:|---:|
+| `exp24_dpo0_r2c` | 0.0000 | 0.0000 | 0.0000 |
+| `exp24_orc_a_r2c` | 0.0000 | 0.0000 | 0.0000 |
+| `exp24_orc_b_r2c` | 0.0000 | 0.0000 | 0.0000 |
+| `exp24_orc_b_noreason_r2c` | 0.0000 | 0.0000 | 0.0000 |
+| `exp24_orc_c_r2c` | 0.0000 | 0.0000 | 0.0000 |
 | `r2c_clean_reason_score_balanced` | 0.0000 | 0.0000 | nan |
 | `r4b_shuffled_reason_balanced` | 0.0000 | 0.0000 | nan |
 | `r7d_reason_real_s100_b0p03_lr5em6` | 0.0000 | 0.0000 | 0.2692 |
@@ -35,9 +45,9 @@ Human rationales are auxiliary targets, not contrasted directly against rejected
 
 ## Decision
 
-- recommendation: `wait_for_exp24_predictions`
-- reason: No Exp24 ORC predictions were collected.
-- best_by_low_to_high_mae_qwk: ``
+- recommendation: `orc_not_yet_successful`
+- reason: No Exp24 ORC run satisfies the minimum success rule vs R7E.
+- best_by_low_to_high_mae_qwk: `exp24_orc_b_r2c`
 - minimum_success_runs: none
 - strong_success_runs: none
 
@@ -45,7 +55,7 @@ Human rationales are auxiliary targets, not contrasted directly against rejected
 
 - included Exp23/baseline rows: r2c_clean_reason_score_balanced, r4b_shuffled_reason_balanced, r7d_reason_real_s100_b0p03_lr5em6, r7e_matched_score_only_s100_b0p03_lr5em6, r7f_score_reason_consistency_s100_b0p03_lr5em6
 - missing Exp23/baseline rows: none
-- missing Exp24 predictions: exp24_dpo0_r2c, exp24_orc_a_r2c, exp24_orc_b_r2c, exp24_orc_b_noreason_r2c, exp24_orc_c_r2c
+- missing Exp24 predictions: none
 
 ## Guardrails
 

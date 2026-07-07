@@ -1,6 +1,142 @@
 {
-  "best_by_low_to_high_mae_qwk": "",
-  "evaluations": {},
+  "best_by_low_to_high_mae_qwk": "exp24_orc_b_r2c",
+  "evaluations": {
+    "exp24_dpo0_r2c": {
+      "deltas_vs_r7e": {
+        "D1_hidden_pred_ge4": 0.038461538461538436,
+        "MAE": -0.022583559168925016,
+        "QWK": -0.0689641768336795,
+        "label5_recall": 0.23201438848920863,
+        "low_to_high_rate": 0.07017543859649122
+      },
+      "minimum_checks": {
+        "d1_hidden_pred_ge4": false,
+        "label5_delta_vs_r7e": true,
+        "low_to_high_delta_vs_r7e": false,
+        "mae_delta_vs_r7e": true,
+        "qwk_delta_vs_r7e": false
+      },
+      "minimum_success": false,
+      "score": 3,
+      "strong_checks": {
+        "MAE": false,
+        "QWK": false,
+        "d1_hidden_pred_ge4": false,
+        "label2_recall": false,
+        "label5_recall": true,
+        "low_to_high": false
+      },
+      "strong_success": false
+    },
+    "exp24_orc_a_r2c": {
+      "deltas_vs_r7e": {
+        "D1_hidden_pred_ge4": 0.038461538461538436,
+        "MAE": -0.02396389244181768,
+        "QWK": -0.07996901531931588,
+        "label5_recall": 0.2428057553956834,
+        "low_to_high_rate": 0.07017543859649122
+      },
+      "minimum_checks": {
+        "d1_hidden_pred_ge4": false,
+        "label5_delta_vs_r7e": true,
+        "low_to_high_delta_vs_r7e": false,
+        "mae_delta_vs_r7e": true,
+        "qwk_delta_vs_r7e": false
+      },
+      "minimum_success": false,
+      "score": 3,
+      "strong_checks": {
+        "MAE": false,
+        "QWK": false,
+        "d1_hidden_pred_ge4": false,
+        "label2_recall": false,
+        "label5_recall": true,
+        "low_to_high": false
+      },
+      "strong_success": false
+    },
+    "exp24_orc_b_noreason_r2c": {
+      "deltas_vs_r7e": {
+        "D1_hidden_pred_ge4": 0.038461538461538436,
+        "MAE": -0.023486901535682003,
+        "QWK": -0.0783699911179303,
+        "label5_recall": 0.23201438848920863,
+        "low_to_high_rate": 0.07017543859649122
+      },
+      "minimum_checks": {
+        "d1_hidden_pred_ge4": false,
+        "label5_delta_vs_r7e": true,
+        "low_to_high_delta_vs_r7e": false,
+        "mae_delta_vs_r7e": true,
+        "qwk_delta_vs_r7e": false
+      },
+      "minimum_success": false,
+      "score": 3,
+      "strong_checks": {
+        "MAE": false,
+        "QWK": false,
+        "d1_hidden_pred_ge4": false,
+        "label2_recall": false,
+        "label5_recall": true,
+        "low_to_high": false
+      },
+      "strong_success": false
+    },
+    "exp24_orc_b_r2c": {
+      "deltas_vs_r7e": {
+        "D1_hidden_pred_ge4": 0.0,
+        "MAE": -0.02715667880660705,
+        "QWK": -0.08201931750943281,
+        "label5_recall": 0.2446043165467625,
+        "low_to_high_rate": 0.07017543859649122
+      },
+      "minimum_checks": {
+        "d1_hidden_pred_ge4": false,
+        "label5_delta_vs_r7e": true,
+        "low_to_high_delta_vs_r7e": false,
+        "mae_delta_vs_r7e": true,
+        "qwk_delta_vs_r7e": false
+      },
+      "minimum_success": false,
+      "score": 3,
+      "strong_checks": {
+        "MAE": false,
+        "QWK": false,
+        "d1_hidden_pred_ge4": false,
+        "label2_recall": false,
+        "label5_recall": true,
+        "low_to_high": false
+      },
+      "strong_success": false
+    },
+    "exp24_orc_c_r2c": {
+      "deltas_vs_r7e": {
+        "D1_hidden_pred_ge4": 0.038461538461538436,
+        "MAE": -0.023059733309810482,
+        "QWK": -0.09074673559638657,
+        "label5_recall": 0.2446043165467625,
+        "low_to_high_rate": 0.07017543859649122
+      },
+      "minimum_checks": {
+        "d1_hidden_pred_ge4": false,
+        "label5_delta_vs_r7e": true,
+        "low_to_high_delta_vs_r7e": false,
+        "mae_delta_vs_r7e": true,
+        "qwk_delta_vs_r7e": false
+      },
+      "minimum_success": false,
+      "score": 3,
+      "strong_checks": {
+        "MAE": false,
+        "QWK": false,
+        "d1_hidden_pred_ge4": false,
+        "label2_recall": false,
+        "label5_recall": true,
+        "low_to_high": false
+      },
+      "strong_success": false
+    }
+  },
   "guardrails": {
     "dev_used_for_eval_only": true,
     "human_reason_not_in_prompt": true,
@@ -16,8 +152,8 @@
     "qwk_delta_vs_r7e_min": -0.03
   },
   "minimum_success_runs": [],
-  "reason": "No Exp24 ORC predictions were collected.",
-  "recommendation": "wait_for_exp24_predictions",
+  "reason": "No Exp24 ORC run satisfies the minimum success rule vs R7E.",
+  "recommendation": "orc_not_yet_successful",
   "strong_success_rule": {
     "MAE_max": 0.43,
     "QWK_min": 0.5,
