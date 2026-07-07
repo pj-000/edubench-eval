@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+REPO_ROOT="$(cd "${SCRIPT_DIR}/../.." && pwd)"
+cd "${REPO_ROOT}"
+
 CONDA_ENV="${CONDA_ENV:-llama_factory}"
 GPU_LIST="${GPU_LIST:-0 1}"
 SMOKE="${SMOKE:-0}"
