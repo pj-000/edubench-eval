@@ -1,5 +1,18 @@
 {
-  "available": false,
-  "reason": "R7D and R7E predictions are both required for the primary Exp23 comparison.",
-  "recommendation": "wait_for_primary_predictions"
+  "available": true,
+  "deltas_r7d_minus_r7e": {
+    "D1_hidden_pred_ge4_rate": -0.2692307692307693,
+    "MAE": 0.07795443321613632,
+    "QWK": -0.05759000114649193,
+    "label5_recall": 0.21762589928057552,
+    "low_to_high_rate": -0.17543859649122806
+  },
+  "guardrail": {
+    "MAE_delta_max": 0.03,
+    "QWK_delta_min": -0.03,
+    "label5_recall_delta_min": -0.05,
+    "requires_low_to_high_improvement": true
+  },
+  "reason": "R7D does not clearly beat the exactly matched score-only R7E control under ordinary DPO.",
+  "recommendation": "reason_dpo_not_yet_supported"
 }
