@@ -45,18 +45,21 @@ RUNS = [
     {
         "run_name": "exp25_src_score_mismatch_r2c",
         "run_label": "Exp25 SRC score-mismatch R2C",
+        "init_adapter": "r2c_clean_reason_score_balanced",
         "dataset": "r7h_score_mismatch_only",
         "method_role": "same_schema_score_mismatch",
     },
     {
         "run_name": "exp25_src_mixed_r2c",
         "run_label": "Exp25 SRC mixed R2C",
+        "init_adapter": "r2c_clean_reason_score_balanced",
         "dataset": "r7h_structured_mixed",
         "method_role": "score_reason_failure_consistency",
     },
     {
         "run_name": "exp25_src_mixed_r4b",
         "run_label": "Exp25 SRC mixed R4B",
+        "init_adapter": "r4b_shuffled_reason_balanced",
         "dataset": "r7h_structured_mixed",
         "method_role": "optional_r4b_init",
     },
@@ -454,7 +457,12 @@ def collect(args: argparse.Namespace) -> dict[str, Any]:
             if args.allow_missing_predictions:
                 continue
             raise
-        meta = {"dpo_dataset": run["dataset"], "method_role": run["method_role"]}
+        meta = {
+            "run_name": name,
+            "init_adapter": run["init_adapter"],
+            "dpo_dataset": run["dataset"],
+            "method_role": run["method_role"],
+        }
         metric_rows.append(copy_metric_fields(sft_collect.metric_summary(aligned, name, run["run_label"], "dev"), meta))
         d1_rows.append(copy_d1_fields(sft_collect.d1_eval_row(aligned, args.d1_dir, name, run["run_label"]), name))
         failure_rows.append(

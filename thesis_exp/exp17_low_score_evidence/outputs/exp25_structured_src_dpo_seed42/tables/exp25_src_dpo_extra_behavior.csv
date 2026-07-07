@@ -1,0 +1,3 @@
+run_name,invalid_count,invalid_count_on_low,invalid_count_on_d1_hidden,score_cap_nonnull_rate_on_low,score_cap_nonnull_rate_on_d1,major_failure_nonempty_rate_on_low,major_failure_nonempty_rate_on_d1,no_major_failure_rate_on_low,d1_actual_scalar_decrease_vs_r2c,d1_actual_scalar_decrease_vs_exp24_dpo0
+exp25_src_score_mismatch_r2c,6,2,0,0.22807017543859648,0.0,0.05263157894736842,0.0,0.3684210526315789,1,1
+exp25_src_mixed_r2c,6,1,0,0.24561403508771928,0.0,0.05263157894736842,0.0,0.38596491228070173,1,1
