@@ -1,0 +1,29 @@
+{
+  "caveats": [
+    "Rejected side is still a scalar real model score, not a full natural-language rejected rationale.",
+    "R7D is strictest because it requires recovered human reason scores to include the final gold label.",
+    "R7B/R7C preserve more coverage but may include reasons whose individual rater score differs from the rounded final label."
+  ],
+  "dev_rows_used_for_id_guard_only": 1107,
+  "guardrails": {
+    "dev_test_ids_used_for_leakage_guard_only": true,
+    "dev_test_labels_used": false,
+    "human_rationale_not_used_as_prompt_input": true,
+    "leakage_audit_pass": true,
+    "rejected_side_is_real_model_score": true,
+    "synthetic_or_template_rejected_used": false,
+    "training_source_split": "question_seed42/train"
+  },
+  "pair_counts": {
+    "edubench_r7a_score_only_reason_covered_real_dpo_train": 749,
+    "edubench_r7b_human_reason_chosen_real_score_dpo_train": 749,
+    "edubench_r7c_low_high_human_reason_chosen_real_score_dpo_train": 429,
+    "edubench_r7d_strict_label_consistent_reason_real_dpo_train": 429
+  },
+  "recommended_first_review_dataset": "edubench_r7d_strict_label_consistent_reason_real_dpo_train",
+  "recommended_reason_risk_dataset": "edubench_r7c_low_high_human_reason_chosen_real_score_dpo_train",
+  "safe_for_dpo_data_review": true,
+  "score_only_control_dataset": "edubench_r7a_score_only_reason_covered_real_dpo_train",
+  "test_rows_used_for_id_guard_only": 1103,
+  "train_rows": 3326
+}

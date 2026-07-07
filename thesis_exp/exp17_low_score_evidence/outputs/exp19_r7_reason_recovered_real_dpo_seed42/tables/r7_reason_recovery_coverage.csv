@@ -1,0 +1,6 @@
+gold_label,train_samples,reason_recovered_samples,reason_recovered_rate,label_consistent_reason_samples,label_consistent_reason_rate,match_status_counts
+1,58,47,0.8103,47,0.8103,"{""label_consistent_metric_model_reason_recovered"": 32, ""label_consistent_metric_reason_recovered"": 15, ""question_answer_unmatched"": 11}"
+2,53,37,0.6981,37,0.6981,"{""label_consistent_metric_model_reason_recovered"": 37, ""question_answer_unmatched"": 16}"
+3,297,162,0.5455,162,0.5455,"{""label_consistent_metric_model_reason_recovered"": 162, ""question_answer_matched_metric_unmatched"": 10, ""question_answer_unmatched"": 125}"
+4,1163,631,0.5426,631,0.5426,"{""label_consistent_metric_model_reason_recovered"": 631, ""question_answer_matched_metric_unmatched"": 95, ""question_answer_unmatched"": 437}"
+5,1755,952,0.5425,952,0.5425,"{""label_consistent_metric_model_reason_recovered"": 907, ""label_consistent_metric_reason_recovered"": 45, ""question_answer_matched_metric_unmatched"": 85, ""question_answer_unmatched"": 718}"

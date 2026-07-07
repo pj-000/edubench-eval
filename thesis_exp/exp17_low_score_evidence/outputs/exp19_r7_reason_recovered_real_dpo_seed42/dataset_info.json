@@ -1,0 +1,70 @@
+{
+  "edubench_r7a_score_only_reason_covered_real_dpo_train": {
+    "columns": {
+      "chosen": "chosen",
+      "messages": "messages",
+      "rejected": "rejected"
+    },
+    "file_name": "data/edubench_r7a_score_only_reason_covered_real_dpo_train.json",
+    "formatting": "sharegpt",
+    "ranking": true,
+    "tags": {
+      "assistant_tag": "assistant",
+      "content_tag": "content",
+      "role_tag": "role",
+      "system_tag": "system",
+      "user_tag": "user"
+    }
+  },
+  "edubench_r7b_human_reason_chosen_real_score_dpo_train": {
+    "columns": {
+      "chosen": "chosen",
+      "messages": "messages",
+      "rejected": "rejected"
+    },
+    "file_name": "data/edubench_r7b_human_reason_chosen_real_score_dpo_train.json",
+    "formatting": "sharegpt",
+    "ranking": true,
+    "tags": {
+      "assistant_tag": "assistant",
+      "content_tag": "content",
+      "role_tag": "role",
+      "system_tag": "system",
+      "user_tag": "user"
+    }
+  },
+  "edubench_r7c_low_high_human_reason_chosen_real_score_dpo_train": {
+    "columns": {
+      "chosen": "chosen",
+      "messages": "messages",
+      "rejected": "rejected"
+    },
+    "file_name": "data/edubench_r7c_low_high_human_reason_chosen_real_score_dpo_train.json",
+    "formatting": "sharegpt",
+    "ranking": true,
+    "tags": {
+      "assistant_tag": "assistant",
+      "content_tag": "content",
+      "role_tag": "role",
+      "system_tag": "system",
+      "user_tag": "user"
+    }
+  },
+  "edubench_r7d_strict_label_consistent_reason_real_dpo_train": {
+    "columns": {
+      "chosen": "chosen",
+      "messages": "messages",
+      "rejected": "rejected"
+    },
+    "file_name": "data/edubench_r7d_strict_label_consistent_reason_real_dpo_train.json",
+    "formatting": "sharegpt",
+    "ranking": true,
+    "tags": {
+      "assistant_tag": "assistant",
+      "content_tag": "content",
+      "role_tag": "role",
+      "system_tag": "system",
+      "user_tag": "user"
+    }
+  }
+}
