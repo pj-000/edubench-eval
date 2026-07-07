@@ -1,0 +1,19 @@
+{
+  "edubench_r7g_orc_score_channel_reason_aux_train": {
+    "columns": {
+      "chosen": "chosen_score_response",
+      "messages": "messages",
+      "rejected": "rejected_score_response"
+    },
+    "file_name": "data/edubench_r7g_orc_score_channel_reason_aux_train.json",
+    "formatting": "sharegpt",
+    "ranking": true,
+    "tags": {
+      "assistant_tag": "assistant",
+      "content_tag": "content",
+      "role_tag": "role",
+      "system_tag": "system",
+      "user_tag": "user"
+    }
+  }
+}

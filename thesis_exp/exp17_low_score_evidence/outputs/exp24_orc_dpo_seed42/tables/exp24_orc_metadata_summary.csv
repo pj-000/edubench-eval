@@ -1,0 +1,17 @@
+metric,value
+pair_count,429
+unique_pair_id_count,429
+has_human_reason_count,429
+risk_type_mismatch_count,0
+risk_type::high_to_low_real_model_error,139
+risk_type::high_to_mid_real_model_error,131
+risk_type::low_to_high_real_model_error,130
+risk_type::low_to_mid_real_model_error,29
+ordinal_distance::1,108
+ordinal_distance::2,123
+ordinal_distance::3,106
+ordinal_distance::4,92
+risk_flag::HL,139
+risk_flag::HM,131
+risk_flag::LH,130
+risk_flag::LM,29

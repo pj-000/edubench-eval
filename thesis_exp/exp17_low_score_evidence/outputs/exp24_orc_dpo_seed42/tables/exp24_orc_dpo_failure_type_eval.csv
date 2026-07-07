@@ -1,0 +1,6 @@
+run_name,failure_type_micro_f1,failure_type_macro_f1,major_failure_nonempty_rate_on_d1_hidden,no_major_failure_rate_on_controls,score_cap_nonnull_rate_on_d1_hidden
+r2c_clean_reason_score_balanced,0.0,0.0,0.0,0.9166666666666666,
+r4b_shuffled_reason_balanced,0.0,0.0,0.0,1.0,
+r7d_reason_real_s100_b0p03_lr5em6,0.0,0.0,0.0,0.1388888888888889,0.2692307692307692
+r7e_matched_score_only_s100_b0p03_lr5em6,0.0,0.0,0.0,0.0,0.038461538461538464
+r7f_score_reason_consistency_s100_b0p03_lr5em6,0.0,0.0,0.0,0.9444444444444444,0.0

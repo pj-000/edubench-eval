@@ -1,0 +1,3 @@
+length_type,n,min,p50,mean,p90,max
+chars,429,6,98,108.50582750582751,167,331
+whitespace_token_proxy,429,1,5,5.296037296037296,9,22

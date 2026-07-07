@@ -1,0 +1,28 @@
+{
+  "best_by_low_to_high_mae_qwk": "",
+  "evaluations": {},
+  "guardrails": {
+    "dev_used_for_eval_only": true,
+    "human_reason_not_in_prompt": true,
+    "no_test_read": true
+  },
+  "minimum_success_rule": {
+    "d1_hidden_pred_ge4_max": 0.9,
+    "label5_recall_delta_vs_r7e_min": 0.0,
+    "low_to_high_delta_vs_r7e_max": -0.1,
+    "mae_delta_vs_r7e_max": 0.03,
+    "qwk_delta_vs_r7e_min": -0.03
+  },
+  "minimum_success_runs": [],
+  "reason": "No Exp24 ORC predictions were collected.",
+  "recommendation": "wait_for_exp24_predictions",
+  "strong_success_rule": {
+    "MAE_max": 0.43,
+    "QWK_min": 0.5,
+    "d1_hidden_pred_ge4_max": 0.8462,
+    "label2_recall_min_exclusive": 0.1,
+    "label5_recall_min": 0.8,
+    "low_to_high_rate_max": 0.5965
+  },
+  "strong_success_runs": []
+}
