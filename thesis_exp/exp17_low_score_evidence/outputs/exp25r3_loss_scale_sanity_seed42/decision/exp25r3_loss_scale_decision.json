@@ -1,0 +1,14 @@
+{
+  "checks": {
+    "any_after_dpo_pref_acc_ge_0p75": true,
+    "field_score_after_acc_ge_0p70": true,
+    "low_failure_after_acc_ge_0p60": true,
+    "one_step_delta_gain_positive": true
+  },
+  "dev_read": false,
+  "raw_predictions_committed": false,
+  "reason": "At least one field-masked config overfit train preferences and score mismatch improved.",
+  "recommendation": "field_mask_scale_sanity_passed_run_corrected_dev_scout",
+  "small_scale_sanity_only": true,
+  "test_read": false
+}
