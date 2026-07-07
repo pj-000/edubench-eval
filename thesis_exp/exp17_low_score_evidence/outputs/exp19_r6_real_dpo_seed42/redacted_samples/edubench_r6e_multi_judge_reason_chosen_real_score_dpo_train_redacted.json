@@ -1,0 +1,1586 @@
+[
+  {
+    "chosen_redacted": {
+      "brief_reason_hash": "037308ee9d5dd43dbab5b89925937bbb8dab4a3f",
+      "brief_reason_present": true,
+      "major_failures": [
+        "unclear"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "dataset_variant": "r6e_multi_reason_chosen",
+    "input_redacted": {
+      "answer_hash": "de948500c0f21cdee706e005f20d0d0b46727852",
+      "answer_preview": "```json { \"纠错后答案\": { \"主要参战国\": [ \"德国\": \"希特勒\", \"意大利\": \"墨索里尼\", \"日本\": \"东条英机\", \"美国\": \"罗斯福\", \"英国\": \"丘吉尔\", \"苏联\": \"斯大林\" ] }, \"纠错...",
+      "gold_label": 2,
+      "language": "zh",
+      "metric": "Motivation, Guidance & Positive Feedback",
+      "question_group": "33f24cdef61905293c51bb59ca561c1f2cef3965",
+      "question_hash": "46f030bc3f07cce2d9fb3363e7a682ac6b1cf572",
+      "question_preview": "问题：请简述第二次世界大战的主要参战国和其领导者。 原答案：第二次世界大战的主要参战国包括德国的希特勒、美国的罗斯福、法国的拿破仑和苏联的列宁。 你为学生的回答进行纠错服务.请根据这个问题和原答案给出\"纠错后答案\"和\"纠错说明\":,以jso...",
+      "rubric_hash": "9ae04cc5e9a9c5cb7edf5ca00783cc9f44903a1e",
+      "sample_id": "f5dbe00c4a0fb5c4c818e8c652cdcdec09c3d65a",
+      "subject": "History"
+    },
+    "rejected_origin": "real_model_score_output",
+    "rejected_redacted": {
+      "score": 5
+    },
+    "rejected_source": "qwen3_4b_r0a_direct",
+    "rejected_source_count": 1,
+    "risk_type": "low_to_high_real_model_error"
+  },
+  {
+    "chosen_redacted": {
+      "brief_reason_hash": "2ed593669e5143fb1c55d03cdf84a611232a6c3a",
+      "brief_reason_present": true,
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    },
+    "dataset_variant": "r6e_multi_reason_chosen",
+    "input_redacted": {
+      "answer_hash": "0458fb8a9fb63951a18d54c2c7e4f64cf635aa65",
+      "answer_preview": "```json { \"评分\": 75, \"评分细节\": { \"定义准确性\": 80, \"重要性阐述\": 70 }, \"个性化反馈\": \"你的回答准确地捕捉到了需求弹性的核心概念，即需求量对价格变化的敏感度。然而，对于需求弹性的重要性，你可以...",
+      "gold_label": 4,
+      "language": "zh",
+      "metric": "Basic Factual Accuracy",
+      "question_group": "2315014220e7c1c5fbc4751aea0a196884f3ace8",
+      "question_hash": "83fead491fcaf972a0423e667e6d9f84f810ecaa",
+      "question_preview": "问题：解释“需求弹性”的概念及其在经济学中的重要性。 学生的答案：需求弹性是指需求量对价格变化的反应程度。在经济学中，它很重要，因为它帮助企业了解价格变动对销售额的影响，也帮助政府制定税收政策。 请根据问题和学生答案给出\"评分\":\"评分细节...",
+      "rubric_hash": "fedb7c17248bec534b7386a493fe73aed0535fb4",
+      "sample_id": "7a4947f1d4ccf03a5ea06c8c8a1df6d6db1c9a22",
+      "subject": "Theoretical Economics"
+    },
+    "rejected_origin": "real_model_score_output",
+    "rejected_redacted": {
+      "score": 3
+    },
+    "rejected_source": "qwen3_4b_r0a_direct",
+    "rejected_source_count": 1,
+    "risk_type": "high_to_mid_real_model_error"
+  },
+  {
+    "chosen_redacted": {
+      "brief_reason_hash": "641e82211fbd129a86b87fd9ceff6d6a9ad424e3",
+      "brief_reason_present": true,
+      "major_failures": [
+        "surface_fluent_but_hidden_defect"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "dataset_variant": "r6e_multi_reason_chosen",
+    "input_redacted": {
+      "answer_hash": "075f975cb66ca26b69947591a408b5dc81a44f25",
+      "answer_preview": "```json { \"评分\": 1, \"评分细节\": { \"正确选项\": [\"B\", \"E\"], \"学生选择\": [\"C\", \"E\"] }, \"个性化反馈\": [ \"你的选择中包括了指数函数，这是一个正确的选项。但是，你没有选择余弦函数，这...",
+      "gold_label": 2,
+      "language": "zh",
+      "metric": "Content Relevance & Scope Control",
+      "question_group": "80b4f169dced8f900b4d6467567222045b1c13a3",
+      "question_hash": "1a0a4b8bbfc2c0be4e0c9d55c5375baec8cf0e0b",
+      "question_preview": "问题：选择以下具有微分同胚性质的函数类别：（可多选） A. 二次多项式函数 B. 余弦函数 C. 指数函数 D. 常数函数 E. 三次多项式函数 学生的答案：['C', 'E'] 请根据问题和学生答案给出\"评分\":\"评分细节\":\"个性化反馈...",
+      "rubric_hash": "1c59f6d5851ffd911d0ec1b1c76cbbe11eec0315",
+      "sample_id": "c0d4f41ccf2066449887e86887cb7b8903269b2a",
+      "subject": "Mathematics"
+    },
+    "rejected_origin": "real_model_score_output",
+    "rejected_redacted": {
+      "score": 3
+    },
+    "rejected_source": "qwen3_4b_r0a_direct|gpt-4o|qwq-plus",
+    "rejected_source_count": 3,
+    "risk_type": "low_to_mid_real_model_error"
+  },
+  {
+    "chosen_redacted": {
+      "brief_reason_hash": "19ae9db271a5b90f0946adff5c6f9fb50d8fcfdf",
+      "brief_reason_present": true,
+      "major_failures": [
+        "partial_or_incomplete"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    },
+    "dataset_variant": "r6e_multi_reason_chosen",
+    "input_redacted": {
+      "answer_hash": "aac2fa4fbe9e2d1c7f49c8a09a4bfeadf5a7b232",
+      "answer_preview": "```json { \"Corrected Answer\": \"To transport oxygen from the lungs to the tissues and to carry carbon dioxide from the ti...",
+      "gold_label": 3,
+      "language": "en",
+      "metric": "Scenario Element Integration",
+      "question_group": "ba35192a049e868eedae5ba310638e7e75c9f363",
+      "question_hash": "8e28ed4de02c4b0328f0abea618c5f53334af88d",
+      "question_preview": "Question: Which of the following is the primary function of hemoglobin in the human body? Original Answer: To fight infe...",
+      "rubric_hash": "ac0cfa3792b9866ecaf4c25bfc92511d9d852145",
+      "sample_id": "fb181d623ba59567ed2e7160c64104c5c9a49672",
+      "subject": "Basic Medicine"
+    },
+    "rejected_origin": "real_model_score_output",
+    "rejected_redacted": {
+      "score": 5
+    },
+    "rejected_source": "qwen3_4b_r0a_direct|qwq-plus",
+    "rejected_source_count": 2,
+    "risk_type": "mid_to_high_real_model_error"
+  },
+  {
+    "chosen_redacted": {
+      "brief_reason_hash": "19ae9db271a5b90f0946adff5c6f9fb50d8fcfdf",
+      "brief_reason_present": true,
+      "major_failures": [
+        "partial_or_incomplete"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    },
+    "dataset_variant": "r6e_multi_reason_chosen",
+    "input_redacted": {
+      "answer_hash": "845004904adc1189d0491188b40f852fa1bdb9cd",
+      "answer_preview": "```json { \"评分\": 4, \"评分细节\": { \"正确选项\": [\"A\", \"B\", \"D\", \"E\"], \"未选中\": [\"C\"] }, \"个性化反馈\": [ \"你的答案非常接近，恭喜你选对了A、B、D和E。这些确实是影响化学反...",
+      "gold_label": 3,
+      "language": "zh",
+      "metric": "Instruction Following & Task Completion",
+      "question_group": "60286ca13f8911fb790079d9f9c83f8858745790",
+      "question_hash": "c56334c52b59630e815b7ee1dd7f6e066f5cd94d",
+      "question_preview": "问题：以下哪些选项是化学反应速率的影响因素？（可多选） A. 反应物的浓度 B. 温度 C. 反应物的颜色 D. 催化剂的存在 E. 反应物的物理状态 学生的答案：A, B, D, E 请根据问题和学生答案给出\"评分\":\"评分细节\":\"个性...",
+      "rubric_hash": "7d47c668a8cc433d80360ff1b40bcaa9ffce3f1c",
+      "sample_id": "cee900ae54fa6eebba02a393eb17608c77e96b4b",
+      "subject": "Chemistry"
+    },
+    "rejected_origin": "real_model_score_output",
+    "rejected_redacted": {
+      "score": 4
+    },
+    "rejected_source": "qwen3_4b_r0a_direct|EduBenchEvaluator|qwq-plus",
+    "rejected_source_count": 3,
+    "risk_type": "mid_to_high_real_model_error"
+  },
+  {
+    "chosen_redacted": {
+      "brief_reason_hash": "2ed593669e5143fb1c55d03cdf84a611232a6c3a",
+      "brief_reason_present": true,
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "dataset_variant": "r6e_multi_reason_chosen",
+    "input_redacted": {
+      "answer_hash": "f454074b80cf19199bd8c51e75752acef6d15d49",
+      "answer_preview": "```json { \"Score\": 0, \"Scoring_Details\": \"The question asked is a true/false question about the location of the Andes Mo...",
+      "gold_label": 5,
+      "language": "en",
+      "metric": "Instruction Following & Task Completion",
+      "question_group": "fe8355c92fdedf86b46847c533ca17f018bc7679",
+      "question_hash": "c8e70775c7d4240193794dc63d6bb686065d3e66",
+      "question_preview": "Question: True or False: The Andes Mountains are located in North America. Student's Answer: True Please provide \"Score\"...",
+      "rubric_hash": "a14797eaa80ea764fabf950019166678639967fc",
+      "sample_id": "feae425e29c1383a827108767836fd1c3a595500",
+      "subject": "Geography"
+    },
+    "rejected_origin": "real_model_score_output",
+    "rejected_redacted": {
+      "score": 1
+    },
+    "rejected_source": "qwen3_4b_r0a_direct|deepseek-v3",
+    "rejected_source_count": 2,
+    "risk_type": "high_to_low_real_model_error"
+  },
+  {
+    "chosen_redacted": {
+      "brief_reason_hash": "2ed593669e5143fb1c55d03cdf84a611232a6c3a",
+      "brief_reason_present": true,
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "dataset_variant": "r6e_multi_reason_chosen",
+    "input_redacted": {
+      "answer_hash": "a3363331de0ca94bcea33a37db093d010c16f039",
+      "answer_preview": "```json { \"Score\": 1, \"Scoring Details\": { \"Correctness\": \"The student's answer is correct. The human liver indeed has t...",
+      "gold_label": 5,
+      "language": "en",
+      "metric": "Instruction Following & Task Completion",
+      "question_group": "5190426b37344a5dd70adf4894aacc1fb868cdff",
+      "question_hash": "d3ee241a1460e0a9049c6552823a7e054c971557",
+      "question_preview": "Question: True or False: The human liver has the capacity to regenerate after surgical removal of a portion of its tissu...",
+      "rubric_hash": "a14797eaa80ea764fabf950019166678639967fc",
+      "sample_id": "8bb8e1c41f03b8c3325dc80c73ac144883a7c84f",
+      "subject": "Basic Medicine"
+    },
+    "rejected_origin": "real_model_score_output",
+    "rejected_redacted": {
+      "score": 1
+    },
+    "rejected_source": "deepseek-r1|qwq-plus",
+    "rejected_source_count": 2,
+    "risk_type": "high_to_low_real_model_error"
+  },
+  {
+    "chosen_redacted": {
+      "brief_reason_hash": "19ae9db271a5b90f0946adff5c6f9fb50d8fcfdf",
+      "brief_reason_present": true,
+      "major_failures": [
+        "partial_or_incomplete"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    },
+    "dataset_variant": "r6e_multi_reason_chosen",
+    "input_redacted": {
+      "answer_hash": "88033b17a5455a565db4789a04b96d91ae62a6e5",
+      "answer_preview": "{ \"教学目标\": { \"知识与技能\": \"了解作物生长模型的基本概念，掌握作物生长模型参数优化的方法和步骤。\", \"过程与方法\": \"通过案例分析和小组讨论，培养学生解决实际问题的能力和团队协作精神。\", \"情感态度价值观\": \"激发学生...",
+      "gold_label": 3,
+      "language": "zh",
+      "metric": "Higher-Order Thinking & Skill Development",
+      "question_group": "c3d6dd9886dbb21e947eb824f47088252a780c68",
+      "question_hash": "7ffd3c6cbf5ed128d75efab6cc5a5e46a975608f",
+      "question_preview": "知识点：作物生长模型的参数优化 请根据这个知识点给出\"教学素材\":教学素材需要包括教学目标、重点难点、课堂活动设计等,以json格式返回",
+      "rubric_hash": "6521b711eb4a617b61ae31685dd331123b3dae1f",
+      "sample_id": "de2e1d514f2d466e57479ed221fbc136c228e622",
+      "subject": "Crop Science"
+    },
+    "rejected_origin": "real_model_score_output",
+    "rejected_redacted": {
+      "score": 5
+    },
+    "rejected_source": "qwen3_4b_r0a_direct|deepseek-v3|gpt-4o",
+    "rejected_source_count": 3,
+    "risk_type": "mid_to_high_real_model_error"
+  },
+  {
+    "chosen_redacted": {
+      "brief_reason_hash": "19ae9db271a5b90f0946adff5c6f9fb50d8fcfdf",
+      "brief_reason_present": true,
+      "major_failures": [
+        "partial_or_incomplete"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    },
+    "dataset_variant": "r6e_multi_reason_chosen",
+    "input_redacted": {
+      "answer_hash": "769921b57d672392ff05c075d6e60f1f2e192073",
+      "answer_preview": "```json { \"教学目标\": [ \"理解社会认同理论的基本概念和核心观点\", \"掌握社会认同理论在现实生活中的应用\", \"培养学生分析和解决社会问题的能力\" ], \"重点难点\": { \"重点\": [ \"社会认同理论的定义和核心要素\",...",
+      "gold_label": 3,
+      "language": "zh",
+      "metric": "Instruction Following & Task Completion",
+      "question_group": "a14dd4244f84330a2a60fd7f7cbd5a3786581d31",
+      "question_hash": "0e48bd68e044d157b28e6b12eef1549fadc2eb86",
+      "question_preview": "知识点：社会认同理论 请根据这个知识点给出\"教学素材\":教学素材需要包括教学目标、重点难点、课堂活动设计等,以json格式返回",
+      "rubric_hash": "7d47c668a8cc433d80360ff1b40bcaa9ffce3f1c",
+      "sample_id": "2fb8ee195f5663235092141071781375d087d7eb",
+      "subject": "Psychology"
+    },
+    "rejected_origin": "real_model_score_output",
+    "rejected_redacted": {
+      "score": 4
+    },
+    "rejected_source": "EduBenchEvaluator|qwq-plus",
+    "rejected_source_count": 2,
+    "risk_type": "mid_to_high_real_model_error"
+  },
+  {
+    "chosen_redacted": {
+      "brief_reason_hash": "2ed593669e5143fb1c55d03cdf84a611232a6c3a",
+      "brief_reason_present": true,
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    },
+    "dataset_variant": "r6e_multi_reason_chosen",
+    "input_redacted": {
+      "answer_hash": "8765e6c3470f8fd85b7fa350c44f9917f124edfb",
+      "answer_preview": "```json { \"Corrected Answer\": \"New Public Management (NPM) is a reform-oriented approach that emerged in the late 20th c...",
+      "gold_label": 4,
+      "language": "en",
+      "metric": "Motivation, Guidance & Positive Feedback",
+      "question_group": "d54a888f57ecd3934df1e807afdeaf64b71d457c",
+      "question_hash": "c4724ec41db9e9e4488c238c24719d590a2d5ca3",
+      "question_preview": "Question: Explain the concept of 'New Public Management' (NPM) and its impact on traditional public administration pract...",
+      "rubric_hash": "85529ff77a1aa88d7a8579cca9e14e9d5b2d1af1",
+      "sample_id": "4801a0dc9af7feb22333b6eb0dd9e585c1fdad02",
+      "subject": "Public Administration"
+    },
+    "rejected_origin": "real_model_score_output",
+    "rejected_redacted": {
+      "score": 3
+    },
+    "rejected_source": "deepseek-r1",
+    "rejected_source_count": 1,
+    "risk_type": "high_to_mid_real_model_error"
+  },
+  {
+    "chosen_redacted": {
+      "brief_reason_hash": "745d773b424ed6499f05c3a2a6ccad4a6d2d84bd",
+      "brief_reason_present": true,
+      "major_failures": [
+        "task_constraint_violation"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "dataset_variant": "r6e_multi_reason_chosen",
+    "input_redacted": {
+      "answer_hash": "afae94a89e17939405cc40313272f0a0abb5f521",
+      "answer_preview": "```json { \"Score\": 4, \"ScoringDetails\": { \"ConceptUnderstanding\": 2, \"ExampleRelevance\": 2, \"ExplanationClarity\": 1, \"To...",
+      "gold_label": 2,
+      "language": "en",
+      "metric": "Instruction Following & Task Completion",
+      "question_group": "0e09c1d8b75a16ca2c50f1bccf73028ae1d691ea",
+      "question_hash": "abfe6a31d85969ac094ea1edb9ffa356d23363f8",
+      "question_preview": "Question: Explain the concept of Nash Equilibrium in game theory and provide an example. Student's Answer: Nash Equilibr...",
+      "rubric_hash": "a14797eaa80ea764fabf950019166678639967fc",
+      "sample_id": "6cc46157fcf2aa5b87cd72293be48481a7e5dacc",
+      "subject": "Theoretical Economics"
+    },
+    "rejected_origin": "real_model_score_output",
+    "rejected_redacted": {
+      "score": 5
+    },
+    "rejected_source": "EduBenchEvaluator|gpt-4o",
+    "rejected_source_count": 2,
+    "risk_type": "low_to_high_real_model_error"
+  },
+  {
+    "chosen_redacted": {
+      "brief_reason_hash": "2ed593669e5143fb1c55d03cdf84a611232a6c3a",
+      "brief_reason_present": true,
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "dataset_variant": "r6e_multi_reason_chosen",
+    "input_redacted": {
+      "answer_hash": "826fe3a55b9733618e3c2c37720175013c2d2127",
+      "answer_preview": "```json { \"纠错后答案\": \"罗密欧和朱丽叶的爱情故事被认为是悲剧，主要因为他们的爱情遭遇了家族世仇的阻碍、社会的压力以及命运的捉弄。两人虽然相爱却无法公开恋情，最终导致了一系列不幸事件的发生，包括误会、死亡等，使得这对恋人未能实...",
+      "gold_label": 5,
+      "language": "zh",
+      "metric": "Basic Factual Accuracy",
+      "question_group": "be118d9b688820786d8ed06e18434dce075e2b85",
+      "question_hash": "e9180c962b43cbee9403fea8c010beaf51ed8aea",
+      "question_preview": "问题：请解释'Romeo and Juliet'中，为什么罗密欧和朱丽叶的爱情故事被认为是悲剧。 原答案：因为他们在一起很幸福，但不能公开。 你为学生的回答进行纠错服务.请根据这个问题和原答案给出\"纠错后答案\"和\"纠错说明\":,以json格...",
+      "rubric_hash": "fedb7c17248bec534b7386a493fe73aed0535fb4",
+      "sample_id": "4071228d8f661c504655fffcb134a7fb7ae4246b",
+      "subject": "English"
+    },
+    "rejected_origin": "real_model_score_output",
+    "rejected_redacted": {
+      "score": 3
+    },
+    "rejected_source": "qwen3_4b_r0a_direct",
+    "rejected_source_count": 1,
+    "risk_type": "high_to_mid_real_model_error"
+  },
+  {
+    "chosen_redacted": {
+      "brief_reason_hash": "19ae9db271a5b90f0946adff5c6f9fb50d8fcfdf",
+      "brief_reason_present": true,
+      "major_failures": [
+        "partial_or_incomplete"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    },
+    "dataset_variant": "r6e_multi_reason_chosen",
+    "input_redacted": {
+      "answer_hash": "fbad07f137a1843a867ed401bcf551ed857af914",
+      "answer_preview": "{ \"Score\": 0, \"Scoring Details\": { \"Correct Answer\": \"False\", \"Student's Answer\": \"True\", \"Explanation\": \"The Andes Moun...",
+      "gold_label": 3,
+      "language": "en",
+      "metric": "Motivation, Guidance & Positive Feedback",
+      "question_group": "fe8355c92fdedf86b46847c533ca17f018bc7679",
+      "question_hash": "c8e70775c7d4240193794dc63d6bb686065d3e66",
+      "question_preview": "Question: True or False: The Andes Mountains are located in North America. Student's Answer: True Please provide \"Score\"...",
+      "rubric_hash": "85529ff77a1aa88d7a8579cca9e14e9d5b2d1af1",
+      "sample_id": "5eca8796afa57332b77efb229a632e49b196cbed",
+      "subject": "Geography"
+    },
+    "rejected_origin": "real_model_score_output",
+    "rejected_redacted": {
+      "score": 1
+    },
+    "rejected_source": "deepseek-v3",
+    "rejected_source_count": 1,
+    "risk_type": "mid_to_low_real_model_error"
+  },
+  {
+    "chosen_redacted": {
+      "brief_reason_hash": "19ae9db271a5b90f0946adff5c6f9fb50d8fcfdf",
+      "brief_reason_present": true,
+      "major_failures": [
+        "partial_or_incomplete"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    },
+    "dataset_variant": "r6e_multi_reason_chosen",
+    "input_redacted": {
+      "answer_hash": "4262c27fddb52993d82f679a10af99f352ce2ee2",
+      "answer_preview": "{ \"情绪状态分析\": \"学生表现出明显的焦虑情绪，尤其是在提到物理课程时。这种焦虑主要来源于对物理学科难度的理解障碍以及考试中的错误率。学生还提到了在电磁学部分的具体困扰，这表明焦虑感不仅源于整体的课程压力，也来自于特定知识点的学习困难。...",
+      "gold_label": 3,
+      "language": "zh",
+      "metric": "Motivation, Guidance & Positive Feedback",
+      "question_group": "7bcce56b9c5f9460e6b19df4a0a7f969e5ff21ad",
+      "question_hash": "96f00b7b6fc165a3511c7e67b6af0318790b2380",
+      "question_preview": "焦虑级别：重度焦虑 对话内容：[{'学生': '最近我总觉得压力特别大，尤其是物理课的时候，只要想到学习物理就特别焦虑。'}, {'助理': '我听到你似乎在为物理课感到担心。能不能具体说一下是什么让你特别焦虑呢？'}, {'学生': '我...",
+      "rubric_hash": "9ae04cc5e9a9c5cb7edf5ca00783cc9f44903a1e",
+      "sample_id": "50d81f63985c92c26f4fe6cb13645f6e57952cb4",
+      "subject": "Physics"
+    },
+    "rejected_origin": "real_model_score_output",
+    "rejected_redacted": {
+      "score": 5
+    },
+    "rejected_source": "qwen3_4b_r0a_direct|deepseek-v3|gpt-4o|qwq-plus",
+    "rejected_source_count": 4,
+    "risk_type": "mid_to_high_real_model_error"
+  },
+  {
+    "chosen_redacted": {
+      "brief_reason_hash": "19ae9db271a5b90f0946adff5c6f9fb50d8fcfdf",
+      "brief_reason_present": true,
+      "major_failures": [
+        "partial_or_incomplete"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    },
+    "dataset_variant": "r6e_multi_reason_chosen",
+    "input_redacted": {
+      "answer_hash": "cf33314cd4a8fcefda2d4d2c19a434ba5df837e8",
+      "answer_preview": "```json { \"Learning Path Planning\": { \"Phase 1: Foundational Knowledge\": [ \"Introduction to Aquaculture: Principles and ...",
+      "gold_label": 3,
+      "language": "en",
+      "metric": "Personalization, Adaptation & Learning Support",
+      "question_group": "041e24355921f74d38dc4cfa218e38b1295f9100",
+      "question_hash": "02a95a68a5405bb0ea3bcb7c714f1eb6ec2b9940",
+      "question_preview": "{'Name': 'Alex Johnson', 'Age': 22, 'Education Level': 'Undergraduate', 'Current Skill Level': 'Intermediate', 'Learning...",
+      "rubric_hash": "44f43049f025820bcd1dfbf7680edd947a678fea",
+      "sample_id": "5bba98b7791a392b7874b20b0f328a745845ae7c",
+      "subject": "Aquaculture"
+    },
+    "rejected_origin": "real_model_score_output",
+    "rejected_redacted": {
+      "score": 4
+    },
+    "rejected_source": "EduBenchEvaluator|deepseek-v3|gpt-4o",
+    "rejected_source_count": 3,
+    "risk_type": "mid_to_high_real_model_error"
+  },
+  {
+    "chosen_redacted": {
+      "brief_reason_hash": "19ae9db271a5b90f0946adff5c6f9fb50d8fcfdf",
+      "brief_reason_present": true,
+      "major_failures": [
+        "partial_or_incomplete"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    },
+    "dataset_variant": "r6e_multi_reason_chosen",
+    "input_redacted": {
+      "answer_hash": "99f743ea1eff162d057994cd3e75254c7cf0d61e",
+      "answer_preview": "{ \"纠错后答案\": \"The past tense of 'run' is 'ran'.\", \"纠错说明\": \"原答案中使用了不正确的动词形式'runned'。英语中，'run'的过去式是'ran'，而不是'runned'。\" }",
+      "gold_label": 3,
+      "language": "zh",
+      "metric": "Motivation, Guidance & Positive Feedback",
+      "question_group": "fdcc493923c6536e26519ec07f9693ca405da624",
+      "question_hash": "f18b295c63bee185f0702b6dd90878f13b3d6958",
+      "question_preview": "问题：What is the past tense of the verb 'run'? 原答案：The past tense of 'run' is 'runned'. 你为学生的回答进行纠错服务.请根据这个问题和原答案给出\"纠错后答案\"...",
+      "rubric_hash": "9ae04cc5e9a9c5cb7edf5ca00783cc9f44903a1e",
+      "sample_id": "aac82a1ea24eb57e47bc6a7180ee5db7ceb6b5e3",
+      "subject": "English"
+    },
+    "rejected_origin": "real_model_score_output",
+    "rejected_redacted": {
+      "score": 5
+    },
+    "rejected_source": "qwen3_4b_r0a_direct|deepseek-v3",
+    "rejected_source_count": 2,
+    "risk_type": "mid_to_high_real_model_error"
+  },
+  {
+    "chosen_redacted": {
+      "brief_reason_hash": "19ae9db271a5b90f0946adff5c6f9fb50d8fcfdf",
+      "brief_reason_present": true,
+      "major_failures": [
+        "partial_or_incomplete"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    },
+    "dataset_variant": "r6e_multi_reason_chosen",
+    "input_redacted": {
+      "answer_hash": "f85d18b17c830e9bb090dc4724e5dc37a57eda6a",
+      "answer_preview": "```json { \"Question\": \"What does the FITT principle stand for in physical education, and briefly explain each component?...",
+      "gold_label": 3,
+      "language": "en",
+      "metric": "Higher-Order Thinking & Skill Development",
+      "question_group": "5f10a3a85e0efd1be4f1e1773e836f0ef17e29b2",
+      "question_hash": "9d0e05fafd09beff585a59a83907a5f5b9725152",
+      "question_preview": "Subject:Physical Education Education Level:Undergraduate Knowledge Point:The FITT principle is a foundational concept in...",
+      "rubric_hash": "efd8930d133668c42385bdc62ada9fc34b260538",
+      "sample_id": "a0ff86882a93bf7bcd59789db0d749a20ed7814c",
+      "subject": "Physical Education"
+    },
+    "rejected_origin": "real_model_score_output",
+    "rejected_redacted": {
+      "score": 2
+    },
+    "rejected_source": "deepseek-r1",
+    "rejected_source_count": 1,
+    "risk_type": "mid_to_low_real_model_error"
+  },
+  {
+    "chosen_redacted": {
+      "brief_reason_hash": "2ed593669e5143fb1c55d03cdf84a611232a6c3a",
+      "brief_reason_present": true,
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "dataset_variant": "r6e_multi_reason_chosen",
+    "input_redacted": {
+      "answer_hash": "e363a11550ef7ba389fbed465316560f31e72e46",
+      "answer_preview": "```json { \"Score\": 0, \"Scoring_Details\": \"The correct answer to this question is C) Happy, as it is the only adjective a...",
+      "gold_label": 5,
+      "language": "en",
+      "metric": "Content Relevance & Scope Control",
+      "question_group": "f1f947604e25a14868aeebe46ba3a2c375d74f99",
+      "question_hash": "4f9cad8863cd7b3c61eb4511f8f68efdc3422733",
+      "question_preview": "Question: Which of the following is an adjective? A) Run B) Quickly C) Happy D) Jump Student's Answer: B) Quickly Please...",
+      "rubric_hash": "5a76bccd19bd94e4eb2aaf284a87b0dff9ac4127",
+      "sample_id": "70a6e10a35e8c6d2a7fec5e44b7625d0a64a3325",
+      "subject": "English"
+    },
+    "rejected_origin": "real_model_score_output",
+    "rejected_redacted": {
+      "score": 3
+    },
+    "rejected_source": "qwen3_4b_r0a_direct",
+    "rejected_source_count": 1,
+    "risk_type": "high_to_mid_real_model_error"
+  },
+  {
+    "chosen_redacted": {
+      "brief_reason_hash": "2ed593669e5143fb1c55d03cdf84a611232a6c3a",
+      "brief_reason_present": true,
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "dataset_variant": "r6e_multi_reason_chosen",
+    "input_redacted": {
+      "answer_hash": "5eb376b0cf94e03e24748ee37ff69f53892e64bb",
+      "answer_preview": "```json { \"Reasoning Provided\": \"To determine which Chinese dynasty is known for the construction of the majority of the...",
+      "gold_label": 5,
+      "language": "en",
+      "metric": "Reasoning Process Rigor",
+      "question_group": "7f281c5d001646c5cd068f561302e9f2c1b03a4e",
+      "question_hash": "652e4ef08d05b1d9d08c3c33e2553f67b2bac5aa",
+      "question_preview": "Question: Which Chinese dynasty is known for the construction of the majority of the Great Wall of China as it stands to...",
+      "rubric_hash": "b3bd64fec9b8cd51f4bac7251a02ad19e7755dd4",
+      "sample_id": "58d2dfaff00ed810e9435965e125903ed5b4b23a",
+      "subject": "Chinese"
+    },
+    "rejected_origin": "real_model_score_output",
+    "rejected_redacted": {
+      "score": 3
+    },
+    "rejected_source": "gpt-4o",
+    "rejected_source_count": 1,
+    "risk_type": "high_to_mid_real_model_error"
+  },
+  {
+    "chosen_redacted": {
+      "brief_reason_hash": "19ae9db271a5b90f0946adff5c6f9fb50d8fcfdf",
+      "brief_reason_present": true,
+      "major_failures": [
+        "partial_or_incomplete"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    },
+    "dataset_variant": "r6e_multi_reason_chosen",
+    "input_redacted": {
+      "answer_hash": "59af1adabb0f4134cb3b3a8737218f19f15a501e",
+      "answer_preview": "```json { \"问题\": \"关于肌肉收缩的生理机制，以下哪些描述是正确的？\", \"提供的思路\": [ \"肌肉收缩的基本单位是肌原纤维，主要由肌动蛋白和肌球蛋白组成。\", \"钙离子在肌肉收缩过程中起关键作用，它通过与肌钙蛋白结合，暴露肌...",
+      "gold_label": 3,
+      "language": "zh",
+      "metric": "Higher-Order Thinking & Skill Development",
+      "question_group": "b0ec9ece1525000e58e3539446f4c4e03dc1c08f",
+      "question_hash": "1b9bdd18a9f6b4d193ca45c349140467b7af210c",
+      "question_preview": "学科:基础医学 学制级别:硕士 知识点：肌肉收缩的生理机制 问题类型：多选题 .请根据学科,学制级别,知识点,问题类型生成一个对应的问题。\"问题\"和\"提供的思路\":,以json格式返回",
+      "rubric_hash": "6521b711eb4a617b61ae31685dd331123b3dae1f",
+      "sample_id": "31ca6dc176e53b45d6f07ecd69c6b10e2f37d987",
+      "subject": "Basic Medicine"
+    },
+    "rejected_origin": "real_model_score_output",
+    "rejected_redacted": {
+      "score": 4
+    },
+    "rejected_source": "qwen3_4b_r0a_direct|EduBenchEvaluator|deepseek-v3|gpt-4o",
+    "rejected_source_count": 4,
+    "risk_type": "mid_to_high_real_model_error"
+  },
+  {
+    "chosen_redacted": {
+      "brief_reason_hash": "19ae9db271a5b90f0946adff5c6f9fb50d8fcfdf",
+      "brief_reason_present": true,
+      "major_failures": [
+        "partial_or_incomplete"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    },
+    "dataset_variant": "r6e_multi_reason_chosen",
+    "input_redacted": {
+      "answer_hash": "ee2af0b3dd524c5d973ab7a7f60e34bc9df86613",
+      "answer_preview": "```json { \"评分\": \"错误\", \"评分细节\": \"学生对动作电位过程的理解有误。\", \"个性化反馈\": \"动作电位的过程确实包括超极化这一阶段，即在去极化之后，膜电位会低于静息电位的水平。而选项D) 钙离子流入细胞并非动作电位过...",
+      "gold_label": 3,
+      "language": "zh",
+      "metric": "Basic Factual Accuracy",
+      "question_group": "ce9b05f8b8c3c09bfac56ea4f5f177bac9474ddb",
+      "question_hash": "d90eb56f0f67fd98d551ad3ea6f20dab93359031",
+      "question_preview": "问题：在神经生理学中，动作电位的过程中不包括以下哪一个步骤？ A) 去极化 B) 再极化 C) 超极化 D) 钙离子流入细胞 学生的答案：C) 超极化 请根据问题和学生答案给出\"评分\":\"评分细节\":\"个性化反馈\":,以json格式返回",
+      "rubric_hash": "fedb7c17248bec534b7386a493fe73aed0535fb4",
+      "sample_id": "1338e3e8db67fa1b30e5433a5e5f725d37f47dbf",
+      "subject": "Basic Medicine"
+    },
+    "rejected_origin": "real_model_score_output",
+    "rejected_redacted": {
+      "score": 2
+    },
+    "rejected_source": "qwen3_4b_r0a_direct",
+    "rejected_source_count": 1,
+    "risk_type": "mid_to_low_real_model_error"
+  },
+  {
+    "chosen_redacted": {
+      "brief_reason_hash": "b3aff492ba64c553045777a848c1b2cae698762b",
+      "brief_reason_present": true,
+      "major_failures": [
+        "insufficient_evidence"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "dataset_variant": "r6e_multi_reason_chosen",
+    "input_redacted": {
+      "answer_hash": "0ed10ffb9001fff8f674789b32466bb55ddcd8a7",
+      "answer_preview": "```json { \"Question\": \"What does aquaculture primarily involve?\", \"ProvidedReasoning\": \"This question tests the basic un...",
+      "gold_label": 2,
+      "language": "en",
+      "metric": "Higher-Order Thinking & Skill Development",
+      "question_group": "f6cf3e1b280ca78c17a557b97001a3fea411a738",
+      "question_hash": "e9562442ca8653bb150912e74946fa40a664c689",
+      "question_preview": "Subject:Aquaculture Education Level:Undergraduate Knowledge Point:Aquaculture involves the farming of aquatic organisms,...",
+      "rubric_hash": "efd8930d133668c42385bdc62ada9fc34b260538",
+      "sample_id": "9b98fbe73d713149b38df9e497e2ad0a0a022c91",
+      "subject": "Aquaculture"
+    },
+    "rejected_origin": "real_model_score_output",
+    "rejected_redacted": {
+      "score": 3
+    },
+    "rejected_source": "qwen3_4b_r0a_direct",
+    "rejected_source_count": 1,
+    "risk_type": "low_to_mid_real_model_error"
+  },
+  {
+    "chosen_redacted": {
+      "brief_reason_hash": "2ed593669e5143fb1c55d03cdf84a611232a6c3a",
+      "brief_reason_present": true,
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    },
+    "dataset_variant": "r6e_multi_reason_chosen",
+    "input_redacted": {
+      "answer_hash": "71120a290754c5962be4fbcaab72ad2f37cfce17",
+      "answer_preview": "```json { \"评分\": 8, \"评分细节\": { \"A\": true, \"B\": false, \"C\": true, \"D\": false, \"E\": true, \"F\": false }, \"个性化反馈\": \"你的回答中包含了几个...",
+      "gold_label": 4,
+      "language": "zh",
+      "metric": "Instruction Following & Task Completion",
+      "question_group": "0a3152b6a40fc98b07a15855ba40ec0882507e78",
+      "question_hash": "db343171369d097411a12428c8a9999edf27c716",
+      "question_preview": "问题：在研究中世纪封建制度发展的过程中，下列哪些因素对其演变起到了关键作用？（可选择多个） A. 农奴制 B. 城市化进程 C. 十字军东征 D. 文艺复兴 E. 黑死病的流行 F. 军事科技的进步 学生的答案：['A', 'C', 'E'...",
+      "rubric_hash": "7d47c668a8cc433d80360ff1b40bcaa9ffce3f1c",
+      "sample_id": "21f6ed777615098086944df8d82953377d7a98f7",
+      "subject": "History"
+    },
+    "rejected_origin": "real_model_score_output",
+    "rejected_redacted": {
+      "score": 3
+    },
+    "rejected_source": "deepseek-r1",
+    "rejected_source_count": 1,
+    "risk_type": "high_to_mid_real_model_error"
+  },
+  {
+    "chosen_redacted": {
+      "brief_reason_hash": "41aefd58a8c5ddd16df7ef1a643219814ecd34b1",
+      "brief_reason_present": true,
+      "major_failures": [
+        "insufficient_evidence"
+      ],
+      "rubric_satisfied": false,
+      "score": 1,
+      "score_cap": 1
+    },
+    "dataset_variant": "r6e_multi_reason_chosen",
+    "input_redacted": {
+      "answer_hash": "169df569e13cded450c8e7e8d1b374431df140aa",
+      "answer_preview": "```json { \"答案\": \"B) 大质量恒星的核心塌缩\" } ```",
+      "gold_label": 1,
+      "language": "zh",
+      "metric": "Reasoning Process Rigor",
+      "question_group": "3f583749c39a53d68120dd4302b4c6888f5dd6d7",
+      "question_hash": "9b84841cde99b89b42b4eb3ff7813241d896eba0",
+      "question_preview": "学科:物理学 学制级别:博士 问题：在广义相对论的框架下，以下哪种情况最有可能导致时空奇点的出现？ A) 电磁场的存在 B) 大质量恒星的核心塌缩 C) 宇宙学常数为零 D) 低能粒子在真空中的运动 .请根据问题生成对应的答案。\"答案\":,...",
+      "rubric_hash": "b7f8c5225c371cc3eb0b44c1d62d92c1873d9375",
+      "sample_id": "6ba52ada98a9a51312929f9f19f6c7227cd562eb",
+      "subject": "Physics"
+    },
+    "rejected_origin": "real_model_score_output",
+    "rejected_redacted": {
+      "score": 5
+    },
+    "rejected_source": "qwen3_4b_r0a_direct|deepseek-v3|deepseek-r1|gpt-4o|qwq-plus",
+    "rejected_source_count": 5,
+    "risk_type": "low_to_high_real_model_error"
+  },
+  {
+    "chosen_redacted": {
+      "brief_reason_hash": "2ed593669e5143fb1c55d03cdf84a611232a6c3a",
+      "brief_reason_present": true,
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    },
+    "dataset_variant": "r6e_multi_reason_chosen",
+    "input_redacted": {
+      "answer_hash": "cea8a8486bd8da2022d07428fb3f5a8a59510f7d",
+      "answer_preview": "```json { \"评分\": 8, \"评分细节\": { \"概念解释\": 4, \"重要性描述\": 4, \"语言表达\": 0 }, \"个性化反馈\": \"你的回答很好地解释了“需求弹性”的基本概念，并简要提到了它在经济学中的重要性。不过，你可以...",
+      "gold_label": 4,
+      "language": "zh",
+      "metric": "Error Identification & Correction Precision",
+      "question_group": "2315014220e7c1c5fbc4751aea0a196884f3ace8",
+      "question_hash": "83fead491fcaf972a0423e667e6d9f84f810ecaa",
+      "question_preview": "问题：解释“需求弹性”的概念及其在经济学中的重要性。 学生的答案：需求弹性是指需求量对价格变化的反应程度。在经济学中，它很重要，因为它帮助企业了解价格变动对销售额的影响，也帮助政府制定税收政策。 请根据问题和学生答案给出\"评分\":\"评分细节...",
+      "rubric_hash": "c6c74fb24e1b300cf0cb56b31c87d46e02bf7d2c",
+      "sample_id": "4d7361e303f3c6a68ed2bc5367e04264e6aac45d",
+      "subject": "Theoretical Economics"
+    },
+    "rejected_origin": "real_model_score_output",
+    "rejected_redacted": {
+      "score": 1
+    },
+    "rejected_source": "deepseek-v3|gpt-4o",
+    "rejected_source_count": 2,
+    "risk_type": "high_to_low_real_model_error"
+  },
+  {
+    "chosen_redacted": {
+      "brief_reason_hash": "19ae9db271a5b90f0946adff5c6f9fb50d8fcfdf",
+      "brief_reason_present": true,
+      "major_failures": [
+        "partial_or_incomplete"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    },
+    "dataset_variant": "r6e_multi_reason_chosen",
+    "input_redacted": {
+      "answer_hash": "d5a1645155177a4718f587e0700e90c8c27b3547",
+      "answer_preview": "```json { \"Score\": \"0\", \"Scoring Details\": { \"Correct Answer\": \"False\", \"Explanation\": \"The Andes Mountains are located ...",
+      "gold_label": 3,
+      "language": "en",
+      "metric": "Instruction Following & Task Completion",
+      "question_group": "fe8355c92fdedf86b46847c533ca17f018bc7679",
+      "question_hash": "c8e70775c7d4240193794dc63d6bb686065d3e66",
+      "question_preview": "Question: True or False: The Andes Mountains are located in North America. Student's Answer: True Please provide \"Score\"...",
+      "rubric_hash": "a14797eaa80ea764fabf950019166678639967fc",
+      "sample_id": "b2e52bd37efe805ddffb36de59b66927cb7d0a9e",
+      "subject": "Geography"
+    },
+    "rejected_origin": "real_model_score_output",
+    "rejected_redacted": {
+      "score": 1
+    },
+    "rejected_source": "qwen3_4b_r0a_direct|deepseek-v3",
+    "rejected_source_count": 2,
+    "risk_type": "mid_to_low_real_model_error"
+  },
+  {
+    "chosen_redacted": {
+      "brief_reason_hash": "2ed593669e5143fb1c55d03cdf84a611232a6c3a",
+      "brief_reason_present": true,
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "dataset_variant": "r6e_multi_reason_chosen",
+    "input_redacted": {
+      "answer_hash": "98932c96c34baf41d68707fd4e1e5ab9ba5d6afc",
+      "answer_preview": "```json { \"Reasoning Provided\": \"To explain how plate tectonics can lead to the formation of mountains, we need to consi...",
+      "gold_label": 5,
+      "language": "en",
+      "metric": "Basic Factual Accuracy",
+      "question_group": "d0434a705d581d2aebdcf53be8acafc5da9b8e4e",
+      "question_hash": "c98d672ecc7053c6de094ced31534e4f44a0991d",
+      "question_preview": "Question: Explain how plate tectonics can lead to the formation of mountains. Please provide reasoning based on this que...",
+      "rubric_hash": "daebfb9529f9b5338cd603fe8cef21787409ff1a",
+      "sample_id": "ea5cb03a91278e4d564d22fe1e3a0fe768af98ec",
+      "subject": "Geography"
+    },
+    "rejected_origin": "real_model_score_output",
+    "rejected_redacted": {
+      "score": 3
+    },
+    "rejected_source": "qwq-plus",
+    "rejected_source_count": 1,
+    "risk_type": "high_to_mid_real_model_error"
+  },
+  {
+    "chosen_redacted": {
+      "brief_reason_hash": "2ed593669e5143fb1c55d03cdf84a611232a6c3a",
+      "brief_reason_present": true,
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    },
+    "dataset_variant": "r6e_multi_reason_chosen",
+    "input_redacted": {
+      "answer_hash": "fe524ad1a9dbb734e12f5b35a0c2f1b8be4d4f9f",
+      "answer_preview": "```json { \"评分\": 8, \"评分细节\": { \"主要原因分析\": 7, \"社会团体角色\": 9, \"政策变革描述\": 8, \"公平性和多元化提升\": 7 }, \"个性化反馈\": [ \"在分析主要原因时，可以更详细地提及具体的经济...",
+      "gold_label": 4,
+      "language": "zh",
+      "metric": "Error Identification & Correction Precision",
+      "question_group": "c704daf936433b064b6ac838c48f647752e9e2be",
+      "question_hash": "e12816d8faa0cde58e80a58fecd2f3690c09fbce",
+      "question_preview": "问题：分析1960年代美国民权运动的主要原因和影响。请特别关注不同社会团体的角色以及运动带来的政策变革。 学生的答案：1960年代美国民权运动的主要原因包括种族歧视和社会不平等的长期存在，尤其是黑人群体在寻求平等权利方面所面临的困难。同时，...",
+      "rubric_hash": "c6c74fb24e1b300cf0cb56b31c87d46e02bf7d2c",
+      "sample_id": "cb1433b4ae3c50df72dac42f3e260ed9fe5c658a",
+      "subject": "History"
+    },
+    "rejected_origin": "real_model_score_output",
+    "rejected_redacted": {
+      "score": 1
+    },
+    "rejected_source": "deepseek-v3",
+    "rejected_source_count": 1,
+    "risk_type": "high_to_low_real_model_error"
+  },
+  {
+    "chosen_redacted": {
+      "brief_reason_hash": "037308ee9d5dd43dbab5b89925937bbb8dab4a3f",
+      "brief_reason_present": true,
+      "major_failures": [
+        "unclear"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "dataset_variant": "r6e_multi_reason_chosen",
+    "input_redacted": {
+      "answer_hash": "651e665abc70a3667f434a93d74e916d9ca98d8a",
+      "answer_preview": "{ \"Corrected Answer\": \"To transport oxygen from the lungs to the rest of the body and to help remove carbon dioxide.\", \"...",
+      "gold_label": 2,
+      "language": "en",
+      "metric": "Motivation, Guidance & Positive Feedback",
+      "question_group": "ba35192a049e868eedae5ba310638e7e75c9f363",
+      "question_hash": "8e28ed4de02c4b0328f0abea618c5f53334af88d",
+      "question_preview": "Question: Which of the following is the primary function of hemoglobin in the human body? Original Answer: To fight infe...",
+      "rubric_hash": "85529ff77a1aa88d7a8579cca9e14e9d5b2d1af1",
+      "sample_id": "59057a57e3dbc47128b4e0c6da46964f722a411f",
+      "subject": "Basic Medicine"
+    },
+    "rejected_origin": "real_model_score_output",
+    "rejected_redacted": {
+      "score": 4
+    },
+    "rejected_source": "deepseek-v3|deepseek-r1|qwq-plus",
+    "rejected_source_count": 3,
+    "risk_type": "low_to_high_real_model_error"
+  },
+  {
+    "chosen_redacted": {
+      "brief_reason_hash": "48a9fa6c9e24015fefbf5f9793ef13186ef7bf5a",
+      "brief_reason_present": true,
+      "major_failures": [
+        "missing_key_point"
+      ],
+      "rubric_satisfied": false,
+      "score": 1,
+      "score_cap": 1
+    },
+    "dataset_variant": "r6e_multi_reason_chosen",
+    "input_redacted": {
+      "answer_hash": "42bbd677660644c39594a7df7283d81f470d011f",
+      "answer_preview": "```json {\"答案\": \"B\"} ```",
+      "gold_label": 1,
+      "language": "zh",
+      "metric": "Reasoning Process Rigor",
+      "question_group": "93a5ca2decc82169ec51fce4735b568ddb829c8a",
+      "question_hash": "028466ac543ac5e726797f95a2ecf89df1a35890",
+      "question_preview": "学科:历史学 学制级别:大学 问题：以下哪一事件标志着英格兰光荣革命的结束？ A. 1688年詹姆斯二世的逃亡 B. 1689年权利法案的通过 C. 1690年博因河战役 D. 1694年玛丽二世去世 .请根据问题生成对应的答案。\"答案\":...",
+      "rubric_hash": "b7f8c5225c371cc3eb0b44c1d62d92c1873d9375",
+      "sample_id": "f941bd555946d5f670146c0ddba2b00c76cfee04",
+      "subject": "History"
+    },
+    "rejected_origin": "real_model_score_output",
+    "rejected_redacted": {
+      "score": 4
+    },
+    "rejected_source": "gpt-4o",
+    "rejected_source_count": 1,
+    "risk_type": "low_to_high_real_model_error"
+  },
+  {
+    "chosen_redacted": {
+      "brief_reason_hash": "19ae9db271a5b90f0946adff5c6f9fb50d8fcfdf",
+      "brief_reason_present": true,
+      "major_failures": [
+        "partial_or_incomplete"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    },
+    "dataset_variant": "r6e_multi_reason_chosen",
+    "input_redacted": {
+      "answer_hash": "724790d84308a97637143f24f32d5d5ce13e41aa",
+      "answer_preview": "{ \"Reasoning Provided\": [ \"In military operations, the concept of controlling high ground is often emphasized due to sev...",
+      "gold_label": 3,
+      "language": "en",
+      "metric": "Scenario Element Integration",
+      "question_group": "3355c2772a62c5b8736da4f74d3aa9f79fde0f3d",
+      "question_hash": "94fd01dcddeeb12d54edafff58cb91f363fcf68f",
+      "question_preview": "Question: Explain the strategic significance of high ground in military operations. Please provide reasoning based on th...",
+      "rubric_hash": "ac0cfa3792b9866ecaf4c25bfc92511d9d852145",
+      "sample_id": "7ba3796b67c7c4bdf0256d910038276dfc430c41",
+      "subject": "Military Science"
+    },
+    "rejected_origin": "real_model_score_output",
+    "rejected_redacted": {
+      "score": 1
+    },
+    "rejected_source": "qwq-plus",
+    "rejected_source_count": 1,
+    "risk_type": "mid_to_low_real_model_error"
+  },
+  {
+    "chosen_redacted": {
+      "brief_reason_hash": "2ed593669e5143fb1c55d03cdf84a611232a6c3a",
+      "brief_reason_present": true,
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "dataset_variant": "r6e_multi_reason_chosen",
+    "input_redacted": {
+      "answer_hash": "26dca62aa095e0c352196b4680be2b1a904aac33",
+      "answer_preview": "```json { \"纠错后答案\": \"饲料的质量和营养成分\", \"纠错说明\": \"原答案‘饲料的颗粒大小’是不准确的。饲料的质量和营养成分对鱼类的生长速度影响更大。饲料中的蛋白质、脂肪和其他必需营养素的含量直接影响鱼的健康和生长速度。颗粒...",
+      "gold_label": 5,
+      "language": "zh",
+      "metric": "Reasoning Process Rigor",
+      "question_group": "8dbbdc416b94778b6562e10ea62ae70dc2861047",
+      "question_hash": "3123b3562f97beb1f868beadd8cf61e8488e4ced",
+      "question_preview": "问题：在水产养殖中，以下哪种因素对鱼类的生长速度影响最大？ 原答案：饲料的颗粒大小 你为学生的回答进行纠错服务.请根据这个问题和原答案给出\"纠错后答案\"和\"纠错说明\":,以json格式返回",
+      "rubric_hash": "b7f8c5225c371cc3eb0b44c1d62d92c1873d9375",
+      "sample_id": "42be759361a13a890db9158863870c605bc180a5",
+      "subject": "Aquaculture"
+    },
+    "rejected_origin": "real_model_score_output",
+    "rejected_redacted": {
+      "score": 3
+    },
+    "rejected_source": "qwen3_4b_r0a_direct",
+    "rejected_source_count": 1,
+    "risk_type": "high_to_mid_real_model_error"
+  },
+  {
+    "chosen_redacted": {
+      "brief_reason_hash": "2ed593669e5143fb1c55d03cdf84a611232a6c3a",
+      "brief_reason_present": true,
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "dataset_variant": "r6e_multi_reason_chosen",
+    "input_redacted": {
+      "answer_hash": "63df04f2df8fe9e9dafa3c741245e828348ab1b5",
+      "answer_preview": "{ \"纠错后答案\": \"A) 实验设计\", \"纠错说明\": \"在公共管理学中，对公共政策评估的方法多样，但实验设计是一种常用且有效的方法。它通过对比实验组和对照组的结果来评估政策的效果。文献综述虽然也是研究中的重要步骤，但它主要用于收集和分...",
+      "gold_label": 5,
+      "language": "zh",
+      "metric": "Basic Factual Accuracy",
+      "question_group": "ac5843a5b2798e8500cac73be37d8147d820498f",
+      "question_hash": "1464ea3c6b7955684c15259ca4e22953bb6a9c72",
+      "question_preview": "问题：以下哪项是公共管理学中对公共政策评估的主要方法之一？ A) 实验设计 B) 案例研究 C) 文献综述 D) 参与观察 原答案：C) 文献综述 你为学生的回答进行纠错服务.请根据这个问题和原答案给出\"纠错后答案\"和\"纠错说明\":,以js...",
+      "rubric_hash": "fedb7c17248bec534b7386a493fe73aed0535fb4",
+      "sample_id": "cdafdedbd1e526f0521b369761e90b81ad079336",
+      "subject": "Public Administration"
+    },
+    "rejected_origin": "real_model_score_output",
+    "rejected_redacted": {
+      "score": 2
+    },
+    "rejected_source": "qwen3_4b_r0a_direct",
+    "rejected_source_count": 1,
+    "risk_type": "high_to_low_real_model_error"
+  },
+  {
+    "chosen_redacted": {
+      "brief_reason_hash": "2ed593669e5143fb1c55d03cdf84a611232a6c3a",
+      "brief_reason_present": true,
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    },
+    "dataset_variant": "r6e_multi_reason_chosen",
+    "input_redacted": {
+      "answer_hash": "ee2af0b3dd524c5d973ab7a7f60e34bc9df86613",
+      "answer_preview": "```json { \"评分\": \"错误\", \"评分细节\": \"学生对动作电位过程的理解有误。\", \"个性化反馈\": \"动作电位的过程确实包括超极化这一阶段，即在去极化之后，膜电位会低于静息电位的水平。而选项D) 钙离子流入细胞并非动作电位过...",
+      "gold_label": 4,
+      "language": "zh",
+      "metric": "Error Identification & Correction Precision",
+      "question_group": "ce9b05f8b8c3c09bfac56ea4f5f177bac9474ddb",
+      "question_hash": "d90eb56f0f67fd98d551ad3ea6f20dab93359031",
+      "question_preview": "问题：在神经生理学中，动作电位的过程中不包括以下哪一个步骤？ A) 去极化 B) 再极化 C) 超极化 D) 钙离子流入细胞 学生的答案：C) 超极化 请根据问题和学生答案给出\"评分\":\"评分细节\":\"个性化反馈\":,以json格式返回",
+      "rubric_hash": "c6c74fb24e1b300cf0cb56b31c87d46e02bf7d2c",
+      "sample_id": "9be75734289d2cce23e52a238880f71175306931",
+      "subject": "Basic Medicine"
+    },
+    "rejected_origin": "real_model_score_output",
+    "rejected_redacted": {
+      "score": 2
+    },
+    "rejected_source": "qwen3_4b_r0a_direct",
+    "rejected_source_count": 1,
+    "risk_type": "high_to_low_real_model_error"
+  },
+  {
+    "chosen_redacted": {
+      "brief_reason_hash": "cc8691a6439fff30dca252a35408ed67d3c566e4",
+      "brief_reason_present": true,
+      "major_failures": [
+        "missing_key_point"
+      ],
+      "rubric_satisfied": false,
+      "score": 1,
+      "score_cap": 1
+    },
+    "dataset_variant": "r6e_multi_reason_chosen",
+    "input_redacted": {
+      "answer_hash": "261ca5f9e4b4ceede6b2756eea25e5904447aaf8",
+      "answer_preview": "{ \"Answer\": \"The time complexity of the quicksort algorithm in the average case scenario is O(n log n), where n represen...",
+      "gold_label": 1,
+      "language": "en",
+      "metric": "Reasoning Process Rigor",
+      "question_group": "14e6dfb98fe659be9bca96d36b8e8c3b5beda0d4",
+      "question_hash": "7815309274657d86db8320a902eee849d10a5e69",
+      "question_preview": "Subject:Computer Science Education Level:Undergraduate Question:What is the time complexity of the quicksort algorithm i...",
+      "rubric_hash": "b3bd64fec9b8cd51f4bac7251a02ad19e7755dd4",
+      "sample_id": "4c1781a47196920cfbd9a98a60533436add7af41",
+      "subject": "Computer Science"
+    },
+    "rejected_origin": "real_model_score_output",
+    "rejected_redacted": {
+      "score": 4
+    },
+    "rejected_source": "deepseek-v3",
+    "rejected_source_count": 1,
+    "risk_type": "low_to_high_real_model_error"
+  },
+  {
+    "chosen_redacted": {
+      "brief_reason_hash": "2e5004e0054d9dbcea41196f581e28689844bd47",
+      "brief_reason_present": true,
+      "major_failures": [
+        "missing_key_point"
+      ],
+      "rubric_satisfied": false,
+      "score": 1,
+      "score_cap": 1
+    },
+    "dataset_variant": "r6e_multi_reason_chosen",
+    "input_redacted": {
+      "answer_hash": "db3041d410276006aee5aa6a0ab30da47dba0f68",
+      "answer_preview": "{ \"Answer\": \"A) f(z) has no singularities.\" }",
+      "gold_label": 1,
+      "language": "en",
+      "metric": "Reasoning Process Rigor",
+      "question_group": "aa48c48cd6bf14c4713397de0e37c7971495e79d",
+      "question_hash": "06012c00f4d4755831817a5ab75bb317943a38b1",
+      "question_preview": "Subject:Mathematics Education Level:PhD Question:In the context of complex analysis, consider the function f(z) = z^2 + ...",
+      "rubric_hash": "b3bd64fec9b8cd51f4bac7251a02ad19e7755dd4",
+      "sample_id": "0a86fc4b2478f8c922c1ab7ce85590f94b9d2136",
+      "subject": "Mathematics"
+    },
+    "rejected_origin": "real_model_score_output",
+    "rejected_redacted": {
+      "score": 5
+    },
+    "rejected_source": "qwen3_4b_r0a_direct|gpt-4o|qwq-plus",
+    "rejected_source_count": 3,
+    "risk_type": "low_to_high_real_model_error"
+  },
+  {
+    "chosen_redacted": {
+      "brief_reason_hash": "2ed593669e5143fb1c55d03cdf84a611232a6c3a",
+      "brief_reason_present": true,
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 5,
+      "score_cap": null
+    },
+    "dataset_variant": "r6e_multi_reason_chosen",
+    "input_redacted": {
+      "answer_hash": "f454074b80cf19199bd8c51e75752acef6d15d49",
+      "answer_preview": "```json { \"Score\": 0, \"Scoring_Details\": \"The question asked is a true/false question about the location of the Andes Mo...",
+      "gold_label": 5,
+      "language": "en",
+      "metric": "Instruction Following & Task Completion",
+      "question_group": "fe8355c92fdedf86b46847c533ca17f018bc7679",
+      "question_hash": "c8e70775c7d4240193794dc63d6bb686065d3e66",
+      "question_preview": "Question: True or False: The Andes Mountains are located in North America. Student's Answer: True Please provide \"Score\"...",
+      "rubric_hash": "a14797eaa80ea764fabf950019166678639967fc",
+      "sample_id": "feae425e29c1383a827108767836fd1c3a595500",
+      "subject": "Geography"
+    },
+    "rejected_origin": "real_model_score_output",
+    "rejected_redacted": {
+      "score": 2
+    },
+    "rejected_source": "deepseek-r1",
+    "rejected_source_count": 1,
+    "risk_type": "high_to_low_real_model_error"
+  },
+  {
+    "chosen_redacted": {
+      "brief_reason_hash": "037308ee9d5dd43dbab5b89925937bbb8dab4a3f",
+      "brief_reason_present": true,
+      "major_failures": [
+        "unclear"
+      ],
+      "rubric_satisfied": false,
+      "score": 1,
+      "score_cap": 1
+    },
+    "dataset_variant": "r6e_multi_reason_chosen",
+    "input_redacted": {
+      "answer_hash": "a940c7bf03f66dfeebd992d36a6b91589a9e2e87",
+      "answer_preview": "```json { \"答案\": \"B\" } ```",
+      "gold_label": 1,
+      "language": "zh",
+      "metric": "Reasoning Process Rigor",
+      "question_group": "3f583749c39a53d68120dd4302b4c6888f5dd6d7",
+      "question_hash": "9b84841cde99b89b42b4eb3ff7813241d896eba0",
+      "question_preview": "学科:物理学 学制级别:博士 问题：在广义相对论的框架下，以下哪种情况最有可能导致时空奇点的出现？ A) 电磁场的存在 B) 大质量恒星的核心塌缩 C) 宇宙学常数为零 D) 低能粒子在真空中的运动 .请根据问题生成对应的答案。\"答案\":,...",
+      "rubric_hash": "b7f8c5225c371cc3eb0b44c1d62d92c1873d9375",
+      "sample_id": "38c7ddb254e471811c6a5a57cccae37cc6d4656e",
+      "subject": "Physics"
+    },
+    "rejected_origin": "real_model_score_output",
+    "rejected_redacted": {
+      "score": 5
+    },
+    "rejected_source": "qwen3_4b_r0a_direct|deepseek-v3|deepseek-r1|gpt-4o|qwq-plus",
+    "rejected_source_count": 5,
+    "risk_type": "low_to_high_real_model_error"
+  },
+  {
+    "chosen_redacted": {
+      "brief_reason_hash": "ad672bede4be6d27087cf5711638d88a052e0e62",
+      "brief_reason_present": true,
+      "major_failures": [
+        "surface_fluent_but_hidden_defect"
+      ],
+      "rubric_satisfied": false,
+      "score": 1,
+      "score_cap": 1
+    },
+    "dataset_variant": "r6e_multi_reason_chosen",
+    "input_redacted": {
+      "answer_hash": "075f975cb66ca26b69947591a408b5dc81a44f25",
+      "answer_preview": "```json { \"评分\": 1, \"评分细节\": { \"正确选项\": [\"B\", \"E\"], \"学生选择\": [\"C\", \"E\"] }, \"个性化反馈\": [ \"你的选择中包括了指数函数，这是一个正确的选项。但是，你没有选择余弦函数，这...",
+      "gold_label": 1,
+      "language": "zh",
+      "metric": "Error Identification & Correction Precision",
+      "question_group": "80b4f169dced8f900b4d6467567222045b1c13a3",
+      "question_hash": "1a0a4b8bbfc2c0be4e0c9d55c5375baec8cf0e0b",
+      "question_preview": "问题：选择以下具有微分同胚性质的函数类别：（可多选） A. 二次多项式函数 B. 余弦函数 C. 指数函数 D. 常数函数 E. 三次多项式函数 学生的答案：['C', 'E'] 请根据问题和学生答案给出\"评分\":\"评分细节\":\"个性化反馈...",
+      "rubric_hash": "c6c74fb24e1b300cf0cb56b31c87d46e02bf7d2c",
+      "sample_id": "0c74a66a6f9ecee5580723b73f7741a8f05e1352",
+      "subject": "Mathematics"
+    },
+    "rejected_origin": "real_model_score_output",
+    "rejected_redacted": {
+      "score": 3
+    },
+    "rejected_source": "qwen3_4b_r0a_direct|deepseek-v3",
+    "rejected_source_count": 2,
+    "risk_type": "low_to_mid_real_model_error"
+  },
+  {
+    "chosen_redacted": {
+      "brief_reason_hash": "2ed593669e5143fb1c55d03cdf84a611232a6c3a",
+      "brief_reason_present": true,
+      "major_failures": [
+        "no_major_failure"
+      ],
+      "rubric_satisfied": true,
+      "score": 4,
+      "score_cap": null
+    },
+    "dataset_variant": "r6e_multi_reason_chosen",
+    "input_redacted": {
+      "answer_hash": "f19c34146249a12a87306a4ceb764145fddb2d84",
+      "answer_preview": "```json { \"评分\": 4, \"评分细节\": { \"概念解释\": 1.5, \"重要性分析\": 2, \"完整性\": 0.5 }, \"个性化反馈\": \"你的回答正确指出了需求弹性的核心定义（价格变化引起需求量的反应程度）及其在企业和政府...",
+      "gold_label": 4,
+      "language": "zh",
+      "metric": "Motivation, Guidance & Positive Feedback",
+      "question_group": "2315014220e7c1c5fbc4751aea0a196884f3ace8",
+      "question_hash": "83fead491fcaf972a0423e667e6d9f84f810ecaa",
+      "question_preview": "问题：解释“需求弹性”的概念及其在经济学中的重要性。 学生的答案：需求弹性是指需求量对价格变化的反应程度。在经济学中，它很重要，因为它帮助企业了解价格变动对销售额的影响，也帮助政府制定税收政策。 请根据问题和学生答案给出\"评分\":\"评分细节...",
+      "rubric_hash": "9ae04cc5e9a9c5cb7edf5ca00783cc9f44903a1e",
+      "sample_id": "208cb837dd1ec2fad721b5378773eb46f8c10c64",
+      "subject": "Theoretical Economics"
+    },
+    "rejected_origin": "real_model_score_output",
+    "rejected_redacted": {
+      "score": 2
+    },
+    "rejected_source": "deepseek-r1",
+    "rejected_source_count": 1,
+    "risk_type": "high_to_low_real_model_error"
+  },
+  {
+    "chosen_redacted": {
+      "brief_reason_hash": "19ae9db271a5b90f0946adff5c6f9fb50d8fcfdf",
+      "brief_reason_present": true,
+      "major_failures": [
+        "partial_or_incomplete"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    },
+    "dataset_variant": "r6e_multi_reason_chosen",
+    "input_redacted": {
+      "answer_hash": "7adce70796fdf58457bcb75e28c24828861cb234",
+      "answer_preview": "{ \"reasoning_provided\": \"Photosynthesis is the process by which plants convert light energy into chemical energy that ca...",
+      "gold_label": 3,
+      "language": "en",
+      "metric": "Higher-Order Thinking & Skill Development",
+      "question_group": "ffed2f3bb93a32c1cf81521951774f896b3283f4",
+      "question_hash": "f6a8e79961286f94ea94953fa54f8b7c519da813",
+      "question_preview": "Question: Which part of the plant is responsible for photosynthesis? A) Roots B) Stems C) Leaves D) Flowers Please provi...",
+      "rubric_hash": "efd8930d133668c42385bdc62ada9fc34b260538",
+      "sample_id": "988e6d0eb6aef1daed86fda63f4f1208530174d0",
+      "subject": "Biology"
+    },
+    "rejected_origin": "real_model_score_output",
+    "rejected_redacted": {
+      "score": 2
+    },
+    "rejected_source": "qwq-plus",
+    "rejected_source_count": 1,
+    "risk_type": "mid_to_low_real_model_error"
+  },
+  {
+    "chosen_redacted": {
+      "brief_reason_hash": "19ae9db271a5b90f0946adff5c6f9fb50d8fcfdf",
+      "brief_reason_present": true,
+      "major_failures": [
+        "partial_or_incomplete"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    },
+    "dataset_variant": "r6e_multi_reason_chosen",
+    "input_redacted": {
+      "answer_hash": "7c14e3ccef08527247948db7c9db5c6e3c01e0e5",
+      "answer_preview": "{ \"reasoning\": \"This question is asking for the sum of two numbers, 5 and 3. In basic arithmetic, when we add two number...",
+      "gold_label": 3,
+      "language": "en",
+      "metric": "Higher-Order Thinking & Skill Development",
+      "question_group": "182ead73c7c9bef64c812e1c3366635156817f15",
+      "question_hash": "e14aa9e63b091927d9ed6119dea8d772c217ce65",
+      "question_preview": "Question: What is the value of 5 + 3? Please provide reasoning based on this question. Do not provide the answer directl...",
+      "rubric_hash": "efd8930d133668c42385bdc62ada9fc34b260538",
+      "sample_id": "07c0afed3166e859ce1dbeee09bec75b08be27a5",
+      "subject": "Mathematics"
+    },
+    "rejected_origin": "real_model_score_output",
+    "rejected_redacted": {
+      "score": 2
+    },
+    "rejected_source": "qwq-plus",
+    "rejected_source_count": 1,
+    "risk_type": "mid_to_low_real_model_error"
+  },
+  {
+    "chosen_redacted": {
+      "brief_reason_hash": "19ae9db271a5b90f0946adff5c6f9fb50d8fcfdf",
+      "brief_reason_present": true,
+      "major_failures": [
+        "partial_or_incomplete"
+      ],
+      "rubric_satisfied": false,
+      "score": 3,
+      "score_cap": 3
+    },
+    "dataset_variant": "r6e_multi_reason_chosen",
+    "input_redacted": {
+      "answer_hash": "b2dead0a9523a847adb8cf11151e9bc2224705cd",
+      "answer_preview": "```json { \"评分\": \"4/5\", \"评分细节\": { \"A. 反应物的浓度\": \"正确\", \"B. 温度\": \"正确\", \"C. 反应物的颜色\": \"未选中，这是正确的。因为反应物的颜色通常不会直接影响化学反应速率。\", \"D....",
+      "gold_label": 3,
+      "language": "zh",
+      "metric": "Instruction Following & Task Completion",
+      "question_group": "60286ca13f8911fb790079d9f9c83f8858745790",
+      "question_hash": "c56334c52b59630e815b7ee1dd7f6e066f5cd94d",
+      "question_preview": "问题：以下哪些选项是化学反应速率的影响因素？（可多选） A. 反应物的浓度 B. 温度 C. 反应物的颜色 D. 催化剂的存在 E. 反应物的物理状态 学生的答案：A, B, D, E 请根据问题和学生答案给出\"评分\":\"评分细节\":\"个性...",
+      "rubric_hash": "7d47c668a8cc433d80360ff1b40bcaa9ffce3f1c",
+      "sample_id": "ace8e8c753768bd92cca1109688beec1d0397396",
+      "subject": "Chemistry"
+    },
+    "rejected_origin": "real_model_score_output",
+    "rejected_redacted": {
+      "score": 2
+    },
+    "rejected_source": "deepseek-r1",
+    "rejected_source_count": 1,
+    "risk_type": "mid_to_low_real_model_error"
+  },
+  {
+    "chosen_redacted": {
+      "brief_reason_hash": "09282a411e6a5c069c762deb22d4b3987e9f9e9c",
+      "brief_reason_present": true,
+      "major_failures": [
+        "answer_key_or_reference_mismatch"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "dataset_variant": "r6e_multi_reason_chosen",
+    "input_redacted": {
+      "answer_hash": "b3fb9b077bce7ba852ff3654e5e6717f7202d547",
+      "answer_preview": "```json { \"评分\": \"部分正确\", \"评分细节\": { \"C\": \"正确\", \"E\": \"正确\", \"A\": \"未选择\", \"B\": \"未选择\", \"D\": \"未选择\" }, \"个性化反馈\": \"你的答案中选择了指数函数（C）和...",
+      "gold_label": 2,
+      "language": "zh",
+      "metric": "Basic Factual Accuracy",
+      "question_group": "80b4f169dced8f900b4d6467567222045b1c13a3",
+      "question_hash": "1a0a4b8bbfc2c0be4e0c9d55c5375baec8cf0e0b",
+      "question_preview": "问题：选择以下具有微分同胚性质的函数类别：（可多选） A. 二次多项式函数 B. 余弦函数 C. 指数函数 D. 常数函数 E. 三次多项式函数 学生的答案：['C', 'E'] 请根据问题和学生答案给出\"评分\":\"评分细节\":\"个性化反馈...",
+      "rubric_hash": "fedb7c17248bec534b7386a493fe73aed0535fb4",
+      "sample_id": "18551ba0c6e7b3ad2bd30333ae0aad09b79b9c98",
+      "subject": "Mathematics"
+    },
+    "rejected_origin": "real_model_score_output",
+    "rejected_redacted": {
+      "score": 3
+    },
+    "rejected_source": "qwen3_4b_r0a_direct|gpt-4o",
+    "rejected_source_count": 2,
+    "risk_type": "low_to_mid_real_model_error"
+  },
+  {
+    "chosen_redacted": {
+      "brief_reason_hash": "2bd4b51ed9ddcb814634972d3dbe28d4a60c6e42",
+      "brief_reason_present": true,
+      "major_failures": [
+        "format_violation"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "dataset_variant": "r6e_multi_reason_chosen",
+    "input_redacted": {
+      "answer_hash": "7662628c1751b945857521787ae0b47368cf3edd",
+      "answer_preview": "```json { \"评分\": 3, \"评分细节\": { \"概念解释准确性\": 2, \"完整性\": 2, \"逻辑清晰度\": 2 }, \"个性化反馈\": [ \"概念解释准确性较高，但可以进一步明确需求弹性的具体定义，例如提到需求弹性是衡量需求...",
+      "gold_label": 2,
+      "language": "zh",
+      "metric": "Instruction Following & Task Completion",
+      "question_group": "2315014220e7c1c5fbc4751aea0a196884f3ace8",
+      "question_hash": "83fead491fcaf972a0423e667e6d9f84f810ecaa",
+      "question_preview": "问题：解释“需求弹性”的概念及其在经济学中的重要性。 学生的答案：需求弹性是指需求量对价格变化的反应程度。在经济学中，它很重要，因为它帮助企业了解价格变动对销售额的影响，也帮助政府制定税收政策。 请根据问题和学生答案给出\"评分\":\"评分细节...",
+      "rubric_hash": "7d47c668a8cc433d80360ff1b40bcaa9ffce3f1c",
+      "sample_id": "65890fb994cef054dc75e0e6dd4c1b3e2d91805d",
+      "subject": "Theoretical Economics"
+    },
+    "rejected_origin": "real_model_score_output",
+    "rejected_redacted": {
+      "score": 3
+    },
+    "rejected_source": "qwen3_4b_r0a_direct|gpt-4o|qwq-plus",
+    "rejected_source_count": 3,
+    "risk_type": "low_to_mid_real_model_error"
+  },
+  {
+    "chosen_redacted": {
+      "brief_reason_hash": "44ee39cead0178d55feec303fef27bfb832cf001",
+      "brief_reason_present": true,
+      "major_failures": [
+        "insufficient_evidence"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "dataset_variant": "r6e_multi_reason_chosen",
+    "input_redacted": {
+      "answer_hash": "075f975cb66ca26b69947591a408b5dc81a44f25",
+      "answer_preview": "```json { \"评分\": 1, \"评分细节\": { \"正确选项\": [\"B\", \"E\"], \"学生选择\": [\"C\", \"E\"] }, \"个性化反馈\": [ \"你的选择中包括了指数函数，这是一个正确的选项。但是，你没有选择余弦函数，这...",
+      "gold_label": 2,
+      "language": "zh",
+      "metric": "Reasoning Process Rigor",
+      "question_group": "80b4f169dced8f900b4d6467567222045b1c13a3",
+      "question_hash": "1a0a4b8bbfc2c0be4e0c9d55c5375baec8cf0e0b",
+      "question_preview": "问题：选择以下具有微分同胚性质的函数类别：（可多选） A. 二次多项式函数 B. 余弦函数 C. 指数函数 D. 常数函数 E. 三次多项式函数 学生的答案：['C', 'E'] 请根据问题和学生答案给出\"评分\":\"评分细节\":\"个性化反馈...",
+      "rubric_hash": "b7f8c5225c371cc3eb0b44c1d62d92c1873d9375",
+      "sample_id": "1bd5e1ce094da34aea6531591c2674bd221634b6",
+      "subject": "Mathematics"
+    },
+    "rejected_origin": "real_model_score_output",
+    "rejected_redacted": {
+      "score": 3
+    },
+    "rejected_source": "qwen3_4b_r0a_direct",
+    "rejected_source_count": 1,
+    "risk_type": "low_to_mid_real_model_error"
+  },
+  {
+    "chosen_redacted": {
+      "brief_reason_hash": "ec7369126d9099839fa1eea0e2d233b0b59c4ce2",
+      "brief_reason_present": true,
+      "major_failures": [
+        "surface_fluent_but_hidden_defect"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "dataset_variant": "r6e_multi_reason_chosen",
+    "input_redacted": {
+      "answer_hash": "72d2e3e02c145d83b12fee7de22f039120fa3151",
+      "answer_preview": "{ \"纠错后答案\": \"第二次世界大战的主要参战国包括德国、美国、法国和苏联。其领导者分别是德国的阿道夫·希特勒、美国的富兰克林·罗斯福、法国的夏尔·戴高乐和苏联的约瑟夫·斯大林。\", \"纠错说明\": \"原答案中存在以下错误：1. 拿破仑是...",
+      "gold_label": 2,
+      "language": "zh",
+      "metric": "Motivation, Guidance & Positive Feedback",
+      "question_group": "33f24cdef61905293c51bb59ca561c1f2cef3965",
+      "question_hash": "46f030bc3f07cce2d9fb3363e7a682ac6b1cf572",
+      "question_preview": "问题：请简述第二次世界大战的主要参战国和其领导者。 原答案：第二次世界大战的主要参战国包括德国的希特勒、美国的罗斯福、法国的拿破仑和苏联的列宁。 你为学生的回答进行纠错服务.请根据这个问题和原答案给出\"纠错后答案\"和\"纠错说明\":,以jso...",
+      "rubric_hash": "9ae04cc5e9a9c5cb7edf5ca00783cc9f44903a1e",
+      "sample_id": "63ab64773fb76fbe6cba302eed79041a8316bb7c",
+      "subject": "History"
+    },
+    "rejected_origin": "real_model_score_output",
+    "rejected_redacted": {
+      "score": 3
+    },
+    "rejected_source": "deepseek-r1|qwq-plus",
+    "rejected_source_count": 2,
+    "risk_type": "low_to_mid_real_model_error"
+  },
+  {
+    "chosen_redacted": {
+      "brief_reason_hash": "debd86162fb2656384dc80e4c862e5e6b0c6ce4f",
+      "brief_reason_present": true,
+      "major_failures": [
+        "surface_fluent_but_hidden_defect"
+      ],
+      "rubric_satisfied": false,
+      "score": 2,
+      "score_cap": 2
+    },
+    "dataset_variant": "r6e_multi_reason_chosen",
+    "input_redacted": {
+      "answer_hash": "924a44536810ed77ae35da2f8e05881b43e4c5d7",
+      "answer_preview": "```json { \"Reasoning Provided\": \"To answer this question, it is essential to understand the components of Porter's Five ...",
+      "gold_label": 2,
+      "language": "en",
+      "metric": "Scenario Element Integration",
+      "question_group": "b8341c9d33cad1b053ba0bafa03c407e4791c4da",
+      "question_hash": "1defd6e96950030805bc580fdc26c8d513ac2c27",
+      "question_preview": "Question: Explain how Porter's Five Forces framework can be used to analyze the competitive environment of an industry. ...",
+      "rubric_hash": "ac0cfa3792b9866ecaf4c25bfc92511d9d852145",
+      "sample_id": "b98b50d95782304d48d08ccbe6eda435ec3f66c7",
+      "subject": "Business Administration"
+    },
+    "rejected_origin": "real_model_score_output",
+    "rejected_redacted": {
+      "score": 3
+    },
+    "rejected_source": "deepseek-v3",
+    "rejected_source_count": 1,
+    "risk_type": "low_to_mid_real_model_error"
+  }
+]

@@ -189,6 +189,25 @@ thesis_exp/exp17_low_score_evidence/outputs/exp21_d1_like_risk_annotation_seed42
 !thesis_exp/exp17_low_score_evidence/outputs/exp21_d1_like_risk_annotation_seed42/decision/
 !thesis_exp/exp17_low_score_evidence/outputs/exp21_d1_like_risk_annotation_seed42/decision/**
 
+# Exp19-R6 real-DPO keeps full DPO JSON local/server-side. Commit only
+# trainable config stubs, dataset snippets, QC tables, reports, decisions,
+# review manifests, and redacted samples.
+!thesis_exp/exp17_low_score_evidence/outputs/exp19_r6_real_dpo_seed42/
+thesis_exp/exp17_low_score_evidence/outputs/exp19_r6_real_dpo_seed42/*
+!thesis_exp/exp17_low_score_evidence/outputs/exp19_r6_real_dpo_seed42/configs/
+!thesis_exp/exp17_low_score_evidence/outputs/exp19_r6_real_dpo_seed42/configs/**
+!thesis_exp/exp17_low_score_evidence/outputs/exp19_r6_real_dpo_seed42/decision/
+!thesis_exp/exp17_low_score_evidence/outputs/exp19_r6_real_dpo_seed42/decision/**
+!thesis_exp/exp17_low_score_evidence/outputs/exp19_r6_real_dpo_seed42/dataset_info_r6_snippet.json
+!thesis_exp/exp17_low_score_evidence/outputs/exp19_r6_real_dpo_seed42/redacted_samples/
+!thesis_exp/exp17_low_score_evidence/outputs/exp19_r6_real_dpo_seed42/redacted_samples/**
+!thesis_exp/exp17_low_score_evidence/outputs/exp19_r6_real_dpo_seed42/reports/
+!thesis_exp/exp17_low_score_evidence/outputs/exp19_r6_real_dpo_seed42/reports/**
+!thesis_exp/exp17_low_score_evidence/outputs/exp19_r6_real_dpo_seed42/review/
+!thesis_exp/exp17_low_score_evidence/outputs/exp19_r6_real_dpo_seed42/review/**
+!thesis_exp/exp17_low_score_evidence/outputs/exp19_r6_real_dpo_seed42/tables/
+!thesis_exp/exp17_low_score_evidence/outputs/exp19_r6_real_dpo_seed42/tables/**
+
 # Exp19-R5F keeps generated prompts, raw generations, logs, predictions, and
 # full DPO JSON local/server-side. Commit only QC summaries, configs, snippets,
 # references without raw text, and redacted samples.

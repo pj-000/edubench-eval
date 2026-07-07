@@ -302,3 +302,22 @@ exp19_r5f2_rejection_mining_seed42/*
 !exp19_r5f2_rejection_mining_seed42/reports/**
 !exp19_r5f2_rejection_mining_seed42/tables/
 !exp19_r5f2_rejection_mining_seed42/tables/**
+
+# Exp19-R6 real-DPO keeps full DPO JSON local/server-side. Commit only
+# trainable config stubs, dataset snippets, QC tables, reports, decisions,
+# review manifests, and redacted samples.
+!exp19_r6_real_dpo_seed42/
+exp19_r6_real_dpo_seed42/*
+!exp19_r6_real_dpo_seed42/configs/
+!exp19_r6_real_dpo_seed42/configs/**
+!exp19_r6_real_dpo_seed42/decision/
+!exp19_r6_real_dpo_seed42/decision/**
+!exp19_r6_real_dpo_seed42/dataset_info_r6_snippet.json
+!exp19_r6_real_dpo_seed42/redacted_samples/
+!exp19_r6_real_dpo_seed42/redacted_samples/**
+!exp19_r6_real_dpo_seed42/reports/
+!exp19_r6_real_dpo_seed42/reports/**
+!exp19_r6_real_dpo_seed42/review/
+!exp19_r6_real_dpo_seed42/review/**
+!exp19_r6_real_dpo_seed42/tables/
+!exp19_r6_real_dpo_seed42/tables/**

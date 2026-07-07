@@ -1,0 +1,6 @@
+gold_label,train_samples,samples_with_real_rejected_pair,real_rejected_pairs,sample_coverage_rate
+1,58,58,90,1.0000
+2,53,53,121,1.0000
+3,297,297,579,1.0000
+4,1163,197,238,0.1694
+5,1755,198,222,0.1128

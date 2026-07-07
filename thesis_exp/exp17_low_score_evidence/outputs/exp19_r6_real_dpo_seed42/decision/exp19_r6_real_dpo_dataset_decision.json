@@ -1,0 +1,27 @@
+{
+  "caveats": [
+    "Main variants are score-only because reusable real rejected outputs are scalar scores.",
+    "Structured/reason chosen variants are auxiliary; they should be reviewed before training.",
+    "Existing judge_scores provide real scalar judgments, not full natural-language model outputs."
+  ],
+  "dataset_pair_counts": {
+    "edubench_r6a_qwen_only_score_real_dpo_train": 526,
+    "edubench_r6b_multi_judge_score_real_dpo_train": 1250,
+    "edubench_r6c_low_high_score_real_dpo_train": 632,
+    "edubench_r6d_multi_judge_structured_chosen_real_score_dpo_train": 1250,
+    "edubench_r6e_multi_judge_reason_chosen_real_score_dpo_train": 1250
+  },
+  "guardrails": {
+    "hard_synthetic_rejected_used": false,
+    "human_rationale_not_used_as_prompt_input": true,
+    "no_dev_d1_training_labels": true,
+    "no_test_read": true,
+    "rejected_side_is_real_model_score": true,
+    "template_rejected_used": false
+  },
+  "recommended_main_dataset": "edubench_r6b_multi_judge_score_real_dpo_train",
+  "recommended_risk_focused_dataset": "edubench_r6c_low_high_score_real_dpo_train",
+  "safe_for_dpo_data_review": true,
+  "train_samples": 3326,
+  "unique_real_rejected_pair_pool": 1250
+}

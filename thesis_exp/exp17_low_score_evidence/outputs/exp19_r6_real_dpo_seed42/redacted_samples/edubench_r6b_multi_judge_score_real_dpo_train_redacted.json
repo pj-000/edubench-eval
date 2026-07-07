@@ -1,0 +1,1250 @@
+[
+  {
+    "chosen_redacted": {
+      "score": 4
+    },
+    "dataset_variant": "r6b_multi_score_only",
+    "input_redacted": {
+      "answer_hash": "90d9a668ecae710a12eb2a4e02b05e05120a6ca9",
+      "answer_preview": "```json { \"思路\": { \"A) 生物学因素\": \"生物学因素包括但不限于年龄、性别、健康状况等，这些都可能对个体的行为动机产生影响。例如，青春期的荷尔蒙变化可能会影响青少年的行为。\", \"B) 社会文化因素\": \"社会文化背景如...",
+      "gold_label": 4,
+      "language": "zh",
+      "metric": "Higher-Order Thinking & Skill Development",
+      "question_group": "c34b4b93df3897791871cecbdbfe43662163e9fe",
+      "question_hash": "3621b405ca4dd22e7485151bb7bccdb7edf23b32",
+      "question_preview": "问题：以下哪些因素可能影响个体的行为动机？请选择所有适用的选项。 A) 生物学因素 B) 社会文化因素 C) 认知因素 D) 环境因素 E) 遗传因素 请根据这个问题提供思路。\"提供的思路\":,以json格式返回",
+      "rubric_hash": "6521b711eb4a617b61ae31685dd331123b3dae1f",
+      "sample_id": "424df952d74bd283ffdd42432fdb10cb3e1eaa2e",
+      "subject": "Psychology"
+    },
+    "rejected_origin": "real_model_score_output",
+    "rejected_redacted": {
+      "score": 3
+    },
+    "rejected_source": "qwq-plus",
+    "rejected_source_count": 1,
+    "risk_type": "high_to_mid_real_model_error"
+  },
+  {
+    "chosen_redacted": {
+      "score": 3
+    },
+    "dataset_variant": "r6b_multi_score_only",
+    "input_redacted": {
+      "answer_hash": "6f9254d6b4054e9f2ea5683d9a57971697802cd2",
+      "answer_preview": "```json { \"情绪状态分析\": \"从对话中可以看出，学生正经历着重度焦虑的情绪。这种焦虑主要来源于对语文课上表现不佳的恐惧，特别是担心老师的批评和同学的嘲笑。这表明学生可能在自信心方面遇到了挑战，并且对于他人的评价非常敏感。\", \"...",
+      "gold_label": 3,
+      "language": "zh",
+      "metric": "Scenario Element Integration",
+      "question_group": "45442251171c1d3111ce5a7fbf8f6ec696ceee0a",
+      "question_hash": "26f1251e2a18f75650093dbf2686a62046afc4b6",
+      "question_preview": "焦虑程度：重度焦虑 对话内容：学生：我最近总是觉得很害怕，语文课上也总是紧张，担心自己读不好。 智能体：我听到你的担心了，这种感觉很难受。能告诉我是什么让你特别害怕吗？ 学生：我总觉得老师会批评我，还有同学们会笑话我。 智能体：感谢你的分享...",
+      "rubric_hash": "c3a664a6fe7d584cedb3876133bfbe9fe25ebc52",
+      "sample_id": "c685d8e5b0da6bfa956d00f4097bd67474be8114",
+      "subject": "Literature and Art"
+    },
+    "rejected_origin": "real_model_score_output",
+    "rejected_redacted": {
+      "score": 4
+    },
+    "rejected_source": "EduBenchEvaluator|deepseek-v3",
+    "rejected_source_count": 2,
+    "risk_type": "mid_to_high_real_model_error"
+  },
+  {
+    "chosen_redacted": {
+      "score": 3
+    },
+    "dataset_variant": "r6b_multi_score_only",
+    "input_redacted": {
+      "answer_hash": "0b16952bffd9d7e71636ae25f4c62b592b6c9264",
+      "answer_preview": "```json { \"评分\": 1, \"评分细节\": { \"正确答案\": \"B) 确保所有节点之间的数据保持一致\", \"解释\": \"在分布式系统中，一致性模型的重要性在于确保所有节点之间的数据保持一致。这是分布式系统设计中的关键问题之一，因...",
+      "gold_label": 3,
+      "language": "zh",
+      "metric": "Instruction Following & Task Completion",
+      "question_group": "04c137c5aec1fd5e3fc9bc4897bc62409a8e32e7",
+      "question_hash": "b7d38b3ed89c70748e04fff56d93a83b398f7fdc",
+      "question_preview": "问题：在分布式系统中，一致性模型的重要性是什么？以下哪个选项最好地描述了它的作用？ A) 提高系统的吞吐量 B) 确保所有节点之间的数据保持一致 C) 降低系统的响应时间 D) 提高系统的可扩展性 学生的答案：B) 确保所有节点之间的数据保...",
+      "rubric_hash": "7d47c668a8cc433d80360ff1b40bcaa9ffce3f1c",
+      "sample_id": "8020f89c568e90f9b7dbd1deaf469e93f51822e2",
+      "subject": "Computer Science"
+    },
+    "rejected_origin": "real_model_score_output",
+    "rejected_redacted": {
+      "score": 2
+    },
+    "rejected_source": "deepseek-r1",
+    "rejected_source_count": 1,
+    "risk_type": "mid_to_low_real_model_error"
+  },
+  {
+    "chosen_redacted": {
+      "score": 3
+    },
+    "dataset_variant": "r6b_multi_score_only",
+    "input_redacted": {
+      "answer_hash": "70680d09ca766d28a0d05af95fb1a6162393fdc2",
+      "answer_preview": "```json { \"Question\": { \"Stem\": \"Sarah, who strongly believes in environmental conservation, recently purchased a gas-gu...",
+      "gold_label": 3,
+      "language": "en",
+      "metric": "Higher-Order Thinking & Skill Development",
+      "question_group": "b4e8463f79efb7c28a37f3dee049ee3dee03f6de",
+      "question_hash": "47f770a2ce36ba2aaf1f6efae1cbcc1da244c9a0",
+      "question_preview": "Subject:Psychology Education Level:Undergraduate Knowledge Point:Cognitive dissonance is a psychological concept that re...",
+      "rubric_hash": "efd8930d133668c42385bdc62ada9fc34b260538",
+      "sample_id": "8950511165ec611a6bbe1ffdf7442e8c1e1077ad",
+      "subject": "Psychology"
+    },
+    "rejected_origin": "real_model_score_output",
+    "rejected_redacted": {
+      "score": 4
+    },
+    "rejected_source": "deepseek-v3|deepseek-r1|gpt-4o|qwq-plus",
+    "rejected_source_count": 4,
+    "risk_type": "mid_to_high_real_model_error"
+  },
+  {
+    "chosen_redacted": {
+      "score": 3
+    },
+    "dataset_variant": "r6b_multi_score_only",
+    "input_redacted": {
+      "answer_hash": "27841ff140684742798e40a253efc816454e3c36",
+      "answer_preview": "```json { \"问题\": \"小明有3个苹果，小红给了他2个苹果，现在小明一共有多少个苹果？\", \"提供的思路\": \"这是一个简单的加法运算问题。首先，小明原本有3个苹果，然后小红给了他2个苹果。要计算小明现在一共有多少个苹果，只需要将...",
+      "gold_label": 3,
+      "language": "zh",
+      "metric": "Higher-Order Thinking & Skill Development",
+      "question_group": "80c997dc9bc9becf50e310e86fb5550097076469",
+      "question_hash": "c3fa0017391212cba12b8aad60a6b20c5b027e43",
+      "question_preview": "学科:数学 学制级别:小学 知识点：简单的加法运算 问题类型：单选题 .请根据学科,学制级别,知识点,问题类型生成一个对应的问题。\"问题\"和\"提供的思路\":,以json格式返回",
+      "rubric_hash": "6521b711eb4a617b61ae31685dd331123b3dae1f",
+      "sample_id": "455000acf9427c815c9177ac052af53992f31cf9",
+      "subject": "Mathematics"
+    },
+    "rejected_origin": "real_model_score_output",
+    "rejected_redacted": {
+      "score": 2
+    },
+    "rejected_source": "qwq-plus",
+    "rejected_source_count": 1,
+    "risk_type": "mid_to_low_real_model_error"
+  },
+  {
+    "chosen_redacted": {
+      "score": 3
+    },
+    "dataset_variant": "r6b_multi_score_only",
+    "input_redacted": {
+      "answer_hash": "724790d84308a97637143f24f32d5d5ce13e41aa",
+      "answer_preview": "{ \"Reasoning Provided\": [ \"In military operations, the concept of controlling high ground is often emphasized due to sev...",
+      "gold_label": 3,
+      "language": "en",
+      "metric": "Higher-Order Thinking & Skill Development",
+      "question_group": "3355c2772a62c5b8736da4f74d3aa9f79fde0f3d",
+      "question_hash": "94fd01dcddeeb12d54edafff58cb91f363fcf68f",
+      "question_preview": "Question: Explain the strategic significance of high ground in military operations. Please provide reasoning based on th...",
+      "rubric_hash": "efd8930d133668c42385bdc62ada9fc34b260538",
+      "sample_id": "084cff960ba83d59a41425d2e618da1b8b24a4e9",
+      "subject": "Military Science"
+    },
+    "rejected_origin": "real_model_score_output",
+    "rejected_redacted": {
+      "score": 5
+    },
+    "rejected_source": "qwen3_4b_r0a_direct",
+    "rejected_source_count": 1,
+    "risk_type": "mid_to_high_real_model_error"
+  },
+  {
+    "chosen_redacted": {
+      "score": 3
+    },
+    "dataset_variant": "r6b_multi_score_only",
+    "input_redacted": {
+      "answer_hash": "5f7ba4e2b55ecdb9217fc3518c54d572718899a6",
+      "answer_preview": "```json { \"情绪状态分析\": { \"当前情绪\": \"轻度焦虑\", \"原因\": \"面对博士阶段的学习压力，特别是在实验设计和数据分析上的挑战，导致学生感到不安和缺乏自信。\", \"表现形式\": [\"感到吃力\", \"不自信\"] }, \"...",
+      "gold_label": 3,
+      "language": "zh",
+      "metric": "Instruction Following & Task Completion",
+      "question_group": "e826870afe4da21943336b7b1c30736bf7fbb8f1",
+      "question_hash": "37a7cbbbb4dc5a22852b15bfaddaf36b31164418",
+      "question_preview": "焦虑级别：轻度焦虑 对话内容：[{'学生': '我最近感觉有些焦虑，面对博士阶段的学习压力，有些时候会觉得吃力。'}, {'智能体': '我理解，这么高强度的课程和研究任务，难免会让人感到压力重重。你有没有哪些具体方面觉得特别挑战呢？'},...",
+      "rubric_hash": "7d47c668a8cc433d80360ff1b40bcaa9ffce3f1c",
+      "sample_id": "8c24d7d3dace43476e84152a5f1cf8d8be692875",
+      "subject": "Basic Medicine"
+    },
+    "rejected_origin": "real_model_score_output",
+    "rejected_redacted": {
+      "score": 5
+    },
+    "rejected_source": "qwen3_4b_r0a_direct|deepseek-v3|deepseek-r1|gpt-4o|qwq-plus",
+    "rejected_source_count": 5,
+    "risk_type": "mid_to_high_real_model_error"
+  },
+  {
+    "chosen_redacted": {
+      "score": 2
+    },
+    "dataset_variant": "r6b_multi_score_only",
+    "input_redacted": {
+      "answer_hash": "974f0f218c7bb21e7ec03e888ff6a0c4fd28ead0",
+      "answer_preview": "```json { \"Score\": 8, \"Scoring Details\": { \"Concept Explanation\": 4, \"Example Provided\": 4, \"Clarity and Accuracy\": 0 },...",
+      "gold_label": 2,
+      "language": "en",
+      "metric": "Error Identification & Correction Precision",
+      "question_group": "0e09c1d8b75a16ca2c50f1bccf73028ae1d691ea",
+      "question_hash": "abfe6a31d85969ac094ea1edb9ffa356d23363f8",
+      "question_preview": "Question: Explain the concept of Nash Equilibrium in game theory and provide an example. Student's Answer: Nash Equilibr...",
+      "rubric_hash": "f6fa164afa8eeb1cc44254e9782d8922a32aaa4e",
+      "sample_id": "107a460ba82cd473b9a08a5d43257a7f1d336874",
+      "subject": "Theoretical Economics"
+    },
+    "rejected_origin": "real_model_score_output",
+    "rejected_redacted": {
+      "score": 4
+    },
+    "rejected_source": "qwen3_4b_r0a_direct|gpt-4o",
+    "rejected_source_count": 2,
+    "risk_type": "low_to_high_real_model_error"
+  },
+  {
+    "chosen_redacted": {
+      "score": 5
+    },
+    "dataset_variant": "r6b_multi_score_only",
+    "input_redacted": {
+      "answer_hash": "8765e6c3470f8fd85b7fa350c44f9917f124edfb",
+      "answer_preview": "```json { \"Corrected Answer\": \"New Public Management (NPM) is a reform-oriented approach that emerged in the late 20th c...",
+      "gold_label": 5,
+      "language": "en",
+      "metric": "Basic Factual Accuracy",
+      "question_group": "d54a888f57ecd3934df1e807afdeaf64b71d457c",
+      "question_hash": "c4724ec41db9e9e4488c238c24719d590a2d5ca3",
+      "question_preview": "Question: Explain the concept of 'New Public Management' (NPM) and its impact on traditional public administration pract...",
+      "rubric_hash": "daebfb9529f9b5338cd603fe8cef21787409ff1a",
+      "sample_id": "9a1b3e7341ea0df6172cb02abcfcec03aabbaf77",
+      "subject": "Public Administration"
+    },
+    "rejected_origin": "real_model_score_output",
+    "rejected_redacted": {
+      "score": 1
+    },
+    "rejected_source": "qwen3_4b_r0a_direct",
+    "rejected_source_count": 1,
+    "risk_type": "high_to_low_real_model_error"
+  },
+  {
+    "chosen_redacted": {
+      "score": 3
+    },
+    "dataset_variant": "r6b_multi_score_only",
+    "input_redacted": {
+      "answer_hash": "823ceb3120f8787cda1ec3adb1a920d8107250e3",
+      "answer_preview": "{ \"reasoning\": \"Porter's Five Forces framework is a tool for analyzing the competitive landscape of an industry by ident...",
+      "gold_label": 3,
+      "language": "en",
+      "metric": "Reasoning Process Rigor",
+      "question_group": "b8341c9d33cad1b053ba0bafa03c407e4791c4da",
+      "question_hash": "1defd6e96950030805bc580fdc26c8d513ac2c27",
+      "question_preview": "Question: Explain how Porter's Five Forces framework can be used to analyze the competitive environment of an industry. ...",
+      "rubric_hash": "b3bd64fec9b8cd51f4bac7251a02ad19e7755dd4",
+      "sample_id": "1a65538b875ff84b2d301f7d0c2e795ac164ee2d",
+      "subject": "Business Administration"
+    },
+    "rejected_origin": "real_model_score_output",
+    "rejected_redacted": {
+      "score": 5
+    },
+    "rejected_source": "qwen3_4b_r0a_direct|EduBenchEvaluator|deepseek-v3|deepseek-r1|gpt-4o|qwq-plus",
+    "rejected_source_count": 6,
+    "risk_type": "mid_to_high_real_model_error"
+  },
+  {
+    "chosen_redacted": {
+      "score": 1
+    },
+    "dataset_variant": "r6b_multi_score_only",
+    "input_redacted": {
+      "answer_hash": "075f975cb66ca26b69947591a408b5dc81a44f25",
+      "answer_preview": "```json { \"评分\": 1, \"评分细节\": { \"正确选项\": [\"B\", \"E\"], \"学生选择\": [\"C\", \"E\"] }, \"个性化反馈\": [ \"你的选择中包括了指数函数，这是一个正确的选项。但是，你没有选择余弦函数，这...",
+      "gold_label": 1,
+      "language": "zh",
+      "metric": "Error Identification & Correction Precision",
+      "question_group": "80b4f169dced8f900b4d6467567222045b1c13a3",
+      "question_hash": "1a0a4b8bbfc2c0be4e0c9d55c5375baec8cf0e0b",
+      "question_preview": "问题：选择以下具有微分同胚性质的函数类别：（可多选） A. 二次多项式函数 B. 余弦函数 C. 指数函数 D. 常数函数 E. 三次多项式函数 学生的答案：['C', 'E'] 请根据问题和学生答案给出\"评分\":\"评分细节\":\"个性化反馈...",
+      "rubric_hash": "c6c74fb24e1b300cf0cb56b31c87d46e02bf7d2c",
+      "sample_id": "0c74a66a6f9ecee5580723b73f7741a8f05e1352",
+      "subject": "Mathematics"
+    },
+    "rejected_origin": "real_model_score_output",
+    "rejected_redacted": {
+      "score": 5
+    },
+    "rejected_source": "EduBenchEvaluator",
+    "rejected_source_count": 1,
+    "risk_type": "low_to_high_real_model_error"
+  },
+  {
+    "chosen_redacted": {
+      "score": 3
+    },
+    "dataset_variant": "r6b_multi_score_only",
+    "input_redacted": {
+      "answer_hash": "88033b17a5455a565db4789a04b96d91ae62a6e5",
+      "answer_preview": "{ \"教学目标\": { \"知识与技能\": \"了解作物生长模型的基本概念，掌握作物生长模型参数优化的方法和步骤。\", \"过程与方法\": \"通过案例分析和小组讨论，培养学生解决实际问题的能力和团队协作精神。\", \"情感态度价值观\": \"激发学生...",
+      "gold_label": 3,
+      "language": "zh",
+      "metric": "Domain Knowledge Accuracy",
+      "question_group": "c3d6dd9886dbb21e947eb824f47088252a780c68",
+      "question_hash": "7ffd3c6cbf5ed128d75efab6cc5a5e46a975608f",
+      "question_preview": "知识点：作物生长模型的参数优化 请根据这个知识点给出\"教学素材\":教学素材需要包括教学目标、重点难点、课堂活动设计等,以json格式返回",
+      "rubric_hash": "50fadbea1e2ef89d7ec90f47b38e9ea1b3c551cf",
+      "sample_id": "b74afb58efe37bbf2a03ce0f852e70d16e208bcd",
+      "subject": "Crop Science"
+    },
+    "rejected_origin": "real_model_score_output",
+    "rejected_redacted": {
+      "score": 5
+    },
+    "rejected_source": "qwen3_4b_r0a_direct|deepseek-v3|deepseek-r1|gpt-4o|qwq-plus",
+    "rejected_source_count": 5,
+    "risk_type": "mid_to_high_real_model_error"
+  },
+  {
+    "chosen_redacted": {
+      "score": 3
+    },
+    "dataset_variant": "r6b_multi_score_only",
+    "input_redacted": {
+      "answer_hash": "b2dead0a9523a847adb8cf11151e9bc2224705cd",
+      "answer_preview": "```json { \"评分\": \"4/5\", \"评分细节\": { \"A. 反应物的浓度\": \"正确\", \"B. 温度\": \"正确\", \"C. 反应物的颜色\": \"未选中，这是正确的。因为反应物的颜色通常不会直接影响化学反应速率。\", \"D....",
+      "gold_label": 3,
+      "language": "zh",
+      "metric": "Instruction Following & Task Completion",
+      "question_group": "60286ca13f8911fb790079d9f9c83f8858745790",
+      "question_hash": "c56334c52b59630e815b7ee1dd7f6e066f5cd94d",
+      "question_preview": "问题：以下哪些选项是化学反应速率的影响因素？（可多选） A. 反应物的浓度 B. 温度 C. 反应物的颜色 D. 催化剂的存在 E. 反应物的物理状态 学生的答案：A, B, D, E 请根据问题和学生答案给出\"评分\":\"评分细节\":\"个性...",
+      "rubric_hash": "7d47c668a8cc433d80360ff1b40bcaa9ffce3f1c",
+      "sample_id": "ace8e8c753768bd92cca1109688beec1d0397396",
+      "subject": "Chemistry"
+    },
+    "rejected_origin": "real_model_score_output",
+    "rejected_redacted": {
+      "score": 4
+    },
+    "rejected_source": "qwen3_4b_r0a_direct",
+    "rejected_source_count": 1,
+    "risk_type": "mid_to_high_real_model_error"
+  },
+  {
+    "chosen_redacted": {
+      "score": 5
+    },
+    "dataset_variant": "r6b_multi_score_only",
+    "input_redacted": {
+      "answer_hash": "e783cdd9d3412b4ee68c1024200c12eaa128fdb0",
+      "answer_preview": "```json { \"Question\": \"Which of the following is NOT typically farmed in aquaculture?\", \"Options\": [ {\"option\": \"Fish\", ...",
+      "gold_label": 5,
+      "language": "en",
+      "metric": "Instruction Following & Task Completion",
+      "question_group": "f6cf3e1b280ca78c17a557b97001a3fea411a738",
+      "question_hash": "e9562442ca8653bb150912e74946fa40a664c689",
+      "question_preview": "Subject:Aquaculture Education Level:Undergraduate Knowledge Point:Aquaculture involves the farming of aquatic organisms,...",
+      "rubric_hash": "a14797eaa80ea764fabf950019166678639967fc",
+      "sample_id": "9e5db931daecf6394777c3985c65017dfc0ecf8d",
+      "subject": "Aquaculture"
+    },
+    "rejected_origin": "real_model_score_output",
+    "rejected_redacted": {
+      "score": 2
+    },
+    "rejected_source": "deepseek-r1",
+    "rejected_source_count": 1,
+    "risk_type": "high_to_low_real_model_error"
+  },
+  {
+    "chosen_redacted": {
+      "score": 5
+    },
+    "dataset_variant": "r6b_multi_score_only",
+    "input_redacted": {
+      "answer_hash": "a3363331de0ca94bcea33a37db093d010c16f039",
+      "answer_preview": "```json { \"Score\": 1, \"Scoring Details\": { \"Correctness\": \"The student's answer is correct. The human liver indeed has t...",
+      "gold_label": 5,
+      "language": "en",
+      "metric": "Content Relevance & Scope Control",
+      "question_group": "5190426b37344a5dd70adf4894aacc1fb868cdff",
+      "question_hash": "d3ee241a1460e0a9049c6552823a7e054c971557",
+      "question_preview": "Question: True or False: The human liver has the capacity to regenerate after surgical removal of a portion of its tissu...",
+      "rubric_hash": "5a76bccd19bd94e4eb2aaf284a87b0dff9ac4127",
+      "sample_id": "e47bba8bf4c665583f10d7c4c6856d31c40254f8",
+      "subject": "Basic Medicine"
+    },
+    "rejected_origin": "real_model_score_output",
+    "rejected_redacted": {
+      "score": 3
+    },
+    "rejected_source": "deepseek-r1",
+    "rejected_source_count": 1,
+    "risk_type": "high_to_mid_real_model_error"
+  },
+  {
+    "chosen_redacted": {
+      "score": 3
+    },
+    "dataset_variant": "r6b_multi_score_only",
+    "input_redacted": {
+      "answer_hash": "fbad07f137a1843a867ed401bcf551ed857af914",
+      "answer_preview": "{ \"Score\": 0, \"Scoring Details\": { \"Correct Answer\": \"False\", \"Student's Answer\": \"True\", \"Explanation\": \"The Andes Moun...",
+      "gold_label": 3,
+      "language": "en",
+      "metric": "Motivation, Guidance & Positive Feedback",
+      "question_group": "fe8355c92fdedf86b46847c533ca17f018bc7679",
+      "question_hash": "c8e70775c7d4240193794dc63d6bb686065d3e66",
+      "question_preview": "Question: True or False: The Andes Mountains are located in North America. Student's Answer: True Please provide \"Score\"...",
+      "rubric_hash": "85529ff77a1aa88d7a8579cca9e14e9d5b2d1af1",
+      "sample_id": "5eca8796afa57332b77efb229a632e49b196cbed",
+      "subject": "Geography"
+    },
+    "rejected_origin": "real_model_score_output",
+    "rejected_redacted": {
+      "score": 1
+    },
+    "rejected_source": "deepseek-v3",
+    "rejected_source_count": 1,
+    "risk_type": "mid_to_low_real_model_error"
+  },
+  {
+    "chosen_redacted": {
+      "score": 4
+    },
+    "dataset_variant": "r6b_multi_score_only",
+    "input_redacted": {
+      "answer_hash": "bbc6ad297d71d15674c4afb340a8a4a4182bbb05",
+      "answer_preview": "```json { \"纠错后答案\": \"饲料的质量和营养成分\", \"纠错说明\": \"虽然饲料的颗粒大小对于鱼类摄食有一定影响，比如过大的颗粒可能导致小型鱼难以吞咽，但对鱼类生长速度影响最大的因素是饲料的质量和其中所含的营养成分。高质量、富含...",
+      "gold_label": 4,
+      "language": "zh",
+      "metric": "Motivation, Guidance & Positive Feedback",
+      "question_group": "8dbbdc416b94778b6562e10ea62ae70dc2861047",
+      "question_hash": "3123b3562f97beb1f868beadd8cf61e8488e4ced",
+      "question_preview": "问题：在水产养殖中，以下哪种因素对鱼类的生长速度影响最大？ 原答案：饲料的颗粒大小 你为学生的回答进行纠错服务.请根据这个问题和原答案给出\"纠错后答案\"和\"纠错说明\":,以json格式返回",
+      "rubric_hash": "9ae04cc5e9a9c5cb7edf5ca00783cc9f44903a1e",
+      "sample_id": "af3a1b0bf4ee07ba2ea32a5f163d180d8d63c3b9",
+      "subject": "Aquaculture"
+    },
+    "rejected_origin": "real_model_score_output",
+    "rejected_redacted": {
+      "score": 3
+    },
+    "rejected_source": "qwq-plus",
+    "rejected_source_count": 1,
+    "risk_type": "high_to_mid_real_model_error"
+  },
+  {
+    "chosen_redacted": {
+      "score": 3
+    },
+    "dataset_variant": "r6b_multi_score_only",
+    "input_redacted": {
+      "answer_hash": "03d98d22a130e2317e728d8b0af8085e53a1acb0",
+      "answer_preview": "{ \"Reasoning Provided\": \"To find the value of 5 + 3, one would start with the number 5 and then add 3 to it. This operat...",
+      "gold_label": 3,
+      "language": "en",
+      "metric": "Higher-Order Thinking & Skill Development",
+      "question_group": "182ead73c7c9bef64c812e1c3366635156817f15",
+      "question_hash": "e14aa9e63b091927d9ed6119dea8d772c217ce65",
+      "question_preview": "Question: What is the value of 5 + 3? Please provide reasoning based on this question. Do not provide the answer directl...",
+      "rubric_hash": "efd8930d133668c42385bdc62ada9fc34b260538",
+      "sample_id": "64e0d4ec83c72724ed69333e379f7fbbfd275555",
+      "subject": "Mathematics"
+    },
+    "rejected_origin": "real_model_score_output",
+    "rejected_redacted": {
+      "score": 5
+    },
+    "rejected_source": "EduBenchEvaluator",
+    "rejected_source_count": 1,
+    "risk_type": "mid_to_high_real_model_error"
+  },
+  {
+    "chosen_redacted": {
+      "score": 4
+    },
+    "dataset_variant": "r6b_multi_score_only",
+    "input_redacted": {
+      "answer_hash": "e783cdd9d3412b4ee68c1024200c12eaa128fdb0",
+      "answer_preview": "```json { \"Question\": \"Which of the following is NOT typically farmed in aquaculture?\", \"Options\": [ {\"option\": \"Fish\", ...",
+      "gold_label": 4,
+      "language": "en",
+      "metric": "Higher-Order Thinking & Skill Development",
+      "question_group": "f6cf3e1b280ca78c17a557b97001a3fea411a738",
+      "question_hash": "e9562442ca8653bb150912e74946fa40a664c689",
+      "question_preview": "Subject:Aquaculture Education Level:Undergraduate Knowledge Point:Aquaculture involves the farming of aquatic organisms,...",
+      "rubric_hash": "efd8930d133668c42385bdc62ada9fc34b260538",
+      "sample_id": "9afdacc03c76802a00038543b20b1ef17fad2c42",
+      "subject": "Aquaculture"
+    },
+    "rejected_origin": "real_model_score_output",
+    "rejected_redacted": {
+      "score": 2
+    },
+    "rejected_source": "deepseek-r1",
+    "rejected_source_count": 1,
+    "risk_type": "high_to_low_real_model_error"
+  },
+  {
+    "chosen_redacted": {
+      "score": 5
+    },
+    "dataset_variant": "r6b_multi_score_only",
+    "input_redacted": {
+      "answer_hash": "34fd78c726d6b322410267c3ee204af2ecb0b074",
+      "answer_preview": "```json { \"教学素材\": { \"教学目标\": [ \"理解波函数归一化的物理意义及其在量子力学中的必要性\", \"掌握波函数归一化的数学处理方法（积分计算与归一化常数求解）\", \"能够对简单量子系统的波函数进行归一化操作\", \"建立概...",
+      "gold_label": 5,
+      "language": "zh",
+      "metric": "Basic Factual Accuracy",
+      "question_group": "8fab64f1090cd363036f72bb8f088eeaf4344ad1",
+      "question_hash": "49fcda9160e8fd2f1e4fcd61cf4cb1848460cc76",
+      "question_preview": "知识点：量子力学中的波函数归一化 请根据这个知识点给出\"教学素材\":教学素材需要包括教学目标、重点难点、课堂活动设计等,以json格式返回",
+      "rubric_hash": "fedb7c17248bec534b7386a493fe73aed0535fb4",
+      "sample_id": "99ad13b6de4b94e9fe7a1d4d92f2773c8088e049",
+      "subject": "Physics"
+    },
+    "rejected_origin": "real_model_score_output",
+    "rejected_redacted": {
+      "score": 3
+    },
+    "rejected_source": "deepseek-r1",
+    "rejected_source_count": 1,
+    "risk_type": "high_to_mid_real_model_error"
+  },
+  {
+    "chosen_redacted": {
+      "score": 1
+    },
+    "dataset_variant": "r6b_multi_score_only",
+    "input_redacted": {
+      "answer_hash": "261ca5f9e4b4ceede6b2756eea25e5904447aaf8",
+      "answer_preview": "{ \"Answer\": \"The time complexity of the quicksort algorithm in the average case scenario is O(n log n), where n represen...",
+      "gold_label": 1,
+      "language": "en",
+      "metric": "Reasoning Process Rigor",
+      "question_group": "14e6dfb98fe659be9bca96d36b8e8c3b5beda0d4",
+      "question_hash": "7815309274657d86db8320a902eee849d10a5e69",
+      "question_preview": "Subject:Computer Science Education Level:Undergraduate Question:What is the time complexity of the quicksort algorithm i...",
+      "rubric_hash": "b3bd64fec9b8cd51f4bac7251a02ad19e7755dd4",
+      "sample_id": "4c1781a47196920cfbd9a98a60533436add7af41",
+      "subject": "Computer Science"
+    },
+    "rejected_origin": "real_model_score_output",
+    "rejected_redacted": {
+      "score": 5
+    },
+    "rejected_source": "qwen3_4b_r0a_direct|deepseek-r1|gpt-4o|qwq-plus",
+    "rejected_source_count": 4,
+    "risk_type": "low_to_high_real_model_error"
+  },
+  {
+    "chosen_redacted": {
+      "score": 2
+    },
+    "dataset_variant": "r6b_multi_score_only",
+    "input_redacted": {
+      "answer_hash": "72d2e3e02c145d83b12fee7de22f039120fa3151",
+      "answer_preview": "{ \"纠错后答案\": \"第二次世界大战的主要参战国包括德国、美国、法国和苏联。其领导者分别是德国的阿道夫·希特勒、美国的富兰克林·罗斯福、法国的夏尔·戴高乐和苏联的约瑟夫·斯大林。\", \"纠错说明\": \"原答案中存在以下错误：1. 拿破仑是...",
+      "gold_label": 2,
+      "language": "zh",
+      "metric": "Motivation, Guidance & Positive Feedback",
+      "question_group": "33f24cdef61905293c51bb59ca561c1f2cef3965",
+      "question_hash": "46f030bc3f07cce2d9fb3363e7a682ac6b1cf572",
+      "question_preview": "问题：请简述第二次世界大战的主要参战国和其领导者。 原答案：第二次世界大战的主要参战国包括德国的希特勒、美国的罗斯福、法国的拿破仑和苏联的列宁。 你为学生的回答进行纠错服务.请根据这个问题和原答案给出\"纠错后答案\"和\"纠错说明\":,以jso...",
+      "rubric_hash": "9ae04cc5e9a9c5cb7edf5ca00783cc9f44903a1e",
+      "sample_id": "63ab64773fb76fbe6cba302eed79041a8316bb7c",
+      "subject": "History"
+    },
+    "rejected_origin": "real_model_score_output",
+    "rejected_redacted": {
+      "score": 3
+    },
+    "rejected_source": "deepseek-r1|qwq-plus",
+    "rejected_source_count": 2,
+    "risk_type": "low_to_mid_real_model_error"
+  },
+  {
+    "chosen_redacted": {
+      "score": 5
+    },
+    "dataset_variant": "r6b_multi_score_only",
+    "input_redacted": {
+      "answer_hash": "b91a5c0ffbd6276e08ee43a73d3812fb750d2171",
+      "answer_preview": "{ \"reasoning\": \"Plate tectonics refers to the movement of Earth's lithospheric plates, which are large segments of the E...",
+      "gold_label": 5,
+      "language": "en",
+      "metric": "Higher-Order Thinking & Skill Development",
+      "question_group": "d0434a705d581d2aebdcf53be8acafc5da9b8e4e",
+      "question_hash": "c98d672ecc7053c6de094ced31534e4f44a0991d",
+      "question_preview": "Question: Explain how plate tectonics can lead to the formation of mountains. Please provide reasoning based on this que...",
+      "rubric_hash": "efd8930d133668c42385bdc62ada9fc34b260538",
+      "sample_id": "0437d0cfa0dce66ccca098964dc8a1bba6a151b5",
+      "subject": "Geography"
+    },
+    "rejected_origin": "real_model_score_output",
+    "rejected_redacted": {
+      "score": 3
+    },
+    "rejected_source": "qwq-plus",
+    "rejected_source_count": 1,
+    "risk_type": "high_to_mid_real_model_error"
+  },
+  {
+    "chosen_redacted": {
+      "score": 1
+    },
+    "dataset_variant": "r6b_multi_score_only",
+    "input_redacted": {
+      "answer_hash": "cc2e6bddbcc6533c25a1880f84176bf670955a1b",
+      "answer_preview": "```json { \"answer\": \"A) f(z) has no singularities.\" } ```",
+      "gold_label": 1,
+      "language": "en",
+      "metric": "Basic Factual Accuracy",
+      "question_group": "aa48c48cd6bf14c4713397de0e37c7971495e79d",
+      "question_hash": "06012c00f4d4755831817a5ab75bb317943a38b1",
+      "question_preview": "Subject:Mathematics Education Level:PhD Question:In the context of complex analysis, consider the function f(z) = z^2 + ...",
+      "rubric_hash": "daebfb9529f9b5338cd603fe8cef21787409ff1a",
+      "sample_id": "5238e123a16a826d9dd25c0454890d96db10099a",
+      "subject": "Mathematics"
+    },
+    "rejected_origin": "real_model_score_output",
+    "rejected_redacted": {
+      "score": 5
+    },
+    "rejected_source": "qwen3_4b_r0a_direct|EduBenchEvaluator|deepseek-v3|gpt-4o|qwq-plus",
+    "rejected_source_count": 5,
+    "risk_type": "low_to_high_real_model_error"
+  },
+  {
+    "chosen_redacted": {
+      "score": 5
+    },
+    "dataset_variant": "r6b_multi_score_only",
+    "input_redacted": {
+      "answer_hash": "f454074b80cf19199bd8c51e75752acef6d15d49",
+      "answer_preview": "```json { \"Score\": 0, \"Scoring_Details\": \"The question asked is a true/false question about the location of the Andes Mo...",
+      "gold_label": 5,
+      "language": "en",
+      "metric": "Error Identification & Correction Precision",
+      "question_group": "fe8355c92fdedf86b46847c533ca17f018bc7679",
+      "question_hash": "c8e70775c7d4240193794dc63d6bb686065d3e66",
+      "question_preview": "Question: True or False: The Andes Mountains are located in North America. Student's Answer: True Please provide \"Score\"...",
+      "rubric_hash": "f6fa164afa8eeb1cc44254e9782d8922a32aaa4e",
+      "sample_id": "e04f16c7b868e79930d82dee337ed91571e1e412",
+      "subject": "Geography"
+    },
+    "rejected_origin": "real_model_score_output",
+    "rejected_redacted": {
+      "score": 2
+    },
+    "rejected_source": "qwen3_4b_r0a_direct",
+    "rejected_source_count": 1,
+    "risk_type": "high_to_low_real_model_error"
+  },
+  {
+    "chosen_redacted": {
+      "score": 2
+    },
+    "dataset_variant": "r6b_multi_score_only",
+    "input_redacted": {
+      "answer_hash": "542a7e1ae6cd5ca9e4bf9c5e6d7e2cd3572ac264",
+      "answer_preview": "{ \"reasoning\": \"Porter's Five Forces is a framework for analyzing the competitive environment of an industry, which help...",
+      "gold_label": 2,
+      "language": "en",
+      "metric": "Higher-Order Thinking & Skill Development",
+      "question_group": "b8341c9d33cad1b053ba0bafa03c407e4791c4da",
+      "question_hash": "1defd6e96950030805bc580fdc26c8d513ac2c27",
+      "question_preview": "Question: Explain how Porter's Five Forces framework can be used to analyze the competitive environment of an industry. ...",
+      "rubric_hash": "efd8930d133668c42385bdc62ada9fc34b260538",
+      "sample_id": "78a2f1f17b59206fae3cdedb6b11a9fef084b670",
+      "subject": "Business Administration"
+    },
+    "rejected_origin": "real_model_score_output",
+    "rejected_redacted": {
+      "score": 4
+    },
+    "rejected_source": "deepseek-v3|gpt-4o",
+    "rejected_source_count": 2,
+    "risk_type": "low_to_high_real_model_error"
+  },
+  {
+    "chosen_redacted": {
+      "score": 4
+    },
+    "dataset_variant": "r6b_multi_score_only",
+    "input_redacted": {
+      "answer_hash": "e783cdd9d3412b4ee68c1024200c12eaa128fdb0",
+      "answer_preview": "```json { \"Question\": \"Which of the following is NOT typically farmed in aquaculture?\", \"Options\": [ {\"option\": \"Fish\", ...",
+      "gold_label": 4,
+      "language": "en",
+      "metric": "Domain Knowledge Accuracy",
+      "question_group": "f6cf3e1b280ca78c17a557b97001a3fea411a738",
+      "question_hash": "e9562442ca8653bb150912e74946fa40a664c689",
+      "question_preview": "Subject:Aquaculture Education Level:Undergraduate Knowledge Point:Aquaculture involves the farming of aquatic organisms,...",
+      "rubric_hash": "cb11527aeb325ae6efc6b4b70e76cca4d7cdc549",
+      "sample_id": "92dbb595752601039e86553b2483c859c571fb23",
+      "subject": "Aquaculture"
+    },
+    "rejected_origin": "real_model_score_output",
+    "rejected_redacted": {
+      "score": 3
+    },
+    "rejected_source": "deepseek-r1",
+    "rejected_source_count": 1,
+    "risk_type": "high_to_mid_real_model_error"
+  },
+  {
+    "chosen_redacted": {
+      "score": 5
+    },
+    "dataset_variant": "r6b_multi_score_only",
+    "input_redacted": {
+      "answer_hash": "d5a1645155177a4718f587e0700e90c8c27b3547",
+      "answer_preview": "```json { \"Score\": \"0\", \"Scoring Details\": { \"Correct Answer\": \"False\", \"Explanation\": \"The Andes Mountains are located ...",
+      "gold_label": 5,
+      "language": "en",
+      "metric": "Basic Factual Accuracy",
+      "question_group": "fe8355c92fdedf86b46847c533ca17f018bc7679",
+      "question_hash": "c8e70775c7d4240193794dc63d6bb686065d3e66",
+      "question_preview": "Question: True or False: The Andes Mountains are located in North America. Student's Answer: True Please provide \"Score\"...",
+      "rubric_hash": "daebfb9529f9b5338cd603fe8cef21787409ff1a",
+      "sample_id": "74f0f389752631756f5463d1c5d9258a07356573",
+      "subject": "Geography"
+    },
+    "rejected_origin": "real_model_score_output",
+    "rejected_redacted": {
+      "score": 1
+    },
+    "rejected_source": "qwen3_4b_r0a_direct|deepseek-v3",
+    "rejected_source_count": 2,
+    "risk_type": "high_to_low_real_model_error"
+  },
+  {
+    "chosen_redacted": {
+      "score": 4
+    },
+    "dataset_variant": "r6b_multi_score_only",
+    "input_redacted": {
+      "answer_hash": "804fa61223b20eaa10582ec17d5f6e6d94b13811",
+      "answer_preview": "```json { \"思路分析\": { \"知识点回顾\": \"市场细分是将市场划分为具有相似需求或特征的消费者群体，以便制定针对性策略。\", \"选项分析\": { \"A) 生产成本\": \"属于企业内部成本因素，影响定价和生产策略，但非市场细分的...",
+      "gold_label": 4,
+      "language": "zh",
+      "metric": "Higher-Order Thinking & Skill Development",
+      "question_group": "432c5b715a60ffb7a8792d00bb01134c4d2cc68d",
+      "question_hash": "ff6080a2d4dc2a5f9ad9989c818ff016f84c0e21",
+      "question_preview": "问题：在进行市场细分时，企业通常会考虑以下哪一因素？ A) 生产成本 B) 客户需求 C) 竞争对手定价 D) 产品生命周期 请根据这个问题提供思路。\"提供的思路\":,以json格式返回",
+      "rubric_hash": "6521b711eb4a617b61ae31685dd331123b3dae1f",
+      "sample_id": "f04573714ecfbf035b4fc73a3cc506228285dbbf",
+      "subject": "Business Administration"
+    },
+    "rejected_origin": "real_model_score_output",
+    "rejected_redacted": {
+      "score": 3
+    },
+    "rejected_source": "deepseek-r1|qwq-plus",
+    "rejected_source_count": 2,
+    "risk_type": "high_to_mid_real_model_error"
+  },
+  {
+    "chosen_redacted": {
+      "score": 2
+    },
+    "dataset_variant": "r6b_multi_score_only",
+    "input_redacted": {
+      "answer_hash": "afae94a89e17939405cc40313272f0a0abb5f521",
+      "answer_preview": "```json { \"Score\": 4, \"ScoringDetails\": { \"ConceptUnderstanding\": 2, \"ExampleRelevance\": 2, \"ExplanationClarity\": 1, \"To...",
+      "gold_label": 2,
+      "language": "en",
+      "metric": "Instruction Following & Task Completion",
+      "question_group": "0e09c1d8b75a16ca2c50f1bccf73028ae1d691ea",
+      "question_hash": "abfe6a31d85969ac094ea1edb9ffa356d23363f8",
+      "question_preview": "Question: Explain the concept of Nash Equilibrium in game theory and provide an example. Student's Answer: Nash Equilibr...",
+      "rubric_hash": "a14797eaa80ea764fabf950019166678639967fc",
+      "sample_id": "6cc46157fcf2aa5b87cd72293be48481a7e5dacc",
+      "subject": "Theoretical Economics"
+    },
+    "rejected_origin": "real_model_score_output",
+    "rejected_redacted": {
+      "score": 5
+    },
+    "rejected_source": "EduBenchEvaluator|gpt-4o",
+    "rejected_source_count": 2,
+    "risk_type": "low_to_high_real_model_error"
+  },
+  {
+    "chosen_redacted": {
+      "score": 5
+    },
+    "dataset_variant": "r6b_multi_score_only",
+    "input_redacted": {
+      "answer_hash": "396da16845394c2cd54bf7ada600ff82671332ed",
+      "answer_preview": "```json { \"Score\": 85, \"Scoring_Details\": { \"Accuracy\": 90, \"Comprehension\": 85, \"Depth\": 75, \"Clarity\": 100 }, \"Persona...",
+      "gold_label": 5,
+      "language": "en",
+      "metric": "Basic Factual Accuracy",
+      "question_group": "9170c4d4b31f4dd5c699c2524cc746bd54865e83",
+      "question_hash": "1cd803423beed2f896c7135c5449733b4800e59f",
+      "question_preview": "Question: Discuss the role of neurotransmitters in the regulation of mood, and how imbalances can lead to mood disorders...",
+      "rubric_hash": "daebfb9529f9b5338cd603fe8cef21787409ff1a",
+      "sample_id": "8916ddb6f5f4be39476ec5e1dc477e3ed349d8fb",
+      "subject": "Psychology"
+    },
+    "rejected_origin": "real_model_score_output",
+    "rejected_redacted": {
+      "score": 3
+    },
+    "rejected_source": "deepseek-r1",
+    "rejected_source_count": 1,
+    "risk_type": "high_to_mid_real_model_error"
+  },
+  {
+    "chosen_redacted": {
+      "score": 4
+    },
+    "dataset_variant": "r6b_multi_score_only",
+    "input_redacted": {
+      "answer_hash": "a35ca607e31d06fa82caf9dacee3e56d2858ea3e",
+      "answer_preview": "```json { \"Score\": 85, \"Scoring Details\": { \"Content Accuracy\": 20, \"Comprehensiveness\": 15, \"Clarity and Organization\":...",
+      "gold_label": 4,
+      "language": "en",
+      "metric": "Motivation, Guidance & Positive Feedback",
+      "question_group": "9170c4d4b31f4dd5c699c2524cc746bd54865e83",
+      "question_hash": "1cd803423beed2f896c7135c5449733b4800e59f",
+      "question_preview": "Question: Discuss the role of neurotransmitters in the regulation of mood, and how imbalances can lead to mood disorders...",
+      "rubric_hash": "85529ff77a1aa88d7a8579cca9e14e9d5b2d1af1",
+      "sample_id": "55f68c90c204ef3f946d7a9d2963e864066944aa",
+      "subject": "Psychology"
+    },
+    "rejected_origin": "real_model_score_output",
+    "rejected_redacted": {
+      "score": 2
+    },
+    "rejected_source": "deepseek-r1|qwq-plus",
+    "rejected_source_count": 2,
+    "risk_type": "high_to_low_real_model_error"
+  },
+  {
+    "chosen_redacted": {
+      "score": 5
+    },
+    "dataset_variant": "r6b_multi_score_only",
+    "input_redacted": {
+      "answer_hash": "5f6d76c8d7787125b29fb903d52aca212dc0c640",
+      "answer_preview": "```json { \"Answer\": \"A\" } ```",
+      "gold_label": 5,
+      "language": "en",
+      "metric": "Content Relevance & Scope Control",
+      "question_group": "aa48c48cd6bf14c4713397de0e37c7971495e79d",
+      "question_hash": "06012c00f4d4755831817a5ab75bb317943a38b1",
+      "question_preview": "Subject:Mathematics Education Level:PhD Question:In the context of complex analysis, consider the function f(z) = z^2 + ...",
+      "rubric_hash": "5a76bccd19bd94e4eb2aaf284a87b0dff9ac4127",
+      "sample_id": "2db701fb1dfa209c0896fdb86b4a8689dfcab515",
+      "subject": "Mathematics"
+    },
+    "rejected_origin": "real_model_score_output",
+    "rejected_redacted": {
+      "score": 2
+    },
+    "rejected_source": "deepseek-v3",
+    "rejected_source_count": 1,
+    "risk_type": "high_to_low_real_model_error"
+  },
+  {
+    "chosen_redacted": {
+      "score": 2
+    },
+    "dataset_variant": "r6b_multi_score_only",
+    "input_redacted": {
+      "answer_hash": "b3fb9b077bce7ba852ff3654e5e6717f7202d547",
+      "answer_preview": "```json { \"评分\": \"部分正确\", \"评分细节\": { \"C\": \"正确\", \"E\": \"正确\", \"A\": \"未选择\", \"B\": \"未选择\", \"D\": \"未选择\" }, \"个性化反馈\": \"你的答案中选择了指数函数（C）和...",
+      "gold_label": 2,
+      "language": "zh",
+      "metric": "Basic Factual Accuracy",
+      "question_group": "80b4f169dced8f900b4d6467567222045b1c13a3",
+      "question_hash": "1a0a4b8bbfc2c0be4e0c9d55c5375baec8cf0e0b",
+      "question_preview": "问题：选择以下具有微分同胚性质的函数类别：（可多选） A. 二次多项式函数 B. 余弦函数 C. 指数函数 D. 常数函数 E. 三次多项式函数 学生的答案：['C', 'E'] 请根据问题和学生答案给出\"评分\":\"评分细节\":\"个性化反馈...",
+      "rubric_hash": "fedb7c17248bec534b7386a493fe73aed0535fb4",
+      "sample_id": "18551ba0c6e7b3ad2bd30333ae0aad09b79b9c98",
+      "subject": "Mathematics"
+    },
+    "rejected_origin": "real_model_score_output",
+    "rejected_redacted": {
+      "score": 5
+    },
+    "rejected_source": "EduBenchEvaluator",
+    "rejected_source_count": 1,
+    "risk_type": "low_to_high_real_model_error"
+  },
+  {
+    "chosen_redacted": {
+      "score": 5
+    },
+    "dataset_variant": "r6b_multi_score_only",
+    "input_redacted": {
+      "answer_hash": "fbad07f137a1843a867ed401bcf551ed857af914",
+      "answer_preview": "{ \"Score\": 0, \"Scoring Details\": { \"Correct Answer\": \"False\", \"Student's Answer\": \"True\", \"Explanation\": \"The Andes Moun...",
+      "gold_label": 5,
+      "language": "en",
+      "metric": "Reasoning Process Rigor",
+      "question_group": "fe8355c92fdedf86b46847c533ca17f018bc7679",
+      "question_hash": "c8e70775c7d4240193794dc63d6bb686065d3e66",
+      "question_preview": "Question: True or False: The Andes Mountains are located in North America. Student's Answer: True Please provide \"Score\"...",
+      "rubric_hash": "b3bd64fec9b8cd51f4bac7251a02ad19e7755dd4",
+      "sample_id": "c5e071f6d3124ab0ca810e095f6bd3a2e30aaa1c",
+      "subject": "Geography"
+    },
+    "rejected_origin": "real_model_score_output",
+    "rejected_redacted": {
+      "score": 1
+    },
+    "rejected_source": "qwen3_4b_r0a_direct|deepseek-v3",
+    "rejected_source_count": 2,
+    "risk_type": "high_to_low_real_model_error"
+  },
+  {
+    "chosen_redacted": {
+      "score": 1
+    },
+    "dataset_variant": "r6b_multi_score_only",
+    "input_redacted": {
+      "answer_hash": "0bee736c83d9be925792af312b542f4068527253",
+      "answer_preview": "```json { \"评分\": 3, \"评分细节\": \"学生正确选择了四个因素中的三个，但漏掉了对城市化进程的影响。\", \"个性化反馈\": \"您的回答非常接近完全正确。您准确地指出了农奴制、十字军东征、黑死病的流行以及军事科技的进步对中世纪...",
+      "gold_label": 1,
+      "language": "zh",
+      "metric": "Error Identification & Correction Precision",
+      "question_group": "0a3152b6a40fc98b07a15855ba40ec0882507e78",
+      "question_hash": "db343171369d097411a12428c8a9999edf27c716",
+      "question_preview": "问题：在研究中世纪封建制度发展的过程中，下列哪些因素对其演变起到了关键作用？（可选择多个） A. 农奴制 B. 城市化进程 C. 十字军东征 D. 文艺复兴 E. 黑死病的流行 F. 军事科技的进步 学生的答案：['A', 'C', 'E'...",
+      "rubric_hash": "c6c74fb24e1b300cf0cb56b31c87d46e02bf7d2c",
+      "sample_id": "994d4e155a8f105839639aba605151175ef4de88",
+      "subject": "History"
+    },
+    "rejected_origin": "real_model_score_output",
+    "rejected_redacted": {
+      "score": 3
+    },
+    "rejected_source": "qwen3_4b_r0a_direct|deepseek-v3|deepseek-r1",
+    "rejected_source_count": 3,
+    "risk_type": "low_to_mid_real_model_error"
+  },
+  {
+    "chosen_redacted": {
+      "score": 2
+    },
+    "dataset_variant": "r6b_multi_score_only",
+    "input_redacted": {
+      "answer_hash": "904c861835be7ec3712d9c277d4dcf237df2348f",
+      "answer_preview": "```json { \"答案\": \"B. 自决原则\" } ``` 注解：自决原则是国际法中的一个重要原则，尤其适用于处理殖民地独立、民族分离等问题，也常用于解决某些领土争端。不过，在解决具体的领土争端时，国际社会也可能会采用其他多种方法和原则...",
+      "gold_label": 2,
+      "language": "zh",
+      "metric": "Reasoning Process Rigor",
+      "question_group": "3b26f4f8f9f7314ee644e63efa2173afbb702c33",
+      "question_hash": "b27642df5b7b80be496688b97612af94ee8dfdff",
+      "question_preview": "学科:法学 学制级别:博士 问题：在国际法中，以下哪一个原则主要用于解决国家之间的领土争端？ A. 不干涉内政原则 B. 自决原则 C. 先占原则 D. 互惠原则 .请根据问题生成对应的答案。\"答案\":,以json格式返回",
+      "rubric_hash": "b7f8c5225c371cc3eb0b44c1d62d92c1873d9375",
+      "sample_id": "bdfb1901aed7bfddbd4bcd0898854e7ecfd4513c",
+      "subject": "Law"
+    },
+    "rejected_origin": "real_model_score_output",
+    "rejected_redacted": {
+      "score": 5
+    },
+    "rejected_source": "qwq-plus",
+    "rejected_source_count": 1,
+    "risk_type": "low_to_high_real_model_error"
+  },
+  {
+    "chosen_redacted": {
+      "score": 3
+    },
+    "dataset_variant": "r6b_multi_score_only",
+    "input_redacted": {
+      "answer_hash": "49ad9132db4a2737b3c4d430b857595c7c43f11c",
+      "answer_preview": "```json { \"问题\": \"比较下列两个分数的大小：1/4 和 3/8\", \"提供的思路\": \"要比较这两个分数的大小，可以将它们转换为具有相同分母的形式，或者直接计算它们的小数值进行比较。在这里，我们可以找到一个共同的分母，即8，然...",
+      "gold_label": 3,
+      "language": "zh",
+      "metric": "Higher-Order Thinking & Skill Development",
+      "question_group": "770c45352988affabdaebdbaa7ba14d12f370c74",
+      "question_hash": "de9e6feab117bbb97bb5afd155596e729dd7768c",
+      "question_preview": "学科:数学 学制级别:小学 知识点：简单分数的比较 问题类型：单选题 .请根据学科,学制级别,知识点,问题类型生成一个对应的问题。\"问题\"和\"提供的思路\":,以json格式返回",
+      "rubric_hash": "6521b711eb4a617b61ae31685dd331123b3dae1f",
+      "sample_id": "37684b87110bfce9956476465e8eadbb4822cb69",
+      "subject": "Mathematics"
+    },
+    "rejected_origin": "real_model_score_output",
+    "rejected_redacted": {
+      "score": 2
+    },
+    "rejected_source": "qwq-plus",
+    "rejected_source_count": 1,
+    "risk_type": "mid_to_low_real_model_error"
+  },
+  {
+    "chosen_redacted": {
+      "score": 2
+    },
+    "dataset_variant": "r6b_multi_score_only",
+    "input_redacted": {
+      "answer_hash": "b3fb9b077bce7ba852ff3654e5e6717f7202d547",
+      "answer_preview": "```json { \"评分\": \"部分正确\", \"评分细节\": { \"C\": \"正确\", \"E\": \"正确\", \"A\": \"未选择\", \"B\": \"未选择\", \"D\": \"未选择\" }, \"个性化反馈\": \"你的答案中选择了指数函数（C）和...",
+      "gold_label": 2,
+      "language": "zh",
+      "metric": "Basic Factual Accuracy",
+      "question_group": "80b4f169dced8f900b4d6467567222045b1c13a3",
+      "question_hash": "1a0a4b8bbfc2c0be4e0c9d55c5375baec8cf0e0b",
+      "question_preview": "问题：选择以下具有微分同胚性质的函数类别：（可多选） A. 二次多项式函数 B. 余弦函数 C. 指数函数 D. 常数函数 E. 三次多项式函数 学生的答案：['C', 'E'] 请根据问题和学生答案给出\"评分\":\"评分细节\":\"个性化反馈...",
+      "rubric_hash": "fedb7c17248bec534b7386a493fe73aed0535fb4",
+      "sample_id": "18551ba0c6e7b3ad2bd30333ae0aad09b79b9c98",
+      "subject": "Mathematics"
+    },
+    "rejected_origin": "real_model_score_output",
+    "rejected_redacted": {
+      "score": 3
+    },
+    "rejected_source": "qwen3_4b_r0a_direct|gpt-4o",
+    "rejected_source_count": 2,
+    "risk_type": "low_to_mid_real_model_error"
+  },
+  {
+    "chosen_redacted": {
+      "score": 1
+    },
+    "dataset_variant": "r6b_multi_score_only",
+    "input_redacted": {
+      "answer_hash": "3b2a146769a1a6604ea87d5eed5257b6d8f11eb3",
+      "answer_preview": "```json { \"影响学生运动参与度的因素\": [ \"学校的体育设施条件\", \"学生的家庭背景\", \"教师的教学风格\", \"学生的个人兴趣\" ] } ```",
+      "gold_label": 1,
+      "language": "zh",
+      "metric": "Reasoning Process Rigor",
+      "question_group": "379759b00c0ded53ca5135bf363df1ca0f8ae778",
+      "question_hash": "b87dc389fbb4d6121292528d6225ef392b010d7e",
+      "question_preview": "学科:体育教育学 学制级别:硕士 问题：在体育教育学中，以下哪些因素可能影响学生的运动参与度？(请选择所有适用的选项) A. 学校的体育设施条件 B. 学生的家庭背景 C. 教师的教学风格 D. 学生的个人兴趣 E. 学校的地理位置 .请根...",
+      "rubric_hash": "b7f8c5225c371cc3eb0b44c1d62d92c1873d9375",
+      "sample_id": "8b2201addbda2de262f29b819d9d4a430827f8c8",
+      "subject": "Physical Education"
+    },
+    "rejected_origin": "real_model_score_output",
+    "rejected_redacted": {
+      "score": 3
+    },
+    "rejected_source": "deepseek-r1",
+    "rejected_source_count": 1,
+    "risk_type": "low_to_mid_real_model_error"
+  },
+  {
+    "chosen_redacted": {
+      "score": 1
+    },
+    "dataset_variant": "r6b_multi_score_only",
+    "input_redacted": {
+      "answer_hash": "5f6d76c8d7787125b29fb903d52aca212dc0c640",
+      "answer_preview": "```json { \"Answer\": \"A\" } ```",
+      "gold_label": 1,
+      "language": "en",
+      "metric": "Reasoning Process Rigor",
+      "question_group": "aa48c48cd6bf14c4713397de0e37c7971495e79d",
+      "question_hash": "06012c00f4d4755831817a5ab75bb317943a38b1",
+      "question_preview": "Subject:Mathematics Education Level:PhD Question:In the context of complex analysis, consider the function f(z) = z^2 + ...",
+      "rubric_hash": "b3bd64fec9b8cd51f4bac7251a02ad19e7755dd4",
+      "sample_id": "6c703c046a9b97419785484bb1dd5d5b81ccd77a",
+      "subject": "Mathematics"
+    },
+    "rejected_origin": "real_model_score_output",
+    "rejected_redacted": {
+      "score": 3
+    },
+    "rejected_source": "gpt-4o",
+    "rejected_source_count": 1,
+    "risk_type": "low_to_mid_real_model_error"
+  },
+  {
+    "chosen_redacted": {
+      "score": 2
+    },
+    "dataset_variant": "r6b_multi_score_only",
+    "input_redacted": {
+      "answer_hash": "7662628c1751b945857521787ae0b47368cf3edd",
+      "answer_preview": "```json { \"评分\": 3, \"评分细节\": { \"概念解释准确性\": 2, \"完整性\": 2, \"逻辑清晰度\": 2 }, \"个性化反馈\": [ \"概念解释准确性较高，但可以进一步明确需求弹性的具体定义，例如提到需求弹性是衡量需求...",
+      "gold_label": 2,
+      "language": "zh",
+      "metric": "Instruction Following & Task Completion",
+      "question_group": "2315014220e7c1c5fbc4751aea0a196884f3ace8",
+      "question_hash": "83fead491fcaf972a0423e667e6d9f84f810ecaa",
+      "question_preview": "问题：解释“需求弹性”的概念及其在经济学中的重要性。 学生的答案：需求弹性是指需求量对价格变化的反应程度。在经济学中，它很重要，因为它帮助企业了解价格变动对销售额的影响，也帮助政府制定税收政策。 请根据问题和学生答案给出\"评分\":\"评分细节...",
+      "rubric_hash": "7d47c668a8cc433d80360ff1b40bcaa9ffce3f1c",
+      "sample_id": "65890fb994cef054dc75e0e6dd4c1b3e2d91805d",
+      "subject": "Theoretical Economics"
+    },
+    "rejected_origin": "real_model_score_output",
+    "rejected_redacted": {
+      "score": 3
+    },
+    "rejected_source": "qwen3_4b_r0a_direct|gpt-4o|qwq-plus",
+    "rejected_source_count": 3,
+    "risk_type": "low_to_mid_real_model_error"
+  },
+  {
+    "chosen_redacted": {
+      "score": 3
+    },
+    "dataset_variant": "r6b_multi_score_only",
+    "input_redacted": {
+      "answer_hash": "d5a1645155177a4718f587e0700e90c8c27b3547",
+      "answer_preview": "```json { \"Score\": \"0\", \"Scoring Details\": { \"Correct Answer\": \"False\", \"Explanation\": \"The Andes Mountains are located ...",
+      "gold_label": 3,
+      "language": "en",
+      "metric": "Instruction Following & Task Completion",
+      "question_group": "fe8355c92fdedf86b46847c533ca17f018bc7679",
+      "question_hash": "c8e70775c7d4240193794dc63d6bb686065d3e66",
+      "question_preview": "Question: True or False: The Andes Mountains are located in North America. Student's Answer: True Please provide \"Score\"...",
+      "rubric_hash": "a14797eaa80ea764fabf950019166678639967fc",
+      "sample_id": "b2e52bd37efe805ddffb36de59b66927cb7d0a9e",
+      "subject": "Geography"
+    },
+    "rejected_origin": "real_model_score_output",
+    "rejected_redacted": {
+      "score": 1
+    },
+    "rejected_source": "qwen3_4b_r0a_direct|deepseek-v3",
+    "rejected_source_count": 2,
+    "risk_type": "mid_to_low_real_model_error"
+  },
+  {
+    "chosen_redacted": {
+      "score": 2
+    },
+    "dataset_variant": "r6b_multi_score_only",
+    "input_redacted": {
+      "answer_hash": "0ed10ffb9001fff8f674789b32466bb55ddcd8a7",
+      "answer_preview": "```json { \"Question\": \"What does aquaculture primarily involve?\", \"ProvidedReasoning\": \"This question tests the basic un...",
+      "gold_label": 2,
+      "language": "en",
+      "metric": "Higher-Order Thinking & Skill Development",
+      "question_group": "f6cf3e1b280ca78c17a557b97001a3fea411a738",
+      "question_hash": "e9562442ca8653bb150912e74946fa40a664c689",
+      "question_preview": "Subject:Aquaculture Education Level:Undergraduate Knowledge Point:Aquaculture involves the farming of aquatic organisms,...",
+      "rubric_hash": "efd8930d133668c42385bdc62ada9fc34b260538",
+      "sample_id": "9b98fbe73d713149b38df9e497e2ad0a0a022c91",
+      "subject": "Aquaculture"
+    },
+    "rejected_origin": "real_model_score_output",
+    "rejected_redacted": {
+      "score": 3
+    },
+    "rejected_source": "qwen3_4b_r0a_direct",
+    "rejected_source_count": 1,
+    "risk_type": "low_to_mid_real_model_error"
+  },
+  {
+    "chosen_redacted": {
+      "score": 3
+    },
+    "dataset_variant": "r6b_multi_score_only",
+    "input_redacted": {
+      "answer_hash": "db3041d410276006aee5aa6a0ab30da47dba0f68",
+      "answer_preview": "{ \"Answer\": \"A) f(z) has no singularities.\" }",
+      "gold_label": 3,
+      "language": "en",
+      "metric": "Instruction Following & Task Completion",
+      "question_group": "aa48c48cd6bf14c4713397de0e37c7971495e79d",
+      "question_hash": "06012c00f4d4755831817a5ab75bb317943a38b1",
+      "question_preview": "Subject:Mathematics Education Level:PhD Question:In the context of complex analysis, consider the function f(z) = z^2 + ...",
+      "rubric_hash": "a14797eaa80ea764fabf950019166678639967fc",
+      "sample_id": "92cdf1cd2345402211a7c41ed7b7fc87c3ed4575",
+      "subject": "Mathematics"
+    },
+    "rejected_origin": "real_model_score_output",
+    "rejected_redacted": {
+      "score": 2
+    },
+    "rejected_source": "deepseek-r1",
+    "rejected_source_count": 1,
+    "risk_type": "mid_to_low_real_model_error"
+  },
+  {
+    "chosen_redacted": {
+      "score": 2
+    },
+    "dataset_variant": "r6b_multi_score_only",
+    "input_redacted": {
+      "answer_hash": "6937805e8c6bf44fc3d3b1f6a828499d8d6bcbcf",
+      "answer_preview": "{ \"reasoning\": \"Porter's Five Forces framework is a strategic planning tool used to analyze the competitive forces at wo...",
+      "gold_label": 2,
+      "language": "en",
+      "metric": "Higher-Order Thinking & Skill Development",
+      "question_group": "b8341c9d33cad1b053ba0bafa03c407e4791c4da",
+      "question_hash": "1defd6e96950030805bc580fdc26c8d513ac2c27",
+      "question_preview": "Question: Explain how Porter's Five Forces framework can be used to analyze the competitive environment of an industry. ...",
+      "rubric_hash": "efd8930d133668c42385bdc62ada9fc34b260538",
+      "sample_id": "1b5df375ab0c6d48d21dc9a88fd408b29454ff67",
+      "subject": "Business Administration"
+    },
+    "rejected_origin": "real_model_score_output",
+    "rejected_redacted": {
+      "score": 3
+    },
+    "rejected_source": "EduBenchEvaluator|deepseek-r1",
+    "rejected_source_count": 2,
+    "risk_type": "low_to_mid_real_model_error"
+  },
+  {
+    "chosen_redacted": {
+      "score": 3
+    },
+    "dataset_variant": "r6b_multi_score_only",
+    "input_redacted": {
+      "answer_hash": "1c43cb25914e17c659fca2ce2d7953622618919e",
+      "answer_preview": "```json { \"评分\": 85, \"评分细节\": { \"原因分析\": { \"得分\": 8, \"评语\": \"学生正确指出了种族歧视和社会不平等是主要原因，但经济因素和国际压力（如冷战背景下的国际形象问题）缺乏具体例证。\" }, \"社会团...",
+      "gold_label": 3,
+      "language": "zh",
+      "metric": "Motivation, Guidance & Positive Feedback",
+      "question_group": "c704daf936433b064b6ac838c48f647752e9e2be",
+      "question_hash": "e12816d8faa0cde58e80a58fecd2f3690c09fbce",
+      "question_preview": "问题：分析1960年代美国民权运动的主要原因和影响。请特别关注不同社会团体的角色以及运动带来的政策变革。 学生的答案：1960年代美国民权运动的主要原因包括种族歧视和社会不平等的长期存在，尤其是黑人群体在寻求平等权利方面所面临的困难。同时，...",
+      "rubric_hash": "9ae04cc5e9a9c5cb7edf5ca00783cc9f44903a1e",
+      "sample_id": "c13167075148a265b283ce6bd0a309d539f243f7",
+      "subject": "History"
+    },
+    "rejected_origin": "real_model_score_output",
+    "rejected_redacted": {
+      "score": 1
+    },
+    "rejected_source": "deepseek-v3|deepseek-r1",
+    "rejected_source_count": 2,
+    "risk_type": "mid_to_low_real_model_error"
+  },
+  {
+    "chosen_redacted": {
+      "score": 3
+    },
+    "dataset_variant": "r6b_multi_score_only",
+    "input_redacted": {
+      "answer_hash": "99f743ea1eff162d057994cd3e75254c7cf0d61e",
+      "answer_preview": "{ \"纠错后答案\": \"The past tense of 'run' is 'ran'.\", \"纠错说明\": \"原答案中使用了不正确的动词形式'runned'。英语中，'run'的过去式是'ran'，而不是'runned'。\" }",
+      "gold_label": 3,
+      "language": "zh",
+      "metric": "Motivation, Guidance & Positive Feedback",
+      "question_group": "fdcc493923c6536e26519ec07f9693ca405da624",
+      "question_hash": "f18b295c63bee185f0702b6dd90878f13b3d6958",
+      "question_preview": "问题：What is the past tense of the verb 'run'? 原答案：The past tense of 'run' is 'runned'. 你为学生的回答进行纠错服务.请根据这个问题和原答案给出\"纠错后答案\"...",
+      "rubric_hash": "9ae04cc5e9a9c5cb7edf5ca00783cc9f44903a1e",
+      "sample_id": "aac82a1ea24eb57e47bc6a7180ee5db7ceb6b5e3",
+      "subject": "English"
+    },
+    "rejected_origin": "real_model_score_output",
+    "rejected_redacted": {
+      "score": 2
+    },
+    "rejected_source": "qwq-plus",
+    "rejected_source_count": 1,
+    "risk_type": "mid_to_low_real_model_error"
+  }
+]
