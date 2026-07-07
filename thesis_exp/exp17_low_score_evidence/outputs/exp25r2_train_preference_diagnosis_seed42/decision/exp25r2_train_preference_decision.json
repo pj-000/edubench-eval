@@ -1,0 +1,12 @@
+{
+  "no_training": true,
+  "raw_predictions_committed": false,
+  "reason": "At least one Exp25 run has train DPO preference accuracy below 0.60.",
+  "recommendation": "fix_loss_beta_steps_or_trainer_before_data_expansion",
+  "test_read": false,
+  "train_only_dpo_pairs_used": true,
+  "train_preference_thresholds": {
+    "learned_cutoff": 0.75,
+    "low_accuracy_cutoff": 0.6
+  }
+}
