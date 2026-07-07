@@ -2,7 +2,7 @@
 set -euo pipefail
 
 CONDA_ENV="${CONDA_ENV:-llama_factory}"
-GPU_LIST="${GPU_LIST:-0 1 2}"
+GPU_LIST="${GPU_LIST:-0 1 2 3}"
 SMOKE="${SMOKE:-0}"
 PARALLEL="${PARALLEL:-1}"
 RUN_NAMES_OVERRIDE="${RUN_NAMES_OVERRIDE:-}"
@@ -125,6 +125,10 @@ Runs:
   B: stronger low-to-high risk weighting + reason auxiliary
   B-no-reason: same as B, lambda_reason=0
   C: balanced low/high risk weighting + stronger reason auxiliary
+
+Parallel scheduling:
+  PARALLEL=1 launches one queue per GPU. Runs assigned to the same GPU execute
+  sequentially, so a single GPU never receives two Exp24 jobs at once.
 CONFIG
 
 run_args() {
@@ -218,32 +222,49 @@ predict_one() {
 
 run_phase() {
   local phase="$1"
-  local pids=()
-  for idx in "${!RUN_NAMES[@]}"; do
-    local gpu_slot=$((idx % ${#GPUS[@]}))
-    local gpu_id="${GPUS[$gpu_slot]}"
-    local run_name="${RUN_NAMES[$idx]}"
-    echo "GPU ${gpu_id} ${phase} queue: ${run_name}"
-    if [[ "${PARALLEL}" == "1" ]]; then
-      if [[ "${phase}" == "train" ]]; then
-        train_one "${run_name}" "${gpu_id}" &
-      else
-        predict_one "${run_name}" "${gpu_id}" &
-      fi
-      pids+=("$!")
-    else
+  if [[ "${PARALLEL}" != "1" ]]; then
+    for idx in "${!RUN_NAMES[@]}"; do
+      local gpu_slot=$((idx % ${#GPUS[@]}))
+      local gpu_id="${GPUS[$gpu_slot]}"
+      local run_name="${RUN_NAMES[$idx]}"
+      echo "GPU ${gpu_id} ${phase} queue: ${run_name}"
       if [[ "${phase}" == "train" ]]; then
         train_one "${run_name}" "${gpu_id}"
       else
         predict_one "${run_name}" "${gpu_id}"
       fi
-    fi
-  done
-  if [[ "${PARALLEL}" == "1" ]]; then
-    for pid in "${pids[@]}"; do
-      wait "${pid}"
     done
+    return 0
   fi
+
+  local pids=()
+  for gpu_slot in "${!GPUS[@]}"; do
+    local gpu_id="${GPUS[$gpu_slot]}"
+    (
+      set -euo pipefail
+      local queued=0
+      for idx in "${!RUN_NAMES[@]}"; do
+        if (( idx % ${#GPUS[@]} != gpu_slot )); then
+          continue
+        fi
+        local run_name="${RUN_NAMES[$idx]}"
+        queued=1
+        echo "GPU ${gpu_id} ${phase} queue: ${run_name}"
+        if [[ "${phase}" == "train" ]]; then
+          train_one "${run_name}" "${gpu_id}"
+        else
+          predict_one "${run_name}" "${gpu_id}"
+        fi
+      done
+      if [[ "${queued}" == "0" ]]; then
+        echo "GPU ${gpu_id} ${phase} queue: empty"
+      fi
+    ) &
+    pids+=("$!")
+  done
+  for pid in "${pids[@]}"; do
+    wait "${pid}"
+  done
 }
 
 if [[ "${COLLECT_ONLY}" != "1" && "${PREDICT_ONLY}" != "1" ]]; then
