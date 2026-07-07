@@ -27245,11 +27245,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"问题本身未提供个性化场景信息，答案采用通用教学表述（如“one would start with the number 5”），虽合理但未体现主动构建教学场景的努力。 / 通用推理没有结合学生水平，如用实物举例，缺乏个性化场景适配。 / 通用推理未结合学生水平（如面向小学生未用实物举例），个性化场景适配不足。\",\"score\":2,\"score_cap\":2}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"问题本身未提供个性化场景信息，答案采用通用教学表述（如“one would start with the number 5”），虽合理但未体现主动构建教学场景的努力。 / 通用推理没有结合学生水平，如用实物举例，缺乏个性化场景适配。 / 通用推理未结合学生水平（如面向小学生未用实物举例），个性化场景适配不足。\",\"score\":2,\"score_cap\":2}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":4,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":4,\"score_cap\":null}"
     },
     "source_sample_id": "02169e6cc6f86f682c0b04047827e32859533603",
     "question_key": "182ead73c7c9bef64c812e1c3366635156817f15",
@@ -27364,11 +27364,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"问题本身未提供个性化场景信息，答案采用通用教学表述（如“one would start with the number 5”），虽合理但未体现主动构建教学场景的努力。 / 通用推理没有结合学生水平，如用实物举例，缺乏个性化场景适配。 / 通用推理未结合学生水平（如面向小学生未用实物举例），个性化场景适配不足。\",\"score\":2,\"score_cap\":2}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"问题本身未提供个性化场景信息，答案采用通用教学表述（如“one would start with the number 5”），虽合理但未体现主动构建教学场景的努力。 / 通用推理没有结合学生水平，如用实物举例，缺乏个性化场景适配。 / 通用推理未结合学生水平（如面向小学生未用实物举例），个性化场景适配不足。\",\"score\":2,\"score_cap\":2}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
     },
     "source_sample_id": "02169e6cc6f86f682c0b04047827e32859533603",
     "question_key": "182ead73c7c9bef64c812e1c3366635156817f15",
@@ -27483,11 +27483,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"多项式函数在无穷远点必有奇点，选项A完全错误。 / 选项A错误，因为多项式函数在无穷远点必然存在奇点。 / 多项式函数在无穷远点必为奇点，选项 A 的表述存在根本性错误。\",\"score\":1,\"score_cap\":1}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"多项式函数在无穷远点必有奇点，选项A完全错误。 / 选项A错误，因为多项式函数在无穷远点必然存在奇点。 / 多项式函数在无穷远点必为奇点，选项 A 的表述存在根本性错误。\",\"score\":1,\"score_cap\":1}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
     },
     "source_sample_id": "0578273c54e1a724084529ebbc385f1bdd1076ea",
     "question_key": "aa48c48cd6bf14c4713397de0e37c7971495e79d",
@@ -27602,11 +27602,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"未充分利用\\\"未选中但正确\\\"字段，导致错失深入分析B/D选项错误根源的重要机会。 / 空置\\\"未选中但正确\\\"字段，错失分析B/D选项错误原因的机会。 / 未识别任何错误（包括可能存在的F误选），纠正建议功能失效。\",\"score\":2,\"score_cap\":2}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"未充分利用\\\"未选中但正确\\\"字段，导致错失深入分析B/D选项错误根源的重要机会。 / 空置\\\"未选中但正确\\\"字段，错失分析B/D选项错误原因的机会。 / 未识别任何错误（包括可能存在的F误选），纠正建议功能失效。\",\"score\":2,\"score_cap\":2}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
     },
     "source_sample_id": "08554936f4982f9a49b0ecb237ab00fa29370010",
     "question_key": "0a3152b6a40fc98b07a15855ba40ec0882507e78",
@@ -27721,11 +27721,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"完全缺失推理链条，直接给出错误结论，无任何论证过程。 / 缺乏论证过程。 / 未提供推理过程或理论依据，仅给出选项，无法验证逻辑链条的完整性，严谨性不足。\",\"score\":1,\"score_cap\":1}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"完全缺失推理链条，直接给出错误结论，无任何论证过程。 / 缺乏论证过程。 / 未提供推理过程或理论依据，仅给出选项，无法验证逻辑链条的完整性，严谨性不足。\",\"score\":1,\"score_cap\":1}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
     },
     "source_sample_id": "0a86fc4b2478f8c922c1ab7ce85590f94b9d2136",
     "question_key": "aa48c48cd6bf14c4713397de0e37c7971495e79d",
@@ -27840,11 +27840,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"完全颠倒正确选项判断，产生严重误导。 / 未识别自身对B、C的误判，反而纠正学生“未选B”，完全误导；对E的判断（“通常不具备”）与事实不符（特定三次多项式可满足），错误定位与纠正双重失败。\",\"score\":1,\"score_cap\":1}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"完全颠倒正确选项判断，产生严重误导。 / 未识别自身对B、C的误判，反而纠正学生“未选B”，完全误导；对E的判断（“通常不具备”）与事实不符（特定三次多项式可满足），错误定位与纠正双重失败。\",\"score\":1,\"score_cap\":1}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
     },
     "source_sample_id": "0c74a66a6f9ecee5580723b73f7741a8f05e1352",
     "question_key": "80b4f169dced8f900b4d6467567222045b1c13a3",
@@ -27959,11 +27959,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"仅给出答案，无推理过程，逻辑链条不完整 。 / 无推理过程。 / 未发现推理过程。\",\"score\":1,\"score_cap\":1}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"仅给出答案，无推理过程，逻辑链条不完整 。 / 无推理过程。 / 未发现推理过程。\",\"score\":1,\"score_cap\":1}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
     },
     "source_sample_id": "0f9bdd1ac2b116a1f087a68008be1d0a38cb8ab1",
     "question_key": "3f583749c39a53d68120dd4302b4c6888f5dd6d7",
@@ -28078,11 +28078,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"错误认为需补充定义，学生已涵盖要点。 / 误判需要补充定义，学生已准确回答要点。 / 错误认为需补充定义，学生答案已涵盖相关要点，反馈与实际内容不符。\",\"score\":2,\"score_cap\":2}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"错误认为需补充定义，学生已涵盖要点。 / 误判需要补充定义，学生已准确回答要点。 / 错误认为需补充定义，学生答案已涵盖相关要点，反馈与实际内容不符。\",\"score\":2,\"score_cap\":2}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":4,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":4,\"score_cap\":null}"
     },
     "source_sample_id": "107a460ba82cd473b9a08a5d43257a7f1d336874",
     "question_key": "0e09c1d8b75a16ca2c50f1bccf73028ae1d691ea",
@@ -28197,11 +28197,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"错误认为需补充定义，学生已涵盖要点。 / 误判需要补充定义，学生已准确回答要点。 / 错误认为需补充定义，学生答案已涵盖相关要点，反馈与实际内容不符。\",\"score\":2,\"score_cap\":2}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"错误认为需补充定义，学生已涵盖要点。 / 误判需要补充定义，学生已准确回答要点。 / 错误认为需补充定义，学生答案已涵盖相关要点，反馈与实际内容不符。\",\"score\":2,\"score_cap\":2}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
     },
     "source_sample_id": "107a460ba82cd473b9a08a5d43257a7f1d336874",
     "question_key": "0e09c1d8b75a16ca2c50f1bccf73028ae1d691ea",
@@ -28316,11 +28316,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"只是对分析问题的要点进行概括，未设计能促进高阶思维的内容，可评 3 分。 / 仅概括分析要点，未设计促进高阶思维的内容。 / 未涉及任何高阶思维活动（如评估、对比），仅完成知识复述，思维培养缺失。\",\"score\":2,\"score_cap\":2}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"只是对分析问题的要点进行概括，未设计能促进高阶思维的内容，可评 3 分。 / 仅概括分析要点，未设计促进高阶思维的内容。 / 未涉及任何高阶思维活动（如评估、对比），仅完成知识复述，思维培养缺失。\",\"score\":2,\"score_cap\":2}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":4,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":4,\"score_cap\":null}"
     },
     "source_sample_id": "13af8e6896f2be6cf223e45bf4f1652fe39fe7d3",
     "question_key": "b8341c9d33cad1b053ba0bafa03c407e4791c4da",
@@ -28435,11 +28435,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"只是对分析问题的要点进行概括，未设计能促进高阶思维的内容，可评 3 分。 / 仅概括分析要点，未设计促进高阶思维的内容。 / 未涉及任何高阶思维活动（如评估、对比），仅完成知识复述，思维培养缺失。\",\"score\":2,\"score_cap\":2}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"只是对分析问题的要点进行概括，未设计能促进高阶思维的内容，可评 3 分。 / 仅概括分析要点，未设计促进高阶思维的内容。 / 未涉及任何高阶思维活动（如评估、对比），仅完成知识复述，思维培养缺失。\",\"score\":2,\"score_cap\":2}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
     },
     "source_sample_id": "13af8e6896f2be6cf223e45bf4f1652fe39fe7d3",
     "question_key": "b8341c9d33cad1b053ba0bafa03c407e4791c4da",
@@ -28554,11 +28554,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"错误标记A/D为正确答案，未能准确定位学生真实错误。纠正建议与事实不符，可能产生误导。 / 错误指导学生复习错误内容，可能强化\\\"抛物线是微分同胚\\\"的错误认知。\",\"score\":2,\"score_cap\":2}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"错误标记A/D为正确答案，未能准确定位学生真实错误。纠正建议与事实不符，可能产生误导。 / 错误指导学生复习错误内容，可能强化\\\"抛物线是微分同胚\\\"的错误认知。\",\"score\":2,\"score_cap\":2}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":4,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":4,\"score_cap\":null}"
     },
     "source_sample_id": "17e0ba51820c815389e5f672d6bed2ca748a8775",
     "question_key": "80b4f169dced8f900b4d6467567222045b1c13a3",
@@ -28673,11 +28673,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"错误标记A/D为正确答案，未能准确定位学生真实错误。纠正建议与事实不符，可能产生误导。 / 错误指导学生复习错误内容，可能强化\\\"抛物线是微分同胚\\\"的错误认知。\",\"score\":2,\"score_cap\":2}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"错误标记A/D为正确答案，未能准确定位学生真实错误。纠正建议与事实不符，可能产生误导。 / 错误指导学生复习错误内容，可能强化\\\"抛物线是微分同胚\\\"的错误认知。\",\"score\":2,\"score_cap\":2}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
     },
     "source_sample_id": "17e0ba51820c815389e5f672d6bed2ca748a8775",
     "question_key": "80b4f169dced8f900b4d6467567222045b1c13a3",
@@ -28792,11 +28792,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"存在严重事实错误：二次多项式函数（如f(x)=x²）导数为0处不可逆，常数函数不是双射，均不符合微分同胚定义。错误引导会影响学生认知。 / 严重事实错误：二次函数非单射，常数函数非满射，均不满足微分同胚条件。 / 核心判断错误：二次多项式（A）非单射、常数函数（D）非单射，均不满足微分同胚条件，答案却认为其正确，存在关键性事实错误。\",\"score\":2,\"score_cap\":2}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"存在严重事实错误：二次多项式函数（如f(x)=x²）导数为0处不可逆，常数函数不是双射，均不符合微分同胚定义。错误引导会影响学生认知。 / 严重事实错误：二次函数非单射，常数函数非满射，均不满足微分同胚条件。 / 核心判断错误：二次多项式（A）非单射、常数函数（D）非单射，均不满足微分同胚条件，答案却认为其正确，存在关键性事实错误。\",\"score\":2,\"score_cap\":2}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":4,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":4,\"score_cap\":null}"
     },
     "source_sample_id": "18551ba0c6e7b3ad2bd30333ae0aad09b79b9c98",
     "question_key": "80b4f169dced8f900b4d6467567222045b1c13a3",
@@ -28911,11 +28911,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"存在严重事实错误：二次多项式函数（如f(x)=x²）导数为0处不可逆，常数函数不是双射，均不符合微分同胚定义。错误引导会影响学生认知。 / 严重事实错误：二次函数非单射，常数函数非满射，均不满足微分同胚条件。 / 核心判断错误：二次多项式（A）非单射、常数函数（D）非单射，均不满足微分同胚条件，答案却认为其正确，存在关键性事实错误。\",\"score\":2,\"score_cap\":2}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"存在严重事实错误：二次多项式函数（如f(x)=x²）导数为0处不可逆，常数函数不是双射，均不符合微分同胚定义。错误引导会影响学生认知。 / 严重事实错误：二次函数非单射，常数函数非满射，均不满足微分同胚条件。 / 核心判断错误：二次多项式（A）非单射、常数函数（D）非单射，均不满足微分同胚条件，答案却认为其正确，存在关键性事实错误。\",\"score\":2,\"score_cap\":2}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
     },
     "source_sample_id": "18551ba0c6e7b3ad2bd30333ae0aad09b79b9c98",
     "question_key": "80b4f169dced8f900b4d6467567222045b1c13a3",
@@ -29030,11 +29030,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"未结合场景要素（如学生背景或偏好），个性化不足。 / 未参考学生背景、偏好等场景要素，导致个性化内容缺失。 / 未将学生背景、偏好等场景信息融入分析，导致内容普适性强而个性化弱。\",\"score\":2,\"score_cap\":2}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"未结合场景要素（如学生背景或偏好），个性化不足。 / 未参考学生背景、偏好等场景要素，导致个性化内容缺失。 / 未将学生背景、偏好等场景信息融入分析，导致内容普适性强而个性化弱。\",\"score\":2,\"score_cap\":2}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":4,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":4,\"score_cap\":null}"
     },
     "source_sample_id": "1905d9dcdf2880df39d9d380624436abd892da5a",
     "question_key": "ffed2f3bb93a32c1cf81521951774f896b3283f4",
@@ -29149,11 +29149,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"未结合场景要素（如学生背景或偏好），个性化不足。 / 未参考学生背景、偏好等场景要素，导致个性化内容缺失。 / 未将学生背景、偏好等场景信息融入分析，导致内容普适性强而个性化弱。\",\"score\":2,\"score_cap\":2}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"未结合场景要素（如学生背景或偏好），个性化不足。 / 未参考学生背景、偏好等场景要素，导致个性化内容缺失。 / 未将学生背景、偏好等场景信息融入分析，导致内容普适性强而个性化弱。\",\"score\":2,\"score_cap\":2}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
     },
     "source_sample_id": "1905d9dcdf2880df39d9d380624436abd892da5a",
     "question_key": "ffed2f3bb93a32c1cf81521951774f896b3283f4",
@@ -29268,11 +29268,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"没有给出推理过程 / 无推理过程。 / 仅给出结论，未说明选择氮的依据（如在植物生理中的核心作用），逻辑链条缺失。\",\"score\":1,\"score_cap\":1}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"没有给出推理过程 / 无推理过程。 / 仅给出结论，未说明选择氮的依据（如在植物生理中的核心作用），逻辑链条缺失。\",\"score\":1,\"score_cap\":1}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
     },
     "source_sample_id": "198938e2f622bb0de4883a3dc7e56f75c8a0dc9b",
     "question_key": "1fbaba4fd0689522a2df03a5be806cfca5328f00",
@@ -29387,11 +29387,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"未设计能促进高阶思维的内容，仅简单说明模型应用，可评 3 分。 / 未设计能促进高阶思维的内容，仅简单说明模型应用，可评 3 分。。 / 仅简单说明模型应用，未设计促进高阶思维的内容。\",\"score\":2,\"score_cap\":2}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"未设计能促进高阶思维的内容，仅简单说明模型应用，可评 3 分。 / 未设计能促进高阶思维的内容，仅简单说明模型应用，可评 3 分。。 / 仅简单说明模型应用，未设计促进高阶思维的内容。\",\"score\":2,\"score_cap\":2}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":4,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":4,\"score_cap\":null}"
     },
     "source_sample_id": "1b5df375ab0c6d48d21dc9a88fd408b29454ff67",
     "question_key": "b8341c9d33cad1b053ba0bafa03c407e4791c4da",
@@ -29506,11 +29506,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"未设计能促进高阶思维的内容，仅简单说明模型应用，可评 3 分。 / 未设计能促进高阶思维的内容，仅简单说明模型应用，可评 3 分。。 / 仅简单说明模型应用，未设计促进高阶思维的内容。\",\"score\":2,\"score_cap\":2}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"未设计能促进高阶思维的内容，仅简单说明模型应用，可评 3 分。 / 未设计能促进高阶思维的内容，仅简单说明模型应用，可评 3 分。。 / 仅简单说明模型应用，未设计促进高阶思维的内容。\",\"score\":2,\"score_cap\":2}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
     },
     "source_sample_id": "1b5df375ab0c6d48d21dc9a88fd408b29454ff67",
     "question_key": "b8341c9d33cad1b053ba0bafa03c407e4791c4da",
@@ -29625,11 +29625,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"未建立有效论证逻辑，错误结论缺乏数学推导支撑。如\\\"三次多项式通常不具备性质\\\"的表述未说明判定依据。 / 未建立余弦函数在受限区间才构成局部同胚的关键论证。\",\"score\":2,\"score_cap\":2}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"未建立有效论证逻辑，错误结论缺乏数学推导支撑。如\\\"三次多项式通常不具备性质\\\"的表述未说明判定依据。 / 未建立余弦函数在受限区间才构成局部同胚的关键论证。\",\"score\":2,\"score_cap\":2}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":4,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":4,\"score_cap\":null}"
     },
     "source_sample_id": "1bd5e1ce094da34aea6531591c2674bd221634b6",
     "question_key": "80b4f169dced8f900b4d6467567222045b1c13a3",
@@ -29744,11 +29744,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"完全错误：将正确答案判为错误，错误答案判为正确。 / 问题不涉及纠错场景，按规则强制评分。答案未涉及相关内容，符合低分标准。 / 完全未能识别学生误选C的错误，反而肯定其答案，存在严重误报，纠正建议误导性强。\",\"score\":1,\"score_cap\":1}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"完全错误：将正确答案判为错误，错误答案判为正确。 / 问题不涉及纠错场景，按规则强制评分。答案未涉及相关内容，符合低分标准。 / 完全未能识别学生误选C的错误，反而肯定其答案，存在严重误报，纠正建议误导性强。\",\"score\":1,\"score_cap\":1}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
     },
     "source_sample_id": "1c013ab584f1c5a49f0e03d8517d29eb909322be",
     "question_key": "ce9b05f8b8c3c09bfac56ea4f5f177bac9474ddb",
@@ -29863,11 +29863,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"没有纠错场景。 / 未设置错误纠正环节。\",\"score\":1,\"score_cap\":1}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"没有纠错场景。 / 未设置错误纠正环节。\",\"score\":1,\"score_cap\":1}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":4,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":4,\"score_cap\":null}"
     },
     "source_sample_id": "1d5f77fabc222d72e4fb87f25eb3e5c41e786cf4",
     "question_key": "85398269c1c07a9498c3eae4b08315e4db78a74e",
@@ -29982,11 +29982,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"没有纠错场景。 / 未设置错误纠正环节。\",\"score\":1,\"score_cap\":1}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"没有纠错场景。 / 未设置错误纠正环节。\",\"score\":1,\"score_cap\":1}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
     },
     "source_sample_id": "1d5f77fabc222d72e4fb87f25eb3e5c41e786cf4",
     "question_key": "85398269c1c07a9498c3eae4b08315e4db78a74e",
@@ -30101,11 +30101,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"病例分析任务有一定挑战性，但缺乏系统性高阶能力培养设计。 / 任务集中于信息复现，\\\"提出诊断建议\\\"缺乏临床思维引导设计。 / 任务以“观看、记录、总结”为主，未涉及解剖学知识的临床转化（如“手术方案设计”“并发症预防”），完全忽视批判性思维与问题解决能力培养。\",\"score\":2,\"score_cap\":2}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"病例分析任务有一定挑战性，但缺乏系统性高阶能力培养设计。 / 任务集中于信息复现，\\\"提出诊断建议\\\"缺乏临床思维引导设计。 / 任务以“观看、记录、总结”为主，未涉及解剖学知识的临床转化（如“手术方案设计”“并发症预防”），完全忽视批判性思维与问题解决能力培养。\",\"score\":2,\"score_cap\":2}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":4,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":4,\"score_cap\":null}"
     },
     "source_sample_id": "25a37166756d804397ce1540111f9b80f5bd477b",
     "question_key": "c367d1e3134b022584248f014a7b59640f1df7fb",
@@ -30220,11 +30220,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"病例分析任务有一定挑战性，但缺乏系统性高阶能力培养设计。 / 任务集中于信息复现，\\\"提出诊断建议\\\"缺乏临床思维引导设计。 / 任务以“观看、记录、总结”为主，未涉及解剖学知识的临床转化（如“手术方案设计”“并发症预防”），完全忽视批判性思维与问题解决能力培养。\",\"score\":2,\"score_cap\":2}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"病例分析任务有一定挑战性，但缺乏系统性高阶能力培养设计。 / 任务集中于信息复现，\\\"提出诊断建议\\\"缺乏临床思维引导设计。 / 任务以“观看、记录、总结”为主，未涉及解剖学知识的临床转化（如“手术方案设计”“并发症预防”），完全忽视批判性思维与问题解决能力培养。\",\"score\":2,\"score_cap\":2}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
     },
     "source_sample_id": "25a37166756d804397ce1540111f9b80f5bd477b",
     "question_key": "c367d1e3134b022584248f014a7b59640f1df7fb",
@@ -30339,11 +30339,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"答案没有使用场景特定的信息，也没有结合额外的场景要素。 / 未使用场景相关特定信息，缺乏对场景要素的整合与应用。\",\"score\":2,\"score_cap\":2}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"答案没有使用场景特定的信息，也没有结合额外的场景要素。 / 未使用场景相关特定信息，缺乏对场景要素的整合与应用。\",\"score\":2,\"score_cap\":2}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":4,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":4,\"score_cap\":null}"
     },
     "source_sample_id": "26347fdbe0a04b7bfbc0e5079be670bb041a82f8",
     "question_key": "2c3431500658778ea0788f7745c59f0b024746a9",
@@ -30458,11 +30458,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"答案没有使用场景特定的信息，也没有结合额外的场景要素。 / 未使用场景相关特定信息，缺乏对场景要素的整合与应用。\",\"score\":2,\"score_cap\":2}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"答案没有使用场景特定的信息，也没有结合额外的场景要素。 / 未使用场景相关特定信息，缺乏对场景要素的整合与应用。\",\"score\":2,\"score_cap\":2}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
     },
     "source_sample_id": "26347fdbe0a04b7bfbc0e5079be670bb041a82f8",
     "question_key": "2c3431500658778ea0788f7745c59f0b024746a9",
@@ -30577,11 +30577,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"缺少推理过程 / 无推理过程。 / 未展开详细论证，推理简略。\",\"score\":1,\"score_cap\":1}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"缺少推理过程 / 无推理过程。 / 未展开详细论证，推理简略。\",\"score\":1,\"score_cap\":1}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
     },
     "source_sample_id": "2805e4237ccaed90f917ee91a5c2c44743bbd1b1",
     "question_key": "7bdbfc3be37d434120cd61c75738b9ba4e2b67ad",
@@ -30696,11 +30696,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"双重错误：误判B正确且E错误，与微分同胚理论完全相悖。 / 错误认为余弦函数（B）具有微分同胚性质（周期函数非单射），且否定指数函数（C）的正确性，存在双重事实错误，信息不可靠。\",\"score\":1,\"score_cap\":1}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"双重错误：误判B正确且E错误，与微分同胚理论完全相悖。 / 错误认为余弦函数（B）具有微分同胚性质（周期函数非单射），且否定指数函数（C）的正确性，存在双重事实错误，信息不可靠。\",\"score\":1,\"score_cap\":1}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":4,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":4,\"score_cap\":null}"
     },
     "source_sample_id": "34d1c2d12a4242a8a26ed4f998ae1f08b3210cdf",
     "question_key": "80b4f169dced8f900b4d6467567222045b1c13a3",
@@ -30815,11 +30815,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"双重错误：误判B正确且E错误，与微分同胚理论完全相悖。 / 错误认为余弦函数（B）具有微分同胚性质（周期函数非单射），且否定指数函数（C）的正确性，存在双重事实错误，信息不可靠。\",\"score\":1,\"score_cap\":1}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"双重错误：误判B正确且E错误，与微分同胚理论完全相悖。 / 错误认为余弦函数（B）具有微分同胚性质（周期函数非单射），且否定指数函数（C）的正确性，存在双重事实错误，信息不可靠。\",\"score\":1,\"score_cap\":1}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
     },
     "source_sample_id": "34d1c2d12a4242a8a26ed4f998ae1f08b3210cdf",
     "question_key": "80b4f169dced8f900b4d6467567222045b1c13a3",
@@ -30934,11 +30934,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"问题仅要求解释作用，侧重知识理解与复述，未涉及方案设计或问题解决等高阶任务，对批判性思维的培养作用有限。 / 问题要求 “解释作用”，侧重知识理解与复述，未涉及方案设计或问题解决等高阶任务，对批判性思维的促进有限。 / 问题考查知识理解与基础应用能力（如要素与计划的关联），但仅要求 “解释作用”，未涉及场景化设计或问题解决等更高阶思维。\",\"score\":2,\"score_cap\":2}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"问题仅要求解释作用，侧重知识理解与复述，未涉及方案设计或问题解决等高阶任务，对批判性思维的培养作用有限。 / 问题要求 “解释作用”，侧重知识理解与复述，未涉及方案设计或问题解决等高阶任务，对批判性思维的促进有限。 / 问题考查知识理解与基础应用能力（如要素与计划的关联），但仅要求 “解释作用”，未涉及场景化设计或问题解决等更高阶思维。\",\"score\":2,\"score_cap\":2}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":4,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":4,\"score_cap\":null}"
     },
     "source_sample_id": "365e8b4c9ee703d23dee95e59be31577a15cacc8",
     "question_key": "5f10a3a85e0efd1be4f1e1773e836f0ef17e29b2",
@@ -31053,11 +31053,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"问题仅要求解释作用，侧重知识理解与复述，未涉及方案设计或问题解决等高阶任务，对批判性思维的培养作用有限。 / 问题要求 “解释作用”，侧重知识理解与复述，未涉及方案设计或问题解决等高阶任务，对批判性思维的促进有限。 / 问题考查知识理解与基础应用能力（如要素与计划的关联），但仅要求 “解释作用”，未涉及场景化设计或问题解决等更高阶思维。\",\"score\":2,\"score_cap\":2}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"问题仅要求解释作用，侧重知识理解与复述，未涉及方案设计或问题解决等高阶任务，对批判性思维的培养作用有限。 / 问题要求 “解释作用”，侧重知识理解与复述，未涉及方案设计或问题解决等高阶任务，对批判性思维的促进有限。 / 问题考查知识理解与基础应用能力（如要素与计划的关联），但仅要求 “解释作用”，未涉及场景化设计或问题解决等更高阶思维。\",\"score\":2,\"score_cap\":2}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
     },
     "source_sample_id": "365e8b4c9ee703d23dee95e59be31577a15cacc8",
     "question_key": "5f10a3a85e0efd1be4f1e1773e836f0ef17e29b2",
@@ -31172,11 +31172,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"反馈结构混乱，\\\"你的选择是正确的\\\"与客观事实矛盾，存在严重误导。 / 反馈以\\\"你的选择正确\\\"开头，但后续使用被动语态（\\\"它们主要参与\\\"），互动性弱。\",\"score\":2,\"score_cap\":2}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"反馈结构混乱，\\\"你的选择是正确的\\\"与客观事实矛盾，存在严重误导。 / 反馈以\\\"你的选择正确\\\"开头，但后续使用被动语态（\\\"它们主要参与\\\"），互动性弱。\",\"score\":2,\"score_cap\":2}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":4,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":4,\"score_cap\":null}"
     },
     "source_sample_id": "378f7b2160c791b11e16c3dd68d76ed1363a3ff6",
     "question_key": "ce9b05f8b8c3c09bfac56ea4f5f177bac9474ddb",
@@ -31291,11 +31291,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"反馈结构混乱，\\\"你的选择是正确的\\\"与客观事实矛盾，存在严重误导。 / 反馈以\\\"你的选择正确\\\"开头，但后续使用被动语态（\\\"它们主要参与\\\"），互动性弱。\",\"score\":2,\"score_cap\":2}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"反馈结构混乱，\\\"你的选择是正确的\\\"与客观事实矛盾，存在严重误导。 / 反馈以\\\"你的选择正确\\\"开头，但后续使用被动语态（\\\"它们主要参与\\\"），互动性弱。\",\"score\":2,\"score_cap\":2}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
     },
     "source_sample_id": "378f7b2160c791b11e16c3dd68d76ed1363a3ff6",
     "question_key": "ce9b05f8b8c3c09bfac56ea4f5f177bac9474ddb",
@@ -31410,11 +31410,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"缺少推理过程 / 无推理过程。 / 仅给出选项 C，未阐述 GDP 忽略环境成本为何构成局限性，缺乏必要推理过程。\",\"score\":1,\"score_cap\":1}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"缺少推理过程 / 无推理过程。 / 仅给出选项 C，未阐述 GDP 忽略环境成本为何构成局限性，缺乏必要推理过程。\",\"score\":1,\"score_cap\":1}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
     },
     "source_sample_id": "3e6317e0a4cd57573a6c971fc945cfc7ee52148a",
     "question_key": "7bdbfc3be37d434120cd61c75738b9ba4e2b67ad",
@@ -31529,11 +31529,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"采用百分制（75分）完全偏离10分制要求，数据结构严重失范。 / 评分“75”违反“1-10分”指令要求，格式错误；评分细节使用百分制，任务执行存在根本性偏差。\",\"score\":2,\"score_cap\":2}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"采用百分制（75分）完全偏离10分制要求，数据结构严重失范。 / 评分“75”违反“1-10分”指令要求，格式错误；评分细节使用百分制，任务执行存在根本性偏差。\",\"score\":2,\"score_cap\":2}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":4,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":4,\"score_cap\":null}"
     },
     "source_sample_id": "3fdc81f613bf237c32a80d3fb798df97d4a1a3ab",
     "question_key": "2315014220e7c1c5fbc4751aea0a196884f3ace8",
@@ -31648,11 +31648,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"采用百分制（75分）完全偏离10分制要求，数据结构严重失范。 / 评分“75”违反“1-10分”指令要求，格式错误；评分细节使用百分制，任务执行存在根本性偏差。\",\"score\":2,\"score_cap\":2}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"采用百分制（75分）完全偏离10分制要求，数据结构严重失范。 / 评分“75”违反“1-10分”指令要求，格式错误；评分细节使用百分制，任务执行存在根本性偏差。\",\"score\":2,\"score_cap\":2}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
     },
     "source_sample_id": "3fdc81f613bf237c32a80d3fb798df97d4a1a3ab",
     "question_key": "2315014220e7c1c5fbc4751aea0a196884f3ace8",
@@ -31767,11 +31767,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"缺少推理过程 / 无推理过程。 / 未提供推理步骤。\",\"score\":1,\"score_cap\":1}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"缺少推理过程 / 无推理过程。 / 未提供推理步骤。\",\"score\":1,\"score_cap\":1}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
     },
     "source_sample_id": "4042b14600691c9b29b70d916e9db910c058d891",
     "question_key": "7bdbfc3be37d434120cd61c75738b9ba4e2b67ad",
@@ -31886,11 +31886,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"完全缺失推理链条，直接给出错误结论，无任何论证过程。 / 缺乏论证过程。 / 未提供推理过程或理论依据，仅给出选项，无法验证逻辑链条的完整性，严谨性不足。\",\"score\":1,\"score_cap\":1}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"完全缺失推理链条，直接给出错误结论，无任何论证过程。 / 缺乏论证过程。 / 未提供推理过程或理论依据，仅给出选项，无法验证逻辑链条的完整性，严谨性不足。\",\"score\":1,\"score_cap\":1}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":4,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":4,\"score_cap\":null}"
     },
     "source_sample_id": "44a426bf4f453df7ea5b7ac85d6f0e801f9ba296",
     "question_key": "aa48c48cd6bf14c4713397de0e37c7971495e79d",
@@ -32005,11 +32005,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"完全缺失推理链条，直接给出错误结论，无任何论证过程。 / 缺乏论证过程。 / 未提供推理过程或理论依据，仅给出选项，无法验证逻辑链条的完整性，严谨性不足。\",\"score\":1,\"score_cap\":1}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"完全缺失推理链条，直接给出错误结论，无任何论证过程。 / 缺乏论证过程。 / 未提供推理过程或理论依据，仅给出选项，无法验证逻辑链条的完整性，严谨性不足。\",\"score\":1,\"score_cap\":1}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
     },
     "source_sample_id": "44a426bf4f453df7ea5b7ac85d6f0e801f9ba296",
     "question_key": "aa48c48cd6bf14c4713397de0e37c7971495e79d",
@@ -32124,11 +32124,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"按照要求仅给出结果，没有推理过程。 / 答案直接给出结论，缺少必要的推理过程。 / 答案呈现 “结论空降” 问题：未展开论证的前提条件、推导路径或原理引用（如未说明判断所依据的定理、模型或数据逻辑），直接输出最终结论，缺乏 “为何如此” 的逻辑展开过程。\",\"score\":1,\"score_cap\":1}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"按照要求仅给出结果，没有推理过程。 / 答案直接给出结论，缺少必要的推理过程。 / 答案呈现 “结论空降” 问题：未展开论证的前提条件、推导路径或原理引用（如未说明判断所依据的定理、模型或数据逻辑），直接输出最终结论，缺乏 “为何如此” 的逻辑展开过程。\",\"score\":1,\"score_cap\":1}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":4,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":4,\"score_cap\":null}"
     },
     "source_sample_id": "4c1781a47196920cfbd9a98a60533436add7af41",
     "question_key": "14e6dfb98fe659be9bca96d36b8e8c3b5beda0d4",
@@ -32243,11 +32243,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"按照要求仅给出结果，没有推理过程。 / 答案直接给出结论，缺少必要的推理过程。 / 答案呈现 “结论空降” 问题：未展开论证的前提条件、推导路径或原理引用（如未说明判断所依据的定理、模型或数据逻辑），直接输出最终结论，缺乏 “为何如此” 的逻辑展开过程。\",\"score\":1,\"score_cap\":1}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"按照要求仅给出结果，没有推理过程。 / 答案直接给出结论，缺少必要的推理过程。 / 答案呈现 “结论空降” 问题：未展开论证的前提条件、推导路径或原理引用（如未说明判断所依据的定理、模型或数据逻辑），直接输出最终结论，缺乏 “为何如此” 的逻辑展开过程。\",\"score\":1,\"score_cap\":1}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
     },
     "source_sample_id": "4c1781a47196920cfbd9a98a60533436add7af41",
     "question_key": "14e6dfb98fe659be9bca96d36b8e8c3b5beda0d4",
@@ -32362,11 +32362,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"虽然答案最终结论完全正确，但是没有看到完整的推理过程。 / 缺少针对答案的推理过程。 / 未建立事件与革命结束的逻辑关联（如：未解释法案通过如何终结革命）。\",\"score\":1,\"score_cap\":1}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"虽然答案最终结论完全正确，但是没有看到完整的推理过程。 / 缺少针对答案的推理过程。 / 未建立事件与革命结束的逻辑关联（如：未解释法案通过如何终结革命）。\",\"score\":1,\"score_cap\":1}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
     },
     "source_sample_id": "4d02a34fe7fc1a2f65e5defcbeec26283b13ada9",
     "question_key": "93a5ca2decc82169ec51fce4735b568ddb829c8a",
@@ -32481,11 +32481,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"答案没有给出推理过程 / 未说明选择依据（如未对比其他选项的作用机制：布洛芬可能干扰阿司匹林抗血小板效应）。 / 缺失病理生理学解释（如未说明阿司匹林通过抑制COX-1阻断血栓素A2合成的机制）。\",\"score\":1,\"score_cap\":1}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"答案没有给出推理过程 / 未说明选择依据（如未对比其他选项的作用机制：布洛芬可能干扰阿司匹林抗血小板效应）。 / 缺失病理生理学解释（如未说明阿司匹林通过抑制COX-1阻断血栓素A2合成的机制）。\",\"score\":1,\"score_cap\":1}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":4,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":4,\"score_cap\":null}"
     },
     "source_sample_id": "4d603e5ed030c00413f35f1852ebb1859d5dc6be",
     "question_key": "ac1c8ccfcd59afb588cbe2e820ef540a695ec312",
@@ -32600,11 +32600,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"答案没有给出推理过程 / 未说明选择依据（如未对比其他选项的作用机制：布洛芬可能干扰阿司匹林抗血小板效应）。 / 缺失病理生理学解释（如未说明阿司匹林通过抑制COX-1阻断血栓素A2合成的机制）。\",\"score\":1,\"score_cap\":1}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"答案没有给出推理过程 / 未说明选择依据（如未对比其他选项的作用机制：布洛芬可能干扰阿司匹林抗血小板效应）。 / 缺失病理生理学解释（如未说明阿司匹林通过抑制COX-1阻断血栓素A2合成的机制）。\",\"score\":1,\"score_cap\":1}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
     },
     "source_sample_id": "4d603e5ed030c00413f35f1852ebb1859d5dc6be",
     "question_key": "ac1c8ccfcd59afb588cbe2e820ef540a695ec312",
@@ -32719,11 +32719,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"完全错误：评分系统混乱导致无法有效识别错误。 / 问题不涉及纠错场景，按规则强制评分。答案未涉及相关内容，符合低分标准。 / 完全误判学生答案正确性，将错误答案视为正确，存在双重误报，纠正建议完全错误。\",\"score\":1,\"score_cap\":1}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"完全错误：评分系统混乱导致无法有效识别错误。 / 问题不涉及纠错场景，按规则强制评分。答案未涉及相关内容，符合低分标准。 / 完全误判学生答案正确性，将错误答案视为正确，存在双重误报，纠正建议完全错误。\",\"score\":1,\"score_cap\":1}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
     },
     "source_sample_id": "4f22bf04948dfebf09ef963ef74d98df56ffdb57",
     "question_key": "ce9b05f8b8c3c09bfac56ea4f5f177bac9474ddb",
@@ -32838,11 +32838,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"多项式函数在无穷远点必有奇点，选项A完全错误。 / 选项A的表述有误，多项式函数在无穷远点必定存在奇点。 / 存在关键事实错误：误将 “hybrids” 归为替代品（实际属同类产品），且未提及五力模型创始人（Porter）。\",\"score\":1,\"score_cap\":1}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"多项式函数在无穷远点必有奇点，选项A完全错误。 / 选项A的表述有误，多项式函数在无穷远点必定存在奇点。 / 存在关键事实错误：误将 “hybrids” 归为替代品（实际属同类产品），且未提及五力模型创始人（Porter）。\",\"score\":1,\"score_cap\":1}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
     },
     "source_sample_id": "5238e123a16a826d9dd25c0454890d96db10099a",
     "question_key": "aa48c48cd6bf14c4713397de0e37c7971495e79d",
@@ -32957,11 +32957,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"仅给出答案，未呈现推理过程。 / 无推理过程。 / 直接给出了答案，缺乏必要的推理过程。\",\"score\":1,\"score_cap\":1}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"仅给出答案，未呈现推理过程。 / 无推理过程。 / 直接给出了答案，缺乏必要的推理过程。\",\"score\":1,\"score_cap\":1}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
     },
     "source_sample_id": "5680bbfccbc4637e7c9c7e3d63698aaf2b4fa213",
     "question_key": "50a125b94d56b250cab34175d4465b85ca2df963",
@@ -33076,11 +33076,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"虽然答案最终结论完全正确，但是没有看到完整的推理过程。 / 缺少针对答案的推理过程。 / 未建立事件与革命结束的逻辑关联（如：未解释法案通过如何终结革命）。\",\"score\":1,\"score_cap\":1}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"虽然答案最终结论完全正确，但是没有看到完整的推理过程。 / 缺少针对答案的推理过程。 / 未建立事件与革命结束的逻辑关联（如：未解释法案通过如何终结革命）。\",\"score\":1,\"score_cap\":1}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
     },
     "source_sample_id": "61ce1005760ba6b25779f26dec03b15d4d61f5ec",
     "question_key": "93a5ca2decc82169ec51fce4735b568ddb829c8a",
@@ -33195,11 +33195,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"仅进行纠错，未体现对学习者的鼓励和支持，未使用积极建设性语言，未引导思考，激励引导不足。 / 未使用积极语言，反馈内容单薄（如“正确的应该是提到英国”），缺乏对历史学习方法的引导（如“对比不同阵营领导人”）。\",\"score\":2,\"score_cap\":2}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"仅进行纠错，未体现对学习者的鼓励和支持，未使用积极建设性语言，未引导思考，激励引导不足。 / 未使用积极语言，反馈内容单薄（如“正确的应该是提到英国”），缺乏对历史学习方法的引导（如“对比不同阵营领导人”）。\",\"score\":2,\"score_cap\":2}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":4,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":4,\"score_cap\":null}"
     },
     "source_sample_id": "630a88341b60ad40afcd43bf6bf3967c515b8803",
     "question_key": "33f24cdef61905293c51bb59ca561c1f2cef3965",
@@ -33314,11 +33314,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"仅进行纠错，未体现对学习者的鼓励和支持，未使用积极建设性语言，未引导思考，激励引导不足。 / 未使用积极语言，反馈内容单薄（如“正确的应该是提到英国”），缺乏对历史学习方法的引导（如“对比不同阵营领导人”）。\",\"score\":2,\"score_cap\":2}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"仅进行纠错，未体现对学习者的鼓励和支持，未使用积极建设性语言，未引导思考，激励引导不足。 / 未使用积极语言，反馈内容单薄（如“正确的应该是提到英国”），缺乏对历史学习方法的引导（如“对比不同阵营领导人”）。\",\"score\":2,\"score_cap\":2}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
     },
     "source_sample_id": "630a88341b60ad40afcd43bf6bf3967c515b8803",
     "question_key": "33f24cdef61905293c51bb59ca561c1f2cef3965",
@@ -33433,11 +33433,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"仅给出答案，未呈现推理过程。 / 无推理过程。 / 直接给出了答案，缺乏必要的推理过程。\",\"score\":1,\"score_cap\":1}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"仅给出答案，未呈现推理过程。 / 无推理过程。 / 直接给出了答案，缺乏必要的推理过程。\",\"score\":1,\"score_cap\":1}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
     },
     "source_sample_id": "6358300a1312a268220578a420e801d4c75e9525",
     "question_key": "50a125b94d56b250cab34175d4465b85ca2df963",
@@ -33552,11 +33552,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"答案仅专注于纠错，未体现对学生的鼓励和支持，没有使用积极、建设性的语言，也未引导学生进行深入思考，激励引导方面表现不足。\",\"score\":2,\"score_cap\":2}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"答案仅专注于纠错，未体现对学生的鼓励和支持，没有使用积极、建设性的语言，也未引导学生进行深入思考，激励引导方面表现不足。\",\"score\":2,\"score_cap\":2}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":4,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":4,\"score_cap\":null}"
     },
     "source_sample_id": "63ab64773fb76fbe6cba302eed79041a8316bb7c",
     "question_key": "33f24cdef61905293c51bb59ca561c1f2cef3965",
@@ -33671,11 +33671,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"答案仅专注于纠错，未体现对学生的鼓励和支持，没有使用积极、建设性的语言，也未引导学生进行深入思考，激励引导方面表现不足。\",\"score\":2,\"score_cap\":2}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"答案仅专注于纠错，未体现对学生的鼓励和支持，没有使用积极、建设性的语言，也未引导学生进行深入思考，激励引导方面表现不足。\",\"score\":2,\"score_cap\":2}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
     },
     "source_sample_id": "63ab64773fb76fbe6cba302eed79041a8316bb7c",
     "question_key": "33f24cdef61905293c51bb59ca561c1f2cef3965",
@@ -33790,11 +33790,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"评分为单数字但\\\"评分细节\\\"项分值未汇总说明，且\\\"个性化反馈\\\"为数组而非字符串，格式错误。 / 混合数值与列表格式，\\\"个性化反馈\\\"使用数组违反JSON结构要求。 / 评分项与反馈内容逻辑一致（如“逻辑清晰度2”对应反馈“逻辑尚可”），但总分“3”与分项得分（2+2+2=6）矛盾，格式规范性不足。\",\"score\":2,\"score_cap\":2}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"评分为单数字但\\\"评分细节\\\"项分值未汇总说明，且\\\"个性化反馈\\\"为数组而非字符串，格式错误。 / 混合数值与列表格式，\\\"个性化反馈\\\"使用数组违反JSON结构要求。 / 评分项与反馈内容逻辑一致（如“逻辑清晰度2”对应反馈“逻辑尚可”），但总分“3”与分项得分（2+2+2=6）矛盾，格式规范性不足。\",\"score\":2,\"score_cap\":2}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":4,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":4,\"score_cap\":null}"
     },
     "source_sample_id": "65890fb994cef054dc75e0e6dd4c1b3e2d91805d",
     "question_key": "2315014220e7c1c5fbc4751aea0a196884f3ace8",
@@ -33909,11 +33909,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"没有给出推理过程 / 无推理过程。 / 仅给出结论，未说明选择氮的依据（如在植物生理中的核心作用），逻辑链条缺失。\",\"score\":1,\"score_cap\":1}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"没有给出推理过程 / 无推理过程。 / 仅给出结论，未说明选择氮的依据（如在植物生理中的核心作用），逻辑链条缺失。\",\"score\":1,\"score_cap\":1}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
     },
     "source_sample_id": "674bc19324921890f8c1245b4760b0909fc05534",
     "question_key": "1fbaba4fd0689522a2df03a5be806cfca5328f00",
@@ -34028,11 +34028,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"答案与复分析PhD级问题严重脱节，未识别无穷远点奇点特性。 / 对于复分析PhD级别的问题，该答案严重偏离主题，并且没有识别无穷远点的奇点特性。 / 针对复分析 PhD 级别的问题，该答案存在严重的主题偏离，且未能识别无穷远点的奇点特性。\",\"score\":2,\"score_cap\":2}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"答案与复分析PhD级问题严重脱节，未识别无穷远点奇点特性。 / 对于复分析PhD级别的问题，该答案严重偏离主题，并且没有识别无穷远点的奇点特性。 / 针对复分析 PhD 级别的问题，该答案存在严重的主题偏离，且未能识别无穷远点的奇点特性。\",\"score\":2,\"score_cap\":2}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
     },
     "source_sample_id": "6a65ddfebb3698d3eb20f814a761580fa2f8be48",
     "question_key": "aa48c48cd6bf14c4713397de0e37c7971495e79d",
@@ -34147,11 +34147,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"仅给出答案，无推理过程，逻辑链条不完整 。 / 无推理过程。 / 未发现推理过程。\",\"score\":1,\"score_cap\":1}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"仅给出答案，无推理过程，逻辑链条不完整 。 / 无推理过程。 / 未发现推理过程。\",\"score\":1,\"score_cap\":1}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
     },
     "source_sample_id": "6ba52ada98a9a51312929f9f19f6c7227cd562eb",
     "question_key": "3f583749c39a53d68120dd4302b4c6888f5dd6d7",
@@ -34266,11 +34266,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"定义和举例部分已经完成，但评分项 “TotalPossiblePoints” 设置为5分不恰当，影响了任务的整体完成度。 / 虽完成定义与举例，但评分项 “TotalPossiblePoints” 设为 5 不合理，任务完成度低。\",\"score\":2,\"score_cap\":2}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"定义和举例部分已经完成，但评分项 “TotalPossiblePoints” 设置为5分不恰当，影响了任务的整体完成度。 / 虽完成定义与举例，但评分项 “TotalPossiblePoints” 设为 5 不合理，任务完成度低。\",\"score\":2,\"score_cap\":2}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":4,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":4,\"score_cap\":null}"
     },
     "source_sample_id": "6cc46157fcf2aa5b87cd72293be48481a7e5dacc",
     "question_key": "0e09c1d8b75a16ca2c50f1bccf73028ae1d691ea",
@@ -34385,11 +34385,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"定义和举例部分已经完成，但评分项 “TotalPossiblePoints” 设置为5分不恰当，影响了任务的整体完成度。 / 虽完成定义与举例，但评分项 “TotalPossiblePoints” 设为 5 不合理，任务完成度低。\",\"score\":2,\"score_cap\":2}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"定义和举例部分已经完成，但评分项 “TotalPossiblePoints” 设置为5分不恰当，影响了任务的整体完成度。 / 虽完成定义与举例，但评分项 “TotalPossiblePoints” 设为 5 不合理，任务完成度低。\",\"score\":2,\"score_cap\":2}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
     },
     "source_sample_id": "6cc46157fcf2aa5b87cd72293be48481a7e5dacc",
     "question_key": "0e09c1d8b75a16ca2c50f1bccf73028ae1d691ea",
@@ -34504,11 +34504,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"仅给出答案，未呈现推理过程。 / 无推理过程。 / 直接给出了答案，缺乏必要的推理过程。\",\"score\":1,\"score_cap\":1}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"仅给出答案，未呈现推理过程。 / 无推理过程。 / 直接给出了答案，缺乏必要的推理过程。\",\"score\":1,\"score_cap\":1}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
     },
     "source_sample_id": "74489511928922f9b0aa06c74a3c42dabf84217e",
     "question_key": "50a125b94d56b250cab34175d4465b85ca2df963",
@@ -34623,11 +34623,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"缺少推理过程 / 无推理过程。 / 未展开详细论证，推理简略。\",\"score\":1,\"score_cap\":1}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"缺少推理过程 / 无推理过程。 / 未展开详细论证，推理简略。\",\"score\":1,\"score_cap\":1}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
     },
     "source_sample_id": "76909e50052e68bb729ed62933a86559f6a7c036",
     "question_key": "7bdbfc3be37d434120cd61c75738b9ba4e2b67ad",
@@ -34742,11 +34742,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"推理内容主要是对模型的解释和应用分析，在促进批判性思维、创新思维等高阶思维发展方面作用有限 / 推理过程侧重模型阐释与应用解析，在培养批判性、创新性等高阶思维方面成效有限。\",\"score\":2,\"score_cap\":2}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"推理内容主要是对模型的解释和应用分析，在促进批判性思维、创新思维等高阶思维发展方面作用有限 / 推理过程侧重模型阐释与应用解析，在培养批判性、创新性等高阶思维方面成效有限。\",\"score\":2,\"score_cap\":2}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":4,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":4,\"score_cap\":null}"
     },
     "source_sample_id": "78a2f1f17b59206fae3cdedb6b11a9fef084b670",
     "question_key": "b8341c9d33cad1b053ba0bafa03c407e4791c4da",
@@ -34861,11 +34861,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"推理内容主要是对模型的解释和应用分析，在促进批判性思维、创新思维等高阶思维发展方面作用有限 / 推理过程侧重模型阐释与应用解析，在培养批判性、创新性等高阶思维方面成效有限。\",\"score\":2,\"score_cap\":2}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"推理内容主要是对模型的解释和应用分析，在促进批判性思维、创新思维等高阶思维发展方面作用有限 / 推理过程侧重模型阐释与应用解析，在培养批判性、创新性等高阶思维方面成效有限。\",\"score\":2,\"score_cap\":2}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
     },
     "source_sample_id": "78a2f1f17b59206fae3cdedb6b11a9fef084b670",
     "question_key": "b8341c9d33cad1b053ba0bafa03c407e4791c4da",
@@ -34980,11 +34980,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"由于未提供具体场景要素（如学生之前回答、学习偏好等），推理内容未结合相关场景，仅就模型本身进行分析 / 因为没有提供具体的场景要素（如学生之前的回答、学习偏好等），推理内容未能结合相关场景，只是单纯地分析了模型本身。 / 因未提供具体场景要素（如学生之前的回答、学习偏好等），推理内容仅停留在模型本身的一般性分析。\",\"score\":2,\"score_cap\":2}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"由于未提供具体场景要素（如学生之前回答、学习偏好等），推理内容未结合相关场景，仅就模型本身进行分析 / 因为没有提供具体的场景要素（如学生之前的回答、学习偏好等），推理内容未能结合相关场景，只是单纯地分析了模型本身。 / 因未提供具体场景要素（如学生之前的回答、学习偏好等），推理内容仅停留在模型本身的一般性分析。\",\"score\":2,\"score_cap\":2}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":4,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":4,\"score_cap\":null}"
     },
     "source_sample_id": "7a5ae2c79851e40cccaf47deb5d4953023576ec9",
     "question_key": "b8341c9d33cad1b053ba0bafa03c407e4791c4da",
@@ -35099,11 +35099,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"由于未提供具体场景要素（如学生之前回答、学习偏好等），推理内容未结合相关场景，仅就模型本身进行分析 / 因为没有提供具体的场景要素（如学生之前的回答、学习偏好等），推理内容未能结合相关场景，只是单纯地分析了模型本身。 / 因未提供具体场景要素（如学生之前的回答、学习偏好等），推理内容仅停留在模型本身的一般性分析。\",\"score\":2,\"score_cap\":2}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"由于未提供具体场景要素（如学生之前回答、学习偏好等），推理内容未结合相关场景，仅就模型本身进行分析 / 因为没有提供具体的场景要素（如学生之前的回答、学习偏好等），推理内容未能结合相关场景，只是单纯地分析了模型本身。 / 因未提供具体场景要素（如学生之前的回答、学习偏好等），推理内容仅停留在模型本身的一般性分析。\",\"score\":2,\"score_cap\":2}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
     },
     "source_sample_id": "7a5ae2c79851e40cccaf47deb5d4953023576ec9",
     "question_key": "b8341c9d33cad1b053ba0bafa03c407e4791c4da",
@@ -35218,11 +35218,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"无推理过程。\",\"score\":1,\"score_cap\":1}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"无推理过程。\",\"score\":1,\"score_cap\":1}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
     },
     "source_sample_id": "7b2343c0fac6f79059007d116f746842fe6a6637",
     "question_key": "5190426b37344a5dd70adf4894aacc1fb868cdff",
@@ -35337,11 +35337,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"无推理过程。\",\"score\":1,\"score_cap\":1}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"无推理过程。\",\"score\":1,\"score_cap\":1}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":4,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":4,\"score_cap\":null}"
     },
     "source_sample_id": "7dfd63e7375e5474e2df047ebe282cf4ba8661b8",
     "question_key": "5190426b37344a5dd70adf4894aacc1fb868cdff",
@@ -35456,11 +35456,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"无推理过程。\",\"score\":1,\"score_cap\":1}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"无推理过程。\",\"score\":1,\"score_cap\":1}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
     },
     "source_sample_id": "7dfd63e7375e5474e2df047ebe282cf4ba8661b8",
     "question_key": "5190426b37344a5dd70adf4894aacc1fb868cdff",
@@ -35575,11 +35575,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"错误选择B项，自决原则仅适用于人民自决权（ICJ西撒哈拉咨询意见），与主权国家间领土争端无关；且注解中\\\"先占原则现代少用\\\"的表述忽视国际法院在2002年利吉丹岛案中的适用。 / 答案中提到的自决原则确实是国际法中的一个原则，但将其描述为主要用于解决国家之间领土争端的原则是不准确的，因为自决原则更多关联于殖民地独立和民族分离等问题。\",\"score\":2,\"score_cap\":2}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"错误选择B项，自决原则仅适用于人民自决权（ICJ西撒哈拉咨询意见），与主权国家间领土争端无关；且注解中\\\"先占原则现代少用\\\"的表述忽视国际法院在2002年利吉丹岛案中的适用。 / 答案中提到的自决原则确实是国际法中的一个原则，但将其描述为主要用于解决国家之间领土争端的原则是不准确的，因为自决原则更多关联于殖民地独立和民族分离等问题。\",\"score\":2,\"score_cap\":2}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":4,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":4,\"score_cap\":null}"
     },
     "source_sample_id": "89f8c6ed8c1b947a44510dcc18b38a1d97571453",
     "question_key": "3b26f4f8f9f7314ee644e63efa2173afbb702c33",
@@ -35694,11 +35694,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"错误选择B项，自决原则仅适用于人民自决权（ICJ西撒哈拉咨询意见），与主权国家间领土争端无关；且注解中\\\"先占原则现代少用\\\"的表述忽视国际法院在2002年利吉丹岛案中的适用。 / 答案中提到的自决原则确实是国际法中的一个原则，但将其描述为主要用于解决国家之间领土争端的原则是不准确的，因为自决原则更多关联于殖民地独立和民族分离等问题。\",\"score\":2,\"score_cap\":2}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"错误选择B项，自决原则仅适用于人民自决权（ICJ西撒哈拉咨询意见），与主权国家间领土争端无关；且注解中\\\"先占原则现代少用\\\"的表述忽视国际法院在2002年利吉丹岛案中的适用。 / 答案中提到的自决原则确实是国际法中的一个原则，但将其描述为主要用于解决国家之间领土争端的原则是不准确的，因为自决原则更多关联于殖民地独立和民族分离等问题。\",\"score\":2,\"score_cap\":2}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
     },
     "source_sample_id": "89f8c6ed8c1b947a44510dcc18b38a1d97571453",
     "question_key": "3b26f4f8f9f7314ee644e63efa2173afbb702c33",
@@ -35813,11 +35813,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"缺少推理过程 / 仅列出选项，未提供任何逻辑推导或证据支持，不符合推理过程要求。 / 答案中未给出推理过程，仅直接列出了因素。\",\"score\":1,\"score_cap\":1}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"缺少推理过程 / 仅列出选项，未提供任何逻辑推导或证据支持，不符合推理过程要求。 / 答案中未给出推理过程，仅直接列出了因素。\",\"score\":1,\"score_cap\":1}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":4,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":4,\"score_cap\":null}"
     },
     "source_sample_id": "8b2201addbda2de262f29b819d9d4a430827f8c8",
     "question_key": "379759b00c0ded53ca5135bf363df1ca0f8ae778",
@@ -35932,11 +35932,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"缺少推理过程 / 仅列出选项，未提供任何逻辑推导或证据支持，不符合推理过程要求。 / 答案中未给出推理过程，仅直接列出了因素。\",\"score\":1,\"score_cap\":1}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"缺少推理过程 / 仅列出选项，未提供任何逻辑推导或证据支持，不符合推理过程要求。 / 答案中未给出推理过程，仅直接列出了因素。\",\"score\":1,\"score_cap\":1}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
     },
     "source_sample_id": "8b2201addbda2de262f29b819d9d4a430827f8c8",
     "question_key": "379759b00c0ded53ca5135bf363df1ca0f8ae778",
@@ -36051,11 +36051,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"答案没有给出推理过程 / 未说明选择依据（如未对比其他选项的作用机制：布洛芬可能干扰阿司匹林抗血小板效应）。 / 缺失病理生理学解释（如未说明阿司匹林通过抑制COX-1阻断血栓素A2合成的机制）。\",\"score\":1,\"score_cap\":1}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"答案没有给出推理过程 / 未说明选择依据（如未对比其他选项的作用机制：布洛芬可能干扰阿司匹林抗血小板效应）。 / 缺失病理生理学解释（如未说明阿司匹林通过抑制COX-1阻断血栓素A2合成的机制）。\",\"score\":1,\"score_cap\":1}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":4,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":4,\"score_cap\":null}"
     },
     "source_sample_id": "8ff264a74369c7106935fc453add4b92d95a8b87",
     "question_key": "ac1c8ccfcd59afb588cbe2e820ef540a695ec312",
@@ -36170,11 +36170,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"答案没有给出推理过程 / 未说明选择依据（如未对比其他选项的作用机制：布洛芬可能干扰阿司匹林抗血小板效应）。 / 缺失病理生理学解释（如未说明阿司匹林通过抑制COX-1阻断血栓素A2合成的机制）。\",\"score\":1,\"score_cap\":1}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"答案没有给出推理过程 / 未说明选择依据（如未对比其他选项的作用机制：布洛芬可能干扰阿司匹林抗血小板效应）。 / 缺失病理生理学解释（如未说明阿司匹林通过抑制COX-1阻断血栓素A2合成的机制）。\",\"score\":1,\"score_cap\":1}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
     },
     "source_sample_id": "8ff264a74369c7106935fc453add4b92d95a8b87",
     "question_key": "ac1c8ccfcd59afb588cbe2e820ef540a695ec312",
@@ -36289,11 +36289,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"评分\\\"1\\\"与反馈内容存在逻辑冲突。 / 严重逻辑矛盾：判定内容正确却标注1分（通常1分对应完全错误），可能造成评分认知混乱。需统一采用布尔值或百分制，避免混合使用。 / 完全误判学生答案的正确性，将正确回答标记为错误，存在 “漏报正确答案” 和 “误报错误” 的双重错误。纠正建议（如 “了解一致性模型在性能中的作用”）与学生实际错误无关，精确性完全丧失。\",\"score\":1,\"score_cap\":1}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"评分\\\"1\\\"与反馈内容存在逻辑冲突。 / 严重逻辑矛盾：判定内容正确却标注1分（通常1分对应完全错误），可能造成评分认知混乱。需统一采用布尔值或百分制，避免混合使用。 / 完全误判学生答案的正确性，将正确回答标记为错误，存在 “漏报正确答案” 和 “误报错误” 的双重错误。纠正建议（如 “了解一致性模型在性能中的作用”）与学生实际错误无关，精确性完全丧失。\",\"score\":1,\"score_cap\":1}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
     },
     "source_sample_id": "90ed1a72c758f575b39f863d5ac03313ac9b197e",
     "question_key": "04c137c5aec1fd5e3fc9bc4897bc62409a8e32e7",
@@ -36408,11 +36408,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"没有给出推理过程 / 无推理过程。 / 仅给出结论，未说明选择氮的依据（如在植物生理中的核心作用），逻辑链条缺失。\",\"score\":1,\"score_cap\":1}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"没有给出推理过程 / 无推理过程。 / 仅给出结论，未说明选择氮的依据（如在植物生理中的核心作用），逻辑链条缺失。\",\"score\":1,\"score_cap\":1}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
     },
     "source_sample_id": "9473740ab3e011ac08772a84e106e72f4d38f137",
     "question_key": "1fbaba4fd0689522a2df03a5be806cfca5328f00",
@@ -36527,11 +36527,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"仅给出答案，无推理过程，逻辑链条不完整 。 / 无推理过程。 / 没有推理过程。\",\"score\":1,\"score_cap\":1}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"仅给出答案，无推理过程，逻辑链条不完整 。 / 无推理过程。 / 没有推理过程。\",\"score\":1,\"score_cap\":1}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
     },
     "source_sample_id": "9695560e94c04bb151b514cc850a85eb10394a00",
     "question_key": "3f583749c39a53d68120dd4302b4c6888f5dd6d7",
@@ -36646,11 +36646,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"答案没有给出推理过程 / 未说明选择依据（如未对比其他选项的作用机制：布洛芬可能干扰阿司匹林抗血小板效应）。 / 缺失病理生理学解释（如未说明阿司匹林通过抑制COX-1阻断血栓素A2合成的机制）。\",\"score\":1,\"score_cap\":1}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"答案没有给出推理过程 / 未说明选择依据（如未对比其他选项的作用机制：布洛芬可能干扰阿司匹林抗血小板效应）。 / 缺失病理生理学解释（如未说明阿司匹林通过抑制COX-1阻断血栓素A2合成的机制）。\",\"score\":1,\"score_cap\":1}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":4,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":4,\"score_cap\":null}"
     },
     "source_sample_id": "992ac0fdbb258d7a1438e8ee29db7096365cf8ca",
     "question_key": "ac1c8ccfcd59afb588cbe2e820ef540a695ec312",
@@ -36765,11 +36765,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"答案没有给出推理过程 / 未说明选择依据（如未对比其他选项的作用机制：布洛芬可能干扰阿司匹林抗血小板效应）。 / 缺失病理生理学解释（如未说明阿司匹林通过抑制COX-1阻断血栓素A2合成的机制）。\",\"score\":1,\"score_cap\":1}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"答案没有给出推理过程 / 未说明选择依据（如未对比其他选项的作用机制：布洛芬可能干扰阿司匹林抗血小板效应）。 / 缺失病理生理学解释（如未说明阿司匹林通过抑制COX-1阻断血栓素A2合成的机制）。\",\"score\":1,\"score_cap\":1}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
     },
     "source_sample_id": "992ac0fdbb258d7a1438e8ee29db7096365cf8ca",
     "question_key": "ac1c8ccfcd59afb588cbe2e820ef540a695ec312",
@@ -36884,11 +36884,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"问题仅考查基础概念记忆，推理未涉及分析、评估等高阶思维，整体偏重知识复述。 / 题目为简单概念复现，仅考查记忆层面，未涉及分析、应用等高阶思维培养。\",\"score\":2,\"score_cap\":2}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"问题仅考查基础概念记忆，推理未涉及分析、评估等高阶思维，整体偏重知识复述。 / 题目为简单概念复现，仅考查记忆层面，未涉及分析、应用等高阶思维培养。\",\"score\":2,\"score_cap\":2}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":4,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":4,\"score_cap\":null}"
     },
     "source_sample_id": "9b98fbe73d713149b38df9e497e2ad0a0a022c91",
     "question_key": "f6cf3e1b280ca78c17a557b97001a3fea411a738",
@@ -37003,11 +37003,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"双重矛盾：同时认定学生答案正确和错误，基础事实完全错误。 / 学生误认为 “超极化不属于动作电位步骤”（实际属于），而反馈称其正确，存在双重事实错误；“超射” 与 “超极化” 概念混淆（解析中误将 “超射” 作为动作电位阶段，实为去极化峰值阶段的别称），事实表述混乱。 / 错误认为钙离子流入“不属动作电位”（正确），但错误肯定学生选C（超极化属动作电位），事实表述自相矛盾，信息误导性强。\",\"score\":1,\"score_cap\":1}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"双重矛盾：同时认定学生答案正确和错误，基础事实完全错误。 / 学生误认为 “超极化不属于动作电位步骤”（实际属于），而反馈称其正确，存在双重事实错误；“超射” 与 “超极化” 概念混淆（解析中误将 “超射” 作为动作电位阶段，实为去极化峰值阶段的别称），事实表述混乱。 / 错误认为钙离子流入“不属动作电位”（正确），但错误肯定学生选C（超极化属动作电位），事实表述自相矛盾，信息误导性强。\",\"score\":1,\"score_cap\":1}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":4,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":4,\"score_cap\":null}"
     },
     "source_sample_id": "9fdf5ac4ce9e42b699e040bcc32841d72d8c9e07",
     "question_key": "ce9b05f8b8c3c09bfac56ea4f5f177bac9474ddb",
@@ -37122,11 +37122,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"双重矛盾：同时认定学生答案正确和错误，基础事实完全错误。 / 学生误认为 “超极化不属于动作电位步骤”（实际属于），而反馈称其正确，存在双重事实错误；“超射” 与 “超极化” 概念混淆（解析中误将 “超射” 作为动作电位阶段，实为去极化峰值阶段的别称），事实表述混乱。 / 错误认为钙离子流入“不属动作电位”（正确），但错误肯定学生选C（超极化属动作电位），事实表述自相矛盾，信息误导性强。\",\"score\":1,\"score_cap\":1}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"双重矛盾：同时认定学生答案正确和错误，基础事实完全错误。 / 学生误认为 “超极化不属于动作电位步骤”（实际属于），而反馈称其正确，存在双重事实错误；“超射” 与 “超极化” 概念混淆（解析中误将 “超射” 作为动作电位阶段，实为去极化峰值阶段的别称），事实表述混乱。 / 错误认为钙离子流入“不属动作电位”（正确），但错误肯定学生选C（超极化属动作电位），事实表述自相矛盾，信息误导性强。\",\"score\":1,\"score_cap\":1}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
     },
     "source_sample_id": "9fdf5ac4ce9e42b699e040bcc32841d72d8c9e07",
     "question_key": "ce9b05f8b8c3c09bfac56ea4f5f177bac9474ddb",
@@ -37241,11 +37241,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"答案直接给出了结论，但没有展示推理过程。 / 未展示任何推理过程。 / 答案仅呈现最终结论，未对得出结论的推理过程加以展示。\",\"score\":1,\"score_cap\":1}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"答案直接给出了结论，但没有展示推理过程。 / 未展示任何推理过程。 / 答案仅呈现最终结论，未对得出结论的推理过程加以展示。\",\"score\":1,\"score_cap\":1}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
     },
     "source_sample_id": "a2963f0bafecf877ce9d9f85ccd07d324522a500",
     "question_key": "14e6dfb98fe659be9bca96d36b8e8c3b5beda0d4",
@@ -37360,11 +37360,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"使用否定词\\\"错误地\\\"，缺乏建设性指导（如建议学习方法）。 / 完全缺失正向引导，建议改为\\\"你的尝试体现了对规则动词的理解，接下来我们重点突破不规则动词\\\"。\",\"score\":2,\"score_cap\":2}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"使用否定词\\\"错误地\\\"，缺乏建设性指导（如建议学习方法）。 / 完全缺失正向引导，建议改为\\\"你的尝试体现了对规则动词的理解，接下来我们重点突破不规则动词\\\"。\",\"score\":2,\"score_cap\":2}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":4,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":4,\"score_cap\":null}"
     },
     "source_sample_id": "a5b40ba0a800e6ec0da88e7d0591d092caa41ae1",
     "question_key": "fdcc493923c6536e26519ec07f9693ca405da624",
@@ -37479,11 +37479,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"使用否定词\\\"错误地\\\"，缺乏建设性指导（如建议学习方法）。 / 完全缺失正向引导，建议改为\\\"你的尝试体现了对规则动词的理解，接下来我们重点突破不规则动词\\\"。\",\"score\":2,\"score_cap\":2}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"使用否定词\\\"错误地\\\"，缺乏建设性指导（如建议学习方法）。 / 完全缺失正向引导，建议改为\\\"你的尝试体现了对规则动词的理解，接下来我们重点突破不规则动词\\\"。\",\"score\":2,\"score_cap\":2}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
     },
     "source_sample_id": "a5b40ba0a800e6ec0da88e7d0591d092caa41ae1",
     "question_key": "fdcc493923c6536e26519ec07f9693ca405da624",
@@ -37598,11 +37598,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"仅提出了分析的方向和要点，未进行实际的推理分析过程，逻辑链条不完整，可评 3 分。 / 分析仅提出方向和要点，缺乏实际推理过程，逻辑链条不完整。\",\"score\":2,\"score_cap\":2}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"仅提出了分析的方向和要点，未进行实际的推理分析过程，逻辑链条不完整，可评 3 分。 / 分析仅提出方向和要点，缺乏实际推理过程，逻辑链条不完整。\",\"score\":2,\"score_cap\":2}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":4,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":4,\"score_cap\":null}"
     },
     "source_sample_id": "a5b76b94f849ef3c81364bfd2a49a16777a2d7fa",
     "question_key": "b8341c9d33cad1b053ba0bafa03c407e4791c4da",
@@ -37717,11 +37717,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"仅提出了分析的方向和要点，未进行实际的推理分析过程，逻辑链条不完整，可评 3 分。 / 分析仅提出方向和要点，缺乏实际推理过程，逻辑链条不完整。\",\"score\":2,\"score_cap\":2}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"仅提出了分析的方向和要点，未进行实际的推理分析过程，逻辑链条不完整，可评 3 分。 / 分析仅提出方向和要点，缺乏实际推理过程，逻辑链条不完整。\",\"score\":2,\"score_cap\":2}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
     },
     "source_sample_id": "a5b76b94f849ef3c81364bfd2a49a16777a2d7fa",
     "question_key": "b8341c9d33cad1b053ba0bafa03c407e4791c4da",
@@ -37836,11 +37836,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"完全未提供任何推理过程，仅呈现结论，无法评估逻辑链条完整性。 / 未提供任何解析，无法展现博士层级应有的法律解释能力（如未援引《奥本海国际法》第2卷第3章关于领土取得的论述）。 / 仅提供答案未展示推理，如未解释为何排除选项B（自决原则需以存在被压迫民族为前提）。\",\"score\":1,\"score_cap\":1}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"完全未提供任何推理过程，仅呈现结论，无法评估逻辑链条完整性。 / 未提供任何解析，无法展现博士层级应有的法律解释能力（如未援引《奥本海国际法》第2卷第3章关于领土取得的论述）。 / 仅提供答案未展示推理，如未解释为何排除选项B（自决原则需以存在被压迫民族为前提）。\",\"score\":1,\"score_cap\":1}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
     },
     "source_sample_id": "a78d41fd92d092509e201d4cb468bba833ecdf3a",
     "question_key": "3b26f4f8f9f7314ee644e63efa2173afbb702c33",
@@ -37955,11 +37955,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"答案直接给出了结论，但没有展示推理过程。 / 答案直接给出结论，缺少必要的推理过程。 / 答案只是给出了结论，缺乏相应的推理步骤呈现。\",\"score\":1,\"score_cap\":1}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"答案直接给出了结论，但没有展示推理过程。 / 答案直接给出结论，缺少必要的推理过程。 / 答案只是给出了结论，缺乏相应的推理步骤呈现。\",\"score\":1,\"score_cap\":1}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":4,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":4,\"score_cap\":null}"
     },
     "source_sample_id": "b21b8c3ac37ecaa0e26ae36e530a7f7c75594d53",
     "question_key": "14e6dfb98fe659be9bca96d36b8e8c3b5beda0d4",
@@ -38074,11 +38074,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"答案直接给出了结论，但没有展示推理过程。 / 答案直接给出结论，缺少必要的推理过程。 / 答案只是给出了结论，缺乏相应的推理步骤呈现。\",\"score\":1,\"score_cap\":1}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"答案直接给出了结论，但没有展示推理过程。 / 答案直接给出结论，缺少必要的推理过程。 / 答案只是给出了结论，缺乏相应的推理步骤呈现。\",\"score\":1,\"score_cap\":1}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
     },
     "source_sample_id": "b21b8c3ac37ecaa0e26ae36e530a7f7c75594d53",
     "question_key": "14e6dfb98fe659be9bca96d36b8e8c3b5beda0d4",
@@ -38193,11 +38193,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"未结合任何场景要素（如学生回答、学习偏好等），属于一般性知识讲解，可评 3 分。 / 由于未结合任何场景要素（如学生的回答、学习偏好等），答案属于一般性的知识讲解，可评为 3 分。 / 由于未结合任何场景要素（如学生的回答、学习偏好等），答案属于泛化的知识讲解。\",\"score\":2,\"score_cap\":2}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"未结合任何场景要素（如学生回答、学习偏好等），属于一般性知识讲解，可评 3 分。 / 由于未结合任何场景要素（如学生的回答、学习偏好等），答案属于一般性的知识讲解，可评为 3 分。 / 由于未结合任何场景要素（如学生的回答、学习偏好等），答案属于泛化的知识讲解。\",\"score\":2,\"score_cap\":2}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":4,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":4,\"score_cap\":null}"
     },
     "source_sample_id": "b51fe8038ded98685f2c18b27990ce26056dfc17",
     "question_key": "b8341c9d33cad1b053ba0bafa03c407e4791c4da",
@@ -38312,11 +38312,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"未结合任何场景要素（如学生回答、学习偏好等），属于一般性知识讲解，可评 3 分。 / 由于未结合任何场景要素（如学生的回答、学习偏好等），答案属于一般性的知识讲解，可评为 3 分。 / 由于未结合任何场景要素（如学生的回答、学习偏好等），答案属于泛化的知识讲解。\",\"score\":2,\"score_cap\":2}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"未结合任何场景要素（如学生回答、学习偏好等），属于一般性知识讲解，可评 3 分。 / 由于未结合任何场景要素（如学生的回答、学习偏好等），答案属于一般性的知识讲解，可评为 3 分。 / 由于未结合任何场景要素（如学生的回答、学习偏好等），答案属于泛化的知识讲解。\",\"score\":2,\"score_cap\":2}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
     },
     "source_sample_id": "b51fe8038ded98685f2c18b27990ce26056dfc17",
     "question_key": "b8341c9d33cad1b053ba0bafa03c407e4791c4da",
@@ -38431,11 +38431,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"内容混乱：既声称\\\"你的选择是正确的\\\"，又显示\\\"正确答案是D\\\"。 / 内容混淆超射与超极化概念（称“超射为动作电位阶段”），且错误肯定学生误选C，相关性完全失效。\",\"score\":1,\"score_cap\":1}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"内容混乱：既声称\\\"你的选择是正确的\\\"，又显示\\\"正确答案是D\\\"。 / 内容混淆超射与超极化概念（称“超射为动作电位阶段”），且错误肯定学生误选C，相关性完全失效。\",\"score\":1,\"score_cap\":1}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":4,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":4,\"score_cap\":null}"
     },
     "source_sample_id": "b5f54f2d11493dd41a74e9e2274d26451a958dcc",
     "question_key": "ce9b05f8b8c3c09bfac56ea4f5f177bac9474ddb",
@@ -38550,11 +38550,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"内容混乱：既声称\\\"你的选择是正确的\\\"，又显示\\\"正确答案是D\\\"。 / 内容混淆超射与超极化概念（称“超射为动作电位阶段”），且错误肯定学生误选C，相关性完全失效。\",\"score\":1,\"score_cap\":1}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"内容混乱：既声称\\\"你的选择是正确的\\\"，又显示\\\"正确答案是D\\\"。 / 内容混淆超射与超极化概念（称“超射为动作电位阶段”），且错误肯定学生误选C，相关性完全失效。\",\"score\":1,\"score_cap\":1}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
     },
     "source_sample_id": "b5f54f2d11493dd41a74e9e2274d26451a958dcc",
     "question_key": "ce9b05f8b8c3c09bfac56ea4f5f177bac9474ddb",
@@ -38669,11 +38669,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"答案没有给出推理过程 / 未说明选择依据（如未对比其他选项的作用机制：布洛芬可能干扰阿司匹林抗血小板效应）。 / 缺失病理生理学解释（如未说明阿司匹林通过抑制COX-1阻断血栓素A2合成的机制）。\",\"score\":1,\"score_cap\":1}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"答案没有给出推理过程 / 未说明选择依据（如未对比其他选项的作用机制：布洛芬可能干扰阿司匹林抗血小板效应）。 / 缺失病理生理学解释（如未说明阿司匹林通过抑制COX-1阻断血栓素A2合成的机制）。\",\"score\":1,\"score_cap\":1}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":4,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":4,\"score_cap\":null}"
     },
     "source_sample_id": "b62bc6a3bc8db6a39e2d347c263aa392be416138",
     "question_key": "ac1c8ccfcd59afb588cbe2e820ef540a695ec312",
@@ -38788,11 +38788,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"答案没有给出推理过程 / 未说明选择依据（如未对比其他选项的作用机制：布洛芬可能干扰阿司匹林抗血小板效应）。 / 缺失病理生理学解释（如未说明阿司匹林通过抑制COX-1阻断血栓素A2合成的机制）。\",\"score\":1,\"score_cap\":1}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"答案没有给出推理过程 / 未说明选择依据（如未对比其他选项的作用机制：布洛芬可能干扰阿司匹林抗血小板效应）。 / 缺失病理生理学解释（如未说明阿司匹林通过抑制COX-1阻断血栓素A2合成的机制）。\",\"score\":1,\"score_cap\":1}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
     },
     "source_sample_id": "b62bc6a3bc8db6a39e2d347c263aa392be416138",
     "question_key": "ac1c8ccfcd59afb588cbe2e820ef540a695ec312",
@@ -38907,11 +38907,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"没有提及任何场景要素（如学生之前回答、学习偏好等），属于通用型分析，可评 3 分。 / 由于没有结合任何场景要素（如学生之前的回答、学习偏好等），答案属于通用型分析。\",\"score\":2,\"score_cap\":2}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"没有提及任何场景要素（如学生之前回答、学习偏好等），属于通用型分析，可评 3 分。 / 由于没有结合任何场景要素（如学生之前的回答、学习偏好等），答案属于通用型分析。\",\"score\":2,\"score_cap\":2}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":4,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":4,\"score_cap\":null}"
     },
     "source_sample_id": "b98b50d95782304d48d08ccbe6eda435ec3f66c7",
     "question_key": "b8341c9d33cad1b053ba0bafa03c407e4791c4da",
@@ -39026,11 +39026,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"没有提及任何场景要素（如学生之前回答、学习偏好等），属于通用型分析，可评 3 分。 / 由于没有结合任何场景要素（如学生之前的回答、学习偏好等），答案属于通用型分析。\",\"score\":2,\"score_cap\":2}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"没有提及任何场景要素（如学生之前回答、学习偏好等），属于通用型分析，可评 3 分。 / 由于没有结合任何场景要素（如学生之前的回答、学习偏好等），答案属于通用型分析。\",\"score\":2,\"score_cap\":2}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
     },
     "source_sample_id": "b98b50d95782304d48d08ccbe6eda435ec3f66c7",
     "question_key": "b8341c9d33cad1b053ba0bafa03c407e4791c4da",
@@ -39145,11 +39145,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"语言客观专业，通过明确法律条款引导学习者关注宪法细节，虽未直接激励，但隐含对法律条文深入理解的支持。 / 语言客观专业，通过明确法律条款引导学习者关注宪法细节，虽未直接激励但隐含对法律条文的深入理解支持。\",\"score\":2,\"score_cap\":2}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"语言客观专业，通过明确法律条款引导学习者关注宪法细节，虽未直接激励，但隐含对法律条文深入理解的支持。 / 语言客观专业，通过明确法律条款引导学习者关注宪法细节，虽未直接激励但隐含对法律条文的深入理解支持。\",\"score\":2,\"score_cap\":2}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":4,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":4,\"score_cap\":null}"
     },
     "source_sample_id": "ba114a1a8452ac012af5a1940b242d85f38538d3",
     "question_key": "578358b94591dcdb7b73304c5498c56a12d9c95d",
@@ -39264,11 +39264,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"语言客观专业，通过明确法律条款引导学习者关注宪法细节，虽未直接激励，但隐含对法律条文深入理解的支持。 / 语言客观专业，通过明确法律条款引导学习者关注宪法细节，虽未直接激励但隐含对法律条文的深入理解支持。\",\"score\":2,\"score_cap\":2}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"语言客观专业，通过明确法律条款引导学习者关注宪法细节，虽未直接激励，但隐含对法律条文深入理解的支持。 / 语言客观专业，通过明确法律条款引导学习者关注宪法细节，虽未直接激励但隐含对法律条文的深入理解支持。\",\"score\":2,\"score_cap\":2}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
     },
     "source_sample_id": "ba114a1a8452ac012af5a1940b242d85f38538d3",
     "question_key": "578358b94591dcdb7b73304c5498c56a12d9c95d",
@@ -39383,11 +39383,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"无推理过程。\",\"score\":1,\"score_cap\":1}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"无推理过程。\",\"score\":1,\"score_cap\":1}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
     },
     "source_sample_id": "bd384e01426757c4dd86e755a75d5ef86fe6e59f",
     "question_key": "5190426b37344a5dd70adf4894aacc1fb868cdff",
@@ -39502,11 +39502,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"推理存在根本性逻辑断裂：将自决原则适用范围扩大至国家间争议，且未辨析\\\"有效占领\\\"与\\\"人民自决\\\"的法理差异（参见《维也纳条约法公约》第52条）。 / 答案的解析部分虽然有一定的推理，但推理过程存在明显错误，认为自决原则最符合解决领土争端，而实际上先占原则更直接相关，逻辑不严谨。\",\"score\":2,\"score_cap\":2}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"推理存在根本性逻辑断裂：将自决原则适用范围扩大至国家间争议，且未辨析\\\"有效占领\\\"与\\\"人民自决\\\"的法理差异（参见《维也纳条约法公约》第52条）。 / 答案的解析部分虽然有一定的推理，但推理过程存在明显错误，认为自决原则最符合解决领土争端，而实际上先占原则更直接相关，逻辑不严谨。\",\"score\":2,\"score_cap\":2}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
     },
     "source_sample_id": "bdfb1901aed7bfddbd4bcd0898854e7ecfd4513c",
     "question_key": "3b26f4f8f9f7314ee644e63efa2173afbb702c33",
@@ -39621,11 +39621,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"错误判定余弦函数（B）为正确选项，混淆局部微分同胚（如限制定义域）与整体性质。建议内容偏离微分同胚核心判定标准。 / 严重超纲：将余弦函数视为同胚，忽略其周期性和非单射特性。 / 核心判断错误（B为正确选项），内容偏离微分同胚定义，引入无关讨论（余弦函数区间限定），范围控制完全失效。\",\"score\":2,\"score_cap\":2}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"错误判定余弦函数（B）为正确选项，混淆局部微分同胚（如限制定义域）与整体性质。建议内容偏离微分同胚核心判定标准。 / 严重超纲：将余弦函数视为同胚，忽略其周期性和非单射特性。 / 核心判断错误（B为正确选项），内容偏离微分同胚定义，引入无关讨论（余弦函数区间限定），范围控制完全失效。\",\"score\":2,\"score_cap\":2}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":4,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":4,\"score_cap\":null}"
     },
     "source_sample_id": "c0d4f41ccf2066449887e86887cb7b8903269b2a",
     "question_key": "80b4f169dced8f900b4d6467567222045b1c13a3",
@@ -39740,11 +39740,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"答案没有给出推理过程 / 未阐述药物禁忌证（如活动性出血患者需调整用药）等深度临床思维要素。 / 答案仅给出了最终结果，没有推理过程。\",\"score\":1,\"score_cap\":1}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"答案没有给出推理过程 / 未阐述药物禁忌证（如活动性出血患者需调整用药）等深度临床思维要素。 / 答案仅给出了最终结果，没有推理过程。\",\"score\":1,\"score_cap\":1}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":4,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":4,\"score_cap\":null}"
     },
     "source_sample_id": "c7c27202cecaf2f4efd7487760add595085e4712",
     "question_key": "ac1c8ccfcd59afb588cbe2e820ef540a695ec312",
@@ -39859,11 +39859,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"答案没有给出推理过程 / 未阐述药物禁忌证（如活动性出血患者需调整用药）等深度临床思维要素。 / 答案仅给出了最终结果，没有推理过程。\",\"score\":1,\"score_cap\":1}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"答案没有给出推理过程 / 未阐述药物禁忌证（如活动性出血患者需调整用药）等深度临床思维要素。 / 答案仅给出了最终结果，没有推理过程。\",\"score\":1,\"score_cap\":1}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
     },
     "source_sample_id": "c7c27202cecaf2f4efd7487760add595085e4712",
     "question_key": "ac1c8ccfcd59afb588cbe2e820ef540a695ec312",
@@ -39978,11 +39978,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"虽然答案最终结论完全正确，但是没有看到完整的推理过程。 / 缺少针对答案的推理过程。 / 未建立事件与革命结束的逻辑关联（如：未解释法案通过如何终结革命）。\",\"score\":1,\"score_cap\":1}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"虽然答案最终结论完全正确，但是没有看到完整的推理过程。 / 缺少针对答案的推理过程。 / 未建立事件与革命结束的逻辑关联（如：未解释法案通过如何终结革命）。\",\"score\":1,\"score_cap\":1}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
     },
     "source_sample_id": "cc218e690fef26eec817bb03c4ad9a759d05825e",
     "question_key": "93a5ca2decc82169ec51fce4735b568ddb829c8a",
@@ -40097,11 +40097,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"未结合场景要素（如学生背景或偏好），个性化不足。 / 答案没有明确结合场景要素（例如学生的背景或偏好），个性化程度不足。 / 缺乏对场景要素（如学生个体特征或需求偏好）的针对性结合，个性化程度不足。\",\"score\":2,\"score_cap\":2}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"未结合场景要素（如学生背景或偏好），个性化不足。 / 答案没有明确结合场景要素（例如学生的背景或偏好），个性化程度不足。 / 缺乏对场景要素（如学生个体特征或需求偏好）的针对性结合，个性化程度不足。\",\"score\":2,\"score_cap\":2}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":4,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":4,\"score_cap\":null}"
     },
     "source_sample_id": "ccdab1ce8e955bdbf2224a22c0f14a10db6718ab",
     "question_key": "ffed2f3bb93a32c1cf81521951774f896b3283f4",
@@ -40216,11 +40216,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"未结合场景要素（如学生背景或偏好），个性化不足。 / 答案没有明确结合场景要素（例如学生的背景或偏好），个性化程度不足。 / 缺乏对场景要素（如学生个体特征或需求偏好）的针对性结合，个性化程度不足。\",\"score\":2,\"score_cap\":2}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"未结合场景要素（如学生背景或偏好），个性化不足。 / 答案没有明确结合场景要素（例如学生的背景或偏好），个性化程度不足。 / 缺乏对场景要素（如学生个体特征或需求偏好）的针对性结合，个性化程度不足。\",\"score\":2,\"score_cap\":2}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
     },
     "source_sample_id": "ccdab1ce8e955bdbf2224a22c0f14a10db6718ab",
     "question_key": "ffed2f3bb93a32c1cf81521951774f896b3283f4",
@@ -40335,11 +40335,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"非纠错场景下，评分缺乏依据，建议合理，但评分体系混乱。 / 非纠错场景，评分无依据，建议合理但评分体系混乱。 / 非纠错场景下，评分缺乏明确依据，建议虽合理但评分体系逻辑混乱，未体现评分标准与反馈内容的关联性。\",\"score\":2,\"score_cap\":2}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"非纠错场景下，评分缺乏依据，建议合理，但评分体系混乱。 / 非纠错场景，评分无依据，建议合理但评分体系混乱。 / 非纠错场景下，评分缺乏明确依据，建议虽合理但评分体系逻辑混乱，未体现评分标准与反馈内容的关联性。\",\"score\":2,\"score_cap\":2}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":4,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":4,\"score_cap\":null}"
     },
     "source_sample_id": "d669073d100a7f3755e1ce0ec3bd63e9b6c54e34",
     "question_key": "0e09c1d8b75a16ca2c50f1bccf73028ae1d691ea",
@@ -40454,11 +40454,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"非纠错场景下，评分缺乏依据，建议合理，但评分体系混乱。 / 非纠错场景，评分无依据，建议合理但评分体系混乱。 / 非纠错场景下，评分缺乏明确依据，建议虽合理但评分体系逻辑混乱，未体现评分标准与反馈内容的关联性。\",\"score\":2,\"score_cap\":2}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"非纠错场景下，评分缺乏依据，建议合理，但评分体系混乱。 / 非纠错场景，评分无依据，建议合理但评分体系混乱。 / 非纠错场景下，评分缺乏明确依据，建议虽合理但评分体系逻辑混乱，未体现评分标准与反馈内容的关联性。\",\"score\":2,\"score_cap\":2}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
     },
     "source_sample_id": "d669073d100a7f3755e1ce0ec3bd63e9b6c54e34",
     "question_key": "0e09c1d8b75a16ca2c50f1bccf73028ae1d691ea",
@@ -40573,11 +40573,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"仅给出答案，未呈现推理过程。 / 无推理过程。 / 直接给出了答案，缺乏必要的推理过程。\",\"score\":1,\"score_cap\":1}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"仅给出答案，未呈现推理过程。 / 无推理过程。 / 直接给出了答案，缺乏必要的推理过程。\",\"score\":1,\"score_cap\":1}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
     },
     "source_sample_id": "d7038665e81daff68cadf97e16d4c3e3c3fe543d",
     "question_key": "50a125b94d56b250cab34175d4465b85ca2df963",
@@ -40692,11 +40692,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"完全未提供任何推理过程，仅呈现结论，无法评估逻辑链条完整性。 / 未提供任何解析，无法展现博士层级应有的法律解释能力（如未援引《奥本海国际法》第2卷第3章关于领土取得的论述）。 / 仅提供答案未展示推理，如未解释为何排除选项B（自决原则需以存在被压迫民族为前提）。\",\"score\":1,\"score_cap\":1}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"完全未提供任何推理过程，仅呈现结论，无法评估逻辑链条完整性。 / 未提供任何解析，无法展现博士层级应有的法律解释能力（如未援引《奥本海国际法》第2卷第3章关于领土取得的论述）。 / 仅提供答案未展示推理，如未解释为何排除选项B（自决原则需以存在被压迫民族为前提）。\",\"score\":1,\"score_cap\":1}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
     },
     "source_sample_id": "dcf321c484e4128628a7517762ccaf72fc0916d8",
     "question_key": "3b26f4f8f9f7314ee644e63efa2173afbb702c33",
@@ -40811,11 +40811,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"逻辑完全崩溃：自相矛盾的评分标准与解释。 / 无任何推理过程，仅罗列概念，逻辑混乱，无法支撑结论。\",\"score\":1,\"score_cap\":1}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"逻辑完全崩溃：自相矛盾的评分标准与解释。 / 无任何推理过程，仅罗列概念，逻辑混乱，无法支撑结论。\",\"score\":1,\"score_cap\":1}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":4,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":4,\"score_cap\":null}"
     },
     "source_sample_id": "e2c88c65f2542bab93dbf50c022a42b356f788d2",
     "question_key": "ce9b05f8b8c3c09bfac56ea4f5f177bac9474ddb",
@@ -40930,11 +40930,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"逻辑完全崩溃：自相矛盾的评分标准与解释。 / 无任何推理过程，仅罗列概念，逻辑混乱，无法支撑结论。\",\"score\":1,\"score_cap\":1}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"逻辑完全崩溃：自相矛盾的评分标准与解释。 / 无任何推理过程，仅罗列概念，逻辑混乱，无法支撑结论。\",\"score\":1,\"score_cap\":1}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
     },
     "source_sample_id": "e2c88c65f2542bab93dbf50c022a42b356f788d2",
     "question_key": "ce9b05f8b8c3c09bfac56ea4f5f177bac9474ddb",
@@ -41049,11 +41049,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"虽然答案最终结论完全正确，但是没有看到完整的推理过程。 / 缺少针对答案的推理过程。 / 未建立事件与革命结束的逻辑关联（如：未解释法案通过如何终结革命）。\",\"score\":1,\"score_cap\":1}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"虽然答案最终结论完全正确，但是没有看到完整的推理过程。 / 缺少针对答案的推理过程。 / 未建立事件与革命结束的逻辑关联（如：未解释法案通过如何终结革命）。\",\"score\":1,\"score_cap\":1}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
     },
     "source_sample_id": "eca00ddc55d718efe2435adde78462ed09661b7c",
     "question_key": "93a5ca2decc82169ec51fce4735b568ddb829c8a",
@@ -41168,11 +41168,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"未明确结合场景要素（如学生背景或偏好），个性化不足。 / 答案没有明确结合场景要素（例如学生的背景或偏好），个性化程度不足。 / 未明确纳入学生背景、学习偏好等场景要素，内容个性化维度欠缺。\",\"score\":2,\"score_cap\":2}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"未明确结合场景要素（如学生背景或偏好），个性化不足。 / 答案没有明确结合场景要素（例如学生的背景或偏好），个性化程度不足。 / 未明确纳入学生背景、学习偏好等场景要素，内容个性化维度欠缺。\",\"score\":2,\"score_cap\":2}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":4,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":4,\"score_cap\":null}"
     },
     "source_sample_id": "ef7be96d3b20f985cb175937b67d094d4d204dcc",
     "question_key": "ffed2f3bb93a32c1cf81521951774f896b3283f4",
@@ -41287,11 +41287,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"未明确结合场景要素（如学生背景或偏好），个性化不足。 / 答案没有明确结合场景要素（例如学生的背景或偏好），个性化程度不足。 / 未明确纳入学生背景、学习偏好等场景要素，内容个性化维度欠缺。\",\"score\":2,\"score_cap\":2}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"未明确结合场景要素（如学生背景或偏好），个性化不足。 / 答案没有明确结合场景要素（例如学生的背景或偏好），个性化程度不足。 / 未明确纳入学生背景、学习偏好等场景要素，内容个性化维度欠缺。\",\"score\":2,\"score_cap\":2}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
     },
     "source_sample_id": "ef7be96d3b20f985cb175937b67d094d4d204dcc",
     "question_key": "ffed2f3bb93a32c1cf81521951774f896b3283f4",
@@ -41406,11 +41406,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"主要完成纠错任务，未体现对学习者的鼓励和支持，未使用积极建设性语言，未引导深入思考，激励引导方面不足。 / 反馈仅完成错误修正功能，缺少学习激励元素，未采用建设性表达方式，缺乏思维拓展引导，正向引导效果欠佳。\",\"score\":2,\"score_cap\":2}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"主要完成纠错任务，未体现对学习者的鼓励和支持，未使用积极建设性语言，未引导深入思考，激励引导方面不足。 / 反馈仅完成错误修正功能，缺少学习激励元素，未采用建设性表达方式，缺乏思维拓展引导，正向引导效果欠佳。\",\"score\":2,\"score_cap\":2}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":4,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":4,\"score_cap\":null}"
     },
     "source_sample_id": "f0c923e09065792432b0f588a7eb74ea86409797",
     "question_key": "33f24cdef61905293c51bb59ca561c1f2cef3965",
@@ -41525,11 +41525,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"主要完成纠错任务，未体现对学习者的鼓励和支持，未使用积极建设性语言，未引导深入思考，激励引导方面不足。 / 反馈仅完成错误修正功能，缺少学习激励元素，未采用建设性表达方式，缺乏思维拓展引导，正向引导效果欠佳。\",\"score\":2,\"score_cap\":2}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"主要完成纠错任务，未体现对学习者的鼓励和支持，未使用积极建设性语言，未引导深入思考，激励引导方面不足。 / 反馈仅完成错误修正功能，缺少学习激励元素，未采用建设性表达方式，缺乏思维拓展引导，正向引导效果欠佳。\",\"score\":2,\"score_cap\":2}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
     },
     "source_sample_id": "f0c923e09065792432b0f588a7eb74ea86409797",
     "question_key": "33f24cdef61905293c51bb59ca561c1f2cef3965",
@@ -41644,11 +41644,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"学生认为 “超极化” 不属于动作电位步骤，与事实不符（超极化是动作电位后阶段）。评分细节中明确 “超极化是关键步骤”，指出学生事实性错误。 / 错误陈述\\\"超极化是动作电位的关键步骤\\\"（实际超极化属于后电位，非动作电位主阶段），关键事实存在严重错误。 / 错误陈述\\\"超极化是动作电位关键步骤\\\"（实际属于后电位阶段，非动作电位核心过程），核心概念存在重大偏差。\",\"score\":2,\"score_cap\":2}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"学生认为 “超极化” 不属于动作电位步骤，与事实不符（超极化是动作电位后阶段）。评分细节中明确 “超极化是关键步骤”，指出学生事实性错误。 / 错误陈述\\\"超极化是动作电位的关键步骤\\\"（实际超极化属于后电位，非动作电位主阶段），关键事实存在严重错误。 / 错误陈述\\\"超极化是动作电位关键步骤\\\"（实际属于后电位阶段，非动作电位核心过程），核心概念存在重大偏差。\",\"score\":2,\"score_cap\":2}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
     },
     "source_sample_id": "f33e86ba6eaa5281c801dea1ed174135a7d4c0da",
     "question_key": "ce9b05f8b8c3c09bfac56ea4f5f177bac9474ddb",
@@ -41763,11 +41763,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"题目通过设置干扰选项（如血糖、免疫相关内容）引导学生提升分析能力，但问题本身仍属于基础层面考查。 / 题目考查基础概念识别（记忆层面），未涉及分析 / 评估等高阶思维（如对比 RAAS 与其他系统的协同作用）。 / 题目为直接选择功能描述的基础题，侧重知识复述，未涉及病例分析、机制对比等高阶思维训练。\",\"score\":2,\"score_cap\":2}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"题目通过设置干扰选项（如血糖、免疫相关内容）引导学生提升分析能力，但问题本身仍属于基础层面考查。 / 题目考查基础概念识别（记忆层面），未涉及分析 / 评估等高阶思维（如对比 RAAS 与其他系统的协同作用）。 / 题目为直接选择功能描述的基础题，侧重知识复述，未涉及病例分析、机制对比等高阶思维训练。\",\"score\":2,\"score_cap\":2}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":4,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":4,\"score_cap\":null}"
     },
     "source_sample_id": "f51251a778d6f6601796be0ed017d6173d91d44b",
     "question_key": "7d31b9d0eef59066afff9ba848a799e2668bbed2",
@@ -41882,11 +41882,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"题目通过设置干扰选项（如血糖、免疫相关内容）引导学生提升分析能力，但问题本身仍属于基础层面考查。 / 题目考查基础概念识别（记忆层面），未涉及分析 / 评估等高阶思维（如对比 RAAS 与其他系统的协同作用）。 / 题目为直接选择功能描述的基础题，侧重知识复述，未涉及病例分析、机制对比等高阶思维训练。\",\"score\":2,\"score_cap\":2}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"题目通过设置干扰选项（如血糖、免疫相关内容）引导学生提升分析能力，但问题本身仍属于基础层面考查。 / 题目考查基础概念识别（记忆层面），未涉及分析 / 评估等高阶思维（如对比 RAAS 与其他系统的协同作用）。 / 题目为直接选择功能描述的基础题，侧重知识复述，未涉及病例分析、机制对比等高阶思维训练。\",\"score\":2,\"score_cap\":2}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
     },
     "source_sample_id": "f51251a778d6f6601796be0ed017d6173d91d44b",
     "question_key": "7d31b9d0eef59066afff9ba848a799e2668bbed2",
@@ -42001,11 +42001,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"完全错误：将正确答案C误判为正确，且使用数字评分违反题干要求的\\\"正确/错误\\\"判定格式。 / 仅给出数值评分，未按题目要求以文字说明正误，完全偏离答题指令。 / 评分“1”与反馈“选择正确”矛盾，任务执行完全错误；格式虽分点但逻辑混乱，违背指令要求。\",\"score\":1,\"score_cap\":1}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"完全错误：将正确答案C误判为正确，且使用数字评分违反题干要求的\\\"正确/错误\\\"判定格式。 / 仅给出数值评分，未按题目要求以文字说明正误，完全偏离答题指令。 / 评分“1”与反馈“选择正确”矛盾，任务执行完全错误；格式虽分点但逻辑混乱，违背指令要求。\",\"score\":1,\"score_cap\":1}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":4,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":4,\"score_cap\":null}"
     },
     "source_sample_id": "f54280d4caeef0bdadc941acfcd5f7fede5d6838",
     "question_key": "ce9b05f8b8c3c09bfac56ea4f5f177bac9474ddb",
@@ -42120,11 +42120,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"完全错误：将正确答案C误判为正确，且使用数字评分违反题干要求的\\\"正确/错误\\\"判定格式。 / 仅给出数值评分，未按题目要求以文字说明正误，完全偏离答题指令。 / 评分“1”与反馈“选择正确”矛盾，任务执行完全错误；格式虽分点但逻辑混乱，违背指令要求。\",\"score\":1,\"score_cap\":1}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"完全错误：将正确答案C误判为正确，且使用数字评分违反题干要求的\\\"正确/错误\\\"判定格式。 / 仅给出数值评分，未按题目要求以文字说明正误，完全偏离答题指令。 / 评分“1”与反馈“选择正确”矛盾，任务执行完全错误；格式虽分点但逻辑混乱，违背指令要求。\",\"score\":1,\"score_cap\":1}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
     },
     "source_sample_id": "f54280d4caeef0bdadc941acfcd5f7fede5d6838",
     "question_key": "ce9b05f8b8c3c09bfac56ea4f5f177bac9474ddb",
@@ -42239,11 +42239,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"答案仅给出了选项字母，未展示完整的推理链条或解释。 / 完全缺失推理过程，仅以选项符号作答。 / 该问题为选择题，未涉及推理过程。\",\"score\":1,\"score_cap\":1}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"答案仅给出了选项字母，未展示完整的推理链条或解释。 / 完全缺失推理过程，仅以选项符号作答。 / 该问题为选择题，未涉及推理过程。\",\"score\":1,\"score_cap\":1}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":4,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":4,\"score_cap\":null}"
     },
     "source_sample_id": "f941bd555946d5f670146c0ddba2b00c76cfee04",
     "question_key": "93a5ca2decc82169ec51fce4735b568ddb829c8a",
@@ -42358,11 +42358,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"答案仅给出了选项字母，未展示完整的推理链条或解释。 / 完全缺失推理过程，仅以选项符号作答。 / 该问题为选择题，未涉及推理过程。\",\"score\":1,\"score_cap\":1}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"答案仅给出了选项字母，未展示完整的推理链条或解释。 / 完全缺失推理过程，仅以选项符号作答。 / 该问题为选择题，未涉及推理过程。\",\"score\":1,\"score_cap\":1}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
     },
     "source_sample_id": "f941bd555946d5f670146c0ddba2b00c76cfee04",
     "question_key": "93a5ca2decc82169ec51fce4735b568ddb829c8a",
@@ -42477,11 +42477,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"答案与复分析PhD级问题严重脱节，未识别无穷远点奇点特性。 / 该答案未能达到复分析PhD级别的问题要求，特别是未能识别出无穷远点的奇点特性。 / 答案与复分析 PhD 级别问题存在严重脱节，未能识别无穷远点的奇点特性。\",\"score\":2,\"score_cap\":2}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"答案与复分析PhD级问题严重脱节，未识别无穷远点奇点特性。 / 该答案未能达到复分析PhD级别的问题要求，特别是未能识别出无穷远点的奇点特性。 / 答案与复分析 PhD 级别问题存在严重脱节，未能识别无穷远点的奇点特性。\",\"score\":2,\"score_cap\":2}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":4,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":4,\"score_cap\":null}"
     },
     "source_sample_id": "fa439d530a93932f4cf8a09f743d80c44e18e0b8",
     "question_key": "aa48c48cd6bf14c4713397de0e37c7971495e79d",
@@ -42596,11 +42596,11 @@
     ],
     "chosen": {
       "role": "assistant",
-      "content": "{\"major_failures\":[\"recovered_human_failure\"],\"reason\":\"答案与复分析PhD级问题严重脱节，未识别无穷远点奇点特性。 / 该答案未能达到复分析PhD级别的问题要求，特别是未能识别出无穷远点的奇点特性。 / 答案与复分析 PhD 级别问题存在严重脱节，未能识别无穷远点的奇点特性。\",\"score\":2,\"score_cap\":2}"
+      "content": "{\"failure_tag_source\":\"generic_from_recovered_reason_not_taxonomy\",\"major_failures\":[\"human_rationale_indicates_failure\"],\"reason\":\"答案与复分析PhD级问题严重脱节，未识别无穷远点奇点特性。 / 该答案未能达到复分析PhD级别的问题要求，特别是未能识别出无穷远点的奇点特性。 / 答案与复分析 PhD 级别问题存在严重脱节，未能识别无穷远点的奇点特性。\",\"score\":2,\"score_cap\":2}"
     },
     "rejected": {
       "role": "assistant",
-      "content": "{\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
+      "content": "{\"failure_tag_source\":\"counterfactual_failure_erasure_train_only_not_human\",\"major_failures\":[],\"reason\":\"No major failure is identified.\",\"score\":5,\"score_cap\":null}"
     },
     "source_sample_id": "fa439d530a93932f4cf8a09f743d80c44e18e0b8",
     "question_key": "aa48c48cd6bf14c4713397de0e37c7971495e79d",

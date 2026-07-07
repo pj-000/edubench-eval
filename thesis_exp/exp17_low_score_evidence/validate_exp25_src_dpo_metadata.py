@@ -81,6 +81,8 @@ def validate(args: argparse.Namespace) -> dict[str, Any]:
     pair_ids: set[str] = set()
     counterfactual_count = 0
     same_schema_count = 0
+    chosen_reason_prompt_count = 0
+    rejected_reason_prompt_count = 0
 
     for idx, row in enumerate(rows):
         row_errors: list[str] = []
@@ -113,8 +115,14 @@ def validate(args: argparse.Namespace) -> dict[str, Any]:
             else:
                 same_schema_count += 1
             reason = clean(chosen_payload.get("reason"))
-            if reason and reason[:80] in prompt_text(row):
-                row_errors.append("human_reason_found_in_prompt")
+            prompt = prompt_text(row)
+            if reason and reason[:80] in prompt:
+                chosen_reason_prompt_count += 1
+                row_errors.append("chosen_reason_found_in_prompt")
+            rejected_reason = clean(rejected_payload.get("reason"))
+            if rejected_reason and rejected_reason[:80] in prompt:
+                rejected_reason_prompt_count += 1
+                row_errors.append("rejected_reason_found_in_prompt")
         negative_type = clean(row.get("negative_type"))
         negative_source = clean(row.get("negative_source"))
         negative_counts[negative_type] += 1
@@ -157,6 +165,8 @@ def validate(args: argparse.Namespace) -> dict[str, Any]:
         {"metric": "error_count", "value": len(errors)},
         {"metric": "same_schema_pair_count", "value": same_schema_count},
         {"metric": "counterfactual_count", "value": counterfactual_count},
+        {"metric": "chosen_reason_found_in_prompt_count", "value": chosen_reason_prompt_count},
+        {"metric": "rejected_reason_found_in_prompt_count", "value": rejected_reason_prompt_count},
         {"metric": "dev_sample_overlap", "value": len(source_ids & dev_ids)},
         {"metric": "dev_question_overlap", "value": len(question_keys & dev_qkeys)},
         {"metric": "test_sample_overlap", "value": len(source_ids & test_ids)},
@@ -183,7 +193,9 @@ def validate(args: argparse.Namespace) -> dict[str, Any]:
         "same_schema_pair_count": same_schema_count,
         "negative_type_counts": dict(sorted(negative_counts.items())),
         "test_label_read": False,
-        "human_reason_in_prompt": False if not errors else any("human_reason_found_in_prompt" in e["errors"] for e in errors),
+        "chosen_reason_in_prompt": chosen_reason_prompt_count > 0,
+        "rejected_reason_in_prompt": rejected_reason_prompt_count > 0,
+        "human_reason_in_prompt": chosen_reason_prompt_count > 0 or rejected_reason_prompt_count > 0,
     }
     write_csv(args.out_dir / "tables" / "exp25_src_metadata_validation.csv", validation_rows)
     write_csv(args.out_dir / "tables" / "exp25_src_metadata_validation_errors.csv", errors)
@@ -197,6 +209,8 @@ def validate(args: argparse.Namespace) -> dict[str, Any]:
         f"- rows: {len(rows)}",
         f"- errors: {len(errors)}",
         f"- same-schema pairs: {same_schema_count}",
+        f"- chosen_reason_found_in_prompt_count: {chosen_reason_prompt_count}",
+        f"- rejected_reason_found_in_prompt_count: {rejected_reason_prompt_count}",
         f"- test_label_read: `False`",
         "",
         "## Negative Types",

@@ -62,6 +62,22 @@ RUNS = [
     },
 ]
 
+
+def parse_run_names(raw: str) -> list[str]:
+    return [item for item in raw.replace(",", " ").split() if item]
+
+
+def select_runs(raw_run_names: str) -> list[dict[str, str]]:
+    names = parse_run_names(raw_run_names)
+    if not names:
+        return RUNS
+    by_name = {run["run_name"]: run for run in RUNS}
+    unknown = sorted(set(names) - set(by_name))
+    if unknown:
+        raise ValueError(f"Unknown Exp25 run name(s): {', '.join(unknown)}")
+    return [by_name[name] for name in names]
+
+
 BASELINE_SPECS = [
     ("r2c_clean_reason_score_balanced", DEFAULT_SFT_PREDICTION_ROOT / "r2c_clean_reason_score_balanced"),
     ("r4b_shuffled_reason_balanced", DEFAULT_SFT_PREDICTION_ROOT / "r4b_shuffled_reason_balanced"),
@@ -207,9 +223,9 @@ def transition_rows(
     return out
 
 
-def load_training_summaries(summary_dir: Path) -> list[dict[str, Any]]:
+def load_training_summaries(summary_dir: Path, runs: list[dict[str, str]]) -> list[dict[str, Any]]:
     out: list[dict[str, Any]] = []
-    for run in RUNS:
+    for run in runs:
         path = summary_dir / f"{run['run_name']}.json"
         if not path.exists():
             out.append({"run_name": run["run_name"], "completed": False})
@@ -245,12 +261,17 @@ def load_training_summaries(summary_dir: Path) -> list[dict[str, Any]]:
     return out
 
 
-def make_decision(metric_rows: list[dict[str, Any]], extra_rows: list[dict[str, Any]], d1_rows: list[dict[str, Any]]) -> dict[str, Any]:
+def make_decision(
+    metric_rows: list[dict[str, Any]],
+    extra_rows: list[dict[str, Any]],
+    d1_rows: list[dict[str, Any]],
+    runs: list[dict[str, str]],
+) -> dict[str, Any]:
     metrics = by_run(metric_rows)
     extra = by_run(extra_rows)
     d1_by_name = by_run(d1_rows)
     evaluations: dict[str, Any] = {}
-    for run in RUNS:
+    for run in runs:
         name = run["run_name"]
         if name not in metrics:
             continue
@@ -403,6 +424,7 @@ def write_report(
 
 
 def collect(args: argparse.Namespace) -> dict[str, Any]:
+    runs = select_runs(args.run_names)
     reference = sft_collect.read_csv_rows(args.reference_csv)
     annotations, _pairs, _controls = sft_collect.load_d1_annotations(args.d1_dir)
     d1_ids = set(annotations)
@@ -423,7 +445,7 @@ def collect(args: argparse.Namespace) -> dict[str, Any]:
     failure_rows: list[dict[str, Any]] = []
     extra_rows: list[dict[str, Any]] = []
     transition: list[dict[str, Any]] = []
-    for run in RUNS:
+    for run in runs:
         name = run["run_name"]
         try:
             aligned = load_aligned(name, args.prediction_root / name, reference)
@@ -445,8 +467,8 @@ def collect(args: argparse.Namespace) -> dict[str, Any]:
         extra_rows.append(subset_extra_rows(name, aligned, d1_ids, baseline_predictions))
         transition.extend(transition_rows(name, aligned, baseline_predictions))
 
-    training_rows = load_training_summaries(args.training_summary_dir)
-    decision = json_safe(make_decision(metric_rows, extra_rows, d1_rows))
+    training_rows = load_training_summaries(args.training_summary_dir, runs)
+    decision = json_safe(make_decision(metric_rows, extra_rows, d1_rows, runs))
     write_csv(args.out_dir / "tables" / "exp25_src_dpo_dev_metrics.csv", metric_rows, METRIC_FIELDS)
     write_csv(args.out_dir / "tables" / "exp25_src_dpo_d1_hidden_eval.csv", d1_rows, D1_FIELDS)
     write_csv(args.out_dir / "tables" / "exp25_src_dpo_failure_type_eval.csv", failure_rows, FAILURE_FIELDS)
@@ -457,6 +479,7 @@ def collect(args: argparse.Namespace) -> dict[str, Any]:
     write_report(args.out_dir, metric_rows, d1_rows, failure_rows, extra_rows, transition, training_rows, decision, missing_predictions)
     return {
         "exp25_runs_collected": len(metric_rows),
+        "selected_runs": [run["run_name"] for run in runs],
         "missing_predictions": missing_predictions,
         "recommendation": decision["recommendation"],
     }
@@ -469,6 +492,11 @@ def main() -> None:
     parser.add_argument("--reference-csv", type=Path, default=DEFAULT_REFERENCE)
     parser.add_argument("--d1-dir", type=Path, default=DEFAULT_D1_DIR)
     parser.add_argument("--training-summary-dir", type=Path, default=DEFAULT_TRAINING_SUMMARY_DIR)
+    parser.add_argument(
+        "--run-names",
+        default="",
+        help="Optional space/comma separated Exp25 run names to collect. Defaults to all registered Exp25 runs.",
+    )
     parser.add_argument("--allow-missing-predictions", action="store_true")
     args = parser.parse_args()
     print(json.dumps(collect(args), ensure_ascii=False, sort_keys=True))

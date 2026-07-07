@@ -7,9 +7,12 @@
     "reason_mismatch_same_score": 429,
     "score_mismatch_same_reason": 429
   },
+  "primary_pair_generation_source": "R7D",
   "r7d_source_pairs": 429,
   "r7f_source_pairs": 856,
+  "r7f_usage": "loaded_for_provenance_count_not_primary_generation",
   "r7g_source_pairs": 429,
+  "r7g_usage": "loaded_for_provenance_count_not_primary_generation",
   "recommendation": "ready_for_metadata_validation",
   "score_mismatch_only_pairs": 429,
   "structured_mixed_pairs": 1127,

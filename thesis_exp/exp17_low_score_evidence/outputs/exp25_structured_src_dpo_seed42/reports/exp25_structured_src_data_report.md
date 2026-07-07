@@ -2,6 +2,9 @@
 
 Exp25 builds same-schema reason/score consistency DPO pairs from train-only recovered human reasons.
 
+Primary pair generation source: `R7D`. R7F and R7G are loaded only for provenance counts, not as
+primary pair-generation inputs.
+
 ## Dataset Counts
 
 - R7H score_mismatch_only pairs: 429

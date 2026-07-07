@@ -293,6 +293,7 @@ if [[ "${TRAIN_ONLY}" != "1" ]]; then
     --out-dir "${OUT_DIR}" \
     --prediction-root "${PREDICTION_ROOT}" \
     --training-summary-dir "${SUMMARY_DIR}" \
+    --run-names "${RUN_NAMES[*]}" \
     "${collect_args[@]}"
 fi
 

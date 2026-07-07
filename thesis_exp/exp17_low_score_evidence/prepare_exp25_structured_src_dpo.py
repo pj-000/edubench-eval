@@ -132,7 +132,8 @@ def score_mismatch_payload(reason: str, score_cap: int | None, score: int) -> di
 def low_failure_payload(reason: str, score_cap: int | None, score: int) -> dict[str, Any]:
     return {
         "reason": reason,
-        "major_failures": ["recovered_human_failure"],
+        "major_failures": ["human_rationale_indicates_failure"],
+        "failure_tag_source": "generic_from_recovered_reason_not_taxonomy",
         "score_cap": score_cap,
         "score": score,
     }
@@ -142,6 +143,7 @@ def low_failure_erasure_payload(score: int) -> dict[str, Any]:
     return {
         "reason": "No major failure is identified.",
         "major_failures": [],
+        "failure_tag_source": "counterfactual_failure_erasure_train_only_not_human",
         "score_cap": None,
         "score": score,
     }
@@ -425,6 +427,9 @@ def build_tables(
 
     decision = {
         "recommendation": "ready_for_metadata_validation",
+        "primary_pair_generation_source": "R7D",
+        "r7f_usage": "loaded_for_provenance_count_not_primary_generation",
+        "r7g_usage": "loaded_for_provenance_count_not_primary_generation",
         "r7d_source_pairs": len(r7d),
         "r7f_source_pairs": len(r7f),
         "r7g_source_pairs": len(r7g),
@@ -440,6 +445,8 @@ def build_tables(
         "# Exp25 Structured SRC-DPO Data Report",
         "",
         "Exp25 builds same-schema reason/score consistency DPO pairs from train-only recovered human reasons.",
+        "",
+        "Primary pair generation source: `R7D`. R7F and R7G are loaded only for provenance counts, not as primary pair-generation inputs.",
         "",
         "## Dataset Counts",
         "",

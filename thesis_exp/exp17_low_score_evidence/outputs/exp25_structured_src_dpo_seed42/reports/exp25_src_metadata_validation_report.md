@@ -5,6 +5,8 @@
 - rows: 1127
 - errors: 0
 - same-schema pairs: 1127
+- chosen_reason_found_in_prompt_count: 0
+- rejected_reason_found_in_prompt_count: 0
 - test_label_read: `False`
 
 ## Negative Types

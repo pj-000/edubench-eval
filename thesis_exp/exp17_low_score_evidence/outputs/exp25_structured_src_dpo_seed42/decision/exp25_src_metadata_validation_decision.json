@@ -1,4 +1,5 @@
 {
+  "chosen_reason_in_prompt": false,
   "data": "thesis_exp/exp17_low_score_evidence/outputs/exp25_structured_src_dpo_seed42/data/edubench_r7h_structured_src_dpo_train.json",
   "error_count": 0,
   "human_reason_in_prompt": false,
@@ -9,6 +10,7 @@
     "score_mismatch_same_reason": 429
   },
   "passed": true,
+  "rejected_reason_in_prompt": false,
   "rows": 1127,
   "same_schema_pair_count": 1127,
   "test_label_read": false

@@ -4,6 +4,8 @@ unique_pair_id_count,1127
 error_count,0
 same_schema_pair_count,1127
 counterfactual_count,130
+chosen_reason_found_in_prompt_count,0
+rejected_reason_found_in_prompt_count,0
 dev_sample_overlap,0
 dev_question_overlap,0
 test_sample_overlap,0
