@@ -555,7 +555,7 @@ def write_report(
         "- dev/D1 annotations are not used for training labels.",
         "- human rationale is not used as prompt input.",
         "- rejected responses are not handwritten templates.",
-        "- full DPO JSON is stored under gitignored `data/`; lightweight review/QC files are committed.",
+    "- full R6 DPO JSON is written under `data/` and committed when explicitly requested for external review.",
         "",
         "## Train / Pair Counts",
         "",
@@ -655,6 +655,7 @@ def main() -> None:
             "hard_synthetic_rejected_used": False,
             "template_rejected_used": False,
             "rejected_side_is_real_model_score": True,
+            "full_r6_data_json_committed_for_review": True,
         },
         "caveats": [
             "Main variants are score-only because reusable real rejected outputs are scalar scores.",

@@ -12,6 +12,7 @@
     "edubench_r6e_multi_judge_reason_chosen_real_score_dpo_train": 1250
   },
   "guardrails": {
+    "full_r6_data_json_committed_for_review": true,
     "hard_synthetic_rejected_used": false,
     "human_rationale_not_used_as_prompt_input": true,
     "no_dev_d1_training_labels": true,

@@ -18,7 +18,7 @@ synthetic rejected response is used.
 - dev/D1 annotations are not used for training labels.
 - human rationale is not used as prompt input.
 - rejected responses are not handwritten templates.
-- full DPO JSON is stored under gitignored `data/`; lightweight review/QC files are committed.
+- full R6 DPO JSON is written under `data/` and committed when explicitly requested for external review.
 
 ## Train / Pair Counts
 
