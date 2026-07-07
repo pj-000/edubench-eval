@@ -1,4 +1,6 @@
 run_name,completed
+exp24_dpo0_r2c,False
 exp24_orc_a_r2c,False
 exp24_orc_b_r2c,False
+exp24_orc_b_noreason_r2c,False
 exp24_orc_c_r2c,False

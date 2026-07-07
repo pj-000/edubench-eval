@@ -4,7 +4,9 @@
   "guardrails": {
     "dev_used_for_eval_only": true,
     "human_reason_not_in_prompt": true,
-    "no_test_read": true
+    "test_label_read": false,
+    "test_read_for_id_guard_only": true,
+    "test_used_for_training_or_selection": false
   },
   "minimum_success_rule": {
     "d1_hidden_pred_ge4_max": 0.9,

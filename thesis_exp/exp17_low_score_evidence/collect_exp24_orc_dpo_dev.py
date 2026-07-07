@@ -43,19 +43,34 @@ DEFAULT_TRAINING_SUMMARY_DIR = DEFAULT_OUT_DIR / "training_summaries"
 
 RUNS = [
     {
+        "run_name": "exp24_dpo0_r2c",
+        "init_adapter": "r2c_clean_reason_score_balanced",
+        "dpo_dataset": "r7g_orc_score_channel_reason_aux",
+        "method_role": "same_trainer_ordinary_score_channel_dpo",
+    },
+    {
         "run_name": "exp24_orc_a_r2c",
         "init_adapter": "r2c_clean_reason_score_balanced",
         "dpo_dataset": "r7g_orc_score_channel_reason_aux",
+        "method_role": "orc_mild_low_high_weighting",
     },
     {
         "run_name": "exp24_orc_b_r2c",
         "init_adapter": "r2c_clean_reason_score_balanced",
         "dpo_dataset": "r7g_orc_score_channel_reason_aux",
+        "method_role": "orc_stronger_low_to_high_weighting",
+    },
+    {
+        "run_name": "exp24_orc_b_noreason_r2c",
+        "init_adapter": "r2c_clean_reason_score_balanced",
+        "dpo_dataset": "r7g_orc_score_channel_reason_aux",
+        "method_role": "orc_stronger_low_to_high_no_reason_auxiliary",
     },
     {
         "run_name": "exp24_orc_c_r2c",
         "init_adapter": "r2c_clean_reason_score_balanced",
         "dpo_dataset": "r7g_orc_score_channel_reason_aux",
+        "method_role": "orc_high_protection_reason_auxiliary",
     },
 ]
 
@@ -203,6 +218,7 @@ def load_training_summaries(summary_dir: Path) -> list[dict[str, Any]]:
                 "beta": data.get("beta", ""),
                 "pref_ftx": data.get("pref_ftx", ""),
                 "lambda_reason": data.get("lambda_reason", ""),
+                "reason_target_format": data.get("reason_target_format", ""),
                 "alpha_lh": data.get("alpha_lh", ""),
                 "alpha_hl": data.get("alpha_hl", ""),
                 "alpha_lm": data.get("alpha_lm", ""),
@@ -211,6 +227,15 @@ def load_training_summaries(summary_dir: Path) -> list[dict[str, Any]]:
                 "margin_lh": data.get("margin_lh", ""),
                 "margin_hl": data.get("margin_hl", ""),
                 "margin_d": data.get("margin_d", ""),
+                "initial_mean_delta_step1": data.get("initial_mean_delta_step1", ""),
+                "mean_weight_all_pairs": data.get("mean_weight_all_pairs", ""),
+                "max_weight_all_pairs": data.get("max_weight_all_pairs", ""),
+                "mean_margin_all_pairs": data.get("mean_margin_all_pairs", ""),
+                "max_margin_all_pairs": data.get("max_margin_all_pairs", ""),
+                "cutoff_len": data.get("cutoff_len", ""),
+                "trainable_param_count": data.get("trainable_param_count", ""),
+                "cuda_device_name": data.get("cuda_device_name", ""),
+                "cuda_memory_allocated_peak_mb": data.get("cuda_memory_allocated_peak_mb", ""),
                 "last_loss": last.get("loss", ""),
                 "last_orc_loss": last.get("orc_loss", ""),
                 "last_reason_loss": last.get("reason_loss", ""),
@@ -309,7 +334,9 @@ def make_decision(metric_rows: list[dict[str, Any]], d1_rows: list[dict[str, Any
         "minimum_success_rule": MINIMUM_SUCCESS,
         "strong_success_rule": STRONG_SUCCESS,
         "guardrails": {
-            "no_test_read": True,
+            "test_read_for_id_guard_only": True,
+            "test_label_read": False,
+            "test_used_for_training_or_selection": False,
             "dev_used_for_eval_only": True,
             "human_reason_not_in_prompt": True,
         },
@@ -336,13 +363,14 @@ def write_report(
         "",
         "## Dev Metrics",
         "",
-        "| run | dataset | MAE | QWK | low-to-high | high-to-low | label2 recall | label5 recall | D1 pred>=4 |",
-        "|---|---|---:|---:|---:|---:|---:|---:|---:|",
+        "| run | dataset | parse | MAE | QWK | low-to-high | high-to-low | label2 recall | label5 recall | D1 pred>=4 |",
+        "|---|---|---:|---:|---:|---:|---:|---:|---:|---:|",
     ]
     for row in metric_rows:
         d1 = d1_by_name.get(str(row["run_name"]), {})
         lines.append(
-            f"| `{row['run_name']}` | `{row.get('dpo_dataset', '')}` | {fmt(row.get('MAE'))} | "
+            f"| `{row['run_name']}` | `{row.get('dpo_dataset', '')}` | {fmt(row.get('parse_success_rate'))} | "
+            f"{fmt(row.get('MAE'))} | "
             f"{fmt(row.get('QWK'))} | {fmt(row.get('low_to_high_rate'))} | "
             f"{fmt(row.get('high_to_low_rate'))} | {fmt(row.get('label2_recall'))} | "
             f"{fmt(row.get('label5_recall'))} | {fmt(d1.get('pred_ge4_rate_d1_hidden'))} |"
@@ -352,8 +380,8 @@ def write_report(
             "",
             "## Training Summary",
             "",
-            "| run | completed | steps | alpha_lh | alpha_hl | alpha_d | margin_lh | margin_hl | margin_d | lambda_reason | last loss |",
-            "|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|",
+            "| run | completed | steps | alpha_lh | alpha_hl | alpha_d | margin_lh | margin_hl | margin_d | lambda_reason | init delta | mean weight | mean margin | peak MB | last loss |",
+            "|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|",
         ]
     )
     for row in training_rows:
@@ -361,7 +389,9 @@ def write_report(
             f"| `{row.get('run_name', '')}` | {row.get('completed', '')} | {row.get('completed_steps', '')}/{row.get('max_steps', '')} | "
             f"{row.get('alpha_lh', '')} | {row.get('alpha_hl', '')} | {row.get('alpha_d', '')} | "
             f"{row.get('margin_lh', '')} | {row.get('margin_hl', '')} | {row.get('margin_d', '')} | "
-            f"{row.get('lambda_reason', '')} | {fmt(row.get('last_loss'))} |"
+            f"{row.get('lambda_reason', '')} | {fmt(row.get('initial_mean_delta_step1'))} | "
+            f"{fmt(row.get('mean_weight_all_pairs'))} | {fmt(row.get('mean_margin_all_pairs'))} | "
+            f"{fmt(row.get('cuda_memory_allocated_peak_mb'))} | {fmt(row.get('last_loss'))} |"
         )
     lines.extend(
         [
@@ -398,7 +428,8 @@ def write_report(
             "",
             "## Guardrails",
             "",
-            "- Test split is not read.",
+            "- Test split is read only for sample_id/question-key leakage guardrails in data preparation.",
+            "- Test labels are not read or used for training, selection, tuning, or evaluation.",
             "- Dev labels are used only for evaluation.",
             "- Human rationale is not included in the prediction prompt.",
             "- Raw predictions, logs, checkpoints, and adapter weights must not be committed.",

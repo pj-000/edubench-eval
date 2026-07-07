@@ -36,6 +36,8 @@ REQUIRED_FIELDS = {
     "gold_label",
     "rejected_score",
     "risk_type",
+    "score_derived_risk_type",
+    "risk_type_matches_score_direction",
     "ordinal_distance",
     "has_human_reason",
     "reason_hash",
@@ -60,6 +62,22 @@ def parse_payload(message: dict[str, Any]) -> dict[str, Any]:
     except json.JSONDecodeError:
         return {}
     return data if isinstance(data, dict) else {}
+
+
+def risk_type_from_scores(gold: int, rejected: int) -> str:
+    if gold <= 2 and rejected >= 4:
+        return "low_to_high_real_model_error"
+    if gold <= 2 and rejected == 3:
+        return "low_to_mid_real_model_error"
+    if gold >= 4 and rejected <= 2:
+        return "high_to_low_real_model_error"
+    if gold >= 4 and rejected == 3:
+        return "high_to_mid_real_model_error"
+    if rejected > gold:
+        return "upward_real_model_error"
+    if rejected < gold:
+        return "downward_real_model_error"
+    return "same_score_non_error"
 
 
 def validate(args: argparse.Namespace) -> dict[str, Any]:
@@ -90,6 +108,12 @@ def validate(args: argparse.Namespace) -> dict[str, Any]:
             errors.append(f"row {idx} rejected_score_response mismatch: {bad} != score {rejected}")
         if int(row.get("ordinal_distance", -1)) != abs(gold - rejected):
             errors.append(f"row {idx} ordinal_distance mismatch")
+        expected_flags = {
+            "LH": int(gold <= 2 and rejected >= 4),
+            "LM": int(gold <= 2 and rejected == 3),
+            "HL": int(gold >= 4 and rejected <= 2),
+            "HM": int(gold >= 4 and rejected == 3),
+        }
         reason = clean(row.get("auxiliary_reason_target"))
         if not reason:
             errors.append(f"row {idx} missing auxiliary_reason_target")
@@ -98,9 +122,22 @@ def validate(args: argparse.Namespace) -> dict[str, Any]:
             errors.append(f"row {idx} human reason appears in prompt")
         if gold == rejected:
             errors.append(f"row {idx} gold_label equals rejected_score; not a preference pair")
-        for flag in ("LH", "LM", "HL", "HM"):
-            if int(row.get(flag, 0)) not in {0, 1}:
+        for flag, expected in expected_flags.items():
+            actual = int(row.get(flag, 0))
+            if actual not in {0, 1}:
                 errors.append(f"row {idx} invalid {flag}: {row.get(flag)}")
+            if actual != expected:
+                errors.append(f"row {idx} {flag} mismatch: {actual} != {expected}")
+        expected_risk_type = risk_type_from_scores(gold, rejected)
+        if clean(row.get("score_derived_risk_type")) != expected_risk_type:
+            errors.append(
+                f"row {idx} score_derived_risk_type mismatch: "
+                f"{row.get('score_derived_risk_type')} != {expected_risk_type}"
+            )
+        if clean(row.get("risk_type")) != expected_risk_type:
+            errors.append(f"row {idx} risk_type mismatch: {row.get('risk_type')} != {expected_risk_type}")
+        if row.get("risk_type_matches_score_direction") is not True:
+            errors.append(f"row {idx} risk_type_matches_score_direction is not true")
         risk_counts[clean(row.get("risk_type"))] += 1
         distance_counts[str(row.get("ordinal_distance"))] += 1
 

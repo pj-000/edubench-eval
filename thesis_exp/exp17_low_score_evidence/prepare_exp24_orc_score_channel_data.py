@@ -8,7 +8,9 @@ Exp24 turns the matched R7D/R7E pair pool into R7G:
 - risk metadata and ordinal distance are explicit per pair for ORC-DPO weights
   and margins.
 
-Dev/test files are used only for sample_id/question_key leakage checks.
+Dev/test files are used only for sample_id/question-key leakage checks. Labels
+from dev/test are not read by this script and are never used for training,
+selection, or tuning.
 """
 
 from __future__ import annotations
@@ -293,7 +295,11 @@ def build_tables(rows: list[dict[str, Any]], args: argparse.Namespace) -> None:
             "test_sample_id_overlap": len(source_ids & test_ids),
             "test_question_key_overlap": len(qkeys & test_qkeys),
             "human_reason_in_prompt_count": reason_in_prompt,
+            "dev_read_for_id_guard_only": True,
+            "test_read_for_id_guard_only": True,
             "dev_test_label_read": False,
+            "test_label_read": False,
+            "test_used_for_training_or_selection": False,
             "leakage_pass": len(source_ids & dev_ids) == 0
             and len(qkeys & dev_qkeys) == 0
             and len(source_ids & test_ids) == 0
@@ -339,8 +345,9 @@ def write_report(rows: list[dict[str, Any]], args: argparse.Namespace) -> None:
             "",
             "## Guardrails",
             "",
-            "- Dev/test are used only for ID and question-key leakage checks.",
+            "- Dev/test files are read only for sample_id/question-key leakage checks.",
             "- Test labels are not read.",
+            "- Test data are not used for training, selection, or tuning.",
             "- Human rationale is not in the user prompt.",
         ]
     )
@@ -367,8 +374,13 @@ def build(args: argparse.Namespace) -> dict[str, Any]:
         "dataset_name": R7G_NAME,
         "pair_count": len(rows),
         "r7d_r7e_aligned": True,
-        "test_read": False,
+        "dev_read_for_id_guard_only": True,
+        "test_read_for_id_guard_only": True,
         "dev_test_label_read": False,
+        "test_label_read": False,
+        "test_used_for_training_or_selection": False,
+        "dev_label_used_for_training": False,
+        "dev_used_for_eval_only": True,
         "human_reason_in_prompt": False,
     }
     write_json(args.out_dir / "decision" / "exp24_orc_data_decision.json", decision)

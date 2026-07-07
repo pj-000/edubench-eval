@@ -23,6 +23,7 @@ import math
 import random
 import sys
 import time
+from collections import Counter
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
@@ -277,6 +278,11 @@ def train(args: argparse.Namespace) -> dict[str, Any]:
         rows = rows[: args.max_train_examples]
     tokenizer, model, ref_model, device = load_tokenizer_and_models(args, trainable=True)
     dataset = ORCDataset(rows, tokenizer, args)
+    item_weights = [item.weight for item in dataset.items]
+    item_margins = [item.margin for item in dataset.items]
+    risk_counts = Counter(clean(row.get("risk_type")) for row in rows)
+    trainable_param_count = sum(param.numel() for param in model.parameters() if param.requires_grad)
+    total_param_count = sum(param.numel() for param in model.parameters())
     loader = DataLoader(
         dataset,
         batch_size=args.per_device_train_batch_size,
@@ -295,6 +301,7 @@ def train(args: argparse.Namespace) -> dict[str, Any]:
     micro_step = 0
     epoch = 0
     last_metrics: dict[str, float] = {}
+    initial_mean_delta_step1: float | None = None
     optimizer.zero_grad(set_to_none=True)
     while step < args.max_steps:
         epoch += 1
@@ -334,6 +341,8 @@ def train(args: argparse.Namespace) -> dict[str, Any]:
                 "mean_margin": float(margins.detach().mean().cpu()),
                 "lr": float(scheduler.get_last_lr()[0]),
             }
+            if step == 1 and initial_mean_delta_step1 is None:
+                initial_mean_delta_step1 = last_metrics["mean_delta"]
             if step == 1 or step % args.logging_steps == 0 or step >= args.max_steps:
                 elapsed = time.time() - start
                 eta = elapsed / max(step, 1) * max(args.max_steps - step, 0)
@@ -350,17 +359,27 @@ def train(args: argparse.Namespace) -> dict[str, Any]:
     args.output_dir.mkdir(parents=True, exist_ok=True)
     model.save_pretrained(args.output_dir)
     tokenizer.save_pretrained(args.output_dir)
+    cuda_peak_mb = None
+    cuda_device_name = ""
+    if torch.cuda.is_available():
+        cuda_peak_mb = float(torch.cuda.max_memory_allocated() / (1024 * 1024))
+        cuda_device_name = torch.cuda.get_device_name(0)
     summary = {
         "run_name": args.run_name,
         "data": str(args.data),
         "output_dir": str(args.output_dir),
         "rows": len(rows),
+        "risk_type_counts": dict(sorted(risk_counts.items())),
         "max_steps": args.max_steps,
         "completed_steps": step,
         "learning_rate": args.learning_rate,
+        "cutoff_len": args.cutoff_len,
+        "per_device_train_batch_size": args.per_device_train_batch_size,
+        "gradient_accumulation_steps": args.gradient_accumulation_steps,
         "beta": args.beta,
         "pref_ftx": args.pref_ftx,
         "lambda_reason": args.lambda_reason,
+        "reason_target_format": args.reason_target_format,
         "alpha_lh": args.alpha_lh,
         "alpha_hl": args.alpha_hl,
         "alpha_lm": args.alpha_lm,
@@ -369,6 +388,15 @@ def train(args: argparse.Namespace) -> dict[str, Any]:
         "margin_lh": args.margin_lh,
         "margin_hl": args.margin_hl,
         "margin_d": args.margin_d,
+        "initial_mean_delta_step1": initial_mean_delta_step1,
+        "mean_weight_all_pairs": sum(item_weights) / max(len(item_weights), 1),
+        "max_weight_all_pairs": max(item_weights) if item_weights else None,
+        "mean_margin_all_pairs": sum(item_margins) / max(len(item_margins), 1),
+        "max_margin_all_pairs": max(item_margins) if item_margins else None,
+        "trainable_param_count": trainable_param_count,
+        "total_param_count": total_param_count,
+        "cuda_device_name": cuda_device_name,
+        "cuda_memory_allocated_peak_mb": cuda_peak_mb,
         "last_metrics": last_metrics,
         "elapsed_seconds": time.time() - start,
     }

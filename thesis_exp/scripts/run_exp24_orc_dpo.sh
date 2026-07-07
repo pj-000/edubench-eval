@@ -3,34 +3,57 @@ set -euo pipefail
 
 CONDA_ENV="${CONDA_ENV:-llama_factory}"
 GPU_LIST="${GPU_LIST:-0 1 2}"
-OUT_DIR="${OUT_DIR:-thesis_exp/exp17_low_score_evidence/outputs/exp24_orc_dpo_seed42}"
-DATASET_DIR="${DATASET_DIR:-thesis_exp/exp17_low_score_evidence/outputs/exp19_sft_dpo_datasets_seed42}"
+SMOKE="${SMOKE:-0}"
+PARALLEL="${PARALLEL:-1}"
+RUN_NAMES_OVERRIDE="${RUN_NAMES_OVERRIDE:-}"
+if [[ "${SMOKE}" == "1" ]]; then
+  OUT_DIR="${OUT_DIR:-thesis_exp/exp17_low_score_evidence/outputs/exp24_orc_dpo_smoke_seed42}"
+  DATASET_DIR="${DATASET_DIR:-${OUT_DIR}/eval_dataset}"
+  MAX_STEPS="${MAX_STEPS:-2}"
+  MAX_TRAIN_EXAMPLES="${MAX_TRAIN_EXAMPLES:-8}"
+  MAX_PREDICT_EXAMPLES="${MAX_PREDICT_EXAMPLES:-16}"
+  MAX_NEW_TOKENS="${MAX_NEW_TOKENS:-64}"
+  SKIP_COMPLETED="${SKIP_COMPLETED:-0}"
+else
+  OUT_DIR="${OUT_DIR:-thesis_exp/exp17_low_score_evidence/outputs/exp24_orc_dpo_seed42}"
+  DATASET_DIR="${DATASET_DIR:-thesis_exp/exp17_low_score_evidence/outputs/exp19_sft_dpo_datasets_seed42}"
+  MAX_STEPS="${MAX_STEPS:-100}"
+  MAX_TRAIN_EXAMPLES="${MAX_TRAIN_EXAMPLES:-0}"
+  MAX_PREDICT_EXAMPLES="${MAX_PREDICT_EXAMPLES:-0}"
+  MAX_NEW_TOKENS="${MAX_NEW_TOKENS:-256}"
+  SKIP_COMPLETED="${SKIP_COMPLETED:-1}"
+fi
 MODEL_NAME_OR_PATH="${MODEL_NAME_OR_PATH:-/home/jpang/models/modelscope/Qwen/Qwen3-4B}"
 INIT_ADAPTER="${INIT_ADAPTER:-saves/edubench/qwen3-4b/r2_clean_reason_score_balanced_lora}"
 REF_ADAPTER="${REF_ADAPTER:-${INIT_ADAPTER}}"
-SAVE_ROOT="${SAVE_ROOT:-saves/edubench/qwen3-4b}"
+if [[ "${SMOKE}" == "1" ]]; then
+  SAVE_ROOT="${SAVE_ROOT:-saves/edubench/qwen3-4b/exp24_smoke}"
+else
+  SAVE_ROOT="${SAVE_ROOT:-saves/edubench/qwen3-4b}"
+fi
 DEV_JSONL="${DEV_JSONL:-thesis_exp/data/splits/question_seed42/dev.jsonl}"
 TEST_JSONL="${TEST_JSONL:-thesis_exp/data/splits/question_seed42/test.jsonl}"
 LOG_DIR="${LOG_DIR:-${OUT_DIR}/logs}"
 PREDICTION_ROOT="${PREDICTION_ROOT:-${OUT_DIR}/dev_predictions}"
 SUMMARY_DIR="${SUMMARY_DIR:-${OUT_DIR}/training_summaries}"
-SKIP_COMPLETED="${SKIP_COMPLETED:-1}"
 TRAIN_ONLY="${TRAIN_ONLY:-0}"
 PREDICT_ONLY="${PREDICT_ONLY:-0}"
 COLLECT_ONLY="${COLLECT_ONLY:-0}"
-MAX_STEPS="${MAX_STEPS:-100}"
 LEARNING_RATE="${LEARNING_RATE:-5e-6}"
 PER_DEVICE_TRAIN_BATCH_SIZE="${PER_DEVICE_TRAIN_BATCH_SIZE:-1}"
 GRADIENT_ACCUMULATION_STEPS="${GRADIENT_ACCUMULATION_STEPS:-8}"
-MAX_NEW_TOKENS="${MAX_NEW_TOKENS:-256}"
-MAX_TRAIN_EXAMPLES="${MAX_TRAIN_EXAMPLES:-0}"
-MAX_PREDICT_EXAMPLES="${MAX_PREDICT_EXAMPLES:-0}"
+ALLOW_MISSING_PREDICTIONS="${ALLOW_MISSING_PREDICTIONS:-${SMOKE}}"
 
 RUN_NAMES=(
+  "exp24_dpo0_r2c"
   "exp24_orc_a_r2c"
   "exp24_orc_b_r2c"
+  "exp24_orc_b_noreason_r2c"
   "exp24_orc_c_r2c"
 )
+if [[ -n "${RUN_NAMES_OVERRIDE}" ]]; then
+  IFS=' ' read -r -a RUN_NAMES <<< "${RUN_NAMES_OVERRIDE}"
+fi
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(cd "${SCRIPT_DIR}/../.." && pwd)"
@@ -89,24 +112,35 @@ LEARNING_RATE=${LEARNING_RATE}
 PER_DEVICE_TRAIN_BATCH_SIZE=${PER_DEVICE_TRAIN_BATCH_SIZE}
 GRADIENT_ACCUMULATION_STEPS=${GRADIENT_ACCUMULATION_STEPS}
 SKIP_COMPLETED=${SKIP_COMPLETED}
+SMOKE=${SMOKE}
+PARALLEL=${PARALLEL}
+RUN_NAMES_OVERRIDE=${RUN_NAMES_OVERRIDE}
 TRAIN_ONLY=${TRAIN_ONLY}
 PREDICT_ONLY=${PREDICT_ONLY}
 COLLECT_ONLY=${COLLECT_ONLY}
 
 Runs:
-  A: mild low/high risk weighting
-  B: stronger low-to-high risk weighting
+  DPO0: same-trainer ordinary score-channel DPO baseline
+  A: mild low/high risk weighting + reason auxiliary
+  B: stronger low-to-high risk weighting + reason auxiliary
+  B-no-reason: same as B, lambda_reason=0
   C: balanced low/high risk weighting + stronger reason auxiliary
 CONFIG
 
 run_args() {
   local run_name="$1"
   case "${run_name}" in
+    exp24_dpo0_r2c)
+      echo "--alpha-lh 0.0 --alpha-hl 0.0 --alpha-lm 0.0 --alpha-hm 0.0 --alpha-d 0.0 --margin-lh 0.0 --margin-hl 0.0 --margin-d 0.0 --lambda-reason 0.0"
+      ;;
     exp24_orc_a_r2c)
       echo "--alpha-lh 1.0 --alpha-hl 0.75 --alpha-lm 0.25 --alpha-hm 0.25 --alpha-d 0.15 --margin-lh 0.05 --margin-hl 0.05 --margin-d 0.03 --lambda-reason 0.03"
       ;;
     exp24_orc_b_r2c)
       echo "--alpha-lh 1.5 --alpha-hl 1.0 --alpha-lm 0.25 --alpha-hm 0.25 --alpha-d 0.20 --margin-lh 0.10 --margin-hl 0.05 --margin-d 0.05 --lambda-reason 0.03"
+      ;;
+    exp24_orc_b_noreason_r2c)
+      echo "--alpha-lh 1.5 --alpha-hl 1.0 --alpha-lm 0.25 --alpha-hm 0.25 --alpha-d 0.20 --margin-lh 0.10 --margin-hl 0.05 --margin-d 0.05 --lambda-reason 0.0"
       ;;
     exp24_orc_c_r2c)
       echo "--alpha-lh 1.0 --alpha-hl 1.0 --alpha-lm 0.25 --alpha-hm 0.25 --alpha-d 0.20 --margin-lh 0.05 --margin-hl 0.10 --margin-d 0.05 --lambda-reason 0.05"
@@ -182,39 +216,55 @@ predict_one() {
   echo "Completed Exp24 dev prediction ${run_name}"
 }
 
-run_parallel() {
+run_phase() {
   local phase="$1"
-  pids=()
+  local pids=()
   for idx in "${!RUN_NAMES[@]}"; do
     local gpu_slot=$((idx % ${#GPUS[@]}))
     local gpu_id="${GPUS[$gpu_slot]}"
     local run_name="${RUN_NAMES[$idx]}"
     echo "GPU ${gpu_id} ${phase} queue: ${run_name}"
-    if [[ "${phase}" == "train" ]]; then
-      train_one "${run_name}" "${gpu_id}" &
+    if [[ "${PARALLEL}" == "1" ]]; then
+      if [[ "${phase}" == "train" ]]; then
+        train_one "${run_name}" "${gpu_id}" &
+      else
+        predict_one "${run_name}" "${gpu_id}" &
+      fi
+      pids+=("$!")
     else
-      predict_one "${run_name}" "${gpu_id}" &
+      if [[ "${phase}" == "train" ]]; then
+        train_one "${run_name}" "${gpu_id}"
+      else
+        predict_one "${run_name}" "${gpu_id}"
+      fi
     fi
-    pids+=("$!")
   done
-  for pid in "${pids[@]}"; do
-    wait "${pid}"
-  done
+  if [[ "${PARALLEL}" == "1" ]]; then
+    for pid in "${pids[@]}"; do
+      wait "${pid}"
+    done
+  fi
 }
 
 if [[ "${COLLECT_ONLY}" != "1" && "${PREDICT_ONLY}" != "1" ]]; then
-  run_parallel train
+  run_phase train
 fi
 
 if [[ "${COLLECT_ONLY}" != "1" && "${TRAIN_ONLY}" != "1" ]]; then
-  run_parallel predict
+  run_phase predict
 fi
 
 if [[ "${TRAIN_ONLY}" != "1" ]]; then
+  collect_args=()
+  if [[ "${ALLOW_MISSING_PREDICTIONS}" == "1" ]]; then
+    collect_args+=(--allow-missing-predictions)
+  fi
   python thesis_exp/exp17_low_score_evidence/collect_exp24_orc_dpo_dev.py \
     --out-dir "${OUT_DIR}" \
     --prediction-root "${PREDICTION_ROOT}" \
-    --reference-csv "${DATASET_DIR}/tables/exp19_dev_reference.csv"
+    --reference-csv "${DATASET_DIR}/tables/exp19_dev_reference.csv" \
+    --training-summary-dir "${SUMMARY_DIR}" \
+    "${collect_args[@]}"
 fi
 
 echo "Exp24 score-channel ORC-DPO workflow completed."

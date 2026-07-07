@@ -34,6 +34,7 @@ R7G is derived from the exact R7D/R7E matched 429-pair pool.
 
 ## Guardrails
 
-- Dev/test are used only for ID and question-key leakage checks.
+- Dev/test files are read only for sample_id/question-key leakage checks.
 - Test labels are not read.
+- Test data are not used for training, selection, or tuning.
 - Human rationale is not in the user prompt.

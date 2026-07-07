@@ -1,9 +1,14 @@
 {
   "dataset_name": "edubench_r7g_orc_score_channel_reason_aux_train",
+  "dev_label_used_for_training": false,
+  "dev_read_for_id_guard_only": true,
   "dev_test_label_read": false,
+  "dev_used_for_eval_only": true,
   "human_reason_in_prompt": false,
   "pair_count": 429,
   "r7d_r7e_aligned": true,
   "status": "READY_FOR_ORC_DPO_TRAINING",
-  "test_read": false
+  "test_label_read": false,
+  "test_read_for_id_guard_only": true,
+  "test_used_for_training_or_selection": false
 }
