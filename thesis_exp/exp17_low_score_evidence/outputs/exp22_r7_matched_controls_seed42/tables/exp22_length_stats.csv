@@ -1,0 +1,7 @@
+dataset_name,group,n,chosen_chars_mean,chosen_chars_p50,chosen_chars_p95,rejected_chars_mean,rejected_chars_p50,rejected_chars_p95,chosen_minus_rejected_chars_mean
+edubench_r7e_matched_score_only_strict_real_dpo_train,high_to_low_real_model_error,139,11.00,11.00,11.00,11.00,11.00,11.00,0.00
+edubench_r7e_matched_score_only_strict_real_dpo_train,high_to_mid_real_model_error,131,11.00,11.00,11.00,11.00,11.00,11.00,0.00
+edubench_r7e_matched_score_only_strict_real_dpo_train,low_to_high_real_model_error,130,11.00,11.00,11.00,11.00,11.00,11.00,0.00
+edubench_r7e_matched_score_only_strict_real_dpo_train,low_to_mid_real_model_error,29,11.00,11.00,11.00,11.00,11.00,11.00,0.00
+edubench_r7f_score_reason_consistency_dpo_train,reason_mismatch,427,132.09,122.00,215.80,138.30,125.00,218.00,-6.21
+edubench_r7f_score_reason_consistency_dpo_train,score_mismatch,429,132.21,122.00,217.00,132.21,122.00,217.00,0.00

@@ -1,0 +1,36 @@
+{
+  "edubench_r7e_matched_score_only_strict_real_dpo_train": {
+    "columns": {
+      "chosen": "chosen",
+      "messages": "messages",
+      "rejected": "rejected"
+    },
+    "file_name": "data/edubench_r7e_matched_score_only_strict_real_dpo_train.json",
+    "formatting": "sharegpt",
+    "ranking": true,
+    "tags": {
+      "assistant_tag": "assistant",
+      "content_tag": "content",
+      "role_tag": "role",
+      "system_tag": "system",
+      "user_tag": "user"
+    }
+  },
+  "edubench_r7f_score_reason_consistency_dpo_train": {
+    "columns": {
+      "chosen": "chosen",
+      "messages": "messages",
+      "rejected": "rejected"
+    },
+    "file_name": "data/edubench_r7f_score_reason_consistency_dpo_train.json",
+    "formatting": "sharegpt",
+    "ranking": true,
+    "tags": {
+      "assistant_tag": "assistant",
+      "content_tag": "content",
+      "role_tag": "role",
+      "system_tag": "system",
+      "user_tag": "user"
+    }
+  }
+}

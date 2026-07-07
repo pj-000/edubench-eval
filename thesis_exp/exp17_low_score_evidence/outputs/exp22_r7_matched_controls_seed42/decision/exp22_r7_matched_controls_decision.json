@@ -1,0 +1,21 @@
+{
+  "guardrails": {
+    "dev_test_ids_used_for_leakage_guard_only": true,
+    "dev_test_labels_used": false,
+    "gpu_required": false,
+    "human_reason_not_in_user_prompt": true,
+    "no_training": true
+  },
+  "human_reason_in_prompt_count": 0,
+  "leakage_audit_pass": true,
+  "r7a_missing_alignment_count": 0,
+  "r7e_exactly_aligned_with_r7d": true,
+  "r7e_pair_count": 429,
+  "r7f_negative_type_counts": {
+    "reason_mismatch": 427,
+    "score_mismatch": 429
+  },
+  "r7f_pair_count": 856,
+  "recommended_next_experiment": "Exp23 R7D vs R7E ordinary DPO scout",
+  "safe_for_dpo_data_review": true
+}
