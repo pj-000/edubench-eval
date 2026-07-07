@@ -1,0 +1,17 @@
+{
+  "dropped_pair_count": 0,
+  "human_reason_in_prompt": false,
+  "negative_type_counts": {
+    "high_protection_score_mismatch": 139,
+    "low_failure_erasure_counterfactual": 130,
+    "reason_mismatch_same_score": 429,
+    "score_mismatch_same_reason": 429
+  },
+  "r7d_source_pairs": 429,
+  "r7f_source_pairs": 856,
+  "r7g_source_pairs": 429,
+  "recommendation": "ready_for_metadata_validation",
+  "score_mismatch_only_pairs": 429,
+  "structured_mixed_pairs": 1127,
+  "test_label_read": false
+}

@@ -1,0 +1,5 @@
+dataset,target,n,min,p50,mean,p90,max
+edubench_r7h_score_mismatch_only_train,chosen,429,1,5,5.296037296037296,9,22
+edubench_r7h_score_mismatch_only_train,rejected,429,1,5,5.296037296037296,9,22
+edubench_r7h_structured_src_dpo_train,chosen,1127,1,5,5.331854480922804,9,22
+edubench_r7h_structured_src_dpo_train,rejected,1127,1,5,5.224489795918367,9,22

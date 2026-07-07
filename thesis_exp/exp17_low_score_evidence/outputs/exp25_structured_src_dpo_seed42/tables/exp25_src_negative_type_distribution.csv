@@ -1,0 +1,6 @@
+dataset,negative_type,pair_weight,count,rate
+edubench_r7h_score_mismatch_only_train,score_mismatch_same_reason,1.0,429,1.0
+edubench_r7h_structured_src_dpo_train,high_protection_score_mismatch,1.0,139,0.1233362910381544
+edubench_r7h_structured_src_dpo_train,low_failure_erasure_counterfactual,1.5,130,0.11535048802129548
+edubench_r7h_structured_src_dpo_train,reason_mismatch_same_score,0.3,429,0.38065661047027505
+edubench_r7h_structured_src_dpo_train,score_mismatch_same_reason,1.0,429,0.38065661047027505
