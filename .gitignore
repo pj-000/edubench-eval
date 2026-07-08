@@ -248,3 +248,21 @@ thesis_exp/exp17_low_score_evidence/outputs/exp19_r5f2_rejection_mining_seed42/*
 !thesis_exp/exp17_low_score_evidence/outputs/exp19_r5f2_rejection_mining_seed42/reports/**
 !thesis_exp/exp17_low_score_evidence/outputs/exp19_r5f2_rejection_mining_seed42/tables/
 !thesis_exp/exp17_low_score_evidence/outputs/exp19_r5f2_rejection_mining_seed42/tables/**
+
+# Exp27D teacher-audit v4 commits protocol, packets, and lightweight QC only.
+# Raw API responses and full parsed teacher outputs stay local.
+!thesis_exp/exp17_low_score_evidence/outputs/exp27d_teacher_audit_v4_seed42/
+thesis_exp/exp17_low_score_evidence/outputs/exp27d_teacher_audit_v4_seed42/*
+!thesis_exp/exp17_low_score_evidence/outputs/exp27d_teacher_audit_v4_seed42/decision/
+!thesis_exp/exp17_low_score_evidence/outputs/exp27d_teacher_audit_v4_seed42/decision/**
+!thesis_exp/exp17_low_score_evidence/outputs/exp27d_teacher_audit_v4_seed42/packets/
+!thesis_exp/exp17_low_score_evidence/outputs/exp27d_teacher_audit_v4_seed42/packets/**
+!thesis_exp/exp17_low_score_evidence/outputs/exp27d_teacher_audit_v4_seed42/prompts/
+!thesis_exp/exp17_low_score_evidence/outputs/exp27d_teacher_audit_v4_seed42/prompts/**
+!thesis_exp/exp17_low_score_evidence/outputs/exp27d_teacher_audit_v4_seed42/reports/
+!thesis_exp/exp17_low_score_evidence/outputs/exp27d_teacher_audit_v4_seed42/reports/**
+!thesis_exp/exp17_low_score_evidence/outputs/exp27d_teacher_audit_v4_seed42/schema/
+!thesis_exp/exp17_low_score_evidence/outputs/exp27d_teacher_audit_v4_seed42/schema/**
+!thesis_exp/exp17_low_score_evidence/outputs/exp27d_teacher_audit_v4_seed42/tables/
+!thesis_exp/exp17_low_score_evidence/outputs/exp27d_teacher_audit_v4_seed42/tables/**
+thesis_exp/exp17_low_score_evidence/outputs/exp27d_teacher_audit_v4_seed42/annotations/

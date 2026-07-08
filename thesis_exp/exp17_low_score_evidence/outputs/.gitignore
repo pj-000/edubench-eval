@@ -323,3 +323,21 @@ exp19_r6_real_dpo_seed42/*
 !exp19_r6_real_dpo_seed42/review/**
 !exp19_r6_real_dpo_seed42/tables/
 !exp19_r6_real_dpo_seed42/tables/**
+
+# Exp27D teacher-audit v4 commits protocol, packets, and lightweight QC only.
+# Raw API responses and full parsed teacher outputs stay local.
+!exp27d_teacher_audit_v4_seed42/
+exp27d_teacher_audit_v4_seed42/*
+!exp27d_teacher_audit_v4_seed42/decision/
+!exp27d_teacher_audit_v4_seed42/decision/**
+!exp27d_teacher_audit_v4_seed42/packets/
+!exp27d_teacher_audit_v4_seed42/packets/**
+!exp27d_teacher_audit_v4_seed42/prompts/
+!exp27d_teacher_audit_v4_seed42/prompts/**
+!exp27d_teacher_audit_v4_seed42/reports/
+!exp27d_teacher_audit_v4_seed42/reports/**
+!exp27d_teacher_audit_v4_seed42/schema/
+!exp27d_teacher_audit_v4_seed42/schema/**
+!exp27d_teacher_audit_v4_seed42/tables/
+!exp27d_teacher_audit_v4_seed42/tables/**
+exp27d_teacher_audit_v4_seed42/annotations/
