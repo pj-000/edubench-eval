@@ -1,4 +1,4 @@
-severity,kind,count
+severity,error_kind,count
 hard,audit_gap_rule,2
 hard,evidence_span_invalid,4
 hard,semantic_hard_rule,2

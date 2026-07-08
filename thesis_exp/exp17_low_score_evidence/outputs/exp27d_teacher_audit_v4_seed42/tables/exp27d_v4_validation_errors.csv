@@ -1,1 +1,15 @@
-
+error
+deepseek/blind[6]: high no_major_failure must use overestimation_risk=low
+deepseek/blind[14]: evidence_span is not exact or normalized substring of answer
+deepseek/blind[21]: teacher_reason restates score field
+deepseek/blind[34]: teacher_reason restates score field
+deepseek/blind[45]: high no_major_failure must use overestimation_risk=low
+deepseek/blind[52]: teacher_reason restates score field
+deepseek/blind[54]: teacher_reason restates score field
+deepseek/blind[59]: teacher_reason restates score field
+deepseek/blind[61]: teacher_reason restates score field
+deepseek/audit[70]: gap>=2 should use needs_human_review=true
+deepseek/audit[70]: gap>=2 should use hard_conflict=true
+qwen/blind[14]: evidence_span is not exact or normalized substring of answer
+qwen/blind[21]: evidence_span is not exact or normalized substring of answer
+qwen/blind[26]: evidence_span is not exact or normalized substring of answer

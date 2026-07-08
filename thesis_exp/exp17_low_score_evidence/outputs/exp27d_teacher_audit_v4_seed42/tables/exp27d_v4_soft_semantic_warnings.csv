@@ -1,0 +1,7 @@
+severity,kind,error
+soft,reason_restates_score,deepseek/blind[21]: teacher_reason restates score field
+soft,reason_restates_score,deepseek/blind[34]: teacher_reason restates score field
+soft,reason_restates_score,deepseek/blind[52]: teacher_reason restates score field
+soft,reason_restates_score,deepseek/blind[54]: teacher_reason restates score field
+soft,reason_restates_score,deepseek/blind[59]: teacher_reason restates score field
+soft,reason_restates_score,deepseek/blind[61]: teacher_reason restates score field

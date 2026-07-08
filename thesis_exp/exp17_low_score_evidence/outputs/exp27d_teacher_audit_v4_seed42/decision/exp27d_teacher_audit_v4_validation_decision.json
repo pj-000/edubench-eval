@@ -1,16 +1,16 @@
 {
-  "annotation_rows": 0,
+  "annotation_rows": 320,
   "blind_packet_original_score_count": 0,
-  "errors": 0,
+  "errors": 14,
   "exp27c_overlap_expected": 60,
   "exp27c_overlap_present": 60,
-  "hard_errors": 0,
+  "hard_errors": 8,
   "human_reason_in_prompt_count": 0,
   "packets": 80,
-  "ready_for_v4_api_repilot": true,
-  "schema_validation_passed": true,
-  "soft_errors": 0,
+  "ready_for_v4_api_repilot": false,
+  "schema_validation_passed": false,
+  "soft_errors": 6,
   "test_label_read": false,
   "warnings": 0,
-  "with_annotations": false
+  "with_annotations": true
 }

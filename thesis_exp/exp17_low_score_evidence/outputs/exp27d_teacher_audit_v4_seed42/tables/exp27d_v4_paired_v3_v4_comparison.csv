@@ -1,0 +1,7 @@
+metric,exp27c_v3,exp27d_v4
+teacher_score_adjacent_agreement,0.9166666666666666,0.85
+teacher_score_exact_agreement,0.6333333333333333,0.6833333333333333
+failure_bucket_agreement,,0.7
+derived_overestimation_risk_agreement,,0.7833333333333333
+hard_validation_error_rate,0.025,0.025
+usable_annotation_rate,0.975,0.978125
