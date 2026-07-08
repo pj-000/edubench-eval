@@ -1,0 +1,12 @@
+conflict_type,count,original_plausible_count,qwen_plausible_count,deepseek_plausible_count,high_weight_count,low_weight_count,review_only_count,exclude_count
+possible_teacher_strictness_difference,34,25,29,24,8,21,5,0
+failure_bucket_disagreement,24,16,19,17,5,14,5,0
+possible_original_label_noise,23,16,19,13,6,12,5,0
+derived_risk_disagreement,18,17,13,11,3,11,4,0
+score_gap_ge2,13,12,9,6,4,5,4,0
+low_human_teacher_high,12,7,10,7,3,6,3,0
+deepseek_lenient_qwen_strict,8,8,6,4,1,3,4,0
+both_teachers_disagree_with_human,6,2,6,6,2,3,1,0
+high_control_hard_conflict,5,4,3,3,2,1,2,0
+qwen_lenient_deepseek_strict,5,4,3,2,3,2,0,0
+high_human_teacher_low,4,3,2,3,1,1,2,0

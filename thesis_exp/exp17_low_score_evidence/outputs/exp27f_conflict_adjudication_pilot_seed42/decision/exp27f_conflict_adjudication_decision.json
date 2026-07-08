@@ -1,0 +1,17 @@
+{
+  "adjudication_is_final_gold": false,
+  "adjudication_scope": "Exp27E top40 conflict queue only",
+  "deepseek_plausible_rate": 0.75,
+  "original_implausible_rate": 0.3,
+  "paper_claim_allowed": "The original labels and teacher labels both contain nontrivial conflict; a teacher-audited protocol with selective adjudication is justified.",
+  "paper_claim_not_allowed": "Do not claim that Codex top40 adjudication is final gold annotation.",
+  "proceed_to_361": true,
+  "proceed_to_full_3326": false,
+  "qwen_plausible_rate": 0.875,
+  "recommend_adjudicate_provider_conflicts_before_training": true,
+  "recommend_selective_second_teacher": true,
+  "recommend_use_dual_teacher_for_361": true,
+  "recommended_361_strategy": "Use one blind teacher plus a second teacher on conflict-prone/risk-prone cases, then adjudicate high-disagreement cases before producing train labels.",
+  "recommended_primary_teacher_for_361": "qwen",
+  "top40_count": 40
+}

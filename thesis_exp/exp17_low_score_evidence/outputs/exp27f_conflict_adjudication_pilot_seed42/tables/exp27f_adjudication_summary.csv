@@ -1,0 +1,11 @@
+metric,value
+top40_adjudicated_count,40
+original_plausible_rate,0.7
+qwen_plausible_rate,0.875
+deepseek_plausible_rate,0.75
+original_implausible_count,12
+high_weight_count,9
+low_weight_count,26
+review_only_count,5
+exclude_count,0
+human_reason_recovered_sample_count,28

@@ -1,0 +1,4 @@
+source,n,plausible_count,plausible_rate,mae_to_adjudicated_score,exact_to_adjudicated_score,adjacent_to_adjudicated_score,low_human_teacher_high_error_count,high_human_teacher_low_error_count
+original,40,28,0.7,0.9,0.4,0.85,,
+qwen,40,35,0.875,0.55,0.575,0.9,2,2
+deepseek,40,30,0.75,0.925,0.35,0.825,4,1
