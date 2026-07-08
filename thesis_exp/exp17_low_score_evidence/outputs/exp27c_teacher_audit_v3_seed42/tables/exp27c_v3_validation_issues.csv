@@ -1,2 +1,15 @@
 severity,kind,error
-,,
+hard,semantic_hard_rule,deepseek/blind[12]: missing_required_content should use evidence_span=null
+soft,reason_restates_score,deepseek/blind[38]: teacher_reason restates score field
+soft,reason_restates_score,deepseek/blind[39]: teacher_reason restates score field
+soft,reason_restates_score,deepseek/blind[54]: teacher_reason restates score field
+hard,semantic_hard_rule,deepseek/audit[12]: missing_required_content should use evidence_span=null
+soft,reason_restates_score,deepseek/audit[38]: teacher_reason restates score field
+soft,reason_restates_score,deepseek/audit[39]: teacher_reason restates score field
+soft,reason_restates_score,deepseek/audit[54]: teacher_reason restates score field
+hard,evidence_span_invalid,qwen/blind[14]: evidence_span is not exact or normalized substring of answer
+hard,evidence_span_invalid,qwen/blind[21]: evidence_span is not exact or normalized substring of answer
+soft,reason_restates_score,qwen/blind[30]: teacher_reason restates score field
+hard,evidence_span_invalid,qwen/audit[14]: evidence_span is not exact or normalized substring of answer
+hard,evidence_span_invalid,qwen/audit[21]: evidence_span is not exact or normalized substring of answer
+soft,reason_restates_score,qwen/audit[29]: teacher_reason restates score field

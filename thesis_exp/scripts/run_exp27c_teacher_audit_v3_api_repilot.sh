@@ -14,6 +14,7 @@ SCHEMA_REPAIR_RETRIES="${SCHEMA_REPAIR_RETRIES:-1}"
 THINKING="${THINKING:-omit}"
 PREPARE_FIRST="${PREPARE_FIRST:-1}"
 PARALLEL_PROVIDERS="${PARALLEL_PROVIDERS:-1}"
+RUN_API="${RUN_API:-0}"
 
 cat <<CONFIG
 Exp27C teacher-audit v3 real API re-pilot
@@ -26,10 +27,16 @@ SCHEMA_REPAIR_RETRIES=${SCHEMA_REPAIR_RETRIES}
 THINKING=${THINKING}
 PREPARE_FIRST=${PREPARE_FIRST}
 PARALLEL_PROVIDERS=${PARALLEL_PROVIDERS}
+RUN_API=${RUN_API}
 
 This step calls teacher APIs. It does not train, does not use GPU, and does not read test labels.
 API keys are read only from QWEN_API_KEY and DEEPSEEK_API_KEY environment variables.
 CONFIG
+
+if [[ "${RUN_API}" != "1" ]]; then
+  echo "Refusing to call real teacher APIs. Set RUN_API=1 after confirming cost and provider keys." >&2
+  exit 2
+fi
 
 if [[ -z "${QWEN_API_KEY:-}" ]]; then
   echo "Missing QWEN_API_KEY" >&2

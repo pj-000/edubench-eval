@@ -1,0 +1,9 @@
+provider_stage,severity,error_kind,count
+deepseek/audit,hard,semantic_hard_rule,1
+deepseek/audit,soft,reason_restates_score,3
+deepseek/blind,hard,semantic_hard_rule,1
+deepseek/blind,soft,reason_restates_score,3
+qwen/audit,hard,evidence_span_invalid,2
+qwen/audit,soft,reason_restates_score,1
+qwen/blind,hard,evidence_span_invalid,2
+qwen/blind,soft,reason_restates_score,1

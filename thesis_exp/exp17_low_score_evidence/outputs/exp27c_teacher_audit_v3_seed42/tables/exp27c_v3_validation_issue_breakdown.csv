@@ -1,2 +1,4 @@
 severity,kind,count
-,,0
+hard,evidence_span_invalid,4
+hard,semantic_hard_rule,2
+soft,reason_restates_score,8

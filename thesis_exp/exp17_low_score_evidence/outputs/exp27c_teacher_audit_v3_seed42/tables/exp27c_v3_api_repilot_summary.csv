@@ -1,0 +1,11 @@
+provider,stage,rows,parse_success_rate,schema_validation_success_rate,parse_error_count,schema_error_count,schema_repair_attempt_rows,schema_repair_attempt_rate,repair_success_rows,repair_success_rate,repair_changed_teacher_score_count,repair_changed_major_failures_count,group,n,score_exact_agreement,score_adjacent_agreement
+qwen,blind,60,1.0,1.0,0,0,0,0.0,0,0.0,0,0,,,,
+qwen,audit,60,1.0,1.0,0,0,1,0.016666666666666666,1,1.0,0,0,,,,
+deepseek,blind,60,1.0,1.0,0,0,0,0.0,0,0.0,0,0,,,,
+deepseek,audit,60,1.0,1.0,0,0,0,0.0,0,0.0,0,0,,,,
+,,,,,,,,,,,,,all,60,0.6333333333333333,0.9166666666666666
+,,,,,,,,,,,,,low,24,0.5833333333333334,0.875
+,,,,,,,,,,,,,mid,17,0.6470588235294118,1.0
+,,,,,,,,,,,,,high,19,0.6842105263157895,0.8947368421052632
+,,,,,,,,,,,,,language=en,26,0.6923076923076923,0.9615384615384616
+,,,,,,,,,,,,,language=zh,34,0.5882352941176471,0.8823529411764706

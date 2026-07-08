@@ -286,6 +286,28 @@ def load_audit_ref_by_id(path: Path) -> dict[str, dict[str, Any]]:
     return {str(row["sample_id"]): row for row in read_jsonl(path) if row.get("sample_id")}
 
 
+def teacher_score_from_parsed(parsed: dict[str, Any] | None) -> int | None:
+    if not isinstance(parsed, dict):
+        return None
+    blind = parsed.get("blind")
+    if not isinstance(blind, dict):
+        return None
+    score = blind.get("teacher_score")
+    return score if isinstance(score, int) else None
+
+
+def major_failures_from_parsed(parsed: dict[str, Any] | None) -> tuple[str, ...]:
+    if not isinstance(parsed, dict):
+        return tuple()
+    blind = parsed.get("blind")
+    if not isinstance(blind, dict):
+        return tuple()
+    failures = blind.get("major_failures")
+    if not isinstance(failures, list):
+        return tuple()
+    return tuple(str(item) for item in failures)
+
+
 def run(args: argparse.Namespace) -> dict[str, Any]:
     do_api = args.run_api and not args.dry_run
     cfg = provider_config(args.provider, args.model) if do_api else dry_provider_config(args.provider, args.model)
@@ -315,6 +337,10 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
     schema_ok = 0
     failed = 0
     consecutive_failed = 0
+    repair_attempt_rows = 0
+    repair_success_rows = 0
+    repair_changed_teacher_score_count = 0
+    repair_changed_major_failures_count = 0
     for idx, packet in enumerate(packets, start=1):
         sid = str(packet["sample_id"])
         if sid in done and not args.overwrite:
@@ -405,12 +431,28 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
             return parsed, parse_error, schema_errors, response_meta, str(raw_path) if raw_path.exists() else "", request_hash
 
         parsed, parse_error, schema_errors, response_meta, raw_api_path, request_hash = request_and_parse(messages, 0)
+        initial_teacher_score = teacher_score_from_parsed(parsed)
+        initial_major_failures = major_failures_from_parsed(parsed)
         while parsed is not None and schema_errors and repair_attempts_used < args.schema_repair_retries:
             repair_attempts_used += 1
             repair_messages = build_schema_repair_messages(messages, parsed, schema_errors, stage_schema)
             parsed, parse_error, schema_errors, response_meta, raw_api_path, request_hash = request_and_parse(
                 repair_messages, repair_attempts_used
             )
+        repair_changed_teacher_score = (
+            repair_attempts_used > 0 and teacher_score_from_parsed(parsed) != initial_teacher_score
+        )
+        repair_changed_major_failures = (
+            repair_attempts_used > 0 and major_failures_from_parsed(parsed) != initial_major_failures
+        )
+        if repair_attempts_used > 0:
+            repair_attempt_rows += 1
+            if parsed is not None and not schema_errors:
+                repair_success_rows += 1
+            if repair_changed_teacher_score:
+                repair_changed_teacher_score_count += 1
+            if repair_changed_major_failures:
+                repair_changed_major_failures_count += 1
         if parsed is None:
             failed += 1
             consecutive_failed += 1
@@ -434,6 +476,8 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
                 "parse_error": parse_error,
                 "schema_errors": schema_errors,
                 "schema_repair_attempts": repair_attempts_used,
+                "repair_changed_teacher_score": repair_changed_teacher_score,
+                "repair_changed_major_failures": repair_changed_major_failures,
                 "raw_api_path": raw_api_path,
                 "request_hash": request_hash,
                 "response_meta": response_meta,
@@ -468,6 +512,10 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
         "output_path": str(output_path),
         "dry_run": not do_api,
         "schema_repair_retries": args.schema_repair_retries,
+        "schema_repair_attempt_rows": repair_attempt_rows,
+        "repair_success_rows": repair_success_rows,
+        "repair_changed_teacher_score_count": repair_changed_teacher_score_count,
+        "repair_changed_major_failures_count": repair_changed_major_failures_count,
     }
     write_json(args.out_dir / "decision" / f"exp27c_{args.provider}_{args.stage}_api_summary.json", summary)
     write_text(
@@ -484,6 +532,10 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
                 f"- failed: {failed}",
                 f"- dry_run: {not do_api}",
                 f"- schema_repair_retries: {args.schema_repair_retries}",
+                f"- schema_repair_attempt_rows: {repair_attempt_rows}",
+                f"- repair_success_rows: {repair_success_rows}",
+                f"- repair_changed_teacher_score_count: {repair_changed_teacher_score_count}",
+                f"- repair_changed_major_failures_count: {repair_changed_major_failures_count}",
                 f"- output: `{output_path}`",
             ]
         ),

@@ -156,6 +156,13 @@ def classify_validation_error(error: str) -> tuple[str, str]:
     return provider_stage, kind
 
 
+def validation_annotation_key(error: str) -> str:
+    if ":" not in error:
+        return ""
+    head = error.split(":", 1)[0]
+    return head if "/" in head and "[" in head and "]" in head else ""
+
+
 def collect(args: argparse.Namespace) -> dict[str, Any]:
     out_dir = args.out_dir
     packets_by_id, refs_by_id = load_packets(out_dir)
@@ -165,11 +172,31 @@ def collect(args: argparse.Namespace) -> dict[str, Any]:
     outputs = load_outputs(out_dir)
 
     api_summary_rows: list[dict[str, Any]] = []
+    total_annotation_rows = 0
+    repair_attempt_rows = 0
+    repair_success_rows = 0
+    repair_changed_teacher_score_count = 0
+    repair_changed_major_failures_count = 0
     for provider in PROVIDERS:
         for stage in STAGES:
             rows = outputs[(provider, stage)]
             parsed = sum(1 for row in rows if row.get("parsed") and not row.get("parse_error"))
             schema_ok = sum(1 for row in rows if schema_success(row))
+            stage_repair_attempt_rows = sum(1 for row in rows if int(row.get("schema_repair_attempts") or 0) > 0)
+            stage_repair_success_rows = sum(
+                1 for row in rows if int(row.get("schema_repair_attempts") or 0) > 0 and schema_success(row)
+            )
+            stage_repair_changed_teacher_score_count = sum(
+                1 for row in rows if row.get("repair_changed_teacher_score") is True
+            )
+            stage_repair_changed_major_failures_count = sum(
+                1 for row in rows if row.get("repair_changed_major_failures") is True
+            )
+            total_annotation_rows += len(rows)
+            repair_attempt_rows += stage_repair_attempt_rows
+            repair_success_rows += stage_repair_success_rows
+            repair_changed_teacher_score_count += stage_repair_changed_teacher_score_count
+            repair_changed_major_failures_count += stage_repair_changed_major_failures_count
             api_summary_rows.append(
                 {
                     "provider": provider,
@@ -179,6 +206,14 @@ def collect(args: argparse.Namespace) -> dict[str, Any]:
                     "schema_validation_success_rate": schema_ok / len(rows) if rows else 0.0,
                     "parse_error_count": sum(1 for row in rows if row.get("parse_error")),
                     "schema_error_count": sum(1 for row in rows if row.get("schema_errors")),
+                    "schema_repair_attempt_rows": stage_repair_attempt_rows,
+                    "schema_repair_attempt_rate": stage_repair_attempt_rows / len(rows) if rows else 0.0,
+                    "repair_success_rows": stage_repair_success_rows,
+                    "repair_success_rate": stage_repair_success_rows / stage_repair_attempt_rows
+                    if stage_repair_attempt_rows
+                    else 0.0,
+                    "repair_changed_teacher_score_count": stage_repair_changed_teacher_score_count,
+                    "repair_changed_major_failures_count": stage_repair_changed_major_failures_count,
                 }
             )
 
@@ -325,6 +360,18 @@ def collect(args: argparse.Namespace) -> dict[str, Any]:
     soft_error_count = int(validation_summary.get("soft_errors", 0))
     warning_count = int(validation_summary.get("warnings", 0))
     hard_error_rate = hard_error_count / max(1, sum(row["rows"] for row in api_summary_rows))
+    hard_annotation_keys = {
+        validation_annotation_key(as_text(row.get("error")))
+        for row in validation_issues
+        if as_text(row.get("severity")) == "hard" and validation_annotation_key(as_text(row.get("error")))
+    }
+    usable_annotation_rate = (
+        (total_annotation_rows - len(hard_annotation_keys)) / total_annotation_rows
+        if total_annotation_rows
+        else 0.0
+    )
+    schema_repair_attempt_rate = repair_attempt_rows / total_annotation_rows if total_annotation_rows else 0.0
+    repair_success_rate = repair_success_rows / repair_attempt_rows if repair_attempt_rows else 0.0
     score_exact = rate(score_rows, "score_exact")
     score_adjacent = rate(score_rows, "score_adjacent")
     failure_visibility_exact = rate(risk_rows, "failure_visibility_exact")
@@ -344,8 +391,9 @@ def collect(args: argparse.Namespace) -> dict[str, Any]:
     high_control_suspected_conflict_rate = high_conflicts / len(high_audit) if high_audit else 0.0
 
     decision_pass = (
-        parse_success_rate >= 0.98
+        parse_success_rate >= 0.99
         and schema_success_rate >= 0.98
+        and usable_annotation_rate >= 0.90
         and hard_error_rate <= 0.05
         and score_adjacent >= 0.95
         and score_exact >= 0.60
@@ -428,6 +476,13 @@ def collect(args: argparse.Namespace) -> dict[str, Any]:
         "hard_validation_error_rate": hard_error_rate,
         "soft_validation_error_count": soft_error_count,
         "warning_count": warning_count,
+        "usable_annotation_rate": usable_annotation_rate,
+        "schema_repair_attempt_rows": repair_attempt_rows,
+        "schema_repair_attempt_rate": schema_repair_attempt_rate,
+        "repair_success_rows": repair_success_rows,
+        "repair_success_rate": repair_success_rate,
+        "repair_changed_teacher_score_count": repair_changed_teacher_score_count,
+        "repair_changed_major_failures_count": repair_changed_major_failures_count,
         "teacher_score_exact_agreement": score_exact,
         "teacher_score_adjacent_agreement": score_adjacent,
         "failure_visibility_exact_agreement": failure_visibility_exact,
@@ -461,6 +516,11 @@ def collect(args: argparse.Namespace) -> dict[str, Any]:
         f"- hard_validation_error_rate: {hard_error_rate:.4f}",
         f"- soft_validation_error_count: {soft_error_count}",
         f"- warning_count: {warning_count}",
+        f"- usable_annotation_rate: {usable_annotation_rate:.4f}",
+        f"- schema_repair_attempt_rate: {schema_repair_attempt_rate:.4f}",
+        f"- repair_success_rate: {repair_success_rate:.4f}",
+        f"- repair_changed_teacher_score_count: {repair_changed_teacher_score_count}",
+        f"- repair_changed_major_failures_count: {repair_changed_major_failures_count}",
         f"- teacher_score_exact_agreement: {score_exact:.4f}",
         f"- teacher_score_adjacent_agreement: {score_adjacent:.4f}",
         f"- failure_visibility_exact_agreement: {failure_visibility_exact:.4f}",
