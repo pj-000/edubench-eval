@@ -30,6 +30,18 @@ DEFAULT_EXP27C_DECISION = Path(
 )
 PROVIDERS = ["qwen", "deepseek"]
 STAGES = ["blind", "audit"]
+DERIVED_RISK_RULE_VERSION = "exp27d_v4_rule_20260708"
+DERIVED_RISK_RULES = [
+    "answer_key_uncertainty in {possible_answer_key_issue, insufficient_reference, rubric_ambiguous} -> unclear",
+    "score_cap <= 2 -> high",
+    "teacher_score <= 2 and failure_bucket=hidden_or_missing_failure and surface_plausibility in {high, medium} -> high",
+    "teacher_score <= 2 and failure_bucket=hidden_or_missing_failure and surface_plausibility=low -> medium",
+    "teacher_score <= 2 and failure_bucket=visible_failure -> medium",
+    "teacher_score == 3 and failure_bucket=hidden_or_missing_failure and surface_plausibility=high -> medium",
+    "teacher_score >= 4 and failure_bucket=no_failure -> low",
+    "failure_bucket=unclear or confidence=low -> unclear",
+    "otherwise -> low",
+]
 
 
 def read_jsonl(path: Path) -> list[dict[str, Any]]:
@@ -604,6 +616,8 @@ def collect(args: argparse.Namespace) -> dict[str, Any]:
 
     decision = {
         "recommendation": recommendation,
+        "derived_risk_rule_version": DERIVED_RISK_RULE_VERSION,
+        "derived_risk_rules": DERIVED_RISK_RULES,
         "parse_success_rate": parse_success_rate,
         "schema_validation_success_rate": schema_success_rate,
         "hard_validation_error_count": hard_error_count,
@@ -661,6 +675,11 @@ def collect(args: argparse.Namespace) -> dict[str, Any]:
         f"- evidence_span_valid_or_null_with_reason_rate: {evidence_valid_rate:.4f}",
         f"- recommended_training_use_compatible_agreement: {training_use_compatible_rate:.4f}",
         f"- high_control_hard_conflict_rate: {high_control_hard_conflict_rate:.4f}",
+        "",
+        "## Derived Risk Rule",
+        "",
+        f"- version: `{DERIVED_RISK_RULE_VERSION}`",
+        *[f"- {rule}" for rule in DERIVED_RISK_RULES],
         "",
         "## Thresholds",
         "",
