@@ -1,0 +1,16 @@
+{
+  "annotation_rows": 0,
+  "blind_packet_original_score_count": 0,
+  "errors": 0,
+  "exp27a_overlap_expected": 20,
+  "exp27a_overlap_present": 20,
+  "hard_errors": 0,
+  "human_reason_in_prompt_count": 0,
+  "packets": 60,
+  "ready_for_v3_api_repilot": true,
+  "schema_validation_passed": true,
+  "soft_errors": 0,
+  "test_label_read": false,
+  "warnings": 0,
+  "with_annotations": false
+}

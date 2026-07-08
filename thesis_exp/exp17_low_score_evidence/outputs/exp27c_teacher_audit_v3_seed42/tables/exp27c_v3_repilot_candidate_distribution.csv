@@ -1,0 +1,60 @@
+pilot_group,label,language,metric,subject,count
+exp27a_v1_repilot_overlap,1,zh,Reasoning Process Rigor,Clinical Medicine,2
+exp27a_v1_repilot_overlap,1,zh,Reasoning Process Rigor,History,1
+exp27a_v1_repilot_overlap,1,zh,Reasoning Process Rigor,Law,1
+exp27a_v1_repilot_overlap,1,zh,Reasoning Process Rigor,Physics,1
+exp27a_v1_repilot_overlap,2,en,Scenario Element Integration,Business Administration,1
+exp27a_v1_repilot_overlap,2,zh,Instruction Following & Task Completion,Theoretical Economics,1
+exp27a_v1_repilot_overlap,2,zh,"Motivation, Guidance & Positive Feedback",History,1
+exp27a_v1_repilot_overlap,3,en,"Clarity, Simplicity & Inspiration",Basic Medicine,1
+exp27a_v1_repilot_overlap,3,en,"Personalization, Adaptation & Learning Support",Biology,1
+exp27a_v1_repilot_overlap,3,zh,Higher-Order Thinking & Skill Development,Physical Education,1
+exp27a_v1_repilot_overlap,3,zh,Scenario Element Integration,Basic Medicine,1
+exp27a_v1_repilot_overlap,3,zh,Scenario Element Integration,Clinical Medicine,1
+exp27a_v1_repilot_overlap,4,en,"Personalization, Adaptation & Learning Support",Sociology,1
+exp27a_v1_repilot_overlap,4,zh,Instruction Following & Task Completion,Mathematics,1
+exp27a_v1_repilot_overlap,4,zh,"Personalization, Adaptation & Learning Support",Basic Medicine,1
+exp27a_v1_repilot_overlap,5,en,Basic Factual Accuracy,Law,1
+exp27a_v1_repilot_overlap,5,en,Content Relevance & Scope Control,Crop Science,1
+exp27a_v1_repilot_overlap,5,zh,Content Relevance & Scope Control,Psychology,1
+exp27a_v1_repilot_overlap,5,zh,Reasoning Process Rigor,General Pedagogy,1
+new_train_high_control,4,zh,"Clarity, Simplicity & Inspiration",Applied Economics,1
+new_train_high_control,4,zh,Scenario Element Integration,Business Administration,1
+new_train_high_control,5,en,Content Relevance & Scope Control,Crop Science,1
+new_train_high_control,5,en,Content Relevance & Scope Control,Geography,1
+new_train_high_control,5,en,Error Identification & Correction Precision,Public Administration,1
+new_train_high_control,5,en,Instruction Following & Task Completion,Basic Medicine,1
+new_train_high_control,5,en,Reasoning Process Rigor,Chinese,1
+new_train_high_control,5,zh,Basic Factual Accuracy,Aquaculture,1
+new_train_high_control,5,zh,Basic Factual Accuracy,Crop Science,1
+new_train_high_control,5,zh,Content Relevance & Scope Control,Psychology,1
+new_train_high_control,5,zh,Reasoning Process Rigor,Applied Economics,1
+new_train_high_control,5,zh,Reasoning Process Rigor,Computer Science,1
+new_train_label3_borderline,3,en,"Clarity, Simplicity & Inspiration",Biology,1
+new_train_label3_borderline,3,en,"Clarity, Simplicity & Inspiration",Clinical Medicine,1
+new_train_label3_borderline,3,en,Domain Knowledge Accuracy,Business Administration,1
+new_train_label3_borderline,3,en,"Personalization, Adaptation & Learning Support",Biology,1
+new_train_label3_borderline,3,en,Scenario Element Integration,Mathematics,1
+new_train_label3_borderline,3,zh,"Clarity, Simplicity & Inspiration",Physical Education,1
+new_train_label3_borderline,3,zh,Instruction Following & Task Completion,Crop Science,1
+new_train_label3_borderline,3,zh,Instruction Following & Task Completion,General Pedagogy,1
+new_train_label3_borderline,3,zh,Instruction Following & Task Completion,Physics,1
+new_train_label3_borderline,3,zh,"Personalization, Adaptation & Learning Support",Clinical Medicine,1
+new_train_label3_borderline,3,zh,Reasoning Process Rigor,History,1
+new_train_label3_borderline,3,zh,Scenario Element Integration,Public Administration,1
+new_train_low_risk_focused,1,en,Basic Factual Accuracy,Mathematics,1
+new_train_low_risk_focused,1,en,Reasoning Process Rigor,Applied Economics,1
+new_train_low_risk_focused,1,en,Reasoning Process Rigor,Basic Medicine,1
+new_train_low_risk_focused,1,en,Reasoning Process Rigor,Computer Science,1
+new_train_low_risk_focused,1,en,Reasoning Process Rigor,Crop Science,1
+new_train_low_risk_focused,1,en,Reasoning Process Rigor,Mathematics,1
+new_train_low_risk_focused,1,zh,Content Relevance & Scope Control,Basic Medicine,1
+new_train_low_risk_focused,1,zh,Error Identification & Correction Precision,General Pedagogy,1
+new_train_low_risk_focused,2,en,Content Relevance & Scope Control,General Pedagogy,1
+new_train_low_risk_focused,2,en,Error Identification & Correction Precision,Theoretical Economics,1
+new_train_low_risk_focused,2,en,Reasoning Process Rigor,Business Administration,1
+new_train_low_risk_focused,2,en,Scenario Element Integration,Business Administration,1
+new_train_low_risk_focused,2,zh,Basic Factual Accuracy,Law,1
+new_train_low_risk_focused,2,zh,Content Relevance & Scope Control,Mathematics,1
+new_train_low_risk_focused,2,zh,"Motivation, Guidance & Positive Feedback",History,1
+new_train_low_risk_focused,2,zh,Reasoning Process Rigor,Law,1
