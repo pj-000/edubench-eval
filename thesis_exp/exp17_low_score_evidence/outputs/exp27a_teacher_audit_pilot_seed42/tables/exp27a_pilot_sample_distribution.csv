@@ -1,0 +1,6 @@
+pilot_group,label,count
+train_high_control_stratified,4,79
+train_high_control_stratified,5,71
+train_low_all,1,58
+train_low_all,2,53
+train_mid_stratified,3,100

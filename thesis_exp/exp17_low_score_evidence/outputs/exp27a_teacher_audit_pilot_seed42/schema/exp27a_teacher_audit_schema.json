@@ -1,0 +1,139 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "audit": {
+      "additionalProperties": false,
+      "properties": {
+        "audit_reason": {
+          "type": "string"
+        },
+        "label_quality": {
+          "enum": [
+            "reliable",
+            "plausible_adjacent",
+            "suspected_conflict",
+            "unclear"
+          ],
+          "type": "string"
+        },
+        "needs_human_review": {
+          "type": "boolean"
+        },
+        "original_score": {
+          "maximum": 5,
+          "minimum": 1,
+          "type": "integer"
+        },
+        "score_agreement": {
+          "enum": [
+            "exact",
+            "adjacent",
+            "conflict",
+            "unclear"
+          ],
+          "type": "string"
+        }
+      },
+      "required": [
+        "original_score",
+        "score_agreement",
+        "label_quality",
+        "needs_human_review",
+        "audit_reason"
+      ],
+      "type": "object"
+    },
+    "blind": {
+      "additionalProperties": false,
+      "properties": {
+        "confidence": {
+          "enum": [
+            "high",
+            "medium",
+            "low"
+          ],
+          "type": "string"
+        },
+        "evidence_span": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "major_failures": {
+          "items": {
+            "enum": [
+              "missing_key_point",
+              "factual_or_rubric_mismatch",
+              "answer_key_or_reference_mismatch",
+              "surface_fluent_but_hidden_defect",
+              "insufficient_evidence",
+              "partial_or_incomplete",
+              "task_constraint_violation",
+              "format_violation",
+              "possible_label_conflict",
+              "no_major_failure",
+              "unclear"
+            ],
+            "type": "string"
+          },
+          "minItems": 1,
+          "type": "array"
+        },
+        "risk_flag": {
+          "enum": [
+            "hidden_low_failure",
+            "borderline",
+            "clean_high",
+            "unclear"
+          ],
+          "type": "string"
+        },
+        "rubric_clause": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "score_cap": {
+          "maximum": 5,
+          "minimum": 1,
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "teacher_reason": {
+          "type": "string"
+        },
+        "teacher_score": {
+          "maximum": 5,
+          "minimum": 1,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "teacher_score",
+        "teacher_reason",
+        "major_failures",
+        "evidence_span",
+        "rubric_clause",
+        "score_cap",
+        "risk_flag",
+        "confidence"
+      ],
+      "type": "object"
+    },
+    "sample_id": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "sample_id",
+    "blind",
+    "audit"
+  ],
+  "title": "Exp27A Teacher Audit Annotation",
+  "type": "object"
+}

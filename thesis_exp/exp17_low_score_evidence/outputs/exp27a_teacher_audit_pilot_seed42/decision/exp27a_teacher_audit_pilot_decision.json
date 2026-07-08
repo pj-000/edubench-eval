@@ -1,0 +1,13 @@
+{
+  "batch_count": 19,
+  "batch_size": 20,
+  "dev_test_used_for_id_guard_only": true,
+  "high_control_rows": 150,
+  "mid_rows": 100,
+  "pilot_rows": 361,
+  "prompt_version": "exp27a_v1",
+  "recommendation": "run_dual_teacher_pilot_before_full_5536_annotation",
+  "schema_version": "exp27a_teacher_audit_v1",
+  "test_label_read": false,
+  "train_low_rows": 111
+}

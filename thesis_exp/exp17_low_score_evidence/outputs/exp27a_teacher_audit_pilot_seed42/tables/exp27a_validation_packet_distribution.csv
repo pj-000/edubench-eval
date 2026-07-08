@@ -1,0 +1,11 @@
+pilot_group,label,language,count
+train_high_control_stratified,4,en,36
+train_high_control_stratified,4,zh,43
+train_high_control_stratified,5,en,40
+train_high_control_stratified,5,zh,31
+train_low_all,1,en,28
+train_low_all,1,zh,30
+train_low_all,2,en,35
+train_low_all,2,zh,18
+train_mid_stratified,3,en,36
+train_mid_stratified,3,zh,64
