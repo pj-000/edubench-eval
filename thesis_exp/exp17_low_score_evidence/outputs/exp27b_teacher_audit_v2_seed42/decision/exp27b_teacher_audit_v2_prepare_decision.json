@@ -1,0 +1,19 @@
+{
+  "audit_prompt_sha1": "b26aa8f13b79c077abafcbfb3e6d52e2f12efb4c",
+  "audit_schema_sha1": "4cdb9037f357dbe33c95cf4f8ec998c6b3f4784c",
+  "batch_count": 3,
+  "batch_size": 20,
+  "blind_prompt_sha1": "872e5a964178fbe5c4d7dc97fe01b8abe7a835fa",
+  "blind_schema_sha1": "139517ecd58f3b997928453c8a4eccd2b08b7f0c",
+  "dev_test_used_for_id_guard_only": true,
+  "exp27a_overlap_rows": 20,
+  "new_high_rows": 12,
+  "new_low_rows": 16,
+  "new_mid_rows": 12,
+  "new_risk_focused_rows": 40,
+  "packet_rows": 60,
+  "prompt_version": "exp27b_v2",
+  "recommendation": "run_40_to_60_row_v2_dual_teacher_api_repilot_before_361",
+  "schema_version": "exp27b_teacher_audit_v2",
+  "test_label_read": false
+}
