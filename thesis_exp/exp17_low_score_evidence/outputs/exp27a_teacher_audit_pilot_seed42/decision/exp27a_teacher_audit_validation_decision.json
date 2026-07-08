@@ -1,9 +1,15 @@
 {
-  "annotation_rows": 0,
+  "annotation_rows": 80,
   "errors": 0,
   "packets": 361,
   "parse_error_rows": 0,
-  "providers_seen": [],
+  "providers_seen": [
+    "deepseek",
+    "qwen"
+  ],
   "ready_for_teacher_pilot": true,
-  "stages_seen": []
+  "stages_seen": [
+    "audit",
+    "blind"
+  ]
 }

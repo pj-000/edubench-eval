@@ -54,6 +54,44 @@ def as_text(value: Any) -> str:
     return str(value)
 
 
+def explains_absence(reason: str) -> bool:
+    lowered = reason.lower()
+    cues = [
+        "missing",
+        "absence",
+        "absent",
+        "no reasoning",
+        "no explanation",
+        "no evidence",
+        "no personalization",
+        "no reference",
+        "no integration",
+        "only the final answer",
+        "only provides",
+        "without any reasoning",
+        "without reasoning",
+        "generic",
+        "templated",
+        "缺失",
+        "缺少",
+        "没有任何",
+        "没有推理",
+        "没有解释",
+        "没有证据",
+        "没有展示",
+        "没有体现",
+        "没有个性化",
+        "没有场景",
+        "仅给出",
+        "仅提供",
+        "只给出",
+        "只提供",
+        "通用",
+        "模板",
+    ]
+    return any(cue in lowered for cue in cues)
+
+
 def validate_blind(parsed: dict[str, Any], packet: dict[str, Any] | None, errors: list[str], where: str) -> None:
     blind = parsed.get("blind")
     if not isinstance(blind, dict):
@@ -88,6 +126,22 @@ def validate_blind(parsed: dict[str, Any], packet: dict[str, Any] | None, errors
         answer = as_text(packet.get("teacher_input", {}).get("answer"))
         if evidence not in answer:
             errors.append(f"{where}: evidence_span is not exact substring of answer")
+    if isinstance(failures, list) and failures == ["no_major_failure"]:
+        if evidence is not None:
+            errors.append(f"{where}: no_major_failure must use evidence_span=null")
+        if cap is not None:
+            errors.append(f"{where}: no_major_failure must use score_cap=null")
+    if risk == "clean_high" and cap is not None:
+        errors.append(f"{where}: clean_high must use score_cap=null")
+    if (
+        score is not None
+        and isinstance(score, int)
+        and score <= 2
+        and evidence is None
+        and conf == "high"
+        and not explains_absence(reason)
+    ):
+        errors.append(f"{where}: low score with null evidence_span cannot have high confidence")
 
 
 def validate_audit(parsed: dict[str, Any], packet: dict[str, Any] | None, errors: list[str], where: str) -> None:
@@ -196,8 +250,14 @@ def validate_annotation_file(
                 "stage": stage,
                 "sample_id": sid,
                 "teacher_score": blind.get("teacher_score", ""),
+                "major_failures": ";".join(as_text(item) for item in blind.get("major_failures", []))
+                if isinstance(blind.get("major_failures"), list)
+                else as_text(blind.get("major_failures")),
+                "evidence_span": as_text(blind.get("evidence_span")),
+                "score_cap": blind.get("score_cap", ""),
                 "risk_flag": blind.get("risk_flag", ""),
                 "confidence": blind.get("confidence", ""),
+                "teacher_reason": as_text(blind.get("teacher_reason"))[:500],
                 "score_agreement": audit.get("score_agreement", ""),
                 "label_quality": audit.get("label_quality", ""),
                 "needs_human_review": audit.get("needs_human_review", ""),

@@ -97,6 +97,21 @@ def parse_json_text(text: str) -> tuple[dict[str, Any] | None, str]:
     return parsed, ""
 
 
+def normalize_parsed(parsed: dict[str, Any] | None, sample_id: str, stage: str) -> dict[str, Any] | None:
+    if parsed is None:
+        return None
+    parsed.setdefault("sample_id", sample_id)
+    if stage == "blind" and "audit" not in parsed:
+        parsed["audit"] = {
+            "original_score": None,
+            "score_agreement": "unclear",
+            "label_quality": "unclear",
+            "needs_human_review": True,
+            "audit_reason": "Blind stage only; audit not performed yet.",
+        }
+    return parsed
+
+
 def teacher_input_text(packet: dict[str, Any]) -> str:
     teacher_input = packet["teacher_input"]
     return "\n\n".join(
@@ -320,6 +335,7 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
                     "created": response.get("created"),
                     "usage": response.get("usage"),
                 }
+                parsed = normalize_parsed(parsed, sid, args.stage)
                 break
             except Exception as exc:  # noqa: BLE001
                 parse_error = f"api_error_attempt_{attempt}: {exc}"

@@ -1,0 +1,8 @@
+{
+  "rows": 80,
+  "paired_blind_rows": 20,
+  "exact_score_agreement": 13,
+  "adjacent_score_agreement": 20,
+  "risk_flag_match": 11,
+  "recommendation": "review_pilot_outputs_before_scaling"
+}

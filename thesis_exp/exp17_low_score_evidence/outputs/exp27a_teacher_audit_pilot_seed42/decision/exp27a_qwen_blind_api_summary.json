@@ -1,0 +1,11 @@
+{
+  "attempted": 20,
+  "dry_run": false,
+  "failed": 0,
+  "model": "qwen3.7-max",
+  "output_path": "thesis_exp/exp17_low_score_evidence/outputs/exp27a_teacher_audit_pilot_seed42/annotations/qwen/exp27a_blind_outputs.jsonl",
+  "packets": 20,
+  "parsed_ok": 20,
+  "provider": "qwen",
+  "stage": "blind"
+}
