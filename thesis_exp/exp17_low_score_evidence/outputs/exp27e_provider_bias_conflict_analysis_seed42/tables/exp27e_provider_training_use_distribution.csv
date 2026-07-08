@@ -1,0 +1,8 @@
+provider,recommended_training_use,count,by_label_region,by_language
+qwen,high_weight,34,"{""high"": 17, ""low"": 15, ""mid"": 2}","{""en"": 17, ""zh"": 17}"
+qwen,low_weight,29,"{""high"": 7, ""low"": 7, ""mid"": 15}","{""en"": 11, ""zh"": 18}"
+qwen,review_only,17,"{""high"": 3, ""low"": 10, ""mid"": 4}","{""en"": 9, ""zh"": 8}"
+deepseek,exclude,2,"{""low"": 2}","{""en"": 2}"
+deepseek,high_weight,35,"{""high"": 16, ""low"": 15, ""mid"": 4}","{""en"": 16, ""zh"": 19}"
+deepseek,low_weight,24,"{""high"": 8, ""low"": 6, ""mid"": 10}","{""en"": 10, ""zh"": 14}"
+deepseek,review_only,19,"{""high"": 3, ""low"": 9, ""mid"": 7}","{""en"": 9, ""zh"": 10}"

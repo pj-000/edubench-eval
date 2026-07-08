@@ -341,3 +341,20 @@ exp27d_teacher_audit_v4_seed42/*
 !exp27d_teacher_audit_v4_seed42/tables/
 !exp27d_teacher_audit_v4_seed42/tables/**
 exp27d_teacher_audit_v4_seed42/annotations/
+
+# Exp27E provider-bias/conflict analysis commits only lightweight summaries and
+# train-only adjudication queues. It never stores raw API outputs here.
+!exp27e_provider_bias_conflict_analysis_seed42/
+exp27e_provider_bias_conflict_analysis_seed42/*
+!exp27e_provider_bias_conflict_analysis_seed42/annotation/
+!exp27e_provider_bias_conflict_analysis_seed42/annotation/**
+!exp27e_provider_bias_conflict_analysis_seed42/decision/
+!exp27e_provider_bias_conflict_analysis_seed42/decision/**
+!exp27e_provider_bias_conflict_analysis_seed42/prompts/
+!exp27e_provider_bias_conflict_analysis_seed42/prompts/**
+!exp27e_provider_bias_conflict_analysis_seed42/reports/
+!exp27e_provider_bias_conflict_analysis_seed42/reports/**
+!exp27e_provider_bias_conflict_analysis_seed42/schema/
+!exp27e_provider_bias_conflict_analysis_seed42/schema/**
+!exp27e_provider_bias_conflict_analysis_seed42/tables/
+!exp27e_provider_bias_conflict_analysis_seed42/tables/**

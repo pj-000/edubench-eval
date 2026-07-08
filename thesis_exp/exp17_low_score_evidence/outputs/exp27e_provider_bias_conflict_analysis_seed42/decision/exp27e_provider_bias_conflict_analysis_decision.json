@@ -1,0 +1,13 @@
+{
+  "exp27d_failure_bucket_agreement": 0.7,
+  "exp27d_high_control_hard_conflict_rate": 0.18518518518518517,
+  "exp27d_teacher_score_adjacent_agreement": 0.8375,
+  "full_queue_size": 43,
+  "proceed_to_361_after_adjudication": true,
+  "reason": "Exp27D has stable parsing/schema but provider judgment disagreement remains high; use both teachers for 361 protocol validation and adjudicate top conflicts before scaling.",
+  "recommend_gpt55_or_human_adjudication": true,
+  "recommend_selective_second_teacher": true,
+  "recommend_use_both_for_361": true,
+  "recommended_primary_teacher_for_full_train": "deepseek",
+  "top40_queue_size": 40
+}

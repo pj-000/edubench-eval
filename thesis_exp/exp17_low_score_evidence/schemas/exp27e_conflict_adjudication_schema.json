@@ -1,0 +1,89 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Exp27E Conflict Adjudication Output",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "sample_id",
+    "adjudicated_score_range",
+    "most_plausible_score",
+    "original_label_plausible",
+    "qwen_plausible",
+    "deepseek_plausible",
+    "conflict_type",
+    "rubric_evidence",
+    "adjudicated_failure_bucket",
+    "adjudicated_derived_risk",
+    "recommended_training_use",
+    "adjudication_reason"
+  ],
+  "properties": {
+    "sample_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "adjudicated_score_range": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "items": {
+        "type": "integer",
+        "minimum": 1,
+        "maximum": 5
+      }
+    },
+    "most_plausible_score": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 5
+    },
+    "original_label_plausible": {
+      "type": "boolean"
+    },
+    "qwen_plausible": {
+      "type": "boolean"
+    },
+    "deepseek_plausible": {
+      "type": "boolean"
+    },
+    "conflict_type": {
+      "type": "string",
+      "minLength": 1
+    },
+    "rubric_evidence": {
+      "type": "string",
+      "minLength": 1
+    },
+    "adjudicated_failure_bucket": {
+      "type": "string",
+      "enum": [
+        "no_failure",
+        "visible_failure",
+        "hidden_or_missing_failure",
+        "unclear"
+      ]
+    },
+    "adjudicated_derived_risk": {
+      "type": "string",
+      "enum": [
+        "low",
+        "medium",
+        "high",
+        "unclear"
+      ]
+    },
+    "recommended_training_use": {
+      "type": "string",
+      "enum": [
+        "high_weight",
+        "low_weight",
+        "review_only",
+        "exclude"
+      ]
+    },
+    "adjudication_reason": {
+      "type": "string",
+      "minLength": 1
+    }
+  }
+}

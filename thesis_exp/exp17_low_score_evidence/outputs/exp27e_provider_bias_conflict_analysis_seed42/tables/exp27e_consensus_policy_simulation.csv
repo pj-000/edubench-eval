@@ -1,0 +1,7 @@
+policy,high_trust_count,low_weight_count,review_only_count,excluded_count,low_label_review_rate,high_label_review_rate,estimated_training_rows,high_control_hard_conflict_remaining
+qwen_only_primary,34,29,17,0,0.3125,0.1111111111111111,63,2
+deepseek_only_primary,35,24,19,2,0.28125,0.1111111111111111,59,2
+exact_or_adjacent_consensus_else_review,27,23,28,2,0.3125,0.2962962962962963,50,0
+deepseek_primary_qwen_selective_review,29,12,37,2,0.40625,0.2962962962962963,41,0
+qwen_primary_deepseek_selective_review,29,12,39,0,0.46875,0.2962962962962963,41,0
+original_human_with_teacher_quality_weight,27,14,37,2,0.40625,0.2962962962962963,41,0
