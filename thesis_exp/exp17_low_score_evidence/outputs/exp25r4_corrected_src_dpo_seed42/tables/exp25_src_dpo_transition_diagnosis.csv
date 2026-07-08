@@ -1,0 +1,13 @@
+run_name,baseline_run,n,changed_count,changed_rate,low_to_high_fixed_count,low_to_high_worsened_count,high_to_low_added_count,high_to_low_reduced_count
+exp25_r4_field_b1_ftx0_mixed_r2c,r2c_clean_reason_score_balanced,1104,144,0.13043478260869565,0,13,2,0
+exp25_r4_field_b1_ftx0_mixed_r2c,r4b_shuffled_reason_balanced,1104,219,0.1983695652173913,0,19,2,6
+exp25_r4_field_b1_ftx0_mixed_r2c,r7d_reason_real_s100_b0p03_lr5em6,1100,259,0.23545454545454544,3,11,2,43
+exp25_r4_field_b1_ftx0_mixed_r2c,r7f_score_reason_consistency_s100_b0p03_lr5em6,1104,151,0.13677536231884058,0,13,2,0
+exp25_r4_field_b1_ftx0_mixed_r2c,exp24_dpo0_r2c,1104,167,0.151268115942029,5,0,1,9
+exp25_r4_field_b1_ftx0_mixed_r2c,exp24_orc_b_r2c,1102,155,0.14065335753176045,6,0,1,8
+exp25_r4_field_b3_ftx0_mixed_r2c,r2c_clean_reason_score_balanced,1102,150,0.13611615245009073,0,8,5,0
+exp25_r4_field_b3_ftx0_mixed_r2c,r4b_shuffled_reason_balanced,1102,229,0.20780399274047187,0,13,5,6
+exp25_r4_field_b3_ftx0_mixed_r2c,r7d_reason_real_s100_b0p03_lr5em6,1098,273,0.24863387978142076,7,11,4,42
+exp25_r4_field_b3_ftx0_mixed_r2c,r7f_score_reason_consistency_s100_b0p03_lr5em6,1102,155,0.14065335753176045,0,8,5,0
+exp25_r4_field_b3_ftx0_mixed_r2c,exp24_dpo0_r2c,1102,171,0.15517241379310345,9,0,3,8
+exp25_r4_field_b3_ftx0_mixed_r2c,exp24_orc_b_r2c,1100,159,0.14454545454545453,10,0,3,7

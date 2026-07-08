@@ -1,0 +1,59 @@
+{
+  "evaluations": {
+    "exp25_r4_field_b1_ftx0_mixed_r2c": {
+      "minimum_checks": {
+        "MAE": true,
+        "QWK": false,
+        "d1_decrease_vs_exp24_dpo0": false,
+        "invalid_count_on_d1_hidden": true,
+        "label2_recall": false,
+        "label5_recall": true,
+        "low_to_high_rate": true
+      },
+      "minimum_success": false,
+      "strong_checks": {
+        "MAE": false,
+        "QWK": false,
+        "d1_decrease_vs_r2c": false,
+        "d1_pred_ge4": false,
+        "label2_recall": false,
+        "label5_recall": true,
+        "low_to_high_rate": false
+      },
+      "strong_success": false
+    },
+    "exp25_r4_field_b3_ftx0_mixed_r2c": {
+      "minimum_checks": {
+        "MAE": true,
+        "QWK": true,
+        "d1_decrease_vs_exp24_dpo0": false,
+        "invalid_count_on_d1_hidden": true,
+        "label2_recall": false,
+        "label5_recall": true,
+        "low_to_high_rate": true
+      },
+      "minimum_success": false,
+      "strong_checks": {
+        "MAE": false,
+        "QWK": false,
+        "d1_decrease_vs_r2c": false,
+        "d1_pred_ge4": false,
+        "label2_recall": false,
+        "label5_recall": true,
+        "low_to_high_rate": false
+      },
+      "strong_success": false
+    }
+  },
+  "guardrails": {
+    "dev_used_for_eval_only": true,
+    "human_reason_not_in_prompt": true,
+    "raw_predictions_committed": false,
+    "test_label_read": false,
+    "test_read": false
+  },
+  "minimum_success_runs": [],
+  "reason": "No Exp25 SRC-DPO run satisfies minimum success.",
+  "recommendation": "src_dpo_not_yet_successful_consider_hidden_failure_expansion",
+  "strong_success_runs": []
+}
