@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Exp27D Teacher Label Audit V4",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["sample_id", "blind_annotation_id", "blind_annotation_hash", "audit"],
+  "properties": {
+    "sample_id": {"type": "string"},
+    "blind_annotation_id": {"type": "string"},
+    "blind_annotation_hash": {"type": "string"},
+    "audit": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "original_score",
+        "teacher_score",
+        "score_agreement",
+        "label_quality",
+        "label_noise_type",
+        "recommended_training_use",
+        "sample_weight_suggestion",
+        "needs_human_review",
+        "audit_reason",
+        "strictness_disagreement",
+        "hard_conflict"
+      ],
+      "properties": {
+        "original_score": {"type": "integer", "minimum": 1, "maximum": 5},
+        "teacher_score": {"type": "integer", "minimum": 1, "maximum": 5},
+        "score_agreement": {"type": "string", "enum": ["exact", "adjacent", "conflict", "unclear"]},
+        "label_quality": {
+          "type": "string",
+          "enum": ["reliable", "plausible_adjacent", "suspected_conflict", "unclear"]
+        },
+        "label_noise_type": {
+          "type": "string",
+          "enum": [
+            "none",
+            "teacher_stricter_than_human_soft",
+            "teacher_stricter_than_human_hard",
+            "teacher_more_lenient_than_human_soft",
+            "teacher_more_lenient_than_human_hard",
+            "rubric_ambiguity",
+            "answer_key_conflict",
+            "insufficient_context",
+            "annotator_disagreement",
+            "unclear"
+          ]
+        },
+        "recommended_training_use": {
+          "type": "string",
+          "enum": ["high_weight", "low_weight", "review_only", "exclude"]
+        },
+        "sample_weight_suggestion": {"type": "number", "minimum": 0, "maximum": 3},
+        "needs_human_review": {"type": "boolean"},
+        "audit_reason": {"type": "string"},
+        "strictness_disagreement": {"type": "boolean"},
+        "hard_conflict": {"type": "boolean"}
+      }
+    }
+  }
+}

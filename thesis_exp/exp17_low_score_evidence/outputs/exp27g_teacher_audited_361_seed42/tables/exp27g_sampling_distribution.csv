@@ -1,0 +1,258 @@
+pilot_group,label,language,metric,subject,count
+exp27f_top40_conflict_reaudit,1,en,Basic Factual Accuracy,Mathematics,2
+exp27f_top40_conflict_reaudit,1,en,Reasoning Process Rigor,Basic Medicine,3
+exp27f_top40_conflict_reaudit,1,zh,Content Relevance & Scope Control,Basic Medicine,1
+exp27f_top40_conflict_reaudit,1,zh,Error Identification & Correction Precision,General Pedagogy,1
+exp27f_top40_conflict_reaudit,2,en,Content Relevance & Scope Control,General Pedagogy,1
+exp27f_top40_conflict_reaudit,2,en,Error Identification & Correction Precision,Theoretical Economics,1
+exp27f_top40_conflict_reaudit,2,en,Reasoning Process Rigor,Business Administration,1
+exp27f_top40_conflict_reaudit,2,en,Scenario Element Integration,Business Administration,1
+exp27f_top40_conflict_reaudit,2,zh,Basic Factual Accuracy,Basic Medicine,1
+exp27f_top40_conflict_reaudit,2,zh,Basic Factual Accuracy,Law,1
+exp27f_top40_conflict_reaudit,2,zh,Content Relevance & Scope Control,Mathematics,1
+exp27f_top40_conflict_reaudit,2,zh,Instruction Following & Task Completion,Theoretical Economics,1
+exp27f_top40_conflict_reaudit,2,zh,Reasoning Process Rigor,Law,1
+exp27f_top40_conflict_reaudit,3,en,"Clarity, Simplicity & Inspiration",Biology,1
+exp27f_top40_conflict_reaudit,3,en,"Motivation, Guidance & Positive Feedback",Geography,1
+exp27f_top40_conflict_reaudit,3,en,"Personalization, Adaptation & Learning Support",Biology,1
+exp27f_top40_conflict_reaudit,3,zh,"Clarity, Simplicity & Inspiration",Physical Education,1
+exp27f_top40_conflict_reaudit,3,zh,Error Identification & Correction Precision,General Pedagogy,1
+exp27f_top40_conflict_reaudit,3,zh,Instruction Following & Task Completion,Crop Science,1
+exp27f_top40_conflict_reaudit,3,zh,Instruction Following & Task Completion,General Pedagogy,1
+exp27f_top40_conflict_reaudit,3,zh,"Motivation, Guidance & Positive Feedback",History,1
+exp27f_top40_conflict_reaudit,3,zh,"Personalization, Adaptation & Learning Support",Clinical Medicine,1
+exp27f_top40_conflict_reaudit,3,zh,Reasoning Process Rigor,History,1
+exp27f_top40_conflict_reaudit,3,zh,Scenario Element Integration,Basic Medicine,1
+exp27f_top40_conflict_reaudit,3,zh,Scenario Element Integration,Clinical Medicine,1
+exp27f_top40_conflict_reaudit,3,zh,Scenario Element Integration,Public Administration,1
+exp27f_top40_conflict_reaudit,4,en,"Personalization, Adaptation & Learning Support",Sociology,1
+exp27f_top40_conflict_reaudit,4,zh,"Clarity, Simplicity & Inspiration",Applied Economics,1
+exp27f_top40_conflict_reaudit,4,zh,Instruction Following & Task Completion,Mathematics,1
+exp27f_top40_conflict_reaudit,4,zh,"Personalization, Adaptation & Learning Support",Basic Medicine,1
+exp27f_top40_conflict_reaudit,4,zh,Scenario Element Integration,Business Administration,1
+exp27f_top40_conflict_reaudit,5,en,Content Relevance & Scope Control,Crop Science,1
+exp27f_top40_conflict_reaudit,5,en,Higher-Order Thinking & Skill Development,Geography,1
+exp27f_top40_conflict_reaudit,5,en,Role & Tone Consistency,Military Science,1
+exp27f_top40_conflict_reaudit,5,zh,Basic Factual Accuracy,History,1
+exp27f_top40_conflict_reaudit,5,zh,Reasoning Process Rigor,Applied Economics,1
+exp27f_top40_conflict_reaudit,5,zh,Reasoning Process Rigor,General Pedagogy,1
+train_all_low_label,1,en,Reasoning Process Rigor,Applied Economics,5
+train_all_low_label,1,en,Reasoning Process Rigor,Basic Medicine,2
+train_all_low_label,1,en,Reasoning Process Rigor,Computer Science,4
+train_all_low_label,1,en,Reasoning Process Rigor,Crop Science,5
+train_all_low_label,1,en,Reasoning Process Rigor,Mathematics,3
+train_all_low_label,1,en,Reasoning Process Rigor,Psychology,4
+train_all_low_label,1,zh,Basic Factual Accuracy,Basic Medicine,1
+train_all_low_label,1,zh,Basic Factual Accuracy,Mathematics,1
+train_all_low_label,1,zh,Error Identification & Correction Precision,Basic Medicine,2
+train_all_low_label,1,zh,Error Identification & Correction Precision,Computer Science,1
+train_all_low_label,1,zh,Error Identification & Correction Precision,History,1
+train_all_low_label,1,zh,Error Identification & Correction Precision,Mathematics,1
+train_all_low_label,1,zh,Instruction Following & Task Completion,Basic Medicine,1
+train_all_low_label,1,zh,Reasoning Process Rigor,Basic Medicine,1
+train_all_low_label,1,zh,Reasoning Process Rigor,Clinical Medicine,5
+train_all_low_label,1,zh,Reasoning Process Rigor,History,5
+train_all_low_label,1,zh,Reasoning Process Rigor,Law,3
+train_all_low_label,1,zh,Reasoning Process Rigor,Physical Education,2
+train_all_low_label,1,zh,Reasoning Process Rigor,Physics,4
+train_all_low_label,2,en,Content Relevance & Scope Control,Mathematics,2
+train_all_low_label,2,en,Error Identification & Correction Precision,Theoretical Economics,2
+train_all_low_label,2,en,Higher-Order Thinking & Skill Development,Aquaculture,2
+train_all_low_label,2,en,Higher-Order Thinking & Skill Development,Basic Medicine,1
+train_all_low_label,2,en,Higher-Order Thinking & Skill Development,Business Administration,4
+train_all_low_label,2,en,Higher-Order Thinking & Skill Development,Mathematics,1
+train_all_low_label,2,en,Higher-Order Thinking & Skill Development,Physical Education,1
+train_all_low_label,2,en,Instruction Following & Task Completion,Theoretical Economics,1
+train_all_low_label,2,en,"Motivation, Guidance & Positive Feedback",Basic Medicine,2
+train_all_low_label,2,en,"Motivation, Guidance & Positive Feedback",Law,1
+train_all_low_label,2,en,Reasoning Process Rigor,Computer Science,1
+train_all_low_label,2,en,Scenario Element Integration,Biology,5
+train_all_low_label,2,en,Scenario Element Integration,Business Administration,4
+train_all_low_label,2,en,Scenario Element Integration,Crop Science,1
+train_all_low_label,2,en,Scenario Element Integration,Mathematics,3
+train_all_low_label,2,zh,Basic Factual Accuracy,Basic Medicine,1
+train_all_low_label,2,zh,Basic Factual Accuracy,Mathematics,1
+train_all_low_label,2,zh,Error Identification & Correction Precision,History,1
+train_all_low_label,2,zh,Error Identification & Correction Precision,Mathematics,1
+train_all_low_label,2,zh,Higher-Order Thinking & Skill Development,Clinical Medicine,1
+train_all_low_label,2,zh,Instruction Following & Task Completion,Theoretical Economics,1
+train_all_low_label,2,zh,"Motivation, Guidance & Positive Feedback",Basic Medicine,1
+train_all_low_label,2,zh,"Motivation, Guidance & Positive Feedback",English,1
+train_all_low_label,2,zh,"Motivation, Guidance & Positive Feedback",History,4
+train_all_low_label,2,zh,Reasoning Process Rigor,Mathematics,1
+train_clean_high_controls,4,en,"Clarity, Simplicity & Inspiration",Clinical Medicine,1
+train_clean_high_controls,4,en,Domain Knowledge Accuracy,Psychology,1
+train_clean_high_controls,4,en,Error Identification & Correction Precision,Basic Medicine,1
+train_clean_high_controls,4,en,Higher-Order Thinking & Skill Development,Crop Science,1
+train_clean_high_controls,4,en,Instruction Following & Task Completion,Clinical Medicine,1
+train_clean_high_controls,4,en,"Personalization, Adaptation & Learning Support",Chemistry,1
+train_clean_high_controls,4,en,Role & Tone Consistency,Aquaculture,1
+train_clean_high_controls,4,en,Role & Tone Consistency,Biology,1
+train_clean_high_controls,4,zh,Basic Factual Accuracy,Basic Medicine,1
+train_clean_high_controls,4,zh,Basic Factual Accuracy,History,1
+train_clean_high_controls,4,zh,"Clarity, Simplicity & Inspiration",Theoretical Economics,1
+train_clean_high_controls,4,zh,Content Relevance & Scope Control,Military Science,1
+train_clean_high_controls,4,zh,Domain Knowledge Accuracy,Crop Science,1
+train_clean_high_controls,4,zh,Domain Knowledge Accuracy,Physics,1
+train_clean_high_controls,4,zh,Instruction Following & Task Completion,Clinical Medicine,1
+train_clean_high_controls,4,zh,Reasoning Process Rigor,Mathematics,1
+train_clean_high_controls,4,zh,Reasoning Process Rigor,Physical Education,1
+train_clean_high_controls,5,en,Basic Factual Accuracy,Applied Economics,1
+train_clean_high_controls,5,en,Basic Factual Accuracy,Law,1
+train_clean_high_controls,5,en,Basic Factual Accuracy,Physical Education,1
+train_clean_high_controls,5,en,"Clarity, Simplicity & Inspiration",Public Administration,1
+train_clean_high_controls,5,en,Content Relevance & Scope Control,Clinical Medicine,1
+train_clean_high_controls,5,en,Domain Knowledge Accuracy,Literature and Art,1
+train_clean_high_controls,5,en,Instruction Following & Task Completion,Chinese,1
+train_clean_high_controls,5,en,Reasoning Process Rigor,Crop Science,1
+train_clean_high_controls,5,zh,"Clarity, Simplicity & Inspiration",Biology,1
+train_clean_high_controls,5,zh,Content Relevance & Scope Control,Law,1
+train_clean_high_controls,5,zh,Higher-Order Thinking & Skill Development,Military Science,1
+train_clean_high_controls,5,zh,Instruction Following & Task Completion,General Pedagogy,1
+train_clean_high_controls,5,zh,Instruction Following & Task Completion,Literature and Art,1
+train_clean_high_controls,5,zh,"Motivation, Guidance & Positive Feedback",Physics,1
+train_clean_high_controls,5,zh,Reasoning Process Rigor,Business Administration,1
+train_clean_high_controls,5,zh,Reasoning Process Rigor,Computer Science,1
+train_clean_high_controls,5,zh,Reasoning Process Rigor,Law,1
+train_clean_high_controls,5,zh,Role & Tone Consistency,Business Administration,1
+train_clean_high_controls,5,zh,Scenario Element Integration,Physics,1
+train_education_dimension_stress,3,zh,"Personalization, Adaptation & Learning Support",Military Science,1
+train_education_dimension_stress,3,zh,Reasoning Process Rigor,Applied Economics,1
+train_education_dimension_stress,4,en,Domain Knowledge Accuracy,Aquaculture,1
+train_education_dimension_stress,4,en,Domain Knowledge Accuracy,Psychology,1
+train_education_dimension_stress,4,en,Domain Knowledge Accuracy,Sociology,1
+train_education_dimension_stress,4,en,"Motivation, Guidance & Positive Feedback",English,1
+train_education_dimension_stress,4,en,"Motivation, Guidance & Positive Feedback",History,1
+train_education_dimension_stress,4,en,"Motivation, Guidance & Positive Feedback",Military Science,1
+train_education_dimension_stress,4,en,Role & Tone Consistency,General Pedagogy,1
+train_education_dimension_stress,4,en,Scenario Element Integration,History,1
+train_education_dimension_stress,4,zh,Basic Factual Accuracy,Chemistry,1
+train_education_dimension_stress,4,zh,Basic Factual Accuracy,English,1
+train_education_dimension_stress,4,zh,Basic Factual Accuracy,Mathematics,1
+train_education_dimension_stress,4,zh,Domain Knowledge Accuracy,Basic Medicine,1
+train_education_dimension_stress,4,zh,Domain Knowledge Accuracy,Chemistry,1
+train_education_dimension_stress,4,zh,Error Identification & Correction Precision,English,1
+train_education_dimension_stress,4,zh,Higher-Order Thinking & Skill Development,Chemistry,1
+train_education_dimension_stress,4,zh,"Personalization, Adaptation & Learning Support",Theoretical Economics,1
+train_education_dimension_stress,4,zh,Reasoning Process Rigor,Public Administration,1
+train_education_dimension_stress,4,zh,Role & Tone Consistency,Public Administration,1
+train_education_dimension_stress,4,zh,Scenario Element Integration,General Pedagogy,1
+train_education_dimension_stress,5,en,Basic Factual Accuracy,Applied Economics,1
+train_education_dimension_stress,5,en,Basic Factual Accuracy,Chinese,1
+train_education_dimension_stress,5,en,Basic Factual Accuracy,Psychology,1
+train_education_dimension_stress,5,en,Content Relevance & Scope Control,Basic Medicine,1
+train_education_dimension_stress,5,en,Content Relevance & Scope Control,Business Administration,1
+train_education_dimension_stress,5,en,Content Relevance & Scope Control,Clinical Medicine,1
+train_education_dimension_stress,5,en,Content Relevance & Scope Control,Computer Science,1
+train_education_dimension_stress,5,en,Content Relevance & Scope Control,Psychology,1
+train_education_dimension_stress,5,en,Domain Knowledge Accuracy,Biology,1
+train_education_dimension_stress,5,en,Error Identification & Correction Precision,Biology,1
+train_education_dimension_stress,5,en,Instruction Following & Task Completion,Military Science,1
+train_education_dimension_stress,5,en,"Motivation, Guidance & Positive Feedback",Chinese,1
+train_education_dimension_stress,5,en,Reasoning Process Rigor,English,1
+train_education_dimension_stress,5,en,Role & Tone Consistency,History,1
+train_education_dimension_stress,5,en,Scenario Element Integration,Physical Education,1
+train_education_dimension_stress,5,en,Scenario Element Integration,Public Administration,1
+train_education_dimension_stress,5,zh,Basic Factual Accuracy,Business Administration,1
+train_education_dimension_stress,5,zh,Error Identification & Correction Precision,General Pedagogy,1
+train_education_dimension_stress,5,zh,Instruction Following & Task Completion,Clinical Medicine,1
+train_high_disagreement_protection,4,en,Error Identification & Correction Precision,Psychology,3
+train_high_disagreement_protection,4,en,Instruction Following & Task Completion,Basic Medicine,2
+train_high_disagreement_protection,4,en,Instruction Following & Task Completion,English,1
+train_high_disagreement_protection,4,en,Instruction Following & Task Completion,Geography,1
+train_high_disagreement_protection,4,en,Instruction Following & Task Completion,Mathematics,2
+train_high_disagreement_protection,4,en,Instruction Following & Task Completion,Public Administration,1
+train_high_disagreement_protection,4,en,"Motivation, Guidance & Positive Feedback",Biology,3
+train_high_disagreement_protection,4,en,"Motivation, Guidance & Positive Feedback",Geography,4
+train_high_disagreement_protection,4,en,"Motivation, Guidance & Positive Feedback",Psychology,3
+train_high_disagreement_protection,4,en,"Motivation, Guidance & Positive Feedback",Theoretical Economics,1
+train_high_disagreement_protection,4,en,Reasoning Process Rigor,Geography,1
+train_high_disagreement_protection,4,en,Scenario Element Integration,Geography,1
+train_high_disagreement_protection,4,en,Scenario Element Integration,Military Science,1
+train_high_disagreement_protection,4,zh,Error Identification & Correction Precision,History,1
+train_high_disagreement_protection,4,zh,Error Identification & Correction Precision,Theoretical Economics,2
+train_high_disagreement_protection,4,zh,"Motivation, Guidance & Positive Feedback",General Pedagogy,1
+train_high_disagreement_protection,4,zh,Reasoning Process Rigor,Basic Medicine,1
+train_high_disagreement_protection,4,zh,Reasoning Process Rigor,History,1
+train_high_disagreement_protection,5,en,Basic Factual Accuracy,Basic Medicine,2
+train_high_disagreement_protection,5,en,Basic Factual Accuracy,English,1
+train_high_disagreement_protection,5,en,Basic Factual Accuracy,Geography,4
+train_high_disagreement_protection,5,en,Basic Factual Accuracy,Mathematics,2
+train_high_disagreement_protection,5,en,Content Relevance & Scope Control,Geography,4
+train_high_disagreement_protection,5,en,Error Identification & Correction Precision,Basic Medicine,2
+train_high_disagreement_protection,5,en,Error Identification & Correction Precision,Biology,2
+train_high_disagreement_protection,5,en,Error Identification & Correction Precision,English,1
+train_high_disagreement_protection,5,en,Error Identification & Correction Precision,Geography,5
+train_high_disagreement_protection,5,en,Error Identification & Correction Precision,Mathematics,3
+train_high_disagreement_protection,5,en,Error Identification & Correction Precision,Psychology,2
+train_high_disagreement_protection,5,en,Instruction Following & Task Completion,Basic Medicine,2
+train_high_disagreement_protection,5,en,Instruction Following & Task Completion,English,3
+train_high_disagreement_protection,5,en,Instruction Following & Task Completion,Geography,3
+train_high_disagreement_protection,5,en,Instruction Following & Task Completion,Mathematics,2
+train_high_disagreement_protection,5,en,Reasoning Process Rigor,Geography,4
+train_high_disagreement_protection,5,en,Reasoning Process Rigor,Mathematics,1
+train_high_disagreement_protection,5,en,Scenario Element Integration,Public Administration,1
+train_high_disagreement_protection,5,zh,Basic Factual Accuracy,Computer Science,1
+train_high_disagreement_protection,5,zh,Basic Factual Accuracy,History,1
+train_high_disagreement_protection,5,zh,Error Identification & Correction Precision,History,1
+train_high_disagreement_protection,5,zh,Error Identification & Correction Precision,Theoretical Economics,1
+train_high_disagreement_protection,5,zh,"Motivation, Guidance & Positive Feedback",General Pedagogy,1
+train_high_disagreement_protection,5,zh,"Motivation, Guidance & Positive Feedback",History,1
+train_mid_borderline,3,en,Basic Factual Accuracy,Military Science,1
+train_mid_borderline,3,en,Domain Knowledge Accuracy,Business Administration,1
+train_mid_borderline,3,en,Domain Knowledge Accuracy,Military Science,2
+train_mid_borderline,3,en,Higher-Order Thinking & Skill Development,Aquaculture,1
+train_mid_borderline,3,en,Higher-Order Thinking & Skill Development,Basic Medicine,1
+train_mid_borderline,3,en,Higher-Order Thinking & Skill Development,Biology,1
+train_mid_borderline,3,en,Higher-Order Thinking & Skill Development,Chinese,1
+train_mid_borderline,3,en,Higher-Order Thinking & Skill Development,Crop Science,1
+train_mid_borderline,3,en,Higher-Order Thinking & Skill Development,Geography,1
+train_mid_borderline,3,en,Higher-Order Thinking & Skill Development,Mathematics,1
+train_mid_borderline,3,en,Higher-Order Thinking & Skill Development,Physical Education,3
+train_mid_borderline,3,en,Higher-Order Thinking & Skill Development,Psychology,1
+train_mid_borderline,3,en,Higher-Order Thinking & Skill Development,Public Administration,2
+train_mid_borderline,3,en,Higher-Order Thinking & Skill Development,Sociology,2
+train_mid_borderline,3,en,Instruction Following & Task Completion,Basic Medicine,1
+train_mid_borderline,3,en,Instruction Following & Task Completion,Geography,1
+train_mid_borderline,3,en,Instruction Following & Task Completion,Mathematics,2
+train_mid_borderline,3,en,Instruction Following & Task Completion,Military Science,1
+train_mid_borderline,3,en,Instruction Following & Task Completion,Theoretical Economics,1
+train_mid_borderline,3,en,"Motivation, Guidance & Positive Feedback",Biology,1
+train_mid_borderline,3,en,"Motivation, Guidance & Positive Feedback",Law,1
+train_mid_borderline,3,en,"Motivation, Guidance & Positive Feedback",Literature and Art,1
+train_mid_borderline,3,en,"Motivation, Guidance & Positive Feedback",Physics,2
+train_mid_borderline,3,en,"Motivation, Guidance & Positive Feedback",Public Administration,1
+train_mid_borderline,3,en,"Motivation, Guidance & Positive Feedback",Theoretical Economics,2
+train_mid_borderline,3,en,Reasoning Process Rigor,Military Science,1
+train_mid_borderline,3,en,Scenario Element Integration,Geography,2
+train_mid_borderline,3,en,Scenario Element Integration,Mathematics,1
+train_mid_borderline,3,en,Scenario Element Integration,Military Science,1
+train_mid_borderline,3,zh,Basic Factual Accuracy,Physical Education,1
+train_mid_borderline,3,zh,"Clarity, Simplicity & Inspiration",Crop Science,1
+train_mid_borderline,3,zh,Content Relevance & Scope Control,Law,1
+train_mid_borderline,3,zh,Content Relevance & Scope Control,Mathematics,1
+train_mid_borderline,3,zh,Domain Knowledge Accuracy,Physical Education,1
+train_mid_borderline,3,zh,Error Identification & Correction Precision,General Pedagogy,1
+train_mid_borderline,3,zh,Higher-Order Thinking & Skill Development,General Pedagogy,1
+train_mid_borderline,3,zh,Higher-Order Thinking & Skill Development,Mathematics,3
+train_mid_borderline,3,zh,Higher-Order Thinking & Skill Development,Military Science,1
+train_mid_borderline,3,zh,Higher-Order Thinking & Skill Development,Physical Education,1
+train_mid_borderline,3,zh,Instruction Following & Task Completion,Chemistry,1
+train_mid_borderline,3,zh,Instruction Following & Task Completion,Computer Science,1
+train_mid_borderline,3,zh,Instruction Following & Task Completion,General Pedagogy,1
+train_mid_borderline,3,zh,Instruction Following & Task Completion,History,2
+train_mid_borderline,3,zh,Instruction Following & Task Completion,Mathematics,1
+train_mid_borderline,3,zh,"Motivation, Guidance & Positive Feedback",English,1
+train_mid_borderline,3,zh,"Motivation, Guidance & Positive Feedback",History,1
+train_mid_borderline,3,zh,"Motivation, Guidance & Positive Feedback",Mathematics,1
+train_mid_borderline,3,zh,"Motivation, Guidance & Positive Feedback",Physics,1
+train_mid_borderline,3,zh,"Motivation, Guidance & Positive Feedback",Public Administration,1
+train_mid_borderline,3,zh,"Personalization, Adaptation & Learning Support",Basic Medicine,1
+train_mid_borderline,3,zh,"Personalization, Adaptation & Learning Support",Biology,1
+train_mid_borderline,3,zh,"Personalization, Adaptation & Learning Support",Law,1
+train_mid_borderline,3,zh,Reasoning Process Rigor,Applied Economics,1
+train_mid_borderline,3,zh,Reasoning Process Rigor,Chemistry,1
+train_mid_borderline,3,zh,Reasoning Process Rigor,English,1
+train_mid_borderline,3,zh,Reasoning Process Rigor,History,1
+train_mid_borderline,3,zh,Reasoning Process Rigor,Mathematics,1
+train_mid_borderline,3,zh,Reasoning Process Rigor,Theoretical Economics,1

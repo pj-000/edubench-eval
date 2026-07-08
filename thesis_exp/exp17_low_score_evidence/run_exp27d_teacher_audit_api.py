@@ -338,7 +338,10 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
     packets = read_jsonl(args.packets)
     if args.max_rows > 0:
         packets = packets[: args.max_rows]
-    output_path = args.out_dir / "annotations" / "parsed" / args.provider / f"exp27d_{args.stage}_outputs.jsonl"
+    output_suffix = args.output_suffix or ""
+    if output_suffix and not re.fullmatch(r"[_A-Za-z0-9.-]+", output_suffix):
+        raise SystemExit(f"Unsafe output suffix: {output_suffix}")
+    output_path = args.out_dir / "annotations" / "parsed" / args.provider / f"exp27d_{args.stage}_outputs{output_suffix}.jsonl"
     if args.overwrite and output_path.exists():
         output_path.unlink()
     done = existing_ids(output_path) if args.resume else set()
@@ -557,9 +560,10 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
         "repair_changed_score_cap_count": repair_changed_score_cap_count,
         "repair_changed_failure_visibility_count": repair_changed_failure_visibility_count,
     }
-    write_json(args.out_dir / "decision" / f"exp27d_{args.provider}_{args.stage}_api_summary.json", summary)
+    summary_suffix = output_suffix or ""
+    write_json(args.out_dir / "decision" / f"exp27d_{args.provider}_{args.stage}{summary_suffix}_api_summary.json", summary)
     write_text(
-        args.out_dir / "reports" / f"exp27d_{args.provider}_{args.stage}_api_summary.md",
+        args.out_dir / "reports" / f"exp27d_{args.provider}_{args.stage}{summary_suffix}_api_summary.md",
         "\n".join(
             [
                 f"# Exp27D {args.provider} {args.stage} API Summary",
@@ -589,6 +593,7 @@ def main() -> None:
     parser = argparse.ArgumentParser(description="Run or dry-run Exp27D teacher-audit API calls.")
     parser.add_argument("--provider", choices=sorted(PROVIDERS), required=True)
     parser.add_argument("--stage", choices=["blind", "audit"], default="blind")
+    parser.add_argument("--output-suffix", default="")
     parser.add_argument("--packets", type=Path, default=DEFAULT_PACKETS)
     parser.add_argument("--out-dir", type=Path, default=DEFAULT_OUT_DIR)
     parser.add_argument("--blind-output", type=Path, default=None)

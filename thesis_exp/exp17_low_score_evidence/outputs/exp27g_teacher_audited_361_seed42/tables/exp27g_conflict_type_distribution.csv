@@ -1,0 +1,12 @@
+conflict_type,count
+audit_hard_conflict,99
+both_teachers_disagree_with_human,37
+deepseek_lenient_qwen_strict,16
+derived_risk_disagreement,89
+failure_bucket_disagreement,116
+high_human_teacher_low,34
+low_human_teacher_high,24
+one_teacher_disagrees_with_human,60
+qwen_lenient_deepseek_strict,34
+score_gap_ge2,50
+training_use_disagreement,133

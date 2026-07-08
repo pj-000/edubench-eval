@@ -1,0 +1,10 @@
+{
+  "api_complete": true,
+  "conflict_queue_rows": 206,
+  "packet_rows": 361,
+  "raw_outputs_committed": false,
+  "recommend_manual_or_gpt55_adjudication": true,
+  "recommended_next_step": "adjudicate_top80_then_build_teacher_audited_train_labels",
+  "test_label_read": false,
+  "top80_for_adjudication": 80
+}

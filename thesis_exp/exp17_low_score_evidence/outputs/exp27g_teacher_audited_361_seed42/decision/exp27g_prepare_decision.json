@@ -1,0 +1,30 @@
+{
+  "audit_prompt_sha1": "45473a98e7f18c37c386176d9af3b66ff40cfeab",
+  "audit_schema_sha1": "d2125e7316c56029f6c0537b004115a4a713d675",
+  "batch_count": 19,
+  "batch_size": 20,
+  "blind_prompt_sha1": "e2a9c6ac85b21ed62f58a81ec2f77a65358d1efb",
+  "blind_schema_sha1": "f4198b2c2c30335b40f6012faee6a40703f30b93",
+  "dev_test_used_for_id_guard_only": true,
+  "group_counts": {
+    "exp27f_top40_conflict_reaudit": 40,
+    "train_all_low_label": 95,
+    "train_clean_high_controls": 36,
+    "train_education_dimension_stress": 40,
+    "train_high_disagreement_protection": 80,
+    "train_mid_borderline": 70
+  },
+  "label_counts": {
+    "1": 58,
+    "2": 53,
+    "3": 85,
+    "4": 71,
+    "5": 94
+  },
+  "packet_rows": 361,
+  "proceed_to_api": true,
+  "prompt_version": "exp27d_v4",
+  "recommendation": "run_361_dual_teacher_api_then_collect_conflicts_for_adjudication",
+  "schema_version": "exp27d_teacher_audit_v4",
+  "test_label_read": false
+}
