@@ -3,7 +3,7 @@
   "audit_schema_sha1": "4cdb9037f357dbe33c95cf4f8ec998c6b3f4784c",
   "batch_count": 3,
   "batch_size": 20,
-  "blind_prompt_sha1": "872e5a964178fbe5c4d7dc97fe01b8abe7a835fa",
+  "blind_prompt_sha1": "e9559485ac28696876058c9d6136bd953638fbd6",
   "blind_schema_sha1": "139517ecd58f3b997928453c8a4eccd2b08b7f0c",
   "dev_test_used_for_id_guard_only": true,
   "exp27a_overlap_rows": 20,

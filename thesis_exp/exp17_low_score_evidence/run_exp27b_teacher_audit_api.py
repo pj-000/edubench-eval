@@ -7,6 +7,7 @@ and keys supplied only through environment variables.
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import os
 import re
@@ -16,6 +17,8 @@ import urllib.error
 import urllib.request
 from pathlib import Path
 from typing import Any
+
+import jsonschema
 
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
@@ -64,6 +67,15 @@ def append_jsonl(path: Path, row: dict[str, Any]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("a", encoding="utf-8") as f:
         f.write(json.dumps(row, ensure_ascii=False, sort_keys=True) + "\n")
+
+
+def write_json_file(path: Path, row: dict[str, Any]) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(row, ensure_ascii=False, indent=2, sort_keys=True), encoding="utf-8")
+
+
+def sha1_text(text: str) -> str:
+    return hashlib.sha1(text.encode("utf-8")).hexdigest()
 
 
 def read_text(path: Path) -> str:
@@ -123,6 +135,11 @@ def load_protocol(out_dir: Path) -> tuple[str, str, dict[str, Any], dict[str, An
     return blind_prompt, audit_prompt, blind_schema, audit_schema
 
 
+def schema_for_stage(out_dir: Path, stage: str) -> dict[str, Any]:
+    _, _, blind_schema, audit_schema = load_protocol(out_dir)
+    return blind_schema if stage == "blind" else audit_schema
+
+
 def build_blind_messages(packet: dict[str, Any], out_dir: Path) -> list[dict[str, str]]:
     blind_prompt, _, blind_schema, _ = load_protocol(out_dir)
     user = "\n\n".join(
@@ -179,11 +196,12 @@ def chat_completion(
     messages: list[dict[str, str]],
     timeout: int,
     thinking: str,
+    temperature: float,
 ) -> dict[str, Any]:
     body: dict[str, Any] = {
         "model": cfg["model"],
         "messages": messages,
-        "temperature": 0,
+        "temperature": temperature,
         "response_format": {"type": "json_object"},
     }
     if thinking != "omit":
@@ -255,21 +273,29 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
     packets = read_jsonl(args.packets)
     if args.max_rows > 0:
         packets = packets[: args.max_rows]
-    output_path = args.out_dir / "annotations" / args.provider / f"exp27b_{args.stage}_outputs.jsonl"
+    output_path = args.out_dir / "annotations" / "parsed" / args.provider / f"exp27b_{args.stage}_outputs.jsonl"
     if args.overwrite and output_path.exists():
         output_path.unlink()
-    done = existing_ids(output_path)
+    done = existing_ids(output_path) if args.resume else set()
     blind_by_id: dict[str, dict[str, Any]] = {}
     audit_ref_by_id: dict[str, dict[str, Any]] = {}
     if args.stage == "audit":
-        blind_path = args.blind_output or (args.out_dir / "annotations" / args.provider / "exp27b_blind_outputs.jsonl")
+        blind_path = args.blind_output or (
+            args.out_dir / "annotations" / "parsed" / args.provider / "exp27b_blind_outputs.jsonl"
+        )
+        if not blind_path.exists():
+            raise SystemExit(f"Blind parsed output is required for audit stage: {blind_path}")
         blind_by_id = load_blind_by_id(blind_path)
         audit_ref_by_id = load_audit_ref_by_id(args.audit_reference)
+    stage_schema = schema_for_stage(args.out_dir, args.stage)
+    schema_validator = jsonschema.Draft202012Validator(stage_schema)
 
     start = time.time()
     attempted = 0
     parsed_ok = 0
+    schema_ok = 0
     failed = 0
+    consecutive_failed = 0
     for idx, packet in enumerate(packets, start=1):
         sid = str(packet["sample_id"])
         if sid in done and not args.overwrite:
@@ -288,6 +314,8 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
                         "provider": args.provider,
                         "stage": args.stage,
                         "parse_error": "missing_blind_payload_or_audit_reference",
+                        "parsed": None,
+                        "schema_errors": ["missing_blind_payload_or_audit_reference"],
                     },
                 )
                 continue
@@ -298,13 +326,22 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
             break
 
         attempted += 1
+        request_hash = sha1_text(json.dumps(messages, ensure_ascii=False, sort_keys=True))
+        raw_path = (
+            args.out_dir
+            / "annotations"
+            / "raw_api"
+            / args.provider
+            / args.stage
+            / f"{args.provider}_{args.stage}_{sid}_{request_hash[:12]}.json"
+        )
         raw_text = ""
         parse_error = ""
         parsed: dict[str, Any] | None = None
         response_meta: dict[str, Any] = {}
         for attempt in range(1, args.retries + 2):
             try:
-                response = chat_completion(args.provider, cfg, messages, args.timeout, args.thinking)
+                response = chat_completion(args.provider, cfg, messages, args.timeout, args.thinking, args.temperature)
                 raw_text = output_content(response)
                 parsed, parse_error = parse_json_text(raw_text)
                 response_meta = {
@@ -315,15 +352,35 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
                     "created": response.get("created"),
                     "usage": response.get("usage"),
                 }
+                write_json_file(
+                    raw_path,
+                    {
+                        "sample_id": sid,
+                        "provider": args.provider,
+                        "stage": args.stage,
+                        "request_hash": request_hash,
+                        "response": response,
+                    },
+                )
                 break
             except Exception as exc:  # noqa: BLE001
                 parse_error = f"api_error_attempt_{attempt}: {exc}"
                 if attempt <= args.retries:
                     time.sleep(args.retry_sleep)
+        schema_errors: list[str] = []
+        if parsed is not None:
+            schema_errors = [err.message for err in schema_validator.iter_errors(parsed)]
         if parsed is None:
             failed += 1
+            consecutive_failed += 1
         else:
             parsed_ok += 1
+            if not schema_errors:
+                schema_ok += 1
+                consecutive_failed = 0
+            else:
+                failed += 1
+                consecutive_failed += 1
         append_jsonl(
             output_path,
             {
@@ -334,7 +391,9 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
                 "thinking": args.thinking,
                 "parsed": parsed,
                 "parse_error": parse_error,
-                "raw_text": raw_text,
+                "schema_errors": schema_errors,
+                "raw_api_path": str(raw_path) if raw_path.exists() else "",
+                "request_hash": request_hash,
                 "response_meta": response_meta,
                 "source_meta": packet.get("source_meta"),
             },
@@ -345,11 +404,15 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
         eta = remaining / rate if rate > 0 else 0.0
         print(
             f"[exp27b] {args.provider}/{args.stage} {idx}/{len(packets)} "
-            f"ok={parsed_ok} failed={failed} elapsed={elapsed/60:.1f}m eta={eta/60:.1f}m",
+            f"parsed={parsed_ok} schema_ok={schema_ok} failed={failed} elapsed={elapsed/60:.1f}m eta={eta/60:.1f}m",
             flush=True,
         )
-        if args.sleep > 0:
-            time.sleep(args.sleep)
+        if consecutive_failed > args.max_consecutive_failures:
+            raise SystemExit(
+                f"Stopping after {consecutive_failed} consecutive failed rows for {args.provider}/{args.stage}"
+            )
+        if args.sleep_seconds > 0:
+            time.sleep(args.sleep_seconds)
 
     summary = {
         "provider": args.provider,
@@ -358,6 +421,7 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
         "packets": len(packets),
         "attempted": attempted,
         "parsed_ok": parsed_ok,
+        "schema_ok": schema_ok,
         "failed": failed,
         "output_path": str(output_path),
         "dry_run": not do_api,
@@ -373,6 +437,7 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
                 f"- packets: {len(packets)}",
                 f"- attempted: {attempted}",
                 f"- parsed_ok: {parsed_ok}",
+                f"- schema_ok: {schema_ok}",
                 f"- failed: {failed}",
                 f"- dry_run: {not do_api}",
                 f"- output: `{output_path}`",
@@ -393,11 +458,14 @@ def main() -> None:
     parser.add_argument("--model", default=None)
     parser.add_argument("--max-rows", type=int, default=0)
     parser.add_argument("--timeout", type=int, default=120)
-    parser.add_argument("--sleep", type=float, default=0.0)
+    parser.add_argument("--sleep-seconds", type=float, default=0.0)
+    parser.add_argument("--temperature", type=float, default=0.0)
     parser.add_argument("--retries", type=int, default=2)
     parser.add_argument("--retry-sleep", type=float, default=2.0)
+    parser.add_argument("--max-consecutive-failures", type=int, default=5)
     parser.add_argument("--thinking", choices=["omit", "off", "on"], default="omit")
     parser.add_argument("--overwrite", action="store_true")
+    parser.add_argument("--resume", action="store_true")
     parser.add_argument("--run-api", action="store_true")
     parser.add_argument("--dry-run", action="store_true")
     args = parser.parse_args()

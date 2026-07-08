@@ -1,0 +1,11 @@
+provider,stage,rows,parse_success_rate,schema_validation_success_rate,parse_error_count,schema_error_count,group,n,score_exact_agreement,score_adjacent_agreement
+qwen,blind,60,1.0,0.9333333333333333,0,4,,,,
+qwen,audit,60,1.0,0.8833333333333333,0,7,,,,
+deepseek,blind,60,1.0,1.0,0,0,,,,
+deepseek,audit,60,1.0,1.0,0,0,,,,
+,,,,,,,all,60,0.7333333333333333,0.9166666666666666
+,,,,,,,low,24,0.7083333333333334,0.875
+,,,,,,,mid,17,0.8823529411764706,1.0
+,,,,,,,high,19,0.631578947368421,0.8947368421052632
+,,,,,,,language=en,26,0.8076923076923077,0.9615384615384616
+,,,,,,,language=zh,34,0.6764705882352942,0.8823529411764706

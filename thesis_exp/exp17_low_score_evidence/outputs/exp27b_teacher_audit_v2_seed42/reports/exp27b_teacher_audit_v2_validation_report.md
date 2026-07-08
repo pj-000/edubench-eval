@@ -1,9 +1,92 @@
 # Exp27B Teacher Audit V2 Validation
 
 - packets: 60
-- annotation_rows: 0
-- errors: 0
+- annotation_rows: 240
+- errors: 87
 - exp27a_overlap_present: 20/20
-- schema_validation_passed: True
-- ready_for_v2_api_repilot: True
+- schema_validation_passed: False
+- ready_for_v2_api_repilot: False
 - test_label_read: False
+
+## First Errors
+
+- deepseek/blind[2]: no_major_failure must use overestimation_risk=low
+- deepseek/blind[6]: teacher_reason restates score field
+- deepseek/blind[6]: no_major_failure must use overestimation_risk=low
+- deepseek/blind[9]: low score with failure should use non-null score_cap
+- deepseek/blind[14]: low score with failure should use non-null score_cap
+- deepseek/blind[19]: low score with failure should use non-null score_cap
+- deepseek/blind[20]: low score with failure should use non-null score_cap
+- deepseek/blind[28]: low score with failure should use non-null score_cap
+- deepseek/blind[31]: low score with failure should use non-null score_cap
+- deepseek/blind[32]: no_major_failure must use overestimation_risk=low
+- deepseek/blind[34]: low score with failure should use non-null score_cap
+- deepseek/blind[39]: low score with failure should use non-null score_cap
+- deepseek/blind[40]: no_major_failure must use overestimation_risk=low
+- deepseek/blind[46]: no_major_failure must use overestimation_risk=low
+- deepseek/blind[53]: no_major_failure must use overestimation_risk=low
+- deepseek/blind[54]: low score with failure should use non-null score_cap
+- deepseek/blind[55]: low score with failure should use non-null score_cap
+- deepseek/blind[57]: no_major_failure must use overestimation_risk=low
+- deepseek/audit[2]: no_major_failure must use overestimation_risk=low
+- deepseek/audit[6]: teacher_reason restates score field
+- deepseek/audit[6]: no_major_failure must use overestimation_risk=low
+- deepseek/audit[9]: low score with failure should use non-null score_cap
+- deepseek/audit[14]: low score with failure should use non-null score_cap
+- deepseek/audit[19]: low score with failure should use non-null score_cap
+- deepseek/audit[20]: low score with failure should use non-null score_cap
+- deepseek/audit[28]: low score with failure should use non-null score_cap
+- deepseek/audit[31]: low score with failure should use non-null score_cap
+- deepseek/audit[32]: no_major_failure must use overestimation_risk=low
+- deepseek/audit[34]: low score with failure should use non-null score_cap
+- deepseek/audit[39]: low score with failure should use non-null score_cap
+- deepseek/audit[39]: gap>=2 should use needs_human_review=true
+- deepseek/audit[40]: no_major_failure must use overestimation_risk=low
+- deepseek/audit[46]: no_major_failure must use overestimation_risk=low
+- deepseek/audit[53]: no_major_failure must use overestimation_risk=low
+- deepseek/audit[54]: low score with failure should use non-null score_cap
+- deepseek/audit[55]: low score with failure should use non-null score_cap
+- deepseek/audit[57]: no_major_failure must use overestimation_risk=low
+- qwen/blind[6]: no_major_failure must use overestimation_risk=low
+- qwen/blind[28]: evidence_span is not exact substring of answer
+- qwen/blind[30]: schema: 'missing_personalization' is not one of ['missing_key_point', 'rubric_mismatch', 'factual_error', 'insufficient_reasoning', 'insufficient_evidence', 'partial_or_incomplete', 'task_constraint_violation', 'format_violation', 'irrelevant_or_off_topic', 'unsupported_claim', 'no_major_failure', 'unclear']
+- qwen/blind[30]: teacher_reason restates score field
+- qwen/blind[34]: schema: 'missing_scenario_integration' is not one of ['missing_key_point', 'rubric_mismatch', 'factual_error', 'insufficient_reasoning', 'insufficient_evidence', 'partial_or_incomplete', 'task_constraint_violation', 'format_violation', 'irrelevant_or_off_topic', 'unsupported_claim', 'no_major_failure', 'unclear']
+- qwen/blind[39]: schema: 'missing_scenario_integration' is not one of ['missing_key_point', 'rubric_mismatch', 'factual_error', 'insufficient_reasoning', 'insufficient_evidence', 'partial_or_incomplete', 'task_constraint_violation', 'format_violation', 'irrelevant_or_off_topic', 'unsupported_claim', 'no_major_failure', 'unclear']
+- qwen/blind[51]: schema: Additional properties are not allowed ('个性化反馈', '评分细节' were unexpected)
+- qwen/blind[51]: schema: 'major_failures' is a required property
+- qwen/blind[51]: schema: 'evidence_span' is a required property
+- qwen/blind[51]: schema: 'evidence_type' is a required property
+- qwen/blind[51]: schema: 'missing_evidence_reason' is a required property
+- qwen/blind[51]: schema: 'rubric_clause' is a required property
+- qwen/blind[51]: schema: 'rubric_fit' is a required property
+- qwen/blind[51]: schema: 'score_cap' is a required property
+- qwen/blind[51]: schema: 'score_region' is a required property
+- qwen/blind[51]: schema: 'failure_visibility' is a required property
+- qwen/blind[51]: schema: 'overestimation_risk' is a required property
+- qwen/blind[51]: schema: 'answer_key_uncertainty' is a required property
+- qwen/blind[51]: schema: 'confidence' is a required property
+- qwen/blind[51]: schema: 'needs_human_review_blind' is a required property
+- qwen/blind[51]: schema: 'uncertainty_reason' is a required property
+- qwen/blind[51]: score_region=None does not match teacher_score=5
+- qwen/blind[56]: teacher_reason restates score field
+- qwen/audit[6]: no_major_failure must use overestimation_risk=low
+- qwen/audit[12]: schema: Additional properties are not allowed ('推理逻辑链条完整、清晰、严密' was unexpected)
+- qwen/audit[13]: schema: 'major_failures' is a required property
+- qwen/audit[13]: schema: 'evidence_span' is a required property
+- qwen/audit[13]: schema: 'evidence_type' is a required property
+- qwen/audit[13]: schema: 'missing_evidence_reason' is a required property
+- qwen/audit[13]: schema: 'rubric_clause' is a required property
+- qwen/audit[13]: schema: 'rubric_fit' is a required property
+- qwen/audit[13]: schema: 'score_cap' is a required property
+- qwen/audit[13]: schema: 'score_region' is a required property
+- qwen/audit[13]: schema: 'failure_visibility' is a required property
+- qwen/audit[13]: schema: 'overestimation_risk' is a required property
+- qwen/audit[13]: schema: 'answer_key_uncertainty' is a required property
+- qwen/audit[13]: schema: 'confidence' is a required property
+- qwen/audit[13]: schema: 'needs_human_review_blind' is a required property
+- qwen/audit[13]: schema: 'uncertainty_reason' is a required property
+- qwen/audit[13]: score_region=None does not match teacher_score=4
+- qwen/audit[24]: schema: Additional properties are not allowed ('作物生长模型的参数优化' was unexpected)
+- qwen/audit[25]: schema: Additional properties are not allowed ('偏向实践，喜欢通过案例学习' was unexpected)
+- qwen/audit[28]: evidence_span is not exact substring of answer

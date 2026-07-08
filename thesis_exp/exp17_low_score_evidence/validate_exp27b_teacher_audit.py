@@ -196,6 +196,16 @@ def validate_blind_object(blind: dict[str, Any], packet: dict[str, Any] | None, 
         errors.append(f"{where}: verbatim_answer_span requires non-null evidence_span")
     if blind.get("evidence_type") == "missing_required_content" and blind.get("missing_evidence_reason") is None:
         errors.append(f"{where}: missing_required_content requires missing_evidence_reason")
+    cap = blind.get("score_cap")
+    visibility = blind.get("failure_visibility")
+    if isinstance(score, int):
+        if score <= 2 and visibility != "no_major_failure":
+            if cap is None:
+                errors.append(f"{where}: low score with failure should use non-null score_cap")
+            elif isinstance(cap, int) and cap > 3:
+                errors.append(f"{where}: low score_cap should be <=3")
+        if score >= 4 and "no_major_failure" in (failures or []) and cap is not None:
+            errors.append(f"{where}: high no_major_failure should use score_cap=null")
 
 
 def validate_annotation_file(
@@ -266,24 +276,25 @@ def validate_annotation_file(
     return out_rows
 
 
-def validate(out_dir: Path, exp27a_agreement: Path) -> dict[str, Any]:
+def validate(out_dir: Path, exp27a_agreement: Path, with_annotations: bool = False) -> dict[str, Any]:
     errors: list[str] = []
     packets, audit_ref = validate_packet_files(out_dir, exp27a_agreement, errors)
     validate_leakage(out_dir, errors)
     blind_schema, audit_schema = load_schemas(out_dir)
     packet_by_id = {str(packet.get("sample_id")): packet for packet in packets if packet.get("sample_id")}
     provider_rows: list[dict[str, Any]] = []
-    ann_dir = out_dir / "annotations"
-    for provider_dir in sorted(ann_dir.glob("*")) if ann_dir.exists() else []:
-        if not provider_dir.is_dir():
-            continue
-        provider = provider_dir.name
-        for stage in ["blind", "audit"]:
-            path = provider_dir / f"exp27b_{stage}_outputs.jsonl"
-            if path.exists():
-                provider_rows.extend(
-                    validate_annotation_file(provider, stage, path, packet_by_id, blind_schema, audit_schema, errors)
-                )
+    if with_annotations:
+        ann_dir = out_dir / "annotations" / "parsed"
+        for provider_dir in sorted(ann_dir.glob("*")) if ann_dir.exists() else []:
+            if not provider_dir.is_dir():
+                continue
+            provider = provider_dir.name
+            for stage in ["blind", "audit"]:
+                path = provider_dir / f"exp27b_{stage}_outputs.jsonl"
+                if path.exists():
+                    provider_rows.extend(
+                        validate_annotation_file(provider, stage, path, packet_by_id, blind_schema, audit_schema, errors)
+                    )
 
     audit_by_id = {str(row.get("sample_id")): row for row in audit_ref}
     dist = Counter(
@@ -311,6 +322,7 @@ def validate(out_dir: Path, exp27a_agreement: Path) -> dict[str, Any]:
         "annotation_rows": len(provider_rows),
         "errors": len(errors),
         "schema_validation_passed": len(errors) == 0,
+        "with_annotations": with_annotations,
         "exp27a_overlap_expected": len(old_ids),
         "exp27a_overlap_present": len(old_ids & packet_ids),
         "blind_packet_original_score_count": 0,
@@ -341,8 +353,15 @@ def main() -> None:
     parser = argparse.ArgumentParser(description="Validate Exp27B teacher-audit v2 artifacts.")
     parser.add_argument("--out-dir", type=Path, default=DEFAULT_OUT_DIR)
     parser.add_argument("--exp27a-agreement", type=Path, default=DEFAULT_EXP27A_AGREEMENT)
+    parser.add_argument("--with-annotations", action="store_true")
     args = parser.parse_args()
-    print(json.dumps(validate(args.out_dir, args.exp27a_agreement), ensure_ascii=False, sort_keys=True))
+    print(
+        json.dumps(
+            validate(args.out_dir, args.exp27a_agreement, with_annotations=args.with_annotations),
+            ensure_ascii=False,
+            sort_keys=True,
+        )
+    )
 
 
 if __name__ == "__main__":

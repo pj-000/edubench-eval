@@ -1,0 +1,19 @@
+{
+  "evidence_span_valid_or_null_with_reason_rate": 0.9833333333333333,
+  "evidence_type_exact_agreement": 0.75,
+  "failure_visibility_exact_agreement": 0.7666666666666667,
+  "high_control_suspected_conflict_rate": 0.15789473684210525,
+  "label_quality_exact_agreement": 0.7333333333333333,
+  "major_failures_jaccard_mean": 0.6972222222222222,
+  "needs_human_review_agreement": 0.8666666666666667,
+  "overestimation_risk_exact_agreement": 0.6333333333333333,
+  "parse_success_rate": 1.0,
+  "proceed_to_361": false,
+  "recommendation": "revise_schema_or_prompt_before_361",
+  "recommended_training_use_compatible_agreement": 0.95,
+  "schema_validation_success_rate": 0.9541666666666666,
+  "semantic_validation_error_count": 87,
+  "semantic_validation_error_rate": 0.3625,
+  "teacher_score_adjacent_agreement": 0.9166666666666666,
+  "teacher_score_exact_agreement": 0.7333333333333333
+}
