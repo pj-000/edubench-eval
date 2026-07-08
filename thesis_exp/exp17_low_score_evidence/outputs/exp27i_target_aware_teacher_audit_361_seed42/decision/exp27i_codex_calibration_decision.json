@@ -1,0 +1,32 @@
+{
+  "calibrated_rows": 361,
+  "codex_top80_direct_review_rows": 80,
+  "high_weight_rows": 256,
+  "label_counts": {
+    "1": 67,
+    "2": 66,
+    "3": 33,
+    "4": 81,
+    "5": 114
+  },
+  "low_weight_rows": 36,
+  "raw_api_outputs_committed": false,
+  "recommendation": "use_high_and_low_weight_rows_for_data_quality_experiments_keep_review_only_out_of_training",
+  "review_only_rows": 69,
+  "sft_ready_rows": 292,
+  "source_counts": {
+    "adjacent_three_way_consensus": 17,
+    "codex_top80_conservative_median": 31,
+    "conservative_median": 4,
+    "dual_teacher_consensus": 237,
+    "human_deepseek_agreement": 32,
+    "human_qwen_agreement": 40
+  },
+  "test_label_read": false,
+  "train_ready_rows_high_or_low_weight": 292,
+  "use_counts": {
+    "high_weight": 256,
+    "low_weight": 36,
+    "review_only": 69
+  }
+}

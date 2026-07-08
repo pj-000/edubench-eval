@@ -1,0 +1,211 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "blind": {
+      "additionalProperties": false,
+      "properties": {
+        "answer_key_uncertainty": {
+          "enum": [
+            "none",
+            "possible_answer_key_issue",
+            "insufficient_reference",
+            "rubric_ambiguous",
+            "unclear"
+          ],
+          "type": "string"
+        },
+        "confidence": {
+          "enum": [
+            "high",
+            "medium",
+            "low"
+          ],
+          "type": "string"
+        },
+        "evidence_span": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "evidence_type": {
+          "enum": [
+            "verbatim_answer_span",
+            "missing_required_content",
+            "rubric_mismatch",
+            "insufficient_context",
+            "not_applicable",
+            "unclear"
+          ],
+          "type": "string"
+        },
+        "failure_visibility": {
+          "enum": [
+            "explicit_failure",
+            "hidden_failure",
+            "missing_required_content",
+            "no_major_failure",
+            "unclear"
+          ],
+          "type": "string"
+        },
+        "major_failures": {
+          "items": {
+            "enum": [
+              "missing_key_point",
+              "missing_personalization",
+              "missing_scenario_integration",
+              "rubric_mismatch",
+              "factual_error",
+              "insufficient_reasoning",
+              "insufficient_evidence",
+              "partial_or_incomplete",
+              "task_constraint_violation",
+              "format_violation",
+              "irrelevant_or_off_topic",
+              "unsupported_claim",
+              "no_major_failure",
+              "unclear"
+            ],
+            "type": "string"
+          },
+          "minItems": 1,
+          "type": "array"
+        },
+        "missing_evidence_reason": {
+          "enum": [
+            "missing_reasoning",
+            "missing_key_point",
+            "missing_personalization",
+            "missing_scenario_integration",
+            "missing_explanation",
+            "missing_required_format",
+            null
+          ],
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "needs_human_review_blind": {
+          "type": "boolean"
+        },
+        "overestimation_risk": {
+          "enum": [
+            "high",
+            "medium",
+            "low",
+            "unclear"
+          ],
+          "type": "string"
+        },
+        "rubric_clause": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "rubric_fit": {
+          "enum": [
+            "fully_matches",
+            "mostly_matches",
+            "partially_matches",
+            "weakly_matches",
+            "does_not_match",
+            "unclear"
+          ],
+          "type": "string"
+        },
+        "score_cap": {
+          "maximum": 5,
+          "minimum": 1,
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "score_region": {
+          "enum": [
+            "low",
+            "mid",
+            "high"
+          ],
+          "type": "string"
+        },
+        "scored_target": {
+          "enum": [
+            "evaluator_output_answer_field"
+          ],
+          "type": "string"
+        },
+        "surface_plausibility": {
+          "enum": [
+            "high",
+            "medium",
+            "low",
+            "unclear"
+          ],
+          "type": "string"
+        },
+        "target_confusion_risk": {
+          "enum": [
+            "none",
+            "possible",
+            "high"
+          ],
+          "type": "string"
+        },
+        "target_scope_reason": {
+          "type": "string"
+        },
+        "teacher_reason": {
+          "type": "string"
+        },
+        "teacher_score": {
+          "maximum": 5,
+          "minimum": 1,
+          "type": "integer"
+        },
+        "uncertainty_reason": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "teacher_score",
+        "teacher_reason",
+        "major_failures",
+        "evidence_span",
+        "evidence_type",
+        "missing_evidence_reason",
+        "rubric_clause",
+        "rubric_fit",
+        "score_cap",
+        "score_region",
+        "failure_visibility",
+        "overestimation_risk",
+        "surface_plausibility",
+        "answer_key_uncertainty",
+        "confidence",
+        "needs_human_review_blind",
+        "uncertainty_reason",
+        "scored_target",
+        "target_confusion_risk",
+        "target_scope_reason"
+      ],
+      "type": "object"
+    },
+    "sample_id": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "sample_id",
+    "blind"
+  ],
+  "title": "Exp27I Target-Aware Teacher Blind Annotation V1",
+  "type": "object"
+}

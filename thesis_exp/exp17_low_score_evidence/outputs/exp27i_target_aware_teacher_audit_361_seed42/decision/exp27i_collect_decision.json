@@ -1,0 +1,10 @@
+{
+  "api_complete": true,
+  "conflict_queue_rows": 209,
+  "packet_rows": 361,
+  "raw_outputs_committed": false,
+  "recommended_next_step": "codex_direct_semantic_review_then_build_calibrated_361",
+  "target_scope_complete": true,
+  "test_label_read": false,
+  "top80_for_codex_direct_review": 80
+}

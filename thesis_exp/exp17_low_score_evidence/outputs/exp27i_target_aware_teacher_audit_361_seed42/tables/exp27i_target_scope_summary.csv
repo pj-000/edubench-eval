@@ -1,0 +1,5 @@
+provider,stage,rows,schema_ok,expected_target_count,unexpected_target_count,target_confusion_none,target_confusion_possible,target_confusion_high,audit_target_confusion_detected_true,audit_target_confusion_detected_false
+qwen,blind,361,361,361,0,346,15,,,
+qwen,audit,361,361,361,0,,,,,361
+deepseek,blind,361,361,361,0,358,3,,,
+deepseek,audit,361,361,361,0,,,,2,359

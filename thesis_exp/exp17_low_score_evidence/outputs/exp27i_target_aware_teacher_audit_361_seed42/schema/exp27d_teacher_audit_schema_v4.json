@@ -1,0 +1,127 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "audit": {
+      "additionalProperties": false,
+      "properties": {
+        "audit_reason": {
+          "type": "string"
+        },
+        "hard_conflict": {
+          "type": "boolean"
+        },
+        "label_noise_type": {
+          "enum": [
+            "none",
+            "teacher_stricter_than_human_soft",
+            "teacher_stricter_than_human_hard",
+            "teacher_more_lenient_than_human_soft",
+            "teacher_more_lenient_than_human_hard",
+            "rubric_ambiguity",
+            "answer_key_conflict",
+            "insufficient_context",
+            "annotator_disagreement",
+            "unclear",
+            "target_confusion"
+          ],
+          "type": "string"
+        },
+        "label_quality": {
+          "enum": [
+            "reliable",
+            "plausible_adjacent",
+            "suspected_conflict",
+            "unclear"
+          ],
+          "type": "string"
+        },
+        "needs_human_review": {
+          "type": "boolean"
+        },
+        "original_score": {
+          "maximum": 5,
+          "minimum": 1,
+          "type": "integer"
+        },
+        "recommended_training_use": {
+          "enum": [
+            "high_weight",
+            "low_weight",
+            "review_only",
+            "exclude"
+          ],
+          "type": "string"
+        },
+        "sample_weight_suggestion": {
+          "maximum": 3,
+          "minimum": 0,
+          "type": "number"
+        },
+        "score_agreement": {
+          "enum": [
+            "exact",
+            "adjacent",
+            "conflict",
+            "unclear"
+          ],
+          "type": "string"
+        },
+        "scored_target": {
+          "enum": [
+            "evaluator_output_answer_field"
+          ],
+          "type": "string"
+        },
+        "strictness_disagreement": {
+          "type": "boolean"
+        },
+        "target_confusion_detected": {
+          "type": "boolean"
+        },
+        "target_scope_reason": {
+          "type": "string"
+        },
+        "teacher_score": {
+          "maximum": 5,
+          "minimum": 1,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "original_score",
+        "teacher_score",
+        "score_agreement",
+        "label_quality",
+        "label_noise_type",
+        "recommended_training_use",
+        "sample_weight_suggestion",
+        "needs_human_review",
+        "audit_reason",
+        "strictness_disagreement",
+        "hard_conflict",
+        "scored_target",
+        "target_confusion_detected",
+        "target_scope_reason"
+      ],
+      "type": "object"
+    },
+    "blind_annotation_hash": {
+      "type": "string"
+    },
+    "blind_annotation_id": {
+      "type": "string"
+    },
+    "sample_id": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "sample_id",
+    "blind_annotation_id",
+    "blind_annotation_hash",
+    "audit"
+  ],
+  "title": "Exp27I Target-Aware Teacher Label Audit V1",
+  "type": "object"
+}

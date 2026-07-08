@@ -1,0 +1,7 @@
+group,count
+exp27f_top40_conflict_reaudit,40
+train_all_low_label,95
+train_clean_high_controls,36
+train_education_dimension_stress,40
+train_high_disagreement_protection,80
+train_mid_borderline,70
