@@ -1,0 +1,33 @@
+{
+  "edubench_exp26a_evidence_aware_sft_train": {
+    "columns": {
+      "messages": "messages"
+    },
+    "file_name": "data/edubench_exp26a_evidence_aware_sft_train.json",
+    "formatting": "sharegpt",
+    "tags": {
+      "assistant_tag": "assistant",
+      "content_tag": "content",
+      "role_tag": "role",
+      "system_tag": "system",
+      "user_tag": "user"
+    }
+  },
+  "edubench_exp26b_hidden_failure_dpo_train": {
+    "columns": {
+      "chosen": "chosen",
+      "messages": "messages",
+      "rejected": "rejected"
+    },
+    "file_name": "data/edubench_exp26b_hidden_failure_dpo_train.json",
+    "formatting": "sharegpt",
+    "ranking": true,
+    "tags": {
+      "assistant_tag": "assistant",
+      "content_tag": "content",
+      "role_tag": "role",
+      "system_tag": "system",
+      "user_tag": "user"
+    }
+  }
+}

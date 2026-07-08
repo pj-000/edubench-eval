@@ -1,0 +1,5 @@
+pair_type,count
+score_mismatch_same_evidence,429
+matched_high_protection_pair,240
+failure_erasure_negative,84
+real_model_error_score_pair,84

@@ -1,0 +1,19 @@
+{
+  "annotation_manifest_rows": 538,
+  "dpo_dataset": "edubench_exp26b_hidden_failure_dpo_train",
+  "dpo_pairs": 837,
+  "guardrails": {
+    "dev_test_used_for_id_guard_only": true,
+    "human_reason_in_prompt": false,
+    "teacher_annotation_already_used_as_gold": false,
+    "test_label_read": false,
+    "train_only_construction": true
+  },
+  "low_train_rows": 111,
+  "low_train_rows_with_reason": 84,
+  "missing_reason_files": [],
+  "needs_teacher_or_human_annotation": 111,
+  "recommendation": "review_exp26_data_before_training",
+  "sft_dataset": "edubench_exp26a_evidence_aware_sft_train",
+  "sft_rows": 564
+}

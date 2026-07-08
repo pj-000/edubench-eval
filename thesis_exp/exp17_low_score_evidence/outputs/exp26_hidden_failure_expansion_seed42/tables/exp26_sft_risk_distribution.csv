@@ -1,0 +1,4 @@
+risk_flag,count
+clean_high,360
+mid_borderline,120
+hidden_low_failure,84
