@@ -1,0 +1,5 @@
+comparison,point_estimate,ci95_low,ci95_high,bootstrap_unit,resamples
+soft_minus_qwen_weighted_mae,0.23902585688514733,0.07339897775105231,0.40710328058356926,question_key,2000
+soft_minus_teacher_mean_weighted_qwk,-0.20220003837022593,-0.3100762190570169,-0.10337302046553132,question_key,2000
+soft_minus_teacher_mean_severe_error,-0.004840649428743224,-0.017674871219894014,0.0065613744450752475,question_key,2000
+risk_model_minus_qwen_h_gap_AUPRC,-0.24174047865163167,-0.44495346000496205,-0.08358475414810951,question_key,2000

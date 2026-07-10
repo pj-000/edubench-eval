@@ -1,6 +1,24 @@
 *
 !.gitignore
 
+# Exp27L retains only reviewable, lightweight CPU calibration artifacts.
+# Packets, private references, and completed external reviews stay ignored.
+!exp27l_group_crossfit_calibration_seed42/
+exp27l_group_crossfit_calibration_seed42/*
+!exp27l_group_crossfit_calibration_seed42/data/
+!exp27l_group_crossfit_calibration_seed42/data/exp27l_question_key_fold_assignment.csv
+!exp27l_group_crossfit_calibration_seed42/data/exp27l_oof_soft_score_predictions.csv
+!exp27l_group_crossfit_calibration_seed42/data/exp27l_oof_risk_predictions.csv
+!exp27l_group_crossfit_calibration_seed42/data/exp27l_oof_tier_assignments.csv
+!exp27l_group_crossfit_calibration_seed42/tables/
+!exp27l_group_crossfit_calibration_seed42/tables/**
+!exp27l_group_crossfit_calibration_seed42/reports/
+!exp27l_group_crossfit_calibration_seed42/reports/**
+!exp27l_group_crossfit_calibration_seed42/decision/
+!exp27l_group_crossfit_calibration_seed42/decision/**
+!exp27l_group_crossfit_calibration_seed42/annotation_templates/
+!exp27l_group_crossfit_calibration_seed42/annotation_templates/**
+
 # Global guardrails for Exp17/Exp19 generated raw artifacts. Lightweight
 # reports/tables/configs are explicitly re-included by experiment blocks below.
 **/data/*.json

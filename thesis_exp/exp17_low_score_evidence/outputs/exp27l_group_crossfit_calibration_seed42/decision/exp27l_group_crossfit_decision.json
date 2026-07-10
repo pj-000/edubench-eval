@@ -1,0 +1,16 @@
+{
+  "bootstrap_resamples": 2000,
+  "experiment": "exp27l_group_crossfit_calibration",
+  "external_review_complete": false,
+  "external_review_required": true,
+  "oof_risk_rows": 180,
+  "oof_score_rows": 180,
+  "policy_b_representative_review_coverage": 0.28465624373621967,
+  "proceed_to_exp27m_train": false,
+  "proceed_to_reranker_training": false,
+  "reason": "Exp27L OOF results are internal silver-reference evidence only. External blinded human review is not complete, so no trainer dataset may be constructed.",
+  "representative_rows": 120,
+  "risk_signal_ci_stable": false,
+  "risk_stress_rows": 60,
+  "score_signal_ci_stable": false
+}

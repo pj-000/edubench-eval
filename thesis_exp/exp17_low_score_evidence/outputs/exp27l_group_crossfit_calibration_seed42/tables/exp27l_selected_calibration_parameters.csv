@@ -1,0 +1,6 @@
+outer_fold,score_lambda_human,score_lambda_qwen,score_lambda_deepseek,score_tau,inner_score_weighted_nll,risk_logistic_c,inner_risk_weighted_brier,risk_fit_rows,risk_stress_fit_rows,risk_fit_population,risk_feature_excludes_silver
+0,0.0,0.4,0.6,1.0,1.210000008007632,0.01,0.15677746811862142,79,0,representative_only,True
+1,0.1,0.7,0.2,0.5,0.6935001916258341,0.01,0.21564947076016608,89,0,representative_only,True
+2,0.0,0.5,0.5,1.0,1.2102816342119338,0.01,0.1624489315270182,116,0,representative_only,True
+3,0.3,0.3,0.4,1.0,1.221618179449873,0.01,0.09186295606479156,78,0,representative_only,True
+4,0.2,0.5,0.3,0.5,0.8632379220373448,0.01,0.16035557428735167,118,0,representative_only,True

@@ -1,0 +1,15 @@
+scope,agreement_pattern,n,weighted_population_mass,weighted_severe_conflict_rate,policy_b_weighted_review_rate
+representative,human_one_teacher_exact_other_far,9,270.3666666666667,0.3734434718283812,0.5670077672296882
+representative,other_disagreement,9,315.3,0.32022412517179405,1.0
+representative,teacher_consensus_human_adjacent,18,314.53333333333336,0.24109792284866466,0.31475201356506993
+representative,teacher_consensus_human_far,13,220.1,0.7340602756322884,1.0
+representative,teacher_gap_ge2,5,30.9,0.11974110032362459,1.0
+representative,three_way_adjacent_band,25,764.9666666666667,0.20366900518541114,0.16754542681598325
+representative,triple_exact,41,1409.8333333333333,0.0,0.0
+risk_enriched,human_one_teacher_exact_other_far,4,4.0,0.5,1.0
+risk_enriched,other_disagreement,14,14.0,0.6428571428571429,0.9285714285714286
+risk_enriched,teacher_consensus_human_adjacent,6,6.0,0.16666666666666666,0.6666666666666666
+risk_enriched,teacher_consensus_human_far,13,13.0,0.7692307692307693,1.0
+risk_enriched,teacher_gap_ge2,13,13.0,0.38461538461538464,0.9230769230769231
+risk_enriched,three_way_adjacent_band,3,3.0,0.3333333333333333,0.3333333333333333
+risk_enriched,triple_exact,7,7.0,0.0,0.0

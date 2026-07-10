@@ -1,0 +1,13 @@
+scope,policy,tier,n,weighted_coverage,weighted_severe_conflict_rate,weighted_nonsevere_rate
+representative,policy_a_tier,high,42,0.4520144317498497,0.06469779610660281,0.9353022038933971
+representative,policy_a_tier,low,46,0.35678492683904595,0.24974719101123594,0.7502528089887641
+representative,policy_a_tier,review,32,0.1912006414111044,0.32267533284411365,0.6773246671558864
+representative,policy_b_tier,high,26,0.28560833834435756,0.0,1.0
+representative,policy_b_tier,low,45,0.4297354179194227,0.21625970754914994,0.7837402924508501
+representative,policy_b_tier,review,49,0.28465624373621967,0.3060240115480759,0.6939759884519241
+risk_enriched,policy_a_tier,high,6,0.1,0.0,1.0
+risk_enriched,policy_a_tier,low,15,0.25,0.5333333333333333,0.4666666666666667
+risk_enriched,policy_a_tier,review,39,0.65,0.5128205128205128,0.4871794871794872
+risk_enriched,policy_b_tier,high,5,0.08333333333333333,0.0,1.0
+risk_enriched,policy_b_tier,low,8,0.13333333333333333,0.25,0.75
+risk_enriched,policy_b_tier,review,47,0.7833333333333333,0.5531914893617021,0.44680851063829785

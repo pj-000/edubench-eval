@@ -1,0 +1,10 @@
+{
+  "core_packet_exposes_teacher_or_silver": false,
+  "core_question_keys": 34,
+  "experiment": "exp27l_external_review_lockbox",
+  "external_review_complete": false,
+  "proceed_to_exp27m_train": false,
+  "reason": "External blind reviews and adjudication are still pending. The lockbox cannot be used as a training label source yet.",
+  "selection_uses_oof_for_core": false,
+  "targeted_ambiguity_rows": 20
+}

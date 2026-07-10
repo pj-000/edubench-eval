@@ -1,0 +1,11 @@
+check,count
+source_rows_from_train,180
+representative_rows,120
+risk_enriched_rows,60
+inherited_exp27j_dev_sample_overlap,0
+inherited_exp27j_dev_question_overlap,0
+inherited_exp27j_test_sample_overlap,0
+inherited_exp27j_test_question_overlap,0
+dev_test_files_opened_by_exp27l_prepare,0
+teacher_api_calls,0
+gpu_training_runs,0

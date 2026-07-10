@@ -45,6 +45,25 @@ thesis_exp/outputs/exp16_boundary_linking/sanity/
 thesis_exp/exp17_low_score_evidence/outputs/*
 !thesis_exp/exp17_low_score_evidence/outputs/.gitignore
 
+# Exp27L is a CPU-only calibration audit. Keep blind packets, private
+# references, and any completed external reviews local; retain only lightweight
+# fold/OOF CSVs, tables, reports, decisions, and empty review templates.
+!thesis_exp/exp17_low_score_evidence/outputs/exp27l_group_crossfit_calibration_seed42/
+thesis_exp/exp17_low_score_evidence/outputs/exp27l_group_crossfit_calibration_seed42/*
+!thesis_exp/exp17_low_score_evidence/outputs/exp27l_group_crossfit_calibration_seed42/data/
+!thesis_exp/exp17_low_score_evidence/outputs/exp27l_group_crossfit_calibration_seed42/data/exp27l_question_key_fold_assignment.csv
+!thesis_exp/exp17_low_score_evidence/outputs/exp27l_group_crossfit_calibration_seed42/data/exp27l_oof_soft_score_predictions.csv
+!thesis_exp/exp17_low_score_evidence/outputs/exp27l_group_crossfit_calibration_seed42/data/exp27l_oof_risk_predictions.csv
+!thesis_exp/exp17_low_score_evidence/outputs/exp27l_group_crossfit_calibration_seed42/data/exp27l_oof_tier_assignments.csv
+!thesis_exp/exp17_low_score_evidence/outputs/exp27l_group_crossfit_calibration_seed42/tables/
+!thesis_exp/exp17_low_score_evidence/outputs/exp27l_group_crossfit_calibration_seed42/tables/**
+!thesis_exp/exp17_low_score_evidence/outputs/exp27l_group_crossfit_calibration_seed42/reports/
+!thesis_exp/exp17_low_score_evidence/outputs/exp27l_group_crossfit_calibration_seed42/reports/**
+!thesis_exp/exp17_low_score_evidence/outputs/exp27l_group_crossfit_calibration_seed42/decision/
+!thesis_exp/exp17_low_score_evidence/outputs/exp27l_group_crossfit_calibration_seed42/decision/**
+!thesis_exp/exp17_low_score_evidence/outputs/exp27l_group_crossfit_calibration_seed42/annotation_templates/
+!thesis_exp/exp17_low_score_evidence/outputs/exp27l_group_crossfit_calibration_seed42/annotation_templates/**
+
 # Exp19-S0 full raw training JSON stays local, but lightweight review
 # artifacts are safe to commit for format/QC review.
 !thesis_exp/exp17_low_score_evidence/outputs/exp19_sft_dpo_datasets_seed42/

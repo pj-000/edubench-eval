@@ -1,0 +1,13 @@
+{
+  "experiment": "exp27l_group_crossfit_calibration",
+  "gpu_required": false,
+  "inner_folds": 3,
+  "oof_rows": 180,
+  "outer_folds": 5,
+  "proceed_to_exp27m_train": false,
+  "proceed_to_reranker_training": false,
+  "risk_model": "sklearn.linear_model.LogisticRegression(penalty=L2)",
+  "risk_stress_used_for_fit": false,
+  "risk_target": "severe_human_silver_conflict",
+  "teacher_api_calls": 0
+}
