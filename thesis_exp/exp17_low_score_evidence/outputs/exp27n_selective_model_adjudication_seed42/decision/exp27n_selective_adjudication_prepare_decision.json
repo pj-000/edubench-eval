@@ -1,0 +1,16 @@
+{
+  "adjudication_required_total": 70,
+  "already_reviewed": 16,
+  "experiment": "exp27n_selective_model_adjudication_prepare",
+  "gpu_required": false,
+  "human_external_validation": false,
+  "model_review_is_silver": true,
+  "model_training_runs": 0,
+  "next_step": "attach_packet_and_prompt_to_one_gpt56pro_session",
+  "packet_rows": 54,
+  "proceed_to_361_downstream_dataset_construction": false,
+  "remaining_to_review": 54,
+  "reviewer_plan": "one GPT-5.6Pro session for all 54; Codex performs structural QC and low-confidence isolation",
+  "status": "READY_FOR_ONE_GPT56PRO_SESSION",
+  "teacher_api_calls": 0
+}

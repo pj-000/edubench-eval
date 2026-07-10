@@ -1,0 +1,106 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "confidence": {
+      "enum": [
+        "high",
+        "medium",
+        "low"
+      ]
+    },
+    "evaluator_output_evidence": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "failure_bucket": {
+      "enum": [
+        "no_failure",
+        "visible_failure",
+        "hidden_or_missing_failure",
+        "unclear"
+      ]
+    },
+    "final_score": {
+      "maximum": 5,
+      "minimum": 1,
+      "type": "integer"
+    },
+    "final_score_range": {
+      "maxItems": 2,
+      "minItems": 2,
+      "prefixItems": [
+        {
+          "maximum": 5,
+          "minimum": 1,
+          "type": "integer"
+        },
+        {
+          "maximum": 5,
+          "minimum": 1,
+          "type": "integer"
+        }
+      ],
+      "type": "array"
+    },
+    "major_failures": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "missing_evidence_reason": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "review_status": {
+      "const": "completed"
+    },
+    "rubric_evidence": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "sample_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "score_cap": {
+      "maximum": 5,
+      "minimum": 1,
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "target_scope_confirmed": {
+      "const": true
+    },
+    "training_use": {
+      "enum": [
+        "resolved_model_silver",
+        "review_only"
+      ]
+    }
+  },
+  "required": [
+    "sample_id",
+    "target_scope_confirmed",
+    "final_score_range",
+    "final_score",
+    "failure_bucket",
+    "major_failures",
+    "rubric_evidence",
+    "evaluator_output_evidence",
+    "missing_evidence_reason",
+    "score_cap",
+    "confidence",
+    "training_use",
+    "review_status"
+  ],
+  "title": "Exp27N selective model adjudication",
+  "type": "object"
+}

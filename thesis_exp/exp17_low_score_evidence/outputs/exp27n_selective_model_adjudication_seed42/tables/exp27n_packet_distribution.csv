@@ -1,0 +1,6 @@
+dimension,value,count
+language,en,29
+language,zh,25
+metric_group,Factual & Reasoning Accuracy,24
+metric_group,Pedagogical Application,4
+metric_group,Scenario Adaptability,26

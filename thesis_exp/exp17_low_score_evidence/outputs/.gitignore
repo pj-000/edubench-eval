@@ -53,6 +53,25 @@ exp27m_model_review_audit_policy_seed42/*
 !exp27m_model_review_audit_policy_seed42/decision/
 !exp27m_model_review_audit_policy_seed42/decision/**
 
+# Exp27N publishes the target-aware 54-row packet, empty template, schema, and
+# lightweight preparation audit. Filled GPT review output remains ignored.
+!exp27n_selective_model_adjudication_seed42/
+exp27n_selective_model_adjudication_seed42/*
+!exp27n_selective_model_adjudication_seed42/packets/
+!exp27n_selective_model_adjudication_seed42/packets/exp27n_selective_adjudication_packets_54.jsonl
+!exp27n_selective_model_adjudication_seed42/annotation_templates/
+!exp27n_selective_model_adjudication_seed42/annotation_templates/exp27n_selective_adjudication_template_54.jsonl
+!exp27n_selective_model_adjudication_seed42/schemas/
+!exp27n_selective_model_adjudication_seed42/schemas/**
+!exp27n_selective_model_adjudication_seed42/prompts/
+!exp27n_selective_model_adjudication_seed42/prompts/**
+!exp27n_selective_model_adjudication_seed42/tables/
+!exp27n_selective_model_adjudication_seed42/tables/**
+!exp27n_selective_model_adjudication_seed42/reports/
+!exp27n_selective_model_adjudication_seed42/reports/**
+!exp27n_selective_model_adjudication_seed42/decision/
+!exp27n_selective_model_adjudication_seed42/decision/**
+
 # Global guardrails for Exp17/Exp19 generated raw artifacts. Lightweight
 # reports/tables/configs are explicitly re-included by experiment blocks below.
 **/data/*.json
