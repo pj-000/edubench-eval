@@ -1,0 +1,13 @@
+{
+  "ap_tie_invariance_pass": true,
+  "experiment": "exp27lr1_balanced_group_crossfit",
+  "external_human_review_complete": false,
+  "gpu_required": false,
+  "lock_result_learned_risk": "learned_risk_model_negative_use_simple_disagreement",
+  "lock_result_soft_fusion": "not_locked",
+  "proceed_to_full_3326_calibrated_dataset": false,
+  "proceed_to_qwen3_reranker_training": false,
+  "recommend_learned_risk_model": false,
+  "recommended_risk_signal": "qwen_human_gap_or_simple_disagreement",
+  "teacher_api_calls": 0
+}

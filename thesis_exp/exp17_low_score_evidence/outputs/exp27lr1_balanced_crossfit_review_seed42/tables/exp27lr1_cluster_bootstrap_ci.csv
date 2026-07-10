@@ -1,0 +1,6 @@
+comparison,point_estimate,ci95_low,ci95_high,bootstrap_unit,resamples
+nll_soft_fusion_minus_qwen_half_up_MAE,-0.018089797554620146,-0.13258566603525856,0.09019633680326794,question_key,2000
+nll_soft_fusion_minus_teacher_mean_QWK,0.012042430055933417,-0.04818657137809135,0.08427373417147499,question_key,2000
+nll_soft_fusion_minus_teacher_mean_severe_error,-0.028131890158348355,-0.07082155617123292,0.005119554924242431,question_key,2000
+full_logistic_minus_qwen_gap_AUPRC,-0.09883401133658842,-0.2552246944958263,0.06805877123255882,question_key,2000
+core_logistic_minus_qwen_gap_AUPRC,-0.05409194617214946,-0.12776829946365642,0.0706753789239053,question_key,2000

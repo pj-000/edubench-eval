@@ -1,0 +1,7 @@
+review_set,original_score_stratum,requested_rows,selected_rows,unique_question_keys,repeated_question_key_reason
+balanced_silver_validation,low_1_2,20,20,20,none
+balanced_silver_validation,mid_3,20,20,20,none
+balanced_silver_validation,high_4_5,20,20,20,none
+external_high_control_qkey_lockbox,high_4_5,33,33,33,none
+external_high_control_qkey_lockbox,mid_3,1,1,1,none
+targeted_ambiguity_qualitative_only,not_a_probability_sample,20,20,14,qualitative_only_selection_may_repeat_question_keys

@@ -1,0 +1,5 @@
+method,weighted_MAE,weighted_QWK,rounding
+Exp27K_teacher_mean_half_up,0.5551513329324514,0.6252959246919005,floor(mean+0.5)
+Exp27L_old_teacher_mean,0.5383042693926638,0.6438447369478486,python_bankers_round
+Exp27L-R1_corrected_teacher_mean,0.5551513329324514,0.6252959246919005,floor(mean+0.5)
+Exp27L-R1_continuous_teacher_mean,0.57014932852275,0.6252959246919005,continuous_no_rounding

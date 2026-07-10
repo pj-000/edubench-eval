@@ -1,0 +1,10 @@
+{
+  "experiment": "exp27lr1_balanced_group_crossfit",
+  "gpu_required": false,
+  "inner_constraints_pass": true,
+  "oof_rows": 180,
+  "proceed_to_full_3326_calibrated_dataset": false,
+  "proceed_to_qwen3_reranker_training": false,
+  "risk_enriched_rows_used_for_fit": 0,
+  "teacher_api_calls": 0
+}

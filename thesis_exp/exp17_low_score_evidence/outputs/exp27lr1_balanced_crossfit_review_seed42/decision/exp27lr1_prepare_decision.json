@@ -1,0 +1,16 @@
+{
+  "dev_label_used": false,
+  "experiment": "exp27lr1_balanced_group_crossfit",
+  "gpu_required": false,
+  "outer_constraints_pass": true,
+  "outer_seed": 42,
+  "proceed_to_full_3326_calibrated_dataset": false,
+  "proceed_to_qwen3_reranker_training": false,
+  "split_sensitivity_seeds": [
+    42,
+    43,
+    44
+  ],
+  "teacher_api_calls": 0,
+  "test_label_read": false
+}

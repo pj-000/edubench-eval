@@ -64,6 +64,27 @@ thesis_exp/exp17_low_score_evidence/outputs/exp27l_group_crossfit_calibration_se
 !thesis_exp/exp17_low_score_evidence/outputs/exp27l_group_crossfit_calibration_seed42/annotation_templates/
 !thesis_exp/exp17_low_score_evidence/outputs/exp27l_group_crossfit_calibration_seed42/annotation_templates/**
 
+# Exp27L-R1 keeps only lightweight OOF diagnostics and empty target-aware
+# reviewer packets. Filled reviews, private references, API data, and runtime
+# artifacts remain ignored by the enclosing output rule.
+!thesis_exp/exp17_low_score_evidence/outputs/exp27lr1_balanced_crossfit_review_seed42/
+thesis_exp/exp17_low_score_evidence/outputs/exp27lr1_balanced_crossfit_review_seed42/*
+!thesis_exp/exp17_low_score_evidence/outputs/exp27lr1_balanced_crossfit_review_seed42/data/
+!thesis_exp/exp17_low_score_evidence/outputs/exp27lr1_balanced_crossfit_review_seed42/data/exp27lr1_outer_fold_assignment_seed42.csv
+!thesis_exp/exp17_low_score_evidence/outputs/exp27lr1_balanced_crossfit_review_seed42/data/exp27lr1_oof_score_predictions.csv
+!thesis_exp/exp17_low_score_evidence/outputs/exp27lr1_balanced_crossfit_review_seed42/data/exp27lr1_oof_risk_predictions.csv
+!thesis_exp/exp17_low_score_evidence/outputs/exp27lr1_balanced_crossfit_review_seed42/data/exp27lr1_oof_tier_assignments.csv
+!thesis_exp/exp17_low_score_evidence/outputs/exp27lr1_balanced_crossfit_review_seed42/tables/
+!thesis_exp/exp17_low_score_evidence/outputs/exp27lr1_balanced_crossfit_review_seed42/tables/**
+!thesis_exp/exp17_low_score_evidence/outputs/exp27lr1_balanced_crossfit_review_seed42/reports/
+!thesis_exp/exp17_low_score_evidence/outputs/exp27lr1_balanced_crossfit_review_seed42/reports/**
+!thesis_exp/exp17_low_score_evidence/outputs/exp27lr1_balanced_crossfit_review_seed42/decision/
+!thesis_exp/exp17_low_score_evidence/outputs/exp27lr1_balanced_crossfit_review_seed42/decision/**
+!thesis_exp/exp17_low_score_evidence/outputs/exp27lr1_balanced_crossfit_review_seed42/packets/
+!thesis_exp/exp17_low_score_evidence/outputs/exp27lr1_balanced_crossfit_review_seed42/packets/**
+!thesis_exp/exp17_low_score_evidence/outputs/exp27lr1_balanced_crossfit_review_seed42/annotation_templates/
+!thesis_exp/exp17_low_score_evidence/outputs/exp27lr1_balanced_crossfit_review_seed42/annotation_templates/**
+
 # Exp19-S0 full raw training JSON stays local, but lightweight review
 # artifacts are safe to commit for format/QC review.
 !thesis_exp/exp17_low_score_evidence/outputs/exp19_sft_dpo_datasets_seed42/

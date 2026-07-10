@@ -1,0 +1,8 @@
+scope,signal,permutations,min_AUPRC,max_AUPRC,max_minus_min,pass_lt_1e12
+representative,full_feature_l2_logistic,100,0.349133663444419,0.349133663444419,0.0,True
+representative,core_standardized_l2_logistic,100,0.39387572860885794,0.39387572860885794,0.0,True
+representative,qwen_human_gap,100,0.4479676747810074,0.4479676747810074,0.0,True
+representative,deepseek_human_gap,100,0.31333119962767514,0.31333119962767514,0.0,True
+representative,teacher_gap,100,0.24652963439927017,0.24652963439927017,0.0,True
+representative,max_three_way_gap,100,0.366154923385685,0.366154923385685,0.0,True
+representative,exp27i_tier_proxy,100,0.3494796246904146,0.3494796246904146,0.0,True

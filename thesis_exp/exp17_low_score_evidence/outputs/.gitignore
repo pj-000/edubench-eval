@@ -19,6 +19,26 @@ exp27l_group_crossfit_calibration_seed42/*
 !exp27l_group_crossfit_calibration_seed42/annotation_templates/
 !exp27l_group_crossfit_calibration_seed42/annotation_templates/**
 
+# Exp27L-R1 keeps CPU-only summaries and empty review packets. No private
+# references, filled reviews, API data, logs, or model artifacts are allowed.
+!exp27lr1_balanced_crossfit_review_seed42/
+exp27lr1_balanced_crossfit_review_seed42/*
+!exp27lr1_balanced_crossfit_review_seed42/data/
+!exp27lr1_balanced_crossfit_review_seed42/data/exp27lr1_outer_fold_assignment_seed42.csv
+!exp27lr1_balanced_crossfit_review_seed42/data/exp27lr1_oof_score_predictions.csv
+!exp27lr1_balanced_crossfit_review_seed42/data/exp27lr1_oof_risk_predictions.csv
+!exp27lr1_balanced_crossfit_review_seed42/data/exp27lr1_oof_tier_assignments.csv
+!exp27lr1_balanced_crossfit_review_seed42/tables/
+!exp27lr1_balanced_crossfit_review_seed42/tables/**
+!exp27lr1_balanced_crossfit_review_seed42/reports/
+!exp27lr1_balanced_crossfit_review_seed42/reports/**
+!exp27lr1_balanced_crossfit_review_seed42/decision/
+!exp27lr1_balanced_crossfit_review_seed42/decision/**
+!exp27lr1_balanced_crossfit_review_seed42/packets/
+!exp27lr1_balanced_crossfit_review_seed42/packets/**
+!exp27lr1_balanced_crossfit_review_seed42/annotation_templates/
+!exp27lr1_balanced_crossfit_review_seed42/annotation_templates/**
+
 # Global guardrails for Exp17/Exp19 generated raw artifacts. Lightweight
 # reports/tables/configs are explicitly re-included by experiment blocks below.
 **/data/*.json

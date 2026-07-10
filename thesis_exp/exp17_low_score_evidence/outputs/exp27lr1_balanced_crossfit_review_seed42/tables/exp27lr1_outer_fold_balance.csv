@@ -1,0 +1,6 @@
+outer_fold,total_rows,unique_question_keys,representative_rows,risk_enriched_rows,representative_severe_positive,representative_severe_negative,constraints_pass
+0,37,16,24,13,6,18,True
+1,36,17,24,12,5,19,True
+2,36,18,24,12,5,19,True
+3,36,18,25,11,6,19,True
+4,35,15,23,12,5,18,True

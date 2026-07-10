@@ -1,0 +1,13 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["sample_id", "final_score_range", "final_score", "failure_bucket", "rubric_evidence", "confidence"],
+  "properties": {
+    "sample_id": {"type": "string"},
+    "final_score_range": {"type": "array", "minItems": 2, "maxItems": 2, "items": {"type": "integer", "minimum": 1, "maximum": 5}},
+    "final_score": {"type": "integer", "minimum": 1, "maximum": 5},
+    "failure_bucket": {"type": "string", "enum": ["no_failure", "visible_failure", "hidden_or_missing_failure", "unclear"]},
+    "rubric_evidence": {"type": "string", "minLength": 1},
+    "confidence": {"type": "string", "enum": ["high", "medium", "low"]}
+  }
+}
