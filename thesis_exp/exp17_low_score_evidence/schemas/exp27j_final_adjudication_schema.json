@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "adjudication_reason": {"minLength": 1, "type": "string"},
+    "ambiguity_type": {
+      "enum": [
+        "none",
+        "rubric_ambiguity",
+        "answer_key_ambiguity",
+        "insufficient_context",
+        "metric_scope_ambiguity",
+        "annotator_disagreement",
+        "other"
+      ],
+      "type": "string"
+    },
+    "final_confidence": {
+      "enum": ["high", "medium", "low"],
+      "type": "string"
+    },
+    "final_failure_bucket": {
+      "enum": [
+        "no_failure",
+        "visible_failure",
+        "hidden_or_missing_failure",
+        "unclear"
+      ],
+      "type": "string"
+    },
+    "final_major_failures": {
+      "items": {"type": "string"},
+      "minItems": 1,
+      "type": "array"
+    },
+    "final_output_evidence": {"type": ["string", "null"]},
+    "final_rubric_evidence": {"minLength": 1, "type": "string"},
+    "final_score": {
+      "maximum": 5,
+      "minimum": 1,
+      "type": "integer"
+    },
+    "final_score_range": {
+      "items": {
+        "maximum": 5,
+        "minimum": 1,
+        "type": "integer"
+      },
+      "maxItems": 2,
+      "minItems": 2,
+      "type": "array"
+    },
+    "review_packet_hash": {"type": "string"},
+    "sample_id": {"type": "string"}
+  },
+  "required": [
+    "sample_id",
+    "review_packet_hash",
+    "final_score_range",
+    "final_score",
+    "final_failure_bucket",
+    "final_major_failures",
+    "final_rubric_evidence",
+    "final_output_evidence",
+    "final_confidence",
+    "ambiguity_type",
+    "adjudication_reason"
+  ],
+  "title": "Exp27J Final Adjudication",
+  "type": "object"
+}

@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "confidence": {
+      "enum": ["high", "medium", "low"],
+      "type": "string"
+    },
+    "evaluator_output_evidence": {
+      "type": ["string", "null"]
+    },
+    "failure_bucket": {
+      "enum": [
+        "no_failure",
+        "visible_failure",
+        "hidden_or_missing_failure",
+        "unclear"
+      ],
+      "type": "string"
+    },
+    "major_failures": {
+      "items": {"type": "string"},
+      "minItems": 1,
+      "type": "array"
+    },
+    "most_plausible_score": {
+      "maximum": 5,
+      "minimum": 1,
+      "type": "integer"
+    },
+    "needs_adjudication": {"type": "boolean"},
+    "review_packet_hash": {"type": "string"},
+    "review_reason": {"minLength": 1, "type": "string"},
+    "rubric_evidence": {"minLength": 1, "type": "string"},
+    "sample_id": {"type": "string"},
+    "score_cap": {
+      "maximum": 5,
+      "minimum": 1,
+      "type": ["integer", "null"]
+    },
+    "score_range": {
+      "items": {
+        "maximum": 5,
+        "minimum": 1,
+        "type": "integer"
+      },
+      "maxItems": 2,
+      "minItems": 2,
+      "type": "array"
+    }
+  },
+  "required": [
+    "sample_id",
+    "review_packet_hash",
+    "score_range",
+    "most_plausible_score",
+    "failure_bucket",
+    "major_failures",
+    "rubric_evidence",
+    "evaluator_output_evidence",
+    "score_cap",
+    "confidence",
+    "needs_adjudication",
+    "review_reason"
+  ],
+  "title": "Exp27J Blind Review",
+  "type": "object"
+}

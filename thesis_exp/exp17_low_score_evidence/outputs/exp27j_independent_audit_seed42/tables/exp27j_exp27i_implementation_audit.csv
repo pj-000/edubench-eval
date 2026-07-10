@@ -1,0 +1,8 @@
+check,value,interpretation
+independent_top80_adjudication_input_found,false,The builder must consume an external filled adjudication artifact before claiming direct review.
+top80_defined_by_queue_slice,true,Current top-80 membership is derived from queue[:80].
+top80_review_csv_is_generated_output,true,The named direct-review CSV is written by the builder rather than read as an input.
+teacher_reliability_uses_fixed_constants,true,Reliability increments are fixed heuristics rather than estimates from an independent audit set.
+human_individual_scores_used,false,Individual human scores should inform uncertainty and review priority.
+risk_flag_is_score_derived,true,The exported risk flag is mechanically derived from calibrated_score <= 2.
+evidence_fields_preserved_in_sft,false,"Evidence span, rubric clause, and failure visibility should be retained if used as supervision."

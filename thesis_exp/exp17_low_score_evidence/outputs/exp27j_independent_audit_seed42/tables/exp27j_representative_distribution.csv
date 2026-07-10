@@ -1,0 +1,106 @@
+view,score_stratum,language,metric_group,subject,scenario,count
+representative,high_4_5,en,Factual & Reasoning Accuracy,English,Automatic Grading,1
+representative,high_4_5,en,Factual & Reasoning Accuracy,Law,Error Correction,1
+representative,high_4_5,en,Factual & Reasoning Accuracy,Mathematics,Automatic Grading,1
+representative,high_4_5,en,Factual & Reasoning Accuracy,Physical Education,Question Generation,1
+representative,high_4_5,en,Factual & Reasoning Accuracy,Psychology,Automatic Grading,2
+representative,high_4_5,en,Factual & Reasoning Accuracy,Psychology,Question Answering,2
+representative,high_4_5,en,Factual & Reasoning Accuracy,Public Administration,Error Correction,1
+representative,high_4_5,en,Pedagogical Application,Basic Medicine,Automatic Grading,1
+representative,high_4_5,en,Pedagogical Application,Computer Science,Error Correction,1
+representative,high_4_5,en,Pedagogical Application,English,Automatic Grading,1
+representative,high_4_5,en,Pedagogical Application,Law,Idea Provision,2
+representative,high_4_5,en,Pedagogical Application,Physical Education,Idea Provision,1
+representative,high_4_5,en,Pedagogical Application,Physics,Error Correction,1
+representative,high_4_5,en,Pedagogical Application,Public Administration,Error Correction,1
+representative,high_4_5,en,Pedagogical Application,Theoretical Economics,Automatic Grading,1
+representative,high_4_5,en,Scenario Adaptability,Aquaculture,Question Generation,1
+representative,high_4_5,en,Scenario Adaptability,Biology,Emotional Support,1
+representative,high_4_5,en,Scenario Adaptability,Computer Science,Error Correction,1
+representative,high_4_5,en,Scenario Adaptability,Law,Idea Provision,1
+representative,high_4_5,en,Scenario Adaptability,Literature and Art,Teaching Material Generation,1
+representative,high_4_5,en,Scenario Adaptability,Mathematics,Question Answering,1
+representative,high_4_5,en,Scenario Adaptability,Military Science,Idea Provision,1
+representative,high_4_5,en,Scenario Adaptability,Physics,Error Correction,2
+representative,high_4_5,en,Scenario Adaptability,Psychology,Question Generation,1
+representative,high_4_5,en,Scenario Adaptability,Theoretical Economics,Question Answering,1
+representative,high_4_5,zh,Factual & Reasoning Accuracy,Applied Economics,Idea Provision,1
+representative,high_4_5,zh,Factual & Reasoning Accuracy,Aquaculture,Error Correction,1
+representative,high_4_5,zh,Factual & Reasoning Accuracy,Biology,Teaching Material Generation,1
+representative,high_4_5,zh,Factual & Reasoning Accuracy,Business Administration,Idea Provision,1
+representative,high_4_5,zh,Factual & Reasoning Accuracy,Chemistry,Idea Provision,1
+representative,high_4_5,zh,Factual & Reasoning Accuracy,English,Error Correction,1
+representative,high_4_5,zh,Factual & Reasoning Accuracy,General Pedagogy,Automatic Grading,1
+representative,high_4_5,zh,Factual & Reasoning Accuracy,Literature and Art,Question Generation,1
+representative,high_4_5,zh,Factual & Reasoning Accuracy,Mathematics,Question Generation,1
+representative,high_4_5,zh,Factual & Reasoning Accuracy,Psychology,Idea Provision,2
+representative,high_4_5,zh,Pedagogical Application,Aquaculture,Personalized Learning Support,1
+representative,high_4_5,zh,Pedagogical Application,Chemistry,Idea Provision,1
+representative,high_4_5,zh,Pedagogical Application,Computer Science,Automatic Grading,1
+representative,high_4_5,zh,Pedagogical Application,General Pedagogy,Automatic Grading,2
+representative,high_4_5,zh,Pedagogical Application,General Pedagogy,Personalized Learning Support,1
+representative,high_4_5,zh,Pedagogical Application,Military Science,Personalized Learning Support,1
+representative,high_4_5,zh,Pedagogical Application,Psychology,Question Generation,1
+representative,high_4_5,zh,Pedagogical Application,Theoretical Economics,Teaching Material Generation,1
+representative,high_4_5,zh,Scenario Adaptability,Applied Economics,Idea Provision,1
+representative,high_4_5,zh,Scenario Adaptability,Aquaculture,Error Correction,2
+representative,high_4_5,zh,Scenario Adaptability,Chemistry,Idea Provision,1
+representative,high_4_5,zh,Scenario Adaptability,Clinical Medicine,Question Answering,1
+representative,high_4_5,zh,Scenario Adaptability,General Pedagogy,Personalized Learning Support,2
+representative,high_4_5,zh,Scenario Adaptability,Literature and Art,Emotional Support,1
+representative,high_4_5,zh,Scenario Adaptability,Physics,Personalized Content Creation,1
+representative,high_4_5,zh,Scenario Adaptability,Theoretical Economics,Automatic Grading,1
+representative,high_4_5,zh,Scenario Adaptability,Theoretical Economics,Personalized Content Creation,1
+representative,low_1_2,en,Factual & Reasoning Accuracy,Applied Economics,Question Answering,2
+representative,low_1_2,en,Factual & Reasoning Accuracy,Basic Medicine,Automatic Grading,2
+representative,low_1_2,en,Factual & Reasoning Accuracy,Business Administration,Idea Provision,1
+representative,low_1_2,en,Factual & Reasoning Accuracy,Computer Science,Question Answering,1
+representative,low_1_2,en,Factual & Reasoning Accuracy,Mathematics,Question Answering,1
+representative,low_1_2,en,Pedagogical Application,Basic Medicine,Error Correction,1
+representative,low_1_2,en,Pedagogical Application,Law,Error Correction,1
+representative,low_1_2,en,Scenario Adaptability,Biology,Idea Provision,1
+representative,low_1_2,en,Scenario Adaptability,Crop Science,Idea Provision,1
+representative,low_1_2,en,Scenario Adaptability,General Pedagogy,Teaching Material Generation,1
+representative,low_1_2,en,Scenario Adaptability,Mathematics,Idea Provision,1
+representative,low_1_2,zh,Factual & Reasoning Accuracy,Basic Medicine,Automatic Grading,2
+representative,low_1_2,zh,Factual & Reasoning Accuracy,Clinical Medicine,Question Answering,1
+representative,low_1_2,zh,Factual & Reasoning Accuracy,History,Automatic Grading,1
+representative,low_1_2,zh,Factual & Reasoning Accuracy,History,Question Answering,2
+representative,low_1_2,zh,Factual & Reasoning Accuracy,Law,Question Answering,4
+representative,low_1_2,zh,Factual & Reasoning Accuracy,Mathematics,Automatic Grading,1
+representative,low_1_2,zh,Factual & Reasoning Accuracy,Physical Education,Question Answering,1
+representative,low_1_2,zh,Factual & Reasoning Accuracy,Physics,Question Answering,1
+representative,low_1_2,zh,Pedagogical Application,Basic Medicine,Automatic Grading,1
+representative,low_1_2,zh,Pedagogical Application,History,Error Correction,1
+representative,low_1_2,zh,Scenario Adaptability,Basic Medicine,Automatic Grading,1
+representative,low_1_2,zh,Scenario Adaptability,Theoretical Economics,Automatic Grading,1
+representative,mid_3,en,Factual & Reasoning Accuracy,Basic Medicine,Error Correction,1
+representative,mid_3,en,Factual & Reasoning Accuracy,Theoretical Economics,Automatic Grading,1
+representative,mid_3,en,Pedagogical Application,Biology,Emotional Support,1
+representative,mid_3,en,Pedagogical Application,Biology,Idea Provision,1
+representative,mid_3,en,Pedagogical Application,Crop Science,Idea Provision,1
+representative,mid_3,en,Pedagogical Application,Law,Error Correction,1
+representative,mid_3,en,Pedagogical Application,Literature and Art,Error Correction,1
+representative,mid_3,en,Pedagogical Application,Physical Education,Question Generation,1
+representative,mid_3,en,Pedagogical Application,Sociology,Question Generation,1
+representative,mid_3,en,Pedagogical Application,Theoretical Economics,Automatic Grading,1
+representative,mid_3,en,Scenario Adaptability,Geography,Automatic Grading,1
+representative,mid_3,zh,Factual & Reasoning Accuracy,History,Automatic Grading,1
+representative,mid_3,zh,Factual & Reasoning Accuracy,Theoretical Economics,Automatic Grading,1
+representative,mid_3,zh,Pedagogical Application,Aquaculture,Personalized Learning Support,1
+representative,mid_3,zh,Pedagogical Application,Basic Medicine,Question Generation,1
+representative,mid_3,zh,Pedagogical Application,Crop Science,Teaching Material Generation,1
+representative,mid_3,zh,Pedagogical Application,English,Error Correction,1
+representative,mid_3,zh,Pedagogical Application,Literature and Art,Emotional Support,1
+representative,mid_3,zh,Pedagogical Application,Mathematics,Question Generation,1
+representative,mid_3,zh,Pedagogical Application,Physics,Error Correction,1
+representative,mid_3,zh,Pedagogical Application,Public Administration,Personalized Learning Support,1
+representative,mid_3,zh,Scenario Adaptability,Basic Medicine,Emotional Support,1
+representative,mid_3,zh,Scenario Adaptability,Business Administration,Personalized Content Creation,1
+representative,mid_3,zh,Scenario Adaptability,Chemistry,Automatic Grading,1
+representative,mid_3,zh,Scenario Adaptability,Computer Science,Automatic Grading,1
+representative,mid_3,zh,Scenario Adaptability,English,Error Correction,1
+representative,mid_3,zh,Scenario Adaptability,History,Automatic Grading,1
+representative,mid_3,zh,Scenario Adaptability,History,Error Correction,1
+representative,mid_3,zh,Scenario Adaptability,Physics,Emotional Support,1
+representative,mid_3,zh,Scenario Adaptability,Theoretical Economics,Automatic Grading,1

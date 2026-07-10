@@ -1,0 +1,2 @@
+contrast,estimate,ci95_low,ci95_high,bootstrap_unit,bootstrap_resamples
+review_only_minus_high_weight_abs_ge_2_error_rate,0.080616,-0.078405,0.241379,question_key,2000

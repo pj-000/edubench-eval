@@ -1,0 +1,19 @@
+check,passed,detail
+representative_rows,true,120
+risk_enriched_rows,true,60
+total_rows,true,180
+unique_sample_ids,true,180
+question_key_design_feasibility,true,"unique=84; train has 118, so 180 unique is impossible and clusters are retained"
+blind_label_leakage,true,0
+packet_hashes_present,true,all packets require hashes
+dev_sample_overlap,true,0
+dev_question_overlap,true,0
+test_sample_overlap,true,0
+test_question_overlap,true,0
+test_label_read,true,0
+dev_label_used,true,0
+blind_label_leakage,true,0
+human_reason_leakage,true,0
+reviewer_a_coverage,true,rows=180 unique=180
+reviewer_b_coverage,true,rows=180 unique=180
+final_adjudication_exact_required_set,true,required=68 final=68 missing=0 extra=0

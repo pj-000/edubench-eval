@@ -1,0 +1,56 @@
+view,score_stratum,language,metric_group,subject,scenario,count
+risk_enriched,high_4_5,en,Factual & Reasoning Accuracy,Biology,Automatic Grading,2
+risk_enriched,high_4_5,en,Factual & Reasoning Accuracy,Mathematics,Automatic Grading,1
+risk_enriched,high_4_5,en,Pedagogical Application,Crop Science,Idea Provision,1
+risk_enriched,high_4_5,en,Pedagogical Application,English,Automatic Grading,1
+risk_enriched,high_4_5,en,Pedagogical Application,Geography,Automatic Grading,1
+risk_enriched,high_4_5,en,Pedagogical Application,Geography,Idea Provision,1
+risk_enriched,high_4_5,en,Pedagogical Application,Military Science,Emotional Support,1
+risk_enriched,high_4_5,en,Scenario Adaptability,Geography,Idea Provision,1
+risk_enriched,high_4_5,en,Scenario Adaptability,Military Science,Idea Provision,1
+risk_enriched,high_4_5,en,Scenario Adaptability,Physical Education,Idea Provision,1
+risk_enriched,high_4_5,en,Scenario Adaptability,Public Administration,Idea Provision,1
+risk_enriched,high_4_5,zh,Factual & Reasoning Accuracy,Computer Science,Automatic Grading,1
+risk_enriched,high_4_5,zh,Factual & Reasoning Accuracy,General Pedagogy,Automatic Grading,1
+risk_enriched,high_4_5,zh,Factual & Reasoning Accuracy,History,Automatic Grading,2
+risk_enriched,high_4_5,zh,Factual & Reasoning Accuracy,Mathematics,Automatic Grading,1
+risk_enriched,high_4_5,zh,Factual & Reasoning Accuracy,Public Administration,Error Correction,1
+risk_enriched,high_4_5,zh,Factual & Reasoning Accuracy,Theoretical Economics,Automatic Grading,1
+risk_enriched,high_4_5,zh,Pedagogical Application,Applied Economics,Idea Provision,1
+risk_enriched,high_4_5,zh,Pedagogical Application,Chemistry,Idea Provision,1
+risk_enriched,high_4_5,zh,Scenario Adaptability,General Pedagogy,Error Correction,1
+risk_enriched,low_1_2,en,Factual & Reasoning Accuracy,Applied Economics,Question Answering,1
+risk_enriched,low_1_2,en,Factual & Reasoning Accuracy,Basic Medicine,Automatic Grading,3
+risk_enriched,low_1_2,en,Factual & Reasoning Accuracy,Computer Science,Question Answering,2
+risk_enriched,low_1_2,en,Factual & Reasoning Accuracy,Psychology,Question Answering,1
+risk_enriched,low_1_2,en,Pedagogical Application,Aquaculture,Question Generation,1
+risk_enriched,low_1_2,en,Pedagogical Application,Basic Medicine,Error Correction,1
+risk_enriched,low_1_2,en,Pedagogical Application,Basic Medicine,Question Generation,1
+risk_enriched,low_1_2,en,Pedagogical Application,Physical Education,Question Generation,1
+risk_enriched,low_1_2,en,Scenario Adaptability,Biology,Idea Provision,1
+risk_enriched,low_1_2,en,Scenario Adaptability,Business Administration,Idea Provision,1
+risk_enriched,low_1_2,en,Scenario Adaptability,Mathematics,Idea Provision,1
+risk_enriched,low_1_2,en,Scenario Adaptability,Mathematics,Question Answering,1
+risk_enriched,low_1_2,en,Scenario Adaptability,Theoretical Economics,Automatic Grading,1
+risk_enriched,low_1_2,zh,Factual & Reasoning Accuracy,Basic Medicine,Automatic Grading,1
+risk_enriched,low_1_2,zh,Factual & Reasoning Accuracy,Clinical Medicine,Question Answering,1
+risk_enriched,low_1_2,zh,Factual & Reasoning Accuracy,History,Automatic Grading,1
+risk_enriched,low_1_2,zh,Factual & Reasoning Accuracy,History,Question Answering,1
+risk_enriched,low_1_2,zh,Pedagogical Application,Clinical Medicine,Personalized Learning Support,1
+risk_enriched,low_1_2,zh,Scenario Adaptability,Mathematics,Automatic Grading,1
+risk_enriched,low_1_2,zh,Scenario Adaptability,Theoretical Economics,Automatic Grading,1
+risk_enriched,mid_3,en,Pedagogical Application,Chinese,Idea Provision,1
+risk_enriched,mid_3,en,Pedagogical Application,Sociology,Question Generation,1
+risk_enriched,mid_3,en,Scenario Adaptability,Military Science,Question Answering,1
+risk_enriched,mid_3,zh,Factual & Reasoning Accuracy,English,Error Correction,1
+risk_enriched,mid_3,zh,Factual & Reasoning Accuracy,Theoretical Economics,Automatic Grading,1
+risk_enriched,mid_3,zh,Pedagogical Application,Biology,Personalized Learning Support,1
+risk_enriched,mid_3,zh,Pedagogical Application,Clinical Medicine,Personalized Content Creation,1
+risk_enriched,mid_3,zh,Pedagogical Application,General Pedagogy,Personalized Learning Support,1
+risk_enriched,mid_3,zh,Pedagogical Application,Military Science,Personalized Learning Support,1
+risk_enriched,mid_3,zh,Pedagogical Application,Physical Education,Question Generation,1
+risk_enriched,mid_3,zh,Scenario Adaptability,Crop Science,Teaching Material Generation,1
+risk_enriched,mid_3,zh,Scenario Adaptability,Law,Question Answering,1
+risk_enriched,mid_3,zh,Scenario Adaptability,Mathematics,Automatic Grading,1
+risk_enriched,mid_3,zh,Scenario Adaptability,Mathematics,Question Generation,1
+risk_enriched,mid_3,zh,Scenario Adaptability,Public Administration,Personalized Learning Support,1

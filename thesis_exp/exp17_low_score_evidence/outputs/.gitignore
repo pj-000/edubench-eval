@@ -358,3 +358,14 @@ exp27e_provider_bias_conflict_analysis_seed42/*
 !exp27e_provider_bias_conflict_analysis_seed42/schema/**
 !exp27e_provider_bias_conflict_analysis_seed42/tables/
 !exp27e_provider_bias_conflict_analysis_seed42/tables/**
+
+# Exp27J keeps blind packets, private provenance, and full reviewer text local.
+# Commit only aggregate validation tables, reports, and decisions.
+!exp27j_independent_audit_seed42/
+exp27j_independent_audit_seed42/*
+!exp27j_independent_audit_seed42/decision/
+!exp27j_independent_audit_seed42/decision/**
+!exp27j_independent_audit_seed42/reports/
+!exp27j_independent_audit_seed42/reports/**
+!exp27j_independent_audit_seed42/tables/
+!exp27j_independent_audit_seed42/tables/**

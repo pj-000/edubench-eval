@@ -1,0 +1,17 @@
+population_view,score_stratum,metric,n,eligible_n,coverage_rate,population_estimable,estimate,ci95_low,ci95_high,bootstrap_unit,bootstrap_resamples
+representative_design_weighted,all,original_label_conflict_abs_ge_2,120,120,1.000000,true,0.180046,0.104990,0.260111,question_key,2000
+representative_design_weighted,all,teacher_human_conflict_abs_ge_2,120,47,0.391667,false,0.146311,0.060252,0.300308,question_key,2000
+representative_design_weighted,all,evidence_gap_or_hidden_failure,120,120,1.000000,true,0.099479,0.044002,0.164891,question_key,2000
+representative_design_weighted,all,exp27i_review_only,120,47,0.391667,false,0.112270,0.046002,0.232674,question_key,2000
+representative_design_weighted,low_1_2,original_label_conflict_abs_ge_2,30,30,1.000000,true,0.300000,0.125000,0.481481,question_key,2000
+representative_design_weighted,low_1_2,teacher_human_conflict_abs_ge_2,30,30,1.000000,true,0.266667,0.095238,0.448276,question_key,2000
+representative_design_weighted,low_1_2,evidence_gap_or_hidden_failure,30,30,1.000000,true,0.433333,0.235294,0.640000,question_key,2000
+representative_design_weighted,low_1_2,exp27i_review_only,30,30,1.000000,true,0.300000,0.136364,0.500000,question_key,2000
+representative_design_weighted,mid_3,original_label_conflict_abs_ge_2,30,30,1.000000,true,0.266667,0.129032,0.433333,question_key,2000
+representative_design_weighted,mid_3,teacher_human_conflict_abs_ge_2,30,12,0.400000,false,0.333333,0.083333,0.583333,question_key,2000
+representative_design_weighted,mid_3,evidence_gap_or_hidden_failure,30,30,1.000000,true,0.133333,0.031250,0.266667,question_key,2000
+representative_design_weighted,mid_3,exp27i_review_only,30,12,0.400000,false,0.166667,0.000000,0.416667,question_key,2000
+representative_design_weighted,high_4_5,original_label_conflict_abs_ge_2,60,60,1.000000,true,0.166667,0.088235,0.254545,question_key,2000
+representative_design_weighted,high_4_5,teacher_human_conflict_abs_ge_2,60,5,0.083333,false,0.000000,0.000000,0.000000,question_key,2000
+representative_design_weighted,high_4_5,evidence_gap_or_hidden_failure,60,60,1.000000,true,0.083333,0.017857,0.152542,question_key,2000
+representative_design_weighted,high_4_5,exp27i_review_only,60,5,0.083333,false,0.000000,0.000000,0.000000,question_key,2000

@@ -1,0 +1,5 @@
+artifact,completed_rows,expected_rows
+blind_packets,180,180
+reviewer_a,180,180
+reviewer_b,180,180
+final_adjudication,68,computed_after_dual_review

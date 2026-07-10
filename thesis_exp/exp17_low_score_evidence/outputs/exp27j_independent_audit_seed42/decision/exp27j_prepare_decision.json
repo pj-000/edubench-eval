@@ -1,0 +1,42 @@
+{
+  "blind_label_leakage": 0,
+  "dev_label_used": false,
+  "dev_test_overlap": 0,
+  "experiment": "exp27j_independent_audit_benchmark",
+  "human_reason_leakage": 0,
+  "label_counts_private": {
+    "1": 24,
+    "2": 29,
+    "3": 45,
+    "4": 38,
+    "5": 44
+  },
+  "missing_reason_files": [],
+  "proceed_to_qwen3_reranker_downstream_experiment": false,
+  "processed_rows": 5536,
+  "recommendation": "complete_independent_blind_reviews_and_adjudication_before_training",
+  "representative_quotas": {
+    "high_4_5": 60,
+    "low_1_2": 30,
+    "mid_3": 30
+  },
+  "representative_rows": 120,
+  "requested_180_unique_question_keys_feasible": false,
+  "reviewer_a_filled_exists": true,
+  "reviewer_b_filled_exists": true,
+  "risk_enriched_rows": 60,
+  "risk_quotas": {
+    "education_dimension_stress": 5,
+    "high_human_teacher_low": 15,
+    "label3_boundary": 10,
+    "low_human_teacher_high_or_hidden": 20,
+    "teacher_gap_or_review_only": 10
+  },
+  "sampling_design_revision": "row_level_stratified_probability_sample_with_question_key_cluster_analysis",
+  "test_label_read": false,
+  "total_rows": 180,
+  "train_rows": 3326,
+  "train_unique_question_keys": 118,
+  "unique_question_keys": 84,
+  "unique_sample_ids": 180
+}

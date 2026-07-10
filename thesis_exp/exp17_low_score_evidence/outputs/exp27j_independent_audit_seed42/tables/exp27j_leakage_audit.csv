@@ -1,0 +1,14 @@
+check,count
+total_rows,180
+unique_sample_ids,180
+unique_question_keys,84
+repeated_question_key_rows,96
+max_rows_per_question_key,7
+dev_sample_overlap,0
+dev_question_overlap,0
+test_sample_overlap,0
+test_question_overlap,0
+test_label_read,0
+dev_label_used,0
+blind_label_leakage,0
+human_reason_leakage,0

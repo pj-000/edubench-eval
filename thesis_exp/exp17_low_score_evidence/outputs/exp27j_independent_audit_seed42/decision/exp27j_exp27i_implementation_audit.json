@@ -1,0 +1,11 @@
+{
+  "current_codex_top80_is_rule_based": true,
+  "evidence_fields_preserved_in_sft": false,
+  "exp27i_current_292_formal_training_ready": false,
+  "human_individual_scores_used": false,
+  "independent_top80_adjudication_input_found": false,
+  "recommendation": "revise_calibration_after_independent_audit",
+  "risk_flag_is_score_derived": true,
+  "teacher_reliability_uses_fixed_constants": true,
+  "top80_review_csv_is_generated_output": true
+}

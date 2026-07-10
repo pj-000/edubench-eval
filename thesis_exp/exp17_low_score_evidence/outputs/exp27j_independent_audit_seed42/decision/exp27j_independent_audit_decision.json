@@ -1,0 +1,45 @@
+{
+  "alt_test_status": "prepared_not_run",
+  "blocking_criteria": [
+    "review_only_error_rate_gt_high_weight",
+    "tier_trust_ordering_high_gt_low_gt_review"
+  ],
+  "completed_required_adjudication_rows": 68,
+  "criteria": {
+    "dual_review_completion_ge_0p95": true,
+    "exp27i_implementation_issue_documented": true,
+    "final_reference_complete": true,
+    "high_weight_mae_le_0p50": true,
+    "high_weight_within_one_ge_0p90": true,
+    "representative_and_risk_reported_separately": true,
+    "review_only_error_rate_gt_high_weight": false,
+    "reviewer_qwk_ge_0p70_or_all_required_adjudicated": true,
+    "tier_trust_ordering_high_gt_low_gt_review": false
+  },
+  "current_exp27i_292_formal_training_ready": false,
+  "dual_review_completion_rate": 1.0,
+  "final_reference_rows": 180,
+  "proceed_to_qwen3_reranker_downstream_experiment": false,
+  "recommended_next_step": "revise_exp27i_calibration_tiers_using_exp27j_then_external_review",
+  "required_adjudication_rows": 68,
+  "review_provenance": {
+    "adjudicator": {
+      "context": "isolated_from_original_human_qwen_deepseek_and_exp27i_labels",
+      "reviewer_type": "independent_codex_agent"
+    },
+    "human_expert_included": false,
+    "reference_status": "dual_codex_blind_review_model_adjudicated_silver_reference",
+    "reviewer_a": {
+      "context": "isolated_blind_context",
+      "reviewer_type": "independent_codex_agent"
+    },
+    "reviewer_b": {
+      "context": "isolated_blind_context",
+      "reviewer_type": "independent_codex_agent"
+    }
+  },
+  "reviewer_a_rows": 180,
+  "reviewer_b_rows": 180,
+  "reviewer_ordinal_alpha": 0.9014934734036298,
+  "reviewer_qwk": 0.9013432628062361
+}

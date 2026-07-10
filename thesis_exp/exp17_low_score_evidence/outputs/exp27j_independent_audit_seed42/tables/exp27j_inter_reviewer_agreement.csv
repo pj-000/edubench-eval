@@ -1,0 +1,4 @@
+reviewer_pair,view,n,qwk,krippendorff_ordinal_alpha,exact_agreement,within_one_agreement,mae,score_range_overlap,adjudication_required_rate
+a_vs_b,all,180,0.901343,0.901493,0.766667,0.961111,0.272222,0.800000,0.377778
+a_vs_b,representative,120,0.932188,0.932448,0.825000,0.975000,0.200000,0.850000,0.333333
+a_vs_b,risk_enriched,60,0.825704,0.826231,0.650000,0.933333,0.416667,0.700000,0.466667

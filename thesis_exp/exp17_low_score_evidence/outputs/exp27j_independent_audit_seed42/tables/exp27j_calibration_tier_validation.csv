@@ -1,0 +1,10 @@
+recommended_training_use,calibration_source,n,mae_to_adjudicated,exact,within_one,conflict_error_rate_abs_ge_2,mean_score_range_width,high_final_confidence_rate
+high_weight,,46,0.282609,0.804348,0.934783,0.065217,0.152174,0.804348
+low_weight,,13,0.923077,0.538462,0.769231,0.230769,0.307692,0.692308
+review_only,,48,0.833333,0.395833,0.854167,0.145833,0.375000,0.562500
+,adjacent_three_way_consensus,6,0.333333,0.666667,1.000000,0.000000,0.000000,1.000000
+,codex_top80_conservative_median,26,1.038462,0.269231,0.769231,0.230769,0.461538,0.500000
+,conservative_median,1,0.000000,1.000000,1.000000,0.000000,1.000000,0.000000
+,dual_teacher_consensus,58,0.344828,0.741379,0.965517,0.034483,0.120690,0.827586
+,human_deepseek_agreement,7,1.000000,0.285714,0.714286,0.285714,0.571429,0.285714
+,human_qwen_agreement,9,1.000000,0.666667,0.666667,0.333333,0.555556,0.444444
