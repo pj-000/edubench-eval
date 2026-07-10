@@ -8,9 +8,13 @@
   "high_impact_transition_rows": 16,
   "model_training_runs": 0,
   "primary_comparisons": [
-    "v0_original_unweighted_vs_v2_selective_hard_relabel",
-    "v2_selective_hard_relabel_vs_v3_selective_soft_audit"
+    "v0_vs_v1_weight_and_exclusion_effect",
+    "v1_vs_v2_hard_relabel_effect",
+    "v2_vs_v3_soft_target_effect",
+    "v0_vs_v3_end_to_end_effect"
   ],
+  "protocol_exception_count": 5,
+  "requires_protocol_review": true,
   "soft_target_tau": 0.75,
   "teacher_api_calls": 0,
   "train_universe_rows": 3326,

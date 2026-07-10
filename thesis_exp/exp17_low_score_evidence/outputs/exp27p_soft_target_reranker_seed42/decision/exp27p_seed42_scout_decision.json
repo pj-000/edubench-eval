@@ -1,0 +1,13 @@
+{
+  "all_four_runs_completed": true,
+  "experiment": "exp27p_seed42_scout",
+  "no_nan_oom": true,
+  "no_test_access": true,
+  "performance_gate_pass": true,
+  "recommend_run_seeds_43_44": true,
+  "recommend_run_v3_safe16": true,
+  "status": "PASS",
+  "test_access_count": 0,
+  "test_predictions_generated": false,
+  "v3_not_simultaneously_worse_all_risk": true
+}

@@ -1,0 +1,7 @@
+check,count,status
+full_train_rows_scanned,13304,PASS
+formatter_source_fields_outside_whitelist,0,PASS
+forbidden_field_taint_in_model_text,0,PASS
+test_path_opened,0,PASS
+test_label_read,0,PASS
+model_input_source_field_count,8,PASS

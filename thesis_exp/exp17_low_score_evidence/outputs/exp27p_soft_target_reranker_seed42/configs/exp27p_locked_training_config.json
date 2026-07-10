@@ -1,0 +1,48 @@
+{
+  "base_model": "/home/share/models/modelscope/Qwen/Qwen3-Reranker-0.6B",
+  "bf16": "auto",
+  "checkpoint_selection": {
+    "mae_guard_delta": 0.005,
+    "order": [
+      "lowest_low_to_high_rate",
+      "highest_QWK",
+      "lowest_MAE_expected",
+      "earliest_epoch"
+    ]
+  },
+  "drop_last": false,
+  "effective_batch_size": 128,
+  "experiment": "exp27p_shared_soft_target_qwen3_reranker_pilot",
+  "full_parameter_fine_tuning": true,
+  "gradient_accumulation_steps": 32,
+  "learning_rate": 2e-05,
+  "max_grad_norm": 1.0,
+  "max_length": 2048,
+  "model_input_source_fields": [
+    "question",
+    "answer",
+    "metric_canonical",
+    "rubric",
+    "scenario_canonical",
+    "subject_canonical",
+    "education_level_canonical",
+    "language"
+  ],
+  "num_labels": 5,
+  "num_train_epochs": 10,
+  "num_workers": 0,
+  "optimizer": "AdamW",
+  "per_device_eval_batch_size": 4,
+  "per_device_train_batch_size": 4,
+  "scheduler": "cosine",
+  "template": "A4_question_answer_metric_rubric_metadata",
+  "test_access_allowed": false,
+  "variants": [
+    "v0_original_unweighted",
+    "v1_original_label_matched_weight",
+    "v2_selective_hard_relabel",
+    "v3_selective_soft_audit"
+  ],
+  "warmup_ratio": 0.05,
+  "weight_decay": 0.01
+}

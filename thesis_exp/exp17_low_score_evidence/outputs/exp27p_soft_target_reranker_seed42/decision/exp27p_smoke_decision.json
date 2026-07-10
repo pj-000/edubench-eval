@@ -1,0 +1,9 @@
+{
+  "checkpoint_save_reload_pass": true,
+  "experiment": "exp27p_four_variant_gpu_smoke",
+  "nan_or_inf_count": 0,
+  "seed42_scout_allowed": true,
+  "status": "PASS",
+  "test_access_count": 0,
+  "variants_completed": 4
+}

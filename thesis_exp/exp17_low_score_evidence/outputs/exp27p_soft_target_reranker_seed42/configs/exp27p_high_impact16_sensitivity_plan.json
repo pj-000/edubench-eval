@@ -1,0 +1,12 @@
+{
+  "change": "replace only the 16 original-low to silver-high targets with original human one-hot; keep v3 sample weights",
+  "changed_rows": 16,
+  "default_run": false,
+  "run_if": [
+    "v3 low_to_high worsens",
+    "v3 signed bias rises materially",
+    "v3 is close to a success threshold",
+    "v3 gain appears driven by global upward shift"
+  ],
+  "variant": "v3_safe16"
+}

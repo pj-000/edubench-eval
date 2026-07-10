@@ -55,6 +55,18 @@ VARIANTS = (
     "v2_selective_hard_relabel",
     "v3_selective_soft_audit",
 )
+CORE_INPUT_KEYS = (
+    "question",
+    "answer",
+    "metric_canonical",
+    "rubric",
+    "scenario_canonical",
+    "subject_canonical",
+    "education_level_canonical",
+    "language",
+    "generator_model",
+    "metric_group",
+)
 
 
 def require(path: Path, purpose: str) -> None:
@@ -110,6 +122,11 @@ def sha256(path: Path) -> str:
         for chunk in iter(lambda: handle.read(1024 * 1024), b""):
             digest.update(chunk)
     return digest.hexdigest()
+
+
+def stable_hash(value: Any) -> str:
+    payload = json.dumps(value, ensure_ascii=False, sort_keys=True, separators=(",", ":"))
+    return hashlib.sha256(payload.encode("utf-8")).hexdigest()
 
 
 def split_keys(path: Path) -> tuple[set[str], set[str]]:
@@ -413,6 +430,147 @@ def prepare(args: argparse.Namespace) -> dict[str, Any]:
         },
     ]
 
+    pairwise_checks = []
+
+    def add_pairwise(check: str, left: str, right: str, mismatches: int) -> None:
+        pairwise_checks.append(
+            {
+                "check": check,
+                "left_variant": left,
+                "right_variant": right,
+                "mismatch_count": mismatches,
+                "status": "PASS" if mismatches == 0 else "FAIL",
+            }
+        )
+
+    baseline = variant_rows[VARIANTS[0]]
+    baseline_ids = [row["sample_id"] for row in baseline]
+    baseline_input_hashes = [stable_hash({key: row.get(key) for key in CORE_INPUT_KEYS}) for row in baseline]
+    for variant in VARIANTS[1:]:
+        rows = variant_rows[variant]
+        add_pairwise(
+            "sample_id_order",
+            VARIANTS[0],
+            variant,
+            sum(left != right["sample_id"] for left, right in zip(baseline_ids, rows)),
+        )
+        add_pairwise(
+            "core_input_hash",
+            VARIANTS[0],
+            variant,
+            sum(
+                left != stable_hash({key: row.get(key) for key in CORE_INPUT_KEYS})
+                for left, row in zip(baseline_input_hashes, rows)
+            ),
+        )
+    v0, v1, v2, v3 = (variant_rows[variant] for variant in VARIANTS)
+    add_pairwise("label_5", VARIANTS[0], VARIANTS[1], sum(a["label_5"] != b["label_5"] for a, b in zip(v0, v1)))
+    add_pairwise("label_5", VARIANTS[2], VARIANTS[3], sum(a["label_5"] != b["label_5"] for a, b in zip(v2, v3)))
+    for left_name, left_rows, right_name, right_rows in (
+        (VARIANTS[1], v1, VARIANTS[2], v2),
+        (VARIANTS[2], v2, VARIANTS[3], v3),
+        (VARIANTS[1], v1, VARIANTS[3], v3),
+    ):
+        add_pairwise(
+            "sample_weight",
+            left_name,
+            right_name,
+            sum(abs(float(a["sample_weight"]) - float(b["sample_weight"])) > 1e-12 for a, b in zip(left_rows, right_rows)),
+        )
+    add_pairwise(
+        "v2_one_hot_matches_label",
+        VARIANTS[2],
+        VARIANTS[2],
+        sum(row["soft_target_5"] != one_hot(int(row["label_5"])) for row in v2),
+    )
+
+    effective_mass_rows = []
+    for variant, rows in variant_rows.items():
+        for original_label in range(1, 6):
+            subset = [row for row in rows if int(row["original_label_5"]) == original_label]
+            active_subset = [row for row in subset if float(row["sample_weight"]) > 0]
+            weight_sum = sum(float(row["sample_weight"]) for row in subset)
+            masses = [
+                sum(float(row["sample_weight"]) * float(row["soft_target_5"][index]) for row in subset)
+                for index in range(5)
+            ]
+            expected = sum((index + 1) * mass for index, mass in enumerate(masses)) / weight_sum if weight_sum else float("nan")
+            effective_mass_rows.append(
+                {
+                    "variant": variant,
+                    "original_label_5": original_label,
+                    "row_count": len(subset),
+                    "active_row_count": len(active_subset),
+                    "sample_weight_sum": weight_sum,
+                    **{f"weighted_target_mass_{index + 1}": masses[index] for index in range(5)},
+                    "mean_expected_target_score": expected,
+                    "mean_expected_shift_from_original": expected - original_label if weight_sum else float("nan"),
+                }
+            )
+
+    safety_predicates = {
+        "direct_accept_deepseek_human_gap_ge_2": lambda row: tier_for(row) == "direct_accept"
+        and abs(ordinal(row["deepseek_score"]) - ordinal(row["original_human_score"])) >= 2,
+        "direct_accept_qwen_deepseek_gap_ge_2": lambda row: tier_for(row) == "direct_accept"
+        and abs(ordinal(row["qwen_score"]) - ordinal(row["deepseek_score"])) >= 2,
+        "weighted_accept_qwen_deepseek_gap_ge_2": lambda row: tier_for(row) == "weighted_accept"
+        and abs(ordinal(row["qwen_score"]) - ordinal(row["deepseek_score"])) >= 2,
+        "original_low_direct_accept_any_teacher_high": lambda row: tier_for(row) == "direct_accept"
+        and ordinal(row["original_human_score"]) <= 2
+        and max(ordinal(row["qwen_score"]), ordinal(row["deepseek_score"])) >= 4,
+        "original_high_direct_accept_any_teacher_low": lambda row: tier_for(row) == "direct_accept"
+        and ordinal(row["original_human_score"]) >= 4
+        and min(ordinal(row["qwen_score"]), ordinal(row["deepseek_score"])) <= 2,
+    }
+    safety_rows = []
+    for check, predicate in safety_predicates.items():
+        matched = [row for row in audited_rows if predicate(row)]
+        safety_rows.append(
+            {
+                "check": check,
+                "count": len(matched),
+                "sample_id_hashes": "|".join(sorted(stable_hash(str(row["sample_id"]))[:16] for row in matched)),
+                "protocol_exception": check in {
+                    "original_low_direct_accept_any_teacher_high",
+                    "original_high_direct_accept_any_teacher_low",
+                }
+                and bool(matched),
+            }
+        )
+    protocol_exception_count = sum(
+        int(row["count"])
+        for row in safety_rows
+        if row["check"] in {
+            "original_low_direct_accept_any_teacher_high",
+            "original_high_direct_accept_any_teacher_low",
+        }
+    )
+
+    high_impact_rows = []
+    v3_by_id = {row["sample_id"]: row for row in v3}
+    for row in low_to_high_escalations:
+        sid = row["sample_id"]
+        review = reviews[sid]
+        source = train_by_id[sid]
+        high_impact_rows.append(
+            {
+                "sample_id": sid,
+                "sample_id_hash": stable_hash(sid),
+                "question_key_hash": question_key_hash(question_key(source)),
+                "original_label_5": row["original_label_5"],
+                "silver_hard_score": row["label_5"],
+                "silver_score_range": json.dumps(review["final_score_range"], separators=(",", ":")),
+                "silver_confidence": review["confidence"],
+                "soft_target_5": json.dumps(v3_by_id[sid]["soft_target_5"], separators=(",", ":")),
+                "sample_weight": v3_by_id[sid]["sample_weight"],
+                "language": source.get("language"),
+                "metric_group": source.get("metric_group"),
+                "subject": source.get("subject_canonical"),
+                "scenario": source.get("scenario_canonical"),
+                "reference_status": "model_review_silver_not_human_gold",
+            }
+        )
+
     train_ids = set(train_by_id)
     train_qkeys = {question_key_hash(question_key(row)) for row in train}
     dev_ids, dev_qkeys = split_keys(args.dev_jsonl)
@@ -442,8 +600,10 @@ def prepare(args: argparse.Namespace) -> dict[str, Any]:
         "unaudited_original_rows": 2965,
         "variants": list(VARIANTS),
         "primary_comparisons": [
-            "v0_original_unweighted_vs_v2_selective_hard_relabel",
-            "v2_selective_hard_relabel_vs_v3_selective_soft_audit",
+            "v0_vs_v1_weight_and_exclusion_effect",
+            "v1_vs_v2_hard_relabel_effect",
+            "v2_vs_v3_soft_target_effect",
+            "v0_vs_v3_end_to_end_effect",
         ],
         "weight_ablation": "v1_original_label_matched_weight",
         "soft_target_tau": 0.75,
@@ -454,6 +614,8 @@ def prepare(args: argparse.Namespace) -> dict[str, Any]:
         "model_training_runs": 0,
         "high_impact_low_to_high_transition_monitoring_required": True,
         "high_impact_transition_rows": len(low_to_high_escalations),
+        "protocol_exception_count": protocol_exception_count,
+        "requires_protocol_review": protocol_exception_count > 0,
     }
     decision = {
         "experiment": "exp27o_361_in_place_pilot_dataset_preparation",
@@ -471,6 +633,8 @@ def prepare(args: argparse.Namespace) -> dict[str, Any]:
         "proceed_to_training": False,
         "requires_high_impact_transition_monitoring": True,
         "high_impact_transition_rows": len(low_to_high_escalations),
+        "protocol_exception_count": protocol_exception_count,
+        "requires_protocol_review": protocol_exception_count > 0,
         "proceed_to_full_3326_teacher_relabeling": False,
         "proceed_to_dev_test_relabeling": False,
         "next_step": "implement_shared_config_qwen3_reranker_pilot_trainer_with_soft_targets",
@@ -481,6 +645,10 @@ def prepare(args: argparse.Namespace) -> dict[str, Any]:
     write_csv(args.out_dir / "tables" / "exp27o_label_distribution.csv", label_rows)
     write_csv(args.out_dir / "tables" / "exp27o_hard_label_transitions.csv", transition_rows)
     write_csv(args.out_dir / "tables" / "exp27o_transition_risk_summary.csv", transition_risk_rows)
+    write_csv(args.out_dir / "tables" / "exp27o_variant_pairwise_equivalence.csv", pairwise_checks)
+    write_csv(args.out_dir / "tables" / "exp27o_effective_supervision_mass.csv", effective_mass_rows)
+    write_csv(args.out_dir / "tables" / "exp27o_tier_gap_safety_audit.csv", safety_rows)
+    write_csv(args.out_dir / "tables" / "exp27o_high_impact16_manifest_light.csv", high_impact_rows)
     write_csv(args.out_dir / "tables" / "exp27o_dataset_fingerprints.csv", fingerprints)
     write_csv(args.out_dir / "tables" / "exp27o_leakage_audit.csv", leakage_rows)
     write_json(args.out_dir / "decision" / "exp27o_pilot_dataset_prepare_decision.json", decision)
@@ -514,6 +682,7 @@ def prepare(args: argparse.Namespace) -> dict[str, Any]:
             f"- changed hard labels: {len(changed_rows)}",
             f"- upward/downward changes: {transition_risk_rows[2]['count']}/{transition_risk_rows[3]['count']}",
             f"- original low labels changed to hard 4/5: {len(low_to_high_escalations)}",
+            f"- direct-accept severe-direction protocol exceptions: {protocol_exception_count}",
             "",
             "## Protocol",
             "",

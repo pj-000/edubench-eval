@@ -85,6 +85,19 @@ exp27o_361_in_place_pilot_seed42/*
 !exp27o_361_in_place_pilot_seed42/decision/
 !exp27o_361_in_place_pilot_seed42/decision/**
 
+# Exp27P commits only locked configs, aggregate dev tables, reports, and
+# decisions. Logs, predictions, and all model/runtime artifacts remain local.
+!exp27p_soft_target_reranker_seed42/
+exp27p_soft_target_reranker_seed42/*
+!exp27p_soft_target_reranker_seed42/configs/
+!exp27p_soft_target_reranker_seed42/configs/**
+!exp27p_soft_target_reranker_seed42/tables/
+!exp27p_soft_target_reranker_seed42/tables/**
+!exp27p_soft_target_reranker_seed42/reports/
+!exp27p_soft_target_reranker_seed42/reports/**
+!exp27p_soft_target_reranker_seed42/decision/
+!exp27p_soft_target_reranker_seed42/decision/**
+
 # Global guardrails for Exp17/Exp19 generated raw artifacts. Lightweight
 # reports/tables/configs are explicitly re-included by experiment blocks below.
 **/data/*.json

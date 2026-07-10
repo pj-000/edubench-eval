@@ -1,0 +1,12 @@
+test,status,detail
+one_hot_weight1_equals_cross_entropy,PASS,actual=1.246650815010;expected=1.246650797557
+all_weight1_equals_mean_ce,PASS,delta=1.745e-08
+zero_weight_has_zero_gradient,PASS,zero_weight_grad_l1=0.000e+00
+global_scaled_minibatch_expectation,PASS,delta=1.206e-07
+gradient_accumulation_matches_full_gradient,PASS,max_gradient_delta=0.000e+00
+row_permutation_invariant,PASS,delta=0.000e+00
+v2_v3_hard_labels_identical,PASS,rows=3326
+v2_all_one_hot,PASS,rows=3326
+v3_non_one_hot_count_127,PASS,count=127
+all_targets_and_weights_finite,PASS,rows=3326
+label_1_to_5_maps_logit_0_to_4,PASS,mapping=label-1

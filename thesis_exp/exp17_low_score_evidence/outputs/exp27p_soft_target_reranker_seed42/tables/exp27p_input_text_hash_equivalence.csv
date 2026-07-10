@@ -1,0 +1,4 @@
+left_variant,right_variant,rows,text_hash_mismatch_count,status
+v0_original_unweighted,v1_original_label_matched_weight,3326,0,PASS
+v0_original_unweighted,v2_selective_hard_relabel,3326,0,PASS
+v0_original_unweighted,v3_selective_soft_audit,3326,0,PASS

@@ -1,0 +1,5 @@
+variant,status,dev_rows,checkpoint_reload_pass,zero_weight_window_count,test_access_count
+v0_original_unweighted,PASS,32,True,0,0
+v1_original_label_matched_weight,PASS,32,True,0,0
+v2_selective_hard_relabel,PASS,32,True,0,0
+v3_selective_soft_audit,PASS,32,True,0,0

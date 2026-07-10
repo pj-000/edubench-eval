@@ -26,6 +26,7 @@ from the effect of teacher/adjudication targets.
 - changed hard labels: 109
 - upward/downward changes: 84/25
 - original low labels changed to hard 4/5: 16
+- direct-accept severe-direction protocol exceptions: 5
 
 ## Protocol
 

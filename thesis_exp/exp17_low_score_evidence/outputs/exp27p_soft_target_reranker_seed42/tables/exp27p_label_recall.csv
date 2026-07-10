@@ -1,0 +1,13 @@
+variant,seed,label,recall
+v0_original_unweighted,42,1,0.6842105263157895
+v0_original_unweighted,42,2,0.0
+v0_original_unweighted,42,5,0.8758992805755396
+v1_original_label_matched_weight,42,1,0.6842105263157895
+v1_original_label_matched_weight,42,2,0.0
+v1_original_label_matched_weight,42,5,0.8201438848920863
+v2_selective_hard_relabel,42,1,0.6842105263157895
+v2_selective_hard_relabel,42,2,0.0
+v2_selective_hard_relabel,42,5,0.7859712230215827
+v3_selective_soft_audit,42,1,0.631578947368421
+v3_selective_soft_audit,42,2,0.0
+v3_selective_soft_audit,42,5,0.9172661870503597
