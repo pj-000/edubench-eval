@@ -4,11 +4,12 @@ from __future__ import annotations
 
 import argparse
 import csv
+import hashlib
 import json
 from pathlib import Path
 from typing import Any
 
-from thesis_exp.src.edujudge.exp27p import OUTPUT_DIR, PAIRWISE_COMPARISONS, RUN_ROOT, VARIANTS
+from thesis_exp.src.edujudge.exp27p import EXP27O_DIR, OUTPUT_DIR, PAIRWISE_COMPARISONS, RUN_ROOT, VARIANTS
 from thesis_exp.src.edujudge.exp27p.bootstrap_exp27p_dev_differences import bootstrap_all
 from thesis_exp.src.edujudge.exp27p.common import (
     prediction_metrics,
@@ -81,6 +82,32 @@ def pivot_high_impact(rows_by_variant: dict[str, list[dict[str, str]]]) -> list[
     return output
 
 
+def matched_question_key_audit(
+    predictions: list[dict[str, Any]], manifest: list[dict[str, str]]
+) -> dict[str, int]:
+    strata = {
+        (str(row.get("language")), str(row.get("metric_group")), str(row.get("subject")))
+        for row in manifest
+    }
+    matched = [
+        row
+        for row in predictions
+        if int(row["gold_label_5"]) <= 2
+        and (str(row.get("language")), str(row.get("metric_group")), str(row.get("subject_canonical")))
+        in strata
+    ]
+    train_hashes = {str(row["question_key_hash"]) for row in manifest}
+    dev_hashes = {
+        hashlib.sha1(str(row["question_key"]).encode("utf-8")).hexdigest()
+        for row in matched
+    }
+    return {
+        "train_high_impact_question_key_count": len(train_hashes),
+        "dev_matched_question_key_count": len(dev_hashes),
+        "question_key_overlap_count": len(train_hashes & dev_hashes),
+    }
+
+
 def collect(args: argparse.Namespace) -> dict[str, Any]:
     tables = args.output_dir / "tables"
     reports = args.output_dir / "reports"
@@ -117,6 +144,10 @@ def collect(args: argparse.Namespace) -> dict[str, Any]:
     high_by_variant = {}
     matched_rows = []
     strata_rows = []
+    with (EXP27O_DIR / "tables" / "exp27o_high_impact16_manifest_light.csv").open(
+        "r", encoding="utf-8", newline=""
+    ) as handle:
+        high_impact_manifest = list(csv.DictReader(handle))
     for variant, summary in summaries.items():
         selected = dict(summary["selected_metrics"])
         selected.update(
@@ -135,7 +166,10 @@ def collect(args: argparse.Namespace) -> dict[str, Any]:
         predictions[variant] = read_jsonl(run_dir / "predictions_private" / "selected_dev_predictions.jsonl")
         train_tier_rows.extend(read_csv(run_dir / "train_tier_fit_diagnostics.csv"))
         high_by_variant[variant] = read_csv(run_dir / "high_impact16_fit_diagnostics.csv")
-        matched_rows.extend(read_csv(run_dir / "dev_high_impact_matched_strata.csv"))
+        variant_matched_rows = read_csv(run_dir / "dev_high_impact_matched_strata.csv")
+        for row in variant_matched_rows:
+            row.update(matched_question_key_audit(predictions[variant], high_impact_manifest))
+        matched_rows.extend(variant_matched_rows)
         strata_rows.extend(read_csv(run_dir / "dev_stratified_metrics.csv"))
     metric_map = {variant: prediction_metrics(rows) for variant, rows in predictions.items()}
     pair_rows = pairwise_rows(metric_map)
