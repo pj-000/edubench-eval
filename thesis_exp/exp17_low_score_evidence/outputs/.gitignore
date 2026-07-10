@@ -72,6 +72,19 @@ exp27n_selective_model_adjudication_seed42/*
 !exp27n_selective_model_adjudication_seed42/decision/
 !exp27n_selective_model_adjudication_seed42/decision/**
 
+# Exp27O keeps the four full 3,326-row training JSONL files private. Commit
+# only the locked design, aggregate QC, hashes, report, and decision.
+!exp27o_361_in_place_pilot_seed42/
+exp27o_361_in_place_pilot_seed42/*
+!exp27o_361_in_place_pilot_seed42/configs/
+!exp27o_361_in_place_pilot_seed42/configs/**
+!exp27o_361_in_place_pilot_seed42/tables/
+!exp27o_361_in_place_pilot_seed42/tables/**
+!exp27o_361_in_place_pilot_seed42/reports/
+!exp27o_361_in_place_pilot_seed42/reports/**
+!exp27o_361_in_place_pilot_seed42/decision/
+!exp27o_361_in_place_pilot_seed42/decision/**
+
 # Global guardrails for Exp17/Exp19 generated raw artifacts. Lightweight
 # reports/tables/configs are explicitly re-included by experiment blocks below.
 **/data/*.json

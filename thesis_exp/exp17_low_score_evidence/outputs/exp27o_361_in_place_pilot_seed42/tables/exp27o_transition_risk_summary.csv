@@ -1,0 +1,8 @@
+item,count
+audited_rows,361
+changed_hard_labels,109
+upward_changes,84
+downward_changes,25
+original_low_to_hard_high_escalations,16
+original_high_to_hard_low_changes,4
+low_to_high_escalations_resolved_adjudication,16

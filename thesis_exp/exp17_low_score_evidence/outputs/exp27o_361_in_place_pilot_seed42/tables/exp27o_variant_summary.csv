@@ -1,0 +1,5 @@
+variant,rows,active_rows,zero_weight_rows,changed_hard_labels,non_one_hot_soft_targets,mean_weight_active,mean_weight_all,mean_target_entropy
+v0_original_unweighted,3326,3326,0,0,0,1.0,1.0,0.0
+v1_original_label_matched_weight,3326,3318,8,0,0,1.0,0.9975947083583885,0.0
+v2_selective_hard_relabel,3326,3318,8,109,0,1.0,0.9975947083583885,0.0
+v3_selective_soft_audit,3326,3318,8,109,127,1.0,0.9975947083583885,0.02799275301583432

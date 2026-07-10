@@ -1,0 +1,25 @@
+{
+  "active_weight_normalization": 1.0243111831442464,
+  "audited_in_place_rows": 361,
+  "dev_test_labels_used_for_construction": false,
+  "experiment": "exp27o_361_in_place_downstream_pilot",
+  "gpu_required": false,
+  "high_impact_low_to_high_transition_monitoring_required": true,
+  "high_impact_transition_rows": 16,
+  "model_training_runs": 0,
+  "primary_comparisons": [
+    "v0_original_unweighted_vs_v2_selective_hard_relabel",
+    "v2_selective_hard_relabel_vs_v3_selective_soft_audit"
+  ],
+  "soft_target_tau": 0.75,
+  "teacher_api_calls": 0,
+  "train_universe_rows": 3326,
+  "unaudited_original_rows": 2965,
+  "variants": [
+    "v0_original_unweighted",
+    "v1_original_label_matched_weight",
+    "v2_selective_hard_relabel",
+    "v3_selective_soft_audit"
+  ],
+  "weight_ablation": "v1_original_label_matched_weight"
+}

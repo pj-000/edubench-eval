@@ -1,0 +1,10 @@
+dimension,value,count
+audit_tier,adjudication_required,70
+audit_tier,direct_accept,173
+audit_tier,unaudited,2965
+audit_tier,weighted_accept,118
+training_tier,direct_accept,173
+training_tier,original_train,2965
+training_tier,resolved_adjudication,62
+training_tier,review_only,8
+training_tier,weighted_accept,118

@@ -1,0 +1,20 @@
+{
+  "audited_rows": 361,
+  "datasets_constructed": 4,
+  "dev_test_labels_used": false,
+  "experiment": "exp27o_361_in_place_pilot_dataset_preparation",
+  "gpu_required": false,
+  "high_impact_transition_rows": 16,
+  "model_training_runs": 0,
+  "next_step": "implement_shared_config_qwen3_reranker_pilot_trainer_with_soft_targets",
+  "proceed_to_dev_test_relabeling": false,
+  "proceed_to_full_3326_teacher_relabeling": false,
+  "proceed_to_training": false,
+  "proceed_to_training_workflow_implementation": true,
+  "requires_high_impact_transition_monitoring": true,
+  "resolved_model_silver_rows": 62,
+  "review_only_zero_weight_rows": 8,
+  "rows_per_dataset": 3326,
+  "status": "PASS",
+  "teacher_api_calls": 0
+}
