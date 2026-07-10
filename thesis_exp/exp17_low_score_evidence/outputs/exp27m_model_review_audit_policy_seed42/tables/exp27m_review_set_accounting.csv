@@ -1,0 +1,4 @@
+review_set,packet_appearances,unique_samples,expected_appearances,statistical_role
+balanced_silver_validation,60,60,60,policy_acceptance_only
+external_high_control_qkey_lockbox,34,34,34,sealed_high_score_protection_only
+targeted_ambiguity_qualitative_only,20,20,20,qualitative_only

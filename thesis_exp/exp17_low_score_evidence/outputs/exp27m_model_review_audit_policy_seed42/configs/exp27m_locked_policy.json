@@ -1,0 +1,28 @@
+{
+  "adjudication_required_rule": "selected ordinal gap >= 2 or target_issue_flag",
+  "direct_accept_rule": "selected ordinal gap == 0 and no target_issue_flag",
+  "downstream_weight_normalization": "renormalize active mean quality weight to 1",
+  "experiment": "exp27m_model_review_audit_policy",
+  "frozen_for": "361-row in-place downstream pilot only",
+  "quality_weight": {
+    "direct_accept": 1.0,
+    "resolved_adjudication_high_confidence": 0.75,
+    "resolved_adjudication_medium_confidence": 0.5,
+    "review_only": 0.0,
+    "weighted_accept": 0.5
+  },
+  "reference_provenance": "two GPT-5.6Pro sessions plus Codex model adjudication",
+  "reference_status": "model_review_silver_not_human_gold",
+  "review_budget": 0.2,
+  "review_only_rule": "adjudication final bucket is unclear or final confidence is low",
+  "selected_signal": "qwen_human_gap",
+  "selection_population": "balanced_silver_validation_60_only",
+  "soft_target": {
+    "adjudication_required_after_resolution": "score-range kernel around model-review silver, tau=0.75",
+    "direct_accept": "one_hot(original_human_score)",
+    "review_only": null,
+    "weighted_accept": "0.50*human + 0.25*Qwen + 0.25*DeepSeek point-mass mixture"
+  },
+  "unresolved_balanced_rows": 2,
+  "weighted_accept_rule": "selected ordinal gap == 1 and no target_issue_flag"
+}

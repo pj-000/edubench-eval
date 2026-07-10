@@ -1,0 +1,19 @@
+{
+  "balanced_quantitative_rows": 58,
+  "balanced_review_only_rows": 2,
+  "experiment": "exp27m_model_review_audit_policy_acceptance",
+  "gpu_required": false,
+  "human_external_validation": false,
+  "model_review_is_silver": true,
+  "model_review_unique_samples": 107,
+  "model_training_runs": 0,
+  "next_step": "prepare_361_row_in_place_downstream_pilot",
+  "proceed_to_361_in_place_downstream_pilot": true,
+  "proceed_to_dev_test_relabeling": false,
+  "proceed_to_formal_qwen3_reranker_training": false,
+  "proceed_to_full_3326_calibrated_dataset": false,
+  "required_adjudications": 38,
+  "selected_policy": "qwen_human_gap",
+  "status": "PASS",
+  "teacher_api_calls": 0
+}

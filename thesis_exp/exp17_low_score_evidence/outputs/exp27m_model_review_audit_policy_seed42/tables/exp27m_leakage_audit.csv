@@ -1,0 +1,12 @@
+check,count
+review_sample_missing_from_train,0
+review_question_missing_from_train,0
+dev_sample_overlap,0
+dev_question_overlap,0
+test_sample_overlap,0
+test_question_overlap,0
+balanced_external_question_overlap,0
+dev_label_used,0
+test_label_used,0
+teacher_api_calls,0
+gpu_training_runs,0

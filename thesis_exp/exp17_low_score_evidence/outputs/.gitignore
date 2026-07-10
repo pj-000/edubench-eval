@@ -39,6 +39,20 @@ exp27lr1_balanced_crossfit_review_seed42/*
 !exp27lr1_balanced_crossfit_review_seed42/annotation_templates/
 !exp27lr1_balanced_crossfit_review_seed42/annotation_templates/**
 
+# Exp27M consumes private model reviews but commits only lightweight aggregate
+# acceptance tables, a locked policy, a report, and the decision. Row-level
+# model reviews, adjudications, and soft-target previews remain private.
+!exp27m_model_review_audit_policy_seed42/
+exp27m_model_review_audit_policy_seed42/*
+!exp27m_model_review_audit_policy_seed42/tables/
+!exp27m_model_review_audit_policy_seed42/tables/**
+!exp27m_model_review_audit_policy_seed42/configs/
+!exp27m_model_review_audit_policy_seed42/configs/**
+!exp27m_model_review_audit_policy_seed42/reports/
+!exp27m_model_review_audit_policy_seed42/reports/**
+!exp27m_model_review_audit_policy_seed42/decision/
+!exp27m_model_review_audit_policy_seed42/decision/**
+
 # Global guardrails for Exp17/Exp19 generated raw artifacts. Lightweight
 # reports/tables/configs are explicitly re-included by experiment blocks below.
 **/data/*.json
