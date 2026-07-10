@@ -1,0 +1,22 @@
+{
+  "all_required_adjudications_completed": 70,
+  "all_required_resolved_model_silver": 62,
+  "all_required_review_only": 8,
+  "dev_test_labels_read": false,
+  "evidence_substring_repairs": 1,
+  "experiment": "exp27n_selective_model_adjudication_ingest",
+  "gpu_required": false,
+  "human_external_validation": false,
+  "model_review_is_silver": true,
+  "model_training_runs": 0,
+  "new_resolved_model_silver": 47,
+  "new_review_only": 7,
+  "next_step": "prepare_controlled_361_row_in_place_downstream_pilot_datasets",
+  "proceed_to_361_downstream_dataset_construction": true,
+  "proceed_to_dev_test_relabeling": false,
+  "proceed_to_full_3326_expansion": false,
+  "proceed_to_training": false,
+  "returned_rows": 54,
+  "status": "PASS",
+  "teacher_api_calls": 0
+}

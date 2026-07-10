@@ -1,0 +1,14 @@
+item,count
+blind_packet_rows,54
+returned_rows,54
+returned_unique_sample_ids,54
+schema_valid_rows,54
+exact_evidence_rows,52
+missing_evidence_explained_rows,1
+exact_substring_repair_rows,1
+new_resolved_model_silver,47
+new_review_only,7
+existing_required_reviews,16
+all_required_reviews_completed,70
+all_required_resolved_model_silver,62
+all_required_review_only,8

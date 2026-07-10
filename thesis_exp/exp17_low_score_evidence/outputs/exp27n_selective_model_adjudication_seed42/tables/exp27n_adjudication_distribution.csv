@@ -1,0 +1,15 @@
+population,dimension,value,count
+returned_54,final_score,1,2
+returned_54,final_score,2,7
+returned_54,final_score,3,8
+returned_54,final_score,4,19
+returned_54,final_score,5,18
+returned_54,failure_bucket,hidden_or_missing_failure,1
+returned_54,failure_bucket,no_failure,33
+returned_54,failure_bucket,unclear,7
+returned_54,failure_bucket,visible_failure,13
+returned_54,confidence,high,35
+returned_54,confidence,low,6
+returned_54,confidence,medium,13
+returned_54,training_use,resolved_model_silver,47
+returned_54,training_use,review_only,7

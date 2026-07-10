@@ -1,0 +1,11 @@
+check,status,count
+exact_packet_id_alignment,PASS,54
+schema_and_cross_field_validation,PASS,54
+exact_evidence_or_explained_missing,PASS,54
+transparent_exact_substring_repairs,PASS,1
+uncertain_rows_isolated_review_only,PASS,7
+all_required_adjudications_completed,PASS,70
+dev_labels_read,PASS,0
+test_labels_read,PASS,0
+teacher_api_calls,PASS,0
+gpu_or_training_runs,PASS,0
