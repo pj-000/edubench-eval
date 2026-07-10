@@ -1,0 +1,7 @@
+view,provider,n,verbatim_span_observed_n,verbatim_span_valid_rate,score_failure_consistency_n,score_failure_consistency_rate,score_cap_consistency_n,score_cap_consistency_rate,low_score_rubric_clause_n,low_score_rubric_clause_present_rate,note
+representative,qwen,120,15,1.000000,120,1.000000,120,1.000000,33,1.000000,structural checks only; semantic correctness still requires independent review
+representative,deepseek,120,22,1.000000,120,1.000000,120,1.000000,40,1.000000,structural checks only; semantic correctness still requires independent review
+risk_enriched,qwen,60,17,0.941176,60,1.000000,60,1.000000,26,1.000000,structural checks only; semantic correctness still requires independent review
+risk_enriched,deepseek,60,12,1.000000,60,1.000000,60,1.000000,28,1.000000,structural checks only; semantic correctness still requires independent review
+all_unweighted,qwen,180,32,0.968750,180,1.000000,180,1.000000,59,1.000000,structural checks only; semantic correctness still requires independent review
+all_unweighted,deepseek,180,34,1.000000,180,1.000000,180,1.000000,68,1.000000,structural checks only; semantic correctness still requires independent review

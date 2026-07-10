@@ -1,0 +1,22 @@
+check,passed,detail
+exists:exp27d_v4_repilot_blind_packets.jsonl,True,thesis_exp/exp17_low_score_evidence/outputs/exp27k_representative_teacher_validation_seed42/packets/exp27d_v4_repilot_blind_packets.jsonl
+exists:exp27d_v4_repilot_audit_reference_private.jsonl,True,thesis_exp/exp17_low_score_evidence/outputs/exp27k_representative_teacher_validation_seed42/packets/exp27d_v4_repilot_audit_reference_private.jsonl
+exists:exp27k_coverage_and_leakage.csv,True,thesis_exp/exp17_low_score_evidence/outputs/exp27k_representative_teacher_validation_seed42/tables/exp27k_coverage_and_leakage.csv
+exists:exp27d_blind_teacher_prompt_v4.md,True,thesis_exp/exp17_low_score_evidence/outputs/exp27k_representative_teacher_validation_seed42/prompts/exp27d_blind_teacher_prompt_v4.md
+exists:exp27d_label_audit_prompt_v4.md,True,thesis_exp/exp17_low_score_evidence/outputs/exp27k_representative_teacher_validation_seed42/prompts/exp27d_label_audit_prompt_v4.md
+exists:exp27d_teacher_blind_schema_v4.json,True,thesis_exp/exp17_low_score_evidence/outputs/exp27k_representative_teacher_validation_seed42/schema/exp27d_teacher_blind_schema_v4.json
+exists:exp27d_teacher_audit_schema_v4.json,True,thesis_exp/exp17_low_score_evidence/outputs/exp27k_representative_teacher_validation_seed42/schema/exp27d_teacher_audit_schema_v4.json
+packet_rows_equal_reference_rows,True,packets=73 refs=73
+packet_ids_unique,True,rows=73
+reference_ids_unique,True,rows=73
+packet_reference_id_sets_match,True,overlap=73
+no_silver_or_calibrated_fields_in_packets,True,hits=[]
+packets_are_train_only,True,splits=['train']
+target_is_evaluator_output,True,rows=73
+audit_refs_contain_only_train_human_label_not_silver,True,rows=73
+all_leakage_guards_zero,True,"{'missing_rows_in_train': 0, 'inherited_exp27j_dev_sample_overlap': 0, 'inherited_exp27j_dev_question_overlap': 0, 'inherited_exp27j_test_sample_overlap': 0, 'inherited_exp27j_test_question_overlap': 0, 'silver_reference_fields_in_teacher_packet': 0, 'dev_test_files_opened_by_exp27k': 0, 'dev_label_used': 0, 'test_label_read': 0}"
+coverage_partition_is_120,True,prior=47 missing=73
+api_complete:qwen:blind,True,rows=73/73 schema_ok=73
+api_complete:qwen:audit,True,rows=73/73 schema_ok=73
+api_complete:deepseek:blind,True,rows=73/73 schema_ok=73
+api_complete:deepseek:audit,True,rows=73/73 schema_ok=73

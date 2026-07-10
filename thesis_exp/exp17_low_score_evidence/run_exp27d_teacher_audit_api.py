@@ -18,12 +18,14 @@ import urllib.request
 from pathlib import Path
 from typing import Any
 
-import jsonschema
-
-
 REPO_ROOT = Path(__file__).resolve().parents[2]
 if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
+
+try:
+    import jsonschema
+except ModuleNotFoundError:  # Local macOS runner may not have the optional dependency.
+    from thesis_exp.exp17_low_score_evidence import json_schema_compat as jsonschema
 
 from thesis_exp.exp17_low_score_evidence.prepare_exp27d_teacher_audit_v4_packets import (  # noqa: E402
     PROMPT_VERSION,
@@ -264,10 +266,25 @@ def output_content(response: dict[str, Any]) -> str:
     return ""
 
 
-def existing_ids(path: Path) -> set[str]:
+def successful_output_row(row: dict[str, Any]) -> bool:
+    return (
+        bool(row.get("sample_id"))
+        and isinstance(row.get("parsed"), dict)
+        and not row.get("parse_error")
+        and not row.get("schema_errors")
+    )
+
+
+def retain_successful_outputs(path: Path) -> set[str]:
+    """Drop stale failed rows before resume so only failed samples are retried."""
     if not path.exists():
         return set()
-    return {str(row.get("sample_id")) for row in read_jsonl(path) if row.get("sample_id")}
+    successful = [row for row in read_jsonl(path) if successful_output_row(row)]
+    path.write_text(
+        "".join(json.dumps(row, ensure_ascii=False, sort_keys=True) + "\n" for row in successful),
+        encoding="utf-8",
+    )
+    return {str(row["sample_id"]) for row in successful}
 
 
 def load_blind_by_id(path: Path) -> dict[str, dict[str, Any]]:
@@ -344,7 +361,7 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
     output_path = args.out_dir / "annotations" / "parsed" / args.provider / f"exp27d_{args.stage}_outputs{output_suffix}.jsonl"
     if args.overwrite and output_path.exists():
         output_path.unlink()
-    done = existing_ids(output_path) if args.resume else set()
+    done = retain_successful_outputs(output_path) if args.resume else set()
     blind_by_id: dict[str, dict[str, Any]] = {}
     audit_ref_by_id: dict[str, dict[str, Any]] = {}
     if args.stage == "audit":

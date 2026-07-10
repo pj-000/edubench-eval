@@ -1,0 +1,8 @@
+agreement_pattern,n,candidate_target,mae_to_silver,within_one,severe_error_rate,severe_error_wilson_low,severe_error_wilson_high,suggested_use_before_external_review
+human_one_teacher_exact_other_far,9,human_qwen_deepseek_median,1.111111,0.666667,0.333333,0.120582,0.645803,review_only
+other_disagreement,9,human_qwen_deepseek_median,0.444444,0.888889,0.111111,0.019890,0.435006,review_only
+teacher_consensus_human_adjacent,18,human_qwen_deepseek_median,0.444444,0.944444,0.055556,0.009875,0.257578,low_weight_candidate
+teacher_consensus_human_far,13,human_qwen_deepseek_median,0.307692,0.923077,0.076923,0.013710,0.333145,low_weight_candidate
+teacher_gap_ge2,5,human_qwen_deepseek_median,1.000000,0.800000,0.200000,0.036223,0.624472,review_only
+three_way_adjacent_band,25,human_qwen_deepseek_median,0.800000,0.840000,0.160000,0.064033,0.346540,low_weight_candidate
+triple_exact,41,human_qwen_deepseek_median,0.243902,1.000000,0.000000,0.000000,0.085670,high_weight_candidate

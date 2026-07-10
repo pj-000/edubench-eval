@@ -369,3 +369,16 @@ exp27j_independent_audit_seed42/*
 !exp27j_independent_audit_seed42/reports/**
 !exp27j_independent_audit_seed42/tables/
 !exp27j_independent_audit_seed42/tables/**
+
+# Exp27K keeps packets, audit references, and full teacher API outputs local.
+# Commit only lightweight aggregate validation artifacts.
+!exp27k_representative_teacher_validation_seed42/
+exp27k_representative_teacher_validation_seed42/*
+!exp27k_representative_teacher_validation_seed42/decision/
+!exp27k_representative_teacher_validation_seed42/decision/**
+exp27k_representative_teacher_validation_seed42/decision/exp27d_*
+!exp27k_representative_teacher_validation_seed42/reports/
+!exp27k_representative_teacher_validation_seed42/reports/**
+exp27k_representative_teacher_validation_seed42/reports/exp27d_*
+!exp27k_representative_teacher_validation_seed42/tables/
+!exp27k_representative_teacher_validation_seed42/tables/**

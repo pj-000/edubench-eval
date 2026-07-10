@@ -266,3 +266,16 @@ thesis_exp/exp17_low_score_evidence/outputs/exp27d_teacher_audit_v4_seed42/*
 !thesis_exp/exp17_low_score_evidence/outputs/exp27d_teacher_audit_v4_seed42/tables/
 !thesis_exp/exp17_low_score_evidence/outputs/exp27d_teacher_audit_v4_seed42/tables/**
 thesis_exp/exp17_low_score_evidence/outputs/exp27d_teacher_audit_v4_seed42/annotations/
+
+# Exp27K keeps teacher packets, human-label audit references, and raw API
+# outputs local. Commit only lightweight coverage, validation, and decisions.
+!thesis_exp/exp17_low_score_evidence/outputs/exp27k_representative_teacher_validation_seed42/
+thesis_exp/exp17_low_score_evidence/outputs/exp27k_representative_teacher_validation_seed42/*
+!thesis_exp/exp17_low_score_evidence/outputs/exp27k_representative_teacher_validation_seed42/decision/
+!thesis_exp/exp17_low_score_evidence/outputs/exp27k_representative_teacher_validation_seed42/decision/**
+thesis_exp/exp17_low_score_evidence/outputs/exp27k_representative_teacher_validation_seed42/decision/exp27d_*
+!thesis_exp/exp17_low_score_evidence/outputs/exp27k_representative_teacher_validation_seed42/reports/
+!thesis_exp/exp17_low_score_evidence/outputs/exp27k_representative_teacher_validation_seed42/reports/**
+thesis_exp/exp17_low_score_evidence/outputs/exp27k_representative_teacher_validation_seed42/reports/exp27d_*
+!thesis_exp/exp17_low_score_evidence/outputs/exp27k_representative_teacher_validation_seed42/tables/
+!thesis_exp/exp17_low_score_evidence/outputs/exp27k_representative_teacher_validation_seed42/tables/**

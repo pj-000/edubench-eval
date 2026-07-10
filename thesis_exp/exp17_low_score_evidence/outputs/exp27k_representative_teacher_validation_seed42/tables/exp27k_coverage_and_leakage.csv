@@ -1,0 +1,13 @@
+check,count
+representative_rows,120
+prior_teacher_covered_rows,47
+missing_teacher_rows,73
+missing_rows_in_train,0
+inherited_exp27j_dev_sample_overlap,0
+inherited_exp27j_dev_question_overlap,0
+inherited_exp27j_test_sample_overlap,0
+inherited_exp27j_test_question_overlap,0
+silver_reference_fields_in_teacher_packet,0
+dev_test_files_opened_by_exp27k,0
+dev_label_used,0
+test_label_read,0

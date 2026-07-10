@@ -1,0 +1,29 @@
+{
+  "best_simple_risk_signal": "qwen_human_gap",
+  "best_simple_risk_signal_auprc": 0.447968,
+  "blocking_criteria": [
+    "exp27i_v1_auprc_beats_best_simple_by_0p05",
+    "exp27i_v1_score_mae_better_than_naive_median",
+    "exp27i_v1_is_empirically_calibrated",
+    "external_human_expert_reference_included"
+  ],
+  "criteria": {
+    "exp27i_v1_auprc_beats_best_simple_by_0p05": false,
+    "exp27i_v1_is_empirically_calibrated": false,
+    "exp27i_v1_score_mae_better_than_naive_median": false,
+    "external_human_expert_reference_included": false,
+    "representative_teacher_coverage_120_of_120": true
+  },
+  "dev_label_used": false,
+  "dev_test_files_opened": false,
+  "exp27i_v1_representative_mae": 0.539778,
+  "exp27i_v1_tier_proxy_auprc": 0.34948,
+  "experiment": "exp27k_representative_teacher_validation",
+  "naive_median_representative_mae": 0.539778,
+  "proceed_to_formal_qwen3_reranker_training": false,
+  "recommended_next_step": "cross_fitted_tier_recalibration_then_external_expert_review",
+  "representative_rows": 120,
+  "risk_enriched_rows": 60,
+  "silver_reference_used_in_teacher_prompt": false,
+  "test_label_read": false
+}
