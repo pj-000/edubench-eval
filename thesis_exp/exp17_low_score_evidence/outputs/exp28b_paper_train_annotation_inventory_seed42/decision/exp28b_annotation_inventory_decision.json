@@ -1,0 +1,46 @@
+{
+  "status": "READY_FOR_PROTOCOL_DRY_RUN",
+  "train_rows": 2654,
+  "blind_packet_rows": 2654,
+  "reference_rows": 2654,
+  "legacy_paper_train_rows_available": 190,
+  "legacy_annotations_used_as_new_targets": 0,
+  "protocol_subsets": {
+    "protocol_demo_reference": 15,
+    "protocol_development": 60,
+    "sealed_qualification": 120
+  },
+  "protocol_subset_label_targets": {
+    "protocol_demo_reference": {
+      "1": 3,
+      "2": 3,
+      "3": 3,
+      "4": 3,
+      "5": 3
+    },
+    "protocol_development": {
+      "1": 5,
+      "2": 8,
+      "3": 12,
+      "4": 17,
+      "5": 18
+    },
+    "sealed_qualification": {
+      "1": 10,
+      "2": 18,
+      "3": 24,
+      "4": 32,
+      "5": 36
+    }
+  },
+  "protocol_subset_min_question_keys": {
+    "protocol_demo_reference": 5,
+    "protocol_development": 20,
+    "sealed_qualification": 40
+  },
+  "primary_teacher_scope": "all_2654_paper_train_rows_after_protocol_lock",
+  "secondary_teacher_scope": "risk_routed_after_primary_output_plus_locked_high_controls",
+  "api_called": false,
+  "test_labels_read": false,
+  "next_action": "Dry-run P0/P1/P2 message construction, then annotate development and sealed qualification subsets before full 2654 expansion."
+}

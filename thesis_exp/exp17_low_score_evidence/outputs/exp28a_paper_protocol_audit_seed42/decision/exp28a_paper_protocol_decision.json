@@ -1,0 +1,23 @@
+{
+  "status": "PASS_WITH_REANNOTATION_REQUIRED",
+  "paper_protocol": {
+    "train_rows": 2654,
+    "dev_rows": 664,
+    "test_rows": 2218,
+    "isolation_unit": "question_answer_metric_triple"
+  },
+  "legacy_exp27_audit": {
+    "total_rows": 361,
+    "paper_train_rows": 190,
+    "paper_dev_rows_quarantined": 48,
+    "paper_test_rows_quarantined": 123,
+    "unmatched_rows": 0
+  },
+  "rules": [
+    "Only paper-like train rows may contribute teacher labels or adjudications to training.",
+    "Legacy paper-dev and paper-test annotations are quarantined and must not guide protocol selection.",
+    "Dev is used for model/data-version selection; test is used only after the method is frozen.",
+    "Model adjudication must be reported as model_review_silver, never human review."
+  ],
+  "next_action": "Build a fresh paper-train-only teacher audit protocol; reuse the 190 legacy train rows only as a separately tagged pilot asset."
+}

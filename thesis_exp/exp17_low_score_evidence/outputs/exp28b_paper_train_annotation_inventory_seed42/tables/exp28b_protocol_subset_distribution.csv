@@ -1,0 +1,6 @@
+subset,rows,label_1,label_2,label_3,label_4,label_5,unique_question_keys
+protocol_demo_reference,15,3,3,3,3,3,5
+protocol_development,60,5,8,12,17,18,20
+sealed_qualification,120,10,18,24,32,36,40
+full_annotation_pool,2459,6,23,212,894,1324,196
+all_train,2654,24,52,251,946,1381,196

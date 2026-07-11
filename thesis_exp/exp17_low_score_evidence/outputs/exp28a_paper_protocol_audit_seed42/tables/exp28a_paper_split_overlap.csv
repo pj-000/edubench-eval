@@ -1,0 +1,4 @@
+left_split,right_split,sample_id_overlap,question_key_overlap,expected_by_protocol
+train,dev,0,184,question overlap allowed; triple/sample overlap forbidden
+train,test,0,162,question overlap allowed; triple/sample overlap forbidden
+dev,test,0,150,question overlap allowed; triple/sample overlap forbidden

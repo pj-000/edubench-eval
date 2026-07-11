@@ -1,0 +1,5 @@
+check,count,status
+train_sample_overlap_with_heldout,0,PASS
+paper_protocol_question_overlap_with_heldout,196,EXPECTED_WARNING
+blind_packets_contain_original_label,0,PASS
+legacy_exp27_annotations_quarantined_outside_paper_train,171,PASS

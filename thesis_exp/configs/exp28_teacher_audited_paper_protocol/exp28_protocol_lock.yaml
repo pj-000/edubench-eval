@@ -1,0 +1,33 @@
+experiment: exp28_teacher_audited_paper_protocol
+paper_scope: small_paper
+split_dir: thesis_exp/data/splits/paper_like_triple_seed42
+split_rows:
+  train: 2654
+  dev: 664
+  test: 2218
+split_unit: question_answer_metric_triple
+teacher_annotation_scope: train_only
+dev_usage:
+  - annotation_protocol_selection
+  - data_variant_selection
+  - checkpoint_selection
+test_usage:
+  - frozen_final_evaluation_only
+base_model: Qwen3-Reranker-0.6B
+training_loss: ordinary_cross_entropy
+seeds:
+  - 42
+  - 43
+  - 44
+provenance_labels:
+  original: original_benchmark_human_label
+  teacher: teacher_model_annotation
+  adjudication: model_review_silver
+  human_expert: human_expert_review_only_if_performed_by_a_real_human
+forbidden:
+  - use_dev_or_test_teacher_annotations_as_training_supervision
+  - describe_model_review_as_human_review
+  - select_annotation_rules_or_hyperparameters_from_test_results
+notes:
+  - Existing Exp27 annotations must be remapped to this split before reuse.
+  - The original benchmark protocol allows question overlap but forbids triple/sample overlap.
