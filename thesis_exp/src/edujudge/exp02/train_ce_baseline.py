@@ -65,6 +65,7 @@ class TrainConfig:
     num_workers: int
     log_steps: int
     progress_bar: bool
+    evaluate_test: bool
 
 
 @dataclass
@@ -105,7 +106,13 @@ def parse_args() -> TrainConfig:
     parser.add_argument("--num_workers", type=int, default=0)
     parser.add_argument("--log_steps", type=int, default=20)
     parser.add_argument("--no_progress_bar", action="store_false", dest="progress_bar")
-    parser.set_defaults(progress_bar=True)
+    parser.add_argument(
+        "--dev_only",
+        action="store_false",
+        dest="evaluate_test",
+        help="Train/select on dev without reading or evaluating the held-out test split.",
+    )
+    parser.set_defaults(progress_bar=True, evaluate_test=True)
     ns = parser.parse_args()
     return TrainConfig(**vars(ns))
 
@@ -203,8 +210,9 @@ class StepProgressBar:
                 self.stream.close()
 
 
-def ensure_data_exists(data_dir: Path) -> None:
-    if not all((data_dir / f"{split}.jsonl").exists() for split in ["train", "dev", "test"]):
+def ensure_data_exists(data_dir: Path, evaluate_test: bool = True) -> None:
+    required = ["train", "dev", "test"] if evaluate_test else ["train", "dev"]
+    if not all((data_dir / f"{split}.jsonl").exists() for split in required):
         build_exp02_dataset()
 
 
@@ -732,30 +740,43 @@ def train(config: TrainConfig) -> dict[str, Any]:
     ensure_exp02_dirs()
     config.output_dir.mkdir(parents=True, exist_ok=True)
     config.checkpoint_output_dir.mkdir(parents=True, exist_ok=True)
-    ensure_data_exists(config.data_dir)
+    ensure_data_exists(config.data_dir, config.evaluate_test)
     set_seed(config.seed)
     train_rows = limit_rows(read_jsonl(config.data_dir / "train.jsonl"), config.max_train_samples)
     dev_rows = limit_rows(read_jsonl(config.data_dir / "dev.jsonl"), config.max_eval_samples)
-    test_rows = limit_rows(read_jsonl(config.data_dir / "test.jsonl"), config.max_eval_samples)
+    test_rows = (
+        limit_rows(read_jsonl(config.data_dir / "test.jsonl"), config.max_eval_samples)
+        if config.evaluate_test
+        else []
+    )
 
     model, tokenizer, model_mode = load_model_and_tokenizer(config)
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     model.to(device)
 
     dev_loader = make_dataloader(dev_rows, tokenizer, config, "dev", shuffle=False)
-    test_loader = make_dataloader(test_rows, tokenizer, config, "test", shuffle=False)
+    test_loader = (
+        make_dataloader(test_rows, tokenizer, config, "test", shuffle=False)
+        if config.evaluate_test
+        else None
+    )
 
     best_dir = config.checkpoint_output_dir / "best"
     metrics_history: list[dict[str, Any]] = []
     if config.eval_only:
         dev_result = evaluate(model, dev_loader, device, "dev")
-        test_result = evaluate(model, test_loader, device, "test")
-        for result in [dev_result, test_result]:
+        results = [dev_result]
+        if config.evaluate_test:
+            if test_loader is None:
+                raise RuntimeError("evaluate_test=True but test loader is missing")
+            results.append(evaluate(model, test_loader, device, "test"))
+        for result in results:
             save_predictions(config.output_dir, result)
             save_eval_arrays(config.output_dir, result.metrics["split"], result)
-        save_dev_test_npz(config.output_dir, dev_result, test_result)
-        save_metrics_tables(config.output_dir, [dev_result, test_result])
-        return {"model_mode": model_mode, "metrics": [dev_result.metrics, test_result.metrics]}
+        if config.evaluate_test:
+            save_dev_test_npz(config.output_dir, results[0], results[1])
+        save_metrics_tables(config.output_dir, results)
+        return {"model_mode": model_mode, "metrics": [result.metrics for result in results]}
 
     train_loader = make_dataloader(train_rows, tokenizer, config, "train", shuffle=True)
     optimizer = AdamW(model.parameters(), lr=config.learning_rate, weight_decay=config.weight_decay)
@@ -850,32 +871,46 @@ def train(config: TrainConfig) -> dict[str, Any]:
     if state_dict_path.exists():
         model.load_state_dict(torch.load(state_dict_path, map_location=device))
     dev_final = evaluate(model, dev_loader, device, "dev")
-    test_result = evaluate(model, test_loader, device, "test")
-    for result in [dev_final, test_result]:
+    results = [dev_final]
+    if config.evaluate_test:
+        if test_loader is None:
+            raise RuntimeError("evaluate_test=True but test loader is missing")
+        results.append(evaluate(model, test_loader, device, "test"))
+    for result in results:
         result.metrics["epoch"] = "best"
         result.metrics["global_step"] = global_step
         save_predictions(config.output_dir, result)
         save_eval_arrays(config.output_dir, result.metrics["split"], result)
-    save_dev_test_npz(config.output_dir, dev_final, test_result)
-    test_result.metrics["elapsed_seconds"] = time.time() - start
+    if config.evaluate_test:
+        save_dev_test_npz(config.output_dir, results[0], results[1])
+    results[-1].metrics["elapsed_seconds"] = time.time() - start
     save_metrics_history(config.output_dir, metrics_history)
-    save_metrics_tables(config.output_dir, [dev_final, test_result])
-    run_summary = "\n".join(
-        [
-            "# Exp2 CE Baseline Run Summary",
-            "",
-            f"Model: `{config.model_name_or_path}`",
-            f"Model mode: `{model_mode}`",
-            f"Best checkpoint: `{relpath(best_dir)}`",
-            f"Final test MAE_label: {test_result.metrics['MAE_label']:.6f}",
-            f"Final test MAE_expected: {test_result.metrics['MAE_expected']:.6f}",
-            f"Final test Exact Match: {test_result.metrics['Exact Match']:.6f}",
-            f"Final low-to-high rate: {test_result.metrics['low_to_high_rate']:.6f}",
-        ]
-    )
+    save_metrics_tables(config.output_dir, results)
+    run_summary_lines = [
+        "# Exp2 CE Baseline Run Summary",
+        "",
+        f"Model: `{config.model_name_or_path}`",
+        f"Model mode: `{model_mode}`",
+        f"Best checkpoint: `{relpath(best_dir)}`",
+        f"Evaluation scope: `{'dev+test' if config.evaluate_test else 'dev-only'}`",
+        f"Final dev MAE_label: {dev_final.metrics['MAE_label']:.6f}",
+        f"Final dev Exact Match: {dev_final.metrics['Exact Match']:.6f}",
+        f"Final dev low-to-high rate: {dev_final.metrics['low_to_high_rate']:.6f}",
+    ]
+    if config.evaluate_test:
+        test_result = results[1]
+        run_summary_lines.extend(
+            [
+                f"Final test MAE_label: {test_result.metrics['MAE_label']:.6f}",
+                f"Final test MAE_expected: {test_result.metrics['MAE_expected']:.6f}",
+                f"Final test Exact Match: {test_result.metrics['Exact Match']:.6f}",
+                f"Final test low-to-high rate: {test_result.metrics['low_to_high_rate']:.6f}",
+            ]
+        )
+    run_summary = "\n".join(run_summary_lines)
     write_text(config.output_dir / "run_summary.md", run_summary)
     write_text(config.output_dir / "summaries" / "run_summary.md", run_summary)
-    return {"model_mode": model_mode, "metrics": [dev_final.metrics, test_result.metrics], "best_dir": str(best_dir)}
+    return {"model_mode": model_mode, "metrics": [result.metrics for result in results], "best_dir": str(best_dir)}
 
 
 def main() -> None:

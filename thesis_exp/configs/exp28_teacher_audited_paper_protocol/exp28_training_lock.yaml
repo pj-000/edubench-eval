@@ -1,0 +1,35 @@
+experiment: exp28_teacher_audited_paper_protocol
+student_model: Qwen3-Reranker-0.6B
+server_model_path: /home/share/models/modelscope/Qwen/Qwen3-Reranker-0.6B
+student_input_fields:
+  - question
+  - answer
+  - evaluation_dimension
+loss: ordinary_cross_entropy
+optimizer: AdamW
+epochs: 10
+learning_rate: 2.0e-5
+weight_decay: 0.01
+warmup_ratio: 0.05
+per_device_train_batch_size: 4
+gradient_accumulation_steps: 32
+effective_batch_size: 128
+per_device_eval_batch_size: 4
+max_length: 2048
+checkpoint_selection_metric: validation_accuracy
+seeds:
+  - 42
+  - 43
+  - 44
+development_mode: dev_only
+test_access: forbidden_until_final_lock
+variants:
+  - b0_original_human
+  - b1_primary_teacher_all
+  - b2_selective_dual_teacher
+  - b3_filter_unresolved
+  - b4_random_transition_control
+notes:
+  - Teacher auditing may use rubric and metadata; the student input remains identical to the paper.
+  - One-hot targets and ordinary cross-entropy are used for every training variant.
+  - No teacher reason or provenance field is included in student model input.
