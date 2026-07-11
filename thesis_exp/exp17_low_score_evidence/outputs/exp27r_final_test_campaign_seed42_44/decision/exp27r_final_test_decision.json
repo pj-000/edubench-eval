@@ -1,0 +1,33 @@
+{
+  "all_seeds_evaluated": true,
+  "all_variants_evaluated": true,
+  "crossed_bootstrap_complete": true,
+  "data_frozen": true,
+  "final_paper_position": "directional_signal_only",
+  "final_test_closed": true,
+  "hard_relabel_tradeoff_summary": {
+    "delta_label5_recall_vs_v1": -0.1028138528138528,
+    "delta_low_to_high_vs_v1": -0.05376344086021512
+  },
+  "lock_pass": true,
+  "methods_frozen": true,
+  "no_new_method_after_test": true,
+  "primary_comparisons_complete": true,
+  "pure_min_sensitivity_complete": true,
+  "recommend_hyperparameter_search": false,
+  "recommend_more_training": false,
+  "recommend_new_teacher_annotation": false,
+  "safe16_test_generalization_summary": {
+    "delta_low_to_high_vs_v3": -0.10752688172043012
+  },
+  "selected_checkpoint_results_complete": true,
+  "test_access_count": 1,
+  "test_campaign_completed": true,
+  "training_frozen": true,
+  "v3_test_generalization_summary": {
+    "delta_low_to_high_vs_v2": 0.08602150537634412
+  },
+  "weight_only_summary": {
+    "delta_low_to_high_vs_v0": -0.010752688172043001
+  }
+}
