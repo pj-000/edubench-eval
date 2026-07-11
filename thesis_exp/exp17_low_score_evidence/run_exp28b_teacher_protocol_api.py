@@ -296,6 +296,7 @@ def parse_args() -> argparse.Namespace:
             "sealed_qualification",
             "full_annotation_pool",
             "all_train",
+            "secondary_route",
         ],
         default="protocol_development",
     )

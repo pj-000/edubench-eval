@@ -21,6 +21,8 @@ DEFAULT_PREDICTION_DIR = Path(
 DEFAULT_OUT_DIR = Path(
     "thesis_exp/exp17_low_score_evidence/outputs/exp28c_teacher_protocol_evaluation_seed42"
 )
+DEFAULT_DEVELOPMENT_DECISION = DEFAULT_OUT_DIR / "decision" / "exp28c_protocol_development_protocol_decision.json"
+DEFAULT_DEVELOPMENT_METRICS = DEFAULT_OUT_DIR / "tables" / "exp28c_protocol_development_score_metrics.csv"
 PROVIDERS = ("qwen", "deepseek")
 PROTOCOLS = (
     "p0_holistic_zero_shot",
@@ -45,6 +47,11 @@ def write_csv(path: Path, rows: Iterable[dict[str, Any]], fields: list[str]) -> 
 def write_json(path: Path, payload: dict[str, Any]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+
+def read_csv(path: Path) -> list[dict[str, str]]:
+    with path.open("r", encoding="utf-8", newline="") as handle:
+        return list(csv.DictReader(handle))
 
 
 def qwk(gold: list[int], pred: list[int]) -> float:
@@ -276,6 +283,87 @@ def choose_protocol(metrics: list[dict[str, Any]], structures: list[dict[str, An
     }
 
 
+def qualify_selected_protocol(
+    metrics: list[dict[str, Any]],
+    structures: list[dict[str, Any]],
+    development_decision_path: Path,
+    development_metrics_path: Path,
+) -> dict[str, Any]:
+    if not development_decision_path.exists() or not development_metrics_path.exists():
+        return {
+            "status": "WAITING_FOR_DEVELOPMENT_LOCK",
+            "selected_protocol": None,
+            "reason": "Development decision and metrics are required before sealed qualification.",
+        }
+    development_decision = json.loads(development_decision_path.read_text(encoding="utf-8"))
+    selected = development_decision.get("selected_protocol")
+    if development_decision.get("status") != "READY_FOR_SEALED_QUALIFICATION" or not selected:
+        return {
+            "status": "DEVELOPMENT_PROTOCOL_NOT_LOCKED",
+            "selected_protocol": selected,
+            "reason": "Development protocol did not pass its guards.",
+        }
+    qualification_rows = [row for row in metrics if row["protocol"] == selected and int(row["n"]) > 0]
+    qualification_structures = [row for row in structures if row["protocol"] == selected and int(row["valid_rows"]) > 0]
+    if len(qualification_rows) != len(PROVIDERS) or len(qualification_structures) != len(PROVIDERS):
+        return {
+            "status": "WAITING_FOR_SEALED_QUALIFICATION_API",
+            "selected_protocol": selected,
+            "reason": "Both providers must finish the selected protocol on all sealed qualification rows.",
+        }
+    if any(int(row["n"]) != 120 for row in qualification_rows):
+        return {
+            "status": "INCOMPLETE_SEALED_QUALIFICATION",
+            "selected_protocol": selected,
+            "qualification_rows": {row["provider"]: row["n"] for row in qualification_rows},
+        }
+    development_rows = [
+        row for row in read_csv(development_metrics_path) if row["protocol"] == selected
+    ]
+    if len(development_rows) != len(PROVIDERS):
+        raise ValueError("Selected protocol is missing from development metrics")
+
+    def mean(rows: list[dict[str, Any]], key: str) -> float:
+        return sum(float(row[key]) for row in rows) / len(rows)
+
+    observed = {
+        "parse_schema_success_rate": mean(qualification_structures, "parse_schema_success_rate"),
+        "MAE_unanimous": mean(qualification_rows, "MAE_unanimous"),
+        "low_to_high_rate": mean(qualification_rows, "low_to_high_rate"),
+        "high_to_low_rate": mean(qualification_rows, "high_to_low_rate"),
+        "within_human_score_range_rate": mean(qualification_rows, "within_human_score_range_rate"),
+    }
+    development = {
+        "MAE_unanimous": mean(development_rows, "MAE_unanimous"),
+        "low_to_high_rate": mean(development_rows, "low_to_high_rate"),
+        "high_to_low_rate": mean(development_rows, "high_to_low_rate"),
+        "within_human_score_range_rate": mean(development_rows, "within_human_score_range_rate"),
+    }
+    checks = {
+        "parse_at_least_0p98": observed["parse_schema_success_rate"] >= 0.98,
+        "unanimous_mae_generalization": observed["MAE_unanimous"] <= development["MAE_unanimous"] + 0.15,
+        "low_to_high_generalization": observed["low_to_high_rate"] <= development["low_to_high_rate"] + 0.10,
+        "high_to_low_generalization": observed["high_to_low_rate"] <= development["high_to_low_rate"] + 0.05,
+        "human_range_generalization": (
+            observed["within_human_score_range_rate"] >= development["within_human_score_range_rate"] - 0.10
+        ),
+    }
+    passed = all(checks.values())
+    return {
+        "status": "READY_FOR_FULL_TRAIN_ANNOTATION" if passed else "SEALED_QUALIFICATION_FAILED",
+        "selected_protocol": selected,
+        "checks": checks,
+        "development_reference": development,
+        "sealed_qualification_observed": observed,
+        "test_used": False,
+        "reason": (
+            "Selected protocol generalized from development to the sealed train-only qualification subset."
+            if passed
+            else "Revise or stop the annotation protocol; do not scale to all paper-train rows."
+        ),
+    }
+
+
 def collect(args: argparse.Namespace) -> dict[str, Any]:
     references = {
         str(row["sample_id"]): row
@@ -319,7 +407,16 @@ def collect(args: argparse.Namespace) -> dict[str, Any]:
         cross_rows,
         list(cross_rows[0]) if cross_rows else [],
     )
-    decision = choose_protocol(metric_rows, structure_rows)
+    decision = (
+        choose_protocol(metric_rows, structure_rows)
+        if args.subset == "protocol_development"
+        else qualify_selected_protocol(
+            metric_rows,
+            structure_rows,
+            args.development_decision,
+            args.development_metrics,
+        )
+    )
     decision.update({"subset": args.subset, "reference_rows": expected, "dev_or_test_read": False})
     write_json(args.out_dir / "decision" / f"exp28c_{args.subset}_protocol_decision.json", decision)
 
@@ -348,6 +445,8 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--prediction-dir", type=Path, default=DEFAULT_PREDICTION_DIR)
     parser.add_argument("--out-dir", type=Path, default=DEFAULT_OUT_DIR)
     parser.add_argument("--subset", choices=["protocol_development", "sealed_qualification"], default="protocol_development")
+    parser.add_argument("--development-decision", type=Path, default=DEFAULT_DEVELOPMENT_DECISION)
+    parser.add_argument("--development-metrics", type=Path, default=DEFAULT_DEVELOPMENT_METRICS)
     return parser.parse_args()
 
 
