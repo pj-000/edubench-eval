@@ -1,0 +1,12 @@
+{
+  "status": "READY_FOR_SECONDARY_TEACHER",
+  "selected_protocol": "p0_holistic_zero_shot",
+  "paper_train_rows": 2654,
+  "primary_rows": 2654,
+  "secondary_route_rows": 1552,
+  "secondary_route_rate": 0.584777694046722,
+  "confidence_threshold": 0.75,
+  "high_control_rate": 0.1,
+  "dev_or_test_read": false,
+  "next_action": "Run the selected protocol with DeepSeek on exp28d_secondary_teacher_packets.jsonl."
+}

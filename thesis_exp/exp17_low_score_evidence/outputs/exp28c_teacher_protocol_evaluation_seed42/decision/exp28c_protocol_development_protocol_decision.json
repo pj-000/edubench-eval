@@ -1,0 +1,41 @@
+{
+  "status": "READY_FOR_SEALED_QUALIFICATION",
+  "selected_protocol": "p0_holistic_zero_shot",
+  "protocol_scores": [
+    {
+      "protocol": "p0_holistic_zero_shot",
+      "parse_ok": true,
+      "guard_ok": true,
+      "mean_MAE": 1.0916666666666668,
+      "mean_MAE_unanimous": 1.4137931034482758,
+      "mean_low_to_high_rate": 0.6923076923076923,
+      "mean_QWK": 0.2625616897819463,
+      "mean_within_human_score_range_rate": 0.4666666666666667
+    },
+    {
+      "protocol": "p1_rubric_first",
+      "parse_ok": true,
+      "guard_ok": false,
+      "mean_MAE": 1.1083333333333334,
+      "mean_MAE_unanimous": 1.396551724137931,
+      "mean_low_to_high_rate": 0.6538461538461539,
+      "mean_QWK": 0.2651071991232276,
+      "mean_within_human_score_range_rate": 0.4666666666666667
+    },
+    {
+      "protocol": "p2_rubric_verify_then_score",
+      "parse_ok": true,
+      "guard_ok": false,
+      "mean_MAE": 1.0833333333333335,
+      "mean_MAE_unanimous": 1.396551724137931,
+      "mean_low_to_high_rate": 0.6538461538461539,
+      "mean_QWK": 0.2913272771613218,
+      "mean_within_human_score_range_rate": 0.48333333333333334
+    }
+  ],
+  "selection_rule": "min mean low-to-high subject to parse, unanimous-human MAE/exact, and high-to-low guards",
+  "test_used": false,
+  "subset": "protocol_development",
+  "reference_rows": 60,
+  "dev_or_test_read": false
+}

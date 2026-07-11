@@ -1,0 +1,13 @@
+metric,value
+paper_train_rows,2654
+qwen_valid_rows,2654
+deepseek_routed_valid_rows,1552
+deepseek_route_rate,0.584777694046722
+qwen_original_exact_agreement_rate,0.5082893745290128
+routed_qwen_deepseek_exact_agreement_rate,0.538659793814433
+accepted_adjacent_label_changes,518
+unresolved_or_risky_changes,787
+qwen_prompt_tokens,3260188
+qwen_completion_tokens,4421598
+deepseek_prompt_tokens,1845306
+deepseek_completion_tokens,2617321

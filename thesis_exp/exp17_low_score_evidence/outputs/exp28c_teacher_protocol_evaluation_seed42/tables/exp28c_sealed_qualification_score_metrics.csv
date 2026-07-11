@@ -1,0 +1,7 @@
+provider,protocol,subset,n,MAE,Signed_Bias,Exact_Match,QWK,Kendall_tau_b,Bin_Agreement,unanimous_n,MAE_unanimous,Exact_Match_unanimous,within_human_score_range_rate,low_to_high_count,low_to_high_rate,high_to_low_count,high_to_low_rate,label1_recall,label2_recall,label3_recall,label4_recall,label5_recall
+qwen,p0_holistic_zero_shot,sealed_qualification,120,0.7333333333333333,0.23333333333333334,0.4583333333333333,0.637357178340785,0.5191316903990693,0.6916666666666667,57,0.6666666666666666,0.543859649122807,0.675,7,0.25,4,0.058823529411764705,0.6,0.4444444444444444,0.16666666666666666,0.40625,0.6666666666666666
+qwen,p1_rubric_first,sealed_qualification,0,,,,,,,0,,,,0,,0,,,,,,
+qwen,p2_rubric_verify_then_score,sealed_qualification,0,,,,,,,0,,,,0,,0,,,,,,
+deepseek,p0_holistic_zero_shot,sealed_qualification,120,0.8083333333333333,0.225,0.48333333333333334,0.5747831605669558,0.5038941114752441,0.6666666666666666,57,0.6140350877192983,0.6140350877192983,0.6583333333333333,7,0.25,5,0.07352941176470588,0.8,0.3888888888888889,0.125,0.28125,0.8611111111111112
+deepseek,p1_rubric_first,sealed_qualification,0,,,,,,,0,,,,0,,0,,,,,,
+deepseek,p2_rubric_verify_then_score,sealed_qualification,0,,,,,,,0,,,,0,,0,,,,,,

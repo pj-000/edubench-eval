@@ -1,0 +1,6 @@
+variant,train_rows,label_1,label_2,label_3,label_4,label_5,changed_from_original,training_loss,model_input
+b0_original_human,2654,24,52,251,946,1381,0,ordinary_cross_entropy,question+answer+evaluation_dimension
+b1_primary_teacher_all,2654,30,250,234,690,1450,1305,ordinary_cross_entropy,question+answer+evaluation_dimension
+b2_selective_dual_teacher,2654,26,86,205,764,1573,518,ordinary_cross_entropy,question+answer+evaluation_dimension
+b3_filter_unresolved,1867,17,57,56,459,1278,518,ordinary_cross_entropy,question+answer+evaluation_dimension
+b4_random_transition_control,2654,26,86,205,764,1573,518,ordinary_cross_entropy,question+answer+evaluation_dimension

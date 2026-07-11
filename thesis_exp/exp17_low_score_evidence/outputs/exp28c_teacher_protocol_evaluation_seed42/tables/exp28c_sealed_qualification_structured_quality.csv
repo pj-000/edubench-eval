@@ -1,0 +1,7 @@
+provider,protocol,subset,expected_rows,output_rows,valid_rows,parse_schema_success_rate,reason_nonempty_rate,rubric_assessment_nonempty_rate,major_failure_nonempty_rate,score_cap_nonnull_rate,score_cap_inconsistency_rate,mean_confidence
+qwen,p0_holistic_zero_shot,sealed_qualification,120,120,120,1.0,1.0,1.0,0.3333333333333333,0.36666666666666664,0.0,0.8951666666666667
+qwen,p1_rubric_first,sealed_qualification,120,0,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+qwen,p2_rubric_verify_then_score,sealed_qualification,120,0,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+deepseek,p0_holistic_zero_shot,sealed_qualification,120,120,120,1.0,1.0,1.0,0.26666666666666666,0.30833333333333335,0.0,0.9463333333333334
+deepseek,p1_rubric_first,sealed_qualification,120,0,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+deepseek,p2_rubric_verify_then_score,sealed_qualification,120,0,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0

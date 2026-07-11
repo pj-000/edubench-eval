@@ -1,0 +1,15 @@
+{
+  "provider": "deepseek",
+  "model": "deepseek-v4-pro",
+  "protocol": "p0_holistic_zero_shot",
+  "subset": "sealed_qualification",
+  "packet_rows": 120,
+  "attempted": 120,
+  "passed": 120,
+  "failed": 0,
+  "max_tokens": 8192,
+  "thinking": "enabled",
+  "reasoning_effort": "high",
+  "dry_run": false,
+  "output": "thesis_exp/exp17_low_score_evidence/outputs/exp28c_teacher_protocol_evaluation_seed42/private/deepseek/p0_holistic_zero_shot/sealed_qualification.jsonl"
+}

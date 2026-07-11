@@ -1,0 +1,27 @@
+{
+  "status": "READY_FOR_DEV_ONLY_CE_TRAINING",
+  "protocol": "p0_holistic_zero_shot",
+  "paper_train_rows": 2654,
+  "paper_dev_rows": 664,
+  "accepted_changes": 518,
+  "unresolved_conflicts_filtered_in_b3": 787,
+  "teacher_scope": "qwen_primary_plus_selective_deepseek_only",
+  "primary_teacher_model": "qwen3.7-max",
+  "secondary_teacher_model": "deepseek-v4-pro",
+  "primary_teacher_valid_rows": 2654,
+  "secondary_teacher_valid_rows": 1552,
+  "secondary_route_expected_rows": 1552,
+  "data_audit_passed": true,
+  "dev_dataset_sha256": "fc19ecbbf6b598fd0ffb6bc7228347c3eab1f8a4afb746308383693daf65d452",
+  "variants": {
+    "b0_original_human": 2654,
+    "b1_primary_teacher_all": 2654,
+    "b2_selective_dual_teacher": 2654,
+    "b3_filter_unresolved": 1867,
+    "b4_random_transition_control": 2654
+  },
+  "loss": "ordinary_cross_entropy",
+  "student_input": "question+answer+evaluation_dimension",
+  "test_read": false,
+  "test_file_written": false
+}

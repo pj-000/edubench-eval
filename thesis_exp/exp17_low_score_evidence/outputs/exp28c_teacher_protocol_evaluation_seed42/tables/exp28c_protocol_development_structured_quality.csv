@@ -1,0 +1,7 @@
+provider,protocol,subset,expected_rows,output_rows,valid_rows,parse_schema_success_rate,reason_nonempty_rate,rubric_assessment_nonempty_rate,major_failure_nonempty_rate,score_cap_nonnull_rate,score_cap_inconsistency_rate,mean_confidence
+qwen,p0_holistic_zero_shot,protocol_development,60,60,60,1.0,1.0,1.0,0.2833333333333333,0.3,0.0,0.9019999999999999
+qwen,p1_rubric_first,protocol_development,60,60,60,1.0,1.0,1.0,0.35,0.35,0.0,0.8973333333333333
+qwen,p2_rubric_verify_then_score,protocol_development,60,60,60,1.0,1.0,1.0,0.23333333333333334,0.23333333333333334,0.0,0.8956666666666667
+deepseek,p0_holistic_zero_shot,protocol_development,60,60,60,1.0,1.0,1.0,0.18333333333333332,0.26666666666666666,0.0,0.9336666666666666
+deepseek,p1_rubric_first,protocol_development,60,60,60,1.0,1.0,1.0,0.3,0.36666666666666664,0.0,0.9316666666666666
+deepseek,p2_rubric_verify_then_score,protocol_development,60,60,60,1.0,1.0,1.0,0.2833333333333333,0.3,0.0,0.9391666666666667

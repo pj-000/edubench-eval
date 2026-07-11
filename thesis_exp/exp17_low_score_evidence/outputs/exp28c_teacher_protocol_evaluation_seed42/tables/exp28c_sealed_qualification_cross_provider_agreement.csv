@@ -1,0 +1,4 @@
+protocol,subset,n,score_exact_agreement,score_within1_agreement,score_MAE,score_QWK
+p0_holistic_zero_shot,sealed_qualification,120,0.6333333333333333,0.9583333333333334,0.4583333333333333,0.8009843783436764
+p1_rubric_first,sealed_qualification,0,,,,
+p2_rubric_verify_then_score,sealed_qualification,0,,,,

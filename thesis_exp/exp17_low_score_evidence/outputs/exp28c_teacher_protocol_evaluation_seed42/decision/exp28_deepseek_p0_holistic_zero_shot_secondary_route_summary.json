@@ -1,0 +1,16 @@
+{
+  "provider": "deepseek",
+  "model": "deepseek-v4-pro",
+  "protocol": "p0_holistic_zero_shot",
+  "subset": "secondary_route",
+  "packet_rows": 1552,
+  "attempted": 1,
+  "passed": 1,
+  "failed": 0,
+  "workers": 1,
+  "max_tokens": 8192,
+  "thinking": "enabled",
+  "reasoning_effort": "high",
+  "dry_run": false,
+  "output": "thesis_exp/exp17_low_score_evidence/outputs/exp28c_teacher_protocol_evaluation_seed42/private/deepseek/p0_holistic_zero_shot/secondary_route.jsonl"
+}

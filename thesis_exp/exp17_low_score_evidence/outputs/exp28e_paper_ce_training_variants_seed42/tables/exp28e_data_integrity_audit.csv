@@ -1,0 +1,10 @@
+check,passed
+source_train_rows_2654,True
+source_dev_rows_664,True
+source_train_dev_record_overlap_zero,True
+source_train_dev_triple_overlap_zero,True
+b0_b1_b2_b4_preserve_train_identity,True
+b3_is_train_subset,True
+all_dev_variants_identical,True
+no_test_file_written,True
+random_control_transition_multiset_matched,True

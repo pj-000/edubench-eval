@@ -1,0 +1,16 @@
+{
+  "provider": "qwen",
+  "model": "qwen3.7-max",
+  "protocol": "p0_holistic_zero_shot",
+  "subset": "all_train",
+  "packet_rows": 2654,
+  "attempted": 6,
+  "passed": 6,
+  "failed": 0,
+  "workers": 4,
+  "max_tokens": 4096,
+  "thinking": "enabled",
+  "reasoning_effort": "not_applicable",
+  "dry_run": false,
+  "output": "thesis_exp/exp17_low_score_evidence/outputs/exp28c_teacher_protocol_evaluation_seed42/private/qwen/p0_holistic_zero_shot/all_train.jsonl"
+}

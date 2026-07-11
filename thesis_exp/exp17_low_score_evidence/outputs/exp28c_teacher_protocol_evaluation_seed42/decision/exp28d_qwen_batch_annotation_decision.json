@@ -1,0 +1,15 @@
+{
+  "status": "READY_FOR_REALTIME_REPAIR",
+  "provider": "qwen",
+  "model": "qwen3.7-max",
+  "thinking": "enabled",
+  "protocol": "p0_holistic_zero_shot",
+  "batch_id": "batch_f7c28731-e31f-4891-99b0-4bb5c8d1cb68",
+  "expected_rows": 2654,
+  "batch_result_rows": 2654,
+  "normalized_rows": 2654,
+  "valid_rows": 2648,
+  "invalid_rows": 6,
+  "paper_dev_or_test_read": false,
+  "reference_status": "teacher_model_annotation_not_human_review"
+}

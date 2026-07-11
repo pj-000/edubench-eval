@@ -99,16 +99,22 @@ def canonical_rows_hash(rows: Iterable[dict[str, Any]]) -> str:
     return digest.hexdigest()
 
 
-def load_valid_outputs(path: Path) -> dict[str, dict[str, Any]]:
+def load_valid_rows(path: Path) -> dict[str, dict[str, Any]]:
     if not path.exists():
         raise FileNotFoundError(path)
-    outputs = {}
+    rows: dict[str, dict[str, Any]] = {}
     for row in read_jsonl(path):
-        annotation = row.get("annotation")
-        if not isinstance(annotation, dict) or row.get("schema_errors"):
-            continue
-        outputs[str(row["sample_id"])] = annotation
-    return outputs
+        if isinstance(row.get("annotation"), dict) and not row.get("schema_errors"):
+            rows[str(row["sample_id"])] = row
+    return rows
+
+
+def usage_total(rows: Iterable[dict[str, Any]], key: str) -> int:
+    total = 0
+    for row in rows:
+        usage = (row.get("response_meta") or {}).get("usage") or {}
+        total += int(usage.get(key) or 0)
+    return total
 
 
 def load_protocol(path: Path, override: str | None) -> str:
@@ -170,8 +176,10 @@ def prepare(args: argparse.Namespace) -> dict[str, Any]:
     source_by_id = {sid(row): row for row in train_source}
     primary_path = args.teacher_dir / "private" / "qwen" / protocol / "all_train.jsonl"
     secondary_path = args.teacher_dir / "private" / "deepseek" / protocol / "secondary_route.jsonl"
-    primary = load_valid_outputs(primary_path)
-    secondary = load_valid_outputs(secondary_path)
+    primary_rows = load_valid_rows(primary_path)
+    secondary_rows = load_valid_rows(secondary_path)
+    primary = {sample_id: row["annotation"] for sample_id, row in primary_rows.items()}
+    secondary = {sample_id: row["annotation"] for sample_id, row in secondary_rows.items()}
     if set(primary) != set(source_by_id):
         raise ValueError(f"Primary teacher coverage mismatch: {len(primary)}/2654")
     if not args.secondary_route_manifest.exists():
@@ -356,6 +364,33 @@ def prepare(args: argparse.Namespace) -> dict[str, Any]:
         [{"check": name, "passed": passed} for name, passed in data_checks.items()],
         ["check", "passed"],
     )
+    teacher_audit_rows = [
+        {"metric": "paper_train_rows", "value": len(train_source)},
+        {"metric": "qwen_valid_rows", "value": len(primary)},
+        {"metric": "deepseek_routed_valid_rows", "value": len(secondary)},
+        {"metric": "deepseek_route_rate", "value": len(secondary) / len(train_source)},
+        {
+            "metric": "qwen_original_exact_agreement_rate",
+            "value": sum(int(primary[sample_id]["score"]) == int(source["label_5"]) for sample_id, source in source_by_id.items())
+            / len(train_source),
+        },
+        {
+            "metric": "routed_qwen_deepseek_exact_agreement_rate",
+            "value": sum(int(primary[sample_id]["score"]) == int(secondary[sample_id]["score"]) for sample_id in route_ids)
+            / len(route_ids),
+        },
+        {"metric": "accepted_adjacent_label_changes", "value": len(accepted_changes)},
+        {"metric": "unresolved_or_risky_changes", "value": len(unresolved_conflicts)},
+        {"metric": "qwen_prompt_tokens", "value": usage_total(primary_rows.values(), "prompt_tokens")},
+        {"metric": "qwen_completion_tokens", "value": usage_total(primary_rows.values(), "completion_tokens")},
+        {"metric": "deepseek_prompt_tokens", "value": usage_total(secondary_rows.values(), "prompt_tokens")},
+        {"metric": "deepseek_completion_tokens", "value": usage_total(secondary_rows.values(), "completion_tokens")},
+    ]
+    write_csv(
+        args.out_dir / "tables" / "exp28e_teacher_audit_summary.csv",
+        teacher_audit_rows,
+        ["metric", "value"],
+    )
     write_csv(
         args.out_dir / "tables" / "exp28e_fusion_decisions_light.csv",
         decisions,
@@ -373,6 +408,8 @@ def prepare(args: argparse.Namespace) -> dict[str, Any]:
         "accepted_changes": len(accepted_changes),
         "unresolved_conflicts_filtered_in_b3": len(unresolved_conflicts),
         "teacher_scope": "qwen_primary_plus_selective_deepseek_only",
+        "primary_teacher_model": "qwen3.7-max",
+        "secondary_teacher_model": "deepseek-v4-pro",
         "primary_teacher_valid_rows": len(primary),
         "secondary_teacher_valid_rows": len(secondary),
         "secondary_route_expected_rows": len(route_ids),
@@ -391,6 +428,8 @@ def prepare(args: argparse.Namespace) -> dict[str, Any]:
 - paper train/dev: {len(train_source)}/{len(dev_source)}
 - accepted selective changes: {len(accepted_changes)}
 - unresolved conflicts filtered in B3: {len(unresolved_conflicts)}
+- primary teacher: Qwen3.7-Max on all 2,654 train rows
+- secondary teacher: DeepSeek-V4-Pro on the locked selective route only
 - student input: question + answer + evaluation dimension
 - loss: ordinary cross-entropy
 - test read: no
@@ -400,6 +439,12 @@ score. B2 changes labels only when Qwen and DeepSeek agree with high confidence 
 label transition. Risky transitions are never relabelled automatically.
 B3 removes unresolved teacher conflicts. B4 applies the same transition multiset to randomly
 matched rows and is a negative control for selective targeting.
+
+Both teachers receive question, answer, metric, rubric, and metadata and return a rubric-grounded
+structured audit. Their reasons, failure tags, confidence, and score caps are used only for audit
+and routing. The fixed Qwen3-Reranker-0.6B student receives the original paper input format and is
+trained only on the resulting 1-5 class target with ordinary cross-entropy. All teacher-derived
+targets are model-generated silver supervision, not human adjudication or replacement gold.
 """
     report_path = args.out_dir / "reports" / "exp28e_training_variant_report.md"
     report_path.parent.mkdir(parents=True, exist_ok=True)

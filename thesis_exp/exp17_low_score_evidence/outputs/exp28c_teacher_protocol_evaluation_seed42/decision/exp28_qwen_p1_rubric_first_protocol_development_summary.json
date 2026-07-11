@@ -1,0 +1,12 @@
+{
+  "provider": "qwen",
+  "model": "qwen3.7-max",
+  "protocol": "p1_rubric_first",
+  "subset": "protocol_development",
+  "packet_rows": 60,
+  "attempted": 59,
+  "passed": 59,
+  "failed": 0,
+  "dry_run": false,
+  "output": "thesis_exp/exp17_low_score_evidence/outputs/exp28c_teacher_protocol_evaluation_seed42/private/qwen/p1_rubric_first/protocol_development.jsonl"
+}

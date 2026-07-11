@@ -1,0 +1,4 @@
+protocol,subset,n,score_exact_agreement,score_within1_agreement,score_MAE,score_QWK
+p0_holistic_zero_shot,protocol_development,60,0.7333333333333333,0.95,0.35,0.8024087316522394
+p1_rubric_first,protocol_development,60,0.6166666666666667,0.9666666666666667,0.4166666666666667,0.8422198041349293
+p2_rubric_verify_then_score,protocol_development,60,0.8,0.95,0.26666666666666666,0.8533834586466166
