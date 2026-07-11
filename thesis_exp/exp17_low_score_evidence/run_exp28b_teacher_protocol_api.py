@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import argparse
+import concurrent.futures
 import hashlib
 import json
 import os
@@ -100,6 +101,38 @@ def parse_json(text: str) -> tuple[dict[str, Any] | None, str]:
     return value, ""
 
 
+def normalize_annotation_structure(
+    annotation: dict[str, Any] | None,
+    sid: str,
+    schema: dict[str, Any],
+) -> tuple[dict[str, Any] | None, list[str]]:
+    """Normalize transport-only JSON differences without changing semantic fields."""
+    if annotation is None:
+        return None, []
+    normalized = dict(annotation)
+    actions: list[str] = []
+    required = set(schema.get("required") or [])
+    if "content" in normalized and not (required & set(normalized)):
+        wrapped = normalized.get("content")
+        if isinstance(wrapped, dict):
+            normalized = dict(wrapped)
+            actions.append("unwrap_content_object")
+        elif isinstance(wrapped, str):
+            parsed, _ = parse_json(wrapped)
+            if parsed is not None:
+                normalized = parsed
+                actions.append("unwrap_content_json_string")
+    if "sample_id" not in normalized:
+        normalized["sample_id"] = sid
+        actions.append("restore_request_sample_id")
+    allowed = set((schema.get("properties") or {}).keys())
+    unexpected = sorted(set(normalized) - allowed)
+    if unexpected:
+        normalized = {key: value for key, value in normalized.items() if key in allowed}
+        actions.extend(f"drop_unexpected_top_level:{key}" for key in unexpected)
+    return normalized, actions
+
+
 def provider_config(provider: str, model: str | None, dry_run: bool) -> dict[str, str]:
     spec = PROVIDERS[provider]
     key = os.environ.get(spec["key_env"], "")
@@ -138,13 +171,27 @@ def build_messages(packet: dict[str, Any], protocol: str, schema: dict[str, Any]
     return [{"role": "system", "content": system}, {"role": "user", "content": user}]
 
 
-def chat_completion(cfg: dict[str, str], messages: list[dict[str, str]], timeout: int) -> dict[str, Any]:
+def chat_completion(
+    cfg: dict[str, str],
+    messages: list[dict[str, str]],
+    timeout: int,
+    max_tokens: int,
+    thinking: str,
+    reasoning_effort: str,
+) -> dict[str, Any]:
     body = {
         "model": cfg["model"],
         "messages": messages,
         "temperature": 0.0,
         "response_format": {"type": "json_object"},
+        "max_tokens": max_tokens,
     }
+    if cfg["provider"] == "deepseek":
+        body["thinking"] = {"type": thinking}
+        if thinking == "enabled":
+            body["reasoning_effort"] = reasoning_effort
+    elif cfg["provider"] == "qwen":
+        body["enable_thinking"] = thinking == "enabled"
     request = urllib.request.Request(
         cfg["base_url"] + "/chat/completions",
         data=json.dumps(body, ensure_ascii=False).encode("utf-8"),
@@ -183,11 +230,95 @@ def successful_ids(path: Path) -> set[str]:
     return {str(row["sample_id"]) for row in successful}
 
 
+def annotate_one(
+    packet: dict[str, Any],
+    args: argparse.Namespace,
+    cfg: dict[str, str],
+    schema: dict[str, Any],
+    max_tokens: int,
+) -> tuple[dict[str, Any], bool]:
+    sid = str(packet["sample_id"])
+    messages = build_messages(packet, args.protocol, schema)
+    validator = jsonschema.Draft202012Validator(schema)
+    annotation = None
+    parse_error = ""
+    schema_errors: list[str] = []
+    response_meta: dict[str, Any] = {}
+    normalization_actions: list[str] = []
+    for attempt in range(args.retries + 1):
+        try:
+            response = chat_completion(
+                cfg,
+                messages,
+                args.timeout,
+                max_tokens,
+                args.thinking,
+                args.reasoning_effort,
+            )
+            annotation, parse_error = parse_json(response_text(response))
+            annotation, normalization_actions = normalize_annotation_structure(
+                annotation, sid, schema
+            )
+            schema_errors = []
+            if annotation is not None:
+                schema_errors = [error.message for error in validator.iter_errors(annotation)]
+                if annotation.get("sample_id") != sid:
+                    schema_errors.append("sample_id mismatch")
+                failures = annotation.get("major_failures") or []
+                if "no_major_failure" in failures and len(failures) > 1:
+                    schema_errors.append("no_major_failure cannot coexist with another failure")
+            choices = response.get("choices") or []
+            response_meta = {
+                "model": cfg["model"],
+                "usage": response.get("usage"),
+                "finish_reason": choices[0].get("finish_reason") if choices else None,
+                "max_tokens": max_tokens,
+                "thinking": args.thinking,
+                "reasoning_effort": (
+                    args.reasoning_effort
+                    if args.provider == "deepseek" and args.thinking == "enabled"
+                    else "not_applicable"
+                ),
+                "attempt": attempt + 1,
+                "normalization_actions": normalization_actions,
+            }
+            if annotation is not None and not schema_errors:
+                break
+            if attempt < args.retries:
+                time.sleep(args.retry_sleep)
+        except Exception as exc:  # noqa: BLE001
+            parse_error = f"api_error_attempt_{attempt + 1}: {exc}"
+            if attempt < args.retries:
+                time.sleep(args.retry_sleep)
+
+    ok = annotation is not None and not schema_errors
+    request_hash = hashlib.sha256(
+        json.dumps(messages, ensure_ascii=False, sort_keys=True).encode("utf-8")
+    ).hexdigest()
+    return (
+        {
+            "sample_id": sid,
+            "question_key": packet["question_key"],
+            "protocol_subset": args.subset,
+            "provider": args.provider,
+            "protocol": args.protocol,
+            "annotation": annotation,
+            "parse_error": parse_error,
+            "schema_errors": schema_errors,
+            "request_hash": request_hash,
+            "response_meta": response_meta,
+            "reference_status": "teacher_model_annotation_not_human_review",
+        },
+        ok,
+    )
+
+
 def run(args: argparse.Namespace) -> dict[str, Any]:
     dry_run = not args.run_api
     cfg = provider_config(args.provider, args.model, dry_run)
+    cfg["provider"] = args.provider
+    max_tokens = args.max_tokens or (8192 if args.provider == "deepseek" else 4096)
     schema = json.loads(SCHEMA_PATH.read_text(encoding="utf-8"))
-    validator = jsonschema.Draft202012Validator(schema)
     all_packets = read_jsonl(args.packets)
     packets = (
         all_packets
@@ -202,69 +333,36 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
         output.unlink()
         done = set()
 
+    pending = [(index, packet) for index, packet in enumerate(packets, start=1) if str(packet["sample_id"]) not in done]
     attempted = passed = failed = 0
     start = time.time()
-    for index, packet in enumerate(packets, start=1):
-        sid = str(packet["sample_id"])
-        if sid in done:
-            continue
-        messages = build_messages(packet, args.protocol, schema)
-        if dry_run:
-            print(json.dumps({"provider": args.provider, "protocol": args.protocol, "messages": messages}, ensure_ascii=False, indent=2))
-            break
-        attempted += 1
-        annotation = None
-        parse_error = ""
-        schema_errors: list[str] = []
-        response_meta: dict[str, Any] = {}
-        for attempt in range(args.retries + 1):
-            try:
-                response = chat_completion(cfg, messages, args.timeout)
-                annotation, parse_error = parse_json(response_text(response))
-                if annotation is not None:
-                    schema_errors = [error.message for error in validator.iter_errors(annotation)]
-                    if annotation.get("sample_id") != sid:
-                        schema_errors.append("sample_id mismatch")
-                    failures = annotation.get("major_failures") or []
-                    if "no_major_failure" in failures and len(failures) > 1:
-                        schema_errors.append("no_major_failure cannot coexist with another failure")
-                response_meta = {"model": cfg["model"], "usage": response.get("usage")}
-                break
-            except Exception as exc:  # noqa: BLE001
-                parse_error = f"api_error_attempt_{attempt + 1}: {exc}"
-                if attempt < args.retries:
-                    time.sleep(args.retry_sleep)
-        if annotation is not None and not schema_errors:
-            passed += 1
-        else:
-            failed += 1
-        request_hash = hashlib.sha256(
-            json.dumps(messages, ensure_ascii=False, sort_keys=True).encode("utf-8")
-        ).hexdigest()
-        append_jsonl(
-            output,
-            {
-                "sample_id": sid,
-                "question_key": packet["question_key"],
-                "protocol_subset": args.subset,
-                "provider": args.provider,
-                "protocol": args.protocol,
-                "annotation": annotation,
-                "parse_error": parse_error,
-                "schema_errors": schema_errors,
-                "request_hash": request_hash,
-                "response_meta": response_meta,
-                "reference_status": "teacher_model_annotation_not_human_review",
-            },
-        )
-        elapsed = time.time() - start
-        rate = attempted / elapsed if elapsed else 0.0
-        eta = (len(packets) - index) / rate if rate else 0.0
-        print(
-            f"[exp28] {args.provider}/{args.protocol}/{args.subset} {index}/{len(packets)} "
-            f"passed={passed} failed={failed} elapsed={elapsed/60:.1f}m eta={eta/60:.1f}m",
-            flush=True,
-        )
+    if dry_run and pending:
+        messages = build_messages(pending[0][1], args.protocol, schema)
+        print(json.dumps({"provider": args.provider, "protocol": args.protocol, "messages": messages}, ensure_ascii=False, indent=2))
+    elif pending:
+        attempted = len(pending)
+        with concurrent.futures.ThreadPoolExecutor(max_workers=args.workers) as executor:
+            futures = {
+                executor.submit(annotate_one, packet, args, cfg, schema, max_tokens): source_index
+                for source_index, packet in pending
+            }
+            for completed, future in enumerate(concurrent.futures.as_completed(futures), start=1):
+                source_index = futures[future]
+                row, ok = future.result()
+                append_jsonl(output, row)
+                if ok:
+                    passed += 1
+                else:
+                    failed += 1
+                elapsed = time.time() - start
+                rate = completed / elapsed if elapsed else 0.0
+                eta = (attempted - completed) / rate if rate else 0.0
+                print(
+                    f"[exp28] {args.provider}/{args.protocol}/{args.subset} "
+                    f"completed={completed}/{attempted} source={source_index}/{len(packets)} "
+                    f"passed={passed} failed={failed} elapsed={elapsed/60:.1f}m eta={eta/60:.1f}m",
+                    flush=True,
+                )
 
     summary = {
         "provider": args.provider,
@@ -275,6 +373,14 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
         "attempted": attempted,
         "passed": passed,
         "failed": failed,
+        "workers": args.workers,
+        "max_tokens": max_tokens,
+        "thinking": args.thinking,
+        "reasoning_effort": (
+            args.reasoning_effort
+            if args.provider == "deepseek" and args.thinking == "enabled"
+            else "not_applicable"
+        ),
         "dry_run": dry_run,
         "output": str(output),
     }
@@ -304,6 +410,10 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--out-dir", type=Path, default=DEFAULT_OUT_DIR)
     parser.add_argument("--model", default=None)
     parser.add_argument("--max-rows", type=int, default=0)
+    parser.add_argument("--workers", type=int, default=1)
+    parser.add_argument("--max-tokens", type=int, default=0)
+    parser.add_argument("--thinking", choices=["enabled", "disabled"], default="enabled")
+    parser.add_argument("--reasoning-effort", choices=["high", "max"], default="high")
     parser.add_argument("--timeout", type=int, default=180)
     parser.add_argument("--retries", type=int, default=2)
     parser.add_argument("--retry-sleep", type=float, default=2.0)

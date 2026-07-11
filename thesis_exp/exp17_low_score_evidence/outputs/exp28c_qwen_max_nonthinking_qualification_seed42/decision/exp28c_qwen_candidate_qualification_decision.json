@@ -1,0 +1,33 @@
+{
+  "status": "KEEP_QWEN3_7_MAX_THINKING_PRIMARY",
+  "candidate": "qwen3.7-max-nonthinking",
+  "selected_primary_teacher": "qwen3.7-max-thinking",
+  "checks": {
+    "complete_120": true,
+    "native_format_success_at_least_0p85": true,
+    "parse_at_least_0p98": true,
+    "unanimous_mae_within_0p10": true,
+    "qwk_within_0p05": true,
+    "low_to_high_within_0p05": false,
+    "high_to_low_within_0p03": true,
+    "human_range_within_0p05": true,
+    "max_exact_agreement_at_least_0p70": true,
+    "max_within1_agreement_at_least_0p90": true
+  },
+  "agreement": {
+    "n": 120,
+    "exact_agreement": 0.725,
+    "within1_agreement": 0.975,
+    "score_MAE": 0.31666666666666665,
+    "score_QWK": 0.8722800378429517
+  },
+  "native_first_pass_format": {
+    "passed": 120,
+    "failed": 0,
+    "success_rate": 1.0
+  },
+  "quality_selection_precedes_cost_selection": true,
+  "paper_dev_or_test_read": false,
+  "reference_scope": "paper_train_only_sealed_qualification",
+  "reason": "The candidate failed at least one locked quality or agreement guard; retain Max-thinking as primary teacher."
+}

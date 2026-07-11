@@ -12,6 +12,9 @@ if [[ -f ".env.exp28.local" ]]; then
 fi
 
 RUN_API="${RUN_API:-0}"
+QWEN_BATCH="${QWEN_BATCH:-1}"
+QWEN_WORKERS="${QWEN_WORKERS:-4}"
+DEEPSEEK_WORKERS="${DEEPSEEK_WORKERS:-4}"
 PROTOCOL_DECISION="thesis_exp/exp17_low_score_evidence/outputs/exp28c_teacher_protocol_evaluation_seed42/decision/exp28c_protocol_development_protocol_decision.json"
 QUALIFICATION_DECISION="thesis_exp/exp17_low_score_evidence/outputs/exp28c_teacher_protocol_evaluation_seed42/decision/exp28c_sealed_qualification_protocol_decision.json"
 PROTOCOL="${PROTOCOL:-}"
@@ -33,12 +36,26 @@ if [[ "${RUN_API}" == "1" ]]; then
 fi
 
 echo "Exp28 full teacher annotation; protocol=${PROTOCOL}; RUN_API=${RUN_API}"
+echo "QWEN_BATCH=${QWEN_BATCH}; QWEN_WORKERS=${QWEN_WORKERS}; DEEPSEEK_WORKERS=${DEEPSEEK_WORKERS}"
 echo "Stage 1: Qwen primary teacher on all 2,654 paper-train rows"
-if [[ "${RUN_API}" == "1" ]]; then
+if [[ "${RUN_API}" == "1" && "${QWEN_BATCH}" == "1" ]]; then
+  python thesis_exp/exp17_low_score_evidence/run_exp28d_qwen_batch_annotation.py \
+    --run-api \
+    --wait
+  echo "Repair any missing/invalid Batch rows through resumable realtime calls"
   python thesis_exp/exp17_low_score_evidence/run_exp28b_teacher_protocol_api.py \
     --provider qwen \
     --protocol "${PROTOCOL}" \
     --subset all_train \
+    --workers "${QWEN_WORKERS}" \
+    --run-api \
+    --resume
+elif [[ "${RUN_API}" == "1" ]]; then
+  python thesis_exp/exp17_low_score_evidence/run_exp28b_teacher_protocol_api.py \
+    --provider qwen \
+    --protocol "${PROTOCOL}" \
+    --subset all_train \
+    --workers "${QWEN_WORKERS}" \
     --run-api \
     --resume
 else
@@ -63,6 +80,7 @@ python thesis_exp/exp17_low_score_evidence/run_exp28b_teacher_protocol_api.py \
   --protocol "${PROTOCOL}" \
   --subset secondary_route \
   --packets thesis_exp/exp17_low_score_evidence/outputs/exp28d_selective_secondary_route_seed42/private/exp28d_secondary_teacher_packets.jsonl \
+  --workers "${DEEPSEEK_WORKERS}" \
   --run-api \
   --resume
 

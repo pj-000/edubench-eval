@@ -1,0 +1,3 @@
+model,pricing_model,rows,input_tokens,output_tokens,estimated_cost_cny,estimated_cost_per_row_cny,projected_2654_cost_cny
+qwen3.7-max-thinking,qwen3.7-max,120,141548,165718,7.664424,0.0638702,169.5115108
+qwen3.7-max-nonthinking,qwen3.7-max,120,141788,33142,2.894568,0.0241214,64.0181956
