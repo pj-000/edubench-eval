@@ -505,3 +505,18 @@ exp27q_safe16_multiseed_seed42_44/*
 !exp27q_safe16_multiseed_seed42_44/reports/**
 !exp27q_safe16_multiseed_seed42_44/tables/
 !exp27q_safe16_multiseed_seed42_44/tables/**
+
+# Exp27R commits the frozen protocol, hashes, lightweight test summaries, and
+# final decision. Test predictions, access manifest, and logs stay private.
+!exp27r_final_test_campaign_seed42_44/
+exp27r_final_test_campaign_seed42_44/*
+!exp27r_final_test_campaign_seed42_44/configs/
+!exp27r_final_test_campaign_seed42_44/configs/**
+!exp27r_final_test_campaign_seed42_44/protocols/
+!exp27r_final_test_campaign_seed42_44/protocols/**
+!exp27r_final_test_campaign_seed42_44/tables/
+!exp27r_final_test_campaign_seed42_44/tables/**
+!exp27r_final_test_campaign_seed42_44/reports/
+!exp27r_final_test_campaign_seed42_44/reports/**
+!exp27r_final_test_campaign_seed42_44/decision/
+!exp27r_final_test_campaign_seed42_44/decision/**
