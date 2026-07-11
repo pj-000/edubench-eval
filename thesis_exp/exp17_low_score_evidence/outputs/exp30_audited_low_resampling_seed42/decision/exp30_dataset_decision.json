@@ -1,0 +1,12 @@
+{
+  "status": "READY_FOR_SEED42_DEV_SCOUT",
+  "teacher_confirmed_low_rows": 38,
+  "label_counts": {
+    "2": 22,
+    "1": 16
+  },
+  "duplicates_per_selected_row": 3,
+  "loss": "ordinary_cross_entropy",
+  "labels_changed": 0,
+  "test_read": false
+}
