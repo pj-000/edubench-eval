@@ -95,6 +95,8 @@ exp28g_one_shot_final_test/*
 !exp28g_one_shot_final_test/reports/**
 !exp28g_one_shot_final_test/decision/
 !exp28g_one_shot_final_test/decision/**
+!exp28g_one_shot_final_test/figures/
+!exp28g_one_shot_final_test/figures/**
 
 # Exp27L retains only reviewable, lightweight CPU calibration artifacts.
 # Packets, private references, and completed external reviews stay ignored.

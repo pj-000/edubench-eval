@@ -75,4 +75,5 @@ done
 
 "${PYTHON_BIN}" thesis_exp/exp17_low_score_evidence/collect_exp28g_final_test_results.py
 "${PYTHON_BIN}" thesis_exp/exp17_low_score_evidence/bootstrap_exp28h_final_test.py
+"${PYTHON_BIN}" thesis_exp/exp17_low_score_evidence/plot_exp28_paper_results.py --include-test
 echo "Exp28G one-shot final test completed."

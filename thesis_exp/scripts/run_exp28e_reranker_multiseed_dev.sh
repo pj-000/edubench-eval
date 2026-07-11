@@ -100,4 +100,6 @@ done
 [[ "${failed}" == "0" ]] || { echo "At least one Exp28E GPU queue failed" >&2; exit 1; }
 
 "${PYTHON_BIN}" thesis_exp/exp17_low_score_evidence/collect_exp28e_multiseed_dev_results.py
+"${PYTHON_BIN}" thesis_exp/exp17_low_score_evidence/bootstrap_exp28f_dev_differences.py
+"${PYTHON_BIN}" thesis_exp/exp17_low_score_evidence/plot_exp28_paper_results.py
 echo "Exp28E three-seed dev-only campaign completed. Test was not read."
