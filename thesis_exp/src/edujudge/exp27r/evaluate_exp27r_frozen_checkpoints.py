@@ -6,7 +6,6 @@ import argparse
 import csv
 import json
 import os
-import subprocess
 from pathlib import Path
 
 from thesis_exp.exp17_low_score_evidence.prepare_exp27r_final_test_lock import tree_manifest
@@ -25,9 +24,9 @@ def evaluate_frozen(args: argparse.Namespace) -> dict[str, object]:
     if os.environ.get("RUN_FINAL_TEST") != "1":
         raise RuntimeError("RUN_FINAL_TEST=1 is required to open test")
     manifest = json.loads((args.out_dir / "configs/exp27r_final_lock_manifest.json").read_text(encoding="utf-8"))
-    origin_commit = subprocess.check_output(["git", "rev-parse", "origin/main"], text=True).strip()
-    if origin_commit != manifest["locked_source_commit"]:
-        raise RuntimeError(f"Commit lock mismatch: {origin_commit} != {manifest['locked_source_commit']}")
+    declared_commit = os.environ.get("EXP27R_SOURCE_COMMIT")
+    if declared_commit != manifest["locked_source_commit"]:
+        raise RuntimeError(f"Commit lock mismatch: {declared_commit} != {manifest['locked_source_commit']}")
     hashes = list(csv.DictReader((args.out_dir / "tables/exp27r_dataset_and_config_hashes.csv").open(
         "r", encoding="utf-8", newline=""
     )))

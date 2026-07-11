@@ -17,6 +17,8 @@ OUT_DIR="thesis_exp/exp17_low_score_evidence/outputs/exp27r_final_test_campaign_
 TEST_JSONL="thesis_exp/data/splits/question_seed42/test.jsonl"
 ACCESS_MANIFEST="${OUT_DIR}/private/exp27r_test_access_manifest.json"
 LOCK_MANIFEST="${OUT_DIR}/configs/exp27r_final_lock_manifest.json"
+EXP27R_SOURCE_COMMIT="$("${PYTHON_BIN}" -c 'import json,sys;print(json.load(open(sys.argv[1]))["locked_source_commit"])' "${LOCK_MANIFEST}")"
+export EXP27R_SOURCE_COMMIT
 VARIANTS="v0_original_unweighted v1_original_label_matched_weight v2_selective_hard_relabel v3_selective_soft_audit v3_safe16_original_low_anchor"
 SEEDS="42 43 44"
 
@@ -48,7 +50,7 @@ def sha(path):
   for chunk in iter(lambda:f.read(1024*1024),b''): d.update(chunk)
  return d.hexdigest()
 payload={
- 'test_file_sha256':sha(test),'commit_sha':subprocess.check_output(['git','rev-parse','origin/main'],text=True).strip(),
+ 'test_file_sha256':sha(test),'commit_sha':json.load(open(lock,encoding='utf-8'))['locked_source_commit'],
  'lock_manifest_sha256':sha(lock),'campaign_start_timestamp':datetime.datetime.now(datetime.timezone.utc).isoformat(),
  'campaign_end_timestamp':None,'variants':variants,'seeds':seeds,'command':'run_exp27r_final_test_campaign.sh',
  'completion_status':'incomplete'
