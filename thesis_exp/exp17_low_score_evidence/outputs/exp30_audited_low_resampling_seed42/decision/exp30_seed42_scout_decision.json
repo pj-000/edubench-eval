@@ -1,0 +1,13 @@
+{
+  "status": "SEED42_SCOUT_NOT_SUPPORTED",
+  "checks": {
+    "mae_guard": true,
+    "exact_guard": true,
+    "kendall_guard": false,
+    "low_to_high_improves": false,
+    "label2_improves": true,
+    "beats_random_mae": false,
+    "beats_random_low_risk": false
+  },
+  "test_read": false
+}
