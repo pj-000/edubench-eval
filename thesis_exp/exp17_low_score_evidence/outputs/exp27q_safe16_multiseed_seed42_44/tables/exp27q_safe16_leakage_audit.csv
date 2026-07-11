@@ -1,0 +1,15 @@
+check,value
+rows,3326
+unique_sample_id,3326
+changed_rows_vs_v3,16
+changed_input_hashes,0
+changed_sample_weights,0
+non_safe16_target_mismatches,0
+safe16_id_symmetric_difference,0
+dev_sample_overlap,0
+dev_question_overlap,0
+test_sample_overlap_inherited,0
+test_question_overlap_inherited,0
+test_file_read,False
+test_label_read,False
+status,PASS

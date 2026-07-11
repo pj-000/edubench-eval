@@ -492,3 +492,16 @@ exp27k_representative_teacher_validation_seed42/decision/exp27d_*
 exp27k_representative_teacher_validation_seed42/reports/exp27d_*
 !exp27k_representative_teacher_validation_seed42/tables/
 !exp27k_representative_teacher_validation_seed42/tables/**
+
+# Exp27Q commits only locked configs and lightweight dev-only summaries.
+# The full Safe16 dataset, predictions, logs, runs, and checkpoints stay local.
+!exp27q_safe16_multiseed_seed42_44/
+exp27q_safe16_multiseed_seed42_44/*
+!exp27q_safe16_multiseed_seed42_44/configs/
+!exp27q_safe16_multiseed_seed42_44/configs/**
+!exp27q_safe16_multiseed_seed42_44/decision/
+!exp27q_safe16_multiseed_seed42_44/decision/**
+!exp27q_safe16_multiseed_seed42_44/reports/
+!exp27q_safe16_multiseed_seed42_44/reports/**
+!exp27q_safe16_multiseed_seed42_44/tables/
+!exp27q_safe16_multiseed_seed42_44/tables/**

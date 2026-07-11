@@ -1,0 +1,2 @@
+rows,unique_sample_id,changed_rows_vs_v3,changed_input_hashes,changed_sample_weights,changed_raw_quality_weights,non_safe16_target_mismatches,safe16_id_symmetric_difference,v3_global_weight_sum,safe16_global_weight_sum,v3_mean_sample_weight,safe16_mean_sample_weight
+3326,3326,16,0,0,0,0,0,3318.0,3318.0,0.9975947083583885,0.9975947083583885
