@@ -25,6 +25,10 @@ DEFAULT_TEACHER_DIR = Path(
 DEFAULT_QUALIFICATION_DECISION = (
     DEFAULT_TEACHER_DIR / "decision" / "exp28c_sealed_qualification_protocol_decision.json"
 )
+DEFAULT_SECONDARY_ROUTE_MANIFEST = Path(
+    "thesis_exp/exp17_low_score_evidence/outputs/exp28d_selective_secondary_route_seed42/"
+    "tables/exp28d_secondary_route_manifest_light.csv"
+)
 DEFAULT_OUT_DIR = Path(
     "thesis_exp/exp17_low_score_evidence/outputs/exp28e_paper_ce_training_variants_seed42"
 )
@@ -60,6 +64,11 @@ def write_csv(path: Path, rows: Iterable[dict[str, Any]], fields: list[str]) -> 
 def write_json(path: Path, payload: dict[str, Any]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+
+def read_csv(path: Path) -> list[dict[str, str]]:
+    with path.open("r", encoding="utf-8", newline="") as handle:
+        return list(csv.DictReader(handle))
 
 
 def sid(row: dict[str, Any]) -> str:
@@ -165,8 +174,22 @@ def prepare(args: argparse.Namespace) -> dict[str, Any]:
     secondary = load_valid_outputs(secondary_path)
     if set(primary) != set(source_by_id):
         raise ValueError(f"Primary teacher coverage mismatch: {len(primary)}/2654")
-    if not set(secondary) <= set(source_by_id):
-        raise ValueError("Secondary outputs contain rows outside paper train")
+    if not args.secondary_route_manifest.exists():
+        raise FileNotFoundError(args.secondary_route_manifest)
+    route_ids = {
+        str(row["sample_id"])
+        for row in read_csv(args.secondary_route_manifest)
+        if str(row.get("routed") or "").lower() == "true"
+    }
+    if set(secondary) != route_ids:
+        missing = len(route_ids - set(secondary))
+        unexpected = len(set(secondary) - route_ids)
+        raise ValueError(
+            f"Secondary teacher route coverage mismatch: valid={len(secondary)} expected={len(route_ids)} "
+            f"missing={missing} unexpected={unexpected}"
+        )
+    if not route_ids <= set(source_by_id):
+        raise ValueError("Secondary route contains rows outside paper train")
     decisions = []
     accepted_changes: dict[str, int] = {}
     unresolved_conflicts: set[str] = set()
@@ -350,6 +373,9 @@ def prepare(args: argparse.Namespace) -> dict[str, Any]:
         "accepted_changes": len(accepted_changes),
         "unresolved_conflicts_filtered_in_b3": len(unresolved_conflicts),
         "teacher_scope": "qwen_primary_plus_selective_deepseek_only",
+        "primary_teacher_valid_rows": len(primary),
+        "secondary_teacher_valid_rows": len(secondary),
+        "secondary_route_expected_rows": len(route_ids),
         "data_audit_passed": all(data_checks.values()),
         "dev_dataset_sha256": next(iter(dev_hashes.values())),
         "variants": {name: len(rows) for name, rows in variants.items()},
@@ -386,6 +412,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--split-dir", type=Path, default=DEFAULT_SPLIT_DIR)
     parser.add_argument("--teacher-dir", type=Path, default=DEFAULT_TEACHER_DIR)
     parser.add_argument("--qualification-decision", type=Path, default=DEFAULT_QUALIFICATION_DECISION)
+    parser.add_argument("--secondary-route-manifest", type=Path, default=DEFAULT_SECONDARY_ROUTE_MANIFEST)
     parser.add_argument("--protocol", choices=["p0_holistic_zero_shot", "p1_rubric_first", "p2_rubric_verify_then_score"], default=None)
     parser.add_argument("--confidence-threshold", type=float, default=0.75)
     parser.add_argument("--out-dir", type=Path, default=DEFAULT_OUT_DIR)
