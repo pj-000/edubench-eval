@@ -1,0 +1,18 @@
+{
+  "all_twelve_runs_completed": true,
+  "experiment": "exp27p_multiseed_seed42_44",
+  "no_nan_oom": true,
+  "no_test_access": true,
+  "recommend_keep_soft_target_method": false,
+  "recommend_run_v3_safe16": true,
+  "seeds": [
+    42,
+    43,
+    44
+  ],
+  "status": "SOFT_TARGET_NOT_STABLE",
+  "test_access_count": 0,
+  "test_predictions_generated": false,
+  "v3_mean_performance_gate_pass": false,
+  "v3_seedwise_gate_pass_count": 1
+}
