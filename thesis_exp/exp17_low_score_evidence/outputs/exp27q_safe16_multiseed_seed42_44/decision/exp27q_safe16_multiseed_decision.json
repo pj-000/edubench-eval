@@ -1,0 +1,30 @@
+{
+  "all_three_runs_completed": true,
+  "changed_question_keys": 10,
+  "changed_rows": 16,
+  "high_to_low_guard_pass": true,
+  "input_mismatch_count": 0,
+  "label5_guard_pass": false,
+  "mae_guard_pass": true,
+  "mean_label2_recall": 0.06140350877192982,
+  "mean_low_to_high_delta_vs_v3": -0.07017543859649128,
+  "no_nan_oom": true,
+  "primary_low_tail_gate_pass": false,
+  "qwk_guard_pass": true,
+  "recommend_expand_teacher_audit": false,
+  "recommend_few_shot_annotation": false,
+  "recommend_keep_directional_safe_variant": false,
+  "recommend_more_training": false,
+  "recommend_prepare_final_test_lock": false,
+  "seeds_nonworse_low_to_high": 3,
+  "seeds_nonzero_label2_recall": 2,
+  "status": "SAFE16_INCONCLUSIVE",
+  "stop_exp27p_training": true,
+  "test_access_count": 0,
+  "test_predictions_generated": false,
+  "two_level_bootstrap_low_to_high_ci": [
+    -0.1638890664961637,
+    0.010585167756220343
+  ],
+  "weight_mismatch_count": 0
+}

@@ -1,0 +1,14 @@
+{
+  "batch_size": 4,
+  "epochs": 10,
+  "evaluation": "dev_only",
+  "gradient_accumulation_steps": 32,
+  "learning_rate": 2e-05,
+  "seeds": [
+    42,
+    43,
+    44
+  ],
+  "test_access": false,
+  "variant": "v3_safe16_original_low_anchor"
+}
