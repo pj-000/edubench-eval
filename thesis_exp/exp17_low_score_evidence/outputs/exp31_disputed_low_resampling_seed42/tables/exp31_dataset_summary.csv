@@ -1,0 +1,3 @@
+variant,train_rows,duplicates,label_1,label_2,label_3,label_4,label_5
+e1_teacher_disputed_low,2768,114,48,142,251,946,1381
+e2_random_low_control,2768,114,48,142,251,946,1381
