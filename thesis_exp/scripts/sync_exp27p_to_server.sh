@@ -10,6 +10,7 @@ SERVER_PORT="${SERVER_PORT:-23722}"
 SERVER_REPO="${SERVER_REPO:-~/edubench-eval-exp2}"
 RSYNC_SSH="ssh -p ${SERVER_PORT} -o BatchMode=yes -o ConnectTimeout=10 -o ServerAliveInterval=5 -o ServerAliveCountMax=2"
 FILES=(
+  thesis_exp/exp17_low_score_evidence/outputs/.gitignore
   thesis_exp/exp17_low_score_evidence/exp27lr1_common.py
   thesis_exp/exp17_low_score_evidence/prepare_exp27o_361_in_place_pilot_datasets.py
   thesis_exp/exp17_low_score_evidence/validate_exp27o_361_in_place_pilot_datasets.py
@@ -19,6 +20,8 @@ FILES=(
   thesis_exp/exp17_low_score_evidence/outputs/exp27o_361_in_place_pilot_seed42/tables
   thesis_exp/exp17_low_score_evidence/outputs/exp27o_361_in_place_pilot_seed42/private/data
   thesis_exp/exp17_low_score_evidence/outputs/exp27p_soft_target_reranker_seed42/configs
+  thesis_exp/exp17_low_score_evidence/outputs/exp27p_soft_target_reranker_seed42/decision
+  thesis_exp/exp17_low_score_evidence/outputs/exp27p_soft_target_reranker_multiseed_seed42_44/configs
   thesis_exp/src/edujudge/exp27p
   thesis_exp/scripts/run_exp27o_prepare_361_in_place_pilot_datasets.sh
   thesis_exp/scripts/run_exp27p_soft_target_smoke.sh

@@ -113,6 +113,39 @@ def qwk(y_true: Iterable[int], y_pred: Iterable[int]) -> float:
     return float("nan") if denominator == 0 else 1.0 - float((weights * observed).sum()) / denominator
 
 
+def kendall_tau_b(gold: list[int], pred: list[int]) -> float:
+    """Kendall tau-b for two tied five-level ordinal score vectors."""
+    if len(gold) < 2:
+        return float("nan")
+    table = np.zeros((5, 5), dtype=int)
+    for gold_value, pred_value in zip(gold, pred):
+        table[int(gold_value) - 1, int(pred_value) - 1] += 1
+    concordant = 0
+    discordant = 0
+    for i in range(5):
+        for j in range(5):
+            count = int(table[i, j])
+            if count == 0:
+                continue
+            concordant += count * int(table[i + 1 :, j + 1 :].sum())
+            discordant += count * int(table[i + 1 :, :j].sum())
+    tied_gold = sum(int(count) * (int(count) - 1) // 2 for count in table.sum(axis=1))
+    tied_pred = sum(int(count) * (int(count) - 1) // 2 for count in table.sum(axis=0))
+    tied_both = sum(int(count) * (int(count) - 1) // 2 for count in table.reshape(-1))
+    only_gold = tied_gold - tied_both
+    only_pred = tied_pred - tied_both
+    denominator = math.sqrt(
+        (concordant + discordant + only_gold)
+        * (concordant + discordant + only_pred)
+    )
+    return float((concordant - discordant) / denominator) if denominator else float("nan")
+
+
+def score_bin(values: np.ndarray) -> np.ndarray:
+    """Map 1-2/3/4-5 to the low/mid/high bins used by the paper."""
+    return np.where(values <= 2, 0, np.where(values == 3, 1, 2))
+
+
 def prediction_metrics(rows: list[dict[str, Any]]) -> dict[str, Any]:
     if not rows:
         return {"n": 0}
@@ -122,12 +155,16 @@ def prediction_metrics(rows: list[dict[str, Any]]) -> dict[str, Any]:
     probs = np.asarray([[float(row[f"prob_{label}"]) for label in LABELS] for row in rows], dtype=float)
     low = gold <= 2
     high = gold >= 4
+    exact_match = float(np.mean(pred == gold))
     metrics: dict[str, Any] = {
         "n": len(rows),
         "MAE_argmax": float(np.mean(np.abs(pred - gold))),
         "MAE_expected": float(np.mean(np.abs(expected - gold))),
         "QWK": qwk(gold.tolist(), pred.tolist()),
-        "Accuracy": float(np.mean(pred == gold)),
+        "Accuracy": exact_match,
+        "Exact_Match": exact_match,
+        "Kendall_tau": kendall_tau_b(gold.tolist(), pred.tolist()),
+        "Bin_Agreement": float(np.mean(score_bin(gold) == score_bin(pred))),
         "Signed_Bias_argmax": float(np.mean(pred - gold)),
         "Signed_Bias_expected": float(np.mean(expected - gold)),
         "low_n": int(low.sum()),
@@ -136,14 +173,16 @@ def prediction_metrics(rows: list[dict[str, Any]]) -> dict[str, Any]:
         "high_n": int(high.sum()),
         "high_to_low_count": int(np.sum(high & (pred <= 2))),
         "high_to_low_rate": float(np.mean(pred[high] <= 2)) if high.any() else float("nan"),
-        "label1_recall": float(np.mean(pred[gold == 1] == 1)) if np.any(gold == 1) else float("nan"),
-        "label2_recall": float(np.mean(pred[gold == 2] == 2)) if np.any(gold == 2) else float("nan"),
-        "label5_recall": float(np.mean(pred[gold == 5] == 5)) if np.any(gold == 5) else float("nan"),
         "low_mean_p_score_ge_4": float(np.mean(probs[low, 3:].sum(axis=1))) if low.any() else float("nan"),
         "high_mean_p_score_le_2": float(np.mean(probs[high, :2].sum(axis=1))) if high.any() else float("nan"),
     }
     pred_counts = Counter(pred.tolist())
     for label in LABELS:
+        metrics[f"label{label}_recall"] = (
+            float(np.mean(pred[gold == label] == label))
+            if np.any(gold == label)
+            else float("nan")
+        )
         metrics[f"pred_count_{label}"] = pred_counts[label]
         metrics[f"expected_mass_{label}"] = float(probs[:, label - 1].sum())
     return metrics

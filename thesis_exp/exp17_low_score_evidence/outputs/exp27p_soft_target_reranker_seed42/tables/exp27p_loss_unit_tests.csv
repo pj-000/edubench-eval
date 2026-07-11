@@ -10,3 +10,5 @@ v2_all_one_hot,PASS,rows=3326
 v3_non_one_hot_count_127,PASS,count=127
 all_targets_and_weights_finite,PASS,rows=3326
 label_1_to_5_maps_logit_0_to_4,PASS,mapping=label-1
+paper_kendall_tau_identity,PASS,identity_tau=1
+paper_bin_agreement_low_mid_high,PASS,three_of_five_bins_agree

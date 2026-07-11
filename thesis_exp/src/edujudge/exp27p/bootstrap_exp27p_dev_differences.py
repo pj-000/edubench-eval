@@ -17,12 +17,18 @@ from thesis_exp.src.edujudge.exp27p.common import finite, prediction_metrics, re
 
 METRICS = (
     "MAE_argmax",
+    "Exact_Match",
+    "Kendall_tau",
+    "Bin_Agreement",
     "QWK",
     "low_to_high_count",
     "low_to_high_rate",
     "high_to_low_count",
     "high_to_low_rate",
+    "label1_recall",
     "label2_recall",
+    "label3_recall",
+    "label4_recall",
     "label5_recall",
 )
 

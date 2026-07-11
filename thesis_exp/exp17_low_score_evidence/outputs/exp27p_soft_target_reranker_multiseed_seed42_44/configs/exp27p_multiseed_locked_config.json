@@ -1,0 +1,22 @@
+{
+  "base_model": "Qwen3-Reranker-0.6B",
+  "checkpoint_selection": "min_MAE_plus_0.005_then_low_to_high_QWK_expected_MAE_earliest",
+  "effective_batch_size": 128,
+  "epochs": 10,
+  "evaluation_split": "dev_only",
+  "gradient_accumulation_steps": 32,
+  "learning_rate": 2e-05,
+  "per_device_eval_batch_size": 4,
+  "per_device_train_batch_size": 4,
+  "seeds": [
+    42,
+    43,
+    44
+  ],
+  "variants": [
+    "v0_original_unweighted",
+    "v1_original_label_matched_weight",
+    "v2_selective_hard_relabel",
+    "v3_selective_soft_audit"
+  ]
+}

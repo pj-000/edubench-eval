@@ -30,6 +30,9 @@ def pairwise_rows(metrics: dict[str, dict[str, Any]]) -> list[dict[str, Any]]:
         "MAE_expected",
         "QWK",
         "Accuracy",
+        "Exact_Match",
+        "Kendall_tau",
+        "Bin_Agreement",
         "Signed_Bias_argmax",
         "low_to_high_count",
         "low_to_high_rate",
@@ -37,6 +40,8 @@ def pairwise_rows(metrics: dict[str, dict[str, Any]]) -> list[dict[str, Any]]:
         "high_to_low_rate",
         "label1_recall",
         "label2_recall",
+        "label3_recall",
+        "label4_recall",
         "label5_recall",
     )
     output = []
@@ -172,11 +177,13 @@ def collect(args: argparse.Namespace) -> dict[str, Any]:
         matched_rows.extend(variant_matched_rows)
         strata_rows.extend(read_csv(run_dir / "dev_stratified_metrics.csv"))
     metric_map = {variant: prediction_metrics(rows) for variant, rows in predictions.items()}
+    for row in selected_rows:
+        row.update(metric_map[row["variant"]])
     pair_rows = pairwise_rows(metric_map)
     bootstrap_rows = bootstrap_all(args.run_root, args.seed, args.bootstrap_resamples)
     label_rows = []
     for variant, metrics in metric_map.items():
-        for label in (1, 2, 5):
+        for label in range(1, 6):
             label_rows.append(
                 {
                     "variant": variant,
@@ -240,14 +247,15 @@ def collect(args: argparse.Namespace) -> dict[str, Any]:
         f"- recommend v3_safe16: `{str(recommend_safe16).lower()}`",
         "- test accessed: `false`",
         "",
-        "| variant | epoch | MAE | QWK | low-to-high | label2 recall | label5 recall |",
-        "| --- | ---: | ---: | ---: | ---: | ---: | ---: |",
+        "| variant | epoch | MAE | Bias | Exact | Kendall tau | Bin agree | QWK | low-to-high |",
+        "| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |",
     ]
     for row in sorted(selected_rows, key=lambda item: item["variant"]):
         lines.append(
             f"| {row['variant']} | {row['selected_epoch']} | {float(row['MAE_argmax']):.4f} | "
-            f"{float(row['QWK']):.4f} | {float(row['low_to_high_rate']):.4f} | "
-            f"{float(row['label2_recall']):.4f} | {float(row['label5_recall']):.4f} |"
+            f"{float(row['Signed_Bias_argmax']):.4f} | {float(row['Exact_Match']):.4f} | "
+            f"{float(row['Kendall_tau']):.4f} | {float(row['Bin_Agreement']):.4f} | "
+            f"{float(row['QWK']):.4f} | {float(row['low_to_high_rate']):.4f} |"
         )
     (reports / "exp27p_seed42_scout_report.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
     return decision

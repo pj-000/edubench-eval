@@ -98,6 +98,19 @@ exp27p_soft_target_reranker_seed42/*
 !exp27p_soft_target_reranker_seed42/decision/
 !exp27p_soft_target_reranker_seed42/decision/**
 
+# Exp27P multiseed commits only aggregate configs, tables, reports, and
+# decisions. Per-seed logs, predictions, checkpoints, and run files stay local.
+!exp27p_soft_target_reranker_multiseed_seed42_44/
+exp27p_soft_target_reranker_multiseed_seed42_44/*
+!exp27p_soft_target_reranker_multiseed_seed42_44/configs/
+!exp27p_soft_target_reranker_multiseed_seed42_44/configs/**
+!exp27p_soft_target_reranker_multiseed_seed42_44/tables/
+!exp27p_soft_target_reranker_multiseed_seed42_44/tables/**
+!exp27p_soft_target_reranker_multiseed_seed42_44/reports/
+!exp27p_soft_target_reranker_multiseed_seed42_44/reports/**
+!exp27p_soft_target_reranker_multiseed_seed42_44/decision/
+!exp27p_soft_target_reranker_multiseed_seed42_44/decision/**
+
 # Global guardrails for Exp17/Exp19 generated raw artifacts. Lightweight
 # reports/tables/configs are explicitly re-included by experiment blocks below.
 **/data/*.json

@@ -15,6 +15,7 @@ from thesis_exp.src.edujudge.exp27p.common import (
     FORBIDDEN_INPUT_FIELDS,
     MODEL_INPUT_SOURCE_FIELDS,
     build_model_text,
+    prediction_metrics,
     read_jsonl,
     stable_hash,
     write_csv,
@@ -141,6 +142,52 @@ def loss_unit_tests(exp27o_dir: Path) -> list[dict[str, Any]]:
             lambda: (
                 all(int(np_argmax(row["soft_target_5"])) + 1 == int(row["label_5"]) for row in v2),
                 "mapping=label-1",
+            ),
+        ),
+        test_row(
+            "paper_kendall_tau_identity",
+            lambda: (
+                abs(
+                    float(
+                        prediction_metrics(
+                            [
+                                {
+                                    "gold_label_5": label,
+                                    "pred_label_5": label,
+                                    "pred_score_expected": float(label),
+                                    **{f"prob_{item}": float(item == label) for item in range(1, 6)},
+                                }
+                                for label in (1, 2, 3, 4, 5)
+                            ]
+                        )["Kendall_tau"]
+                    )
+                    - 1.0
+                )
+                < 1e-12,
+                "identity_tau=1",
+            ),
+        ),
+        test_row(
+            "paper_bin_agreement_low_mid_high",
+            lambda: (
+                abs(
+                    float(
+                        prediction_metrics(
+                            [
+                                {
+                                    "gold_label_5": gold,
+                                    "pred_label_5": pred,
+                                    "pred_score_expected": float(pred),
+                                    **{f"prob_{item}": float(item == pred) for item in range(1, 6)},
+                                }
+                                for gold, pred in ((1, 2), (2, 3), (3, 3), (4, 5), (5, 3))
+                            ]
+                        )["Bin_Agreement"]
+                    )
+                    - 0.6
+                )
+                < 1e-12,
+                "three_of_five_bins_agree",
             ),
         ),
     ]
