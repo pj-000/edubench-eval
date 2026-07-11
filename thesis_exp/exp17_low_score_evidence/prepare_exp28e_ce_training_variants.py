@@ -25,10 +25,6 @@ DEFAULT_TEACHER_DIR = Path(
 DEFAULT_QUALIFICATION_DECISION = (
     DEFAULT_TEACHER_DIR / "decision" / "exp28c_sealed_qualification_protocol_decision.json"
 )
-DEFAULT_ADJUDICATION = Path(
-    "thesis_exp/exp17_low_score_evidence/outputs/exp28e_model_adjudication_seed42/"
-    "private/exp28e_model_adjudication.jsonl"
-)
 DEFAULT_OUT_DIR = Path(
     "thesis_exp/exp17_low_score_evidence/outputs/exp28e_paper_ce_training_variants_seed42"
 )
@@ -78,6 +74,22 @@ def stable_key(*values: Any) -> str:
     return hashlib.sha256(payload.encode("utf-8")).hexdigest()
 
 
+def row_ids(rows: Iterable[dict[str, Any]]) -> set[str]:
+    return {str(row.get("record_id") or row.get("id")) for row in rows}
+
+
+def triple_keys(rows: Iterable[dict[str, Any]]) -> set[str]:
+    return {str(row.get("triple_key")) for row in rows}
+
+
+def canonical_rows_hash(rows: Iterable[dict[str, Any]]) -> str:
+    digest = hashlib.sha256()
+    for row in rows:
+        digest.update(json.dumps(row, ensure_ascii=False, sort_keys=True).encode("utf-8"))
+        digest.update(b"\n")
+    return digest.hexdigest()
+
+
 def load_valid_outputs(path: Path) -> dict[str, dict[str, Any]]:
     if not path.exists():
         raise FileNotFoundError(path)
@@ -104,17 +116,10 @@ def load_protocol(path: Path, override: str | None) -> str:
     return str(protocol)
 
 
-def load_adjudication(path: Path | None) -> dict[str, dict[str, Any]]:
-    if path is None or not path.exists():
-        return {}
-    return {str(row["sample_id"]): row for row in read_jsonl(path) if row.get("sample_id")}
-
-
 def accepted_teacher_change(
     original: int,
     primary: dict[str, Any],
     secondary: dict[str, Any] | None,
-    adjudication: dict[str, Any] | None,
     confidence_threshold: float,
 ) -> tuple[bool, str]:
     primary_score = int(primary["score"])
@@ -133,13 +138,7 @@ def accepted_teacher_change(
         or (original >= 4 and primary_score <= 2)
     )
     if risky_transition:
-        if adjudication is None:
-            return False, "risky_transition_requires_model_adjudication"
-        confidence = str(adjudication.get("confidence") or "").lower()
-        final_score = adjudication.get("final_score")
-        if confidence not in {"high", "medium"} or int(final_score or -1) != primary_score:
-            return False, "risky_transition_not_confirmed_by_model_adjudication"
-        return True, "dual_teacher_plus_model_adjudication"
+        return False, "risky_transition_not_auto_relabelled"
     return True, "dual_teacher_consensus_adjacent_change"
 
 
@@ -168,10 +167,6 @@ def prepare(args: argparse.Namespace) -> dict[str, Any]:
         raise ValueError(f"Primary teacher coverage mismatch: {len(primary)}/2654")
     if not set(secondary) <= set(source_by_id):
         raise ValueError("Secondary outputs contain rows outside paper train")
-    adjudications = load_adjudication(args.adjudication)
-    if not set(adjudications) <= set(source_by_id):
-        raise ValueError("Adjudication contains rows outside paper train")
-
     decisions = []
     accepted_changes: dict[str, int] = {}
     unresolved_conflicts: set[str] = set()
@@ -182,7 +177,6 @@ def prepare(args: argparse.Namespace) -> dict[str, Any]:
             original,
             primary[sample_id],
             secondary.get(sample_id),
-            adjudications.get(sample_id),
             args.confidence_threshold,
         )
         if accepted:
@@ -195,11 +189,10 @@ def prepare(args: argparse.Namespace) -> dict[str, Any]:
                 "original_label": original,
                 "primary_teacher_score": primary_score,
                 "secondary_teacher_score": secondary.get(sample_id, {}).get("score"),
-                "model_adjudication_score": adjudications.get(sample_id, {}).get("final_score"),
                 "accepted_change": accepted,
                 "decision_reason": reason,
                 "final_selective_label": accepted_changes.get(sample_id, original),
-                "reference_status": "teacher_and_model_review_silver_not_human_gold",
+                "reference_status": "qwen_deepseek_silver_not_human_gold",
             }
         )
 
@@ -248,7 +241,7 @@ def prepare(args: argparse.Namespace) -> dict[str, Any]:
                 "train",
                 index,
                 selective,
-                "accepted_dual_teacher_model_silver" if sample_id in accepted_changes else "original_retained",
+                "accepted_qwen_deepseek_silver" if sample_id in accepted_changes else "original_retained",
             )
         )
         if sample_id not in unresolved_conflicts:
@@ -272,6 +265,35 @@ def prepare(args: argparse.Namespace) -> dict[str, Any]:
         write_jsonl(output_root / variant / "train.jsonl", rows)
         write_jsonl(output_root / variant / "dev.jsonl", dev)
 
+    source_train_ids = row_ids(train_source)
+    source_dev_ids = row_ids(dev_source)
+    source_train_triples = triple_keys(train_source)
+    source_dev_triples = triple_keys(dev_source)
+    dev_hashes = {name: canonical_rows_hash(dev) for name in VARIANTS}
+    transition_counts = Counter(
+        (int(source_by_id[sample_id]["label_5"]), target) for sample_id, target in accepted_changes.items()
+    )
+    random_transition_counts = Counter(
+        (int(source_by_id[sample_id]["label_5"]), target) for sample_id, target in random_changes.items()
+    )
+    data_checks = {
+        "source_train_rows_2654": len(train_source) == 2654,
+        "source_dev_rows_664": len(dev_source) == 664,
+        "source_train_dev_record_overlap_zero": not (source_train_ids & source_dev_ids),
+        "source_train_dev_triple_overlap_zero": not (source_train_triples & source_dev_triples),
+        "b0_b1_b2_b4_preserve_train_identity": all(
+            row_ids(variants[name]) == source_train_ids
+            for name in ("b0_original_human", "b1_primary_teacher_all", "b2_selective_dual_teacher", "b4_random_transition_control")
+        ),
+        "b3_is_train_subset": row_ids(variants["b3_filter_unresolved"]) <= source_train_ids,
+        "all_dev_variants_identical": len(set(dev_hashes.values())) == 1,
+        "no_test_file_written": all(not (output_root / name / "test.jsonl").exists() for name in VARIANTS),
+        "random_control_transition_multiset_matched": transition_counts == random_transition_counts,
+    }
+    if not all(data_checks.values()):
+        failed = [name for name, passed in data_checks.items() if not passed]
+        raise RuntimeError(f"Exp28E data audit failed: {failed}")
+
     summary_rows = []
     for variant, rows in variants.items():
         counts = Counter(int(row["label_5"]) for row in rows)
@@ -290,12 +312,6 @@ def prepare(args: argparse.Namespace) -> dict[str, Any]:
         summary_rows,
         ["variant", "train_rows", "label_1", "label_2", "label_3", "label_4", "label_5", "changed_from_original", "training_loss", "model_input"],
     )
-    transition_counts = Counter(
-        (int(source_by_id[sample_id]["label_5"]), target) for sample_id, target in accepted_changes.items()
-    )
-    random_transition_counts = Counter(
-        (int(source_by_id[sample_id]["label_5"]), target) for sample_id, target in random_changes.items()
-    )
     transition_rows = []
     for transition in sorted(set(transition_counts) | set(random_transition_counts)):
         transition_rows.append(
@@ -313,11 +329,16 @@ def prepare(args: argparse.Namespace) -> dict[str, Any]:
         ["original_label", "target_label", "selective_count", "random_control_count", "matched"],
     )
     write_csv(
+        args.out_dir / "tables" / "exp28e_data_integrity_audit.csv",
+        [{"check": name, "passed": passed} for name, passed in data_checks.items()],
+        ["check", "passed"],
+    )
+    write_csv(
         args.out_dir / "tables" / "exp28e_fusion_decisions_light.csv",
         decisions,
         [
             "sample_id", "original_label", "primary_teacher_score", "secondary_teacher_score",
-            "model_adjudication_score", "accepted_change", "decision_reason", "final_selective_label",
+            "accepted_change", "decision_reason", "final_selective_label",
             "reference_status",
         ],
     )
@@ -328,7 +349,9 @@ def prepare(args: argparse.Namespace) -> dict[str, Any]:
         "paper_dev_rows": len(dev_source),
         "accepted_changes": len(accepted_changes),
         "unresolved_conflicts_filtered_in_b3": len(unresolved_conflicts),
-        "model_adjudication_rows": len(adjudications),
+        "teacher_scope": "qwen_primary_plus_selective_deepseek_only",
+        "data_audit_passed": all(data_checks.values()),
+        "dev_dataset_sha256": next(iter(dev_hashes.values())),
         "variants": {name: len(rows) for name, rows in variants.items()},
         "loss": "ordinary_cross_entropy",
         "student_input": "question+answer+evaluation_dimension",
@@ -347,7 +370,8 @@ def prepare(args: argparse.Namespace) -> dict[str, Any]:
 - test read: no
 
 B0 preserves the original benchmark labels. B1 replaces every target with the primary teacher
-score. B2 changes labels only when the locked dual-teacher/adjudication rule accepts the change.
+score. B2 changes labels only when Qwen and DeepSeek agree with high confidence on an adjacent
+label transition. Risky transitions are never relabelled automatically.
 B3 removes unresolved teacher conflicts. B4 applies the same transition multiset to randomly
 matched rows and is a negative control for selective targeting.
 """
@@ -363,7 +387,6 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--teacher-dir", type=Path, default=DEFAULT_TEACHER_DIR)
     parser.add_argument("--qualification-decision", type=Path, default=DEFAULT_QUALIFICATION_DECISION)
     parser.add_argument("--protocol", choices=["p0_holistic_zero_shot", "p1_rubric_first", "p2_rubric_verify_then_score"], default=None)
-    parser.add_argument("--adjudication", type=Path, default=DEFAULT_ADJUDICATION)
     parser.add_argument("--confidence-threshold", type=float, default=0.75)
     parser.add_argument("--out-dir", type=Path, default=DEFAULT_OUT_DIR)
     return parser.parse_args()
