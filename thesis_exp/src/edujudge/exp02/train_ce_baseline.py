@@ -501,7 +501,9 @@ def compute_metrics(predictions: list[dict[str, Any]]) -> dict[str, Any]:
     macro_f1, weighted_f1 = macro_weighted_f1(y_true.tolist(), y_pred.tolist())
     low_mask = y_true <= 2
     high_mask = y_true == 5
-    return {
+    true_bins = np.where(y_true <= 2, 0, np.where(y_true == 3, 1, 2))
+    pred_bins = np.where(y_pred <= 2, 0, np.where(y_pred == 3, 1, 2))
+    output = {
         "n": len(predictions),
         "Accuracy": float(np.mean(y_true == y_pred)),
         "Exact Match": float(np.mean(y_true == y_pred)),
@@ -515,10 +517,8 @@ def compute_metrics(predictions: list[dict[str, Any]]) -> dict[str, Any]:
         "Quadratic Weighted Kappa": qwk(y_true.tolist(), y_pred.tolist()),
         "Kendall tau": kendall_tau_b(human_mean.tolist(), y_pred.astype(float).tolist()),
         "Spearman rho": spearman(human_mean.tolist(), y_pred.astype(float).tolist()),
+        "Bin Agreement": float(np.mean(true_bins == pred_bins)),
         "Within-1 Accuracy": float(np.mean(np.abs(y_true - y_pred) <= 1)),
-        "Acc@1": float(np.mean(y_pred[y_true == 1] == 1)) if np.any(y_true == 1) else float("nan"),
-        "Acc@2": float(np.mean(y_pred[y_true == 2] == 2)) if np.any(y_true == 2) else float("nan"),
-        "Acc@5": float(np.mean(y_pred[y_true == 5] == 5)) if np.any(y_true == 5) else float("nan"),
         "low_n": int(low_mask.sum()),
         "low_exact_match": float(np.mean(y_true[low_mask] == y_pred[low_mask])) if low_mask.any() else float("nan"),
         "low_MAE": float(np.mean(np.abs(label_diffs[low_mask]))) if low_mask.any() else float("nan"),
@@ -530,6 +530,10 @@ def compute_metrics(predictions: list[dict[str, Any]]) -> dict[str, Any]:
         "high_to_mid_or_low_rate": float(np.mean(y_pred[high_mask] <= 3)) if high_mask.any() else float("nan"),
         "high_signed_bias": float(np.mean(label_diffs[high_mask])) if high_mask.any() else float("nan"),
     }
+    for label in LABELS:
+        mask = y_true == label
+        output[f"Acc@{label}"] = float(np.mean(y_pred[mask] == label)) if np.any(mask) else float("nan")
+    return output
 
 
 def per_bin_metrics(predictions: list[dict[str, Any]], split: str) -> list[dict[str, Any]]:

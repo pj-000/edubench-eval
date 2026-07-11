@@ -17,7 +17,8 @@ VARIANTS = ("b0_original_human", "b2_selective_dual_teacher")
 SEEDS = (42, 43, 44)
 METRICS = (
     "MAE_label", "Signed Bias label", "Exact Match", "Quadratic Weighted Kappa", "Kendall tau",
-    "low_to_high_rate", "high_to_mid_or_low_rate", "Acc@1", "Acc@2", "Acc@5",
+    "Bin Agreement", "low_to_high_rate", "high_to_mid_or_low_rate",
+    "Acc@1", "Acc@2", "Acc@3", "Acc@4", "Acc@5",
 )
 
 

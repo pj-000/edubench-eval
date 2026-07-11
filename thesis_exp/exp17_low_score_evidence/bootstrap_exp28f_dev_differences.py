@@ -50,6 +50,8 @@ METRICS = (
     "high_to_low_rate",
     "label1_recall",
     "label2_recall",
+    "label3_recall",
+    "label4_recall",
     "label5_recall",
 )
 
@@ -106,7 +108,7 @@ def metrics(rows: list[dict[str, Any]]) -> dict[str, float]:
         "low_to_high_rate": sum(pred[index] >= 4 for index in low) / len(low) if low else float("nan"),
         "high_to_low_rate": sum(pred[index] <= 2 for index in high) / len(high) if high else float("nan"),
     }
-    for score in (1, 2, 5):
+    for score in (1, 2, 3, 4, 5):
         indices = [index for index, value in enumerate(label) if value == score]
         output[f"label{score}_recall"] = (
             sum(pred[index] == score for index in indices) / len(indices) if indices else float("nan")

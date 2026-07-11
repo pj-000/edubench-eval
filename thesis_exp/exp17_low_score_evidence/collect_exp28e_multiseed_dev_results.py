@@ -32,10 +32,13 @@ METRICS = (
     "Exact Match",
     "Quadratic Weighted Kappa",
     "Kendall tau",
+    "Bin Agreement",
     "low_to_high_rate",
     "high_to_mid_or_low_rate",
     "Acc@1",
     "Acc@2",
+    "Acc@3",
+    "Acc@4",
     "Acc@5",
 )
 
