@@ -1,0 +1,14 @@
+{
+  "status": "READY_FOR_SEED42_DEV_SCOUT",
+  "variants": {
+    "c1_audited_dual_target": 3172,
+    "c2_selected_exposure_control": 3172,
+    "c3_random_dual_target_control": 3172
+  },
+  "accepted_teacher_disagreements": 518,
+  "original_label_always_retained": true,
+  "teacher_target_used_as_additional_observation": true,
+  "loss": "ordinary_cross_entropy",
+  "test_read": false,
+  "test_written": false
+}

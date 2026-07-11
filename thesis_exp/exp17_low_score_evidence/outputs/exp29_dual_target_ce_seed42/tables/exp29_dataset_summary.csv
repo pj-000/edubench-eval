@@ -1,0 +1,4 @@
+variant,train_rows,base_rows,duplicate_rows,label_1,label_2,label_3,label_4,label_5,loss,test_read
+c1_audited_dual_target,3172,2654,518,27,90,276,1093,1686,ordinary_cross_entropy,False
+c2_selected_exposure_control,3172,2654,518,25,56,322,1275,1494,ordinary_cross_entropy,False
+c3_random_dual_target_control,3172,2654,518,27,90,276,1093,1686,ordinary_cross_entropy,False

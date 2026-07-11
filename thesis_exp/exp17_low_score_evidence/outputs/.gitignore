@@ -107,6 +107,15 @@ exp28i_teacher_relabeling_diagnosis_seed42/*
 !exp28i_teacher_relabeling_diagnosis_seed42/decision/
 !exp28i_teacher_relabeling_diagnosis_seed42/decision/**
 
+!exp29_dual_target_ce_seed42/
+exp29_dual_target_ce_seed42/*
+!exp29_dual_target_ce_seed42/tables/
+!exp29_dual_target_ce_seed42/tables/**
+!exp29_dual_target_ce_seed42/reports/
+!exp29_dual_target_ce_seed42/reports/**
+!exp29_dual_target_ce_seed42/decision/
+!exp29_dual_target_ce_seed42/decision/**
+
 # Exp27L retains only reviewable, lightweight CPU calibration artifacts.
 # Packets, private references, and completed external reviews stay ignored.
 !exp27l_group_crossfit_calibration_seed42/
