@@ -1,0 +1,15 @@
+{
+  "status": "SEED42_SCOUT_NOT_SUPPORTED",
+  "checks": {
+    "mae_guard": true,
+    "exact_guard": false,
+    "kendall_guard": false,
+    "bin_guard": true,
+    "low_to_high_improves": false,
+    "label5_guard": true,
+    "beats_exposure_control_mae": false,
+    "beats_random_control_mae": true
+  },
+  "test_read": false,
+  "next_action": "stop dual-target augmentation and keep test closed"
+}

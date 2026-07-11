@@ -28,7 +28,7 @@ def main() -> None:
     table = args.out_dir / "tables" / "exp29_seed42_dev_metrics.csv"
     table.parent.mkdir(parents=True, exist_ok=True)
     with table.open("w", newline="", encoding="utf-8") as handle:
-        writer = csv.DictWriter(handle, fieldnames=list(rows[0]))
+        writer = csv.DictWriter(handle, fieldnames=list(rows[0]), lineterminator="\n")
         writer.writeheader(); writer.writerows(rows)
     by = {row["variant"]: row for row in rows}; base = by["b0_original_human"]; main = by[VARIANTS[0]]
     checks = {
