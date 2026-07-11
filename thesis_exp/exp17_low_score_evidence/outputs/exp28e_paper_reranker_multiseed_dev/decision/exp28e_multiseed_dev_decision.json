@@ -1,0 +1,15 @@
+{
+  "status": "DEV_SUCCESS_CRITERIA_NOT_MET",
+  "checks": {
+    "mae_not_worse_than_baseline": false,
+    "exact_not_worse_than_baseline": false,
+    "kendall_not_worse_than_baseline": false,
+    "low_to_high_improves": false,
+    "label5_guard": true,
+    "beats_random_control_on_mae": false
+  },
+  "recommended_variant": null,
+  "test_read": false,
+  "test_open_authorized": false,
+  "next_action": "Analyze data/protocol failure on train and dev; do not open test."
+}

@@ -1,0 +1,10 @@
+{
+  "status": "SELECTIVE_HARD_RELABELING_NOT_SUPPORTED",
+  "dev_campaign_status": "DEV_SUCCESS_CRITERIA_NOT_MET",
+  "overall_metrics_worse_than_b0": true,
+  "low_to_high_better_than_b0": false,
+  "low_to_high_better_than_random_control": false,
+  "test_read": false,
+  "recommend_open_test": false,
+  "interpretation": "Follow the locked dev decision and confidence intervals."
+}

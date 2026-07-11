@@ -1,0 +1,17 @@
+{
+  "status": "BOOTSTRAP_SUCCESS_CRITERIA_NOT_MET",
+  "checks": {
+    "mae_guard": false,
+    "exact_guard": false,
+    "kendall_guard": false,
+    "label5_guard": false,
+    "low_to_high_directional_improvement": false,
+    "targeting_beats_random_mae": false
+  },
+  "main_variant": "b2_selective_dual_teacher",
+  "baseline_variant": "b0_original_human",
+  "random_control_variant": "b4_random_transition_control",
+  "resamples": 2000,
+  "test_read": false,
+  "test_open_authorized": false
+}
