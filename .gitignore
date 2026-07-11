@@ -319,3 +319,6 @@ thesis_exp/exp17_low_score_evidence/outputs/exp27k_representative_teacher_valida
 thesis_exp/exp17_low_score_evidence/outputs/exp27k_representative_teacher_validation_seed42/reports/exp27d_*
 !thesis_exp/exp17_low_score_evidence/outputs/exp27k_representative_teacher_validation_seed42/tables/
 !thesis_exp/exp17_low_score_evidence/outputs/exp27k_representative_teacher_validation_seed42/tables/**
+
+# Local Exp28 teacher API credentials. Never commit the real file.
+.env.exp28.local

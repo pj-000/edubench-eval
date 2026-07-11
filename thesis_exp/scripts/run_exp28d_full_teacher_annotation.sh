@@ -5,6 +5,12 @@ SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(cd -- "${SCRIPT_DIR}/../.." && pwd)"
 cd "${REPO_ROOT}"
 
+if [[ -f ".env.exp28.local" ]]; then
+  set -a
+  source ".env.exp28.local"
+  set +a
+fi
+
 RUN_API="${RUN_API:-0}"
 PROTOCOL_DECISION="thesis_exp/exp17_low_score_evidence/outputs/exp28c_teacher_protocol_evaluation_seed42/decision/exp28c_protocol_development_protocol_decision.json"
 QUALIFICATION_DECISION="thesis_exp/exp17_low_score_evidence/outputs/exp28c_teacher_protocol_evaluation_seed42/decision/exp28c_sealed_qualification_protocol_decision.json"
