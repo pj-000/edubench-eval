@@ -5,12 +5,12 @@
   "input_hash_equivalence_pass": true,
   "input_leakage_count": 0,
   "loss_unit_tests_pass": true,
-  "next_step": "run_single_gpu_smoke",
+  "next_step": "run_seeds_43_44",
   "protocol_exception_count": 5,
   "protocol_exception_handling": "retain locked Exp27M policy for controlled pilot and report exceptions separately",
   "requires_protocol_review": true,
   "seed42_scout_allowed_after_smoke": true,
-  "seed43_44_allowed": false,
+  "seed43_44_allowed": true,
   "status": "PASS",
   "test_access_count": 0
 }

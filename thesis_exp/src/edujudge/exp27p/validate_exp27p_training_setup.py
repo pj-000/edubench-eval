@@ -263,6 +263,14 @@ def validate(args: argparse.Namespace) -> dict[str, Any]:
         and all(row["status"] == "PASS" for row in leakage)
         and all(row["status"] == "PASS" for row in input_equivalence)
     )
+    scout_decision_path = args.output_dir / "decision" / "exp27p_seed42_scout_decision.json"
+    scout_authorizes_multiseed = False
+    if scout_decision_path.exists():
+        scout_decision = json.loads(scout_decision_path.read_text(encoding="utf-8"))
+        scout_authorizes_multiseed = bool(
+            scout_decision.get("recommend_run_seeds_43_44")
+            and scout_decision.get("no_test_access")
+        )
     config = {
         "experiment": "exp27p_shared_soft_target_qwen3_reranker_pilot",
         "base_model": "/home/share/models/modelscope/Qwen/Qwen3-Reranker-0.6B",
@@ -316,9 +324,13 @@ def validate(args: argparse.Namespace) -> dict[str, Any]:
         "protocol_exception_handling": "retain locked Exp27M policy for controlled pilot and report exceptions separately",
         "gpu_smoke_allowed": critical_pass,
         "seed42_scout_allowed_after_smoke": critical_pass,
-        "seed43_44_allowed": False,
+        "seed43_44_allowed": critical_pass and scout_authorizes_multiseed,
         "test_access_count": 0,
-        "next_step": "run_single_gpu_smoke" if critical_pass else "fix_cpu_preflight",
+        "next_step": (
+            "run_seeds_43_44"
+            if critical_pass and scout_authorizes_multiseed
+            else ("run_single_gpu_smoke" if critical_pass else "fix_cpu_preflight")
+        ),
     }
     write_json(args.output_dir / "configs" / "exp27p_locked_training_config.json", config)
     write_json(args.output_dir / "configs" / "exp27p_high_impact16_sensitivity_plan.json", safe16)
