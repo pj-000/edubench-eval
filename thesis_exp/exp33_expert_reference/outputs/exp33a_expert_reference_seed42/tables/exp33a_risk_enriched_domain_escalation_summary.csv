@@ -1,0 +1,8 @@
+group_type,group_value,reviewed_rows,domain_escalation_required,adjudicated,unresolved_domain_cases,status
+overall,all,120,2,2,0,COMPLETE
+view,risk_enriched_train,120,2,2,0,COMPLETE
+language,en,69,0,0,0,COMPLETE
+language,zh,51,2,2,0,COMPLETE
+metric_family,Factual & Reasoning Accuracy,33,2,2,0,COMPLETE
+metric_family,Pedagogical Application,57,0,0,0,COMPLETE
+metric_family,Scenario Adaptability,30,0,0,0,COMPLETE

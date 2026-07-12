@@ -1,0 +1,72 @@
+{
+  "experiment": "Exp33B Direction-Aware Rubric-Grounded Aggregation",
+  "method_name": "Direction-Aware Rubric-Grounded Aggregation",
+  "method_short_name": "DRGA",
+  "seed": 42,
+  "folds": 5,
+  "fold_stratification": [
+    "final_silver_point_label",
+    "language"
+  ],
+  "allowed_inputs": {
+    "train_split_only": "thesis_exp/data/splits/paper_like_triple_seed42/train.jsonl",
+    "exp33a_private_review_results": "representative_train only",
+    "exp33a_model_reviewed_silver": "representative_train final posterior",
+    "exp28_teacher_annotations": "train-only teacher annotation files resolved through Exp33A lock"
+  },
+  "forbidden_inputs": [
+    "dev.jsonl",
+    "test.jsonl",
+    "clean_dev labels",
+    "student training metrics",
+    "student dev metrics",
+    "student test metrics"
+  ],
+  "source_confusion_smoothing": 0.35,
+  "source_weight_floor": 0.15,
+  "source_weight_cap": 1.35,
+  "source_weight_power": 1.15,
+  "human_empirical_prior_weight": 1.75,
+  "global_prior_weight": 0.25,
+  "human_prior_smoothing": 0.08,
+  "confidence_weight_floor": 0.45,
+  "teacher_evidence_bonus": 0.08,
+  "direction_penalties": {
+    "unsupported_human4_to_label5": 0.9,
+    "dangerous_low_to_high": 1.6,
+    "unsupported_high_to_low": 1.35,
+    "score_cap_exceeded_per_point": 1.25,
+    "over_lowering_high_human_per_point": 0.7
+  },
+  "fallback": {
+    "entropy_threshold": 0.94,
+    "max_probability_threshold": 0.38,
+    "min_observed_sources": 3
+  },
+  "supervision": {
+    "min_sample_weight": 0.2,
+    "max_sample_weight": 1.0,
+    "uncertainty_weight_power": 1.0
+  },
+  "metrics": {
+    "ece_bins": 10,
+    "severe_error_distance": 2,
+    "low_labels": [
+      1,
+      2
+    ],
+    "high_labels": [
+      4,
+      5
+    ]
+  },
+  "quality_gates": {
+    "drga_not_worse_than_rounded_human_mae": true,
+    "drga_not_worse_than_rounded_human_qwk": true,
+    "drga_not_worse_low_to_high": true,
+    "drga_not_worse_high_to_low": true,
+    "posterior_valid": true,
+    "fallback_recomputable": true,
+    "no_dev_or_test_access": true
+  }
+}

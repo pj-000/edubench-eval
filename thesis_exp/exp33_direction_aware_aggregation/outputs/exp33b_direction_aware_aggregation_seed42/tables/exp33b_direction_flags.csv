@@ -1,0 +1,8 @@
+flag,rows,design_weighted_rate,status
+human4_to_label5,4,0.04752574729967345,COMPLETE
+low_to_high,0,0.0,COMPLETE
+high_to_low,2,0.023762873649836726,COMPLETE
+score_cap_exceeded,12,0.09968158275618712,COMPLETE
+teacher_low_to_high_signal,13,0.01281085154483798,COMPLETE
+teacher_high_to_low_signal,5,0.05940718412459182,COMPLETE
+fallback,0,0.0,COMPLETE

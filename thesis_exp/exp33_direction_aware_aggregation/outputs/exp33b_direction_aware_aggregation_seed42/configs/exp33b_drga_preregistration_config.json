@@ -1,0 +1,72 @@
+{
+  "allowed_inputs": {
+    "exp28_teacher_annotations": "train-only teacher annotation files resolved through Exp33A lock",
+    "exp33a_model_reviewed_silver": "representative_train final posterior",
+    "exp33a_private_review_results": "representative_train only",
+    "train_split_only": "thesis_exp/data/splits/paper_like_triple_seed42/train.jsonl"
+  },
+  "confidence_weight_floor": 0.45,
+  "direction_penalties": {
+    "dangerous_low_to_high": 1.6,
+    "over_lowering_high_human_per_point": 0.7,
+    "score_cap_exceeded_per_point": 1.25,
+    "unsupported_high_to_low": 1.35,
+    "unsupported_human4_to_label5": 0.9
+  },
+  "experiment": "Exp33B Direction-Aware Rubric-Grounded Aggregation",
+  "fallback": {
+    "entropy_threshold": 0.94,
+    "max_probability_threshold": 0.38,
+    "min_observed_sources": 3
+  },
+  "fold_stratification": [
+    "final_silver_point_label",
+    "language"
+  ],
+  "folds": 5,
+  "forbidden_inputs": [
+    "dev.jsonl",
+    "test.jsonl",
+    "clean_dev labels",
+    "student training metrics",
+    "student dev metrics",
+    "student test metrics"
+  ],
+  "global_prior_weight": 0.25,
+  "human_empirical_prior_weight": 1.75,
+  "human_prior_smoothing": 0.08,
+  "method_name": "Direction-Aware Rubric-Grounded Aggregation",
+  "method_short_name": "DRGA",
+  "metrics": {
+    "ece_bins": 10,
+    "high_labels": [
+      4,
+      5
+    ],
+    "low_labels": [
+      1,
+      2
+    ],
+    "severe_error_distance": 2
+  },
+  "quality_gates": {
+    "drga_not_worse_high_to_low": true,
+    "drga_not_worse_low_to_high": true,
+    "drga_not_worse_than_rounded_human_mae": true,
+    "drga_not_worse_than_rounded_human_qwk": true,
+    "fallback_recomputable": true,
+    "no_dev_or_test_access": true,
+    "posterior_valid": true
+  },
+  "seed": 42,
+  "source_confusion_smoothing": 0.35,
+  "source_weight_cap": 1.35,
+  "source_weight_floor": 0.15,
+  "source_weight_power": 1.15,
+  "supervision": {
+    "max_sample_weight": 1.0,
+    "min_sample_weight": 0.2,
+    "uncertainty_weight_power": 1.0
+  },
+  "teacher_evidence_bonus": 0.08
+}

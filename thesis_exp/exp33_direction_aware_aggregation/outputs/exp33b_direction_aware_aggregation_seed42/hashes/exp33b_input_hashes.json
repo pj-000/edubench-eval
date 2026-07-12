@@ -1,0 +1,48 @@
+{
+  "exp33a_adjudicator": {
+    "path": "thesis_exp/exp33_expert_reference/outputs/exp33a_expert_reference_seed42/private_review/adjudication_filled/exp33a_adjudicator_results.jsonl",
+    "sha256": "2299f2c4f9a6e40880407b8776cc7478a6b89abffab23673c49feb7a7ba9ce5e"
+  },
+  "exp33a_reviewer_a": {
+    "path": "thesis_exp/exp33_expert_reference/outputs/exp33a_expert_reference_seed42/private_review/reviewer_filled/exp33a_reviewer_a_results.jsonl",
+    "sha256": "595f3605ae3d2d77c69080073641b861222f242870d43327ce728507bacb3835"
+  },
+  "exp33a_reviewer_b": {
+    "path": "thesis_exp/exp33_expert_reference/outputs/exp33a_expert_reference_seed42/private_review/reviewer_filled/exp33a_reviewer_b_results.jsonl",
+    "sha256": "8e83e97af8eda8b5c88f8030506172b6f2cc5b9b5406acd231d1fc407484f801"
+  },
+  "teachers": [
+    {
+      "annotation_path": "thesis_exp/exp17_low_score_evidence/outputs/exp28c_teacher_protocol_evaluation_seed42/private/qwen/p0_holistic_zero_shot/all_train.jsonl",
+      "locked_expected_valid_rows": 2654,
+      "model": "qwen3.7-max",
+      "protocol": "p0_holistic_zero_shot",
+      "provider": "qwen",
+      "reference_status": "teacher_model_annotation_not_independent_reference",
+      "resolution_summary_path": "thesis_exp/exp17_low_score_evidence/outputs/exp28c_teacher_protocol_evaluation_seed42/decision/exp28_qwen_p0_holistic_zero_shot_all_train_summary.json",
+      "row_count": 2654,
+      "sha256": "42d4ca48d4ef7ef9bf4bddc91c5652c337bcfba108359527e21354a3247150eb",
+      "subset": "all_train",
+      "teacher_role": "primary",
+      "valid_row_count": 2654
+    },
+    {
+      "annotation_path": "thesis_exp/exp17_low_score_evidence/outputs/exp28c_teacher_protocol_evaluation_seed42/private/deepseek/p0_holistic_zero_shot/secondary_route.jsonl",
+      "locked_expected_valid_rows": 1552,
+      "model": "deepseek-v4-pro",
+      "protocol": "p0_holistic_zero_shot",
+      "provider": "deepseek",
+      "reference_status": "teacher_model_annotation_not_independent_reference",
+      "resolution_summary_path": "thesis_exp/exp17_low_score_evidence/outputs/exp28c_teacher_protocol_evaluation_seed42/decision/exp28_deepseek_p0_holistic_zero_shot_secondary_route_summary.json",
+      "row_count": 1552,
+      "sha256": "07ae301026a6330de682e02fa6f0195eaf71a6f3275f589551e334b48e6c462a",
+      "subset": "secondary_route",
+      "teacher_role": "secondary",
+      "valid_row_count": 1552
+    }
+  ],
+  "train_split": {
+    "path": "thesis_exp/data/splits/paper_like_triple_seed42/train.jsonl",
+    "sha256": "0a1733b9209984c5c4291d205d1ac6057bed341717903b9de075d07de44a878e"
+  }
+}

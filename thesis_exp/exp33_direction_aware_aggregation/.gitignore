@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+
+# Exp33B public outputs are aggregate-only. Row-level supervision and
+# cross-fit predictions stay local.
+outputs/**/private/
+outputs/**/private/**
