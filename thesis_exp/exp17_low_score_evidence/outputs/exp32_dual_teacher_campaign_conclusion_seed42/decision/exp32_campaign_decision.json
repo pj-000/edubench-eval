@@ -1,0 +1,18 @@
+{
+  "status": "TEACHER_RELABELING_NOT_SUPPORTED_UNDER_ORIGINAL_PROTOCOL",
+  "supported_claims": [
+    "dual_teacher_audit_identifies_label_disagreement",
+    "teacher_disagreement_is_not_a_reliable_training_target",
+    "low_score_exposure_can_change_tail_metrics_but_is_not_teacher_specific"
+  ],
+  "unsupported_claims": [
+    "teacher_relabeling_improves_overall_student_metrics",
+    "teacher_targeting_beats_matched_random_controls",
+    "teacher_relabeling_reduces_low_to_high_robustly"
+  ],
+  "best_supported_model": "b0_original_human",
+  "test_open_authorized": false,
+  "test_read": false,
+  "run_more_teacher_relabeling_variants": false,
+  "recommended_next_action": "freeze_campaign_and_reframe_as_teacher_audit_or_acquire_independent_expert_adjudication"
+}

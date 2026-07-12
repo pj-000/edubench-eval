@@ -1,0 +1,13 @@
+experiment,variant,seeds,MAE,Exact_Match,Kendall_tau,Bin_Agreement,low_to_high,Acc_1,Acc_2,Acc_5,comparison,selection_result
+Exp28,b0_original_human,42|43|44,0.395080,0.724398,0.585182,0.876506,0.516667,0.555556,0.119048,0.831884,locked_original_baseline,reference
+Exp28,b1_primary_teacher_all,42|43|44,0.574799,0.568775,0.295022,0.859940,0.800000,0.000000,0.190476,0.817391,all_primary_teacher_labels,not_supported
+Exp28,b2_selective_dual_teacher,42|43|44,0.464525,0.639558,0.465593,0.873494,0.616667,0.444444,0.142857,0.822222,selective_hard_relabel,not_supported
+Exp28,b3_filter_unresolved,42|43|44,0.536647,0.594880,0.378095,0.860944,0.700000,0.277778,0.214286,0.824155,filter_unresolved,not_supported
+Exp28,b4_random_transition_control,42|43|44,0.457999,0.654116,0.467342,0.877510,0.616667,0.500000,0.166667,0.837681,matched_random_relabel_control,not_supported
+Exp29,c1_audited_dual_target,42,0.403112,0.695783,0.553429,0.885542,0.450000,0.666667,0.214286,0.846377,dual_target_vs_controls,not_supported
+Exp29,c2_selected_exposure_control,42,0.389558,0.721386,0.575212,0.878012,0.500000,0.500000,0.071429,0.846377,selected_exposure_original_target,control
+Exp29,c3_random_dual_target_control,42,0.410643,0.695783,0.537803,0.881024,0.500000,0.666667,0.142857,0.852174,matched_random_dual_target,control
+Exp30,d1_teacher_confirmed_low,42,0.393072,0.716867,0.566022,0.887048,0.450000,0.666667,0.285714,0.823188,teacher_confirmed_low_resampling,not_supported
+Exp30,d2_random_low_control,42,0.374498,0.734940,0.597527,0.890060,0.400000,0.666667,0.142857,0.863768,matched_random_low_resampling,control_better
+Exp31,e1_teacher_disputed_low,42,0.394076,0.721386,0.584915,0.878012,0.450000,0.500000,0.285714,0.834783,teacher_disputed_low_resampling,not_supported
+Exp31,e2_random_low_control,42,0.377008,0.740964,0.597548,0.897590,0.500000,0.333333,0.285714,0.852174,matched_random_low_resampling,control_better_overall
