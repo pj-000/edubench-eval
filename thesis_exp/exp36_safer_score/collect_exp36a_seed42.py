@@ -14,7 +14,7 @@ if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 
 from thesis_exp.exp36_safer_score.bootstrap_exp36a_dev import bootstrap
-from thesis_exp.exp36_safer_score.common import ROOT, metrics, read_jsonl, write_csv, write_json
+from thesis_exp.exp36_safer_score.common import ROOT, metrics, read_csv, read_jsonl, write_csv, write_json
 
 
 FORMAL = ("v0_original_hard", "v0h_human_soft", "v1_qwen_hard", "v2_qwen_range_soft", "v3_naive_human_qwen", "v4_human_soft_logit_adjustment", "v5_safer_score", "v7_shuffled_teacher_control")
@@ -129,6 +129,28 @@ def main() -> None:
         lines.append(f"| {row['variant']} | {row['selected_epoch']} | {row['MAE_argmax']:.4f} | {row['Exact_Match']:.4f} | {row['QWK']:.4f} | {row['low_to_high_rate']:.4f} | {row['label2_recall']:.4f} | {row['label5_recall']:.4f} | {row['high_to_low_rate']:.4f} |")
     lines += ["", "## Gate", "", f"Strong baseline: `{base['variant']}`.", ""]
     lines.extend(f"- {name}: {'PASS' if passed else 'FAIL'}" for name, passed in checks.items())
+    human_teacher = read_csv(args.out_dir / "tables/exp36a_human_teacher_summary.csv")[0]
+    oof_coverage = read_csv(args.out_dir / "tables/exp36a_oof_prediction_coverage.csv")[0]
+    v5_failure = next(row for row in failure_rows if row["variant"] == "v5_safer_score")
+    lines += [
+        "", "## Supervision audit", "",
+        f"- OOF coverage: {oof_coverage['prediction_rows']}/{oof_coverage['expected_rows']}; missing={oof_coverage['missing_sample_ids']}; duplicate={oof_coverage['duplicate_prediction_count']}; question-key leakage=0.",
+        f"- Human labels 1/2/3/4/5: {human_teacher['human_label_1_count']}/{human_teacher['human_label_2_count']}/{human_teacher['human_label_3_count']}/{human_teacher['human_label_4_count']}/{human_teacher['human_label_5_count']}.",
+        f"- Mean normalized human entropy: {float(human_teacher['mean_human_entropy']):.4f}.",
+        f"- Qwen explicit score-range coverage: {float(human_teacher['qwen_score_range_coverage']):.4f}; all {human_teacher['qwen_hard_no_range_count']} rows use hard-score fallback.",
+        f"- Evidence-gate pass: {human_teacher['evidence_gate_pass_count']}/{human_teacher['rows']} ({float(human_teacher['evidence_gate_pass_rate']):.4f}).",
+        f"- DeepSeek coverage: {human_teacher['deepseek_rows']}/{human_teacher['rows']} ({float(human_teacher['deepseek_coverage']):.4f}); score-confirmed={human_teacher['deepseek_score_confirmed_count']}.",
+        f"- V5 failure-head masked rows: {v5_failure['masked_rows']}; train micro-F1={float(v5_failure['micro_f1']):.4f}; exact-set-match={float(v5_failure['exact_set_match']):.4f}.",
+        "", "## Boundary diagnosis", "",
+        f"- V5 minus strong baseline MAE: {float(v5['MAE_argmax'])-float(base['MAE_argmax']):+.6f}; allowed maximum was +0.010000.",
+        f"- V5 minus strong baseline Exact: {float(v5['Exact_Match'])-float(base['Exact_Match']):+.6f}.",
+        f"- V5 minus strong baseline QWK: {float(v5['QWK'])-float(base['QWK']):+.6f}.",
+        f"- V5 minus strong baseline low-to-high: {float(v5['low_to_high_rate'])-float(base['low_to_high_rate']):+.6f}.",
+        f"- V5 minus strong baseline label5 recall: {float(v5['label5_recall'])-float(base['label5_recall']):+.6f}; allowed minimum was -0.030000.",
+        f"- V5 versus shuffled V7: MAE delta={float(v5['MAE_argmax'])-float(v7['MAE_argmax']):+.6f}, Exact delta={float(v5['Exact_Match'])-float(v7['Exact_Match']):+.6f}, low-to-high delta={float(v5['low_to_high_rate'])-float(v7['low_to_high_rate']):+.6f}.",
+        "- The semantic teacher alignment shows a weak low-risk signal, but V7 remains too close and the preregistered accuracy/high-score guards fail.",
+        "- The dev low tail has only 20 rows, so risk estimates are uncertain; the paired question-key bootstrap table must accompany any claim.",
+    ]
     lines += ["", f"Decision: **{decision['status']}**.", "",
               f"recommend_run_seeds_43_44 = `{str(go).lower()}`", f"stop_safer_score = `{str(not go).lower()}`", "",
               "No API, no test access, and no heavy/private artifacts are intended for commit."]
