@@ -28,10 +28,14 @@ def main() -> None:
         qkey_folds.setdefault(row["question_key"], set()).add(row["fold"])
     checks.append(("question_key_leakage_zero", all(len(v) == 1 for v in qkey_folds.values()), sum(len(v)>1 for v in qkey_folds.values())))
     oof_ids = []
+    assignment_fold = {row["sample_id"]: int(row["fold"]) for row in assignment}
     for fold in range(5):
         path = args.out_dir / "private/oof_folds" / f"fold_{fold}_predictions.jsonl"
         if path.exists():
-            oof_ids.extend(sample_id(row) for row in read_jsonl(path))
+            fold_ids = [sample_id(row) for row in read_jsonl(path)]
+            oof_ids.extend(fold_ids)
+            mismatched = sum(assignment_fold.get(sid) != fold for sid in fold_ids)
+            checks.append((f"oof_fold_{fold}_matches_assignment", mismatched == 0, mismatched))
         elif args.require_private:
             checks.append((f"oof_fold_{fold}_exists", False, str(path)))
     if oof_ids:
