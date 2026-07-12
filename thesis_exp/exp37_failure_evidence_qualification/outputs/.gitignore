@@ -1,0 +1,9 @@
+# Private packets, recovered reasons, completed reviews, and row-level OOF data
+private_packets/
+private_reference/
+private_reviews/
+full_human_reasons/
+full_teacher_reasons/
+*.jsonl
+!**/annotation_templates/*.jsonl
+*.log

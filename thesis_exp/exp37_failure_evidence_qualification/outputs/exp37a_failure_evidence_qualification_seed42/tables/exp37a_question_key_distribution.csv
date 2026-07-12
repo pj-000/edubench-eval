@@ -1,0 +1,4 @@
+view,sample_count,unique_question_keys,question_key_repeated_rows
+low_tail_all,76,35,41
+boundary_view,60,49,11
+high_control_view,60,52,8

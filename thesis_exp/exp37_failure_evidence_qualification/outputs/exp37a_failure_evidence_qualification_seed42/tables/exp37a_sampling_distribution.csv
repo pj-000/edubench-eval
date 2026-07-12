@@ -1,0 +1,140 @@
+view,language,metric_group,subject,count
+low_tail_all,en,Factual & Reasoning Accuracy,Basic Medicine,4
+low_tail_all,en,Factual & Reasoning Accuracy,Business Administration,2
+low_tail_all,en,Factual & Reasoning Accuracy,Chinese,1
+low_tail_all,en,Factual & Reasoning Accuracy,Computer Science,1
+low_tail_all,en,Factual & Reasoning Accuracy,History,2
+low_tail_all,en,Factual & Reasoning Accuracy,Mathematics,2
+low_tail_all,en,Factual & Reasoning Accuracy,Theoretical Economics,3
+low_tail_all,en,Pedagogical Application,Basic Medicine,1
+low_tail_all,en,Pedagogical Application,Biology,2
+low_tail_all,en,Pedagogical Application,Business Administration,10
+low_tail_all,en,Pedagogical Application,Law,1
+low_tail_all,en,Pedagogical Application,Mathematics,1
+low_tail_all,en,Pedagogical Application,Physical Education,1
+low_tail_all,en,Pedagogical Application,Sociology,1
+low_tail_all,en,Scenario Adaptability,Automation,1
+low_tail_all,en,Scenario Adaptability,Business Administration,7
+low_tail_all,en,Scenario Adaptability,Chinese,1
+low_tail_all,en,Scenario Adaptability,Crop Science,1
+low_tail_all,en,Scenario Adaptability,General Pedagogy,1
+low_tail_all,en,Scenario Adaptability,History,1
+low_tail_all,en,Scenario Adaptability,Mathematics,1
+low_tail_all,en,Scenario Adaptability,Theoretical Economics,1
+low_tail_all,zh,Factual & Reasoning Accuracy,Basic Medicine,6
+low_tail_all,zh,Factual & Reasoning Accuracy,Computer Science,1
+low_tail_all,zh,Factual & Reasoning Accuracy,Crop Science,1
+low_tail_all,zh,Factual & Reasoning Accuracy,General Pedagogy,1
+low_tail_all,zh,Factual & Reasoning Accuracy,History,1
+low_tail_all,zh,Factual & Reasoning Accuracy,Law,2
+low_tail_all,zh,Factual & Reasoning Accuracy,Literature and Art,2
+low_tail_all,zh,Factual & Reasoning Accuracy,Mathematics,2
+low_tail_all,zh,Factual & Reasoning Accuracy,Psychology,2
+low_tail_all,zh,Pedagogical Application,Basic Medicine,1
+low_tail_all,zh,Pedagogical Application,Biology,1
+low_tail_all,zh,Pedagogical Application,Crop Science,1
+low_tail_all,zh,Pedagogical Application,English,1
+low_tail_all,zh,Pedagogical Application,Geography,1
+low_tail_all,zh,Pedagogical Application,History,2
+low_tail_all,zh,Scenario Adaptability,Basic Medicine,1
+low_tail_all,zh,Scenario Adaptability,Chemistry,1
+low_tail_all,zh,Scenario Adaptability,Crop Science,1
+low_tail_all,zh,Scenario Adaptability,Mathematics,1
+low_tail_all,zh,Scenario Adaptability,Theoretical Economics,1
+boundary_view,en,Factual & Reasoning Accuracy,Business Administration,1
+boundary_view,en,Factual & Reasoning Accuracy,Chinese,1
+boundary_view,en,Factual & Reasoning Accuracy,Military Science,1
+boundary_view,en,Factual & Reasoning Accuracy,Psychology,1
+boundary_view,en,Factual & Reasoning Accuracy,Sociology,1
+boundary_view,en,Pedagogical Application,Basic Medicine,1
+boundary_view,en,Pedagogical Application,Biology,2
+boundary_view,en,Pedagogical Application,Business Administration,1
+boundary_view,en,Pedagogical Application,Chemistry,1
+boundary_view,en,Pedagogical Application,Chinese,1
+boundary_view,en,Pedagogical Application,Crop Science,1
+boundary_view,en,Pedagogical Application,Geography,1
+boundary_view,en,Pedagogical Application,Law,1
+boundary_view,en,Pedagogical Application,Mathematics,1
+boundary_view,en,Pedagogical Application,Military Science,1
+boundary_view,en,Pedagogical Application,Physical Education,1
+boundary_view,en,Pedagogical Application,Psychology,1
+boundary_view,en,Pedagogical Application,Sociology,1
+boundary_view,en,Pedagogical Application,Theoretical Economics,1
+boundary_view,en,Scenario Adaptability,Biology,1
+boundary_view,en,Scenario Adaptability,Chemistry,1
+boundary_view,en,Scenario Adaptability,Military Science,2
+boundary_view,zh,Factual & Reasoning Accuracy,Chemistry,2
+boundary_view,zh,Factual & Reasoning Accuracy,History,1
+boundary_view,zh,Factual & Reasoning Accuracy,Theoretical Economics,2
+boundary_view,zh,Pedagogical Application,Aquaculture,1
+boundary_view,zh,Pedagogical Application,Basic Medicine,2
+boundary_view,zh,Pedagogical Application,History,2
+boundary_view,zh,Pedagogical Application,Literature and Art,1
+boundary_view,zh,Pedagogical Application,Mathematics,1
+boundary_view,zh,Pedagogical Application,Physics,2
+boundary_view,zh,Pedagogical Application,Psychology,1
+boundary_view,zh,Scenario Adaptability,Aquaculture,1
+boundary_view,zh,Scenario Adaptability,Basic Medicine,2
+boundary_view,zh,Scenario Adaptability,Biology,1
+boundary_view,zh,Scenario Adaptability,Business Administration,1
+boundary_view,zh,Scenario Adaptability,Chemistry,2
+boundary_view,zh,Scenario Adaptability,Computer Science,1
+boundary_view,zh,Scenario Adaptability,English,2
+boundary_view,zh,Scenario Adaptability,General Pedagogy,1
+boundary_view,zh,Scenario Adaptability,History,2
+boundary_view,zh,Scenario Adaptability,Literature and Art,1
+boundary_view,zh,Scenario Adaptability,Mathematics,2
+boundary_view,zh,Scenario Adaptability,Physics,2
+boundary_view,zh,Scenario Adaptability,Psychology,1
+boundary_view,zh,Scenario Adaptability,Public Administration,1
+boundary_view,zh,Scenario Adaptability,Theoretical Economics,1
+high_control_view,en,Factual & Reasoning Accuracy,Applied Economics,1
+high_control_view,en,Factual & Reasoning Accuracy,Basic Medicine,1
+high_control_view,en,Factual & Reasoning Accuracy,Business Administration,1
+high_control_view,en,Factual & Reasoning Accuracy,Chemistry,2
+high_control_view,en,Factual & Reasoning Accuracy,Chinese,1
+high_control_view,en,Factual & Reasoning Accuracy,Crop Science,2
+high_control_view,en,Factual & Reasoning Accuracy,English,1
+high_control_view,en,Factual & Reasoning Accuracy,History,1
+high_control_view,en,Factual & Reasoning Accuracy,Law,1
+high_control_view,en,Factual & Reasoning Accuracy,Public Administration,1
+high_control_view,en,Pedagogical Application,Aquaculture,1
+high_control_view,en,Pedagogical Application,Automation,1
+high_control_view,en,Pedagogical Application,Chinese,1
+high_control_view,en,Pedagogical Application,English,1
+high_control_view,en,Pedagogical Application,General Pedagogy,1
+high_control_view,en,Pedagogical Application,Geography,1
+high_control_view,en,Pedagogical Application,History,2
+high_control_view,en,Pedagogical Application,Mathematics,1
+high_control_view,en,Pedagogical Application,Physics,2
+high_control_view,en,Pedagogical Application,Public Administration,1
+high_control_view,en,Pedagogical Application,Theoretical Economics,1
+high_control_view,en,Scenario Adaptability,Aquaculture,1
+high_control_view,en,Scenario Adaptability,Automation,1
+high_control_view,en,Scenario Adaptability,Biology,1
+high_control_view,en,Scenario Adaptability,History,2
+high_control_view,en,Scenario Adaptability,Military Science,1
+high_control_view,en,Scenario Adaptability,Physical Education,1
+high_control_view,en,Scenario Adaptability,Psychology,1
+high_control_view,en,Scenario Adaptability,Public Administration,2
+high_control_view,en,Scenario Adaptability,Theoretical Economics,1
+high_control_view,zh,Factual & Reasoning Accuracy,Aquaculture,1
+high_control_view,zh,Factual & Reasoning Accuracy,Basic Medicine,1
+high_control_view,zh,Factual & Reasoning Accuracy,Business Administration,1
+high_control_view,zh,Factual & Reasoning Accuracy,Computer Science,2
+high_control_view,zh,Factual & Reasoning Accuracy,Crop Science,2
+high_control_view,zh,Factual & Reasoning Accuracy,General Pedagogy,1
+high_control_view,zh,Factual & Reasoning Accuracy,History,1
+high_control_view,zh,Factual & Reasoning Accuracy,Mathematics,1
+high_control_view,zh,Factual & Reasoning Accuracy,Physical Education,2
+high_control_view,zh,Factual & Reasoning Accuracy,Physics,2
+high_control_view,zh,Pedagogical Application,Business Administration,1
+high_control_view,zh,Pedagogical Application,Chemistry,1
+high_control_view,zh,Pedagogical Application,Geography,1
+high_control_view,zh,Pedagogical Application,Mathematics,1
+high_control_view,zh,Pedagogical Application,Psychology,1
+high_control_view,zh,Pedagogical Application,Public Administration,1
+high_control_view,zh,Scenario Adaptability,Aquaculture,1
+high_control_view,zh,Scenario Adaptability,Basic Medicine,1
+high_control_view,zh,Scenario Adaptability,General Pedagogy,1
+high_control_view,zh,Scenario Adaptability,Literature and Art,1

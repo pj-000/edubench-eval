@@ -1,0 +1,4 @@
+role,status,rows,valid_rows,invalid_rows,duplicate_rows
+reviewer_a,missing,0,0,0,0
+reviewer_b,missing,0,0,0,0
+adjudication,missing,0,0,0,0

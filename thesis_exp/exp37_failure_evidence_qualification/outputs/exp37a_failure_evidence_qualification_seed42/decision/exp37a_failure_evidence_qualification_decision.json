@@ -1,0 +1,16 @@
+{
+  "adjudication_complete": false,
+  "core_reference_gate": false,
+  "qwen_source": "thesis_exp/exp17_low_score_evidence/outputs/exp28c_teacher_protocol_evaluation_seed42/private/qwen/p0_holistic_zero_shot/all_train.jsonl",
+  "reason": "No semantic decision is made before complete independent reviews and adjudication.",
+  "recommend_full_train_score_range_annotation": false,
+  "recommend_new_reason_evidence_training": false,
+  "recommend_student_training": false,
+  "reference_complete": false,
+  "score_range_gate": false,
+  "semantic_gate": false,
+  "status": "WAITING_FOR_REVIEWS",
+  "stop_reason_evidence_supervision": false,
+  "test_access_count": 0,
+  "utility_gate": false
+}

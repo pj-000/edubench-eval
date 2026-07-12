@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["sample_id", "target_scope_confirmed", "score_range", "most_plausible_score", "failure_bucket", "failure_classes", "evaluator_output_evidence", "missing_evidence_reason", "rubric_evidence", "confidence", "needs_adjudication", "review_reason"],
+  "properties": {
+    "sample_id": {"type": "string"},
+    "target_scope_confirmed": {"const": true},
+    "score_range": {"type": "array", "minItems": 2, "maxItems": 2, "items": {"type": "integer", "minimum": 1, "maximum": 5}},
+    "most_plausible_score": {"type": "integer", "minimum": 1, "maximum": 5},
+    "failure_bucket": {"enum": ["no_failure", "visible_failure", "hidden_or_missing_failure", "unclear"]},
+    "failure_classes": {"type": "array", "items": {"enum": ["no_major_failure", "missing_content_or_key_point", "factual_or_rubric_mismatch", "insufficient_reasoning_or_evidence", "task_constraint_or_format_violation", "unclear_or_other"]}},
+    "evaluator_output_evidence": {"type": "array", "items": {"type": "string"}},
+    "missing_evidence_reason": {"type": ["string", "null"]},
+    "rubric_evidence": {"type": "string"},
+    "confidence": {"enum": ["high", "medium", "low"]},
+    "needs_adjudication": {"type": "boolean"},
+    "review_reason": {"type": "string"}
+  },
+  "additionalProperties": true
+}

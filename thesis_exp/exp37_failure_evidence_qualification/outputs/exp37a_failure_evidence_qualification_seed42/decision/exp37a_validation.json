@@ -1,0 +1,33 @@
+{
+  "allow_missing_reviews": true,
+  "blind_packet_leakage_count": 0,
+  "reference_complete": false,
+  "review_completion": [
+    {
+      "duplicate_rows": 0,
+      "invalid_rows": 0,
+      "role": "reviewer_a",
+      "rows": 0,
+      "status": "missing",
+      "valid_rows": 0
+    },
+    {
+      "duplicate_rows": 0,
+      "invalid_rows": 0,
+      "role": "reviewer_b",
+      "rows": 0,
+      "status": "missing",
+      "valid_rows": 0
+    },
+    {
+      "duplicate_rows": 0,
+      "invalid_rows": 0,
+      "role": "adjudication",
+      "rows": 0,
+      "status": "missing",
+      "valid_rows": 0
+    }
+  ],
+  "status": "PASS",
+  "test_access_count": 0
+}
