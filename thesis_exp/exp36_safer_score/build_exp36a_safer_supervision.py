@@ -230,6 +230,7 @@ def main() -> None:
             moved += int(receiver != donor)
             shuffled_payload[receiver] = {
                 "teacher_target_5": core[donor]["teacher_target_5"],
+                "teacher_score": core[donor]["teacher_score"],
                 "teacher_lambda": core[donor]["teacher_lambda"],
                 "teacher_lambda_no_student_uncertainty": core[donor]["teacher_lambda_no_student_uncertainty"],
                 "failure_target_6": core[donor]["failure_target_6"],
@@ -258,10 +259,10 @@ def main() -> None:
         variants["v6b_no_student_uncertainty"].append(variant_row(row, "v6b_no_student_uncertainty", h, t, row["teacher_lambda_no_student_uncertainty"], fail, mask))
         variants["v6c_no_curriculum"].append(variant_row(row, "v6c_no_curriculum", h, t, row["teacher_lambda"], fail, mask))
         payload = shuffled_payload[index]
-        variants["v7_shuffled_teacher_control"].append(
-            variant_row(row, "v7_shuffled_teacher_control", h, payload["teacher_target_5"],
-                        payload["teacher_lambda"], payload["failure_target_6"], bool(payload["failure_mask"]))
-        )
+        shuffled_row = variant_row(row, "v7_shuffled_teacher_control", h, payload["teacher_target_5"],
+                                   payload["teacher_lambda"], payload["failure_target_6"], bool(payload["failure_mask"]))
+        shuffled_row["teacher_score"] = payload["teacher_score"]
+        variants["v7_shuffled_teacher_control"].append(shuffled_row)
 
     hashes = {}
     variant_summary = []

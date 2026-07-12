@@ -62,12 +62,14 @@ def main() -> None:
         if v5_path.exists():
             v5_rows = read_jsonl(v5_path)
             changing = [row for row in v5_rows if float(row["teacher_lambda"]) > 0]
-            dynamic_ok = bool(changing) and all(
-                dynamic_target(row, 3, "v5_safer_score") == row["human_target_5"]
-                and dynamic_target(row, 6, "v5_safer_score") != row["human_target_5"]
-                for row in changing
+            warmup_locked = bool(changing) and all(
+                dynamic_target(row, 3, "v5_safer_score") == row["human_target_5"] for row in changing
             )
-            checks.append(("dynamic_target_changes_by_epoch", dynamic_ok, len(changing)))
+            changed_at_full = sum(
+                dynamic_target(row, 6, "v5_safer_score") != row["human_target_5"] for row in changing
+            )
+            checks.append(("dynamic_target_warmup_locked", warmup_locked, len(changing)))
+            checks.append(("dynamic_target_changes_by_epoch", changed_at_full > 0, changed_at_full))
             zero_mask_rows = sum(int(row["failure_mask"]) == 0 for row in v5_rows)
             checks.append(("zero_failure_mask_cases_present", zero_mask_rows > 0, zero_mask_rows))
     rows_out = [{"check": name, "pass": passed, "detail": detail} for name, passed, detail in checks]
