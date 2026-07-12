@@ -1,0 +1,7 @@
+view,stratum,stratum_population,stratum_sample,inclusion_probability,design_weight,estimation_use
+representative_train,label_1,24,12,0.5,2.0,population_source_reliability_and_prevalence
+representative_train,label_2,52,18,0.34615384615384615,2.888888888888889,population_source_reliability_and_prevalence
+representative_train,label_3,251,25,0.099601593625498,10.04,population_source_reliability_and_prevalence
+representative_train,label_4,946,30,0.03171247357293869,31.533333333333335,population_source_reliability_and_prevalence
+representative_train,label_5,1381,35,0.025343953656770456,39.457142857142856,population_source_reliability_and_prevalence
+risk_enriched_train,all,,120,,,unweighted_stress_metrics_only

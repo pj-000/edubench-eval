@@ -322,3 +322,14 @@ thesis_exp/exp17_low_score_evidence/outputs/exp27k_representative_teacher_valida
 
 # Local Exp28 teacher API credentials. Never commit the real file.
 .env.exp28.local
+
+# Exp33A publishes only sampling locks, aggregate tables, reports, and the
+# pre-review decision. Blind packets, sample identities, source joins, and
+# every filled review remain local/private.
+thesis_exp/exp33_expert_reference/outputs/**/private/
+thesis_exp/exp33_expert_reference/outputs/**/private_review/
+thesis_exp/exp33_expert_reference/outputs/**/blind_packets/
+thesis_exp/exp33_expert_reference/outputs/**/reviewer_a_filled/
+thesis_exp/exp33_expert_reference/outputs/**/reviewer_b_filled/
+thesis_exp/exp33_expert_reference/outputs/**/adjudication_filled/
+thesis_exp/exp33_expert_reference/outputs/**/source_reference/

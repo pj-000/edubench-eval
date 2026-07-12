@@ -1,0 +1,104 @@
+{
+  "adjudication_triggers": [
+    "most_plausible_score_differs",
+    "score_ranges_disjoint",
+    "failure_bucket_differs",
+    "student_input_sufficiency_differs",
+    "any_low_confidence",
+    "any_needs_adjudication",
+    "any_domain_escalation_required"
+  ],
+  "adjudicator_source_visibility": {
+    "after_ab_freeze_for_triggered_cases": [
+      "human_1_2_3_scores_and_reasons",
+      "rounded_human_label",
+      "qwen_score_range_confidence_evidence_reason",
+      "deepseek_score_range_confidence_evidence_reason"
+    ],
+    "always_forbidden": [
+      "student_predictions",
+      "b0_b4_variants",
+      "train_dev_model_metrics",
+      "test_data"
+    ],
+    "before_ab_freeze": "none"
+  },
+  "blind_packet_allowlist": [
+    "sample_id",
+    "anonymized_question_key_hash",
+    "question_context",
+    "evaluator_output",
+    "evaluation_dimension",
+    "canonical_rubric",
+    "score_rubric",
+    "non_label_metadata",
+    "language",
+    "packet_hash"
+  ],
+  "calibration_gate_before_2654_train_expansion": {
+    "all_triggered_cases_processed": true,
+    "blind_leakage_count": 0,
+    "krippendorff_ordinal_alpha_min": 0.6,
+    "paired_review_coverage": 1.0,
+    "quadratic_weighted_kappa_min": 0.6,
+    "schema_and_evidence_validity": 1.0,
+    "selection_uses_model_performance_metrics": false,
+    "within_one_agreement_min": 0.9
+  },
+  "default_reviewer_type": "model",
+  "domain_escalation_plan": "If the independent adjudicator cannot resolve domain uncertainty, retain an unresolved-domain audit flag and use the human empirical distribution fallback; do not force a hard score for teacher reliability fitting.",
+  "experiment": "Exp33A Independent Model-Reviewed Silver Reference Preparation",
+  "expert_reference_complete": false,
+  "hard_relabel_without_posterior_forbidden": true,
+  "locked_reviewer_type": "model",
+  "method_description": "multi-stage blind-first, conflict-aware, direction-constrained model-assisted data annotation and correction",
+  "method_innovation": [
+    "blind_first_source_comparison",
+    "conflict_adjudication",
+    "direction_aware_correction",
+    "uncertainty_fallback"
+  ],
+  "model_independence_requirement": "Model Reviewer A, Model Reviewer B, and Model Adjudicator must use separately launched contexts with distinct reviewer_run_id values. A/B cannot see each other's outputs. reviewer_model_id/provider are fixed and recorded for provenance but are not the method innovation.",
+  "model_silver_reference_complete": false,
+  "non_label_metadata_allowlist": [
+    "subject",
+    "education_level",
+    "scenario"
+  ],
+  "planned_model_family": "GPT-5.6",
+  "provider_agnostic_method": true,
+  "reference_name": "independent model-reviewed silver reference",
+  "review_results_present": false,
+  "reviewer_model_id_required_at_submission": true,
+  "reviewers": {
+    "adjudicator": {
+      "reviewer_model_id": null,
+      "reviewer_provenance": "independent_model_adjudicator",
+      "reviewer_provider": null,
+      "reviewer_type": "model"
+    },
+    "reviewer_a": {
+      "reviewer_model_id": null,
+      "reviewer_provenance": "independent_model_reviewer",
+      "reviewer_provider": null,
+      "reviewer_type": "model"
+    },
+    "reviewer_b": {
+      "reviewer_model_id": null,
+      "reviewer_provenance": "independent_model_reviewer",
+      "reviewer_provider": null,
+      "reviewer_type": "model"
+    }
+  },
+  "supported_reviewer_types": [
+    "human",
+    "model"
+  ],
+  "test_access_count": 0,
+  "three_stage_plan": {
+    "stage_1_blind_review": "Model Reviewer A/B independently see only original task, evaluator output, rubric, and non-label metadata; they emit score/range/evidence and never see human, Qwen, or DeepSeek sources.",
+    "stage_2_private_source_comparison": "After A/B outputs are frozen, private analysis compares human_1/2/3, rounded human, Qwen, DeepSeek, and A/B to audit 4-to-5 bias, low-to-high shifts, reason-score inconsistency, and hard-relabel drift.",
+    "stage_3_adjudication_and_correction": "Triggered cases go to an independently launched Model Adjudicator with frozen A/B structured reviews plus controlled source provenance. It returns a model-reviewed silver posterior/score; uncertainty falls back to the human empirical distribution rather than a forced hard relabel."
+  },
+  "uncertain_case_fallback": "human_empirical_distribution"
+}

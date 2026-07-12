@@ -1,0 +1,139 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://edubench.local/schemas/exp33a_adjudication_schema.json",
+  "title": "Exp33A staged source-aware adjudication",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "sample_id",
+    "reviewer_role",
+    "reviewer_type",
+    "reviewer_provenance",
+    "reviewer_provider",
+    "reviewer_model_id",
+    "reviewer_run_id",
+    "reviewer_a_result_hash",
+    "reviewer_b_result_hash",
+    "source_comparison_frozen_hash",
+    "source_provenance_seen",
+    "target_scope_confirmed",
+    "final_score_range",
+    "final_most_plausible_score",
+    "final_score_posterior",
+    "final_failure_bucket",
+    "student_input_sufficiency",
+    "confidence",
+    "domain_escalation_required",
+    "final_status",
+    "correction_action",
+    "rubric_evidence",
+    "evaluator_output_evidence",
+    "adjudication_reason"
+  ],
+  "properties": {
+    "sample_id": {"type": "string", "minLength": 1},
+    "reviewer_role": {"const": "adjudicator"},
+    "reviewer_type": {"enum": ["human", "model"]},
+    "reviewer_provenance": {
+      "enum": ["independent_human_adjudicator", "independent_model_adjudicator"]
+    },
+    "reviewer_provider": {"type": ["string", "null"]},
+    "reviewer_model_id": {"type": ["string", "null"]},
+    "reviewer_run_id": {"type": "string", "minLength": 1, "maxLength": 256},
+    "reviewer_a_result_hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "reviewer_b_result_hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "source_comparison_frozen_hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "source_provenance_seen": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "enum": ["human_1", "human_2", "human_3", "rounded_human", "qwen", "deepseek"]
+      }
+    },
+    "target_scope_confirmed": {"type": "boolean"},
+    "final_score_range": {
+      "oneOf": [
+        {"type": "null"},
+        {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "prefixItems": [
+            {"type": "integer", "minimum": 1, "maximum": 5},
+            {"type": "integer", "minimum": 1, "maximum": 5}
+          ],
+          "items": false
+        }
+      ]
+    },
+    "final_most_plausible_score": {"type": ["integer", "null"], "minimum": 1, "maximum": 5},
+    "final_score_posterior": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["1", "2", "3", "4", "5"],
+      "properties": {
+        "1": {"type": "number", "minimum": 0, "maximum": 1},
+        "2": {"type": "number", "minimum": 0, "maximum": 1},
+        "3": {"type": "number", "minimum": 0, "maximum": 1},
+        "4": {"type": "number", "minimum": 0, "maximum": 1},
+        "5": {"type": "number", "minimum": 0, "maximum": 1}
+      }
+    },
+    "final_failure_bucket": {
+      "enum": ["no_failure", "visible_failure", "hidden_or_missing_failure", "unclear"]
+    },
+    "student_input_sufficiency": {
+      "enum": ["sufficient", "requires_explicit_rubric", "insufficient_context", "unclear"]
+    },
+    "confidence": {"enum": ["high", "medium", "low"]},
+    "domain_escalation_required": {"type": "boolean"},
+    "final_status": {
+      "enum": ["model_reviewed_silver", "human_empirical_distribution_fallback", "unresolved_domain_case"]
+    },
+    "correction_action": {
+      "enum": ["retain_source", "soft_posterior", "hard_score_supported", "human_empirical_fallback", "exclude_from_reliability"]
+    },
+    "rubric_evidence": {"type": "string", "minLength": 1, "maxLength": 2400},
+    "evaluator_output_evidence": {"type": ["string", "null"], "maxLength": 2000},
+    "adjudication_reason": {"type": "string", "minLength": 1, "maxLength": 1600}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"reviewer_type": {"const": "model"}}, "required": ["reviewer_type"]},
+      "then": {
+        "properties": {
+          "reviewer_provenance": {"const": "independent_model_adjudicator"},
+          "reviewer_provider": {"type": "string", "minLength": 1, "maxLength": 128},
+          "reviewer_model_id": {"type": "string", "minLength": 1, "maxLength": 256}
+        }
+      },
+      "else": {
+        "properties": {
+          "reviewer_provenance": {"const": "independent_human_adjudicator"},
+          "reviewer_provider": {"type": "null"},
+          "reviewer_model_id": {"type": "null"}
+        }
+      }
+    },
+    {
+      "if": {"properties": {"final_status": {"const": "human_empirical_distribution_fallback"}}, "required": ["final_status"]},
+      "then": {
+        "properties": {
+          "final_most_plausible_score": {"type": "null"},
+          "correction_action": {"const": "human_empirical_fallback"}
+        }
+      }
+    },
+    {
+      "if": {"properties": {"final_status": {"const": "unresolved_domain_case"}}, "required": ["final_status"]},
+      "then": {
+        "properties": {
+          "final_score_range": {"type": "null"},
+          "final_most_plausible_score": {"type": "null"},
+          "domain_escalation_required": {"const": true},
+          "correction_action": {"const": "exclude_from_reliability"}
+        }
+      }
+    }
+  ]
+}

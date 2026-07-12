@@ -1,0 +1,68 @@
+{
+  "adjudication_trigger_rows": 0,
+  "adjudication_valid_rows": 0,
+  "api_called": false,
+  "blind_packet_rows": 420,
+  "blind_reviewer_a_valid_rows": 0,
+  "blind_reviewer_b_valid_rows": 0,
+  "calibration_gate_passed": false,
+  "calibration_gates": {
+    "all_triggered_cases_processed": false,
+    "blind_leakage_count_zero": true,
+    "independent_run_ids": true,
+    "krippendorff_ordinal_alpha": false,
+    "paired_review_coverage": false,
+    "quadratic_weighted_kappa": false,
+    "schema_and_evidence_validity": false,
+    "within_one_agreement": false
+  },
+  "exact_sample_overlap_zero": true,
+  "experiment": "Exp33A Independent Model-Reviewed Silver Reference Preparation",
+  "expert_reference_complete": false,
+  "future_train_rows_removed": 0,
+  "future_train_rows_retained": 2654,
+  "gpu_used": false,
+  "human_empirical_distribution_fallback_rows": 0,
+  "model_silver_reference_complete": false,
+  "packet_manifest_sha256": "0ff65510c9172989a1f03b3c0f9774258bf2e6fb73f589478baa56639e510d17",
+  "paper_protocol": "triple_key_disjoint_not_question_key_disjoint",
+  "prepare_complete": true,
+  "recommend_new_teacher_training": false,
+  "recommend_student_training": false,
+  "recommend_test_access": false,
+  "reference_status": "independent model-reviewed silver reference pending",
+  "review_completion_state": "not_started",
+  "reviewer_model_ids": {
+    "adjudicator": [],
+    "reviewer_a": [],
+    "reviewer_b": []
+  },
+  "reviewer_provenance": "independent_model_reviewer",
+  "reviewer_providers": {
+    "adjudicator": [],
+    "reviewer_a": [],
+    "reviewer_b": []
+  },
+  "reviewer_run_independence_verified": false,
+  "reviewer_type": "model",
+  "status": "READY_FOR_INDEPENDENT_MODEL_REVIEW",
+  "student_inference_run": false,
+  "teacher_reliability_ready": false,
+  "test_access_count": 0,
+  "training_run": false,
+  "unique_question_keys": {
+    "clean_dev": 175,
+    "representative_train": 120,
+    "risk_enriched_train": 87
+  },
+  "unresolved_domain_case_rows": 0,
+  "validation_check_count": 16,
+  "validation_complete": true,
+  "validation_failure_count": 0,
+  "validation_status": "PASS",
+  "view_rows": {
+    "clean_dev": 180,
+    "representative_train": 120,
+    "risk_enriched_train": 120
+  }
+}

@@ -1,0 +1,6 @@
+partition,rows,unique_sample_ids,unique_triple_keys,unique_question_keys,question_keys_shared_with_paper_train,future_train_rows_removed,protocol_note
+paper_train_source,2654,2654,2637,196,196,0,paper_protocol_triple_key_disjoint_not_question_key_disjoint
+paper_dev_source,664,664,659,184,184,0,question_key_overlap_expected_and_allowed
+representative_train,120,120,120,120,120,0,descriptive_qkey_diversity_only_no_training_exclusion
+risk_enriched_train,120,120,120,87,87,0,descriptive_qkey_diversity_only_no_training_exclusion
+clean_dev,180,180,180,175,175,0,descriptive_qkey_diversity_only_no_training_exclusion

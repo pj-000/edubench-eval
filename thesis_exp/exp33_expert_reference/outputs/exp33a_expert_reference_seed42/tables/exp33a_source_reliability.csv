@@ -1,0 +1,11 @@
+source,rows,mae,qwk,exact,within_one,signed_bias,severe_error,low_to_high,high_to_low,label1_recall,label2_recall,label5_recall,status
+human_1,0,,,,,,,,,,,,NOT_AVAILABLE
+human_2,0,,,,,,,,,,,,NOT_AVAILABLE
+human_3,0,,,,,,,,,,,,NOT_AVAILABLE
+rounded_human,0,,,,,,,,,,,,NOT_AVAILABLE
+qwen,0,,,,,,,,,,,,NOT_AVAILABLE
+deepseek,0,,,,,,,,,,,,NOT_AVAILABLE
+teacher_mean,0,,,,,,,,,,,,NOT_AVAILABLE
+teacher_median,0,,,,,,,,,,,,NOT_AVAILABLE
+Dawid-Skene,0,,,,,,,,,,,,PENDING_COMPLETE_REPRESENTATIVE_REFERENCE
+MACE,0,,,,,,,,,,,,PENDING_COMPLETE_REPRESENTATIVE_REFERENCE

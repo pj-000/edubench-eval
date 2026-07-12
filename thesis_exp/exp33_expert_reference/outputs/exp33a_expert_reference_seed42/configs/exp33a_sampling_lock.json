@@ -1,0 +1,135 @@
+{
+  "experiment": "Exp33A Independent Model-Reviewed Silver Reference Preparation",
+  "human_reason_source_manifest": [
+    {
+      "path": "5-grades/5_human_1.jsonl",
+      "row_count": 3366,
+      "sha256": "a22d5c36e771325f75df586fa334c4433035d41dc018043d82cea721245fb72f"
+    },
+    {
+      "path": "5-grades/5_human_2.jsonl",
+      "row_count": 3366,
+      "sha256": "796d0f6bf31225d57e198ac7f961e2cbbceb5ec3a71df62a3677d627fe605bf4"
+    },
+    {
+      "path": "5-grades/5_human_3.jsonl",
+      "row_count": 3366,
+      "sha256": "23fc472daa9e573d7b52b29c6e37ba3e0deac679abd7095203c880d7fa211bad"
+    },
+    {
+      "path": "5-grades/5_merge_human_metric_en.jsonl",
+      "row_count": 4031,
+      "sha256": "935c6d7576fb8179654246d1dfb51acc7b71023e92d7579c1fa3ee6f2f0a399a"
+    },
+    {
+      "path": "5-grades/5_merge_human_metric_zh.jsonl",
+      "row_count": 4007,
+      "sha256": "c7bca1958bd0cb6e405a175bafb92a0321d7cb0a73b16fbe56ed50999a2d87b9"
+    }
+  ],
+  "no_api": true,
+  "no_gpu": true,
+  "no_student_inference": true,
+  "no_training": true,
+  "packet_manifest_sha256": "0ff65510c9172989a1f03b3c0f9774258bf2e6fb73f589478baa56639e510d17",
+  "paper_protocol": {
+    "fixed_rows": {
+      "dev": 664,
+      "test_sealed": 2218,
+      "train": 2654
+    },
+    "future_train_question_key_exclusion": false,
+    "future_train_rows_removed": 0,
+    "future_train_rows_retained": 2654,
+    "group_cv_substitution_forbidden": true,
+    "question_key_overlap_is_expected": true,
+    "split_unit": "question_answer_metric_triple",
+    "test_access_count": 0,
+    "test_row_count_provenance": "thesis_exp/exp17_low_score_evidence/outputs/exp32_dual_teacher_campaign_conclusion_seed42/reports/exp32_dual_teacher_campaign_conclusion.md",
+    "train_dev_question_key_disjoint": false,
+    "train_dev_triple_key_disjoint": true
+  },
+  "seed": 42,
+  "source_audit": {
+    "dev_rows": 664,
+    "dev_unique_question_keys": 184,
+    "future_train_rows_removed_for_question_key_overlap": 0,
+    "future_train_rows_retained": 2654,
+    "processed_rows": 5536,
+    "train_dev_question_key_overlap": 184,
+    "train_dev_sample_overlap": 0,
+    "train_dev_triple_key_overlap": 0,
+    "train_rows": 2654,
+    "train_rows_on_train_dev_shared_question_keys": 2562,
+    "train_unique_question_keys": 196
+  },
+  "source_paths": {
+    "dev": "thesis_exp/data/splits/paper_like_triple_seed42/dev.jsonl",
+    "dev_sha256": "a18d6a27b9a524d4592a359658ae70c9348fe88e43c962971ba95f62d2b6cdf0",
+    "exp32_test_sealed_statement": "thesis_exp/exp17_low_score_evidence/outputs/exp32_dual_teacher_campaign_conclusion_seed42/reports/exp32_dual_teacher_campaign_conclusion.md",
+    "exp32_test_sealed_statement_sha256": "6b2924700a03377792fa5e0b801c18fd1ec69213274d39fb35eb3bdec07e905f",
+    "paper_protocol_lock": "thesis_exp/configs/exp28_teacher_audited_paper_protocol/exp28_protocol_lock.yaml",
+    "paper_protocol_lock_sha256": "da89d46469a41eabfd220814535b271f8e57483aa18d07432f8825154ffb8d7b",
+    "processed": "thesis_exp/data/processed/edubench_scoring_all.jsonl",
+    "processed_sha256": "a03de97382990f8df0c06741a33611bca734d69b3c681a14cc18ee6c88e5be0b",
+    "train": "thesis_exp/data/splits/paper_like_triple_seed42/train.jsonl",
+    "train_sha256": "0a1733b9209984c5c4291d205d1ac6057bed341717903b9de075d07de44a878e"
+  },
+  "test_access_count": 0,
+  "views": {
+    "clean_dev": {
+      "future_train_question_key_exclusion": false,
+      "future_train_rows_removed": 0,
+      "internal_question_key_objective_only": true,
+      "label_quotas": {
+        "1": 6,
+        "2": 14,
+        "3": 40,
+        "4": 60,
+        "5": 60
+      },
+      "manifest_sha256": "a43e15b6d19623b83bba01f3dc5a7cf8f0b7f1debcbff7aaf37c912cb7710fb7",
+      "maximum_unique_question_keys": 175,
+      "primary_objective": "maximize_internal_clean_dev_unique_question_keys",
+      "question_key_overlap_with_train_allowed": true,
+      "rows": 180,
+      "secondary_objective": "minimize_language_metric_subject_population_deviation",
+      "selection_inputs": [
+        "original_label",
+        "language",
+        "metric_family",
+        "subject",
+        "question_key"
+      ],
+      "solver": "scipy.optimize.milp_highs_cpu",
+      "student_prediction_used": false,
+      "teacher_conflict_used": false,
+      "tertiary_objective": "seed42_stable_hash_tie_break"
+    },
+    "representative_train": {
+      "label_quotas": {
+        "1": 12,
+        "2": 18,
+        "3": 25,
+        "4": 30,
+        "5": 35
+      },
+      "manifest_sha256": "03b04b887aa9827f67e7684103fb2d4035b66b47dab5472fcefe53e99f86dc64",
+      "rows": 120,
+      "sampling": "seeded_label_stratified_probability_design_with_qkey_and_metadata_balancing"
+    },
+    "risk_enriched_train": {
+      "label_quotas": {
+        "1": 12,
+        "2": 34,
+        "3": 24,
+        "4": 25,
+        "5": 25
+      },
+      "manifest_sha256": "278bcd46fd78983b82a31d46b253beff97338292d8a72f1f9851f910e27f21a4",
+      "population_estimation_forbidden": true,
+      "rows": 120,
+      "sampling": "remaining_low_labels_then_locked_teacher_risk_priority"
+    }
+  }
+}

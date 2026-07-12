@@ -1,0 +1,7 @@
+diagnostic,eligible_rows,flagged_rows,status
+rounded_human_4_to_teacher_5,0,0,NOT_STARTED
+source_low_to_high,0,0,NOT_STARTED
+source_high_to_low,0,0,NOT_STARTED
+reason_score_inconsistency_proxy,0,0,NOT_STARTED
+hard_relabel_drift_ge_2,0,0,NOT_STARTED
+blind_pair_disagrees_with_rounded_human,0,0,NOT_STARTED

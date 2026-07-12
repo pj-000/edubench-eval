@@ -1,0 +1,110 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://edubench.local/schemas/exp33a_blind_review_schema.json",
+  "title": "Exp33A independent blind review",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "sample_id",
+    "reviewer_role",
+    "reviewer_type",
+    "reviewer_provenance",
+    "reviewer_provider",
+    "reviewer_model_id",
+    "reviewer_run_id",
+    "target_scope_confirmed",
+    "score_range",
+    "most_plausible_score",
+    "failure_bucket",
+    "major_failures",
+    "rubric_evidence",
+    "evaluator_output_evidence",
+    "missing_evidence_reason",
+    "score_cap",
+    "student_input_sufficiency",
+    "confidence",
+    "domain_uncertainty",
+    "domain_escalation_required",
+    "needs_adjudication",
+    "review_reason"
+  ],
+  "properties": {
+    "sample_id": {"type": "string", "minLength": 1},
+    "reviewer_role": {"enum": ["reviewer_a", "reviewer_b"]},
+    "reviewer_type": {"enum": ["human", "model"]},
+    "reviewer_provenance": {
+      "enum": ["independent_human_reviewer", "independent_model_reviewer"]
+    },
+    "reviewer_provider": {"type": ["string", "null"]},
+    "reviewer_model_id": {"type": ["string", "null"]},
+    "reviewer_run_id": {"type": "string", "minLength": 1, "maxLength": 256},
+    "target_scope_confirmed": {"type": "boolean"},
+    "score_range": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "prefixItems": [
+        {"type": "integer", "minimum": 1, "maximum": 5},
+        {"type": "integer", "minimum": 1, "maximum": 5}
+      ],
+      "items": false
+    },
+    "most_plausible_score": {"type": "integer", "minimum": 1, "maximum": 5},
+    "failure_bucket": {
+      "enum": ["no_failure", "visible_failure", "hidden_or_missing_failure", "unclear"]
+    },
+    "major_failures": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1, "maxLength": 400},
+      "maxItems": 12
+    },
+    "rubric_evidence": {"type": "string", "minLength": 1, "maxLength": 2000},
+    "evaluator_output_evidence": {"type": ["string", "null"], "maxLength": 2000},
+    "missing_evidence_reason": {"type": ["string", "null"], "maxLength": 1000},
+    "score_cap": {"type": ["integer", "null"], "minimum": 1, "maximum": 5},
+    "student_input_sufficiency": {
+      "enum": ["sufficient", "requires_explicit_rubric", "insufficient_context", "unclear"]
+    },
+    "confidence": {"enum": ["high", "medium", "low"]},
+    "domain_uncertainty": {"type": "boolean"},
+    "domain_escalation_required": {"type": "boolean"},
+    "needs_adjudication": {"type": "boolean"},
+    "review_reason": {"type": "string", "minLength": 1, "maxLength": 1200}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"reviewer_type": {"const": "model"}}, "required": ["reviewer_type"]},
+      "then": {
+        "properties": {
+          "reviewer_provenance": {"const": "independent_model_reviewer"},
+          "reviewer_provider": {"type": "string", "minLength": 1, "maxLength": 128},
+          "reviewer_model_id": {"type": "string", "minLength": 1, "maxLength": 256}
+        }
+      },
+      "else": {
+        "properties": {
+          "reviewer_provenance": {"const": "independent_human_reviewer"},
+          "reviewer_provider": {"type": "null"},
+          "reviewer_model_id": {"type": "null"}
+        }
+      }
+    },
+    {
+      "if": {"properties": {"confidence": {"const": "low"}}, "required": ["confidence"]},
+      "then": {"properties": {"needs_adjudication": {"const": true}}}
+    },
+    {
+      "if": {"properties": {"domain_uncertainty": {"const": true}}, "required": ["domain_uncertainty"]},
+      "then": {
+        "properties": {
+          "domain_escalation_required": {"const": true},
+          "needs_adjudication": {"const": true}
+        }
+      }
+    },
+    {
+      "if": {"properties": {"evaluator_output_evidence": {"type": "null"}}, "required": ["evaluator_output_evidence"]},
+      "then": {"properties": {"missing_evidence_reason": {"type": "string", "minLength": 1}}}
+    }
+  ]
+}
