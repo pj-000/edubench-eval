@@ -46,6 +46,9 @@ def build_model(model_name_or_path: str, bf16: str, local_files_only: bool, grad
                 raise ValueError("Cannot infer Qwen hidden size")
             self.score_head = nn.Linear(int(hidden), 5)
             self.failure_head = nn.Linear(int(hidden), 6)
+            backbone_dtype = next(self.backbone.parameters()).dtype
+            self.score_head.to(dtype=backbone_dtype)
+            self.failure_head.to(dtype=backbone_dtype)
             if gradient_checkpointing and hasattr(self.backbone, "gradient_checkpointing_enable"):
                 self.backbone.gradient_checkpointing_enable()
                 if hasattr(self.backbone.config, "use_cache"):
@@ -169,4 +172,3 @@ def selected_checkpoint(history: list[dict[str, Any]]) -> dict[str, Any]:
 
 def metric_summary(predictions: list[dict[str, Any]]) -> dict[str, Any]:
     return metrics(predictions)
-
