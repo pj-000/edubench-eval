@@ -29,7 +29,9 @@ read -r -a GPUS <<<"${GPU_LIST}"
 read -r -a VARIANTS <<<"${RUN_VARIANTS}"
 
 run_variant() {
-  local variant="$1" gpu="$2" summary="${RUN_ROOT}/${variant}/seed_${SEED}/run_summary.json"
+  local variant="$1"
+  local gpu="$2"
+  local summary="${RUN_ROOT}/${variant}/seed_${SEED}/run_summary.json"
   if [[ "${SKIP_COMPLETED}" == "1" && -f "${summary}" ]] && "${PYTHON_BIN}" -c 'import json,sys;sys.exit(0 if json.load(open(sys.argv[1])).get("status")=="COMPLETED" else 1)' "${summary}"; then
     echo "Skipping completed Exp36A ${variant}"; return 0
   fi
@@ -53,4 +55,3 @@ for pid in "${pids[@]}"; do if ! wait "${pid}"; then failed=1; fi; done
 if [[ "${failed}" != "0" ]]; then echo "At least one Exp36A queue failed" >&2; exit 1; fi
 "${PYTHON_BIN}" thesis_exp/exp36_safer_score/collect_exp36a_seed42.py --out-dir "${OUT_DIR}" --run-root "${RUN_ROOT}" --bootstrap-resamples 2000
 echo "Exp36A seed42 scout completed."
-
