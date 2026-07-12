@@ -33,8 +33,10 @@ REQUIRED_PUBLIC = (
     "tables/exp33b_direction_flags.csv",
     "tables/exp33b_risk_stress_metrics.csv",
     "tables/exp33b_train_supervision_public_summary.csv",
+    "tables/exp33b_paired_bootstrap.csv",
     "reports/exp33b_direction_aware_aggregation_report.md",
     "decision/exp33b_direction_aware_aggregation_decision.json",
+    "decision/exp33b_statistical_audit.json",
     "hashes/exp33b_input_hashes.json",
     "hashes/exp33b_artifact_hashes.json",
 )
@@ -354,6 +356,27 @@ def check_risk_status(out_dir: Path) -> tuple[bool, str]:
     return not failures, f"risk_status={status}; failures={failures or 'none'}"
 
 
+def check_statistical_audit(out_dir: Path) -> tuple[bool, str]:
+    rows = read_csv(out_dir / "tables/exp33b_paired_bootstrap.csv")
+    decision = read_json(out_dir / "decision/exp33b_statistical_audit.json")
+    failures = []
+    expected = {
+        (baseline, metric)
+        for baseline in ("rounded_human", "qwen")
+        for metric in ("mae", "qwk", "low_to_high", "high_to_low")
+    }
+    observed = {(row.get("baseline"), row.get("metric")) for row in rows}
+    if observed != expected:
+        failures.append("comparison_grid")
+    if any(int(row.get("paired_rows") or 0) != 120 for row in rows):
+        failures.append("paired_rows")
+    if any(int(row.get("bootstrap_iterations") or 0) != 10_000 for row in rows):
+        failures.append("bootstrap_iterations")
+    if int(decision.get("dev_rows_read", -1)) != 0 or int(decision.get("test_access_count", -1)) != 0:
+        failures.append("forbidden_split_access")
+    return not failures, f"rows={len(rows)}; failures={failures or 'none'}"
+
+
 def check_heavy(out_dir: Path) -> tuple[bool, str]:
     decision = read_json(out_dir / "decision/exp33b_direction_aware_aggregation_decision.json")
     hashes = read_json(out_dir / "hashes/exp33b_input_hashes.json")
@@ -388,6 +411,7 @@ def validate(args: argparse.Namespace) -> Checks:
     checks.run("private_predictions", lambda: check_private_predictions(out_dir))
     checks.run("supervision_gate_and_rows", lambda: check_supervision(out_dir))
     checks.run("risk_status", lambda: check_risk_status(out_dir))
+    checks.run("paired_bootstrap_statistics", lambda: check_statistical_audit(out_dir))
     if args.heavy:
         checks.run("heavy_hash_and_input_boundary", lambda: check_heavy(out_dir))
     write_csv(

@@ -1,0 +1,13 @@
+{
+  "comparisons": [
+    "DRGA_vs_rounded_human",
+    "DRGA_vs_qwen"
+  ],
+  "dev_rows_read": 0,
+  "experiment": "Exp33B paired bootstrap calibration audit",
+  "iterations": 10000,
+  "paired_rows": 120,
+  "plot_created": true,
+  "seed": 20260712,
+  "test_access_count": 0
+}

@@ -9,4 +9,5 @@
 - private_predictions: PASS (rows=1289; failures=none)
 - supervision_gate_and_rows: PASS (gate failed; private supervision absent as expected)
 - risk_status: PASS (risk_status=COMPLETE; failures=none)
+- paired_bootstrap_statistics: PASS (rows=8; failures=none)
 - heavy_hash_and_input_boundary: PASS (failures=none)

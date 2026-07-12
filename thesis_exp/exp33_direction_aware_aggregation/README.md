@@ -17,6 +17,11 @@ Public outputs are aggregate metrics, reports, decisions, and hashes. Row-level
 cross-fit predictions and full 2,654-row train supervision are written only
 under `outputs/**/private/`, which is gitignored by this directory.
 
+The workflow also runs a 10,000-resample paired bootstrap on the 120-row
+representative calibration view. It compares frozen DRGA against rounded-human
+and Qwen baselines without opening dev or test; the CSV and MAE confidence-
+interval figure are public lightweight artifacts.
+
 Run:
 
 ```bash
