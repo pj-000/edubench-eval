@@ -1,0 +1,22 @@
+{
+  "api_called": false,
+  "dev_rows_read": 0,
+  "exp33_train_ids_excluded_from_fresh_general": 240,
+  "experiment": "Exp35A model-reviewed EduDART-Cal qualification preparation",
+  "fresh_general_exp33_sample_overlap": 0,
+  "fresh_general_rows": 120,
+  "fresh_unused_low_rows": 0,
+  "gpu_used": false,
+  "low_tail_reassessment_is_fresh": false,
+  "low_tail_reassessment_rows": 76,
+  "paper_protocol": "train=2654/dev=664/test=2218",
+  "protocol_adaptation": "Fresh general qualification uses 20 mid and 100 high sample-disjoint rows; all 76 train-low rows receive a new source-blind reassessment used only as a low-tail safety stress test because Exp33 exhausted every train-low sample ID.",
+  "requested_fresh_low_quota": 40,
+  "requested_fresh_low_quota_feasible": false,
+  "review_reference": "independent model-reviewed silver, not human expert gold",
+  "student_training": false,
+  "test_access_count": 0,
+  "total_blind_packet_rows": 196,
+  "train_low_rows": 76,
+  "train_rows_read": 2654
+}

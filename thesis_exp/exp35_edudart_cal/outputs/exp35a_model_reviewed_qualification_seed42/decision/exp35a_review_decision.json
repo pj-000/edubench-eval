@@ -1,0 +1,23 @@
+{
+  "adjudicator_valid": 109,
+  "dev_rows_read": 0,
+  "errors": [],
+  "experiment": "Exp35A independent model-reviewed qualification",
+  "final_reference_rows": 196,
+  "gates": {
+    "all_conflicts_adjudicated": true,
+    "blind_reviews_complete": true,
+    "dev_test_access_zero": true,
+    "fresh_general_alpha_ge_0p60": true,
+    "fresh_general_qwk_ge_0p60": true,
+    "fresh_general_within_one_ge_0p90": true
+  },
+  "packet_rows": 196,
+  "reference_status": "model-reviewed silver, not human expert gold",
+  "review_gate_passed": true,
+  "reviewer_a_valid": 196,
+  "reviewer_b_valid": 196,
+  "student_training": false,
+  "test_access_count": 0,
+  "triggered_conflicts": 109
+}

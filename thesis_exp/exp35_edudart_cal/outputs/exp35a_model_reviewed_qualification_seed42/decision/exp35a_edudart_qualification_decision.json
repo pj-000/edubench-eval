@@ -1,0 +1,22 @@
+{
+  "calibration_rows": 120,
+  "dev_rows_read": 0,
+  "experiment": "Exp35A EduDART-Cal model-reviewed qualification",
+  "fresh_qualification_rows": 120,
+  "gates": {
+    "dev_test_access_zero": true,
+    "high_to_low_not_worse_than_qwen_plus_0p01": true,
+    "low_tail_label2_recall_ge_0p10": false,
+    "low_to_high_not_worse_than_qwen": false,
+    "mae_better_than_rounded_human_by_0p01": false,
+    "mae_not_worse_than_qwen": false,
+    "qwk_not_worse_than_qwen_minus_0p01": false,
+    "qwk_not_worse_than_rounded_human": false
+  },
+  "generate_exp35b_train_supervision": false,
+  "low_tail_stress_rows": 76,
+  "qualification_gate_passed": false,
+  "reference_status": "independent model-reviewed silver, not human expert gold",
+  "student_training": false,
+  "test_access_count": 0
+}

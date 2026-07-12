@@ -1,0 +1,70 @@
+{
+  "experiment": "Exp35A Model-Reviewed EduDART-Cal Qualification",
+  "method_name": "Independent-Review-Calibrated, Direction- and Distribution-Constrained Teacher Label Reconstruction",
+  "short_name": "EduDART-Cal",
+  "reference_claim": "independent model-reviewed silver, not human expert gold",
+  "seed": 42,
+  "paper_protocol": {
+    "train_rows": 2654,
+    "dev_rows": 664,
+    "test_rows": 2218,
+    "student_visible_fields": ["question", "answer", "metric"]
+  },
+  "calibration": {
+    "development_view": "exp33_representative_train_120",
+    "qualification_view": "exp35_fresh_general_120",
+    "low_tail_stress_view": "exp35_reassessed_train_low_76",
+    "confusion_smoothing": 0.5,
+    "coarse_group_shrinkage_rows": 20,
+    "teacher_range_temperature": 0.75,
+    "reliability_l2": 1.0,
+    "reliability_floor": 0.05,
+    "reliability_ceiling": 0.95
+  },
+  "mixing": {
+    "alpha_max": 0.7,
+    "same_or_adjacent_direction": 1.0,
+    "human_low_to_teacher_high_without_independent_support": 0.0,
+    "human_high_to_teacher_low_with_evidence": 0.65,
+    "human_four_to_teacher_five": 0.25,
+    "deepseek_extreme_transition_veto": true
+  },
+  "evidence_gate": {
+    "require_target_scope": true,
+    "require_reason": true,
+    "require_rubric_assessment": true,
+    "require_score_range": true,
+    "reject_score_cap_conflict": true,
+    "student_observable_policy": "teacher correction must be supported by question, answer, metric, or directly checkable answer evidence; rubric-only distinctions are gated out"
+  },
+  "distribution_projection": {
+    "max_iterations": 500,
+    "convergence_tolerance": 1e-9,
+    "per_class_marginal_tolerance": 0.03,
+    "low_tail_mass_floor_ratio": 0.9,
+    "human_low_unconfirmed_high_probability_cap": 0.05,
+    "human_four_unconfirmed_five_increment_cap": 0.1
+  },
+  "review_gates": {
+    "within_one_min": 0.9,
+    "qwk_min": 0.6,
+    "ordinal_alpha_min": 0.6,
+    "all_conflicts_adjudicated": true
+  },
+  "qualification_gates": {
+    "mae_not_worse_than_qwen": true,
+    "qwk_not_worse_than_qwen_minus": 0.01,
+    "low_to_high_not_worse_than_qwen": true,
+    "high_to_low_not_worse_than_qwen_plus": 0.01,
+    "mae_better_than_rounded_human_by": 0.01,
+    "qwk_not_worse_than_rounded_human": true,
+    "low_tail_stress_label2_recall_min": 0.1
+  },
+  "forbidden": [
+    "dev input or labels",
+    "test input or labels",
+    "student dev/test metrics",
+    "post-hoc threshold tuning on qualification results",
+    "human expert gold claims"
+  ]
+}

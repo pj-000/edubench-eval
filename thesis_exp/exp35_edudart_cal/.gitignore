@@ -1,0 +1,4 @@
+outputs/**/private/
+outputs/**/private_review/
+__pycache__/
+*.pyc

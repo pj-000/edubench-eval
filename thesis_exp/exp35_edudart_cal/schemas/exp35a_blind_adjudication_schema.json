@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "sample_id", "reviewer_role", "reviewer_type", "reviewer_provenance",
+    "reviewer_provider", "reviewer_model_id", "reviewer_run_id", "packet_hash",
+    "reviewer_a_result_hash", "reviewer_b_result_hash", "target_scope_confirmed",
+    "final_failure_bucket", "student_input_sufficiency", "confidence",
+    "domain_escalation_required", "rubric_evidence", "evaluator_output_evidence",
+    "adjudication_reason", "final_score_range", "final_most_plausible_score",
+    "final_score_posterior", "final_status", "correction_action"
+  ],
+  "properties": {
+    "sample_id": {"type": "string", "minLength": 1},
+    "reviewer_role": {"const": "adjudicator"},
+    "reviewer_type": {"const": "model"},
+    "reviewer_provenance": {"const": "independent_model_adjudicator"},
+    "reviewer_provider": {"type": "string", "minLength": 1},
+    "reviewer_model_id": {"type": "string", "minLength": 1},
+    "reviewer_run_id": {"type": "string", "minLength": 1},
+    "packet_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "reviewer_a_result_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "reviewer_b_result_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "target_scope_confirmed": {"type": "boolean"},
+    "final_failure_bucket": {
+      "enum": ["no_failure", "visible_failure", "hidden_or_missing_failure", "unclear"]
+    },
+    "student_input_sufficiency": {"enum": ["sufficient", "insufficient", "unclear"]},
+    "confidence": {"enum": ["high", "medium", "low"]},
+    "domain_escalation_required": {"type": "boolean"},
+    "rubric_evidence": {"type": "string", "minLength": 1},
+    "evaluator_output_evidence": {"type": ["string", "null"]},
+    "adjudication_reason": {"type": "string", "minLength": 1},
+    "final_score_range": {
+      "type": "array", "prefixItems": [{"type": "integer", "minimum": 1, "maximum": 5}, {"type": "integer", "minimum": 1, "maximum": 5}], "minItems": 2, "maxItems": 2
+    },
+    "final_most_plausible_score": {"type": ["integer", "null"], "minimum": 1, "maximum": 5},
+    "final_score_posterior": {
+      "type": "object", "additionalProperties": false,
+      "required": ["1", "2", "3", "4", "5"],
+      "properties": {"1": {"type": "number", "minimum": 0, "maximum": 1}, "2": {"type": "number", "minimum": 0, "maximum": 1}, "3": {"type": "number", "minimum": 0, "maximum": 1}, "4": {"type": "number", "minimum": 0, "maximum": 1}, "5": {"type": "number", "minimum": 0, "maximum": 1}}
+    },
+    "final_status": {"enum": ["model_reviewed_silver", "model_disagreement_distribution_fallback", "unresolved_domain_case"]},
+    "correction_action": {"enum": ["hard_consensus", "soft_posterior", "reviewer_empirical_fallback", "unresolved"]}
+  }
+}

@@ -1,0 +1,16 @@
+view,dimension,value,rows,share,unique_question_keys
+fresh_general_qualification,label,3,20,0.16666666666666666,20
+fresh_general_qualification,label,4,40,0.3333333333333333,40
+fresh_general_qualification,label,5,60,0.5,60
+fresh_general_qualification,language,en,60,0.5,60
+fresh_general_qualification,language,zh,60,0.5,60
+fresh_general_qualification,metric_family,Factual & Reasoning Accuracy,40,0.3333333333333333,40
+fresh_general_qualification,metric_family,Pedagogical Application,40,0.3333333333333333,40
+fresh_general_qualification,metric_family,Scenario Adaptability,40,0.3333333333333333,40
+low_tail_reassessment,label,1,24,0.3157894736842105,12
+low_tail_reassessment,label,2,52,0.6842105263157895,28
+low_tail_reassessment,language,en,46,0.6052631578947368,20
+low_tail_reassessment,language,zh,30,0.39473684210526316,15
+low_tail_reassessment,metric_family,Factual & Reasoning Accuracy,33,0.4342105263157895,17
+low_tail_reassessment,metric_family,Pedagogical Application,24,0.3157894736842105,15
+low_tail_reassessment,metric_family,Scenario Adaptability,19,0.25,15

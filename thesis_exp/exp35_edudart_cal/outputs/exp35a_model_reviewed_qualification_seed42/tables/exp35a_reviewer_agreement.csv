@@ -1,0 +1,3 @@
+view,paired_rows,exact_agreement,within_one,quadratic_weighted_kappa,krippendorff_ordinal_alpha,score_range_overlap,adjudication_rate,status
+fresh_general_qualification,120,0.6083333333333333,0.9833333333333333,0.7120158887785502,0.7108227636849132,0.625,0.49166666666666664,COMPLETE
+low_tail_reassessment,76,0.5789473684210527,0.9342105263157895,0.8643475619018685,0.863872638342764,0.6052631578947368,0.6578947368421053,COMPLETE
