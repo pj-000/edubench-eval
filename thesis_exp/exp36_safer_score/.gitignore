@@ -1,0 +1,8 @@
+outputs/**/private/
+outputs/**/private/**
+outputs/**/*.jsonl
+outputs/**/logs/
+outputs/**/logs/**
+__pycache__/
+*.pyc
+
