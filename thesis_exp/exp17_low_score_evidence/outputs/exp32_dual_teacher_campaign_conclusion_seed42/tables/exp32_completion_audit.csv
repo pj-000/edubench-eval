@@ -1,0 +1,14 @@
+requirement,status,evidence,interpretation
+original_paper_split,PASS,exp28e_data_integrity_audit.csv,2654 train and 664 dev verified; 2218 test remains sealed
+rubric_grounded_dual_teacher_audit,PASS,exp28e_teacher_audit_summary.csv,Qwen3.7-Max primary and selective DeepSeek-V4-Pro secondary annotations completed
+fixed_student_and_input,PASS,exp28e_training_variant_decision.json,Qwen3-Reranker-0.6B with question answer evaluation dimension
+ordinary_loss_and_uniform_hyperparameters,PASS,run_exp28e_reranker_multiseed_dev.sh,ordinary CE and common training settings used across variants
+necessary_ablations,PASS,exp28e_multiseed_dev_summary.csv,original all-teacher selective filter and matched-random variants compared
+three_seed_dev_comparison,PASS,exp28e_multiseed_dev_summary.csv,seeds 42 43 and 44 completed for confirmatory Exp28
+dev_only_selection,PASS,exp28e_multiseed_dev_decision.json,no test metrics used for selection
+statistical_test,PASS,exp28f_two_level_bootstrap_ci.csv,2000-resample hierarchical bootstrap completed
+tables_and_figures,PASS,exp32_campaign_summary.csv and exp32 figures,lightweight paper-ready summaries generated
+teacher_method_dev_success,FAIL,exp28f_bootstrap_decision.json,no predeclared success gate passed
+one_shot_final_test,NOT_AUTHORIZED,exp28f_bootstrap_decision.json,test remains closed because dev success criteria were not met
+model_source_integrity,PASS,exp32_dual_teacher_campaign_conclusion.md,model annotations are not represented as human review
+github_and_server_sync,PASS,commit d1ba083 plus server sync,lightweight results synchronized
