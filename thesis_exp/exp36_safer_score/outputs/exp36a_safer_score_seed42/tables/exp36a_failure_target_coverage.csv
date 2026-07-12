@@ -1,0 +1,57 @@
+human_label,language,metric_family,failure_mask,rows,failure_0_no_major_failure,failure_1_missing_content_or_key_point,failure_2_factual_or_rubric_mismatch,failure_3_insufficient_reasoning_or_evidence,failure_4_task_constraint_or_format_violation,failure_5_unclear_or_other
+1,en,Factual & Reasoning Accuracy,0,5,5,0,0,0,0,0
+1,en,Factual & Reasoning Accuracy,1,3,0,0,0,3,0,0
+1,en,Pedagogical Application,0,1,1,0,0,0,0,0
+1,en,Pedagogical Application,1,1,0,0,1,0,0,0
+1,zh,Factual & Reasoning Accuracy,0,1,0,1,0,0,0,0
+1,zh,Factual & Reasoning Accuracy,1,11,0,1,7,5,0,0
+1,zh,Pedagogical Application,0,1,1,0,0,0,0,0
+1,zh,Scenario Adaptability,1,1,0,0,1,0,0,0
+2,en,Factual & Reasoning Accuracy,0,5,5,0,0,0,0,0
+2,en,Factual & Reasoning Accuracy,1,2,0,0,2,0,0,0
+2,en,Pedagogical Application,0,8,8,0,0,0,0,0
+2,en,Pedagogical Application,1,7,1,0,4,0,2,0
+2,en,Scenario Adaptability,0,10,10,0,0,0,0,0
+2,en,Scenario Adaptability,1,4,0,0,1,0,3,0
+2,zh,Factual & Reasoning Accuracy,0,2,2,0,0,0,0,0
+2,zh,Factual & Reasoning Accuracy,1,4,0,0,4,2,0,0
+2,zh,Pedagogical Application,0,1,0,0,0,0,0,1
+2,zh,Pedagogical Application,1,5,0,0,4,2,0,0
+2,zh,Scenario Adaptability,0,2,2,0,0,0,0,0
+2,zh,Scenario Adaptability,1,2,0,0,2,0,0,0
+3,en,Factual & Reasoning Accuracy,0,1,1,0,0,0,0,0
+3,en,Factual & Reasoning Accuracy,1,25,18,1,2,3,2,0
+3,en,Pedagogical Application,0,7,7,0,0,0,0,0
+3,en,Pedagogical Application,1,45,26,0,11,1,7,0
+3,en,Scenario Adaptability,0,1,1,0,0,0,0,0
+3,en,Scenario Adaptability,1,18,15,0,1,1,1,0
+3,zh,Factual & Reasoning Accuracy,0,2,2,0,0,0,0,0
+3,zh,Factual & Reasoning Accuracy,1,26,9,1,9,9,0,1
+3,zh,Pedagogical Application,0,9,9,0,0,0,0,0
+3,zh,Pedagogical Application,1,55,32,0,11,6,7,0
+3,zh,Scenario Adaptability,0,5,4,0,1,0,0,0
+3,zh,Scenario Adaptability,1,57,48,0,5,2,2,1
+4,en,Factual & Reasoning Accuracy,0,4,0,0,2,1,1,0
+4,en,Factual & Reasoning Accuracy,1,68,49,3,3,10,3,1
+4,en,Pedagogical Application,0,17,10,0,4,0,3,0
+4,en,Pedagogical Application,1,138,123,1,7,0,6,1
+4,en,Scenario Adaptability,0,5,0,0,1,0,4,0
+4,en,Scenario Adaptability,1,140,130,0,2,0,8,0
+4,zh,Factual & Reasoning Accuracy,0,11,0,3,9,2,0,0
+4,zh,Factual & Reasoning Accuracy,1,113,72,11,19,18,0,0
+4,zh,Pedagogical Application,0,32,9,2,14,5,2,0
+4,zh,Pedagogical Application,1,139,119,0,17,2,0,3
+4,zh,Scenario Adaptability,0,16,1,0,13,1,2,0
+4,zh,Scenario Adaptability,1,263,212,4,25,12,9,5
+5,en,Factual & Reasoning Accuracy,0,15,1,1,5,4,5,0
+5,en,Factual & Reasoning Accuracy,1,275,256,1,6,4,8,0
+5,en,Pedagogical Application,0,9,1,0,2,1,5,0
+5,en,Pedagogical Application,1,130,127,0,1,0,1,1
+5,en,Scenario Adaptability,0,19,2,0,4,2,12,0
+5,en,Scenario Adaptability,1,378,367,0,3,0,8,0
+5,zh,Factual & Reasoning Accuracy,0,8,0,0,7,2,1,0
+5,zh,Factual & Reasoning Accuracy,1,207,192,1,10,4,1,0
+5,zh,Pedagogical Application,0,10,3,1,2,2,2,0
+5,zh,Pedagogical Application,1,99,95,0,4,0,0,0
+5,zh,Scenario Adaptability,0,18,1,0,8,3,6,0
+5,zh,Scenario Adaptability,1,213,208,0,2,1,1,1

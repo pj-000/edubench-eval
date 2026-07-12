@@ -1,0 +1,19 @@
+{
+  "api_calls": 0,
+  "checks": {
+    "beats_naive_or_shuffle": true,
+    "exact_guard": true,
+    "high_to_low_guard": true,
+    "label5_guard": false,
+    "low_tail_improvement": true,
+    "mae_guard": false,
+    "no_nan_or_oom": true,
+    "no_test_access": true,
+    "qwk_guard": true
+  },
+  "recommend_run_seeds_43_44": false,
+  "status": "STOP_SAFER_SCORE",
+  "stop_safer_score": true,
+  "strong_baseline": "v0h_human_soft",
+  "test_access_count": 0
+}

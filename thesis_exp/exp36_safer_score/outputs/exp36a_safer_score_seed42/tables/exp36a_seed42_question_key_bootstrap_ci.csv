@@ -1,0 +1,16 @@
+metric,left_minus_right_mean,ci_lower_95,ci_upper_95,resamples,cluster_unit,left_variant,right_variant
+MAE_argmax,0.010960474251705361,-0.021573315741968985,0.04279516052424908,2000,question_key,v5_safer_score,v0h_human_soft
+Exact_Match,-0.009508259216647183,-0.03903962556306307,0.01987843685460197,2000,question_key,v5_safer_score,v0h_human_soft
+QWK,0.0016367727776136882,-0.04055121147742392,0.04560034484636291,2000,question_key,v5_safer_score,v0h_human_soft
+low_to_high_rate,-0.09270065606393905,-0.2857142857142857,0.0,2000,question_key,v5_safer_score,v0h_human_soft
+label2_recall,0.0,0.0,0.0,2000,question_key,v5_safer_score,v0h_human_soft
+MAE_argmax,-0.013553632213208638,-0.04559933724213597,0.019908752346695334,2000,question_key,v5_safer_score,v3_naive_human_qwen
+Exact_Match,0.011922042542250893,-0.018322013490291375,0.04136023914599777,2000,question_key,v5_safer_score,v3_naive_human_qwen
+QWK,0.04851556161407615,0.0024933146346371783,0.09815844581301139,2000,question_key,v5_safer_score,v3_naive_human_qwen
+low_to_high_rate,-0.04927585864249524,-0.1578947368421053,0.0,2000,question_key,v5_safer_score,v3_naive_human_qwen
+label2_recall,-0.13676198803740344,-0.4444444444444444,0.0,2000,question_key,v5_safer_score,v3_naive_human_qwen
+MAE_argmax,0.0003902105952035053,-0.023532275218849735,0.025045586016096574,2000,question_key,v5_safer_score,v7_shuffled_teacher_control
+Exact_Match,-0.00206433439514507,-0.026012737474346088,0.021666907514450922,2000,question_key,v5_safer_score,v7_shuffled_teacher_control
+QWK,0.002874645353236539,-0.026967952828241396,0.033689114171381256,2000,question_key,v5_safer_score,v7_shuffled_teacher_control
+low_to_high_rate,-0.04635032803196953,-0.14285714285714285,0.0,2000,question_key,v5_safer_score,v7_shuffled_teacher_control
+label2_recall,0.0,0.0,0.0,2000,question_key,v5_safer_score,v7_shuffled_teacher_control

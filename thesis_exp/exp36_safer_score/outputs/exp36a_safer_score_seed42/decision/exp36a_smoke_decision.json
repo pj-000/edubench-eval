@@ -1,0 +1,14 @@
+{
+  "status": "PASS",
+  "checks": {
+    "oof_completed": true,
+    "v5_completed": true,
+    "failure_head_backward": true,
+    "checkpoint_reload": true,
+    "no_nan": true,
+    "no_oom": true,
+    "no_test_access": true
+  },
+  "dynamic_target_changes_by_epoch": "unit_checked_in_validation",
+  "zero_failure_mask_safe": "unit_checked_in_validation"
+}

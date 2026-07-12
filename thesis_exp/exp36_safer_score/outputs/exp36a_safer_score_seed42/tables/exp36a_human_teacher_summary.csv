@@ -1,0 +1,2 @@
+rows,human_label_1_count,human_label_2_count,human_label_3_count,human_label_4_count,human_label_5_count,mean_human_entropy,qwen_score_range_count,qwen_hard_no_range_count,qwen_score_range_coverage,deepseek_rows,deepseek_coverage,deepseek_score_confirmed_count,evidence_gate_pass_count,evidence_gate_pass_rate
+2654,24,52,251,946,1381,0.22128877404635605,0,2654,0.0,1552,0.584777694046722,1376,2611,0.9837980406932931

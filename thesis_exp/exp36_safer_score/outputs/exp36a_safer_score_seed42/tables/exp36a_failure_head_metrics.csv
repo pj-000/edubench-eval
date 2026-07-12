@@ -1,0 +1,9 @@
+variant,seed,exact_set_match,masked_rows,micro_f1
+v0_original_hard,42,nan,0,nan
+v0h_human_soft,42,nan,0,nan
+v1_qwen_hard,42,nan,0,nan
+v2_qwen_range_soft,42,nan,0,nan
+v3_naive_human_qwen,42,nan,0,nan
+v4_human_soft_logit_adjustment,42,nan,0,nan
+v5_safer_score,42,0.8583779333058872,2429,0.8619775739041794
+v7_shuffled_teacher_control,42,0.8587896253602305,2429,0.8594771241830066

@@ -1,0 +1,12 @@
+variant,rows,sample_weight_min,sample_weight_max,failure_mask_count,mean_teacher_lambda
+v0_original_hard,2654,1.0,1.0,0,0.0
+v0h_human_soft,2654,1.0,1.0,0,0.0
+v1_qwen_hard,2654,1.0,1.0,0,0.0
+v2_qwen_range_soft,2654,1.0,1.0,0,0.0
+v3_naive_human_qwen,2654,1.0,1.0,0,0.0
+v4_human_soft_logit_adjustment,2654,1.0,1.0,0,0.0
+v5_safer_score,2654,1.0,1.0,2429,0.07468690693703779
+v6a_no_failure_aux,2654,1.0,1.0,0,0.07468690693703779
+v6b_no_student_uncertainty,2654,1.0,1.0,2429,0.036646265117953755
+v6c_no_curriculum,2654,1.0,1.0,2429,0.07468690693703779
+v7_shuffled_teacher_control,2654,1.0,1.0,2429,0.07468690693703779

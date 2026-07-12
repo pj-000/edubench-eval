@@ -1,0 +1,57 @@
+{
+  "v0_original_hard": {
+    "path": "thesis_exp/exp36_safer_score/outputs/exp36a_safer_score_seed42/private/data/exp36a_v0_original_hard_train.jsonl",
+    "rows": 2654,
+    "sha256": "76e4726e9ce452397427cc29ec21f42921a16c2ba84690cd917a5b200e76ae6e"
+  },
+  "v0h_human_soft": {
+    "path": "thesis_exp/exp36_safer_score/outputs/exp36a_safer_score_seed42/private/data/exp36a_v0h_human_soft_train.jsonl",
+    "rows": 2654,
+    "sha256": "70d8a85a21f7571a52705f507119d4dfd7c0fa8f0e58eefbd77058199d16ad5f"
+  },
+  "v1_qwen_hard": {
+    "path": "thesis_exp/exp36_safer_score/outputs/exp36a_safer_score_seed42/private/data/exp36a_v1_qwen_hard_train.jsonl",
+    "rows": 2654,
+    "sha256": "05cc01dd2d5ae853061e7bbe68b1a7a18046e23b026061387aeacdaf208e104f"
+  },
+  "v2_qwen_range_soft": {
+    "path": "thesis_exp/exp36_safer_score/outputs/exp36a_safer_score_seed42/private/data/exp36a_v2_qwen_range_soft_train.jsonl",
+    "rows": 2654,
+    "sha256": "b1b9a77325b49afe8aab1d32f085e9b099315024ea66cbda5ea94c115ae25985"
+  },
+  "v3_naive_human_qwen": {
+    "path": "thesis_exp/exp36_safer_score/outputs/exp36a_safer_score_seed42/private/data/exp36a_v3_naive_human_qwen_train.jsonl",
+    "rows": 2654,
+    "sha256": "43f38fd9dc9647dbe0fac31ce6f7b773e25fa05ad16ac3868d485e4d41688eb4"
+  },
+  "v4_human_soft_logit_adjustment": {
+    "path": "thesis_exp/exp36_safer_score/outputs/exp36a_safer_score_seed42/private/data/exp36a_v4_human_soft_logit_adjustment_train.jsonl",
+    "rows": 2654,
+    "sha256": "841c3f67f8f39c858ace24583641ea6c62d67c6f3c5750e4494193ef07b4808b"
+  },
+  "v5_safer_score": {
+    "path": "thesis_exp/exp36_safer_score/outputs/exp36a_safer_score_seed42/private/data/exp36a_v5_safer_score_train.jsonl",
+    "rows": 2654,
+    "sha256": "20e77f21f78537a72d4b9079d0e90b636a78cb1993fda373a68954f418bd59ae"
+  },
+  "v6a_no_failure_aux": {
+    "path": "thesis_exp/exp36_safer_score/outputs/exp36a_safer_score_seed42/private/data/exp36a_v6a_no_failure_aux_train.jsonl",
+    "rows": 2654,
+    "sha256": "5355ff7f4891a3aa66aef174d27085b6969140671b436d6b8cdcb3db6a712e3e"
+  },
+  "v6b_no_student_uncertainty": {
+    "path": "thesis_exp/exp36_safer_score/outputs/exp36a_safer_score_seed42/private/data/exp36a_v6b_no_student_uncertainty_train.jsonl",
+    "rows": 2654,
+    "sha256": "892a735b590d405254ec00ee1b8e22b8dc481ceb0fc00cbb76b4a4ba2bbc77ad"
+  },
+  "v6c_no_curriculum": {
+    "path": "thesis_exp/exp36_safer_score/outputs/exp36a_safer_score_seed42/private/data/exp36a_v6c_no_curriculum_train.jsonl",
+    "rows": 2654,
+    "sha256": "2087ecabd2e51d671611ffede59b78c9893120afae469ba4bd3927c99bbe368d"
+  },
+  "v7_shuffled_teacher_control": {
+    "path": "thesis_exp/exp36_safer_score/outputs/exp36a_safer_score_seed42/private/data/exp36a_v7_shuffled_teacher_control_train.jsonl",
+    "rows": 2654,
+    "sha256": "85ac53282b1c8113946f0a517bd78cad019d7ff4031562311e8311025c76faa8"
+  }
+}

@@ -1,0 +1,2 @@
+rows,strata,singleton_strata,moved_rows,moved_rate,teacher_target_multiset_preserved,failure_class_count_preserved,teacher_entropy_multiset_preserved
+2654,29,2,2620,0.987189148455162,True,True,True

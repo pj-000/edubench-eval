@@ -1,0 +1,7 @@
+failure_class,positive_count,masked_positive_count
+no_major_failure,2185,2099
+missing_content_or_key_point,32,24
+factual_or_rubric_mismatch,236,164
+insufficient_reasoning_or_evidence,108,85
+task_constraint_or_format_violation,112,69
+unclear_or_other,15,14
