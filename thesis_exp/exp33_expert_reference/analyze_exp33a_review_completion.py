@@ -110,6 +110,23 @@ def load_jsonl_dir(path: Path) -> tuple[list[dict[str, Any]], list[str]]:
     return rows, errors
 
 
+def load_reviewer_rows(out: Path, role: str) -> tuple[list[dict[str, Any]], list[str]]:
+    """Load one reviewer's rows without ever mixing the two blind outputs."""
+    common_dir = guarded(out / "private_review/reviewer_filled")
+    role_dir = out / f"private_review/{role}_filled"
+    common_files = sorted(common_dir.glob(f"exp33a_{role}*_results.jsonl")) if common_dir.exists() else []
+    if common_files:
+        rows: list[dict[str, Any]] = []
+        errors: list[str] = []
+        for common_file in common_files:
+            try:
+                rows.extend(read_jsonl(common_file))
+            except (OSError, ValueError, json.JSONDecodeError) as exc:
+                errors.append(f"{common_file.name}: {exc}")
+        return rows, errors
+    return load_jsonl_dir(role_dir)
+
+
 def schema_errors(row: dict[str, Any], schema: dict[str, Any]) -> list[str]:
     validator = jsonschema.Draft202012Validator(schema)
     return [error.message for error in sorted(validator.iter_errors(row), key=lambda item: list(item.path))]
@@ -889,12 +906,25 @@ def analyze(args: argparse.Namespace) -> dict[str, Any]:
     packet_rows = read_jsonl(out / "private_review/blind_packets/exp33a_reviewer_a_packet.jsonl")
     packets = {str(row["sample_id"]): row for row in packet_rows}
     sources = {str(row["sample_id"]): row for row in read_jsonl(out / "private/exp33a_source_reference.jsonl")}
-    expected_ids = {str(row["sample_id"]) for row in assignments}
-    if set(packets) != expected_ids or set(sources) != expected_ids:
+    all_expected_ids = {str(row["sample_id"]) for row in assignments}
+    if set(packets) != all_expected_ids or set(sources) != all_expected_ids:
         raise ValueError("Private assignment, packet, and source-reference identities differ")
 
-    raw_a, parse_a = load_jsonl_dir(out / "private_review/reviewer_a_filled")
-    raw_b, parse_b = load_jsonl_dir(out / "private_review/reviewer_b_filled")
+    if args.review_stage == "all":
+        expected_ids = all_expected_ids
+    else:
+        expected_ids = {
+            str(row["sample_id"])
+            for row in assignments
+            if str(row.get("view")) == args.review_stage
+        }
+        if not expected_ids:
+            raise ValueError(f"No assignments found for review stage: {args.review_stage}")
+
+    all_raw_a, parse_a = load_reviewer_rows(out, "reviewer_a")
+    all_raw_b, parse_b = load_reviewer_rows(out, "reviewer_b")
+    raw_a = [row for row in all_raw_a if str(row.get("sample_id")) in expected_ids]
+    raw_b = [row for row in all_raw_b if str(row.get("sample_id")) in expected_ids]
     valid_a, errors_a = validate_role_rows(raw_a, "reviewer_a", review_schema, packets, locked_type)
     valid_b, errors_b = validate_role_rows(raw_b, "reviewer_b", review_schema, packets, locked_type)
     blind_complete = set(valid_a) == expected_ids and set(valid_b) == expected_ids and not (parse_a or parse_b or errors_a or errors_b)
@@ -907,7 +937,8 @@ def analyze(args: argparse.Namespace) -> dict[str, Any]:
         bundles, source_hashes = make_adjudication_bundles(triggers, packets, valid_a, valid_b, sources)
         write_jsonl(out / "private_review/adjudication_packets/exp33a_source_aware_adjudication_packet.jsonl", bundles)
 
-    raw_adj, parse_adj = load_jsonl_dir(out / "private_review/adjudication_filled")
+    all_raw_adj, parse_adj = load_jsonl_dir(out / "private_review/adjudication_filled")
+    raw_adj = [row for row in all_raw_adj if str(row.get("sample_id")) in triggers]
     valid_adj, errors_adj = validate_adjudications(
         raw_adj, adjudication_schema, triggers, packets, valid_a, valid_b, source_hashes, sources, locked_type
     ) if blind_complete else ({}, ["Adjudication supplied before complete frozen A/B reviews"] if raw_adj else [])
@@ -939,8 +970,13 @@ def analyze(args: argparse.Namespace) -> dict[str, Any]:
         "independent_run_ids": independent_runs,
     }
     calibration_gate_passed = all(gates.values())
-    model_complete = workflow_complete and locked_type == "model"
-    human_complete = workflow_complete and locked_type == "human" and args.confirm_real_human_review
+    full_workflow_complete = workflow_complete and args.review_stage == "all"
+    model_complete = full_workflow_complete and locked_type == "model"
+    human_complete = (
+        full_workflow_complete
+        and locked_type == "human"
+        and args.confirm_real_human_review
+    )
 
     completion = [
         completion_row("reviewer_a", locked_type, 420, len(raw_a), valid_a, parse_a, errors_a),
@@ -1018,6 +1054,9 @@ def analyze(args: argparse.Namespace) -> dict[str, Any]:
     decision.update(
         {
             "review_completion_state": "complete" if workflow_complete else "not_started" if not (raw_a or raw_b or raw_adj) else "incomplete_or_invalid",
+            "review_stage": args.review_stage,
+            "review_stage_expected_rows": len(expected_ids),
+            "review_stage_complete": workflow_complete,
             "reviewer_providers": providers,
             "reviewer_model_ids": models,
             "reviewer_run_independence_verified": independent_runs if (raw_a or raw_b) else False,
@@ -1047,8 +1086,9 @@ def analyze(args: argparse.Namespace) -> dict[str, Any]:
 
 - Reference claim: independent model-reviewed silver reference (when model workflow completes).
 - Locked reviewer type: `{locked_type}`.
-- Reviewer A valid: {len(valid_a)} / 420.
-- Reviewer B valid: {len(valid_b)} / 420.
+- Review stage: `{args.review_stage}`.
+- Reviewer A valid: {len(valid_a)} / {len(expected_ids)}.
+- Reviewer B valid: {len(valid_b)} / {len(expected_ids)}.
 - Triggered adjudications: {len(triggers)}; valid adjudications: {len(valid_adj)}.
 - Independent run IDs verified: {independent_runs if (raw_a or raw_b) else 'not yet evaluable'}.
 - Model silver reference complete: {model_complete}.
@@ -1066,6 +1106,9 @@ provenance, not the innovation. No API, GPU, training, inference, or test access
     return {
         "reviewer_a_valid": len(valid_a),
         "reviewer_b_valid": len(valid_b),
+        "review_stage": args.review_stage,
+        "review_stage_expected": len(expected_ids),
+        "review_stage_complete": workflow_complete,
         "adjudication_triggers": len(triggers),
         "adjudication_valid": len(valid_adj),
         "model_silver_reference_complete": model_complete,
@@ -1081,6 +1124,12 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--out-dir", type=Path, default=DEFAULT_OUT_DIR)
     parser.add_argument("--review-schema", type=Path, default=REVIEW_SCHEMA)
     parser.add_argument("--adjudication-schema", type=Path, default=ADJUDICATION_SCHEMA)
+    parser.add_argument(
+        "--review-stage",
+        choices=("representative_train", "risk_enriched_train", "clean_dev", "all"),
+        default="all",
+        help="Freeze and analyze exactly one preregistered view, or all 420 rows.",
+    )
     parser.add_argument(
         "--confirm-real-human-review",
         action="store_true",

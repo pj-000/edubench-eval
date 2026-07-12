@@ -1,4 +1,4 @@
 reviewer_role,reviewer_type,reviewer_provenance,reviewer_provider,reviewer_model_id,reviewer_run_id_count,expected_rows,completed_rows,valid_rows,invalid_rows,status,reference_status
-reviewer_a,model,independent_model_reviewer,,,0,420,0,0,0,NOT_STARTED,independent_model_reviewed_silver_reference
-reviewer_b,model,independent_model_reviewer,,,0,420,0,0,0,NOT_STARTED,independent_model_reviewed_silver_reference
-adjudicator,model,independent_model_adjudicator,,,0,0,0,0,0,NOT_STARTED,independent_model_reviewed_silver_reference
+reviewer_a,model,independent_model_reviewer,openai,gpt-5.4,1,420,120,120,0,INCOMPLETE_OR_INVALID,independent_model_reviewed_silver_reference
+reviewer_b,model,independent_model_reviewer,openai,gpt-5.5,1,420,120,120,0,INCOMPLETE_OR_INVALID,independent_model_reviewed_silver_reference
+adjudicator,model,independent_model_adjudicator,openai,gpt-5.5,1,47,47,47,0,COMPLETE,independent_model_reviewed_silver_reference

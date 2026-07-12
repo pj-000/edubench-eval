@@ -1,2 +1,8 @@
 group_type,group_value,reviewed_rows,domain_escalation_required,adjudicated,unresolved_domain_cases,status
-overall,all,0,0,0,0,NOT_STARTED
+overall,all,120,2,2,0,COMPLETE
+view,representative_train,120,2,2,0,COMPLETE
+language,en,57,0,0,0,COMPLETE
+language,zh,63,2,2,0,COMPLETE
+metric_family,Factual & Reasoning Accuracy,35,2,2,0,COMPLETE
+metric_family,Pedagogical Application,42,0,0,0,COMPLETE
+metric_family,Scenario Adaptability,43,0,0,0,COMPLETE

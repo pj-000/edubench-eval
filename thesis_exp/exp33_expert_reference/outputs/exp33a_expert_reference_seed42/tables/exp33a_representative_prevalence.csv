@@ -1,6 +1,6 @@
 estimand,rows,design_weighted_prevalence,view,status
-original_label_conflict,0,,representative_train,INCOMPLETE
-qwen_conflict,0,,representative_train,INCOMPLETE
-deepseek_conflict,0,,representative_train,INCOMPLETE
-evidence_failure,0,,representative_train,INCOMPLETE
-student_input_insufficiency,0,,representative_train,INCOMPLETE
+original_label_conflict,120,0.3972622337053385,representative_train,COMPLETE
+qwen_conflict,120,0.2515974689297975,representative_train,COMPLETE
+deepseek_conflict,89,0.47441669651287727,representative_train,COMPLETE
+evidence_failure,120,0.10459994497673472,representative_train,COMPLETE
+student_input_insufficiency,120,0.0007535795026375283,representative_train,COMPLETE

@@ -2,13 +2,14 @@
 
 - Reference claim: independent model-reviewed silver reference (when model workflow completes).
 - Locked reviewer type: `model`.
-- Reviewer A valid: 0 / 420.
-- Reviewer B valid: 0 / 420.
-- Triggered adjudications: 0; valid adjudications: 0.
-- Independent run IDs verified: not yet evaluable.
+- Review stage: `representative_train`.
+- Reviewer A valid: 120 / 120.
+- Reviewer B valid: 120 / 120.
+- Triggered adjudications: 47; valid adjudications: 47.
+- Independent run IDs verified: True.
 - Model silver reference complete: False.
 - Expert reference complete: False.
-- Calibration gate passed: False.
+- Calibration gate passed: True.
 - Teacher reliability ready: False.
 - Errors: 0.
 - Test access count: 0.
