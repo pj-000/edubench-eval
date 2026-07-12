@@ -283,21 +283,79 @@ def main() -> None:
                                 **{f"target_mass_{k}": sum(row["soft_target_5"][k-1] for row in subset) for k in range(1, 6)}})
 
     write_csv(args.out_dir / "tables/exp36a_variant_summary.csv", variant_summary)
+    label_counts = Counter(int(row["rounded_human_label"]) for row in core)
+    write_csv(args.out_dir / "tables/exp36a_human_teacher_summary.csv", [{
+        "rows": len(core),
+        **{f"human_label_{label}_count": label_counts[label] for label in range(1, 6)},
+        "mean_human_entropy": float(np.mean([row["human_entropy"] for row in core])),
+        "qwen_score_range_count": range_modes.get("plausible_score_range", 0),
+        "qwen_hard_no_range_count": range_modes.get("hard_score_no_range", 0),
+        "qwen_score_range_coverage": range_modes.get("plausible_score_range", 0) / len(core),
+        "deepseek_rows": len(deepseek), "deepseek_coverage": len(deepseek) / len(core),
+        "deepseek_score_confirmed_count": sum(int(row["deepseek_score_confirmed"]) for row in core),
+        "evidence_gate_pass_count": sum(int(row["evidence_gate"]) for row in core),
+        "evidence_gate_pass_rate": float(np.mean([row["evidence_gate"] for row in core])),
+    }])
     write_csv(args.out_dir / "tables/exp36a_variant_input_equivalence.csv", input_equivalence)
     write_csv(args.out_dir / "tables/exp36a_target_mass_by_human_label.csv", target_mass)
-    write_csv(args.out_dir / "tables/exp36a_evidence_gate_summary.csv", gate_rows)
-    write_csv(args.out_dir / "tables/exp36a_direction_transition_summary.csv", direction_rows)
-    write_csv(args.out_dir / "tables/exp36a_low_tail_anchor_audit.csv", low_audit)
-    write_csv(args.out_dir / "tables/exp36a_failure_target_coverage.csv", failure_rows)
+    gate_aggregate: dict[tuple[Any, ...], int] = Counter(
+        (row["human_label"], row["language"], row["metric_family"], row["qwen_human_gap"],
+         row["gate"], row["gate_failure_reasons"] or "none") for row in gate_rows
+    )
+    write_csv(args.out_dir / "tables/exp36a_evidence_gate_summary.csv", [
+        {"human_label": key[0], "language": key[1], "metric_family": key[2], "qwen_human_gap": key[3],
+         "gate": key[4], "gate_failure_reasons": key[5], "rows": count}
+        for key, count in sorted(gate_aggregate.items(), key=lambda item: str(item[0]))
+    ])
+    direction_aggregate: dict[tuple[Any, ...], int] = Counter(
+        (row["human_label"], row["qwen_score"], row["qwen_human_gap"], row["direction_factor"],
+         row["direction_reason"], row["deepseek_present"], row["deepseek_confirmed"]) for row in direction_rows
+    )
+    write_csv(args.out_dir / "tables/exp36a_direction_transition_summary.csv", [
+        {"human_label": key[0], "qwen_score": key[1], "qwen_human_gap": key[2],
+         "direction_factor": key[3], "direction_reason": key[4], "deepseek_present": key[5],
+         "deepseek_confirmed": key[6], "rows": count}
+        for key, count in sorted(direction_aggregate.items(), key=lambda item: str(item[0]))
+    ])
+    low_aggregate: dict[tuple[Any, ...], int] = Counter(
+        (row["human_label"], row["qwen_score"], row["direction_factor"], row["anchor_blocked"],
+         row["failure_mask"]) for row in low_audit
+    )
+    write_csv(args.out_dir / "tables/exp36a_low_tail_anchor_audit.csv", [
+        {"human_label": key[0], "qwen_score": key[1], "direction_factor": key[2],
+         "anchor_blocked": key[3], "failure_mask": key[4], "rows": count}
+        for key, count in sorted(low_aggregate.items(), key=lambda item: str(item[0]))
+    ])
+    failure_aggregate: dict[tuple[Any, ...], list[int]] = {}
+    for row in failure_rows:
+        key = (row["human_label"], row["language"], row["metric_family"], row["failure_mask"])
+        values = failure_aggregate.setdefault(key, [0] * (1 + len(FAILURE_CLASSES)))
+        values[0] += 1
+        for index, name in enumerate(FAILURE_CLASSES):
+            values[index + 1] += int(row[f"failure_{index}_{name}"])
+    write_csv(args.out_dir / "tables/exp36a_failure_target_coverage.csv", [
+        {"human_label": key[0], "language": key[1], "metric_family": key[2], "failure_mask": key[3],
+         "rows": values[0], **{f"failure_{index}_{name}": values[index+1] for index, name in enumerate(FAILURE_CLASSES)}}
+        for key, values in sorted(failure_aggregate.items(), key=lambda item: str(item[0]))
+    ])
     class_rows = [{"failure_class": name, "positive_count": sum(int(row[f"failure_{i}_{name}"]) for row in failure_rows),
                    "masked_positive_count": sum(int(row["failure_mask"]) * int(row[f"failure_{i}_{name}"]) for row in failure_rows)}
                   for i, name in enumerate(FAILURE_CLASSES)]
     write_csv(args.out_dir / "tables/exp36a_failure_class_distribution.csv", class_rows)
-    write_csv(args.out_dir / "tables/exp36a_teacher_vote_distribution.csv", [
-        {"sample_id_hash": stable_hash(sample_id(row)), "teacher_vote": row["teacher_vote"],
-         "teacher_lambda": row["teacher_lambda"], "student_uncertainty": row["student_uncertainty"],
-         "human_entropy": row["human_entropy"], "evidence_gate": row["evidence_gate"]} for row in core
-    ])
+    vote_rows = []
+    for label in ("all", 1, 2, 3, 4, 5):
+        subset = core if label == "all" else [row for row in core if row["rounded_human_label"] == label]
+        lambdas = np.asarray([row["teacher_lambda"] for row in subset], dtype=float)
+        vote_rows.append({
+            "human_label": label, "rows": len(subset), "nonzero_lambda_count": int(np.sum(lambdas > 0)),
+            "lambda_min": float(np.min(lambdas)), "lambda_mean": float(np.mean(lambdas)),
+            "lambda_p50": float(np.quantile(lambdas, 0.5)), "lambda_p90": float(np.quantile(lambdas, 0.9)),
+            "lambda_p95": float(np.quantile(lambdas, 0.95)), "lambda_max": float(np.max(lambdas)),
+            "mean_student_uncertainty": float(np.mean([row["student_uncertainty"] for row in subset])),
+            "mean_human_entropy": float(np.mean([row["human_entropy"] for row in subset])),
+            "evidence_gate_pass_count": sum(int(row["evidence_gate"]) for row in subset),
+        })
+    write_csv(args.out_dir / "tables/exp36a_teacher_vote_distribution.csv", vote_rows)
     write_csv(args.out_dir / "tables/exp36a_shuffled_control_audit.csv", [{
         "rows": len(core), "strata": len(grouped), "singleton_strata": sum(len(v) == 1 for v in grouped.values()),
         "moved_rows": moved, "moved_rate": moved / len(core),
