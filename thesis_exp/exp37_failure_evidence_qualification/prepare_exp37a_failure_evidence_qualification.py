@@ -1,10 +1,11 @@
-"""Prepare the train-only Exp37A blind failure/evidence qualification set."""
+"""Prepare the frozen train-only Exp37A-R1 multi-session review protocol."""
 
 from __future__ import annotations
 
 import argparse
+import random
 import sys
-from collections import Counter, defaultdict
+from collections import Counter
 from pathlib import Path
 from typing import Any
 
@@ -13,54 +14,37 @@ if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 
 from thesis_exp.exp37_failure_evidence_qualification.common import (  # noqa: E402
-    ROOT, TRAIN_PATH, largest_remainder_quota, packet_hash, question_key, read_jsonl, sample_id, sha256_text,
-    stratified_sample, stratum, subject, write_csv, write_json, write_jsonl,
+    EVIDENCE_SUFFICIENCY,
+    EVIDENCE_TYPES,
+    EXPERIMENT_NAME,
+    FAILURE_CLASSES,
+    MAJOR_FAILURE_PRESENCE,
+    R0_ROOT,
+    REFERENCE_TYPE,
+    ROOT,
+    TRAIN_PATH,
+    packet_hash,
+    question_key,
+    read_jsonl,
+    sample_id,
+    sha256_text,
+    stratum,
+    subject,
+    write_csv,
+    write_json,
+    write_jsonl,
 )
+
+EXPECTED_VIEW_COUNTS = {"low_tail_all": 76, "boundary_view": 60, "high_control_view": 60}
 
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--train-jsonl", type=Path, default=TRAIN_PATH)
-    parser.add_argument("--out-dir", type=Path, default=ROOT)
+    parser.add_argument("--out-dir", "--output-dir", dest="out_dir", type=Path, default=ROOT)
+    parser.add_argument("--r0-out-dir", type=Path, default=R0_ROOT)
     parser.add_argument("--seed", type=int, default=42)
     return parser.parse_args()
-
-
-def label(row: dict[str, Any]) -> int:
-    return int(round(float(row.get("label_5", row.get("human_mean_5", 0)))))
-
-
-def choose_high_controls(low: list[dict[str, Any]], high: list[dict[str, Any]], total: int, seed: int) -> tuple[list[dict[str, Any]], dict[str, str]]:
-    """Match label-5 controls to low-tail language/metric strata deterministically."""
-    targets = Counter(stratum(row) for row in low)
-    available: dict[tuple[str, str], list[dict[str, Any]]] = defaultdict(list)
-    for row in high:
-        available[stratum(row)].append(row)
-    selected: list[dict[str, Any]] = []
-    match_status: dict[str, str] = {}
-    # A stable order avoids dependence on the source JSONL order.
-    for key in sorted(available):
-        available[key].sort(key=sample_id)
-    quotas = largest_remainder_quota(dict(targets), total)
-    for key in sorted(targets):
-        quota = min(quotas.get(key, 0), len(available.get(key, [])))
-        selected.extend(available[key][:quota])
-        for row in available[key][:quota]:
-            match_status[sample_id(row)] = "exact_language_metric"
-    remaining = [row for key in sorted(available) for row in available[key] if row not in selected]
-    remaining.sort(key=lambda row: (
-        min((0 if stratum(row) == target else (1 if stratum(row)[0] == target[0] else 2)) for target in targets),
-        stratum(row), sample_id(row),
-    ))
-    for row in remaining:
-        if len(selected) >= total:
-            break
-        selected.append(row)
-        same_language = any(stratum(row)[0] == key[0] for key in targets)
-        match_status[sample_id(row)] = "nearest_language_metric" if same_language else "nearest_available_stratum"
-    if len(selected) < total:
-        raise ValueError(f"Only {len(selected)} high controls available; need {total}")
-    return sorted(selected[:total], key=sample_id), match_status
 
 
 def build_packet(row: dict[str, Any]) -> dict[str, Any]:
@@ -93,96 +77,140 @@ def build_packet(row: dict[str, Any]) -> dict[str, Any]:
     return packet
 
 
-def distribution(rows: list[dict[str, Any]], view: str) -> list[dict[str, Any]]:
-    counts: Counter[tuple[str, str, str, str]] = Counter()
-    for row in rows:
-        counts[(view, stratum(row)[0], stratum(row)[1], subject(row))] += 1
-    return [{"view": key[0], "language": key[1], "metric_group": key[2], "subject": key[3], "count": value} for key, value in sorted(counts.items())]
+def load_frozen_views(r0_out_dir: Path) -> tuple[dict[str, list[dict[str, str]]], dict[str, str]]:
+    views: dict[str, list[dict[str, str]]] = {}
+    id_to_view: dict[str, str] = {}
+    template_dir = r0_out_dir / "annotation_templates"
+    for view, expected in EXPECTED_VIEW_COUNTS.items():
+        path = template_dir / f"exp37a_{view}_reviewer_a_template.jsonl"
+        if not path.exists():
+            raise FileNotFoundError(f"R0 frozen template missing: {path}")
+        rows = read_jsonl(path)
+        if len(rows) != expected:
+            raise ValueError(f"R0 {view} expected {expected} rows, found {len(rows)}")
+        views[view] = rows
+        for row in rows:
+            sid = str(row["sample_id"])
+            if sid in id_to_view:
+                raise ValueError(f"R0 sample appears in multiple views: {sid}")
+            id_to_view[sid] = view
+    if len(id_to_view) != 196:
+        raise ValueError(f"R0 freeze must contain 196 unique sample IDs, found {len(id_to_view)}")
+    return views, id_to_view
+
+
+def qkey_overlap_rows(view_ids: dict[str, list[str]], train: dict[str, dict[str, Any]]) -> list[dict[str, Any]]:
+    qkeys = {view: {question_key(train[sid]) for sid in ids} for view, ids in view_ids.items()}
+    rows: list[dict[str, Any]] = []
+    for view in sorted(qkeys):
+        rows.append({"scope": "within_view", "left_view": view, "right_view": view, "unique_question_keys": len(qkeys[view]), "overlap_count": len(qkeys[view])})
+    names = sorted(qkeys)
+    for index, left in enumerate(names):
+        for right in names[index + 1:]:
+            rows.append({"scope": "pairwise", "left_view": left, "right_view": right, "unique_question_keys": "", "overlap_count": len(qkeys[left] & qkeys[right])})
+    rows.append({"scope": "three_way", "left_view": "all_three", "right_view": "all_three", "unique_question_keys": "", "overlap_count": len(set.intersection(*(qkeys[name] for name in names)))})
+    rows.append({"scope": "union", "left_view": "all_views", "right_view": "all_views", "unique_question_keys": len(set.union(*(qkeys[name] for name in names))), "overlap_count": ""})
+    return rows
 
 
 def main() -> None:
     args = parse_args()
-    train = read_jsonl(args.train_jsonl)
-    if len(train) != 2654:
-        raise ValueError(f"Expected paper-like train to contain 2654 rows, found {len(train)}")
-    ids = [sample_id(row) for row in train]
-    if len(ids) != len(set(ids)):
+    train_rows = read_jsonl(args.train_jsonl)
+    if len(train_rows) != 2654:
+        raise ValueError(f"Expected 2654 paper-like train rows, found {len(train_rows)}")
+    train = {sample_id(row): row for row in train_rows}
+    if len(train) != len(train_rows):
         raise ValueError("Duplicate train sample IDs")
-    low = [row for row in train if label(row) <= 2]
-    boundary3 = [row for row in train if label(row) == 3]
-    boundary4 = [row for row in train if label(row) == 4]
-    high = [row for row in train if label(row) == 5]
-    if len(low) != 76:
-        raise ValueError(f"Expected 76 low-tail rows, found {len(low)}")
-    boundary = stratified_sample(boundary3, 30, args.seed) + stratified_sample(boundary4, 30, args.seed + 1)
-    controls, control_status = choose_high_controls(low, high, 60, args.seed)
-    views = {"low_tail_all": sorted(low, key=sample_id), "boundary_view": sorted(boundary, key=sample_id), "high_control_view": controls}
-    view_ids = {name: {sample_id(row) for row in rows} for name, rows in views.items()}
-    union = set().union(*view_ids.values())
-    overlap_rows = []
-    names = list(views)
-    for left_index, left in enumerate(names):
-        for right in names[left_index + 1:]:
-            overlap_rows.append({"left_view": left, "right_view": right, "overlap_count": len(view_ids[left] & view_ids[right])})
-    qkey_by_id = {sample_id(row): question_key(row) for row in train}
-    qkey_rows = []
-    for name, rows in views.items():
-        qkeys = [qkey_by_id[sample_id(row)] for row in rows]
-        qkey_rows.append({"view": name, "sample_count": len(rows), "unique_question_keys": len(set(qkeys)), "question_key_repeated_rows": len(qkeys) - len(set(qkeys))})
-    all_packets = []
-    packet_paths = {}
-    for view, rows in views.items():
-        packets = [build_packet(row) for row in rows]
-        all_packets.extend({**packet, "view": view} for packet in packets)
-        private_path = args.out_dir / "private_packets" / f"exp37a_{view}_blind_packet.jsonl"
-        write_jsonl(private_path, packets)
-        packet_paths[view] = str(private_path)
-        write_jsonl(args.out_dir / "annotation_templates" / f"exp37a_{view}_reviewer_a_template.jsonl", [
-            {"sample_id": packet["sample_id"], "packet_hash": packet["packet_hash"], "review_status": "pending"} for packet in packets
+
+    frozen, id_to_view = load_frozen_views(args.r0_out_dir)
+    missing = set(id_to_view) - set(train)
+    if missing:
+        raise ValueError(f"Frozen R0 IDs missing from train: {len(missing)}")
+
+    packet_by_id = {sid: build_packet(train[sid]) for sid in sorted(id_to_view)}
+    hash_mismatches = []
+    for view, rows in frozen.items():
+        expected_hash = {str(row["sample_id"]): str(row["packet_hash"]) for row in rows}
+        for sid in expected_hash:
+            if packet_by_id[sid]["packet_hash"] != expected_hash[sid]:
+                hash_mismatches.append(sid)
+    if hash_mismatches:
+        raise ValueError(f"R1 packet input differs from frozen R0 for {len(hash_mismatches)} samples")
+
+    view_ids = {view: sorted(str(row["sample_id"]) for row in rows) for view, rows in frozen.items()}
+    all_ids = sorted(id_to_view)
+    reviewer_seeds = {"reviewer_a": args.seed, "reviewer_b": args.seed + 1}
+    for reviewer, seed in reviewer_seeds.items():
+        order = list(all_ids)
+        random.Random(seed).shuffle(order)
+        write_jsonl(args.out_dir / "private_packets" / f"exp37a_r1_{reviewer}_packets.jsonl", [packet_by_id[sid] for sid in order])
+        write_jsonl(args.out_dir / "annotation_templates" / f"exp37a_r1_{reviewer}_template.jsonl", [
+            {"sample_id": sid, "packet_hash": packet_by_id[sid]["packet_hash"], "review_status": "pending"}
+            for sid in order
         ])
-        write_jsonl(args.out_dir / "annotation_templates" / f"exp37a_{view}_reviewer_b_template.jsonl", [
-            {"sample_id": packet["sample_id"], "packet_hash": packet["packet_hash"], "review_status": "pending"} for packet in packets
-        ])
-    write_jsonl(args.out_dir / "private_packets" / "exp37a_adjudication_template.jsonl", [
-        {"sample_id": packet["sample_id"], "packet_hash": packet["packet_hash"], "review_status": "pending"} for packet in all_packets
+
+    distribution = Counter()
+    for sid, view in id_to_view.items():
+        row = train[sid]
+        distribution[(view, stratum(row)[0], stratum(row)[1], subject(row), int(round(float(row["label_5"]))))] += 1
+    write_csv(args.out_dir / "tables/exp37a_r1_sampling_distribution.csv", [
+        {"view": key[0], "language": key[1], "metric_group": key[2], "subject": key[3], "rounded_human_label": key[4], "count": value}
+        for key, value in sorted(distribution.items())
     ])
-    write_csv(args.out_dir / "tables/exp37a_sampling_distribution.csv", distribution(low, "low_tail_all") + distribution(boundary, "boundary_view") + distribution(controls, "high_control_view"))
-    write_csv(args.out_dir / "tables/exp37a_question_key_distribution.csv", qkey_rows)
-    write_csv(args.out_dir / "tables/exp37a_view_overlap_audit.csv", overlap_rows)
-    write_csv(args.out_dir / "tables/exp37a_control_matching.csv", [{"sample_id": sample_id(row), "match_status": control_status.get(sample_id(row), "") , "language": row.get("language"), "metric_group": row.get("metric_group")} for row in controls])
-    report = {
-        "experiment": "Exp37A Human-Rationale-Grounded Failure-Evidence Qualification",
-        "train_path": str(args.train_jsonl), "train_rows": len(train),
-        "view_counts": {name: len(rows) for name, rows in views.items()},
-        "unique_sample_ids": len(union), "expected_unique_sample_ids": 196,
-        "unique_question_keys": len({qkey_by_id[sid] for sid in union}),
-        "question_key_overlap_allowed_and_recorded": True,
-        "packet_paths_private": packet_paths,
-        "api_called": False, "gpu_used": False, "student_training": False,
-        "student_inference": False, "dev_access_count": 0, "test_access_count": 0,
-        "human_review_results_present": False,
-    }
-    write_json(args.out_dir / "decision/exp37a_failure_evidence_qualification_decision.json", {
-        "reference_complete": False,
-        "recommend_new_reason_evidence_training": False,
-        "recommend_full_train_score_range_annotation": False,
-        "recommend_student_training": False,
-        "status": "WAITING_FOR_EXTERNAL_REVIEWS",
-        "reason": "Blind Reviewer A/B and adjudication outputs are not yet present; no semantic metrics are fabricated.",
+    overlap = qkey_overlap_rows(view_ids, train)
+    write_csv(args.out_dir / "tables/exp37a_r1_question_key_overlap_matrix.csv", overlap)
+
+    sample_freeze_payload = [
+        {"sample_id": sid, "view": id_to_view[sid], "packet_hash": packet_by_id[sid]["packet_hash"]}
+        for sid in all_ids
+    ]
+    write_json(args.out_dir / "configs/exp37a_r1_sampling_hashes.json", {
+        "r0_output": str(args.r0_out_dir),
+        "r1_sample_count": len(all_ids),
+        "sample_ids_sha256": sha256_text("\n".join(all_ids)),
+        "view_assignment_sha256": sha256_text(sample_freeze_payload),
+        "packet_input_sha256": sha256_text([packet_by_id[sid] for sid in all_ids]),
+        "r0_r1_sample_ids_equal": True,
+        "r0_r1_view_assignment_equal": True,
+        "r0_r1_packet_hashes_equal": True,
+    })
+    write_json(args.out_dir / "configs/exp37a_r1_protocol_lock.json", {
+        "experiment_name": EXPERIMENT_NAME,
+        "reference_type": REFERENCE_TYPE,
+        "train_path": str(args.train_jsonl),
+        "sample_count": 196,
+        "view_counts": EXPECTED_VIEW_COUNTS,
+        "reviewer_packet_seeds": reviewer_seeds,
+        "failure_classes": FAILURE_CLASSES,
+        "major_failure_presence": MAJOR_FAILURE_PRESENCE,
+        "evidence_types": EVIDENCE_TYPES,
+        "evidence_sufficiency": EVIDENCE_SUFFICIENCY,
+        "permutation_count": 1000,
+        "question_key_bootstrap_resamples": 2000,
+        "student_training": False,
+        "student_inference": False,
+        "api_calls": False,
+        "dev_access_count": 0,
         "test_access_count": 0,
     })
-    lines = [
-        "# Exp37A prepare report", "", "This is a train-only qualification packet. No student model was trained or inferred.", "",
-        f"- Train rows: {len(train)}", f"- low_tail_all: {len(low)}", f"- boundary_view: {len(boundary)}", f"- high_control_view: {len(controls)}",
-        f"- Unique sample IDs: {len(union)}", f"- Unique question keys: {report['unique_question_keys']}",
-        "- Blind reviewer packets contain no human labels, human reasons, teacher outputs, OOF predictions, or Exp36 results.",
-        "- Reviewers A/B must fill the private review templates externally; Reviewer C adjudicates only the flagged disagreements.",
-        "- Until those files exist, all semantic decisions remain false/unknown.", "",
-        "## Boundary", "Dev and test were not read. API calls, GPU use, student training, and student inference were not performed.",
+
+    report = [
+        "# Exp37A-R1 prepare report", "",
+        f"Experiment: {EXPERIMENT_NAME}", "",
+        "- R0/R1 sample IDs equal: `true`",
+        "- R0/R1 view assignments equal: `true`",
+        "- R0/R1 packet input hashes equal: `true`",
+        "- low_tail_all: 76 rows",
+        "- boundary_view: 60 rows",
+        "- high_control_view: 60 rows",
+        f"- Unique question keys: {next(row['unique_question_keys'] for row in overlap if row['scope'] == 'union')}",
+        "- Reviewer A/B packet orders are independently randomized with frozen seeds 42/43.",
+        "- Human reasons are not supplied to A, B, or C.",
+        "- No API, GPU, student training, student inference, dev, or test access occurred.",
     ]
-    (args.out_dir / "reports/exp37a_prepare_report.md").parent.mkdir(parents=True, exist_ok=True)
-    (args.out_dir / "reports/exp37a_prepare_report.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
-    print({"status": "PASS", "views": {name: len(rows) for name, rows in views.items()}, "unique_sample_ids": len(union), "test_access_count": 0})
+    (args.out_dir / "reports/exp37a_r1_prepare_report.md").parent.mkdir(parents=True, exist_ok=True)
+    (args.out_dir / "reports/exp37a_r1_prepare_report.md").write_text("\n".join(report) + "\n", encoding="utf-8")
+    print({"status": "PREPARED", "rows": 196, "views": EXPECTED_VIEW_COUNTS, "sample_ids_preserved": True, "test_access_count": 0})
 
 
 if __name__ == "__main__":

@@ -1,0 +1,19 @@
+view,annotator,recovered_count,unique_match_count,ambiguous_count,unavailable_count,score_consistent_count,score_inconsistent_count,matching_rule
+low_tail_all,5_human_1.jsonl,0,0,0,76,0,0,exact sample_id or exact normalized question+answer+metric+generator/model only
+boundary_view,5_human_1.jsonl,0,0,0,60,0,0,exact sample_id or exact normalized question+answer+metric+generator/model only
+high_control_view,5_human_1.jsonl,0,0,0,60,0,0,exact sample_id or exact normalized question+answer+metric+generator/model only
+low_tail_all,5_human_2.jsonl,0,0,0,76,0,0,exact sample_id or exact normalized question+answer+metric+generator/model only
+boundary_view,5_human_2.jsonl,0,0,0,60,0,0,exact sample_id or exact normalized question+answer+metric+generator/model only
+high_control_view,5_human_2.jsonl,0,0,0,60,0,0,exact sample_id or exact normalized question+answer+metric+generator/model only
+low_tail_all,5_human_3.jsonl,0,0,0,76,0,0,exact sample_id or exact normalized question+answer+metric+generator/model only
+boundary_view,5_human_3.jsonl,0,0,0,60,0,0,exact sample_id or exact normalized question+answer+metric+generator/model only
+high_control_view,5_human_3.jsonl,0,0,0,60,0,0,exact sample_id or exact normalized question+answer+metric+generator/model only
+low_tail_all,5_merge_human_metric_en.jsonl,0,0,0,76,0,0,exact sample_id or exact normalized question+answer+metric+generator/model only
+boundary_view,5_merge_human_metric_en.jsonl,0,0,0,60,0,0,exact sample_id or exact normalized question+answer+metric+generator/model only
+high_control_view,5_merge_human_metric_en.jsonl,0,0,0,60,0,0,exact sample_id or exact normalized question+answer+metric+generator/model only
+low_tail_all,5_merge_human_metric_zh.jsonl,0,0,0,76,0,0,exact sample_id or exact normalized question+answer+metric+generator/model only
+boundary_view,5_merge_human_metric_zh.jsonl,0,0,0,60,0,0,exact sample_id or exact normalized question+answer+metric+generator/model only
+high_control_view,5_merge_human_metric_zh.jsonl,0,0,0,60,0,0,exact sample_id or exact normalized question+answer+metric+generator/model only
+low_tail_all,all_sources_strict_union,0,0,0,76,0,0,exact sample_id or exact normalized question+answer+metric+generator/model only
+boundary_view,all_sources_strict_union,0,0,0,60,0,0,exact sample_id or exact normalized question+answer+metric+generator/model only
+high_control_view,all_sources_strict_union,0,0,0,60,0,0,exact sample_id or exact normalized question+answer+metric+generator/model only

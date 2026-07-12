@@ -18,7 +18,12 @@ from collections import Counter, defaultdict
 from pathlib import Path
 from typing import Any, Iterable
 
-ROOT = Path("thesis_exp/exp37_failure_evidence_qualification/outputs/exp37a_failure_evidence_qualification_seed42")
+from sklearn.metrics import average_precision_score
+
+R0_ROOT = Path("thesis_exp/exp37_failure_evidence_qualification/outputs/exp37a_failure_evidence_qualification_seed42")
+ROOT = Path("thesis_exp/exp37_failure_evidence_qualification/outputs/exp37a_r1_model_reviewed_qualification_seed42")
+EXPERIMENT_NAME = "Exp37A-R1 Multi-Session Model-Reviewed Failure-Evidence Qualification"
+REFERENCE_TYPE = "multi_session_model_reviewed_silver"
 TRAIN_PATH = Path("thesis_exp/data/splits/paper_like_triple_seed42/train.jsonl")
 REASON_PATHS = (
     Path("5-grades/5_human_1.jsonl"),
@@ -50,6 +55,33 @@ FAILURE_CLASSES = (
     "insufficient_reasoning_or_evidence",
     "task_constraint_or_format_violation",
     "unclear_or_other",
+)
+MAJOR_FAILURE_PRESENCE = ("yes", "no", "unclear")
+EVIDENCE_TYPES = (
+    "explicit_span",
+    "missing_required_content",
+    "global_inconsistency",
+    "not_applicable",
+    "unclear",
+)
+EVIDENCE_SUFFICIENCY = ("sufficient", "partial", "insufficient", "not_applicable", "unclear")
+REVIEW_FIELDS = (
+    "sample_id",
+    "target_scope_confirmed",
+    "score_range",
+    "most_plausible_score",
+    "failure_bucket",
+    "major_failure_presence",
+    "failure_classes",
+    "evidence_type",
+    "evidence_sufficiency",
+    "evaluator_output_evidence",
+    "missing_evidence_reason",
+    "rubric_evidence",
+    "score_cap",
+    "confidence",
+    "needs_adjudication",
+    "review_reason",
 )
 
 
@@ -304,3 +336,74 @@ def normalize_failure(value: str) -> str:
 
 def normalized_substring(needle: str, haystack: str) -> bool:
     return norm(needle) in norm(haystack) if norm(needle) else False
+
+
+def tie_safe_average_precision(labels: Iterable[int], scores: Iterable[float], sample_weight: Iterable[float] | None = None) -> float:
+    y_true = [int(value) for value in labels]
+    y_score = [float(value) for value in scores]
+    if not y_true or sum(y_true) == 0:
+        return 0.0
+    weights = None if sample_weight is None else [float(value) for value in sample_weight]
+    return float(average_precision_score(y_true, y_score, sample_weight=weights))
+
+
+def expected_conflict_reasons(left: dict[str, Any], right: dict[str, Any]) -> list[str]:
+    reasons: list[str] = []
+    if left.get("most_plausible_score") != right.get("most_plausible_score"):
+        reasons.append("point_score_differs")
+    if left.get("score_range") != right.get("score_range"):
+        reasons.append("score_range_differs")
+    if left.get("failure_bucket") != right.get("failure_bucket"):
+        reasons.append("failure_bucket_differs")
+    if left.get("major_failure_presence") != right.get("major_failure_presence"):
+        reasons.append("major_failure_presence_differs")
+    if set(left.get("failure_classes") or []) != set(right.get("failure_classes") or []):
+        reasons.append("failure_class_set_differs")
+    if left.get("evidence_sufficiency") != right.get("evidence_sufficiency"):
+        reasons.append("evidence_sufficiency_differs")
+    left_explicit = left.get("evidence_type") == "explicit_span" and bool(left.get("evaluator_output_evidence"))
+    right_explicit = right.get("evidence_type") == "explicit_span" and bool(right.get("evaluator_output_evidence"))
+    if left_explicit != right_explicit:
+        reasons.append("explicit_evidence_compatibility_differs")
+    if left.get("confidence") == "low" or right.get("confidence") == "low":
+        reasons.append("low_confidence")
+    if left.get("needs_adjudication") is True or right.get("needs_adjudication") is True:
+        reasons.append("reviewer_requested_adjudication")
+    return sorted(set(reasons))
+
+
+def build_final_reference(
+    reviewer_a: list[dict[str, Any]],
+    reviewer_b: list[dict[str, Any]],
+    adjudication: list[dict[str, Any]],
+    expected_count: int = 196,
+) -> list[dict[str, Any]]:
+    by_a = {str(row["sample_id"]): row for row in reviewer_a}
+    by_b = {str(row["sample_id"]): row for row in reviewer_b}
+    by_c = {str(row["sample_id"]): row for row in adjudication}
+    if set(by_a) != set(by_b):
+        raise ValueError("Reviewer A/B sample ID sets differ")
+    conflict_ids = {sid for sid in by_a if expected_conflict_reasons(by_a[sid], by_b[sid])}
+    if set(by_c) != conflict_ids:
+        raise ValueError(
+            f"Adjudication ID set mismatch: expected={len(conflict_ids)} actual={len(by_c)}"
+        )
+    final: list[dict[str, Any]] = []
+    for sid in sorted(by_a):
+        if sid in conflict_ids:
+            source = dict(by_c[sid])
+            provenance = "reviewer_c_adjudication"
+        else:
+            source = {field: by_a[sid].get(field) for field in REVIEW_FIELDS}
+            source["evaluator_output_evidence"] = sorted(
+                set(by_a[sid].get("evaluator_output_evidence") or [])
+                | set(by_b[sid].get("evaluator_output_evidence") or [])
+            )
+            provenance = "reviewer_ab_consensus"
+        source["sample_id"] = sid
+        source["reference_type"] = REFERENCE_TYPE
+        source["provenance"] = provenance
+        final.append(source)
+    if len(final) != expected_count or len({row["sample_id"] for row in final}) != expected_count:
+        raise ValueError(f"Final reference must contain {expected_count} unique rows, found {len(final)}")
+    return final

@@ -1,0 +1,2 @@
+permutations,ap_min,ap_max,ap_max_minus_min,threshold,pass,implementation
+100,0.48333333333333334,0.48333333333333334,0.0,1e-12,True,sklearn.metrics.average_precision_score

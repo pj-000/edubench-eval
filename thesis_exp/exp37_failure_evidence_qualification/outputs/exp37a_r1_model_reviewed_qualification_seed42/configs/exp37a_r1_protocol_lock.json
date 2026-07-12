@@ -1,0 +1,49 @@
+{
+  "api_calls": false,
+  "dev_access_count": 0,
+  "evidence_sufficiency": [
+    "sufficient",
+    "partial",
+    "insufficient",
+    "not_applicable",
+    "unclear"
+  ],
+  "evidence_types": [
+    "explicit_span",
+    "missing_required_content",
+    "global_inconsistency",
+    "not_applicable",
+    "unclear"
+  ],
+  "experiment_name": "Exp37A-R1 Multi-Session Model-Reviewed Failure-Evidence Qualification",
+  "failure_classes": [
+    "no_major_failure",
+    "missing_content_or_key_point",
+    "factual_or_rubric_mismatch",
+    "insufficient_reasoning_or_evidence",
+    "task_constraint_or_format_violation",
+    "unclear_or_other"
+  ],
+  "major_failure_presence": [
+    "yes",
+    "no",
+    "unclear"
+  ],
+  "permutation_count": 1000,
+  "question_key_bootstrap_resamples": 2000,
+  "reference_type": "multi_session_model_reviewed_silver",
+  "reviewer_packet_seeds": {
+    "reviewer_a": 42,
+    "reviewer_b": 43
+  },
+  "sample_count": 196,
+  "student_inference": false,
+  "student_training": false,
+  "test_access_count": 0,
+  "train_path": "thesis_exp/data/splits/paper_like_triple_seed42/train.jsonl",
+  "view_counts": {
+    "boundary_view": 60,
+    "high_control_view": 60,
+    "low_tail_all": 76
+  }
+}

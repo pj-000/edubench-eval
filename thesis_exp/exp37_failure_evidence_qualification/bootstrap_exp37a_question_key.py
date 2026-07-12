@@ -13,19 +13,9 @@ REPO_ROOT = Path(__file__).resolve().parents[2]
 if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 
-from thesis_exp.exp37_failure_evidence_qualification.common import ROOT, read_csv, write_csv  # noqa: E402
-
-
-def average_precision(scores: list[float], labels: list[int]) -> float:
-    positives = sum(labels)
-    if not positives:
-        return 0.0
-    order = sorted(range(len(scores)), key=lambda i: (-scores[i], i))
-    hit = 0; total = 0.0
-    for rank, index in enumerate(order, 1):
-        if labels[index]:
-            hit += 1; total += hit / rank
-    return total / positives
+from thesis_exp.exp37_failure_evidence_qualification.common import (  # noqa: E402
+    ROOT, read_csv, tie_safe_average_precision, write_csv,
+)
 
 
 def main() -> None:
@@ -35,7 +25,7 @@ def main() -> None:
     parser.add_argument("--target-column", default="severe")
     parser.add_argument("--aligned-column", default="aligned_verified_failure")
     parser.add_argument("--shuffled-column", default="shuffled_verified_failure")
-    parser.add_argument("--out", type=Path, default=ROOT / "tables/exp37a_question_key_bootstrap_ci.csv")
+    parser.add_argument("--out", type=Path, default=ROOT / "tables/exp37a_r1_question_key_bootstrap_ci.csv")
     parser.add_argument("--resamples", type=int, default=2000)
     parser.add_argument("--seed", type=int, default=42)
     args = parser.parse_args()
@@ -54,7 +44,7 @@ def main() -> None:
         target = [int(float(row[args.target_column])) for row in selected]
         aligned = [float(row[args.aligned_column]) for row in selected]
         shuffled = [float(row[args.shuffled_column]) for row in selected]
-        values.append(average_precision(aligned, target) - average_precision(shuffled, target))
+        values.append(tie_safe_average_precision(target, aligned) - tie_safe_average_precision(target, shuffled))
     write_csv(args.out, [{"metric": "aligned_minus_shuffled_AUPRC", "bootstrap_mean": float(np.mean(values)), "ci_lower_95": float(np.quantile(values, 0.025)), "ci_upper_95": float(np.quantile(values, 0.975)), "resamples": args.resamples, "cluster_unit": "question_key", "test_access_count": 0}])
     print({"status": "PASS", "rows": len(rows), "resamples": args.resamples, "test_access_count": 0})
 

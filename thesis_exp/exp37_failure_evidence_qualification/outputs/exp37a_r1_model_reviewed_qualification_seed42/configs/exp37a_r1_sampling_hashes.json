@@ -1,0 +1,10 @@
+{
+  "packet_input_sha256": "549166fb919fb0ea317b2a8a4530f470c286ee599910f41912dacaf4515ad5f8",
+  "r0_output": "thesis_exp/exp37_failure_evidence_qualification/outputs/exp37a_failure_evidence_qualification_seed42",
+  "r0_r1_packet_hashes_equal": true,
+  "r0_r1_sample_ids_equal": true,
+  "r0_r1_view_assignment_equal": true,
+  "r1_sample_count": 196,
+  "sample_ids_sha256": "bf161a6a2d541055762c63e215557c95c1b259cc6bfb260f48b547452a70ee67",
+  "view_assignment_sha256": "94154053722cb9e4d1108c770bd0d234238e22c685f23700fa4ea46127557303"
+}

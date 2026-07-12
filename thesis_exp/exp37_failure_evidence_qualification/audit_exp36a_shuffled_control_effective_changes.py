@@ -46,8 +46,8 @@ def main() -> None:
             "actual_failure_target_changed_rows": None, "actual_lambda_changed_rows": None,
             "all_payload_identical_rows": None, "donor_field": None, "test_access_count": 0,
         }
-        write_csv(args.out_dir / "tables/exp37a_v7_effective_shuffle_audit.csv", [status])
-        write_json(args.out_dir / "decision/exp37a_v7_shuffle_audit.json", status)
+        write_csv(args.out_dir / "tables/exp37a_r1_v7_payload_audit_status.csv", [status])
+        write_json(args.out_dir / "decision/exp37a_r1_v7_payload_audit.json", status)
         print(status)
         return
     v5 = {sample_id(row): row for row in read_jsonl(args.v5)}
@@ -71,7 +71,7 @@ def main() -> None:
         row["all_teacher_payload_identical"] = int(not any(row[name] for name in fields))
         row["donor_row_moved"] = int(donor_field is not None and str(v7[sid].get(donor_field, sid)) != sid)
         rows.append(row)
-    write_csv(args.out_dir / "tables/exp37a_v7_effective_shuffle_audit.csv", rows)
+    write_csv(args.out_dir / "private_reference/exp37a_r1_v7_effective_shuffle_rows.csv", rows)
     aggregate = [{
         "group": "all", "group_value": "all", "rows": len(rows),
         **{name + "_rows": sum(row[name] for row in rows) for name in fields},
@@ -89,9 +89,9 @@ def main() -> None:
                 "all_payload_identical_rows": sum(row["all_teacher_payload_identical"] for row in subset),
                 "moved_donor_rows": sum(row["donor_row_moved"] for row in subset) if donor_field else "not_available_from_payload_only", "donor_field": donor_field, "test_access_count": 0,
             })
-    write_csv(args.out_dir / "tables/exp37a_v7_effective_shuffle_aggregate.csv", aggregate)
+    write_csv(args.out_dir / "tables/exp37a_r1_v7_payload_audit_status.csv", aggregate)
     status = {"status": "PASS", "rows": len(rows), "donor_field": donor_field, "moved_donor_rows": sum(row["donor_row_moved"] for row in rows) if donor_field else "not_available_from_payload_only", "test_access_count": 0, "note": "Actual payload field changes are counted directly; donor movement is counted when a donor ID field is present."}
-    write_json(args.out_dir / "decision/exp37a_v7_shuffle_audit.json", status)
+    write_json(args.out_dir / "decision/exp37a_r1_v7_payload_audit.json", status)
     print(status)
 
 

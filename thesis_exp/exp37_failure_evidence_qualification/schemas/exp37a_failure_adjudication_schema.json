@@ -1,9 +1,73 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "allOf": [{"$ref": "exp37a_blind_failure_review_schema.json"}],
-  "required": ["reference_type", "adjudication_reason"],
+  "title": "Exp37A-R1 selective model adjudication",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "sample_id",
+    "target_scope_confirmed",
+    "score_range",
+    "most_plausible_score",
+    "failure_bucket",
+    "major_failure_presence",
+    "failure_classes",
+    "evidence_type",
+    "evidence_sufficiency",
+    "evaluator_output_evidence",
+    "missing_evidence_reason",
+    "rubric_evidence",
+    "score_cap",
+    "confidence",
+    "needs_adjudication",
+    "review_reason",
+    "reference_type",
+    "adjudication_reason"
+  ],
   "properties": {
-    "reference_type": {"const": "human_rationale_grounded_model_reviewed_silver"},
-    "adjudication_reason": {"type": "string"}
-  }
+    "sample_id": {"type": "string", "minLength": 1},
+    "target_scope_confirmed": {"const": true},
+    "score_range": {"type": "array", "minItems": 2, "maxItems": 2, "items": {"type": "integer", "minimum": 1, "maximum": 5}},
+    "most_plausible_score": {"type": "integer", "minimum": 1, "maximum": 5},
+    "failure_bucket": {"enum": ["no_failure", "visible_failure", "hidden_or_missing_failure", "unclear"]},
+    "major_failure_presence": {"enum": ["yes", "no", "unclear"]},
+    "failure_classes": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {"enum": ["no_major_failure", "missing_content_or_key_point", "factual_or_rubric_mismatch", "insufficient_reasoning_or_evidence", "task_constraint_or_format_violation", "unclear_or_other"]}
+    },
+    "evidence_type": {"enum": ["explicit_span", "missing_required_content", "global_inconsistency", "not_applicable", "unclear"]},
+    "evidence_sufficiency": {"enum": ["sufficient", "partial", "insufficient", "not_applicable", "unclear"]},
+    "evaluator_output_evidence": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "missing_evidence_reason": {"type": ["string", "null"]},
+    "rubric_evidence": {"type": "string", "minLength": 1},
+    "score_cap": {"type": ["integer", "null"], "minimum": 1, "maximum": 5},
+    "confidence": {"enum": ["high", "medium", "low"]},
+    "needs_adjudication": {"type": "boolean"},
+    "review_reason": {"type": "string", "minLength": 1},
+    "reference_type": {"const": "multi_session_model_reviewed_silver"},
+    "adjudication_reason": {"type": "string", "minLength": 1}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"major_failure_presence": {"const": "no"}}},
+      "then": {"properties": {"failure_classes": {"const": ["no_major_failure"]}}}
+    },
+    {
+      "if": {"properties": {"major_failure_presence": {"const": "yes"}}},
+      "then": {"properties": {"failure_classes": {"not": {"contains": {"const": "no_major_failure"}}}}}
+    },
+    {
+      "if": {"properties": {"evidence_type": {"const": "explicit_span"}}},
+      "then": {"properties": {"evaluator_output_evidence": {"minItems": 1}}}
+    },
+    {
+      "if": {"properties": {"evidence_type": {"const": "missing_required_content"}}},
+      "then": {"properties": {"missing_evidence_reason": {"type": "string", "minLength": 1}}}
+    },
+    {
+      "if": {"properties": {"confidence": {"const": "low"}}},
+      "then": {"properties": {"needs_adjudication": {"const": true}}}
+    }
+  ]
 }

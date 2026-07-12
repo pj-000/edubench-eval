@@ -1,0 +1,9 @@
+scope,left_view,right_view,unique_question_keys,overlap_count
+within_view,boundary_view,boundary_view,49,49
+within_view,high_control_view,high_control_view,52,52
+within_view,low_tail_all,low_tail_all,35,35
+pairwise,boundary_view,high_control_view,,9
+pairwise,boundary_view,low_tail_all,,9
+pairwise,high_control_view,low_tail_all,,11
+three_way,all_three,all_three,,1
+union,all_views,all_views,108,
