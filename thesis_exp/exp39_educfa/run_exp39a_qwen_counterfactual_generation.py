@@ -47,7 +47,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--max-rows", type=int)
     parser.add_argument("--dry-run", action="store_true")
     parser.add_argument("--timeout", type=int, default=240)
-    parser.add_argument("--retries", type=int, default=3)
+    parser.add_argument("--retries", type=int, default=5)
     parser.add_argument("--workers", type=int, default=int(os.environ.get("API_WORKERS", "4")))
     return parser.parse_args()
 
@@ -223,24 +223,31 @@ def main() -> None:
             for packet in pending
         }
         session_completed = 0
-        try:
-            for future in as_completed(futures):
+        failures = []
+        for future in as_completed(futures):
+            try:
                 sid, response, value = future.result()
-                append_jsonl(raw_path, {"sample_id": sid, "response": response})
-                append_jsonl(parsed_path, value)
-                completed.add(sid)
-                session_completed += 1
-                elapsed = time.time() - started
-                eta = elapsed / max(session_completed, 1) * max(len(pending) - session_completed, 0)
-                print(
-                    f"[exp39a-qwen] {len(completed)}/{len(packets)} workers={workers} "
-                    f"elapsed={elapsed/60:.1f}m eta={eta/60:.1f}m",
-                    flush=True,
-                )
-        except Exception:
-            for future in futures:
-                future.cancel()
-            raise
+            except Exception as exc:
+                sid = futures[future]
+                failures.append((sid, f"{type(exc).__name__}: {exc}"))
+                print(f"[exp39a-qwen] deferred_failure sample_id={sid} error={type(exc).__name__}", flush=True)
+                continue
+            append_jsonl(raw_path, {"sample_id": sid, "response": response})
+            append_jsonl(parsed_path, value)
+            completed.add(sid)
+            session_completed += 1
+            elapsed = time.time() - started
+            eta = elapsed / max(session_completed, 1) * max(len(pending) - session_completed, 0)
+            print(
+                f"[exp39a-qwen] {len(completed)}/{len(packets)} workers={workers} "
+                f"elapsed={elapsed/60:.1f}m eta={eta/60:.1f}m",
+                flush=True,
+            )
+        if failures:
+            preview = "; ".join(f"{sid}: {error}" for sid, error in failures[:5])
+            raise RuntimeError(
+                f"Qwen generation has {len(failures)} deferred failures; rerun to resume missing rows. {preview}"
+            )
     summary = {
         "status": "COMPLETED", "provider": "qwen", "model": model, "rows": len(completed),
         "expected_rows": len(packets), "schema_success_rate": 1.0,
