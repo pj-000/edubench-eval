@@ -107,6 +107,7 @@ def verify_one(
         "messages": messages,
         "temperature": 0,
         "max_tokens": max_tokens,
+        "thinking": {"type": "disabled"},
         "response_format": {"type": "json_object"},
     }
     for attempt in range(1, retries + 1):
@@ -114,6 +115,9 @@ def verify_one(
         try:
             response = call_api(base_url, api_key, body, timeout)
             response_content = response["choices"][0]["message"]["content"]
+            if not str(response_content or "").strip():
+                finish_reason = response.get("choices", [{}])[0].get("finish_reason")
+                raise ValueError(f"empty_final_content finish_reason={finish_reason}")
             value = parse_content(response_content)
             errors = [error.message for error in jsonschema.Draft202012Validator(schema).iter_errors(value)]
             errors.extend(semantic_errors(value, packet))
@@ -148,7 +152,8 @@ def main() -> None:
     generated_path = args.out_dir / "private/generated_candidates/exp39a_qwen_generated_candidates.jsonl"
     dry_run = args.dry_run or os.environ.get("RUN_API") != "1"
     generated = read_jsonl(generated_path) if generated_path.exists() else []
-    by_generated = {sample_id(row): row for row in generated}
+    packet_ids = {str(packet["sample_id"]) for packet in packets}
+    by_generated = {sample_id(row): row for row in generated if sample_id(row) in packet_ids}
     if dry_run and not generated:
         by_generated = {
             str(packet["sample_id"]): {
@@ -159,7 +164,7 @@ def main() -> None:
             }
             for packet in packets
         }
-    if not dry_run and set(by_generated) != {str(row["sample_id"]) for row in packets}:
+    if not dry_run and set(by_generated) != packet_ids:
         raise ValueError("Blind verification requires complete Qwen generation for all source packets")
     prompt = PROMPT_PATH.read_text(encoding="utf-8")
     schema = json.loads(SCHEMA_PATH.read_text(encoding="utf-8"))
@@ -185,9 +190,10 @@ def main() -> None:
     raw_path = args.out_dir / "raw_api/exp39a_deepseek_blind_verification.jsonl"
     parsed_path = args.out_dir / "private/verified_counterfactuals/exp39a_deepseek_verifications.jsonl"
     existing = read_jsonl(parsed_path) if parsed_path.exists() else []
-    existing_by_id = {sample_id(row): row for row in existing}
-    if len(existing) != len(existing_by_id):
-        write_jsonl(parsed_path, [existing_by_id[key] for key in sorted(existing_by_id)])
+    all_existing_by_id = {sample_id(row): row for row in existing}
+    if len(existing) != len(all_existing_by_id) and args.max_rows is None:
+        write_jsonl(parsed_path, [all_existing_by_id[key] for key in sorted(all_existing_by_id)])
+    existing_by_id = {sid: row for sid, row in all_existing_by_id.items() if sid in packet_ids}
     completed = set(existing_by_id)
     pending = [packet for packet in packets if str(packet["sample_id"]) not in completed]
     workers = max(1, args.workers)

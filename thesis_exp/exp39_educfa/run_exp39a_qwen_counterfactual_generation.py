@@ -197,9 +197,11 @@ def main() -> None:
     raw_path = args.out_dir / "raw_api/exp39a_qwen_counterfactual_generation.jsonl"
     parsed_path = args.out_dir / "private/generated_candidates/exp39a_qwen_generated_candidates.jsonl"
     existing = read_jsonl(parsed_path) if parsed_path.exists() else []
-    existing_by_id = {sample_id(row): row for row in existing}
-    if len(existing) != len(existing_by_id):
-        write_jsonl(parsed_path, [existing_by_id[key] for key in sorted(existing_by_id)])
+    packet_ids = {str(packet["sample_id"]) for packet in packets}
+    all_existing_by_id = {sample_id(row): row for row in existing}
+    if len(existing) != len(all_existing_by_id) and args.max_rows is None:
+        write_jsonl(parsed_path, [all_existing_by_id[key] for key in sorted(all_existing_by_id)])
+    existing_by_id = {sid: row for sid, row in all_existing_by_id.items() if sid in packet_ids}
     completed = set(existing_by_id)
     pending = [packet for packet in packets if str(packet["sample_id"]) not in completed]
     workers = max(1, args.workers)
