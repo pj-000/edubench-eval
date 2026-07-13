@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "sample_id",
+    "target_scope_confirmed",
+    "minimum_plausible_score",
+    "most_plausible_score",
+    "maximum_plausible_score",
+    "range_confidence",
+    "range_basis"
+  ],
+  "properties": {
+    "sample_id": {"type": "string", "minLength": 1},
+    "target_scope_confirmed": {"const": true},
+    "minimum_plausible_score": {"type": "integer", "minimum": 1, "maximum": 5},
+    "most_plausible_score": {"type": "integer", "minimum": 1, "maximum": 5},
+    "maximum_plausible_score": {"type": "integer", "minimum": 1, "maximum": 5},
+    "range_confidence": {"type": "string", "enum": ["high", "medium", "low"]},
+    "range_basis": {"type": "string", "minLength": 1}
+  }
+}

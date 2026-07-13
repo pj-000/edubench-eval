@@ -1,0 +1,21 @@
+{
+  "dev_access_count": 0,
+  "enable_thinking": false,
+  "experiment": "Exp38A HAILS-Score",
+  "max_tokens": 512,
+  "model": "qwen3.7-max",
+  "prompt_path": "thesis_exp/exp38_hails_score/prompts/exp38a_qwen_score_range_prompt.md",
+  "prompt_sha256": "e1142e92de3c73c54d4a40ea32f2ebf2432c8db72bb413e2ddfa1313a448347c",
+  "qualification_rows": 196,
+  "qualification_view_counts": {
+    "boundary_view": 60,
+    "high_control_view": 60,
+    "low_tail_all": 76
+  },
+  "response_format": "json_object",
+  "schema_path": "thesis_exp/exp38_hails_score/schemas/exp38a_qwen_score_range_schema.json",
+  "schema_sha256": "384b05e977f59b09a857683d1f288c133d61475840dd52e497815cae3158d1c5",
+  "temperature": 0,
+  "test_access_count": 0,
+  "train_rows": 2654
+}

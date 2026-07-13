@@ -1,0 +1,7 @@
+outputs/**/raw_api/
+outputs/**/parsed_ranges_private/
+outputs/**/private_reference/
+outputs/**/private/
+outputs/**/logs_private/
+outputs/**/checkpoints_private/
+outputs/**/data/
