@@ -128,21 +128,24 @@ def generate_one(
     retries: int,
 ) -> tuple[str, dict[str, Any], dict[str, Any]]:
     sid = str(packet["sample_id"])
+    messages = [
+        {"role": "system", "content": prompt},
+        {"role": "user", "content": user_text(packet, schema)},
+    ]
     body = {
         "model": model,
-        "messages": [
-            {"role": "system", "content": prompt},
-            {"role": "user", "content": user_text(packet, schema)},
-        ],
+        "messages": messages,
         "temperature": 0,
         "max_tokens": max_tokens,
         "enable_thinking": False,
         "response_format": {"type": "json_object"},
     }
     for attempt in range(1, retries + 1):
+        response_content = ""
         try:
             response = call_api(base_url, api_key, body, timeout)
-            value = parse_content(response["choices"][0]["message"]["content"])
+            response_content = response["choices"][0]["message"]["content"]
+            value = parse_content(response_content)
             errors = [error.message for error in jsonschema.Draft202012Validator(schema).iter_errors(value)]
             errors.extend(semantic_errors(value, packet))
             if errors:
@@ -151,6 +154,18 @@ def generate_one(
         except Exception as exc:
             if attempt == retries:
                 raise RuntimeError(f"Qwen generation failed for {sid}: {type(exc).__name__}: {exc}") from exc
+            if response_content:
+                body["messages"] = messages + [
+                    {"role": "assistant", "content": response_content},
+                    {
+                        "role": "user",
+                        "content": (
+                            "The previous JSON failed automatic validation: "
+                            f"{type(exc).__name__}: {exc}. Correct only that failure, execute the already "
+                            "assigned counterfactual operator, and return one schema-valid JSON object."
+                        ),
+                    },
+                ]
             time.sleep(2 ** attempt)
     raise AssertionError("unreachable")
 
