@@ -1,0 +1,12 @@
+{
+  "dev_access_count": 0,
+  "expected_rows": 240,
+  "identity_normalization_count": 4,
+  "model": "deepseek-v4-pro",
+  "provider": "deepseek",
+  "rows": 240,
+  "schema_success_rate": 1.0,
+  "status": "COMPLETED",
+  "target_blind": true,
+  "test_access_count": 0
+}

@@ -1,0 +1,2 @@
+completed,accepted,acceptance_rate,operator_success_rate,rubric_failure_verified_rate,mean_accepted_edit_ratio,mean_accepted_length_ratio,duplicate_answer_count,duplicate_rate,generation_schema_errors,verification_schema_errors
+240,73,0.30416666666666664,0.9666666666666667,0.9666666666666667,0.13204539631654388,0.9267540911083206,1,0.004166666666666667,0,0

@@ -237,9 +237,15 @@ def main() -> None:
         "duplicate_rate": duplicate_rate <= 0.01,
     }
     go = all(gates.values())
+    rejected_counts = Counter(reason for row in audit_rows for reason in row["rejected_reasons"].split("|") if reason)
+    failed_gates = sorted(name for name, passed in gates.items() if not passed)
     decision = {
         "status": "DATA_QUALIFICATION_GO" if go else "DATA_QUALIFICATION_NO_GO",
         "gates": gates,
+        "failed_gates": failed_gates,
+        "completed_rows": len(audit_rows),
+        "accepted_rows": accepted_count,
+        "accepted_target_counts": {str(score): accepted_targets[score] for score in (1, 2, 3)},
         "recommend_groupcv_training": go,
         "stop_counterfactual_augmentation": not go,
         "same_source_prompt_reuse_forbidden_on_failure": True,
@@ -261,7 +267,6 @@ def main() -> None:
         "sample_id_hash": row["sample_id_hash"], "target_score": row["target_score"], "operator": row["operator"],
         "accepted": row["accepted"], "edit_ratio": row["edit_ratio"], "length_ratio": row["length_ratio"],
     } for row in audit_rows])
-    rejected_counts = Counter(reason for row in audit_rows for reason in row["rejected_reasons"].split("|") if reason)
     write_csv(args.out_dir / "tables/exp39a_rejected_reason_distribution.csv", [
         {"reason": reason, "count": count, "rate": count / len(audit_rows)} for reason, count in sorted(rejected_counts.items())
     ], fieldnames=["reason", "count", "rate"])
@@ -283,10 +288,22 @@ def main() -> None:
         f"- Mean accepted edit / length ratio: `{accepted_edit_mean:.4f}` / `{summary[0]['mean_accepted_length_ratio']:.4f}`",
         f"- Duplicate rate: `{duplicate_rate:.4f}`",
         f"- Gates: `{json.dumps(gates, sort_keys=True)}`",
+        f"- Failed gates: `{json.dumps(failed_gates)}`",
         f"- Recommend GroupCV: `{str(go).lower()}`",
         "- No original train labels were replaced.",
         "- No paper-like dev/test data were accessed.",
+        "", "## Leading rejection reasons", "",
     ]
+    report.extend(
+        f"- `{reason}`: `{count}` / `{len(audit_rows)}` (`{count / len(audit_rows):.4f}`)"
+        for reason, count in rejected_counts.most_common(8)
+    )
+    if not go:
+        report.extend([
+            "", "## Pre-registered stop", "",
+            "The accepted pool does not satisfy the frozen sample-count gates. GroupCV smoke/formal training is therefore not permitted.",
+            "The acceptance thresholds were not relaxed after observing results, and the same source/prompt campaign must not be replayed as a new formal attempt.",
+        ])
     report_path = args.out_dir / "reports/exp39a_data_qualification_report.md"
     report_path.parent.mkdir(parents=True, exist_ok=True)
     report_path.write_text("\n".join(report) + "\n", encoding="utf-8")

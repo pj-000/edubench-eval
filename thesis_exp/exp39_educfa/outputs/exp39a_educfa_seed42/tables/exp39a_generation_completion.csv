@@ -1,0 +1,2 @@
+status,provider,model,rows,expected_rows,schema_success_rate,dev_access_count,test_access_count
+COMPLETED,qwen,qwen3.7-max,240,240,1.0,0,0

@@ -1,0 +1,6 @@
+operator,completed,accepted,acceptance_rate,operator_success_rate,rubric_failure_verified_rate
+introduce_factual_or_rubric_contradiction,48,17,0.3541666666666667,0.9375,0.9375
+introduce_scope_drift_or_irrelevant_content,48,15,0.3125,0.9583333333333334,0.9583333333333334
+remove_reasoning_or_supporting_evidence,48,15,0.3125,0.9791666666666666,0.9791666666666666
+remove_required_key_point,48,14,0.2916666666666667,1.0,1.0
+violate_explicit_task_or_format_constraint,48,12,0.25,0.9583333333333334,0.9583333333333334

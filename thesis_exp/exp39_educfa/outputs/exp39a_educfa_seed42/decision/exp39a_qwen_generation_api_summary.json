@@ -1,0 +1,10 @@
+{
+  "dev_access_count": 0,
+  "expected_rows": 240,
+  "model": "qwen3.7-max",
+  "provider": "qwen",
+  "rows": 240,
+  "schema_success_rate": 1.0,
+  "status": "COMPLETED",
+  "test_access_count": 0
+}

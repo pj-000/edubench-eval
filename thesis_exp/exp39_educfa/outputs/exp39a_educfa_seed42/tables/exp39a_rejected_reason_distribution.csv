@@ -1,0 +1,16 @@
+reason,count,rate
+changed_span_invalid,13,0.05416666666666667
+duplicate_counterfactual_answer,2,0.008333333333333333
+edit_ratio_out_of_range,107,0.44583333333333336
+generator_verifier_intersection_empty,68,0.2833333333333333
+insufficient_verified_score_drop,26,0.10833333333333334
+length_ratio_out_of_range,54,0.225
+original_not_verified_high,4,0.016666666666666666
+target3_center_above_3,13,0.05416666666666667
+target_low_verified_entirely_high,2,0.008333333333333333
+target_outside_verifier_range,72,0.3
+verifier_center_too_far,28,0.11666666666666667
+verifier_minimal_edit_false,10,0.041666666666666664
+verifier_operator_success_false,8,0.03333333333333333
+verifier_rubric_failure_verified_false,8,0.03333333333333333
+verifier_target_scope_confirmed_false,5,0.020833333333333332

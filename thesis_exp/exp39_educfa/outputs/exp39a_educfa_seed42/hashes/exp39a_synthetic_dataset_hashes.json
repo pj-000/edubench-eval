@@ -1,0 +1,7 @@
+{
+  "accepted_private_sha256": "8c4d37da2128105ecc2dcb4829be368600d65775db687b1fbd2ca4cedb475900",
+  "accepted_rows": 73,
+  "accepted_sample_ids_sha256": "23e5fa19e10d41e38d3789e0d89cccbadddf6c06ee47006288c59f3102bbb6da",
+  "generator_prompt_sha256": "0883686a6334425f24b1d6fbc19eb205ceef39b6e06712b4405a5767bd967842",
+  "verifier_prompt_sha256": "f4c5385e3d598eababc04ab45bd9fb66f51a7f04efa4fa08d9eec866ae10b637"
+}

@@ -1,0 +1,35 @@
+{
+  "accepted_rows": 73,
+  "accepted_target_counts": {
+    "1": 12,
+    "2": 37,
+    "3": 24
+  },
+  "completed_rows": 240,
+  "dev_access_count": 0,
+  "failed_gates": [
+    "accepted_rows",
+    "accepted_target1",
+    "accepted_target2",
+    "accepted_target3"
+  ],
+  "gates": {
+    "accepted_rows": false,
+    "accepted_target1": false,
+    "accepted_target2": false,
+    "accepted_target3": false,
+    "api_schema_success": true,
+    "duplicate_rate": true,
+    "mean_edit_ratio": true,
+    "no_dev_test_access": true,
+    "no_low_verified_high": true,
+    "operator_success_rate": true,
+    "rubric_failure_verification_rate": true,
+    "source_counterfactual_qkey_match": true
+  },
+  "recommend_groupcv_training": false,
+  "same_source_prompt_reuse_forbidden_on_failure": true,
+  "status": "DATA_QUALIFICATION_NO_GO",
+  "stop_counterfactual_augmentation": true,
+  "test_access_count": 0
+}
