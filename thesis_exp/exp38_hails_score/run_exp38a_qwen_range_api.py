@@ -124,7 +124,15 @@ def main() -> None:
             continue
         messages = [
             {"role": "system", "content": prompt},
-            {"role": "user", "content": packet["review_text"] + "\n\nJSON schema:\n" + json.dumps(schema, ensure_ascii=False, sort_keys=True)},
+            {
+                "role": "user",
+                "content": (
+                    f"Sample ID: {sid}\n\n"
+                    + packet["review_text"]
+                    + "\n\nJSON schema:\n"
+                    + json.dumps(schema, ensure_ascii=False, sort_keys=True)
+                ),
+            },
         ]
         body = {
             "model": model,
