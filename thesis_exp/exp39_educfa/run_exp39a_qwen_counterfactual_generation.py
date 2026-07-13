@@ -10,6 +10,7 @@ import sys
 import time
 import urllib.error
 import urllib.request
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 from typing import Any
 
@@ -47,6 +48,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--dry-run", action="store_true")
     parser.add_argument("--timeout", type=int, default=240)
     parser.add_argument("--retries", type=int, default=3)
+    parser.add_argument("--workers", type=int, default=int(os.environ.get("API_WORKERS", "4")))
     return parser.parse_args()
 
 
@@ -113,6 +115,46 @@ def semantic_errors(value: dict[str, Any], packet: dict[str, Any]) -> list[str]:
     return errors
 
 
+def generate_one(
+    packet: dict[str, Any],
+    *,
+    model: str,
+    prompt: str,
+    schema: dict[str, Any],
+    max_tokens: int,
+    base_url: str,
+    api_key: str,
+    timeout: int,
+    retries: int,
+) -> tuple[str, dict[str, Any], dict[str, Any]]:
+    sid = str(packet["sample_id"])
+    body = {
+        "model": model,
+        "messages": [
+            {"role": "system", "content": prompt},
+            {"role": "user", "content": user_text(packet, schema)},
+        ],
+        "temperature": 0,
+        "max_tokens": max_tokens,
+        "enable_thinking": False,
+        "response_format": {"type": "json_object"},
+    }
+    for attempt in range(1, retries + 1):
+        try:
+            response = call_api(base_url, api_key, body, timeout)
+            value = parse_content(response["choices"][0]["message"]["content"])
+            errors = [error.message for error in jsonschema.Draft202012Validator(schema).iter_errors(value)]
+            errors.extend(semantic_errors(value, packet))
+            if errors:
+                raise ValueError("; ".join(errors))
+            return sid, response, value
+        except Exception as exc:
+            if attempt == retries:
+                raise RuntimeError(f"Qwen generation failed for {sid}: {type(exc).__name__}: {exc}") from exc
+            time.sleep(2 ** attempt)
+    raise AssertionError("unreachable")
+
+
 def main() -> None:
     args = parse_args()
     lock = json.loads((args.out_dir / "configs/exp39a_generation_protocol_lock.json").read_text(encoding="utf-8"))
@@ -144,41 +186,44 @@ def main() -> None:
     if len(existing) != len(existing_by_id):
         write_jsonl(parsed_path, [existing_by_id[key] for key in sorted(existing_by_id)])
     completed = set(existing_by_id)
+    pending = [packet for packet in packets if str(packet["sample_id"]) not in completed]
+    workers = max(1, args.workers)
     started = time.time()
-    for packet in packets:
-        sid = str(packet["sample_id"])
-        if sid in completed:
-            continue
-        body = {
-            "model": model,
-            "messages": [
-                {"role": "system", "content": prompt},
-                {"role": "user", "content": user_text(packet, schema)},
-            ],
-            "temperature": 0,
-            "max_tokens": int(lock["qwen_max_tokens"]),
-            "enable_thinking": False,
-            "response_format": {"type": "json_object"},
+    with ThreadPoolExecutor(max_workers=workers) as executor:
+        futures = {
+            executor.submit(
+                generate_one,
+                packet,
+                model=model,
+                prompt=prompt,
+                schema=schema,
+                max_tokens=int(lock["qwen_max_tokens"]),
+                base_url=base_url,
+                api_key=api_key,
+                timeout=args.timeout,
+                retries=args.retries,
+            ): str(packet["sample_id"])
+            for packet in pending
         }
-        for attempt in range(1, args.retries + 1):
-            try:
-                response = call_api(base_url, api_key, body, args.timeout)
-                value = parse_content(response["choices"][0]["message"]["content"])
-                errors = [error.message for error in jsonschema.Draft202012Validator(schema).iter_errors(value)]
-                errors.extend(semantic_errors(value, packet))
-                if errors:
-                    raise ValueError("; ".join(errors))
+        session_completed = 0
+        try:
+            for future in as_completed(futures):
+                sid, response, value = future.result()
                 append_jsonl(raw_path, {"sample_id": sid, "response": response})
                 append_jsonl(parsed_path, value)
                 completed.add(sid)
-                break
-            except Exception as exc:
-                if attempt == args.retries:
-                    raise RuntimeError(f"Qwen generation failed for {sid}: {type(exc).__name__}: {exc}") from exc
-                time.sleep(2 ** attempt)
-        elapsed = time.time() - started
-        eta = elapsed / max(len(completed), 1) * max(len(packets) - len(completed), 0)
-        print(f"[exp39a-qwen] {len(completed)}/{len(packets)} elapsed={elapsed/60:.1f}m eta={eta/60:.1f}m", flush=True)
+                session_completed += 1
+                elapsed = time.time() - started
+                eta = elapsed / max(session_completed, 1) * max(len(pending) - session_completed, 0)
+                print(
+                    f"[exp39a-qwen] {len(completed)}/{len(packets)} workers={workers} "
+                    f"elapsed={elapsed/60:.1f}m eta={eta/60:.1f}m",
+                    flush=True,
+                )
+        except Exception:
+            for future in futures:
+                future.cancel()
+            raise
     summary = {
         "status": "COMPLETED", "provider": "qwen", "model": model, "rows": len(completed),
         "expected_rows": len(packets), "schema_success_rate": 1.0,
