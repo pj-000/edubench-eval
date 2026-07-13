@@ -1,0 +1,10 @@
+dimension,value,n,silver_low_entirely_high_n,silver_low_entirely_high_count,silver_low_entirely_high_rate,silver_high_entirely_low_n,silver_high_entirely_low_count,silver_high_entirely_low_rate,human_low_entirely_high_n,human_low_entirely_high_count,human_low_entirely_high_rate,human_high_entirely_low_n,human_high_entirely_low_count,human_high_entirely_low_rate,human4_qwen_exact5_n,human4_qwen_exact5_count,human4_qwen_exact5_rate
+overall,all,196,48,5,0.10416666666666667,133,14,0.10526315789473684,76,22,0.2894736842105263,90,4,0.044444444444444446,30,1,0.03333333333333333
+view,boundary_view,60,7,0,0.0,48,3,0.0625,0,0,nan,30,1,0.03333333333333333,30,1,0.03333333333333333
+view,high_control_view,60,5,2,0.4,50,3,0.06,0,0,nan,60,3,0.05,0,0,nan
+view,low_tail_all,76,36,3,0.08333333333333333,35,8,0.22857142857142856,76,22,0.2894736842105263,0,0,nan,0,0,nan
+language,en,106,21,2,0.09523809523809523,79,12,0.1518987341772152,46,14,0.30434782608695654,44,3,0.06818181818181818,8,0,0.0
+language,zh,90,27,3,0.1111111111111111,54,2,0.037037037037037035,30,8,0.26666666666666666,46,1,0.021739130434782608,22,1,0.045454545454545456
+metric_group,Factual & Reasoning Accuracy,69,24,1,0.041666666666666664,39,7,0.1794871794871795,33,6,0.18181818181818182,30,3,0.1,4,1,0.25
+metric_group,Pedagogical Application,68,20,1,0.05,43,1,0.023255813953488372,24,5,0.20833333333333334,27,1,0.037037037037037035,8,0,0.0
+metric_group,Scenario Adaptability,59,4,3,0.75,51,6,0.11764705882352941,19,11,0.5789473684210527,33,0,0.0,18,0,0.0

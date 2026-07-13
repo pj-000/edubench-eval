@@ -1,0 +1,13 @@
+{
+  "dev_access_count": 0,
+  "enable_thinking": false,
+  "max_tokens": 512,
+  "model": "qwen3.7-max",
+  "prompt_sha256": "73a4f051cb5c3fcabc87478219738a8832553e1f5d85fc733abd99bb940bbb97",
+  "rows": 196,
+  "schema_sha256": "384b05e977f59b09a857683d1f288c133d61475840dd52e497815cae3158d1c5",
+  "split": "qualification",
+  "status": "COMPLETED",
+  "temperature": 0,
+  "test_access_count": 0
+}

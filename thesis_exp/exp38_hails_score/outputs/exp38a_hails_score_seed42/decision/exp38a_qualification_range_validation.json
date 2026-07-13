@@ -1,0 +1,13 @@
+{
+  "dev_access_count": 0,
+  "duplicate_count": 0,
+  "expected_rows": 196,
+  "observed_rows": 196,
+  "schema_issue_count": 0,
+  "schema_success_rate": 1.0,
+  "split": "qualification",
+  "target_scope_success_rate": 1.0,
+  "test_access_count": 0,
+  "unique_sample_ids": 196,
+  "valid": true
+}

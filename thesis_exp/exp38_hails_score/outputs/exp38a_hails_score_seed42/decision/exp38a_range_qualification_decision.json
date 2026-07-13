@@ -1,0 +1,22 @@
+{
+  "dev_access_count": 0,
+  "gates": {
+    "center_mae": false,
+    "center_qwk": true,
+    "human_high_direction": true,
+    "human_low_direction": false,
+    "mean_width": true,
+    "non_singleton_rate": true,
+    "range_overlap": false,
+    "schema_success": true,
+    "silver_high_direction": false,
+    "silver_low_direction": false,
+    "silver_point_coverage": false,
+    "target_scope_success": true
+  },
+  "prompt_reuse_on_same_196_forbidden": true,
+  "recommend_full_train_range_annotation": false,
+  "recommend_groupcv_training": false,
+  "status": "RANGE_PROTOCOL_NOT_QUALIFIED",
+  "test_access_count": 0
+}
