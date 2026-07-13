@@ -1,0 +1,19 @@
+{
+  "dev_access_count": 0,
+  "eligible_after_exclusion": 0,
+  "eligible_question_keys_after_exclusion": 0,
+  "exp39a_question_keys_excluded": 196,
+  "exp39a_source_rows_excluded": 240,
+  "experiment": "Exp39B EduCFA-RLCR Pilot",
+  "selection_seed": 43,
+  "selection_uses_model_predictions": false,
+  "selection_uses_teacher_scores": false,
+  "source_question_keys": 0,
+  "source_rows": 0,
+  "status": "SOURCE_POOL_NO_GO",
+  "test_access_count": 0,
+  "train_path": "thesis_exp/data/splits/paper_like_triple_seed42/train.jsonl",
+  "train_question_keys": 196,
+  "train_rows": 2654,
+  "train_sha256": "0a1733b9209984c5c4291d205d1ac6057bed341717903b9de075d07de44a878e"
+}

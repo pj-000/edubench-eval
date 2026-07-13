@@ -1,0 +1,32 @@
+{
+  "acceptance_rules_frozen": true,
+  "accepted_min": 45,
+  "deepseek_model": "deepseek-v4-pro",
+  "dev_access_count": 0,
+  "experiment": "Exp39B EduCFA-RLCR Pilot",
+  "planner_valid_min": 54,
+  "qwen_model": "qwen3.7-max",
+  "seed": 43,
+  "target_band_counts": {
+    "boundary": 15,
+    "moderate_low": 25,
+    "severe_low": 20
+  },
+  "target_bands": {
+    "boundary": [
+      3,
+      3
+    ],
+    "moderate_low": [
+      2,
+      3
+    ],
+    "severe_low": [
+      1,
+      2
+    ]
+  },
+  "temperature": 0,
+  "test_access_count": 0,
+  "thinking": "disabled"
+}

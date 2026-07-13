@@ -1,0 +1,23 @@
+{
+  "accepted_final_score_eq3_min": 12,
+  "accepted_final_score_le2_min": 25,
+  "accepted_min": 45,
+  "boundary_accepted_min": 11,
+  "dev_access_count": 0,
+  "duplicate_rate_max": 0.01,
+  "fresh_sources": 60,
+  "low_band_entirely_high_max": 0,
+  "moderate_low_accepted_min": 18,
+  "non_target_preservation_rate_min": 0.9,
+  "one_span_only_required": 1.0,
+  "outside_span_identity_required": 1.0,
+  "plan_valid_min": 54,
+  "revision_rescue_rate_min": 0.3,
+  "rubric_failure_rate_min": 0.9,
+  "severe_low_accepted_min": 14,
+  "source_original_high_min": 57,
+  "source_qkeys_min": 40,
+  "target_band_coverage_min": 48,
+  "target_coverage_improvement_min": 0.1,
+  "test_access_count": 0
+}

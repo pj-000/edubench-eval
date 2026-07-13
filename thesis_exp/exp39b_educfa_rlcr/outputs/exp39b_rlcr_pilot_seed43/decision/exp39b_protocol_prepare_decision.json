@@ -1,0 +1,11 @@
+{
+  "dev_access_count": 0,
+  "eligible_after_exclusion": 0,
+  "eligible_question_keys_after_exclusion": 0,
+  "failure_reason": "Exp39A covers every paper-like train question_key",
+  "fresh_question_key_count": 0,
+  "fresh_source_count": 0,
+  "recommend_api_calls": false,
+  "status": "SOURCE_POOL_NO_GO",
+  "test_access_count": 0
+}

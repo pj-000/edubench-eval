@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["sample_id", "source_sample_id", "source_evidence_span", "operator", "replacement_text", "editor_check"],
+  "properties": {
+    "sample_id": {"type": "string", "minLength": 1},
+    "source_sample_id": {"type": "string", "minLength": 1},
+    "source_evidence_span": {"type": "string", "minLength": 1},
+    "operator": {"enum": ["delete_required_span", "replace_with_local_contradiction", "delete_supporting_reasoning", "insert_local_scope_drift", "violate_explicit_constraint"]},
+    "replacement_text": {"type": "string"},
+    "editor_check": {
+      "type": "object", "additionalProperties": false,
+      "required": ["single_span_only", "target_clause_only", "non_target_content_untouched"],
+      "properties": {
+        "single_span_only": {"const": true},
+        "target_clause_only": {"const": true},
+        "non_target_content_untouched": {"const": true}
+      }
+    }
+  }
+}

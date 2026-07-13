@@ -1,0 +1,16 @@
+{
+  "prompts": {
+    "exp39b_deepseek_blind_critic.md": "039f792486c6aa1598f5c5f9c12cf922cbef7dab3b20faea1f412c612d480e96",
+    "exp39b_deepseek_final_verifier.md": "ca3e94c6d9c85baead228c49fca991263f04a4e8602250e82443ee24326b3384",
+    "exp39b_qwen_clause_planner.md": "6f82a31071ecbadba98d73515308fd3a7371af205a739fc70132d337b5d918ff",
+    "exp39b_qwen_restricted_revision.md": "8551f0e8149a3179d7b94888f5a59b1e69ae447c007ae959bcc4dbb37aac7e09",
+    "exp39b_qwen_span_editor.md": "9ca67d3bb1f62a1a63f7184dc0a2616d7fb91298ca5619380568f6bf56c01ff0"
+  },
+  "schemas": {
+    "exp39b_blind_critic_schema.json": "29d5fb74dcce9e82fd04080548be01ef10ca6cac8a62a60caf071be35b6e8ea7",
+    "exp39b_clause_plan_schema.json": "41fd9feb90d9cdfef11ca176fcfe8359e57190999d03618bdaab018b2cd694e8",
+    "exp39b_final_verification_schema.json": "7b1ea4ac9818e28154ab34e05318987851c7fdf3e2d63cb4d8fc20dfce1aa2e0",
+    "exp39b_restricted_revision_schema.json": "c8b5e2ed097a6583f406f070808fa4aa0255c285751e941ef0c7fcb812bb30ea",
+    "exp39b_span_edit_schema.json": "ba36411c7ac6ff18cd099d800ac485f9d961de6c9621d9e89bcb98f0b9d8088e"
+  }
+}

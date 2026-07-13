@@ -1,0 +1,10 @@
+{
+  "api_calls_made": false,
+  "dev_access_count": 0,
+  "pilot_not_executed": true,
+  "reason": "Exp39A covers every paper-like train question_key",
+  "recommend_scale_to_fresh_240": false,
+  "status": "SOURCE_POOL_NO_GO",
+  "stop_positive_counterfactual_route": false,
+  "test_access_count": 0
+}

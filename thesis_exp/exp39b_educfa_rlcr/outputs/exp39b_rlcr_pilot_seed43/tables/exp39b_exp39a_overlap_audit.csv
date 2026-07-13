@@ -1,0 +1,2 @@
+train_rows,train_question_keys,exp39a_source_rows,exp39a_question_keys,eligible_before_exclusion,eligible_after_source_id_exclusion,eligible_after_source_and_qkey_exclusion,remaining_question_keys,selected_source_overlap,selected_qkey_overlap,dev_access_count,test_access_count
+2654,196,240,196,2292,2059,0,0,0,0,0,0

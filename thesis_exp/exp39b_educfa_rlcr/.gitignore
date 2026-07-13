@@ -1,0 +1,5 @@
+outputs/**/raw_api/
+outputs/**/private/
+outputs/**/logs_private/
+__pycache__/
+*.pyc
