@@ -96,7 +96,7 @@ def verify_one(
     api_key: str,
     timeout: int,
     retries: int,
-) -> tuple[str, dict, dict]:
+) -> tuple[str, dict, dict, list[str]]:
     sid = str(packet["sample_id"])
     messages = [
         {"role": "system", "content": prompt},
@@ -119,11 +119,17 @@ def verify_one(
                 finish_reason = response.get("choices", [{}])[0].get("finish_reason")
                 raise ValueError(f"empty_final_content finish_reason={finish_reason}")
             value = parse_content(response_content)
+            normalized_identity_fields = []
+            for field in ("sample_id", "source_sample_id"):
+                expected = str(packet[field])
+                if str(value.get(field)) != expected:
+                    value[field] = expected
+                    normalized_identity_fields.append(field)
             errors = [error.message for error in jsonschema.Draft202012Validator(schema).iter_errors(value)]
             errors.extend(semantic_errors(value, packet))
             if errors:
                 raise ValueError("; ".join(errors))
-            return sid, response, value
+            return sid, response, value, normalized_identity_fields
         except Exception as exc:
             if attempt == retries:
                 raise RuntimeError(f"DeepSeek verification failed for {sid}: {type(exc).__name__}: {exc}") from exc
@@ -189,12 +195,15 @@ def main() -> None:
     base_url = os.environ.get("DEEPSEEK_BASE_URL", "https://api.deepseek.com")
     raw_path = args.out_dir / "raw_api/exp39a_deepseek_blind_verification.jsonl"
     parsed_path = args.out_dir / "private/verified_counterfactuals/exp39a_deepseek_verifications.jsonl"
+    normalization_path = args.out_dir / "private/verified_counterfactuals/exp39a_deepseek_identity_normalizations.jsonl"
     existing = read_jsonl(parsed_path) if parsed_path.exists() else []
     all_existing_by_id = {sample_id(row): row for row in existing}
     if len(existing) != len(all_existing_by_id) and args.max_rows is None:
         write_jsonl(parsed_path, [all_existing_by_id[key] for key in sorted(all_existing_by_id)])
     existing_by_id = {sid: row for sid, row in all_existing_by_id.items() if sid in packet_ids}
     completed = set(existing_by_id)
+    existing_normalizations = read_jsonl(normalization_path) if normalization_path.exists() else []
+    normalized_ids = {str(row.get("sample_id")) for row in existing_normalizations}
     pending = [packet for packet in packets if str(packet["sample_id"]) not in completed]
     workers = max(1, args.workers)
     started = time.time()
@@ -218,9 +227,16 @@ def main() -> None:
         session_completed = 0
         try:
             for future in as_completed(futures):
-                sid, response, value = future.result()
+                sid, response, value, normalized_fields = future.result()
                 append_jsonl(raw_path, {"sample_id": sid, "response": response})
                 append_jsonl(parsed_path, value)
+                if normalized_fields and sid not in normalized_ids:
+                    append_jsonl(normalization_path, {
+                        "sample_id": sid,
+                        "normalized_fields": normalized_fields,
+                        "normalization_reason": "routing_identity_only",
+                    })
+                    normalized_ids.add(sid)
                 completed.add(sid)
                 session_completed += 1
                 elapsed = time.time() - started
@@ -237,6 +253,7 @@ def main() -> None:
     summary = {
         "status": "COMPLETED", "provider": "deepseek", "model": model, "rows": len(completed),
         "expected_rows": len(packets), "schema_success_rate": 1.0, "target_blind": True,
+        "identity_normalization_count": len(normalized_ids & packet_ids),
         "dev_access_count": 0, "test_access_count": 0,
     }
     write_json(args.out_dir / "decision/exp39a_deepseek_verification_api_summary.json", summary)
