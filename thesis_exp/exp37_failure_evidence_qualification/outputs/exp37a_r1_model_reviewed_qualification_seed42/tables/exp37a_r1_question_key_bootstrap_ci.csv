@@ -1,2 +1,5 @@
-status
-WAITING_FOR_EXTERNAL_MODEL_REVIEWS
+anchor,target,bootstrap_mean,ci_lower_95,ci_upper_95,resamples,cluster_unit,fixed_permutation_seed
+human,severe_human,-0.011154378484361044,-0.08638114796966159,0.06444181696125312,2000,question_key,42
+human,low_to_high_human,0.0019497841059360713,-0.0796832275002736,0.08656867196271957,2000,question_key,42
+silver,severe_silver,0.21067399853706945,0.09233785691202058,0.3473785015806503,2000,question_key,42
+silver,low_to_high_silver,0.35110290716461484,0.21286140501768167,0.5081469026395624,2000,question_key,42

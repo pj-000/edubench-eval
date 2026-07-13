@@ -1,2 +1,2 @@
-status
-WAITING_FOR_EXTERNAL_MODEL_REVIEWS
+n,syntax_validity,semantic_support_sufficient,semantic_support_partial_or_better,missing_content_support,visible_span_support,empty_evidence_count
+196,0.75,0.030612244897959183,0.6020408163265306,0.0,0.0,0

@@ -296,9 +296,41 @@ def main() -> None:
     semantic_gate=bool(final and float(major_all.get("f1",0))>=.70 and float(next((r.get("recall",0) for r in major if r.get("scope")=="low_tail_all"),0))>=.70 and float(subtype_gate.get("f1",0))>=.45 and float(ev.get("syntax_validity",0))>=.90 and float(ev.get("semantic_support_partial_or_better",0))>=.70 and float(major_all.get("false_negative_rate",1))<=.20)
     utility_gate=bool(final and float(null_h.get("aligned_minus_permutation_mean",0))>=.05 and float(null_h.get("empirical_one_sided_p",1))<.05 and float(boot_h.get("ci_lower_95",-1))>0 and float(severe_h.get("odds_ratio",0))>=2)
     range_gate=bool(final and ranges[0]["range_overlap_rate"]>=.85 and ranges[0]["point_within_other_range_rate"]>=.90 and ranges[0]["mean_width"]<=2 and ranges[0]["global_non_singleton_rate"]>=.15)
-    decision={"status":"GO" if reference_gate and semantic_gate and utility_gate else "NO_GO" if final else "READY_FOR_EXTERNAL_MODEL_REVIEWS","reference_complete":bool(final),"reference_type":"multi_session_model_reviewed_silver","reference_gate":reference_gate,"semantic_gate":semantic_gate,"utility_gate":utility_gate,"recommend_new_reason_evidence_training":bool(reference_gate and semantic_gate and utility_gate),"stop_reason_evidence_supervision":bool(final and not(reference_gate and semantic_gate and utility_gate)),"recommend_qwen_score_range_pilot":range_gate,"recommend_student_training":False,"qwen_source":qwen_source,"dev_access_count":0,"test_access_count":0}
+    decision={"status":"GO" if reference_gate and semantic_gate and utility_gate else "NO_GO" if final else "READY_FOR_EXTERNAL_MODEL_REVIEWS","reference_complete":bool(final),"reference_type":"multi_session_model_reviewed_silver","reference_gate":reference_gate,"semantic_gate":semantic_gate,"utility_gate":utility_gate,"recommend_new_reason_evidence_training":bool(reference_gate and semantic_gate and utility_gate),"stop_reason_evidence_supervision":bool(final and not(reference_gate and semantic_gate and utility_gate)),"recommend_qwen_score_range_pilot":range_gate,"recommend_student_training":False,"qwen_source":qwen_source,"reason":"Reference reliability passed, but Qwen semantic qualification and benchmark-anchored OOF utility did not pass preregistered gates." if final and reference_gate and not (semantic_gate and utility_gate) else "Decision follows preregistered reference, semantic, and utility gates.","dev_access_count":0,"test_access_count":0}
     write_json(args.out_dir/"decision/exp37a_r1_qualification_decision.json",decision)
-    report=["# Exp37A-R1 qualification report","",f"- Status: `{decision['status']}`",f"- Reference complete: `{bool(final)}`",f"- Reference gate: `{reference_gate}`",f"- Semantic gate: `{semantic_gate}`",f"- Utility gate: `{utility_gate}`",f"- Score-range pilot gate: `{range_gate}`","- Human-anchor and model-reviewed silver-anchor OOF targets are reported separately.","- No API, GPU, training, inference, dev, or test access occurred."]
+    utility_available = bool(human and human[0].get("aligned_auprc") is not None)
+    report=[
+        "# Exp37A-R1 qualification report", "",
+        "## Decision",
+        f"- Status: `{decision['status']}`",
+        f"- Reference complete: `{bool(final)}`",
+        f"- Reference gate: `{reference_gate}`",
+        f"- Semantic gate: `{semantic_gate}`",
+        f"- Utility gate: `{utility_gate}`",
+        f"- Score-range pilot gate: `{range_gate}`", "",
+        "## Reference quality",
+        f"- Reviewer A/B score QWK: `{agree_all.get('score_qwk')}`",
+        f"- Major-failure-presence agreement: `{agree_all.get('major_failure_presence_agreement')}`",
+        f"- Selective Reviewer C conflicts: `{len(c)}` of 196", "",
+        "## Qwen semantic qualification",
+        f"- Major-failure F1: `{major_all.get('f1')}`",
+        f"- Low-tail major-failure recall: `{next((r.get('recall') for r in major if r.get('scope') == 'low_tail_all'), None)}`",
+        f"- Supported subtype macro-F1: `{subtype_gate.get('f1')}`",
+        f"- Evidence syntax validity: `{ev.get('syntax_validity')}`",
+        f"- Semantic support partial-or-better: `{ev.get('semantic_support_partial_or_better')}`", "",
+        "## OOF utility",
+        f"- Train-only OOF input available: `{utility_available}`",
+        f"- Human-anchor severe-error AUPRC: `{severe_h.get('aligned_auprc')}`",
+        f"- Human-anchor aligned minus permutation mean: `{null_h.get('aligned_minus_permutation_mean')}`",
+        f"- Human-anchor permutation p: `{null_h.get('empirical_one_sided_p')}`",
+        f"- Human-anchor bootstrap lower CI: `{boot_h.get('ci_lower_95')}`",
+        f"- Silver-anchor severe-error AUPRC: `{next((r.get('aligned_auprc') for r in silver if r.get('target') == 'severe_silver'), None)}`",
+        "- Human-anchor and model-reviewed silver-anchor targets remain strictly separate.",
+        "- Strong silver-anchor utility without human-anchor utility is not treated as benchmark improvement evidence.",
+        "- A missing train-only OOF input is reported as unavailable, never fabricated.", "",
+        "## Boundary",
+        "- No API, GPU, training, student inference, dev, or test access occurred.",
+    ]
     path=args.out_dir/"reports/exp37a_r1_qualification_report.md"; path.parent.mkdir(parents=True,exist_ok=True); path.write_text("\n".join(report)+"\n",encoding="utf-8")
     print(decision)
 

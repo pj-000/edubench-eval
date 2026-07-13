@@ -1,15 +1,16 @@
 {
   "dev_access_count": 0,
   "qwen_source": "thesis_exp/exp17_low_score_evidence/outputs/exp28c_teacher_protocol_evaluation_seed42/private/qwen/p0_holistic_zero_shot/all_train.jsonl",
+  "reason": "Reference reliability passed, but Qwen semantic qualification and benchmark-anchored OOF utility did not pass preregistered gates.",
   "recommend_new_reason_evidence_training": false,
-  "recommend_qwen_score_range_pilot": false,
+  "recommend_qwen_score_range_pilot": true,
   "recommend_student_training": false,
-  "reference_complete": false,
-  "reference_gate": false,
+  "reference_complete": true,
+  "reference_gate": true,
   "reference_type": "multi_session_model_reviewed_silver",
   "semantic_gate": false,
-  "status": "READY_FOR_EXTERNAL_MODEL_REVIEWS",
-  "stop_reason_evidence_supervision": false,
+  "status": "NO_GO",
+  "stop_reason_evidence_supervision": true,
   "test_access_count": 0,
   "utility_gate": false
 }

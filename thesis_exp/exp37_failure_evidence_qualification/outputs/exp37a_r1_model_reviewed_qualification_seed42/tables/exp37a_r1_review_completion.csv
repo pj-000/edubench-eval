@@ -1,4 +1,4 @@
 role,status,rows,unique_rows,invalid_rows,expected_rows,missing_conflict_rows,extra_rows
-reviewer_a,missing,0,0,0,196,,
-reviewer_b,missing,0,0,0,196,,
-reviewer_c,not_yet_required,0,0,0,0,0,0
+reviewer_a,PASS,196,196,0,196,,
+reviewer_b,PASS,196,196,0,196,,
+reviewer_c,PASS,125,125,0,125,0,0

@@ -1,2 +1,2 @@
-status
-WAITING_FOR_EXTERNAL_MODEL_REVIEWS
+n,range_overlap_rate,point_within_other_range_rate,mean_width,global_non_singleton_rate
+196,0.9591836734693877,0.9005102040816326,1.5408163265306123,0.5408163265306123

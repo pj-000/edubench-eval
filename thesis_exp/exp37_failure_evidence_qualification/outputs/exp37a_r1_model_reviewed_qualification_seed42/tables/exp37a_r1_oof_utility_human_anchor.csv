@@ -1,2 +1,3 @@
-status
-WAITING_FOR_COMPLETE_REFERENCE_OR_OOF
+anchor,target,n,aligned_auprc,odds_ratio
+human,severe_human,196,0.46105801475519786,3.7909502262443437
+human,low_to_high_human,196,0.4081916099773243,3.908856682769726

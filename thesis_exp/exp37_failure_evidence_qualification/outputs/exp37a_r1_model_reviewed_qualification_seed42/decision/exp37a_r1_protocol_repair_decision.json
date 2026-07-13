@@ -1,17 +1,17 @@
 {
   "ap_tie_invariance_pass": true,
   "dev_access_count": 0,
-  "expected_conflict_count": null,
+  "expected_conflict_count": 125,
   "experiment_name": "Exp37A-R1 Multi-Session Model-Reviewed Failure-Evidence Qualification",
   "protocol_repair_pass": true,
   "recommend_new_reason_evidence_training": false,
   "recommend_qwen_score_range_pilot": false,
   "recommend_student_training": false,
-  "reference_complete": false,
+  "reference_complete": true,
   "reference_type": "multi_session_model_reviewed_silver",
   "sample_ids_preserved": true,
   "schema_strict": true,
   "selective_adjudication_contract_pass": true,
-  "status": "READY_FOR_EXTERNAL_MODEL_REVIEWS",
+  "status": "READY_FOR_ANALYSIS",
   "test_access_count": 0
 }
