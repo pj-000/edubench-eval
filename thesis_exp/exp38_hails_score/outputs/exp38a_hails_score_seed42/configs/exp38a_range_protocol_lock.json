@@ -5,7 +5,7 @@
   "max_tokens": 512,
   "model": "qwen3.7-max",
   "prompt_path": "thesis_exp/exp38_hails_score/prompts/exp38a_qwen_score_range_prompt.md",
-  "prompt_sha256": "e1142e92de3c73c54d4a40ea32f2ebf2432c8db72bb413e2ddfa1313a448347c",
+  "prompt_sha256": "73a4f051cb5c3fcabc87478219738a8832553e1f5d85fc733abd99bb940bbb97",
   "qualification_rows": 196,
   "qualification_view_counts": {
     "boundary_view": 60,
