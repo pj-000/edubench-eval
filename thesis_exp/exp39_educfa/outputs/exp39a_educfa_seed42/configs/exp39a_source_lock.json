@@ -1,0 +1,15 @@
+{
+  "dev_access_count": 0,
+  "experiment": "Exp39A EduCFA",
+  "full_processed_dataset_accessed": false,
+  "max_sources_per_question_key": 2,
+  "selection_seed": 42,
+  "selection_uses_model_predictions": false,
+  "selection_uses_teacher_scores": false,
+  "source_question_keys": 196,
+  "source_rows": 240,
+  "test_access_count": 0,
+  "train_path": "thesis_exp/data/splits/paper_like_triple_seed42/train.jsonl",
+  "train_rows": 2654,
+  "train_sha256": "0a1733b9209984c5c4291d205d1ac6057bed341717903b9de075d07de44a878e"
+}

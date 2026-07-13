@@ -1,0 +1,26 @@
+{
+  "acceptance_rules_frozen": true,
+  "deepseek_max_tokens": 1024,
+  "deepseek_model": "deepseek-v4-pro",
+  "dev_access_count": 0,
+  "generation_schema_sha256": "6142e958ff3a588c79afb538a8b53826aa7377445284fd994f7892dc0b854790",
+  "generator_prompt_sha256": "0883686a6334425f24b1d6fbc19eb205ceef39b6e06712b4405a5767bd967842",
+  "operators": [
+    "remove_required_key_point",
+    "introduce_factual_or_rubric_contradiction",
+    "remove_reasoning_or_supporting_evidence",
+    "violate_explicit_task_or_format_constraint",
+    "introduce_scope_drift_or_irrelevant_content"
+  ],
+  "qwen_max_tokens": 2048,
+  "qwen_model": "qwen3.7-max",
+  "target_counts": {
+    "1": 40,
+    "2": 120,
+    "3": 80
+  },
+  "temperature": 0,
+  "test_access_count": 0,
+  "verification_schema_sha256": "cbdbb5953ecae4e494c7c5eed86bb33d980a2272ed0cd23b0e996fdec94d7d50",
+  "verifier_prompt_sha256": "f4c5385e3d598eababc04ab45bd9fb66f51a7f04efa4fa08d9eec866ae10b637"
+}

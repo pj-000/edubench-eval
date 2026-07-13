@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["sample_id", "source_sample_id", "operator", "target_score", "target_score_range", "counterfactual_answer", "changed_spans", "preserved_content_summary", "targeted_rubric_clause", "generation_check"],
+  "properties": {
+    "sample_id": {"type": "string", "minLength": 1},
+    "source_sample_id": {"type": "string", "minLength": 1},
+    "operator": {"enum": ["remove_required_key_point", "introduce_factual_or_rubric_contradiction", "remove_reasoning_or_supporting_evidence", "violate_explicit_task_or_format_constraint", "introduce_scope_drift_or_irrelevant_content"]},
+    "target_score": {"type": "integer", "minimum": 1, "maximum": 3},
+    "target_score_range": {"type": "array", "minItems": 2, "maxItems": 2, "prefixItems": [{"type": "integer", "minimum": 1, "maximum": 5}, {"type": "integer", "minimum": 1, "maximum": 5}], "items": false},
+    "counterfactual_answer": {"type": "string", "minLength": 1},
+    "changed_spans": {"type": "array", "minItems": 1, "items": {"type": "object", "additionalProperties": false, "required": ["source_text", "replacement_text"], "properties": {"source_text": {"type": "string"}, "replacement_text": {"type": "string"}}}},
+    "preserved_content_summary": {"type": "string", "minLength": 1},
+    "targeted_rubric_clause": {"type": "string", "minLength": 1},
+    "generation_check": {"type": "object", "additionalProperties": false, "required": ["minimal_edit", "non_target_content_preserved", "answer_key_uncertainty"], "properties": {"minimal_edit": {"type": "boolean"}, "non_target_content_preserved": {"type": "boolean"}, "answer_key_uncertainty": {"type": "boolean"}}}
+  }
+}
