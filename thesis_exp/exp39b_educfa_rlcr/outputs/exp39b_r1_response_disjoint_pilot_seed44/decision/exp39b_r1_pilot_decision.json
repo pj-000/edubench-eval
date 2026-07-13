@@ -1,0 +1,15 @@
+{
+  "dev_access_count": 0,
+  "downstream_api_stages_executed": false,
+  "failed_gates": [
+    "plan_valid"
+  ],
+  "inference_scope": "response_disjoint_within_seen_question_clusters",
+  "plan_valid_count": 28,
+  "plan_valid_min": 54,
+  "recommend_scale_to_response_disjoint_240": false,
+  "status": "PROTOCOL_PILOT_NO_GO",
+  "stop_positive_counterfactual_route": true,
+  "stopped_at": "plan_validation",
+  "test_access_count": 0
+}

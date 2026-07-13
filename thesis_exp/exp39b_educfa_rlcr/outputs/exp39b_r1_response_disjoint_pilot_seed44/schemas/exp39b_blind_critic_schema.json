@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["sample_id", "source_sample_id", "target_scope_confirmed", "original_score_range", "counterfactual_score_range", "most_plausible_counterfactual_score", "clause_failure_strength", "edit_locality", "non_target_preservation", "answer_key_uncertainty", "feedback_code", "feedback"],
+  "properties": {
+    "sample_id": {"type": "string", "minLength": 1},
+    "source_sample_id": {"type": "string", "minLength": 1},
+    "target_scope_confirmed": {"type": "boolean"},
+    "original_score_range": {"$ref": "#/$defs/scoreRange"},
+    "counterfactual_score_range": {"$ref": "#/$defs/scoreRange"},
+    "most_plausible_counterfactual_score": {"type": "integer", "minimum": 1, "maximum": 5},
+    "clause_failure_strength": {"enum": ["none", "partial", "clear"]},
+    "edit_locality": {"enum": ["pass", "fail"]},
+    "non_target_preservation": {"enum": ["pass", "fail"]},
+    "answer_key_uncertainty": {"type": "boolean"},
+    "feedback_code": {"enum": ["acceptable", "too_weak", "too_strong", "non_target_damage", "invalid_clause"]},
+    "feedback": {"type": "string", "minLength": 1}
+  },
+  "$defs": {
+    "scoreRange": {"type": "array", "minItems": 2, "maxItems": 2, "items": {"type": "integer", "minimum": 1, "maximum": 5}}
+  }
+}

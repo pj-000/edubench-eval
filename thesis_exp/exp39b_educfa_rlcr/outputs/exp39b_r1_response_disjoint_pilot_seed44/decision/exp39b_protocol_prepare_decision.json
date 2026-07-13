@@ -1,0 +1,11 @@
+{
+  "dev_access_count": 0,
+  "eligible_after_exclusion": 1607,
+  "eligible_question_keys_after_exclusion": 186,
+  "fresh_question_key_count": 60,
+  "fresh_source_count": 60,
+  "inference_scope": "response_disjoint_within_seen_question_clusters",
+  "recommend_api_calls": true,
+  "status": "PROTOCOL_PREPARE_GO",
+  "test_access_count": 0
+}

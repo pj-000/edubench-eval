@@ -1,0 +1,14 @@
+{
+  "dev_access_count": 0,
+  "expected_rows": 60,
+  "failure_count": 1,
+  "max_failures": 6,
+  "model": "qwen3.7-max",
+  "provider": "qwen",
+  "routing_identity_normalization_count": 0,
+  "rows": 59,
+  "schema_success_rate": 1.0,
+  "stage": "qwen_clause_planner",
+  "status": "COMPLETED",
+  "test_access_count": 0
+}

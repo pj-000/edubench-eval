@@ -1,0 +1,22 @@
+{
+  "checks": {
+    "answer_hash_overlap_zero": true,
+    "assessment_key_overlap_zero": true,
+    "dev_test_zero": true,
+    "near_duplicate_below_0p90": true,
+    "one_row_per_question_key": true,
+    "question_cluster_reuse_declared": true,
+    "response_scope_declared": true,
+    "source_id_overlap_zero": true,
+    "source_rows_60": true,
+    "train_hash_matches": true,
+    "unique_question_keys_60": true
+  },
+  "dev_access_count": 0,
+  "max_char_5gram_jaccard": 0.4280701754385965,
+  "max_token_jaccard": 0.583756345177665,
+  "source_question_keys": 60,
+  "source_rows": 60,
+  "status": "SOURCE_LOCK_VALID",
+  "test_access_count": 0
+}

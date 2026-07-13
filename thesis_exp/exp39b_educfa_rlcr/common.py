@@ -11,6 +11,7 @@ import re
 import time
 import urllib.error
 import urllib.request
+import unicodedata
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 from typing import Any, Callable, Iterable
@@ -21,6 +22,7 @@ except ModuleNotFoundError:
     from thesis_exp.exp17_low_score_evidence import json_schema_compat as jsonschema
 
 ROOT = Path("thesis_exp/exp39b_educfa_rlcr/outputs/exp39b_rlcr_pilot_seed43")
+R1_ROOT = Path("thesis_exp/exp39b_educfa_rlcr/outputs/exp39b_r1_response_disjoint_pilot_seed44")
 TRAIN_PATH = Path("thesis_exp/data/splits/paper_like_triple_seed42/train.jsonl")
 EXP39A_LOCK = Path("thesis_exp/exp39_educfa/outputs/exp39a_educfa_seed42/configs/exp39a_source_lock.json")
 EXP39A_PACKETS = Path(
@@ -148,6 +150,23 @@ def token_count(text: str) -> int:
     return len(re.findall(r"[A-Za-z0-9]+|[\u4e00-\u9fff]", str(text)))
 
 
+def normalize_answer(text: str) -> str:
+    return re.sub(r"\s+", " ", unicodedata.normalize("NFKC", str(text))).strip().lower()
+
+
+def text_tokens(text: str) -> set[str]:
+    return set(re.findall(r"[a-z0-9]+|[\u4e00-\u9fff]", normalize_answer(text)))
+
+
+def character_ngrams(text: str, n: int = 5) -> set[str]:
+    normalized = normalize_answer(text)
+    return {normalized[index:index + n] for index in range(max(0, len(normalized) - n + 1))}
+
+
+def jaccard(left: set[str], right: set[str]) -> float:
+    return len(left & right) / len(left | right) if left or right else 1.0
+
+
 def sha256_file(path: Path) -> str:
     digest = hashlib.sha256()
     with path.open("rb") as handle:
@@ -218,6 +237,7 @@ def run_json_stage(
     timeout: int,
     retries: int,
     stage_name: str,
+    max_failures: int = 0,
 ) -> dict[str, Any]:
     selected = rows[:max_rows] if max_rows else rows
     if not selected:
@@ -322,12 +342,14 @@ def run_json_stage(
                 f"elapsed={elapsed/60:.1f}m eta={eta/60:.1f}m",
                 flush=True,
             )
-    if failures:
+    if len(failures) > max_failures:
         preview = "; ".join(f"{sid}: {error}" for sid, error in failures[:5])
         raise RuntimeError(f"{stage_name} has {len(failures)} failures; rerun to resume. {preview}")
     return {
         "status": "COMPLETED", "stage": stage_name, "provider": provider, "model": model,
-        "rows": len(completed), "expected_rows": len(selected), "schema_success_rate": 1.0,
+        "rows": len(completed), "expected_rows": len(selected),
+        "schema_success_rate": len(completed) / len(selected),
+        "failure_count": len(failures), "max_failures": max_failures,
         "routing_identity_normalization_count": normalized_count,
         "dev_access_count": 0, "test_access_count": 0,
     }

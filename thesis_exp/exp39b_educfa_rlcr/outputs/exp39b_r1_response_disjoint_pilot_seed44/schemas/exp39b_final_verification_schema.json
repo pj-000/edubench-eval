@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["sample_id", "source_sample_id", "target_scope_confirmed", "original_score_range", "counterfactual_score_range", "most_plausible_counterfactual_score", "rubric_clause_failure_verified", "edit_locality_verified", "non_target_content_preserved", "answer_key_uncertainty", "verification_reason"],
+  "properties": {
+    "sample_id": {"type": "string", "minLength": 1},
+    "source_sample_id": {"type": "string", "minLength": 1},
+    "target_scope_confirmed": {"type": "boolean"},
+    "original_score_range": {"$ref": "#/$defs/scoreRange"},
+    "counterfactual_score_range": {"$ref": "#/$defs/scoreRange"},
+    "most_plausible_counterfactual_score": {"type": "integer", "minimum": 1, "maximum": 5},
+    "rubric_clause_failure_verified": {"type": "boolean"},
+    "edit_locality_verified": {"type": "boolean"},
+    "non_target_content_preserved": {"type": "boolean"},
+    "answer_key_uncertainty": {"type": "boolean"},
+    "verification_reason": {"type": "string", "minLength": 1}
+  },
+  "$defs": {
+    "scoreRange": {"type": "array", "minItems": 2, "maxItems": 2, "items": {"type": "integer", "minimum": 1, "maximum": 5}}
+  }
+}

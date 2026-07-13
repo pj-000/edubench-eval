@@ -1,0 +1,43 @@
+{
+  "answer_hash_overlap": 0,
+  "assessment_key_overlap": 0,
+  "base_acceptance_gate_sha256": "0d7727d05514223551d7b2bd5ed0f27a2905dcfdd4378adfd85692a6cfc1f2a1",
+  "dev_access_count": 0,
+  "eligible_after_exclusion": 1607,
+  "eligible_question_keys_after_exclusion": 186,
+  "exp39a_question_keys_reused": 60,
+  "exp39a_source_rows_excluded": 240,
+  "experiment": "Exp39B-R1 EduCFA-RLCR Response-Disjoint Protocol Pilot",
+  "inference_scope": "response_disjoint_within_seen_question_clusters",
+  "near_duplicate_threshold": 0.9,
+  "prompt_schema_hashes": {
+    "prompts": {
+      "exp39b_deepseek_blind_critic.md": "039f792486c6aa1598f5c5f9c12cf922cbef7dab3b20faea1f412c612d480e96",
+      "exp39b_deepseek_final_verifier.md": "ca3e94c6d9c85baead228c49fca991263f04a4e8602250e82443ee24326b3384",
+      "exp39b_qwen_clause_planner.md": "6f82a31071ecbadba98d73515308fd3a7371af205a739fc70132d337b5d918ff",
+      "exp39b_qwen_restricted_revision.md": "8551f0e8149a3179d7b94888f5a59b1e69ae447c007ae959bcc4dbb37aac7e09",
+      "exp39b_qwen_span_editor.md": "9ca67d3bb1f62a1a63f7184dc0a2616d7fb91298ca5619380568f6bf56c01ff0"
+    },
+    "schemas": {
+      "exp39b_blind_critic_schema.json": "29d5fb74dcce9e82fd04080548be01ef10ca6cac8a62a60caf071be35b6e8ea7",
+      "exp39b_clause_plan_schema.json": "41fd9feb90d9cdfef11ca176fcfe8359e57190999d03618bdaab018b2cd694e8",
+      "exp39b_final_verification_schema.json": "7b1ea4ac9818e28154ab34e05318987851c7fdf3e2d63cb4d8fc20dfce1aa2e0",
+      "exp39b_restricted_revision_schema.json": "c8b5e2ed097a6583f406f070808fa4aa0255c285751e941ef0c7fcb812bb30ea",
+      "exp39b_span_edit_schema.json": "ba36411c7ac6ff18cd099d800ac485f9d961de6c9621d9e89bcb98f0b9d8088e"
+    }
+  },
+  "question_cluster_reuse": true,
+  "selection_seed": 44,
+  "selection_uses_model_predictions": false,
+  "selection_uses_teacher_scores": false,
+  "source_id_overlap": 0,
+  "source_independence_unit": "response",
+  "source_question_keys": 60,
+  "source_rows": 60,
+  "status": "SOURCE_LOCKED",
+  "test_access_count": 0,
+  "train_path": "thesis_exp/data/splits/paper_like_triple_seed42/train.jsonl",
+  "train_question_keys": 196,
+  "train_rows": 2654,
+  "train_sha256": "0a1733b9209984c5c4291d205d1ac6057bed341717903b9de075d07de44a878e"
+}

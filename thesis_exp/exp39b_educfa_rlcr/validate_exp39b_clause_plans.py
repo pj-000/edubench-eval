@@ -118,6 +118,17 @@ def main() -> None:
         audits.append(audit)
         if not errors:
             valid_ids.append(sid)
+    received_ids = {str(plan["sample_id"]) for plan in plans}
+    for sid in sorted(set(packets) - received_ids):
+        packet = packets[sid]
+        audits.append({
+            "sample_id": sid, "source_sample_id": packet["source_sample_id"],
+            "target_band_name": packet["target_band_name"], "metric_group": packet["metric_group"],
+            "clause_type": "", "operator": "", "rubric_clause_linked": False,
+            "source_span_valid": False, "source_span_start": -1, "source_span_end": -1,
+            "operator_compatible": False, "plan_confidence": "",
+            "plan_valid": False, "rejection_reasons": "missing_planner_output",
+        })
     write_csv(args.out_dir / "tables/exp39b_plan_validation.csv", audits)
     write_csv(
         args.out_dir / "tables/exp39b_operator_compatibility.csv",

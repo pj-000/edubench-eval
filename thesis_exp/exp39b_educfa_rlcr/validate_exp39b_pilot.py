@@ -15,7 +15,7 @@ if str(REPO_ROOT) not in sys.path:
 
 from thesis_exp.exp39b_educfa_rlcr.common import (
     ROOT, index_rows, range_intersects, read_csv, read_json, read_jsonl,
-    require_prepare_go, sha256_file, soft_target, stable_hash, write_csv, write_json,
+    require_prepare_go, sha256_file, soft_target, stable_hash, write_csv, write_json, write_jsonl,
 )
 
 
@@ -48,6 +48,7 @@ def main() -> None:
     args = parse_args()
     require_prepare_go(args.out_dir)
     gates = read_json(args.out_dir / "configs/exp39b_acceptance_gate.json")
+    source_lock = read_json(args.out_dir / "configs/exp39b_source_lock.json")
     overlap_audit = read_csv(args.out_dir / "tables/exp39b_exp39a_overlap_audit.csv")
     packets = index_rows(read_jsonl(args.out_dir / "private/source_packets/exp39b_source_anchor_packets.jsonl"))
     plan_audits = {row["sample_id"]: row for row in read_csv(args.out_dir / "tables/exp39b_plan_validation.csv")}
@@ -56,9 +57,12 @@ def main() -> None:
     finals = index_rows(read_jsonl(args.out_dir / "private/final_candidates/exp39b_final_candidates.jsonl"))
     verifies = index_rows(read_jsonl(args.out_dir / "private/final_verifications/exp39b_final_verifications.jsonl"))
     expected = set(packets)
-    for name, values in (("first", first), ("critics", critics), ("finals", finals), ("verifies", verifies)):
-        if set(values) != expected:
-            raise ValueError(f"{name} IDs differ from source lock: missing={len(expected-set(values))} extra={len(set(values)-expected)}")
+    processed = set(first)
+    if not processed <= expected:
+        raise ValueError(f"Processed IDs include unknown sources: {len(processed - expected)}")
+    for name, values in (("critics", critics), ("finals", finals), ("verifies", verifies)):
+        if set(values) != processed:
+            raise ValueError(f"{name} IDs differ from processed candidates")
 
     duplicate_counts = Counter(stable_hash(row["final_counterfactual"]) for row in finals.values())
     result_rows = []
@@ -66,6 +70,30 @@ def main() -> None:
     revision_rows = []
     edit_rows = []
     for sid in sorted(expected):
+        packet = packets[sid]
+        if sid not in processed:
+            operator = plan_audits.get(sid, {}).get("operator", "") or "unplanned"
+            result_rows.append({
+                "sample_id": sid, "target_band_name": packet["target_band_name"],
+                "operator": operator, "metric_group": packet["metric_group"],
+                "source_high_verified": False, "first_target_covered": False,
+                "final_target_covered": False, "first_accepted": False,
+                "revision_attempted": False, "final_score": None,
+                "accepted": False, "rejection_reasons": "plan_invalid_or_missing", "soft_target": "",
+            })
+            first_rows.append({
+                "sample_id": sid, "target_band_name": packet["target_band_name"], "operator": operator,
+                "source_high_verified": False, "target_band_covered": False,
+                "full_acceptance": False, "edit_budget_pass": False, "non_target_preserved": False,
+            })
+            revision_rows.append({
+                "sample_id": sid, "target_band_name": packet["target_band_name"],
+                "revision_eligible": False, "revision_attempted": False,
+                "first_target_covered": False, "final_target_covered": False,
+                "revision_rescued": False, "same_source_span": False,
+                "non_target_preservation_before": False, "non_target_preservation_after": False,
+            })
+            continue
         packet, candidate, critic, final, verify = packets[sid], first[sid], critics[sid], finals[sid], verifies[sid]
         target = packet["target_band"]
         first_target = range_intersects(critic["counterfactual_score_range"], target) and (
@@ -183,7 +211,7 @@ def main() -> None:
         "duplicate_rate": sum(count - 1 for count in duplicate_counts.values() if count > 1) / len(finals),
         "low_band_verified_entirely_high_count": sum(
             packet["target_band_name"] != "boundary" and verify["counterfactual_score_range"][0] >= 4
-            for packet, verify in ((packets[sid], verifies[sid]) for sid in expected)
+            for packet, verify in ((packets[sid], verifies[sid]) for sid in processed)
         ),
         "dev_access_count": 0, "test_access_count": 0,
     }
@@ -191,9 +219,9 @@ def main() -> None:
     gate_results = {
         "fresh_sources": summary["source_count"] == gates["fresh_sources"],
         "source_qkeys": summary["source_question_keys"] >= gates["source_qkeys_min"],
-        "overlap_zero": all(
-            int(float(row["selected_source_overlap"])) == 0 and int(float(row["selected_qkey_overlap"])) == 0
-            for row in overlap_audit
+        "overlap_zero": all(int(float(row["selected_source_overlap"])) == 0 for row in overlap_audit) and (
+            bool(source_lock.get("question_cluster_reuse", False))
+            or all(int(float(row["selected_qkey_overlap"])) == 0 for row in overlap_audit)
         ),
         "plan_valid": summary["plan_valid_count"] >= gates["plan_valid_min"],
         "source_original_high": summary["source_original_high_verified"] >= gates["source_original_high_min"],
@@ -222,9 +250,12 @@ def main() -> None:
         {key: value for key, value in summary.items() if key != "gate_results"}
     ])
     write_csv(args.out_dir / "tables/exp39b_leakage_audit.csv", [{
-        "exp39a_source_overlap": 0, "exp39a_question_key_overlap": 0,
+        "exp39a_source_overlap": 0,
+        "exp39a_question_key_overlap": int(float(overlap_audit[0].get("selected_qkey_overlap", 0))),
+        "question_key_overlap_allowed": bool(source_lock.get("question_cluster_reuse", False)),
         "dev_access_count": 0, "test_access_count": 0,
     }])
+    write_jsonl(args.out_dir / "private/final_verifications/exp39b_validation_rows.jsonl", result_rows)
     private_paths = sorted(path for path in (args.out_dir / "private").rglob("*.jsonl"))
     write_json(args.out_dir / "hashes/exp39b_private_output_hashes.json", {
         str(path.relative_to(args.out_dir)): sha256_file(path) for path in private_paths

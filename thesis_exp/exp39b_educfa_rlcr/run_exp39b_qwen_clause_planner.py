@@ -89,6 +89,7 @@ def main() -> None:
         timeout=args.timeout,
         retries=args.retries,
         stage_name="qwen_clause_planner",
+        max_failures=6,
     )
     write_stage_summary(args.out_dir, "qwen_clause_planner", summary)
     print(json.dumps(summary, ensure_ascii=False, sort_keys=True))

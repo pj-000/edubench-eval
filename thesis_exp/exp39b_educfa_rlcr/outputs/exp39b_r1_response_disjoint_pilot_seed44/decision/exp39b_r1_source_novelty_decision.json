@@ -1,0 +1,14 @@
+{
+  "checks": {
+    "answer_hash_overlap_zero": true,
+    "assessment_key_overlap_zero": true,
+    "char_similarity_below_threshold": true,
+    "declared_scope": true,
+    "dev_test_zero": true,
+    "selected_qkeys_60": true,
+    "selected_rows_60": true,
+    "source_id_overlap_zero": true,
+    "token_similarity_below_threshold": true
+  },
+  "status": "NOVELTY_AUDIT_PASS"
+}
