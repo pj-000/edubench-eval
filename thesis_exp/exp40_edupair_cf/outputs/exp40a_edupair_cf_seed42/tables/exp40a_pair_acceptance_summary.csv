@@ -1,0 +1,2 @@
+prepared_pairs,expected_judgments,completed_judgments,duplicate_judgments,schema_target_valid_judgments,schema_success_rate,accepted_pairs,accepted_unique_question_keys,accepted_targeted_degradation_rate,accepted_non_target_preservation_rate,tie_pairs,order_conflict_pairs,consistent_counterfactual_preferred_pairs,order_conflict_or_tie_rate
+240,480,480,0,480,1.0,129,121,1.0,1.0,20,71,13,0.37916666666666665

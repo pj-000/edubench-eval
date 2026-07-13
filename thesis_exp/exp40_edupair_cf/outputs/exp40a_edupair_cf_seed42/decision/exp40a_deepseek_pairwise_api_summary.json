@@ -1,0 +1,13 @@
+{
+  "completed_judgments": 480,
+  "dev_access_count": 0,
+  "expected_judgments": 480,
+  "model": "deepseek-v4-pro",
+  "pairs": 240,
+  "provider": "deepseek",
+  "routing_identity_normalization_count": 2,
+  "schema_success_rate": 1.0,
+  "status": "COMPLETED",
+  "target_blind": true,
+  "test_access_count": 0
+}

@@ -1,0 +1,4 @@
+metric_group,pairs,accepted,acceptance_rate
+Factual & Reasoning Accuracy,66,23,0.3484848484848485
+Pedagogical Application,75,50,0.6666666666666666
+Scenario Adaptability,99,56,0.5656565656565656

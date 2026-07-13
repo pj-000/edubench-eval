@@ -1,0 +1,4 @@
+order,source_win_count,total_pairs,source_win_rate
+original_first,137,240,0.5708333333333333
+counterfactual_first,213,240,0.8875
+absolute_difference,,240,0.31666666666666665

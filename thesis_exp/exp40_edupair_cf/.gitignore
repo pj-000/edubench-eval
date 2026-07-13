@@ -1,0 +1,8 @@
+outputs/**/raw_api/
+outputs/**/private/
+outputs/**/logs_private/
+outputs/**/predictions/
+outputs/**/raw_predictions/
+outputs/**/dev_predictions/
+__pycache__/
+*.pyc

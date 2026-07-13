@@ -1,0 +1,32 @@
+{
+  "auxiliary_head": false,
+  "class_weighting": false,
+  "custom_risk_or_ordinal_loss": false,
+  "dev_access_count": 0,
+  "effective_batch": 128,
+  "epochs": 10,
+  "experiment": "Exp40A EduPair-CF GroupCV",
+  "fixed_final_epoch": 10,
+  "gradient_accumulation": 32,
+  "heldout_checkpoint_selection": false,
+  "lambda_pair": 0.25,
+  "learning_rate": 2e-05,
+  "loss": "human_empirical_soft_CE + 0.25 * RankNet_pair_loss",
+  "max_length": 2048,
+  "micro_batch": 4,
+  "optimizer": "AdamW",
+  "original_train_rows": 2654,
+  "pair_count_rule": "V1/V2/V3/V4 each match the accepted V3 pair count after qualification GO",
+  "sample_weighting": false,
+  "seed": 42,
+  "test_access_count": 0,
+  "variants": [
+    "v0h_human_soft",
+    "v1_human_real_pairs",
+    "v2_unverified_counterfactual_pairs",
+    "v3_edupair_cf",
+    "v4_shuffled_pair_alignment"
+  ],
+  "warmup_ratio": 0.05,
+  "weight_decay": 0.01
+}

@@ -1,0 +1,46 @@
+{
+  "acceptance_rules_frozen": true,
+  "dev_access_count": 0,
+  "experiment": "Exp40A EduPair-CF",
+  "forbidden_fields": [
+    "acceptance_status",
+    "assigned_target_score",
+    "counterfactual_score_range",
+    "human_1",
+    "human_2",
+    "human_3",
+    "label_5",
+    "most_plausible_counterfactual_score",
+    "source_human_distribution_5",
+    "source_label_5",
+    "target_score",
+    "target_score_range"
+  ],
+  "judgment_count": 480,
+  "max_tokens": 1024,
+  "model": "deepseek-v4-pro",
+  "orders": [
+    "original_first",
+    "counterfactual_first"
+  ],
+  "packet_sha256": "c59158a59fd8619d4148980d073855a430bf8324a6e57647a920e7e7442a368e",
+  "pair_count": 240,
+  "prompt_sha256": "27a8f87942a10a4876562e129a6cdd04bcd3cc738b66f6cc39122e9182cdfbb6",
+  "provider": "deepseek",
+  "qualification_gate": {
+    "accepted_pairs_min": 150,
+    "accepted_unique_question_keys_min": 120,
+    "judgments_completed": 480,
+    "non_target_preservation_rate_min": 0.85,
+    "order_conflict_or_tie_rate_max": 0.25,
+    "pairs_prepared": 240,
+    "position_source_win_rate_difference_max": 0.05,
+    "schema_success_min": 0.98,
+    "targeted_degradation_rate_min": 0.9
+  },
+  "requests_independent": true,
+  "schema_sha256": "2330a1ccb2a503fca5aaae94abb8bf74d86cf49f318e867ef24754937f9e86f4",
+  "target_blind": true,
+  "temperature": 0,
+  "test_access_count": 0
+}

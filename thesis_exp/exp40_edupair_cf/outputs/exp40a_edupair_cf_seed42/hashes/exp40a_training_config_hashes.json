@@ -1,0 +1,26 @@
+{
+  "artifacts": {
+    "bootstrap_groupcv": {
+      "path": "thesis_exp/exp40_edupair_cf/bootstrap_exp40a_groupcv.py",
+      "sha256": "4131554183c243ec8aca43efb2843c68425d0116fe35ca18fab661371341c654"
+    },
+    "collect_groupcv": {
+      "path": "thesis_exp/exp40_edupair_cf/collect_exp40a_groupcv.py",
+      "sha256": "a82bd03d8e1f66728ce8ed4c929e84c97cd6379b9cf2a520245af3eb5e2482d9"
+    },
+    "prepare_groupcv_folds": {
+      "path": "thesis_exp/exp40_edupair_cf/prepare_exp40a_groupcv_folds.py",
+      "sha256": "50cca94be214eb6e679b4265ab99b1bbab206c96d20fc2cf3825c8d56d52e661"
+    },
+    "train_groupcv": {
+      "path": "thesis_exp/exp40_edupair_cf/train_exp40a_groupcv.py",
+      "sha256": "a68f9cd493a5ba29f362656d5cb1419e846341823139be4c2602f9527ec1afb4"
+    },
+    "training_matrix_lock": {
+      "path": "thesis_exp/exp40_edupair_cf/outputs/exp40a_edupair_cf_seed42/configs/exp40a_training_matrix_lock.json",
+      "sha256": "ea50a1723612eee209f5b635ce1ad768d37f37ea89f9bce6b0f18304d536d54f"
+    }
+  },
+  "dev_access_count": 0,
+  "test_access_count": 0
+}

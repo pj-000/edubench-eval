@@ -1,0 +1,9 @@
+{
+  "blocking_pairwise_status": "PAIRWISE_QUALIFICATION_NO_GO",
+  "dev_access_count": 0,
+  "groupcv_ran": false,
+  "recommend_run_dev_multiseed": false,
+  "status": "GROUPCV_NOT_RUN_BLOCKED_BY_PAIRWISE_QUALIFICATION",
+  "stop_model_assisted_positive_route": true,
+  "test_access_count": 0
+}

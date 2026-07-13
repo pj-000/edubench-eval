@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "pair_id",
+    "sample_id",
+    "order",
+    "target_scope_confirmed",
+    "preferred_answer",
+    "preference_confidence",
+    "targeted_rubric_degradation",
+    "non_target_content_preserved",
+    "answer_key_or_rubric_uncertainty",
+    "comparison_reason"
+  ],
+  "properties": {
+    "pair_id": {"type": "string", "minLength": 1},
+    "sample_id": {"type": "string", "minLength": 1},
+    "order": {"enum": ["original_first", "counterfactual_first"]},
+    "target_scope_confirmed": {"type": "boolean"},
+    "preferred_answer": {"enum": ["A", "B", "tie"]},
+    "preference_confidence": {"enum": ["high", "medium", "low"]},
+    "targeted_rubric_degradation": {"enum": ["yes", "partial", "no", "unclear"]},
+    "non_target_content_preserved": {"enum": ["yes", "partial", "no", "unclear"]},
+    "answer_key_or_rubric_uncertainty": {"type": "boolean"},
+    "comparison_reason": {"type": "string", "minLength": 1, "maxLength": 1000}
+  }
+}
