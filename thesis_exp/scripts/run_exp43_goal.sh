@@ -17,19 +17,42 @@ print(json.load(open(sys.argv[1]))["status"])
 PY
 }
 run_stage(){ local name="$1" script="$2";state "$name" STARTED;bash "$script";state "$name" COMPLETED;}
+finalize_goal(){
+  state goal_finalization STARTED
+  "${PYTHON}" -m thesis_exp.exp43_rubimor.build_exp43_final_report
+  finalize_args=(--repo-root "${REPO_ROOT}" --out-dir "${OUT}")
+  [[ -n "${LOCAL_SYNC_ROOT:-}" ]] && finalize_args+=(--local-sync-root "${LOCAL_SYNC_ROOT}")
+  "${PYTHON}" -m thesis_exp.exp43_rubimor.finalize_exp43_lightweight "${finalize_args[@]}"
+  state goal_finalization COMPLETED
+  "${PYTHON}" -m thesis_exp.exp43_rubimor.finalize_exp43_lightweight "${finalize_args[@]}"
+  if [[ "${PUSH_MAIN:-1}" == 1 ]]; then
+    git add -- \
+      thesis_exp/exp43_rubimor/*.py \
+      thesis_exp/scripts/run_exp43*.sh \
+      "${OUT}/configs" "${OUT}/tables" "${OUT}/reports" \
+      "${OUT}/decision" "${OUT}/hashes" "${OUT}/state"
+    "${PYTHON}" -m thesis_exp.exp43_rubimor.finalize_exp43_lightweight \
+      --repo-root "${REPO_ROOT}" --out-dir "${OUT}" --check-staged --verify-only
+    if ! git diff --cached --quiet; then
+      git commit -m "Add Exp43 RubiMOR final results"
+    fi
+    git push origin HEAD:main
+  fi
+}
+stop_goal(){ finalize_goal; exit 0; }
 run_stage stage0 thesis_exp/scripts/run_exp43_stage0_audit.sh
-[[ "$(decision "$OUT/decision/exp43_stage0_decision.json")" == GO && "$(decision "$OUT/decision/exp43_pair_data_decision.json")" == GO && "$(decision "$OUT/decision/exp43_loss_scale_decision.json")" == GO ]] || { "${PYTHON}" -m thesis_exp.exp43_rubimor.build_exp43_final_report; exit 0; }
-run_stage stage1 thesis_exp/scripts/run_exp43_stage1_smoke.sh; [[ "$(decision "$OUT/decision/exp43_smoke_decision.json")" == GO ]] || { "${PYTHON}" -m thesis_exp.exp43_rubimor.build_exp43_final_report; exit 0; }
-run_stage stage2 thesis_exp/scripts/run_exp43_stage2_baselines_seed42.sh; [[ "$(decision "$OUT/decision/exp43_baseline_pipeline_decision.json")" == GO ]] || { "${PYTHON}" -m thesis_exp.exp43_rubimor.build_exp43_final_report; exit 0; }
-run_stage stage3 thesis_exp/scripts/run_exp43_stage3_ordinal_seed42.sh; [[ "$(decision "$OUT/decision/exp43_ordinal_decision.json")" == GO ]] || { "${PYTHON}" -m thesis_exp.exp43_rubimor.build_exp43_final_report; exit 0; }
-run_stage stage4 thesis_exp/scripts/run_exp43_stage4_metric_head_seed42.sh; [[ "$(decision "$OUT/decision/exp43_metric_head_decision.json")" == GO ]] || { "${PYTHON}" -m thesis_exp.exp43_rubimor.build_exp43_final_report; exit 0; }
-run_stage stage5 thesis_exp/scripts/run_exp43_stage5_pairwise_seed42.sh; [[ "$(decision "$OUT/decision/exp43_pairwise_decision.json")" == GO ]] || { "${PYTHON}" -m thesis_exp.exp43_rubimor.build_exp43_final_report; exit 0; }
+[[ "$(decision "$OUT/decision/exp43_stage0_decision.json")" == GO && "$(decision "$OUT/decision/exp43_pair_data_decision.json")" == GO && "$(decision "$OUT/decision/exp43_loss_scale_decision.json")" == GO ]] || stop_goal
+run_stage stage1 thesis_exp/scripts/run_exp43_stage1_smoke.sh; [[ "$(decision "$OUT/decision/exp43_smoke_decision.json")" == GO ]] || stop_goal
+run_stage stage2 thesis_exp/scripts/run_exp43_stage2_baselines_seed42.sh; [[ "$(decision "$OUT/decision/exp43_baseline_pipeline_decision.json")" == GO ]] || stop_goal
+run_stage stage3 thesis_exp/scripts/run_exp43_stage3_ordinal_seed42.sh; [[ "$(decision "$OUT/decision/exp43_ordinal_decision.json")" == GO ]] || stop_goal
+run_stage stage4 thesis_exp/scripts/run_exp43_stage4_metric_head_seed42.sh; [[ "$(decision "$OUT/decision/exp43_metric_head_decision.json")" == GO ]] || stop_goal
+run_stage stage5 thesis_exp/scripts/run_exp43_stage5_pairwise_seed42.sh; [[ "$(decision "$OUT/decision/exp43_pairwise_decision.json")" == GO ]] || stop_goal
 run_stage stage6 thesis_exp/scripts/run_exp43_stage6_multiseed_groupcv.sh
-group="$(decision "$OUT/decision/exp43_groupcv_decision.json")"; [[ "$group" == RUBIMOR_FULL_GROUPCV_GO || "$group" == RUBIMOR_OVERALL_GROUPCV_GO ]] || { "${PYTHON}" -m thesis_exp.exp43_rubimor.build_exp43_final_report; exit 0; }
+group="$(decision "$OUT/decision/exp43_groupcv_decision.json")"; [[ "$group" == RUBIMOR_FULL_GROUPCV_GO || "$group" == RUBIMOR_OVERALL_GROUPCV_GO ]] || stop_goal
 "${PYTHON}" - "$OUT/reports/exp43_question_disjoint_robustness.md" "$group" <<'PY'
 import pathlib,sys
 pathlib.Path(sys.argv[1]).write_text(f"# Exp43 Question-Disjoint Robustness\n\nGroupCV decision: **{sys.argv[2]}**. Five outer folds isolate question keys; no dev/test data were used.\n")
 PY
-run_stage stage8 thesis_exp/scripts/run_exp43_stage8_headline_dev.sh; [[ "$(decision "$OUT/decision/exp43_headline_dev_decision.json")" == HEADLINE_DEV_GO ]] || { "${PYTHON}" -m thesis_exp.exp43_rubimor.build_exp43_final_report; exit 0; }
+run_stage stage8 thesis_exp/scripts/run_exp43_stage8_headline_dev.sh; [[ "$(decision "$OUT/decision/exp43_headline_dev_decision.json")" == HEADLINE_DEV_GO ]] || stop_goal
 if [[ "${AUTO_FINAL_TEST:-1}" == 1 ]];then run_stage stage9 thesis_exp/scripts/run_exp43_stage9_final_test.sh;fi
-"${PYTHON}" -m thesis_exp.exp43_rubimor.build_exp43_final_report
+finalize_goal
