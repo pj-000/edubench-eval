@@ -1,8 +1,8 @@
 # Exp43 Lightweight Artifact Validation
 
 - Status: **PASS**
-- Public files: 38
-- Public bytes: 3627304
+- Public files: 57
+- Public bytes: 3772309
 - Staged files checked: 0
 - Files copied to LOCAL_SYNC_ROOT: 0
 - Maximum file size: 10 MB

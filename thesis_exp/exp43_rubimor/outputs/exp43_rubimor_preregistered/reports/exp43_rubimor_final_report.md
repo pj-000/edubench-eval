@@ -1,12 +1,19 @@
 # Exp43 RubiMOR Final Report
 
-- Current final status: **IN_PROGRESS**
+- Current final status: **ORDINAL_ONLY_SIGNAL**
 - Final test consumed: **False**
 
 ## Stage decisions
 
-- `exp43_pair_data_decision`: `GO`
-- `exp43_stage0_decision`: `GO`
+- Stage 0: `GO`
+- Stage 1: `GO`
+- Stage 2: `GO`
+- Stage 3: `GO`
+- Stage 4: `METRIC_HEAD_STOP`
+- Stage 5: `NOT_RUN_AFTER_GATE_STOP`
+- Stage 6: `NOT_RUN_AFTER_GATE_STOP`
+- Stage 8: `NOT_RUN_AFTER_GATE_STOP`
+- Stage 9: `NOT_RUN_TEST_SEALED`
 
 ## Protocol integrity
 

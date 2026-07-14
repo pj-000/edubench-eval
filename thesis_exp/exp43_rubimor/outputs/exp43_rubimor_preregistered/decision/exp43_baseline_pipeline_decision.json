@@ -1,0 +1,10 @@
+{
+  "checks": {
+    "exact_guard": true,
+    "mae_guard": true,
+    "qwk_guard": true
+  },
+  "stage": "stage2",
+  "status": "GO",
+  "test_access_count": 0
+}

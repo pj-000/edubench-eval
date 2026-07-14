@@ -1,0 +1,21 @@
+{
+  "checks": {
+    "exact_guard": true,
+    "high_to_low_guard": true,
+    "label5_guard": true,
+    "mae_guard": true,
+    "mechanism_improvement": false,
+    "qwk_guard": false,
+    "residual_concentration_guard": true
+  },
+  "max_residual_norm_share": 0.024530856239424786,
+  "mechanisms": {
+    "macro_metric_mae": false,
+    "overall_mae": false,
+    "overall_qwk": false,
+    "worst_quartile_metric_mae": false
+  },
+  "stage": "stage4",
+  "status": "METRIC_HEAD_STOP",
+  "test_access_count": 0
+}

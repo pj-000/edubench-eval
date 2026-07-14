@@ -2,8 +2,8 @@
   "local_sync_file_count": 0,
   "max_file_bytes": 10485760,
   "prohibited_artifacts_found": 0,
-  "public_bytes": 3627304,
-  "public_file_count": 38,
+  "public_bytes": 3772309,
+  "public_file_count": 57,
   "secrets_found": 0,
   "staged_file_count_checked": 0,
   "status": "PASS"

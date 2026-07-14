@@ -10,7 +10,7 @@ from pathlib import Path
 from types import SimpleNamespace
 from typing import Any
 
-from thesis_exp.exp43_rubimor.common import ROOT, RUN_ROOT, SEEDS, VARIANTS, mean_std, prediction_metrics, read_jsonl, write_csv, write_json
+from thesis_exp.exp43_rubimor.common import ROOT, RUN_ROOT, SEEDS, VARIANTS, mean_std, prediction_metrics, read_jsonl, stable_hash, write_csv, write_json
 from thesis_exp.exp43_rubimor.train_exp43_groupcv import run_identity
 
 METRICS = ("MAE", "QWK", "Exact_Match", "Kendall_tau", "Signed_Bias", "abs_Signed_Bias", "Bin_Agreement", "expected_score_MAE", "human_CE", "human_Brier", "human_RPS", "low_to_high_rate", "high_to_low_rate", "label1_recall", "label2_recall", "label3_recall", "label4_recall", "label5_recall")
@@ -66,10 +66,10 @@ def main() -> None:
                 summary_path, prediction_path = paths(args.run_root, variant, seed, fold)
                 exists = summary_path.exists() and prediction_path.exists()
                 summary = json.loads(summary_path.read_text(encoding="utf-8")) if summary_path.exists() else {}
-                expected = expected_fingerprint(args, variant, seed, fold) if args.require_fingerprints else None
+                expected = expected_fingerprint(args, variant, seed, fold)
                 fingerprint_match = summary.get("run_fingerprint") == expected if args.require_fingerprints else True
                 valid = exists and summary.get("status") == "COMPLETED" and summary.get("fixed_final_epoch") == 10 and summary.get("question_key_overlap") == 0 and summary.get("nan_count") == 0 and summary.get("oom_count") == 0 and summary.get("test_access_count") == 0 and fingerprint_match
-                run_completion.append({"variant": variant, "seed": seed, "fold": fold, "exists": exists, "valid": valid, "status": summary.get("status", "MISSING"), "epochs": summary.get("fixed_final_epoch"), "fingerprint_required": args.require_fingerprints, "fingerprint_match": fingerprint_match, "run_fingerprint": summary.get("run_fingerprint", "MISSING"), "expected_fingerprint": expected or "NOT_REQUIRED", "oom_count": summary.get("oom_count", 0), "nan_count": summary.get("nan_count", 0), "test_access_count": summary.get("test_access_count", 0)})
+                run_completion.append({"variant": variant, "seed": seed, "fold": fold, "exists": exists, "valid": valid, "status": summary.get("status", "MISSING"), "epochs": summary.get("fixed_final_epoch"), "fingerprint_required": args.require_fingerprints, "fingerprint_match": fingerprint_match, "run_fingerprint": summary.get("run_fingerprint", "MISSING"), "expected_fingerprint": expected, "oom_count": summary.get("oom_count", 0), "nan_count": summary.get("nan_count", 0), "test_access_count": summary.get("test_access_count", 0)})
                 if not valid:
                     complete = False
                     continue
@@ -119,7 +119,35 @@ def main() -> None:
     write_csv(args.out_dir / "tables/exp43_groupcv_pair_metrics.csv", pair_rows)
     write_csv(args.out_dir / "tables/exp43_groupcv_stratified_metrics.csv", strata_rows)
     write_csv(args.out_dir / "tables/exp43_metric_residual_norms.csv", residual_rows)
-    write_json(args.out_dir / "hashes/exp43_training_config_hashes.json", {"available_complete_variant_seeds": sorted(f"{key[0]}:{key[1]}" for key in prediction_cache), "completed_runs": sum(bool(row["valid"]) for row in run_completion), "oom_count": sum(int(row["oom_count"]) for row in run_completion), "nan_count": sum(int(row["nan_count"]) for row in run_completion), "test_access_count": 0})
+    locked_training_config = {
+        "epochs": 10, "learning_rate": 2e-5, "weight_decay": .01,
+        "warmup_ratio": .05, "batch_size": 4, "eval_batch_size": 4,
+        "gradient_accumulation": 32, "max_length": 2048,
+        "checkpoint_selection": "fixed_epoch_10_groupcv",
+    }
+    fingerprint_rows = [
+        {
+            "variant": row["variant"], "seed": int(row["seed"]), "fold": int(row["fold"]),
+            "expected_run_fingerprint": row["expected_fingerprint"],
+            "observed_run_fingerprint": row["run_fingerprint"],
+            "fingerprint_status": (
+                "MATCH" if row["run_fingerprint"] == row["expected_fingerprint"]
+                else "LEGACY_MISSING" if row["run_fingerprint"] == "MISSING"
+                else "MISMATCH"
+            ),
+        }
+        for row in run_completion
+    ]
+    write_json(args.out_dir / "hashes/exp43_training_config_hashes.json", {
+        "locked_training_config": locked_training_config,
+        "locked_training_config_sha256": stable_hash(locked_training_config),
+        "run_fingerprints": fingerprint_rows,
+        "available_complete_variant_seeds": sorted(f"{key[0]}:{key[1]}" for key in prediction_cache),
+        "completed_runs": sum(bool(row["valid"]) for row in run_completion),
+        "oom_count": sum(int(row["oom_count"]) for row in run_completion),
+        "nan_count": sum(int(row["nan_count"]) for row in run_completion),
+        "test_access_count": 0,
+    })
     print(json.dumps({"status": "COLLECTED", "variant_seeds": len(per_seed), "completed_runs": sum(bool(row["valid"]) for row in run_completion), "test_access_count": 0}, sort_keys=True))
 
 

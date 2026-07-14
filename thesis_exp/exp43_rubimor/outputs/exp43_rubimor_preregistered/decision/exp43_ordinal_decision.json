@@ -1,0 +1,20 @@
+{
+  "checks": {
+    "exact_guard": true,
+    "high_to_low_guard": true,
+    "label5_guard": true,
+    "mae_guard": true,
+    "mechanism_improvement": true,
+    "qwk_guard": true
+  },
+  "mechanisms": {
+    "expected_mae": false,
+    "kendall": false,
+    "mae": true,
+    "qwk": false,
+    "rps": false
+  },
+  "stage": "stage3",
+  "status": "GO",
+  "test_access_count": 0
+}
