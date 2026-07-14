@@ -18,7 +18,7 @@ PUBLIC_LAYOUT = {
     "reports": {".md"},
     "decision": {".json"},
     "hashes": {".json"},
-    "state": {".json"},
+    "state": {".json", ".txt"},
 }
 MAX_BYTES = 10 * 1024 * 1024
 PROHIBITED_SUFFIXES = {
