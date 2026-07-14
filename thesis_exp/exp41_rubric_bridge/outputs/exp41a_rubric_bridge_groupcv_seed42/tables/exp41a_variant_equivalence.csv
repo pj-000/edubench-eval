@@ -1,0 +1,8 @@
+variant,rows_equal,sample_id_order_equal,core_hash_equal,human_targets_equal,sample_weights_all_one
+v0_original_hard,True,True,True,True,True
+v0h_human_soft,True,True,True,True,True
+v1_raw_rubric,True,True,True,True,True
+v2_deterministic_checklist,True,True,True,True,True
+v3_rubric_bridge,True,True,True,True,True
+v4_shuffled_compiled_rubric,True,True,True,True,True
+v5_human_soft_logit_adjustment,True,True,True,True,True

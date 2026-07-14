@@ -1,0 +1,12 @@
+{
+  "dev_access_count": 0,
+  "processed_path_audit_only": "thesis_exp/data/processed/edubench_scoring_all.jsonl",
+  "processed_sha256": "a03de97382990f8df0c06741a33611bca734d69b3c681a14cc18ee6c88e5be0b",
+  "rubric_unit_rows": 1044,
+  "rubric_unit_sha256": "b861b609bfa464fd813095ad222fb5a82008e715a47c6cfb2e2370b024e3cc10",
+  "test_access_count": 0,
+  "train_path": "thesis_exp/data/splits/paper_like_triple_seed42/train.jsonl",
+  "train_rows": 2654,
+  "train_sha256": "0a1733b9209984c5c4291d205d1ac6057bed341717903b9de075d07de44a878e",
+  "unit_identity_sha256": "983da1afaf0b507af378cbd96ac67117e598c7bbb99ff90b99095f912e1c521b"
+}

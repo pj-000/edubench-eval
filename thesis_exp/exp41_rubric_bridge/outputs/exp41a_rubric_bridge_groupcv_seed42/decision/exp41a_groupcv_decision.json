@@ -1,0 +1,24 @@
+{
+  "bootstrap_resamples": 5000,
+  "bootstrap_unit": "question_key",
+  "dev_access_count": 0,
+  "gates": {
+    "absolute_bias_guard": true,
+    "exact_guard": true,
+    "high_to_low_guard": true,
+    "kendall_guard": true,
+    "label2_guard": true,
+    "label5_guard": true,
+    "low_to_high_guard": true,
+    "no_significant_bootstrap_harm_mae_qwk_exact": true,
+    "outperforms_v1_raw_rubric": false,
+    "outperforms_v2_deterministic_checklist": false,
+    "outperforms_v4_shuffled": true,
+    "primary_gain_mae_or_qwk": true
+  },
+  "label_free_inference_preprocessing": true,
+  "recommend_run_multiseed": false,
+  "status": "GROUPCV_STOP",
+  "stop_llm_rubric_compiler_route": true,
+  "test_access_count": 0
+}

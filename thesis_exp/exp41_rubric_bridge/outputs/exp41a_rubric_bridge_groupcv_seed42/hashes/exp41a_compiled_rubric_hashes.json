@@ -1,0 +1,9 @@
+{
+  "compiled_file_sha256": "4917de6a140f56a761ffeb35644640cec1bbcaaa53bcb51c0c637370a4435c82",
+  "compiled_identity_content_sha256": "32f1fc7025065646e9292e88634a2551b1df0f87ef2ff58577daae74a9c61411",
+  "compiled_private_path": "thesis_exp/exp41_rubric_bridge/outputs/exp41a_rubric_bridge_groupcv_seed42/private/compiled_rubrics/exp41a_qwen_compiled_rubrics.jsonl",
+  "compiled_rows": 1044,
+  "dev_access_count": 0,
+  "test_access_count": 0,
+  "tokenizer_name_or_path": "/home/share/models/modelscope/Qwen/Qwen3-Reranker-0.6B"
+}

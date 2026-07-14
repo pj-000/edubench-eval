@@ -1,0 +1,71 @@
+{
+  "class_priors_5": [
+    0.00904295403165034,
+    0.019593067068575734,
+    0.09457422758100979,
+    0.35644310474755087,
+    0.5203466465712132
+  ],
+  "dev_access_count": 0,
+  "shuffle_mapping_sha256": "a8f967daf5c11f896951655f9b64999feab842480b8540884411a9a6a5fceccc",
+  "test_access_count": 0,
+  "tokenizer_name_or_path": "/home/share/models/modelscope/Qwen/Qwen3-Reranker-0.6B",
+  "variants": {
+    "v0_original_hard": {
+      "core_identity_sha256": "255cc3279319ec02e157c541fb78d937e1782638e2b5237467619770f816d756",
+      "human_target_sha256": "78abe8ff470a474514f59db9e1c1cd16f19bfae6f727f6e29924c7481e354e18",
+      "path": "thesis_exp/exp41_rubric_bridge/outputs/exp41a_rubric_bridge_groupcv_seed42/private/data/exp41a_v0_original_hard.jsonl",
+      "rows": 2654,
+      "sample_order_sha256": "a6db06f185344757ffe9874fe182c98840923b6c7e8ce6c97f03f7c7a1f7a2ce",
+      "sha256": "6c1b726650bfc0b0c5e41dae796c502a5b1b2431928c90b97efceb19e82d2472"
+    },
+    "v0h_human_soft": {
+      "core_identity_sha256": "255cc3279319ec02e157c541fb78d937e1782638e2b5237467619770f816d756",
+      "human_target_sha256": "78abe8ff470a474514f59db9e1c1cd16f19bfae6f727f6e29924c7481e354e18",
+      "path": "thesis_exp/exp41_rubric_bridge/outputs/exp41a_rubric_bridge_groupcv_seed42/private/data/exp41a_v0h_human_soft.jsonl",
+      "rows": 2654,
+      "sample_order_sha256": "a6db06f185344757ffe9874fe182c98840923b6c7e8ce6c97f03f7c7a1f7a2ce",
+      "sha256": "1268e0ec9c7441312d896df7f544fe4333e778ac017b26c4f5286744dd8e0d88"
+    },
+    "v1_raw_rubric": {
+      "core_identity_sha256": "255cc3279319ec02e157c541fb78d937e1782638e2b5237467619770f816d756",
+      "human_target_sha256": "78abe8ff470a474514f59db9e1c1cd16f19bfae6f727f6e29924c7481e354e18",
+      "path": "thesis_exp/exp41_rubric_bridge/outputs/exp41a_rubric_bridge_groupcv_seed42/private/data/exp41a_v1_raw_rubric.jsonl",
+      "rows": 2654,
+      "sample_order_sha256": "a6db06f185344757ffe9874fe182c98840923b6c7e8ce6c97f03f7c7a1f7a2ce",
+      "sha256": "2aaa6a524ae82a0dea99ef8fc940866270363e0f41768d7d5d03217e4b2aa98a"
+    },
+    "v2_deterministic_checklist": {
+      "core_identity_sha256": "255cc3279319ec02e157c541fb78d937e1782638e2b5237467619770f816d756",
+      "human_target_sha256": "78abe8ff470a474514f59db9e1c1cd16f19bfae6f727f6e29924c7481e354e18",
+      "path": "thesis_exp/exp41_rubric_bridge/outputs/exp41a_rubric_bridge_groupcv_seed42/private/data/exp41a_v2_deterministic_checklist.jsonl",
+      "rows": 2654,
+      "sample_order_sha256": "a6db06f185344757ffe9874fe182c98840923b6c7e8ce6c97f03f7c7a1f7a2ce",
+      "sha256": "9412f87d3e365c288e634c84992fc87462ab8fb8035bc3d80ee2468070265f61"
+    },
+    "v3_rubric_bridge": {
+      "core_identity_sha256": "255cc3279319ec02e157c541fb78d937e1782638e2b5237467619770f816d756",
+      "human_target_sha256": "78abe8ff470a474514f59db9e1c1cd16f19bfae6f727f6e29924c7481e354e18",
+      "path": "thesis_exp/exp41_rubric_bridge/outputs/exp41a_rubric_bridge_groupcv_seed42/private/data/exp41a_v3_rubric_bridge.jsonl",
+      "rows": 2654,
+      "sample_order_sha256": "a6db06f185344757ffe9874fe182c98840923b6c7e8ce6c97f03f7c7a1f7a2ce",
+      "sha256": "597d0af4b3b2c3e1cfe77b7cd263aff153341544b4391ffd61b871ac828911c3"
+    },
+    "v4_shuffled_compiled_rubric": {
+      "core_identity_sha256": "255cc3279319ec02e157c541fb78d937e1782638e2b5237467619770f816d756",
+      "human_target_sha256": "78abe8ff470a474514f59db9e1c1cd16f19bfae6f727f6e29924c7481e354e18",
+      "path": "thesis_exp/exp41_rubric_bridge/outputs/exp41a_rubric_bridge_groupcv_seed42/private/data/exp41a_v4_shuffled_compiled_rubric.jsonl",
+      "rows": 2654,
+      "sample_order_sha256": "a6db06f185344757ffe9874fe182c98840923b6c7e8ce6c97f03f7c7a1f7a2ce",
+      "sha256": "008b205dbcb47170593643056c7ecdf9a1688e983a0286bca6a3cb09c64626ef"
+    },
+    "v5_human_soft_logit_adjustment": {
+      "core_identity_sha256": "255cc3279319ec02e157c541fb78d937e1782638e2b5237467619770f816d756",
+      "human_target_sha256": "78abe8ff470a474514f59db9e1c1cd16f19bfae6f727f6e29924c7481e354e18",
+      "path": "thesis_exp/exp41_rubric_bridge/outputs/exp41a_rubric_bridge_groupcv_seed42/private/data/exp41a_v5_human_soft_logit_adjustment.jsonl",
+      "rows": 2654,
+      "sample_order_sha256": "a6db06f185344757ffe9874fe182c98840923b6c7e8ce6c97f03f7c7a1f7a2ce",
+      "sha256": "381d498bf28ff5273c7a9755c39a51321dcb9bf1960564c73d8d4aa65ea5168d"
+    }
+  }
+}

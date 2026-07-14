@@ -1,0 +1,42 @@
+{
+  "answer_row_count": 2654,
+  "dev_access_count": 0,
+  "experiment": "Exp41A RUBRIC-Bridge",
+  "forbidden_input_fields": [
+    "answer",
+    "answer_id",
+    "answer_key",
+    "human_1",
+    "human_2",
+    "human_3",
+    "human_mean_5",
+    "judge_scores",
+    "label_5",
+    "model_prediction",
+    "predicted_score",
+    "teacher_score"
+  ],
+  "model": "qwen3.7-max",
+  "prompt_sha256": "05467d01419d516258fd3b159f80ddf6d756313a74eb6fcdd62365b24fd60f4a",
+  "provider": "qwen",
+  "qualification_gate": {
+    "all_units_completed": true,
+    "answer_label_leakage": 0,
+    "compiled_length_le_256_rate": 1.0,
+    "duplicate_criterion_rate_max": 0.01,
+    "quote_validity": 1.0,
+    "schema_success_min": 0.99,
+    "target_scope_success": 1.0,
+    "units_coverage_ge_0p60_rate_min": 0.95
+  },
+  "response_format": "json_object",
+  "rubric_unit_count": 1044,
+  "rubric_unit_sha256": "b861b609bfa464fd813095ad222fb5a82008e715a47c6cfb2e2370b024e3cc10",
+  "schema_sha256": "561c105025572a702c3325507d47ec232e2ba27a322df96f15ebe7271c0337e4",
+  "target_scope": "rubric_only",
+  "teacher_role": "answer_blind_rubric_compiler_not_judge",
+  "temperature": 0,
+  "test_access_count": 0,
+  "thinking": "disabled",
+  "unit_key": "question_key + canonical_metric + normalized_raw_rubric + language"
+}

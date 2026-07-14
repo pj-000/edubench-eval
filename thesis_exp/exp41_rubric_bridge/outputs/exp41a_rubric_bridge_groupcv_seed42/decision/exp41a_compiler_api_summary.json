@@ -1,0 +1,13 @@
+{
+  "answer_blind": true,
+  "completed_outputs": 1044,
+  "dev_access_count": 0,
+  "expected_outputs": 1044,
+  "label_blind": true,
+  "model": "qwen3.7-max",
+  "provider": "qwen",
+  "routing_identity_normalization_count": 14,
+  "schema_success_rate": 1.0,
+  "status": "COMPLETED",
+  "test_access_count": 0
+}

@@ -1,0 +1,8 @@
+variant,rows,mean_input_tokens,p95_input_tokens,answer_truncation_count,answer_truncation_rate,rubric_truncation_count,rubric_truncation_rate
+v0_original_hard,2654,396.26601356443103,742.0,0,0.0,0,0.0
+v0h_human_soft,2654,396.26601356443103,742.0,0,0.0,0,0.0
+v1_raw_rubric,2654,524.9001507159005,871.3499999999999,0,0.0,0,0.0
+v2_deterministic_checklist,2654,554.4709871891484,900.0,0,0.0,0,0.0
+v3_rubric_bridge,2654,625.3402411454408,971.3499999999999,0,0.0,0,0.0
+v4_shuffled_compiled_rubric,2654,624.3873398643557,975.3499999999999,0,0.0,0,0.0
+v5_human_soft_logit_adjustment,2654,396.26601356443103,742.0,0,0.0,0,0.0

@@ -1,0 +1,32 @@
+language,metric_group,answer_rows_per_unit,rubric_units,shared_answer_rows
+en,Factual & Reasoning Accuracy,1,20,20
+en,Factual & Reasoning Accuracy,2,62,124
+en,Factual & Reasoning Accuracy,3,36,108
+en,Factual & Reasoning Accuracy,4,24,96
+en,Factual & Reasoning Accuracy,5,11,55
+en,Pedagogical Application,1,31,31
+en,Pedagogical Application,2,57,114
+en,Pedagogical Application,3,34,102
+en,Pedagogical Application,4,19,76
+en,Pedagogical Application,5,8,40
+en,Scenario Adaptability,1,41,41
+en,Scenario Adaptability,2,83,166
+en,Scenario Adaptability,3,49,147
+en,Scenario Adaptability,4,39,156
+en,Scenario Adaptability,5,13,65
+zh,Factual & Reasoning Accuracy,1,27,27
+zh,Factual & Reasoning Accuracy,2,50,100
+zh,Factual & Reasoning Accuracy,3,42,126
+zh,Factual & Reasoning Accuracy,4,18,72
+zh,Factual & Reasoning Accuracy,5,12,60
+zh,Pedagogical Application,1,29,29
+zh,Pedagogical Application,2,55,110
+zh,Pedagogical Application,3,37,111
+zh,Pedagogical Application,4,19,76
+zh,Pedagogical Application,5,5,25
+zh,Scenario Adaptability,1,41,41
+zh,Scenario Adaptability,2,81,162
+zh,Scenario Adaptability,3,48,144
+zh,Scenario Adaptability,4,36,144
+zh,Scenario Adaptability,5,16,80
+zh,Scenario Adaptability,6,1,6

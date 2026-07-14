@@ -1,0 +1,13 @@
+{
+  "compiler_protocol_sha256": "affbb689b54f2d90e136dd43a4b12182ea976da9e8027e3c1a6e2d072254d319",
+  "dev_access_count": 0,
+  "fold_assignment_sha256": "e1602c8fc03876bea9948132162e513623f4255d64883854644d03eba34daa24",
+  "folds": 5,
+  "group": "question_key",
+  "groupcv_config_sha256": "5b881179b02c0fc0861bcdcb77b7455c22b93891d2fcec9f736a4db61ec85d67",
+  "label_free_inference_preprocessing": true,
+  "random_state": 42,
+  "stratify": "rounded_label_x_language",
+  "test_access_count": 0,
+  "training_matrix_sha256": "b1ef2e8997ef8f933a9ad3719c203e6713d4964b5d25a5307f492f11731575c9"
+}
