@@ -7,9 +7,11 @@ import csv
 import json
 from collections import Counter
 from pathlib import Path
+from types import SimpleNamespace
 from typing import Any
 
 from thesis_exp.exp43_rubimor.common import ROOT, RUN_ROOT, SEEDS, VARIANTS, mean_std, prediction_metrics, read_jsonl, write_csv, write_json
+from thesis_exp.exp43_rubimor.train_exp43_groupcv import run_identity
 
 METRICS = ("MAE", "QWK", "Exact_Match", "Kendall_tau", "Signed_Bias", "abs_Signed_Bias", "Bin_Agreement", "expected_score_MAE", "human_CE", "human_Brier", "human_RPS", "low_to_high_rate", "high_to_low_rate", "label1_recall", "label2_recall", "label3_recall", "label4_recall", "label5_recall")
 
@@ -21,7 +23,19 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--variants", nargs="+", choices=VARIANTS, default=list(VARIANTS))
     parser.add_argument("--seeds", nargs="+", type=int, choices=SEEDS, default=list(SEEDS))
     parser.add_argument("--require-complete", action="store_true")
+    parser.add_argument("--require-fingerprints", action="store_true")
     return parser.parse_args()
+
+
+def expected_fingerprint(args: argparse.Namespace, variant: str, seed: int, fold: int) -> str:
+    identity_args = SimpleNamespace(
+        variant=variant, mode="groupcv", fold=fold, seed=seed,
+        epochs=10, learning_rate=2e-5, weight_decay=.01, warmup_ratio=.05,
+        batch_size=4, eval_batch_size=4, gradient_accumulation=32,
+        max_length=2048, max_train_rows=None, max_eval_rows=None,
+        max_updates=None, out_dir=args.out_dir,
+    )
+    return str(run_identity(identity_args)["run_fingerprint"])
 
 
 def paths(run_root: Path, variant: str, seed: int, fold: int) -> tuple[Path, Path]:
@@ -52,8 +66,10 @@ def main() -> None:
                 summary_path, prediction_path = paths(args.run_root, variant, seed, fold)
                 exists = summary_path.exists() and prediction_path.exists()
                 summary = json.loads(summary_path.read_text(encoding="utf-8")) if summary_path.exists() else {}
-                valid = exists and summary.get("status") == "COMPLETED" and summary.get("fixed_final_epoch") == 10 and summary.get("question_key_overlap") == 0 and summary.get("nan_count") == 0 and summary.get("oom_count") == 0 and summary.get("test_access_count") == 0
-                run_completion.append({"variant": variant, "seed": seed, "fold": fold, "exists": exists, "valid": valid, "status": summary.get("status", "MISSING"), "epochs": summary.get("fixed_final_epoch"), "oom_count": summary.get("oom_count", 0), "nan_count": summary.get("nan_count", 0), "test_access_count": summary.get("test_access_count", 0)})
+                expected = expected_fingerprint(args, variant, seed, fold) if args.require_fingerprints else None
+                fingerprint_match = summary.get("run_fingerprint") == expected if args.require_fingerprints else True
+                valid = exists and summary.get("status") == "COMPLETED" and summary.get("fixed_final_epoch") == 10 and summary.get("question_key_overlap") == 0 and summary.get("nan_count") == 0 and summary.get("oom_count") == 0 and summary.get("test_access_count") == 0 and fingerprint_match
+                run_completion.append({"variant": variant, "seed": seed, "fold": fold, "exists": exists, "valid": valid, "status": summary.get("status", "MISSING"), "epochs": summary.get("fixed_final_epoch"), "fingerprint_required": args.require_fingerprints, "fingerprint_match": fingerprint_match, "run_fingerprint": summary.get("run_fingerprint", "MISSING"), "expected_fingerprint": expected or "NOT_REQUIRED", "oom_count": summary.get("oom_count", 0), "nan_count": summary.get("nan_count", 0), "test_access_count": summary.get("test_access_count", 0)})
                 if not valid:
                     complete = False
                     continue
@@ -109,4 +125,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-
