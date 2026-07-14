@@ -1,0 +1,82 @@
+{
+  "dev_E0": {
+    "path": "thesis_exp/exp43_rubimor/outputs/exp43_rubimor_preregistered/private/data/exp43_dev_E0.jsonl",
+    "rows": 664,
+    "sha256": "7d5a7789e4176a97504d76a62dbfc8d84893cab3651d5923e92ccd31789cfd7c"
+  },
+  "dev_E1": {
+    "path": "thesis_exp/exp43_rubimor/outputs/exp43_rubimor_preregistered/private/data/exp43_dev_E1.jsonl",
+    "rows": 664,
+    "sha256": "4735a0bf230996079eac9886beeaf9676912c17299ba62df5498916aa00558c6"
+  },
+  "dev_E2": {
+    "path": "thesis_exp/exp43_rubimor/outputs/exp43_rubimor_preregistered/private/data/exp43_dev_E2.jsonl",
+    "rows": 664,
+    "sha256": "625c7f3f49935ac94eaf1478fe38b3fc98f7ee83a2cec17dd3693bbf00aaf086"
+  },
+  "dev_E3": {
+    "path": "thesis_exp/exp43_rubimor/outputs/exp43_rubimor_preregistered/private/data/exp43_dev_E3.jsonl",
+    "rows": 664,
+    "sha256": "d43e4a2c1d525dc95dd9c6305490bb570127a60b96a6531254994a21faab38ef"
+  },
+  "dev_E4": {
+    "path": "thesis_exp/exp43_rubimor/outputs/exp43_rubimor_preregistered/private/data/exp43_dev_E4.jsonl",
+    "rows": 664,
+    "sha256": "e54f3db104aebe32e0ea74823b2d492a0bed8a3424638321529b8be8dfaca6f3"
+  },
+  "dev_E5": {
+    "path": "thesis_exp/exp43_rubimor/outputs/exp43_rubimor_preregistered/private/data/exp43_dev_E5.jsonl",
+    "rows": 664,
+    "sha256": "34090d28a72b97f5804b406acc271a1ff46a7cf336b7de83691bc5840e5a6a51"
+  },
+  "dev_E6": {
+    "path": "thesis_exp/exp43_rubimor/outputs/exp43_rubimor_preregistered/private/data/exp43_dev_E6.jsonl",
+    "rows": 664,
+    "sha256": "ec0c6ccb8da720ab1abbc64a7b1cabfe7bb1742475ba9798501cc2f17423927d"
+  },
+  "dev_E6N": {
+    "path": "thesis_exp/exp43_rubimor/outputs/exp43_rubimor_preregistered/private/data/exp43_dev_E6N.jsonl",
+    "rows": 664,
+    "sha256": "67e008fd975982883342546a3e77dd470dd1e15e2a1cc6929aaf89dba6a146f8"
+  },
+  "train_E0": {
+    "path": "thesis_exp/exp43_rubimor/outputs/exp43_rubimor_preregistered/private/data/exp43_train_E0.jsonl",
+    "rows": 2654,
+    "sha256": "abec54689fb15531cd950b386f0d5d4406f88e6814a1dde5c95573a8a0b25c96"
+  },
+  "train_E1": {
+    "path": "thesis_exp/exp43_rubimor/outputs/exp43_rubimor_preregistered/private/data/exp43_train_E1.jsonl",
+    "rows": 2654,
+    "sha256": "2f6202667a47dcad2e6e3561c0796741f9e378899cac74aab7c3290f74ec71e8"
+  },
+  "train_E2": {
+    "path": "thesis_exp/exp43_rubimor/outputs/exp43_rubimor_preregistered/private/data/exp43_train_E2.jsonl",
+    "rows": 2654,
+    "sha256": "55e5359609a77b0f743964f6be28d3a00801465c788b172fc030d3a67407f74b"
+  },
+  "train_E3": {
+    "path": "thesis_exp/exp43_rubimor/outputs/exp43_rubimor_preregistered/private/data/exp43_train_E3.jsonl",
+    "rows": 2654,
+    "sha256": "30417ac05dc107c621f125ad794e869b5ac0a0bcd8b4b3f7fd0d7ffb17cee5d0"
+  },
+  "train_E4": {
+    "path": "thesis_exp/exp43_rubimor/outputs/exp43_rubimor_preregistered/private/data/exp43_train_E4.jsonl",
+    "rows": 2654,
+    "sha256": "30e12d1d94762ac2a0ff7484ab50ab22a302f056773bd890156d61fdf395f1e8"
+  },
+  "train_E5": {
+    "path": "thesis_exp/exp43_rubimor/outputs/exp43_rubimor_preregistered/private/data/exp43_train_E5.jsonl",
+    "rows": 2654,
+    "sha256": "eadfdc37332bb9f742fd592bbe37f4fc751efd18f50cdf649a441ad59f51bd08"
+  },
+  "train_E6": {
+    "path": "thesis_exp/exp43_rubimor/outputs/exp43_rubimor_preregistered/private/data/exp43_train_E6.jsonl",
+    "rows": 2654,
+    "sha256": "7c40ef41b0c4f47b499605e86401c8f93396cf96a85948e350b52297c56e4161"
+  },
+  "train_E6N": {
+    "path": "thesis_exp/exp43_rubimor/outputs/exp43_rubimor_preregistered/private/data/exp43_train_E6N.jsonl",
+    "rows": 2654,
+    "sha256": "c43c5115c59f2b690227769e74ec9ac3c77c466c968a754b5694aa63ca97cde0"
+  }
+}

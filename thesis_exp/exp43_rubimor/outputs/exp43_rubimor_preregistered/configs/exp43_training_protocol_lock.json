@@ -1,0 +1,23 @@
+{
+  "epochs": 10,
+  "eval_batch_size": 4,
+  "full_finetuning": true,
+  "gradient_accumulation_steps": 32,
+  "gradient_checkpointing": false,
+  "gradient_clip": 1.0,
+  "groupcv_checkpoint_selection": "fixed_epoch_10",
+  "headline_checkpoint_selection": "highest_dev_exact_then_lower_mae_then_earlier_epoch",
+  "learning_rate": 2e-05,
+  "max_length": 2048,
+  "optimizer": "AdamW",
+  "point_batch_size": 4,
+  "precision": "bf16_all_A6000",
+  "scheduler": "cosine",
+  "seeds": [
+    42,
+    43,
+    44
+  ],
+  "warmup_ratio": 0.05,
+  "weight_decay": 0.01
+}

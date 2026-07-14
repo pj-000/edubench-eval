@@ -1,0 +1,31 @@
+{
+  "field_budgets": {
+    "answer": 1024,
+    "metadata": 128,
+    "metric": 64,
+    "question": 256,
+    "rubric": 384
+  },
+  "forbidden_input_fields": [
+    "generator_model",
+    "answer_model",
+    "judge_scores",
+    "human_1",
+    "human_2",
+    "human_3",
+    "label_5",
+    "teacher_output",
+    "sample_weight"
+  ],
+  "max_length": 2048,
+  "variants": [
+    "E0",
+    "E1",
+    "E2",
+    "E3",
+    "E4",
+    "E5",
+    "E6",
+    "E6N"
+  ]
+}

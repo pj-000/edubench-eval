@@ -1,0 +1,26 @@
+{
+  "runs": [
+    {
+      "valid": true,
+      "variant": "E0"
+    },
+    {
+      "valid": true,
+      "variant": "E4"
+    },
+    {
+      "valid": true,
+      "variant": "E5"
+    },
+    {
+      "valid": true,
+      "variant": "E6"
+    },
+    {
+      "valid": true,
+      "variant": "E6N"
+    }
+  ],
+  "status": "GO",
+  "test_access_count": 0
+}

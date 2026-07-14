@@ -1,0 +1,13 @@
+{
+  "checks": {
+    "all_finite": true,
+    "ordinal_gradient_guard": true,
+    "ordinal_ratio_in_range": true,
+    "rank_gradient_guard": true,
+    "rank_ratio_in_range": true
+  },
+  "pairs": 128,
+  "point_rows": 256,
+  "status": "GO",
+  "test_access_count": 0
+}

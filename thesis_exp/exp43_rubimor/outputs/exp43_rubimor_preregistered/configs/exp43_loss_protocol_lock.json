@@ -1,0 +1,8 @@
+{
+  "automatic_coefficient_adjustment": false,
+  "distribution": "human distribution CE",
+  "ordinal": "CDF MSE",
+  "ordinal_coefficient": 0.5,
+  "rank": "RankNet softplus expected-score difference",
+  "rank_coefficient": 0.25
+}

@@ -1,0 +1,5 @@
+{
+  "config_sha256": "d479c427a9ca5295218063d4f9aca4f297ab4ac27487cca7af42c84643d51ef0",
+  "model_path": "/home/share/models/modelscope/Qwen/Qwen3-Reranker-0.6B",
+  "tokenizer_config_sha256": "253153d0738ceb4c668d2eff957714dd2bea0b56de772a9fdccd96cbf517e6a0"
+}
