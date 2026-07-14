@@ -36,7 +36,7 @@ echo "Exp43 ${MODE} matrix: ${#JOBS[@]} runs; variants=${VARIANTS_STRING}; seeds
 
 run_queue() {
   local gpu="$1"; shift
-  local job variant rest seed fold run_dir summary prediction log extra
+  local job variant rest seed fold run_dir summary prediction log extra fingerprint
   for job in "$@"; do
     variant="${job%%:*}"; rest="${job#*:}"; seed="${rest%%:*}"; fold="${rest##*:}"
     if [[ "${MODE}" == "headline" ]]; then
@@ -47,15 +47,21 @@ run_queue() {
       prediction="${run_dir}/heldout_predictions.jsonl"
     fi
     summary="${run_dir}/run_summary.json"
-    if [[ "${SKIP_COMPLETED:-1}" == "1" && -s "${summary}" && -s "${prediction}" ]] && "${PYTHON}" - "${summary}" <<'PY'
-import json,pathlib,sys
-row=json.loads(pathlib.Path(sys.argv[1]).read_text(encoding="utf-8"))
-raise SystemExit(0 if row.get("status")=="COMPLETED" and row.get("nan_count")==0 and row.get("oom_count")==0 and row.get("test_access_count")==0 else 1)
-PY
-    then echo "Skipping completed ${MODE} ${variant} seed=${seed} fold=${fold}"; continue; fi
     log="${OUT_DIR}/logs_private/${MODE}_${variant}_seed${seed}_fold${fold}_gpu${gpu}.log"; mkdir -p "$(dirname "${log}")"
     extra=()
     if [[ "${MODE}" == "smoke" ]]; then extra+=(--epochs 1 --batch-size 1 --eval-batch-size 1 --gradient-accumulation 1 --max-train-rows 32 --max-eval-rows 32 --max-updates 1); fi
+    fingerprint=$("${PYTHON}" -m thesis_exp.exp43_rubimor.train_exp43_groupcv \
+      --variant "${variant}" --mode "${MODE}" --seed "${seed}" --fold "${fold}" \
+      --model-name-or-path "${MODEL}" --out-dir "${OUT_DIR}" --run-root "${RUN_ROOT}" --artifact-root "${ARTIFACT_ROOT}" \
+      --epochs 10 --learning-rate 2e-5 --weight-decay .01 --warmup-ratio .05 --batch-size 4 --eval-batch-size 4 --gradient-accumulation 32 --max-length 2048 \
+      "${extra[@]}" --fingerprint-only | "${PYTHON}" -c 'import json,sys; print(json.load(sys.stdin)["run_fingerprint"])')
+    if [[ "${SKIP_COMPLETED:-1}" == "1" && -s "${summary}" && -s "${prediction}" ]] && "${PYTHON}" - "${summary}" "${fingerprint}" <<'PY'
+import json,pathlib,sys
+row=json.loads(pathlib.Path(sys.argv[1]).read_text(encoding="utf-8"))
+valid=(row.get("status")=="COMPLETED" and row.get("nan_count")==0 and row.get("oom_count")==0 and row.get("test_access_count")==0 and row.get("run_fingerprint")==sys.argv[2])
+raise SystemExit(0 if valid else 1)
+PY
+    then echo "Skipping hash-matched completed ${MODE} ${variant} seed=${seed} fold=${fold}"; continue; fi
     echo "Starting Exp43 ${MODE} ${variant} seed=${seed} fold=${fold} GPU=${gpu}"
     CUDA_VISIBLE_DEVICES="${gpu}" "${PYTHON}" -m thesis_exp.exp43_rubimor.train_exp43_groupcv \
       --variant "${variant}" --mode "${MODE}" --seed "${seed}" --fold "${fold}" \

@@ -17,7 +17,8 @@ import numpy as np
 
 from thesis_exp.exp43_rubimor.common import (
     ARTIFACT_ROOT, METRIC_HEAD_VARIANTS, PAIR_VARIANTS, ROOT, RUN_ROOT, SEEDS,
-    VARIANTS, atomic_json, prediction_metrics, read_jsonl, stable_hash, write_jsonl,
+    VARIANTS, atomic_json, prediction_metrics, read_jsonl, sha256_file, stable_hash,
+    write_jsonl,
 )
 from thesis_exp.exp43_rubimor.losses_rubimor import pair_rank_loss, total_point_loss
 from thesis_exp.exp43_rubimor.modeling_rubimor import RubiMORConfig, build_model
@@ -56,7 +57,47 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--max-eval-rows", type=int)
     parser.add_argument("--max-updates", type=int)
     parser.add_argument("--resume", action="store_true")
+    parser.add_argument("--fingerprint-only", action="store_true")
     return parser.parse_args()
+
+
+def run_identity(args: argparse.Namespace) -> dict[str, Any]:
+    data_root = args.out_dir / "private/data"
+    data_files = [data_root / f"exp43_train_{args.variant}.jsonl"]
+    if args.mode in {"groupcv", "smoke"}:
+        data_files.append(data_root / "exp43_groupcv_fold_assignment.csv")
+        if args.variant in PAIR_VARIANTS:
+            data_files.append(args.out_dir / f"private/pairs/exp43_train_pairs_fold{args.fold}.jsonl")
+    else:
+        data_files.append(data_root / f"exp43_dev_{args.variant}.jsonl")
+        if args.variant in PAIR_VARIANTS:
+            data_files.append(args.out_dir / "private/pairs/exp43_train_pairs.jsonl")
+    missing = [str(path) for path in data_files if not path.exists()]
+    if missing:
+        raise FileNotFoundError(f"Missing Exp43 fingerprint inputs: {missing}")
+    code_files = [
+        Path("thesis_exp/exp43_rubimor/common.py"),
+        Path("thesis_exp/exp43_rubimor/losses_rubimor.py"),
+        Path("thesis_exp/exp43_rubimor/modeling_rubimor.py"),
+        Path("thesis_exp/exp43_rubimor/train_exp43_groupcv.py"),
+    ]
+    config = {
+        key: getattr(args, key)
+        for key in (
+            "variant", "mode", "fold", "seed", "epochs", "learning_rate",
+            "weight_decay", "warmup_ratio", "batch_size", "eval_batch_size",
+            "gradient_accumulation", "max_length", "max_train_rows",
+            "max_eval_rows", "max_updates",
+        )
+    }
+    identity = {
+        "config": config,
+        "data_hashes": {str(path): sha256_file(path) for path in data_files},
+        "model_hashes": json.loads((args.out_dir / "hashes/exp43_model_hashes.json").read_text(encoding="utf-8")),
+        "code_hashes": {str(path): sha256_file(path) for path in code_files},
+    }
+    identity["run_fingerprint"] = stable_hash(identity)
+    return identity
 
 
 def make_loader(rows: list[dict[str, Any]], tokenizer: Any, batch_size: int, shuffle: bool, seed: int, max_length: int) -> Any:
@@ -127,11 +168,11 @@ def evaluate(model: Any, rows: list[dict[str, Any]], tokenizer: Any, args: argpa
     return output_rows, prediction_metrics(output_rows)
 
 
-def checkpoint_save(path: Path, model: Any, optimizer: Any, scheduler: Any, epoch: int, global_step: int, best: dict[str, Any] | None = None, *, model_only: bool = False) -> None:
+def checkpoint_save(path: Path, model: Any, optimizer: Any, scheduler: Any, epoch: int, global_step: int, run_fingerprint: str, best: dict[str, Any] | None = None, *, model_only: bool = False) -> None:
     import torch
     path.parent.mkdir(parents=True, exist_ok=True)
     temp = path.with_suffix(".tmp")
-    payload = {"model": model.state_dict(), "epoch": epoch, "global_step": global_step, "best": best}
+    payload = {"model": model.state_dict(), "epoch": epoch, "global_step": global_step, "best": best, "run_fingerprint": run_fingerprint}
     if not model_only:
         payload.update({"optimizer": optimizer.state_dict(), "scheduler": scheduler.state_dict()})
     torch.save(payload, temp)
@@ -145,6 +186,11 @@ def main() -> None:
         raise ValueError("Formal Exp43 protocol is locked to epochs/lr/batches/max_length = 10/2e-5/4/4/32/2048")
     if args.mode == "headline" and args.variant not in {"E0", "E3", "E5", "E6", "E6N"}:
         raise ValueError("Headline variants are locked to E0/E3/E5/E6/E6N")
+    identity = run_identity(args)
+    if args.fingerprint_only:
+        print(json.dumps(identity, ensure_ascii=False, sort_keys=True))
+        return
+    fingerprint = identity["run_fingerprint"]
     data_root = args.out_dir / "private/data"
     all_train = read_jsonl(data_root / f"exp43_train_{args.variant}.jsonl")
     if args.mode in {"groupcv", "smoke"}:
@@ -209,6 +255,8 @@ def main() -> None:
     start_epoch, global_step, best = 1, 0, None
     if args.resume and resume_path.exists():
         state = torch.load(resume_path, map_location=device, weights_only=False)
+        if state.get("run_fingerprint") != fingerprint:
+            raise RuntimeError(f"Resume checkpoint fingerprint mismatch: {resume_path}")
         model.load_state_dict(state["model"]); optimizer.load_state_dict(state["optimizer"]); scheduler.load_state_dict(state["scheduler"])
         start_epoch, global_step, best = int(state["epoch"]) + 1, int(state["global_step"]), state.get("best")
     optimizer.zero_grad(set_to_none=True)
@@ -264,11 +312,11 @@ def main() -> None:
             candidate = {"epoch": epoch, "Exact_Match": metrics["Exact_Match"], "MAE": metrics["MAE"]}
             if best is None or (candidate["Exact_Match"], -candidate["MAE"], -candidate["epoch"]) > (best["Exact_Match"], -best["MAE"], -best["epoch"]):
                 best = candidate
-                checkpoint_save(run_dir / "best_checkpoint.pt", model, optimizer, scheduler, epoch, global_step, best, model_only=True)
+                checkpoint_save(run_dir / "best_checkpoint.pt", model, optimizer, scheduler, epoch, global_step, fingerprint, best, model_only=True)
                 write_jsonl(run_dir / "best_dev_predictions.jsonl", predictions)
         history.append(epoch_row)
-        checkpoint_save(resume_path, model, optimizer, scheduler, epoch, global_step, best)
-        atomic_json(run_dir / "run_summary.json", {"status": "STARTED", "variant": args.variant, "mode": args.mode, "seed": args.seed, "fold": args.fold, "last_completed_epoch": epoch, "global_step": global_step, "history": history})
+        checkpoint_save(resume_path, model, optimizer, scheduler, epoch, global_step, fingerprint, best)
+        atomic_json(run_dir / "run_summary.json", {"status": "STARTED", "variant": args.variant, "mode": args.mode, "seed": args.seed, "fold": args.fold, "last_completed_epoch": epoch, "global_step": global_step, "history": history, "run_fingerprint": fingerprint, "run_identity": identity})
         if stop:
             break
     if args.mode != "headline":
@@ -308,6 +356,7 @@ def main() -> None:
         "model_mode": "full_finetuning", "pooling": "last_non_padding_token", "hidden_size": model.hidden_size,
         "added_parameter_count": model.added_parameter_count(), "residual_enabled_metric_ids": sorted(residual_ids),
         "metric_residual_norms": residual_norms,
+        "run_fingerprint": fingerprint, "run_identity": identity,
         "pair_count": len(pairs), "pair_flip_count": len(flips), "pair_flip_rate": flip_rate,
         "smoke_save_reload": smoke_reload, "history": history, "metrics": final_metrics,
         "nan_count": 0, "oom_count": 0, "dev_access_count": int(args.mode == "headline"), "test_access_count": 0,
