@@ -1,0 +1,15 @@
+{
+  "e6n_flip_range": [
+    0.48,
+    0.52
+  ],
+  "e6n_flip_seed": 4242,
+  "far_target": 5,
+  "large_group_max_degree": 4,
+  "large_group_max_pairs": 12,
+  "minimum_expected_score_gap": 1.0,
+  "near_target": 7,
+  "same_question_key_metric": true,
+  "small_group_all_pairs_max_size": 6,
+  "stable_seed": 42
+}

@@ -1,0 +1,18 @@
+{
+  "count": 12,
+  "metrics": {
+    "Basic Factual Accuracy": 0,
+    "Clarity, Simplicity & Inspiration": 1,
+    "Content Relevance & Scope Control": 2,
+    "Domain Knowledge Accuracy": 3,
+    "Error Identification & Correction Precision": 4,
+    "Higher-Order Thinking & Skill Development": 5,
+    "Instruction Following & Task Completion": 6,
+    "Motivation, Guidance & Positive Feedback": 7,
+    "Personalization, Adaptation & Learning Support": 8,
+    "Reasoning Process Rigor": 9,
+    "Role & Tone Consistency": 10,
+    "Scenario Element Integration": 11
+  },
+  "unknown_metric_id": -1
+}

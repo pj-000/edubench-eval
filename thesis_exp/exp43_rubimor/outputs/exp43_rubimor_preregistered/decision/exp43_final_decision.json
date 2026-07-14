@@ -1,0 +1,12 @@
+{
+  "final_test_consumed": false,
+  "no_dev_test_method_tuning": true,
+  "no_teacher_api": true,
+  "no_teacher_relabeling": true,
+  "stage_statuses": {
+    "exp43_pair_data_decision": "GO",
+    "exp43_stage0_decision": "GO"
+  },
+  "status": "IN_PROGRESS",
+  "test_access_count": 0
+}

@@ -1,0 +1,4 @@
+key_type,overlap,required_zero
+sample_id,0,True
+normalized_question_answer_metric,0,True
+question_key,184,False

@@ -1,0 +1,7 @@
+scope,pairs,groups,near,far,metadata_mismatch_excluded,mismatch_rate,fold,endpoint_fold_leakage
+all_train,538,253,449,89,0,0.0,,
+,448,,377,71,,,0,0
+,452,,377,75,,,1,0
+,413,,348,65,,,2,0
+,404,,333,71,,,3,0
+,435,,361,74,,,4,0

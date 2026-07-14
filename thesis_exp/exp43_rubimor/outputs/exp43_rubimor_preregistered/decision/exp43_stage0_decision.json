@@ -1,0 +1,17 @@
+{
+  "checks": {
+    "canonical_metrics_nonempty_unique": true,
+    "dev_rows": true,
+    "exp42_fold_hash_reproduced": true,
+    "expected_or_audited_metric_count": true,
+    "human_scores_valid": true,
+    "test_not_parsed": true,
+    "test_public_manifest_rows": true,
+    "train_dev_triple_overlap_zero": true,
+    "train_rows": true,
+    "training_pool_rows": true
+  },
+  "status": "GO",
+  "test_access_count": 0,
+  "test_status": "PUBLIC_MANIFEST_ONLY_TEST_CONTENT_NOT_PARSED"
+}

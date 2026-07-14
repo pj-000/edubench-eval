@@ -1,0 +1,25 @@
+split,canonical_metric,count,rate
+train,Basic Factual Accuracy,322,0.12132629992464206
+train,"Clarity, Simplicity & Inspiration",187,0.07045968349660889
+train,Content Relevance & Scope Control,312,0.1175584024114544
+train,Domain Knowledge Accuracy,137,0.05162019593067069
+train,Error Identification & Correction Precision,134,0.050489826676714394
+train,Higher-Order Thinking & Skill Development,178,0.06706857573474001
+train,Instruction Following & Task Completion,490,0.18462697814619441
+train,"Motivation, Guidance & Positive Feedback",186,0.07008289374529013
+train,"Personalization, Adaptation & Learning Support",163,0.061416729464958554
+train,Reasoning Process Rigor,195,0.073474001507159
+train,Role & Tone Consistency,99,0.03730218538055765
+train,Scenario Element Integration,251,0.09457422758100979
+dev,Basic Factual Accuracy,83,0.125
+dev,"Clarity, Simplicity & Inspiration",47,0.07078313253012049
+dev,Content Relevance & Scope Control,76,0.1144578313253012
+dev,Domain Knowledge Accuracy,33,0.04969879518072289
+dev,Error Identification & Correction Precision,34,0.05120481927710843
+dev,Higher-Order Thinking & Skill Development,45,0.0677710843373494
+dev,Instruction Following & Task Completion,124,0.18674698795180722
+dev,"Motivation, Guidance & Positive Feedback",44,0.06626506024096386
+dev,"Personalization, Adaptation & Learning Support",41,0.061746987951807226
+dev,Reasoning Process Rigor,48,0.07228915662650602
+dev,Role & Tone Consistency,26,0.0391566265060241
+dev,Scenario Element Integration,63,0.09487951807228916

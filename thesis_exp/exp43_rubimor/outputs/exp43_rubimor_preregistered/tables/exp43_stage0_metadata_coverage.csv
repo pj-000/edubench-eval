@@ -1,0 +1,11 @@
+split,field,covered,rows,coverage
+train,rubric,2654,2654,1.0
+train,language,2654,2654,1.0
+train,subject,2654,2654,1.0
+train,scenario,2654,2654,1.0
+train,education_level,2654,2654,1.0
+dev,rubric,664,664,1.0
+dev,language,664,664,1.0
+dev,subject,664,664,1.0
+dev,scenario,664,664,1.0
+dev,education_level,664,664,1.0

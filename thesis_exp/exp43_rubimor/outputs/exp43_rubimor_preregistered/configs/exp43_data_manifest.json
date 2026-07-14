@@ -1,0 +1,24 @@
+{
+  "dev": {
+    "path": "thesis_exp/data/splits/paper_like_triple_seed42/dev.jsonl",
+    "rows": 664,
+    "sha256": "a18d6a27b9a524d4592a359658ae70c9348fe88e43c962971ba95f62d2b6cdf0"
+  },
+  "locked_start_commit": "4843230",
+  "processed_path": "thesis_exp/data/processed/edubench_scoring_all.jsonl",
+  "split_procedure": "original heldout flag repaired for triple isolation; train pool grouped by triple_key with seed42 into 80/20",
+  "test": {
+    "exists": true,
+    "manifest_path": "thesis_exp/outputs/exp00_data/tables/split_stats.csv",
+    "parsed": false,
+    "path": "thesis_exp/data/splits/paper_like_triple_seed42/test.jsonl",
+    "rows_from_public_manifest": 2218,
+    "status": "PUBLIC_MANIFEST_ONLY_TEST_CONTENT_NOT_PARSED"
+  },
+  "train": {
+    "path": "thesis_exp/data/splits/paper_like_triple_seed42/train.jsonl",
+    "rows": 2654,
+    "sha256": "0a1733b9209984c5c4291d205d1ac6057bed341717903b9de075d07de44a878e"
+  },
+  "training_pool_rows": 3318
+}
