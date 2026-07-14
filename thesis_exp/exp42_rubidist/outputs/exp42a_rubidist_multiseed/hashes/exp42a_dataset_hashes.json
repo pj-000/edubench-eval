@@ -1,0 +1,51 @@
+{
+  "dev_access_count": 0,
+  "hard_target_equality": true,
+  "no_rubric_input_equality": true,
+  "processed_path_audit_only": "thesis_exp/data/processed/edubench_scoring_all.jsonl",
+  "processed_sha256": "a03de97382990f8df0c06741a33611bca734d69b3c681a14cc18ee6c88e5be0b",
+  "raw_rubric_input_equality": true,
+  "soft_target_equality": true,
+  "test_access_count": 0,
+  "tokenizer_name_or_path": "/home/share/models/modelscope/Qwen/Qwen3-Reranker-0.6B",
+  "train_path": "thesis_exp/data/splits/paper_like_triple_seed42/train.jsonl",
+  "train_sha256": "0a1733b9209984c5c4291d205d1ac6057bed341717903b9de075d07de44a878e",
+  "variants": {
+    "v00_hard_no_rubric": {
+      "core_identity_sha256": "255cc3279319ec02e157c541fb78d937e1782638e2b5237467619770f816d756",
+      "input_text_sha256": "5fff5b9a8b0f50ecf94cf388c004744154e38190920db96912fff2e8e1c95e31",
+      "private_path": "thesis_exp/exp42_rubidist/outputs/exp42a_rubidist_multiseed/private/data/exp42a_v00_hard_no_rubric.jsonl",
+      "rows": 2654,
+      "sample_order_sha256": "a6db06f185344757ffe9874fe182c98840923b6c7e8ce6c97f03f7c7a1f7a2ce",
+      "sha256": "e04f7475f3c952bdca2451257354a2a20fe4392c851964c13775c5d000e1db1a",
+      "target_sha256": "3b4f643f95185bc36bc344577805fbe8d3ebca7f65fef3b16df1b22a298b2a32"
+    },
+    "v01_soft_no_rubric": {
+      "core_identity_sha256": "255cc3279319ec02e157c541fb78d937e1782638e2b5237467619770f816d756",
+      "input_text_sha256": "5fff5b9a8b0f50ecf94cf388c004744154e38190920db96912fff2e8e1c95e31",
+      "private_path": "thesis_exp/exp42_rubidist/outputs/exp42a_rubidist_multiseed/private/data/exp42a_v01_soft_no_rubric.jsonl",
+      "rows": 2654,
+      "sample_order_sha256": "a6db06f185344757ffe9874fe182c98840923b6c7e8ce6c97f03f7c7a1f7a2ce",
+      "sha256": "b362e2a6db8d810459e10c185073881466d19a740bd31b221d4af9175202e946",
+      "target_sha256": "78abe8ff470a474514f59db9e1c1cd16f19bfae6f727f6e29924c7481e354e18"
+    },
+    "v10_hard_raw_rubric": {
+      "core_identity_sha256": "255cc3279319ec02e157c541fb78d937e1782638e2b5237467619770f816d756",
+      "input_text_sha256": "a4aa85d178b33d56bb57e9b2d47c13b027fbc0b8cf9ba1ddd771b115af542cea",
+      "private_path": "thesis_exp/exp42_rubidist/outputs/exp42a_rubidist_multiseed/private/data/exp42a_v10_hard_raw_rubric.jsonl",
+      "rows": 2654,
+      "sample_order_sha256": "a6db06f185344757ffe9874fe182c98840923b6c7e8ce6c97f03f7c7a1f7a2ce",
+      "sha256": "88be8dd8d47d14d6e5c45d95cbfc2c81dcd4b3a8d77f5413312745c8f2bf6253",
+      "target_sha256": "3b4f643f95185bc36bc344577805fbe8d3ebca7f65fef3b16df1b22a298b2a32"
+    },
+    "v11_soft_raw_rubric": {
+      "core_identity_sha256": "255cc3279319ec02e157c541fb78d937e1782638e2b5237467619770f816d756",
+      "input_text_sha256": "a4aa85d178b33d56bb57e9b2d47c13b027fbc0b8cf9ba1ddd771b115af542cea",
+      "private_path": "thesis_exp/exp42_rubidist/outputs/exp42a_rubidist_multiseed/private/data/exp42a_v11_soft_raw_rubric.jsonl",
+      "rows": 2654,
+      "sample_order_sha256": "a6db06f185344757ffe9874fe182c98840923b6c7e8ce6c97f03f7c7a1f7a2ce",
+      "sha256": "e1e303d1a002ffe8cbf99b9eab16a2c57adcc62e907a4f0e3e91d135b309dc6d",
+      "target_sha256": "78abe8ff470a474514f59db9e1c1cd16f19bfae6f727f6e29924c7481e354e18"
+    }
+  }
+}

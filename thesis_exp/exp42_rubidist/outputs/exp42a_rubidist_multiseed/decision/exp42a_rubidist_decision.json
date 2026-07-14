@@ -1,0 +1,100 @@
+{
+  "dev_access_count": 0,
+  "human_soft_interaction_supported": false,
+  "main_gates": {
+    "A_mae_path": false,
+    "A_qwk_path": false,
+    "A_rubric_gain_relative_to_v01": false,
+    "B_details": {
+      "brier_or_rps": true,
+      "exact": true,
+      "mae": true,
+      "qwk": true
+    },
+    "B_soft_noninferiority_relative_to_v10": true,
+    "C_details": {
+      "absolute_bias": true,
+      "exact": true,
+      "high_to_low": true,
+      "kendall": true,
+      "label5": true,
+      "low_to_high": true
+    },
+    "C_overall_tail_guards_relative_to_v01": true,
+    "D_details": {
+      "all_seed_label5_guards": true,
+      "all_seed_mae_guards": true,
+      "at_least_two_favorable": false
+    },
+    "D_per_seed": [
+      {
+        "delta_MAE": -0.012434061793519191,
+        "delta_QWK": 0.031550904569424,
+        "delta_label5_recall": 0.01520637219406229,
+        "favorable_mae_or_qwk": true,
+        "label5_guard": true,
+        "mae_guard": true,
+        "seed": 42
+      },
+      {
+        "delta_MAE": 0.009042954031650341,
+        "delta_QWK": -0.007860007524199353,
+        "delta_label5_recall": -0.016654598117306296,
+        "favorable_mae_or_qwk": false,
+        "label5_guard": true,
+        "mae_guard": true,
+        "seed": 43
+      },
+      {
+        "delta_MAE": 0.006028636021100209,
+        "delta_QWK": -0.0027547712154252224,
+        "delta_label5_recall": 0.002896451846488124,
+        "favorable_mae_or_qwk": false,
+        "label5_guard": true,
+        "mae_guard": true,
+        "seed": 44
+      }
+    ],
+    "D_stability": false
+  },
+  "main_method": "v11_soft_raw_rubric",
+  "no_posthoc_variant_changes": true,
+  "recommend_final_dev_campaign": false,
+  "rubric_conditioning_supported": false,
+  "secondary_raw_rubric_only": {
+    "at_least_two_favorable_seeds": true,
+    "gain_with_crossed_ci": false,
+    "guards": {
+      "absolute_bias": true,
+      "exact": true,
+      "high_to_low": true,
+      "kendall": true,
+      "label5": true,
+      "low_to_high": true
+    },
+    "passed": false,
+    "per_seed": [
+      {
+        "delta_MAE": -0.03466465712132627,
+        "delta_QWK": 0.09364772940045551,
+        "favorable": true,
+        "seed": 42
+      },
+      {
+        "delta_MAE": -0.0015071590052750383,
+        "delta_QWK": 0.01121056550051347,
+        "favorable": true,
+        "seed": 43
+      },
+      {
+        "delta_MAE": 0.00339110776186885,
+        "delta_QWK": 0.0008460006855717239,
+        "favorable": true,
+        "seed": 44
+      }
+    ]
+  },
+  "status": "FACTORIAL_STOP",
+  "stop_positive_small_paper_route": true,
+  "test_access_count": 0
+}

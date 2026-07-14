@@ -1,0 +1,27 @@
+{
+  "guards_vs_v01": {
+    "abs_bias_margin": 0.01,
+    "exact_margin": 0.005,
+    "high_to_low_margin": 0.01,
+    "kendall_margin": 0.01,
+    "label5_margin": 0.02,
+    "low_to_high_noninferior": true
+  },
+  "main_method": "v11_soft_raw_rubric",
+  "rubric_gain_vs_v01": {
+    "crossed_ci_must_exclude_zero": true,
+    "mae_improvement_min": 0.01,
+    "qwk_improvement_min": 0.02
+  },
+  "soft_noninferiority_vs_v10": {
+    "brier_or_rps_better": true,
+    "exact_margin": 0.005,
+    "mae_margin": 0.005,
+    "qwk_margin": 0.01
+  },
+  "stability": {
+    "favorable_seeds_min": 2,
+    "per_seed_label5_worse_max": 0.04,
+    "per_seed_mae_worse_max": 0.02
+  }
+}

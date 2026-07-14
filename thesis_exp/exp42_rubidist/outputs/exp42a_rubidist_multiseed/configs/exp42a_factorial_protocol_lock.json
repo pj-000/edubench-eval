@@ -1,0 +1,26 @@
+{
+  "api_calls": false,
+  "dev_access_count": 0,
+  "experiment": "Exp42A RubiDist 2x2 Factorial Multiseed Lock",
+  "factors": {
+    "input": [
+      "metric_only",
+      "raw_rubric"
+    ],
+    "target": [
+      "rounded_hard",
+      "three_human_empirical_soft"
+    ]
+  },
+  "main_method": "v11_soft_raw_rubric",
+  "question_keys": 196,
+  "rows": 2654,
+  "teacher_labeling": false,
+  "test_access_count": 0,
+  "variants": [
+    "v00_hard_no_rubric",
+    "v01_soft_no_rubric",
+    "v10_hard_raw_rubric",
+    "v11_soft_raw_rubric"
+  ]
+}

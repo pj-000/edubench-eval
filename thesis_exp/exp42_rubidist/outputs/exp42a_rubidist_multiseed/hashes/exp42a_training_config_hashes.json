@@ -1,0 +1,22 @@
+{
+  "completed_runs": 60,
+  "dev_access_count": 0,
+  "fixed_final_epoch": 10,
+  "folds": 5,
+  "formal_runs": 60,
+  "nan_count": 0,
+  "oom_count": 0,
+  "seeds": [
+    42,
+    43,
+    44
+  ],
+  "test_access_count": 0,
+  "training_config_sha256": "689b9ff7b6a7d34514d3c339aa6ed3cadbd3648159724d4fb463b3e9f6a49fa2",
+  "variants": [
+    "v00_hard_no_rubric",
+    "v01_soft_no_rubric",
+    "v10_hard_raw_rubric",
+    "v11_soft_raw_rubric"
+  ]
+}

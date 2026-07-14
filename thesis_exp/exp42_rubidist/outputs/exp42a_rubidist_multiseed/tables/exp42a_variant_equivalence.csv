@@ -1,0 +1,5 @@
+variant,rows_equal,sample_id_order_equal,core_hash_equal,sample_weights_all_one,target_sum_valid,answer_budget_equal_within_input_factor
+v00_hard_no_rubric,True,True,True,True,True,True
+v01_soft_no_rubric,True,True,True,True,True,True
+v10_hard_raw_rubric,True,True,True,True,True,True
+v11_soft_raw_rubric,True,True,True,True,True,True

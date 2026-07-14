@@ -1,0 +1,5 @@
+variant,rows,unique_sample_ids,unique_question_keys,target_type,rubric_input,sample_weight_mean,mean_input_tokens,p95_input_tokens,max_input_tokens,question_truncation_count,rubric_truncation_count,answer_truncation_count
+v00_hard_no_rubric,2654,2654,196,hard_one_hot,none,1.0,396.26601356443103,742.0,1251,32,0,0
+v01_soft_no_rubric,2654,2654,196,human_empirical_soft,none,1.0,396.26601356443103,742.0,1251,32,0,0
+v10_hard_raw_rubric,2654,2654,196,hard_one_hot,raw_rubric,1.0,524.9001507159005,871.3499999999999,1376,32,0,0
+v11_soft_raw_rubric,2654,2654,196,human_empirical_soft,raw_rubric,1.0,524.9001507159005,871.3499999999999,1376,32,0,0

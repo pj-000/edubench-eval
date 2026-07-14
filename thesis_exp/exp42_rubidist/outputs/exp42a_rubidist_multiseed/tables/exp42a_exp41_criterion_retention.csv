@@ -1,0 +1,13 @@
+group_type,group_value,original_count,kept_count,retention_rate
+criterion_type,clarity,676,322,0.47633136094674555
+criterion_type,factual_accuracy,1025,498,0.48585365853658535
+criterion_type,instruction_format,1212,546,0.4504950495049505
+criterion_type,key_content,1241,601,0.48428686543110394
+criterion_type,other,18,5,0.2777777777777778
+criterion_type,pedagogical_support,2392,977,0.4084448160535117
+criterion_type,reasoning_support,678,359,0.5294985250737463
+criterion_type,relevance_scope,1174,558,0.4752981260647359
+criterion_type,scenario_integration,1637,749,0.4575442883323152
+ordinal_position,early,3389,3360,0.9914429035113603
+ordinal_position,middle,3275,1255,0.383206106870229
+ordinal_position,late,3389,0,0.0

@@ -1,0 +1,32 @@
+{
+  "checkpoint_selection": "none",
+  "class_weighting": false,
+  "dev_access_count": 0,
+  "effective_batch": 128,
+  "epochs": 10,
+  "eval_batch": 4,
+  "fixed_final_epoch": 10,
+  "folds": 5,
+  "gradient_accumulation": 32,
+  "gradient_clip": 1.0,
+  "learning_rate": 2e-05,
+  "logit_adjustment": false,
+  "loss": "standard_hard_or_soft_cross_entropy",
+  "max_length": 2048,
+  "metric_budget": 64,
+  "micro_batch": 4,
+  "model": "Qwen3-Reranker-0.6B",
+  "optimizer": "AdamW",
+  "oversampling": false,
+  "question_budget": 256,
+  "raw_rubric_budget": 256,
+  "sample_weighting": false,
+  "seeds": [
+    42,
+    43,
+    44
+  ],
+  "test_access_count": 0,
+  "warmup_ratio": 0.05,
+  "weight_decay": 0.01
+}
