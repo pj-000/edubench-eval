@@ -3,7 +3,9 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"; REPO_ROOT="${EDUBENCH_REPO_ROOT:-$(cd "${SCRIPT_DIR}/../.." && pwd)}"; cd "${REPO_ROOT}"
 PYTHON="${PYTHON:-/home/jpang/miniconda3/envs/llama_factory/bin/python}"; export PYTHON RUBIMOR_MODEL_PATH="${RUBIMOR_MODEL_PATH:-/home/share/models/modelscope/Qwen/Qwen3-Reranker-0.6B}" GPU_LIST="${GPU_LIST:-0 1 2 3}" SKIP_COMPLETED="${SKIP_COMPLETED:-1}"
 OUT="thesis_exp/exp43_rubimor/outputs/exp43_rubimor_preregistered"; mkdir -p "${OUT}/state"
-git merge-base --is-ancestor 4843230 HEAD || { echo "HEAD does not descend from locked 4843230" >&2; exit 2; }
+EXP43_GIT_REF="${EXP43_GIT_REF:-HEAD}"
+git rev-parse --verify "${EXP43_GIT_REF}^{commit}" >/dev/null || { echo "Cannot resolve EXP43_GIT_REF=${EXP43_GIT_REF}" >&2; exit 2; }
+git merge-base --is-ancestor 4843230 "${EXP43_GIT_REF}" || { echo "${EXP43_GIT_REF} does not descend from locked 4843230" >&2; exit 2; }
 state(){ "${PYTHON}" - "$OUT/state/$1.json" "$2" <<'PY'
 import json,pathlib,sys,tempfile,os,datetime
 p=pathlib.Path(sys.argv[1]);p.parent.mkdir(parents=True,exist_ok=True);v={"status":sys.argv[2],"timestamp":datetime.datetime.now(datetime.timezone.utc).isoformat()};tmp=p.with_suffix('.tmp');tmp.write_text(json.dumps(v,indent=2)+"\n");os.replace(tmp,p)
@@ -31,4 +33,3 @@ PY
 run_stage stage8 thesis_exp/scripts/run_exp43_stage8_headline_dev.sh; [[ "$(decision "$OUT/decision/exp43_headline_dev_decision.json")" == HEADLINE_DEV_GO ]] || { "${PYTHON}" -m thesis_exp.exp43_rubimor.build_exp43_final_report; exit 0; }
 if [[ "${AUTO_FINAL_TEST:-1}" == 1 ]];then run_stage stage9 thesis_exp/scripts/run_exp43_stage9_final_test.sh;fi
 "${PYTHON}" -m thesis_exp.exp43_rubimor.build_exp43_final_report
-
