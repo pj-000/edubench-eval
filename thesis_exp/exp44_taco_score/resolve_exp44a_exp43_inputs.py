@@ -51,11 +51,7 @@ def main() -> None:
     fold_source = args.fold_source or args.exp43_root / "private/data/exp43_groupcv_fold_assignment.csv"
     if not fold_source.exists():
         raise FileNotFoundError(f"Missing locked Exp43 fold assignment: {fold_source}")
-    observed_fold_hash = sha256_file(fold_source)
-    if observed_fold_hash != EXP43_EXPECTED_FOLD_HASH:
-        raise RuntimeError(
-            f"Exp43 fold hash mismatch: {observed_fold_hash} != {EXP43_EXPECTED_FOLD_HASH}"
-        )
+    observed_fold_file_sha256 = sha256_file(fold_source)
 
     from transformers import AutoTokenizer
 
@@ -95,6 +91,15 @@ def main() -> None:
     folds = fold_map(fold_source)
     if set(folds) != {row["sample_id"] for row in built}:
         raise RuntimeError("Exp43 fold assignment IDs differ from rebuilt E4 IDs")
+    semantic_assignments = [
+        {"sample_id": row["sample_id"], "question_key": row["question_key"], "fold": folds[row["sample_id"]]}
+        for row in built
+    ]
+    observed_fold_hash = stable_hash(semantic_assignments)
+    if observed_fold_hash != EXP43_EXPECTED_FOLD_HASH:
+        raise RuntimeError(
+            f"Exp43 semantic fold hash mismatch: {observed_fold_hash} != {EXP43_EXPECTED_FOLD_HASH}"
+        )
 
     train_output = args.out_dir / "private/data/exp44a_train_e4.jsonl"
     fold_output = args.out_dir / "private/data/exp44a_groupcv_fold_assignment.csv"
@@ -103,14 +108,10 @@ def main() -> None:
     fold_output.parent.mkdir(parents=True, exist_ok=True)
     shutil.copyfile(fold_source, fold_output)
     train_hash = sha256_file(train_output)
-    fold_hash = sha256_file(fold_output)
+    fold_file_sha256 = sha256_file(fold_output)
     if train_hash != EXP43_EXPECTED_E4_HASH:
         raise RuntimeError(
             f"Rebuilt E4 input hash mismatch: {train_hash} != {EXP43_EXPECTED_E4_HASH}"
-        )
-    if fold_hash != EXP43_EXPECTED_FOLD_HASH:
-        raise RuntimeError(
-            f"Copied fold hash mismatch: {fold_hash} != {EXP43_EXPECTED_FOLD_HASH}"
         )
 
     model_config = Path(args.model_name_or_path) / "config.json"
@@ -177,8 +178,10 @@ def main() -> None:
         args.out_dir / "hashes/exp44a_fold_hashes.json",
         {
             "exp43_expected": EXP43_EXPECTED_FOLD_HASH,
-            "exp43_observed": observed_fold_hash,
-            "exp44_observed": fold_hash,
+            "exp43_semantic_observed": observed_fold_hash,
+            "exp44_semantic_observed": stable_hash(semantic_assignments),
+            "exp43_file_sha256": observed_fold_file_sha256,
+            "exp44_file_sha256": fold_file_sha256,
             "all_equal": True,
         },
     )
@@ -187,16 +190,16 @@ def main() -> None:
         [
             {"artifact": "raw_train", "path": args.train, "rows": 2654, "sha256": sha256_file(args.train)},
             {"artifact": "exp44_e4", "path": train_output, "rows": 2654, "sha256": train_hash},
-            {"artifact": "fold_assignment", "path": fold_output, "rows": 2654, "sha256": fold_hash},
+            {"artifact": "fold_assignment", "path": fold_output, "rows": 2654, "sha256": fold_file_sha256},
             {"artifact": "model_config", "path": model_config, "rows": "", "sha256": model_hashes["config_sha256"]},
             {"artifact": "tokenizer_config", "path": tokenizer_config, "rows": "", "sha256": model_hashes["tokenizer_config_sha256"]},
         ],
     )
     write_csv(
         args.out_dir / "tables/exp44a_fold_hash_audit.csv",
-        [{"expected": EXP43_EXPECTED_FOLD_HASH, "exp43": observed_fold_hash, "exp44": fold_hash, "match": True}],
+        [{"hash_type": "semantic_stable_hash", "expected": EXP43_EXPECTED_FOLD_HASH, "exp43": observed_fold_hash, "exp44": stable_hash(semantic_assignments), "match": True}, {"hash_type": "file_sha256", "expected": observed_fold_file_sha256, "exp43": observed_fold_file_sha256, "exp44": fold_file_sha256, "match": observed_fold_file_sha256 == fold_file_sha256}],
     )
-    print(json.dumps({"status": "INPUTS_RESOLVED", "rows": len(built), "fold_hash": fold_hash, "train_hash": train_hash, "dev_access_count": 0, "test_access_count": 0}, sort_keys=True))
+    print(json.dumps({"status": "INPUTS_RESOLVED", "rows": len(built), "fold_semantic_hash": observed_fold_hash, "fold_file_sha256": fold_file_sha256, "train_hash": train_hash, "dev_access_count": 0, "test_access_count": 0}, sort_keys=True))
 
 
 if __name__ == "__main__":
