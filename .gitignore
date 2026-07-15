@@ -31,6 +31,12 @@ thesis_exp/exp17_low_score_evidence/outputs/**/predict_logs/**
 wandb/
 runs/
 
+# Exp44A TACO-Score runtime/private artifacts stay local or server-side.
+thesis_exp/exp44_taco_score/outputs/exp44a_taco_seed42/private/
+thesis_exp/exp44_taco_score/outputs/exp44a_taco_seed42/logs_private/
+thesis_exp/runs/exp44_taco_score/
+thesis_exp/artifacts/exp44_taco_score/
+
 # Exp9 QD-PR2 generated runtime artifacts are reproducible and should stay local/server-side.
 thesis_exp/outputs/exp09_pairwise_ordinal_qdpr2/pairs/
 thesis_exp/outputs/exp09_pairwise_ordinal_qdpr2/runs/
