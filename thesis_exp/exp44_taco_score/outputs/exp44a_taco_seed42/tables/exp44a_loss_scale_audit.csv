@@ -1,0 +1,2 @@
+fold,pointwise_rows,contrastive_anchors,L_dist,L_ord,L_base,L_plain,L_taco,weighted_taco,weighted_to_base_ratio,base_backbone_gradient_norm,contrastive_backbone_gradient_norm,contrastive_to_base_gradient_ratio,logits_head_gradient_norm,projection_gradient_norm,finite,status
+0,256,128,2.808307370170951,0.2414470559451729,2.9290308952331543,1.6680166411097161,3.6093176752328873,0.36093176752328876,0.12322566078448899,204.72052001953125,5.4589643478393555,0.026665447837464197,50.01932144165039,0.22392994165420532,True,LOSS_SCALE_GO

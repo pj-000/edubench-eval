@@ -1,0 +1,18 @@
+{
+  "thesis_exp/exp44_taco_score/__init__.py": "2ddf30d990f0a24c8a09f947887992edf9c6afbd0a8cf1d07bd204eb21c52f3a",
+  "thesis_exp/exp44_taco_score/analyze_exp44a_decision.py": "733c082549bccbea50df76995ca4f1fe7a8b847c97c449a3b2a2c01cb4cda26f",
+  "thesis_exp/exp44_taco_score/audit_exp44a_loss_scales.py": "081b9f12fc8fc86f8e90fc1012b4ed7bad7bb941112fe2e935478e50460cf38b",
+  "thesis_exp/exp44_taco_score/bootstrap_exp44a_question_key.py": "6396c00110bdba2ec60c53448e6619bf5806b775bac12a15ba8a3e05a2c6ab81",
+  "thesis_exp/exp44_taco_score/collect_exp44a_seed42.py": "7592525cabaa9f1fe113ae190c9ca03e24020859665ab76d1189f97eda448acd",
+  "thesis_exp/exp44_taco_score/common.py": "4f28cc296eb8490ef60c55c32fdacfd18f4d935fb277acc648f0ffb9015621d6",
+  "thesis_exp/exp44_taco_score/losses_exp44a_taco.py": "b283528a2f4ae88862d33b019e3c5cc90b1d21517b6b959468b863e84351e171",
+  "thesis_exp/exp44_taco_score/modeling_exp44a_taco.py": "ad993b2d5e3916408b8aa87f7a51a49fd1af520a8a6f15b32ec50856dcfb663c",
+  "thesis_exp/exp44_taco_score/prepare_exp44a_triplets.py": "37e7f42793263a689e2722cf3a65c14810ea42fbad0034fcc0e477478e0e64b7",
+  "thesis_exp/exp44_taco_score/resolve_exp44a_exp43_inputs.py": "a84dc53f0a0913fcd94394044eb84d88f106980ba721b2309057d0dcbe7d2c14",
+  "thesis_exp/exp44_taco_score/train_exp44a_groupcv.py": "5dbbb5827988170773e52898ad53969768af9f763e4e8924ead56713d61c4c02",
+  "thesis_exp/scripts/run_exp44a_collect.sh": "0140d181b5d08a1f02db5e6f235e75cfff2c3889b551d0e6e3e5c3e466e336f9",
+  "thesis_exp/scripts/run_exp44a_goal.sh": "7d5f3398e2276642c767c867a8cac87893e3562dc3b71339acb09fb43c9b0bf1",
+  "thesis_exp/scripts/run_exp44a_prepare.sh": "8b745d1f2d414dbf62503f6dc06a96d3b4f7a168cf4710bcbfc53192be3edf64",
+  "thesis_exp/scripts/run_exp44a_seed42_groupcv.sh": "8afadbb406363a71a1b86932f632902020027cce7f82f664947f7da895af69cf",
+  "thesis_exp/scripts/run_exp44a_smoke.sh": "9cf2983ccaedbafc62aee33c07997ee8af544e07dc3ed34575edfef23fcd5c42"
+}

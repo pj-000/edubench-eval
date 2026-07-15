@@ -1,0 +1,21 @@
+{
+  "L_base": 2.9290308952331543,
+  "L_dist": 2.808307370170951,
+  "L_ord": 0.2414470559451729,
+  "L_plain": 1.6680166411097161,
+  "L_taco": 3.6093176752328873,
+  "base_backbone_gradient_norm": 204.72052001953125,
+  "contrastive_anchors": 128,
+  "contrastive_backbone_gradient_norm": 5.4589643478393555,
+  "contrastive_to_base_gradient_ratio": 0.026665447837464197,
+  "dev_access_count": 0,
+  "finite": true,
+  "fold": 0,
+  "logits_head_gradient_norm": 50.01932144165039,
+  "pointwise_rows": 256,
+  "projection_gradient_norm": 0.22392994165420532,
+  "status": "LOSS_SCALE_GO",
+  "test_access_count": 0,
+  "weighted_taco": 0.36093176752328876,
+  "weighted_to_base_ratio": 0.12322566078448899
+}

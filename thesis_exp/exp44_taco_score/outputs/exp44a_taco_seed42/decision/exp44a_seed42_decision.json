@@ -1,0 +1,26 @@
+{
+  "checks": {
+    "beats_C1_tail": false,
+    "beats_C3": true,
+    "bootstrap_gate": true,
+    "bootstrap_no_significant_harm": true,
+    "core_label2": false,
+    "low_to_high_guard": true,
+    "overall_gain": false,
+    "protection": false,
+    "protects_vs_C1": false
+  },
+  "class2_prediction_count": 2,
+  "dev_access_count": 0,
+  "label2_correct_count": 0,
+  "label2_recall": 0.0,
+  "label2_total": 52,
+  "label2_wilson_95_ci": [
+    0.0,
+    0.06879223612386234
+  ],
+  "recommend_multiseed": false,
+  "status": "TACO_SEED42_STOP",
+  "stop_positive_small_paper_route": true,
+  "test_access_count": 0
+}

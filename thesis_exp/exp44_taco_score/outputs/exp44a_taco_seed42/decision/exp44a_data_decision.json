@@ -1,0 +1,10 @@
+{
+  "dev_access_count": 0,
+  "endpoint_leakage": 0,
+  "fold_epochs": 50,
+  "maximum_partner_reuse": 8,
+  "minimum_low_anchor_coverage": 1.0,
+  "minimum_margin_shuffle_rate": 0.8690476190476191,
+  "status": "TRIPLET_DATA_GO",
+  "test_access_count": 0
+}

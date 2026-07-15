@@ -1,0 +1,10 @@
+{
+  "raw_train": {
+    "path": "thesis_exp/data/splits/paper_like_triple_seed42/train.jsonl",
+    "sha256": "0a1733b9209984c5c4291d205d1ac6057bed341717903b9de075d07de44a878e"
+  },
+  "rebuilt_e4": {
+    "path": "thesis_exp/exp44_taco_score/outputs/exp44a_taco_seed42/private/data/exp44a_train_e4.jsonl",
+    "sha256": "30e12d1d94762ac2a0ff7484ab50ab22a302f056773bd890156d61fdf395f1e8"
+  }
+}

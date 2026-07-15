@@ -1,0 +1,47 @@
+{
+  "dev_access_count": 0,
+  "runs": [
+    {
+      "dev_access_count": 0,
+      "exists": true,
+      "nan_count": 0,
+      "oom_count": 0,
+      "save_reload": "PASS",
+      "status": "COMPLETED",
+      "test_access_count": 0,
+      "variant": "C0_E4_baseline"
+    },
+    {
+      "dev_access_count": 0,
+      "exists": true,
+      "nan_count": 0,
+      "oom_count": 0,
+      "save_reload": "PASS",
+      "status": "COMPLETED",
+      "test_access_count": 0,
+      "variant": "C1_balanced_plain_contrastive"
+    },
+    {
+      "dev_access_count": 0,
+      "exists": true,
+      "nan_count": 0,
+      "oom_count": 0,
+      "save_reload": "PASS",
+      "status": "COMPLETED",
+      "test_access_count": 0,
+      "variant": "C2_TACO"
+    },
+    {
+      "dev_access_count": 0,
+      "exists": true,
+      "nan_count": 0,
+      "oom_count": 0,
+      "save_reload": "PASS",
+      "status": "COMPLETED",
+      "test_access_count": 0,
+      "variant": "C3_shuffled_margin_control"
+    }
+  ],
+  "status": "SMOKE_GO",
+  "test_access_count": 0
+}

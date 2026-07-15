@@ -1,0 +1,18 @@
+{
+  "completed_runs": 20,
+  "dev_access_count": 0,
+  "locked_training_config": {
+    "epochs": 10,
+    "fixed_checkpoint": "epoch10",
+    "gradient_accumulation": 32,
+    "learning_rate": 2e-05,
+    "max_length": 2048,
+    "point_batch": 4,
+    "seed": 42,
+    "warmup_ratio": 0.05,
+    "weight_decay": 0.01
+  },
+  "nan_count": 0,
+  "oom_count": 0,
+  "test_access_count": 0
+}
