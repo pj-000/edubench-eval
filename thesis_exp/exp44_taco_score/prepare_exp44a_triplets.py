@@ -140,6 +140,20 @@ def build_stratum_triplets(
     return built
 
 
+def maximum_mismatch_permutation(values: list[float]) -> list[int]:
+    """Return a deterministic permutation with the fewest equal assignments."""
+    if len(values) < 2:
+        return list(range(len(values)))
+    counts = Counter(values)
+    shift = max(counts.values())
+    ordered_targets = sorted(range(len(values)), key=lambda index: (values[index], index))
+    ordered_sources = ordered_targets[shift:] + ordered_targets[:shift]
+    permutation = list(range(len(values)))
+    for target, source in zip(ordered_targets, ordered_sources):
+        permutation[target] = source
+    return permutation
+
+
 def shuffle_margins(rows: list[dict[str, Any]], fold: int, epoch: int) -> float:
     changed = 0
     total = 0
@@ -152,21 +166,10 @@ def shuffle_margins(rows: list[dict[str, Any]], fold: int, epoch: int) -> float:
                 rows[index]["shuffled_near_distance"] = rows[index]["near_distance"]
                 rows[index]["shuffled_far_distance"] = rows[index]["far_distance"]
             continue
-        rng = np.random.default_rng(stable_seed("exp44a-margin", fold, epoch, group_name, SEED))
-        best_near = best_far = list(range(len(original_near)))
-        best_changes = -1
         # Preserve each complete near/far margin distribution while avoiding
         # an impossible derangement when repeated (near, far) tuples dominate.
-        for _ in range(512):
-            near_permutation = rng.permutation(len(original_near)).tolist()
-            far_permutation = rng.permutation(len(original_far)).tolist()
-            changes = sum(
-                original_near[index] != original_near[near_permutation[index]]
-                or original_far[index] != original_far[far_permutation[index]]
-                for index in range(len(original_near))
-            )
-            if changes > best_changes:
-                best_near, best_far, best_changes = near_permutation, far_permutation, changes
+        best_near = maximum_mismatch_permutation(original_near)
+        best_far = maximum_mismatch_permutation(original_far)
         for local_index, row_index in enumerate(indices):
             near = original_near[best_near[local_index]]
             far = original_far[best_far[local_index]]
