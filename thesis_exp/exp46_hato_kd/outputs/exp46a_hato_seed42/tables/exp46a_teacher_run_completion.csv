@@ -1,0 +1,6 @@
+variant,fold,status,valid,train_rows,eval_rows,global_step,question_key_overlap,dev_access_count,test_access_count
+T1_4B_teacher,0,COMPLETED,True,2111,543,170,0,0,0
+T1_4B_teacher,1,COMPLETED,True,2160,494,170,0,0,0
+T1_4B_teacher,2,COMPLETED,True,2096,558,170,0,0,0
+T1_4B_teacher,3,COMPLETED,True,2088,566,170,0,0,0
+T1_4B_teacher,4,COMPLETED,True,2161,493,170,0,0,0

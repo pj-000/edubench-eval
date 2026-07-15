@@ -1,0 +1,11 @@
+stage,comparison,left,right,metric,delta_mean,ci_low,ci_high,replicates,unit
+teacher,T1_4B_teacher_vs_K0_E4,T1_4B_teacher,K0_E4,MAE,0.01700871550952521,-0.00494405600015168,0.03841957650704383,5000,question_key
+teacher,T1_4B_teacher_vs_K0_E4,T1_4B_teacher,K0_E4,QWK,-0.0229961514256025,-0.06053464415830303,0.013404323566024357,5000,question_key
+teacher,T1_4B_teacher_vs_K0_E4,T1_4B_teacher,K0_E4,Exact_Match,-0.014312900233228757,-0.03353875617474532,0.005555721096543481,5000,question_key
+teacher,T1_4B_teacher_vs_K0_E4,T1_4B_teacher,K0_E4,Kendall_tau,-0.024122126409054617,-0.05719010193583658,0.008830458461104812,5000,question_key
+teacher,T1_4B_teacher_vs_K0_E4,T1_4B_teacher,K0_E4,Signed_Bias,0.012518557911886668,-0.012495385270730783,0.03766036958568739,5000,question_key
+teacher,T1_4B_teacher_vs_K0_E4,T1_4B_teacher,K0_E4,abs_Signed_Bias,0.012518557911886668,-0.012495385270730783,0.03766036958568739,5000,question_key
+teacher,T1_4B_teacher_vs_K0_E4,T1_4B_teacher,K0_E4,low_to_high_rate,0.024071806668336148,-0.10228001165501167,0.17722925457102645,5000,question_key
+teacher,T1_4B_teacher_vs_K0_E4,T1_4B_teacher,K0_E4,high_to_low_rate,0.0017262279123686902,0.0,0.0038216966377868805,5000,question_key
+teacher,T1_4B_teacher_vs_K0_E4,T1_4B_teacher,K0_E4,label2_recall,0.0,0.0,0.0,5000,question_key
+teacher,T1_4B_teacher_vs_K0_E4,T1_4B_teacher,K0_E4,label5_recall,-0.004997051083481024,-0.03340448568484335,0.022530911516406456,5000,question_key
