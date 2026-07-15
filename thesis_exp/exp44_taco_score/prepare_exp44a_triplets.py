@@ -145,25 +145,34 @@ def shuffle_margins(rows: list[dict[str, Any]], fold: int, epoch: int) -> float:
     total = 0
     for group_name in ("low", "mid", "high"):
         indices = [index for index, row in enumerate(rows) if row["anchor_stratum"] == group_name]
-        original = [(rows[index]["near_distance"], rows[index]["far_distance"]) for index in indices]
-        if len(original) < 2:
+        original_near = [rows[index]["near_distance"] for index in indices]
+        original_far = [rows[index]["far_distance"] for index in indices]
+        if len(original_near) < 2:
             for index in indices:
                 rows[index]["shuffled_near_distance"] = rows[index]["near_distance"]
                 rows[index]["shuffled_far_distance"] = rows[index]["far_distance"]
             continue
         rng = np.random.default_rng(stable_seed("exp44a-margin", fold, epoch, group_name, SEED))
-        best = list(range(len(original)))
+        best_near = best_far = list(range(len(original_near)))
         best_changes = -1
+        # Preserve each complete near/far margin distribution while avoiding
+        # an impossible derangement when repeated (near, far) tuples dominate.
         for _ in range(512):
-            permutation = rng.permutation(len(original)).tolist()
-            changes = sum(original[index] != original[permutation[index]] for index in range(len(original)))
+            near_permutation = rng.permutation(len(original_near)).tolist()
+            far_permutation = rng.permutation(len(original_far)).tolist()
+            changes = sum(
+                original_near[index] != original_near[near_permutation[index]]
+                or original_far[index] != original_far[far_permutation[index]]
+                for index in range(len(original_near))
+            )
             if changes > best_changes:
-                best, best_changes = permutation, changes
+                best_near, best_far, best_changes = near_permutation, far_permutation, changes
         for local_index, row_index in enumerate(indices):
-            near, far = original[best[local_index]]
+            near = original_near[best_near[local_index]]
+            far = original_far[best_far[local_index]]
             rows[row_index]["shuffled_near_distance"] = near
             rows[row_index]["shuffled_far_distance"] = far
-            changed += int(original[local_index] != (near, far))
+            changed += int(original_near[local_index] != near or original_far[local_index] != far)
             total += 1
     return changed / total if total else 0.0
 
@@ -267,4 +276,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-

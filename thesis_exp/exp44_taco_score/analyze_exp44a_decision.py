@@ -94,7 +94,10 @@ def main() -> None:
         "test_access_count": 0,
     }
     atomic_json(args.out_dir / "decision/exp44a_seed42_decision.json", decision)
-    diagnostics = read_csv(args.out_dir / "tables/exp44a_representation_diagnostics.csv")
+    diagnostics = [
+        row for row in read_csv(args.out_dir / "tables/exp44a_representation_diagnostics.csv")
+        if row.get("scope") == "aggregate"
+    ]
     report = [
         "# Exp44A TACO-Score Seed42 Report",
         "",

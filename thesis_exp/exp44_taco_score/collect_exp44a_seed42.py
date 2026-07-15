@@ -54,7 +54,7 @@ def identity_args(args: argparse.Namespace, variant: str, fold: int) -> argparse
     )
 
 
-def representation_diagnostics(variant: str, rows: list[dict[str, Any]]) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
+def representation_diagnostics(variant: str, fold: int, rows: list[dict[str, Any]]) -> tuple[dict[str, Any], list[dict[str, Any]]]:
     embeddings = np.asarray([row["embedding"] for row in rows], dtype=np.float32)
     labels = np.asarray([int(row["gold_label_5"]) for row in rows])
     embeddings /= np.maximum(np.linalg.norm(embeddings, axis=1, keepdims=True), 1e-12)
@@ -70,17 +70,40 @@ def representation_diagnostics(variant: str, rows: list[dict[str, Any]]) -> tupl
     label2_nearest = {label: int(np.sum(nearest[labels == 2] == label)) for label in range(1, 6)}
     diagnostic = {
         "variant": variant,
+        "scope": f"fold_{fold}",
+        "fold": fold,
         "nearest_centroid_balanced_accuracy": float(np.mean(per_label_accuracy)),
+        **{f"label{label}_count": int(np.sum(labels == label)) for label in range(1, 6)},
         **{f"label{label}_nearest_centroid_accuracy": per_label_accuracy[label - 1] for label in range(1, 6)},
         **{f"label2_nearest_centroid_count_{label}": label2_nearest[label] for label in range(1, 6)},
         **{f"label2_mean_cosine_to_class{label}": float(similarities[labels == 2, label - 1].mean()) for label in range(1, 6)},
     }
     matrix_rows = [
-        {"variant": variant, "row_label": left, "column_label": right, "cosine": float(centroid_matrix[left - 1] @ centroid_matrix[right - 1])}
+        {"variant": variant, "scope": f"fold_{fold}", "fold": fold, "row_label": left, "column_label": right, "cosine": float(centroid_matrix[left - 1] @ centroid_matrix[right - 1])}
         for left in range(1, 6)
         for right in range(1, 6)
     ]
-    return [diagnostic], matrix_rows
+    return diagnostic, matrix_rows
+
+
+def aggregate_representation_diagnostics(variant: str, fold_rows: list[dict[str, Any]]) -> dict[str, Any]:
+    aggregate: dict[str, Any] = {"variant": variant, "scope": "aggregate", "fold": "all"}
+    per_label = []
+    for label in range(1, 6):
+        count_key = f"label{label}_count"
+        accuracy_key = f"label{label}_nearest_centroid_accuracy"
+        total = sum(int(row[count_key]) for row in fold_rows)
+        aggregate[count_key] = total
+        aggregate[accuracy_key] = sum(float(row[accuracy_key]) * int(row[count_key]) for row in fold_rows) / total
+        per_label.append(float(aggregate[accuracy_key]))
+        aggregate[f"label2_nearest_centroid_count_{label}"] = sum(int(row[f"label2_nearest_centroid_count_{label}"]) for row in fold_rows)
+        label2_total = sum(int(row["label2_count"]) for row in fold_rows)
+        aggregate[f"label2_mean_cosine_to_class{label}"] = sum(
+            float(row[f"label2_mean_cosine_to_class{label}"]) * int(row["label2_count"])
+            for row in fold_rows
+        ) / label2_total
+    aggregate["nearest_centroid_balanced_accuracy"] = float(np.mean(per_label))
+    return aggregate
 
 
 def main() -> None:
@@ -95,6 +118,8 @@ def main() -> None:
     cache: dict[str, list[dict[str, Any]]] = {}
     for variant in VARIANTS:
         combined = []
+        fold_diagnostics = []
+        fold_centroids = []
         complete = True
         for fold in range(5):
             root = run_dir(args.run_root, variant, fold)
@@ -133,7 +158,11 @@ def main() -> None:
             if not valid:
                 complete = False
                 continue
-            combined.extend(read_jsonl(prediction_path))
+            fold_predictions = read_jsonl(prediction_path)
+            combined.extend(fold_predictions)
+            diagnostic, matrix = representation_diagnostics(variant, fold, fold_predictions)
+            fold_diagnostics.append(diagnostic)
+            fold_centroids.extend(matrix)
             for epoch_row in summary.get("history", []):
                 training_rows.append({"variant": variant, "seed": 42, "fold": fold, **epoch_row})
         if not complete:
@@ -147,9 +176,13 @@ def main() -> None:
         metric_rows.append({"variant": variant, "seed": 42, **metrics})
         label_rows.append({"variant": variant, "seed": 42, **{key: value for key, value in metrics.items() if key.startswith("label") or key.startswith("low_") or key.startswith("high_") or key.startswith("pred_count")}})
         human_rows.append({"variant": variant, "seed": 42, **{key: metrics[key] for key in ("human_CE", "human_Brier", "human_RPS", "expected_score_MAE")}})
-        diagnostics, matrix = representation_diagnostics(variant, combined)
-        representation_rows.extend(diagnostics)
-        centroid_rows.extend(matrix)
+        representation_rows.extend(fold_diagnostics)
+        representation_rows.append(aggregate_representation_diagnostics(variant, fold_diagnostics))
+        centroid_rows.extend(fold_centroids)
+        for left in range(1, 6):
+            for right in range(1, 6):
+                values = [float(row["cosine"]) for row in fold_centroids if int(row["row_label"]) == left and int(row["column_label"]) == right]
+                centroid_rows.append({"variant": variant, "scope": "aggregate", "fold": "all", "row_label": left, "column_label": right, "cosine": float(np.mean(values))})
 
     by_variant = {row["variant"]: row for row in metric_rows}
     difference_rows = []
@@ -178,4 +211,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-
