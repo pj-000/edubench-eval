@@ -1,0 +1,20 @@
+{
+  "thesis_exp/exp45_dopr_head/__init__.py": "3a5044e18b40703e4c827a7028d655dab5f460b302b92ed60e164ac5cabacd20",
+  "thesis_exp/exp45_dopr_head/analyze_exp45a_decision.py": "0d1799285b9951c48418ab2fccd3ed97a9f75690e7a6e6649d5fd9d053903df4",
+  "thesis_exp/exp45_dopr_head/bootstrap_exp45a_question_key.py": "48037ebcef3525379052fb315ca28f0270b3fc72433d7a4c931930e417c1496d",
+  "thesis_exp/exp45_dopr_head/collect_exp45a_seed42.py": "df190669855772d196b04c2f5879dbfc486e4a11965ed583751ff104758bad07",
+  "thesis_exp/exp45_dopr_head/common.py": "cc4e1fdbf69f267b01a40ae630edddcdd680b50188b06e479feca3428d5adfc4",
+  "thesis_exp/exp45_dopr_head/diagnose_exp45a_train_prototypes.py": "35b8e493637426cca1ba4c8dd129e47a62317fbc0cee08ea9be44dcc8ceab1f3",
+  "thesis_exp/exp45_dopr_head/extract_exp45a_frozen_embeddings.py": "f16134fb8646e559270a8b178d988ae74c64011b7a966900318afa57f5104caa",
+  "thesis_exp/exp45_dopr_head/modeling_exp45a_heads.py": "628e4b7e9935c89bdcd8056c6b1669c896b71bb160a151fc627b787f0e5685ad",
+  "thesis_exp/exp45_dopr_head/resolve_exp45a_inputs.py": "5a199ea699ef92146352701002738e1e4d60338c324830d12730f6c873dde704",
+  "thesis_exp/exp45_dopr_head/train_exp45a_decoupled_heads.py": "c9b20e9ec66de0b0a84f491688555ccd0821b855713bbce5538894ee23343861",
+  "thesis_exp/exp45_dopr_head/train_or_restore_exp45a_e4_encoders.py": "9ccb691682fcf2d5ff2bfb7a91d8eccab92ca601b0b52a81f47a91b34ca75daa",
+  "thesis_exp/scripts/run_exp45a_collect.sh": "f0635262a8cfa33ba4835a3b588b01f7bbadacb5040bb87baf31aee6605837db",
+  "thesis_exp/scripts/run_exp45a_encoder_smoke.sh": "5c6ce173c3091b3d6398c5d5e4fc4bc5e6539e9ddb1642ddb6a675f3132dc5c0",
+  "thesis_exp/scripts/run_exp45a_encoders_and_embeddings.sh": "613e125905c2a7dae439260fa47db58c1f18c81ddb7ce83d8457040b1c39aad0",
+  "thesis_exp/scripts/run_exp45a_goal.sh": "5e9878bf831383423f7d9b7fbeb1915881d74c924c9130d83038ce1ffbd15751",
+  "thesis_exp/scripts/run_exp45a_heads.sh": "5aa1ac116e89055107e8df6c6180cc132cd8ebbdfe65d426ad8c975d29dde272",
+  "thesis_exp/scripts/run_exp45a_prepare.sh": "b8fe5b1c39263fd0347022bbcb4060a37e132308d99058dfa0ba4ff3c8aac2e7",
+  "thesis_exp/scripts/run_exp45a_prototype_diagnostic.sh": "1634cd0a5a5d27cd2a8f7a6a0547e862a6715a103807a90d07e6ab96c5ece16f"
+}

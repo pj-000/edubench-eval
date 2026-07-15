@@ -1,0 +1,14 @@
+{
+  "all_prototypes_finite_nonempty": true,
+  "class2_prediction_count": 11,
+  "class2_prediction_precision": 0.0,
+  "dev_access_count": 0,
+  "label2_correct_count": 0,
+  "label2_recall": 0.0,
+  "label2_total": 52,
+  "question_key_leakage": 0,
+  "recommend_head_training": false,
+  "status": "PROTOTYPE_SIGNAL_NO_GO",
+  "stop_positive_small_paper_route": true,
+  "test_access_count": 0
+}

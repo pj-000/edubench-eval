@@ -1,0 +1,6 @@
+fold,outer_train_rows,outer_heldout_rows,question_key_overlap,status
+0,2111,543,0,PASS
+1,2160,494,0,PASS
+2,2096,558,0,PASS
+3,2088,566,0,PASS
+4,2161,493,0,PASS

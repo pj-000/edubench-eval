@@ -1,0 +1,6 @@
+fold,status,source,valid,fixed_final_epoch,global_step,oom_count,nan_count,question_key_overlap,checkpoint_sha256
+0,COMPLETED,retrained_exp45,True,10,170,0,0,0,19e1a0513d68a8a4c076879f7590581297742cf6779f3fdd6a25e294de06cf59
+1,COMPLETED,retrained_exp45,True,10,170,0,0,0,1861a44790bb44d799f9658e71dab2df4c20260d4cc16aad3c713e919ac056a1
+2,COMPLETED,retrained_exp45,True,10,170,0,0,0,3d7a616fbc0e94541f968ff6a126778ebaaf32037fe98e82d6c2ce25db152976
+3,COMPLETED,retrained_exp45,True,10,170,0,0,0,9aa907292da5e07867f1b3462b2f4d1d951ab419e0fc007f51fdb2f605f0b0c4
+4,COMPLETED,retrained_exp45,True,10,170,0,0,0,3826964a32485c221ccb7be0b482c2a4528534c78723fc0f4afa0661683bcf56

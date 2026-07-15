@@ -1,0 +1,18 @@
+{
+  "bootstrap_replicates": 5000,
+  "label2_correct_min": 3,
+  "label2_recall_min": 0.05,
+  "low_to_high_max": 0.7368421053,
+  "overall_gain_any": {
+    "Kendall_tau": 0.005,
+    "MAE": 0.003,
+    "QWK": 0.005
+  },
+  "protection": {
+    "Exact_drop_max": 0.005,
+    "abs_bias_worsening_max": 0.01,
+    "high_to_low_increase_max": 0.01,
+    "label5_drop_max": 0.02,
+    "mean_score_decline_max": 0.1
+  }
+}

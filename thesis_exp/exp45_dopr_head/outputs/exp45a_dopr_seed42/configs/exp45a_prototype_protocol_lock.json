@@ -1,0 +1,10 @@
+{
+  "diagnostic_gate": {
+    "class2_predictions_min": 3,
+    "label2_correct_min": 3,
+    "label2_recall_min": 0.05
+  },
+  "prediction": "maximum cosine similarity",
+  "source": "outer-train frozen normalized embeddings only",
+  "weight": "three-human empirical distribution"
+}

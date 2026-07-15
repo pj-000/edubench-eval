@@ -1,0 +1,16 @@
+{
+  "batch": "20 per hard class (100 total)",
+  "cosine_scale": 16,
+  "distributional_loss": "CE + 0.5 ordinal CDF MSE",
+  "epochs": 10,
+  "learning_rate": 0.001,
+  "prior_exponent": 1.0,
+  "scheduler": "cosine",
+  "variants": [
+    "H1_vanilla_cRT",
+    "H2_distributional_ordinal_cRT",
+    "H3_prototype_cRT_no_prior",
+    "H4_DOPR"
+  ],
+  "weight_decay": 0.0001
+}

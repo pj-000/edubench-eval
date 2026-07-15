@@ -1,0 +1,10 @@
+{
+  "checkpoint_reused_from_exp44": false,
+  "completed_folds": 5,
+  "dev_access_count": 0,
+  "encoders_retrained": true,
+  "nan_count": 0,
+  "oom_count": 0,
+  "status": "ENCODERS_COMPLETE",
+  "test_access_count": 0
+}
