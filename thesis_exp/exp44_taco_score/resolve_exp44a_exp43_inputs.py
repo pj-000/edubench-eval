@@ -37,6 +37,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--model-name-or-path", required=True)
     parser.add_argument("--train", type=Path, default=TRAIN_PATH)
     parser.add_argument("--exp43-root", type=Path, default=EXP43_ROOT)
+    parser.add_argument("--fold-source", type=Path)
     parser.add_argument("--out-dir", type=Path, default=ROOT)
     return parser.parse_args()
 
@@ -47,7 +48,7 @@ def main() -> None:
     ensure_dirs(args.out_dir)
     if not args.train.exists():
         raise FileNotFoundError(args.train)
-    fold_source = args.exp43_root / "private/data/exp43_groupcv_fold_assignment.csv"
+    fold_source = args.fold_source or args.exp43_root / "private/data/exp43_groupcv_fold_assignment.csv"
     if not fold_source.exists():
         raise FileNotFoundError(f"Missing locked Exp43 fold assignment: {fold_source}")
     observed_fold_hash = sha256_file(fold_source)
