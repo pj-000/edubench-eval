@@ -1,0 +1,22 @@
+{
+  "batch_size": 4,
+  "epochs": 10,
+  "eval_batch_size": 4,
+  "fixed_checkpoint": "epoch_10",
+  "folds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "gradient_accumulation": 32,
+  "max_length": 2048,
+  "precision": "bf16",
+  "seed": 42,
+  "student_learning_rate": 2e-05,
+  "teacher_gradient_checkpointing": true,
+  "teacher_learning_rate": 0.0001,
+  "warmup_ratio": 0.05,
+  "weight_decay": 0.01
+}

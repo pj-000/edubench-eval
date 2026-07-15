@@ -1,0 +1,29 @@
+{
+  "student": {
+    "abs_bias_increase_max": 0.01,
+    "exact_drop_max": 0.005,
+    "high_to_low_increase_max": 0.01,
+    "kendall_improvement_min": 0.005,
+    "label2_correct_min": 3,
+    "label2_recall_min": 0.05,
+    "label5_recall_drop_max": 0.02,
+    "low_to_high_max": 0.7368421052631579,
+    "mae_improvement_min": 0.003,
+    "mean_score_downshift_max": 0.1,
+    "qwk_improvement_min": 0.005,
+    "shuffled_donor_change_min": 0.8
+  },
+  "teacher": {
+    "abs_bias_increase_max": 0.01,
+    "exact_drop_max": 0.01,
+    "high_to_low_increase_max": 0.01,
+    "kendall_improvement_min": 0.01,
+    "l2h_relative_max": 0.9,
+    "label2_correct_min": 6,
+    "label2_precision_min": 0.1,
+    "label2_recall_min": 0.1,
+    "label5_recall_drop_max": 0.02,
+    "mae_improvement_min": 0.01,
+    "qwk_improvement_min": 0.015
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "method": "HATO-KD",
+  "student": {
+    "balanced_distillation_classes": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "balanced_distillation_share_each": 0.2,
+    "kd_coefficient": 0.25,
+    "model_family": "Qwen3-Reranker-0.6B",
+    "natural_human_anchor": true,
+    "ordinal_kd_coefficient": 0.25,
+    "temperature": 2.0
+  },
+  "teacher": {
+    "external_teacher_labels": false,
+    "lora": {
+      "alpha": 32,
+      "dropout": 0.05,
+      "rank": 16,
+      "target_modules": [
+        "q_proj",
+        "k_proj",
+        "v_proj",
+        "o_proj",
+        "gate_proj",
+        "up_proj",
+        "down_proj"
+      ]
+    },
+    "model_family": "Qwen3-Reranker-4B",
+    "supervision": "human_distribution_plus_0.5_ordinal_cdf_mse",
+    "variant": "T1_4B_teacher"
+  },
+  "test_access_allowed": false
+}
