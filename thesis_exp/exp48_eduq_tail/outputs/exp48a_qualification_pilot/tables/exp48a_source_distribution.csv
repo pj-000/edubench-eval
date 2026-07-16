@@ -1,0 +1,55 @@
+dimension,value,selected_question_keys
+metric,Basic Factual Accuracy,5
+metric,"Clarity, Simplicity & Inspiration",5
+metric,Content Relevance & Scope Control,5
+metric,Domain Knowledge Accuracy,5
+metric,Error Identification & Correction Precision,5
+metric,Higher-Order Thinking & Skill Development,5
+metric,Instruction Following & Task Completion,5
+metric,"Motivation, Guidance & Positive Feedback",5
+metric,"Personalization, Adaptation & Learning Support",5
+metric,Reasoning Process Rigor,5
+metric,Role & Tone Consistency,5
+metric,Scenario Element Integration,5
+language,en,31
+language,zh,29
+subject,Applied Economics,2
+subject,Aquaculture,2
+subject,Automation,2
+subject,Basic Medicine,2
+subject,Biology,4
+subject,Business Administration,2
+subject,Chemistry,3
+subject,Chinese,3
+subject,Clinical Medicine,2
+subject,Computer Science,2
+subject,Crop Science,2
+subject,English,3
+subject,General Pedagogy,2
+subject,Geography,4
+subject,History,4
+subject,Law,1
+subject,Literature and Art,3
+subject,Mathematics,3
+subject,Military Science,2
+subject,Physical Education,1
+subject,Physics,4
+subject,Psychology,2
+subject,Public Administration,2
+subject,Sociology,1
+subject,Theoretical Economics,2
+scenario,Automatic Grading,6
+scenario,Emotional Support,7
+scenario,Error Correction,7
+scenario,Idea Provision,7
+scenario,Personalized Content Creation,6
+scenario,Personalized Learning Support,6
+scenario,Question Answering,7
+scenario,Question Generation,7
+scenario,Teaching Material Generation,7
+education_level,Elementary School,10
+education_level,High School,8
+education_level,Master,11
+education_level,Middle School,8
+education_level,PhD,12
+education_level,Undergraduate,11

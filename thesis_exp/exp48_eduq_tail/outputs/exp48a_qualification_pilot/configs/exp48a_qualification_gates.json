@@ -1,0 +1,16 @@
+{
+  "accepted_families_min": 45,
+  "accepted_per_score_min": 45,
+  "criterion_agreement_min": 0.8,
+  "dev_access_count": 0,
+  "exact_score_agreement_min": 0.85,
+  "generated_families": 60,
+  "question_char5_jaccard_max_exclusive": 0.8,
+  "question_token_jaccard_max_exclusive": 0.8,
+  "qwk_min": 0.75,
+  "score2_to_high_max": 0,
+  "style_macro_f1_max": 0.45,
+  "test_access_count": 0,
+  "valid_generated_families_min": 54,
+  "within_one_min": 0.98
+}

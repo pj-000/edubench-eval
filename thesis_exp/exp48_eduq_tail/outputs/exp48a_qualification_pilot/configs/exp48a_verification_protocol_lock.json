@@ -1,0 +1,6 @@
+{
+  "cross_family_required_for_scale_go": true,
+  "packet_excludes_intended_scores": true,
+  "verifier_direct_score_forbidden": true,
+  "verifiers_required": 2
+}

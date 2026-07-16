@@ -1,0 +1,11 @@
+{
+  "dev_access_count": 0,
+  "experiment": "Exp48A EduQ-TAIL Qualification Pilot",
+  "private_generator_packet": "outputs/exp48a_qualification_pilot/private/source_packets/exp48a_generator_blueprints_60.jsonl",
+  "seed": 48,
+  "selected_question_keys": 60,
+  "selection_uses_outcomes": false,
+  "target_per_metric": 5,
+  "test_access_count": 0,
+  "train_rows_read": 2654
+}

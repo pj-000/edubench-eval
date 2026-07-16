@@ -1,0 +1,14 @@
+{
+  "answers_per_family": 3,
+  "criteria_max": 6,
+  "criteria_min": 4,
+  "families": 60,
+  "generator_packet_must_not_include_labels": true,
+  "max_answer_length_ratio": 1.5,
+  "score_program_version": "eduq_tail_v1",
+  "scores": [
+    2,
+    3,
+    5
+  ]
+}

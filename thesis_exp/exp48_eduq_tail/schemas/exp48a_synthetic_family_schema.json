@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Exp48A synthetic family",
+  "type": "object",
+  "required": ["family_id", "source_blueprint_id", "synthetic_question_key", "metric", "language", "synthetic_question", "criteria", "score_program", "answers", "generator_provenance"],
+  "properties": {
+    "family_id": {"type": "string"},
+    "source_blueprint_id": {"type": "string"},
+    "synthetic_question_key": {"type": "string"},
+    "metric": {"type": "string"},
+    "language": {"enum": ["en", "zh"]},
+    "subject": {"type": "string"},
+    "scenario": {"type": "string"},
+    "education_level": {"type": "string"},
+    "synthetic_question": {"type": "string", "minLength": 10},
+    "criteria": {
+      "type": "array", "minItems": 4, "maxItems": 6,
+      "items": {
+        "type": "object", "required": ["id", "requirement", "type"],
+        "properties": {"id": {"type": "string"}, "requirement": {"type": "string"}, "type": {"enum": ["essential", "supporting", "prohibited"]}},
+        "additionalProperties": false
+      }
+    },
+    "score_program": {
+      "type": "object", "required": ["version", "score5_required_essential_ids", "score5_min_supporting_satisfied", "score2_major_omission_ids", "prohibited_ids"],
+      "properties": {
+        "version": {"const": "eduq_tail_v1"},
+        "score5_required_essential_ids": {"type": "array", "items": {"type": "string"}},
+        "score5_min_supporting_satisfied": {"type": "integer", "minimum": 0},
+        "score2_major_omission_ids": {"type": "array", "items": {"type": "string"}},
+        "prohibited_ids": {"type": "array", "items": {"type": "string"}}
+      }, "additionalProperties": false
+    },
+    "answers": {
+      "type": "array", "minItems": 3, "maxItems": 3,
+      "items": {
+        "type": "object", "required": ["answer_id", "intended_score", "text", "intended_criterion_states"],
+        "properties": {
+          "answer_id": {"type": "string"}, "intended_score": {"enum": [2, 3, 5]}, "text": {"type": "string", "minLength": 10},
+          "intended_criterion_states": {"type": "object", "additionalProperties": {"enum": ["satisfied", "partial", "violated"]}}
+        }, "additionalProperties": false
+      }
+    },
+    "generator_provenance": {
+      "type": "object", "required": ["model_family", "session_id"],
+      "properties": {"model_family": {"type": "string"}, "session_id": {"type": "string"}}, "additionalProperties": true
+    }
+  },
+  "additionalProperties": true
+}
