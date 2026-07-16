@@ -170,7 +170,7 @@ def validate_family(family: dict[str, Any]) -> list[str]:
         errors.append("answer_text_duplicate_or_empty")
     lengths = [max(1, len(text)) for text in texts]
     if lengths and max(lengths) / min(lengths) > 1.5:
-        errors.append("answer_length_ratio_above_1p5")
+        errors.append(f"answer_length_ratio_above_1p5:ratio={max(lengths)/min(lengths):.3f}:lengths={lengths}")
     for answer in answers:
         states = answer.get("intended_criterion_states", {})
         if set(states) != set(ids) or set(states.values()) - ALLOWED_STATES:

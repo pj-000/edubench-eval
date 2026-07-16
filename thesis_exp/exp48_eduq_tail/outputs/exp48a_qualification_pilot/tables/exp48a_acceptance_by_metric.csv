@@ -1,0 +1,13 @@
+metric,families,accepted_families,acceptance_rate
+Basic Factual Accuracy,5,0,0.0
+"Clarity, Simplicity & Inspiration",5,3,0.6
+Content Relevance & Scope Control,5,0,0.0
+Domain Knowledge Accuracy,5,1,0.2
+Error Identification & Correction Precision,5,0,0.0
+Higher-Order Thinking & Skill Development,5,1,0.2
+Instruction Following & Task Completion,5,0,0.0
+"Motivation, Guidance & Positive Feedback",5,0,0.0
+"Personalization, Adaptation & Learning Support",5,0,0.0
+Reasoning Process Rigor,5,0,0.0
+Role & Tone Consistency,5,1,0.2
+Scenario Element Integration,5,1,0.2

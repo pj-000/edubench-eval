@@ -1,0 +1,62 @@
+{
+  "accepted_families": 7,
+  "accepted_verified_rows": {
+    "2": 7,
+    "3": 7,
+    "5": 7
+  },
+  "criterion_agreement": 0.9375,
+  "cross_family_verification": false,
+  "dev_access_count": 0,
+  "exact_programmatic_score_agreement": 0.5777777777777777,
+  "gates": {
+    "accepted_at_least_45": false,
+    "accepted_each_score_at_least_45": false,
+    "criterion_agreement_at_least_0p80": true,
+    "exact_score_agreement_at_least_0p85": false,
+    "generated_60": true,
+    "no_eval_access": true,
+    "question_novelty_pass": true,
+    "qwk_at_least_0p75": false,
+    "score2_to_high_zero": false,
+    "style_macro_f1_at_most_0p45": true,
+    "valid_at_least_54": true,
+    "within_one_at_least_0p98": false
+  },
+  "generated_families": 60,
+  "question_novelty": {
+    "exact_match_count": 0,
+    "max_char5_jaccard": 0.74,
+    "max_token_jaccard": 0.7931034482758621,
+    "mean_max_char5_jaccard": 0.38702453088782157,
+    "mean_max_token_jaccard": 0.5506318918623488,
+    "novelty_pass": true
+  },
+  "qwk": 0.5994205952067422,
+  "recommend_scale_generation": false,
+  "score2_to_high_failure_count": 7,
+  "status": "EDUQ_TAIL_QUALIFICATION_NO_GO",
+  "stop_synthetic_low_tail_route": true,
+  "style_only_macro_f1": 0.42741207309719526,
+  "test_access_count": 0,
+  "valid_generated_families": 60,
+  "verifier_a": {
+    "model_families": [
+      "deepseek-v4-pro"
+    ],
+    "rows": 60,
+    "session_ids": [
+      "exp48a_deepseek_verifier_a_pilot_20260716"
+    ]
+  },
+  "verifier_b": {
+    "model_families": [
+      "deepseek-v4-pro"
+    ],
+    "rows": 60,
+    "session_ids": [
+      "exp48a_deepseek_verifier_b_pilot_20260716"
+    ]
+  },
+  "within_one_agreement": 0.7361111111111112
+}

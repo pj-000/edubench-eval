@@ -1,0 +1,8 @@
+statistic,value
+families,60
+exact_match_count,0
+max_char5_jaccard,0.74
+mean_max_char5_jaccard,0.38702453088782157
+max_token_jaccard,0.7931034482758621
+mean_max_token_jaccard,0.5506318918623488
+novelty_pass,True

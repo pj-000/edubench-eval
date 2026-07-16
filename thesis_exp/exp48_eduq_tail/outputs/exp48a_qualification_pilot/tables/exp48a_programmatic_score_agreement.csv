@@ -1,0 +1,2 @@
+verifier_answer_rows,scorable_rows,exact_score_agreement,within_one_agreement,quadratic_weighted_kappa,intended_score2_to_4_or_5
+360,360,0.5777777777777777,0.7361111111111112,0.5994205952067422,7

@@ -1,0 +1,16 @@
+{
+  "answers": 180,
+  "dev_access_count": 0,
+  "exact_match_count": 0,
+  "families": 60,
+  "generated_families": 60,
+  "max_char5_jaccard": 0.74,
+  "max_token_jaccard": 0.7931034482758621,
+  "mean_max_char5_jaccard": 0.38702453088782157,
+  "mean_max_token_jaccard": 0.5506318918623488,
+  "novelty_pass": true,
+  "status": "GENERATION_VALID",
+  "test_access_count": 0,
+  "unique_synthetic_question_keys": 60,
+  "valid_families": 60
+}
