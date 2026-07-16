@@ -1,0 +1,3 @@
+verifier,packet_rows,output_rows,complete,schema_success_rate,provenance_completeness,model_families,model_versions,session_count,one_context_per_packet
+codex,36,36,True,1.0,1.0,gpt-5.5,gpt-5.5,36,True
+qwen,36,36,True,1.0,1.0,qwen3.7-max,qwen3.7-max,36,True

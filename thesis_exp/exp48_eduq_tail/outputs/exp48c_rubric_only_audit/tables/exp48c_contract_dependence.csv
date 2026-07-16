@@ -1,0 +1,5 @@
+scope,same_model_ablation,comparison_interpretation,contract_aware_exact,rubric_only_exact,exact_delta,contract_aware_QWK,rubric_only_QWK,QWK_delta,contract_aware_score2_recall,rubric_only_score2_recall,score2_recall_delta
+overall,True,causal_same_model_ablation,1.0,0.1111111111111111,-0.8888888888888888,1.0,0.4946236559139785,-0.5053763440860215,1.0,0.16666666666666666,-0.8333333333333334
+intended_2,True,causal_same_model_ablation,1.0,0.16666666666666666,-0.8333333333333334,,,,1.0,0.16666666666666666,-0.8333333333333334
+intended_3,True,causal_same_model_ablation,1.0,0.08333333333333333,-0.9166666666666666,,,,,,
+intended_4,True,causal_same_model_ablation,1.0,0.08333333333333333,-0.9166666666666666,,,,,,

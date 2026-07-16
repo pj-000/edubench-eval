@@ -1,0 +1,144 @@
+{
+  "accepted_metrics": 0,
+  "available_outputs": {
+    "codex": true,
+    "qwen": true
+  },
+  "contract_dependence": {
+    "QWK_delta": -0.5053763440860215,
+    "comparison_interpretation": "causal_same_model_ablation",
+    "contract_aware_QWK": 1.0,
+    "contract_aware_exact": 1.0,
+    "contract_aware_score2_recall": 1.0,
+    "exact_delta": -0.8888888888888888,
+    "rubric_only_QWK": 0.4946236559139785,
+    "rubric_only_exact": 0.1111111111111111,
+    "rubric_only_score2_recall": 0.16666666666666666,
+    "same_model_ablation": true,
+    "scope": "overall",
+    "score2_recall_delta": -0.8333333333333334
+  },
+  "cross_gates": {
+    "accepted_metrics_ge_9": false,
+    "cross_exact_ge_30": false,
+    "cross_qwk_ge_0p85": false,
+    "joint_families_ge_9": false,
+    "joint_score2_ge_10": false
+  },
+  "cross_verifier": {
+    "MAE_between_verifiers": 0.2777777777777778,
+    "QWK": 0.8062780269058296,
+    "exact_rate": 0.75,
+    "exact_rows": 27,
+    "rows": 36,
+    "within_one": 0.9722222222222222
+  },
+  "dev_access_count": 0,
+  "joint_fully_confirmed_families": 0,
+  "joint_score2_correct": 1,
+  "packet_blindness_pass": true,
+  "per_verifier": {
+    "codex": {
+      "MAE": 1.0277777777777777,
+      "QWK": 0.4946236559139785,
+      "complete": true,
+      "exact_wilson_high": 0.25314808590364857,
+      "exact_wilson_low": 0.04406640300315648,
+      "intended_exact_rate": 0.1111111111111111,
+      "intended_exact_rows": 4,
+      "low_confidence_rows": 0,
+      "needs_adjudication_rows": 0,
+      "ordered_families": 6,
+      "rows": 36,
+      "schema_success_rate": 1.0,
+      "score2_correct": 2,
+      "score2_recall": 0.16666666666666666,
+      "score2_to_4_or_5": 2,
+      "score2_wilson_high": 0.4480308622529734,
+      "score2_wilson_low": 0.04696514218385378,
+      "score3_recall": 0.08333333333333333,
+      "score4_recall": 0.08333333333333333,
+      "verifier": "codex",
+      "within_one": 0.8611111111111112
+    },
+    "qwen": {
+      "MAE": 1.0277777777777777,
+      "QWK": 0.4301075268817204,
+      "complete": true,
+      "exact_wilson_high": 0.3502804299517739,
+      "exact_wilson_low": 0.09753095418928728,
+      "intended_exact_rate": 0.19444444444444445,
+      "intended_exact_rows": 7,
+      "low_confidence_rows": 0,
+      "needs_adjudication_rows": 1,
+      "ordered_families": 2,
+      "rows": 36,
+      "schema_success_rate": 1.0,
+      "score2_correct": 1,
+      "score2_recall": 0.08333333333333333,
+      "score2_to_4_or_5": 3,
+      "score2_wilson_high": 0.35387991114111694,
+      "score2_wilson_low": 0.014865094404917095,
+      "score3_recall": 0.3333333333333333,
+      "score4_recall": 0.16666666666666666,
+      "verifier": "qwen",
+      "within_one": 0.7777777777777778
+    }
+  },
+  "pointwise_context_isolation": true,
+  "recommend_chinese_replication": false,
+  "recommend_scale_generation": false,
+  "same_model_ablation": true,
+  "status": "EXP48C_RUBRIC_ONLY_AUDIT_NO_GO",
+  "stop_synthetic_low_tail_route_permanently": true,
+  "test_access_count": 0,
+  "training_authorized": false,
+  "verifier_gates": {
+    "codex": {
+      "completion_36": true,
+      "evidence_ge_0p95": true,
+      "exact_ge_30": false,
+      "low_confidence_le_4": true,
+      "ordered_ge_10": false,
+      "qwk_ge_0p85": false,
+      "rubric_quote_1": true,
+      "schema_success_1": true,
+      "score2_ge_10": false,
+      "score2_to_high_zero": false
+    },
+    "qwen": {
+      "completion_36": true,
+      "evidence_ge_0p95": true,
+      "exact_ge_30": false,
+      "low_confidence_le_4": true,
+      "ordered_ge_10": false,
+      "qwk_ge_0p85": false,
+      "rubric_quote_1": true,
+      "schema_success_1": true,
+      "score2_ge_10": false,
+      "score2_to_high_zero": false
+    }
+  },
+  "verifier_provenance": {
+    "codex": {
+      "model_families": [
+        "gpt-5.5"
+      ],
+      "model_versions": [
+        "gpt-5.5"
+      ],
+      "one_context_per_packet": true,
+      "session_count": 36
+    },
+    "qwen": {
+      "model_families": [
+        "qwen3.7-max"
+      ],
+      "model_versions": [
+        "qwen3.7-max"
+      ],
+      "one_context_per_packet": true,
+      "session_count": 36
+    }
+  }
+}

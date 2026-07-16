@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "packet_id",
+    "anonymous_answer_id",
+    "target_scope_confirmed",
+    "most_plausible_score",
+    "score_range",
+    "confidence",
+    "rubric_level_quote",
+    "answer_evidence_spans",
+    "missing_requirement_reason",
+    "needs_adjudication",
+    "rubric_grounded_reason",
+    "verifier_provenance"
+  ],
+  "properties": {
+    "packet_id": {"type": "string", "minLength": 1},
+    "anonymous_answer_id": {"type": "string", "minLength": 1},
+    "target_scope_confirmed": {"type": "boolean", "const": true},
+    "most_plausible_score": {"type": "integer", "minimum": 1, "maximum": 5},
+    "score_range": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "items": {"type": "integer", "minimum": 1, "maximum": 5}
+    },
+    "confidence": {"enum": ["high", "medium", "low"]},
+    "rubric_level_quote": {"type": "string", "minLength": 1},
+    "answer_evidence_spans": {"type": "array", "items": {"type": "string"}},
+    "missing_requirement_reason": {
+      "anyOf": [
+        {"type": "string"},
+        {"type": "null"}
+      ]
+    },
+    "needs_adjudication": {"type": "boolean"},
+    "rubric_grounded_reason": {"type": "string", "minLength": 1},
+    "verifier_provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["verifier_id", "model_family", "model_version", "session_id"],
+      "properties": {
+        "verifier_id": {"type": "string", "minLength": 1},
+        "model_family": {"type": "string", "minLength": 1},
+        "model_version": {"type": "string", "minLength": 1},
+        "session_id": {"type": "string", "minLength": 1}
+      }
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "completion_rows": 36,
+  "cross_exact_min": 30,
+  "cross_qwk_min": 0.85,
+  "evidence_validity_min": 0.95,
+  "intended_exact_min": 30,
+  "joint_families_min": 9,
+  "joint_metrics_min": 9,
+  "joint_score2_correct_min": 10,
+  "low_confidence_max": 4,
+  "ordered_families_min": 10,
+  "qwk_min": 0.85,
+  "rubric_quote_validity": 1.0,
+  "schema_success_rate": 1.0,
+  "score2_correct_min": 10,
+  "score2_to_high_max": 0
+}

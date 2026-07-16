@@ -1,0 +1,10 @@
+{
+  "codex": {
+    "exists": true,
+    "sha256": "5bc19a2cd51df1df64acdac10aa6ee00b875e9858930d81a8ab3f65042c38704"
+  },
+  "qwen": {
+    "exists": true,
+    "sha256": "3c77350ec0844894f75e739a8b6f58aae3afc7562895b12ac686a9dc4713a89a"
+  }
+}

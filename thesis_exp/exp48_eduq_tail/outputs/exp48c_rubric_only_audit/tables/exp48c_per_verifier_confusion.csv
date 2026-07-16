@@ -1,0 +1,17 @@
+verifier,intended_score,predicted_score,count
+codex,2,2,2
+codex,2,3,8
+codex,2,4,2
+codex,3,3,1
+codex,3,4,8
+codex,3,5,3
+codex,4,4,1
+codex,4,5,11
+qwen,2,2,1
+qwen,2,3,8
+qwen,2,4,3
+qwen,3,3,4
+qwen,3,4,3
+qwen,3,5,5
+qwen,4,4,2
+qwen,4,5,10

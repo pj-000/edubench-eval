@@ -1,0 +1,14 @@
+{
+  "answer_hash_equality_rate": 1.0,
+  "dev_access_count": 0,
+  "forbidden_leakage_rows": 0,
+  "frozen_answers": 36,
+  "frozen_families": 12,
+  "one_answer_per_packet_rate": 1.0,
+  "packet_rows_each": {
+    "codex": 36,
+    "qwen": 36
+  },
+  "status": "PACKET_BLINDNESS_GO",
+  "test_access_count": 0
+}

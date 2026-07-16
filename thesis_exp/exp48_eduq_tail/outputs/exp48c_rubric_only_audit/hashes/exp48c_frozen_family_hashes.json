@@ -1,0 +1,128 @@
+{
+  "answer_count": 36,
+  "families": [
+    {
+      "answer_count": 3,
+      "answer_text_hashes": [
+        "39ea4b5ad993b95e8fa75b42ffe1e97c7eb7a5edab02927e52b942ca156a8696",
+        "acae79166559435b5f45af51e556149aa767dcd62e0083ff5ad06da2d1517c12",
+        "5e69a20271ae5f6d7284859b71b3495e60ccf62676f72c7ac43d4e3a9545fe48"
+      ],
+      "frozen_family_hash": "5b0472f260fd85d5a366198032ddf33c2c8e8b5d13cb649b8f1092a25aad037c",
+      "metric": "Basic Factual Accuracy"
+    },
+    {
+      "answer_count": 3,
+      "answer_text_hashes": [
+        "d23784cdd57be7f7c7947b8f734cb4f2b3f32c40c7fe683a7059c90d6d6d6892",
+        "772cee471199f696d6a8ea1c90e516cb2e1b9865ecf9d905c976302485c4e12b",
+        "fea3cdc76176e12b9cc71566dcd2546451f02e1be863653977a1c7e9aaf40168"
+      ],
+      "frozen_family_hash": "e5e1651a64e733388576f1433ba397a5ebad5e91ce957b8d825d336688445b5c",
+      "metric": "Clarity, Simplicity & Inspiration"
+    },
+    {
+      "answer_count": 3,
+      "answer_text_hashes": [
+        "f68d8b587fdc8a0cfe34ab76eb65537e46e872073f2330100ec1484aa7d58507",
+        "6905c6a3e8987d99bb7ae93f9f609e04f461ac00688c5ef222e2d44b9bfd33f2",
+        "14046c736c05b46859ea6a2f130fea46d22444d3c34e53a2ded5321831976df1"
+      ],
+      "frozen_family_hash": "c6d2390d91ee7ca0ad2e3bf85bdfd68aa67bdf544f2208c9b6776406e3da226c",
+      "metric": "Content Relevance & Scope Control"
+    },
+    {
+      "answer_count": 3,
+      "answer_text_hashes": [
+        "199ff426b8a1926203584e94b383de5ec27e5340e6cd02c126486c8e070c4a1d",
+        "0c92eefcd93ce133538d61c5a7bce7f4db4d53f7146b4b29a12169bbb5c8f2b6",
+        "62616c3d5f1f4de093d271fdb4397bc0645302ac006f5b5bc072133feef5c6ff"
+      ],
+      "frozen_family_hash": "f659609b8d020821aef4dd7213a97a7a0527e715ab9825ed5be8ff9c8a257f43",
+      "metric": "Domain Knowledge Accuracy"
+    },
+    {
+      "answer_count": 3,
+      "answer_text_hashes": [
+        "a0360fdc206e8248bd9e4b130be7ea84b852c1e79c253940cca0975116f7b74a",
+        "65211a53b6280c5f57f6288f810e9c6bc38f14446a60812fc701a9c2e1b31d2d",
+        "2e13b8d1b660dbd1a37511141d36463fe723be39a5e4cef11eef11721680ddcc"
+      ],
+      "frozen_family_hash": "73d68a4300a01571eb849f476a702d5c711a6c5cbb9b64efe432b0133937b25d",
+      "metric": "Error Identification & Correction Precision"
+    },
+    {
+      "answer_count": 3,
+      "answer_text_hashes": [
+        "3dc28f00557aa483a83456b274f6bb3edf432da66487d667ad8054fbfd029336",
+        "a69c94e8fd7c3728ffdd5f034cbc01839aeafa469ee5f1167c79463281ddc748",
+        "b1f710f394552dbc4fedba30a197928847b6d9a066f510976d675e96f7304ac9"
+      ],
+      "frozen_family_hash": "0d54adeabecbc1fc56efb6a32cef06ae5d8c9bb48f93ea533f3c35f9e74eae34",
+      "metric": "Higher-Order Thinking & Skill Development"
+    },
+    {
+      "answer_count": 3,
+      "answer_text_hashes": [
+        "7fd6c15d740256352e4945147de4b372b42d444d8adbd60f2a9928c9d2ea0624",
+        "7af563deadfcceaf013d2805be47ebffba4e58868ae206b577363a94dca46a02",
+        "3660ff38ca3a87f03f62a1886aaf2dd296845139e7024d2b61d10cf802ea6bae"
+      ],
+      "frozen_family_hash": "106619b9fe16fc9f0ec90ea0b0502a073ab6d232cbb63196a76254cd8121ec15",
+      "metric": "Instruction Following & Task Completion"
+    },
+    {
+      "answer_count": 3,
+      "answer_text_hashes": [
+        "7d1ab7959f34952860f57c052c8ba33805401a2ce926c6d32c6dfa1bcdc567c8",
+        "deb6ef4e11576bf90663b4f7ba4945c7f7d8eece3039ad4dc7c0cc1cfde062e0",
+        "982b260b803173125e85a60e9824514e5ec4f4e18294e00ca753d3c5bd566817"
+      ],
+      "frozen_family_hash": "96266c130b5a49a66ba77ab7333d483a62c599067ba533199fc84e82dc6aea46",
+      "metric": "Motivation, Guidance & Positive Feedback"
+    },
+    {
+      "answer_count": 3,
+      "answer_text_hashes": [
+        "23fadaa6d9db2ada349f46a6cd88519863afa2955d99e6dd47d67123f7815255",
+        "fc4dca212896dfe821ad2e20b4223f2373a58b05c9fdeabdb08713dff360c4fb",
+        "700c24e8d548a44d5055ec0d527c3c1be0a455170da2d4330d5bbe4e2baac264"
+      ],
+      "frozen_family_hash": "fbb99ad0355c412de1707db55314a9947af630d7d16b556c64456745a2d41916",
+      "metric": "Personalization, Adaptation & Learning Support"
+    },
+    {
+      "answer_count": 3,
+      "answer_text_hashes": [
+        "6afc4a8384af8f5cd788ce48ea222e1b50b51ab89eba1e1ab1739965cc2f894e",
+        "bcaba84d78bdc0ff98c360a3e2d1eff638ce5bc9f370a4aa8babaf7f17b5a3f2",
+        "dddaabfb97c94f4e4bc2117ce96297ffdf41180560828a64915add903978c37c"
+      ],
+      "frozen_family_hash": "2ddac3d4d33aab1899ab4dd0b7986af68041094abe8da80734c9c731e54b70a3",
+      "metric": "Reasoning Process Rigor"
+    },
+    {
+      "answer_count": 3,
+      "answer_text_hashes": [
+        "94465ba9abbe1a29ad910fdccbfef247369a740874afdbb3f7b7d4594105dfe7",
+        "dd33fe06bfa43bb6240e5477bab84ba11a999b25287ede77fb88dcdb50458675",
+        "a14c724273e91f58a0bf241c3efba37c2ad911af49d6472ecb5ce2d97849c98f"
+      ],
+      "frozen_family_hash": "faa75f5af88b96154068930f896b5aae2dcd3ccdd75fe16462e67ae54fc17e87",
+      "metric": "Role & Tone Consistency"
+    },
+    {
+      "answer_count": 3,
+      "answer_text_hashes": [
+        "e858bfd86724544fbfe65aa54eb8de212331e9602c1bffb5d80f0c35ed52db6b",
+        "9978944fd322b540e1f35327420a8638466604b2e00f18cdd565452b84bec2ec",
+        "3dd1e58a13b907df8ec9afb8bc7edff987e5b7a714b8c9bd28f720076797b31d"
+      ],
+      "frozen_family_hash": "9a77b8ead19358bbfe2a3b5a0122933788e6b839cb603ffa786bc154c7bc2199",
+      "metric": "Scenario Element Integration"
+    }
+  ],
+  "family_count": 12,
+  "source_file": "thesis_exp/exp48_eduq_tail/outputs/exp48b_metric_rubric_local_edit_pilot/private/generated_families/exp48b_constructed_families.jsonl",
+  "source_sha256": "7bf8861c6a8a5cf8837a1e8d5e78487cd9041075636e3760b6df31ad6da06fbb"
+}

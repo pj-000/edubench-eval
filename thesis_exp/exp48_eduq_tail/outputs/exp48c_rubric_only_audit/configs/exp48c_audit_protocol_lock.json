@@ -1,0 +1,20 @@
+{
+  "codex_matches_exp48b_model": true,
+  "codex_model": "gpt-5.5",
+  "dev_access_count": 0,
+  "experiment": "Exp48C Rubric-Only Pointwise Contract-Leakage Audit",
+  "frozen_answer_count": 36,
+  "frozen_family_count": 12,
+  "generation_forbidden": true,
+  "gpu_required": false,
+  "locked_from_commit": "9408f92",
+  "packet_seeds": {
+    "codex": 4831,
+    "qwen": 4832
+  },
+  "pointwise_context_isolation_required": true,
+  "qwen_model": "qwen3.7-max",
+  "qwen_thinking": "disabled",
+  "test_access_count": 0,
+  "training_forbidden": true
+}

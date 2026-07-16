@@ -1,0 +1,32 @@
+{
+  "allowed_fields": [
+    "anonymous_answer_id",
+    "answer",
+    "language",
+    "metric",
+    "packet_id",
+    "rubric_levels",
+    "synthetic_question"
+  ],
+  "forbidden_fields": [
+    "D2",
+    "D3",
+    "H4",
+    "answer_id",
+    "answers",
+    "base_answer",
+    "edit",
+    "family_id",
+    "intended_score",
+    "metric_contract",
+    "ranking",
+    "replacement_span",
+    "rubric_grounded_reason",
+    "score_program",
+    "source_question",
+    "source_question_key",
+    "source_span"
+  ],
+  "one_answer_per_packet": true,
+  "shared_context_across_packets": false
+}

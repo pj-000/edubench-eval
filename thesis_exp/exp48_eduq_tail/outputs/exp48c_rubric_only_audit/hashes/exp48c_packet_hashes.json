@@ -1,0 +1,14 @@
+{
+  "codex": {
+    "packet_order_hash": "5bf6e96ef56bc238b9748987c65659c522db1ddd69a0a79f9452f3513fb99757",
+    "rows": 36,
+    "seed": 4831,
+    "sha256": "d33b8ea39967721815f375c79beca5c1b440328b35b3cf1dbfacdaa3f4f17825"
+  },
+  "qwen": {
+    "packet_order_hash": "fdbca99fb656c6bbcb787803cca342595cd618b478eab72d97b15464fd5e924d",
+    "rows": 36,
+    "seed": 4832,
+    "sha256": "49efdd7e320a5c529a1ae8413ee1d036ae10b6df8dd83e4cf7d9bd216691a588"
+  }
+}
