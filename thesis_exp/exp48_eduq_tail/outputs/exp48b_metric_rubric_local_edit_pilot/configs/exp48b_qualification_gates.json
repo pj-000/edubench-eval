@@ -1,0 +1,19 @@
+{
+  "ab_programmatic_exact_min": 0.9,
+  "criterion_agreement_min": 0.9,
+  "decisive_agreement_min": 0.9,
+  "dev_access_count": 0,
+  "evidence_substring_validity": 1.0,
+  "fully_confirmed_families_min": 9,
+  "generation_valid_families": 12,
+  "intended_exact_min_per_verifier_rows": 33,
+  "metrics_with_accepted_family_min": 9,
+  "ordered_families_min_per_verifier": 10,
+  "outside_span_identity_families": 12,
+  "qwk_min_per_verifier": 0.85,
+  "score2_confirmed_by_both_min": 10,
+  "score2_to_4_max": 0,
+  "style_macro_f1_max": 0.45,
+  "test_access_count": 0,
+  "verifier_completeness": 1.0
+}

@@ -1,0 +1,11 @@
+{
+  "dev_access_count": 0,
+  "private_packet_sha256": "bc41f2f4fab65c4ccb84387ada205e3cb53b4a377802f4cb9a5120e9ca0d566d",
+  "selected_sources": 12,
+  "source_overlap_with_exp48a": 0,
+  "source_signature": "exp48b_707455219c32d8b3",
+  "status": "EXP48B_PREPARED",
+  "test_access_count": 0,
+  "train_sha256": "0a1733b9209984c5c4291d205d1ac6057bed341717903b9de075d07de44a878e",
+  "unique_metrics": 12
+}

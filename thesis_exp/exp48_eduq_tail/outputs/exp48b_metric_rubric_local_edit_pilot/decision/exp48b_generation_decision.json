@@ -1,0 +1,13 @@
+{
+  "dev_access_count": 0,
+  "language_distribution": {
+    "en": 12
+  },
+  "novelty_pass_families": 12,
+  "outside_span_identity_families": 12,
+  "plans": 12,
+  "status": "EXP48B_GENERATION_VALID",
+  "test_access_count": 0,
+  "unique_metrics": 12,
+  "valid_families": 12
+}

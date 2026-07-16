@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Exp48B blind metric-contract verification",
+  "type": "object",
+  "required": ["family_id", "packet_id", "verifier_provenance", "answers"],
+  "properties": {
+    "family_id": {"type": "string"},
+    "packet_id": {"type": "string"},
+    "verifier_provenance": {
+      "type": "object",
+      "required": ["verifier_id", "model_family", "session_id"],
+      "properties": {
+        "verifier_id": {"type": "string"},
+        "model_family": {"type": "string"},
+        "session_id": {"type": "string"}
+      }
+    },
+    "answers": {
+      "type": "array", "minItems": 3, "maxItems": 3,
+      "items": {
+        "type": "object",
+        "required": ["anonymous_answer_id", "uncertainty", "contracts"],
+        "properties": {
+          "anonymous_answer_id": {"type": "string"},
+          "uncertainty": {"enum": ["low", "medium", "high"]},
+          "contracts": {
+            "type": "array", "minItems": 3, "maxItems": 3,
+            "items": {
+              "type": "object",
+              "required": ["contract_id", "status", "evidence_span", "missing_reason"],
+              "properties": {
+                "contract_id": {"enum": ["D2", "D3", "H4"]},
+                "status": {"enum": ["entailed", "contradicted", "absent", "unclear"]},
+                "evidence_span": {"type": "string"},
+                "missing_reason": {"type": "string"}
+              },
+              "additionalProperties": false
+            }
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

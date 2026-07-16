@@ -1,0 +1,60 @@
+{
+  "checks": {
+    "critical_failure_always_score2": true,
+    "no_default_score": true,
+    "score3_requires_no_critical_and_moderate_defect": true,
+    "score4_requires_no_defects_and_high_contract": true
+  },
+  "pass": true,
+  "program_version": "eduq_tail_v2_metric_specific",
+  "state_rows": [
+    {
+      "D2": "entailed",
+      "D3": "entailed",
+      "H4": "entailed",
+      "score": 2
+    },
+    {
+      "D2": "entailed",
+      "D3": "entailed",
+      "H4": "contradicted",
+      "score": 2
+    },
+    {
+      "D2": "entailed",
+      "D3": "contradicted",
+      "H4": "entailed",
+      "score": 2
+    },
+    {
+      "D2": "entailed",
+      "D3": "contradicted",
+      "H4": "contradicted",
+      "score": 2
+    },
+    {
+      "D2": "contradicted",
+      "D3": "entailed",
+      "H4": "entailed",
+      "score": 3
+    },
+    {
+      "D2": "contradicted",
+      "D3": "entailed",
+      "H4": "contradicted",
+      "score": 3
+    },
+    {
+      "D2": "contradicted",
+      "D3": "contradicted",
+      "H4": "entailed",
+      "score": 4
+    },
+    {
+      "D2": "contradicted",
+      "D3": "contradicted",
+      "H4": "contradicted",
+      "score": null
+    }
+  ]
+}

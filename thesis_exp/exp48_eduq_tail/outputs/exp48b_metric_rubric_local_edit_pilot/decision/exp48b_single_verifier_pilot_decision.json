@@ -1,0 +1,48 @@
+{
+  "accepted_metrics": 12,
+  "dev_access_count": 0,
+  "evidence_validity": 1.0,
+  "formal_qualification_complete": false,
+  "fully_confirmed_families": 12,
+  "gates": {
+    "accepted_metrics_ge_9": true,
+    "evidence_substring_validity_100pct": true,
+    "fully_confirmed_families_ge_9": true,
+    "generation_12_valid": true,
+    "intended_exact_ge_33": true,
+    "no_eval_access": true,
+    "ordered_families_ge_10": true,
+    "outside_span_identity_12": true,
+    "question_novelty_12": true,
+    "qwk_ge_0p85": true,
+    "score2_confirmed_ge_10": true,
+    "score2_to_4_zero": true,
+    "single_verifier_complete": true,
+    "style_macro_f1_le_0p45": true
+  },
+  "generator_and_verifier_separate_contexts": true,
+  "intended_exact_rate": 1.0,
+  "intended_exact_rows": 36,
+  "language_distribution": {
+    "en": 12
+  },
+  "missing_requirement": "second independent cross-model-family verifier",
+  "ordered_families": 12,
+  "qwk": 1.0,
+  "recommend_scale_generation": false,
+  "rows": 36,
+  "same_platform_shared_bias_possible": true,
+  "scorable_rows": 36,
+  "score2_confirmed": 12,
+  "score2_to_4": 0,
+  "single_verifier_model_families": [
+    "gpt-5.5"
+  ],
+  "single_verifier_session_ids": [
+    "exp48b_codex_gpt55_verifier_a_20260716"
+  ],
+  "status": "EXP48B_SINGLE_VERIFIER_PILOT_SIGNAL",
+  "style_only_macro_f1": 0.25957049486461253,
+  "test_access_count": 0,
+  "validation_errors": []
+}

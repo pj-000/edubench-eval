@@ -1,0 +1,13 @@
+family_id,metric,fully_confirmed,ordered
+exp48b_b48_01,Basic Factual Accuracy,True,True
+exp48b_b48_02,"Clarity, Simplicity & Inspiration",True,True
+exp48b_b48_03,Content Relevance & Scope Control,True,True
+exp48b_b48_04,Domain Knowledge Accuracy,True,True
+exp48b_b48_05,Error Identification & Correction Precision,True,True
+exp48b_b48_06,Higher-Order Thinking & Skill Development,True,True
+exp48b_b48_07,Instruction Following & Task Completion,True,True
+exp48b_b48_08,"Motivation, Guidance & Positive Feedback",True,True
+exp48b_b48_09,"Personalization, Adaptation & Learning Support",True,True
+exp48b_b48_10,Reasoning Process Rigor,True,True
+exp48b_b48_11,Role & Tone Consistency,True,True
+exp48b_b48_12,Scenario Element Integration,True,True

@@ -36,7 +36,10 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--families", type=Path, default=PRIVATE / "generated_families/exp48a_generated_families.jsonl")
     parser.add_argument("--out-dir", type=Path, default=OUT)
+    parser.add_argument("--labels", default="2,3,5")
+    parser.add_argument("--output-prefix", default="exp48a")
     args = parser.parse_args()
+    labels = [int(value) for value in args.labels.split(",")]
     ensure_output_layout(args.out_dir)
     families = read_jsonl(args.families)
     rows = []
@@ -53,11 +56,11 @@ def main() -> None:
         model = make_pipeline(StandardScaler(), LogisticRegression(max_iter=2000, class_weight="balanced", random_state=48))
         model.fit(x[train_idx], y[train_idx])
         predictions[test_idx] = model.predict(x[test_idx])
-        fold_rows.append({"fold": fold, "families": len(set(groups[test_idx])), "rows": len(test_idx), "macro_f1": f1_score(y[test_idx], predictions[test_idx], average="macro", labels=[2, 3, 5], zero_division=0)})
-    overall = float(f1_score(y, predictions, average="macro", labels=[2, 3, 5], zero_division=0))
+        fold_rows.append({"fold": fold, "families": len(set(groups[test_idx])), "rows": len(test_idx), "macro_f1": f1_score(y[test_idx], predictions[test_idx], average="macro", labels=labels, zero_division=0)})
+    overall = float(f1_score(y, predictions, average="macro", labels=labels, zero_division=0))
     output = fold_rows + [{"fold": "overall", "families": len(set(groups)), "rows": len(rows), "macro_f1": overall}]
-    write_csv(args.out_dir / "tables/exp48a_style_probe_metrics.csv", output)
-    write_json(args.out_dir / "private/generated_families/exp48a_style_probe_predictions.json", [{"family_id": row["family_id"], "gold": int(gold), "prediction": int(pred)} for row, gold, pred in zip(rows, y, predictions)])
+    write_csv(args.out_dir / f"tables/{args.output_prefix}_style_probe_metrics.csv", output)
+    write_json(args.out_dir / f"private/generated_families/{args.output_prefix}_style_probe_predictions.json", [{"family_id": row["family_id"], "gold": int(gold), "prediction": int(pred)} for row, gold, pred in zip(rows, y, predictions)])
     print(json.dumps({"style_only_macro_f1": overall, "style_shortcut_pass": overall <= 0.45}, sort_keys=True))
 
 

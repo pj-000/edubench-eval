@@ -1,0 +1,23 @@
+{
+  "answer_length_ratio_max": 1.2,
+  "cross_model_family_required": true,
+  "dev_access_count": 0,
+  "experiment": "Exp48B metric-specific rubric-grounded local-edit pilot",
+  "families": 12,
+  "generation": "one base answer plus independent metric-specific score2 and score3 span replacements",
+  "metrics": 12,
+  "replacement_length_ratio": [
+    0.8,
+    1.2
+  ],
+  "rubric_source": "original per-metric 1-5 benchmark rubric",
+  "score_program_version": "eduq_tail_v2_metric_specific",
+  "scores": [
+    2,
+    3,
+    4
+  ],
+  "source_overlap_with_exp48a": 0,
+  "test_access_count": 0,
+  "verifiers_required": 2
+}

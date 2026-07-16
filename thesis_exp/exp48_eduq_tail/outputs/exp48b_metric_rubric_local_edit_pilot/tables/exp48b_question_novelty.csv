@@ -1,0 +1,13 @@
+family_id,metric,exact_train_match,max_char5_jaccard,max_token_jaccard,pass
+exp48b_b48_01,Basic Factual Accuracy,0,0.03484320557491289,0.13636363636363635,True
+exp48b_b48_02,"Clarity, Simplicity & Inspiration",0,0.19072164948453607,0.3333333333333333,True
+exp48b_b48_03,Content Relevance & Scope Control,0,0.228486646884273,0.26,True
+exp48b_b48_04,Domain Knowledge Accuracy,0,0.2351421188630491,0.3333333333333333,True
+exp48b_b48_05,Error Identification & Correction Precision,0,0.1,0.18072289156626506,True
+exp48b_b48_06,Higher-Order Thinking & Skill Development,0,0.09318497913769123,0.18556701030927836,True
+exp48b_b48_07,Instruction Following & Task Completion,0,0.057692307692307696,0.14516129032258066,True
+exp48b_b48_08,"Motivation, Guidance & Positive Feedback",0,0.09382151029748284,0.21666666666666667,True
+exp48b_b48_09,"Personalization, Adaptation & Learning Support",0,0.1054481546572935,0.17777777777777778,True
+exp48b_b48_10,Reasoning Process Rigor,0,0.06303724928366762,0.13793103448275862,True
+exp48b_b48_11,Role & Tone Consistency,0,0.06879361914257229,0.12844036697247707,True
+exp48b_b48_12,Scenario Element Integration,0,0.15597667638483964,0.2696629213483146,True

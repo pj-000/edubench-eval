@@ -1,0 +1,9 @@
+{
+  "dev_access_count": 0,
+  "intended_score_leakage": 0,
+  "source_question_leakage": 0,
+  "status": "EXP48B_BLIND_PACKETS_READY",
+  "test_access_count": 0,
+  "verifier_a_families": 12,
+  "verifier_b_families": 12
+}

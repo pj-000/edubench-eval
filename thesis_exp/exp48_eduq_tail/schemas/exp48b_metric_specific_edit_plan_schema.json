@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Exp48B metric-specific rubric-grounded edit plan",
+  "type": "object",
+  "required": [
+    "family_id", "synthetic_question_key", "metric", "language", "synthetic_question",
+    "rubric_levels", "metric_contract", "base_answer", "score2_edit", "score3_edit"
+  ],
+  "properties": {
+    "family_id": {"type": "string"},
+    "synthetic_question_key": {"type": "string"},
+    "metric": {"type": "string"},
+    "language": {"enum": ["en", "zh"]},
+    "synthetic_question": {"type": "string"},
+    "rubric_levels": {
+      "type": "object",
+      "required": ["1", "2", "3", "4", "5"],
+      "properties": {
+        "1": {"type": "string"}, "2": {"type": "string"}, "3": {"type": "string"},
+        "4": {"type": "string"}, "5": {"type": "string"}
+      },
+      "additionalProperties": false
+    },
+    "metric_contract": {
+      "type": "object",
+      "required": ["D2", "D3", "H4"],
+      "properties": {
+        "D2": {"$ref": "#/$defs/contract"},
+        "D3": {"$ref": "#/$defs/contract"},
+        "H4": {"$ref": "#/$defs/contract"}
+      },
+      "additionalProperties": false
+    },
+    "base_answer": {"type": "string"},
+    "score2_edit": {"$ref": "#/$defs/edit"},
+    "score3_edit": {"$ref": "#/$defs/edit"}
+  },
+  "$defs": {
+    "contract": {
+      "type": "object",
+      "required": ["rubric_level", "rubric_quote", "assertion"],
+      "properties": {
+        "rubric_level": {"enum": [2, 3, 4]},
+        "rubric_quote": {"type": "string"},
+        "assertion": {"type": "string"}
+      },
+      "additionalProperties": false
+    },
+    "edit": {
+      "type": "object",
+      "required": ["source_span", "replacement_span", "rubric_grounded_reason", "defect_contract_id"],
+      "properties": {
+        "source_span": {"type": "string"},
+        "replacement_span": {"type": "string"},
+        "rubric_grounded_reason": {"type": "string"},
+        "defect_contract_id": {"enum": ["D2", "D3"]}
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

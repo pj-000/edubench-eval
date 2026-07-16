@@ -1,0 +1,13 @@
+metric,language,subject,scenario,education_level
+Basic Factual Accuracy,en,Biology,Automatic Grading,PhD
+"Clarity, Simplicity & Inspiration",en,Chemistry,Error Correction,Undergraduate
+Content Relevance & Scope Control,en,Literature and Art,Teaching Material Generation,Master
+Domain Knowledge Accuracy,en,Theoretical Economics,Question Generation,Undergraduate
+Error Identification & Correction Precision,en,Crop Science,Error Correction,Master
+Higher-Order Thinking & Skill Development,en,History,Personalized Learning Support,PhD
+Instruction Following & Task Completion,en,Clinical Medicine,Emotional Support,Master
+"Motivation, Guidance & Positive Feedback",en,Basic Medicine,Error Correction,Undergraduate
+"Personalization, Adaptation & Learning Support",en,English,Personalized Content Creation,Elementary School
+Reasoning Process Rigor,en,Business Administration,Idea Provision,Undergraduate
+Role & Tone Consistency,en,Computer Science,Emotional Support,Undergraduate
+Scenario Element Integration,en,Physics,Personalized Learning Support,Undergraduate
