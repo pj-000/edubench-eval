@@ -1,0 +1,4 @@
+human_score_pattern,label2_subtype,count,share
+1/2/2,stable_majority_non_strict,7,0.1346153846153846
+2/2/2,strict_222,33,0.6346153846153846
+2/2/3,stable_majority_non_strict,12,0.23076923076923078

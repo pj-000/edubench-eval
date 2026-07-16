@@ -1,0 +1,9 @@
+model,label2_subtype,train_availability,heldout_availability,outer_train_n,outer_heldout_n,outer_train_recall,outer_heldout_recall,train_minus_heldout_recall
+M0_0.6B_E4,all_hard_label2,MISSING_CHECKPOINT_NOT_RECOMPUTED,AVAILABLE,0,52,,0.0,
+M0_0.6B_E4,stable_label2,MISSING_CHECKPOINT_NOT_RECOMPUTED,AVAILABLE,0,52,,0.0,
+M0_0.6B_E4,strict_label2,MISSING_CHECKPOINT_NOT_RECOMPUTED,AVAILABLE,0,33,,0.0,
+M0_0.6B_E4,ambiguous_label2,MISSING_CHECKPOINT_NOT_RECOMPUTED,EMPTY_SUBSET,0,0,,,
+M1_4B_teacher,all_hard_label2,AVAILABLE,AVAILABLE,208,52,0.9951923076923077,0.0,0.9951923076923077
+M1_4B_teacher,stable_label2,AVAILABLE,AVAILABLE,208,52,0.9951923076923077,0.0,0.9951923076923077
+M1_4B_teacher,strict_label2,AVAILABLE,AVAILABLE,132,33,1.0,0.0,1.0
+M1_4B_teacher,ambiguous_label2,EMPTY_SUBSET,EMPTY_SUBSET,0,0,,,

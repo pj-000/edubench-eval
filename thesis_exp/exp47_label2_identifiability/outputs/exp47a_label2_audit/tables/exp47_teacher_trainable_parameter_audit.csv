@@ -1,0 +1,11 @@
+model,fold,history_status,model_mode,total_parameters,trainable_parameters,trainable_fraction,peak_gpu_memory_mib,epochs,fixed_final_epoch,global_steps,learning_rate,batch_size,gradient_accumulation,max_length,nan_count,oom_count,dev_access_count,test_access_count,lora_rank,lora_alpha,lora_dropout,lora_target_modules
+M0_0.6B_E4,0,AVAILABLE,full_finetuning,,,,,10,10,170,2e-05,4,32,2048,0,0,0,0,,,,
+M0_0.6B_E4,1,AVAILABLE,full_finetuning,,,,,10,10,170,2e-05,4,32,2048,0,0,0,0,,,,
+M0_0.6B_E4,2,AVAILABLE,full_finetuning,,,,,10,10,170,2e-05,4,32,2048,0,0,0,0,,,,
+M0_0.6B_E4,3,AVAILABLE,full_finetuning,,,,,10,10,170,2e-05,4,32,2048,0,0,0,0,,,,
+M0_0.6B_E4,4,AVAILABLE,full_finetuning,,,,,10,10,170,2e-05,4,32,2048,0,0,0,0,,,,
+M1_4B_teacher,0,AVAILABLE,lora_teacher,4054827525,33042949,0.00814903933552636,10802.734375,10,10,170,0.0001,4,32,2048,0,0,0,0,16,32,0.05,q_proj|k_proj|v_proj|o_proj|gate_proj|up_proj|down_proj
+M1_4B_teacher,1,AVAILABLE,lora_teacher,4054827525,33042949,0.00814903933552636,10808.3076171875,10,10,170,0.0001,4,32,2048,0,0,0,0,16,32,0.05,q_proj|k_proj|v_proj|o_proj|gate_proj|up_proj|down_proj
+M1_4B_teacher,2,AVAILABLE,lora_teacher,4054827525,33042949,0.00814903933552636,10804.45166015625,10,10,170,0.0001,4,32,2048,0,0,0,0,16,32,0.05,q_proj|k_proj|v_proj|o_proj|gate_proj|up_proj|down_proj
+M1_4B_teacher,3,AVAILABLE,lora_teacher,4054827525,33042949,0.00814903933552636,10803.349609375,10,10,170,0.0001,4,32,2048,0,0,0,0,16,32,0.05,q_proj|k_proj|v_proj|o_proj|gate_proj|up_proj|down_proj
+M1_4B_teacher,4,AVAILABLE,lora_teacher,4054827525,33042949,0.00814903933552636,10539.185546875,10,10,170,0.0001,4,32,2048,0,0,0,0,16,32,0.05,q_proj|k_proj|v_proj|o_proj|gate_proj|up_proj|down_proj

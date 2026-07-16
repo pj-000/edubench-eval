@@ -1,0 +1,42 @@
+{
+  "dev_access_count": 0,
+  "missing_0.6b_outer_train_checkpoint": true,
+  "private_artifact_hashes": {
+    "0.6b_fold_0_heldout": "0f4782d0c751834485ee2f682415e61b135dfb78fe6bf3ad3733718f7a2f1322",
+    "0.6b_fold_0_summary": "17f67485da06381be02f1d532e2ab9e02c41aad6c4a4f71da632a548fac725f8",
+    "0.6b_fold_1_heldout": "7ea016164d3402b1390a46004dcf5dcc0f8d0a9f02267b8cae12d1c59c6b49f0",
+    "0.6b_fold_1_summary": "e8610a08aee4394c8388ad349c5b55e0d9e0542d1a8fc7fd26fdf0954b0194cd",
+    "0.6b_fold_2_heldout": "fdd992c5b675f0ac2a3cd3afc4de8219b4888bb16ecf3475144525df170700bb",
+    "0.6b_fold_2_summary": "87badc2fcc169ee9ff13e80f8e60b1256ba3750c15db54214c1e6288a8eab549",
+    "0.6b_fold_3_heldout": "6957f7b3a3581a3fdeb8f7e279f3fd2970ff3af0c724e63eb4cdb14f31fee868",
+    "0.6b_fold_3_summary": "5e4ced6d858f32fae0105eb6eb550f4aba1aa6a5993f368a61cd0b24092ec32f",
+    "0.6b_fold_4_heldout": "aeb9f57e7eb7d991cd4b0dbcf4d8168eb4fb798550807c3675e20a7c8dc3d03c",
+    "0.6b_fold_4_summary": "d1aaee311b078072b913ae40764d646a3211c56fbbdbdd96889c75314bdec0ba",
+    "4b_fold_0_all_logits": "f75d41f6741eab6931d5707909d02043d453278c65b5638b37da0e322ec97b2f",
+    "4b_fold_0_heldout": "e12cbbbf485c65c6183ea367f04f37a92651f2063b10b451a6e2b7613a3b1413",
+    "4b_fold_0_summary": "51ee27ab623df60e46757fa0036557da90b841e1e77cb90a1f1edabb0386ecd2",
+    "4b_fold_1_all_logits": "405307da6d2710d8d98d80f6c9ac69a7727679f7d140a86864479dc54dcac122",
+    "4b_fold_1_heldout": "0e89ea73284828e4db3f67fef2fe5f72d1cfd5f95f3e765dadb8a12093c982c6",
+    "4b_fold_1_summary": "624e5e7bc9baec26ad288d99e9f54daa28dcdf2f97f12e6daed9ab56ee19112e",
+    "4b_fold_2_all_logits": "2482e439ebaa50d0d0aef87a21753187dec8cca95a2f5812611bc2e06156ddb3",
+    "4b_fold_2_heldout": "0e807d5c35cb9390bafcf726f39131f102d7df5a5832ccad66150ac680fc8fa6",
+    "4b_fold_2_summary": "77a2c1b1b5e0e487a3aa7bff345cd938ba9a09ebf85f9086b052c93536558cbf",
+    "4b_fold_3_all_logits": "d7515ed480ec560bf32e3c1c675755aabee42df1c58553db508f5374f040dd19",
+    "4b_fold_3_heldout": "5d0a2d109a4faba7e4eb21374d811454dce8658dd57cc22b4483feb5e7262356",
+    "4b_fold_3_summary": "e00e8032d71cf8d679bc247116e0e87980d6ca5bfe8e7c037d1e0ef9cfce61e4",
+    "4b_fold_4_all_logits": "1becd51ba353e6c6e1e28b1235109ec2239a402bf0d41fcf2a3c9278f4971c0c",
+    "4b_fold_4_heldout": "f17c6009c011ff02ca2901b908a89a6d81344e64e2c456f4b7d3428a0ce9595d",
+    "4b_fold_4_summary": "5ca3ae88171a6107ceb5988fc3baa6831f48b7a4197a3665d93bf798cce9ce44",
+    "exp43_e4_private_optional": "30e12d1d94762ac2a0ff7484ab50ab22a302f056773bd890156d61fdf395f1e8",
+    "exp46_teacher_decision": "eb2213799c6850960467c3168800178d8e9dbfc53a9ed1fbc7717f846e2bd75c",
+    "fold_assignment": "a8006d9cec881cd1670877432aa470b2367615cada3662b7613b1a483432822d",
+    "paper_like_train": "0a1733b9209984c5c4291d205d1ac6057bed341717903b9de075d07de44a878e"
+  },
+  "public_input_hashes": {
+    "thesis_exp/data/splits/paper_like_triple_seed42/train.jsonl": "0a1733b9209984c5c4291d205d1ac6057bed341717903b9de075d07de44a878e",
+    "thesis_exp/exp43_rubimor/outputs/exp43_rubimor_preregistered/private/data/exp43_groupcv_fold_assignment.csv": "a8006d9cec881cd1670877432aa470b2367615cada3662b7613b1a483432822d",
+    "thesis_exp/exp46_hato_kd/outputs/exp46a_hato_seed42/decision/exp46a_teacher_capacity_decision.json": "eb2213799c6850960467c3168800178d8e9dbfc53a9ed1fbc7717f846e2bd75c"
+  },
+  "resolved_artifacts": 39,
+  "test_access_count": 0
+}

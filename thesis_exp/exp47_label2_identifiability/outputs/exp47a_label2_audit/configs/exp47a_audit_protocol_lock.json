@@ -1,0 +1,29 @@
+{
+  "dev_access_allowed": false,
+  "experiment": "Exp47A Label-2 Identifiability and Generalization Audit",
+  "locked_source_commit": "9b1e77e",
+  "model_0.6b": {
+    "heldout_status": "EXISTING_OOF_ONLY",
+    "outer_train_status": "MISSING_CHECKPOINT_NOT_RECOMPUTED"
+  },
+  "model_4b": {
+    "heldout_status": "EXISTING_LOGITS",
+    "new_inference_required": false,
+    "outer_train_status": "EXISTING_LOGITS"
+  },
+  "mutually_exclusive_label2_subtypes": {
+    "ambiguous": "all remaining hard-label2 rows, including fewer than two scores of 2 or range >= 3",
+    "stable_majority_non_strict": "at least two scores equal 2, range < 3, excluding strict_222",
+    "strict_222": "sorted human scores equal [2,2,2]"
+  },
+  "no_api": true,
+  "no_training": true,
+  "primary_decision_precedence": [
+    "LABEL2_TARGET_AMBIGUOUS",
+    "QUESTION_GENERALIZATION_LIMIT",
+    "OBJECTIVE_OR_ADAPTATION_LIMIT",
+    "MIXED_DATA_AND_ADAPTATION_LIMIT"
+  ],
+  "secondary_diagnosis_flags_required": true,
+  "test_access_allowed": false
+}

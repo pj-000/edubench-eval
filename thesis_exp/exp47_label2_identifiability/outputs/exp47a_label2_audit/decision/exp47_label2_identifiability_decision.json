@@ -1,0 +1,35 @@
+{
+  "counts": {
+    "ambiguous_label2": 0,
+    "hard_label2": 52,
+    "stable_label2": 52,
+    "strict_label2": 33
+  },
+  "dev_access_count": 0,
+  "no_new_training_authorized": true,
+  "primary_diagnosis": "QUESTION_GENERALIZATION_LIMIT",
+  "rates": {
+    "ambiguous_label2": 0.0,
+    "median_human_score_range": 0.0,
+    "stable_label2": 1.0
+  },
+  "recall": {
+    "0.6b_heldout_stable_label2": 0.0,
+    "0.6b_outer_train_stable_label2": null,
+    "4b_heldout_stable_label2": 0.0,
+    "4b_outer_train_stable_label2": 0.9951923076923077
+  },
+  "recommend_new_human_low_tail_data": true,
+  "recommend_selective_or_set_valued_scoring": false,
+  "recommend_student_kd": false,
+  "recommend_test": false,
+  "secondary_diagnosis_flags": {
+    "0.6b_outer_train_unavailable": true,
+    "4b_outer_train_adaptation_limit": false,
+    "label2_target_ambiguous": false,
+    "objective_or_adaptation_limit_both_models": false,
+    "question_generalization_limit": true
+  },
+  "status": "EXP47A_AUDIT_COMPLETE",
+  "test_access_count": 0
+}

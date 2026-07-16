@@ -1,0 +1,9 @@
+group,count,share_of_all_label2
+all_hard_label2,52,1.0
+strict_label2,33,0.6346153846153846
+stable_majority_non_strict,19,0.36538461538461536
+stable_label2_total,52,1.0
+ambiguous_label2,0,0.0
+no_annotator_two,0,0.0
+one_two_only,0,0.0
+score_range_ge_3,0,0.0

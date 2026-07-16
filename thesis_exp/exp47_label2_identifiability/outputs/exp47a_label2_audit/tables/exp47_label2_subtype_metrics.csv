@@ -1,0 +1,17 @@
+model,role,label2_subtype,availability,n,label2_correct,label2_recall,mean_pred,pred_count_1,pred_count_2,pred_count_3,pred_count_4,pred_count_5
+M1_4B_teacher,outer_train,all_hard_label2,AVAILABLE,208,207,0.9951923076923077,2.0048076923076925,0,207,1,0,0
+M1_4B_teacher,outer_train,stable_label2,AVAILABLE,208,207,0.9951923076923077,2.0048076923076925,0,207,1,0,0
+M1_4B_teacher,outer_train,strict_label2,AVAILABLE,132,132,1.0,2.0,0,132,0,0,0
+M1_4B_teacher,outer_train,ambiguous_label2,EMPTY_SUBSET,0,0,,,0,0,0,0,0
+M1_4B_teacher,heldout,all_hard_label2,AVAILABLE,52,0,0.0,4.25,0,0,9,21,22
+M1_4B_teacher,heldout,stable_label2,AVAILABLE,52,0,0.0,4.25,0,0,9,21,22
+M1_4B_teacher,heldout,strict_label2,AVAILABLE,33,0,0.0,4.333333333333333,0,0,5,12,16
+M1_4B_teacher,heldout,ambiguous_label2,EMPTY_SUBSET,0,0,,,0,0,0,0,0
+M0_0.6B_E4,heldout,all_hard_label2,AVAILABLE,52,0,0.0,4.096153846153846,0,0,12,23,17
+M0_0.6B_E4,heldout,stable_label2,AVAILABLE,52,0,0.0,4.096153846153846,0,0,12,23,17
+M0_0.6B_E4,heldout,strict_label2,AVAILABLE,33,0,0.0,4.090909090909091,0,0,9,12,12
+M0_0.6B_E4,heldout,ambiguous_label2,EMPTY_SUBSET,0,0,,,0,0,0,0,0
+M0_0.6B_E4,outer_train,all_hard_label2,MISSING_CHECKPOINT_NOT_RECOMPUTED,0,,,,,,,,
+M0_0.6B_E4,outer_train,stable_label2,MISSING_CHECKPOINT_NOT_RECOMPUTED,0,,,,,,,,
+M0_0.6B_E4,outer_train,strict_label2,MISSING_CHECKPOINT_NOT_RECOMPUTED,0,,,,,,,,
+M0_0.6B_E4,outer_train,ambiguous_label2,MISSING_CHECKPOINT_NOT_RECOMPUTED,0,,,,,,,,
