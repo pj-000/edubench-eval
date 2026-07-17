@@ -1,0 +1,21 @@
+{
+  "batch_ids_match": true,
+  "head_contract_match": true,
+  "overall_max_delta": {
+    "hard_loss": 0.032561302185058594,
+    "soft_loss": 0.027352571487426758,
+    "total_loss": 0.05991363525390625
+  },
+  "post_first_update_max_delta": {
+    "hard_loss": 0.032561302185058594,
+    "soft_loss": 0.027352571487426758,
+    "total_loss": 0.05991363525390625
+  },
+  "pre_first_update_max_delta": {
+    "hard_loss": 0.0,
+    "soft_loss": 0.0,
+    "total_loss": 0.0
+  },
+  "status": "CONTRACT_MATCH_NON_BITWISE_CUDA",
+  "test_access_count": 0
+}
