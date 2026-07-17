@@ -1,0 +1,23 @@
+{
+  "status": "EXP51_FORMAL_PROTOCOL_PREREGISTERED",
+  "seeds": [42, 43, 44],
+  "train_text_hash": "67a03a285ba0bde1458318d0d8ffc86409156c574bebffe6760b1fd200b5d961",
+  "dev_text_hash": "888db0fef20586e339ee2b2a152a2ccd3ecfd53589ca10912793ebad00e8f679",
+  "model_name_or_path": "/home/share/models/modelscope/Qwen/Qwen3-Reranker-0.6B",
+  "scheduler": "cosine_with_warmup",
+  "mean_mae_improvement_min": 0.005,
+  "mae_improves_min_seeds": 2,
+  "mean_exact_delta_min": -0.003,
+  "exact_max_correct_drop_per_seed": 2,
+  "exact_noninferior_min_seeds": 2,
+  "mean_kendall_delta_min": -0.003,
+  "mean_label4_recall_delta_min": -0.015,
+  "mean_label5_recall_delta_min": -0.01,
+  "mean_l2h_delta_max": 0.0,
+  "mean_abs_bias_improvement_min": 0.005,
+  "mean_l2h_improvement_alternative": 1.0,
+  "bootstrap_resamples": 10000,
+  "bootstrap_rng_seed": 42,
+  "paired_mae_ci_high_strict_max": 0.0,
+  "test_access_before_formal_pass": 0
+}
