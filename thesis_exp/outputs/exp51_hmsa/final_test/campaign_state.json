@@ -1,0 +1,14 @@
+{
+  "final_lock_manifest_sha256": "065bf537600e47e54539501d0843040b7f99dd9a5a45d4156db86af56ef7a10f",
+  "formal_decision_sha256": "fa9329151a900926f5c76cf910d418e9d5bcc8e761864931829fcdc2e8d3238f",
+  "formal_status": "EXP51_FORMAL_PASS",
+  "status": "TEST_COMPLETED",
+  "summary_sha256": "7d47fd4a6418441d77a4eff5b3f401c83e41b9e6b61c8294ae86a20d108995a0",
+  "test_access_count": 1,
+  "test_anchor": {
+    "path": "thesis_exp/data/splits/paper_like_triple_seed42/test.jsonl",
+    "rows": 2218,
+    "sha256": "9bc6ad99dbc3856e292b073f1ce0e883ac980574b5703533f449c34600a5d7af",
+    "size_bytes": 9814329
+  }
+}
