@@ -149,6 +149,14 @@ def checkpoint_wins(candidate_exact: float, best_exact: float) -> bool:
     return float(candidate_exact) > float(best_exact)
 
 
+def checkpoint_global_step(history: list[dict[str, Any]], best_epoch: int) -> int:
+    """Return the update step belonging to the selected epoch, not the final run."""
+    matches = [int(row["global_step"]) for row in history if int(row["epoch"]) == int(best_epoch)]
+    if len(matches) != 1:
+        raise ValueError(f"Expected one history row for selected epoch {best_epoch}; found {len(matches)}")
+    return matches[0]
+
+
 def train(config: TrainConfig) -> dict[str, Any]:
     import torch
     from torch.optim import AdamW
@@ -252,7 +260,7 @@ def train(config: TrainConfig) -> dict[str, Any]:
     if state_path.exists():
         model.load_state_dict(torch.load(state_path, map_location=device, weights_only=True))
     final = evaluate(model, dev_loader, device, "dev")
-    selected = contract_metrics(final, best_epoch, global_step)
+    selected = contract_metrics(final, best_epoch, checkpoint_global_step(history, best_epoch))
     save_predictions(config.output_dir, final)
     write_json(config.output_dir / "selected_dev_metrics.json", selected)
     write_csv(config.output_dir / "tables" / "selected_dev_metrics.csv", [{"variant": VARIANT, "seed": config.seed, **selected}])

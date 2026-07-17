@@ -3,7 +3,7 @@ from __future__ import annotations
 from thesis_exp.exp49_cphce.build_targets import aggregate_text_hash, load_split as load_exp49
 from thesis_exp.exp50_cahs.build_targets import load_split as load_exp50
 from thesis_exp.exp50_cahs.gate import gate_checks
-from thesis_exp.exp50_cahs.train import checkpoint_wins
+from thesis_exp.exp50_cahs.train import checkpoint_global_step, checkpoint_wins
 
 
 def test_input_text_is_identical_to_exp49() -> None:
@@ -14,6 +14,15 @@ def test_input_text_is_identical_to_exp49() -> None:
 def test_checkpoint_ties_keep_earlier_epoch() -> None:
     assert checkpoint_wins(0.72, 0.71)
     assert not checkpoint_wins(0.71, 0.71)
+
+
+def test_selected_checkpoint_uses_its_own_global_step() -> None:
+    history = [
+        {"epoch": 5, "global_step": 105},
+        {"epoch": 6, "global_step": 126},
+        {"epoch": 10, "global_step": 210},
+    ]
+    assert checkpoint_global_step(history, 6) == 126
 
 
 def test_discrete_seed42_gate_thresholds() -> None:
