@@ -1,0 +1,38 @@
+{
+  "status": "REPRODUCED_SPLIT_TOLERANT",
+  "definition": "accuracy of {1,2}=low, {3}=mid, {4,5}=high bins",
+  "max_absolute_error": 0.0016678832116788778,
+  "split_note": "Local reconstructed paper-like split differs slightly from the PDF row-level split.",
+  "evaluators": {
+    "EduBenchEvaluator": {
+      "paper": 0.897,
+      "local": 0.8954012623985572,
+      "absolute_error": 0.0015987376014428012,
+      "n": 2218
+    },
+    "DeepSeekV3": {
+      "paper": 0.867,
+      "local": 0.8656447249774571,
+      "absolute_error": 0.0013552750225428456,
+      "n": 2218
+    },
+    "DeepSeekR1": {
+      "paper": 0.854,
+      "local": 0.8525698827772769,
+      "absolute_error": 0.0014301172227231262,
+      "n": 2218
+    },
+    "QwQPlus": {
+      "paper": 0.86,
+      "local": 0.8583788706739527,
+      "absolute_error": 0.0016211293260472992,
+      "n": 2196
+    },
+    "GPT4o": {
+      "paper": 0.868,
+      "local": 0.8663321167883211,
+      "absolute_error": 0.0016678832116788778,
+      "n": 2192
+    }
+  }
+}
