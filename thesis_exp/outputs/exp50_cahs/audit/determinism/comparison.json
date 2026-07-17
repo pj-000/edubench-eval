@@ -1,0 +1,13 @@
+{
+  "initial_classifier_hash_equal": true,
+  "batch_id_sequence_equal": true,
+  "rng_before_equal": true,
+  "rng_after_equal": true,
+  "max_abs_loss_delta_before_first_optimizer_update": 0.0,
+  "max_abs_loss_delta": 0.040595293045043945,
+  "scheduler_last_lr_equal": true,
+  "contract_components_equal": true,
+  "bitwise_loss_reproducible": false,
+  "status": "CONTRACT_MATCH_NON_BITWISE_CUDA",
+  "preflight_passed": true
+}

@@ -1,0 +1,15 @@
+{
+  "baseline": "Exp49 b0_hard_ce seed42 selected checkpoint",
+  "seed42": {
+    "mae_improvement_min": 0.005,
+    "exact_max_lost_rows": 2,
+    "kendall_delta_min": -0.003,
+    "label4_max_lost_correct": 3,
+    "label5_max_lost_correct": 3,
+    "l2h_must_not_increase": true,
+    "bias_abs_improvement_min_or_l2h_decrease": 0.005
+  },
+  "bootstrap_resamples": 10000,
+  "bootstrap_is_diagnostic_at_seed42": true,
+  "mcnemar_is_diagnostic_at_seed42": true
+}

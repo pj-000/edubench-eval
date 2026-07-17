@@ -1,0 +1,55 @@
+{
+  "checks": {
+    "exact_noninferior_two_rows": false,
+    "finite": true,
+    "kendall_noninferior": true,
+    "mae_improvement_at_least_0p005": false
+  },
+  "comparison": {
+    "abs_bias_improvement": 0.012048192771084335,
+    "b0_Bias_human_mean": 0.11395582329317268,
+    "b0_BinAgreement_paper_3way": 0.8870481927710844,
+    "b0_Exact_rounded": 0.7183734939759037,
+    "b0_Kendall_human_mean": 0.5770767969155172,
+    "b0_L2H_count": 11,
+    "b0_L2H_rounded": 0.55,
+    "b0_MAE_human_mean": 0.3860441767068273,
+    "b0_Recall_4_rounded": 0.6919831223628692,
+    "b0_Recall_5_rounded": 0.8376811594202899,
+    "delta_Bias_human_mean": -0.012048192771084335,
+    "delta_BinAgreement_paper_3way": 0.0015060240963854499,
+    "delta_Exact_rounded": -0.004518072289156683,
+    "delta_Kendall_human_mean": -0.0006796575382326253,
+    "delta_L2H_count": -3.0,
+    "delta_L2H_rounded": -0.15000000000000002,
+    "delta_MAE_human_mean": 0.0030120481927710108,
+    "delta_Recall_4_rounded": -0.050632911392405,
+    "delta_Recall_5_rounded": 0.005797101449275366,
+    "m1_Bias_human_mean": 0.10190763052208834,
+    "m1_BinAgreement_paper_3way": 0.8885542168674698,
+    "m1_Exact_rounded": 0.713855421686747,
+    "m1_Kendall_human_mean": 0.5763971393772845,
+    "m1_L2H_count": 8,
+    "m1_L2H_rounded": 0.4,
+    "m1_MAE_human_mean": 0.3890562248995983,
+    "m1_Recall_4_rounded": 0.6413502109704642,
+    "m1_Recall_5_rounded": 0.8434782608695652,
+    "mae_improvement": -0.0030120481927710108,
+    "seed": 42
+  },
+  "diagnostics": {
+    "abs_bias_improvement": 0.012048192771084335,
+    "l2h_count_delta": -3.0,
+    "label4_delta": -0.050632911392405,
+    "label5_delta": 0.005797101449275366,
+    "note": "Low-tail and per-label dev counts are reported but are not seed42 vetoes because dev has only 20 low rows."
+  },
+  "paired_bootstrap": {
+    "ci_high": 0.02610441767068273,
+    "ci_low": -0.01957831325301205,
+    "mean_delta_mae": 0.003012048192771086,
+    "resamples": 10000
+  },
+  "passed": false,
+  "status": "SEED42_NO_GO"
+}

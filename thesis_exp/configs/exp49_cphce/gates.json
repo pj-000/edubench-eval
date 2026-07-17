@@ -1,0 +1,27 @@
+{
+  "seed42_hard_gates": {
+    "mae_human_mean_improvement_min": 0.005,
+    "exact_delta_min": -0.0030120481927710845,
+    "kendall_delta_min": -0.003
+  },
+  "seed42_mandatory_diagnostics": [
+    "Bias_human_mean",
+    "L2H_count",
+    "Recall_1_rounded",
+    "Recall_2_rounded",
+    "Recall_3_rounded",
+    "Recall_4_rounded",
+    "Recall_5_rounded"
+  ],
+  "formal_hard_gates": {
+    "mean_mae_human_mean_improvement_min": 0.005,
+    "mae_improves_min_seeds": 2,
+    "mean_exact_delta_min": -0.003,
+    "exact_noninferior_min_seeds": 2,
+    "mean_kendall_delta_min": -0.003,
+    "paired_mae_ci_upper_max": 0.0,
+    "abs_bias_improvement_min_or_l2h_decrease": 0.01
+  },
+  "bootstrap_resamples": 10000,
+  "paper_bin_status": "REPRODUCED_SPLIT_TOLERANT"
+}

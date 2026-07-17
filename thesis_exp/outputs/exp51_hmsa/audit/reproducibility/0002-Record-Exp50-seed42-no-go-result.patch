@@ -1,0 +1,253 @@
+From d71169a27429cc7935d445eca41ef5429bb7b8d3 Mon Sep 17 00:00:00 2001
+From: pj-000 <pj_000322@163.com>
+Date: Fri, 17 Jul 2026 19:23:37 +0800
+Subject: [PATCH 2/2] Record Exp50 seed42 no-go result
+
+---
+ thesis_exp/exp50_cahs/train.py                | 10 ++-
+ .../exp50_cahs/decision/seed42_decision.json  | 44 +++++++++++
+ .../outputs/exp50_cahs/seed42_analysis.md     | 77 +++++++++++++++++++
+ .../outputs/exp50_cahs/seed42_decision.md     | 12 +++
+ .../exp50_cahs/tables/seed42_comparison.csv   |  2 +
+ .../tables/seed42_subgroup_comparison.csv     |  8 ++
+ thesis_exp/tests/test_exp50_contract.py       | 11 ++-
+ 7 files changed, 162 insertions(+), 2 deletions(-)
+ create mode 100644 thesis_exp/outputs/exp50_cahs/decision/seed42_decision.json
+ create mode 100644 thesis_exp/outputs/exp50_cahs/seed42_analysis.md
+ create mode 100644 thesis_exp/outputs/exp50_cahs/seed42_decision.md
+ create mode 100644 thesis_exp/outputs/exp50_cahs/tables/seed42_comparison.csv
+ create mode 100644 thesis_exp/outputs/exp50_cahs/tables/seed42_subgroup_comparison.csv
+
+diff --git a/thesis_exp/exp50_cahs/train.py b/thesis_exp/exp50_cahs/train.py
+index d377e34..472a4bd 100644
+--- a/thesis_exp/exp50_cahs/train.py
++++ b/thesis_exp/exp50_cahs/train.py
+@@ -149,6 +149,14 @@ def checkpoint_wins(candidate_exact: float, best_exact: float) -> bool:
+     return float(candidate_exact) > float(best_exact)
+ 
+ 
++def checkpoint_global_step(history: list[dict[str, Any]], best_epoch: int) -> int:
++    """Return the update step belonging to the selected epoch, not the final run."""
++    matches = [int(row["global_step"]) for row in history if int(row["epoch"]) == int(best_epoch)]
++    if len(matches) != 1:
++        raise ValueError(f"Expected one history row for selected epoch {best_epoch}; found {len(matches)}")
++    return matches[0]
++
++
+ def train(config: TrainConfig) -> dict[str, Any]:
+     import torch
+     from torch.optim import AdamW
+@@ -252,7 +260,7 @@ def train(config: TrainConfig) -> dict[str, Any]:
+     if state_path.exists():
+         model.load_state_dict(torch.load(state_path, map_location=device, weights_only=True))
+     final = evaluate(model, dev_loader, device, "dev")
+-    selected = contract_metrics(final, best_epoch, global_step)
++    selected = contract_metrics(final, best_epoch, checkpoint_global_step(history, best_epoch))
+     save_predictions(config.output_dir, final)
+     write_json(config.output_dir / "selected_dev_metrics.json", selected)
+     write_csv(config.output_dir / "tables" / "selected_dev_metrics.csv", [{"variant": VARIANT, "seed": config.seed, **selected}])
+diff --git a/thesis_exp/outputs/exp50_cahs/decision/seed42_decision.json b/thesis_exp/outputs/exp50_cahs/decision/seed42_decision.json
+new file mode 100644
+index 0000000..857501b
+--- /dev/null
++++ b/thesis_exp/outputs/exp50_cahs/decision/seed42_decision.json
+@@ -0,0 +1,44 @@
++{
++  "checks": {
++    "bias_or_l2h_improves": true,
++    "exact_loses_at_most_two_rows": true,
++    "finite": true,
++    "kendall_noninferior": true,
++    "l2h_does_not_increase": true,
++    "label4_loses_at_most_three_rows": true,
++    "label5_loses_at_most_three_rows": true,
++    "mae_improvement_at_least_0p005": false
++  },
++  "comparison": {
++    "b0_bias": 0.11395582329317268,
++    "b0_exact_correct": 477,
++    "b0_l2h_count": 11,
++    "b0_label4_correct": 164,
++    "b0_label5_correct": 289,
++    "b0_selected_epoch": 8,
++    "cahs_bias": 0.10190763052208834,
++    "cahs_exact_correct": 477,
++    "cahs_l2h_count": 8,
++    "cahs_label4_correct": 164,
++    "cahs_label5_correct": 291,
++    "cahs_selected_epoch": 6,
++    "delta_exact": 0.0,
++    "delta_kendall": 0.012862495611108082,
++    "mae_improvement": 0.002008032128514081,
++    "seed": 42
++  },
++  "mcnemar": {
++    "b0_correct_cahs_wrong": 39,
++    "b0_wrong_cahs_correct": 39,
++    "discordant": 78,
++    "two_sided_exact_p": 1.0
++  },
++  "paired_bootstrap": {
++    "ci_high": 0.019076305220883532,
++    "ci_low": -0.02359437751004016,
++    "mean_delta_mae": -0.0020080321285140612,
++    "resamples": 10000
++  },
++  "passed": false,
++  "status": "SEED42_NO_GO"
++}
+diff --git a/thesis_exp/outputs/exp50_cahs/seed42_analysis.md b/thesis_exp/outputs/exp50_cahs/seed42_analysis.md
+new file mode 100644
+index 0000000..c2ee325
+--- /dev/null
++++ b/thesis_exp/outputs/exp50_cahs/seed42_analysis.md
+@@ -0,0 +1,77 @@
++# Exp50-CAHS-0.5 seed42 analysis
++
++## Decision
++
++Status: **SEED42_NO_GO**.
++
++The locked CAHS target was `0.5 * onehot(label_5) + 0.5 * human_empirical_distribution`. The selected checkpoint was epoch 6 (update step 126), chosen by strictly highest dev Exact with ties retaining the earlier epoch. It matched B0 Exact and improved several secondary metrics, but its argmax MAE improvement was only 0.002008, below the preregistered 0.005 requirement. Seeds 43/44 and test therefore remain locked.
++
++## Contract and runtime
++
++- Fixed split: train 2654, dev 664; test not loaded.
++- Input: question + answer + metric, identical to Exp49 by aggregate text hash.
++- Train hash: `67a03a285ba0bde1458318d0d8ffc86409156c574bebffe6760b1fd200b5d961`.
++- Dev hash: `888db0fef20586e339ee2b2a152a2ccd3ecfd53589ca10912793ebad00e8f679`.
++- Model: Qwen3-Reranker-0.6B sequence classifier, five logits.
++- Optimizer contract: learning rate 2e-5, weight decay 0.01, cosine with warmup, micro-batch 4, accumulation 32, effective batch 128, BF16.
++- Initial classifier hash: `d7c922a1956118af437c52189ffc993465277a72698cef38290e47404247f9e2`.
++- Runtime: 2601.4 seconds; peak allocated GPU memory 6,069,753,856 bytes.
++- `test_access_count`: 0.
++
++## Selected-checkpoint comparison
++
++| Metric | B0 hard CE (epoch 8) | CAHS-0.5 (epoch 6) | Change |
++|---|---:|---:|---:|
++| Exact | 477/664 (0.718373) | 477/664 (0.718373) | 0 rows |
++| MAE human mean | 0.386044 | 0.384036 | -0.002008 |
++| Kendall | 0.577077 | 0.589939 | +0.012862 |
++| Bias | +0.113956 | +0.101908 | abs bias -0.012048 |
++| QWK | 0.623193 | 0.634637 | +0.011444 |
++| Expected-score MAE | 0.355564 | 0.334638 | -0.020926 |
++| ECE | 0.147713 | 0.076319 | -0.071393 |
++| NLL | 0.905518 | 0.723173 | -0.182346 |
++| Brier | 0.425590 | 0.400163 | -0.025427 |
++| label 4 correct | 164/237 | 164/237 | 0 rows |
++| label 5 correct | 289/345 | 291/345 | +2 rows |
++| L2H | 11/20 | 8/20 | -3 rows |
++
++## Gate
++
++Seven checks passed: Exact, Kendall, label 4, label 5, L2H non-increase, Bias-or-L2H improvement, and finiteness. The only failed check was `B0 MAE - CAHS MAE >= 0.005`: observed improvement was 0.002008.
++
++The paired row bootstrap mean delta `CAHS MAE - B0 MAE` was -0.002008 with a 95% interval of [-0.023594, 0.019076]. Exact-status transitions were symmetric: B0-only correct 39, CAHS-only correct 39, McNemar two-sided exact p=1.0. These diagnostics do not include training-seed uncertainty.
++
++## Epoch trajectory
++
++| Epoch | Exact correct | Exact | MAE | Kendall | Selected at that point |
++|---:|---:|---:|---:|---:|---|
++| 1 | 410 | 0.617470 | 0.516064 | 0.343978 | yes |
++| 2 | 449 | 0.676205 | 0.427209 | 0.526263 | yes |
++| 3 | 472 | 0.710843 | 0.406627 | 0.572751 | yes |
++| 4 | 475 | 0.715361 | 0.393574 | 0.561478 | yes |
++| 5 | 471 | 0.709337 | 0.389056 | 0.581497 | no |
++| 6 | 477 | 0.718373 | 0.384036 | 0.589939 | yes, final |
++| 7 | 467 | 0.703313 | 0.396084 | 0.577922 | no |
++| 8 | 465 | 0.700301 | 0.383032 | 0.593571 | no |
++| 9 | 472 | 0.710843 | 0.386546 | 0.585681 | no |
++| 10 | 467 | 0.703313 | 0.386546 | 0.582749 | no |
++
++Epoch 8 had a slightly better MAE than epoch 6 but 12 fewer Exact-correct rows, so it was correctly rejected by the locked checkpoint rule.
++
++## Mechanistic interpretation
++
++CAHS reduced the full-soft damage seen in Exp49: label 4 returned from 152/237 under full soft to the B0 value of 164/237, Exact returned from 474 to 477, and label 5 increased by two. Thus the original hypothesis that the 2/3:1/3 full distribution perturbed the middle/high boundary too strongly was partly supported.
++
++However, shrinking that perturbation did not produce the required primary-metric effect. On the 373 disagreement rows CAHS improved MAE from 0.512958 to 0.501340 and Exact from 234 to 237; on the 291 unanimous rows it worsened MAE from 0.223368 to 0.233677 and Exact from 243 to 240. Unanimous rows have the same one-hot target under B0 and CAHS, so their regression cannot be direct label smoothing. It is consistent with shared-representation/boundary interference plus seed-level training variation.
++
++The much larger gain in expected-score MAE and probability metrics than in argmax MAE is the clearest result: the human distribution signal improves distributional fit and calibration, but a single shared classification head does not reliably translate those gains into the paper's hard decision metrics.
++
++## Protocol consequence and next method family
++
++Do not search alpha 0.25/0.75, change the Gate, run seeds 43/44, or access test. The static single-head hard/soft target continuum has now been tested at both endpoints and its fixed midpoint without sufficient evidence for the required Pareto improvement.
++
++If a new experiment is authorized, it should be separately preregistered as a hard-main/soft-auxiliary architecture: retain an ordinary hard-label classification head as the sole inference and checkpoint-selection head, and place the three-human distribution in a distinct auxiliary head/loss. This tests structural decoupling rather than another smoothing strength. Its loss weight, checkpoint rule, seed42 Gate, and no-test boundary must be frozen before GPU use.
++
++## Reproducibility limitation
++
++The two deterministic smoke runs matched the initial classifier hash, batch IDs, RNG traces, scheduler, and all losses before the first optimizer update. After the CUDA/BF16 update they were not bitwise identical (maximum observed loss drift 0.0405953). Consequently, row-bootstrap intervals must not be presented as training-randomness intervals, and the single-seed 0.002008 MAE gain is not strong enough to override the locked threshold.
+diff --git a/thesis_exp/outputs/exp50_cahs/seed42_decision.md b/thesis_exp/outputs/exp50_cahs/seed42_decision.md
+new file mode 100644
+index 0000000..8b51fb5
+--- /dev/null
++++ b/thesis_exp/outputs/exp50_cahs/seed42_decision.md
+@@ -0,0 +1,12 @@
++# Exp50 seed42 decision
++
++Status: **SEED42_NO_GO**
++
++- mae_improvement_at_least_0p005: FAIL
++- exact_loses_at_most_two_rows: PASS
++- kendall_noninferior: PASS
++- label4_loses_at_most_three_rows: PASS
++- label5_loses_at_most_three_rows: PASS
++- l2h_does_not_increase: PASS
++- bias_or_l2h_improves: PASS
++- finite: PASS
+diff --git a/thesis_exp/outputs/exp50_cahs/tables/seed42_comparison.csv b/thesis_exp/outputs/exp50_cahs/tables/seed42_comparison.csv
+new file mode 100644
+index 0000000..b6080da
+--- /dev/null
++++ b/thesis_exp/outputs/exp50_cahs/tables/seed42_comparison.csv
+@@ -0,0 +1,2 @@
++seed,b0_selected_epoch,cahs_selected_epoch,b0_exact_correct,cahs_exact_correct,mae_improvement,delta_exact,delta_kendall,b0_label4_correct,cahs_label4_correct,b0_label5_correct,cahs_label5_correct,b0_l2h_count,cahs_l2h_count,b0_bias,cahs_bias
++42,8,6,477,477,0.002008032128514081,0.0,0.012862495611108082,164,164,289,291,11,8,0.11395582329317268,0.10190763052208834
+diff --git a/thesis_exp/outputs/exp50_cahs/tables/seed42_subgroup_comparison.csv b/thesis_exp/outputs/exp50_cahs/tables/seed42_subgroup_comparison.csv
+new file mode 100644
+index 0000000..84362d4
+--- /dev/null
++++ b/thesis_exp/outputs/exp50_cahs/tables/seed42_subgroup_comparison.csv
+@@ -0,0 +1,8 @@
++group,n,b0_exact_correct,cahs_exact_correct,b0_mae_human_mean,cahs_mae_human_mean,b0_correct_cahs_wrong,b0_wrong_cahs_correct
++unanimous,291,243,240,0.22336769759450173,0.23367697594501718,12,9
++2:1 disagreement,373,234,237,0.5129579982126904,0.5013404825737268,27,30
++label_1,6,4,3,0.9444444444444445,0.9444444444444445,1,0
++label_2,14,3,3,1.5952380952380953,1.4523809523809526,0,0
++label_3,62,17,16,0.8225806451612903,0.8118279569892473,6,5
++label_4,237,164,164,0.4008438818565397,0.4064697609001402,16,16
++label_5,345,289,291,0.23864734299516902,0.238647342995169,16,18
+diff --git a/thesis_exp/tests/test_exp50_contract.py b/thesis_exp/tests/test_exp50_contract.py
+index 22c64ae..1c51ffa 100644
+--- a/thesis_exp/tests/test_exp50_contract.py
++++ b/thesis_exp/tests/test_exp50_contract.py
+@@ -3,7 +3,7 @@ from __future__ import annotations
+ from thesis_exp.exp49_cphce.build_targets import aggregate_text_hash, load_split as load_exp49
+ from thesis_exp.exp50_cahs.build_targets import load_split as load_exp50
+ from thesis_exp.exp50_cahs.gate import gate_checks
+-from thesis_exp.exp50_cahs.train import checkpoint_wins
++from thesis_exp.exp50_cahs.train import checkpoint_global_step, checkpoint_wins
+ 
+ 
+ def test_input_text_is_identical_to_exp49() -> None:
+@@ -16,6 +16,15 @@ def test_checkpoint_ties_keep_earlier_epoch() -> None:
+     assert not checkpoint_wins(0.71, 0.71)
+ 
+ 
++def test_selected_checkpoint_uses_its_own_global_step() -> None:
++    history = [
++        {"epoch": 5, "global_step": 105},
++        {"epoch": 6, "global_step": 126},
++        {"epoch": 10, "global_step": 210},
++    ]
++    assert checkpoint_global_step(history, 6) == 126
++
++
+ def test_discrete_seed42_gate_thresholds() -> None:
+     baseline = {"n": 664, "Exact_rounded": 477 / 664, "MAE_human_mean": 0.386, "Kendall_human_mean": 0.577, "Bias_human_mean": 0.114, "Recall_4_correct": 164, "Recall_5_correct": 289, "L2H_count": 11}
+     passing = {"n": 664, "Exact_rounded": 475 / 664, "MAE_human_mean": 0.380, "Kendall_human_mean": 0.575, "Bias_human_mean": 0.108, "Recall_4_correct": 161, "Recall_5_correct": 286, "L2H_count": 11}
+-- 
+2.39.5 (Apple Git-154)
+

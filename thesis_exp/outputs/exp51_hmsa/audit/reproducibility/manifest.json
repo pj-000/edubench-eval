@@ -1,0 +1,26 @@
+{
+  "status": "EXP50_REVIEW_BUNDLE_AND_EXP51_PREFLIGHT_COMPLETE",
+  "exp49_result_commit": "9ad6190277950439a3a5b9b7188c14b3943b7433",
+  "exp50_source_commit": "2b73536",
+  "exp50_result_commit": "d71169a",
+  "test_content_read_for_bundle": false,
+  "files": {
+    "thesis_exp/configs/exp50_cahs/cahs_0p5.yaml": "9054a22dc9f66ffd860dc5d9629fc89a35def3832e7c624e1ccae76996e3e88c",
+    "thesis_exp/configs/exp50_cahs/gates.json": "e192994ece0622d2b0f1688668d478c93a7ee8e2f36830f63ed8b791cb89b7be",
+    "thesis_exp/exp50_cahs/__init__.py": "96dc95fa221661696fb9d17ac7580142772e80ad444e3d53b447589dbc2f548a",
+    "thesis_exp/exp50_cahs/build_targets.py": "be0d44e8c88e3244134f7c770a551ad013000c46cd0081d70d1212525b22bf74",
+    "thesis_exp/exp50_cahs/determinism_smoke.py": "95bec9475c93f791b68e443bc238d1c667487ef78a455e4e46b48f89ae86de73",
+    "thesis_exp/exp50_cahs/gate.py": "0c22599b3e9ac1f5f1b5f371f3d03b8483261e7aae220eccce0e63c60c4238e6",
+    "thesis_exp/exp50_cahs/mechanism_audit.py": "95f1cd1efbaabba80c60894af9f8baa96ee846ec486472479c152483cca382f8",
+    "thesis_exp/exp50_cahs/train.py": "7b213eacca2ed09cbc83eeeb44994762e23997901d8f187c0a455e7c8bc137bb",
+    "thesis_exp/tests/test_exp50_contract.py": "db50d6c1cc3e754a58b05b82010d9558c395350e80f2c8331d04fe2e6e64d7f1",
+    "thesis_exp/tests/test_exp50_loss_equivalence.py": "29a08e126c610e8cb711f9eb281b1357d570d0c3564b798e2e234e92985cbc49",
+    "thesis_exp/tests/test_exp50_targets.py": "74e996bdc28a04ea79966814fd75dd9d1e608e5cd8e67d4e49570aefa0bf43ef",
+    "thesis_exp/outputs/exp50_cahs/decision/seed42_decision.json": "f57c36feb9c7cc6666583d5c6fabf4e34469de09e4fb6655fadb71fb36feba8e",
+    "thesis_exp/outputs/exp50_cahs/seed42_analysis.md": "a00c65cde9848058d37762531f07f0bd12404074d859b2bb4f8546f675710761",
+    "thesis_exp/outputs/exp51_hmsa/audit/preflight.json": "cbb1f0fbe9dd963938f3ec0b623264a46927b833853bb197c26c14dc7313210b",
+    "thesis_exp/outputs/exp51_hmsa/audit/determinism/comparison.json": "6161d781d6d2b8e7bf7b5bac1bc965dc3f93dbf90fd70f5e5fc4557bb1411be8",
+    "thesis_exp/outputs/exp51_hmsa/audit/reproducibility/0001-Add-locked-Exp50-CAHS-0.5-scout.patch": "4aaa47798906b1468fd83af87ec1936f6bfb0ded21392a34b657038255e86c5a",
+    "thesis_exp/outputs/exp51_hmsa/audit/reproducibility/0002-Record-Exp50-seed42-no-go-result.patch": "ffbdc11a8c4e6240db101565187976ec68495cc120e912b349e60839f3a909db"
+  }
+}
