@@ -82,3 +82,14 @@ Final status: `R2_STRICT_DONOR_MAP_READY`.
 
 This status allows construction of the frozen S0/R1/R2/R3 training manifests. It does not by
 itself authorize smoke or formal training.
+
+## Downstream manifest-schedule compatibility
+
+The reference-level donor map remains valid under the frozen `PASS_STRICT` contract.
+However, a downstream audit found that combining this map with the preregistered
+one-reference-per-row rotating schedule can change the realized per-rationale frequency
+between R2 and R3 when a donor edge crosses rows with different reference counts.
+
+Therefore, this checkpoint still authorizes use of the donor-map artifact as a reviewed
+reference-level result, but it does **not** authorize freezing training manifests until the
+schedule-frequency issue in `MANIFEST_SCHEDULE_REVIEW.md` is resolved and reviewed.
