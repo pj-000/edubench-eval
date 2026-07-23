@@ -14,11 +14,11 @@
     }
   },
   "output_hashes": {
-    "aligned_reason_inventory": "60b487d247b6e25fc022c46b0f8746c1f9f0b564f8fe60f8b9270eed64f31dbe",
-    "all_rater_reference_sets": "d9512cf192bbc17a1282a5ff1685697a06b419b332655ecd33aa90e09439564c",
+    "aligned_reason_inventory": "177a2f4bcdad12f087ba07af72b322957373d143c145f3ac316ea607fb004922",
+    "all_rater_reference_sets": "09738af481273bb334399ef87862af09a0d82ad586bd1862fc5271a9051daebe",
     "coverage": "a471dc9c7506f9bd6be98b0a49d459b75673dfd4e68934abcc78f51f8695055c",
     "explicit_score_redaction_audit": "57ec3eab3b5b9e1bfdd45e160320bf50da3e2100f143a231e969e4193cc8a5b8",
-    "label_consistent_reference_sets": "8990036e87a5381c5ac86ee6ae1fa49f30ea0ef3f47e7f530b290a2f1e64cc9e"
+    "label_consistent_reference_sets": "718d760869b9c573b952a90faf5b5e6b346a034f31b454b5e15bd28ed1856500"
   },
   "score_redaction_rule_ids": [
     "en_score_assignment",

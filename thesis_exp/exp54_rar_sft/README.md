@@ -38,3 +38,49 @@ The audit intentionally separates three statuses:
 The historical Exp53 score-only SFT is not a matched baseline because it excludes the rubric.
 RAR experiments must therefore add a rubric-aware score-only baseline with the same input as R1,
 R2, and R3.
+
+## R2 strict-control implementation checkpoint
+
+The executable R2 stages are:
+
+1. `build_rar_v2_reference_sets.py`: deterministic R1/R3 reference construction and normalized
+   question-answer content keys;
+2. `audit_r2_solver_oracle.py`: brute-force objective and input-order invariance audit;
+3. `build_r2_donor_map.py`: character diagnostic or formal tokenizer-based strict donor map;
+4. `build_r2_r3_active_mask.py`: byte-identical R2/R3 rationale-active masks and lock.
+
+Current status:
+
+- scientific rule: `PASS_STRICT`;
+- solver audit: `R2_MATCHER_ORACLE_PASS`;
+- tokenizer: `QWEN_TOKENIZER_REVISION_LOCKED`;
+- formal map and active-mask gate: `R2_STRICT_DONOR_MAP_READY`;
+- training-manifest construction: allowed;
+- formal training: still locked until S0/R1/R2/R3 manifests and remaining protocol locks pass.
+
+Run the local tokenizer-independent audit:
+
+```bash
+PYTHONPATH=. python3 thesis_exp/exp54_rar_sft/audit_r2_solver_oracle.py
+```
+
+Run formal token matching in the frozen training environment:
+
+```bash
+PYTHONPATH=. python3 thesis_exp/exp54_rar_sft/build_r2_donor_map.py \
+  --length-mode tokenizer \
+  --tokenizer-path /home/share/models/modelscope/Qwen/Qwen3-4B-Instruct-2507
+```
+
+The formal command refuses to run if the Oracle report is stale, the upstream revision is not an
+immutable SHA, or the local `tokenizer.json` hash differs from the frozen official hash in
+`configs/qwen_tokenizer_lock_spec.json`.
+
+Freeze the matched active masks:
+
+```bash
+PYTHONPATH=. python3 thesis_exp/exp54_rar_sft/build_r2_r3_active_mask.py
+```
+
+Raw human rationale text, row-level donor mappings, and row-level masks remain local. GitHub may
+contain only code, tests, hashes, and aggregate audit reports.

@@ -1,5 +1,10 @@
 # R2 semantic-control review checkpoint
 
+> Resolution (2026-07-23): external review returned `PASS_STRICT`. The implementation checkpoint
+> in [`R2_IMPLEMENTATION_CHECKPOINT.md`](R2_IMPLEMENTATION_CHECKPOINT.md) records the frozen
+> tokenizer, brute-force Oracle proof, formal tokenized donor map, and byte-identical R2/R3 active
+> masks. Final implementation status: `R2_STRICT_DONOR_MAP_READY`.
+
 ## Review status
 
 - External review required: **yes**

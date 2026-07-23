@@ -21,6 +21,7 @@ from typing import Any, Iterable
 from thesis_exp.exp54_rar_sft import REPO_ROOT
 from thesis_exp.exp54_rar_sft.audit_rar0_alignment import (
     file_sha256,
+    normalize,
     read_jsonl,
     reject_eval_path,
     text_sha256,
@@ -107,6 +108,20 @@ def normalize_reason(value: Any) -> str:
         return ""
     text = unicodedata.normalize("NFKC", str(value)).replace("\\n", "\n")
     return " ".join(text.split()).strip()
+
+
+def normalized_qa_key(question: Any, answer: Any) -> str:
+    """Hash the exact normalized question-answer content without publishing it."""
+    normalized_question = normalize(question)
+    normalized_answer = normalize(answer)
+    if not normalized_question or not normalized_answer:
+        raise ValueError("normalized question and answer must both be nonempty")
+    payload = json.dumps(
+        [normalized_question, normalized_answer],
+        ensure_ascii=False,
+        separators=(",", ":"),
+    )
+    return hashlib.sha256(payload.encode("utf-8")).hexdigest()
 
 
 def _non_overlapping_matches(text: str) -> list[tuple[int, int, str, str]]:
@@ -239,6 +254,10 @@ def build_reference_sets(
         common = {
             "record_id": record_id,
             "question_key": str(row.get("question_key") or ""),
+            "normalized_qa_key": normalized_qa_key(
+                row.get("question"),
+                row.get("answer"),
+            ),
             "label_5": label,
             "metric_id": str(row.get("metric_id") or ""),
             "language": str(row.get("language") or ""),

@@ -8,6 +8,7 @@ from thesis_exp.exp54_rar_sft.audit_rar0_alignment import text_sha256
 from thesis_exp.exp54_rar_sft.build_rar_v2_reference_sets import (
     build_reference_sets,
     contains_explicit_score_report,
+    normalized_qa_key,
     normalize_reason,
     redact_explicit_scores,
     summarize,
@@ -18,6 +19,8 @@ def aligned_row(record_id: str, reasons: dict | None = None) -> dict:
     return {
         "record_id": record_id,
         "question_key": f"q-{record_id}",
+        "question": f"问题 {record_id}",
+        "answer": f"答案 {record_id}",
         "score": 2,
         "metric_id": "IFTC",
         "language": "zh",
@@ -65,6 +68,17 @@ def test_preserves_answer_evidence_numbers(source: str) -> None:
     cleaned, events = redact_explicit_scores(source)
     assert cleaned == normalize_reason(source)
     assert events == []
+
+
+def test_normalized_qa_key_is_content_based_and_nfkc_stable() -> None:
+    assert normalized_qa_key("问题  A", "答案\n１") == normalized_qa_key(
+        "问题 A",
+        "答案 1",
+    )
+    assert normalized_qa_key("问题 A", "答案 1") != normalized_qa_key(
+        "问题 A",
+        "答案 2",
+    )
 
 
 def test_builds_all_rater_and_consistent_sets_without_copying_rows() -> None:

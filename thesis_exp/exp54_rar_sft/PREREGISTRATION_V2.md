@@ -141,9 +141,15 @@ primary control for the location of auxiliary supervision.
 - Model ID: `Qwen/Qwen3-4B-Instruct-2507`
 - Model type: causal language model, non-thinking output contract
 - Fine-tuning method: LoRA SFT
-- Exact upstream revision: `UNRESOLVED_FROM_SERVER`
-- Local snapshot: `UNRESOLVED_FROM_SERVER`
-- Tokenizer/chat-template/model-file hashes: `UNRESOLVED_FROM_SERVER`
+- Exact upstream revision: `cdbee75f17c01a7cc42f958dc650907174af0554`
+- Training-server snapshot:
+  `/home/share/models/modelscope/Qwen/Qwen3-4B-Instruct-2507`
+- Tokenizer status: `QWEN_TOKENIZER_REVISION_LOCKED`
+- `tokenizer.json` SHA-256:
+  `aeb13307a71acd8fe81861d94ad54ab689df773318809eed3cbe794b4492dae4`
+- Tokenizer lock SHA-256:
+  `4c4fa5083c4b6da6097657bb15a304df06080a5692033c1f444288574acdf0b6`
+- Full model safetensor lock: `UNRESOLVED_BEFORE_TRAINING_MANIFEST_FREEZE`
 
 The historical Exp53 local path and candidate configuration may inform the implementation, but
 Exp53 is not the matched scientific baseline because its input excludes the full rubric. No Exp54
@@ -364,49 +370,76 @@ because S0 alone cannot distinguish real rationale semantics from extra output s
 
 ### 10.1 Candidate strata
 
-For each R3 reference, donors must first be restricted to:
+For each R3 reference, donors are restricted exactly to:
 
 ```text
 label_5 × metric_id × language
 ```
 
-Donor and recipient must have different `sample_id` values. Within each stratum, select a
-derangement minimizing absolute rationale-token-length difference under the frozen tokenizer.
+No donor may cross label, metric, or language. A recipient-donor edge is legal only when:
 
-### 10.2 Frozen assignment
+- `recipient.sample_id != donor.sample_id`;
+- `recipient.normalized_qa_key != donor.normalized_qa_key`;
+- both references belong to the same frozen reference inventory and pass the same cleaning rules.
 
-The preferred implementation is a minimum-cost cycle cover or bipartite assignment with:
+The normalized QA key is a SHA-256 over the NFKC and whitespace-normalized question-answer pair.
+It prevents duplicate content with different row IDs from becoming a false semantic mismatch.
+
+### 10.2 Strict active-subset permutation
+
+For each stratum \(g\), jointly define active indicators \(a_i\) and assignment indicators
+\(x_{ij}\). The assignment must satisfy:
 
 \[
-\pi(i)\neq i
+\sum_j x_{ij}=a_i,\qquad \sum_j x_{ji}=a_i.
 \]
 
-and objective:
+Therefore the active set \(A_g=\{i:a_i=1\}\) is identical on the recipient and donor sides.
+Every active reference receives exactly one donor and is used exactly once as a donor. Donor
+reuse is forbidden.
 
-\[
-\min_{\pi}\sum_i |T_i-T_{\pi(i)}|
-\]
+The optimization objective is lexicographic:
 
-where \(T_i\) is rationale content-token length.
+1. maximize \(|A_g|\);
+2. conditional on maximum coverage, minimize
+   \(\sum_{i,j}x_{ij}|T_i-T_j|\), where \(T_i\) is rationale content-token length under the
+   frozen tokenizer;
+3. conditional on the first two objectives, use stable reference IDs for deterministic
+   tie-breaking.
+
+The implementation may retain the optional-diagonal Hungarian construction only while a
+deterministic brute-force Oracle audit confirms equivalence to this mathematical objective on
+adversarial and random strata of size at most eight.
 
 The donor map is created once and reused for all seeds. It records recipient/donor sample IDs,
-reference indices, strata, lengths, and cost.
+normalized QA keys, reference indices, strata, token lengths, absolute token-length difference,
+active status, inactive reason, cycle ID, solver version, tokenizer revision, and lock hashes.
 
 ### 10.3 Ineligible strata
 
-If no valid donor exists without relaxing score or metric:
+If a reference cannot enter a legal strict permutation:
 
 - deactivate the corresponding rationale position in both R2 and R3;
 - retain score loss in both arms;
 - record the reason for deactivation.
 
-The final R2/R3 active rationale mask must be identical. No fallback may create a donor with a
-different score or metric.
+The final R2/R3 active rationale mask must be identical at reference level and hash level. No
+fallback may reuse a donor, use another rater from the same sample, or cross label, metric, or
+language.
 
 ### 10.4 Interpretation
 
 Some donor rationales may accidentally remain applicable to the recipient. This weakens the
 R3-R2 contrast and is treated as conservative contamination, not manually corrected.
+
+The R2/R3 semantic comparison applies only to the control-eligible rationale subset that admits a
+strict permutation. Ineligible rows remain in all arms for score supervision. A null R3-R2 result
+cannot by itself establish that all low-score human rationales are ineffective because strict
+control eligibility reduces rationale coverage in scarce low-score strata.
+
+Character length is a feasibility diagnostic only. The formal donor map must be rebuilt with the
+frozen `Qwen/Qwen3-4B-Instruct-2507` tokenizer, an immutable upstream revision, verified local
+tokenizer-file hashes, and a frozen Oracle report covering the exact matcher source.
 
 ## 11. Token masks and block-balanced loss
 

@@ -1,5 +1,8 @@
 from __future__ import annotations
 
+import itertools
+import random
+
 from thesis_exp.exp54_rar_sft.build_r2_donor_map import (
     build_donor_map,
     match_stratum,
@@ -7,9 +10,16 @@ from thesis_exp.exp54_rar_sft.build_r2_donor_map import (
 )
 
 
-def item(record_id: str, reference_id: str, reason: str) -> dict:
+def item(
+    record_id: str,
+    reference_id: str,
+    reason: str,
+    *,
+    qa_key: str | None = None,
+) -> dict:
     return {
         "record_id": record_id,
+        "normalized_qa_key": qa_key or f"qa-{record_id}",
         "reference_id": reference_id,
         "reference_index": 0,
         "label_5": 2,
@@ -20,12 +30,21 @@ def item(record_id: str, reference_id: str, reason: str) -> dict:
     }
 
 
-def row(record_id: str, reasons: list[str], *, label: int = 2) -> dict:
+def row(
+    record_id: str,
+    reasons: list[str],
+    *,
+    label: int = 2,
+    qa_key: str | None = None,
+    metric_id: str = "IFTC",
+    language: str = "zh",
+) -> dict:
     return {
         "record_id": record_id,
+        "normalized_qa_key": qa_key or f"qa-{record_id}",
         "label_5": label,
-        "metric_id": "IFTC",
-        "language": "zh",
+        "metric_id": metric_id,
+        "language": language,
         "references": [
             {
                 "reference_id": f"{record_id}:human_{index + 1}",
@@ -35,6 +54,50 @@ def row(record_id: str, reasons: list[str], *, label: int = 2) -> dict:
             for index, reason in enumerate(reasons)
         ],
     }
+
+
+def brute_force_objective(items: list[dict]) -> tuple[int, int]:
+    """Solve the strict active-subset permutation objective for n <= 8."""
+    ordered = sorted(items, key=lambda value: value["reference_id"])
+    lengths = [len(value["reason"]) for value in ordered]
+    best_active = -1
+    best_length_cost = 10**18
+    for active_count in range(len(ordered) + 1):
+        for active_indices in itertools.combinations(range(len(ordered)), active_count):
+            for donor_indices in itertools.permutations(active_indices):
+                legal = all(
+                    recipient_index != donor_index
+                    and ordered[recipient_index]["record_id"]
+                    != ordered[donor_index]["record_id"]
+                    and ordered[recipient_index]["normalized_qa_key"]
+                    != ordered[donor_index]["normalized_qa_key"]
+                    for recipient_index, donor_index in zip(
+                        active_indices,
+                        donor_indices,
+                    )
+                )
+                if not legal:
+                    continue
+                length_cost = sum(
+                    abs(lengths[recipient_index] - lengths[donor_index])
+                    for recipient_index, donor_index in zip(
+                        active_indices,
+                        donor_indices,
+                    )
+                )
+                if active_count > best_active:
+                    best_active = active_count
+                    best_length_cost = length_cost
+                elif active_count == best_active:
+                    best_length_cost = min(best_length_cost, length_cost)
+    return best_active, best_length_cost
+
+
+def mapping_objective(mapping: list[dict]) -> tuple[int, int]:
+    active = [entry for entry in mapping if entry["active"]]
+    return len(active), sum(
+        int(entry["absolute_length_difference"]) for entry in active
+    )
 
 
 def test_equal_two_sample_stratum_has_full_derangement() -> None:
@@ -62,6 +125,15 @@ def test_single_sample_stratum_deactivates_all_references() -> None:
     result = match_stratum(items, len)
     assert all(not row["active"] for row in result)
     assert all(not row["donor_reference_id"] for row in result)
+
+
+def test_different_ids_with_same_normalized_content_cannot_donate() -> None:
+    items = [
+        item("a", "a:1", "理由一", qa_key="duplicate-content"),
+        item("b", "b:1", "理由二", qa_key="duplicate-content"),
+    ]
+    result = match_stratum(items, len)
+    assert all(not entry["active"] for entry in result)
 
 
 def test_unequal_two_sample_counts_keep_maximal_balanced_subset() -> None:
@@ -115,6 +187,46 @@ def test_matching_is_deterministic_and_stratum_preserving() -> None:
             "inactive_references": 0,
         },
     ]
+
+
+def test_input_order_does_not_change_mapping() -> None:
+    items = [
+        item("a", "a:1", "a"),
+        item("a", "a:2", "aaaa"),
+        item("b", "b:1", "bb"),
+        item("c", "c:1", "cccccc"),
+        item("d", "d:1", "ddd"),
+    ]
+    expected = match_stratum(items, len)
+    randomizer = random.Random(20260723)
+    for _ in range(20):
+        shuffled = list(items)
+        randomizer.shuffle(shuffled)
+        assert match_stratum(shuffled, len) == expected
+
+
+def test_random_small_strata_match_brute_force_oracle() -> None:
+    randomizer = random.Random(20260723)
+    for case_index in range(40):
+        size = randomizer.randint(1, 7)
+        items = []
+        for reference_index in range(size):
+            sample_index = randomizer.randint(0, max(0, size // 2))
+            qa_variant = randomizer.randint(0, max(0, size // 3))
+            items.append(
+                item(
+                    f"sample-{sample_index}",
+                    f"case-{case_index}:ref-{reference_index}",
+                    "x" * randomizer.randint(1, 30),
+                    qa_key=f"qa-{qa_variant}",
+                )
+            )
+        expected = brute_force_objective(items)
+        actual = mapping_objective(match_stratum(items, len))
+        assert actual == expected, (
+            f"case {case_index} disagreed with strict oracle: "
+            f"actual={actual}, expected={expected}"
+        )
 
 
 def test_length_cost_prefers_nearby_donors_when_feasible() -> None:
