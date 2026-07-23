@@ -1,0 +1,61 @@
+{
+  "arms": [
+    "S0",
+    "R1",
+    "R2",
+    "R3"
+  ],
+  "candidate_report_sha256": "ef02711f2e0e2aa446b59681fb99dc9ae2acb9e99e8054011d461c4a348f55b8",
+  "config_sha256": "59eafff8ea9d751159e85bd6f6b3bfe2fd58e76bc54f55bc8dec9e1413bfb4da",
+  "dev_accessed": false,
+  "formal_seeds": [
+    42,
+    43,
+    44
+  ],
+  "formal_training_allowed": false,
+  "logical_epochs": 3,
+  "manifest_freeze_allowed": false,
+  "private_artifact_hashes": {
+    "manifests_by_seed": {
+      "seed42": {
+        "R1": "7d2a38ed8d63c10262a65455d41b440fd26f883ad8d2b70be7de141d469e6536",
+        "R2": "9c17afffc0c9ce6a09241b343cb216821d02b8e9c3568b775106b9b6781006db",
+        "R3": "11a12a796c90a26e14013b2c42e760cf071ed2dae9bd18e8d42610faa5eb943a",
+        "S0": "368be4ff1aed13582f0a7a24b833375b763b906cec7c8aa157ea7ad51f93d068"
+      },
+      "seed43": {
+        "R1": "53d6c67f0bace162f68d775aeb13f52e6968b7ec4e088125128d24a9f63accf9",
+        "R2": "1915fa1941192e9c7ed09ecb3d3c024f1ea11775aa64e0a18f6068b52d48e7e0",
+        "R3": "6d62ad25fa8e56c07d9fa97e6126b057cd8d260725b754bf266c1d3917d378f6",
+        "S0": "425b94d77aef171a223c0a511936a415dd0c18e15d7ccb39a8c6102ecbb6cebb"
+      },
+      "seed44": {
+        "R1": "e324631b7f6bc77421126a90e908384a6d0f67af0ee3b57664f3ebf260378a6d",
+        "R2": "ce1767b8657ef56f8246885bef5237e77023a7950cdb34804b02e437d8bbd923",
+        "R3": "190e09f7e410b0ccb8fe9ca8b4fd88835cd37126784552a50298f73124cd2928",
+        "S0": "4c294154ba30a66dec1ac8a9fc82db71254b4f3b5217a9e03a9205f5c5189c60"
+      }
+    },
+    "shared_prompt_cache": "2a4b2c7a022628db96f9bec6bdc9be0d610db8845dab6a0ab09f887fb913dd76"
+  },
+  "rows_per_logical_epoch": 2654,
+  "smoke_training_allowed": false,
+  "source_hashes": {
+    "block_loss_and_collator": "88c47bf87020f4e02a00b7b5989f820b6d7e1f99c8abf671fa83f18e801749f9",
+    "manifest_auditor": "35f4321a84dcea8b10f465d9ed7a7bfeaa5982c0fa2dee17f713c3a4cd9dc065",
+    "manifest_builder": "942d12553f27fbe60d959f8e14aa05b3800a6858cae36b9e75b8203490fcf5e2",
+    "output_schema": "cf63b7cc7a39b15a61c3b5095435275979fb4347f8c080b5c9f6483b04b33b8b",
+    "training_contract": "128d83c7e5a3701fe75f74fd08fb359b40eed25addd02bb259f0bbce0a3ee039"
+  },
+  "status": "MATERIALIZED_MANIFEST_CANDIDATE_AUDITED_NOT_FROZEN",
+  "test_accessed": false,
+  "training_used": false,
+  "upstream_lock_hashes": {
+    "base_schedule_lock": "2a96cecc272d5c4e45778d0e860a82503d76c4cdca6c0a3839ba685b63e7984f",
+    "event_donor_lock": "a40e8cfce3ca2f45a90a72943402f4ae1b39156cee0747683e99d48037495508",
+    "event_mask_lock": "1840b0b2207f4bb5443dfd7912dbdebaca341227738ed869bac20c434bb10aba",
+    "reference_set_lock": "fed541fb3cb82851db010d13e5dafa057ffbe196f4ecff357f5d9f4408e6d6f4",
+    "tokenizer_report_seed42": "6131ff0129e4831f2cc997003443fd2a1ef4f85e77fa9e30d0cdbb702ffb69c1"
+  }
+}
