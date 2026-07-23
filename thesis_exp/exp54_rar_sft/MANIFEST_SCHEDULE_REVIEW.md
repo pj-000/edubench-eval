@@ -59,11 +59,36 @@ Add `reference_count` and the reference's three-epoch selection-frequency signat
 This preserves three epochs and exact frequency matching, but causes a larger overall and
 low-score coverage loss.
 
-## Current gate
+## External review decision
 
-Status: `TRAINING_MANIFEST_SCHEDULE_BLOCKED`.
+Decision: `REVISION_REQUIRED`.
 
-The existing reference-level donor map remains a valid strict permutation, but the four training
-manifests must not be frozen under the current schedule until the scientific contract specifies
-whether exact realized rationale-frequency matching is required and, if so, which correction is
-accepted.
+Exact realized rationale-frequency equality is required separately at every epoch and cumulative
+checkpoint prefix. Candidate A and Candidate B only established equality at the end of their
+complete schedules, so neither is the formal solution.
+
+The accepted implementation route keeps three epochs, expands all actual scheduled row events,
+and performs a strict event-level permutation independently within:
+
+```text
+seed × epoch × label_5 × metric_id × language
+```
+
+The existing reference-level donor map remains mathematically valid but is superseded as the
+training authority.
+
+## Shared-schedule implementation status
+
+Status: `CANDIDATE_REFERENCE_SCHEDULE_READY`.
+
+- The schedule formula now has one shared source module.
+- Seeds 42, 43, and 44 each produce exactly 7,962 train-only row events.
+- Each seed has 4,836 rationale-available events and 3,126 score-only events.
+- All 3,934 label-consistent references are selected at least once.
+- The 902 repeated occurrences are exactly those induced by the original two-reference,
+  three-epoch rotation.
+- Row order and base metadata are identical across seeds.
+- Dev/test were not accessed and no training was run.
+
+This status authorizes event-level candidate matching only. It does not authorize manifest freeze,
+smoke training, formal training, or checkpoint selection.

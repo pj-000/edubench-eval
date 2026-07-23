@@ -1,0 +1,98 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Exp54 train-only reference schedule event",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schedule_schema_version",
+    "event_id",
+    "seed",
+    "epoch_index",
+    "epoch_number",
+    "row_position",
+    "record_id",
+    "selected_reference_id",
+    "selected_rater_id",
+    "reference_count",
+    "rationale_available",
+    "selected_reason_bytes_sha256",
+    "label_5",
+    "metric_id",
+    "language",
+    "normalized_qa_key",
+    "stratum_id"
+  ],
+  "properties": {
+    "schedule_schema_version": {
+      "const": "exp54-reference-event-v1"
+    },
+    "event_id": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "seed": {
+      "type": "integer"
+    },
+    "epoch_index": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "epoch_number": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "row_position": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "record_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "selected_reference_id": {
+      "type": ["string", "null"]
+    },
+    "selected_rater_id": {
+      "type": ["string", "null"]
+    },
+    "reference_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "rationale_available": {
+      "type": "boolean"
+    },
+    "selected_reason_bytes_sha256": {
+      "oneOf": [
+        {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "label_5": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 5
+    },
+    "metric_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "language": {
+      "type": "string",
+      "minLength": 1
+    },
+    "normalized_qa_key": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "stratum_id": {
+      "type": "string",
+      "minLength": 1
+    }
+  }
+}

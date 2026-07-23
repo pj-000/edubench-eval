@@ -11,7 +11,6 @@ compares deterministic alternatives without authorizing a protocol change.
 from __future__ import annotations
 
 import argparse
-import hashlib
 import json
 from collections import Counter, defaultdict
 from pathlib import Path
@@ -28,6 +27,7 @@ from thesis_exp.exp54_rar_sft.build_r2_donor_map import (
     flatten_references,
     match_stratum,
 )
+from thesis_exp.exp54_rar_sft.reference_schedule import schedule_index
 
 
 DEFAULT_REFERENCES = (
@@ -46,14 +46,6 @@ DEFAULT_OUTPUT = (
     "manifest_schedule_compatibility_report.json"
 )
 SEEDS = (42, 43, 44)
-
-
-def schedule_index(seed: int, sample_id: str, epoch: int, reference_count: int) -> int:
-    if reference_count < 1:
-        raise ValueError("reference_count must be positive")
-    payload = f"{seed}|{sample_id}".encode("utf-8")
-    offset = int(hashlib.sha256(payload).hexdigest()[:16], 16)
-    return (offset + epoch) % reference_count
 
 
 def selected_frequency(

@@ -2,7 +2,7 @@
 
 ## Status and scope
 
-- Protocol version: `2.0-draft-lock`
+- Protocol version: `2.1-event-control-amendment`
 - Date: `2026-07-23`
 - Method/data design status: **frozen for implementation**
 - Training status: **locked**
@@ -11,6 +11,9 @@
 - Supersedes: `PREREGISTRATION.md` for all future Exp54 work
 - Historical protocol preservation: the superseded file remains unchanged except for a pointer to
   this version.
+- Pre-training amendment: after a train-only schedule audit and external review, the formal R2
+  control is defined over scheduled training events rather than static reference identities. No
+  dev/test outcome or training run informed this amendment.
 
 Training remains locked until the exact model revision/snapshot, tokenizer/chat-template hashes,
 runtime versions, final training configuration, and all deterministic data-readiness checks have
@@ -41,8 +44,9 @@ error count or Label-2 correct count/recall.
 ### H2: semantic increment
 
 Relative to a matched shuffled-rationale control with the same score target, metric, language,
-coverage mask, output schema, and approximately matched rationale length, answer-matched human
-rationales will provide additional value in scoring and/or visible-rationale evaluation.
+coverage mask, output schema, exact scheduled rationale-frequency multiset at every epoch prefix,
+and approximately matched paired rationale length, answer-matched human rationales will provide
+additional value in scoring and/or visible-rationale evaluation.
 
 ### H3: consensus alignment
 
@@ -441,6 +445,52 @@ Character length is a feasibility diagnostic only. The formal donor map must be 
 frozen `Qwen/Qwen3-4B-Instruct-2507` tokenizer, an immutable upstream revision, verified local
 tokenizer-file hashes, and a frozen Oracle report covering the exact matcher source.
 
+### 10.5 Pre-training event-level amendment
+
+Sections 10.1-10.3 preserve the reviewed reference-level feasibility result, but their static
+reference map is superseded as the authority for formal training. The formal R2 control keeps
+three epochs and first expands the exact schedule from Section 8 for seeds 42, 43, and 44:
+
+```text
+2,654 ordered rows × 3 epochs = 7,962 row events per seed
+```
+
+Each event has a deterministic ID derived from the schedule schema version, seed, zero-based
+epoch index, zero-based row position, record ID, and selected reference ID. The exact hash
+serialization, the use of the first 16 hexadecimal SHA-256 characters for the schedule offset,
+and both zero-/one-based epoch conventions must be recorded.
+
+R2 donor matching is performed independently within:
+
+```text
+seed × epoch × label_5 × metric_id × language
+```
+
+For each event stratum, legal non-diagonal edges require different event IDs, record IDs, and
+normalized QA keys. Active recipient events and used donor events must be the same set; each
+active event has indegree and outdegree one and belongs to a nontrivial cycle. The objective
+remains lexicographic: maximize active events, minimize frozen-tokenizer rationale-length
+difference, then use a stable hash tie-break.
+
+Donor non-reuse is defined at scheduled-event occurrence level. If one reference is selected
+twice by the original R3 schedule, it produces two distinct events and must occur exactly twice
+in R2 as well. The same reference ID is therefore allowed to appear in multiple epochs only when
+the frozen base schedule already does so.
+
+R2 and R3 must have byte-identical rationale-active vectors and identical rationale bytes/token-ID
+counters separately for every seed and epoch. The same equality must hold for every cumulative
+epoch prefix eligible for checkpoint selection. All inactive events retain active score
+supervision. The static reference-level map remains a valid audited artifact but has status:
+
+```text
+R2_REFERENCE_LEVEL_MAP_VALID
+SUPERSEDED_FOR_TRAINING_BY_EVENT_LEVEL_MAP
+```
+
+No event-level candidate artifact may be marked frozen or used for training until its matcher
+Oracle, event permutation, epoch-prefix frequency equality, cross-arm manifest equality, and
+training-budget audit pass a new review gate.
+
 ## 11. Token masks and block-balanced loss
 
 For token NLL:
@@ -821,8 +871,10 @@ construction:
 
 1. redact explicit score-report phrases;
 2. build R1 and R3 reference sets;
-3. build and freeze the R2 donor map;
-4. build the four 2,654-row manifests;
-5. emit the deterministic data-readiness report.
+3. expand and hash the shared three-epoch reference schedule for every formal seed;
+4. build and review the per-seed, per-epoch R2 event donor maps and masks;
+5. build candidate S0/R1/R2/R3 manifests and prove epoch-prefix frequency and budget equality;
+6. freeze artifacts only after the event-level review gate passes;
+7. emit the deterministic data-readiness report.
 
 No model API, GPU training, normalizer, verifier, dev outcome, or test data is used in that step.

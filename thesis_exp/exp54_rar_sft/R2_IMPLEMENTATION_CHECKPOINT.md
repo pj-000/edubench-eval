@@ -78,10 +78,16 @@ active reference.
   `9ec8686a4f92d11333de6081c8464c2afb7287aa7b59c3d712998deff11fb2da`
 - Byte-identical: `true`
 
-Final status: `R2_STRICT_DONOR_MAP_READY`.
+Reference-level status:
 
-This status allows construction of the frozen S0/R1/R2/R3 training manifests. It does not by
-itself authorize smoke or formal training.
+```text
+R2_REFERENCE_LEVEL_MAP_VALID
+SUPERSEDED_FOR_TRAINING_BY_EVENT_LEVEL_MAP
+```
+
+The artifact remains a correct reference-level strict permutation and its solver evidence may be
+reused when implementing the event-level matcher. It no longer authorizes construction of frozen
+training manifests and never authorized smoke or formal training.
 
 ## Downstream manifest-schedule compatibility
 
@@ -90,6 +96,7 @@ However, a downstream audit found that combining this map with the preregistered
 one-reference-per-row rotating schedule can change the realized per-rationale frequency
 between R2 and R3 when a donor edge crosses rows with different reference counts.
 
-Therefore, this checkpoint still authorizes use of the donor-map artifact as a reviewed
-reference-level result, but it does **not** authorize freezing training manifests until the
-schedule-frequency issue in `MANIFEST_SCHEDULE_REVIEW.md` is resolved and reviewed.
+External review selected a three-epoch event-level strict permutation as the only formal route.
+The shared base schedule has been implemented as a candidate artifact, but training manifests
+remain blocked until the event matcher, epoch-prefix frequency equality, cross-arm equality, and
+training-budget audit pass their own review gate.

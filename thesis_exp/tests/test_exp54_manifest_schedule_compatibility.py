@@ -1,9 +1,7 @@
 from __future__ import annotations
 
-from thesis_exp.exp54_rar_sft.audit_manifest_schedule_compatibility import (
-    frequency_audit,
-    schedule_index,
-)
+from thesis_exp.exp54_rar_sft.audit_manifest_schedule_compatibility import frequency_audit
+from thesis_exp.exp54_rar_sft.reference_schedule import schedule_index
 
 
 def reference_row(
