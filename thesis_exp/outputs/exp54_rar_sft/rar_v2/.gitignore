@@ -1,0 +1,8 @@
+# Real human-rater text and row-level derived data stay local.
+/data/
+/audit/explicit_score_redaction_audit.csv
+/audit/r2_character_length_donor_map_diagnostic.jsonl
+
+# Python/tool scratch files are reproducible and never published.
+*.tmp
+*.bak

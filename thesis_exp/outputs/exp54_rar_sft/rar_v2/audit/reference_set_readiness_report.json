@@ -1,0 +1,39 @@
+{
+  "api_used": false,
+  "checks": {
+    "all_active_reasons_nonempty": true,
+    "all_rater_active_rows_exact": true,
+    "all_rater_reference_count_exact": true,
+    "all_reference_ids_unique": true,
+    "consistent_reference_distribution_exact": true,
+    "consistent_subset_of_all": true,
+    "dissenting_reference_count_exact": true,
+    "explicit_score_leakage_zero": true,
+    "label_consistent_active_rows_exact": true,
+    "label_consistent_reference_count_exact": true,
+    "no_reason_rows_exact": true,
+    "row_ids_match": true,
+    "train_rows_exact": true
+  },
+  "counts": {
+    "all_rater_references": 4836,
+    "consistent_reference_distribution": {
+      "2": 902,
+      "3": 710
+    },
+    "dissenting_references": 902,
+    "label_consistent_references": 3934,
+    "no_reason_rows": 1042,
+    "reason_covered_rows": 1612,
+    "redaction_events": 41,
+    "remaining_explicit_score_reports": 0,
+    "train_rows": 2654
+  },
+  "dev_accessed": false,
+  "duplicate_reference_ids": [],
+  "model_used": false,
+  "remaining_leakage_reference_ids": [],
+  "status": "REFERENCE_SETS_READY",
+  "test_accessed": false,
+  "training_used": false
+}
