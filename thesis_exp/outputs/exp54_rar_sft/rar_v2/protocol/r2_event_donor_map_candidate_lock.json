@@ -1,0 +1,29 @@
+{
+  "candidate_event_mask_build_allowed": true,
+  "core_matcher_source_sha256": "77455c1a0e14e61b691e03741149256a5d9225f0ee62e49f64f7a2501a9e5111",
+  "dev_accessed": false,
+  "epochs": 3,
+  "event_donor_map_sha256_by_seed": {
+    "seed42": "da85b52801c6531bffb9823563a1879251441cc907b5056185af0578ebdf8cd5",
+    "seed43": "7cbc20ccddaa50bf967bda0079505f6c1a57e050a95bea957032b9eda254b2a6",
+    "seed44": "38044a0b2c9b472597dc9694bc808836a64d262c0cfaaac5f0b1440fe4744a19"
+  },
+  "event_matcher_source_sha256": "e5dce4c7cad84311f790976027e021663fb25fbfc2eec6137a3892666ac8034f",
+  "formal_seeds": [
+    42,
+    43,
+    44
+  ],
+  "formal_training_allowed": false,
+  "manifest_freeze_allowed": false,
+  "oracle_report_sha256": "b52a41fb66dcaf78a7011915a8884f1e4d55ef932c4c0a07b7e7cf366e0d31f8",
+  "reference_source_sha256": "718d760869b9c573b952a90faf5b5e6b346a034f31b454b5e15bd28ed1856500",
+  "runtime": {
+    "python": "3.10.19",
+    "scipy": "1.15.3"
+  },
+  "status": "R2_EVENT_DONOR_MAP_CANDIDATE_READY",
+  "test_accessed": false,
+  "tokenizer_lock_sha256": "4c4fa5083c4b6da6097657bb15a304df06080a5692033c1f444288574acdf0b6",
+  "training_used": false
+}

@@ -100,3 +100,8 @@ External review selected a three-epoch event-level strict permutation as the onl
 The shared base schedule has been implemented as a candidate artifact, but training manifests
 remain blocked until the event matcher, epoch-prefix frequency equality, cross-arm equality, and
 training-budget audit pass their own review gate.
+
+The event matcher and candidate R2/R3 event mask have now been implemented and validated under
+the frozen tokenizer. Their review status is documented in
+`EVENT_LEVEL_MATCHER_CHECKPOINT.md`. They remain candidate artifacts and do not restore manifest
+freeze or training authorization.

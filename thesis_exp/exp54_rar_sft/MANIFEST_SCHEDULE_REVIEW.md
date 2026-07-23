@@ -92,3 +92,22 @@ Status: `CANDIDATE_REFERENCE_SCHEDULE_READY`.
 
 This status authorizes event-level candidate matching only. It does not authorize manifest freeze,
 smoke training, formal training, or checkpoint selection.
+
+## Event-level matcher implementation status
+
+Status:
+
+```text
+R2_EVENT_DONOR_MAP_CANDIDATE_READY
+R2_R3_EVENT_MASK_CANDIDATE_READY
+```
+
+The independent event-level Oracle passed 7 adversarial and 64 deterministic random cases with
+20 input-order shuffles per case. Under the frozen Qwen tokenizer, every seed has 4,803 active
+rationale events out of 4,836 eligible events. Every individual epoch and cumulative checkpoint
+prefix has exact R2/R3 rationale bytes and token-ID Counter equality, zero frequency L1
+difference, and identical supervised-token totals.
+
+The candidate R2/R3 event masks are byte-identical within every seed and contain no
+score-deactivation field. This checkpoint remains review-only: final manifest construction,
+manifest freeze, and all training are still blocked.
