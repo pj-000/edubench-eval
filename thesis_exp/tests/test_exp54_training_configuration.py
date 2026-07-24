@@ -7,6 +7,7 @@ import pytest
 
 import thesis_exp.exp54_rar_sft.train_rar_sft as train_module
 from thesis_exp.exp54_rar_sft.authorization_guard import (
+    EXPECTED_RUNTIME_SOURCE_NAMES,
     RUNTIME_SOURCE_PATHS,
     closure_sha256,
     read_trusted_authorization_digest,
@@ -56,6 +57,19 @@ def test_candidate_training_configuration_has_exact_step_plan() -> None:
         gradient_accumulation_steps=4,
     )
     assert groups == [4] * 331 + [3]
+
+
+def test_runtime_source_closure_contains_every_imported_package_init() -> None:
+    assert set(RUNTIME_SOURCE_PATHS) == EXPECTED_RUNTIME_SOURCE_NAMES
+    assert {
+        "thesis_package_init",
+        "thesis_src_package_init",
+        "edujudge_package_init",
+        "exp02_package_init",
+        "utils_package_init",
+        "exp54_package_init",
+    }.issubset(RUNTIME_SOURCE_PATHS)
+    assert len(runtime_source_closure()) == 16
 
 
 @pytest.mark.parametrize(
@@ -258,6 +272,7 @@ def test_self_consistent_forged_lock_pair_lacks_external_authenticity(
         "manifest_io_and_split_guard",
         "exp54_package_init",
         "prompt_cleaning",
+        "utils_package_init",
     ],
 )
 def test_runtime_dependency_change_invalidates_old_authorization(
@@ -368,6 +383,41 @@ def test_model_directory_rejects_nested_adapter_weights(
     with pytest.raises(ValueError, match="adapter artifacts"):
         validate_model_directory_listing(
             tmp_path,
+            expected_regular_files={},
+            expected_listing_sha256="0" * 64,
+        )
+
+
+def test_model_directory_rejects_symlink_root_with_exact_listing(
+    tmp_path: Path,
+) -> None:
+    real_model = tmp_path / "real-model"
+    real_model.mkdir()
+    (real_model / "config.json").write_text("{}", encoding="utf-8")
+    expected = {"config.json": 2}
+    payload = json.dumps(
+        sorted(expected.items()),
+        separators=(",", ":"),
+    ).encode("utf-8")
+    listing_hash = hashlib.sha256(payload).hexdigest()
+    model_link = tmp_path / "model-link"
+    model_link.symlink_to(real_model, target_is_directory=True)
+    with pytest.raises(ValueError, match="root must not be a symlink"):
+        validate_model_directory_listing(
+            model_link,
+            expected_regular_files=expected,
+            expected_listing_sha256=listing_hash,
+        )
+
+
+def test_model_directory_rejects_non_directory_root(
+    tmp_path: Path,
+) -> None:
+    model_file = tmp_path / "not-a-directory"
+    model_file.write_text("model", encoding="utf-8")
+    with pytest.raises(ValueError, match="root must be a directory"):
+        validate_model_directory_listing(
+            model_file,
             expected_regular_files={},
             expected_listing_sha256="0" * 64,
         )

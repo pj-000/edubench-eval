@@ -464,8 +464,27 @@ def audit_authorization_authenticity(
     }
 
 
+def audit_installed_trust_anchor_state(
+    path: Path = TRUSTED_AUTHORIZATION_DIGEST_PATH,
+) -> dict[str, Any]:
+    """Require the formal trust anchor to be absent at candidate stage."""
+    try:
+        path.lstat()
+    except FileNotFoundError:
+        return {
+            "trusted_digest_path_lstat_checked": True,
+            "trusted_digest_path_exists": False,
+            "formal_authorization_currently_installable": False,
+        }
+    raise PermissionError(
+        "candidate configuration audit requires the formal trust anchor "
+        "to remain uninstalled"
+    )
+
+
 def main() -> None:
     args = parse_args()
+    installed_trust_anchor = audit_installed_trust_anchor_state()
     config = _read_object(args.config)
     step_plan = validate_training_configuration(config)
     frozen = validate_frozen_inputs(args.frozen_lock, args.output_dir)
@@ -553,6 +572,8 @@ def main() -> None:
         "parser": config["parser"],
         "runtime_source_closure": source_hashes,
         "runtime_source_closure_sha256": source_closure_sha256,
+        "runtime_source_closure_file_count": len(source_hashes),
+        "runtime_source_closure_expected_set_match": True,
         "runtime_source_closure_complete": True,
         "audit_source_hashes": audit_source_hashes,
         "authorization_gate": {
@@ -565,11 +586,11 @@ def main() -> None:
             ),
             "trusted_digest_root_owned_required": True,
             "trusted_digest_group_or_other_writable_allowed": False,
+            **installed_trust_anchor,
             "authorization_signature_required": False,
             "external_digest_required": True,
             **authorization_probes,
             "model_weights_loaded_before_authorization": False,
-            "current_authorization_lock_exists": False,
             "smoke_training_allowed": False,
             "formal_training_allowed": False,
         },
@@ -601,6 +622,8 @@ def main() -> None:
             "data_and_step_plan": report["data_and_step_plan"],
             "runtime_source_closure": source_hashes,
             "runtime_source_closure_sha256": source_closure_sha256,
+            "runtime_source_closure_file_count": len(source_hashes),
+            "runtime_source_closure_expected_set_match": True,
             "runtime_source_closure_complete": True,
             "audit_source_hashes": audit_source_hashes,
             "generation_train_target_coverage": generation_cap,

@@ -7,6 +7,7 @@ import pytest
 
 from thesis_exp.exp54_rar_sft.audit_rar0_alignment import file_sha256
 from thesis_exp.exp54_rar_sft.audit_training_configuration import (
+    audit_installed_trust_anchor_state,
     validate_tensor_shard_mapping,
     validate_runtime,
 )
@@ -96,6 +97,39 @@ def test_per_tensor_shard_mapping_rejects_duplicate_tensor_names() -> None:
         )
 
 
+def test_candidate_audit_records_missing_fixed_trust_anchor(
+    tmp_path: Path,
+) -> None:
+    state = audit_installed_trust_anchor_state(
+        tmp_path / "missing-trust-anchor"
+    )
+    assert state == {
+        "trusted_digest_path_lstat_checked": True,
+        "trusted_digest_path_exists": False,
+        "formal_authorization_currently_installable": False,
+    }
+
+
+def test_candidate_audit_rejects_existing_regular_trust_anchor(
+    tmp_path: Path,
+) -> None:
+    anchor = tmp_path / "trust-anchor"
+    anchor.write_text("0" * 64, encoding="ascii")
+    with pytest.raises(PermissionError, match="remain uninstalled"):
+        audit_installed_trust_anchor_state(anchor)
+
+
+def test_candidate_audit_rejects_existing_symlink_trust_anchor(
+    tmp_path: Path,
+) -> None:
+    target = tmp_path / "target"
+    target.write_text("0" * 64, encoding="ascii")
+    anchor = tmp_path / "trust-anchor"
+    anchor.symlink_to(target)
+    with pytest.raises(PermissionError, match="remain uninstalled"):
+        audit_installed_trust_anchor_state(anchor)
+
+
 def test_formal_configuration_report_is_aggregate_and_not_authorized() -> None:
     base = Path("thesis_exp/outputs/exp54_rar_sft/rar_v2")
     report_path = base / "audit/training_configuration_candidate_report.json"
@@ -114,6 +148,9 @@ def test_formal_configuration_report_is_aggregate_and_not_authorized() -> None:
     assert report["model_snapshot"]["base_parameters"] == 4_022_468_096
     assert report["model_snapshot"]["lora_trainable_parameters"] == 33_030_144
     assert report["model_snapshot"]["regular_file_count"] == 16
+    assert report["model_snapshot"]["model_root_is_symlink"] is False
+    assert report["model_snapshot"]["model_root_is_directory"] is True
+    assert report["model_snapshot"]["descendant_symlink_count"] == 0
     assert report["model_snapshot"]["forbidden_adapter_artifact_count"] == 0
     assert report["model_snapshot"]["historical_adapter_artifacts_absent"] is True
     assert report["model_snapshot"]["pre_lora_base_model_adapter_free"] is True
@@ -142,12 +179,18 @@ def test_formal_configuration_report_is_aggregate_and_not_authorized() -> None:
         "S0": 11,
     }
     assert report["runtime_source_closure_complete"] is True
-    assert len(report["runtime_source_closure"]) == 15
+    assert len(report["runtime_source_closure"]) == 16
+    assert report["runtime_source_closure_file_count"] == 16
+    assert report["runtime_source_closure_expected_set_match"] is True
+    assert "utils_package_init" in report["runtime_source_closure"]
     authorization = report["authorization_gate"]
     assert authorization["authorization_authenticity_verified"] is True
     assert authorization["forged_lock_pair_rejected"] is True
     assert authorization["untrusted_arbitrary_lock_paths_rejected"] is True
     assert authorization["external_digest_required"] is True
+    assert authorization["trusted_digest_path_lstat_checked"] is True
+    assert authorization["trusted_digest_path_exists"] is False
+    assert authorization["formal_authorization_currently_installable"] is False
     assert report["audit_source_hashes"]["configuration_auditor"] == file_sha256(
         Path("thesis_exp/exp54_rar_sft/audit_training_configuration.py")
     )

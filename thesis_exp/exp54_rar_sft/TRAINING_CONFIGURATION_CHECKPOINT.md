@@ -31,8 +31,10 @@ dev/test access.
 - The complete 16-file regular-file listing is size-locked with aggregate
   SHA-256
   `96308d1ae2e03ab011a52371780c8f4b448930d2e393fb8682fa8aa09687064a`.
-  Added files and symlinks hard-fail, including nested `adapter_config.json`,
-  `adapter_model.safetensors`, and `adapter_model.bin`.
+  A symlink or non-directory model root hard-fails before traversal. Added
+  files and descendant symlinks also hard-fail, including nested
+  `adapter_config.json`, `adapter_model.safetensors`, and
+  `adapter_model.bin`.
 - Every indexed tensor is checked against the header of its exact physical
   shard. Duplicate, unindexed, missing, and swapped-shard tensor names all
   hard-fail.
@@ -153,10 +155,10 @@ loading model weights unless a later external authorization lock binds:
 - the exact frozen-manifest lock;
 - the exact audited training-configuration lock;
 - the exact configuration;
-- a 15-file runtime source closure including the independent authorization
+- a 16-file runtime source closure including the independent authorization
   guard, training entry point, block loss, serialization contract, inference
   parser, manifest I/O, package initializers, prompt cleaning and its local
-  dependencies, and shell launcher;
+  dependencies (including `utils/__init__.py`), and shell launcher;
 - the explicitly allowed arms and seeds.
 
 Self-consistent repository JSON files are not authorization. The exact
@@ -169,3 +171,9 @@ lock pair with a mismatched external digest is rejected, while an exact
 externally bound digest is accepted. Authorization failures occur before
 model hash verification, model loading, or output-directory creation. A
 future review must separately authorize smoke or formal execution.
+
+At candidate-audit time the fixed trust-anchor path is checked with `lstat`.
+The report can be emitted only when the path does not exist. Any regular
+file, symlink, directory, or other object already installed at that path
+causes the candidate audit to fail rather than claiming a false
+not-authorized state.

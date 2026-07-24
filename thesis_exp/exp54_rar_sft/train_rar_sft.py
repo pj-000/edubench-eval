@@ -15,6 +15,7 @@ import json
 import math
 import os
 import random
+import stat
 import subprocess
 from pathlib import Path
 from typing import Any
@@ -259,6 +260,14 @@ def validate_model_directory_listing(
     expected_listing_sha256: str,
 ) -> dict[str, Any]:
     """Reject any added, removed, resized, symlinked, or adapter file."""
+    try:
+        root_stat = model_path.lstat()
+    except FileNotFoundError:
+        raise FileNotFoundError(model_path) from None
+    if stat.S_ISLNK(root_stat.st_mode):
+        raise ValueError("base snapshot root must not be a symlink")
+    if not stat.S_ISDIR(root_stat.st_mode):
+        raise ValueError("base snapshot root must be a directory")
     forbidden_names = {
         "adapter_config.json",
         "adapter_model.safetensors",
@@ -295,7 +304,9 @@ def validate_model_directory_listing(
         "regular_file_count": len(discovered),
         "directory_listing_sha256": listing_sha256,
         "forbidden_adapter_artifact_count": 0,
-        "symlink_count": 0,
+        "model_root_is_symlink": False,
+        "model_root_is_directory": True,
+        "descendant_symlink_count": 0,
     }
 
 

@@ -1,26 +1,28 @@
 {
   "audit_source_hashes": {
-    "configuration_auditor": "70202a517e0b3b86316c97c79c51b5cbc1a5a77ac38695acbca7994a13458c44",
+    "configuration_auditor": "a3ca72621ab5628802c405ed1aa0455832db5199cf3512500d402aac3b2f67ac",
     "manifest_freezer": "280199115cdae8c1ab8273a1f400e38d65620d843525d012c292d65bccdaa331"
   },
   "authorization_authentication": {
     "authorization_authentication_method": "root-owned repository-external exact SHA-256 file",
     "authorization_authenticity_verified": true,
     "authorization_signature_required": false,
-    "current_authorization_lock_exists": false,
     "external_digest_required": true,
     "external_reviewed_lock_required_by_entrypoint": true,
     "forged_lock_pair_rejected": true,
+    "formal_authorization_currently_installable": false,
     "formal_training_allowed": false,
     "model_weights_loaded_before_authorization": false,
     "smoke_training_allowed": false,
     "trusted_authorization_digest_path": "/etc/edubench/exp54_authorization.sha256",
     "trusted_digest_group_or_other_writable_allowed": false,
+    "trusted_digest_path_exists": false,
+    "trusted_digest_path_lstat_checked": true,
     "trusted_digest_root_owned_required": true,
     "trusted_external_digest_acceptance_verified": true,
     "untrusted_arbitrary_lock_paths_rejected": true
   },
-  "candidate_report_sha256": "0fcb52e63bd074301455077aa3fd5bf14308175a039bd6a23d98f6b394b66d4e",
+  "candidate_report_sha256": "27186421a67aa5c0b324672e567280859295e3066201fbca5b97ae2cd07dc0aa",
   "configuration_sha256": "291a3fa055f5ef07ac0f1bc39f67f3b1c9d13219da0c3e3e801d9a9df29d5318",
   "data_and_step_plan": {
     "cutoff_len": 2048,
@@ -73,6 +75,7 @@
     "all_lora_targets_present_in_every_layer": true,
     "architecture": "Qwen3ForCausalLM",
     "base_parameters": 4022468096,
+    "descendant_symlink_count": 0,
     "directory_listing_sha256": "96308d1ae2e03ab011a52371780c8f4b448930d2e393fb8682fa8aa09687064a",
     "duplicate_tensor_names_across_shards": 0,
     "file_hashes": {
@@ -102,13 +105,14 @@
     "lora_trainable_parameters": 33030144,
     "missing_indexed_tensor_count": 0,
     "model_id": "Qwen/Qwen3-4B-Instruct-2507",
+    "model_root_is_directory": true,
+    "model_root_is_symlink": false,
     "per_tensor_shard_mapping_match": true,
     "pre_lora_adapter_parameter_count": 0,
     "pre_lora_base_model_adapter_free": true,
     "pre_lora_peft_config_absent": true,
     "pre_lora_runtime_guard": "require_adapter_free_base_model",
     "regular_file_count": 16,
-    "symlink_count": 0,
     "unindexed_tensor_count": 0,
     "weight_index_total_size": 8045591552,
     "weight_tensor_count": 398
@@ -179,7 +183,7 @@
     "transformers": "4.57.1"
   },
   "runtime_source_closure": {
-    "authorization_guard": "ac562bcfc114ede053d14d03fc347a739815204a4e0aecb97e3072c100b868d1",
+    "authorization_guard": "a8d54521d01336b23c1290bc6b15d8a934d4e30b5095f92f90417dad986a3e33",
     "block_loss_and_collator": "0e9f6ad5ee9b59175f160a0d24c20e9e92ece348e39069996e4522382cc61800",
     "edujudge_package_init": "e14d62632deed09164bee72b2b120785958662b9083c2abd3e4736fddbaccfc0",
     "exp02_package_init": "701c13b855a58f535fff5f4588f4dba62d5acc41a4e41fdac8be8b48ce2a0ddc",
@@ -193,10 +197,13 @@
     "thesis_package_init": "e57921412997c9605bd75fa597e907b2c68b201d6f70279add396d93f978d4a3",
     "thesis_src_package_init": "086f5bae4f890a7cc89ce4de1e476a3bb1315ff24c027064033213bc2cfb1326",
     "training_contract": "a9b100c9446f2a0e011b1faf67f873b51d0aaacf08a75423c71b6c48360f5071",
-    "training_entrypoint": "73e18b7311f8e2c99584f219107923ab1e6207b04f78f692402ffbe5913c46e2"
+    "training_entrypoint": "15f4384b32fafa88f141fa50a8b23df733f4704d69a54073cdc3e31afce9422c",
+    "utils_package_init": "c42265d82bb338df21786306034519a3fa6bda1454babd175a42bc8994ec1a3b"
   },
   "runtime_source_closure_complete": true,
-  "runtime_source_closure_sha256": "278732465ea6c6e5a19e7d71e573bfcc718a065a688ed2dddb1c976278e9f83a",
+  "runtime_source_closure_expected_set_match": true,
+  "runtime_source_closure_file_count": 16,
+  "runtime_source_closure_sha256": "e820ea658dba7e937e99f00008c343f867b5d4b6c61f3ab93f89f318a5852928",
   "smoke_training_allowed": false,
   "status": "TRAINING_CONFIGURATION_CANDIDATE_AUDITED_NOT_AUTHORIZED",
   "test_accessed": false,

@@ -52,6 +52,9 @@ RUNTIME_SOURCE_PATHS = {
     "text_normalization": (
         REPO_ROOT / "thesis_exp/src/edujudge/utils/text_norm.py"
     ),
+    "utils_package_init": (
+        REPO_ROOT / "thesis_exp/src/edujudge/utils/__init__.py"
+    ),
     "thesis_package_init": REPO_ROOT / "thesis_exp/__init__.py",
     "thesis_src_package_init": (
         REPO_ROOT / "thesis_exp/src/__init__.py"
@@ -60,6 +63,24 @@ RUNTIME_SOURCE_PATHS = {
         REPO_ROOT / "thesis_exp/src/edujudge/__init__.py"
     ),
     "launcher": REPO_ROOT / "thesis_exp/scripts/run_exp54_rar_sft.sh",
+}
+EXPECTED_RUNTIME_SOURCE_NAMES = {
+    "authorization_guard",
+    "training_entrypoint",
+    "block_loss_and_collator",
+    "training_contract",
+    "inference_contract",
+    "manifest_io_and_split_guard",
+    "exp54_package_init",
+    "prompt_cleaning",
+    "exp02_package_init",
+    "shared_io",
+    "text_normalization",
+    "utils_package_init",
+    "thesis_package_init",
+    "thesis_src_package_init",
+    "edujudge_package_init",
+    "launcher",
 }
 _SHA256_RE = re.compile(r"^[0-9a-f]{64}$")
 _COMMIT_RE = re.compile(r"^[0-9a-f]{40}$")
@@ -83,7 +104,13 @@ def read_json_object(path: Path) -> dict[str, Any]:
 
 
 def runtime_source_closure() -> dict[str, str]:
-    missing = [str(path) for path in RUNTIME_SOURCE_PATHS.values() if not path.is_file()]
+    if set(RUNTIME_SOURCE_PATHS) != EXPECTED_RUNTIME_SOURCE_NAMES:
+        raise RuntimeError("runtime source closure definition differs")
+    missing = [
+        str(path)
+        for path in RUNTIME_SOURCE_PATHS.values()
+        if not path.is_file()
+    ]
     if missing:
         raise FileNotFoundError(f"runtime source closure is incomplete: {missing}")
     return {
