@@ -28,6 +28,14 @@ dev/test access.
 - Full local snapshot: config, weight index, all three safetensor shards,
   tokenizer, tokenizer config, merges, vocabulary, and generation config are
   size- and SHA-256-locked.
+- The complete 16-file regular-file listing is size-locked with aggregate
+  SHA-256
+  `96308d1ae2e03ab011a52371780c8f4b448930d2e393fb8682fa8aa09687064a`.
+  Added files and symlinks hard-fail, including nested `adapter_config.json`,
+  `adapter_model.safetensors`, and `adapter_model.bin`.
+- Every indexed tensor is checked against the header of its exact physical
+  shard. Duplicate, unindexed, missing, and swapped-shard tensor names all
+  hard-fail.
 - Base parameters derived from safetensor headers: `4,022,468,096`
 - Training hardware: exactly one visible `NVIDIA RTX A6000` per run
 - Runtime: Python 3.10.19, PyTorch 2.4.0+cu121, Transformers 4.57.1,
@@ -58,7 +66,9 @@ than tuned on Exp54:
 Every target occurs once in each of 36 transformer layers. Safetensor shape
 metadata independently yields exactly `33,030,144` trainable LoRA
 parameters. The training entry point hard-fails if PEFT produces a different
-trainable count.
+trainable count. Before new LoRA injection it also rejects Transformers'
+`_hf_peft_config_loaded`, any existing `peft_config`, and any parameter name
+containing `lora_` or `adapter`.
 
 ## Data traversal and optimizer steps
 
@@ -128,6 +138,11 @@ Generation is deterministic greedy decoding with one beam and at most 256
 new tokens. Thinking mode is disabled by the frozen chat template. The parser
 accepts exactly one JSON object with exactly `score` and `rationale`; score
 must be a non-boolean integer from 1 to 5 and rationale must be a string.
+Duplicate keys are rejected at every JSON object level.
+
+The train-only frozen manifests prove the 256-token cap covers all
+materialized assistant targets, including assistant suffix tokens. Maximum
+counts are S0 11, R1 157, R2 151, and R3 151; no event exceeds 256.
 
 ## Training hard gate
 
@@ -138,10 +153,19 @@ loading model weights unless a later external authorization lock binds:
 - the exact frozen-manifest lock;
 - the exact audited training-configuration lock;
 - the exact configuration;
-- the exact training entry point, block loss, serialization contract,
-  inference parser, and shell launcher;
+- a 15-file runtime source closure including the independent authorization
+  guard, training entry point, block loss, serialization contract, inference
+  parser, manifest I/O, package initializers, prompt cleaning and its local
+  dependencies, and shell launcher;
 - the explicitly allowed arms and seeds.
 
-The server guard probe exited with `PermissionError`, created no output
-directory, and did not load model weights. A future review must separately
-authorize smoke or formal execution.
+Self-consistent repository JSON files are not authorization. The exact
+authorization-file SHA-256 must also be installed by an external
+administrator at `/etc/edubench/exp54_authorization.sha256`. The runner
+requires that trust anchor to be a non-symlink regular file, owned by root,
+and not writable by group or other users. Neither the CLI nor repository
+configuration can override its path. The formal audit proves that a forged
+lock pair with a mismatched external digest is rejected, while an exact
+externally bound digest is accepted. Authorization failures occur before
+model hash verification, model loading, or output-directory creation. A
+future review must separately authorize smoke or formal execution.

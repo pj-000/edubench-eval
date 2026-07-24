@@ -24,6 +24,9 @@ from thesis_exp.exp54_rar_sft.audit_rar0_alignment import (
     file_sha256,
     reject_eval_path,
 )
+from thesis_exp.exp54_rar_sft.authorization_guard import (
+    verify_external_authorization,
+)
 from thesis_exp.exp54_rar_sft.block_loss import (
     FixedRARCollator,
     blockwise_causal_loss,
@@ -52,19 +55,6 @@ ARMS = ("S0", "R1", "R2", "R3")
 SEEDS = (42, 43, 44)
 ROWS_PER_LOGICAL_EPOCH = 2_654
 LOGICAL_EPOCHS = 3
-TRAINING_SOURCE_PATHS = {
-    "training_entrypoint": Path(__file__),
-    "block_loss_and_collator": (
-        REPO_ROOT / "thesis_exp/exp54_rar_sft/block_loss.py"
-    ),
-    "training_contract": (
-        REPO_ROOT / "thesis_exp/exp54_rar_sft/training_contract.py"
-    ),
-    "inference_contract": (
-        REPO_ROOT / "thesis_exp/exp54_rar_sft/inference_contract.py"
-    ),
-    "launcher": REPO_ROOT / "thesis_exp/scripts/run_exp54_rar_sft.sh",
-}
 
 
 def _read_object(path: Path) -> dict[str, Any]:
@@ -115,6 +105,9 @@ def validate_training_configuration(config: dict[str, Any]) -> dict[str, Any]:
         ("model", "use_cache"): False,
         ("model", "pad_token_id"): 151643,
         ("model", "eos_token_id"): 151645,
+        ("model", "directory_listing_sha256"): (
+            "96308d1ae2e03ab011a52371780c8f4b448930d2e393fb8682fa8aa09687064a"
+        ),
         ("lora", "rank"): 16,
         ("lora", "alpha"): 32,
         ("lora", "dropout"): 0.05,
@@ -194,8 +187,16 @@ def validate_training_configuration(config: dict[str, Any]) -> dict[str, Any]:
         ("generation", "num_beams"): 1,
         ("generation", "max_new_tokens"): 256,
         ("generation", "enable_thinking"): False,
+        ("parser", "duplicate_keys_allowed"): False,
         ("authorization", "manifest_frozen_required"): True,
         ("authorization", "configuration_review_required"): True,
+        ("authorization", "authentication_method"): (
+            "root_owned_repository_external_exact_sha256"
+        ),
+        ("authorization", "trusted_digest_path"): (
+            "/etc/edubench/exp54_authorization.sha256"
+        ),
+        ("authorization", "self_consistent_repository_locks_sufficient"): False,
         ("authorization", "smoke_training_allowed"): False,
         ("authorization", "formal_training_allowed"): False,
         ("authorization", "dev_accessed"): False,
@@ -232,6 +233,11 @@ def verify_model_snapshot(config: dict[str, Any]) -> dict[str, str]:
     model_path = Path(model["local_path"])
     if not model_path.is_absolute():
         raise ValueError("model path must be absolute")
+    validate_model_directory_listing(
+        model_path,
+        expected_regular_files=model["directory_regular_files"],
+        expected_listing_sha256=model["directory_listing_sha256"],
+    )
     actual: dict[str, str] = {}
     for name, expected in model["files"].items():
         path = model_path / name
@@ -244,6 +250,68 @@ def verify_model_snapshot(config: dict[str, Any]) -> dict[str, str]:
             raise ValueError(f"model file hash differs: {name}")
         actual[name] = digest
     return actual
+
+
+def validate_model_directory_listing(
+    model_path: Path,
+    *,
+    expected_regular_files: dict[str, int],
+    expected_listing_sha256: str,
+) -> dict[str, Any]:
+    """Reject any added, removed, resized, symlinked, or adapter file."""
+    forbidden_names = {
+        "adapter_config.json",
+        "adapter_model.safetensors",
+        "adapter_model.bin",
+    }
+    discovered: dict[str, int] = {}
+    forbidden: list[str] = []
+    symlinks: list[str] = []
+    for path in model_path.rglob("*"):
+        relative = path.relative_to(model_path).as_posix()
+        if path.is_symlink():
+            symlinks.append(relative)
+            continue
+        if path.is_file():
+            discovered[relative] = path.stat().st_size
+            if path.name in forbidden_names:
+                forbidden.append(relative)
+    if symlinks:
+        raise ValueError(f"base snapshot contains symlinks: {sorted(symlinks)}")
+    if forbidden:
+        raise ValueError(
+            f"base snapshot contains adapter artifacts: {sorted(forbidden)}"
+        )
+    if discovered != expected_regular_files:
+        raise ValueError("base snapshot regular-file listing differs")
+    payload = json.dumps(
+        sorted(discovered.items()),
+        separators=(",", ":"),
+    ).encode("utf-8")
+    listing_sha256 = hashlib.sha256(payload).hexdigest()
+    if listing_sha256 != expected_listing_sha256:
+        raise ValueError("base snapshot directory listing hash differs")
+    return {
+        "regular_file_count": len(discovered),
+        "directory_listing_sha256": listing_sha256,
+        "forbidden_adapter_artifact_count": 0,
+        "symlink_count": 0,
+    }
+
+
+def require_adapter_free_base_model(model: Any) -> None:
+    """Hard-fail a base model that Transformers populated with PEFT state."""
+    if getattr(model, "_hf_peft_config_loaded", False):
+        raise RuntimeError("base model auto-loaded an existing PEFT adapter")
+    if getattr(model, "peft_config", None):
+        raise RuntimeError("base model already contains PEFT configuration")
+    unexpected = [
+        name
+        for name, _parameter in model.named_parameters()
+        if "lora_" in name.lower() or "adapter" in name.lower()
+    ]
+    if unexpected:
+        raise RuntimeError("base model already contains adapter parameters")
 
 
 def verify_frozen_manifest(
@@ -284,67 +352,15 @@ def require_training_authorization(
     arm: str,
     seed: int,
 ) -> dict[str, Any]:
-    """Require a future external lock; the present repository has none."""
-    if authorization_lock_path is None:
-        raise PermissionError(
-            "training is not authorized: a reviewed authorization lock is required"
-        )
-    authorization = _read_object(authorization_lock_path)
-    if authorization.get("status") != "EXP54_FORMAL_TRAINING_AUTHORIZED":
-        raise PermissionError("authorization lock does not permit formal training")
-    training_config_lock = _read_object(training_config_lock_path)
-    if (
-        training_config_lock.get("status")
-        != "TRAINING_CONFIGURATION_CANDIDATE_AUDITED_NOT_AUTHORIZED"
-        or training_config_lock.get("smoke_training_allowed")
-        or training_config_lock.get("formal_training_allowed")
-        or training_config_lock.get("dev_accessed")
-        or training_config_lock.get("test_accessed")
-        or training_config_lock.get("training_used")
-    ):
-        raise PermissionError("training-configuration audit lock is invalid")
-    if authorization.get("config_sha256") != file_sha256(config_path):
-        raise PermissionError("authorization does not bind this training config")
-    if training_config_lock.get("configuration_sha256") != file_sha256(
-        config_path
-    ):
-        raise PermissionError("configuration audit does not bind this config")
-    if authorization.get("frozen_manifest_lock_sha256") != file_sha256(
-        frozen_lock_path
-    ):
-        raise PermissionError("authorization does not bind this manifest freeze")
-    if training_config_lock.get("manifest_frozen_lock_sha256") != file_sha256(
-        frozen_lock_path
-    ):
-        raise PermissionError(
-            "configuration audit does not bind this manifest freeze"
-        )
-    if authorization.get("training_configuration_lock_sha256") != file_sha256(
-        training_config_lock_path
-    ):
-        raise PermissionError(
-            "authorization does not bind this training-configuration audit"
-        )
-    actual_sources = {
-        name: file_sha256(path) for name, path in TRAINING_SOURCE_PATHS.items()
-    }
-    if training_config_lock.get("training_source_hashes") != actual_sources:
-        raise PermissionError(
-            "configuration audit does not bind current training sources"
-        )
-    if authorization.get("training_source_hashes") != actual_sources:
-        raise PermissionError("authorization does not bind current training sources")
-    if arm not in authorization.get("allowed_arms", []):
-        raise PermissionError(f"authorization does not permit arm {arm}")
-    if seed not in authorization.get("allowed_seeds", []):
-        raise PermissionError(f"authorization does not permit seed {seed}")
-    if (
-        authorization.get("dev_accessed")
-        or authorization.get("test_accessed")
-        or authorization.get("training_used")
-    ):
-        raise PermissionError("authorization lock violates sealed-data state")
-    return authorization
+    """Delegate to the standard-library-only external-digest guard."""
+    return verify_external_authorization(
+        authorization_lock_path=authorization_lock_path,
+        config_path=config_path,
+        frozen_lock_path=frozen_lock_path,
+        training_config_lock_path=training_config_lock_path,
+        arm=arm,
+        seed=seed,
+    )
 
 
 def _set_determinism(seed: int, config: dict[str, Any]) -> None:
@@ -534,6 +550,7 @@ def run_training(
     ).to("cuda:0")
     if model.__class__.__name__ != config["model"]["architecture"]:
         raise RuntimeError("loaded model architecture differs")
+    require_adapter_free_base_model(model)
     model.config.use_cache = False
     model.gradient_checkpointing_enable(
         gradient_checkpointing_kwargs={"use_reentrant": False}

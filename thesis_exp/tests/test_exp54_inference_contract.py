@@ -28,6 +28,9 @@ def test_strict_parser_accepts_exact_contract() -> None:
         '{"score":3,"rationale":null}',
         '{"score":3,"rationale":"x"} trailing',
         '{"score":3,"rationale":"x"} {"score":4,"rationale":"y"}',
+        '{"score":1,"score":5,"rationale":"x"}',
+        '{"score":1,"rationale":"x","rationale":"y"}',
+        '{"score":1,"rationale":"x","meta":{"a":1,"a":2}}',
     ],
 )
 def test_strict_parser_rejects_non_contract_outputs(text: str) -> None:

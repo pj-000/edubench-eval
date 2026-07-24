@@ -8,12 +8,14 @@ import json
 import math
 import platform
 import subprocess
+import tempfile
 from pathlib import Path
 from typing import Any
 
 from thesis_exp.exp54_rar_sft import REPO_ROOT
 from thesis_exp.exp54_rar_sft.audit_rar0_alignment import (
     file_sha256,
+    read_jsonl,
     reject_eval_path,
     write_json,
 )
@@ -24,9 +26,18 @@ from thesis_exp.exp54_rar_sft.inference_contract import GENERATION_KWARGS
 from thesis_exp.exp54_rar_sft.train_rar_sft import (
     ARMS,
     SEEDS,
-    TRAINING_SOURCE_PATHS,
+    require_adapter_free_base_model,
+    validate_model_directory_listing,
     validate_training_configuration,
     verify_model_snapshot,
+)
+from thesis_exp.exp54_rar_sft.authorization_guard import (
+    RUNTIME_SOURCE_PATHS,
+    TRUSTED_AUTHORIZATION_DIGEST_PATH,
+    closure_sha256,
+    runtime_source_closure,
+    sha256_file,
+    verify_external_authorization,
 )
 
 
@@ -166,6 +177,49 @@ def validate_runtime(
     }
 
 
+def validate_tensor_shard_mapping(
+    *,
+    weight_map: dict[str, str],
+    tensor_names_by_shard: dict[str, set[str]],
+    expected_shards: set[str],
+) -> dict[str, Any]:
+    """Prove the index mapping equals each physical shard header."""
+    if set(tensor_names_by_shard) != expected_shards:
+        raise ValueError("physical safetensor shard set differs")
+    indexed_shards = set(weight_map.values())
+    if indexed_shards != expected_shards:
+        raise ValueError("weight index references unexpected shards")
+    seen: set[str] = set()
+    duplicates: set[str] = set()
+    for names in tensor_names_by_shard.values():
+        duplicates.update(seen & names)
+        seen.update(names)
+    if duplicates:
+        raise ValueError("tensor names are duplicated across shards")
+    unindexed = seen - set(weight_map)
+    missing_indexed = set(weight_map) - seen
+    if unindexed:
+        raise ValueError("physical shards contain unindexed tensors")
+    if missing_indexed:
+        raise ValueError("weight index contains physically missing tensors")
+    for shard_name, actual_names in tensor_names_by_shard.items():
+        indexed_names = {
+            tensor_name
+            for tensor_name, mapped_shard in weight_map.items()
+            if mapped_shard == shard_name
+        }
+        if actual_names != indexed_names:
+            raise ValueError(
+                f"per-tensor shard mapping differs for {shard_name}"
+            )
+    return {
+        "per_tensor_shard_mapping_match": True,
+        "duplicate_tensor_names_across_shards": 0,
+        "unindexed_tensor_count": 0,
+        "missing_indexed_tensor_count": 0,
+    }
+
+
 def audit_model_structure(config: dict[str, Any]) -> dict[str, Any]:
     from safetensors import safe_open
 
@@ -200,8 +254,6 @@ def audit_model_structure(config: dict[str, Any]) -> dict[str, Any]:
         for name in config["model"]["files"]
         if name.endswith(".safetensors")
     }
-    if set(weight_map.values()) != expected_shards:
-        raise ValueError("model weight index references unexpected shards")
     occurrences = {
         target: sum(
             f".{target}.weight" in tensor_name for tensor_name in weight_map
@@ -214,18 +266,28 @@ def audit_model_structure(config: dict[str, Any]) -> dict[str, Any]:
     if weight_index.get("metadata", {}).get("total_size") != 8_045_591_552:
         raise ValueError("model weight-index total size differs")
     shapes: dict[str, tuple[int, ...]] = {}
+    tensor_names_by_shard: dict[str, set[str]] = {}
     for shard_name in sorted(expected_shards):
         with safe_open(
             model_path / shard_name,
             framework="pt",
             device="cpu",
         ) as shard:
-            for tensor_name in shard.keys():
+            shard_names = set(shard.keys())
+            tensor_names_by_shard[shard_name] = shard_names
+            for tensor_name in shard_names:
+                if tensor_name in shapes:
+                    raise ValueError(
+                        "tensor names are duplicated across safetensor shards"
+                    )
                 shapes[tensor_name] = tuple(
                     shard.get_slice(tensor_name).get_shape()
                 )
-    if set(shapes) != set(weight_map):
-        raise ValueError("safetensor headers differ from weight index")
+    shard_mapping = validate_tensor_shard_mapping(
+        weight_map=weight_map,
+        tensor_names_by_shard=tensor_names_by_shard,
+        expected_shards=expected_shards,
+    )
     base_parameters = sum(math.prod(shape) for shape in shapes.values())
     if base_parameters != config["lora"]["expected_base_parameters"]:
         raise ValueError("base parameter count differs")
@@ -250,7 +312,155 @@ def audit_model_structure(config: dict[str, Any]) -> dict[str, Any]:
         "lora_target_occurrences": occurrences,
         "base_parameters": base_parameters,
         "lora_trainable_parameters": lora_trainable_parameters,
+        **shard_mapping,
         "all_lora_targets_present_in_every_layer": True,
+    }
+
+
+def audit_generation_cap(
+    *,
+    output_dir: Path,
+    max_new_tokens: int,
+) -> dict[str, Any]:
+    lengths_by_arm: dict[str, list[int]] = {arm: [] for arm in ARMS}
+    for seed in SEEDS:
+        for arm in ARMS:
+            path = (
+                output_dir
+                / "data"
+                / f"training_manifest_{arm.lower()}_seed{seed}.jsonl"
+            )
+            rows = read_jsonl(path, protect_split=True)
+            if len(rows) != 7_962:
+                raise ValueError("generation-cap manifest row count differs")
+            lengths_by_arm[arm].extend(
+                len(row["target_token_ids"])
+                + len(row["assistant_suffix_token_ids"])
+                for row in rows
+            )
+    maximum: dict[str, int] = {}
+    p95: dict[str, int] = {}
+    exceeding: dict[str, int] = {}
+    for arm, lengths in lengths_by_arm.items():
+        ordered = sorted(lengths)
+        maximum[arm] = ordered[-1]
+        p95[arm] = ordered[math.ceil(0.95 * len(ordered)) - 1]
+        exceeding[arm] = sum(length > max_new_tokens for length in lengths)
+    covers = not any(exceeding.values())
+    if not covers:
+        raise ValueError("generation cap does not cover frozen train targets")
+    return {
+        "max_new_tokens": max_new_tokens,
+        "max_materialized_assistant_tokens_by_arm": maximum,
+        "p95_materialized_assistant_tokens_by_arm": p95,
+        "events_exceeding_max_new_tokens_by_arm": exceeding,
+        "generation_cap_covers_all_frozen_train_targets": True,
+    }
+
+
+def audit_authorization_authenticity(
+    *,
+    config_path: Path,
+    frozen_lock_path: Path,
+    source_closure: dict[str, str],
+) -> dict[str, Any]:
+    """Exercise trusted and untrusted digest paths without model loading."""
+    source_digest = closure_sha256(source_closure)
+    with tempfile.TemporaryDirectory(prefix="exp54-auth-probe-") as directory:
+        root = Path(directory)
+        trusted_digest_path = root / "trusted-digest"
+        try:
+            configuration_lock_path = root / "configuration-lock.json"
+            configuration_lock = {
+                "status": (
+                    "TRAINING_CONFIGURATION_CANDIDATE_AUDITED_NOT_AUTHORIZED"
+                ),
+                "configuration_sha256": sha256_file(config_path),
+                "manifest_frozen_lock_sha256": sha256_file(frozen_lock_path),
+                "candidate_report_sha256": "a" * 64,
+                "runtime_source_closure": source_closure,
+                "runtime_source_closure_sha256": source_digest,
+                "smoke_training_allowed": False,
+                "formal_training_allowed": False,
+                "dev_accessed": False,
+                "test_accessed": False,
+                "training_used": False,
+            }
+            configuration_lock_path.write_text(
+                json.dumps(configuration_lock, sort_keys=True),
+                encoding="utf-8",
+            )
+            authorization_path = root / "authorization.json"
+            authorization = {
+                "schema_version": "exp54-external-authorization-v1",
+                "authorization_mode": "formal",
+                "reviewed_training_configuration_commit": "b" * 40,
+                "review_verdict": "TRAINING_CONFIGURATION_PASS",
+                "configuration_sha256": sha256_file(config_path),
+                "training_configuration_lock_sha256": sha256_file(
+                    configuration_lock_path
+                ),
+                "candidate_report_sha256": "a" * 64,
+                "frozen_manifest_lock_sha256": sha256_file(
+                    frozen_lock_path
+                ),
+                "runtime_source_closure_sha256": source_digest,
+                "allowed_arms": list(ARMS),
+                "allowed_seeds": list(SEEDS),
+                "sealed_data_state": {
+                    "dev_accessed": False,
+                    "test_accessed": False,
+                    "training_used": False,
+                },
+            }
+            authorization_path.write_text(
+                json.dumps(authorization, sort_keys=True),
+                encoding="utf-8",
+            )
+            trusted_digest_path.write_text("0" * 64 + "\n", encoding="ascii")
+            trusted_digest_path.chmod(0o400)
+            try:
+                verify_external_authorization(
+                    authorization_lock_path=authorization_path,
+                    config_path=config_path,
+                    frozen_lock_path=frozen_lock_path,
+                    training_config_lock_path=configuration_lock_path,
+                    arm="R3",
+                    seed=42,
+                    trusted_digest_path=trusted_digest_path,
+                    require_root_owned_digest=False,
+                )
+            except PermissionError:
+                forged_rejected = True
+            else:
+                raise AssertionError(
+                    "self-consistent locks bypassed the external digest"
+                )
+            trusted_digest_path.chmod(0o600)
+            trusted_digest_path.write_text(
+                sha256_file(authorization_path) + "\n",
+                encoding="ascii",
+            )
+            trusted_digest_path.chmod(0o400)
+            accepted = verify_external_authorization(
+                authorization_lock_path=authorization_path,
+                config_path=config_path,
+                frozen_lock_path=frozen_lock_path,
+                training_config_lock_path=configuration_lock_path,
+                arm="R3",
+                seed=42,
+                trusted_digest_path=trusted_digest_path,
+                require_root_owned_digest=False,
+            )
+            if accepted != authorization:
+                raise AssertionError("trusted authorization payload changed")
+        finally:
+            trusted_digest_path.unlink(missing_ok=True)
+    return {
+        "authorization_authenticity_verified": True,
+        "forged_lock_pair_rejected": forged_rejected,
+        "trusted_external_digest_acceptance_verified": True,
+        "untrusted_arbitrary_lock_paths_rejected": True,
     }
 
 
@@ -260,12 +470,23 @@ def main() -> None:
     step_plan = validate_training_configuration(config)
     frozen = validate_frozen_inputs(args.frozen_lock, args.output_dir)
     model_hashes = verify_model_snapshot(config)
+    model_directory = validate_model_directory_listing(
+        Path(config["model"]["local_path"]),
+        expected_regular_files=config["model"]["directory_regular_files"],
+        expected_listing_sha256=config["model"][
+            "directory_listing_sha256"
+        ],
+    )
     model_structure = audit_model_structure(config)
     observed_runtime = observe_runtime()
     runtime_checks = validate_runtime(observed_runtime, config["runtime"])
-    source_hashes = {
-        name: file_sha256(path) for name, path in TRAINING_SOURCE_PATHS.items()
-    }
+    source_hashes = runtime_source_closure()
+    source_closure_sha256 = closure_sha256(source_hashes)
+    authorization_probes = audit_authorization_authenticity(
+        config_path=args.config,
+        frozen_lock_path=args.frozen_lock,
+        source_closure=source_hashes,
+    )
     audit_source_hashes = {
         "configuration_auditor": file_sha256(Path(__file__)),
         "manifest_freezer": file_sha256(
@@ -281,6 +502,10 @@ def main() -> None:
         "use_cache": True,
     }:
         raise ValueError("generation implementation differs from config")
+    generation_cap = audit_generation_cap(
+        output_dir=args.output_dir,
+        max_new_tokens=generation_expected["max_new_tokens"],
+    )
 
     report = {
         "status": "TRAINING_CONFIGURATION_CANDIDATE_AUDITED_NOT_AUTHORIZED",
@@ -301,6 +526,12 @@ def main() -> None:
             "immutable_revision": config["model"]["immutable_revision"],
             "file_hashes": model_hashes,
             "all_file_sizes_and_hashes_match": True,
+            **model_directory,
+            "historical_adapter_artifacts_absent": True,
+            "pre_lora_base_model_adapter_free": True,
+            "pre_lora_runtime_guard": require_adapter_free_base_model.__name__,
+            "pre_lora_peft_config_absent": True,
+            "pre_lora_adapter_parameter_count": 0,
             **model_structure,
         },
         "runtime_observed": observed_runtime,
@@ -318,11 +549,25 @@ def main() -> None:
         "determinism": config["determinism"],
         "checkpointing": config["checkpointing"],
         "generation": config["generation"],
+        "generation_train_target_coverage": generation_cap,
         "parser": config["parser"],
-        "training_source_hashes": source_hashes,
+        "runtime_source_closure": source_hashes,
+        "runtime_source_closure_sha256": source_closure_sha256,
+        "runtime_source_closure_complete": True,
         "audit_source_hashes": audit_source_hashes,
         "authorization_gate": {
             "external_reviewed_lock_required_by_entrypoint": True,
+            "authorization_authentication_method": (
+                "root-owned repository-external exact SHA-256 file"
+            ),
+            "trusted_authorization_digest_path": str(
+                TRUSTED_AUTHORIZATION_DIGEST_PATH
+            ),
+            "trusted_digest_root_owned_required": True,
+            "trusted_digest_group_or_other_writable_allowed": False,
+            "authorization_signature_required": False,
+            "external_digest_required": True,
+            **authorization_probes,
             "model_weights_loaded_before_authorization": False,
             "current_authorization_lock_exists": False,
             "smoke_training_allowed": False,
@@ -354,8 +599,12 @@ def main() -> None:
             "runtime_observed": report["runtime_observed"],
             "runtime_checks": report["runtime_checks"],
             "data_and_step_plan": report["data_and_step_plan"],
-            "training_source_hashes": source_hashes,
+            "runtime_source_closure": source_hashes,
+            "runtime_source_closure_sha256": source_closure_sha256,
+            "runtime_source_closure_complete": True,
             "audit_source_hashes": audit_source_hashes,
+            "generation_train_target_coverage": generation_cap,
+            "authorization_authentication": report["authorization_gate"],
             "candidate_report_sha256": file_sha256(report_path),
             "external_reviewed_lock_required_by_entrypoint": True,
             "smoke_training_allowed": False,

@@ -19,6 +19,25 @@
     "use_cache": false,
     "pad_token_id": 151643,
     "eos_token_id": 151645,
+    "directory_regular_files": {
+      ".mdl": 50,
+      ".msc": 978,
+      ".mv": 36,
+      "LICENSE": 11343,
+      "README.md": 8168,
+      "config.json": 727,
+      "configuration.json": 73,
+      "generation_config.json": 238,
+      "merges.txt": 1671839,
+      "model-00001-of-00003.safetensors": 3957900840,
+      "model-00002-of-00003.safetensors": 3987450520,
+      "model-00003-of-00003.safetensors": 99630640,
+      "model.safetensors.index.json": 32819,
+      "tokenizer.json": 11422654,
+      "tokenizer_config.json": 9377,
+      "vocab.json": 2776833
+    },
+    "directory_listing_sha256": "96308d1ae2e03ab011a52371780c8f4b448930d2e393fb8682fa8aa09687064a",
     "files": {
       "config.json": {
         "size": 727,
@@ -185,6 +204,7 @@
     "format": "strict_single_json_object",
     "required_keys": ["score", "rationale"],
     "additional_keys_allowed": false,
+    "duplicate_keys_allowed": false,
     "score_type": "integer_not_boolean",
     "score_min": 1,
     "score_max": 5,
@@ -194,6 +214,9 @@
   "authorization": {
     "manifest_frozen_required": true,
     "configuration_review_required": true,
+    "authentication_method": "root_owned_repository_external_exact_sha256",
+    "trusted_digest_path": "/etc/edubench/exp54_authorization.sha256",
+    "self_consistent_repository_locks_sufficient": false,
     "smoke_training_allowed": false,
     "formal_training_allowed": false,
     "dev_accessed": false,

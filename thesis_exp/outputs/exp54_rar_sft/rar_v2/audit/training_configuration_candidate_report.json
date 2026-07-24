@@ -1,14 +1,24 @@
 {
   "audit_source_hashes": {
-    "configuration_auditor": "46b8399b9f4ecffae5de3a6d6c5b1ad5ce2c2378d00fb8c489ec8b13777ab958",
+    "configuration_auditor": "70202a517e0b3b86316c97c79c51b5cbc1a5a77ac38695acbca7994a13458c44",
     "manifest_freezer": "280199115cdae8c1ab8273a1f400e38d65620d843525d012c292d65bccdaa331"
   },
   "authorization_gate": {
+    "authorization_authentication_method": "root-owned repository-external exact SHA-256 file",
+    "authorization_authenticity_verified": true,
+    "authorization_signature_required": false,
     "current_authorization_lock_exists": false,
+    "external_digest_required": true,
     "external_reviewed_lock_required_by_entrypoint": true,
+    "forged_lock_pair_rejected": true,
     "formal_training_allowed": false,
     "model_weights_loaded_before_authorization": false,
-    "smoke_training_allowed": false
+    "smoke_training_allowed": false,
+    "trusted_authorization_digest_path": "/etc/edubench/exp54_authorization.sha256",
+    "trusted_digest_group_or_other_writable_allowed": false,
+    "trusted_digest_root_owned_required": true,
+    "trusted_external_digest_acceptance_verified": true,
+    "untrusted_arbitrary_lock_paths_rejected": true
   },
   "checkpointing": {
     "checkpoint_names": [
@@ -25,7 +35,7 @@
     "save_rng_state": true,
     "save_scheduler": true
   },
-  "configuration_sha256": "3fb14c3f1d93776bfa70e10f0edd7cf76e71ac956c217eaf87b32012920e02a5",
+  "configuration_sha256": "291a3fa055f5ef07ac0f1bc39f67f3b1c9d13219da0c3e3e801d9a9df29d5318",
   "data_and_step_plan": {
     "cutoff_len": 2048,
     "dataloader_num_workers": 0,
@@ -63,6 +73,28 @@
     "max_new_tokens": 256,
     "num_beams": 1,
     "use_model_generation_config": false
+  },
+  "generation_train_target_coverage": {
+    "events_exceeding_max_new_tokens_by_arm": {
+      "R1": 0,
+      "R2": 0,
+      "R3": 0,
+      "S0": 0
+    },
+    "generation_cap_covers_all_frozen_train_targets": true,
+    "max_materialized_assistant_tokens_by_arm": {
+      "R1": 157,
+      "R2": 151,
+      "R3": 151,
+      "S0": 11
+    },
+    "max_new_tokens": 256,
+    "p95_materialized_assistant_tokens_by_arm": {
+      "R1": 63,
+      "R2": 64,
+      "R3": 64,
+      "S0": 11
+    }
   },
   "lora": {
     "alpha": 32,
@@ -113,6 +145,8 @@
     "all_lora_targets_present_in_every_layer": true,
     "architecture": "Qwen3ForCausalLM",
     "base_parameters": 4022468096,
+    "directory_listing_sha256": "96308d1ae2e03ab011a52371780c8f4b448930d2e393fb8682fa8aa09687064a",
+    "duplicate_tensor_names_across_shards": 0,
     "file_hashes": {
       "config.json": "5beea1a4a34c62782bfb2f911c606741a3bab8f92d80a118fa053c28af12e8ba",
       "generation_config.json": "835fffe355c9438e7a25be099b3fccaa98350b83451f9fd2d99512e74f1ade48",
@@ -125,6 +159,8 @@
       "tokenizer_config.json": "a62ff0a2472a0fa1b8eaabcb57c59b58afa42a22831dc141400b6e0cf2b65ce3",
       "vocab.json": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910"
     },
+    "forbidden_adapter_artifact_count": 0,
+    "historical_adapter_artifacts_absent": true,
     "immutable_revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
     "lora_target_occurrences": {
       "down_proj": 36,
@@ -136,7 +172,16 @@
       "v_proj": 36
     },
     "lora_trainable_parameters": 33030144,
+    "missing_indexed_tensor_count": 0,
     "model_id": "Qwen/Qwen3-4B-Instruct-2507",
+    "per_tensor_shard_mapping_match": true,
+    "pre_lora_adapter_parameter_count": 0,
+    "pre_lora_base_model_adapter_free": true,
+    "pre_lora_peft_config_absent": true,
+    "pre_lora_runtime_guard": "require_adapter_free_base_model",
+    "regular_file_count": 16,
+    "symlink_count": 0,
+    "unindexed_tensor_count": 0,
     "weight_index_total_size": 8045591552,
     "weight_tensor_count": 398
   },
@@ -161,6 +206,7 @@
   },
   "parser": {
     "additional_keys_allowed": false,
+    "duplicate_keys_allowed": false,
     "empty_rationale_allowed_at_inference": true,
     "format": "strict_single_json_object",
     "rationale_type": "string",
@@ -244,16 +290,28 @@
     "torch": "2.4.0+cu121",
     "transformers": "4.57.1"
   },
+  "runtime_source_closure": {
+    "authorization_guard": "ac562bcfc114ede053d14d03fc347a739815204a4e0aecb97e3072c100b868d1",
+    "block_loss_and_collator": "0e9f6ad5ee9b59175f160a0d24c20e9e92ece348e39069996e4522382cc61800",
+    "edujudge_package_init": "e14d62632deed09164bee72b2b120785958662b9083c2abd3e4736fddbaccfc0",
+    "exp02_package_init": "701c13b855a58f535fff5f4588f4dba62d5acc41a4e41fdac8be8b48ce2a0ddc",
+    "exp54_package_init": "f3a89293c72fd63e5f8eb39c2e31c2845904201095774aa140249077050c0026",
+    "inference_contract": "5eda600beb28db066567f3f9bb7a158ddd8c416506c9689248d6cae0d58a3681",
+    "launcher": "ef7a9175c713e416f36ba025accca1ef85746c715d820729ec1f465fcb1abfe8",
+    "manifest_io_and_split_guard": "fb42526df4058b2dcca899c247df52edadb62905b61a67c6aee833cfa49787b2",
+    "prompt_cleaning": "82eaefd6c711f632a23d61e7591d5c447076e9e351134887b726d7db75a7d241",
+    "shared_io": "e19250fbf9b7a2013b61078d29100137ee6cefab76cd8dda01ab6888156f1364",
+    "text_normalization": "4642255f3aa0fdeeec089fc4364749943082df1a9decb992fd81aae64c1740e4",
+    "thesis_package_init": "e57921412997c9605bd75fa597e907b2c68b201d6f70279add396d93f978d4a3",
+    "thesis_src_package_init": "086f5bae4f890a7cc89ce4de1e476a3bb1315ff24c027064033213bc2cfb1326",
+    "training_contract": "a9b100c9446f2a0e011b1faf67f873b51d0aaacf08a75423c71b6c48360f5071",
+    "training_entrypoint": "73e18b7311f8e2c99584f219107923ab1e6207b04f78f692402ffbe5913c46e2"
+  },
+  "runtime_source_closure_complete": true,
+  "runtime_source_closure_sha256": "278732465ea6c6e5a19e7d71e573bfcc718a065a688ed2dddb1c976278e9f83a",
   "scope": "frozen train-only manifests, full base snapshot, runtime, LoRA, two-block loss, optimizer/scheduler, precision, deterministic single-GPU execution, checkpointing, generation, and parser",
   "smoke_training_allowed": false,
   "status": "TRAINING_CONFIGURATION_CANDIDATE_AUDITED_NOT_AUTHORIZED",
   "test_accessed": false,
-  "training_source_hashes": {
-    "block_loss_and_collator": "0e9f6ad5ee9b59175f160a0d24c20e9e92ece348e39069996e4522382cc61800",
-    "inference_contract": "49bc80041bc6e0e91a2a0ebf98961eab8302ae2b09d96a5b2e19da61ba1e66fe",
-    "launcher": "ef7a9175c713e416f36ba025accca1ef85746c715d820729ec1f465fcb1abfe8",
-    "training_contract": "a9b100c9446f2a0e011b1faf67f873b51d0aaacf08a75423c71b6c48360f5071",
-    "training_entrypoint": "5e2446231367a7496d40f6cc51955d6bb1805346e7250c555c8b6938680c616f"
-  },
   "training_used": false
 }

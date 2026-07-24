@@ -14,12 +14,21 @@ GENERATION_KWARGS = {
 }
 
 
+def _reject_duplicate_keys(pairs: list[tuple[str, Any]]) -> dict[str, Any]:
+    value: dict[str, Any] = {}
+    for key, item in pairs:
+        if key in value:
+            raise ValueError(f"duplicate JSON key: {key}")
+        value[key] = item
+    return value
+
+
 def parse_review_json(text: str) -> dict[str, Any]:
     """Parse exactly one JSON object with score and visible rationale."""
     if not isinstance(text, str):
         raise TypeError("generated review must be text")
     stripped = text.strip()
-    decoder = json.JSONDecoder()
+    decoder = json.JSONDecoder(object_pairs_hook=_reject_duplicate_keys)
     try:
         value, end = decoder.raw_decode(stripped)
     except json.JSONDecodeError as exc:
