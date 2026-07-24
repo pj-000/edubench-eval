@@ -246,6 +246,11 @@ class FixedRARCollator:
                 feature["rationale_token_positions"],
                 field=f"batch {batch_index}: rationale positions",
             )
+            if any(
+                position < 0 or position >= length
+                for position in score_positions + rationale_positions
+            ):
+                raise ValueError("supervision position outside unpadded sequence")
             if not score_positions:
                 raise ValueError("score supervision cannot be empty")
             score_mask[batch_index, score_positions] = True

@@ -5,7 +5,7 @@
     "R2",
     "R3"
   ],
-  "candidate_report_sha256": "ddfe4d8bc2c7bb5d9af43802c1c94ad75f74df2291b44615988a28737771f68d",
+  "candidate_report_sha256": "74dbf657a9b157f4c144258b953263ddb82b073f8062a33d7c11e7ad91649ee9",
   "config_sha256": "59eafff8ea9d751159e85bd6f6b3bfe2fd58e76bc54f55bc8dec9e1413bfb4da",
   "dev_accessed": false,
   "formal_seeds": [
@@ -59,14 +59,19 @@
   },
   "formal_training_allowed": false,
   "independent_reconstruction": {
+    "arm_sources_bound_to_locked_reference_schedule_donor_mask": true,
     "chat_sequence_rebuilt_from_prompt_target_and_suffix": true,
     "padded_boolean_mask_totals_recomputed": true,
     "prompt_cache_rebuilt_from_locked_train_and_tokenizer": true,
+    "score_targets_bound_to_locked_train_labels": true,
     "target_and_masks_rebuilt_from_raw_manifest_score_rationale": true
   },
+  "locked_train_score_vector_sha256": "b530f114ad02177c3641c2124a9772398c806ba4c28bcfd966bcd1108ee53240",
   "logical_epochs": 3,
   "manifest_freeze_allowed": false,
   "private_artifact_hashes": {
+    "all_rater_reference_inventory": "09738af481273bb334399ef87862af09a0d82ad586bd1862fc5271a9051daebe",
+    "label_consistent_reference_inventory": "718d760869b9c573b952a90faf5b5e6b346a034f31b454b5e15bd28ed1856500",
     "manifests_by_seed": {
       "seed42": {
         "R1": "7d2a38ed8d63c10262a65455d41b440fd26f883ad8d2b70be7de141d469e6536",
@@ -87,7 +92,27 @@
         "S0": "4c294154ba30a66dec1ac8a9fc82db71254b4f3b5217a9e03a9205f5c5189c60"
       }
     },
-    "shared_prompt_cache": "2a4b2c7a022628db96f9bec6bdc9be0d610db8845dab6a0ab09f887fb913dd76"
+    "shared_prompt_cache": "2a4b2c7a022628db96f9bec6bdc9be0d610db8845dab6a0ab09f887fb913dd76",
+    "source_artifacts_by_seed": {
+      "seed42": {
+        "base_schedule_sha256": "41acc76d7fb6699801559a19cc78aa8b3a2b5b5fd3d3e2fa97ec2876a4ce71c3",
+        "event_donor_map_sha256": "da85b52801c6531bffb9823563a1879251441cc907b5056185af0578ebdf8cd5",
+        "r2_event_mask_sha256": "b12b9fc0ccac9656c2db8bf6b72a693f7c757a31f712ffcbe7e4c2ec7e117e8b",
+        "r3_event_mask_sha256": "b12b9fc0ccac9656c2db8bf6b72a693f7c757a31f712ffcbe7e4c2ec7e117e8b"
+      },
+      "seed43": {
+        "base_schedule_sha256": "fa17f0db3dd01a54e0a4b572aeb168a9187968d71f0ab43f8ba84ed5591d6847",
+        "event_donor_map_sha256": "7cbc20ccddaa50bf967bda0079505f6c1a57e050a95bea957032b9eda254b2a6",
+        "r2_event_mask_sha256": "3397e3d156016f3429a7dd7de300a6c74ca8f4d906632a53b2ed93b3a371f82e",
+        "r3_event_mask_sha256": "3397e3d156016f3429a7dd7de300a6c74ca8f4d906632a53b2ed93b3a371f82e"
+      },
+      "seed44": {
+        "base_schedule_sha256": "7c05c1f562d21cca11ff75f82bdba7caf7c1e17651d3436e08842ac41e4702f2",
+        "event_donor_map_sha256": "38044a0b2c9b472597dc9694bc808836a64d262c0cfaaac5f0b1440fe4744a19",
+        "r2_event_mask_sha256": "c66501f323e6285adb5fee7cb6d75721c38735b68759f5f05df651a963dd8869",
+        "r3_event_mask_sha256": "c66501f323e6285adb5fee7cb6d75721c38735b68759f5f05df651a963dd8869"
+      }
+    }
   },
   "rows_per_logical_epoch": 2654,
   "rubric_registry_validation": {
@@ -101,10 +126,11 @@
   },
   "smoke_training_allowed": false,
   "source_hashes": {
-    "block_loss_and_collator": "2749da546286731b11c2a4abf066404702aeff7854c245c241e0cc3912e418ac",
+    "block_loss_and_collator": "0e9f6ad5ee9b59175f160a0d24c20e9e92ece348e39069996e4522382cc61800",
     "canonical_rubric_registry": "1ac9bafd3eb9e54463f1deddb60bea0d6a379804051b4d2c00a537a59d76f8ea",
-    "manifest_auditor": "0bc2bfaf36a53b63fe7866ebda977657fc699cb5ee76162daedb8c2d1e69d4c5",
-    "manifest_builder": "6e30d247c0fc37dfdf4686721e939f6487763e8087a05e9b05a6a669c6105d8f",
+    "manifest_auditor": "10e0d4e48b4d81d8d6b0c50dac558f5001eaf7e82895e1bad16333f687647d2b",
+    "manifest_builder": "4b94ead01230a744784bb77d49ca7e8fa6d5e69c39d2f6f67dd86ddf874110bd",
+    "manifest_source_contract": "a3d250e86738941c3ea10ab7db57f3ff6ffb19d1a409fd6bd4f5805d60618b5c",
     "output_schema": "cf63b7cc7a39b15a61c3b5095435275979fb4347f8c080b5c9f6483b04b33b8b",
     "prompt_cleaning_source": "82eaefd6c711f632a23d61e7591d5c447076e9e351134887b726d7db75a7d241",
     "shared_reference_schedule": "22acc599d9e2919138870f21373cc21c61e096ab0365b6f635a4a72741bd421d",

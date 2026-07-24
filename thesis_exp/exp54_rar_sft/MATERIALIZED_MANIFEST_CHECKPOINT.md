@@ -91,12 +91,38 @@ or budget fields. It independently:
 6. computes supervised-token budgets from rebuilt boolean masks and compares
    them with the actual fixed collator totals.
 
+The auditor also treats the manifest's raw score, rationale, activity, and
+provenance fields as untrusted. It verifies the actual private artifacts
+referenced by the upstream locks and independently resolves every expected
+semantic source through the shared versioned source contract:
+
+- `score_target` must equal the locked train row's `label_5`;
+- `base_event_id`, seed/epoch/row coordinates, record, and base selected
+  reference must equal the corresponding frozen base-schedule event;
+- S0 must be score-only with null source IDs;
+- R1 must use the all-rater reference selected by the shared schedule formula;
+- R2 must use the exact frozen donor event/reference backlink and active mask;
+- R3 must use the base event's aligned reference and the same active mask.
+
+The builder and auditor import the same pure source resolver, whose source hash
+is public. The auditor nevertheless reads the two real reference inventories,
+three base schedules, three donor maps, and six R2/R3 mask files itself and
+checks each file against its upstream artifact hash before resolving sources.
+
 Tamper tests cover target text/hash, internally rehashed wrong target IDs,
 prompt-cache linkage, suffix IDs/hash, full sequence hash, local/absolute
 positions, field token IDs, mask hashes, boundary padding, inactive
 rationales, and an inactive-only R2/R3 target difference. Formal tokenizer
 probes cover quotes, backslashes, newlines, emoji, Chinese punctuation, and
 mixed Unicode.
+
+Semantic tamper tests additionally rebuild all dependent target/token/mask
+fields after changing a score, swapping an R3 rationale, selecting another R3
+reference, substituting an unfrozen R2 donor edge/event, changing the R1
+reference, toggling rationale activity, changing provenance fields, replacing
+the base event ID, or changing the contract version. These must fail against
+the locked train/schedule/reference/donor/mask sources even when the modified
+manifest remains internally self-consistent.
 
 ## Formal aggregate result
 
@@ -115,6 +141,12 @@ All three seeds passed the candidate audit:
   and fixed padded-token totals are identical;
 - independent boolean-mask totals exactly equal the actual collator totals for
   every arm and seed;
+- every arm's score-target vector equals the independently expanded locked
+  train-label vector for all three seeds;
+- per seed, all 7,962 base schedule events and 7,962 semantic sources in each
+  of S0/R1/R2/R3 are verified;
+- R1 schedule-source, R2 donor-backlink, R3 aligned-reference, and R2/R3 mask
+  mismatch counts are all zero;
 - no sequence exceeds the 2,048-token cutoff and no truncation occurs;
 - fixed padded input budget is 16,306,176 tokens per arm and seed;
 - micro-batch size 2 and gradient accumulation 4 produce 332 optimizer steps

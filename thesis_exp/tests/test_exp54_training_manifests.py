@@ -4,15 +4,16 @@ from pathlib import Path
 
 import pytest
 
-from thesis_exp.exp54_rar_sft.build_training_manifests import (
-    select_arm_rationale,
-)
 from thesis_exp.exp54_rar_sft.audit_training_manifests import (
     _period_control_report,
     verify_manifest_row,
 )
+from thesis_exp.exp54_rar_sft.manifest_source_contract import (
+    resolve_expected_arm_source,
+)
 from thesis_exp.exp54_rar_sft.reference_schedule import schedule_index
 from thesis_exp.exp54_rar_sft.training_contract import (
+    CONTRACT_VERSION,
     RATIONALE_BOUNDARY_PADDING,
     build_prompt_cache_row,
     materialize_sequence,
@@ -98,7 +99,27 @@ def _valid_manifest_fixture():
         "cutoff_len": 2048,
         "active_rationale_unsupervised_boundary_padding": " ",
     }
+    base_event = {
+        "event_id": "event-1",
+        "seed": 42,
+        "epoch_index": 0,
+        "epoch_number": 1,
+        "row_position": 0,
+        "record_id": "manifest-row",
+        "label_5": 4,
+        "metric_id": source["metric_id"],
+        "language": source["language"],
+        "selected_reference_id": "aligned-ref",
+    }
+    expected_source = {
+        "rationale": "A valid rationale.",
+        "rationale_active": True,
+        "arm_selected_reference_id": "aligned-ref",
+        "arm_rationale_source_event_id": "event-1",
+        "inactive_reason": "",
+    }
     row = {
+        "contract_version": CONTRACT_VERSION,
         "candidate_status": "CANDIDATE_NOT_FROZEN",
         "arm": "R3",
         "base_event_id": "event-1",
@@ -111,6 +132,10 @@ def _valid_manifest_fixture():
         "prompt_token_ids_sha256": prompt["prompt_token_ids_sha256"],
         "score_target": 4,
         "score_loss_active": True,
+        "base_selected_reference_id": "aligned-ref",
+        "arm_selected_reference_id": "aligned-ref",
+        "arm_rationale_source_event_id": "event-1",
+        "inactive_reason": "",
         "rationale": "A valid rationale.",
         "rationale_active": True,
         "rationale_boundary_padding": RATIONALE_BOUNDARY_PADDING,
@@ -127,7 +152,15 @@ def _valid_manifest_fixture():
         "score_block_weight": 1.0,
         "rationale_block_weight": 1.0,
     }
-    return tokenizer, row, {prompt["prompt_cache_id"]: prompt}, config
+    return (
+        tokenizer,
+        row,
+        {prompt["prompt_cache_id"]: prompt},
+        source,
+        base_event,
+        expected_source,
+        config,
+    )
 
 
 def _inputs() -> dict:
@@ -183,12 +216,21 @@ def _inputs() -> dict:
     }
 
 
+def _select(arm: str, event: dict, inputs: dict) -> dict:
+    return resolve_expected_arm_source(
+        arm=arm,
+        train_row={"record_id": event["record_id"]},
+        base_event=event,
+        **inputs,
+    )
+
+
 def test_s0_is_score_only_and_r1_uses_shared_all_rater_schedule() -> None:
     event = _event()
     inputs = _inputs()
 
-    s0 = select_arm_rationale(arm="S0", event=event, **inputs)
-    r1 = select_arm_rationale(arm="R1", event=event, **inputs)
+    s0 = _select("S0", event, inputs)
+    r1 = _select("R1", event, inputs)
     expected_index = schedule_index(42, "recipient-row", 1, 3)
 
     assert s0["rationale"] == ""
@@ -204,8 +246,8 @@ def test_r2_uses_donor_event_while_r3_uses_base_selected_reference() -> None:
     event = _event()
     inputs = _inputs()
 
-    r2 = select_arm_rationale(arm="R2", event=event, **inputs)
-    r3 = select_arm_rationale(arm="R3", event=event, **inputs)
+    r2 = _select("R2", event, inputs)
+    r3 = _select("R3", event, inputs)
 
     assert r2["rationale"] == "shuffled reason"
     assert r2["arm_selected_reference_id"] == "donor-ref"
@@ -224,8 +266,8 @@ def test_r2_r3_inactive_event_materializes_empty_rationale_symmetrically() -> No
         "inactive_reason": "no_legal_strict_event_permutation",
     }
 
-    r2 = select_arm_rationale(arm="R2", event=event, **inputs)
-    r3 = select_arm_rationale(arm="R3", event=event, **inputs)
+    r2 = _select("R2", event, inputs)
+    r3 = _select("R3", event, inputs)
 
     assert r2 == r3
     assert r2["rationale"] == ""
@@ -237,16 +279,27 @@ def test_donor_mask_activity_mismatch_is_a_hard_failure() -> None:
     inputs["mask_by_event"]["recipient-event"]["rationale_active"] = False
 
     with pytest.raises(ValueError, match="activity differ"):
-        select_arm_rationale(arm="R2", event=_event(), **inputs)
+        _select("R2", _event(), inputs)
 
 
 def test_independent_auditor_accepts_a_fully_rebuilt_row() -> None:
-    tokenizer, row, prompts, config = _valid_manifest_fixture()
+    (
+        tokenizer,
+        row,
+        prompts,
+        train_row,
+        base_event,
+        expected_source,
+        config,
+    ) = _valid_manifest_fixture()
 
     verified = verify_manifest_row(
         tokenizer,
         row,
         prompts,
+        train_row,
+        base_event,
+        expected_source,
         arm="R3",
         seed=42,
         index=0,
@@ -268,6 +321,7 @@ def test_independent_auditor_accepts_a_fully_rebuilt_row() -> None:
     "tamper",
     [
         "target_text",
+        "contract_version",
         "target_bytes_hash",
         "internally_rehashed_target_ids",
         "prompt_cache_id",
@@ -290,10 +344,20 @@ def test_independent_auditor_accepts_a_fully_rebuilt_row() -> None:
     ],
 )
 def test_independent_auditor_rejects_manifest_tampering(tamper) -> None:
-    tokenizer, original, prompts, config = _valid_manifest_fixture()
+    (
+        tokenizer,
+        original,
+        prompts,
+        train_row,
+        base_event,
+        expected_source,
+        config,
+    ) = _valid_manifest_fixture()
     row = copy.deepcopy(original)
     if tamper == "target_text":
         row["target_text"] = row["target_text"].replace("valid", "altered")
+    elif tamper == "contract_version":
+        row["contract_version"] = "another-contract"
     elif tamper == "target_bytes_hash":
         row["target_bytes_sha256"] = "0" * 64
     elif tamper == "internally_rehashed_target_ids":
@@ -356,7 +420,248 @@ def test_independent_auditor_rejects_manifest_tampering(tamper) -> None:
             tokenizer,
             row,
             prompts,
+            train_row,
+            base_event,
+            expected_source,
             arm="R3",
+            seed=42,
+            index=0,
+            config=config,
+        )
+
+
+def _rematerialize_row(
+    tokenizer,
+    row,
+    prompt,
+    *,
+    score,
+    rationale,
+    rationale_active,
+) -> None:
+    target = tokenize_target(
+        tokenizer,
+        score=score,
+        rationale=rationale,
+        rationale_active=rationale_active,
+    )
+    sequence = materialize_sequence(tokenizer, prompt, target)
+    row.update(target)
+    row.update(sequence)
+    row["score_target"] = score
+    row["rationale"] = rationale
+    row["rationale_active"] = rationale_active
+    row["rationale_boundary_padding"] = (
+        RATIONALE_BOUNDARY_PADDING if rationale_active else ""
+    )
+    row["rationale_bytes_sha256"] = sha256_bytes(rationale.encode("utf-8"))
+    row["rationale_block_weight"] = 1.0 if rationale_active else 0.0
+    row["padding_token_count"] = 2048 - sequence["sequence_token_count"]
+
+
+def _semantic_fixture():
+    (
+        tokenizer,
+        row,
+        prompts,
+        train_row,
+        base_event,
+        expected_source,
+        config,
+    ) = _valid_manifest_fixture()
+    prompt = prompts[row["prompt_cache_id"]]
+    return (
+        tokenizer,
+        row,
+        prompts,
+        prompt,
+        train_row,
+        base_event,
+        expected_source,
+        config,
+    )
+
+
+def test_rebuilt_score_target_must_equal_locked_train_label() -> None:
+    (
+        tokenizer,
+        row,
+        prompts,
+        prompt,
+        train_row,
+        base_event,
+        expected_source,
+        config,
+    ) = _semantic_fixture()
+    _rematerialize_row(
+        tokenizer,
+        row,
+        prompt,
+        score=3,
+        rationale=row["rationale"],
+        rationale_active=True,
+    )
+
+    with pytest.raises(ValueError, match="locked label_5"):
+        verify_manifest_row(
+            tokenizer,
+            row,
+            prompts,
+            train_row,
+            base_event,
+            expected_source,
+            arm="R3",
+            seed=42,
+            index=0,
+            config=config,
+        )
+
+
+@pytest.mark.parametrize(
+    "tamper",
+    [
+        "swapped_r3_rationale",
+        "r3_reference_and_rationale",
+        "alternate_r2_donor_edge",
+        "r2_donor_event_only",
+        "wrong_r1_reference",
+        "rationale_activity",
+        "inactive_reason",
+        "source_ids",
+        "base_event_id",
+    ],
+)
+def test_rebuilt_semantic_source_tampering_is_rejected(tamper) -> None:
+    (
+        tokenizer,
+        row,
+        prompts,
+        prompt,
+        train_row,
+        base_event,
+        expected_source,
+        config,
+    ) = _semantic_fixture()
+    arm = "R3"
+    if tamper == "swapped_r3_rationale":
+        _rematerialize_row(
+            tokenizer,
+            row,
+            prompt,
+            score=4,
+            rationale="Rationale from another R3 event.",
+            rationale_active=True,
+        )
+    elif tamper == "r3_reference_and_rationale":
+        row["arm_selected_reference_id"] = "another-aligned-reference"
+        _rematerialize_row(
+            tokenizer,
+            row,
+            prompt,
+            score=4,
+            rationale="Another internally consistent rationale.",
+            rationale_active=True,
+        )
+    elif tamper == "alternate_r2_donor_edge":
+        arm = "R2"
+        expected_source = {
+            "rationale": "Frozen donor rationale.",
+            "rationale_active": True,
+            "arm_selected_reference_id": "frozen-donor-reference",
+            "arm_rationale_source_event_id": "frozen-donor-event",
+            "inactive_reason": "",
+        }
+        row["arm"] = "R2"
+        row["arm_selected_reference_id"] = "frozen-donor-reference"
+        row["arm_rationale_source_event_id"] = "frozen-donor-event"
+        _rematerialize_row(
+            tokenizer,
+            row,
+            prompt,
+            score=4,
+            rationale="Frozen donor rationale.",
+            rationale_active=True,
+        )
+        row["arm_selected_reference_id"] = "alternate-donor-reference"
+        row["arm_rationale_source_event_id"] = "alternate-donor-event"
+        _rematerialize_row(
+            tokenizer,
+            row,
+            prompt,
+            score=4,
+            rationale="Alternate legal but unfrozen donor rationale.",
+            rationale_active=True,
+        )
+    elif tamper == "r2_donor_event_only":
+        arm = "R2"
+        expected_source = {
+            "rationale": "Frozen donor rationale.",
+            "rationale_active": True,
+            "arm_selected_reference_id": "frozen-donor-reference",
+            "arm_rationale_source_event_id": "frozen-donor-event",
+            "inactive_reason": "",
+        }
+        row["arm"] = "R2"
+        row["arm_selected_reference_id"] = "frozen-donor-reference"
+        _rematerialize_row(
+            tokenizer,
+            row,
+            prompt,
+            score=4,
+            rationale="Frozen donor rationale.",
+            rationale_active=True,
+        )
+        row["arm_rationale_source_event_id"] = "another-donor-event"
+    elif tamper == "wrong_r1_reference":
+        arm = "R1"
+        expected_source = {
+            "rationale": "Scheduled R1 rationale.",
+            "rationale_active": True,
+            "arm_selected_reference_id": "scheduled-all-rater-reference",
+            "arm_rationale_source_event_id": "event-1",
+            "inactive_reason": "",
+        }
+        row["arm"] = "R1"
+        row["arm_selected_reference_id"] = "scheduled-all-rater-reference"
+        _rematerialize_row(
+            tokenizer,
+            row,
+            prompt,
+            score=4,
+            rationale="Scheduled R1 rationale.",
+            rationale_active=True,
+        )
+        row["arm_selected_reference_id"] = "unscheduled-all-rater-reference"
+    elif tamper == "rationale_activity":
+        row["arm_selected_reference_id"] = None
+        row["arm_rationale_source_event_id"] = None
+        row["inactive_reason"] = "tampered_inactive"
+        _rematerialize_row(
+            tokenizer,
+            row,
+            prompt,
+            score=4,
+            rationale="",
+            rationale_active=False,
+        )
+    elif tamper == "inactive_reason":
+        row["inactive_reason"] = "another_reason"
+    elif tamper == "source_ids":
+        row["arm_rationale_source_event_id"] = "another-source-event"
+    elif tamper == "base_event_id":
+        row["base_event_id"] = "new-unique-base-event"
+    else:
+        raise AssertionError(tamper)
+
+    with pytest.raises(ValueError, match="source differs|metadata differs"):
+        verify_manifest_row(
+            tokenizer,
+            row,
+            prompts,
+            train_row,
+            base_event,
+            expected_source,
+            arm=arm,
             seed=42,
             index=0,
             config=config,
@@ -431,9 +736,36 @@ def test_formal_materialized_candidate_report_is_aggregate_and_not_ready() -> No
         "prompt_cleaning_source",
         "shared_reference_schedule",
         "canonical_rubric_registry",
+        "manifest_source_contract",
     }.issubset(report["source_hashes"])
+    assert report["independent_reconstruction"][
+        "score_targets_bound_to_locked_train_labels"
+    ] is True
+    assert report["independent_reconstruction"][
+        "arm_sources_bound_to_locked_reference_schedule_donor_mask"
+    ] is True
     for seed in report["seed_reports"]:
         assert all(seed["checks"].values())
+        assert seed["score_targets_equal_locked_train"] is True
+        assert (
+            seed["locked_train_score_vector_sha256"]
+            == report["locked_train_score_vector_sha256"]
+        )
+        assert set(seed["score_target_vector_sha256_by_arm"].values()) == {
+            report["locked_train_score_vector_sha256"]
+        }
+        source_audit = seed["semantic_source_audit"]
+        assert source_audit["base_schedule_rows_verified"] == 7_962
+        assert set(source_audit["arm_source_rows_verified"].values()) == {
+            7_962
+        }
+        assert source_audit["r1_schedule_source_mismatches"] == 0
+        assert source_audit["r2_donor_backlink_mismatches"] == 0
+        assert source_audit["r3_aligned_reference_mismatches"] == 0
+        assert source_audit["r2_r3_mask_mismatches"] == 0
+        assert set(
+            source_audit["expected_source_vector_sha256_by_arm"]
+        ) == {"S0", "R1", "R2", "R3"}
         budget = seed["training_budget"]
         assert all(budget["checks"].values())
         assert budget["optimizer_steps_total"] == 996

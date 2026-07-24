@@ -22,18 +22,28 @@ from thesis_exp.exp54_rar_sft.audit_rar0_alignment import (
     write_json,
 )
 from thesis_exp.exp54_rar_sft.build_training_manifests import (
-    ARMS,
+    DEFAULT_ALL_REFERENCES,
+    DEFAULT_CONSISTENT_REFERENCES,
     DEFAULT_OUTPUT,
     DEFAULT_TRAIN,
     EXPECTED_EVENTS_PER_SEED,
 )
 from thesis_exp.exp54_rar_sft.block_loss import FixedRARCollator
+from thesis_exp.exp54_rar_sft.manifest_source_contract import (
+    ARMS,
+    index_unique_rows,
+    reference_indexes,
+    resolve_expected_arm_source,
+    source_fingerprint,
+)
 from thesis_exp.exp54_rar_sft.reference_schedule import (
     EXPECTED_TRAIN_ROWS,
     FORMAL_EPOCHS,
     FORMAL_SEEDS,
+    validate_schedule_events,
 )
 from thesis_exp.exp54_rar_sft.training_contract import (
+    CONTRACT_VERSION,
     DEFAULT_RUBRIC_REGISTRY,
     RATIONALE_BOUNDARY_PADDING,
     build_prompt_cache_row,
@@ -73,6 +83,9 @@ SOURCE_PATHS = {
         REPO_ROOT / "thesis_exp/exp54_rar_sft/reference_schedule.py"
     ),
     "canonical_rubric_registry": DEFAULT_RUBRIC_REGISTRY,
+    "manifest_source_contract": (
+        REPO_ROOT / "thesis_exp/exp54_rar_sft/manifest_source_contract.py"
+    ),
 }
 UPSTREAM_LOCK_PATHS = {
     "reference_set_lock": (
@@ -111,6 +124,115 @@ def _counter_l1(left: Counter[str], right: Counter[str]) -> int:
         abs(left[key] - right[key])
         for key in set(left) | set(right)
     )
+
+
+def _require_file_hash(path: Path, expected_hash: str, *, name: str) -> str:
+    reject_eval_path(path)
+    if not path.exists():
+        raise FileNotFoundError(path)
+    actual_hash = file_sha256(path)
+    if actual_hash != expected_hash:
+        raise ValueError(f"{name} differs from its upstream lock")
+    return actual_hash
+
+
+def _load_seed_source_context(
+    *,
+    output_dir: Path,
+    seed: int,
+    consistent_reference_rows: list[dict[str, Any]],
+    schedule_lock: dict[str, Any],
+    donor_lock: dict[str, Any],
+    mask_lock: dict[str, Any],
+) -> dict[str, Any]:
+    schedule_path = output_dir / "data" / f"base_event_schedule_seed{seed}.jsonl"
+    donor_path = output_dir / "data" / f"r2_event_donor_map_seed{seed}.jsonl"
+    r2_mask_path = output_dir / "data" / f"r2_event_active_mask_seed{seed}.jsonl"
+    r3_mask_path = output_dir / "data" / f"r3_event_active_mask_seed{seed}.jsonl"
+    schedule_hash = _require_file_hash(
+        schedule_path,
+        str(
+            schedule_lock["schedule_file_hashes"][
+                f"base_event_schedule_seed{seed}"
+            ]
+        ),
+        name=f"seed {seed} base schedule",
+    )
+    donor_hash = _require_file_hash(
+        donor_path,
+        str(donor_lock["event_donor_map_sha256_by_seed"][f"seed{seed}"]),
+        name=f"seed {seed} event donor map",
+    )
+    expected_masks = mask_lock["event_mask_sha256_by_seed"][f"seed{seed}"]
+    r2_mask_hash = _require_file_hash(
+        r2_mask_path,
+        str(expected_masks["r2"]),
+        name=f"seed {seed} R2 event mask",
+    )
+    r3_mask_hash = _require_file_hash(
+        r3_mask_path,
+        str(expected_masks["r3"]),
+        name=f"seed {seed} R3 event mask",
+    )
+    if r2_mask_path.read_bytes() != r3_mask_path.read_bytes():
+        raise ValueError(f"seed {seed}: R2/R3 event masks are not byte-identical")
+
+    base_events = read_jsonl(schedule_path, protect_split=True)
+    donor_rows = read_jsonl(donor_path, protect_split=True)
+    r2_mask_rows = read_jsonl(r2_mask_path, protect_split=True)
+    r3_mask_rows = read_jsonl(r3_mask_path, protect_split=True)
+    validate_schedule_events(
+        consistent_reference_rows,
+        base_events,
+        seed=seed,
+        epochs=FORMAL_EPOCHS,
+    )
+    if r2_mask_rows != r3_mask_rows:
+        raise ValueError(f"seed {seed}: parsed R2/R3 masks differ")
+    if (
+        len(base_events) != EXPECTED_EVENTS_PER_SEED
+        or len(donor_rows) != EXPECTED_EVENTS_PER_SEED
+        or len(r2_mask_rows) != EXPECTED_EVENTS_PER_SEED
+    ):
+        raise ValueError(f"seed {seed}: source artifact row count differs")
+    donor_by_event = index_unique_rows(
+        donor_rows,
+        "recipient_event_id",
+        source=f"seed {seed} donor map",
+    )
+    mask_by_event = index_unique_rows(
+        r2_mask_rows,
+        "base_event_id",
+        source=f"seed {seed} event mask",
+    )
+    base_ids = [str(event["event_id"]) for event in base_events]
+    if set(donor_by_event) != set(base_ids) or set(mask_by_event) != set(base_ids):
+        raise ValueError(f"seed {seed}: source artifacts do not cover base events")
+    for event, mask in zip(base_events, r2_mask_rows, strict=True):
+        for event_field, mask_field in (
+            ("event_id", "base_event_id"),
+            ("seed", "seed"),
+            ("epoch_index", "epoch_index"),
+            ("epoch_number", "epoch_number"),
+            ("row_position", "row_position"),
+            ("record_id", "record_id"),
+            ("selected_reference_id", "base_selected_reference_id"),
+        ):
+            if event[event_field] != mask[mask_field]:
+                raise ValueError(
+                    f"seed {seed}/{event['event_id']}: mask provenance differs"
+                )
+    return {
+        "base_events": base_events,
+        "donor_by_event": donor_by_event,
+        "mask_by_event": mask_by_event,
+        "artifact_hashes": {
+            "base_schedule_sha256": schedule_hash,
+            "event_donor_map_sha256": donor_hash,
+            "r2_event_mask_sha256": r2_mask_hash,
+            "r3_event_mask_sha256": r3_mask_hash,
+        },
+    }
 
 
 def _validate_prompt_cache(
@@ -171,6 +293,9 @@ def verify_manifest_row(
     tokenizer: Any,
     row: dict[str, Any],
     prompt_by_id: dict[str, dict[str, Any]],
+    expected_train_row: dict[str, Any],
+    expected_base_event: dict[str, Any],
+    expected_source: dict[str, Any],
     *,
     arm: str,
     seed: int,
@@ -179,13 +304,19 @@ def verify_manifest_row(
 ) -> dict[str, Any]:
     epoch_index, row_position = divmod(index, EXPECTED_TRAIN_ROWS)
     expected_metadata = {
+        "contract_version": CONTRACT_VERSION,
         "candidate_status": "CANDIDATE_NOT_FROZEN",
         "arm": arm,
+        "base_event_id": str(expected_base_event["event_id"]),
         "seed": seed,
         "epoch_index": epoch_index,
         "epoch_number": epoch_index + 1,
         "row_position": row_position,
+        "record_id": str(expected_train_row["record_id"]),
         "score_loss_active": True,
+        "base_selected_reference_id": expected_base_event[
+            "selected_reference_id"
+        ],
         "cutoff_len": int(config["cutoff_len"]),
         "padding_mode": "fixed_max_length",
         "truncated": False,
@@ -197,6 +328,29 @@ def verify_manifest_row(
             raise ValueError(f"{context}: metadata differs: {field}")
     if row.get("score_loss_active") is not True:
         raise ValueError(f"{context}: score loss must be the boolean true")
+    event_metadata = {
+        "seed": seed,
+        "epoch_index": epoch_index,
+        "epoch_number": epoch_index + 1,
+        "row_position": row_position,
+        "record_id": str(expected_train_row["record_id"]),
+        "label_5": int(expected_train_row["label_5"]),
+        "metric_id": str(expected_train_row["metric_id"]),
+        "language": str(expected_train_row["language"]),
+    }
+    for field, value in event_metadata.items():
+        if expected_base_event[field] != value:
+            raise ValueError(f"{context}: base schedule differs from locked train")
+    source_fields = (
+        "rationale",
+        "rationale_active",
+        "arm_selected_reference_id",
+        "arm_rationale_source_event_id",
+        "inactive_reason",
+    )
+    for field in source_fields:
+        if row.get(field) != expected_source[field]:
+            raise ValueError(f"{context}: arm source differs: {field}")
 
     prompt_id = str(row.get("prompt_cache_id") or "")
     prompt = prompt_by_id.get(prompt_id)
@@ -231,6 +385,9 @@ def verify_manifest_row(
     ):
         raise ValueError(f"{context}: score target must be an integer")
     score = row["score_target"]
+    expected_score = int(expected_train_row["label_5"])
+    if score != expected_score:
+        raise ValueError(f"{context}: score target differs from locked label_5")
     expected_target = tokenize_target(
         tokenizer,
         score=score,
@@ -351,27 +508,53 @@ def _require_exact_manifest(
     rows: list[dict[str, Any]],
     tokenizer: Any,
     prompt_by_id: dict[str, dict[str, Any]],
+    train_rows: list[dict[str, Any]],
+    base_events: list[dict[str, Any]],
+    all_references_by_record: dict[str, dict[str, Any]],
+    consistent_references_by_id: dict[str, dict[str, Any]],
+    donor_by_event: dict[str, dict[str, Any]],
+    mask_by_event: dict[str, dict[str, Any]],
     *,
     arm: str,
     seed: int,
     config: dict[str, Any],
-) -> list[dict[str, Any]]:
+) -> tuple[list[dict[str, Any]], str]:
     if len(rows) != EXPECTED_EVENTS_PER_SEED:
         raise ValueError(f"{arm}/seed {seed}: wrong manifest row count")
     if len({str(row["base_event_id"]) for row in rows}) != len(rows):
         raise ValueError(f"{arm}/seed {seed}: duplicate base event ID")
-    return [
-        verify_manifest_row(
+    if len(base_events) != len(rows):
+        raise ValueError(f"{arm}/seed {seed}: base schedule length differs")
+    verified_rows: list[dict[str, Any]] = []
+    source_vector: list[dict[str, Any]] = []
+    for index, row in enumerate(rows):
+        expected_train_row = train_rows[index % EXPECTED_TRAIN_ROWS]
+        expected_base_event = base_events[index]
+        expected_source = resolve_expected_arm_source(
+            arm=arm,
+            train_row=expected_train_row,
+            base_event=expected_base_event,
+            all_references_by_record=all_references_by_record,
+            consistent_references_by_id=consistent_references_by_id,
+            donor_by_event=donor_by_event,
+            mask_by_event=mask_by_event,
+        )
+        verified_rows.append(
+            verify_manifest_row(
             tokenizer,
             row,
             prompt_by_id,
+            expected_train_row,
+            expected_base_event,
+            expected_source,
             arm=arm,
             seed=seed,
             index=index,
             config=config,
         )
-        for index, row in enumerate(rows)
-    ]
+        )
+        source_vector.append(source_fingerprint(expected_source))
+    return verified_rows, _vector_sha256(source_vector)
 
 
 def _cross_arm_checks(
@@ -727,6 +910,16 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--config", type=Path, default=DEFAULT_CONFIG)
     parser.add_argument("--train", type=Path, default=DEFAULT_TRAIN)
     parser.add_argument(
+        "--all-references",
+        type=Path,
+        default=DEFAULT_ALL_REFERENCES,
+    )
+    parser.add_argument(
+        "--consistent-references",
+        type=Path,
+        default=DEFAULT_CONSISTENT_REFERENCES,
+    )
+    parser.add_argument(
         "--tokenizer-report",
         type=Path,
         default=UPSTREAM_LOCK_PATHS["tokenizer_report_seed42"],
@@ -737,7 +930,13 @@ def parse_args() -> argparse.Namespace:
 
 def main() -> None:
     args = parse_args()
-    for path in (args.config, args.train, args.tokenizer_report):
+    for path in (
+        args.config,
+        args.train,
+        args.all_references,
+        args.consistent_references,
+        args.tokenizer_report,
+    ):
         reject_eval_path(path)
         if not path.exists():
             raise FileNotFoundError(path)
@@ -763,11 +962,56 @@ def main() -> None:
         "rar0_source_hashes"
     ]["train"]:
         raise ValueError("train split differs from the frozen reference lock")
+    all_reference_hash = _require_file_hash(
+        args.all_references,
+        str(reference_lock["output_hashes"]["all_rater_reference_sets"]),
+        name="all-rater reference inventory",
+    )
+    consistent_reference_hash = _require_file_hash(
+        args.consistent_references,
+        str(
+            reference_lock["output_hashes"][
+                "label_consistent_reference_sets"
+            ]
+        ),
+        name="label-consistent reference inventory",
+    )
+    schedule_lock = json.loads(
+        UPSTREAM_LOCK_PATHS["base_schedule_lock"].read_text(encoding="utf-8")
+    )
+    donor_lock = json.loads(
+        UPSTREAM_LOCK_PATHS["event_donor_lock"].read_text(encoding="utf-8")
+    )
+    mask_lock = json.loads(
+        UPSTREAM_LOCK_PATHS["event_mask_lock"].read_text(encoding="utf-8")
+    )
     tokenizer_report = json.loads(
         args.tokenizer_report.read_text(encoding="utf-8")
     )
     tokenizer = load_locked_tokenizer(args.tokenizer_path, tokenizer_report)
     train_rows = read_jsonl(args.train, protect_split=True)
+    all_reference_rows = read_jsonl(args.all_references, protect_split=True)
+    consistent_reference_rows = read_jsonl(
+        args.consistent_references,
+        protect_split=True,
+    )
+    all_references_by_record, _all_references_by_id = reference_indexes(
+        all_reference_rows,
+        source="all-rater references",
+    )
+    (
+        consistent_references_by_record,
+        consistent_references_by_id,
+    ) = reference_indexes(
+        consistent_reference_rows,
+        source="label-consistent references",
+    )
+    train_ids = [str(row["record_id"]) for row in train_rows]
+    if (
+        train_ids != list(all_references_by_record)
+        or train_ids != list(consistent_references_by_record)
+    ):
+        raise ValueError("train and reference inventories differ in row order")
 
     prompt_cache_path = args.output_dir / "data/shared_prompt_cache.jsonl"
     reject_eval_path(prompt_cache_path)
@@ -789,10 +1033,31 @@ def main() -> None:
     seed_reports = []
     private_hashes: dict[str, Any] = {
         "shared_prompt_cache": file_sha256(prompt_cache_path),
+        "all_rater_reference_inventory": all_reference_hash,
+        "label_consistent_reference_inventory": consistent_reference_hash,
         "manifests_by_seed": {},
+        "source_artifacts_by_seed": {},
     }
+    locked_score_vector = [
+        int(row["label_5"])
+        for _epoch_index in range(FORMAL_EPOCHS)
+        for row in train_rows
+    ]
+    locked_score_vector_sha256 = _vector_sha256(locked_score_vector)
     for seed in FORMAL_SEEDS:
+        source_context = _load_seed_source_context(
+            output_dir=args.output_dir,
+            seed=seed,
+            consistent_reference_rows=consistent_reference_rows,
+            schedule_lock=schedule_lock,
+            donor_lock=donor_lock,
+            mask_lock=mask_lock,
+        )
+        private_hashes["source_artifacts_by_seed"][f"seed{seed}"] = (
+            source_context["artifact_hashes"]
+        )
         manifests: dict[str, list[dict[str, Any]]] = {}
+        expected_source_hashes: dict[str, str] = {}
         private_hashes["manifests_by_seed"][f"seed{seed}"] = {}
         for arm in ARMS:
             path = (
@@ -804,13 +1069,21 @@ def main() -> None:
             if not path.exists():
                 raise FileNotFoundError(path)
             rows = read_jsonl(path, protect_split=True)
-            manifests[arm] = _require_exact_manifest(
+            manifests[arm], expected_source_hashes[arm] = (
+                _require_exact_manifest(
                 rows,
                 tokenizer,
                 prompt_by_id,
+                train_rows,
+                source_context["base_events"],
+                all_references_by_record,
+                consistent_references_by_id,
+                source_context["donor_by_event"],
+                source_context["mask_by_event"],
                 arm=arm,
                 seed=seed,
                 config=config,
+            )
             )
             private_hashes["manifests_by_seed"][f"seed{seed}"][arm] = (
                 file_sha256(path)
@@ -828,6 +1101,16 @@ def main() -> None:
             config,
             pad_token_id=int(pad_token_id),
         )
+        arm_score_hashes = {
+            arm: _vector_sha256(row["score_target"] for row in rows)
+            for arm, rows in manifests.items()
+        }
+        score_targets_equal_locked_train = all(
+            value == locked_score_vector_sha256
+            for value in arm_score_hashes.values()
+        )
+        if not score_targets_equal_locked_train:
+            raise AssertionError(f"seed {seed}: score targets differ from train")
         seed_reports.append(
             {
                 "seed": seed,
@@ -839,6 +1122,26 @@ def main() -> None:
                 "score_target_vector_sha256": _vector_sha256(
                     row["score_target"] for row in manifests["S0"]
                 ),
+                "locked_train_score_vector_sha256": (
+                    locked_score_vector_sha256
+                ),
+                "score_target_vector_sha256_by_arm": arm_score_hashes,
+                "score_targets_equal_locked_train": (
+                    score_targets_equal_locked_train
+                ),
+                "semantic_source_audit": {
+                    "base_schedule_rows_verified": EXPECTED_EVENTS_PER_SEED,
+                    "arm_source_rows_verified": {
+                        arm: EXPECTED_EVENTS_PER_SEED for arm in ARMS
+                    },
+                    "r1_schedule_source_mismatches": 0,
+                    "r2_donor_backlink_mismatches": 0,
+                    "r3_aligned_reference_mismatches": 0,
+                    "r2_r3_mask_mismatches": 0,
+                    "expected_source_vector_sha256_by_arm": (
+                        expected_source_hashes
+                    ),
+                },
                 "r2_r3_frequency_control": frequency,
                 "training_budget": budget,
             }
@@ -861,7 +1164,10 @@ def main() -> None:
             "target_and_masks_rebuilt_from_raw_manifest_score_rationale": True,
             "chat_sequence_rebuilt_from_prompt_target_and_suffix": True,
             "padded_boolean_mask_totals_recomputed": True,
+            "score_targets_bound_to_locked_train_labels": True,
+            "arm_sources_bound_to_locked_reference_schedule_donor_mask": True,
         },
+        "locked_train_score_vector_sha256": locked_score_vector_sha256,
         "rubric_registry_validation": {
             **rubric_validation,
             "registry_sha256": file_sha256(DEFAULT_RUBRIC_REGISTRY),
@@ -902,6 +1208,9 @@ def main() -> None:
             "rows_per_logical_epoch": report["rows_per_logical_epoch"],
             "private_artifact_hashes": private_hashes,
             "independent_reconstruction": report["independent_reconstruction"],
+            "locked_train_score_vector_sha256": report[
+                "locked_train_score_vector_sha256"
+            ],
             "rubric_registry_validation": report["rubric_registry_validation"],
             "formal_tokenizer_boundary_probes": (
                 report["formal_tokenizer_boundary_probes"]

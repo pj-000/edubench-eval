@@ -150,3 +150,33 @@ def test_fixed_collator_rejects_duplicate_positions() -> None:
                 }
             ]
         )
+
+
+@pytest.mark.parametrize(
+    ("length", "position"),
+    [
+        (4, -1),
+        (4, 4),
+        (4, 8),
+        (8, -1),
+        (8, 8),
+    ],
+)
+def test_fixed_collator_rejects_positions_outside_unpadded_sequence(
+    length,
+    position,
+) -> None:
+    collator = FixedRARCollator(pad_token_id=0, cutoff_len=8)
+
+    with pytest.raises(ValueError, match="outside unpadded sequence"):
+        collator(
+            [
+                {
+                    "input_ids": [1] * length,
+                    "score_token_positions": [position],
+                    "rationale_token_positions": [],
+                    "rationale_active": False,
+                    "cutoff_len": 8,
+                }
+            ]
+        )
