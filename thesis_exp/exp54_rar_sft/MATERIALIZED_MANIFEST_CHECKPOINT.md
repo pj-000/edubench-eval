@@ -42,6 +42,11 @@ enter neither block.
 
 The prompt contains only question, answer, evaluation metric, and the full
 five-level rubric. Human references and gold scores are not prompt inputs.
+The rubric is no longer accepted merely because it is nonempty: every train
+row must match the frozen `metric_id × language` canonical registry. The
+registry covers 12 metrics, English and Chinese, for 24 exact five-level
+entries. All 2,654 train rows pass; a missing, duplicated, reordered, or
+modified level hard fails.
 
 ## Two-block SFT loss
 
@@ -68,6 +73,31 @@ hash. The fixed collator right-pads to 2,048 without truncation and emits
 separate score/rationale masks. The loss applies the standard causal shift:
 the logit at position \(t-1\) predicts the supervised token at position \(t\).
 
+## Independent freeze audit
+
+The formal auditor does not trust manifest-derived target, token, suffix, mask,
+or budget fields. It independently:
+
+1. rebuilds all 2,654 prompt-cache rows from the locked train split, canonical
+   rubric registry, prompt cleaning source, chat template, and locked
+   tokenizer;
+2. parses every target JSON and requires exactly `score` then `rationale`;
+3. recreates target bytes, target token IDs, local field positions, and field
+   token IDs from the raw manifest score/rationale;
+4. reruns the complete chat materialization and verifies assistant suffix,
+   absolute positions, mask hashes, full sequence hash, cutoff, and padding;
+5. requires all local and absolute position vectors to be unique and strictly
+   increasing;
+6. computes supervised-token budgets from rebuilt boolean masks and compares
+   them with the actual fixed collator totals.
+
+Tamper tests cover target text/hash, internally rehashed wrong target IDs,
+prompt-cache linkage, suffix IDs/hash, full sequence hash, local/absolute
+positions, field token IDs, mask hashes, boundary padding, inactive
+rationales, and an inactive-only R2/R3 target difference. Formal tokenizer
+probes cover quotes, backslashes, newlines, emoji, Chinese punctuation, and
+mixed Unicode.
+
 ## Formal aggregate result
 
 All three seeds passed the candidate audit:
@@ -77,9 +107,14 @@ All three seeds passed the candidate audit:
 - 4,803 R2/R3 rationale-active events per seed, exactly 1,601 per epoch;
 - R2/R3 rationale-active vectors are identical;
 - per individual epoch and checkpoint prefixes 1, 1–2, and 1–3, R2/R3 have
-  zero L1 difference for rationale bytes, contextual rationale token IDs,
-  complete target bytes, and complete target token IDs;
+  zero L1 difference for active rationale bytes/contextual token IDs and
+  **all-event** target bytes/complete target token IDs, including inactive
+  events;
 - supervised R2/R3 rationale-token totals are identical at every checkpoint;
+- per-period rationale-active vector hashes, unpadded sequence-token totals,
+  and fixed padded-token totals are identical;
+- independent boolean-mask totals exactly equal the actual collator totals for
+  every arm and seed;
 - no sequence exceeds the 2,048-token cutoff and no truncation occurs;
 - fixed padded input budget is 16,306,176 tokens per arm and seed;
 - micro-batch size 2 and gradient accumulation 4 produce 332 optimizer steps

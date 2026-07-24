@@ -4,8 +4,11 @@ from __future__ import annotations
 
 import hashlib
 import json
+from functools import lru_cache
+from pathlib import Path
 from typing import Any
 
+from thesis_exp.exp54_rar_sft import REPO_ROOT
 from thesis_exp.src.edujudge.exp02.build_exp02_dataset import (
     clean_answer_text,
     clean_question_text,
@@ -30,6 +33,10 @@ CHAT_TEMPLATE_KWARGS = {
 # string. This prevents BPE tokens such as `."` from crossing the boundary
 # between supervised rationale content and unsupervised fixed JSON syntax.
 RATIONALE_BOUNDARY_PADDING = " "
+DEFAULT_RUBRIC_REGISTRY = (
+    REPO_ROOT
+    / "thesis_exp/exp54_rar_sft/configs/canonical_rubric_registry.json"
+)
 
 
 def canonical_json_bytes(value: Any) -> bytes:
@@ -51,16 +58,73 @@ def token_ids_sha256(token_ids: list[int]) -> str:
     )
 
 
-def rubric_text(value: Any) -> str:
-    if isinstance(value, list):
-        lines = [str(item).strip() for item in value if str(item).strip()]
-        if not lines:
-            raise ValueError("rubric list is empty")
-        return "\n".join(lines)
-    text = str(value or "").strip()
-    if not text:
-        raise ValueError("rubric is empty")
-    return text
+def require_canonical_positions(value: Any, *, field: str) -> list[int]:
+    if not isinstance(value, list):
+        raise ValueError(f"{field} must be a list")
+    if any(not isinstance(item, int) or isinstance(item, bool) for item in value):
+        raise ValueError(f"{field} must contain integers")
+    if value != sorted(set(value)):
+        raise ValueError(f"{field} must be unique and strictly increasing")
+    return list(value)
+
+
+@lru_cache(maxsize=4)
+def load_rubric_registry(path: Path = DEFAULT_RUBRIC_REGISTRY) -> dict[str, Any]:
+    registry = json.loads(path.read_text(encoding="utf-8"))
+    if registry.get("status") != "EXP54_CANONICAL_RUBRIC_REGISTRY_V1":
+        raise ValueError("canonical rubric registry has an invalid status")
+    if registry.get("schema_version") != "exp54-rubric-registry-v1":
+        raise ValueError("canonical rubric registry has an invalid schema")
+    if registry.get("level_order") != [5, 4, 3, 2, 1]:
+        raise ValueError("canonical rubric registry must contain levels 5..1")
+    entries = registry.get("entries")
+    if not isinstance(entries, dict) or len(entries) != 24:
+        raise ValueError("canonical rubric registry must contain 24 entries")
+    metrics: set[str] = set()
+    for key, entry in entries.items():
+        metric_id = str(entry.get("metric_id") or "")
+        language = str(entry.get("language") or "")
+        if key != f"{metric_id}|{language}":
+            raise ValueError(f"rubric registry key mismatch: {key}")
+        if language not in {"en", "zh"}:
+            raise ValueError(f"rubric registry language is unsupported: {key}")
+        digest = str(entry.get("rendered_rubric_sha256") or "")
+        if len(digest) != 64:
+            raise ValueError(f"rubric registry hash is invalid: {key}")
+        metrics.add(metric_id)
+    if len(metrics) != 12:
+        raise ValueError("canonical rubric registry must cover 12 metrics")
+    return registry
+
+
+def rubric_text(
+    value: Any,
+    *,
+    metric_id: str,
+    language: str,
+    registry: dict[str, Any] | None = None,
+) -> str:
+    if not isinstance(value, list):
+        raise ValueError("rubric must be a structured five-item list")
+    if len(value) != 5:
+        raise ValueError("rubric must contain exactly five levels")
+    lines = [str(item).strip() for item in value]
+    if any(not line for line in lines):
+        raise ValueError("rubric levels must all be nonempty")
+    registry = registry or load_rubric_registry()
+    entry = registry["entries"].get(f"{metric_id}|{language}")
+    if entry is None:
+        raise ValueError(
+            f"rubric registry has no entry for {metric_id}|{language}"
+        )
+    rendered = "\n".join(lines)
+    if sha256_bytes(rendered.encode("utf-8")) != entry[
+        "rendered_rubric_sha256"
+    ]:
+        raise ValueError(
+            f"rubric differs from canonical registry for {metric_id}|{language}"
+        )
+    return rendered
 
 
 def prompt_input_fields(row: dict[str, Any]) -> dict[str, str]:
@@ -72,8 +136,14 @@ def prompt_input_fields(row: dict[str, Any]) -> dict[str, str]:
         or row.get("metric_id")
         or ""
     ).strip()
-    rubric = rubric_text(row.get("rubric"))
-    if not question or not answer or not metric:
+    metric_id = str(row.get("metric_id") or "").strip()
+    language = str(row.get("language") or "").strip()
+    rubric = rubric_text(
+        row.get("rubric"),
+        metric_id=metric_id,
+        language=language,
+    )
+    if not question or not answer or not metric or not metric_id or not language:
         raise ValueError(f"{row.get('record_id')}: incomplete prompt input")
     return {
         "question": question,
@@ -343,3 +413,67 @@ def materialize_sequence(
         "score_mask_sha256": token_ids_sha256(score_positions),
         "rationale_mask_sha256": token_ids_sha256(rationale_positions),
     }
+
+
+def load_locked_tokenizer(
+    tokenizer_path: Path,
+    tokenizer_report: dict[str, Any],
+) -> Any:
+    """Load and verify the exact tokenizer shared by builder and auditor."""
+    from transformers import AutoTokenizer
+
+    tokenizer_lock = tokenizer_report["tokenizer_lock"]
+    if tokenizer_lock.get("status") != "QWEN_TOKENIZER_REVISION_LOCKED":
+        raise ValueError("tokenizer report is not formally locked")
+    expected_files = {
+        str(item["path"]): str(item["sha256"])
+        for item in tokenizer_lock["tokenizer_files"]
+    }
+    for filename, expected_hash in expected_files.items():
+        path = tokenizer_path / filename
+        if not path.exists():
+            raise FileNotFoundError(path)
+        if sha256_bytes(path.read_bytes()) != expected_hash:
+            raise ValueError(f"tokenizer file differs from lock: {filename}")
+    tokenizer = AutoTokenizer.from_pretrained(
+        str(tokenizer_path),
+        local_files_only=True,
+        use_fast=True,
+    )
+    if tokenizer.__class__.__name__ != tokenizer_lock["tokenizer_class"]:
+        raise ValueError("tokenizer class differs from lock")
+    if len(tokenizer) != int(tokenizer_lock["vocab_size"]):
+        raise ValueError("tokenizer vocabulary size differs from lock")
+    return tokenizer
+
+
+def tokenizer_boundary_probes(tokenizer: Any) -> dict[str, Any]:
+    """Exercise difficult JSON-string characters without publishing their text."""
+    probes = {
+        "quote": 'contains "quoted" text.',
+        "backslash": r"path C:\tmp\answer.",
+        "newline": "first line\nsecond line.",
+        "emoji": "emoji 😀 rationale.",
+        "chinese_punctuation": "理由包含中文标点：“正确”。",
+        "mixed_unicode": "结论 correct ✅; path=C:\\资料。",
+    }
+    output: dict[str, Any] = {}
+    for name, rationale in probes.items():
+        target = tokenize_target(
+            tokenizer,
+            score=3,
+            rationale=rationale,
+            rationale_active=True,
+        )
+        output[name] = {
+            "target_token_count": len(target["target_token_ids"]),
+            "target_token_ids_sha256": target["target_token_ids_sha256"],
+            "score_supervised_tokens": len(
+                target["score_token_positions_in_target"]
+            ),
+            "rationale_supervised_tokens": len(
+                target["rationale_token_positions_in_target"]
+            ),
+            "boundary_validation_passed": True,
+        }
+    return output

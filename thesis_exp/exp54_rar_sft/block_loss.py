@@ -16,7 +16,10 @@ from thesis_exp.exp54_rar_sft.audit_rar0_alignment import (
     read_jsonl,
     reject_eval_path,
 )
-from thesis_exp.exp54_rar_sft.training_contract import token_ids_sha256
+from thesis_exp.exp54_rar_sft.training_contract import (
+    require_canonical_positions,
+    token_ids_sha256,
+)
 
 
 def blockwise_causal_loss(
@@ -140,10 +143,40 @@ def load_materialized_rows(
             raise ValueError(f"{event_id}: reconstructed sequence length differs")
         if token_ids_sha256(input_ids) != row["full_token_ids_sha256"]:
             raise ValueError(f"{event_id}: reconstructed sequence hash differs")
-        score_positions = [int(value) for value in row["score_token_positions"]]
-        rationale_positions = [
-            int(value) for value in row["rationale_token_positions"]
-        ]
+        target_ids = list(row["target_token_ids"])
+        local_score_positions = require_canonical_positions(
+            row["score_token_positions_in_target"],
+            field=f"{event_id}: local score positions",
+        )
+        local_rationale_positions = require_canonical_positions(
+            row["rationale_token_positions_in_target"],
+            field=f"{event_id}: local rationale positions",
+        )
+        if row["score_token_ids"] != [
+            target_ids[position] for position in local_score_positions
+        ]:
+            raise ValueError(f"{event_id}: score token IDs differ from positions")
+        if row["rationale_token_ids"] != [
+            target_ids[position] for position in local_rationale_positions
+        ]:
+            raise ValueError(
+                f"{event_id}: rationale token IDs differ from positions"
+            )
+        score_positions = require_canonical_positions(
+            row["score_token_positions"],
+            field=f"{event_id}: absolute score positions",
+        )
+        rationale_positions = require_canonical_positions(
+            row["rationale_token_positions"],
+            field=f"{event_id}: absolute rationale positions",
+        )
+        if token_ids_sha256(score_positions) != row["score_mask_sha256"]:
+            raise ValueError(f"{event_id}: score mask hash differs")
+        if (
+            token_ids_sha256(rationale_positions)
+            != row["rationale_mask_sha256"]
+        ):
+            raise ValueError(f"{event_id}: rationale mask hash differs")
         sequence_positions = set(range(len(input_ids)))
         if not set(score_positions).issubset(sequence_positions):
             raise ValueError(f"{event_id}: score mask is outside sequence")
@@ -205,8 +238,14 @@ class FixedRARCollator:
             length = len(ids)
             input_ids[batch_index, :length] = torch.tensor(ids, dtype=torch.long)
             attention_mask[batch_index, :length] = 1
-            score_positions = list(feature["score_token_positions"])
-            rationale_positions = list(feature["rationale_token_positions"])
+            score_positions = require_canonical_positions(
+                feature["score_token_positions"],
+                field=f"batch {batch_index}: score positions",
+            )
+            rationale_positions = require_canonical_positions(
+                feature["rationale_token_positions"],
+                field=f"batch {batch_index}: rationale positions",
+            )
             if not score_positions:
                 raise ValueError("score supervision cannot be empty")
             score_mask[batch_index, score_positions] = True

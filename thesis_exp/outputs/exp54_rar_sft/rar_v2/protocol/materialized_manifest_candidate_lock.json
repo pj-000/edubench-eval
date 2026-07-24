@@ -5,7 +5,7 @@
     "R2",
     "R3"
   ],
-  "candidate_report_sha256": "ef02711f2e0e2aa446b59681fb99dc9ae2acb9e99e8054011d461c4a348f55b8",
+  "candidate_report_sha256": "ddfe4d8bc2c7bb5d9af43802c1c94ad75f74df2291b44615988a28737771f68d",
   "config_sha256": "59eafff8ea9d751159e85bd6f6b3bfe2fd58e76bc54f55bc8dec9e1413bfb4da",
   "dev_accessed": false,
   "formal_seeds": [
@@ -13,7 +13,57 @@
     43,
     44
   ],
+  "formal_tokenizer_boundary_probes": {
+    "backslash": {
+      "boundary_validation_passed": true,
+      "rationale_supervised_tokens": 7,
+      "score_supervised_tokens": 1,
+      "target_token_count": 16,
+      "target_token_ids_sha256": "916bda9b2dc056b0152e3877fdf7c409e22f08174bf61c1e35f09b4ae84d6d37"
+    },
+    "chinese_punctuation": {
+      "boundary_validation_passed": true,
+      "rationale_supervised_tokens": 8,
+      "score_supervised_tokens": 1,
+      "target_token_count": 17,
+      "target_token_ids_sha256": "4a529ecb51aedfb83a372e5ecb6cd2e7ed28df10f623d4bf6b38380172551aed"
+    },
+    "emoji": {
+      "boundary_validation_passed": true,
+      "rationale_supervised_tokens": 4,
+      "score_supervised_tokens": 1,
+      "target_token_count": 13,
+      "target_token_ids_sha256": "7e4c6aa3d99371699bba38213c6ae20cbf969243a7332c02041d05b43c568a31"
+    },
+    "mixed_unicode": {
+      "boundary_validation_passed": true,
+      "rationale_supervised_tokens": 10,
+      "score_supervised_tokens": 1,
+      "target_token_count": 19,
+      "target_token_ids_sha256": "a639bc7362d3a77611ad8b936d666f846a563878cac63ee9e9f187101b44237a"
+    },
+    "newline": {
+      "boundary_validation_passed": true,
+      "rationale_supervised_tokens": 6,
+      "score_supervised_tokens": 1,
+      "target_token_count": 15,
+      "target_token_ids_sha256": "ae7e8395659c3fe4acbe4f6341c02f58bbf3c5d7643c4fd5daaf2c52a5560f94"
+    },
+    "quote": {
+      "boundary_validation_passed": true,
+      "rationale_supervised_tokens": 6,
+      "score_supervised_tokens": 1,
+      "target_token_count": 15,
+      "target_token_ids_sha256": "0836432513e74fc56dc752e666591f0a09c85f94e08a26e36d14ac1d340d8511"
+    }
+  },
   "formal_training_allowed": false,
+  "independent_reconstruction": {
+    "chat_sequence_rebuilt_from_prompt_target_and_suffix": true,
+    "padded_boolean_mask_totals_recomputed": true,
+    "prompt_cache_rebuilt_from_locked_train_and_tokenizer": true,
+    "target_and_masks_rebuilt_from_raw_manifest_score_rationale": true
+  },
   "logical_epochs": 3,
   "manifest_freeze_allowed": false,
   "private_artifact_hashes": {
@@ -40,16 +90,29 @@
     "shared_prompt_cache": "2a4b2c7a022628db96f9bec6bdc9be0d610db8845dab6a0ab09f887fb913dd76"
   },
   "rows_per_logical_epoch": 2654,
+  "rubric_registry_validation": {
+    "all_rows_match_canonical_registry": true,
+    "expected_metric_count": 12,
+    "expected_metric_language_entry_count": 24,
+    "metric_count": 12,
+    "metric_language_entry_count": 24,
+    "registry_sha256": "1ac9bafd3eb9e54463f1deddb60bea0d6a379804051b4d2c00a537a59d76f8ea",
+    "train_rows_validated": 2654
+  },
   "smoke_training_allowed": false,
   "source_hashes": {
-    "block_loss_and_collator": "88c47bf87020f4e02a00b7b5989f820b6d7e1f99c8abf671fa83f18e801749f9",
-    "manifest_auditor": "35f4321a84dcea8b10f465d9ed7a7bfeaa5982c0fa2dee17f713c3a4cd9dc065",
-    "manifest_builder": "942d12553f27fbe60d959f8e14aa05b3800a6858cae36b9e75b8203490fcf5e2",
+    "block_loss_and_collator": "2749da546286731b11c2a4abf066404702aeff7854c245c241e0cc3912e418ac",
+    "canonical_rubric_registry": "1ac9bafd3eb9e54463f1deddb60bea0d6a379804051b4d2c00a537a59d76f8ea",
+    "manifest_auditor": "0bc2bfaf36a53b63fe7866ebda977657fc699cb5ee76162daedb8c2d1e69d4c5",
+    "manifest_builder": "6e30d247c0fc37dfdf4686721e939f6487763e8087a05e9b05a6a669c6105d8f",
     "output_schema": "cf63b7cc7a39b15a61c3b5095435275979fb4347f8c080b5c9f6483b04b33b8b",
-    "training_contract": "128d83c7e5a3701fe75f74fd08fb359b40eed25addd02bb259f0bbce0a3ee039"
+    "prompt_cleaning_source": "82eaefd6c711f632a23d61e7591d5c447076e9e351134887b726d7db75a7d241",
+    "shared_reference_schedule": "22acc599d9e2919138870f21373cc21c61e096ab0365b6f635a4a72741bd421d",
+    "training_contract": "a9b100c9446f2a0e011b1faf67f873b51d0aaacf08a75423c71b6c48360f5071"
   },
   "status": "MATERIALIZED_MANIFEST_CANDIDATE_AUDITED_NOT_FROZEN",
   "test_accessed": false,
+  "tokenizer_lock_sha256": "4c4fa5083c4b6da6097657bb15a304df06080a5692033c1f444288574acdf0b6",
   "training_used": false,
   "upstream_lock_hashes": {
     "base_schedule_lock": "2a96cecc272d5c4e45778d0e860a82503d76c4cdca6c0a3839ba685b63e7984f",

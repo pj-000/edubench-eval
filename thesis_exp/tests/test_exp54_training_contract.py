@@ -1,4 +1,5 @@
 import json
+from pathlib import Path
 
 import pytest
 
@@ -6,6 +7,7 @@ from thesis_exp.exp54_rar_sft.training_contract import (
     build_prompt_cache_row,
     materialize_sequence,
     prompt_messages,
+    rubric_text,
     serialize_target,
     tokenize_target,
 )
@@ -96,12 +98,19 @@ class RepeatedOffsetTokenizer(CharacterTokenizer):
 
 
 def _row() -> dict:
+    canonical = json.loads(
+        Path(
+            "thesis_exp/data/splits/paper_like_triple_seed42/train.jsonl"
+        ).read_text(encoding="utf-8").splitlines()[0]
+    )
     return {
         "record_id": "row-1",
         "question": "What is 2 + 2?",
         "answer": "It is four.",
+        "metric_id": "IFTC",
         "metric_canonical": "correctness",
-        "rubric": ["5: fully correct", "1: incorrect"],
+        "language": "en",
+        "rubric": canonical["rubric"],
         "label_5": 5,
         "references": [{"reason": "PRIVATE-REASON-MUST-NOT-LEAK"}],
     }
@@ -127,7 +136,7 @@ def test_prompt_uses_only_declared_inference_fields() -> None:
     assert "What is 2 + 2?" in rendered
     assert "It is four." in rendered
     assert "correctness" in rendered
-    assert "5: fully correct" in rendered
+    assert _row()["rubric"][0] in rendered
     assert "PRIVATE-REASON-MUST-NOT-LEAK" not in rendered
 
 
@@ -226,3 +235,20 @@ def test_materialized_masks_exclude_prompt_and_assistant_suffix() -> None:
     )
     assert len(sequence["score_token_positions"]) == 1
     assert sequence["rationale_token_positions"]
+
+
+@pytest.mark.parametrize(
+    "rubric",
+    [
+        ["only one level"],
+        ["same"] * 5,
+        "5: not a structured list",
+    ],
+)
+def test_rubric_must_match_the_exact_five_level_registry(rubric) -> None:
+    with pytest.raises(ValueError, match="rubric"):
+        rubric_text(
+            rubric,
+            metric_id="IFTC",
+            language="en",
+        )

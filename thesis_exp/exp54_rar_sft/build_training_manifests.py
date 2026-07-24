@@ -29,6 +29,7 @@ from thesis_exp.exp54_rar_sft.training_contract import (
     CONTRACT_VERSION,
     RATIONALE_BOUNDARY_PADDING,
     build_prompt_cache_row,
+    load_locked_tokenizer,
     materialize_sequence,
     sha256_bytes,
     tokenize_target,
@@ -409,32 +410,6 @@ def materialize_arm(
     return rows
 
 
-def _load_locked_tokenizer(tokenizer_path: Path, tokenizer_report: dict[str, Any]):
-    from transformers import AutoTokenizer
-
-    tokenizer_lock = tokenizer_report["tokenizer_lock"]
-    if tokenizer_lock.get("status") != "QWEN_TOKENIZER_REVISION_LOCKED":
-        raise ValueError("tokenizer report is not formally locked")
-    expected_files = {
-        str(item["path"]): str(item["sha256"])
-        for item in tokenizer_lock["tokenizer_files"]
-    }
-    for filename, expected_hash in expected_files.items():
-        path = tokenizer_path / filename
-        if not path.exists() or file_sha256(path) != expected_hash:
-            raise ValueError(f"tokenizer file differs from lock: {filename}")
-    tokenizer = AutoTokenizer.from_pretrained(
-        str(tokenizer_path),
-        local_files_only=True,
-        use_fast=True,
-    )
-    if tokenizer.__class__.__name__ != tokenizer_lock["tokenizer_class"]:
-        raise ValueError("tokenizer class differs from lock")
-    if len(tokenizer) != int(tokenizer_lock["vocab_size"]):
-        raise ValueError("tokenizer vocabulary size differs from lock")
-    return tokenizer
-
-
 def _require_hash(path: Path, expected_hash: str, *, name: str) -> None:
     if not path.exists():
         raise FileNotFoundError(path)
@@ -517,7 +492,7 @@ def main() -> None:
         str(reference_lock["output_hashes"]["label_consistent_reference_sets"]),
         name="label-consistent reference inventory",
     )
-    tokenizer = _load_locked_tokenizer(args.tokenizer_path, tokenizer_report)
+    tokenizer = load_locked_tokenizer(args.tokenizer_path, tokenizer_report)
 
     train_rows = read_jsonl(args.train, protect_split=True)
     all_reference_rows = read_jsonl(args.all_references, protect_split=True)

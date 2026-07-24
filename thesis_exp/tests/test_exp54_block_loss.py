@@ -131,3 +131,22 @@ def test_fixed_collator_never_supervises_padding() -> None:
     assert not torch.any(
         batch["rationale_mask"] & ~batch["attention_mask"].bool()
     )
+    assert batch["score_mask"].sum().item() == 2
+    assert batch["rationale_mask"].sum().item() == 1
+
+
+def test_fixed_collator_rejects_duplicate_positions() -> None:
+    collator = FixedRARCollator(pad_token_id=0, cutoff_len=8)
+
+    with pytest.raises(ValueError, match="unique and strictly increasing"):
+        collator(
+            [
+                {
+                    "input_ids": [1, 2, 3, 4],
+                    "score_token_positions": [2, 2],
+                    "rationale_token_positions": [],
+                    "rationale_active": False,
+                    "cutoff_len": 8,
+                }
+            ]
+        )

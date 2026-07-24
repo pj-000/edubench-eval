@@ -24,14 +24,27 @@ from thesis_exp.exp54_rar_sft.audit_rar0_alignment import (
 from thesis_exp.exp54_rar_sft.build_training_manifests import (
     ARMS,
     DEFAULT_OUTPUT,
+    DEFAULT_TRAIN,
     EXPECTED_EVENTS_PER_SEED,
 )
+from thesis_exp.exp54_rar_sft.block_loss import FixedRARCollator
 from thesis_exp.exp54_rar_sft.reference_schedule import (
     EXPECTED_TRAIN_ROWS,
     FORMAL_EPOCHS,
     FORMAL_SEEDS,
 )
-from thesis_exp.exp54_rar_sft.training_contract import token_ids_sha256
+from thesis_exp.exp54_rar_sft.training_contract import (
+    DEFAULT_RUBRIC_REGISTRY,
+    RATIONALE_BOUNDARY_PADDING,
+    build_prompt_cache_row,
+    load_locked_tokenizer,
+    materialize_sequence,
+    require_canonical_positions,
+    sha256_bytes,
+    tokenize_target,
+    token_ids_sha256,
+    tokenizer_boundary_probes,
+)
 
 
 DEFAULT_CONFIG = (
@@ -53,6 +66,13 @@ SOURCE_PATHS = {
         REPO_ROOT
         / "thesis_exp/exp54_rar_sft/schemas/rar_v2_output_schema.json"
     ),
+    "prompt_cleaning_source": (
+        REPO_ROOT / "thesis_exp/src/edujudge/exp02/build_exp02_dataset.py"
+    ),
+    "shared_reference_schedule": (
+        REPO_ROOT / "thesis_exp/exp54_rar_sft/reference_schedule.py"
+    ),
+    "canonical_rubric_registry": DEFAULT_RUBRIC_REGISTRY,
 }
 UPSTREAM_LOCK_PATHS = {
     "reference_set_lock": (
@@ -93,99 +113,265 @@ def _counter_l1(left: Counter[str], right: Counter[str]) -> int:
     )
 
 
+def _validate_prompt_cache(
+    tokenizer: Any,
+    train_rows: list[dict[str, Any]],
+    prompt_cache: list[dict[str, Any]],
+) -> tuple[dict[str, dict[str, Any]], dict[str, Any]]:
+    if len(train_rows) != EXPECTED_TRAIN_ROWS:
+        raise ValueError("train split does not contain exactly 2,654 rows")
+    if len(prompt_cache) != EXPECTED_TRAIN_ROWS:
+        raise ValueError("prompt cache does not contain exactly the train rows")
+    prompt_by_id: dict[str, dict[str, Any]] = {}
+    metric_ids: set[str] = set()
+    metric_language_pairs: set[tuple[str, str]] = set()
+    for row_position, (train_row, prompt_row) in enumerate(
+        zip(train_rows, prompt_cache, strict=True)
+    ):
+        expected = build_prompt_cache_row(
+            tokenizer,
+            train_row,
+            row_position=row_position,
+        )
+        if prompt_row != expected:
+            raise ValueError(
+                f"prompt cache row {row_position} differs from independent rebuild"
+            )
+        prompt_id = str(prompt_row["prompt_cache_id"])
+        if prompt_id in prompt_by_id:
+            raise ValueError(f"duplicate prompt_cache_id: {prompt_id}")
+        prompt_by_id[prompt_id] = prompt_row
+        metric_id = str(train_row["metric_id"])
+        language = str(train_row["language"])
+        metric_ids.add(metric_id)
+        metric_language_pairs.add((metric_id, language))
+    return prompt_by_id, {
+        "train_rows_validated": len(train_rows),
+        "metric_count": len(metric_ids),
+        "metric_language_entry_count": len(metric_language_pairs),
+        "expected_metric_count": 12,
+        "expected_metric_language_entry_count": 24,
+        "all_rows_match_canonical_registry": True,
+    }
+
+
+def _compare_derived_fields(
+    actual: dict[str, Any],
+    expected: dict[str, Any],
+    fields: tuple[str, ...],
+    *,
+    context: str,
+) -> None:
+    for field in fields:
+        if actual.get(field) != expected[field]:
+            raise ValueError(f"{context}: derived field differs: {field}")
+
+
+def verify_manifest_row(
+    tokenizer: Any,
+    row: dict[str, Any],
+    prompt_by_id: dict[str, dict[str, Any]],
+    *,
+    arm: str,
+    seed: int,
+    index: int,
+    config: dict[str, Any],
+) -> dict[str, Any]:
+    epoch_index, row_position = divmod(index, EXPECTED_TRAIN_ROWS)
+    expected_metadata = {
+        "candidate_status": "CANDIDATE_NOT_FROZEN",
+        "arm": arm,
+        "seed": seed,
+        "epoch_index": epoch_index,
+        "epoch_number": epoch_index + 1,
+        "row_position": row_position,
+        "score_loss_active": True,
+        "cutoff_len": int(config["cutoff_len"]),
+        "padding_mode": "fixed_max_length",
+        "truncated": False,
+        "packing": False,
+    }
+    context = f"{arm}/seed {seed}/row {index}"
+    for field, value in expected_metadata.items():
+        if row.get(field) != value:
+            raise ValueError(f"{context}: metadata differs: {field}")
+    if row.get("score_loss_active") is not True:
+        raise ValueError(f"{context}: score loss must be the boolean true")
+
+    prompt_id = str(row.get("prompt_cache_id") or "")
+    prompt = prompt_by_id.get(prompt_id)
+    if prompt is None:
+        raise ValueError(f"{context}: prompt cache ID is missing")
+    if str(row.get("record_id")) != str(prompt["record_id"]):
+        raise ValueError(f"{context}: prompt belongs to another record")
+    if int(row["row_position"]) != int(prompt["row_position"]):
+        raise ValueError(f"{context}: prompt row position differs")
+    if (
+        row.get("prompt_token_ids_sha256")
+        != prompt["prompt_token_ids_sha256"]
+    ):
+        raise ValueError(f"{context}: prompt token hash differs")
+
+    if not isinstance(row.get("rationale_active"), bool):
+        raise ValueError(f"{context}: rationale_active must be boolean")
+    active = row["rationale_active"]
+    rationale = row.get("rationale")
+    if not isinstance(rationale, str):
+        raise ValueError(f"{context}: rationale source must be a string")
+    expected_boundary = RATIONALE_BOUNDARY_PADDING if active else ""
+    if row.get("rationale_boundary_padding") != expected_boundary:
+        raise ValueError(f"{context}: rationale boundary padding differs")
+    if expected_boundary != (
+        config["active_rationale_unsupervised_boundary_padding"] if active else ""
+    ):
+        raise ValueError(f"{context}: config boundary padding differs")
+    if (
+        not isinstance(row.get("score_target"), int)
+        or isinstance(row.get("score_target"), bool)
+    ):
+        raise ValueError(f"{context}: score target must be an integer")
+    score = row["score_target"]
+    expected_target = tokenize_target(
+        tokenizer,
+        score=score,
+        rationale=rationale,
+        rationale_active=active,
+    )
+    try:
+        parsed_target = json.loads(str(row.get("target_text")))
+    except (TypeError, json.JSONDecodeError) as exc:
+        raise ValueError(f"{context}: target text is not valid JSON") from exc
+    if list(parsed_target) != ["score", "rationale"]:
+        raise ValueError(f"{context}: target JSON fields/order differ")
+    if parsed_target["score"] != score:
+        raise ValueError(f"{context}: parsed target score differs")
+    expected_visible_rationale = rationale + expected_boundary if active else ""
+    if parsed_target["rationale"] != expected_visible_rationale:
+        raise ValueError(f"{context}: parsed target rationale differs")
+    if (
+        sha256_bytes(str(row["target_text"]).encode("utf-8"))
+        != row.get("target_bytes_sha256")
+    ):
+        raise ValueError(f"{context}: target bytes hash differs")
+    if (
+        sha256_bytes(rationale.encode("utf-8"))
+        != row.get("rationale_bytes_sha256")
+    ):
+        raise ValueError(f"{context}: rationale bytes hash differs")
+
+    for field in (
+        "score_token_positions_in_target",
+        "rationale_token_positions_in_target",
+    ):
+        require_canonical_positions(row.get(field), field=f"{context}: {field}")
+    _compare_derived_fields(
+        row,
+        expected_target,
+        (
+            "target_text",
+            "target_bytes_sha256",
+            "target_token_ids",
+            "target_token_ids_sha256",
+            "score_token_positions_in_target",
+            "rationale_token_positions_in_target",
+            "score_token_ids",
+            "rationale_token_ids",
+        ),
+        context=context,
+    )
+
+    expected_sequence = materialize_sequence(
+        tokenizer,
+        prompt,
+        expected_target,
+    )
+    for field in ("score_token_positions", "rationale_token_positions"):
+        require_canonical_positions(row.get(field), field=f"{context}: {field}")
+    _compare_derived_fields(
+        row,
+        expected_sequence,
+        (
+            "sequence_token_count",
+            "full_token_ids_sha256",
+            "assistant_suffix_token_ids",
+            "assistant_suffix_token_ids_sha256",
+            "score_token_positions",
+            "rationale_token_positions",
+            "score_mask_sha256",
+            "rationale_mask_sha256",
+        ),
+        context=context,
+    )
+    full_ids = (
+        list(prompt["prompt_token_ids"])
+        + list(expected_target["target_token_ids"])
+        + list(expected_sequence["assistant_suffix_token_ids"])
+    )
+    if token_ids_sha256(full_ids) != row["full_token_ids_sha256"]:
+        raise ValueError(f"{context}: independently rebuilt sequence hash differs")
+    if len(full_ids) != int(row["sequence_token_count"]):
+        raise ValueError(f"{context}: independently rebuilt sequence length differs")
+
+    cutoff = int(config["cutoff_len"])
+    padding_count = cutoff - len(full_ids)
+    if padding_count < 0:
+        raise ValueError(f"{context}: sequence exceeds cutoff")
+    if int(row["padding_token_count"]) != padding_count:
+        raise ValueError(f"{context}: padding count differs")
+    score_positions = set(expected_sequence["score_token_positions"])
+    rationale_positions = set(expected_sequence["rationale_token_positions"])
+    if score_positions & rationale_positions:
+        raise ValueError(f"{context}: rebuilt masks overlap")
+    target_start = len(prompt["prompt_token_ids"])
+    target_end = target_start + len(expected_target["target_token_ids"])
+    supervised = score_positions | rationale_positions
+    if any(position < target_start or position >= target_end for position in supervised):
+        raise ValueError(f"{context}: non-target token receives supervision")
+    if any(position >= len(full_ids) for position in supervised):
+        raise ValueError(f"{context}: suffix/padding receives supervision")
+    if not score_positions:
+        raise ValueError(f"{context}: score mask is empty")
+    if bool(rationale_positions) != active:
+        raise ValueError(f"{context}: rationale mask activity differs")
+    expected_weight = 1.0 if active else 0.0
+    if float(row["rationale_block_weight"]) != expected_weight:
+        raise ValueError(f"{context}: rationale block weight differs")
+    if float(row["score_block_weight"]) != 1.0:
+        raise ValueError(f"{context}: score block weight differs")
+
+    verified = dict(row)
+    verified["_audit_sequence_token_count"] = len(full_ids)
+    verified["_audit_padding_token_count"] = padding_count
+    verified["_audit_score_mask_token_count"] = len(score_positions)
+    verified["_audit_rationale_mask_token_count"] = len(rationale_positions)
+    return verified
+
+
 def _require_exact_manifest(
     rows: list[dict[str, Any]],
+    tokenizer: Any,
+    prompt_by_id: dict[str, dict[str, Any]],
     *,
     arm: str,
     seed: int,
     config: dict[str, Any],
-) -> None:
+) -> list[dict[str, Any]]:
     if len(rows) != EXPECTED_EVENTS_PER_SEED:
         raise ValueError(f"{arm}/seed {seed}: wrong manifest row count")
     if len({str(row["base_event_id"]) for row in rows}) != len(rows):
         raise ValueError(f"{arm}/seed {seed}: duplicate base event ID")
-    expected_cutoff = int(config["cutoff_len"])
-    for index, row in enumerate(rows):
-        epoch_index, row_position = divmod(index, EXPECTED_TRAIN_ROWS)
-        expected = {
-            "candidate_status": "CANDIDATE_NOT_FROZEN",
-            "arm": arm,
-            "seed": seed,
-            "epoch_index": epoch_index,
-            "epoch_number": epoch_index + 1,
-            "row_position": row_position,
-            "score_loss_active": True,
-            "cutoff_len": expected_cutoff,
-            "padding_mode": "fixed_max_length",
-            "truncated": False,
-            "packing": False,
-        }
-        for field, value in expected.items():
-            if row[field] != value:
-                raise ValueError(
-                    f"{arm}/seed {seed}/row {index}: {field} differs"
-                )
-        target_ids = list(row["target_token_ids"])
-        if token_ids_sha256(target_ids) != row["target_token_ids_sha256"]:
-            raise ValueError(f"{arm}/seed {seed}/row {index}: target hash differs")
-        target_length = len(target_ids)
-        sequence_length = int(row["sequence_token_count"])
-        if sequence_length + int(row["padding_token_count"]) != expected_cutoff:
-            raise ValueError(f"{arm}/seed {seed}/row {index}: padding differs")
-        if sequence_length > expected_cutoff or target_length < 1:
-            raise ValueError(f"{arm}/seed {seed}/row {index}: invalid length")
-
-        score_positions = list(row["score_token_positions_in_target"])
-        rationale_positions = list(row["rationale_token_positions_in_target"])
-        if not score_positions:
-            raise ValueError(f"{arm}/seed {seed}/row {index}: score mask empty")
-        if set(score_positions) & set(rationale_positions):
-            raise ValueError(f"{arm}/seed {seed}/row {index}: masks overlap")
-        if any(position < 0 or position >= target_length for position in score_positions):
-            raise ValueError(f"{arm}/seed {seed}/row {index}: score mask outside target")
-        if any(
-            position < 0 or position >= target_length
-            for position in rationale_positions
-        ):
-            raise ValueError(
-                f"{arm}/seed {seed}/row {index}: rationale mask outside target"
-            )
-        active = bool(row["rationale_active"])
-        expected_boundary_padding = (
-            config["active_rationale_unsupervised_boundary_padding"]
-            if active
-            else ""
+    return [
+        verify_manifest_row(
+            tokenizer,
+            row,
+            prompt_by_id,
+            arm=arm,
+            seed=seed,
+            index=index,
+            config=config,
         )
-        if row["rationale_boundary_padding"] != expected_boundary_padding:
-            raise ValueError(
-                f"{arm}/seed {seed}/row {index}: rationale boundary differs"
-            )
-        if active != bool(rationale_positions):
-            raise ValueError(
-                f"{arm}/seed {seed}/row {index}: rationale mask/activity differ"
-            )
-        expected_weight = 1.0 if active else 0.0
-        if float(row["rationale_block_weight"]) != expected_weight:
-            raise ValueError(
-                f"{arm}/seed {seed}/row {index}: rationale weight differs"
-            )
-        absolute_score_positions = list(row["score_token_positions"])
-        absolute_rationale_positions = list(row["rationale_token_positions"])
-        shift = absolute_score_positions[0] - score_positions[0]
-        if absolute_score_positions != [
-            shift + position for position in score_positions
-        ]:
-            raise ValueError(f"{arm}/seed {seed}/row {index}: score shift differs")
-        if absolute_rationale_positions != [
-            shift + position for position in rationale_positions
-        ]:
-            raise ValueError(
-                f"{arm}/seed {seed}/row {index}: rationale shift differs"
-            )
-        if shift <= 0 or shift + target_length >= sequence_length:
-            raise ValueError(
-                f"{arm}/seed {seed}/row {index}: prompt/target/suffix boundary invalid"
-            )
+        for index, row in enumerate(rows)
+    ]
 
 
 def _cross_arm_checks(
@@ -245,22 +431,104 @@ def _cross_arm_checks(
 def _frequency_counters(
     rows: list[dict[str, Any]],
 ) -> dict[str, Counter[str] | int]:
-    active = [row for row in rows if row["rationale_active"]]
+    active_rows = [row for row in rows if row["rationale_active"]]
     return {
-        "rationale_bytes": Counter(
-            str(row["rationale_bytes_sha256"]) for row in active
+        "active_rationale_bytes": Counter(
+            str(row["rationale_bytes_sha256"]) for row in active_rows
         ),
-        "rationale_token_ids": Counter(
+        "active_rationale_token_ids": Counter(
             token_ids_sha256(list(row["rationale_token_ids"]))
-            for row in active
+            for row in active_rows
         ),
-        "target_bytes": Counter(str(row["target_bytes_sha256"]) for row in active),
-        "target_token_ids": Counter(
-            str(row["target_token_ids_sha256"]) for row in active
+        "all_event_target_bytes": Counter(
+            str(row["target_bytes_sha256"]) for row in rows
+        ),
+        "all_event_target_token_ids": Counter(
+            str(row["target_token_ids_sha256"]) for row in rows
         ),
         "supervised_rationale_tokens": sum(
-            len(row["rationale_token_positions"]) for row in active
+            int(row["_audit_rationale_mask_token_count"])
+            for row in active_rows
         ),
+        "rationale_active_vector_sha256": _vector_sha256(
+            bool(row["rationale_active"]) for row in rows
+        ),
+        "unpadded_sequence_tokens": sum(
+            int(row["_audit_sequence_token_count"]) for row in rows
+        ),
+        "fixed_padded_tokens": sum(
+            int(row["_audit_sequence_token_count"])
+            + int(row["_audit_padding_token_count"])
+            for row in rows
+        ),
+    }
+
+
+def _period_control_report(
+    r2_rows: list[dict[str, Any]],
+    r3_rows: list[dict[str, Any]],
+) -> dict[str, Any]:
+    r2_counts = _frequency_counters(r2_rows)
+    r3_counts = _frequency_counters(r3_rows)
+    counter_fields = (
+        "active_rationale_bytes",
+        "active_rationale_token_ids",
+        "all_event_target_bytes",
+        "all_event_target_token_ids",
+    )
+    l1 = {
+        field: _counter_l1(r2_counts[field], r3_counts[field])
+        for field in counter_fields
+    }
+    checks = {
+        **{f"{field}_counter_equal": value == 0 for field, value in l1.items()},
+        "rationale_active_vector_equal": (
+            r2_counts["rationale_active_vector_sha256"]
+            == r3_counts["rationale_active_vector_sha256"]
+        ),
+        "supervised_rationale_token_total_equal": (
+            r2_counts["supervised_rationale_tokens"]
+            == r3_counts["supervised_rationale_tokens"]
+        ),
+        "unpadded_sequence_token_total_equal": (
+            r2_counts["unpadded_sequence_tokens"]
+            == r3_counts["unpadded_sequence_tokens"]
+        ),
+        "fixed_padded_token_total_equal": (
+            r2_counts["fixed_padded_tokens"]
+            == r3_counts["fixed_padded_tokens"]
+        ),
+    }
+    if not all(checks.values()):
+        failed = [name for name, passed in checks.items() if not passed]
+        raise AssertionError(f"R2/R3 period control failed: {failed}")
+    return {
+        "checks": checks,
+        "frequency_l1_difference": l1,
+        "counter_hashes": {
+            field: _counter_sha256(r2_counts[field])
+            for field in counter_fields
+        },
+        "rationale_active_vector_sha256_R2": r2_counts[
+            "rationale_active_vector_sha256"
+        ],
+        "rationale_active_vector_sha256_R3": r3_counts[
+            "rationale_active_vector_sha256"
+        ],
+        "supervised_rationale_token_total_R2": int(
+            r2_counts["supervised_rationale_tokens"]
+        ),
+        "supervised_rationale_token_total_R3": int(
+            r3_counts["supervised_rationale_tokens"]
+        ),
+        "unpadded_sequence_token_total_R2": int(
+            r2_counts["unpadded_sequence_tokens"]
+        ),
+        "unpadded_sequence_token_total_R3": int(
+            r3_counts["unpadded_sequence_tokens"]
+        ),
+        "fixed_padded_token_total_R2": int(r2_counts["fixed_padded_tokens"]),
+        "fixed_padded_token_total_R3": int(r3_counts["fixed_padded_tokens"]),
     }
 
 
@@ -271,30 +539,7 @@ def _r2_r3_frequency_audit(
     checkpoints = []
     for prefix_epochs in range(1, FORMAL_EPOCHS + 1):
         stop = prefix_epochs * EXPECTED_TRAIN_ROWS
-        r2_counts = _frequency_counters(r2[:stop])
-        r3_counts = _frequency_counters(r3[:stop])
-        fields = (
-            "rationale_bytes",
-            "rationale_token_ids",
-            "target_bytes",
-            "target_token_ids",
-        )
-        l1 = {
-            field: _counter_l1(r2_counts[field], r3_counts[field])
-            for field in fields
-        }
-        checks = {
-            **{f"{field}_counter_equal": value == 0 for field, value in l1.items()},
-            "supervised_rationale_token_total_equal": (
-                r2_counts["supervised_rationale_tokens"]
-                == r3_counts["supervised_rationale_tokens"]
-            ),
-        }
-        if not all(checks.values()):
-            failed = [name for name, passed in checks.items() if not passed]
-            raise AssertionError(
-                f"R2/R3 checkpoint prefix {prefix_epochs} failed: {failed}"
-            )
+        control = _period_control_report(r2[:stop], r3[:stop])
         checkpoints.append(
             {
                 "checkpoint_prefix_epochs": prefix_epochs,
@@ -302,15 +547,7 @@ def _r2_r3_frequency_audit(
                 "active_rationale_events": sum(
                     bool(row["rationale_active"]) for row in r2[:stop]
                 ),
-                "checks": checks,
-                "frequency_l1_difference": l1,
-                "supervised_rationale_tokens": int(
-                    r2_counts["supervised_rationale_tokens"]
-                ),
-                "counter_hashes": {
-                    field: _counter_sha256(r2_counts[field])
-                    for field in fields
-                },
+                **control,
             }
         )
 
@@ -318,23 +555,7 @@ def _r2_r3_frequency_audit(
     for epoch_index in range(FORMAL_EPOCHS):
         start = epoch_index * EXPECTED_TRAIN_ROWS
         stop = start + EXPECTED_TRAIN_ROWS
-        r2_counts = _frequency_counters(r2[start:stop])
-        r3_counts = _frequency_counters(r3[start:stop])
-        l1 = {
-            field: _counter_l1(r2_counts[field], r3_counts[field])
-            for field in (
-                "rationale_bytes",
-                "rationale_token_ids",
-                "target_bytes",
-                "target_token_ids",
-            )
-        }
-        token_total_equal = (
-            r2_counts["supervised_rationale_tokens"]
-            == r3_counts["supervised_rationale_tokens"]
-        )
-        if any(l1.values()) or not token_total_equal:
-            raise AssertionError(f"R2/R3 individual epoch {epoch_index + 1} differs")
+        control = _period_control_report(r2[start:stop], r3[start:stop])
         individual_epochs.append(
             {
                 "epoch_number": epoch_index + 1,
@@ -342,11 +563,7 @@ def _r2_r3_frequency_audit(
                 "active_rationale_events": sum(
                     bool(row["rationale_active"]) for row in r2[start:stop]
                 ),
-                "frequency_l1_difference": l1,
-                "supervised_rationale_tokens": int(
-                    r2_counts["supervised_rationale_tokens"]
-                ),
-                "supervised_rationale_token_total_equal": token_total_equal,
+                **control,
             }
         )
     return {
@@ -358,6 +575,8 @@ def _r2_r3_frequency_audit(
 def _training_budget(
     manifests: dict[str, list[dict[str, Any]]],
     config: dict[str, Any],
+    *,
+    pad_token_id: int,
 ) -> dict[str, Any]:
     micro_batch = int(config["micro_batch_size_per_device"])
     accumulation = int(config["gradient_accumulation_steps"])
@@ -368,31 +587,77 @@ def _training_budget(
     )
     per_arm = {}
     for arm, rows in manifests.items():
+        collator = FixedRARCollator(
+            pad_token_id=pad_token_id,
+            cutoff_len=cutoff,
+        )
+        collator_score_tokens = 0
+        collator_rationale_tokens = 0
+        collator_padded_tokens = 0
+        for start in range(0, len(rows), 128):
+            batch_rows = rows[start : start + 128]
+            batch = collator(
+                [
+                    {
+                        "input_ids": [0]
+                        * int(row["_audit_sequence_token_count"]),
+                        "score_token_positions": row[
+                            "score_token_positions"
+                        ],
+                        "rationale_token_positions": row[
+                            "rationale_token_positions"
+                        ],
+                        "rationale_active": row["rationale_active"],
+                        "cutoff_len": cutoff,
+                    }
+                    for row in batch_rows
+                ]
+            )
+            collator_score_tokens += int(batch["score_mask"].sum().item())
+            collator_rationale_tokens += int(
+                batch["rationale_mask"].sum().item()
+            )
+            collator_padded_tokens += int(batch["input_ids"].numel())
+        audited_score_tokens = sum(
+            int(row["_audit_score_mask_token_count"]) for row in rows
+        )
+        audited_rationale_tokens = sum(
+            int(row["_audit_rationale_mask_token_count"]) for row in rows
+        )
+        expected_padded_tokens = len(rows) * cutoff
+        if (
+            collator_score_tokens != audited_score_tokens
+            or collator_rationale_tokens != audited_rationale_tokens
+            or collator_padded_tokens != expected_padded_tokens
+        ):
+            raise AssertionError(f"{arm}: collator and rebuilt mask totals differ")
         per_arm[arm] = {
             "row_events": len(rows),
             "logical_epochs": FORMAL_EPOCHS,
-            "fixed_padded_input_tokens": len(rows) * cutoff,
+            "fixed_padded_input_tokens": expected_padded_tokens,
             "unpadded_sequence_tokens": sum(
-                int(row["sequence_token_count"]) for row in rows
+                int(row["_audit_sequence_token_count"]) for row in rows
             ),
             "minimum_sequence_tokens": min(
-                int(row["sequence_token_count"]) for row in rows
+                int(row["_audit_sequence_token_count"]) for row in rows
             ),
             "maximum_sequence_tokens": max(
-                int(row["sequence_token_count"]) for row in rows
+                int(row["_audit_sequence_token_count"]) for row in rows
             ),
             "score_supervised_events": sum(
                 bool(row["score_loss_active"]) for row in rows
             ),
-            "score_supervised_tokens": sum(
-                len(row["score_token_positions"]) for row in rows
-            ),
+            "score_supervised_tokens": audited_score_tokens,
             "rationale_supervised_events": sum(
                 bool(row["rationale_active"]) for row in rows
             ),
-            "rationale_supervised_tokens": sum(
-                len(row["rationale_token_positions"]) for row in rows
+            "rationale_supervised_tokens": audited_rationale_tokens,
+            "collator_boolean_score_mask_tokens": collator_score_tokens,
+            "collator_boolean_rationale_mask_tokens": (
+                collator_rationale_tokens
             ),
+            "collator_fixed_padded_tokens": collator_padded_tokens,
+            "collator_totals_match_independent_rebuild": True,
         }
     invariant = {
         "row_events_equal": len({value["row_events"] for value in per_arm.values()}) == 1,
@@ -460,14 +725,22 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--output-dir", type=Path, default=DEFAULT_OUTPUT)
     parser.add_argument("--config", type=Path, default=DEFAULT_CONFIG)
+    parser.add_argument("--train", type=Path, default=DEFAULT_TRAIN)
+    parser.add_argument(
+        "--tokenizer-report",
+        type=Path,
+        default=UPSTREAM_LOCK_PATHS["tokenizer_report_seed42"],
+    )
+    parser.add_argument("--tokenizer-path", type=Path, required=True)
     return parser.parse_args()
 
 
 def main() -> None:
     args = parse_args()
-    reject_eval_path(args.config)
-    if not args.config.exists():
-        raise FileNotFoundError(args.config)
+    for path in (args.config, args.train, args.tokenizer_report):
+        reject_eval_path(path)
+        if not path.exists():
+            raise FileNotFoundError(path)
     config = json.loads(args.config.read_text(encoding="utf-8"))
     if config.get("status") != "CANDIDATE_NOT_FROZEN":
         raise ValueError("manifest config must remain candidate-only")
@@ -483,18 +756,35 @@ def main() -> None:
         reject_eval_path(path)
         if not path.exists():
             raise FileNotFoundError(path)
+    reference_lock = json.loads(
+        UPSTREAM_LOCK_PATHS["reference_set_lock"].read_text(encoding="utf-8")
+    )
+    if file_sha256(args.train) != reference_lock["input"][
+        "rar0_source_hashes"
+    ]["train"]:
+        raise ValueError("train split differs from the frozen reference lock")
+    tokenizer_report = json.loads(
+        args.tokenizer_report.read_text(encoding="utf-8")
+    )
+    tokenizer = load_locked_tokenizer(args.tokenizer_path, tokenizer_report)
+    train_rows = read_jsonl(args.train, protect_split=True)
 
     prompt_cache_path = args.output_dir / "data/shared_prompt_cache.jsonl"
     reject_eval_path(prompt_cache_path)
     if not prompt_cache_path.exists():
         raise FileNotFoundError(prompt_cache_path)
     prompt_cache = read_jsonl(prompt_cache_path, protect_split=True)
-    if len(prompt_cache) != EXPECTED_TRAIN_ROWS:
-        raise ValueError("prompt cache does not contain exactly the train rows")
-    if [int(row["row_position"]) for row in prompt_cache] != list(
-        range(EXPECTED_TRAIN_ROWS)
+    prompt_by_id, rubric_validation = _validate_prompt_cache(
+        tokenizer,
+        train_rows,
+        prompt_cache,
+    )
+    if (
+        rubric_validation["metric_count"] != 12
+        or rubric_validation["metric_language_entry_count"] != 24
     ):
-        raise ValueError("prompt cache row order differs")
+        raise ValueError("canonical rubric registry coverage differs")
+    boundary_probes = tokenizer_boundary_probes(tokenizer)
 
     seed_reports = []
     private_hashes: dict[str, Any] = {
@@ -514,15 +804,30 @@ def main() -> None:
             if not path.exists():
                 raise FileNotFoundError(path)
             rows = read_jsonl(path, protect_split=True)
-            _require_exact_manifest(rows, arm=arm, seed=seed, config=config)
-            manifests[arm] = rows
+            manifests[arm] = _require_exact_manifest(
+                rows,
+                tokenizer,
+                prompt_by_id,
+                arm=arm,
+                seed=seed,
+                config=config,
+            )
             private_hashes["manifests_by_seed"][f"seed{seed}"][arm] = (
                 file_sha256(path)
             )
 
         cross_arm = _cross_arm_checks(manifests)
         frequency = _r2_r3_frequency_audit(manifests["R2"], manifests["R3"])
-        budget = _training_budget(manifests, config)
+        pad_token_id = tokenizer.pad_token_id
+        if pad_token_id is None:
+            pad_token_id = tokenizer.eos_token_id
+        if pad_token_id is None:
+            raise ValueError("locked tokenizer lacks pad/eos token ID")
+        budget = _training_budget(
+            manifests,
+            config,
+            pad_token_id=int(pad_token_id),
+        )
         seed_reports.append(
             {
                 "seed": seed,
@@ -551,6 +856,20 @@ def main() -> None:
         "rows_per_logical_epoch": EXPECTED_TRAIN_ROWS,
         "seed_reports": seed_reports,
         "private_artifact_hashes": private_hashes,
+        "independent_reconstruction": {
+            "prompt_cache_rebuilt_from_locked_train_and_tokenizer": True,
+            "target_and_masks_rebuilt_from_raw_manifest_score_rationale": True,
+            "chat_sequence_rebuilt_from_prompt_target_and_suffix": True,
+            "padded_boolean_mask_totals_recomputed": True,
+        },
+        "rubric_registry_validation": {
+            **rubric_validation,
+            "registry_sha256": file_sha256(DEFAULT_RUBRIC_REGISTRY),
+        },
+        "formal_tokenizer_boundary_probes": boundary_probes,
+        "tokenizer_lock_sha256": tokenizer_report["tokenizer_lock"][
+            "tokenizer_lock_sha256"
+        ],
         "config_sha256": file_sha256(args.config),
         "source_hashes": {
             name: file_sha256(path) for name, path in SOURCE_PATHS.items()
@@ -582,6 +901,12 @@ def main() -> None:
             "logical_epochs": report["logical_epochs"],
             "rows_per_logical_epoch": report["rows_per_logical_epoch"],
             "private_artifact_hashes": private_hashes,
+            "independent_reconstruction": report["independent_reconstruction"],
+            "rubric_registry_validation": report["rubric_registry_validation"],
+            "formal_tokenizer_boundary_probes": (
+                report["formal_tokenizer_boundary_probes"]
+            ),
+            "tokenizer_lock_sha256": report["tokenizer_lock_sha256"],
             "candidate_report_sha256": file_sha256(report_path),
             "config_sha256": report["config_sha256"],
             "source_hashes": report["source_hashes"],
