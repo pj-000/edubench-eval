@@ -1,0 +1,41 @@
+{
+  "configuration_frozen": true,
+  "configuration_sha256": "291a3fa055f5ef07ac0f1bc39f67f3b1c9d13219da0c3e3e801d9a9df29d5318",
+  "dev_accessed": false,
+  "formal_training_allowed": false,
+  "forward_backward_allowed": false,
+  "invalidation_rule": "Any configuration, frozen-manifest lock, reviewed candidate, or runtime-source hash change invalidates this freeze.",
+  "materialized_manifest_frozen_lock_sha256": "8b5fffce6b54804f834499643953deae23393a7764c0652d0fd7df2214b20713",
+  "review_gate": {
+    "candidate_lock_sha256": "a69b7c4594d86d8dbffa432550d0d69a0d39bd67785c89dc8045abf676e4ee0a",
+    "candidate_report_sha256": "27186421a67aa5c0b324672e567280859295e3066201fbca5b97ae2cd07dc0aa",
+    "reviewed_commit": "d2762a427b8bed957459b04ba239a988ab3acea5",
+    "verdict": "TRAINING_CONFIGURATION_PASS"
+  },
+  "runtime_source_closure": {
+    "authorization_guard": "a8d54521d01336b23c1290bc6b15d8a934d4e30b5095f92f90417dad986a3e33",
+    "block_loss_and_collator": "0e9f6ad5ee9b59175f160a0d24c20e9e92ece348e39069996e4522382cc61800",
+    "edujudge_package_init": "e14d62632deed09164bee72b2b120785958662b9083c2abd3e4736fddbaccfc0",
+    "exp02_package_init": "701c13b855a58f535fff5f4588f4dba62d5acc41a4e41fdac8be8b48ce2a0ddc",
+    "exp54_package_init": "f3a89293c72fd63e5f8eb39c2e31c2845904201095774aa140249077050c0026",
+    "inference_contract": "5eda600beb28db066567f3f9bb7a158ddd8c416506c9689248d6cae0d58a3681",
+    "launcher": "ef7a9175c713e416f36ba025accca1ef85746c715d820729ec1f465fcb1abfe8",
+    "manifest_io_and_split_guard": "fb42526df4058b2dcca899c247df52edadb62905b61a67c6aee833cfa49787b2",
+    "prompt_cleaning": "82eaefd6c711f632a23d61e7591d5c447076e9e351134887b726d7db75a7d241",
+    "shared_io": "e19250fbf9b7a2013b61078d29100137ee6cefab76cd8dda01ab6888156f1364",
+    "text_normalization": "4642255f3aa0fdeeec089fc4364749943082df1a9decb992fd81aae64c1740e4",
+    "thesis_package_init": "e57921412997c9605bd75fa597e907b2c68b201d6f70279add396d93f978d4a3",
+    "thesis_src_package_init": "086f5bae4f890a7cc89ce4de1e476a3bb1315ff24c027064033213bc2cfb1326",
+    "training_contract": "a9b100c9446f2a0e011b1faf67f873b51d0aaacf08a75423c71b6c48360f5071",
+    "training_entrypoint": "15f4384b32fafa88f141fa50a8b23df733f4704d69a54073cdc3e31afce9422c",
+    "utils_package_init": "c42265d82bb338df21786306034519a3fa6bda1454babd175a42bc8994ec1a3b"
+  },
+  "runtime_source_closure_file_count": 16,
+  "runtime_source_closure_sha256": "e820ea658dba7e937e99f00008c343f867b5d4b6c61f3ab93f89f318a5852928",
+  "smoke_package_build_allowed": true,
+  "smoke_training_allowed": false,
+  "status": "TRAINING_CONFIGURATION_FROZEN_EXECUTION_NOT_AUTHORIZED",
+  "test_accessed": false,
+  "training_used": false,
+  "trust_anchor_install_allowed": false
+}

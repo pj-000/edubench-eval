@@ -1,0 +1,126 @@
+{
+  "arms": [
+    "S0",
+    "R1",
+    "R2",
+    "R3"
+  ],
+  "candidate_report_sha256": "c46e8258732b331c9ea3aa8d4c8398bc35585560925cd1acaccbfa393de7a198",
+  "checkpoint_selection_allowed": false,
+  "configuration_sha256": "291a3fa055f5ef07ac0f1bc39f67f3b1c9d13219da0c3e3e801d9a9df29d5318",
+  "dev_accessed": false,
+  "diagnostic_only": true,
+  "events_per_arm": 8,
+  "fixed_padded_token_budget_equal_across_arms": true,
+  "formal_training_allowed": false,
+  "formal_trust_anchor_lstat_checked_absent": true,
+  "forward_backward_allowed": false,
+  "full_r2_r3_activity_vectors_equal": true,
+  "full_source_manifest_hashes_verified": true,
+  "hyperparameter_selection_allowed": false,
+  "invalidation_rule": "Any plan, upstream lock, private subset, runtime source, selector, or package-builder hash change invalidates this freeze.",
+  "materialized_manifest_frozen_lock_sha256": "8b5fffce6b54804f834499643953deae23393a7764c0652d0fd7df2214b20713",
+  "optimizer_steps_per_arm": 1,
+  "private_artifact_hashes": {
+    "manifests_by_arm": {
+      "R1": "5bba74202fe2240e962cd57b655ba533cf6cd4af34916f1752dd46d603dc9b54",
+      "R2": "8a5b468dc27c4e675dfc547060ff568a14109d6dfad9155e297166b42261a241",
+      "R3": "a53a1fb27e7c1c24b14b9a3d898e7dcdf525589a3989d7a85662394508abceb4",
+      "S0": "4f256ec0a7cb4261a231d82dbbae6598bb538c7d2314dafdb59635d780282aee"
+    },
+    "prompt_cache": "d74b5c949953818eed935e6d73de7a26af4c53a793f5ab73ead96d2fcf48040d"
+  },
+  "private_rows_copied_without_materialized_field_changes": true,
+  "rationale_active_events_by_arm": {
+    "R1": 4,
+    "R2": 4,
+    "R3": 4,
+    "S0": 0
+  },
+  "same_event_vector_and_order_across_arms": true,
+  "same_score_vector_across_arms": true,
+  "schema_version": "exp54-smoke-training-v1",
+  "score_target_histogram": {
+    "1": 2,
+    "2": 2,
+    "3": 1,
+    "4": 1,
+    "5": 2
+  },
+  "selected_active_events": 4,
+  "selected_activity_vector_sha256": "10a4cf78c0cf823655deec840da9016dfe330b05d726e55c7cb00da9334076cd",
+  "selected_event_vector_sha256": "9620b2bfd2775b8dd0abb3c080a19b6788b08fd6158dd4952d61d71f7117a626",
+  "selected_inactive_events": 4,
+  "smoke_plan_sha256": "4d0c0e8c0644b38cc6f40675e04618f6623411c21ec1e69eb160904a7ec9d604",
+  "smoke_runtime_source_closure": {
+    "formal::authorization_guard": "a8d54521d01336b23c1290bc6b15d8a934d4e30b5095f92f90417dad986a3e33",
+    "formal::block_loss_and_collator": "0e9f6ad5ee9b59175f160a0d24c20e9e92ece348e39069996e4522382cc61800",
+    "formal::edujudge_package_init": "e14d62632deed09164bee72b2b120785958662b9083c2abd3e4736fddbaccfc0",
+    "formal::exp02_package_init": "701c13b855a58f535fff5f4588f4dba62d5acc41a4e41fdac8be8b48ce2a0ddc",
+    "formal::exp54_package_init": "f3a89293c72fd63e5f8eb39c2e31c2845904201095774aa140249077050c0026",
+    "formal::inference_contract": "5eda600beb28db066567f3f9bb7a158ddd8c416506c9689248d6cae0d58a3681",
+    "formal::launcher": "ef7a9175c713e416f36ba025accca1ef85746c715d820729ec1f465fcb1abfe8",
+    "formal::manifest_io_and_split_guard": "fb42526df4058b2dcca899c247df52edadb62905b61a67c6aee833cfa49787b2",
+    "formal::prompt_cleaning": "82eaefd6c711f632a23d61e7591d5c447076e9e351134887b726d7db75a7d241",
+    "formal::shared_io": "e19250fbf9b7a2013b61078d29100137ee6cefab76cd8dda01ab6888156f1364",
+    "formal::text_normalization": "4642255f3aa0fdeeec089fc4364749943082df1a9decb992fd81aae64c1740e4",
+    "formal::thesis_package_init": "e57921412997c9605bd75fa597e907b2c68b201d6f70279add396d93f978d4a3",
+    "formal::thesis_src_package_init": "086f5bae4f890a7cc89ce4de1e476a3bb1315ff24c027064033213bc2cfb1326",
+    "formal::training_contract": "a9b100c9446f2a0e011b1faf67f873b51d0aaacf08a75423c71b6c48360f5071",
+    "formal::training_entrypoint": "15f4384b32fafa88f141fa50a8b23df733f4704d69a54073cdc3e31afce9422c",
+    "formal::utils_package_init": "c42265d82bb338df21786306034519a3fa6bda1454babd175a42bc8994ec1a3b",
+    "smoke_authorization_guard": "e1cac479263fa954d9514de7156fe99fc1baaa642e4979b58be9b5caa39d4383",
+    "smoke_launcher": "8d8899a4edf6ba02626e330ce2df8014bf09c77656b9251bebc8cec2bed984ec",
+    "smoke_training_contract": "2ae043e3bb97626d6fc949a99f244f20dbcd2fe004d5435f56afa5ef842ebde6",
+    "smoke_training_entrypoint": "c09045f1727df44f08f4a4297ddbcef84093cec9ee04d7c8f81ec8378a105b78"
+  },
+  "smoke_runtime_source_closure_file_count": 20,
+  "smoke_runtime_source_closure_sha256": "0c28c82d74b7defc647488f4d70c60b0115a5b1afb870b6c34c3f51508637f37",
+  "smoke_subset_frozen": true,
+  "smoke_training_allowed": false,
+  "smoke_trust_anchor_lstat_checked_absent": true,
+  "source_epoch_index": 0,
+  "source_full_manifest_rows_per_arm": 7962,
+  "source_hashes": {
+    "package_auditor": "ffe74e16c5be04e13c2f32c1680ee3c6963d7db0887ae408bf40e476768a6dac",
+    "package_builder": "618f6a9188bd9e8b061a434518b0bf656b60c10a8187880b29518096b5de6771",
+    "smoke_authorization_guard": "e1cac479263fa954d9514de7156fe99fc1baaa642e4979b58be9b5caa39d4383",
+    "smoke_contract": "2ae043e3bb97626d6fc949a99f244f20dbcd2fe004d5435f56afa5ef842ebde6",
+    "smoke_entrypoint": "c09045f1727df44f08f4a4297ddbcef84093cec9ee04d7c8f81ec8378a105b78",
+    "smoke_launcher": "8d8899a4edf6ba02626e330ce2df8014bf09c77656b9251bebc8cec2bed984ec",
+    "training_configuration_freezer": "3ddb5fed87cc595da42655dcd0e1390d5d865673bdffad8c4b7df35d3cfc9c07"
+  },
+  "source_seed": 42,
+  "status": "SMOKE_TRAINING_PACKAGE_FROZEN_EXECUTION_NOT_AUTHORIZED",
+  "test_accessed": false,
+  "token_totals_by_arm": {
+    "R1": {
+      "fixed_padded_tokens": 16384,
+      "rationale_supervised_tokens": 117,
+      "score_supervised_tokens": 8,
+      "unpadded_sequence_tokens": 4922
+    },
+    "R2": {
+      "fixed_padded_tokens": 16384,
+      "rationale_supervised_tokens": 129,
+      "score_supervised_tokens": 8,
+      "unpadded_sequence_tokens": 4934
+    },
+    "R3": {
+      "fixed_padded_tokens": 16384,
+      "rationale_supervised_tokens": 114,
+      "score_supervised_tokens": 8,
+      "unpadded_sequence_tokens": 4919
+    },
+    "S0": {
+      "fixed_padded_tokens": 16384,
+      "rationale_supervised_tokens": 0,
+      "score_supervised_tokens": 8,
+      "unpadded_sequence_tokens": 4805
+    }
+  },
+  "train_only_path_guard_enforced": true,
+  "training_configuration_frozen_lock_sha256": "85c098fda8af2d852874107249dbf89c03b0b59424fad8336096ffdaa37d31f7",
+  "training_used": false,
+  "trust_anchor_install_allowed": false
+}
