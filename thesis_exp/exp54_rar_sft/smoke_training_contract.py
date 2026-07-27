@@ -19,7 +19,11 @@ SMOKE_EVENTS_PER_ARM = SMOKE_ACTIVE_EVENTS + SMOKE_INACTIVE_EVENTS
 SMOKE_MICRO_BATCH_SIZE = 2
 SMOKE_GRADIENT_ACCUMULATION_STEPS = 4
 SMOKE_OPTIMIZER_STEPS_PER_ARM = 1
+SMOKE_MAX_INVOCATIONS_PER_ARM = 1
 SMOKE_SELECTOR_NAMESPACE = "exp54-smoke-selector-v1"
+REVIEWED_SMOKE_PACKAGE_COMMIT = (
+    "e3c642abca96f3f88034caecfae30fda596c2827"
+)
 SMOKE_ARMS = ("S0", "R1", "R2", "R3")
 SMOKE_SELECTION_SLOTS = (
     (True, 1),
@@ -35,6 +39,8 @@ DEFAULT_OUTPUT = (
     REPO_ROOT / "thesis_exp/outputs/exp54_rar_sft/rar_v2"
 )
 DEFAULT_PRIVATE_SMOKE_DIR = DEFAULT_OUTPUT / "data/smoke_v1_stratified"
+DEFAULT_SMOKE_OUTPUT_ROOT = DEFAULT_OUTPUT / "smoke_runs"
+DEFAULT_SMOKE_CLAIM_ROOT = Path("/var/lib/edubench/exp54-smoke")
 DEFAULT_SMOKE_PLAN = (
     REPO_ROOT
     / "thesis_exp/exp54_rar_sft/configs/smoke_training_plan.json"
@@ -109,6 +115,7 @@ def validate_smoke_plan(plan: dict[str, Any]) -> None:
             SMOKE_GRADIENT_ACCUMULATION_STEPS
         ),
         "optimizer_steps_per_arm": SMOKE_OPTIMIZER_STEPS_PER_ARM,
+        "max_invocations_per_arm": SMOKE_MAX_INVOCATIONS_PER_ARM,
         "shuffle": False,
         "drop_last": False,
         "packing": False,
@@ -117,6 +124,9 @@ def validate_smoke_plan(plan: dict[str, Any]) -> None:
         "independent_base_reload_per_arm": True,
         "same_event_vector_across_arms": True,
         "same_training_budget_across_arms": True,
+        "read_once_authenticated_context_required": True,
+        "atomic_per_arm_claim_required": True,
+        "authorization_fixed_output_directory_required": True,
         "diagnostic_only": True,
         "hyperparameter_selection_allowed": False,
         "checkpoint_selection_allowed": False,
@@ -152,6 +162,7 @@ def validate_smoke_plan(plan: dict[str, Any]) -> None:
         "score_supervision_present_for_every_event": True,
         "rationale_mask_matches_activity_for_every_event": True,
         "adapter_only_model_checkpoint": True,
+        "adapter_tensor_key_shape_dtype_exact_match": True,
         "no_base_weight_file_in_output": True,
         "no_dev_or_test_access": True,
         "result_not_usable_for_model_or_hyperparameter_selection": True,

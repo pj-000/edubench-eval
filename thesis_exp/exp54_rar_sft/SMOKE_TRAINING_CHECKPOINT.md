@@ -105,9 +105,9 @@ edges, or human rationale text.
 Public hashes:
 
 - smoke package report:
-  `c46e8258732b331c9ea3aa8d4c8398bc35585560925cd1acaccbfa393de7a198`
+  `35ab0cfed0e4e6745887ef46b605789e8ddcb2f39c8dfef21c0db27fd875acad`
 - smoke package frozen lock:
-  `296f5e956db825f3083a99dce7352b9aace11f6bbb6a8438304f0324121c3d64`
+  `90509b87d19ec93da6e0ebc51560cf500ae94181ce1c1a64c36d24001785b150`
 
 The independent auditor reconstructs all eight selections from the frozen full
 manifests without importing the production builder, then verifies every
@@ -125,7 +125,8 @@ The smoke runner uses a separate trust anchor:
 The formal-training trust anchor is not reused. A future
 `SMOKE_PACKAGE_PASS` authorization must bind:
 
-- the exact reviewed smoke-package commit;
+- the exact reviewed smoke-package commit
+  `e3c642abca96f3f88034caecfae30fda596c2827`;
 - the training-configuration frozen-lock SHA-256;
 - the smoke-package frozen-lock SHA-256;
 - the smoke-plan SHA-256;
@@ -134,6 +135,9 @@ The formal-training trust anchor is not reused. A future
 - exactly arms S0/R1/R2/R3;
 - exactly seed 42;
 - exactly one optimizer step per arm;
+- one campaign ID, one unique run ID and one fixed output directory per arm;
+- `max_invocations_per_arm=1`;
+- claim root `/var/lib/edubench/exp54-smoke`;
 - `formal_training_allowed=false`;
 - `dev_accessed=false`;
 - `test_accessed=false`;
@@ -143,6 +147,14 @@ The exact authorization-file SHA-256 must then be installed externally as a
 root-owned, non-symlink, non-group/other-writable file. Until that happens,
 the runner hard-fails before model verification/loading, CUDA initialization,
 output creation, forward, or backward.
+
+The guard reads the authorization, configuration, plan, smoke lock, and
+configuration lock once each; every digest and parsed object comes from the
+same byte payload. Private manifests and the prompt cache follow the same
+read-once rule. After authorization, the runner atomically creates one
+non-reusable `<arm>.claimed` file in the root-managed append-only campaign
+directory, then atomically reserves the authorization-bound output directory.
+Claim failure occurs before model verification or CUDA initialization.
 
 ## Acceptance after a future authorized run
 
@@ -154,7 +166,10 @@ Each arm must independently satisfy:
 - finite positive pre-clipping gradient norm;
 - score supervision on every event;
 - rationale masks exactly matching activity;
-- adapter-only model checkpoint with no base-model weight file;
+- adapter-only model checkpoint whose safetensors keys, shapes, dtypes, and
+  parameter count exactly match the in-memory PEFT LoRA state;
+- no extra safetensors, binary/index weight file, symlink, or base-model
+  tensor in the output tree;
 - no dev/test access;
 - result marked diagnostic-only and unusable for model selection.
 

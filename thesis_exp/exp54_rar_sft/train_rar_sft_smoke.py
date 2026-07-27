@@ -1,29 +1,27 @@
-"""Execute one authorized, diagnostic-only Exp54 smoke optimizer step.
-
-The smoke path is intentionally separate from formal training. It consumes
-only the frozen eight-event train subset and refuses before model loading,
-CUDA initialization, output creation, forward, or backward unless a reviewed
-external smoke authorization matches the root-owned trust anchor.
-"""
+"""Execute one authenticated, claimed, diagnostic-only Exp54 smoke step."""
 
 from __future__ import annotations
 
 import argparse
 import json
 import math
+import re
+import stat
+from dataclasses import dataclass
 from pathlib import Path
-from typing import Any
+from typing import Any, Callable, Mapping
 
-from thesis_exp.exp54_rar_sft.audit_rar0_alignment import (
-    file_sha256,
-    reject_eval_path,
-)
+from thesis_exp.exp54_rar_sft.audit_rar0_alignment import reject_eval_path
 from thesis_exp.exp54_rar_sft.block_loss import (
     FixedRARCollator,
     blockwise_causal_loss,
-    load_materialized_rows,
 )
 from thesis_exp.exp54_rar_sft.smoke_authorization_guard import (
+    AuthenticatedSmokeContext,
+    ReadOnceBytes,
+    claim_smoke_invocation,
+    read_regular_bytes_once,
+    reserve_smoke_output_directory,
     verify_smoke_authorization,
 )
 from thesis_exp.exp54_rar_sft.smoke_training_contract import (
@@ -42,8 +40,11 @@ from thesis_exp.exp54_rar_sft.smoke_training_contract import (
     smoke_prompt_cache_path,
     validate_smoke_plan,
 )
+from thesis_exp.exp54_rar_sft.training_contract import (
+    require_canonical_positions,
+    token_ids_sha256,
+)
 from thesis_exp.exp54_rar_sft.train_rar_sft import (
-    _read_object,
     _require_runtime,
     _set_determinism,
     require_adapter_free_base_model,
@@ -53,28 +54,166 @@ from thesis_exp.exp54_rar_sft.train_rar_sft import (
 )
 
 
+_LORA_KEY_RE = re.compile(r"(?:^|\.)lora_[AB](?:\.|$)")
+_DTYPE_TO_SAFETENSORS = {
+    "torch.bool": "BOOL",
+    "torch.uint8": "U8",
+    "torch.int8": "I8",
+    "torch.int16": "I16",
+    "torch.int32": "I32",
+    "torch.int64": "I64",
+    "torch.float16": "F16",
+    "torch.bfloat16": "BF16",
+    "torch.float32": "F32",
+    "torch.float64": "F64",
+}
+
+
+@dataclass(frozen=True)
+class AuthenticatedPrivateSmokeData:
+    rows: list[dict[str, Any]]
+    manifest_path: Path
+    manifest_sha256: str
+    prompt_cache_path: Path
+    prompt_cache_sha256: str
+
+
+def _parse_jsonl_payload(
+    material: ReadOnceBytes,
+    *,
+    label: str,
+) -> list[dict[str, Any]]:
+    try:
+        text = material.payload.decode("utf-8")
+    except UnicodeDecodeError as exc:
+        raise ValueError(f"{label}: invalid UTF-8") from exc
+    rows: list[dict[str, Any]] = []
+    for line_number, line in enumerate(text.splitlines(), start=1):
+        if not line.strip():
+            continue
+        try:
+            value = json.loads(line)
+        except json.JSONDecodeError as exc:
+            raise ValueError(
+                f"{label}: invalid JSON at line {line_number}"
+            ) from exc
+        if not isinstance(value, dict):
+            raise ValueError(f"{label}: line {line_number} is not an object")
+        rows.append(value)
+    return rows
+
+
+def _materialize_rows_from_read_once_payloads(
+    prompt_material: ReadOnceBytes,
+    manifest_material: ReadOnceBytes,
+) -> list[dict[str, Any]]:
+    prompt_rows = _parse_jsonl_payload(
+        prompt_material,
+        label="smoke prompt cache",
+    )
+    manifest_rows = _parse_jsonl_payload(
+        manifest_material,
+        label="smoke manifest",
+    )
+    prompt_by_id = {
+        str(row["prompt_cache_id"]): row for row in prompt_rows
+    }
+    if len(prompt_by_id) != len(prompt_rows):
+        raise ValueError("smoke prompt cache contains duplicate IDs")
+    output: list[dict[str, Any]] = []
+    seen_events: set[str] = set()
+    for row in manifest_rows:
+        event_id = str(row["base_event_id"])
+        if event_id in seen_events:
+            raise ValueError(f"duplicate smoke event: {event_id}")
+        seen_events.add(event_id)
+        prompt = prompt_by_id.get(str(row["prompt_cache_id"]))
+        if prompt is None:
+            raise ValueError(f"{event_id}: smoke prompt is missing")
+        if str(prompt["record_id"]) != str(row["record_id"]):
+            raise ValueError(f"{event_id}: smoke prompt record differs")
+        if prompt["prompt_token_ids_sha256"] != row[
+            "prompt_token_ids_sha256"
+        ]:
+            raise ValueError(f"{event_id}: smoke prompt hash differs")
+        input_ids = (
+            list(prompt["prompt_token_ids"])
+            + list(row["target_token_ids"])
+            + list(row["assistant_suffix_token_ids"])
+        )
+        if len(input_ids) != int(row["sequence_token_count"]):
+            raise ValueError(f"{event_id}: smoke sequence length differs")
+        if token_ids_sha256(input_ids) != row["full_token_ids_sha256"]:
+            raise ValueError(f"{event_id}: smoke sequence hash differs")
+        target_ids = list(row["target_token_ids"])
+        local_score = require_canonical_positions(
+            row["score_token_positions_in_target"],
+            field=f"{event_id}: local score positions",
+        )
+        local_rationale = require_canonical_positions(
+            row["rationale_token_positions_in_target"],
+            field=f"{event_id}: local rationale positions",
+        )
+        if row["score_token_ids"] != [
+            target_ids[position] for position in local_score
+        ]:
+            raise ValueError(f"{event_id}: smoke score token IDs differ")
+        if row["rationale_token_ids"] != [
+            target_ids[position] for position in local_rationale
+        ]:
+            raise ValueError(f"{event_id}: smoke rationale token IDs differ")
+        score_positions = require_canonical_positions(
+            row["score_token_positions"],
+            field=f"{event_id}: score positions",
+        )
+        rationale_positions = require_canonical_positions(
+            row["rationale_token_positions"],
+            field=f"{event_id}: rationale positions",
+        )
+        if token_ids_sha256(score_positions) != row["score_mask_sha256"]:
+            raise ValueError(f"{event_id}: smoke score mask hash differs")
+        if token_ids_sha256(rationale_positions) != row[
+            "rationale_mask_sha256"
+        ]:
+            raise ValueError(f"{event_id}: smoke rationale mask hash differs")
+        valid_positions = set(range(len(input_ids)))
+        if not set(score_positions).issubset(valid_positions):
+            raise ValueError(f"{event_id}: smoke score mask is outside sequence")
+        if not set(rationale_positions).issubset(valid_positions):
+            raise ValueError(
+                f"{event_id}: smoke rationale mask is outside sequence"
+            )
+        if set(score_positions) & set(rationale_positions):
+            raise ValueError(f"{event_id}: smoke loss masks overlap")
+        output.append(
+            {
+                "base_event_id": event_id,
+                "input_ids": input_ids,
+                "score_token_positions": score_positions,
+                "rationale_token_positions": rationale_positions,
+                "rationale_active": bool(row["rationale_active"]),
+                "cutoff_len": int(row["cutoff_len"]),
+                "full_token_ids_sha256": str(row["full_token_ids_sha256"]),
+            }
+        )
+    return output
+
+
 def _verify_frozen_smoke_package(
     *,
-    smoke_lock_path: Path,
-    smoke_plan_path: Path,
+    context: AuthenticatedSmokeContext,
     private_smoke_dir: Path,
     arm: str,
-) -> tuple[dict[str, Any], Path, Path]:
-    for path in (
-        smoke_lock_path,
-        smoke_plan_path,
-        private_smoke_dir,
-    ):
-        reject_eval_path(path)
-    smoke_lock = _read_object(smoke_lock_path)
-    smoke_plan = _read_object(smoke_plan_path)
-    validate_smoke_plan(smoke_plan)
+) -> AuthenticatedPrivateSmokeData:
+    reject_eval_path(private_smoke_dir)
+    validate_smoke_plan(context.smoke_plan)
+    smoke_lock = context.smoke_lock
     if smoke_lock.get("status") != (
         "SMOKE_TRAINING_PACKAGE_FROZEN_EXECUTION_NOT_AUTHORIZED"
     ):
         raise PermissionError("smoke package is not frozen")
-    if smoke_lock.get("smoke_plan_sha256") != file_sha256(smoke_plan_path):
-        raise ValueError("smoke package does not bind the smoke plan")
+    if smoke_lock.get("smoke_plan_sha256") != context.smoke_plan_sha256:
+        raise ValueError("authenticated smoke plan hash differs")
     if (
         smoke_lock.get("smoke_subset_frozen") is not True
         or smoke_lock.get("trust_anchor_install_allowed")
@@ -89,38 +228,159 @@ def _verify_frozen_smoke_package(
 
     manifest_path = smoke_manifest_path(private_smoke_dir, arm)
     prompt_cache_path = smoke_prompt_cache_path(private_smoke_dir)
+    for path in (manifest_path, prompt_cache_path):
+        reject_eval_path(path)
+    manifest_material = read_regular_bytes_once(
+        manifest_path,
+        max_bytes=64 * 1024 * 1024,
+    )
+    prompt_material = read_regular_bytes_once(
+        prompt_cache_path,
+        max_bytes=64 * 1024 * 1024,
+    )
     private_hashes = smoke_lock.get("private_artifact_hashes", {})
-    if file_sha256(manifest_path) != private_hashes.get(
+    if manifest_material.sha256 != private_hashes.get(
         "manifests_by_arm", {}
     ).get(arm):
         raise ValueError("private smoke manifest differs from frozen hash")
-    if file_sha256(prompt_cache_path) != private_hashes.get(
-        "prompt_cache"
-    ):
+    if prompt_material.sha256 != private_hashes.get("prompt_cache"):
         raise ValueError("private smoke prompt cache differs from frozen hash")
-    return smoke_lock, manifest_path, prompt_cache_path
+    rows = _materialize_rows_from_read_once_payloads(
+        prompt_material,
+        manifest_material,
+    )
+    return AuthenticatedPrivateSmokeData(
+        rows=rows,
+        manifest_path=manifest_path,
+        manifest_sha256=manifest_material.sha256,
+        prompt_cache_path=prompt_cache_path,
+        prompt_cache_sha256=prompt_material.sha256,
+    )
 
 
-def _adapter_artifact_hashes(adapter_dir: Path) -> dict[str, str]:
-    files = sorted(path for path in adapter_dir.rglob("*") if path.is_file())
-    relative_names = [path.relative_to(adapter_dir).as_posix() for path in files]
-    forbidden = [
+def _adapter_state_spec(
+    state: Mapping[str, Any],
+    *,
+    expected_parameter_count: int,
+) -> dict[str, dict[str, Any]]:
+    if not state:
+        raise RuntimeError("PEFT adapter state is empty")
+    spec: dict[str, dict[str, Any]] = {}
+    total = 0
+    for key, tensor in state.items():
+        if not isinstance(key, str) or not _LORA_KEY_RE.search(key):
+            raise RuntimeError(f"non-LoRA key in expected adapter state: {key}")
+        shape = tuple(int(value) for value in tensor.shape)
+        dtype = _DTYPE_TO_SAFETENSORS.get(str(tensor.dtype))
+        if dtype is None:
+            raise RuntimeError(f"unsupported adapter dtype: {tensor.dtype}")
+        numel = int(tensor.numel())
+        if numel != math.prod(shape):
+            raise RuntimeError(f"adapter tensor numel differs for {key}")
+        total += numel
+        spec[key] = {
+            "shape": list(shape),
+            "dtype": dtype,
+            "numel": numel,
+        }
+    if total != expected_parameter_count:
+        raise RuntimeError("expected adapter-state parameter count differs")
+    return dict(sorted(spec.items()))
+
+
+def _adapter_artifact_hashes(
+    adapter_dir: Path,
+    *,
+    expected_tensor_spec: dict[str, dict[str, Any]],
+    expected_parameter_count: int,
+    safe_open_fn: Callable[..., Any] | None = None,
+) -> dict[str, str]:
+    try:
+        root_metadata = adapter_dir.lstat()
+    except FileNotFoundError as exc:
+        raise RuntimeError("smoke adapter directory is missing") from exc
+    if stat.S_ISLNK(root_metadata.st_mode) or not stat.S_ISDIR(
+        root_metadata.st_mode
+    ):
+        raise RuntimeError("smoke adapter root must be a real directory")
+    symlinks: list[str] = []
+    regular_files: list[Path] = []
+    for path in adapter_dir.rglob("*"):
+        relative = path.relative_to(adapter_dir).as_posix()
+        if path.is_symlink():
+            symlinks.append(relative)
+        elif path.is_file():
+            regular_files.append(path)
+    if symlinks:
+        raise RuntimeError(f"smoke adapter output contains symlinks: {symlinks}")
+    relative_names = {
+        path.relative_to(adapter_dir).as_posix() for path in regular_files
+    }
+    required = {"adapter_config.json", "adapter_model.safetensors"}
+    if not required.issubset(relative_names):
+        raise RuntimeError("smoke output lacks required adapter artifacts")
+    undeclared_weight_files = sorted(
         name
         for name in relative_names
-        if name == "model.safetensors"
-        or name == "pytorch_model.bin"
-        or name.startswith("model-")
-        or name.startswith("pytorch_model-")
-    ]
-    if forbidden:
-        raise RuntimeError(f"smoke output contains base weights: {forbidden}")
-    if "adapter_config.json" not in relative_names:
-        raise RuntimeError("smoke output lacks adapter_config.json")
-    if "adapter_model.safetensors" not in relative_names:
-        raise RuntimeError("smoke output lacks adapter_model.safetensors")
+        if (
+            name.endswith(".safetensors")
+            or name.endswith(".bin")
+            or name.endswith(".index.json")
+        )
+        and name != "adapter_model.safetensors"
+    )
+    if undeclared_weight_files:
+        raise RuntimeError(
+            "smoke output contains undeclared weight artifacts: "
+            f"{undeclared_weight_files}"
+        )
+    if safe_open_fn is None:
+        from safetensors import safe_open
+
+        safe_open_fn = safe_open
+    tensor_path = adapter_dir / "adapter_model.safetensors"
+    try:
+        with safe_open_fn(
+            str(tensor_path),
+            framework="pt",
+            device="cpu",
+        ) as handle:
+            actual_keys = set(handle.keys())
+            expected_keys = set(expected_tensor_spec)
+            if actual_keys != expected_keys:
+                missing = sorted(expected_keys - actual_keys)
+                extra = sorted(actual_keys - expected_keys)
+                raise RuntimeError(
+                    "saved adapter tensor keys differ: "
+                    f"missing={missing}, extra={extra}"
+                )
+            total = 0
+            for key in sorted(actual_keys):
+                if not _LORA_KEY_RE.search(key):
+                    raise RuntimeError(f"saved non-LoRA tensor key: {key}")
+                tensor_slice = handle.get_slice(key)
+                shape = [int(value) for value in tensor_slice.get_shape()]
+                dtype = str(tensor_slice.get_dtype())
+                expected = expected_tensor_spec[key]
+                if shape != expected["shape"]:
+                    raise RuntimeError(f"saved adapter shape differs for {key}")
+                if dtype != expected["dtype"]:
+                    raise RuntimeError(f"saved adapter dtype differs for {key}")
+                total += math.prod(shape)
+    except RuntimeError:
+        raise
+    except Exception as exc:
+        raise RuntimeError("adapter_model.safetensors is invalid") from exc
+    if total != expected_parameter_count:
+        raise RuntimeError("saved adapter parameter count differs")
     return {
-        path.relative_to(adapter_dir).as_posix(): file_sha256(path)
-        for path in files
+        path.relative_to(adapter_dir).as_posix(): (
+            read_regular_bytes_once(
+                path,
+                max_bytes=512 * 1024 * 1024,
+            ).sha256
+        )
+        for path in sorted(regular_files)
     }
 
 
@@ -133,34 +393,40 @@ def run_smoke_training(
     smoke_package_lock_path: Path,
     smoke_authorization_path: Path | None,
     private_smoke_dir: Path,
-    output_dir: Path,
 ) -> None:
-    """Run exactly one optimizer step after every external hard gate."""
+    """Run exactly one arm-specific optimizer step after a one-use claim."""
     if arm not in SMOKE_ARMS:
         raise ValueError(f"unsupported smoke arm: {arm}")
-    config = _read_object(config_path)
-    validate_training_configuration(config)
-    smoke_lock, manifest_path, prompt_cache_path = (
-        _verify_frozen_smoke_package(
-            smoke_lock_path=smoke_package_lock_path,
-            smoke_plan_path=smoke_plan_path,
-            private_smoke_dir=private_smoke_dir,
-            arm=arm,
-        )
-    )
-    verify_smoke_authorization(
+    context = verify_smoke_authorization(
         authorization_path=smoke_authorization_path,
         config_path=config_path,
+        smoke_plan_path=smoke_plan_path,
         smoke_package_lock_path=smoke_package_lock_path,
         training_configuration_frozen_lock_path=(
             training_configuration_frozen_lock_path
         ),
         arm=arm,
     )
-    if output_dir.exists():
-        raise FileExistsError(output_dir)
+    config = context.config
+    validate_training_configuration(config)
+    private_data = _verify_frozen_smoke_package(
+        context=context,
+        private_smoke_dir=private_smoke_dir,
+        arm=arm,
+    )
+    rows = private_data.rows
+    if len(rows) != SMOKE_EVENTS_PER_ARM:
+        raise ValueError("smoke row count differs")
+    observed_active = sum(bool(row["rationale_active"]) for row in rows)
+    expected_active = context.smoke_lock[
+        "rationale_active_events_by_arm"
+    ][arm]
+    if observed_active != expected_active:
+        raise ValueError("smoke rationale activity differs from frozen lock")
+    claim = claim_smoke_invocation(context, arm=arm)
+    output_dir = reserve_smoke_output_directory(claim)
 
-    # No model weights, CUDA state, output, forward, or backward before here.
+    # Claim and output reservation precede model, CUDA, forward, and backward.
     verify_model_snapshot(config)
     validate_model_directory_listing(
         Path(config["model"]["local_path"]),
@@ -173,20 +439,16 @@ def run_smoke_training(
     _set_determinism(SMOKE_SOURCE_SEED, config)
 
     import torch
-    from peft import LoraConfig, get_peft_model
+    from peft import (
+        LoraConfig,
+        get_peft_model,
+        get_peft_model_state_dict,
+    )
     from torch.utils.data import DataLoader
     from transformers import (
         AutoModelForCausalLM,
         get_cosine_schedule_with_warmup,
     )
-
-    rows = load_materialized_rows(prompt_cache_path, manifest_path)
-    if len(rows) != SMOKE_EVENTS_PER_ARM:
-        raise ValueError("smoke row count differs")
-    observed_active = sum(bool(row["rationale_active"]) for row in rows)
-    expected_active = smoke_lock["rationale_active_events_by_arm"][arm]
-    if observed_active != expected_active:
-        raise ValueError("smoke rationale activity differs from frozen lock")
 
     model = AutoModelForCausalLM.from_pretrained(
         config["model"]["local_path"],
@@ -223,6 +485,10 @@ def run_smoke_training(
         "expected_trainable_parameters"
     ]:
         raise RuntimeError("smoke LoRA parameter count differs")
+    expected_adapter_spec = _adapter_state_spec(
+        get_peft_model_state_dict(model),
+        expected_parameter_count=lora["expected_trainable_parameters"],
+    )
     optimization = config["optimization"]
     optimizer = torch.optim.AdamW(
         trainable,
@@ -317,12 +583,17 @@ def run_smoke_training(
     if observed_active > 0 and rationale_token_count <= 0:
         raise AssertionError("active smoke arm lacks rationale supervision")
 
-    output_dir.mkdir(parents=True)
     adapter_dir = output_dir / "adapter"
     model.save_pretrained(adapter_dir, safe_serialization=True)
-    adapter_hashes = _adapter_artifact_hashes(adapter_dir)
+    adapter_hashes = _adapter_artifact_hashes(
+        adapter_dir,
+        expected_tensor_spec=expected_adapter_spec,
+        expected_parameter_count=lora["expected_trainable_parameters"],
+    )
     result = {
         "status": "SMOKE_RUN_COMPLETED_DIAGNOSTIC_ONLY",
+        "smoke_campaign_id": claim.campaign_id,
+        "run_id": claim.run_id,
         "arm": arm,
         "seed": SMOKE_SOURCE_SEED,
         "events": SMOKE_EVENTS_PER_ARM,
@@ -338,16 +609,19 @@ def run_smoke_training(
         ),
         "preclip_gradient_norm": gradient_norm_value,
         "adapter_artifact_hashes": adapter_hashes,
-        "configuration_sha256": file_sha256(config_path),
-        "training_configuration_frozen_lock_sha256": file_sha256(
-            training_configuration_frozen_lock_path
+        "adapter_tensor_spec": expected_adapter_spec,
+        "adapter_tensor_parameter_count": lora[
+            "expected_trainable_parameters"
+        ],
+        "authorization_sha256": context.authorization_sha256,
+        "configuration_sha256": context.config_sha256,
+        "training_configuration_frozen_lock_sha256": (
+            context.training_configuration_lock_sha256
         ),
-        "smoke_plan_sha256": file_sha256(smoke_plan_path),
-        "smoke_package_frozen_lock_sha256": file_sha256(
-            smoke_package_lock_path
-        ),
-        "smoke_manifest_sha256": file_sha256(manifest_path),
-        "smoke_prompt_cache_sha256": file_sha256(prompt_cache_path),
+        "smoke_plan_sha256": context.smoke_plan_sha256,
+        "smoke_package_frozen_lock_sha256": context.smoke_lock_sha256,
+        "smoke_manifest_sha256": private_data.manifest_sha256,
+        "smoke_prompt_cache_sha256": private_data.prompt_cache_sha256,
         "diagnostic_only": True,
         "hyperparameter_selection_allowed": False,
         "checkpoint_selection_allowed": False,
@@ -372,11 +646,7 @@ def parse_args() -> argparse.Namespace:
         type=Path,
         default=DEFAULT_TRAINING_CONFIG_FROZEN_LOCK,
     )
-    parser.add_argument(
-        "--smoke-plan",
-        type=Path,
-        default=DEFAULT_SMOKE_PLAN,
-    )
+    parser.add_argument("--smoke-plan", type=Path, default=DEFAULT_SMOKE_PLAN)
     parser.add_argument(
         "--smoke-package-lock",
         type=Path,
@@ -388,7 +658,6 @@ def parse_args() -> argparse.Namespace:
         type=Path,
         default=DEFAULT_PRIVATE_SMOKE_DIR,
     )
-    parser.add_argument("--output-dir", type=Path, required=True)
     return parser.parse_args()
 
 
@@ -404,7 +673,6 @@ def main() -> None:
         smoke_package_lock_path=args.smoke_package_lock,
         smoke_authorization_path=args.smoke_authorization,
         private_smoke_dir=args.private_smoke_dir,
-        output_dir=args.output_dir,
     )
 
 

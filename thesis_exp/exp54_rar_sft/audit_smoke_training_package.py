@@ -36,15 +36,19 @@ from thesis_exp.exp54_rar_sft.smoke_authorization_guard import (
     smoke_runtime_source_closure,
 )
 from thesis_exp.exp54_rar_sft.smoke_training_contract import (
+    DEFAULT_SMOKE_CLAIM_ROOT,
     DEFAULT_MATERIALIZED_MANIFEST_FROZEN_LOCK,
     DEFAULT_PRIVATE_SMOKE_DIR,
     DEFAULT_SMOKE_FROZEN_LOCK,
+    DEFAULT_SMOKE_OUTPUT_ROOT,
     DEFAULT_SMOKE_PLAN,
     DEFAULT_SMOKE_REPORT,
     DEFAULT_TRAINING_CONFIG_FROZEN_LOCK,
     DEFAULT_TRAINING_CONFIG,
+    REVIEWED_SMOKE_PACKAGE_COMMIT,
     SMOKE_ARMS,
     SMOKE_EVENTS_PER_ARM,
+    SMOKE_MAX_INVOCATIONS_PER_ARM,
     SMOKE_SELECTION_SLOTS,
     SMOKE_SOURCE_EPOCH_INDEX,
     selector_digest,
@@ -343,15 +347,41 @@ def audit_smoke_training_package(
         if frozen.get(name) != expected:
             raise ValueError(f"smoke lock differs at {name}")
 
+    expected_execution_controls = {
+        "reviewed_smoke_package_commit": REVIEWED_SMOKE_PACKAGE_COMMIT,
+        "max_invocations_per_arm": SMOKE_MAX_INVOCATIONS_PER_ARM,
+        "smoke_claim_root": str(DEFAULT_SMOKE_CLAIM_ROOT),
+        "smoke_output_root": str(DEFAULT_SMOKE_OUTPUT_ROOT),
+        "authorization_campaign_id_required": True,
+        "authorization_run_id_by_arm_required": True,
+        "authorization_output_dir_by_arm_required": True,
+        "read_once_authenticated_context_required": True,
+        "atomic_per_arm_claim_required": True,
+        "claim_directory_append_only_required": True,
+        "adapter_tensor_content_audit_required": True,
+    }
+    for name, artifact in (("report", report), ("lock", frozen)):
+        for field, expected in expected_execution_controls.items():
+            if artifact.get(field) != expected:
+                raise ValueError(
+                    f"smoke {name} execution control differs at {field}"
+                )
+
     closure = smoke_runtime_source_closure()
     if report.get("smoke_runtime_source_closure") != closure:
         raise ValueError("smoke report runtime closure differs")
     if frozen.get("smoke_runtime_source_closure") != closure:
         raise ValueError("smoke lock runtime closure differs")
-    if report.get("smoke_runtime_source_closure_sha256") != closure_sha256(
-        closure
-    ):
-        raise ValueError("smoke report runtime closure digest differs")
+    expected_closure_digest = closure_sha256(closure)
+    for name, artifact in (("report", report), ("lock", frozen)):
+        if artifact.get("smoke_runtime_source_closure_sha256") != (
+            expected_closure_digest
+        ):
+            raise ValueError(
+                f"smoke {name} runtime closure digest differs"
+            )
+        if artifact.get("smoke_runtime_source_closure_file_count") != 20:
+            raise ValueError(f"smoke {name} runtime closure count differs")
     source_paths = {
         "package_builder": (
             REPO_ROOT
