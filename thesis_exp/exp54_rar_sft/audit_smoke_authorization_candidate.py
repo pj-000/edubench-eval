@@ -57,6 +57,9 @@ DEFAULT_AUTHORIZATION_REPORT = (
 DEFAULT_AUTHORIZATION_INSTALL_PATH = Path(
     "/etc/edubench/exp54_smoke_authorization.json"
 )
+DEFAULT_STAGED_TRUST_ANCHOR_PATH = Path(
+    "/etc/edubench/exp54_smoke_authorization.sha256.staged"
+)
 EXPECTED_EXECUTION_OUTPUT_ROOT = Path(
     "/home/jpang/edubench-eval-exp2/thesis_exp/outputs/"
     "exp54_rar_sft/rar_v2/smoke_runs"
@@ -112,6 +115,9 @@ def _expected_campaign_plan() -> dict[str, Any]:
         "authorization_install_path": str(
             DEFAULT_AUTHORIZATION_INSTALL_PATH
         ),
+        "staged_trust_anchor_path": str(
+            DEFAULT_STAGED_TRUST_ANCHOR_PATH
+        ),
         "trust_anchor_install_path": str(
             TRUSTED_SMOKE_AUTHORIZATION_DIGEST_PATH
         ),
@@ -139,6 +145,7 @@ def audit_smoke_authorization_candidate(
     trusted_digest_install_path: Path = (
         TRUSTED_SMOKE_AUTHORIZATION_DIGEST_PATH
     ),
+    staged_digest_install_path: Path = DEFAULT_STAGED_TRUST_ANCHOR_PATH,
     formal_trusted_digest_path: Path = TRUSTED_AUTHORIZATION_DIGEST_PATH,
     claim_root_path: Path = DEFAULT_SMOKE_CLAIM_ROOT,
 ) -> dict[str, Any]:
@@ -146,6 +153,7 @@ def audit_smoke_authorization_candidate(
     for path, label in (
         (authorization_install_path, "installed authorization"),
         (trusted_digest_install_path, "installed smoke trust anchor"),
+        (staged_digest_install_path, "staged smoke trust anchor"),
         (formal_trusted_digest_path, "installed formal trust anchor"),
         (claim_root_path, "smoke claim root"),
     ):
@@ -292,6 +300,7 @@ def audit_smoke_authorization_candidate(
         "claim_root": str(plan["claim_root"]),
         "authorization_install_path": str(authorization_install_path),
         "trust_anchor_install_path": str(trusted_digest_install_path),
+        "staged_trust_anchor_path": str(staged_digest_install_path),
         "source_hashes": {
             name: sha256_file(path)
             for name, path in sorted(source_paths.items())
@@ -300,9 +309,13 @@ def audit_smoke_authorization_candidate(
         "authorization_digest_matches_exact_bytes": True,
         "installed_authorization_lstat_checked_absent": True,
         "installed_trust_anchor_lstat_checked_absent": True,
+        "staged_trust_anchor_lstat_checked_absent": True,
         "formal_trust_anchor_lstat_checked_absent": True,
         "claim_root_lstat_checked_absent": True,
         "output_campaign_lstat_checked_absent": True,
+        "preactivation_preflight_required": True,
+        "active_anchor_must_be_absent_during_preflight": True,
+        "formal_anchor_must_be_absent_during_preflight": True,
         "trust_anchor_install_allowed": False,
         "claim_creation_allowed": False,
         "model_loading_allowed": False,

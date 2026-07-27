@@ -16,7 +16,9 @@ Current state:
 - server filesystems: XFS
 - `/usr/bin/chattr` and `/usr/bin/lsattr`: available
 - installed authorization: absent
+- staged trust anchor: absent
 - installed trust anchor: absent
+- formal-training trust anchor: absent
 - claim root: absent
 - smoke output root: absent
 - claim creation: forbidden
@@ -34,6 +36,7 @@ The next review must bind the exact bytes and SHA-256 values of:
 - `build_smoke_authorization_candidate.py`
 - `audit_smoke_authorization_candidate.py`
 - `audit_installed_smoke_authorization.py`
+- `SMOKE_AUTHORIZATION_INSTALLATION_PLAN.md`
 
 The authorization binds the already-frozen smoke package lock, training
 configuration lock, materialized-manifest lock, smoke plan, and 20-file
@@ -53,7 +56,9 @@ symlinks:
 
 ```text
 /etc/edubench/exp54_smoke_authorization.json
+/etc/edubench/exp54_smoke_authorization.sha256.staged
 /etc/edubench/exp54_smoke_authorization.sha256
+/etc/edubench/exp54_authorization.sha256
 /var/lib/edubench/exp54-smoke
 /home/jpang/edubench-eval-exp2/thesis_exp/outputs/exp54_rar_sft/rar_v2/smoke_runs/exp54-smoke-b2e616e-v1
 ```
@@ -110,10 +115,10 @@ to:
 At this point execution must still fail because the trusted digest path is
 absent.
 
-### 4. Install the trust anchor last
+### 4. Install only the staged digest
 
 Install the reviewed one-line digest candidate through a temporary regular
-file in `/etc/edubench`. Before activation require:
+file in `/etc/edubench`. Require:
 
 - exact byte equality with the reviewed digest candidate;
 - a single lowercase 64-hex SHA-256 followed by one newline;
@@ -124,15 +129,25 @@ file in `/etc/edubench`. Before activation require:
 - all four claim files are absent;
 - all four final output directories are absent.
 
-Atomically rename the verified temporary digest file to:
+Atomically rename the verified temporary digest file only to:
+
+```text
+/etc/edubench/exp54_smoke_authorization.sha256.staged
+```
+
+The production smoke trust-anchor path and formal-training trust-anchor path
+must both remain absent:
 
 ```text
 /etc/edubench/exp54_smoke_authorization.sha256
+/etc/edubench/exp54_authorization.sha256
 ```
 
-This rename is the authorization activation point.
+The staged digest is not an activation point. The production runner never uses
+the staged path because its default trusted-digest path remains the absent
+production path.
 
-### 5. Run installed preflight without claiming
+### 5. Run pre-activation preflight without claiming
 
 Run only:
 
@@ -143,17 +158,37 @@ python -m thesis_exp.exp54_rar_sft.audit_installed_smoke_authorization
 The auditor must return:
 
 ```text
-INSTALLED_SMOKE_AUTHORIZATION_PREFLIGHT_PASS
+SMOKE_AUTHORIZATION_PREACTIVATION_PREFLIGHT_PASS
 ```
 
-It verifies exact installed bytes, root ownership and modes, append-only claim
-directory, absence of all claims and final output directories, and successful
-read-only authorization verification for all four arms. It does not call
-`claim_smoke_invocation`, load a model, initialize CUDA, create output, or
-perform forward/backward.
+Before any other check, it hard-fails if either the active smoke trust anchor
+or formal-training trust anchor exists. It then verifies exact installed
+authorization bytes, staged digest bytes, root ownership and modes,
+append-only claim directory, absence of all claims and final output
+directories, and successful read-only authorization verification for all four
+arms using the staged digest path explicitly.
 
-If installed preflight fails, remove the trust anchor first and stop. Do not
-run any smoke arm.
+It does not import or call `claim_smoke_invocation`,
+`reserve_smoke_output_directory`, `verify_model_snapshot`,
+`AutoModelForCausalLM`, `torch`, or CUDA.
+
+If pre-activation preflight fails, the active trust anchor has never existed.
+Stop without renaming the staged digest and do not run any smoke arm.
+
+### 6. Activate only after preflight PASS
+
+Only after the exact pre-activation auditor invocation returns
+`SMOKE_AUTHORIZATION_PREACTIVATION_PREFLIGHT_PASS` may root atomically rename:
+
+```text
+/etc/edubench/exp54_smoke_authorization.sha256.staged
+→
+/etc/edubench/exp54_smoke_authorization.sha256
+```
+
+This rename is the single authorization activation point. If the atomic rename
+fails, stop and do not run any smoke arm. No production runner may start before
+the rename succeeds.
 
 ## Authorized smoke execution order after installation
 
@@ -187,8 +222,8 @@ new authorization, and another review.
 
 ## Deactivation and rollback boundary
 
-Before any claim exists, a failed installation preflight may be deactivated by
-removing the trust anchor first. A root administrator may then remove the
+Before activation, a failed preflight needs no deactivation because the active
+trust anchor has never existed. Root may remove the staged digest,
 authorization and empty prepared directories after disabling the append-only
 flag.
 

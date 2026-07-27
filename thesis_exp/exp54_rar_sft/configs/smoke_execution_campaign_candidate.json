@@ -29,6 +29,7 @@
   "smoke_campaign_id": "exp54-smoke-b2e616e-v1",
   "smoke_training_allowed": false,
   "status": "SMOKE_EXECUTION_CAMPAIGN_CANDIDATE_NOT_INSTALLED",
+  "staged_trust_anchor_path": "/etc/edubench/exp54_smoke_authorization.sha256.staged",
   "test_accessed": false,
   "training_group": "jpang",
   "training_gid": 1025,

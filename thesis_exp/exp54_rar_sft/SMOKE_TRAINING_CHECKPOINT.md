@@ -127,7 +127,7 @@ Authorization-candidate hashes:
 - one-line digest candidate:
   `2665ab0ce22730c43ab2f34f739d0ee087f1bdc633237b4702e73bc87652d30e`
 - authorization candidate report:
-  `f7f74a541b12ce7648549d59ef06b93254bc15509f6edcb8d72adcfa755a7640`
+  `379be964a79e531c6b2cc1966cf667ee9eb6d23f8477e7dd91dbfe7868406c81`
 
 ## Future smoke authorization
 
