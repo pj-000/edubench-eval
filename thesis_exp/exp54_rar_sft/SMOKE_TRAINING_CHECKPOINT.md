@@ -7,6 +7,12 @@ The reviewed training configuration at commit
 train-only smoke subset and a separate diagnostic runner now exist, but no
 smoke or formal execution is authorized.
 
+The one-use smoke guard at commit
+`b2e616e324ed9de7c8aaf8eb1dee5a2f0d7a53bb` received
+`SMOKE_GUARD_PASS`. A deterministic execution-authorization candidate and
+root-managed installation plan now exist for the next review, but neither the
+authorization nor its trust anchor has been installed.
+
 Current hard state:
 
 - trust-anchor installation: forbidden
@@ -113,6 +119,15 @@ The independent auditor reconstructs all eight selections from the frozen full
 manifests without importing the production builder, then verifies every
 private row, prompt row, public hash, source hash, runtime closure, and
 authorization boundary.
+
+Authorization-candidate hashes:
+
+- authorization JSON:
+  `88918747e68edb0fe838de197a8ac41d0b2fd1d9b275697855c30c6db23d8c97`
+- one-line digest candidate:
+  `2665ab0ce22730c43ab2f34f739d0ee087f1bdc633237b4702e73bc87652d30e`
+- authorization candidate report:
+  `f7f74a541b12ce7648549d59ef06b93254bc15509f6edcb8d72adcfa755a7640`
 
 ## Future smoke authorization
 
