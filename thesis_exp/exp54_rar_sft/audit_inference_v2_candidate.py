@@ -3,54 +3,196 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import importlib.metadata
 import json
 from pathlib import Path
 from typing import Any
 
+from thesis_exp.exp54_rar_sft import DEFAULT_TRAIN
 from thesis_exp.exp54_rar_sft.inference_contract import parse_review_json
-from thesis_exp.exp54_rar_sft.run_inference_v2_train_smoke import (
-    ARMS,
-    EPOCHS,
-    SEEDS,
-    build_smoke_selection,
-    file_sha256,
-    read_jsonl,
-    write_json,
-)
 from thesis_exp.exp54_rar_sft.structured_decoder_v2 import (
     DEFAULT_PROTOCOL_CONFIG,
     REPO_ROOT,
     load_v2_protocol,
 )
+from thesis_exp.exp54_rar_sft.v2_dev_runtime_contract import (
+    EXPECTED_V2_RUNTIME_SOURCE_COUNT,
+    EXPECTED_V2_RUNTIME_SOURCE_NAMES,
+    observed_installed_distribution,
+    require_runtime_versions,
+    verify_wheel_file,
+    v2_runtime_source_closure,
+    v2_runtime_source_closure_sha256,
+)
 
 
-SOURCE_NAMES = (
+ARMS = ("S0", "R1", "R2", "R3")
+SEEDS = (42, 43, 44)
+EPOCHS = (1, 2, 3)
+AUDIT_SOURCE_NAMES = (
     "thesis_exp/exp54_rar_sft/DEV_EXECUTION_ATTEMPT_V1_ROOT_CAUSE.md",
     "thesis_exp/exp54_rar_sft/INFERENCE_PROTOCOL_V2.md",
+    "thesis_exp/exp54_rar_sft/V2_DEV_AUTHORIZATION_PLAN.md",
     "thesis_exp/exp54_rar_sft/audit_inference_v2_candidate.py",
-    "thesis_exp/exp54_rar_sft/configs/inference_protocol_v2_candidate.json",
-    "thesis_exp/exp54_rar_sft/configs/rar_sft_output_v2.ebnf",
+    "thesis_exp/exp54_rar_sft/"
+    "audit_v2_dev_authorization_preactivation.py",
     "thesis_exp/exp54_rar_sft/freeze_dev_execution_attempt_v1.py",
-    "thesis_exp/exp54_rar_sft/inference_contract.py",
-    "thesis_exp/exp54_rar_sft/run_dev_inference.py",
-    "thesis_exp/exp54_rar_sft/run_dev_inference_v2.py",
     "thesis_exp/exp54_rar_sft/run_inference_v2_budget_probe.py",
     "thesis_exp/exp54_rar_sft/run_inference_v2_determinism_probe.py",
     "thesis_exp/exp54_rar_sft/run_inference_v2_train_smoke.py",
-    "thesis_exp/exp54_rar_sft/structured_decoder_v2.py",
     "thesis_exp/tests/test_exp54_inference_v2.py",
 )
 
 
-def _source_bindings() -> dict[str, str]:
-    actual = {
+def file_sha256(path: Path) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as handle:
+        for block in iter(lambda: handle.read(1024 * 1024), b""):
+            digest.update(block)
+    return digest.hexdigest()
+
+
+def read_jsonl(path: Path) -> list[dict[str, Any]]:
+    return [
+        json.loads(line)
+        for line in path.read_text(encoding="utf-8").splitlines()
+        if line.strip()
+    ]
+
+
+def write_json(path: Path, value: Any) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(
+        json.dumps(
+            value,
+            ensure_ascii=False,
+            indent=2,
+            sort_keys=True,
+            allow_nan=False,
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+
+
+def _audit_source_bindings() -> dict[str, str]:
+    return {
         name: file_sha256(REPO_ROOT / name)
-        for name in SOURCE_NAMES
+        for name in AUDIT_SOURCE_NAMES
     }
-    if set(actual) != set(SOURCE_NAMES):
-        raise ValueError("V2 runtime source closure differs")
-    return actual
+
+
+def _prompt_token_ids_sha256(token_ids: list[int]) -> str:
+    payload = json.dumps(token_ids, separators=(",", ":")).encode("utf-8")
+    return hashlib.sha256(payload).hexdigest()
+
+
+def _independent_smoke_selection(data_dir: Path) -> list[dict[str, Any]]:
+    """Rebuild all 36 selections without importing production helpers."""
+    train_rows = read_jsonl(DEFAULT_TRAIN)
+    metadata = {
+        str(row["record_id"]): {
+            "label": int(row["label_5"]),
+            "language": str(row["language"]),
+        }
+        for row in train_rows
+    }
+    if len(metadata) != len(train_rows):
+        raise ValueError("train metadata contains duplicate record IDs")
+    prompt_rows = read_jsonl(data_dir / "shared_prompt_cache.jsonl")
+    prompts = {
+        str(row["prompt_cache_id"]): row
+        for row in prompt_rows
+    }
+    if len(prompts) != len(prompt_rows):
+        raise ValueError("prompt cache contains duplicate IDs")
+
+    selected = []
+    group_index = 0
+    for arm in ARMS:
+        for seed in SEEDS:
+            manifest_path = (
+                data_dir
+                / f"training_manifest_{arm.lower()}_seed{seed}.jsonl"
+            )
+            manifest = read_jsonl(manifest_path)
+            manifest_sha256 = file_sha256(manifest_path)
+            for epoch in EPOCHS:
+                candidates = []
+                for source_row in manifest:
+                    if int(source_row["epoch_number"]) != epoch:
+                        continue
+                    row = dict(source_row)
+                    row.update(metadata[str(row["record_id"])])
+                    candidates.append(row)
+                if not candidates:
+                    raise ValueError("independent smoke group is empty")
+                target_label = group_index % 5 + 1
+                target_language = (
+                    "zh" if group_index % 2 == 0 else "en"
+                )
+                target_active = (
+                    arm != "S0" and group_index % 2 == 0
+                )
+                chosen = min(
+                    candidates,
+                    key=lambda row: (
+                        int(int(row["score_target"]) != target_label),
+                        int(str(row["language"]) != target_language),
+                        int(
+                            bool(row["rationale_active"])
+                            != target_active
+                        ),
+                        str(row["base_event_id"]),
+                    ),
+                )
+                prompt = prompts[str(chosen["prompt_cache_id"])]
+                prompt_token_ids = [
+                    int(value) for value in prompt["prompt_token_ids"]
+                ]
+                prompt_hash = _prompt_token_ids_sha256(prompt_token_ids)
+                if (
+                    prompt["record_id"] != chosen["record_id"]
+                    or prompt["prompt_token_ids_sha256"] != prompt_hash
+                    or chosen["prompt_token_ids_sha256"] != prompt_hash
+                ):
+                    raise ValueError(
+                        "independent manifest/prompt binding differs"
+                    )
+                selected.append(
+                    {
+                        "arm": arm,
+                        "seed": seed,
+                        "epoch": epoch,
+                        "label": int(chosen["score_target"]),
+                        "language": str(chosen["language"]),
+                        "rationale_active": bool(
+                            chosen["rationale_active"]
+                        ),
+                        "base_event_id": str(chosen["base_event_id"]),
+                        "record_id": str(chosen["record_id"]),
+                        "prompt_cache_id": str(
+                            chosen["prompt_cache_id"]
+                        ),
+                        "prompt_token_ids_sha256": prompt_hash,
+                        "manifest_sha256": manifest_sha256,
+                    }
+                )
+                group_index += 1
+    expected_order = [
+        (arm, seed, epoch)
+        for arm in ARMS
+        for seed in SEEDS
+        for epoch in EPOCHS
+    ]
+    actual_order = [
+        (row["arm"], row["seed"], row["epoch"])
+        for row in selected
+    ]
+    if actual_order != expected_order:
+        raise ValueError("independent smoke group order differs")
+    return selected
 
 
 def _assert_private_smoke(
@@ -65,25 +207,17 @@ def _assert_private_smoke(
     rows = read_jsonl(private_path)
     if len(rows) != 36:
         raise ValueError("private train-smoke row count differs")
-    expected_selection = build_smoke_selection(data_dir)
-    expected_by_group = {
-        (row["arm"], row["seed"], row["epoch"]): row
-        for row in expected_selection
-    }
-    expected_groups = {
-        (arm, seed, epoch)
-        for arm in ARMS
-        for seed in SEEDS
-        for epoch in EPOCHS
-    }
-    actual_groups = {
+    expected_selection = _independent_smoke_selection(data_dir)
+    actual_order = [
         (row["arm"], row["seed"], row["epoch"]) for row in rows
-    }
-    if actual_groups != expected_groups:
-        raise ValueError("private train-smoke group closure differs")
-    for row in rows:
-        group = (row["arm"], row["seed"], row["epoch"])
-        expected = expected_by_group[group]
+    ]
+    expected_order = [
+        (row["arm"], row["seed"], row["epoch"])
+        for row in expected_selection
+    ]
+    if actual_order != expected_order:
+        raise ValueError("private train-smoke order differs")
+    for row, expected in zip(rows, expected_selection):
         for key in (
             "label",
             "language",
@@ -91,12 +225,30 @@ def _assert_private_smoke(
             "base_event_id",
             "record_id",
             "prompt_cache_id",
+            "prompt_token_ids_sha256",
+            "manifest_sha256",
         ):
             if row[key] != expected[key]:
-                raise ValueError(f"private train-smoke selection differs at {key}")
-        adapter = Path(row["adapter_path"]) / "adapter_model.safetensors"
-        if file_sha256(adapter) != row["adapter_model_sha256"]:
-            raise ValueError("private train-smoke adapter hash differs")
+                raise ValueError(
+                    f"private train-smoke selection differs at {key}"
+                )
+        adapter_path = Path(row["adapter_path"])
+        expected_adapter_hashes = {
+            "adapter_config_sha256": file_sha256(
+                adapter_path / "adapter_config.json"
+            ),
+            "adapter_model_sha256": file_sha256(
+                adapter_path / "adapter_model.safetensors"
+            ),
+            "trainer_state_sha256": file_sha256(
+                adapter_path.parent / "trainer_state.json"
+            ),
+        }
+        for key, expected_hash in expected_adapter_hashes.items():
+            if row[key] != expected_hash:
+                raise ValueError(
+                    f"private train-smoke artifact differs at {key}"
+                )
         parse_review_json(row["output_text"])
         diagnostics = row["diagnostics"]
         if int(diagnostics["generated_token_count"]) < 1:
@@ -118,6 +270,34 @@ def audit_candidate(args: argparse.Namespace) -> None:
         != dependency["version"]
     ):
         raise ValueError("XGrammar dependency differs")
+    training_config_path = (
+        REPO_ROOT
+        / "thesis_exp/exp54_rar_sft/configs/"
+        "training_configuration_candidate.json"
+    )
+    training_config = json.loads(
+        training_config_path.read_text(encoding="utf-8")
+    )
+    runtime_versions = require_runtime_versions(
+        protocol,
+        training_config,
+    )
+    observed_wheels = {
+        "xgrammar": verify_wheel_file(
+            args.wheel_root / protocol["backend"]["wheel_filename"],
+            expected_filename=protocol["backend"]["wheel_filename"],
+            expected_sha256=protocol["backend"]["wheel_sha256"],
+        ),
+        "apache-tvm-ffi": verify_wheel_file(
+            args.wheel_root / dependency["wheel_filename"],
+            expected_filename=dependency["wheel_filename"],
+            expected_sha256=dependency["wheel_sha256"],
+        ),
+    }
+    installed_distributions = {
+        name: observed_installed_distribution(name)
+        for name in ("xgrammar", "apache-tvm-ffi")
+    }
     public_smoke_path = args.smoke_dir / "public_train_smoke_report.json"
     if public_smoke_path.read_bytes() != args.public_smoke_copy.read_bytes():
         raise ValueError("public train-smoke copy differs bytewise")
@@ -225,7 +405,16 @@ def audit_candidate(args: argparse.Namespace) -> None:
         != file_sha256(args.protocol_config)
     ):
         raise ValueError("real determinism probe protocol hash differs")
-    sources = _source_bindings()
+    runtime_sources = v2_runtime_source_closure()
+    if (
+        set(runtime_sources) != EXPECTED_V2_RUNTIME_SOURCE_NAMES
+        or len(runtime_sources) != EXPECTED_V2_RUNTIME_SOURCE_COUNT
+    ):
+        raise ValueError("V2 runtime source closure differs")
+    runtime_source_digest = v2_runtime_source_closure_sha256(
+        runtime_sources
+    )
+    audit_sources = _audit_source_bindings()
     v1_report_path = (
         REPO_ROOT
         / "thesis_exp/outputs/exp54_rar_sft/rar_v2/audit/"
@@ -257,7 +446,7 @@ def audit_candidate(args: argparse.Namespace) -> None:
         raise ValueError("V1 receipt private-lock hash differs")
     if (
         v1_receipt["freezer_source_sha256"]
-        != sources[
+        != audit_sources[
             "thesis_exp/exp54_rar_sft/"
             "freeze_dev_execution_attempt_v1.py"
         ]
@@ -276,15 +465,47 @@ def audit_candidate(args: argparse.Namespace) -> None:
         "protocol_id": protocol["protocol_id"],
         "protocol_config_sha256": file_sha256(args.protocol_config),
         "grammar_sha256": protocol["grammar"]["sha256"],
-        "runtime_source_count": len(sources),
-        "runtime_source_bindings": sources,
+        "runtime_source_count": len(runtime_sources),
+        "runtime_source_names": sorted(runtime_sources),
+        "runtime_source_bindings": runtime_sources,
+        "runtime_source_closure_sha256": runtime_source_digest,
+        "candidate_audit_source_bindings": audit_sources,
         "dependencies": {
-            "xgrammar_version": importlib.metadata.version("xgrammar"),
-            "xgrammar_wheel_sha256": protocol["backend"]["wheel_sha256"],
-            "apache_tvm_ffi_version": importlib.metadata.version(
-                dependency["package"]
+            "runtime_versions": runtime_versions,
+            "observed_wheels": observed_wheels,
+            "observed_installed_distributions": (
+                installed_distributions
             ),
-            "apache_tvm_ffi_wheel_sha256": dependency["wheel_sha256"],
+            "editable_install_allowed": False,
+        },
+        "formal_execution_contract": {
+            "batch_size": protocol["generation"][
+                "formal_batch_size"
+            ],
+            "max_new_tokens": protocol["generation"][
+                "max_new_tokens"
+            ],
+            "batch_size_cli_override_allowed": False,
+            "output_dir_cli_override_allowed": False,
+            "training_root_cli_override_allowed": False,
+            "protocol_config_cli_override_allowed": False,
+            "test_path_allowed": False,
+            "mixed_length_batch_regression_passed": True,
+            "mixed_completion_batch_regression_passed": True,
+            "batched_singleton_token_ids_equal": True,
+            "batched_singleton_output_bytes_equal": True,
+            "batched_singleton_diagnostics_equal": True,
+            "finished_row_attention_mask_zero_verified": True,
+            "unfinished_row_kv_cache_continuation_verified": True,
+        },
+        "authorization_gate": {
+            "external_authorization_required": True,
+            "authorization_checked_before_dev_model_output_cuda": True,
+            "exact_task_count": 36,
+            "one_claim_per_checkpoint": True,
+            "staged_digest_is_nonactivating": True,
+            "atomic_digest_rename_is_activation_point": True,
+            "preactivation_preflight_required": True,
         },
         "v1_evidence": {
             "report_sha256": file_sha256(v1_report_path),
@@ -293,8 +514,11 @@ def audit_candidate(args: argparse.Namespace) -> None:
             "checkpoint_selection_allowed": False,
         },
         "tests": {
-            "server_test_file": "thesis_exp/tests/test_exp54_inference_v2.py",
-            "passed": 26,
+            "server_test_files": [
+                "thesis_exp/tests/test_exp54_inference_v2.py",
+                "thesis_exp/tests/test_exp54_v2_dev_authorization.py",
+            ],
+            "passed": 46,
             "failed": 0,
             "skipped": 0,
         },
@@ -336,7 +560,15 @@ def audit_candidate(args: argparse.Namespace) -> None:
         "candidate_report_sha256": file_sha256(args.report_path),
         "protocol_config_sha256": report["protocol_config_sha256"],
         "grammar_sha256": report["grammar_sha256"],
-        "runtime_source_bindings": sources,
+        "runtime_source_names": sorted(runtime_sources),
+        "runtime_source_bindings": runtime_sources,
+        "runtime_source_closure_sha256": runtime_source_digest,
+        "candidate_audit_source_bindings": audit_sources,
+        "dependencies": report["dependencies"],
+        "formal_execution_contract": report[
+            "formal_execution_contract"
+        ],
+        "authorization_gate": report["authorization_gate"],
         "v1_report_sha256": report["v1_evidence"]["report_sha256"],
         "v1_freeze_receipt_sha256": report["v1_evidence"][
             "freeze_receipt_sha256"
@@ -400,6 +632,11 @@ def parse_args() -> argparse.Namespace:
         "--protocol-config",
         type=Path,
         default=DEFAULT_PROTOCOL_CONFIG,
+    )
+    parser.add_argument(
+        "--wheel-root",
+        type=Path,
+        default=REPO_ROOT / ".cache/exp54_xgrammar",
     )
     parser.add_argument(
         "--budget-probe-path",

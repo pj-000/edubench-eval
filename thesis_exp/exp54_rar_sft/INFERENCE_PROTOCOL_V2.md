@@ -80,6 +80,7 @@ non-empty rationale.
 - Sampling: disabled.
 - Beams: one.
 - Maximum generated tokens: 256.
+- Formal batch size: 16, with no CLI override.
 - Repetition penalty: 1.
 - No-repeat n-gram: disabled.
 - Temperature, top-p, top-k, length penalty, semantic repetition removal,
@@ -199,6 +200,29 @@ model probability assigned to all currently legal tokens.
    metric inspection.
 9. Privacy audit proving no train prompt, human rationale, row identifier,
    donor edge, or generated row text enters the public report.
+10. Mixed-length and mixed-completion batch regression proving batch-size-16
+    semantics match singleton decoding for token IDs, UTF-8 bytes, strict
+    parsing, forced-completion diagnostics, KV-cache continuation, and
+    finished-row attention masking.
+
+## Formal dev authorization
+
+The repository candidate remains `formal_v2_dev_allowed=false`. This field
+cannot activate execution. The formal runner first requires an external
+reviewed authorization at fixed user-managed paths and consumes a unique
+one-use claim before model validation, dev loading, output reservation, CUDA,
+or model loading.
+
+The authorization binds the exact reviewed commit and report/lock, complete
+runtime closure, actual wheel bytes and installed distribution file trees,
+sealed dev hash, all 36 checkpoint artifacts, batch size 16, token budget
+256, fixed output campaign, `test_allowed=false`, and one invocation per
+checkpoint.
+
+Installation follows the staged pre-activation sequence in
+`V2_DEV_AUTHORIZATION_PLAN.md`. The staged digest cannot activate the
+production runner; only its post-preflight atomic rename to the fixed active
+digest path can do so.
 
 ## V1 and dev boundary
 

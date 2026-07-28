@@ -8,8 +8,6 @@ import time
 from pathlib import Path
 from typing import Any
 
-import numpy as np
-
 from thesis_exp.exp54_rar_sft.inference_contract import parse_review_json
 from thesis_exp.exp54_rar_sft.run_dev_inference import (
     ARMS,
@@ -38,15 +36,22 @@ from thesis_exp.exp54_rar_sft.train_rar_sft import (
     validate_training_configuration,
     verify_model_snapshot,
 )
+from thesis_exp.exp54_rar_sft.v2_dev_authorization_guard import (
+    require_v2_dev_authorization,
+)
 
 
 def _p95(values: list[int]) -> float:
+    import numpy as np
+
     return float(np.percentile(np.asarray(values, dtype=np.int64), 95))
 
 
 def execution_metrics(
     predictions: list[dict[str, Any]],
 ) -> dict[str, Any]:
+    import numpy as np
+
     diagnostics = [row["decoding_diagnostics"] for row in predictions]
     generated_lengths = [
         int(item["generated_token_count"]) for item in diagnostics
@@ -118,20 +123,33 @@ def execution_metrics(
 
 
 def run_inference_v2(args: argparse.Namespace) -> None:
+    context = require_v2_dev_authorization(
+        arm=args.arm,
+        seed=args.seed,
+        epoch=args.epoch,
+    )
     started = time.time()
-    protocol = load_v2_protocol(args.protocol_config)
+    protocol = load_v2_protocol()
     if protocol["selection_and_access"]["formal_v2_dev_allowed"]:
         raise ValueError(
             "candidate config must remain not-authorized in repository"
         )
+    if (
+        protocol["generation"]["formal_batch_size"]
+        != context.batch_size
+    ):
+        raise PermissionError("authorized V2 batch size differs")
+    if (
+        protocol["generation"]["max_new_tokens"]
+        != context.max_new_tokens
+    ):
+        raise PermissionError("authorized V2 token budget differs")
     config = _read_object(DEFAULT_CONFIG)
     validate_training_configuration(config)
     verify_model_snapshot(config)
     rows = load_dev_rows()
-    if args.output_dir.exists():
-        raise FileExistsError(args.output_dir)
     adapter_path = (
-        args.training_root
+        context.training_root
         / f"seed{args.seed}"
         / args.arm.lower()
         / f"checkpoint-logical-epoch-{args.epoch}"
@@ -190,8 +208,12 @@ def run_inference_v2(args: argparse.Namespace) -> None:
         prepared,
         key=lambda item: len(item["token_ids"]),
     )
-    for start in range(0, len(ordered_for_batches), args.batch_size):
-        batch = ordered_for_batches[start : start + args.batch_size]
+    for start in range(
+        0,
+        len(ordered_for_batches),
+        context.batch_size,
+    ):
+        batch = ordered_for_batches[start : start + context.batch_size]
         decoded = constrained_greedy_decode(
             model,
             tokenizer,
@@ -239,13 +261,12 @@ def run_inference_v2(args: argparse.Namespace) -> None:
     predictions = [
         by_position[position] for position in range(len(rows))
     ]
-    args.output_dir.mkdir(parents=True)
-    write_jsonl(args.output_dir / "predictions.jsonl", predictions)
+    write_jsonl(context.output_dir / "predictions.jsonl", predictions)
     execution = execution_metrics(predictions)
     run_record = {
         "status": "EXP54_DEV_INFERENCE_V2_COMPLETE",
         "protocol_id": protocol["protocol_id"],
-        "protocol_config_sha256": file_sha256(args.protocol_config),
+        "protocol_config_sha256": file_sha256(DEFAULT_PROTOCOL_CONFIG),
         "grammar_sha256": protocol["grammar"]["sha256"],
         "decoder_source_sha256": file_sha256(
             Path(__file__).resolve().parent / "structured_decoder_v2.py"
@@ -267,7 +288,11 @@ def run_inference_v2(args: argparse.Namespace) -> None:
         ),
         "generation": protocol["generation"],
         "backend": protocol["backend"],
-        "batch_size": args.batch_size,
+        "batch_size": context.batch_size,
+        "authorization_sha256": context.authorization_sha256,
+        "authorization_campaign_id": context.campaign_id,
+        "authorization_task_id": context.task_id,
+        "authorization_claim_path": str(context.claim_path),
         "max_prompt_tokens": max(
             len(item["token_ids"]) for item in prepared
         ),
@@ -276,9 +301,9 @@ def run_inference_v2(args: argparse.Namespace) -> None:
         "test_accessed": False,
         "elapsed_seconds": time.time() - started,
     }
-    write_json(args.output_dir / "protocol.json", run_record)
+    write_json(context.output_dir / "protocol.json", run_record)
     write_json(
-        args.output_dir / "metrics.json",
+        context.output_dir / "metrics.json",
         {
             "status": "EXP54_DEV_METRICS_V2_COMPLETE",
             "arm": args.arm,
@@ -298,28 +323,11 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--arm", required=True, choices=ARMS)
     parser.add_argument("--seed", required=True, type=int, choices=SEEDS)
     parser.add_argument("--epoch", required=True, type=int, choices=EPOCHS)
-    parser.add_argument("--batch-size", type=int, default=16)
-    parser.add_argument(
-        "--training-root",
-        type=Path,
-        default=(
-            REPO_ROOT
-            / "thesis_exp/outputs/exp54_rar_sft/rar_v2/formal_runs"
-        ),
-    )
-    parser.add_argument(
-        "--protocol-config",
-        type=Path,
-        default=DEFAULT_PROTOCOL_CONFIG,
-    )
-    parser.add_argument("--output-dir", required=True, type=Path)
     return parser.parse_args()
 
 
 def main() -> None:
     args = parse_args()
-    if args.batch_size < 1:
-        raise ValueError("batch size must be positive")
     run_inference_v2(args)
 
 

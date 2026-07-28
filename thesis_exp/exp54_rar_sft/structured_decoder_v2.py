@@ -38,6 +38,7 @@ def load_v2_protocol(path: Path = DEFAULT_PROTOCOL_CONFIG) -> dict[str, Any]:
         "do_sample": False,
         "num_beams": 1,
         "max_new_tokens": 256,
+        "formal_batch_size": 16,
         "use_cache": True,
         "repetition_penalty": 1.0,
         "no_repeat_ngram_size": 0,

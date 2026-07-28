@@ -315,9 +315,22 @@ def run_train_only_smoke(args: argparse.Namespace) -> None:
                 "base_event_id": row["base_event_id"],
                 "record_id": row["record_id"],
                 "prompt_cache_id": row["prompt_cache_id"],
+                "prompt_token_ids_sha256": hashlib.sha256(
+                    json.dumps(
+                        row["prompt_token_ids"],
+                        separators=(",", ":"),
+                    ).encode("utf-8")
+                ).hexdigest(),
+                "manifest_sha256": row["manifest_sha256"],
                 "adapter_path": str(adapter),
+                "adapter_config_sha256": file_sha256(
+                    adapter / "adapter_config.json"
+                ),
                 "adapter_model_sha256": file_sha256(
                     adapter / "adapter_model.safetensors"
+                ),
+                "trainer_state_sha256": file_sha256(
+                    adapter.parent / "trainer_state.json"
                 ),
                 "output_text": decoded.text,
                 "prediction": prediction,

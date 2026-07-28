@@ -6,7 +6,7 @@
   "generated_text_public": false,
   "generated_token_count": 256,
   "probe_source_sha256": "c2c4b00903f8da7650cfa2f8ea2fff37d731ad816a50de480b59134d472e5cc9",
-  "protocol_config_sha256": "3de650f2a220aa89a0bcdf9285c9366393347648b859e2d869aee9948aeff04d",
+  "protocol_config_sha256": "1987598aef4018d590d057deecc8beaeae558e21bb4b0bdf8b956f41e2071b95",
   "schema_version": "exp54-inference-v2-budget-probe-v1",
   "score_preserved": true,
   "status": "EXP54_INFERENCE_V2_LOCKED_BUDGET_PROBE_PASS",

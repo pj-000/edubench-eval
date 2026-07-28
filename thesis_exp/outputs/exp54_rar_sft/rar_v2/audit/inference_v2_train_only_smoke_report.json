@@ -34,9 +34,9 @@
     ],
     "unique_arm_seed_epoch_groups": 36
   },
-  "decoder_source_sha256": "25ca7185de48c7dd0561087fc83d7d18ffbb5bdaf4d169be1ca6293c2d60c9b8",
+  "decoder_source_sha256": "6f819e2af022b490ad4f27d831240004e9e6b926fadc6020df49bf599ab30fe9",
   "dev_accessed": false,
-  "elapsed_seconds": 948.9179348945618,
+  "elapsed_seconds": 914.3779861927032,
   "execution": {
     "forced_completion_rate": 0.3611111111111111,
     "grammar_intervention_step_rate": 0.00734094616639478,
@@ -54,9 +54,9 @@
     "score_or_rationale_semantics_inspected": false,
     "train_prompts_public": false
   },
-  "private_results_sha256": "20528822c798492b174d0506247320adbd832736c3c07a7ae37a483f092e5a5b",
-  "protocol_config_sha256": "3de650f2a220aa89a0bcdf9285c9366393347648b859e2d869aee9948aeff04d",
-  "runner_source_sha256": "477886eba67184b3214de3d4705eeab98673e01afcd02c242f0e23f39ed743be",
+  "private_results_sha256": "151f60107f83b47e5a303125192743436b2783fdae3cfcb8677b1e40b5ec76e0",
+  "protocol_config_sha256": "1987598aef4018d590d057deecc8beaeae558e21bb4b0bdf8b956f41e2071b95",
+  "runner_source_sha256": "ad199cc106bdeeb0b7405e73984bc59df35c86660b18a0b3fc0c35f5b47f4d2d",
   "schema_version": "exp54-inference-v2-train-smoke-v1",
   "scientific_metrics_computed": false,
   "shared_prompt_cache_sha256": "2a4b2c7a022628db96f9bec6bdc9be0d610db8845dab6a0ab09f887fb913dd76",

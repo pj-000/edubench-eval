@@ -8,7 +8,7 @@
   "output_bytes_identical": true,
   "output_token_ids_identical": true,
   "probe_source_sha256": "ab9c6c951128d0f510722f1c13243a83c05fe8119a4c37d7870e0e69f74661b9",
-  "protocol_config_sha256": "3de650f2a220aa89a0bcdf9285c9366393347648b859e2d869aee9948aeff04d",
+  "protocol_config_sha256": "1987598aef4018d590d057deecc8beaeae558e21bb4b0bdf8b956f41e2071b95",
   "repetitions": 2,
   "row_identifier_public": false,
   "schema_version": "exp54-inference-v2-determinism-probe-v1",

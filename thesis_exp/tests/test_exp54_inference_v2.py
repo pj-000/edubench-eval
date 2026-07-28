@@ -88,6 +88,7 @@ def test_protocol_candidate_is_fail_closed_and_hash_bound():
     assert protocol["application"]["seeds"] == [42, 43, 44]
     assert protocol["application"]["logical_epochs"] == [1, 2, 3]
     assert protocol["generation"]["max_new_tokens"] == 256
+    assert protocol["generation"]["formal_batch_size"] == 16
 
 
 @pytest.mark.parametrize(
@@ -257,6 +258,76 @@ class _ScriptedModel:
         return SimpleNamespace(logits=logits, past_key_values=None)
 
 
+class _PerRowScriptedModel:
+    def __init__(
+        self,
+        *,
+        vocab_size: int,
+        scripts_by_marker: dict[int, list[int]],
+        continuation_by_marker: dict[int, int | None],
+        illegal_token_id: int,
+    ):
+        self.config = SimpleNamespace(vocab_size=vocab_size)
+        self.scripts_by_marker = scripts_by_marker
+        self.continuation_by_marker = continuation_by_marker
+        self.illegal_token_id = illegal_token_id
+        self.markers: list[int] | None = None
+        self.positions: list[int] = []
+        self.attention_masks: list[list[list[int]]] = []
+        self.past_seen: list[bool] = []
+
+    def __call__(
+        self,
+        *,
+        input_ids,
+        attention_mask,
+        past_key_values,
+        use_cache,
+    ):
+        import torch
+
+        batch_size = int(input_ids.shape[0])
+        if self.markers is None:
+            self.markers = [
+                int(value)
+                for value in input_ids[:, -1].detach().cpu().tolist()
+            ]
+            self.positions = [0] * batch_size
+            assert past_key_values is None
+        else:
+            assert past_key_values is not None
+            assert len(self.markers) == batch_size
+        self.past_seen.append(past_key_values is not None)
+        self.attention_masks.append(
+            attention_mask.detach().cpu().tolist()
+        )
+        logits = torch.full(
+            (batch_size, 1, self.config.vocab_size),
+            -20.0,
+            dtype=torch.float32,
+            device=input_ids.device,
+        )
+        for index, marker in enumerate(self.markers):
+            script = self.scripts_by_marker[marker]
+            position = self.positions[index]
+            if position < len(script):
+                preferred = script[position]
+            else:
+                continuation = self.continuation_by_marker[marker]
+                preferred = (
+                    continuation
+                    if continuation is not None
+                    else script[-1]
+                )
+            logits[index, :, preferred] = 5.0
+            logits[index, :, self.illegal_token_id] = 10.0
+            self.positions[index] += 1
+        return SimpleNamespace(
+            logits=logits,
+            past_key_values=object(),
+        )
+
+
 def test_adversarial_illegal_top1_is_blocked_and_deterministic(
     tokenizer_and_protocol,
 ):
@@ -336,6 +407,110 @@ def test_budget_completion_closes_at_boundary_without_semantic_repair(
     assert result.diagnostics.generated_token_count == 32
     assert result.diagnostics.forced_completion
     assert result.diagnostics.completion_at_max_token_boundary
+
+
+def test_mixed_completion_batch_matches_singletons_and_masks_finished_rows(
+    tokenizer_and_protocol,
+):
+    tokenizer, protocol = tokenizer_and_protocol
+    test_protocol = copy.deepcopy(protocol)
+    test_protocol["generation"]["max_new_tokens"] = 32
+    short_text = '{"score":1,"rationale":""}'
+    long_prefix = '{"score":5,"rationale":"'
+    short_tokens = tokenizer.encode(
+        short_text,
+        add_special_tokens=False,
+    )
+    long_tokens = tokenizer.encode(
+        long_prefix,
+        add_special_tokens=False,
+    )
+    continuation = tokenizer.encode("a", add_special_tokens=False)
+    assert len(continuation) == 1
+    marker_short = 100
+    marker_long = 101
+    scripts = {
+        marker_short: short_tokens,
+        marker_long: long_tokens,
+    }
+    continuations = {
+        marker_short: None,
+        marker_long: continuation[0],
+    }
+    runtime = prepare_v2_runtime(
+        tokenizer,
+        model_vocab_size=test_protocol["model_and_tokenizer"][
+            "model_vocab_size"
+        ],
+        protocol=test_protocol,
+    )
+
+    batch_model = _PerRowScriptedModel(
+        vocab_size=test_protocol["model_and_tokenizer"][
+            "model_vocab_size"
+        ],
+        scripts_by_marker=scripts,
+        continuation_by_marker=continuations,
+        illegal_token_id=test_protocol["model_and_tokenizer"][
+            "eos_token_id"
+        ],
+    )
+    batch_prompts = [
+        [marker_short],
+        [7, 8, marker_long],
+    ]
+    batched = constrained_greedy_decode(
+        batch_model,
+        tokenizer,
+        batch_prompts,
+        protocol=test_protocol,
+        runtime=runtime,
+        device="cpu",
+    )
+    singleton_results = []
+    for prompt in batch_prompts:
+        singleton_model = _PerRowScriptedModel(
+            vocab_size=test_protocol["model_and_tokenizer"][
+                "model_vocab_size"
+            ],
+            scripts_by_marker=scripts,
+            continuation_by_marker=continuations,
+            illegal_token_id=test_protocol["model_and_tokenizer"][
+                "eos_token_id"
+            ],
+        )
+        singleton_results.append(
+            constrained_greedy_decode(
+                singleton_model,
+                tokenizer,
+                [prompt],
+                protocol=test_protocol,
+                runtime=runtime,
+                device="cpu",
+            )[0]
+        )
+
+    assert [item.token_ids for item in batched] == [
+        item.token_ids for item in singleton_results
+    ]
+    assert [item.text.encode("utf-8") for item in batched] == [
+        item.text.encode("utf-8") for item in singleton_results
+    ]
+    assert [
+        item.to_dict()["diagnostics"] for item in batched
+    ] == [
+        item.to_dict()["diagnostics"]
+        for item in singleton_results
+    ]
+    assert all(parse_review_json(item.text) for item in batched)
+    assert not batched[0].diagnostics.forced_completion
+    assert batched[1].diagnostics.forced_completion
+    assert batch_model.past_seen[0] is False
+    assert all(batch_model.past_seen[1:])
+    assert any(
+        mask[0][-1] == 0 and mask[1][-1] == 1
+        for mask in batch_model.attention_masks[1:]
+    )
 
 
 def test_root_completion_makes_second_object_unreachable(
