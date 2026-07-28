@@ -212,7 +212,7 @@ earlier experiments: tested code is synchronized to the server and launched
 directly with fixed arguments. The earlier external trust-anchor and claim
 system is not part of the active execution path.
 
-The runner still fixes the complete checkpoint set, runtime batch size 32,
+The runner still fixes the complete checkpoint set, runtime batch size 48,
 token budget 256, V2 grammar, model snapshot and training configuration. The
 protocol's earlier batch-16 value is retained as the reviewed reference; the
 direct runtime batch is raised only for hardware throughput after

@@ -44,7 +44,7 @@ DEFAULT_TRAINING_ROOT = (
 DEFAULT_OUTPUT_ROOT = (
     REPO_ROOT / "thesis_exp/outputs/exp54_rar_sft/rar_v2/dev_runs_v2"
 )
-DIRECT_RUNTIME_BATCH_SIZE = 32
+DIRECT_RUNTIME_BATCH_SIZE = 48
 
 
 def _p95(values: list[int]) -> float:

@@ -46,9 +46,9 @@ or training loss.
 - Train-only smoke report SHA-256:
   `63ccd3db04e7a020d857f08f637d9edd396103b3294b0a42783e9199876af2f6`
 - Candidate report SHA-256:
-  `ea8564c7c5cee1cab896d1eaa9a096f5f285903d7e0627c65499616d75aac09b`
+  `434a4a939b5a6522c95647b90b425a6238bcee73da2942b83c66a2255aee9040`
 - Candidate lock SHA-256:
-  `2e9f0eafb6343a594a28a490a66f0d9662e6244356be2ce81e01ead8a335d571`
+  `e40a0d7c8641b641a8251785f52d40dddbf22f46a515d52ae34f8e206ccb3a4a`
 
 All evidence generation remained train-only or synthetic:
 `v2_dev_accessed=false`, `test_accessed=false`, and
