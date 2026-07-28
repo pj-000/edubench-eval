@@ -19,8 +19,8 @@ from thesis_exp.exp54_rar_sft.structured_decoder_v2 import (
 from thesis_exp.exp54_rar_sft.v2_dev_runtime_contract import (
     EXPECTED_V2_RUNTIME_SOURCE_COUNT,
     EXPECTED_V2_RUNTIME_SOURCE_NAMES,
-    observed_installed_distribution,
     require_runtime_versions,
+    verify_installed_distribution_matches_wheel,
     verify_wheel_file,
     v2_runtime_source_closure,
     v2_runtime_source_closure_sha256,
@@ -30,6 +30,22 @@ from thesis_exp.exp54_rar_sft.v2_dev_runtime_contract import (
 ARMS = ("S0", "R1", "R2", "R3")
 SEEDS = (42, 43, 44)
 EPOCHS = (1, 2, 3)
+DEFAULT_MATERIALIZED_MANIFEST_FROZEN_LOCK = (
+    REPO_ROOT
+    / "thesis_exp/outputs/exp54_rar_sft/rar_v2/protocol/"
+    "materialized_manifest_frozen_lock.json"
+)
+DEFAULT_REFERENCE_SET_DATA_LOCK = (
+    REPO_ROOT
+    / "thesis_exp/outputs/exp54_rar_sft/rar_v2/protocol/"
+    "reference_set_data_lock.json"
+)
+EXPECTED_MATERIALIZED_MANIFEST_FROZEN_LOCK_SHA256 = (
+    "8b5fffce6b54804f834499643953deae23393a7764c0652d0fd7df2214b20713"
+)
+EXPECTED_REFERENCE_SET_DATA_LOCK_SHA256 = (
+    "fed541fb3cb82851db010d13e5dafa057ffbe196f4ecff357f5d9f4408e6d6f4"
+)
 AUDIT_SOURCE_NAMES = (
     "thesis_exp/exp54_rar_sft/DEV_EXECUTION_ATTEMPT_V1_ROOT_CAUSE.md",
     "thesis_exp/exp54_rar_sft/INFERENCE_PROTOCOL_V2.md",
@@ -88,8 +104,84 @@ def _prompt_token_ids_sha256(token_ids: list[int]) -> str:
     return hashlib.sha256(payload).hexdigest()
 
 
-def _independent_smoke_selection(data_dir: Path) -> list[dict[str, Any]]:
+def _frozen_manifest_contract(
+    data_dir: Path,
+    *,
+    materialized_lock_path: Path = DEFAULT_MATERIALIZED_MANIFEST_FROZEN_LOCK,
+    reference_lock_path: Path = DEFAULT_REFERENCE_SET_DATA_LOCK,
+) -> dict[str, Any]:
+    materialized = json.loads(
+        materialized_lock_path.read_text(encoding="utf-8")
+    )
+    reference = json.loads(
+        reference_lock_path.read_text(encoding="utf-8")
+    )
+    materialized_lock_sha256 = file_sha256(materialized_lock_path)
+    reference_lock_sha256 = file_sha256(reference_lock_path)
+    if (
+        materialized_lock_sha256
+        != EXPECTED_MATERIALIZED_MANIFEST_FROZEN_LOCK_SHA256
+    ):
+        raise ValueError("materialized frozen-lock trust anchor differs")
+    if reference_lock_sha256 != EXPECTED_REFERENCE_SET_DATA_LOCK_SHA256:
+        raise ValueError("reference-set lock trust anchor differs")
+    if materialized.get("status") != (
+        "MATERIALIZED_MANIFEST_FROZEN_TRAINING_NOT_AUTHORIZED"
+    ):
+        raise ValueError("materialized manifest lock is not frozen")
+    if (
+        not materialized.get("manifest_frozen")
+        or materialized.get("dev_accessed")
+        or materialized.get("test_accessed")
+    ):
+        raise ValueError("materialized manifest lock boundary differs")
+    if reference.get("status") != "REFERENCE_SETS_READY":
+        raise ValueError("reference-set data lock is not ready")
+    if reference.get("dev_accessed") or reference.get("test_accessed"):
+        raise ValueError("reference-set lock boundary differs")
+    if (
+        materialized["upstream_lock_hashes"]["reference_set_lock"]
+        != reference_lock_sha256
+    ):
+        raise ValueError("reference-set lock hash differs")
+    locked_train_sha256 = reference["input"]["rar0_source_hashes"]["train"]
+    if file_sha256(DEFAULT_TRAIN) != locked_train_sha256:
+        raise ValueError("locked train split hash differs")
+    artifacts = materialized["private_artifact_hashes"]
+    prompt_path = data_dir / "shared_prompt_cache.jsonl"
+    if file_sha256(prompt_path) != artifacts["shared_prompt_cache"]:
+        raise ValueError("frozen prompt-cache hash differs")
+    manifest_hashes: dict[tuple[str, int], str] = {}
+    for seed in SEEDS:
+        for arm in ARMS:
+            expected = artifacts["manifests_by_seed"][
+                f"seed{seed}"
+            ][arm]
+            path = (
+                data_dir
+                / f"training_manifest_{arm.lower()}_seed{seed}.jsonl"
+            )
+            if file_sha256(path) != expected:
+                raise ValueError(
+                    f"frozen manifest hash differs: {arm}/seed{seed}"
+                )
+            manifest_hashes[(arm, seed)] = expected
+    return {
+        "materialized_lock_sha256": materialized_lock_sha256,
+        "reference_lock_sha256": reference_lock_sha256,
+        "locked_train_sha256": locked_train_sha256,
+        "prompt_cache_sha256": artifacts["shared_prompt_cache"],
+        "manifest_hashes": manifest_hashes,
+    }
+
+
+def _independent_smoke_selection(
+    data_dir: Path,
+    *,
+    frozen_contract: dict[str, Any] | None = None,
+) -> list[dict[str, Any]]:
     """Rebuild all 36 selections without importing production helpers."""
+    contract = frozen_contract or _frozen_manifest_contract(data_dir)
     train_rows = read_jsonl(DEFAULT_TRAIN)
     metadata = {
         str(row["record_id"]): {
@@ -118,13 +210,34 @@ def _independent_smoke_selection(data_dir: Path) -> list[dict[str, Any]]:
             )
             manifest = read_jsonl(manifest_path)
             manifest_sha256 = file_sha256(manifest_path)
+            if manifest_sha256 != contract["manifest_hashes"][(arm, seed)]:
+                raise ValueError("manifest differs from frozen contract")
             for epoch in EPOCHS:
                 candidates = []
                 for source_row in manifest:
                     if int(source_row["epoch_number"]) != epoch:
                         continue
                     row = dict(source_row)
-                    row.update(metadata[str(row["record_id"])])
+                    row["_manifest_language_field_present"] = (
+                        "language" in row
+                    )
+                    record_id = str(row["record_id"])
+                    if record_id not in metadata:
+                        raise ValueError("manifest record is absent from train")
+                    expected = metadata[record_id]
+                    if int(row["score_target"]) != expected["label"]:
+                        raise ValueError(
+                            "manifest score differs from locked train label"
+                        )
+                    if (
+                        "language" in row
+                        and str(row["language"]) != expected["language"]
+                    ):
+                        raise ValueError(
+                            "manifest language differs from locked train"
+                        )
+                    row["label"] = expected["label"]
+                    row["language"] = expected["language"]
                     candidates.append(row)
                 if not candidates:
                     raise ValueError("independent smoke group is empty")
@@ -177,6 +290,9 @@ def _independent_smoke_selection(data_dir: Path) -> list[dict[str, Any]]:
                         ),
                         "prompt_token_ids_sha256": prompt_hash,
                         "manifest_sha256": manifest_sha256,
+                        "manifest_language_field_present": bool(
+                            chosen["_manifest_language_field_present"]
+                        ),
                     }
                 )
                 group_index += 1
@@ -200,14 +316,22 @@ def _assert_private_smoke(
     smoke_dir: Path,
     data_dir: Path,
     public_smoke: dict[str, Any],
-) -> None:
+) -> dict[str, Any]:
+    frozen_contract = _frozen_manifest_contract(data_dir)
     private_path = smoke_dir / "private_train_smoke_results.jsonl"
     if file_sha256(private_path) != public_smoke["private_results_sha256"]:
         raise ValueError("private train-smoke hash differs")
     rows = read_jsonl(private_path)
     if len(rows) != 36:
         raise ValueError("private train-smoke row count differs")
-    expected_selection = _independent_smoke_selection(data_dir)
+    expected_selection = _independent_smoke_selection(
+        data_dir,
+        frozen_contract=frozen_contract,
+    )
+    frozen_contract["manifest_language_field_present"] = any(
+        row["manifest_language_field_present"]
+        for row in expected_selection
+    )
     actual_order = [
         (row["arm"], row["seed"], row["epoch"]) for row in rows
     ]
@@ -258,6 +382,7 @@ def _assert_private_smoke(
             != int(diagnostics["generated_token_count"])
         ):
             raise ValueError("private train-smoke step count differs")
+    return frozen_contract
 
 
 def audit_candidate(args: argparse.Namespace) -> None:
@@ -294,9 +419,23 @@ def audit_candidate(args: argparse.Namespace) -> None:
             expected_sha256=dependency["wheel_sha256"],
         ),
     }
+    wheel_specs = {
+        "xgrammar": (
+            protocol["backend"]["wheel_filename"],
+            protocol["backend"]["wheel_sha256"],
+        ),
+        "apache-tvm-ffi": (
+            dependency["wheel_filename"],
+            dependency["wheel_sha256"],
+        ),
+    }
     installed_distributions = {
-        name: observed_installed_distribution(name)
-        for name in ("xgrammar", "apache-tvm-ffi")
+        name: verify_installed_distribution_matches_wheel(
+            name,
+            args.wheel_root / filename,
+            expected_wheel_sha256=digest,
+        )
+        for name, (filename, digest) in wheel_specs.items()
     }
     public_smoke_path = args.smoke_dir / "public_train_smoke_report.json"
     if public_smoke_path.read_bytes() != args.public_smoke_copy.read_bytes():
@@ -318,6 +457,25 @@ def audit_candidate(args: argparse.Namespace) -> None:
         raise ValueError("train-only smoke coverage differs")
     if public_smoke["execution"]["strict_parse_rate"] != 1.0:
         raise ValueError("train-only smoke strict parse did not reach one")
+    if (
+        public_smoke["protocol_config_sha256"]
+        != file_sha256(args.protocol_config)
+    ):
+        raise ValueError("train-only smoke protocol source differs")
+    current_decoder_sha256 = file_sha256(
+        REPO_ROOT / "thesis_exp/exp54_rar_sft/structured_decoder_v2.py"
+    )
+    current_smoke_runner_sha256 = file_sha256(
+        REPO_ROOT
+        / "thesis_exp/exp54_rar_sft/run_inference_v2_train_smoke.py"
+    )
+    if public_smoke["decoder_source_sha256"] != current_decoder_sha256:
+        raise ValueError("train-only smoke decoder source differs")
+    if (
+        public_smoke["runner_source_sha256"]
+        != current_smoke_runner_sha256
+    ):
+        raise ValueError("train-only smoke runner source differs")
     if public_smoke["privacy"] != {
         "row_level_selection_public": False,
         "record_or_event_ids_public": False,
@@ -333,7 +491,7 @@ def audit_candidate(args: argparse.Namespace) -> None:
         or public_smoke["formal_v2_dev_allowed"]
     ):
         raise ValueError("train-only smoke crossed its authorization boundary")
-    _assert_private_smoke(
+    frozen_contract = _assert_private_smoke(
         smoke_dir=args.smoke_dir,
         data_dir=args.data_dir,
         public_smoke=public_smoke,
@@ -497,6 +655,11 @@ def audit_candidate(args: argparse.Namespace) -> None:
             "batched_singleton_diagnostics_equal": True,
             "finished_row_attention_mask_zero_verified": True,
             "unfinished_row_kv_cache_continuation_verified": True,
+            "authenticated_protocol_payload_consumed_directly": True,
+            "authenticated_grammar_payload_consumed_directly": True,
+            "authenticated_training_config_consumed_directly": True,
+            "authenticated_dev_rows_consumed_directly": True,
+            "checkpoint_identity_hash_checked_before_after_load": True,
         },
         "authorization_gate": {
             "external_authorization_required": True,
@@ -506,6 +669,11 @@ def audit_candidate(args: argparse.Namespace) -> None:
             "staged_digest_is_nonactivating": True,
             "atomic_digest_rename_is_activation_point": True,
             "preactivation_preflight_required": True,
+            "claim_root": "/var/lib/edubench/exp54-v2-dev",
+            "claim_root_root_owned": True,
+            "campaign_directory_training_group_managed": True,
+            "campaign_directory_append_only_required": True,
+            "claim_deletion_cannot_restore_invocation": True,
         },
         "v1_evidence": {
             "report_sha256": file_sha256(v1_report_path),
@@ -518,7 +686,7 @@ def audit_candidate(args: argparse.Namespace) -> None:
                 "thesis_exp/tests/test_exp54_inference_v2.py",
                 "thesis_exp/tests/test_exp54_v2_dev_authorization.py",
             ],
-            "passed": 46,
+            "passed": 62,
             "failed": 0,
             "skipped": 0,
         },
@@ -531,6 +699,28 @@ def audit_candidate(args: argparse.Namespace) -> None:
             "execution": public_smoke["execution"],
             "private_results_retained": True,
             "private_results_public": False,
+            "decoder_source_sha256": current_decoder_sha256,
+            "runner_source_sha256": current_smoke_runner_sha256,
+            "materialized_manifest_frozen_lock_sha256": (
+                frozen_contract["materialized_lock_sha256"]
+            ),
+            "reference_set_data_lock_sha256": (
+                frozen_contract["reference_lock_sha256"]
+            ),
+            "locked_train_sha256": frozen_contract[
+                "locked_train_sha256"
+            ],
+            "frozen_prompt_cache_sha256": frozen_contract[
+                "prompt_cache_sha256"
+            ],
+            "frozen_manifest_count": len(
+                frozen_contract["manifest_hashes"]
+            ),
+            "manifest_language_field_present": frozen_contract[
+                "manifest_language_field_present"
+            ],
+            "language_derived_from_unique_locked_train_record": True,
+            "private_smoke_language_matches_locked_train": True,
         },
         "locked_budget_probe": {
             "report_sha256": file_sha256(args.budget_probe_path),
@@ -576,6 +766,18 @@ def audit_candidate(args: argparse.Namespace) -> None:
         "train_only_smoke_public_report_sha256": report[
             "train_only_smoke"
         ]["public_report_sha256"],
+        "materialized_manifest_frozen_lock_sha256": report[
+            "train_only_smoke"
+        ]["materialized_manifest_frozen_lock_sha256"],
+        "reference_set_data_lock_sha256": report[
+            "train_only_smoke"
+        ]["reference_set_data_lock_sha256"],
+        "locked_train_sha256": report["train_only_smoke"][
+            "locked_train_sha256"
+        ],
+        "frozen_prompt_cache_sha256": report["train_only_smoke"][
+            "frozen_prompt_cache_sha256"
+        ],
         "locked_budget_probe_report_sha256": report[
             "locked_budget_probe"
         ]["report_sha256"],

@@ -4,6 +4,8 @@ import hashlib
 import json
 import os
 import sys
+import threading
+import zipfile
 from pathlib import Path
 from types import SimpleNamespace
 
@@ -13,6 +15,7 @@ from thesis_exp.exp54_rar_sft import (
     v2_dev_authorization_guard as guard,
 )
 from thesis_exp.exp54_rar_sft import v2_dev_runtime_contract as runtime
+from thesis_exp.exp54_rar_sft import audit_inference_v2_candidate as auditor
 
 
 COMMIT = "a" * 40
@@ -58,7 +61,11 @@ def _prepare_authorization(
         (grammar_path, "root ::= \"x\"\n"),
         (decoder_path, "decoder\n"),
         (parser_path, "parser\n"),
-        (dev_path, '{"sealed":true}\n'),
+        (
+            dev_path,
+            '{"record_id":"dev-1","label_5":3,'
+            '"metric_id":"m","language":"en"}\n',
+        ),
     ):
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text(payload, encoding="utf-8")
@@ -121,6 +128,14 @@ def _prepare_authorization(
         lock_path,
     )
     monkeypatch.setattr(guard, "DEFAULT_DEV_PATH", dev_path)
+    monkeypatch.setattr(guard, "_EXPECTED_DEV_ROWS", 1)
+    monkeypatch.setattr(
+        guard,
+        "parse_v2_protocol_payload",
+        lambda protocol_payload, grammar_payload: json.loads(
+            protocol_payload.decode("utf-8")
+        ),
+    )
     closure = {"runtime-source": "3" * 64}
     monkeypatch.setattr(
         guard,
@@ -155,14 +170,28 @@ def _prepare_authorization(
     monkeypatch.setattr(guard, "verify_wheel_file", fake_wheel)
     monkeypatch.setattr(
         guard,
-        "observed_installed_distribution",
-        lambda name: {
+        "verify_installed_distribution_matches_wheel",
+        lambda name, path, expected_wheel_sha256: {
             "distribution": name,
             "version": "locked",
-            "file_count": 1,
-            "file_tree_sha256": "5" * 64,
+            "installed_distribution_matches_reviewed_wheel": True,
+            "source_or_vcs_install_rejected": True,
+            "wheel_payload_file_count": 1,
+            "installed_payload_file_count": 1,
+            "wheel_payload_file_tree_sha256": "5" * 64,
+            "installed_payload_file_tree_sha256": "5" * 64,
             "direct_url_sha256": None,
         },
+    )
+    monkeypatch.setattr(
+        guard,
+        "_require_root_managed_claim_root",
+        lambda path: None,
+    )
+    monkeypatch.setattr(
+        guard,
+        "_require_nonreplayable_campaign_directory",
+        lambda path: None,
     )
 
     training_root = tmp_path / "training"
@@ -196,9 +225,25 @@ def _prepare_authorization(
                     ),
                 }
                 for name, path in artifacts.items():
-                    path.write_bytes(
-                        f"{arm}|{seed}|{epoch}|{name}".encode("ascii")
-                    )
+                    if name == "trainer_state":
+                        _write_json(
+                            path,
+                            {
+                                "status": (
+                                    "EXP54_FORMAL_CHECKPOINT_UNEVALUATED"
+                                ),
+                                "arm": arm,
+                                "seed": seed,
+                                "logical_epoch_number": epoch,
+                                "global_optimizer_step": epoch * 332,
+                                "dev_accessed": False,
+                                "test_accessed": False,
+                            },
+                        )
+                    else:
+                        path.write_bytes(
+                            f"{arm}|{seed}|{epoch}|{name}".encode("ascii")
+                        )
                 task_id = guard._task_id(arm, seed, epoch)
                 tasks.append(
                     {
@@ -236,7 +281,13 @@ def _prepare_authorization(
         ),
     }
     distributions = {
-        name: guard.observed_installed_distribution(name)
+        name: guard.verify_installed_distribution_matches_wheel(
+            name,
+            wheel_root / ("xgrammar.whl" if name == "xgrammar" else "tvm.whl"),
+            expected_wheel_sha256=(
+                "1" * 64 if name == "xgrammar" else "2" * 64
+            ),
+        )
         for name in ("xgrammar", "apache-tvm-ffi")
     }
     authorization = {
@@ -381,6 +432,199 @@ def test_authorization_is_one_use_per_checkpoint(
         _authorize(setup)
 
 
+def _assert_authenticated_input_replacement_is_rejected(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+    field: str,
+    replacement: bytes,
+):
+    setup = _prepare_authorization(tmp_path, monkeypatch)
+    verified = guard.authenticate_v2_dev_authorization(
+        arm="S0",
+        seed=42,
+        epoch=1,
+        authorization_path=setup["authorization_path"],
+        trusted_digest_path=setup["trusted_digest_path"],
+        claim_root=setup["claim_root"],
+        training_root=setup["training_root"],
+        output_root=setup["output_root"],
+        wheel_root=setup["wheel_root"],
+        repository_commit=COMMIT,
+    )
+    material = getattr(verified, field)
+    material.path.write_bytes(replacement)
+    with pytest.raises(PermissionError, match="replaced"):
+        guard.verify_read_once_material_unchanged(material)
+
+
+def test_protocol_replacement_after_authorization_is_rejected(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+):
+    _assert_authenticated_input_replacement_is_rejected(
+        tmp_path,
+        monkeypatch,
+        "protocol_material",
+        b'{"replaced":true}\n',
+    )
+
+
+def test_dev_replacement_after_authorization_is_rejected(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+):
+    _assert_authenticated_input_replacement_is_rejected(
+        tmp_path,
+        monkeypatch,
+        "dev_material",
+        b'{"record_id":"other","label_5":1}\n',
+    )
+
+
+def test_checkpoint_replacement_after_authorization_is_rejected(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+):
+    setup = _prepare_authorization(tmp_path, monkeypatch)
+    verified = guard.authenticate_v2_dev_authorization(
+        arm="S0",
+        seed=42,
+        epoch=1,
+        authorization_path=setup["authorization_path"],
+        trusted_digest_path=setup["trusted_digest_path"],
+        claim_root=setup["claim_root"],
+        training_root=setup["training_root"],
+        output_root=setup["output_root"],
+        wheel_root=setup["wheel_root"],
+        repository_commit=COMMIT,
+    )
+    material = verified.checkpoint_materials["adapter_model"]
+    material.path.write_bytes(b"replaced adapter")
+    with pytest.raises(PermissionError, match="replaced"):
+        guard.verify_read_once_material_unchanged(material)
+
+
+def test_runner_consumes_authenticated_context_payloads_only():
+    source = (
+        Path(__file__).resolve().parents[1]
+        / "exp54_rar_sft/run_dev_inference_v2.py"
+    ).read_text(encoding="utf-8")
+    assert "load_v2_protocol(" not in source
+    assert "load_dev_rows(" not in source
+    assert "_read_object(DEFAULT_CONFIG)" not in source
+    assert "state_path.read_text" not in source
+    assert "context.protocol" in source
+    assert "context.training_config" in source
+    assert "context.dev_rows" in source
+    assert "context.trainer_state" in source
+    assert source.count(
+        "verify_execution_context_materials_unchanged"
+    ) >= 4
+
+
+def test_concurrent_checkpoint_claim_has_exactly_one_winner(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+):
+    root = tmp_path / "claims"
+    campaign = root / "campaign"
+    campaign.mkdir(parents=True)
+    monkeypatch.setattr(
+        guard, "_require_root_managed_claim_root", lambda path: None
+    )
+    monkeypatch.setattr(
+        guard,
+        "_require_nonreplayable_campaign_directory",
+        lambda path: None,
+    )
+    outcomes: list[str] = []
+    barrier = threading.Barrier(8)
+
+    def claim() -> None:
+        barrier.wait()
+        try:
+            guard._claim_task(
+                claim_root=root,
+                campaign_id="campaign",
+                task_id="s0-seed42-epoch1",
+                authorization_sha256="a" * 64,
+            )
+            outcomes.append("won")
+        except PermissionError:
+            outcomes.append("lost")
+
+    threads = [threading.Thread(target=claim) for _ in range(8)]
+    for thread in threads:
+        thread.start()
+    for thread in threads:
+        thread.join()
+    assert outcomes.count("won") == 1
+    assert outcomes.count("lost") == 7
+
+
+def test_training_user_cannot_delete_or_replay_claim(tmp_path: Path):
+    root = tmp_path / "user-owned"
+    root.mkdir(mode=0o755)
+    with pytest.raises(PermissionError, match="root-owned"):
+        guard._require_root_managed_claim_root(root)
+
+
+def test_deleted_output_does_not_restore_invocation_permission(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+):
+    root = tmp_path / "claims"
+    (root / "campaign").mkdir(parents=True)
+    monkeypatch.setattr(
+        guard, "_require_root_managed_claim_root", lambda path: None
+    )
+    monkeypatch.setattr(
+        guard,
+        "_require_nonreplayable_campaign_directory",
+        lambda path: None,
+    )
+    kwargs = {
+        "claim_root": root,
+        "campaign_id": "campaign",
+        "task_id": "s0-seed42-epoch1",
+        "authorization_sha256": "a" * 64,
+    }
+    guard._claim_task(**kwargs)
+    output = tmp_path / "output"
+    output.mkdir()
+    output.rmdir()
+    with pytest.raises(PermissionError, match="already claimed"):
+        guard._claim_task(**kwargs)
+
+
+def test_failed_claimed_task_requires_new_campaign(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+):
+    root = tmp_path / "claims"
+    (root / "campaign-a").mkdir(parents=True)
+    (root / "campaign-b").mkdir()
+    monkeypatch.setattr(
+        guard, "_require_root_managed_claim_root", lambda path: None
+    )
+    monkeypatch.setattr(
+        guard,
+        "_require_nonreplayable_campaign_directory",
+        lambda path: None,
+    )
+    base = {
+        "claim_root": root,
+        "task_id": "s0-seed42-epoch1",
+        "authorization_sha256": "a" * 64,
+    }
+    guard._claim_task(campaign_id="campaign-a", **base)
+    with pytest.raises(PermissionError):
+        guard._claim_task(campaign_id="campaign-a", **base)
+    assert guard._claim_task(
+        campaign_id="campaign-b", **base
+    ).is_file()
+
+
 def test_runner_checks_authorization_before_dev_model_or_output(
     monkeypatch: pytest.MonkeyPatch,
 ):
@@ -394,16 +638,6 @@ def test_runner_checks_authorization_before_dev_model_or_output(
         raise PermissionError("not reviewed")
 
     monkeypatch.setattr(runner, "require_v2_dev_authorization", deny)
-    monkeypatch.setattr(
-        runner,
-        "load_v2_protocol",
-        lambda *args, **kwargs: touched.append("protocol"),
-    )
-    monkeypatch.setattr(
-        runner,
-        "load_dev_rows",
-        lambda *args, **kwargs: touched.append("dev"),
-    )
     monkeypatch.setattr(
         runner,
         "verify_model_snapshot",
@@ -516,6 +750,139 @@ def test_exact_wheel_bytes_are_required(tmp_path: Path):
         )
 
 
+def _reviewed_wheel_fixture(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+    *,
+    direct_url: dict[str, object] | None = None,
+    installed_package_payload: bytes = b"value = 1\n",
+) -> tuple[Path, str]:
+    wheel = tmp_path / "demo-1.0-py3-none-any.whl"
+    wheel_files = {
+        "demo.py": b"value = 1\n",
+        "demo-1.0.dist-info/METADATA": (
+            b"Metadata-Version: 2.1\nName: demo\nVersion: 1.0\n"
+        ),
+        "demo-1.0.dist-info/WHEEL": (
+            b"Wheel-Version: 1.0\nRoot-Is-Purelib: true\n"
+        ),
+        "demo-1.0.dist-info/RECORD": b"",
+    }
+    with zipfile.ZipFile(wheel, "w") as archive:
+        for name, payload in wheel_files.items():
+            archive.writestr(name, payload)
+    digest = hashlib.sha256(wheel.read_bytes()).hexdigest()
+    installed_root = tmp_path / "installed"
+    for name, payload in wheel_files.items():
+        if name.endswith("/RECORD"):
+            continue
+        path = installed_root / name
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_bytes(
+            installed_package_payload if name == "demo.py" else payload
+        )
+    generated_script = tmp_path / "bin/demo"
+    generated_script.parent.mkdir(parents=True, exist_ok=True)
+    generated_script.write_text("#!/bin/sh\n", encoding="utf-8")
+
+    resolved_direct_url = direct_url
+    if resolved_direct_url is None:
+        resolved_direct_url = {
+            "url": wheel.as_uri(),
+            "archive_info": {"hash": f"sha256={digest}"},
+        }
+
+    class FakeDistribution:
+        version = "1.0"
+        files = [
+            Path("demo.py"),
+            Path("demo-1.0.dist-info/METADATA"),
+            Path("demo-1.0.dist-info/WHEEL"),
+            Path("../../../bin/demo"),
+        ]
+
+        def read_text(self, name: str):
+            assert name == "direct_url.json"
+            return json.dumps(resolved_direct_url)
+
+        def locate_file(self, relative: str):
+            if str(relative) == "../../../bin/demo":
+                return generated_script
+            return installed_root / str(relative)
+
+    monkeypatch.setattr(
+        runtime.importlib.metadata,
+        "distribution",
+        lambda name: FakeDistribution(),
+    )
+    return wheel, digest
+
+
+def test_exact_reviewed_wheel_install_passes(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+):
+    wheel, digest = _reviewed_wheel_fixture(tmp_path, monkeypatch)
+    evidence = runtime.verify_installed_distribution_matches_wheel(
+        "demo",
+        wheel,
+        expected_wheel_sha256=digest,
+    )
+    assert evidence["installed_distribution_matches_reviewed_wheel"]
+    assert (
+        evidence["wheel_payload_file_tree_sha256"]
+        == evidence["installed_payload_file_tree_sha256"]
+    )
+
+
+def test_noneditable_source_install_is_rejected(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+):
+    wheel, digest = _reviewed_wheel_fixture(
+        tmp_path,
+        monkeypatch,
+        direct_url={"url": "file:///unreviewed/source", "dir_info": {}},
+    )
+    with pytest.raises(PermissionError, match="source-directory"):
+        runtime.verify_installed_distribution_matches_wheel(
+            "demo", wheel, expected_wheel_sha256=digest
+        )
+
+
+def test_vcs_install_is_rejected(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+):
+    wheel, digest = _reviewed_wheel_fixture(
+        tmp_path,
+        monkeypatch,
+        direct_url={
+            "url": "https://example.invalid/demo.git",
+            "vcs_info": {"vcs": "git", "commit_id": "a" * 40},
+        },
+    )
+    with pytest.raises(PermissionError, match="VCS"):
+        runtime.verify_installed_distribution_matches_wheel(
+            "demo", wheel, expected_wheel_sha256=digest
+        )
+
+
+def test_installed_payload_differing_from_wheel_is_rejected(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+):
+    wheel, digest = _reviewed_wheel_fixture(
+        tmp_path,
+        monkeypatch,
+        installed_package_payload=b"value = 2\n",
+    )
+    with pytest.raises(PermissionError, match="differs"):
+        runtime.verify_installed_distribution_matches_wheel(
+            "demo", wheel, expected_wheel_sha256=digest
+        )
+
+
 def test_editable_distribution_is_rejected(
     tmp_path: Path,
     monkeypatch: pytest.MonkeyPatch,
@@ -544,7 +911,7 @@ def test_editable_distribution_is_rejected(
         "distribution",
         lambda name: FakeDistribution(),
     )
-    with pytest.raises(PermissionError, match="editable"):
+    with pytest.raises(PermissionError, match="source-directory"):
         runtime.observed_installed_distribution("xgrammar")
 
 
@@ -555,6 +922,191 @@ def test_candidate_auditor_does_not_import_production_selector():
     ).read_text(encoding="utf-8")
     assert "run_inference_v2_train_smoke import" not in source
     assert "build_smoke_selection" not in source
+
+
+def _frozen_auditor_fixture(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> dict[str, object]:
+    data_dir = tmp_path / "data"
+    data_dir.mkdir()
+    train = tmp_path / "train.jsonl"
+    train_row = {
+        "record_id": "record-1",
+        "label_5": 3,
+        "language": "en",
+    }
+    train.write_text(json.dumps(train_row) + "\n", encoding="utf-8")
+    monkeypatch.setattr(auditor, "DEFAULT_TRAIN", train)
+    prompt = {
+        "prompt_cache_id": "prompt-1",
+        "record_id": "record-1",
+        "prompt_token_ids": [1, 2, 3],
+        "prompt_token_ids_sha256": auditor._prompt_token_ids_sha256(
+            [1, 2, 3]
+        ),
+    }
+    prompt_path = data_dir / "shared_prompt_cache.jsonl"
+    prompt_path.write_text(json.dumps(prompt) + "\n", encoding="utf-8")
+    manifest_hashes: dict[str, dict[str, str]] = {}
+    manifest_paths: dict[tuple[str, int], Path] = {}
+    for seed in auditor.SEEDS:
+        seed_hashes: dict[str, str] = {}
+        for arm in auditor.ARMS:
+            path = (
+                data_dir
+                / f"training_manifest_{arm.lower()}_seed{seed}.jsonl"
+            )
+            rows = [
+                {
+                    "epoch_number": epoch,
+                    "record_id": "record-1",
+                    "score_target": 3,
+                    "language": "en",
+                    "rationale_active": arm != "S0",
+                    "base_event_id": (
+                        f"{arm.lower()}-{seed}-{epoch}"
+                    ),
+                    "prompt_cache_id": "prompt-1",
+                    "prompt_token_ids_sha256": prompt[
+                        "prompt_token_ids_sha256"
+                    ],
+                }
+                for epoch in auditor.EPOCHS
+            ]
+            path.write_text(
+                "".join(json.dumps(row) + "\n" for row in rows),
+                encoding="utf-8",
+            )
+            seed_hashes[arm] = auditor.file_sha256(path)
+            manifest_paths[(arm, seed)] = path
+        manifest_hashes[f"seed{seed}"] = seed_hashes
+    reference_lock = tmp_path / "reference-lock.json"
+    _write_json(
+        reference_lock,
+        {
+            "status": "REFERENCE_SETS_READY",
+            "dev_accessed": False,
+            "test_accessed": False,
+            "input": {
+                "rar0_source_hashes": {
+                    "train": auditor.file_sha256(train)
+                }
+            },
+        },
+    )
+    materialized_lock = tmp_path / "materialized-lock.json"
+    _write_json(
+        materialized_lock,
+        {
+            "status": (
+                "MATERIALIZED_MANIFEST_FROZEN_TRAINING_NOT_AUTHORIZED"
+            ),
+            "manifest_frozen": True,
+            "dev_accessed": False,
+            "test_accessed": False,
+            "upstream_lock_hashes": {
+                "reference_set_lock": auditor.file_sha256(reference_lock)
+            },
+            "private_artifact_hashes": {
+                "shared_prompt_cache": auditor.file_sha256(prompt_path),
+                "manifests_by_seed": manifest_hashes,
+            },
+        },
+    )
+    monkeypatch.setattr(
+        auditor,
+        "EXPECTED_MATERIALIZED_MANIFEST_FROZEN_LOCK_SHA256",
+        auditor.file_sha256(materialized_lock),
+    )
+    monkeypatch.setattr(
+        auditor,
+        "EXPECTED_REFERENCE_SET_DATA_LOCK_SHA256",
+        auditor.file_sha256(reference_lock),
+    )
+    return {
+        "data_dir": data_dir,
+        "materialized_lock": materialized_lock,
+        "reference_lock": reference_lock,
+        "manifest_paths": manifest_paths,
+    }
+
+
+def test_independent_auditor_binds_frozen_manifest_hashes(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+):
+    setup = _frozen_auditor_fixture(tmp_path, monkeypatch)
+    contract = auditor._frozen_manifest_contract(
+        setup["data_dir"],
+        materialized_lock_path=setup["materialized_lock"],
+        reference_lock_path=setup["reference_lock"],
+    )
+    assert len(contract["manifest_hashes"]) == 12
+    target = setup["manifest_paths"][("S0", 42)]
+    target.write_bytes(target.read_bytes() + b"\n")
+    with pytest.raises(ValueError, match="frozen manifest hash"):
+        auditor._frozen_manifest_contract(
+            setup["data_dir"],
+            materialized_lock_path=setup["materialized_lock"],
+            reference_lock_path=setup["reference_lock"],
+        )
+
+
+def test_independent_auditor_rejects_rewritten_upstream_lock(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+):
+    setup = _frozen_auditor_fixture(tmp_path, monkeypatch)
+    path = setup["materialized_lock"]
+    value = json.loads(path.read_text(encoding="utf-8"))
+    value["private_artifact_hashes"]["shared_prompt_cache"] = "0" * 64
+    _write_json(path, value)
+    with pytest.raises(ValueError, match="trust anchor"):
+        auditor._frozen_manifest_contract(
+            setup["data_dir"],
+            materialized_lock_path=path,
+            reference_lock_path=setup["reference_lock"],
+        )
+
+
+@pytest.mark.parametrize(
+    ("field", "value", "message"),
+    [
+        ("score_target", 5, "score differs"),
+        ("language", "zh", "language differs"),
+    ],
+)
+def test_independent_auditor_rejects_semantic_manifest_tamper(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+    field: str,
+    value: object,
+    message: str,
+):
+    setup = _frozen_auditor_fixture(tmp_path, monkeypatch)
+    contract = auditor._frozen_manifest_contract(
+        setup["data_dir"],
+        materialized_lock_path=setup["materialized_lock"],
+        reference_lock_path=setup["reference_lock"],
+    )
+    target = setup["manifest_paths"][("S0", 42)]
+    rows = [
+        json.loads(line) for line in target.read_text().splitlines()
+    ]
+    rows[0][field] = value
+    target.write_text(
+        "".join(json.dumps(row) + "\n" for row in rows),
+        encoding="utf-8",
+    )
+    contract["manifest_hashes"][("S0", 42)] = auditor.file_sha256(
+        target
+    )
+    with pytest.raises(ValueError, match=message):
+        auditor._independent_smoke_selection(
+            setup["data_dir"],
+            frozen_contract=contract,
+        )
 
 
 def test_preactivation_pass_is_read_only_then_atomic_activation_works(
@@ -572,6 +1124,21 @@ def test_preactivation_pass_is_read_only_then_atomic_activation_works(
     formal_anchor = tmp_path / "formal-training.sha256"
     authorization_path.chmod(0o444)
     staged_path.chmod(0o444)
+    monkeypatch.setattr(
+        preflight,
+        "_require_readonly_owned_regular",
+        lambda path: None,
+    )
+    monkeypatch.setattr(
+        preflight,
+        "_require_root_managed_claim_root",
+        lambda path: None,
+    )
+    monkeypatch.setattr(
+        preflight,
+        "_require_nonreplayable_campaign_directory",
+        lambda path: None,
+    )
 
     with pytest.raises(PermissionError):
         guard.require_v2_dev_authorization(

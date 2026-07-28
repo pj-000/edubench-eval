@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 import argparse
-import json
 import time
 from pathlib import Path
 from typing import Any
@@ -11,12 +10,10 @@ from typing import Any
 from thesis_exp.exp54_rar_sft.inference_contract import parse_review_json
 from thesis_exp.exp54_rar_sft.run_dev_inference import (
     ARMS,
-    DEV_PATH,
     EPOCHS,
     REPO_ROOT,
     SEEDS,
     file_sha256,
-    load_dev_rows,
     prepare_prompts,
     rationale_metrics,
     score_metrics,
@@ -24,20 +21,17 @@ from thesis_exp.exp54_rar_sft.run_dev_inference import (
     write_jsonl,
 )
 from thesis_exp.exp54_rar_sft.structured_decoder_v2 import (
-    DEFAULT_PROTOCOL_CONFIG,
     constrained_greedy_decode,
-    load_v2_protocol,
     prepare_v2_runtime,
 )
 from thesis_exp.exp54_rar_sft.training_contract import token_ids_sha256
 from thesis_exp.exp54_rar_sft.train_rar_sft import (
-    DEFAULT_CONFIG,
-    _read_object,
     validate_training_configuration,
     verify_model_snapshot,
 )
 from thesis_exp.exp54_rar_sft.v2_dev_authorization_guard import (
     require_v2_dev_authorization,
+    verify_execution_context_materials_unchanged,
 )
 
 
@@ -128,8 +122,9 @@ def run_inference_v2(args: argparse.Namespace) -> None:
         seed=args.seed,
         epoch=args.epoch,
     )
+    verify_execution_context_materials_unchanged(context)
     started = time.time()
-    protocol = load_v2_protocol()
+    protocol = context.protocol
     if protocol["selection_and_access"]["formal_v2_dev_allowed"]:
         raise ValueError(
             "candidate config must remain not-authorized in repository"
@@ -144,21 +139,14 @@ def run_inference_v2(args: argparse.Namespace) -> None:
         != context.max_new_tokens
     ):
         raise PermissionError("authorized V2 token budget differs")
-    config = _read_object(DEFAULT_CONFIG)
+    config = context.training_config
     validate_training_configuration(config)
     verify_model_snapshot(config)
-    rows = load_dev_rows()
-    adapter_path = (
-        context.training_root
-        / f"seed{args.seed}"
-        / args.arm.lower()
-        / f"checkpoint-logical-epoch-{args.epoch}"
-        / "adapter"
-    )
-    state_path = adapter_path.parent / "trainer_state.json"
-    if not adapter_path.is_dir() or not state_path.is_file():
-        raise FileNotFoundError(adapter_path)
-    state = json.loads(state_path.read_text(encoding="utf-8"))
+    rows = list(context.dev_rows)
+    adapter_path = context.checkpoint_materials[
+        "adapter_config"
+    ].path.parent
+    state = context.trainer_state
     expected_state = {
         "status": "EXP54_FORMAL_CHECKPOINT_UNEVALUATED",
         "arm": args.arm,
@@ -171,6 +159,7 @@ def run_inference_v2(args: argparse.Namespace) -> None:
     for key, value in expected_state.items():
         if state.get(key) != value:
             raise ValueError(f"checkpoint state differs at {key}")
+    verify_execution_context_materials_unchanged(context)
 
     import torch
     from peft import PeftModel
@@ -196,12 +185,14 @@ def run_inference_v2(args: argparse.Namespace) -> None:
         str(adapter_path),
         is_trainable=False,
     )
+    verify_execution_context_materials_unchanged(context)
     model.eval()
     model.config.use_cache = True
     runtime = prepare_v2_runtime(
         tokenizer,
         model_vocab_size=int(model.config.vocab_size),
         protocol=protocol,
+        grammar_payload=context.grammar_material.payload,
     )
     by_position: dict[int, dict[str, Any]] = {}
     ordered_for_batches = sorted(
@@ -261,12 +252,13 @@ def run_inference_v2(args: argparse.Namespace) -> None:
     predictions = [
         by_position[position] for position in range(len(rows))
     ]
+    verify_execution_context_materials_unchanged(context)
     write_jsonl(context.output_dir / "predictions.jsonl", predictions)
     execution = execution_metrics(predictions)
     run_record = {
         "status": "EXP54_DEV_INFERENCE_V2_COMPLETE",
         "protocol_id": protocol["protocol_id"],
-        "protocol_config_sha256": file_sha256(DEFAULT_PROTOCOL_CONFIG),
+        "protocol_config_sha256": context.protocol_material.sha256,
         "grammar_sha256": protocol["grammar"]["sha256"],
         "decoder_source_sha256": file_sha256(
             Path(__file__).resolve().parent / "structured_decoder_v2.py"
@@ -275,17 +267,17 @@ def run_inference_v2(args: argparse.Namespace) -> None:
         "seed": args.seed,
         "epoch": args.epoch,
         "checkpoint_global_step": args.epoch * 332,
-        "dev_path": str(DEV_PATH),
-        "dev_sha256": file_sha256(DEV_PATH),
+        "dev_path": str(context.dev_material.path),
+        "dev_sha256": context.dev_material.sha256,
         "dev_rows": len(rows),
         "model_path": str(model_path),
         "adapter_path": str(adapter_path),
-        "adapter_config_sha256": file_sha256(
-            adapter_path / "adapter_config.json"
-        ),
-        "adapter_model_sha256": file_sha256(
-            adapter_path / "adapter_model.safetensors"
-        ),
+        "adapter_config_sha256": context.checkpoint_materials[
+            "adapter_config"
+        ].sha256,
+        "adapter_model_sha256": context.checkpoint_materials[
+            "adapter_model"
+        ].sha256,
         "generation": protocol["generation"],
         "backend": protocol["backend"],
         "batch_size": context.batch_size,

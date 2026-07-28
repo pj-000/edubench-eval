@@ -210,14 +210,21 @@ model probability assigned to all currently legal tokens.
 The repository candidate remains `formal_v2_dev_allowed=false`. This field
 cannot activate execution. The formal runner first requires an external
 reviewed authorization at fixed user-managed paths and consumes a unique
-one-use claim before model validation, dev loading, output reservation, CUDA,
-or model loading.
+one-use claim from a fixed root-managed, append-only campaign directory
+before model validation, dev loading, output reservation, CUDA, or model
+loading. The execution user cannot remove a claim to replay a checkpoint.
 
 The authorization binds the exact reviewed commit and report/lock, complete
-runtime closure, actual wheel bytes and installed distribution file trees,
-sealed dev hash, all 36 checkpoint artifacts, batch size 16, token budget
-256, fixed output campaign, `test_allowed=false`, and one invocation per
-checkpoint.
+runtime closure, and proves each installed XGrammar dependency payload equals
+the reviewed wheel payload byte-for-byte. It also binds the sealed dev hash,
+all 36 checkpoint artifacts, batch size 16, token budget 256, fixed output
+campaign, `test_allowed=false`, and one invocation per checkpoint.
+
+The production context carries the exact authenticated protocol, grammar,
+training configuration, dev and checkpoint bytes. The runner does not reopen
+protocol, configuration or dev paths. Adapter identity and full hashes are
+checked before and after model loading and once more before any prediction
+artifact is written.
 
 Installation follows the staged pre-activation sequence in
 `V2_DEV_AUTHORIZATION_PLAN.md`. The staged digest cannot activate the

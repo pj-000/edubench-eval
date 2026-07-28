@@ -19,11 +19,22 @@ review. It does not authorize test access.
 5. Install its reviewed digest at
    `~/.config/edubench/exp54_v2_dev_authorization.sha256.staged` with mode
    `0444`. The staged file is not an activation point.
-6. Prepare private user-owned claim and output roots. The campaign claim
-   directory must be empty.
+6. A system administrator prepares the fixed claim root
+   `/var/lib/edubench/exp54-v2-dev` as a real root-owned directory with exact
+   mode `0755`.
+7. The administrator creates
+   `/var/lib/edubench/exp54-v2-dev/<campaign_id>` as a real root-owned,
+   training-group directory with exact mode `01730` and the filesystem
+   append-only flag. The execution user must belong to that group. The
+   directory must be empty. The execution user may create a claim but cannot
+   delete or rename an existing claim.
+8. Prepare the private user-owned output root. Every fixed final output
+   directory must be absent.
 
-No `sudo` command is required. The production runner reads neither a CLI
-authorization path nor the staged digest.
+The production runner itself never invokes `sudo`, creates a campaign
+directory, changes ownership/mode/flags, reads a CLI authorization path, or
+reads the staged digest. Root-managed claim provisioning is a separate
+installation prerequisite; this plan does not authorize Codex to perform it.
 
 ## Pre-activation gate
 
@@ -33,7 +44,8 @@ Run `audit_v2_dev_authorization_preactivation.py`. It must return exactly:
 
 The audit fails if the active V2 digest exists, the formal-training anchor
 exists, installed authorization bytes or permissions differ, any checkpoint
-or runtime binding differs, a claim already exists, or a fixed output
+or runtime binding differs, claim-root/campaign owner, group, mode or
+append-only state differs, a claim already exists, or a fixed output
 directory exists. The audit is read-only: it does not claim a task, create an
 output, load a model, initialize CUDA, or read test.
 
@@ -56,7 +68,9 @@ validation/loading, output creation, or CUDA.
 Run the fixed launcher, which invokes only S0/R1/R2/R3 × seeds 42/43/44 ×
 logical epochs 1/2/3 with batch size 16 and token budget 256. Each invocation
 atomically creates a unique claim before any dev/model/output work. A second
-invocation of the same checkpoint fails.
+invocation of the same checkpoint fails. Deleting an output directory does
+not restore invocation permission, because the execution user cannot remove
+the root-protected claim.
 
 If a claimed task fails, retain its claim and output evidence, remove the
 active digest, and stop the campaign. Do not retry inside the same campaign.

@@ -19,7 +19,9 @@ from thesis_exp.exp54_rar_sft.v2_dev_authorization_guard import (
     DEFAULT_V2_TRUSTED_DIGEST_PATH,
     DEFAULT_V2_WHEEL_ROOT,
     _read_regular_once,
+    _require_nonreplayable_campaign_directory,
     _require_private_directory,
+    _require_root_managed_claim_root,
     authenticate_v2_dev_authorization,
 )
 
@@ -38,9 +40,14 @@ def _require_absent(path: Path) -> None:
     raise PermissionError(f"{path}: must be absent before activation")
 
 
-def _require_readonly_owned_regular(path: Path) -> None:
+def _require_readonly_owned_regular(
+    path: Path,
+    *,
+    expected_uid: int | None = None,
+) -> None:
     material = _read_regular_once(path)
-    if material.uid != os.getuid():
+    resolved_uid = os.getuid() if expected_uid is None else expected_uid
+    if material.uid != resolved_uid:
         raise PermissionError(f"{path}: owner differs")
     if stat.S_IMODE(material.mode) != 0o444:
         raise PermissionError(f"{path}: expected exact mode 0444")
@@ -63,7 +70,7 @@ def audit_v2_dev_authorization_preactivation(
     _require_absent(formal_training_anchor)
     _require_readonly_owned_regular(authorization_path)
     _require_readonly_owned_regular(staged_digest_path)
-    _require_private_directory(claim_root)
+    _require_root_managed_claim_root(claim_root)
     _require_private_directory(output_root)
 
     first = authenticate_v2_dev_authorization(
@@ -77,9 +84,10 @@ def audit_v2_dev_authorization_preactivation(
         output_root=output_root,
         wheel_root=wheel_root,
         repository_commit=repository_commit,
+        materialize_dev_rows=False,
     )
     campaign_dir = claim_root / first.campaign_id
-    _require_private_directory(campaign_dir)
+    _require_nonreplayable_campaign_directory(campaign_dir)
     if any(campaign_dir.iterdir()):
         raise PermissionError("V2 campaign claim directory is not empty")
 
@@ -98,6 +106,7 @@ def audit_v2_dev_authorization_preactivation(
                     output_root=output_root,
                     wheel_root=wheel_root,
                     repository_commit=repository_commit,
+                    materialize_dev_rows=False,
                 )
                 if verified.campaign_id != first.campaign_id:
                     raise PermissionError(

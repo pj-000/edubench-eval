@@ -3,9 +3,12 @@
 from __future__ import annotations
 
 import hashlib
+import io
 import importlib.metadata
 import json
 import platform
+import urllib.parse
+import zipfile
 from pathlib import Path
 from typing import Any
 
@@ -251,12 +254,13 @@ def observed_installed_distribution(
         else None
     )
     if isinstance(direct_url, dict):
-        directory_info = direct_url.get("dir_info")
-        if isinstance(directory_info, dict) and directory_info.get(
-            "editable"
-        ):
+        if "dir_info" in direct_url:
             raise PermissionError(
-                f"{distribution_name}: editable install is prohibited"
+                f"{distribution_name}: source-directory install is prohibited"
+            )
+        if "vcs_info" in direct_url:
+            raise PermissionError(
+                f"{distribution_name}: VCS install is prohibited"
             )
     entries = []
     for relative in sorted(str(item) for item in files):
@@ -278,6 +282,169 @@ def observed_installed_distribution(
         "version": distribution.version,
         "file_count": len(entries),
         "file_tree_sha256": canonical_sha256(entries),
+        "direct_url_sha256": (
+            hashlib.sha256(direct_url_text.encode("utf-8")).hexdigest()
+            if direct_url_text is not None
+            else None
+        ),
+    }
+
+
+_INSTALLER_GENERATED_SUFFIXES = {
+    "RECORD",
+    "INSTALLER",
+    "direct_url.json",
+    "REQUESTED",
+}
+
+
+def _is_installer_generated(relative: str) -> bool:
+    parts = Path(relative).parts
+    return (
+        relative.endswith(".pyc")
+        or "__pycache__" in parts
+        or (
+            parts
+            and parts[0] == ".."
+            and "bin" in parts
+        )
+        or (
+            any(part.endswith(".dist-info") for part in parts)
+            and parts[-1] in _INSTALLER_GENERATED_SUFFIXES
+        )
+    )
+
+
+def _wheel_install_relative(relative: str) -> str:
+    parts = Path(relative).parts
+    for marker in ("purelib", "platlib"):
+        if marker in parts:
+            index = parts.index(marker)
+            if index > 0 and parts[index - 1].endswith(".data"):
+                return str(Path(*parts[index + 1 :]))
+    return str(Path(*parts))
+
+
+def _tree_entry(path: str, payload: bytes) -> dict[str, Any]:
+    return {
+        "path": path,
+        "size": len(payload),
+        "sha256": hashlib.sha256(payload).hexdigest(),
+    }
+
+
+def verify_installed_distribution_matches_wheel(
+    distribution_name: str,
+    wheel_path: Path,
+    *,
+    expected_wheel_sha256: str,
+) -> dict[str, Any]:
+    """Bind an installed distribution byte-for-byte to a reviewed wheel."""
+    if wheel_path.is_symlink() or not wheel_path.is_file():
+        raise PermissionError(
+            f"{distribution_name}: reviewed wheel is unavailable"
+        )
+    wheel_bytes = wheel_path.read_bytes()
+    if hashlib.sha256(wheel_bytes).hexdigest() != expected_wheel_sha256:
+        raise PermissionError(
+            f"{distribution_name}: reviewed wheel SHA-256 differs"
+        )
+    distribution = importlib.metadata.distribution(distribution_name)
+    direct_url_text = distribution.read_text("direct_url.json")
+    direct_url = (
+        json.loads(direct_url_text)
+        if direct_url_text is not None
+        else None
+    )
+    if isinstance(direct_url, dict):
+        if "dir_info" in direct_url:
+            raise PermissionError(
+                f"{distribution_name}: source-directory install is prohibited"
+            )
+        if "vcs_info" in direct_url:
+            raise PermissionError(
+                f"{distribution_name}: VCS install is prohibited"
+            )
+        archive = direct_url.get("archive_info")
+        if not isinstance(archive, dict):
+            raise PermissionError(
+                f"{distribution_name}: archive provenance is incomplete"
+            )
+        archive_hash = archive.get("hash")
+        if archive_hash != f"sha256={expected_wheel_sha256}":
+            raise PermissionError(
+                f"{distribution_name}: installed archive hash differs"
+            )
+        url_name = Path(
+            urllib.parse.unquote(
+                urllib.parse.urlparse(str(direct_url.get("url") or "")).path
+            )
+        ).name
+        if url_name != wheel_path.name:
+            raise PermissionError(
+                f"{distribution_name}: installed archive filename differs"
+            )
+    wheel_entries: list[dict[str, Any]] = []
+    wheel_payload: dict[str, tuple[int, str]] = {}
+    with zipfile.ZipFile(io.BytesIO(wheel_bytes)) as archive:
+        for info in sorted(archive.infolist(), key=lambda item: item.filename):
+            if info.is_dir():
+                continue
+            relative = _wheel_install_relative(info.filename)
+            if _is_installer_generated(relative):
+                continue
+            payload = archive.read(info)
+            entry = _tree_entry(relative, payload)
+            if relative in wheel_payload:
+                raise PermissionError(
+                    f"{distribution_name}: duplicate wheel payload path"
+                )
+            wheel_payload[relative] = (entry["size"], entry["sha256"])
+            wheel_entries.append(entry)
+    files = distribution.files
+    if files is None:
+        raise PermissionError(
+            f"{distribution_name}: installed file list is unavailable"
+        )
+    installed_entries: list[dict[str, Any]] = []
+    installed_payload: dict[str, tuple[int, str]] = {}
+    for item in sorted(str(value) for value in files):
+        relative = str(Path(item))
+        if _is_installer_generated(relative):
+            continue
+        path = Path(distribution.locate_file(relative))
+        if path.is_symlink() or not path.is_file():
+            raise PermissionError(
+                f"{distribution_name}: installed payload is unavailable"
+            )
+        payload = path.read_bytes()
+        entry = _tree_entry(relative, payload)
+        installed_payload[relative] = (entry["size"], entry["sha256"])
+        installed_entries.append(entry)
+    if installed_payload != wheel_payload:
+        missing = sorted(set(wheel_payload) - set(installed_payload))
+        extra = sorted(set(installed_payload) - set(wheel_payload))
+        changed = sorted(
+            path
+            for path in set(wheel_payload) & set(installed_payload)
+            if wheel_payload[path] != installed_payload[path]
+        )
+        raise PermissionError(
+            f"{distribution_name}: installed payload differs from reviewed "
+            f"wheel (missing={missing[:3]}, extra={extra[:3]}, "
+            f"changed={changed[:3]})"
+        )
+    return {
+        "distribution": distribution_name,
+        "version": distribution.version,
+        "installed_distribution_matches_reviewed_wheel": True,
+        "source_or_vcs_install_rejected": True,
+        "wheel_payload_file_count": len(wheel_entries),
+        "installed_payload_file_count": len(installed_entries),
+        "wheel_payload_file_tree_sha256": canonical_sha256(wheel_entries),
+        "installed_payload_file_tree_sha256": canonical_sha256(
+            installed_entries
+        ),
         "direct_url_sha256": (
             hashlib.sha256(direct_url_text.encode("utf-8")).hexdigest()
             if direct_url_text is not None

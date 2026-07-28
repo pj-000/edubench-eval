@@ -25,13 +25,16 @@ def file_sha256(path: Path) -> str:
     return digest.hexdigest()
 
 
-def load_v2_protocol(path: Path = DEFAULT_PROTOCOL_CONFIG) -> dict[str, Any]:
-    value = json.loads(path.read_text(encoding="utf-8"))
+def parse_v2_protocol_payload(
+    protocol_payload: bytes,
+    grammar_payload: bytes,
+) -> dict[str, Any]:
+    """Validate protocol and grammar from the exact authenticated bytes."""
+    value = json.loads(protocol_payload.decode("utf-8"))
     if value.get("protocol_id") != "RAR_SFT_INFERENCE_PROTOCOL_V2":
         raise ValueError("unexpected V2 inference protocol identifier")
     grammar = value["grammar"]
-    grammar_path = REPO_ROOT / grammar["path"]
-    if file_sha256(grammar_path) != grammar["sha256"]:
+    if hashlib.sha256(grammar_payload).hexdigest() != grammar["sha256"]:
         raise ValueError("V2 grammar hash differs from the protocol lock")
     if value["generation"] != {
         "search": "greedy_argmax_after_grammar_mask",
@@ -51,6 +54,16 @@ def load_v2_protocol(path: Path = DEFAULT_PROTOCOL_CONFIG) -> dict[str, Any]:
     }:
         raise ValueError("V2 generation settings differ from the frozen candidate")
     return value
+
+
+def load_v2_protocol(path: Path = DEFAULT_PROTOCOL_CONFIG) -> dict[str, Any]:
+    protocol_payload = path.read_bytes()
+    raw = json.loads(protocol_payload.decode("utf-8"))
+    grammar_path = REPO_ROOT / raw["grammar"]["path"]
+    return parse_v2_protocol_payload(
+        protocol_payload,
+        grammar_path.read_bytes(),
+    )
 
 
 @dataclass(frozen=True)
@@ -215,6 +228,7 @@ def compile_v2_grammar(
     *,
     model_vocab_size: int,
     protocol: dict[str, Any],
+    grammar_payload: bytes | None = None,
 ) -> tuple[Any, Any]:
     import importlib.metadata
 
@@ -236,7 +250,16 @@ def compile_v2_grammar(
         raise ValueError("pad token differs from protocol lock")
     if int(tokenizer.eos_token_id) != int(model_lock["eos_token_id"]):
         raise ValueError("EOS token differs from protocol lock")
-    grammar_path = REPO_ROOT / protocol["grammar"]["path"]
+    resolved_grammar_payload = (
+        grammar_payload
+        if grammar_payload is not None
+        else (REPO_ROOT / protocol["grammar"]["path"]).read_bytes()
+    )
+    if (
+        hashlib.sha256(resolved_grammar_payload).hexdigest()
+        != protocol["grammar"]["sha256"]
+    ):
+        raise ValueError("V2 grammar bytes differ from the protocol lock")
     tokenizer_info = xgr.TokenizerInfo.from_huggingface(
         tokenizer,
         vocab_size=model_vocab_size,
@@ -244,7 +267,7 @@ def compile_v2_grammar(
     )
     compiler = xgr.GrammarCompiler(tokenizer_info)
     compiled = compiler.compile_grammar(
-        grammar_path.read_text(encoding="utf-8"),
+        resolved_grammar_payload.decode("utf-8"),
         root_rule_name=protocol["grammar"]["root_rule"],
     )
     return xgr, compiled
@@ -255,6 +278,7 @@ def prepare_v2_runtime(
     *,
     model_vocab_size: int,
     protocol: dict[str, Any] | None = None,
+    grammar_payload: bytes | None = None,
 ) -> tuple[
     dict[str, Any],
     Any,
@@ -268,6 +292,7 @@ def prepare_v2_runtime(
         tokenizer,
         model_vocab_size=model_vocab_size,
         protocol=resolved_protocol,
+        grammar_payload=grammar_payload,
     )
     decoded_vocab, single_byte_token_ids = _token_byte_tables(
         tokenizer,
