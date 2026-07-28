@@ -1,0 +1,182 @@
+{
+  "schema_version": "exp54-rationale-blind-audit-preregistration-v1",
+  "status": "RATIONALE_BLIND_AUDIT_PROTOCOL_PREREGISTERED",
+  "scientific_scope": {
+    "primary_question": "Does answer-aligned, label-consistent human rationale supervision improve visible rationale quality relative to a token-frequency-matched shuffled-rationale control?",
+    "primary_comparison": "R3_vs_R2",
+    "secondary_question": "Does label-consistent rationale selection improve visible rationale quality relative to all-rater rationale supervision?",
+    "secondary_comparison": "R3_vs_R1",
+    "claim_name": "model-based rationale agreement/preference",
+    "forbidden_claim_names": [
+      "human correctness",
+      "expert correctness",
+      "rationale accuracy",
+      "faithful hidden reasoning"
+    ]
+  },
+  "frozen_inputs": {
+    "review_verdict": "SFT_DEV_RESULT_PASS",
+    "reviewed_dev_result_commit": "a0c987b6973c5e03130fdee009df347b35d48080",
+    "checkpoint_selection_lock_path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/protocol/sft_dev_checkpoint_selection_frozen_lock.json",
+    "checkpoint_selection_lock_sha256": "364a2c9ee023d1b0a2d803530d7898a347a150dd89dbaaa388aa44677cd71df4",
+    "selected_epoch": 3,
+    "arms_used": [
+      "R1",
+      "R2",
+      "R3"
+    ],
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "split": "dev",
+    "test_is_excluded": true,
+    "decoder_or_token_budget_changes_allowed": false,
+    "checkpoint_reselection_allowed": false
+  },
+  "sample": {
+    "unique_dev_rows": 120,
+    "same_row_manifest_for_all_arms_and_seeds": true,
+    "include_every_available_label_1_or_2_row": true,
+    "expected_low_score_rows": 20,
+    "remaining_rows": 100,
+    "remaining_row_strata": [
+      "metric_id",
+      "language",
+      "label_band_3_vs_4_5"
+    ],
+    "all_12_metrics_required": true,
+    "both_languages_required": true,
+    "selection_inputs_allowed": [
+      "record_id",
+      "row_position",
+      "label_5",
+      "metric_id",
+      "language"
+    ],
+    "selection_inputs_forbidden": [
+      "arm",
+      "seed",
+      "generated_score",
+      "generated_rationale",
+      "forced_completion",
+      "judge_preference"
+    ],
+    "deterministic_selection_seed": "exp54-rationale-blind-audit-sample-v1|20260728",
+    "row_level_manifest_visibility": "private",
+    "public_artifact_scope": "counts, coverage, hashes, and aggregate results only"
+  },
+  "presentation": {
+    "pairing_unit": "same record_id and seed",
+    "candidate_context": [
+      "question",
+      "answer",
+      "metric definition",
+      "rubric",
+      "candidate score",
+      "candidate rationale"
+    ],
+    "hidden_from_evaluator": [
+      "arm",
+      "seed",
+      "gold label",
+      "individual human scores",
+      "human rationale references",
+      "forced_completion flag",
+      "checkpoint and provenance identifiers"
+    ],
+    "orientations": [
+      "A_then_B",
+      "B_then_A"
+    ],
+    "orientation_order": "deterministic hash-randomized",
+    "inconsistent_swapped_judgments_become_tie": true,
+    "primary_pair_instances_before_orientation": 360,
+    "secondary_pair_instances_before_orientation": 360
+  },
+  "evaluation": {
+    "independent_evaluator_model_families_required": 2,
+    "evaluator_1": {
+      "family": null,
+      "model": null,
+      "immutable_revision_or_endpoint_version": null,
+      "status": "MUST_FREEZE_BEFORE_EXECUTION"
+    },
+    "evaluator_2": {
+      "family": null,
+      "model": null,
+      "immutable_revision_or_endpoint_version": null,
+      "status": "MUST_FREEZE_BEFORE_EXECUTION"
+    },
+    "evaluator_training_data_role": "must not have been used to construct Exp54 training rationales or donor mappings",
+    "decoding": {
+      "temperature": 0,
+      "response_schema": "fixed structured preference object",
+      "retries": 0,
+      "parse_failure_policy": "record failure; do not silently replace the evaluator or prompt"
+    },
+    "dimensions": [
+      "metric alignment",
+      "rubric relevance",
+      "answer grounding",
+      "score-rationale consistency",
+      "specificity",
+      "unsupported claims"
+    ],
+    "dimension_verdicts": [
+      "A",
+      "B",
+      "tie"
+    ],
+    "overall_verdicts": [
+      "A",
+      "B",
+      "tie"
+    ]
+  },
+  "forced_completion_policy": {
+    "primary_analysis_includes_all_sampled_outputs": true,
+    "primary_filtering_by_forced_completion_forbidden": true,
+    "forced_completion_flag_hidden_from_evaluators": true,
+    "secondary_preplanned_strata": [
+      "neither_candidate_forced",
+      "R3_only_forced",
+      "comparator_only_forced",
+      "both_candidates_forced"
+    ],
+    "complete_case_analysis_role": "sensitivity-only, never the primary result",
+    "interpretation": "Forced completion is an execution diagnostic and a limitation on visible-rationale comparison; it cannot be used post hoc to select checkpoints or regenerate dev."
+  },
+  "analysis": {
+    "report_per_evaluator_family": true,
+    "pooled_result_is_secondary_to_family_specific_results": true,
+    "outcomes": [
+      "win count",
+      "tie count",
+      "loss count",
+      "win rate with ties retained",
+      "paired uncertainty interval",
+      "cross-evaluator agreement"
+    ],
+    "bootstrap": {
+      "method": "paired hierarchical bootstrap",
+      "cluster": "record_id",
+      "carry_all_three_seed_pairs_with_resampled_record": true,
+      "replicates": 10000,
+      "seed": 20260728,
+      "interval": 0.95
+    },
+    "multiplicity_policy": "R3_vs_R2 overall preference is primary; all dimensions, R3_vs_R1, forced-completion strata, and evaluator pooling are secondary or diagnostic.",
+    "checkpoint_or_hyperparameter_selection_from_results_allowed": false
+  },
+  "execution_gate": {
+    "sample_manifest_must_be_built_and_frozen": true,
+    "evaluator_identities_revisions_prompts_schemas_and_runtime_must_be_frozen": true,
+    "candidate_audit_required": true,
+    "blind_audit_execution_allowed": false,
+    "test_accessed": false,
+    "test_execution_allowed": false,
+    "preference_training_allowed": false
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "schema_version": "exp54-rationale-blind-audit-preregistration-lock-v1",
+  "status": "RATIONALE_BLIND_AUDIT_PREREGISTRATION_FROZEN",
+  "review_gate": {
+    "verdict": "SFT_DEV_RESULT_PASS",
+    "reviewed_dev_result_commit": "a0c987b6973c5e03130fdee009df347b35d48080"
+  },
+  "bindings": {
+    "checkpoint_selection_lock": {
+      "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/protocol/sft_dev_checkpoint_selection_frozen_lock.json",
+      "sha256": "364a2c9ee023d1b0a2d803530d7898a347a150dd89dbaaa388aa44677cd71df4"
+    },
+    "machine_preregistration": {
+      "path": "thesis_exp/exp54_rar_sft/configs/rationale_blind_audit_preregistration.json",
+      "sha256": "201b0f25fdaf93fd55bf15b8e556bb721e1be1ca95709cb17dba0e584ad8e4aa"
+    },
+    "human_protocol": {
+      "path": "thesis_exp/exp54_rar_sft/RATIONALE_BLIND_AUDIT_PROTOCOL.md",
+      "sha256": "27ea08429d54ff2e540c7e800a05dfa313744a42621ee5540fbff2e4492c475c"
+    },
+    "checkpoint_record": {
+      "path": "thesis_exp/exp54_rar_sft/SFT_DEV_FREEZE_AND_BLIND_AUDIT_CHECKPOINT.md",
+      "sha256": "1320278850e83bbcce3ee60074d9b2fb085bd70656f220fb23bd6068a5726d9a"
+    }
+  },
+  "sample_manifest_frozen": false,
+  "evaluator_identities_frozen": false,
+  "evaluator_prompts_and_runtime_frozen": false,
+  "rationale_blind_audit_execution_allowed": false,
+  "test_accessed": false,
+  "test_execution_allowed": false,
+  "preference_training_allowed": false,
+  "invalidation_rule": "Any bound file hash change invalidates this preregistration lock."
+}
