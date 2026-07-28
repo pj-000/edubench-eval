@@ -87,7 +87,7 @@ _LABELS = frozenset(range(1, 6))
 _FS_IOC_GETFLAGS = 0x80086601
 _FS_APPEND_FL = 0x00000020
 _CLAIM_ROOT_MODE = 0o755
-_CAMPAIGN_DIRECTORY_MODE = 0o1730
+_CAMPAIGN_DIRECTORY_MODE = 0o1770
 
 
 @dataclass(frozen=True)
@@ -365,13 +365,18 @@ def _require_root_managed_claim_root(path: Path) -> None:
         )
 
 
-def _require_nonreplayable_campaign_directory(path: Path) -> None:
-    metadata = path.lstat()
-    if path.is_symlink() or not stat.S_ISDIR(metadata.st_mode):
+def _validate_campaign_directory_policy(
+    *,
+    path: Path,
+    metadata: os.stat_result,
+    execution_groups: set[int],
+    append_only: bool,
+) -> None:
+    if not stat.S_ISDIR(metadata.st_mode):
         raise PermissionError(f"{path}: expected a real campaign directory")
     if metadata.st_uid != 0:
         raise PermissionError(f"{path}: campaign directory must be root-owned")
-    if metadata.st_gid not in set(os.getgroups()) | {os.getgid()}:
+    if metadata.st_gid not in execution_groups:
         raise PermissionError(
             f"{path}: execution user is outside the training group"
         )
@@ -380,10 +385,22 @@ def _require_nonreplayable_campaign_directory(path: Path) -> None:
             f"{path}: campaign mode must be "
             f"{oct(_CAMPAIGN_DIRECTORY_MODE)}"
         )
-    if not _directory_has_append_only_flag(path):
+    if not append_only:
         raise PermissionError(
             f"{path}: campaign directory is not append-only"
         )
+
+
+def _require_nonreplayable_campaign_directory(path: Path) -> None:
+    metadata = path.lstat()
+    if path.is_symlink():
+        raise PermissionError(f"{path}: expected a real campaign directory")
+    _validate_campaign_directory_policy(
+        path=path,
+        metadata=metadata,
+        execution_groups=set(os.getgroups()) | {os.getgid()},
+        append_only=_directory_has_append_only_flag(path),
+    )
 
 
 def _checkpoint_paths(
@@ -738,7 +755,7 @@ def authenticate_v2_dev_authorization(
     output_root: Path = DEFAULT_V2_OUTPUT_ROOT,
     wheel_root: Path = DEFAULT_V2_WHEEL_ROOT,
     repository_commit: str | None = None,
-    materialize_dev_rows: bool = True,
+    materialize_dev_rows: bool = False,
 ) -> VerifiedV2DevAuthorization:
     """Authenticate one task without creating a claim or output."""
     if arm not in ARMS or seed not in SEEDS or epoch not in EPOCHS:
@@ -842,6 +859,41 @@ def authenticate_v2_dev_authorization(
     )
 
 
+def materialize_claimed_context(
+    verified: VerifiedV2DevAuthorization,
+    *,
+    claim_path: Path,
+) -> V2DevAuthorizationContext:
+    """Materialize sealed dev rows only after a claim has been won."""
+    if not claim_path.is_file() or claim_path.is_symlink():
+        raise PermissionError("V2 claim is unavailable for materialization")
+    verify_execution_context_materials_unchanged(verified)
+    dev_rows = _read_jsonl_rows(verified.dev_material)
+    return V2DevAuthorizationContext(
+        authorization=verified.authorization,
+        authorization_sha256=verified.authorization_sha256,
+        campaign_id=verified.campaign_id,
+        task_id=verified.task_id,
+        arm=verified.arm,
+        seed=verified.seed,
+        epoch=verified.epoch,
+        batch_size=verified.batch_size,
+        max_new_tokens=verified.max_new_tokens,
+        output_dir=verified.output_dir,
+        training_root=verified.training_root,
+        protocol_material=verified.protocol_material,
+        protocol=verified.protocol,
+        grammar_material=verified.grammar_material,
+        training_config_material=verified.training_config_material,
+        training_config=verified.training_config,
+        dev_material=verified.dev_material,
+        dev_rows=dev_rows,
+        checkpoint_materials=verified.checkpoint_materials,
+        trainer_state=verified.trainer_state,
+        claim_path=claim_path,
+    )
+
+
 def require_v2_dev_authorization(
     *,
     arm: str,
@@ -867,6 +919,7 @@ def require_v2_dev_authorization(
         output_root=output_root,
         wheel_root=wheel_root,
         repository_commit=repository_commit,
+        materialize_dev_rows=False,
     )
     claim_path = _claim_task(
         claim_root=claim_root,
@@ -881,26 +934,7 @@ def require_v2_dev_authorization(
         seed=verified.seed,
         epoch=verified.epoch,
     )
-    return V2DevAuthorizationContext(
-        authorization=verified.authorization,
-        authorization_sha256=verified.authorization_sha256,
-        campaign_id=verified.campaign_id,
-        task_id=verified.task_id,
-        arm=verified.arm,
-        seed=verified.seed,
-        epoch=verified.epoch,
-        batch_size=verified.batch_size,
-        max_new_tokens=verified.max_new_tokens,
-        output_dir=verified.output_dir,
-        training_root=verified.training_root,
-        protocol_material=verified.protocol_material,
-        protocol=verified.protocol,
-        grammar_material=verified.grammar_material,
-        training_config_material=verified.training_config_material,
-        training_config=verified.training_config,
-        dev_material=verified.dev_material,
-        dev_rows=verified.dev_rows,
-        checkpoint_materials=verified.checkpoint_materials,
-        trainer_state=verified.trainer_state,
+    return materialize_claimed_context(
+        verified,
         claim_path=claim_path,
     )

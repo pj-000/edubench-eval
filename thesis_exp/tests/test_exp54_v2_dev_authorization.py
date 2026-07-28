@@ -3,6 +3,7 @@ from __future__ import annotations
 import hashlib
 import json
 import os
+import stat
 import sys
 import threading
 import zipfile
@@ -430,6 +431,153 @@ def test_authorization_is_one_use_per_checkpoint(
     assert context.claim_path.is_file()
     with pytest.raises(PermissionError):
         _authorize(setup)
+
+
+def test_claim_occurs_before_dev_rows_materialization(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+):
+    setup = _prepare_authorization(tmp_path, monkeypatch)
+    events: list[str] = []
+    original_claim = guard._claim_task
+    original_materialize = guard._read_jsonl_rows
+
+    def claim(**kwargs):
+        events.append("claim")
+        return original_claim(**kwargs)
+
+    def materialize(material):
+        events.append("materialize")
+        return original_materialize(material)
+
+    monkeypatch.setattr(guard, "_claim_task", claim)
+    monkeypatch.setattr(guard, "_read_jsonl_rows", materialize)
+    context = _authorize(setup)
+    assert len(context.dev_rows) == 1
+    assert events == ["claim", "materialize"]
+
+
+def test_concurrent_loser_never_receives_materialized_dev_rows(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+):
+    setup = _prepare_authorization(tmp_path, monkeypatch)
+    original_materialize = guard._read_jsonl_rows
+    materialization_count = 0
+    count_lock = threading.Lock()
+
+    def materialize(material):
+        nonlocal materialization_count
+        with count_lock:
+            materialization_count += 1
+        return original_materialize(material)
+
+    monkeypatch.setattr(guard, "_read_jsonl_rows", materialize)
+    barrier = threading.Barrier(2)
+    outcomes: list[str] = []
+
+    def authorize() -> None:
+        barrier.wait()
+        try:
+            context = _authorize(setup)
+            outcomes.append(
+                "won-materialized"
+                if context.dev_rows
+                else "won-empty"
+            )
+        except PermissionError:
+            outcomes.append("lost")
+
+    threads = [threading.Thread(target=authorize) for _ in range(2)]
+    for thread in threads:
+        thread.start()
+    for thread in threads:
+        thread.join()
+    assert sorted(outcomes) == ["lost", "won-materialized"]
+    assert materialization_count == 1
+
+
+def test_dev_parse_failure_retains_claim(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+):
+    setup = _prepare_authorization(tmp_path, monkeypatch)
+    calls = 0
+
+    def fail(material):
+        nonlocal calls
+        calls += 1
+        raise PermissionError("authenticated dev parse failed")
+
+    monkeypatch.setattr(guard, "_read_jsonl_rows", fail)
+    with pytest.raises(PermissionError, match="dev parse failed"):
+        _authorize(setup)
+    claim_path = (
+        setup["claim_root"]
+        / "reviewed-v2-dev"
+        / "s0-seed42-epoch1.claimed"
+    )
+    assert claim_path.is_file()
+    with pytest.raises(PermissionError, match="already claimed"):
+        _authorize(setup)
+    assert calls == 1
+
+
+def test_campaign_mode_01770_allows_group_preflight_read(
+    tmp_path: Path,
+):
+    campaign = tmp_path / "campaign"
+    campaign.mkdir(mode=0o1770)
+    campaign.chmod(0o1770)
+    assert guard._CAMPAIGN_DIRECTORY_MODE == 0o1770
+    descriptor = os.open(
+        campaign,
+        os.O_RDONLY | os.O_CLOEXEC | os.O_DIRECTORY,
+    )
+    os.close(descriptor)
+    assert list(campaign.iterdir()) == []
+
+
+@pytest.mark.parametrize(
+    ("uid", "mode", "append_only", "message"),
+    [
+        (1000, 0o1770, True, "root-owned"),
+        (0, 0o1730, True, "mode"),
+        (0, 0o1770, False, "append-only"),
+    ],
+)
+def test_campaign_policy_rejects_unsafe_installation_state(
+    uid: int,
+    mode: int,
+    append_only: bool,
+    message: str,
+):
+    metadata = SimpleNamespace(
+        st_mode=stat.S_IFDIR | mode,
+        st_uid=uid,
+        st_gid=os.getgid(),
+    )
+    with pytest.raises(PermissionError, match=message):
+        guard._validate_campaign_directory_policy(
+            path=Path("/var/lib/edubench/exp54-v2-dev/campaign"),
+            metadata=metadata,
+            execution_groups={os.getgid()},
+            append_only=append_only,
+        )
+
+
+def test_campaign_policy_accepts_root_group_01770_append_only():
+    metadata = SimpleNamespace(
+        st_mode=stat.S_IFDIR | 0o1770,
+        st_uid=0,
+        st_gid=os.getgid(),
+    )
+    guard._validate_campaign_directory_policy(
+        path=Path("/var/lib/edubench/exp54-v2-dev/campaign"),
+        metadata=metadata,
+        execution_groups={os.getgid()},
+        append_only=True,
+    )
 
 
 def _assert_authenticated_input_replacement_is_rejected(

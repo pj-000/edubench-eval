@@ -3,21 +3,27 @@
     "atomic_digest_rename_is_activation_point": true,
     "authorization_checked_before_dev_model_output_cuda": true,
     "campaign_directory_append_only_required": true,
+    "campaign_directory_mode": "01770",
     "campaign_directory_training_group_managed": true,
     "claim_deletion_cannot_restore_invocation": true,
+    "claim_occurs_before_dev_rows_materialization": true,
     "claim_root": "/var/lib/edubench/exp54-v2-dev",
     "claim_root_root_owned": true,
+    "concurrent_loser_materializes_dev_rows": false,
+    "dev_parse_failure_retains_claim": true,
     "exact_task_count": 36,
     "external_authorization_required": true,
     "one_claim_per_checkpoint": true,
     "preactivation_preflight_required": true,
+    "real_root_append_only_installation_currently_present": false,
+    "real_root_append_only_installation_required_before_activation": true,
     "staged_digest_is_nonactivating": true
   },
   "candidate_audit_source_bindings": {
     "thesis_exp/exp54_rar_sft/DEV_EXECUTION_ATTEMPT_V1_ROOT_CAUSE.md": "aab1b79a64356d02d593218d2de0bab9789b6033155abf2a1f0c9aadd28bd2f0",
-    "thesis_exp/exp54_rar_sft/INFERENCE_PROTOCOL_V2.md": "9277c4380a41136b5fdfbdf121b5f12625819f5f087cda062e4081e5c90c1ab1",
-    "thesis_exp/exp54_rar_sft/V2_DEV_AUTHORIZATION_PLAN.md": "c3c87f01d92d1e82139d71a9e3b2a8a0649cbd074d985100ebab680b2e03d360",
-    "thesis_exp/exp54_rar_sft/audit_inference_v2_candidate.py": "4f7b22d2c6003c2bdf3ba988077099d894a6dcfc6b6e39a483f9e56a86cd4be2",
+    "thesis_exp/exp54_rar_sft/INFERENCE_PROTOCOL_V2.md": "1e383c67e733348fe240e58d9f78634333d5ac194bb51d4f5c93f3df35383352",
+    "thesis_exp/exp54_rar_sft/V2_DEV_AUTHORIZATION_PLAN.md": "9b9ca71f4ff7fc11ba64599d73f6aa51e7f4f08333a7d72d377210cde07730fc",
+    "thesis_exp/exp54_rar_sft/audit_inference_v2_candidate.py": "73a74ddeff189980b510e12c4a9bd8c57555dc19301c554f20cad2cd9bd5717c",
     "thesis_exp/exp54_rar_sft/audit_v2_dev_authorization_preactivation.py": "37607c1bd2673b5d73736892283646f14147d4babc32a8ed35235367b31755e1",
     "thesis_exp/exp54_rar_sft/freeze_dev_execution_attempt_v1.py": "b78177bb311b6bd0e439e4b021f3eaea687c0c7f843c3356dd1c33012cc6b26f",
     "thesis_exp/exp54_rar_sft/run_inference_v2_budget_probe.py": "c2c4b00903f8da7650cfa2f8ea2fff37d731ad816a50de480b59134d472e5cc9",
@@ -142,7 +148,7 @@
     "thesis_exp/exp54_rar_sft/structured_decoder_v2.py": "35d4d892d9b713f03a19ef39b5461fba28aef0fbb14b844c1467bd2def2b4ff9",
     "thesis_exp/exp54_rar_sft/train_rar_sft.py": "15f4384b32fafa88f141fa50a8b23df733f4704d69a54073cdc3e31afce9422c",
     "thesis_exp/exp54_rar_sft/training_contract.py": "a9b100c9446f2a0e011b1faf67f873b51d0aaacf08a75423c71b6c48360f5071",
-    "thesis_exp/exp54_rar_sft/v2_dev_authorization_guard.py": "d0f22c5c5a5dcad1ff89dd6e1159db0c87f73c72226699fd55524c3c966d45d1",
+    "thesis_exp/exp54_rar_sft/v2_dev_authorization_guard.py": "9a37af9664966718f8db96e9f3b088291d92a9a8eb7d634b9e5bd7b7e6d2e52f",
     "thesis_exp/exp54_rar_sft/v2_dev_runtime_contract.py": "1523ba2e0a5ffb6a658c8458120aa4414ee7bd16b95a11d746759b7ecbfbdebb",
     "thesis_exp/scripts/run_exp54_v2_dev_campaign.sh": "9f6dc29ac5e9a454b1d128edbe8958ff2ccbd478320f81a7c6a9de899d7c65e4",
     "thesis_exp/src/__init__.py": "086f5bae4f890a7cc89ce4de1e476a3bb1315ff24c027064033213bc2cfb1326",
@@ -153,7 +159,7 @@
     "thesis_exp/src/edujudge/utils/io.py": "e19250fbf9b7a2013b61078d29100137ee6cefab76cd8dda01ab6888156f1364",
     "thesis_exp/src/edujudge/utils/text_norm.py": "4642255f3aa0fdeeec089fc4364749943082df1a9decb992fd81aae64c1740e4"
   },
-  "runtime_source_closure_sha256": "3de0861cf61017c1a8e61803bdcf44a8533c2b5dce28025ce5cdee9eb4610e31",
+  "runtime_source_closure_sha256": "40c4380cbef7711bc50165ae4d6beb9deb2c9a965baf925c094924d5b0fe0b4c",
   "runtime_source_count": 26,
   "runtime_source_names": [
     "thesis_exp/__init__.py",
@@ -188,7 +194,7 @@
   "test_accessed": false,
   "tests": {
     "failed": 0,
-    "passed": 62,
+    "passed": 70,
     "server_test_files": [
       "thesis_exp/tests/test_exp54_inference_v2.py",
       "thesis_exp/tests/test_exp54_v2_dev_authorization.py"

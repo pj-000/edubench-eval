@@ -24,10 +24,11 @@ review. It does not authorize test access.
    mode `0755`.
 7. The administrator creates
    `/var/lib/edubench/exp54-v2-dev/<campaign_id>` as a real root-owned,
-   training-group directory with exact mode `01730` and the filesystem
-   append-only flag. The execution user must belong to that group. The
-   directory must be empty. The execution user may create a claim but cannot
-   delete or rename an existing claim.
+   training-group directory with exact mode `01770` and the filesystem
+   append-only flag. Group read permission is required so the execution-user
+   preflight can read the append-only flag and prove that the directory is
+   empty. The execution user must belong to that group. The execution user
+   may create a claim but cannot delete or rename an existing claim.
 8. Prepare the private user-owned output root. Every fixed final output
    directory must be absent.
 
@@ -67,10 +68,12 @@ validation/loading, output creation, or CUDA.
 
 Run the fixed launcher, which invokes only S0/R1/R2/R3 × seeds 42/43/44 ×
 logical epochs 1/2/3 with batch size 16 and token budget 256. Each invocation
-atomically creates a unique claim before any dev/model/output work. A second
-invocation of the same checkpoint fails. Deleting an output directory does
-not restore invocation permission, because the execution user cannot remove
-the root-protected claim.
+authenticates hashes without parsing dev rows, atomically creates a unique
+claim, reserves its output, and only then materializes dev rows from the
+already authenticated in-memory payload. A concurrent loser never receives
+materialized dev rows. Deleting an output directory does not restore
+invocation permission, because the execution user cannot remove the
+root-protected claim.
 
 If a claimed task fails, retain its claim and output evidence, remove the
 active digest, and stop the campaign. Do not retry inside the same campaign.

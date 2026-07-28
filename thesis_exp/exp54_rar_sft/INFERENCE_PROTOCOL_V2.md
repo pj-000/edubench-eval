@@ -211,8 +211,11 @@ The repository candidate remains `formal_v2_dev_allowed=false`. This field
 cannot activate execution. The formal runner first requires an external
 reviewed authorization at fixed user-managed paths and consumes a unique
 one-use claim from a fixed root-managed, append-only campaign directory
-before model validation, dev loading, output reservation, CUDA, or model
-loading. The execution user cannot remove a claim to replay a checkpoint.
+before dev-row parsing, model validation, CUDA, or model loading. Pre-claim
+authentication may read the sealed dev bytes only to verify the frozen hash;
+it does not parse or expose rows. The winner reserves its fixed output and
+then materializes rows from that same authenticated in-memory payload. The
+execution user cannot remove a claim to replay a checkpoint.
 
 The authorization binds the exact reviewed commit and report/lock, complete
 runtime closure, and proves each installed XGrammar dependency payload equals

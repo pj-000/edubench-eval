@@ -672,8 +672,16 @@ def audit_candidate(args: argparse.Namespace) -> None:
             "claim_root": "/var/lib/edubench/exp54-v2-dev",
             "claim_root_root_owned": True,
             "campaign_directory_training_group_managed": True,
+            "campaign_directory_mode": "01770",
             "campaign_directory_append_only_required": True,
             "claim_deletion_cannot_restore_invocation": True,
+            "claim_occurs_before_dev_rows_materialization": True,
+            "concurrent_loser_materializes_dev_rows": False,
+            "dev_parse_failure_retains_claim": True,
+            "real_root_append_only_installation_required_before_activation": (
+                True
+            ),
+            "real_root_append_only_installation_currently_present": False,
         },
         "v1_evidence": {
             "report_sha256": file_sha256(v1_report_path),
@@ -686,7 +694,7 @@ def audit_candidate(args: argparse.Namespace) -> None:
                 "thesis_exp/tests/test_exp54_inference_v2.py",
                 "thesis_exp/tests/test_exp54_v2_dev_authorization.py",
             ],
-            "passed": 62,
+            "passed": 70,
             "failed": 0,
             "skipped": 0,
         },
