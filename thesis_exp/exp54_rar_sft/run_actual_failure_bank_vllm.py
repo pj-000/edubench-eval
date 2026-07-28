@@ -70,6 +70,20 @@ def write_jsonl(path: Path, rows: Iterable[dict[str, Any]]) -> None:
     os.replace(temporary, path)
 
 
+def vllm_token_prompts(
+    prepared: Iterable[dict[str, Any]],
+) -> list[dict[str, list[int]]]:
+    """Materialize the token-prompt API required by vLLM 0.11+."""
+    return [
+        {
+            "prompt_token_ids": [
+                int(value) for value in item["token_ids"]
+            ]
+        }
+        for item in prepared
+    ]
+
+
 def checkpoint(seed: int) -> tuple[Path, dict[str, Any]]:
     root = (
         TRAINING_ROOT
@@ -206,7 +220,7 @@ def execute(args: argparse.Namespace) -> dict[str, Any]:
     )
     started = time.perf_counter()
     outputs = llm.generate(
-        prompt_token_ids=[item["token_ids"] for item in prepared],
+        prompts=vllm_token_prompts(prepared),
         sampling_params=sampling,
         use_tqdm=True,
         lora_request=LoRARequest(

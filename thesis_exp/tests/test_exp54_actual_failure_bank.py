@@ -14,7 +14,10 @@ from thesis_exp.exp54_rar_sft.actual_failure_bank import (
     classify_error,
     make_failure_row,
 )
-from thesis_exp.exp54_rar_sft.run_actual_failure_bank_vllm import execute
+from thesis_exp.exp54_rar_sft.run_actual_failure_bank_vllm import (
+    execute,
+    vllm_token_prompts,
+)
 
 
 class ActualFailureBankTest(unittest.TestCase):
@@ -130,6 +133,19 @@ class ActualFailureBankTest(unittest.TestCase):
                 RuntimeError, "EXP54_GPU_USER_CONFIRMED"
             ):
                 execute(args)
+
+    def test_vllm_011_token_prompt_contract(self) -> None:
+        prepared = [
+            {"token_ids": [1, 2, 3]},
+            {"token_ids": (4, 5)},
+        ]
+        self.assertEqual(
+            vllm_token_prompts(prepared),
+            [
+                {"prompt_token_ids": [1, 2, 3]},
+                {"prompt_token_ids": [4, 5]},
+            ],
+        )
 
 
 if __name__ == "__main__":
