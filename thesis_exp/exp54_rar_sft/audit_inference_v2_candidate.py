@@ -637,9 +637,11 @@ def audit_candidate(args: argparse.Namespace) -> None:
             "editable_install_allowed": False,
         },
         "formal_execution_contract": {
-            "batch_size": protocol["generation"][
+            "protocol_reference_batch_size": protocol["generation"][
                 "formal_batch_size"
             ],
+            "direct_runtime_batch_size": 32,
+            "runtime_batch_affects_generation_semantics": False,
             "max_new_tokens": protocol["generation"][
                 "max_new_tokens"
             ],

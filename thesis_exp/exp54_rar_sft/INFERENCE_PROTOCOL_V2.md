@@ -212,11 +212,13 @@ earlier experiments: tested code is synchronized to the server and launched
 directly with fixed arguments. The earlier external trust-anchor and claim
 system is not part of the active execution path.
 
-The runner still fixes the complete checkpoint set, batch size 16, token
-budget 256, V2 grammar, model snapshot and training configuration. It checks
-adapter hashes before and after inference and refuses to overwrite an
-existing deterministic result directory. It reads dev only; no test path or
-test CLI option exists.
+The runner still fixes the complete checkpoint set, runtime batch size 32,
+token budget 256, V2 grammar, model snapshot and training configuration. The
+protocol's earlier batch-16 value is retained as the reviewed reference; the
+direct runtime batch is raised only for hardware throughput after
+singleton/batched token-ID equivalence tests. The runner checks adapter hashes
+before and after inference and refuses to overwrite an existing deterministic
+result directory. It reads dev only; no test path or test CLI option exists.
 
 Operational execution details are recorded in
 `V2_DEV_AUTHORIZATION_PLAN.md`, whose filename is retained only to preserve

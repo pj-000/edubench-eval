@@ -662,6 +662,7 @@ def test_runner_uses_direct_operator_workflow_without_claim_gate():
     assert "load_v2_protocol()" in source
     assert "load_dev_rows()" in source
     assert "_read_object(DEFAULT_CONFIG)" in source
+    assert "DIRECT_RUNTIME_BATCH_SIZE = 32" in source
     assert '"execution_mode": "operator_direct"' in source
 
 

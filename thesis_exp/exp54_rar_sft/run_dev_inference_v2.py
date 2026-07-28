@@ -44,6 +44,7 @@ DEFAULT_TRAINING_ROOT = (
 DEFAULT_OUTPUT_ROOT = (
     REPO_ROOT / "thesis_exp/outputs/exp54_rar_sft/rar_v2/dev_runs_v2"
 )
+DIRECT_RUNTIME_BATCH_SIZE = 32
 
 
 def _p95(values: list[int]) -> float:
@@ -155,7 +156,10 @@ def run_inference_v2(args: argparse.Namespace) -> None:
     )
 
     protocol = load_v2_protocol()
-    batch_size = int(protocol["generation"]["formal_batch_size"])
+    protocol_reference_batch_size = int(
+        protocol["generation"]["formal_batch_size"]
+    )
+    batch_size = DIRECT_RUNTIME_BATCH_SIZE
     config = _read_object(DEFAULT_CONFIG)
     validate_training_configuration(config)
     verify_model_snapshot(config)
@@ -333,6 +337,7 @@ def run_inference_v2(args: argparse.Namespace) -> None:
         "generation": protocol["generation"],
         "backend": protocol["backend"],
         "batch_size": batch_size,
+        "protocol_reference_batch_size": protocol_reference_batch_size,
         "execution_mode": "operator_direct",
         "duplicate_run_protection": "existing_output_directory",
         "max_prompt_tokens": max(

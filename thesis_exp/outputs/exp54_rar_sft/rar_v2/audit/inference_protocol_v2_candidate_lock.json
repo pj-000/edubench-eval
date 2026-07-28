@@ -1,9 +1,9 @@
 {
   "candidate_audit_source_bindings": {
     "thesis_exp/exp54_rar_sft/DEV_EXECUTION_ATTEMPT_V1_ROOT_CAUSE.md": "aab1b79a64356d02d593218d2de0bab9789b6033155abf2a1f0c9aadd28bd2f0",
-    "thesis_exp/exp54_rar_sft/INFERENCE_PROTOCOL_V2.md": "d0738f8ab8d9067a2c161092f3fc9c23f3a3e0a6574391d682c25ff499654e07",
-    "thesis_exp/exp54_rar_sft/V2_DEV_AUTHORIZATION_PLAN.md": "3cf1b26497d9bade3742043fe8b62fa68171ec6993e292c4994fdd134abab4fe",
-    "thesis_exp/exp54_rar_sft/audit_inference_v2_candidate.py": "d8db5ca07f9e51e335de023199c5c6c42ddbb4543ab0c6b4017773b8b4eb5b3b",
+    "thesis_exp/exp54_rar_sft/INFERENCE_PROTOCOL_V2.md": "bc667f4949db8a18f23619815a4e785093c81b3f8bd46e1643237b811a2db994",
+    "thesis_exp/exp54_rar_sft/V2_DEV_AUTHORIZATION_PLAN.md": "ed82891145eaf10cf8ed96fd435c356885be9c65f23066000c7ae70066b110e7",
+    "thesis_exp/exp54_rar_sft/audit_inference_v2_candidate.py": "352720cc3500030b01a5e8b87cc5f85c307c60552e441bf8a417eaa4ad5f45ae",
     "thesis_exp/exp54_rar_sft/audit_v2_dev_authorization_preactivation.py": "37607c1bd2673b5d73736892283646f14147d4babc32a8ed35235367b31755e1",
     "thesis_exp/exp54_rar_sft/freeze_dev_execution_attempt_v1.py": "b78177bb311b6bd0e439e4b021f3eaea687c0c7f843c3356dd1c33012cc6b26f",
     "thesis_exp/exp54_rar_sft/run_inference_v2_budget_probe.py": "c2c4b00903f8da7650cfa2f8ea2fff37d731ad816a50de480b59134d472e5cc9",
@@ -11,7 +11,7 @@
     "thesis_exp/exp54_rar_sft/run_inference_v2_train_smoke.py": "ad199cc106bdeeb0b7405e73984bc59df35c86660b18a0b3fc0c35f5b47f4d2d",
     "thesis_exp/tests/test_exp54_inference_v2.py": "7f64eb2c37978a979015a486e643af47e3b114a62d7999809005e0d2d27c7f22"
   },
-  "candidate_report_sha256": "bbe324d887fe884f0aaa0fa742d789523d316fc9e30381f00a298243dc246fea",
+  "candidate_report_sha256": "ea8564c7c5cee1cab896d1eaa9a096f5f285903d7e0627c65499616d75aac09b",
   "dependencies": {
     "editable_install_allowed": false,
     "observed_installed_distributions": {
@@ -80,13 +80,13 @@
     "trust_anchor_required": false
   },
   "formal_execution_contract": {
-    "batch_size": 16,
     "batch_size_cli_override_allowed": false,
     "batched_singleton_diagnostics_equal": true,
     "batched_singleton_output_bytes_equal": true,
     "batched_singleton_token_ids_equal": true,
     "checkpoint_identity_hash_checked_before_after_inference": true,
     "dev_loaded_from_fixed_repository_path": true,
+    "direct_runtime_batch_size": 32,
     "finished_row_attention_mask_zero_verified": true,
     "grammar_loaded_from_protocol_bound_path": true,
     "max_new_tokens": 256,
@@ -96,6 +96,8 @@
     "output_root_cli_override_allowed": true,
     "protocol_config_cli_override_allowed": false,
     "protocol_loaded_from_fixed_repository_path": true,
+    "protocol_reference_batch_size": 16,
+    "runtime_batch_affects_generation_semantics": false,
     "test_path_allowed": false,
     "training_config_loaded_from_fixed_repository_path": true,
     "training_root_cli_override_allowed": true,
@@ -125,7 +127,7 @@
     "thesis_exp/exp54_rar_sft/configs/training_configuration_candidate.json": "291a3fa055f5ef07ac0f1bc39f67f3b1c9d13219da0c3e3e801d9a9df29d5318",
     "thesis_exp/exp54_rar_sft/inference_contract.py": "5eda600beb28db066567f3f9bb7a158ddd8c416506c9689248d6cae0d58a3681",
     "thesis_exp/exp54_rar_sft/run_dev_inference.py": "bddfce526e902ecdaacc4a7413511d249c3fc039cbc2f3e8f525f5929ff0240d",
-    "thesis_exp/exp54_rar_sft/run_dev_inference_v2.py": "930b6310b0d4468437d061829c202e4d005185c6c6c289f087442af23e73cebf",
+    "thesis_exp/exp54_rar_sft/run_dev_inference_v2.py": "1f479d3c9d4893fc3591d11db610cf5aa680fcb7bbf82f77cc1451387278e4d4",
     "thesis_exp/exp54_rar_sft/structured_decoder_v2.py": "35d4d892d9b713f03a19ef39b5461fba28aef0fbb14b844c1467bd2def2b4ff9",
     "thesis_exp/exp54_rar_sft/train_rar_sft.py": "15f4384b32fafa88f141fa50a8b23df733f4704d69a54073cdc3e31afce9422c",
     "thesis_exp/exp54_rar_sft/training_contract.py": "a9b100c9446f2a0e011b1faf67f873b51d0aaacf08a75423c71b6c48360f5071",
@@ -140,7 +142,7 @@
     "thesis_exp/src/edujudge/utils/io.py": "e19250fbf9b7a2013b61078d29100137ee6cefab76cd8dda01ab6888156f1364",
     "thesis_exp/src/edujudge/utils/text_norm.py": "4642255f3aa0fdeeec089fc4364749943082df1a9decb992fd81aae64c1740e4"
   },
-  "runtime_source_closure_sha256": "facdf2939aa683c336431cb1504b673000332011c3f9149d1e39fe3c361ccf0d",
+  "runtime_source_closure_sha256": "b19cbba7d1a0c68a6fcce9d50604d39d3608a5ba1c8341526675379b9cf9f013",
   "runtime_source_names": [
     "thesis_exp/__init__.py",
     "thesis_exp/exp54_rar_sft/__init__.py",
