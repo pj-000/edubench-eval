@@ -37,6 +37,12 @@ RATIONALE_METRICS = (
     "explicit_score_leakage_rate",
     "language_consistency_rate",
 )
+EXECUTION_METRICS = (
+    "forced_completion_count",
+    "forced_completion_rate",
+    "max_token_hit_count",
+    "max_token_hit_rate",
+)
 
 
 def read_json(path: Path) -> dict[str, Any]:
@@ -217,6 +223,9 @@ def collect(args: argparse.Namespace) -> None:
                 )
                 metrics = read_json(run_dir / "metrics.json")
                 protocol = read_json(run_dir / "protocol.json")
+                predictions = read_jsonl(
+                    run_dir / "predictions.jsonl"
+                )
                 if (
                     metrics.get("arm") != arm
                     or metrics.get("seed") != seed
@@ -226,6 +235,43 @@ def collect(args: argparse.Namespace) -> None:
                     or protocol.get("test_accessed") is not False
                 ):
                     raise ValueError(f"{run_dir}: dev result metadata differs")
+                if (
+                    len(predictions) != int(metrics["execution"]["rows"])
+                    or any(
+                        row.get("parse_success") is not True
+                        for row in predictions
+                    )
+                ):
+                    raise ValueError(
+                        f"{run_dir}: prediction completeness differs"
+                    )
+                forced_completion_count = sum(
+                    bool(row.get("forced_completion", False))
+                    for row in predictions
+                )
+                max_token_hit_count = sum(
+                    int(
+                        row.get(
+                            "backend_generated_token_count",
+                            row["generated_token_count"],
+                        )
+                    )
+                    >= 256
+                    for row in predictions
+                )
+                execution_audit = {
+                    "forced_completion_count": (
+                        forced_completion_count
+                    ),
+                    "forced_completion_rate": (
+                        forced_completion_count / len(predictions)
+                    ),
+                    "max_token_hit_count": max_token_hit_count,
+                    "max_token_hit_rate": (
+                        max_token_hit_count / len(predictions)
+                    ),
+                }
+                metrics["_execution_audit"] = execution_audit
                 candidates.append(metrics)
                 all_epoch_rows.append(
                     {
@@ -240,6 +286,7 @@ def collect(args: argparse.Namespace) -> None:
                             name: metrics["rationale"][name]
                             for name in RATIONALE_METRICS
                         },
+                        **execution_audit,
                     }
                 )
             selected = select_checkpoint(candidates)
@@ -260,6 +307,7 @@ def collect(args: argparse.Namespace) -> None:
                         name: selected["rationale"][name]
                         for name in RATIONALE_METRICS
                     },
+                    **selected["_execution_audit"],
                 }
             )
             selected_predictions[(arm, seed)] = read_jsonl(
@@ -277,7 +325,11 @@ def collect(args: argparse.Namespace) -> None:
             "arm": arm,
             "seeds": list(SEEDS),
         }
-        for name in (*SCORE_METRICS, *RATIONALE_METRICS):
+        for name in (
+            *SCORE_METRICS,
+            *RATIONALE_METRICS,
+            *EXECUTION_METRICS,
+        ):
             values = [float(row[name]) for row in arm_rows]
             aggregate[f"{name}_mean"] = mean(values)
             aggregate[f"{name}_sample_std"] = stdev(values)
@@ -308,6 +360,13 @@ def collect(args: argparse.Namespace) -> None:
             "model_based_rationale_preference_status": (
                 "NOT_RUN_EVALUATOR_MODELS_NOT_CONFIGURED"
             ),
+            "inference_completion_note": (
+                "Score is emitted before rationale. At the 256-token "
+                "boundary, an unfinished schema-valid rationale prefix is "
+                "deterministically truncated and JSON-closed without "
+                "changing score. Arm-specific completion rates must be "
+                "considered when interpreting rationale diagnostics."
+            ),
             "dev_accessed": True,
             "test_accessed": False,
         },
@@ -319,8 +378,9 @@ def collect(args: argparse.Namespace) -> None:
         "Checkpoint selection: maximum dev Exact, then lower MAE, "
         "then earlier epoch.",
         "",
-        "| Arm | Exact | MAE | Kendall | L2H | Recall-2 | Recall-5 |",
-        "|---|---:|---:|---:|---:|---:|---:|",
+        "| Arm | Exact | MAE | Kendall | L2H | Recall-2 | Recall-5 "
+        "| Forced close |",
+        "|---|---:|---:|---:|---:|---:|---:|---:|",
     ]
     for row in aggregates:
         lines.append(
@@ -330,7 +390,8 @@ def collect(args: argparse.Namespace) -> None:
             f"| {row['Kendall_mean']:.4f}±{row['Kendall_sample_std']:.4f} "
             f"| {row['L2H_count_mean']:.2f} "
             f"| {row['Recall_2_mean']:.4f} "
-            f"| {row['Recall_5_mean']:.4f} |"
+            f"| {row['Recall_5_mean']:.4f} "
+            f"| {row['forced_completion_rate_mean']:.2%} |"
         )
     lines.extend(
         [
@@ -339,6 +400,11 @@ def collect(args: argparse.Namespace) -> None:
             "Model-based blind rationale preference is not run because "
             "the two evaluator model identities and credentials are not "
             "configured.",
+            "",
+            "Forced close only truncates the tail of a rationale that "
+            "reaches the fixed 256-token boundary; the score has already "
+            "been emitted and is unchanged. Unequal arm-specific forced-"
+            "close rates limit direct rationale-quality interpretation.",
             "",
             "Dev accessed: yes. Test accessed: no.",
         ]
