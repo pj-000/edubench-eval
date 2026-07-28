@@ -1,8 +1,8 @@
 {
-  "schema_version": "exp54-rationale-blind-audit-preregistration-lock-v1",
-  "status": "RATIONALE_BLIND_AUDIT_PREREGISTRATION_FROZEN",
+  "schema_version": "exp54-rationale-blind-audit-package-lock-v2",
+  "status": "MINIMAL_RATIONALE_AUDIT_PACKAGE_FROZEN_AWAITING_EVALUATORS",
   "review_gate": {
-    "verdict": "SFT_DEV_RESULT_PASS",
+    "verdict": "RUN_MINIMAL_RATIONALE_AUDIT_FIRST",
     "reviewed_dev_result_commit": "a0c987b6973c5e03130fdee009df347b35d48080"
   },
   "bindings": {
@@ -12,23 +12,63 @@
     },
     "machine_preregistration": {
       "path": "thesis_exp/exp54_rar_sft/configs/rationale_blind_audit_preregistration.json",
-      "sha256": "201b0f25fdaf93fd55bf15b8e556bb721e1be1ca95709cb17dba0e584ad8e4aa"
+      "sha256": "53ef4b04b4f0cf42e83888e908015177dfc0ca1ae34be2cb811aae579e66ca08"
     },
     "human_protocol": {
       "path": "thesis_exp/exp54_rar_sft/RATIONALE_BLIND_AUDIT_PROTOCOL.md",
-      "sha256": "27ea08429d54ff2e540c7e800a05dfa313744a42621ee5540fbff2e4492c475c"
+      "sha256": "075a36a086eba44ae5d9876c7b71ff785269727939c2e78f28c2543a2d16123f"
     },
     "checkpoint_record": {
       "path": "thesis_exp/exp54_rar_sft/SFT_DEV_FREEZE_AND_BLIND_AUDIT_CHECKPOINT.md",
-      "sha256": "1320278850e83bbcce3ee60074d9b2fb085bd70656f220fb23bd6068a5726d9a"
+      "sha256": "351b1a397e195473123b8551246465ac0aa977e293acf52de9877e82b2901fd3"
+    },
+    "package_builder": {
+      "path": "thesis_exp/exp54_rar_sft/build_minimal_rationale_audit.py",
+      "sha256": "0247674f7e051b7877607f65886afd1ec6721b42ae632435b7b6ca0372c54156"
+    },
+    "api_runner": {
+      "path": "thesis_exp/exp54_rar_sft/run_minimal_rationale_audit_api.py",
+      "sha256": "3654e5f16f61c8f8914a76397c6a90bf75b04cd30f46e583a96a2b14bb2c9f31"
+    },
+    "score_blind_prompt": {
+      "path": "thesis_exp/exp54_rar_sft/prompts/rationale_audit_score_blind_v2.txt",
+      "sha256": "11b0783f39074e8eca93d2de282d93d9fa35598eba21b760fe607a16f1c9fda0"
+    },
+    "score_visible_prompt": {
+      "path": "thesis_exp/exp54_rar_sft/prompts/rationale_audit_score_visible_v2.txt",
+      "sha256": "3d07994406e288633d468c3ba861de549f35990d05d8d3b7de8c9d2746ab92a1"
+    },
+    "score_blind_schema": {
+      "path": "thesis_exp/exp54_rar_sft/schemas/rationale_audit_score_blind_v2.schema.json",
+      "sha256": "f5fa2f75ecd9642e577beb72af1a730628418b8d5c00cb7ee69a065fae305321"
+    },
+    "score_visible_schema": {
+      "path": "thesis_exp/exp54_rar_sft/schemas/rationale_audit_score_visible_v2.schema.json",
+      "sha256": "399549dd6c18d8bccea8718c9001b911606126519b74d06079ffa555f55f4ae7"
+    },
+    "candidate_report": {
+      "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/rationale_blind_audit/candidate_report.json",
+      "sha256": "e3618f8995ce40c5ae518fb79815b18eac20ce3dd605dba20209b3c816afbb0a"
+    },
+    "preference_pair_protocol": {
+      "path": "thesis_exp/exp54_rar_sft/SORC_DPO_PAIR_CONSTRUCTION_PROTOCOL.md",
+      "sha256": "82a9dceb3c8bbe523b5cfd68c17da2fc0825139dbd4336de8c8d040abfd1e5b8"
     }
   },
-  "sample_manifest_frozen": false,
+  "private_sample_manifest_sha256": "b646e9169be4c8ba6dd7a0815cee4e825b766290317fdd9492f54c837fb1ac33",
+  "private_score_blind_tasks_sha256": "0f40ca2b026de1d8f5bef09ce0d640f88bfe10e2234acc40c2ff77794373ec59",
+  "private_score_visible_tasks_sha256": "c7f9b091b59b8f73ac845335b8482618bc0ea65a1a2a2e323599d0883448bbb8",
+  "private_answer_key_sha256": "2908ad20fb95ca4da1f43edde147061e10c5a8d124393350ed85e4018506d750",
+  "sample_manifest_frozen": true,
+  "sample_unique_rows": 40,
+  "pair_instances_per_comparison": 120,
+  "presentations_per_stage": 480,
   "evaluator_identities_frozen": false,
-  "evaluator_prompts_and_runtime_frozen": false,
+  "evaluator_calls_completed": false,
   "rationale_blind_audit_execution_allowed": false,
+  "blocking_condition": "Two independent evaluator model API channels and exact model identities are not configured.",
   "test_accessed": false,
   "test_execution_allowed": false,
   "preference_training_allowed": false,
-  "invalidation_rule": "Any bound file hash change invalidates this preregistration lock."
+  "invalidation_rule": "Any bound public file or private artifact hash change invalidates this package."
 }

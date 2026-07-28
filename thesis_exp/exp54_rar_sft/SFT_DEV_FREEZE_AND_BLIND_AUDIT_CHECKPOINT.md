@@ -27,10 +27,10 @@ upstream manifest/training/tokenizer/rubric locks.
 |---|---|
 | Primary comparison | R3 versus R2 |
 | Secondary comparison | R3 versus R1 |
-| Sample | 120 unique dev rows, shared by all arms and seeds |
+| Sample | 40 unique dev rows, shared by all arms and seeds |
 | Low-score coverage | Include every available Label-1/2 dev row |
-| Remaining sample | Deterministically balance metric, language, and Label-3 versus Label-4/5 |
-| Seed replication | Evaluate the same 120 rows for seeds 42, 43, and 44 |
+| Remaining sample | Deterministically select 8 Label-3 and 12 Label-4/5 rows while balancing metric and language |
+| Seed replication | Evaluate the same 40 rows for seeds 42, 43, and 44 |
 | Pairing | Same record and seed on both sides |
 | Order control | Evaluate A/B and swapped B/A; inconsistent results become ties |
 | Evaluators | Two independent model families; exact identities still must be frozen |
@@ -47,7 +47,7 @@ comparison. It does not authorize evaluator calls, test access, decoder
 changes, checkpoint reselection, or preference training.
 
 The next implementation step is to build and hash the deterministic private
-120-row sample, choose two eligible evaluator model families, and freeze their
+40-row sample, choose two eligible evaluator model families, and freeze their
 exact revisions, prompts, schemas, decoding settings, and presentation order
 in a candidate execution package. That package requires one narrow review
 before evaluator calls begin.

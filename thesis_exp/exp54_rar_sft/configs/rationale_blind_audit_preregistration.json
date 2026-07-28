@@ -1,5 +1,5 @@
 {
-  "schema_version": "exp54-rationale-blind-audit-preregistration-v1",
+  "schema_version": "exp54-rationale-blind-audit-preregistration-v2",
   "status": "RATIONALE_BLIND_AUDIT_PROTOCOL_PREREGISTERED",
   "scientific_scope": {
     "primary_question": "Does answer-aligned, label-consistent human rationale supervision improve visible rationale quality relative to a token-frequency-matched shuffled-rationale control?",
@@ -36,16 +36,29 @@
     "checkpoint_reselection_allowed": false
   },
   "sample": {
-    "unique_dev_rows": 120,
+    "unique_dev_rows": 40,
     "same_row_manifest_for_all_arms_and_seeds": true,
     "include_every_available_label_1_or_2_row": true,
     "expected_low_score_rows": 20,
-    "remaining_rows": 100,
-    "remaining_row_strata": [
-      "metric_id",
-      "language",
-      "label_band_3_vs_4_5"
+    "remaining_rows": 20,
+    "fixed_band_quotas": {
+      "label_3": 8,
+      "label_4_or_5": 12
+    },
+    "selector_algorithm_version": "exp54-minimal-rationale-selector-v2",
+    "selector_band_order": [
+      "label_3",
+      "label_4_or_5"
     ],
+    "selector_candidate_key": [
+      "current_metric_count",
+      "current_language_count",
+      "current_metric_language_count",
+      "SHA256(selector_seed|record_id|row_position)",
+      "record_id",
+      "row_position"
+    ],
+    "canonical_manifest_order": "ascending original dev row_position",
     "all_12_metrics_required": true,
     "both_languages_required": true,
     "selection_inputs_allowed": [
@@ -63,7 +76,7 @@
       "forced_completion",
       "judge_preference"
     ],
-    "deterministic_selection_seed": "exp54-rationale-blind-audit-sample-v1|20260728",
+    "deterministic_selection_seed": "exp54-minimal-rationale-audit-v2|20260728",
     "row_level_manifest_visibility": "private",
     "public_artifact_scope": "counts, coverage, hashes, and aggregate results only"
   },
@@ -92,8 +105,8 @@
     ],
     "orientation_order": "deterministic hash-randomized",
     "inconsistent_swapped_judgments_become_tie": true,
-    "primary_pair_instances_before_orientation": 360,
-    "secondary_pair_instances_before_orientation": 360
+    "primary_pair_instances_before_orientation": 120,
+    "secondary_pair_instances_before_orientation": 120
   },
   "evaluation": {
     "independent_evaluator_model_families_required": 2,
@@ -116,13 +129,17 @@
       "retries": 0,
       "parse_failure_policy": "record failure; do not silently replace the evaluator or prompt"
     },
-    "dimensions": [
+    "score_blind_dimensions": [
       "metric alignment",
       "rubric relevance",
       "answer grounding",
-      "score-rationale consistency",
       "specificity",
-      "unsupported claims"
+      "unsupported claims",
+      "completeness"
+    ],
+    "score_visible_dimensions": [
+      "score-rationale consistency",
+      "overall scoring-justification usefulness"
     ],
     "dimension_verdicts": [
       "A",
@@ -161,13 +178,14 @@
     ],
     "bootstrap": {
       "method": "paired hierarchical bootstrap",
-      "cluster": "record_id",
+      "cluster": "record_id among the 40 fixed, low-score-enriched audit rows",
       "carry_all_three_seed_pairs_with_resampled_record": true,
       "replicates": 10000,
       "seed": 20260728,
       "interval": 0.95
     },
-    "multiplicity_policy": "R3_vs_R2 overall preference is primary; all dimensions, R3_vs_R1, forced-completion strata, and evaluator pooling are secondary or diagnostic.",
+    "estimand": "Descriptive preference on the fixed low-score-enriched 40-row audit sample under three fixed training seeds; not full-dev prevalence or population-level seed uncertainty.",
+    "multiplicity_policy": "R3_vs_R2 overall scoring-justification usefulness is primary; all dimensions, R3_vs_R1, forced-completion strata, and evaluator pooling are secondary or diagnostic.",
     "checkpoint_or_hyperparameter_selection_from_results_allowed": false
   },
   "execution_gate": {

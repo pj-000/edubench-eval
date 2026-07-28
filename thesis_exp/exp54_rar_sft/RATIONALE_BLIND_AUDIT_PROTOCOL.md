@@ -37,21 +37,25 @@ The blind audit cannot change the selected epoch, arm definition, output
 budget, parser, or decoder. It cannot be used to choose a new SFT checkpoint or
 SFT hyperparameter.
 
-## Fixed sample
+## Fixed minimal sample
 
-The private sample manifest contains 120 unique dev rows and is reused for all
+The private sample manifest contains 40 unique dev rows and is reused for all
 three seeds and all compared arms:
 
 1. Include every available Label-1 and Label-2 dev row (expected total: 20).
-2. Select the remaining 100 rows deterministically from Labels 3-5 while
-   balancing metric, language, and the Label-3 versus Label-4/5 bands.
+2. Select 8 Label-3 rows and 12 Label-4/5 rows deterministically.
 3. Require coverage of all 12 metrics and both languages.
 
-The selector may use only record identity/order and pre-existing dev metadata:
-`label_5`, `metric_id`, and `language`. It must not inspect arm identity,
-generated score, generated rationale, forced-close status, or judge
-preferences. The selector seed is
-`exp54-rationale-blind-audit-sample-v1|20260728`.
+Within each fixed band, selection repeatedly takes the candidate with the
+lexicographically smallest tuple of current metric count, current language
+count, current metric-language count,
+`SHA256(selector_seed|record_id|row_position)`, record ID, and row position.
+The band order is Label 3 followed by Label 4/5. The final manifest is restored
+to original dev row order. The selector may use only record identity/order and
+pre-existing dev metadata: `label_5`, `metric_id`, and `language`. It must not
+inspect arm identity, generated score, generated rationale, forced-close
+status, or judge preferences. The selector seed is
+`exp54-minimal-rationale-audit-v2|20260728`.
 
 Row-level sample identities remain private. Public artifacts contain only
 counts, coverage summaries, hashes, and aggregate results.
@@ -63,7 +67,7 @@ Each comparison uses the same record and seed on both sides:
 - Primary: R3 versus R2.
 - Secondary: R3 versus R1.
 
-With 120 rows and three seeds, each comparison has 360 paired instances before
+With 40 rows and three seeds, each comparison has 120 paired instances before
 order replication. Every pair is shown twice, once in each A/B orientation.
 The initial orientation is deterministically hash-randomized. If the two
 orientations yield inconsistent preferences after mapping back to arm
@@ -74,14 +78,19 @@ each candidate's generated score and visible rationale. It does not receive
 the arm, seed, gold label, individual human scores, human reasons,
 forced-completion flag, checkpoint identity, or rationale provenance.
 
-The fixed judgment dimensions are:
+The score-blind stage hides both candidate scores and judges:
 
 - metric alignment;
 - rubric relevance;
 - answer grounding;
-- score-rationale consistency;
 - specificity;
-- unsupported claims.
+- unsupported claims;
+- completeness.
+
+The score-visible stage then judges:
+
+- score-rationale consistency;
+- overall scoring-justification usefulness.
 
 Each dimension and the overall judgment must be one of `A`, `B`, or `tie`.
 
@@ -133,8 +142,13 @@ R3-versus-R1, individual dimensions, forced-completion strata, and pooled
 evaluator results are secondary or diagnostic.
 
 Use a paired hierarchical bootstrap with 10,000 replicates and seed 20260728.
-Resample the 120 record clusters and carry all three seed-specific pairs for a
+Resample the 40 record clusters and carry all three seed-specific pairs for a
 selected record into each replicate.
+
+The estimand is preference on this fixed, low-score-enriched audit sample under
+three fixed training seeds. It is not an unweighted estimate of full-dev
+prevalence and its interval does not represent population-level uncertainty
+over arbitrary training seeds.
 
 ## Next authorization gate
 
