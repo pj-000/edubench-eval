@@ -11,6 +11,7 @@ thesis_exp/outputs/exp54_rar_sft/rar_v2/inference_v2_determinism_probe.log
 thesis_exp/outputs/exp54_rar_sft/rar_v2/private_inference_v2_superseded/
 thesis_exp/outputs/exp54_rar_sft/rar_v2/rationale_blind_audit/private/
 thesis_exp/outputs/exp54_rar_sft/rar_v2/rationale_blind_audit/raw_api/
+thesis_exp/outputs/exp54_rar_sft/rar_v2/actual_failure_bank/private/
 **/checkpoints/
 **/*.safetensors
 **/*.bin

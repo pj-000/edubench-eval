@@ -3,9 +3,9 @@
 ## Status
 
 This document freezes the negative-sample design direction. It does not
-authorize preference training or test access. The ordinal-offset placement in
-the final loss remains subject to a direct check against the ODPO definition;
-pair construction itself does not depend on that choice.
+authorize preference training or test access. The negative-source decision is
+still under scientific review; the actual failure bank is being prepared as a
+neutral diagnostic rather than as an already selected preference manifest.
 
 ## Core principle
 
@@ -152,22 +152,28 @@ Thus nearby errors receive a smaller margin, severe L2H receives the largest
 margin, and H2L remains explicitly protected by both ordinal distance and its
 own block.
 
-Before training, the implementation must resolve and test whether the intended
-ODPO-style required margin is:
+The ODPO paper defines the estimated reward as
+`r_hat = beta * log(policy/reference)` and its Eq. 7c subtracts the offset from
+the difference of those already beta-scaled estimated rewards. Therefore, if
+`Delta` in our implementation is the unscaled chosen-minus-rejected
+policy/reference log-ratio difference, the direct ODPO form is:
 
 ```text
 -log sigmoid(beta * Delta - g)
 ```
 
-or:
+It is not:
 
 ```text
 -log sigmoid(beta * (Delta - g))
 ```
 
-These are not equivalent when `beta != 1`. No claim that `g` is a one-nat
-offset is permitted until its placement is checked against the selected
-theoretical definition.
+unless the quantity inside the parentheses is explicitly defined as
+`g / beta`. These forms are not equivalent when `beta != 1`.
+
+Primary source: Amini, Vieira, and Cotterell, *Direct Preference Optimization
+with an Offset*, Findings of ACL 2024, Eq. 7c and Eq. 12:
+https://aclanthology.org/2024.findings-acl.592/
 
 ## Pair hard filters
 
