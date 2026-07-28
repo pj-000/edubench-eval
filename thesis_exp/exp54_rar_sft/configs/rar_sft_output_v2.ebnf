@@ -1,0 +1,6 @@
+root ::= "{\"score\":" score ",\"rationale\":" json_string "}"
+score ::= [1-5]
+json_string ::= "\"" json_chars "\""
+json_chars ::= ([^"\\\x00-\x1F] | "\\" escape)*
+escape ::= ["\\/bfnrt] | "u" hex hex hex hex
+hex ::= [0-9A-Fa-f]

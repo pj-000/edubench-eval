@@ -1,0 +1,21 @@
+{
+  "adapter_model_sha256": "09176c64ced6fc701f4344b9862dc19a3aa369f27151e60c4a1b20a56709a759",
+  "arm": "S0",
+  "dev_accessed": false,
+  "diagnostics_identical": true,
+  "generated_text_public": false,
+  "logical_epoch": 1,
+  "output_bytes_identical": true,
+  "output_token_ids_identical": true,
+  "probe_source_sha256": "ab9c6c951128d0f510722f1c13243a83c05fe8119a4c37d7870e0e69f74661b9",
+  "protocol_config_sha256": "3de650f2a220aa89a0bcdf9285c9366393347648b859e2d869aee9948aeff04d",
+  "repetitions": 2,
+  "row_identifier_public": false,
+  "schema_version": "exp54-inference-v2-determinism-probe-v1",
+  "seed": 42,
+  "status": "EXP54_INFERENCE_V2_REAL_DETERMINISM_PROBE_PASS",
+  "strict_parse_success_both": true,
+  "test_accessed": false,
+  "token_ids_public": false,
+  "train_only": true
+}

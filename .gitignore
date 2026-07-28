@@ -3,6 +3,12 @@
 # Exp2 checkpoints and model-weight artifacts must never be committed.
 saves/
 thesis_exp/artifacts/
+thesis_exp/outputs/exp54_rar_sft/rar_v2/private_dev_execution_evidence/
+thesis_exp/outputs/exp54_rar_sft/rar_v2/inference_v2_train_smoke/
+thesis_exp/outputs/exp54_rar_sft/rar_v2/inference_v2_train_smoke.log
+thesis_exp/outputs/exp54_rar_sft/rar_v2/inference_v2_budget_probe.log
+thesis_exp/outputs/exp54_rar_sft/rar_v2/inference_v2_determinism_probe.log
+thesis_exp/outputs/exp54_rar_sft/rar_v2/private_inference_v2_superseded/
 **/checkpoints/
 **/*.safetensors
 **/*.bin

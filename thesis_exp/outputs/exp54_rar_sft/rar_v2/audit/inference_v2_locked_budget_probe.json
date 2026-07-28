@@ -1,0 +1,17 @@
+{
+  "completion_at_max_token_boundary": true,
+  "data_accessed": false,
+  "dev_accessed": false,
+  "forced_completion": true,
+  "generated_text_public": false,
+  "generated_token_count": 256,
+  "probe_source_sha256": "c2c4b00903f8da7650cfa2f8ea2fff37d731ad816a50de480b59134d472e5cc9",
+  "protocol_config_sha256": "3de650f2a220aa89a0bcdf9285c9366393347648b859e2d869aee9948aeff04d",
+  "schema_version": "exp54-inference-v2-budget-probe-v1",
+  "score_preserved": true,
+  "status": "EXP54_INFERENCE_V2_LOCKED_BUDGET_PROBE_PASS",
+  "strict_parse_success": true,
+  "test_accessed": false,
+  "token_ids_public": false,
+  "unconstrained_top1_blocked_steps": 256
+}

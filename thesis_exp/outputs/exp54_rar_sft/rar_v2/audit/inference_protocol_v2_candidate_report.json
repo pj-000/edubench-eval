@@ -1,0 +1,117 @@
+{
+  "dependencies": {
+    "apache_tvm_ffi_version": "0.1.9",
+    "apache_tvm_ffi_wheel_sha256": "eefcd17f61bf503ff0f4ad429e03ef6c241c7d13682f58281d883218b854c9bd",
+    "xgrammar_version": "0.2.5",
+    "xgrammar_wheel_sha256": "69901bd7469127b59e22668a41efc25e9062a591b4596e5a8877fae18bd10832"
+  },
+  "formal_test_allowed": false,
+  "formal_v2_dev_allowed": false,
+  "grammar_sha256": "12cb532621c98fe6a1a3904b042ef52560c93f870f59bfa71b068f2d5d71c08e",
+  "independent_review_required": true,
+  "locked_budget_probe": {
+    "completion_at_max_token_boundary": true,
+    "forced_completion": true,
+    "generated_token_count": 256,
+    "report_sha256": "9e8b22041669b114dd34b3396e6c000863615e6df8bbec70e8b1266c6f58753a",
+    "strict_parse_success": true
+  },
+  "privacy": {
+    "generated_text_public": false,
+    "record_or_event_ids_public": false,
+    "row_level_selection_public": false,
+    "score_or_rationale_semantics_inspected": false,
+    "train_prompts_public": false
+  },
+  "protocol_config_sha256": "3de650f2a220aa89a0bcdf9285c9366393347648b859e2d869aee9948aeff04d",
+  "protocol_id": "RAR_SFT_INFERENCE_PROTOCOL_V2",
+  "real_checkpoint_determinism_probe": {
+    "diagnostics_identical": true,
+    "output_bytes_identical": true,
+    "output_token_ids_identical": true,
+    "repetitions": 2,
+    "report_sha256": "9f61c33504bc825480e4af4bdc42d752f70a1895d963257c5de557cbd0f46861"
+  },
+  "runtime_source_bindings": {
+    "thesis_exp/exp54_rar_sft/DEV_EXECUTION_ATTEMPT_V1_ROOT_CAUSE.md": "aab1b79a64356d02d593218d2de0bab9789b6033155abf2a1f0c9aadd28bd2f0",
+    "thesis_exp/exp54_rar_sft/INFERENCE_PROTOCOL_V2.md": "85223a812e0f8b7ae3ac68912b1c00bd3abed1e49f0a8c26ec90b0a47fba0089",
+    "thesis_exp/exp54_rar_sft/audit_inference_v2_candidate.py": "81c1a87930e0d6dea683cee79bf23686ce171abc837ca2ace81b1f3427da421e",
+    "thesis_exp/exp54_rar_sft/configs/inference_protocol_v2_candidate.json": "3de650f2a220aa89a0bcdf9285c9366393347648b859e2d869aee9948aeff04d",
+    "thesis_exp/exp54_rar_sft/configs/rar_sft_output_v2.ebnf": "12cb532621c98fe6a1a3904b042ef52560c93f870f59bfa71b068f2d5d71c08e",
+    "thesis_exp/exp54_rar_sft/freeze_dev_execution_attempt_v1.py": "b78177bb311b6bd0e439e4b021f3eaea687c0c7f843c3356dd1c33012cc6b26f",
+    "thesis_exp/exp54_rar_sft/inference_contract.py": "5eda600beb28db066567f3f9bb7a158ddd8c416506c9689248d6cae0d58a3681",
+    "thesis_exp/exp54_rar_sft/run_dev_inference.py": "bddfce526e902ecdaacc4a7413511d249c3fc039cbc2f3e8f525f5929ff0240d",
+    "thesis_exp/exp54_rar_sft/run_dev_inference_v2.py": "3fd2522fd8963d969d5d2a2bfada6da7df70f059ea19cc59b015466de1b5db61",
+    "thesis_exp/exp54_rar_sft/run_inference_v2_budget_probe.py": "c2c4b00903f8da7650cfa2f8ea2fff37d731ad816a50de480b59134d472e5cc9",
+    "thesis_exp/exp54_rar_sft/run_inference_v2_determinism_probe.py": "ab9c6c951128d0f510722f1c13243a83c05fe8119a4c37d7870e0e69f74661b9",
+    "thesis_exp/exp54_rar_sft/run_inference_v2_train_smoke.py": "477886eba67184b3214de3d4705eeab98673e01afcd02c242f0e23f39ed743be",
+    "thesis_exp/exp54_rar_sft/structured_decoder_v2.py": "25ca7185de48c7dd0561087fc83d7d18ffbb5bdaf4d169be1ca6293c2d60c9b8",
+    "thesis_exp/tests/test_exp54_inference_v2.py": "eb617958562d779e5db57c9499a5311d12e339f894d4aed2aff8b996b7e245a8"
+  },
+  "runtime_source_count": 14,
+  "schema_version": "exp54-inference-v2-candidate-audit-v1",
+  "status": "EXP54_INFERENCE_PROTOCOL_V2_CANDIDATE_AUDIT_PASS",
+  "test_accessed": false,
+  "tests": {
+    "failed": 0,
+    "passed": 26,
+    "server_test_file": "thesis_exp/tests/test_exp54_inference_v2.py",
+    "skipped": 0
+  },
+  "train_only_smoke": {
+    "coverage": {
+      "arms": [
+        "R1",
+        "R2",
+        "R3",
+        "S0"
+      ],
+      "labels": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "languages": [
+        "en",
+        "zh"
+      ],
+      "logical_epochs": [
+        1,
+        2,
+        3
+      ],
+      "rationale_activity_states": [
+        false,
+        true
+      ],
+      "rows": 36,
+      "seeds": [
+        42,
+        43,
+        44
+      ],
+      "unique_arm_seed_epoch_groups": 36
+    },
+    "execution": {
+      "forced_completion_rate": 0.3611111111111111,
+      "grammar_intervention_step_rate": 0.00734094616639478,
+      "illegal_unconstrained_top1_rate": 0.004690048939641109,
+      "max_token_hit_rate": 0.3611111111111111,
+      "removed_probability_mass_mean": 0.007499574691203057,
+      "strict_parse_rate": 1.0
+    },
+    "private_results_public": false,
+    "private_results_retained": true,
+    "public_report_copy_path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/audit/inference_v2_train_only_smoke_report.json",
+    "public_report_sha256": "45e951b9311f64e2177aa054548343bc389fa44a838a0a55d48a372ca62f8ba1"
+  },
+  "v1_evidence": {
+    "checkpoint_selection_allowed": false,
+    "freeze_receipt_sha256": "583c46bcfad0ce5ed98dad534cc1dd5401c66029ff83ee0f3033c4702f4cb0b6",
+    "report_sha256": "5a9e89e9d8b0087669da404c515d4577fc35cc5e48f43dc122b9f520df100e88",
+    "scientific_metrics_valid": false
+  },
+  "v2_dev_accessed": false
+}
