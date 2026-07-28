@@ -194,7 +194,6 @@ def _prepare_authorization(
         "_require_nonreplayable_campaign_directory",
         lambda path: None,
     )
-
     training_root = tmp_path / "training"
     output_root = tmp_path / "outputs"
     wheel_root = tmp_path / "wheels"
@@ -652,22 +651,18 @@ def test_checkpoint_replacement_after_authorization_is_rejected(
         guard.verify_read_once_material_unchanged(material)
 
 
-def test_runner_consumes_authenticated_context_payloads_only():
+def test_runner_uses_direct_operator_workflow_without_claim_gate():
     source = (
         Path(__file__).resolve().parents[1]
         / "exp54_rar_sft/run_dev_inference_v2.py"
     ).read_text(encoding="utf-8")
-    assert "load_v2_protocol(" not in source
-    assert "load_dev_rows(" not in source
-    assert "_read_object(DEFAULT_CONFIG)" not in source
-    assert "state_path.read_text" not in source
-    assert "context.protocol" in source
-    assert "context.training_config" in source
-    assert "context.dev_rows" in source
-    assert "context.trainer_state" in source
-    assert source.count(
-        "verify_execution_context_materials_unchanged"
-    ) >= 4
+    assert "require_v2_dev_authorization" not in source
+    assert "claim" not in source
+    assert "trusted_digest" not in source
+    assert "load_v2_protocol()" in source
+    assert "load_dev_rows()" in source
+    assert "_read_object(DEFAULT_CONFIG)" in source
+    assert '"execution_mode": "operator_direct"' in source
 
 
 def test_concurrent_checkpoint_claim_has_exactly_one_winner(
@@ -773,7 +768,8 @@ def test_failed_claimed_task_requires_new_campaign(
     ).is_file()
 
 
-def test_runner_checks_authorization_before_dev_model_or_output(
+def test_runner_reserves_output_before_dev_or_model_access(
+    tmp_path: Path,
     monkeypatch: pytest.MonkeyPatch,
 ):
     monkeypatch.setitem(sys.modules, "numpy", SimpleNamespace())
@@ -781,21 +777,45 @@ def test_runner_checks_authorization_before_dev_model_or_output(
 
     touched = []
 
-    def deny(**kwargs):
-        touched.append("authorization")
-        raise PermissionError("not reviewed")
+    def stop_before_dev():
+        touched.append("protocol")
+        raise RuntimeError("stop")
 
-    monkeypatch.setattr(runner, "require_v2_dev_authorization", deny)
+    monkeypatch.setattr(runner, "load_v2_protocol", stop_before_dev)
+    monkeypatch.setattr(
+        runner,
+        "load_dev_rows",
+        lambda: touched.append("dev"),
+    )
     monkeypatch.setattr(
         runner,
         "verify_model_snapshot",
         lambda *args, **kwargs: touched.append("model"),
     )
-    with pytest.raises(PermissionError):
+    output_root = tmp_path / "dev-results"
+    with pytest.raises(RuntimeError, match="stop"):
         runner.run_inference_v2(
-            SimpleNamespace(arm="S0", seed=42, epoch=1)
+            SimpleNamespace(
+                arm="S0",
+                seed=42,
+                epoch=1,
+                training_root=tmp_path / "training",
+                output_root=output_root,
+            )
         )
-    assert touched == ["authorization"]
+    assert touched == ["protocol"]
+    assert (output_root / "s0/seed42/epoch1").is_dir()
+    with pytest.raises(FileExistsError, match="duplicate"):
+        runner.run_inference_v2(
+            SimpleNamespace(
+                arm="S0",
+                seed=42,
+                epoch=1,
+                training_root=tmp_path / "training",
+                output_root=output_root,
+            )
+        )
+    assert touched == ["protocol"]
 
 
 @pytest.mark.parametrize(
@@ -803,12 +823,12 @@ def test_runner_checks_authorization_before_dev_model_or_output(
     [
         ["--batch-size", "1"],
         ["--output-dir", "/tmp/unreviewed"],
-        ["--training-root", "/tmp/unreviewed"],
         ["--protocol-config", "/tmp/unreviewed.json"],
         ["--split", "test"],
+        ["--authorization", "/tmp/unreviewed.json"],
     ],
 )
-def test_formal_cli_has_no_test_or_execution_override(
+def test_direct_cli_has_no_test_protocol_or_authorization_override(
     monkeypatch: pytest.MonkeyPatch,
     extra: list[str],
 ):
@@ -1287,7 +1307,6 @@ def test_preactivation_pass_is_read_only_then_atomic_activation_works(
         "_require_nonreplayable_campaign_directory",
         lambda path: None,
     )
-
     with pytest.raises(PermissionError):
         guard.require_v2_dev_authorization(
             arm="S0",

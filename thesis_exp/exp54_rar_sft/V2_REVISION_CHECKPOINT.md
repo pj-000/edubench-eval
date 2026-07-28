@@ -1,7 +1,8 @@
 # Exp54 V2 revision checkpoint
 
-This checkpoint closes only the four blockers from the prior V2 review. It
-does not change the grammar, XGrammar token mask, UTF-8 incomplete-prefix
+This checkpoint records the V2 decoder fixes and the later decision to return
+dev execution to the normal operator-controlled research workflow. It does
+not change the grammar, XGrammar token mask, UTF-8 incomplete-prefix
 completion, 256-token budget completion, model checkpoints, training data,
 or training loss.
 
@@ -12,14 +13,11 @@ or training loss.
    and checkpoint payloads. The runner consumes those payloads directly and
    verifies all identities and hashes again before imports/model loading,
    after adapter loading, and before writing predictions.
-2. One-use claims now live under the fixed root-managed
-   `/var/lib/edubench/exp54-v2-dev/<campaign>` hierarchy. Preflight requires
-   root ownership, a training-group campaign directory, exact modes, and the
-   append-only filesystem flag. Deleting an output cannot restore invocation
-   permission; a failed claimed task requires a new reviewed campaign.
-   The campaign mode is `01770`, so the training group can execute the real
-   preflight directory read while append-only protection still prevents claim
-   deletion or rename.
+2. The trust-anchor, staged-digest and claim-directory mechanism has been
+   retired from the active runner. The direct runner reserves each ordinary
+   deterministic result directory with `exist_ok=False` before dev or model
+   access, so accidental duplicate launches fail without requiring special
+   permissions, root ownership, append-only flags or `sudo`.
 3. The exact XGrammar and apache-tvm-ffi wheels are unpacked in memory and
    compared byte-for-byte with their installed distributions, excluding only
    explicit installer-generated metadata, bytecode, and console scripts.
@@ -48,18 +46,19 @@ or training loss.
 - Train-only smoke report SHA-256:
   `63ccd3db04e7a020d857f08f637d9edd396103b3294b0a42783e9199876af2f6`
 - Candidate report SHA-256:
-  `3bd4000766e0fe96143e2ce9f12e93395686431189fcfcbe0b5a9d6830d4b08f`
+  `bbe324d887fe884f0aaa0fa742d789523d316fc9e30381f00a298243dc246fea`
 - Candidate lock SHA-256:
-  `97ea2c454a791a763cbe3c8f7e05b1cfe0bf6ee162d2bfc2af5aed6357734624`
+  `5db3c903a48b2af674b83c25c75c1da2d56c632bdbc01d7476df26421dc1fa82`
 
 All evidence generation remained train-only or synthetic:
-`v2_dev_accessed=false`, `test_accessed=false`,
-`formal_v2_dev_allowed=false`, and `formal_test_allowed=false`.
+`v2_dev_accessed=false`, `test_accessed=false`, and
+`formal_test_allowed=false`. The regenerated report records
+`operator_direct_dev_execution_allowed=true`; this is an execution decision,
+not a change to the decoder or test-access boundary.
 
-## Authorization boundary
+## Execution boundary
 
-The current commit is still a candidate and cannot run formal dev by itself.
-After independent review passes, a separate authorization payload must follow
-the staged pre-activation process in `V2_DEV_AUTHORIZATION_PLAN.md`. This
-checkpoint does not install an authorization, does not create a formal claim,
-and does not authorize test access.
+The exact direct runner may be synchronized to the server and launched after
+the operator confirms an idle allowed GPU. This checkpoint does not
+authorize test access. Existing result directories and logs must be retained;
+Codex must not silently delete or rerun a failed task.

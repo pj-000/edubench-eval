@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import argparse
+import json
 import time
 from pathlib import Path
 from typing import Any
@@ -10,10 +11,12 @@ from typing import Any
 from thesis_exp.exp54_rar_sft.inference_contract import parse_review_json
 from thesis_exp.exp54_rar_sft.run_dev_inference import (
     ARMS,
+    DEV_PATH,
     EPOCHS,
     REPO_ROOT,
     SEEDS,
     file_sha256,
+    load_dev_rows,
     prepare_prompts,
     rationale_metrics,
     score_metrics,
@@ -21,17 +24,25 @@ from thesis_exp.exp54_rar_sft.run_dev_inference import (
     write_jsonl,
 )
 from thesis_exp.exp54_rar_sft.structured_decoder_v2 import (
+    DEFAULT_PROTOCOL_CONFIG,
     constrained_greedy_decode,
+    load_v2_protocol,
     prepare_v2_runtime,
 )
 from thesis_exp.exp54_rar_sft.training_contract import token_ids_sha256
 from thesis_exp.exp54_rar_sft.train_rar_sft import (
+    DEFAULT_CONFIG,
+    _read_object,
     validate_training_configuration,
     verify_model_snapshot,
 )
-from thesis_exp.exp54_rar_sft.v2_dev_authorization_guard import (
-    require_v2_dev_authorization,
-    verify_execution_context_materials_unchanged,
+
+
+DEFAULT_TRAINING_ROOT = (
+    REPO_ROOT / "thesis_exp/outputs/exp54_rar_sft/rar_v2/formal_runs"
+)
+DEFAULT_OUTPUT_ROOT = (
+    REPO_ROOT / "thesis_exp/outputs/exp54_rar_sft/rar_v2/dev_runs_v2"
 )
 
 
@@ -117,36 +128,49 @@ def execution_metrics(
 
 
 def run_inference_v2(args: argparse.Namespace) -> None:
-    context = require_v2_dev_authorization(
-        arm=args.arm,
-        seed=args.seed,
-        epoch=args.epoch,
-    )
-    verify_execution_context_materials_unchanged(context)
     started = time.time()
-    protocol = context.protocol
-    if protocol["selection_and_access"]["formal_v2_dev_allowed"]:
-        raise ValueError(
-            "candidate config must remain not-authorized in repository"
-        )
-    if (
-        protocol["generation"]["formal_batch_size"]
-        != context.batch_size
-    ):
-        raise PermissionError("authorized V2 batch size differs")
-    if (
-        protocol["generation"]["max_new_tokens"]
-        != context.max_new_tokens
-    ):
-        raise PermissionError("authorized V2 token budget differs")
-    config = context.training_config
+    output_dir = (
+        args.output_root
+        / args.arm.lower()
+        / f"seed{args.seed}"
+        / f"epoch{args.epoch}"
+    )
+    try:
+        output_dir.mkdir(parents=True, exist_ok=False)
+    except FileExistsError as exc:
+        raise FileExistsError(
+            f"V2 dev output already exists; refusing duplicate run: "
+            f"{output_dir}"
+        ) from exc
+    write_json(
+        output_dir / "run_state.json",
+        {
+            "status": "EXP54_DEV_INFERENCE_V2_STARTED",
+            "arm": args.arm,
+            "seed": args.seed,
+            "epoch": args.epoch,
+            "execution_mode": "operator_direct",
+            "test_accessed": False,
+        },
+    )
+
+    protocol = load_v2_protocol()
+    batch_size = int(protocol["generation"]["formal_batch_size"])
+    config = _read_object(DEFAULT_CONFIG)
     validate_training_configuration(config)
     verify_model_snapshot(config)
-    rows = list(context.dev_rows)
-    adapter_path = context.checkpoint_materials[
-        "adapter_config"
-    ].path.parent
-    state = context.trainer_state
+    rows = load_dev_rows()
+    adapter_path = (
+        args.training_root
+        / f"seed{args.seed}"
+        / args.arm.lower()
+        / f"checkpoint-logical-epoch-{args.epoch}"
+        / "adapter"
+    )
+    state_path = adapter_path.parent / "trainer_state.json"
+    if not adapter_path.is_dir() or not state_path.is_file():
+        raise FileNotFoundError(adapter_path)
+    state = json.loads(state_path.read_text(encoding="utf-8"))
     expected_state = {
         "status": "EXP54_FORMAL_CHECKPOINT_UNEVALUATED",
         "arm": args.arm,
@@ -159,7 +183,15 @@ def run_inference_v2(args: argparse.Namespace) -> None:
     for key, value in expected_state.items():
         if state.get(key) != value:
             raise ValueError(f"checkpoint state differs at {key}")
-    verify_execution_context_materials_unchanged(context)
+    checkpoint_hashes = {
+        "adapter_config": file_sha256(
+            adapter_path / "adapter_config.json"
+        ),
+        "adapter_model": file_sha256(
+            adapter_path / "adapter_model.safetensors"
+        ),
+        "trainer_state": file_sha256(state_path),
+    }
 
     import torch
     from peft import PeftModel
@@ -185,14 +217,15 @@ def run_inference_v2(args: argparse.Namespace) -> None:
         str(adapter_path),
         is_trainable=False,
     )
-    verify_execution_context_materials_unchanged(context)
     model.eval()
     model.config.use_cache = True
+    grammar_path = REPO_ROOT / protocol["grammar"]["path"]
+    grammar_payload = grammar_path.read_bytes()
     runtime = prepare_v2_runtime(
         tokenizer,
         model_vocab_size=int(model.config.vocab_size),
         protocol=protocol,
-        grammar_payload=context.grammar_material.payload,
+        grammar_payload=grammar_payload,
     )
     by_position: dict[int, dict[str, Any]] = {}
     ordered_for_batches = sorted(
@@ -202,9 +235,9 @@ def run_inference_v2(args: argparse.Namespace) -> None:
     for start in range(
         0,
         len(ordered_for_batches),
-        context.batch_size,
+        batch_size,
     ):
-        batch = ordered_for_batches[start : start + context.batch_size]
+        batch = ordered_for_batches[start : start + batch_size]
         decoded = constrained_greedy_decode(
             model,
             tokenizer,
@@ -242,23 +275,46 @@ def run_inference_v2(args: argparse.Namespace) -> None:
                 "rationale_token_count": rationale_token_count,
                 "decoding_diagnostics": result.to_dict()["diagnostics"],
             }
+        completed = min(
+            start + len(batch),
+            len(ordered_for_batches),
+        )
+        elapsed = time.time() - started
+        rows_per_second = completed / elapsed if elapsed > 0 else 0.0
+        remaining = len(ordered_for_batches) - completed
+        eta_seconds = (
+            remaining / rows_per_second
+            if rows_per_second > 0
+            else 0.0
+        )
         print(
             f"[Exp54 dev V2] {args.arm}/seed{args.seed}/"
             f"epoch{args.epoch}: "
-            f"{min(start + len(batch), len(ordered_for_batches))}/"
-            f"{len(ordered_for_batches)}",
+            f"{completed}/{len(ordered_for_batches)} "
+            f"({completed / len(ordered_for_batches) * 100:.1f}%), "
+            f"ETA {eta_seconds / 60:.1f} min",
             flush=True,
         )
     predictions = [
         by_position[position] for position in range(len(rows))
     ]
-    verify_execution_context_materials_unchanged(context)
-    write_jsonl(context.output_dir / "predictions.jsonl", predictions)
+    final_checkpoint_hashes = {
+        "adapter_config": file_sha256(
+            adapter_path / "adapter_config.json"
+        ),
+        "adapter_model": file_sha256(
+            adapter_path / "adapter_model.safetensors"
+        ),
+        "trainer_state": file_sha256(state_path),
+    }
+    if final_checkpoint_hashes != checkpoint_hashes:
+        raise RuntimeError("checkpoint artifacts changed during V2 dev")
+    write_jsonl(output_dir / "predictions.jsonl", predictions)
     execution = execution_metrics(predictions)
     run_record = {
         "status": "EXP54_DEV_INFERENCE_V2_COMPLETE",
         "protocol_id": protocol["protocol_id"],
-        "protocol_config_sha256": context.protocol_material.sha256,
+        "protocol_config_sha256": file_sha256(DEFAULT_PROTOCOL_CONFIG),
         "grammar_sha256": protocol["grammar"]["sha256"],
         "decoder_source_sha256": file_sha256(
             Path(__file__).resolve().parent / "structured_decoder_v2.py"
@@ -267,24 +323,18 @@ def run_inference_v2(args: argparse.Namespace) -> None:
         "seed": args.seed,
         "epoch": args.epoch,
         "checkpoint_global_step": args.epoch * 332,
-        "dev_path": str(context.dev_material.path),
-        "dev_sha256": context.dev_material.sha256,
+        "dev_path": str(DEV_PATH),
+        "dev_sha256": file_sha256(DEV_PATH),
         "dev_rows": len(rows),
         "model_path": str(model_path),
         "adapter_path": str(adapter_path),
-        "adapter_config_sha256": context.checkpoint_materials[
-            "adapter_config"
-        ].sha256,
-        "adapter_model_sha256": context.checkpoint_materials[
-            "adapter_model"
-        ].sha256,
+        "adapter_config_sha256": checkpoint_hashes["adapter_config"],
+        "adapter_model_sha256": checkpoint_hashes["adapter_model"],
         "generation": protocol["generation"],
         "backend": protocol["backend"],
-        "batch_size": context.batch_size,
-        "authorization_sha256": context.authorization_sha256,
-        "authorization_campaign_id": context.campaign_id,
-        "authorization_task_id": context.task_id,
-        "authorization_claim_path": str(context.claim_path),
+        "batch_size": batch_size,
+        "execution_mode": "operator_direct",
+        "duplicate_run_protection": "existing_output_directory",
         "max_prompt_tokens": max(
             len(item["token_ids"]) for item in prepared
         ),
@@ -293,9 +343,9 @@ def run_inference_v2(args: argparse.Namespace) -> None:
         "test_accessed": False,
         "elapsed_seconds": time.time() - started,
     }
-    write_json(context.output_dir / "protocol.json", run_record)
+    write_json(output_dir / "protocol.json", run_record)
     write_json(
-        context.output_dir / "metrics.json",
+        output_dir / "metrics.json",
         {
             "status": "EXP54_DEV_METRICS_V2_COMPLETE",
             "arm": args.arm,
@@ -308,6 +358,17 @@ def run_inference_v2(args: argparse.Namespace) -> None:
             "test_accessed": False,
         },
     )
+    write_json(
+        output_dir / "run_state.json",
+        {
+            "status": "EXP54_DEV_INFERENCE_V2_COMPLETE",
+            "arm": args.arm,
+            "seed": args.seed,
+            "epoch": args.epoch,
+            "execution_mode": "operator_direct",
+            "test_accessed": False,
+        },
+    )
 
 
 def parse_args() -> argparse.Namespace:
@@ -315,6 +376,16 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--arm", required=True, choices=ARMS)
     parser.add_argument("--seed", required=True, type=int, choices=SEEDS)
     parser.add_argument("--epoch", required=True, type=int, choices=EPOCHS)
+    parser.add_argument(
+        "--training-root",
+        type=Path,
+        default=DEFAULT_TRAINING_ROOT,
+    )
+    parser.add_argument(
+        "--output-root",
+        type=Path,
+        default=DEFAULT_OUTPUT_ROOT,
+    )
     return parser.parse_args()
 
 

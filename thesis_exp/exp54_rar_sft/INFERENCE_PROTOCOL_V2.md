@@ -205,34 +205,22 @@ model probability assigned to all currently legal tokens.
     parsing, forced-completion diagnostics, KV-cache continuation, and
     finished-row attention masking.
 
-## Formal dev authorization
+## Dev execution
 
-The repository candidate remains `formal_v2_dev_allowed=false`. This field
-cannot activate execution. The formal runner first requires an external
-reviewed authorization at fixed user-managed paths and consumes a unique
-one-use claim from a fixed root-managed, append-only campaign directory
-before dev-row parsing, model validation, CUDA, or model loading. Pre-claim
-authentication may read the sealed dev bytes only to verify the frozen hash;
-it does not parse or expose rows. The winner reserves its fixed output and
-then materializes rows from that same authenticated in-memory payload. The
-execution user cannot remove a claim to replay a checkpoint.
+The V2 dev runner follows the same operator-controlled workflow used by the
+earlier experiments: tested code is synchronized to the server and launched
+directly with fixed arguments. The earlier external trust-anchor and claim
+system is not part of the active execution path.
 
-The authorization binds the exact reviewed commit and report/lock, complete
-runtime closure, and proves each installed XGrammar dependency payload equals
-the reviewed wheel payload byte-for-byte. It also binds the sealed dev hash,
-all 36 checkpoint artifacts, batch size 16, token budget 256, fixed output
-campaign, `test_allowed=false`, and one invocation per checkpoint.
+The runner still fixes the complete checkpoint set, batch size 16, token
+budget 256, V2 grammar, model snapshot and training configuration. It checks
+adapter hashes before and after inference and refuses to overwrite an
+existing deterministic result directory. It reads dev only; no test path or
+test CLI option exists.
 
-The production context carries the exact authenticated protocol, grammar,
-training configuration, dev and checkpoint bytes. The runner does not reopen
-protocol, configuration or dev paths. Adapter identity and full hashes are
-checked before and after model loading and once more before any prediction
-artifact is written.
-
-Installation follows the staged pre-activation sequence in
-`V2_DEV_AUTHORIZATION_PLAN.md`. The staged digest cannot activate the
-production runner; only its post-preflight atomic rename to the fixed active
-digest path can do so.
+Operational execution details are recorded in
+`V2_DEV_AUTHORIZATION_PLAN.md`, whose filename is retained only to preserve
+existing references.
 
 ## V1 and dev boundary
 
