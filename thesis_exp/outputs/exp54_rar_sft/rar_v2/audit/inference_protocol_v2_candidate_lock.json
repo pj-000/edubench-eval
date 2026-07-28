@@ -1,9 +1,9 @@
 {
   "candidate_audit_source_bindings": {
     "thesis_exp/exp54_rar_sft/DEV_EXECUTION_ATTEMPT_V1_ROOT_CAUSE.md": "aab1b79a64356d02d593218d2de0bab9789b6033155abf2a1f0c9aadd28bd2f0",
-    "thesis_exp/exp54_rar_sft/INFERENCE_PROTOCOL_V2.md": "948f9ffa09edafd1c9efaafb14d6ba6913e03790c33689fb05429059b8970ce2",
-    "thesis_exp/exp54_rar_sft/V2_DEV_AUTHORIZATION_PLAN.md": "38fab9593cbd57e4601e9bebea00e8eab32afe6add626c7635ac072b4a588d0b",
-    "thesis_exp/exp54_rar_sft/audit_inference_v2_candidate.py": "18be1c9d3c0e5383a6f08b7bcc82dd31553ecd64c18157a5d4995259b3202ade",
+    "thesis_exp/exp54_rar_sft/INFERENCE_PROTOCOL_V2.md": "64ee08df5e909b4f3f307e67a460bff5321d4e199e1bf203719a20568d25ec14",
+    "thesis_exp/exp54_rar_sft/V2_DEV_AUTHORIZATION_PLAN.md": "8d00050522e4ee4dc3b8eccca7cd69438eaa766cfe8b8a14cb1c9fdec898218c",
+    "thesis_exp/exp54_rar_sft/audit_inference_v2_candidate.py": "ca8615b403155bbb91b72a388d08eae1923936d189797b6485beb92a176fa491",
     "thesis_exp/exp54_rar_sft/audit_v2_dev_authorization_preactivation.py": "37607c1bd2673b5d73736892283646f14147d4babc32a8ed35235367b31755e1",
     "thesis_exp/exp54_rar_sft/freeze_dev_execution_attempt_v1.py": "b78177bb311b6bd0e439e4b021f3eaea687c0c7f843c3356dd1c33012cc6b26f",
     "thesis_exp/exp54_rar_sft/run_inference_v2_budget_probe.py": "c2c4b00903f8da7650cfa2f8ea2fff37d731ad816a50de480b59134d472e5cc9",
@@ -11,7 +11,7 @@
     "thesis_exp/exp54_rar_sft/run_inference_v2_train_smoke.py": "ad199cc106bdeeb0b7405e73984bc59df35c86660b18a0b3fc0c35f5b47f4d2d",
     "thesis_exp/tests/test_exp54_inference_v2.py": "7f64eb2c37978a979015a486e643af47e3b114a62d7999809005e0d2d27c7f22"
   },
-  "candidate_report_sha256": "434a4a939b5a6522c95647b90b425a6238bcee73da2942b83c66a2255aee9040",
+  "candidate_report_sha256": "671b47ec46f2c5ec8e178001606d6047855e22fc107f8c553a268176e00db4ae",
   "dependencies": {
     "editable_install_allowed": false,
     "observed_installed_distributions": {
@@ -86,7 +86,7 @@
     "batched_singleton_token_ids_equal": true,
     "checkpoint_identity_hash_checked_before_after_inference": true,
     "dev_loaded_from_fixed_repository_path": true,
-    "direct_runtime_batch_size": 48,
+    "direct_runtime_batch_size": 40,
     "finished_row_attention_mask_zero_verified": true,
     "grammar_loaded_from_protocol_bound_path": true,
     "max_new_tokens": 256,
@@ -127,7 +127,7 @@
     "thesis_exp/exp54_rar_sft/configs/training_configuration_candidate.json": "291a3fa055f5ef07ac0f1bc39f67f3b1c9d13219da0c3e3e801d9a9df29d5318",
     "thesis_exp/exp54_rar_sft/inference_contract.py": "5eda600beb28db066567f3f9bb7a158ddd8c416506c9689248d6cae0d58a3681",
     "thesis_exp/exp54_rar_sft/run_dev_inference.py": "bddfce526e902ecdaacc4a7413511d249c3fc039cbc2f3e8f525f5929ff0240d",
-    "thesis_exp/exp54_rar_sft/run_dev_inference_v2.py": "93c137e8d4d0f4018d753d5a2d0486ad11b27590d2b58b172015664c74b7621c",
+    "thesis_exp/exp54_rar_sft/run_dev_inference_v2.py": "23c291d9aa5b093f78b42bd1df4b69ab32c8c42f281152f39d1562b662150d2b",
     "thesis_exp/exp54_rar_sft/structured_decoder_v2.py": "35d4d892d9b713f03a19ef39b5461fba28aef0fbb14b844c1467bd2def2b4ff9",
     "thesis_exp/exp54_rar_sft/train_rar_sft.py": "15f4384b32fafa88f141fa50a8b23df733f4704d69a54073cdc3e31afce9422c",
     "thesis_exp/exp54_rar_sft/training_contract.py": "a9b100c9446f2a0e011b1faf67f873b51d0aaacf08a75423c71b6c48360f5071",
@@ -142,7 +142,7 @@
     "thesis_exp/src/edujudge/utils/io.py": "e19250fbf9b7a2013b61078d29100137ee6cefab76cd8dda01ab6888156f1364",
     "thesis_exp/src/edujudge/utils/text_norm.py": "4642255f3aa0fdeeec089fc4364749943082df1a9decb992fd81aae64c1740e4"
   },
-  "runtime_source_closure_sha256": "faf1ccfb745ab564cf9a23f2ead71f5e92458042f3bc8c46c7abb9e165fad369",
+  "runtime_source_closure_sha256": "922645fb7fde59f1e9fe0bdfd540ef6bc43193b67a6bb91b0ab8963dc9c5d6c1",
   "runtime_source_names": [
     "thesis_exp/__init__.py",
     "thesis_exp/exp54_rar_sft/__init__.py",

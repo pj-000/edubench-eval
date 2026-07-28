@@ -14,7 +14,7 @@ of the scientific experiment.
 5. Retain stdout/stderr logs and one result directory per checkpoint.
 6. Aggregate all 36 dev results only after every task has completed.
 
-The direct runner uses runtime batch size 48 on the 24 GB RTX 3090 cards and
+The direct runner uses runtime batch size 40 on the 24 GB RTX 3090 cards and
 the frozen 256-token V2 grammar decoder. Batch size is an execution-throughput
 parameter; the singleton/batched regression requires identical decoded token
 IDs. It reads only the dev split; test remains inaccessible.
