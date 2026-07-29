@@ -210,13 +210,17 @@ def execute(
     seed: int,
     cuda_device_uuid: str,
     output_dir: Path,
+    expected_output_root: Path = OUTPUT_ROOT,
+    learning_rate_override: float | None = None,
+    protocol_overlay_path: Path | None = None,
+    result_schema_version: str = "exp54-sorc-dpo-formal-result-v1",
 ) -> dict[str, Any]:
     rows, config, frozen = load_formal_rows(arm=arm, seed=seed)
     base_path, _base_config = verify_base_model_snapshot(
         DEFAULT_BASE_TRAINING_CONFIGURATION
     )
     adapter_dir, adapter_hashes = _checkpoint_for_seed(seed)
-    expected_output = OUTPUT_ROOT / arm.lower() / f"seed_{seed}"
+    expected_output = expected_output_root / arm.lower() / f"seed_{seed}"
     if output_dir.resolve(strict=False) != expected_output.resolve(strict=False):
         raise PermissionError("formal output directory differs from fixed path")
     if output_dir.exists():
@@ -326,9 +330,20 @@ def execute(
         parameter for parameter in model.parameters() if parameter.requires_grad
     ]
     optimization = config["optimization"]
+    learning_rate = float(optimization["learning_rate"])
+    if learning_rate_override is not None:
+        learning_rate = float(learning_rate_override)
+        if not math.isfinite(learning_rate) or learning_rate <= 0:
+            raise ValueError("formal learning-rate override is invalid")
+        if protocol_overlay_path is None:
+            raise ValueError("formal learning-rate override lacks protocol overlay")
+        _require_regular_non_symlink(
+            protocol_overlay_path,
+            label="formal protocol overlay",
+        )
     optimizer = torch.optim.AdamW(
         trainable,
-        lr=float(optimization["learning_rate"]),
+        lr=learning_rate,
         betas=tuple(optimization["betas"]),
         eps=float(optimization["epsilon"]),
         weight_decay=float(optimization["weight_decay"]),
@@ -412,13 +427,14 @@ def execute(
         safe_serialization=True,
     )
     result = {
-        "schema_version": "exp54-sorc-dpo-formal-result-v1",
+        "schema_version": result_schema_version,
         "status": "SORC_DPO_FORMAL_TRAINING_COMPLETE",
         "arm": arm,
         "seed": seed,
         "pair_count": len(rows),
         "preference_epochs": 1,
         "optimizer_steps": optimizer_steps,
+        "learning_rate": learning_rate,
         "warmup_steps": warmup_steps,
         "physical_micro_batch_pairs": PHYSICAL_BATCH_PAIRS,
         "gradient_accumulation_pairs": group_size,
@@ -444,6 +460,10 @@ def execute(
         "dev_accessed": False,
         "test_accessed": False,
     }
+    if protocol_overlay_path is not None:
+        result["protocol_overlay_sha256"] = sha256_file(
+            protocol_overlay_path
+        )
     _atomic_json(output_dir / "result.json", result)
     completed = {
         "schema_version": "exp54-sorc-dpo-formal-progress-v1",

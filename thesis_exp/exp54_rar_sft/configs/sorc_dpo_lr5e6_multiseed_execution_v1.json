@@ -1,0 +1,42 @@
+{
+  "schema_version": "exp54-sorc-dpo-lr5e6-multiseed-execution-v1",
+  "status": "TRAIN_ONLY_MULTI_SEED_EXECUTION_ALLOWED_NO_DEV",
+  "parent_lr_followup_overlay": {
+    "path": "thesis_exp/exp54_rar_sft/configs/sorc_dpo_lr5e6_followup_v1.json",
+    "sha256": "c90673f5234bf4de4ad6e0d7c85e6af98b351183a03c2118249fe3f3c31ce183"
+  },
+  "operator_decision": {
+    "run_all_three_seeds_before_any_new_dev": true,
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "arms": [
+      "P1_FIELD_DPO",
+      "P2_SORC_SCORE",
+      "P3_JOINT_SORC"
+    ],
+    "seed42_dev_gate_removed": true,
+    "reason": "avoid_seed_conditioned_expansion_and_parallelize_fixed_followup"
+  },
+  "scientific_variables": {
+    "only_change_from_formal_null": "learning_rate_5e-7_to_5e-6",
+    "all_pair_manifests_fixed": true,
+    "all_loss_masks_and_weights_fixed": true,
+    "beta_and_offsets_fixed": true,
+    "lora_configuration_fixed": true,
+    "one_epoch_and_27_optimizer_steps_fixed": true,
+    "optimizer_scheduler_warmup_fixed": true,
+    "fresh_seed_matched_R3_epoch3_initialization": true
+  },
+  "execution_boundaries": {
+    "existing_lr5e7_runs_preserved": true,
+    "existing_lr5e6_smoke_required": true,
+    "new_output_root_required": true,
+    "dev_accessed": false,
+    "dev_allowed_during_training": false,
+    "test_accessed": false,
+    "test_allowed": false
+  }
+}

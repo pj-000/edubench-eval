@@ -11,6 +11,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import math
 import os
 import stat
 from pathlib import Path
@@ -561,6 +562,8 @@ def execute_one_smoke_step(
     training_config_path: Path,
     checkpoint_lock_path: Path,
     base_training_configuration_path: Path,
+    learning_rate_override: float | None = None,
+    protocol_overlay_path: Path | None = None,
 ) -> dict[str, Any]:
     """Run one optimizer step. Caller must verify authorization first."""
     base_path, _base_configuration = verify_base_model_snapshot(
@@ -580,6 +583,17 @@ def execute_one_smoke_step(
     from transformers import AutoModelForCausalLM
 
     config = read_json(training_config_path)
+    learning_rate = float(config["optimization"]["learning_rate"])
+    if learning_rate_override is not None:
+        learning_rate = float(learning_rate_override)
+        if not math.isfinite(learning_rate) or learning_rate <= 0:
+            raise ValueError("smoke learning-rate override is invalid")
+        if protocol_overlay_path is None:
+            raise ValueError("smoke learning-rate override lacks protocol overlay")
+        _require_regular_non_symlink(
+            protocol_overlay_path,
+            label="smoke protocol overlay",
+        )
     torch.manual_seed(42)
     torch.cuda.manual_seed_all(42)
     base = AutoModelForCausalLM.from_pretrained(
@@ -625,7 +639,7 @@ def execute_one_smoke_step(
     ]
     optimizer = torch.optim.AdamW(
         trainable_parameters,
-        lr=float(config["optimization"]["learning_rate"]),
+        lr=learning_rate,
         betas=tuple(config["optimization"]["betas"]),
         eps=float(config["optimization"]["epsilon"]),
         weight_decay=float(config["optimization"]["weight_decay"]),
@@ -681,6 +695,7 @@ def execute_one_smoke_step(
         "seed": 42,
         "pair_count": len(rows),
         "optimizer_steps": 1,
+        "learning_rate": learning_rate,
         "loss": total_loss,
         "gradient_norm_before_clip": float(gradient_norm.detach().cpu()),
         "peak_gpu_memory_bytes": int(torch.cuda.max_memory_allocated()),
@@ -696,6 +711,10 @@ def execute_one_smoke_step(
         "dev_accessed": False,
         "test_accessed": False,
     }
+    if protocol_overlay_path is not None:
+        result["protocol_overlay_sha256"] = sha256_file(
+            protocol_overlay_path
+        )
     result_path = output_dir / "result.json"
     temporary = result_path.with_suffix(".json.tmp")
     temporary.write_text(
