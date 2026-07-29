@@ -1,0 +1,36 @@
+{
+  "actual_rationale_candidates_used": false,
+  "candidate_frozen": false,
+  "candidate_report_sha256": "f6633a4f8c476c7a2b9190491c965990a8f14e0303e8d5cd4feffd6a62204f7d",
+  "cpu_unit_tests_required": true,
+  "dev_accessed": false,
+  "evaluator_calls_allowed": false,
+  "formal_preference_training_allowed": false,
+  "gpu_preference_training_allowed": false,
+  "pair_artifact_hashes": {
+    "rationale_pairs_r3_r2": "ffb3aa272ad18b37d7c466691f983d91524ab67a0473c158669f4589c5fa445d",
+    "score_pairs_hybrid": "aeb079c56be8a8afbfdbec386e72faad748fef848014761bf602fbc40c97a1bb",
+    "score_pairs_synthetic_seed42": "83eef75218c945cf8fcaec754cbe84471c915a2fbd814f1d82d162de67406154"
+  },
+  "private_manifest_hashes": {
+    "P1_FIELD_DPO": "0adf6f258b728754e6ec31ba51d7424f2d65fca3b6bc0b420d7fcefc43d42c59",
+    "P1_SYN_SEED42": "1c65f892f01e558797fcae204d71b3b6e4609ccbe8d34d44b3e60250a679cddc",
+    "P2_SORC_SCORE": "7e2872a338b7dd4cdfc15fbed965c62e3ec92a1d30677857d67c990f94f3e847",
+    "P3_JOINT_SORC": "c73a63b54edfc8db4c4b024064ec5b80bb8cfee56f36b3e6bd0c1c5836f1bbb5"
+  },
+  "schema_version": "exp54-sorc-dpo-training-lock-v1",
+  "source_hashes": {
+    "checkpoint_selection_frozen_lock": "364a2c9ee023d1b0a2d803530d7898a347a150dd89dbaaa388aa44677cd71df4",
+    "locked_train": "0a1733b9209984c5c4291d205d1ac6057bed341717903b9de075d07de44a878e",
+    "loss_and_collator": "f0bd0bbd5edd4c6276ebcb76ddcfe2ad636929783ed0801b995c92479a9eb8e4",
+    "manifest_builder": "d46c68c878d47761999dc63724612b33bf625583a0455a3efc6dc8538243f3bf",
+    "pair_protocol_frozen_lock": "8300cadc49998ac7fd71da06a126afdc3d983f45a6ae60812cf0b3692dc26606",
+    "reference_set_data_lock": "fed541fb3cb82851db010d13e5dafa057ffbe196f4ecff357f5d9f4408e6d6f4",
+    "tokenizer_report": "6131ff0129e4831f2cc997003443fd2a1ef4f85e77fa9e30d0cdbb702ffb69c1",
+    "training_config": "65ac4028bd8101aca13b5f750bd03c88d43c6cfa2772292ec1c48b6fa60d79bb"
+  },
+  "status": "SORC_DPO_TRAINING_CANDIDATE_NOT_FROZEN_NOT_AUTHORIZED",
+  "test_accessed": false,
+  "tokenizer_lock_sha256": "4c4fa5083c4b6da6097657bb15a304df06080a5692033c1f444288574acdf0b6",
+  "training_used": false
+}

@@ -1,0 +1,185 @@
+{
+  "schema_version": "exp54-sorc-dpo-training-candidate-v1",
+  "status": "CPU_IMPLEMENTATION_CANDIDATE_GPU_TRAINING_NOT_ALLOWED",
+  "method": {
+    "name": "SORC-DPO",
+    "expansion": "Schema-aligned, Ordinal-Risk-Calibrated Score-Rationale Direct Preference Optimization",
+    "cold_start_arm": "R3",
+    "cold_start_epoch": 3,
+    "formal_seeds": [
+      42,
+      43,
+      44
+    ],
+    "reference_policy": "the same frozen R3 epoch-3 checkpoint used to initialize each preference seed",
+    "shared_pair_manifest_across_seeds": true
+  },
+  "arms": {
+    "P1_FIELD_DPO": {
+      "seeds": [
+        42,
+        43,
+        44
+      ],
+      "pair_source": "score_pairs_hybrid",
+      "pair_count": 838,
+      "score_block_counts": {
+        "adjacent_score": 686,
+        "severe_l2h": 76,
+        "h2l_guard": 76
+      },
+      "offset_mode": "all_zero",
+      "objective": "equal_mean_of_three_score_blocks",
+      "score_share": 1.0,
+      "rationale_share": 0.0,
+      "optimizer_steps_per_physical_pass": 27
+    },
+    "P2_SORC_SCORE": {
+      "seeds": [
+        42,
+        43,
+        44
+      ],
+      "pair_source": "score_pairs_hybrid",
+      "pair_count": 838,
+      "score_block_counts": {
+        "adjacent_score": 686,
+        "severe_l2h": 76,
+        "h2l_guard": 76
+      },
+      "offset_mode": "pair_specific_ordinal_risk",
+      "objective": "equal_mean_of_three_score_blocks",
+      "score_share": 1.0,
+      "rationale_share": 0.0,
+      "optimizer_steps_per_physical_pass": 27
+    },
+    "P3_JOINT_SORC": {
+      "seeds": [
+        42,
+        43,
+        44
+      ],
+      "pair_sources": [
+        "score_pairs_hybrid",
+        "rationale_pairs_r3_r2"
+      ],
+      "pair_count": 2438,
+      "score_pair_count": 838,
+      "rationale_pair_count": 1600,
+      "score_block_counts": {
+        "adjacent_score": 686,
+        "severe_l2h": 76,
+        "h2l_guard": 76
+      },
+      "score_offset_mode": "pair_specific_ordinal_risk",
+      "rationale_offset": 0.0,
+      "objective": "0.5_equal_mean_of_three_score_blocks_plus_0.5_mean_rationale_alignment",
+      "score_share": 0.5,
+      "rationale_share": 0.5,
+      "optimizer_steps_per_physical_pass": 77,
+      "training_allowed_only_after_blind_rationale_qualification": true,
+      "currently_training_allowed": false
+    },
+    "P1_SYN_SEED42": {
+      "seeds": [
+        42
+      ],
+      "role": "matched_synthetic_data_construction_diagnostic",
+      "pair_source": "score_pairs_synthetic_seed42",
+      "pair_count": 838,
+      "score_block_counts": {
+        "adjacent_score": 686,
+        "severe_l2h": 76,
+        "h2l_guard": 76
+      },
+      "offset_mode": "all_zero",
+      "objective": "equal_mean_of_three_score_blocks",
+      "score_share": 1.0,
+      "rationale_share": 0.0,
+      "optimizer_steps_per_physical_pass": 27
+    }
+  },
+  "loss": {
+    "implementation": "sorc_dpo_loss.field_dpo_per_pair",
+    "beta": 0.1,
+    "field_log_probability_reduction": "mean_over_active_field_tokens_per_sequence",
+    "policy_reference_contrast": "(policy_chosen-policy_rejected)-(reference_chosen-reference_rejected)",
+    "dpo_logit": "beta*policy_reference_contrast",
+    "loss": "softplus(-(dpo_logit-odpo_offset))",
+    "offset_is_not_multiplied_by_beta": true,
+    "score_pair_active_tokens": "score_value_tokens_only",
+    "rationale_pair_active_tokens": "rationale_content_tokens_only",
+    "prompt_active": false,
+    "other_output_field_active": false,
+    "json_syntax_active": false,
+    "assistant_suffix_active": false,
+    "padding_active": false,
+    "score_block_aggregation": "exact_dataset_weighting",
+    "score_block_weight_formula": "N*score_share/(3*score_block_count)",
+    "rationale_weight_formula": "N*rationale_share/rationale_pair_count",
+    "dataset_objective_reduction": "sum(pair_weight*pair_loss)/N",
+    "final_short_accumulation_group": "divide_by_actual_pair_count_not_nominal_batch_size"
+  },
+  "data": {
+    "split": "train",
+    "shuffle": true,
+    "shuffle_seed": "run_seed",
+    "preference_epochs": 1,
+    "cutoff_len": 2048,
+    "padding": "right_to_batch_max_or_fixed_2048_at_execution",
+    "truncation": false,
+    "packing": false,
+    "actual_rationale_candidate_count": 948,
+    "actual_rationale_candidates_used_for_training": false,
+    "dev_accessed": false,
+    "test_accessed": false
+  },
+  "optimization": {
+    "micro_batch_size_pairs_per_device": 1,
+    "gradient_accumulation_pairs": 32,
+    "effective_pair_batch_size": 32,
+    "optimizer": "AdamW",
+    "learning_rate": 5e-7,
+    "betas": [
+      0.9,
+      0.999
+    ],
+    "epsilon": 1e-8,
+    "weight_decay": 0.0,
+    "max_grad_norm": 1.0,
+    "scheduler": "cosine",
+    "warmup_ratio": 0.05,
+    "optimizer_state": "fresh",
+    "checkpoint_selection": "not_defined_at_this_candidate_stage"
+  },
+  "model_and_adapter": {
+    "base_model_source": "configs/training_configuration_candidate.json:model",
+    "base_model_id": "Qwen/Qwen3-4B-Instruct-2507",
+    "base_model_revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "policy_adapter": "continue_training_the_seed_matched_frozen_R3_epoch3_adapter",
+    "reference_adapter": "the_same_seed_matched_frozen_R3_epoch3_adapter_kept_frozen",
+    "lora_rank": 16,
+    "lora_alpha": 32,
+    "lora_dropout": 0.05,
+    "precision": "bfloat16",
+    "gradient_checkpointing": true,
+    "use_cache": false
+  },
+  "budget_interpretation": {
+    "P1_and_P2_have_identical_pairs_steps_and_token_materialization": true,
+    "P1_and_P1_SYN_have_matched_pair_counts_but_different_record_identity_by_design": true,
+    "P3_has_more_pairs_and_optimizer_steps_because_it_adds_the_full_rationale_block": true,
+    "P3_is_not_a_compute_matched_claim_against_P2": true,
+    "public_report_must_disclose_unpadded_and_field_token_totals_per_arm": true
+  },
+  "authorization": {
+    "pair_protocol_frozen_required": true,
+    "training_implementation_review_required": true,
+    "evaluator_calls_allowed": false,
+    "gpu_preference_training_allowed": false,
+    "formal_preference_training_allowed": false,
+    "dev_accessed": false,
+    "test_accessed": false,
+    "training_used": false
+  }
+}
