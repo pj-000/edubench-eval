@@ -4,7 +4,16 @@ import json
 import unittest
 
 from thesis_exp.exp54_rar_sft import REPO_ROOT
-from thesis_exp.exp54_rar_sft.audit_sorc_dpo_pairs import raw_source_key
+from thesis_exp.exp54_rar_sft.actual_failure_bank import (
+    any_explicit_score_leakage,
+)
+from thesis_exp.exp54_rar_sft.audit_sorc_dpo_pairs import (
+    independent_odpo_offset,
+    raw_source_key,
+    validate_actual_candidate,
+    validate_rationale_pair,
+    validate_score_block_rule,
+)
 from thesis_exp.exp54_rar_sft.build_sorc_dpo_pairs import (
     ScoreEvidence,
     build_hybrid_score_pairs,
@@ -12,7 +21,9 @@ from thesis_exp.exp54_rar_sft.build_sorc_dpo_pairs import (
     build_rationale_pairs,
     choose_adjacent,
     choose_severe_l2h,
+    compact_json,
     odpo_offset,
+    sha256_text,
 )
 
 
@@ -68,6 +79,17 @@ def value(record_id: str, gold: int, score: int, seeds=(42,)) -> ScoreEvidence:
 
 
 class SORCDPOPairTest(unittest.TestCase):
+    def test_any_explicit_score_leakage_checks_all_scores(self) -> None:
+        self.assertTrue(
+            any_explicit_score_leakage("该回答实际上应得4分。")
+        )
+        self.assertTrue(any_explicit_score_leakage("The answer is score 1."))
+        self.assertFalse(
+            any_explicit_score_leakage(
+                "The answer omits evidence and needs substantial revision."
+            )
+        )
+
     def test_identical_raw_output_hashes_are_seed_scoped(self) -> None:
         self.assertNotEqual(
             raw_source_key("a" * 64, 42),
@@ -94,6 +116,25 @@ class SORCDPOPairTest(unittest.TestCase):
         self.assertAlmostEqual(odpo_offset(2, 4), 0.75)
         self.assertAlmostEqual(odpo_offset(1, 5), 1.0)
         self.assertAlmostEqual(odpo_offset(5, 2), 0.375)
+        self.assertAlmostEqual(independent_odpo_offset(2, 4), 0.75)
+
+    def test_block_rules_reject_rehashed_cotampering(self) -> None:
+        severe = {
+            "pair_type": "severe_l2h",
+            "pair_source": "synthetic_backfill",
+            "gold_label": 1,
+            "rejected": {"score": 5},
+        }
+        with self.assertRaises(ValueError):
+            validate_score_block_rule(severe)
+        h2l = {
+            "pair_type": "h2l_guard",
+            "pair_source": "actual_controlled",
+            "gold_label": 4,
+            "rejected": {"score": 5},
+        }
+        with self.assertRaises(ValueError):
+            validate_score_block_rule(h2l)
 
     def test_actual_error_selection_is_deterministic(self) -> None:
         record_id = "r"
@@ -216,6 +257,136 @@ class SORCDPOPairTest(unittest.TestCase):
             pairs[0]["rejected"]["rationale"],
         )
         self.assertEqual(pairs[0]["score_loss_mask"], "off")
+        validate_rationale_pair(
+            pairs[0],
+            train[0],
+            {"e": r2},
+            {"e": r3},
+        )
+
+        tampered = json.loads(json.dumps(pairs[0]))
+        tampered["chosen"]["score"] = 3
+        tampered["rejected"]["score"] = 3
+        tampered.pop("pair_hash")
+        tampered["pair_hash"] = sha256_text(compact_json(tampered))
+        with self.assertRaises(ValueError):
+            validate_rationale_pair(
+                tampered,
+                train[0],
+                {"e": r2},
+                {"e": r3},
+            )
+
+        mutations = []
+        wrong_donor = json.loads(json.dumps(pairs[0]))
+        wrong_donor["r2_donor_event_id"] = "wrong"
+        mutations.append(wrong_donor)
+        nonzero_cost = json.loads(json.dumps(pairs[0]))
+        nonzero_cost["ordinal_cost"] = 0.5
+        nonzero_cost["odpo_offset"] = 0.25
+        mutations.append(nonzero_cost)
+        wrong_metric = json.loads(json.dumps(pairs[0]))
+        wrong_metric["metric_id"] = "OTHER"
+        mutations.append(wrong_metric)
+        empty = json.loads(json.dumps(pairs[0]))
+        empty["chosen"]["rationale"] = ""
+        empty["chosen_rationale_sha256"] = sha256_text("")
+        mutations.append(empty)
+        normalized_same = json.loads(json.dumps(pairs[0]))
+        normalized_same["rejected"]["rationale"] = (
+            "The answer omits the required derivation.  "
+        )
+        normalized_same["rejected_rationale_sha256"] = sha256_text(
+            normalized_same["rejected"]["rationale"]
+        )
+        mutations.append(normalized_same)
+        leaking = json.loads(json.dumps(pairs[0]))
+        leaking["chosen"]["rationale"] = "This answer deserves score 4."
+        leaking["chosen_rationale_sha256"] = sha256_text(
+            leaking["chosen"]["rationale"]
+        )
+        mutations.append(leaking)
+        for changed in mutations:
+            changed.pop("pair_hash")
+            changed["pair_hash"] = sha256_text(compact_json(changed))
+            with self.subTest(changed=changed):
+                with self.assertRaises(ValueError):
+                    validate_rationale_pair(
+                        changed,
+                        train[0],
+                        {"e": r2},
+                        {"e": r3},
+                    )
+
+    def test_actual_candidate_text_cotampering_is_rejected(self) -> None:
+        train = {
+            "record_id": "r",
+            "label_5": 4,
+            "metric_id": "M",
+            "language": "en",
+        }
+        failure = {
+            "record_id": "r",
+            "generator_seed": 42,
+            "generator_adapter_sha256": "a" * 64,
+            "generated_rationale": "Observed model rationale.",
+        }
+        raw = {"record_id": "r"}
+        anchor = {"record_id": "r"}
+        expected = {
+            "failure": failure,
+            "raw": raw,
+            "anchor": anchor,
+            "human": "Aligned human rationale.",
+            "model": "Observed model rationale.",
+            "human_token_count": 5,
+            "model_token_count": 4,
+        }
+        candidate = {
+            "schema_version": "exp54-actual-rationale-candidate-v1",
+            "record_id": "r",
+            "gold_label": 4,
+            "metric_id": "M",
+            "language": "en",
+            "human_output": {
+                "score": 4,
+                "rationale": expected["human"],
+            },
+            "model_output": {
+                "score": 4,
+                "rationale": expected["model"],
+            },
+            "human_rationale_sha256": sha256_text(expected["human"]),
+            "model_rationale_sha256": sha256_text(expected["model"]),
+            "human_rationale_token_count": 5,
+            "model_rationale_token_count": 4,
+            "source_generator_seed": 42,
+            "source_checkpoint_sha256": "a" * 64,
+            "source_failure_row_sha256": sha256_text(
+                compact_json(failure)
+            ),
+            "source_raw_generation_sha256": sha256_text(compact_json(raw)),
+            "forced_completion": False,
+            "score_leakage": False,
+            "preference_label_status": "PENDING_TWO_FAMILY_BLIND_REVIEW",
+            "preference_training_allowed": False,
+        }
+        candidate["candidate_hash"] = sha256_text(compact_json(candidate))
+        validate_actual_candidate(
+            candidate=candidate,
+            train_row=train,
+            expected=expected,
+        )
+        tampered = json.loads(json.dumps(candidate))
+        tampered["model_output"]["rationale"] = "Unrelated replacement."
+        tampered.pop("candidate_hash")
+        tampered["candidate_hash"] = sha256_text(compact_json(tampered))
+        with self.assertRaises(ValueError):
+            validate_actual_candidate(
+                candidate=tampered,
+                train_row=train,
+                expected=expected,
+            )
 
 
 if __name__ == "__main__":

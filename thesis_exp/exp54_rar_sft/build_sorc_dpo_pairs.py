@@ -20,6 +20,7 @@ from typing import Any, Iterable
 from thesis_exp.exp54_rar_sft import REPO_ROOT
 from thesis_exp.exp54_rar_sft.actual_failure_bank import (
     SEEDS,
+    any_explicit_score_leakage,
     load_train_rows,
     read_jsonl,
     score_leakage,
@@ -45,6 +46,10 @@ TRAINING_CONFIG_PATH = (
     REPO_ROOT
     / "thesis_exp/exp54_rar_sft/configs/"
     "training_configuration_candidate.json"
+)
+INDEPENDENT_AUDITOR_PATH = (
+    REPO_ROOT
+    / "thesis_exp/exp54_rar_sft/audit_sorc_dpo_pairs.py"
 )
 BLOCKS = ("adjacent_score", "severe_l2h", "h2l_guard")
 LOW_LABELS = {1, 2}
@@ -640,8 +645,8 @@ def build_rationale_pairs(
             not chosen
             or not rejected
             or normalize_text(chosen) == normalize_text(rejected)
-            or score_leakage(chosen, int(r3["score_target"]))
-            or score_leakage(rejected, int(r3["score_target"]))
+            or any_explicit_score_leakage(chosen)
+            or any_explicit_score_leakage(rejected)
         ):
             continue
         candidates[str(r3["record_id"])].append((r2, r3))
@@ -740,7 +745,7 @@ def build_actual_rationale_candidates(
             or str(raw["finish_reason"]) == "length"
             or int(raw["backend_generated_tokens"]) >= 256
             or not rationale.strip()
-            or score_leakage(rationale, int(row["generated_score"]))
+            or any_explicit_score_leakage(rationale)
         ):
             continue
         human, anchor = choose_anchor(record_id, events_by_record)
@@ -937,6 +942,10 @@ def build(*, write: bool) -> dict[str, Any]:
         ),
         "aggregate": aggregate,
         "protocol_sha256": sha256_file(PROTOCOL_PATH),
+        "builder_source_sha256": sha256_file(Path(__file__)),
+        "independent_auditor_source_sha256": sha256_file(
+            INDEPENDENT_AUDITOR_PATH
+        ),
         "failure_bank_sha256": sha256_file(FAILURE_PATH),
         "frozen_manifest_lock_sha256": sha256_file(FROZEN_MANIFEST_LOCK),
         "materialized_manifest_hashes": manifest_hashes,
@@ -978,6 +987,10 @@ def build(*, write: bool) -> dict[str, Any]:
         "schema_version": "exp54-sorc-dpo-pair-candidate-lock-v1",
         "status": "PAIR_CANDIDATES_NOT_FROZEN_TRAINING_NOT_ALLOWED",
         "protocol_sha256": result["protocol_sha256"],
+        "builder_source_sha256": result["builder_source_sha256"],
+        "independent_auditor_source_sha256": result[
+            "independent_auditor_source_sha256"
+        ],
         "failure_bank_sha256": result["failure_bank_sha256"],
         "frozen_manifest_lock_sha256": result[
             "frozen_manifest_lock_sha256"

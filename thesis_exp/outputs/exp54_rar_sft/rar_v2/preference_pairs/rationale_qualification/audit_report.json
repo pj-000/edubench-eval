@@ -21,10 +21,10 @@
   "schema_version": "exp54-sorc-rationale-qualification-v1-audit-report",
   "selection_independently_rederived": true,
   "source_hashes": {
-    "auditor_source": "7cf5ace19ebd8ccec4c2bd42048a1c5637404ce8b18e77131e7e9cf15f7f9b2f",
-    "candidate_lock": "d683670eb0713ac7ccc95a4ac717210982bbb8e42ba01acf8473eec14a8ded2e",
-    "candidate_report": "031b49627007fbd0e12f82d63be510691c2659aa891a641a365ea8e20a9cb7fc",
-    "rationale_pairs": "86da8e6f74a34b5f4b7c67fb467c40c7110c7c4cfa83717d6425a32101772388"
+    "auditor_source": "764062a1d081eeba91a5ed4dd4980d2abdca6a92f146565d83e56390bd371747",
+    "candidate_lock": "7f1524429ac2713cbd795461f35b5d54ecb85be85757c809124639ccbd0ef936",
+    "candidate_report": "734b3e18912de86178ad4d4d646ba0af4ec79638a14f3e5ed0e24401ba7c41d8",
+    "rationale_pairs": "ffb3aa272ad18b37d7c466691f983d91524ab67a0473c158669f4589c5fa445d"
   },
   "status": "SORC_RATIONALE_QUALIFICATION_CANDIDATE_AUDIT_PASS",
   "task_bytes_independently_rederived": true,

@@ -13,7 +13,14 @@ For each dimension, return exactly "A", "B", or "tie":
 - unsupported_claims: prefer the rationale with fewer unsupported claims;
 - completeness: which rationale forms a more complete scoring justification.
 
+Set overall_preference to the final holistic A/B/tie preference based only on
+the dimensions defined above. Do not introduce additional criteria, and do
+not infer or use a numerical score when deciding overall_preference.
+
+Set brief_reason to a concise justification for overall_preference. Do not
+identify R3 or R2, infer hidden provenance, or introduce a hidden score.
+
 Do not prefer a rationale merely because it is longer, more fluent, or more
 confident. If the evidence does not support a meaningful difference, return
-"tie". Return exactly one JSON object matching the supplied schema and no
-markdown.
+"tie". Copy the supplied presentation_id exactly. Return exactly one JSON
+object matching the supplied schema and no markdown.

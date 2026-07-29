@@ -138,6 +138,11 @@ def score_leakage(rationale: str, score: int) -> bool:
     )
 
 
+def any_explicit_score_leakage(rationale: str) -> bool:
+    """Detect an explicit 1-5 score mention, independent of target score."""
+    return any(score_leakage(rationale, score) for score in LABELS)
+
+
 def make_failure_row(
     *,
     source: dict[str, Any],

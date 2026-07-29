@@ -1,7 +1,7 @@
 {
   "actual_rationale_preference_labels_created": false,
   "aggregate": {
-    "actual_rationale_candidates": 975,
+    "actual_rationale_candidates": 948,
     "actual_rationale_minimum_128_met": true,
     "hybrid_pair_sources": {
       "actual_controlled": 802,
@@ -18,10 +18,10 @@
     "rationale_unique_records": 1600,
     "synthetic_score_pairs": 838
   },
-  "auditor_source_sha256": "2c6252987654a3a299021f2cabb3bbc20cb4e5284b79d84339f5aec89485a4aa",
-  "builder_source_sha256": "69f50501e5ac80640d615c5aee2d3b0699bf4fe06104f8602da8a9a1772a12e0",
-  "candidate_lock_sha256": "e66ca7de097e318ce3d54bfba72ba5aa6e84744d436aee2ab38f409cc97d4fa6",
-  "candidate_report_sha256": "9ba70bdb2a195dacb1c0e40168bca256692187853e35b8c6c788683da670c421",
+  "auditor_source_sha256": "2ee32f838c5d173bb0e3815fa38f1ecf094be5644c135919011b9ef4b28e04fd",
+  "builder_source_sha256": "665c61cd0bec7d5fa41b17fe23c792d9462c63792edf6f9afab111ea3d7e2015",
+  "candidate_lock_sha256": "7448cd58dfcd102e889f6301c6705a84d14367b4ae289c444c8491f48f9b5904",
+  "candidate_report_sha256": "fb3bfa79ea52839caea4bc8de918ede57f2ab74251ffce016fb84c00356ec660",
   "dev_accessed": false,
   "pair_freeze_allowed": false,
   "preference_training_allowed": false,

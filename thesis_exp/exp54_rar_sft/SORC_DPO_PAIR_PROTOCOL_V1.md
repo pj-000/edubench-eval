@@ -40,8 +40,12 @@ A record contributes at most one pair inside each block. Repeated evidence
 from multiple R3 seeds changes provenance and deterministic candidate
 selection, never pair weight.
 
-The seed-42 pure-synthetic diagnostic matches the hybrid block counts and
-label/metric/language strata but does not read the actual failure bank.
+The seed-42 matched-synthetic rejected-score diagnostic uses the same records,
+blocks, and label/metric/language strata as the hybrid set. Its record set is
+therefore selected with help from the actual failure bank; only its rejected
+score is synthetic. It estimates the value of actual versus synthetic
+rejected scores conditional on the same policy-selected records, not the
+incremental value of the complete record-mining process.
 
 ## Rationale pairs
 
@@ -110,7 +114,7 @@ The train-only candidate build produced:
 - 802 actual-controlled and 36 minimal synthetic-backfill score pairs;
 - 838 stratum-matched pure-synthetic seed-42 diagnostic pairs;
 - 1,600 canonical R3-aligned versus R2-shuffled rationale pairs;
-- 975 eligible actual-model rationale candidates, without assigning them
+- 948 eligible actual-model rationale candidates, without assigning them
   preference labels.
 
 The independent pair auditor passed. The formal rationale qualification
@@ -125,3 +129,8 @@ This checkpoint freezes neither the candidate pairs nor the qualification
 result. Two evaluator families must still complete the qualification, and its
 aggregate rule must pass, before P3 can use the rationale block. No
 preference training, dev access, or test access is authorized here.
+
+The candidate count was reduced from 975 to 948 after replacing
+target-score-only leakage detection with a scan for any explicit 1--5 score
+mention. The 838 score pairs and 1,600 formal R3/R2 human-rationale pairs were
+unchanged.

@@ -30,6 +30,42 @@ ROOT = PAIR_ROOT / "rationale_qualification"
 PRIVATE = ROOT / "private"
 PUBLIC_REPORT = ROOT / "candidate_report.json"
 PUBLIC_LOCK = ROOT / "candidate_lock.json"
+SOURCE_ROOT = REPO_ROOT / "thesis_exp/exp54_rar_sft"
+TRAIN_PATH = (
+    REPO_ROOT / "thesis_exp/data/splits/paper_like_triple_seed42/train.jsonl"
+)
+SOURCE_PATHS = {
+    "train": TRAIN_PATH,
+    "rationale_pairs": PAIR_PATH,
+    "pair_candidate_lock": PAIR_LOCK_PATH,
+    "pair_protocol": (
+        SOURCE_ROOT / "configs/sorc_dpo_pair_protocol_v1.json"
+    ),
+    "builder_source": (
+        SOURCE_ROOT / "build_sorc_rationale_qualification.py"
+    ),
+    "independent_auditor_source": Path(__file__),
+    "qualification_decision_rule_protocol": (
+        SOURCE_ROOT
+        / "configs/sorc_rationale_qualification_rule_v1.json"
+    ),
+    "score_blind_prompt": (
+        SOURCE_ROOT
+        / "prompts/rationale_audit_score_blind_v2.txt"
+    ),
+    "score_visible_prompt": (
+        SOURCE_ROOT
+        / "prompts/rationale_audit_score_visible_v2.txt"
+    ),
+    "score_blind_schema": (
+        SOURCE_ROOT
+        / "schemas/rationale_audit_score_blind_v2.schema.json"
+    ),
+    "score_visible_schema": (
+        SOURCE_ROOT
+        / "schemas/rationale_audit_score_visible_v2.schema.json"
+    ),
+}
 
 
 def canonical(value: Any) -> bytes:
@@ -104,12 +140,16 @@ def expected_task(
     pair: dict[str, Any],
     pair_id: str,
     orientation: int,
-    visible: bool,
+    stage: str,
 ) -> tuple[dict[str, Any], dict[str, Any]]:
+    if stage not in {"score_blind", "score_visible"}:
+        raise ValueError("unknown qualification stage")
+    visible = stage == "score_visible"
     swap_first = int(digest(SELECTOR_SEED, pair_id)[:2], 16) % 2
     r3_is_a = bool(swap_first ^ orientation)
     presentation_id = digest(
         SCHEMA_VERSION,
+        stage,
         pair_id,
         orientation,
     )
@@ -122,6 +162,7 @@ def expected_task(
         candidate_b["score"] = int(pair["gold_label"])
     task = {
         "presentation_id": presentation_id,
+        "stage": stage,
         "question": source["question"],
         "answer": source["answer"],
         "metric_id": str(pair["metric_id"]),
@@ -136,12 +177,59 @@ def expected_task(
     }
     key = {
         "presentation_id": presentation_id,
+        "stage": stage,
         "pair_id": pair_id,
         "orientation_index": orientation,
         "a_source": "R3_ALIGNED" if r3_is_a else "R2_SHUFFLED",
         "b_source": "R2_SHUFFLED" if r3_is_a else "R3_ALIGNED",
     }
     return task, key
+
+
+def validate_result_identity(
+    *,
+    result: dict[str, Any],
+    task: dict[str, Any],
+    answer_key: dict[str, Any],
+) -> None:
+    """Fail closed when a result is joined across a stage or presentation."""
+    expected = (
+        str(task["stage"]),
+        str(task["presentation_id"]),
+    )
+    if (
+        (str(answer_key["stage"]), str(answer_key["presentation_id"]))
+        != expected
+        or (str(result.get("stage")), str(result.get("presentation_id")))
+        != expected
+    ):
+        raise ValueError("qualification result task identity differs")
+    parsed = result.get("parsed_judgment")
+    if not isinstance(parsed, dict) or (
+        str(parsed.get("stage")),
+        str(parsed.get("presentation_id")),
+    ) != expected:
+        raise ValueError("parsed judgment task identity differs")
+
+
+def validate_candidate_boundary(value: dict[str, Any]) -> None:
+    if (
+        value.get("rationale_blind_qualification_completed") is not False
+        or value.get("p3_preference_training_allowed") is not False
+        or value.get("preference_training_allowed") is not False
+        or value.get("dev_accessed") is not False
+        or value.get("test_accessed") is not False
+    ):
+        raise ValueError("candidate boundary is not fail-closed")
+
+
+def validate_source_hashes(
+    actual: dict[str, Any],
+    paths: dict[str, Path],
+) -> None:
+    expected = {name: sha256_file(path) for name, path in paths.items()}
+    if actual != expected:
+        raise ValueError("candidate source hashes differ")
 
 
 def audit() -> dict[str, Any]:
@@ -154,6 +242,7 @@ def audit() -> dict[str, Any]:
         PRIVATE / "answer_key.jsonl",
         PRIVATE / "score_blind_tasks.jsonl",
         PRIVATE / "score_visible_tasks.jsonl",
+        *SOURCE_PATHS.values(),
     ):
         assert_no_evaluation_path(path)
         if not path.is_file():
@@ -213,23 +302,21 @@ def audit() -> dict[str, Any]:
             }
         )
         for orientation in (0, 1):
-            blind_task, key = expected_task(
+            blind_task, blind_key = expected_task(
                 source=source,
                 pair=pair,
                 pair_id=pair_id,
                 orientation=orientation,
-                visible=False,
+                stage="score_blind",
             )
             visible_task, visible_key = expected_task(
                 source=source,
                 pair=pair,
                 pair_id=pair_id,
                 orientation=orientation,
-                visible=True,
+                stage="score_visible",
             )
-            if key != visible_key:
-                raise AssertionError("auditor constructed inconsistent keys")
-            expected_keys.append(key)
+            expected_keys.extend((blind_key, visible_key))
             expected_blind.append(blind_task)
             expected_visible.append(visible_task)
 
@@ -244,6 +331,8 @@ def audit() -> dict[str, Any]:
 
     report = json.loads(PUBLIC_REPORT.read_text(encoding="utf-8"))
     lock = json.loads(PUBLIC_LOCK.read_text(encoding="utf-8"))
+    validate_source_hashes(report.get("source_hashes", {}), SOURCE_PATHS)
+    validate_source_hashes(lock.get("source_hashes", {}), SOURCE_PATHS)
     private_paths = {
         "sample_manifest": PRIVATE / "sample_manifest.jsonl",
         "answer_key": PRIVATE / "answer_key.jsonl",
@@ -263,12 +352,7 @@ def audit() -> dict[str, Any]:
     if str(lock["candidate_report_sha256"]) != sha256_file(PUBLIC_REPORT):
         raise ValueError("candidate report hash differs")
     for value in (report, lock):
-        if (
-            value.get("preference_training_allowed") is not False
-            or value.get("dev_accessed") is not False
-            or value.get("test_accessed") is not False
-        ):
-            raise ValueError("candidate boundary is not fail-closed")
+        validate_candidate_boundary(value)
 
     return {
         "schema_version": f"{SCHEMA_VERSION}-audit-report",

@@ -53,8 +53,13 @@
     "block_objective": "equal_mean_of_adjacent_severe_l2h_h2l_guard"
   },
   "synthetic_score_control": {
-    "role": "seed42_matched_data_source_diagnostic",
-    "reads_actual_failure_bank": false,
+    "role": "matched_synthetic_rejected_score_diagnostic",
+    "record_set_matched_to_hybrid": true,
+    "record_set_source": "hybrid_actual_selected_record_set",
+    "uses_actual_failure_bank_for_record_selection": true,
+    "uses_actual_wrong_score": false,
+    "rejected_score_source": "synthetic_block_rule",
+    "estimand": "actual_vs_synthetic_rejected_score_given_matched_records",
     "match_hybrid_block_counts": true,
     "match_hybrid_label_metric_language_counts": true
   },

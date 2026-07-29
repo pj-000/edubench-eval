@@ -42,6 +42,16 @@ PAIR_LOCK_PATH = PAIR_ROOT / "candidate_lock.json"
 OUTPUT_ROOT = PAIR_ROOT / "rationale_qualification"
 PROMPT_ROOT = REPO_ROOT / "thesis_exp/exp54_rar_sft/prompts"
 SCHEMA_ROOT = REPO_ROOT / "thesis_exp/exp54_rar_sft/schemas"
+CONFIG_ROOT = REPO_ROOT / "thesis_exp/exp54_rar_sft/configs"
+QUALIFICATION_RULE = (
+    CONFIG_ROOT / "sorc_rationale_qualification_rule_v1.json"
+)
+PAIR_PROTOCOL = CONFIG_ROOT / "sorc_dpo_pair_protocol_v1.json"
+AUDITOR_SOURCE = (
+    REPO_ROOT
+    / "thesis_exp/exp54_rar_sft/"
+    "audit_sorc_rationale_qualification.py"
+)
 PROMPTS = {
     "score_blind": PROMPT_ROOT / "rationale_audit_score_blind_v2.txt",
     "score_visible": PROMPT_ROOT / "rationale_audit_score_visible_v2.txt",
@@ -276,20 +286,6 @@ def build_package(
         swap_first = int(stable_hash(SELECTOR_SEED, pair_id)[:2], 16) % 2
         for orientation_index in (0, 1):
             r3_is_a = bool(swap_first ^ orientation_index)
-            presentation_id = stable_hash(
-                SCHEMA_VERSION,
-                pair_id,
-                orientation_index,
-            )
-            answer_key.append(
-                {
-                    "presentation_id": presentation_id,
-                    "pair_id": pair_id,
-                    "orientation_index": orientation_index,
-                    "a_source": "R3_ALIGNED" if r3_is_a else "R2_SHUFFLED",
-                    "b_source": "R2_SHUFFLED" if r3_is_a else "R3_ALIGNED",
-                }
-            )
             rationale_a = str(
                 pair["chosen" if r3_is_a else "rejected"]["rationale"]
             )
@@ -297,7 +293,6 @@ def build_package(
                 pair["rejected" if r3_is_a else "chosen"]["rationale"]
             )
             common = {
-                "presentation_id": presentation_id,
                 "question": source["question"],
                 "answer": source["answer"],
                 "metric_id": str(pair["metric_id"]),
@@ -312,9 +307,31 @@ def build_package(
                 ("score_blind", False),
                 ("score_visible", True),
             ):
+                presentation_id = stable_hash(
+                    SCHEMA_VERSION,
+                    stage,
+                    pair_id,
+                    orientation_index,
+                )
+                answer_key.append(
+                    {
+                        "presentation_id": presentation_id,
+                        "stage": stage,
+                        "pair_id": pair_id,
+                        "orientation_index": orientation_index,
+                        "a_source": (
+                            "R3_ALIGNED" if r3_is_a else "R2_SHUFFLED"
+                        ),
+                        "b_source": (
+                            "R2_SHUFFLED" if r3_is_a else "R3_ALIGNED"
+                        ),
+                    }
+                )
                 tasks[stage].append(
                     {
                         **common,
+                        "presentation_id": presentation_id,
+                        "stage": stage,
                         "candidate_a": _task_candidate(
                             rationale=rationale_a,
                             score=int(pair["gold_label"]),
@@ -335,9 +352,14 @@ def build_package(
             {str(row["presentation_id"]) for row in tasks[stage]}
         ) != EXPECTED_PRESENTATIONS_PER_STAGE:
             raise ValueError(f"{stage} presentation IDs are duplicated")
-    if Counter(row["presentation_id"] for row in answer_key) != Counter(
-        row["presentation_id"] for row in tasks["score_blind"]
-    ):
+    all_tasks = tasks["score_blind"] + tasks["score_visible"]
+    if len({row["presentation_id"] for row in all_tasks}) != len(all_tasks):
+        raise ValueError("presentation IDs are not globally unique")
+    if len(answer_key) != len(all_tasks):
+        raise ValueError("global answer-key row count differs")
+    if Counter(
+        (row["stage"], row["presentation_id"]) for row in answer_key
+    ) != Counter((row["stage"], row["presentation_id"]) for row in all_tasks):
         raise ValueError("answer-key closure differs")
     return {
         "sample_manifest": sample_manifest,
@@ -391,9 +413,23 @@ def build(*, write: bool) -> dict[str, Any]:
     )
     if sha256_file(PAIR_PATH) != expected_pair_hash:
         raise ValueError("rationale pair file differs from candidate lock")
-    for path in (*PROMPTS.values(), *SCHEMAS.values()):
+    for path in (
+        *PROMPTS.values(),
+        *SCHEMAS.values(),
+        QUALIFICATION_RULE,
+        PAIR_PROTOCOL,
+        AUDITOR_SOURCE,
+    ):
         if not path.is_file():
             raise FileNotFoundError(path)
+    rule = json.loads(QUALIFICATION_RULE.read_text(encoding="utf-8"))
+    if (
+        rule["rationale_blind_qualification_completed"] is not False
+        or rule["p3_preference_training_allowed"] is not False
+        or rule["dev_accessed"]
+        or rule["test_accessed"]
+    ):
+        raise ValueError("qualification rule is not fail-closed")
 
     package = build_package(
         train_rows=load_train_rows(),
@@ -414,7 +450,12 @@ def build(*, write: bool) -> dict[str, Any]:
             ),
             "rationale_pairs": expected_pair_hash,
             "pair_candidate_lock": sha256_file(PAIR_LOCK_PATH),
+            "pair_protocol": sha256_file(PAIR_PROTOCOL),
             "builder_source": sha256_file(Path(__file__)),
+            "independent_auditor_source": sha256_file(AUDITOR_SOURCE),
+            "qualification_decision_rule_protocol": sha256_file(
+                QUALIFICATION_RULE
+            ),
             **{
                 f"{stage}_prompt": sha256_file(PROMPTS[stage])
                 for stage in PROMPTS
