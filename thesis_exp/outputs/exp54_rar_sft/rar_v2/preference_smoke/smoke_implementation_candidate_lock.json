@@ -1,0 +1,51 @@
+{
+  "artifact_hashes": {
+    "frozen_training_lock": "e977babaefa956c40620a1b38024d7222b9ac8433db8fecd6faf709dc65c2f98",
+    "smoke_package_audit_report": "cb798205bec73eaf3b3418f3d19b4d314683e2c4c1bbf3100de29c204023510a",
+    "smoke_package_lock": "c8ccfe88eee29f0c8b1b7906531dc0f38d84254f6142f529bf8c628d5bbb0e94",
+    "smoke_package_report": "6286b997f8b49ef1154d2ec907d9bb9ce72211b4e6a700517d867170d133930c"
+  },
+  "cpu_validation_passed_for_all_arms": true,
+  "cuda_initialized": false,
+  "dev_accessed": false,
+  "evaluator_calls_allowed": false,
+  "formal_preference_training_allowed": false,
+  "forward_backward_executed": false,
+  "gpu_smoke_allowed": false,
+  "implementation_source_hashes": {
+    "freeze_training_candidate": "9fb017a0702944aa388ad56b8a1af3b451372810e535740a12c92b537dbc86a5",
+    "loss_tests": "f56ddf4b4d5ba168fac13d60e3b3910eaef05649615fe294ff91c9f1eee43cc8",
+    "smoke_auditor": "2f35d84b53ddb187f3897dd99e9568be90fd00f43d6269bf296db5d2a58e9a20",
+    "smoke_builder": "a849246020235ba866910046226203770f56b25b1dd4f5e2e88cd0e62ca82681",
+    "smoke_plan": "8a29d6f1a2a2ee16402f0fda68ed020a32074301716808c504951df87159e859",
+    "smoke_runner": "04dbb0ed7e75a08baa28381766c8f5b3ad60b3a67022201a3686616a4d27b10d",
+    "smoke_tests": "2b68615b35a03b6c6611a31c4dbb1ca8fb932ef403315561426f4dd0a3100dfc"
+  },
+  "model_loaded": false,
+  "related_cpu_test_count": 52,
+  "runtime_source_closure": {
+    "exp54_package_init": "f3a89293c72fd63e5f8eb39c2e31c2845904201095774aa140249077050c0026",
+    "failure_bank_io": "7f4389ee81a2560dd9fe8878349b32aca1f7703b7b85c6f1c3d21bcb3c7982ca",
+    "smoke_runner": "04dbb0ed7e75a08baa28381766c8f5b3ad60b3a67022201a3686616a4d27b10d",
+    "sorc_dpo_loss_collator": "f0bd0bbd5edd4c6276ebcb76ddcfe2ad636929783ed0801b995c92479a9eb8e4",
+    "split_guard": "fb42526df4058b2dcca899c247df52edadb62905b61a67c6aee833cfa49787b2",
+    "thesis_package_init": "e57921412997c9605bd75fa597e907b2c68b201d6f70279add396d93f978d4a3",
+    "training_contract": "a9b100c9446f2a0e011b1faf67f873b51d0aaacf08a75423c71b6c48360f5071"
+  },
+  "runtime_source_closure_sha256": "6b5cfa2172f8fd3e3e39659b5b326b8f70710841e075d4487a733145f35197cd",
+  "runtime_source_expected_name_set": [
+    "exp54_package_init",
+    "failure_bank_io",
+    "smoke_runner",
+    "sorc_dpo_loss_collator",
+    "split_guard",
+    "thesis_package_init",
+    "training_contract"
+  ],
+  "runtime_source_file_count": 7,
+  "schema_version": "exp54-sorc-dpo-smoke-implementation-lock-v1",
+  "status": "SORC_DPO_SMOKE_IMPLEMENTATION_CANDIDATE_GPU_EXECUTION_FORBIDDEN",
+  "test_accessed": false,
+  "training_used": false,
+  "unauthorized_execute_hard_failed": true
+}

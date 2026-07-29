@@ -1,0 +1,109 @@
+{
+  "arms": {
+    "P1_FIELD_DPO": {
+      "accumulation_group_pair_count": 32,
+      "chosen_field_mask_vector_sha256": "587c189f4339a2066b39c83407a56ad30db93464f3a9f65d28269f6a53584bb9",
+      "chosen_sequence_vector_sha256": "31a2c6c673df3aa8daf18dbd155dc7eb43957dd81a8b479cf6d5b7a96f8cf68f",
+      "chosen_unpadded_tokens": 18571,
+      "final_group_pair_count": 32,
+      "fixed_padded_forward_tokens": 131072,
+      "manifest_sha256": "7f4cc6fc311a2e96bdf287766a52aec5e7293059c19992074b4230cb491d9fd5",
+      "optimizer_steps": 1,
+      "pair_count": 32,
+      "pair_id_vector_sha256": "a54315a98572a043ae8f6c1b3206b7f20ee65b1d93c999c3c1b82fb592f918e5",
+      "pair_task_counts": {
+        "score": 32
+      },
+      "pair_type_counts": {
+        "adjacent_score": 16,
+        "h2l_guard": 8,
+        "severe_l2h": 8
+      },
+      "record_block_vector_sha256": "e38920613448a63a9076d45a55e8f15e19559e4607b02d595621f0230bebb48e",
+      "rejected_unpadded_tokens": 18571
+    },
+    "P1_SYN_SEED42": {
+      "accumulation_group_pair_count": 32,
+      "chosen_field_mask_vector_sha256": "587c189f4339a2066b39c83407a56ad30db93464f3a9f65d28269f6a53584bb9",
+      "chosen_sequence_vector_sha256": "31a2c6c673df3aa8daf18dbd155dc7eb43957dd81a8b479cf6d5b7a96f8cf68f",
+      "chosen_unpadded_tokens": 18571,
+      "final_group_pair_count": 32,
+      "fixed_padded_forward_tokens": 131072,
+      "manifest_sha256": "58c966a2f73081ce821b57f3c4df883d734b4e031ed85e3b02de51e2da868192",
+      "optimizer_steps": 1,
+      "pair_count": 32,
+      "pair_id_vector_sha256": "94154b5ddd6721810eabe259ffe5713cc1d22c2bfc676519bfc09fda886158c2",
+      "pair_task_counts": {
+        "score": 32
+      },
+      "pair_type_counts": {
+        "adjacent_score": 16,
+        "h2l_guard": 8,
+        "severe_l2h": 8
+      },
+      "record_block_vector_sha256": "e38920613448a63a9076d45a55e8f15e19559e4607b02d595621f0230bebb48e",
+      "rejected_unpadded_tokens": 18571
+    },
+    "P2_SORC_SCORE": {
+      "accumulation_group_pair_count": 32,
+      "chosen_field_mask_vector_sha256": "587c189f4339a2066b39c83407a56ad30db93464f3a9f65d28269f6a53584bb9",
+      "chosen_sequence_vector_sha256": "31a2c6c673df3aa8daf18dbd155dc7eb43957dd81a8b479cf6d5b7a96f8cf68f",
+      "chosen_unpadded_tokens": 18571,
+      "final_group_pair_count": 32,
+      "fixed_padded_forward_tokens": 131072,
+      "manifest_sha256": "3e864d9a55ec9f62df8d8948fa2eefe413a175bba9d32df704004244f271ce49",
+      "optimizer_steps": 1,
+      "pair_count": 32,
+      "pair_id_vector_sha256": "a54315a98572a043ae8f6c1b3206b7f20ee65b1d93c999c3c1b82fb592f918e5",
+      "pair_task_counts": {
+        "score": 32
+      },
+      "pair_type_counts": {
+        "adjacent_score": 16,
+        "h2l_guard": 8,
+        "severe_l2h": 8
+      },
+      "record_block_vector_sha256": "e38920613448a63a9076d45a55e8f15e19559e4607b02d595621f0230bebb48e",
+      "rejected_unpadded_tokens": 18571
+    },
+    "P3_JOINT_SORC": {
+      "accumulation_group_pair_count": 91,
+      "chosen_field_mask_vector_sha256": "db9a6e9b2fb1152652cbc4ba4113dfa1abe09bf2d3ba961a7c3c9c5bdfb023e2",
+      "chosen_sequence_vector_sha256": "89d0509c3f634fdd4949129ec4626c6d042dd8ab8f5cfe13ab65cbcdaf79c9d3",
+      "chosen_unpadded_tokens": 55655,
+      "final_group_pair_count": 91,
+      "fixed_padded_forward_tokens": 372736,
+      "manifest_sha256": "f369193078b29c9c10820b1c9653d048366541f5d35bc383c579f990c5aeb074",
+      "optimizer_steps": 1,
+      "pair_count": 91,
+      "pair_id_vector_sha256": "42690244a71ed29643f1ad48bb2e56479d76ed69b3e1da27a2cbecff8d5d8d94",
+      "pair_task_counts": {
+        "rationale": 59,
+        "score": 32
+      },
+      "pair_type_counts": {
+        "adjacent_score": 16,
+        "h2l_guard": 8,
+        "rationale_alignment": 59,
+        "severe_l2h": 8
+      },
+      "record_block_vector_sha256": "d0577530260c861709b7756dc232b34db023852da0955a5defdbc2d6b18023b0",
+      "rejected_unpadded_tokens": 55642
+    }
+  },
+  "dev_accessed": false,
+  "evaluator_called": false,
+  "formal_preference_training_allowed": false,
+  "forward_backward_executed": false,
+  "gpu_smoke_allowed": false,
+  "model_loaded": false,
+  "optimizer_steps_per_arm": 1,
+  "p1_p1_syn_chosen_sequence_and_mask_vectors_equal": true,
+  "p1_p2_p1_syn_record_block_vectors_equal": true,
+  "p3_score_smoke_vector_equals_p2": true,
+  "schema_version": "exp54-sorc-dpo-smoke-package-report-v1",
+  "source_split": "train",
+  "source_training_seed": 42,
+  "status": "SORC_DPO_SMOKE_PACKAGE_CANDIDATE_EXECUTION_FORBIDDEN",
+  "test_accessed": false
+}

@@ -361,3 +361,6 @@ thesis_exp/artifacts/exp45_dopr_head/
 # Only aggregate reports, hashes, protocols, and source code are publishable.
 thesis_exp/outputs/exp54_rar_sft/rar_v2/preference_pairs/private/
 thesis_exp/outputs/exp54_rar_sft/rar_v2/preference_training_candidate/private/
+thesis_exp/outputs/exp54_rar_sft/rar_v2/preference_smoke/private/
+thesis_exp/outputs/exp54_rar_sft/rar_v2/preference_smoke/runs/
+thesis_exp/outputs/exp54_rar_sft/rar_v2/preference_smoke/gpu_smoke_execution_authorization.json
