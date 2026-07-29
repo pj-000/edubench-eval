@@ -9,6 +9,7 @@ one-step budget. No such authorization is produced by this module.
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import os
 import stat
@@ -41,8 +42,31 @@ DEFAULT_TRAINING_CONFIG = (
 DEFAULT_CHECKPOINT_LOCK = (
     RAR_ROOT / "protocol/sft_dev_checkpoint_selection_frozen_lock.json"
 )
+DEFAULT_BASE_TRAINING_CONFIGURATION = (
+    REPO_ROOT
+    / "thesis_exp/exp54_rar_sft/configs/"
+    "training_configuration_candidate.json"
+)
+DEFAULT_FROZEN_TRAINING_LOCK = (
+    RAR_ROOT
+    / "preference_training_candidate/preference_training_frozen_lock.json"
+)
+DEFAULT_IMPLEMENTATION_CANDIDATE_LOCK = (
+    SMOKE_ROOT / "smoke_implementation_candidate_lock.json"
+)
+DEFAULT_QUALIFICATION_CANDIDATE_LOCK = (
+    RAR_ROOT
+    / "preference_pairs/rationale_qualification/candidate_lock.json"
+)
 DEFAULT_AUTHORIZATION = SMOKE_ROOT / "gpu_smoke_execution_authorization.json"
 DEFAULT_FORMAL_RUN_ROOT = RAR_ROOT / "formal_runs"
+FINAL_QUALIFICATION_SCHEMA_VERSION = (
+    "exp54-sorc-rationale-qualification-v1-final-lock"
+)
+FINAL_QUALIFICATION_STATUS = (
+    "SORC_RATIONALE_QUALIFICATION_COMPLETE_P3_ALLOWED"
+)
+MINIMUM_AUTHORIZED_FREE_MEMORY_BYTES = 40 * 1024**3
 ARMS = (
     "P1_FIELD_DPO",
     "P2_SORC_SCORE",
@@ -56,6 +80,16 @@ def read_json(path: Path) -> dict[str, Any]:
     if not isinstance(value, dict):
         raise ValueError(f"{path}: expected JSON object")
     return value
+
+
+def _canonical_sha256(value: Any) -> str:
+    payload = json.dumps(
+        value,
+        ensure_ascii=False,
+        sort_keys=True,
+        separators=(",", ":"),
+    ).encode("utf-8")
+    return hashlib.sha256(payload).hexdigest()
 
 
 def _require_regular_non_symlink(path: Path, *, label: str) -> None:
@@ -132,10 +166,31 @@ def verify_gpu_execution_authorization(
     smoke_lock_path: Path,
     smoke_plan_path: Path,
     training_config_path: Path,
+    checkpoint_lock_path: Path,
+    base_training_configuration_path: Path,
+    frozen_training_lock_path: Path,
+    implementation_candidate_lock_path: Path,
+    qualification_candidate_lock_path: Path = (
+        DEFAULT_QUALIFICATION_CANDIDATE_LOCK
+    ),
 ) -> dict[str, Any]:
     """Verify an external exact authorization before any torch/CUDA/model use."""
     reject_eval_path(path)
     _require_regular_non_symlink(path, label="GPU smoke authorization")
+    bound_files = {
+        "smoke lock": smoke_lock_path,
+        "smoke plan": smoke_plan_path,
+        "preference training configuration": training_config_path,
+        "checkpoint selection lock": checkpoint_lock_path,
+        "base training configuration": base_training_configuration_path,
+        "frozen preference-training lock": frozen_training_lock_path,
+        "smoke implementation candidate lock": (
+            implementation_candidate_lock_path
+        ),
+    }
+    for label, bound_path in bound_files.items():
+        reject_eval_path(bound_path)
+        _require_regular_non_symlink(bound_path, label=label)
     authorization = read_json(path)
     if authorization.get("status") != "SORC_DPO_GPU_SMOKE_AUTHORIZED":
         raise PermissionError("GPU smoke authorization status is invalid")
@@ -147,14 +202,42 @@ def verify_gpu_execution_authorization(
         "test_accessed"
     ) is not False:
         raise PermissionError("authorization evaluation boundary differs")
+    base_configuration = read_json(base_training_configuration_path)
+    if not isinstance(base_configuration.get("model"), dict):
+        raise ValueError("base training configuration lacks model identity")
+    frozen_training = read_json(frozen_training_lock_path)
+    implementation = read_json(implementation_candidate_lock_path)
+    if frozen_training.get("status") != (
+        "SORC_DPO_TRAINING_FROZEN_SMOKE_PACKAGE_BUILD_ALLOWED"
+    ):
+        raise PermissionError("frozen preference-training lock differs")
+    if implementation.get("status") != (
+        "SORC_DPO_SMOKE_IMPLEMENTATION_CANDIDATE_GPU_EXECUTION_FORBIDDEN"
+    ):
+        raise PermissionError("smoke implementation lock differs")
     exact = {
         "arm": arm,
         "seed": 42,
         "optimizer_steps": 1,
+        "physical_micro_batch_pairs": 1,
         "smoke_lock_sha256": sha256_file(smoke_lock_path),
         "smoke_plan_sha256": sha256_file(smoke_plan_path),
         "training_config_sha256": sha256_file(training_config_path),
+        "checkpoint_lock_sha256": sha256_file(checkpoint_lock_path),
+        "base_training_configuration_sha256": sha256_file(
+            base_training_configuration_path
+        ),
+        "base_model_snapshot_identity_sha256": _canonical_sha256(
+            base_configuration["model"]
+        ),
+        "preference_training_frozen_lock_sha256": sha256_file(
+            frozen_training_lock_path
+        ),
+        "smoke_implementation_candidate_lock_sha256": sha256_file(
+            implementation_candidate_lock_path
+        ),
         "runner_sha256": sha256_file(Path(__file__)),
+        "cuda_device_name": "NVIDIA RTX A6000",
     }
     for field, expected in exact.items():
         if authorization.get(field) != expected:
@@ -168,7 +251,31 @@ def verify_gpu_execution_authorization(
         raise PermissionError("authorized output directory is outside smoke root")
     if output_dir.exists():
         raise FileExistsError(output_dir)
+    cuda_device_uuid = authorization.get("cuda_device_uuid")
+    if (
+        not isinstance(cuda_device_uuid, str)
+        or not cuda_device_uuid.startswith("GPU-")
+        or len(cuda_device_uuid) < 8
+    ):
+        raise PermissionError("authorized CUDA device UUID is invalid")
+    minimum_free = authorization.get("minimum_free_memory_bytes_before_load")
+    if (
+        isinstance(minimum_free, bool)
+        or not isinstance(minimum_free, int)
+        or minimum_free < MINIMUM_AUTHORIZED_FREE_MEMORY_BYTES
+    ):
+        raise PermissionError("authorized free-memory floor is too small")
     if arm == "P3_JOINT_SORC":
+        _require_regular_non_symlink(
+            qualification_candidate_lock_path,
+            label="rationale qualification candidate lock",
+        )
+        if authorization.get(
+            "rationale_qualification_candidate_lock_sha256"
+        ) != sha256_file(qualification_candidate_lock_path):
+            raise PermissionError(
+                "rationale qualification candidate binding differs"
+            )
         qualification_path = Path(
             str(authorization.get("rationale_qualification_lock_path") or "")
         )
@@ -183,15 +290,87 @@ def verify_gpu_execution_authorization(
         )
         if sha256_file(qualification_path) != expected_hash:
             raise PermissionError("rationale qualification lock differs")
-        qualification = read_json(qualification_path)
-        if qualification.get("p3_training_allowed") is not True:
-            raise PermissionError("rationale qualification does not allow P3")
+        verify_p3_qualification_lock(
+            qualification_path=qualification_path,
+            qualification_candidate_lock_path=(
+                qualification_candidate_lock_path
+            ),
+        )
     return authorization
+
+
+def verify_p3_qualification_lock(
+    *,
+    qualification_path: Path,
+    qualification_candidate_lock_path: Path,
+) -> dict[str, Any]:
+    """Accept only the final reviewed qualification contract for P3."""
+    qualification = read_json(qualification_path)
+    candidate = read_json(qualification_candidate_lock_path)
+    exact = {
+        "schema_version": FINAL_QUALIFICATION_SCHEMA_VERSION,
+        "status": FINAL_QUALIFICATION_STATUS,
+        "rationale_blind_qualification_completed": True,
+        "p3_preference_training_allowed": True,
+        "evaluator_family_qualification_completed": True,
+        "evaluator_family_count": 2,
+        "dev_accessed": False,
+        "test_accessed": False,
+    }
+    for field, expected in exact.items():
+        if qualification.get(field) != expected:
+            raise PermissionError(
+                f"rationale qualification {field} differs"
+            )
+    if "p3_training_allowed" in qualification:
+        raise PermissionError("deprecated P3 qualification alias is forbidden")
+    if qualification.get("source_hashes") != candidate.get("source_hashes"):
+        raise PermissionError("rationale qualification source hashes differ")
+    family_results = qualification.get("evaluator_family_results")
+    if not isinstance(family_results, dict) or len(family_results) != 2:
+        raise PermissionError(
+            "rationale qualification must contain two evaluator families"
+        )
+    for family, result in family_results.items():
+        if not isinstance(family, str) or not family:
+            raise PermissionError("evaluator-family identity is invalid")
+        if (
+            not isinstance(result, dict)
+            or result.get("qualification_completed") is not True
+        ):
+            raise PermissionError(
+                f"evaluator-family qualification incomplete: {family}"
+            )
+        counts = [
+            result.get("r3_wins"),
+            result.get("r2_wins"),
+            result.get("ties"),
+        ]
+        if any(
+            isinstance(value, bool)
+            or not isinstance(value, int)
+            or value < 0
+            for value in counts
+        ):
+            raise PermissionError(
+                f"evaluator-family counts are invalid: {family}"
+            )
+        if int(result["r3_wins"]) <= int(result["r2_wins"]):
+            raise PermissionError(
+                f"evaluator-family does not qualify P3: {family}"
+            )
+    return qualification
 
 
 def _seed42_checkpoint(
     checkpoint_lock_path: Path,
+    *,
+    formal_runs_root: Path = DEFAULT_FORMAL_RUN_ROOT,
 ) -> tuple[Path, dict[str, str]]:
+    _require_regular_non_symlink(
+        checkpoint_lock_path,
+        label="checkpoint selection lock",
+    )
     lock = read_json(checkpoint_lock_path)
     if (
         lock.get("status") != "SFT_DEV_CHECKPOINT_SELECTION_FROZEN"
@@ -206,12 +385,13 @@ def _seed42_checkpoint(
     if len(selected) != 1 or int(selected[0]["selected_epoch"]) != 3:
         raise ValueError("seed42 R3 epoch-3 checkpoint binding differs")
     item = selected[0]
-    adapter_dir = (
-        REPO_ROOT
-        / "thesis_exp/outputs/exp54_rar_sft/rar_v2/formal_runs"
-        / str(item["checkpoint_relative_path"])
-        / "adapter"
-    )
+    relative = Path(str(item["checkpoint_relative_path"]))
+    if relative.is_absolute() or ".." in relative.parts:
+        raise PermissionError("checkpoint path escapes formal-runs root")
+    resolved_root = formal_runs_root.resolve(strict=True)
+    adapter_dir = (resolved_root / relative / "adapter").resolve(strict=True)
+    if not adapter_dir.is_relative_to(resolved_root):
+        raise PermissionError("checkpoint path escapes formal-runs root")
     hashes = {
         name: str(metadata["sha256"])
         for name, metadata in item["adapter_files"].items()
@@ -222,6 +402,104 @@ def _seed42_checkpoint(
         if sha256_file(path) != expected:
             raise ValueError(f"R3 checkpoint differs: {name}")
     return adapter_dir, hashes
+
+
+def verify_base_model_snapshot(
+    base_training_configuration_path: Path,
+) -> tuple[Path, dict[str, Any]]:
+    """Recheck the frozen base-model directory before importing torch."""
+    _require_regular_non_symlink(
+        base_training_configuration_path,
+        label="base training configuration",
+    )
+    configuration = read_json(base_training_configuration_path)
+    model = configuration.get("model")
+    if not isinstance(model, dict):
+        raise ValueError("base training configuration lacks model identity")
+    base_path = Path(str(model.get("local_path") or ""))
+    root_metadata = base_path.lstat()
+    if stat.S_ISLNK(root_metadata.st_mode):
+        raise PermissionError("base model root cannot be a symlink")
+    if not stat.S_ISDIR(root_metadata.st_mode):
+        raise PermissionError("base model root must be a directory")
+    expected_listing = model.get("directory_regular_files")
+    if not isinstance(expected_listing, dict):
+        raise ValueError("base model directory listing is missing")
+    actual_listing: dict[str, int] = {}
+    for path in sorted(base_path.rglob("*")):
+        relative = path.relative_to(base_path).as_posix()
+        metadata = path.lstat()
+        if stat.S_ISLNK(metadata.st_mode):
+            raise PermissionError(f"base model descendant symlink: {relative}")
+        if stat.S_ISREG(metadata.st_mode):
+            actual_listing[relative] = int(metadata.st_size)
+        elif not stat.S_ISDIR(metadata.st_mode):
+            raise PermissionError(
+                f"base model descendant is not regular: {relative}"
+            )
+    if actual_listing != expected_listing:
+        raise ValueError("base model directory listing differs")
+    listing_payload = json.dumps(
+        sorted(actual_listing.items()),
+        separators=(",", ":"),
+    ).encode("utf-8")
+    if hashlib.sha256(listing_payload).hexdigest() != str(
+        model.get("directory_listing_sha256")
+    ):
+        raise ValueError("base model directory-listing hash differs")
+    expected_files = model.get("files")
+    if not isinstance(expected_files, dict):
+        raise ValueError("base model file lock is missing")
+    for name, expected in expected_files.items():
+        path = base_path / str(name)
+        _require_regular_non_symlink(path, label=f"base model {name}")
+        if (
+            path.stat().st_size != int(expected["size"])
+            or sha256_file(path) != str(expected["sha256"])
+        ):
+            raise ValueError(f"base model file differs: {name}")
+    return base_path, configuration
+
+
+def verify_authorized_cuda_device(
+    *,
+    torch_module: Any,
+    authorization: dict[str, Any],
+) -> dict[str, Any]:
+    """Verify the single visible CUDA device before model loading."""
+    cuda = torch_module.cuda
+    if not cuda.is_available() or cuda.device_count() != 1:
+        raise RuntimeError("GPU smoke requires exactly one visible CUDA device")
+    name = str(cuda.get_device_name(0))
+    properties = cuda.get_device_properties(0)
+    property_uuid = getattr(properties, "uuid", None)
+    if property_uuid is not None and str(property_uuid).startswith("GPU-"):
+        uuid = str(property_uuid)
+    else:
+        uuids = cuda._raw_device_uuid_nvml()
+        if uuids is None:
+            raise RuntimeError("cannot resolve visible CUDA device UUID")
+        physical_index = int(cuda._get_nvml_device_index(0))
+        if physical_index < 0 or physical_index >= len(uuids):
+            raise RuntimeError("visible CUDA device UUID index is invalid")
+        uuid = str(uuids[physical_index])
+    free_bytes, total_bytes = cuda.mem_get_info(0)
+    if name != authorization["cuda_device_name"]:
+        raise RuntimeError("visible CUDA device name is not authorized")
+    if uuid != authorization["cuda_device_uuid"]:
+        raise RuntimeError("visible CUDA device UUID is not authorized")
+    if int(free_bytes) < int(
+        authorization["minimum_free_memory_bytes_before_load"]
+    ):
+        raise RuntimeError("authorized CUDA device is not sufficiently idle")
+    if int(authorization["physical_micro_batch_pairs"]) != 1:
+        raise RuntimeError("correctness smoke physical batch must equal one")
+    return {
+        "name": name,
+        "uuid": uuid,
+        "free_memory_bytes_before_load": int(free_bytes),
+        "total_memory_bytes": int(total_bytes),
+    }
 
 
 def _set_adapter_trainability(model: Any, adapter_name: str) -> None:
@@ -282,25 +560,26 @@ def execute_one_smoke_step(
     authorization: dict[str, Any],
     training_config_path: Path,
     checkpoint_lock_path: Path,
+    base_training_configuration_path: Path,
 ) -> dict[str, Any]:
     """Run one optimizer step. Caller must verify authorization first."""
+    base_path, _base_configuration = verify_base_model_snapshot(
+        base_training_configuration_path
+    )
+    adapter_dir, adapter_hashes = _seed42_checkpoint(checkpoint_lock_path)
+
     import torch
+
+    device_identity = verify_authorized_cuda_device(
+        torch_module=torch,
+        authorization=authorization,
+    )
+    if not torch.cuda.is_bf16_supported():
+        raise RuntimeError("GPU smoke requires BF16 support")
     from peft import PeftModel
     from transformers import AutoModelForCausalLM
 
-    if not torch.cuda.is_available() or torch.cuda.device_count() != 1:
-        raise RuntimeError("GPU smoke requires exactly one visible CUDA device")
-    if not torch.cuda.is_bf16_supported():
-        raise RuntimeError("GPU smoke requires BF16 support")
     config = read_json(training_config_path)
-    base_path = Path(
-        read_json(
-            REPO_ROOT
-            / "thesis_exp/exp54_rar_sft/configs/"
-            "training_configuration_candidate.json"
-        )["model"]["local_path"]
-    )
-    adapter_dir, adapter_hashes = _seed42_checkpoint(checkpoint_lock_path)
     torch.manual_seed(42)
     torch.cuda.manual_seed_all(42)
     base = AutoModelForCausalLM.from_pretrained(
@@ -405,6 +684,7 @@ def execute_one_smoke_step(
         "loss": total_loss,
         "gradient_norm_before_clip": float(gradient_norm.detach().cpu()),
         "peak_gpu_memory_bytes": int(torch.cuda.max_memory_allocated()),
+        "cuda_device_identity": device_identity,
         "base_model_path": str(base_path),
         "r3_adapter_hashes": adapter_hashes,
         "output_adapter_config_sha256": sha256_file(
@@ -438,11 +718,6 @@ def parse_args() -> argparse.Namespace:
         "--training-config",
         type=Path,
         default=DEFAULT_TRAINING_CONFIG,
-    )
-    parser.add_argument(
-        "--checkpoint-lock",
-        type=Path,
-        default=DEFAULT_CHECKPOINT_LOCK,
     )
     parser.add_argument(
         "--authorization",
@@ -486,13 +761,24 @@ def main() -> None:
         smoke_lock_path=args.smoke_lock,
         smoke_plan_path=args.smoke_plan,
         training_config_path=args.training_config,
+        checkpoint_lock_path=DEFAULT_CHECKPOINT_LOCK,
+        base_training_configuration_path=(
+            DEFAULT_BASE_TRAINING_CONFIGURATION
+        ),
+        frozen_training_lock_path=DEFAULT_FROZEN_TRAINING_LOCK,
+        implementation_candidate_lock_path=(
+            DEFAULT_IMPLEMENTATION_CANDIDATE_LOCK
+        ),
     )
     result = execute_one_smoke_step(
         arm=args.arm,
         rows=rows,
         authorization=authorization,
         training_config_path=args.training_config,
-        checkpoint_lock_path=args.checkpoint_lock,
+        checkpoint_lock_path=DEFAULT_CHECKPOINT_LOCK,
+        base_training_configuration_path=(
+            DEFAULT_BASE_TRAINING_CONFIGURATION
+        ),
     )
     print(json.dumps(result, ensure_ascii=False, indent=2, sort_keys=True))
 

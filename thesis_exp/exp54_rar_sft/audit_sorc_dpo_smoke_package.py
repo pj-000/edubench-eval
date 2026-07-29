@@ -165,7 +165,8 @@ def _derive_expected(
 
 
 def _assert_runner_fail_closed() -> None:
-    tree = ast.parse(RUNNER.read_text(encoding="utf-8"))
+    source = RUNNER.read_text(encoding="utf-8")
+    tree = ast.parse(source)
     for node in tree.body:
         if isinstance(node, (ast.Import, ast.ImportFrom)):
             names = (
@@ -196,6 +197,69 @@ def _assert_runner_fail_closed() -> None:
         "execute_one_smoke_step"
     ):
         raise ValueError("runner executes before authorization verification")
+    required_authorization_bindings = {
+        "checkpoint_lock_sha256",
+        "base_training_configuration_sha256",
+        "base_model_snapshot_identity_sha256",
+        "preference_training_frozen_lock_sha256",
+        "smoke_implementation_candidate_lock_sha256",
+        "cuda_device_name",
+        "cuda_device_uuid",
+        "minimum_free_memory_bytes_before_load",
+        "physical_micro_batch_pairs",
+    }
+    missing = sorted(
+        value
+        for value in required_authorization_bindings
+        if value not in source
+    )
+    if missing:
+        raise ValueError(
+            f"runner authorization bindings are missing: {missing}"
+        )
+    if '"--checkpoint-lock"' in source:
+        raise ValueError("runner exposes an unbound checkpoint-lock override")
+    if "p3_training_allowed" not in source:
+        raise ValueError("runner lacks deprecated qualification-field reject")
+    if "p3_preference_training_allowed" not in source:
+        raise ValueError("runner lacks frozen P3 qualification field")
+    execute_functions = [
+        node
+        for node in tree.body
+        if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef))
+        and node.name == "execute_one_smoke_step"
+    ]
+    if len(execute_functions) != 1:
+        raise ValueError("runner smoke execution function differs")
+    execute = execute_functions[0]
+    torch_import_lines = [
+        node.lineno
+        for node in ast.walk(execute)
+        if isinstance(node, (ast.Import, ast.ImportFrom))
+        and any(
+            alias.name == "torch"
+            for alias in node.names
+        )
+    ]
+    pre_torch_calls = {
+        node.func.id: node.lineno
+        for node in ast.walk(execute)
+        if isinstance(node, ast.Call)
+        and isinstance(node.func, ast.Name)
+        and node.func.id in {
+            "verify_base_model_snapshot",
+            "_seed42_checkpoint",
+        }
+    }
+    if len(torch_import_lines) != 1 or set(pre_torch_calls) != {
+        "verify_base_model_snapshot",
+        "_seed42_checkpoint",
+    }:
+        raise ValueError("runner pre-torch identity closure differs")
+    if any(
+        line >= torch_import_lines[0] for line in pre_torch_calls.values()
+    ):
+        raise ValueError("runner imports torch before source identity checks")
 
 
 def parse_args() -> argparse.Namespace:
@@ -325,6 +389,12 @@ def main() -> None:
         "aggregate": aggregate,
         "selection_independently_rederived": True,
         "runner_authorization_precedes_execution": True,
+        "runner_binds_checkpoint_base_frozen_and_implementation_locks": True,
+        "runner_rejects_checkpoint_lock_cli_override": True,
+        "runner_source_identity_checks_precede_torch_import": True,
+        "runner_requires_exact_p3_qualification_contract": True,
+        "runner_requires_authorized_idle_a6000": True,
+        "correctness_smoke_physical_micro_batch_pairs": 1,
         "runner_has_no_top_level_gpu_or_model_import": True,
         "private_subset_hash_vector_sha256": vector_sha256(
             lock["private_subset_hashes"][arm] for arm in SOURCE_MANIFESTS

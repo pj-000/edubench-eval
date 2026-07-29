@@ -183,7 +183,7 @@ def main() -> None:
         "runtime_source_file_count": len(runtime_hashes),
         "runtime_source_closure_sha256": vector_hash(runtime_hashes),
         "cpu_validation_passed_for_all_arms": True,
-        "related_cpu_test_count": 52,
+        "related_cpu_test_count": 59,
         "unauthorized_execute_hard_failed": True,
         "model_loaded": False,
         "cuda_initialized": False,
