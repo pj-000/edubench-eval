@@ -172,11 +172,15 @@ def _family_decision(
 
 def collect(
     *,
-    qwen_results: Path,
-    qwen_model: str,
-    deepseek_results: Path,
-    deepseek_model: str,
+    family_a: str,
+    family_a_results: Path,
+    family_a_model: str,
+    family_b: str,
+    family_b_results: Path,
+    family_b_model: str,
 ) -> tuple[dict[str, Any], dict[str, Any]]:
+    if not family_a or not family_b or family_a == family_b:
+        raise ValueError("qualification requires two distinct evaluator families")
     candidate = json.loads(CANDIDATE_LOCK.read_text(encoding="utf-8"))
     if (
         candidate.get("status")
@@ -212,18 +216,18 @@ def collect(
         raise ValueError("qualification task/key closure differs")
     schema = json.loads(SCHEMA.read_text(encoding="utf-8"))
     families = {
-        "qwen": _family_decision(
-            family="qwen",
-            model=qwen_model,
-            result_path=qwen_results,
+        family_a: _family_decision(
+            family=family_a,
+            model=family_a_model,
+            result_path=family_a_results,
             tasks=tasks,
             keys=keys,
             schema=schema,
         ),
-        "deepseek": _family_decision(
-            family="deepseek",
-            model=deepseek_model,
-            result_path=deepseek_results,
+        family_b: _family_decision(
+            family=family_b,
+            model=family_b_model,
+            result_path=family_b_results,
             tasks=tasks,
             keys=keys,
             schema=schema,
@@ -255,8 +259,8 @@ def collect(
         "score_blind_schema": sha256_file(SCHEMA),
         "api_runner": sha256_file(API_RUNNER),
         "collector": sha256_file(Path(__file__)),
-        "qwen_results": families["qwen"]["result_sha256"],
-        "deepseek_results": families["deepseek"]["result_sha256"],
+        f"{family_a}_results": families[family_a]["result_sha256"],
+        f"{family_b}_results": families[family_b]["result_sha256"],
     }
     report = {
         "schema_version": (
@@ -304,17 +308,19 @@ def collect(
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
-        "--qwen-results",
+        "--family-a-results",
         type=Path,
         default=DEFAULT_RESULTS["qwen"],
     )
-    parser.add_argument("--qwen-model", default="qwen3.7-max")
+    parser.add_argument("--family-a", default="qwen")
+    parser.add_argument("--family-a-model", default="qwen3.7-max")
     parser.add_argument(
-        "--deepseek-results",
+        "--family-b-results",
         type=Path,
         default=DEFAULT_RESULTS["deepseek"],
     )
-    parser.add_argument("--deepseek-model", default="deepseek-v4-pro")
+    parser.add_argument("--family-b", default="deepseek")
+    parser.add_argument("--family-b-model", default="deepseek-v4-pro")
     parser.add_argument("--final-report", type=Path, default=FINAL_REPORT)
     parser.add_argument("--final-lock", type=Path, default=FINAL_LOCK)
     return parser.parse_args()
@@ -323,10 +329,12 @@ def parse_args() -> argparse.Namespace:
 def main() -> None:
     args = parse_args()
     report, lock = collect(
-        qwen_results=args.qwen_results,
-        qwen_model=args.qwen_model,
-        deepseek_results=args.deepseek_results,
-        deepseek_model=args.deepseek_model,
+        family_a=args.family_a,
+        family_a_results=args.family_a_results,
+        family_a_model=args.family_a_model,
+        family_b=args.family_b,
+        family_b_results=args.family_b_results,
+        family_b_model=args.family_b_model,
     )
     write_json_exclusive(args.final_report, report)
     lock["final_report_sha256"] = sha256_file(args.final_report)

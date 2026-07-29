@@ -1,0 +1,36 @@
+{
+  "schema_version": "exp54-sorc-dpo-capacity-probe-report-v1",
+  "status": "A6000_PHYSICAL_BATCH_4_SELECTED",
+  "device_name": "NVIDIA RTX A6000",
+  "probe_source_arm": "P2_SORC_SCORE",
+  "fixed_pair_count_per_probe": 32,
+  "fixed_padding_cutoff": 2048,
+  "results": {
+    "2": {
+      "status": "PASS",
+      "peak_allocated_bytes": 24999694336,
+      "peak_reserved_bytes": 27961327616,
+      "private_result_sha256": "b97cda723aea46a7723aa3645ad9ac1f167cb5e80fefcf55129c97d90ab0887f"
+    },
+    "4": {
+      "status": "PASS",
+      "peak_allocated_bytes": 41539964928,
+      "peak_reserved_bytes": 47083159552,
+      "private_result_sha256": "007e894ef8a94c25791970ecec72e48b444051d0c6ddcc66e4448060367e2faf"
+    },
+    "8": {
+      "status": "CUDA_OUT_OF_MEMORY",
+      "failure_stage": "reference_log_probability_forward",
+      "attempted_additional_allocation_bytes": 19907108864
+    }
+  },
+  "selection": {
+    "physical_micro_batch_pairs": 4,
+    "reason": "largest successful preregistered ladder value below the 46-GiB reserved-memory ceiling",
+    "peak_reserved_gib": 43.849609375,
+    "reserved_memory_ceiling_gib": 46
+  },
+  "semantic_output_inspected": false,
+  "dev_accessed": false,
+  "test_accessed": false
+}
