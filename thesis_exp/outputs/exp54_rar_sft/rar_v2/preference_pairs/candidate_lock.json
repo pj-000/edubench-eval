@@ -1,0 +1,17 @@
+{
+  "candidate_report_sha256": "9ba70bdb2a195dacb1c0e40168bca256692187853e35b8c6c788683da670c421",
+  "dev_accessed": false,
+  "failure_bank_sha256": "d5d452017d8f6bb8b19e89c278a3e714c488d2211e266cde4e72dd5cf1c26757",
+  "frozen_manifest_lock_sha256": "8b5fffce6b54804f834499643953deae23393a7764c0652d0fd7df2214b20713",
+  "preference_training_allowed": false,
+  "private_output_hashes": {
+    "actual_rationale_candidates": "d35b4de2f4c64c72d23801ad8254462bb0b3672ed65db2fbd657898a015c3b40",
+    "rationale_pairs_r3_r2": "86da8e6f74a34b5f4b7c67fb467c40c7110c7c4cfa83717d6425a32101772388",
+    "score_pairs_hybrid": "aeb079c56be8a8afbfdbec386e72faad748fef848014761bf602fbc40c97a1bb",
+    "score_pairs_synthetic_seed42": "83eef75218c945cf8fcaec754cbe84471c915a2fbd814f1d82d162de67406154"
+  },
+  "protocol_sha256": "5a8d1de3728bff4c1c6934d6030fc1d5743604ad58d4c463b9106236bccaf8eb",
+  "schema_version": "exp54-sorc-dpo-pair-candidate-lock-v1",
+  "status": "PAIR_CANDIDATES_NOT_FROZEN_TRAINING_NOT_ALLOWED",
+  "test_accessed": false
+}

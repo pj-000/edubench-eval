@@ -1,0 +1,32 @@
+{
+  "aggregate": {
+    "label_band_counts": {
+      "L12": 24,
+      "L3": 32,
+      "L45": 64
+    },
+    "language_counts": {
+      "en": 60,
+      "zh": 60
+    },
+    "metric_count": 12,
+    "score_blind_presentations": 240,
+    "score_visible_presentations": 240,
+    "selected_pairs": 120
+  },
+  "dev_accessed": false,
+  "p3_preference_training_allowed": false,
+  "preference_training_allowed": false,
+  "rationale_blind_qualification_completed": false,
+  "schema_version": "exp54-sorc-rationale-qualification-v1-audit-report",
+  "selection_independently_rederived": true,
+  "source_hashes": {
+    "auditor_source": "7cf5ace19ebd8ccec4c2bd42048a1c5637404ce8b18e77131e7e9cf15f7f9b2f",
+    "candidate_lock": "d683670eb0713ac7ccc95a4ac717210982bbb8e42ba01acf8473eec14a8ded2e",
+    "candidate_report": "031b49627007fbd0e12f82d63be510691c2659aa891a641a365ea8e20a9cb7fc",
+    "rationale_pairs": "86da8e6f74a34b5f4b7c67fb467c40c7110c7c4cfa83717d6425a32101772388"
+  },
+  "status": "SORC_RATIONALE_QUALIFICATION_CANDIDATE_AUDIT_PASS",
+  "task_bytes_independently_rederived": true,
+  "test_accessed": false
+}

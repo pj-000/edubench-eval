@@ -1,0 +1,101 @@
+{
+  "schema_version": "exp54-sorc-dpo-pair-protocol-v1",
+  "status": "PAIR_CONSTRUCTION_ALLOWED_TRAINING_NOT_ALLOWED",
+  "method_name": "SORC-DPO",
+  "method_expansion": "Schema-aligned, Ordinal-Risk-Calibrated Score-Rationale Direct Preference Optimization",
+  "split": "train",
+  "source_arm": "R3",
+  "source_checkpoint_epoch": 3,
+  "source_checkpoint_seeds": [42, 43, 44],
+  "record_is_sampling_unit": true,
+  "shared_pair_manifest_across_training_seeds": true,
+  "score_pairs": {
+    "chosen_score": "label_5",
+    "rationale_anchor": "canonical_frozen_r3_active_human_rationale_or_empty",
+    "chosen_rejected_rationale_bytes_equal": true,
+    "loss_mask": "score_value_tokens_only",
+    "blocks": {
+      "adjacent_score": {
+        "source": "actual_only",
+        "absolute_error": 1,
+        "synthetic_backfill": false,
+        "max_pairs_per_record_in_block": 1
+      },
+      "severe_l2h": {
+        "gold_labels": [1, 2],
+        "actual_rejected_scores": [4, 5],
+        "synthetic_backfill_score": 4,
+        "expected_records": 76,
+        "expected_actual_records": 53,
+        "expected_backfill_records": 23,
+        "max_pairs_per_record_in_block": 1
+      },
+      "h2l_guard": {
+        "mirrored_low_labels": {
+          "1": 5,
+          "2": 4
+        },
+        "expected_records": 76,
+        "expected_gold_label_5_records": 24,
+        "expected_gold_label_4_records": 52,
+        "actual_error_rule": "any_observed_score_below_gold_severe_then_largest_distance",
+        "synthetic_backfill_score": 2,
+        "selection_priority": [
+          "actual_underestimate_before_synthetic",
+          "same_metric",
+          "same_language",
+          "stable_hash"
+        ],
+        "record_reuse": false,
+        "max_pairs_per_record_in_block": 1
+      }
+    },
+    "block_objective": "equal_mean_of_adjacent_severe_l2h_h2l_guard"
+  },
+  "synthetic_score_control": {
+    "role": "seed42_matched_data_source_diagnostic",
+    "reads_actual_failure_bank": false,
+    "match_hybrid_block_counts": true,
+    "match_hybrid_label_metric_language_counts": true
+  },
+  "rationale_pairs": {
+    "chosen": "canonical_r3_aligned_human_rationale",
+    "rejected": "same_event_r2_strict_shuffled_human_rationale",
+    "chosen_rejected_score_equal": true,
+    "loss_mask": "rationale_content_tokens_only",
+    "canonical_pairs_per_record": 1,
+    "blind_qualification_required_before_p3": true
+  },
+  "actual_rationale_diagnostic": {
+    "training_seed": 42,
+    "candidate_sources": [42, 43, 44],
+    "candidate_requirements": {
+      "score_equals_label_5": true,
+      "strict_parse": true,
+      "forced_completion": false,
+      "explicit_score_leakage": false,
+      "nonempty_rationale": true,
+      "finish_reason_length": false,
+      "posthoc_repair": false
+    },
+    "two_evaluator_families_required": true,
+    "both_ab_orientations_required": true,
+    "minimum_unique_records_to_train": 128,
+    "max_pairs_per_record": 1,
+    "formal_main_data": false
+  },
+  "preference_objective": {
+    "beta": 0.1,
+    "field_log_probability_reduction": "mean_over_active_field_tokens",
+    "dpo_logit": "beta_times_unscaled_policy_reference_contrast",
+    "ordinal_cost": "abs(rejected_score-gold_score)/4 + severe_l2h_indicator",
+    "odpo_offset": "ordinal_cost/2",
+    "odpo_loss": "-log_sigmoid(dpo_logit-odpo_offset)",
+    "rationale_offset": 0.0,
+    "offset_is_not_multiplied_by_beta_again": true
+  },
+  "stochastic_rollout_allowed": false,
+  "dev_accessed": false,
+  "test_accessed": false,
+  "preference_training_allowed": false
+}

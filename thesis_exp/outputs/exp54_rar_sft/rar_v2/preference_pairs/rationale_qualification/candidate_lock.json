@@ -1,0 +1,42 @@
+{
+  "candidate_report_sha256": "031b49627007fbd0e12f82d63be510691c2659aa891a641a365ea8e20a9cb7fc",
+  "dev_accessed": false,
+  "p3_preference_training_allowed": false,
+  "preference_training_allowed": false,
+  "private_output_hashes": {
+    "answer_key": {
+      "bytes": 56400,
+      "rows": 240,
+      "sha256": "6f4bfba5afa02c3727fba9634aabe3eeac1b080c2ef2ebbb6bed0f4fd8ccc29a"
+    },
+    "sample_manifest": {
+      "bytes": 369186,
+      "rows": 120,
+      "sha256": "c7697ca01778a4aa081c577ca588a7e258cd1cb26773aa3d7d7d63fc6d9cfac5"
+    },
+    "score_blind_tasks": {
+      "bytes": 701172,
+      "rows": 240,
+      "sha256": "0b2057f664f0cb20b97af59bec8fe55b4f39140e239c9418b8d8cc3e2cc34c40"
+    },
+    "score_visible_tasks": {
+      "bytes": 705972,
+      "rows": 240,
+      "sha256": "7182a59d05cb9be9122d85b8a43b53a6778e13d5c770d4b51b42bc39b924422a"
+    }
+  },
+  "rationale_blind_qualification_completed": false,
+  "schema_version": "exp54-sorc-rationale-qualification-v1-candidate-lock",
+  "source_hashes": {
+    "builder_source": "39f4026feeffa058e457e90fcd75013d7f64302314690eb196d3eea921113283",
+    "pair_candidate_lock": "e66ca7de097e318ce3d54bfba72ba5aa6e84744d436aee2ab38f409cc97d4fa6",
+    "rationale_pairs": "86da8e6f74a34b5f4b7c67fb467c40c7110c7c4cfa83717d6425a32101772388",
+    "score_blind_prompt": "11b0783f39074e8eca93d2de282d93d9fa35598eba21b760fe607a16f1c9fda0",
+    "score_blind_schema": "f5fa2f75ecd9642e577beb72af1a730628418b8d5c00cb7ee69a065fae305321",
+    "score_visible_prompt": "3d07994406e288633d468c3ba861de549f35990d05d8d3b7de8c9d2746ab92a1",
+    "score_visible_schema": "399549dd6c18d8bccea8718c9001b911606126519b74d06079ffa555f55f4ae7",
+    "train": "0a1733b9209984c5c4291d205d1ac6057bed341717903b9de075d07de44a878e"
+  },
+  "status": "QUALIFICATION_PACKAGE_NOT_RUN_TRAINING_NOT_ALLOWED",
+  "test_accessed": false
+}
