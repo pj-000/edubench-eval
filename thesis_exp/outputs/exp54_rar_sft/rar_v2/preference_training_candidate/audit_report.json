@@ -29,7 +29,7 @@
       "weight_or_offset_mismatches": 0
     },
     "P3_JOINT_SORC": {
-      "optimizer_steps_one_physical_pass": 77,
+      "optimizer_steps_one_physical_pass": 27,
       "pairs_verified": 2438,
       "rationale_pairs": 1600,
       "score_pairs": 838,
@@ -38,9 +38,10 @@
       "weight_or_offset_mismatches": 0
     }
   },
-  "auditor_source_sha256": "fbd6e44bcd0bf930e0e7b23349fecb90d94c24ef3465298e04f0105323ede003",
-  "candidate_lock_sha256": "3a261dfa25fad77daeae2038c4d2438f6aedcf880b5fdeb0af42d2b6e01e9a7c",
-  "candidate_report_sha256": "f6633a4f8c476c7a2b9190491c965990a8f14e0303e8d5cd4feffd6a62204f7d",
+  "all_arm_optimizer_step_counts_equal_27": true,
+  "auditor_source_sha256": "115f198e230a4ef0e973686a76e5bb02763e48c32fad95d05ac3a7e93d582392",
+  "candidate_lock_sha256": "8578259ba22444c4883134b9558b54323768f804bb9097021afd8758abe3aeb1",
+  "candidate_report_sha256": "c698bc97e34567a1517c3e7fae8a60699458d6fc27ad05c48968b794495543d1",
   "dev_accessed": false,
   "evaluator_called": false,
   "field_masks_independently_rematerialized": true,
@@ -50,8 +51,11 @@
   "joint_score_rationale_half_half_verified": true,
   "manifest_hash_vector_sha256": "f02c1db8888f7acd86c3cb58f56f4df6809bada2ffd8ffa5a20b6d4302e59183",
   "model_loaded": false,
+  "p1_p1_syn_same_chosen_sequence_and_mask_vectors": true,
+  "p1_p1_syn_same_record_and_block_vectors": true,
   "p1_p2_only_offset_differs": true,
   "p3_score_block_equals_p2_except_objective_weight": true,
+  "padding_fixed_right_to_2048": true,
   "schema_version": "exp54-sorc-dpo-training-audit-v1",
   "status": "SORC_DPO_TRAINING_CANDIDATE_AUDIT_PASS",
   "test_accessed": false,

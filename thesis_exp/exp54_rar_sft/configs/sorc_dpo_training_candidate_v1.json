@@ -32,6 +32,9 @@
       "objective": "equal_mean_of_three_score_blocks",
       "score_share": 1.0,
       "rationale_share": 0.0,
+      "micro_batch_pairs_per_device": 1,
+      "gradient_accumulation_pairs": 32,
+      "effective_pair_batch_size": 32,
       "optimizer_steps_per_physical_pass": 27
     },
     "P2_SORC_SCORE": {
@@ -51,6 +54,9 @@
       "objective": "equal_mean_of_three_score_blocks",
       "score_share": 1.0,
       "rationale_share": 0.0,
+      "micro_batch_pairs_per_device": 1,
+      "gradient_accumulation_pairs": 32,
+      "effective_pair_batch_size": 32,
       "optimizer_steps_per_physical_pass": 27
     },
     "P3_JOINT_SORC": {
@@ -76,7 +82,10 @@
       "objective": "0.5_equal_mean_of_three_score_blocks_plus_0.5_mean_rationale_alignment",
       "score_share": 0.5,
       "rationale_share": 0.5,
-      "optimizer_steps_per_physical_pass": 77,
+      "micro_batch_pairs_per_device": 1,
+      "gradient_accumulation_pairs": 91,
+      "effective_pair_batch_size": 91,
+      "optimizer_steps_per_physical_pass": 27,
       "training_allowed_only_after_blind_rationale_qualification": true,
       "currently_training_allowed": false
     },
@@ -96,6 +105,9 @@
       "objective": "equal_mean_of_three_score_blocks",
       "score_share": 1.0,
       "rationale_share": 0.0,
+      "micro_batch_pairs_per_device": 1,
+      "gradient_accumulation_pairs": 32,
+      "effective_pair_batch_size": 32,
       "optimizer_steps_per_physical_pass": 27
     }
   },
@@ -126,7 +138,7 @@
     "shuffle_seed": "run_seed",
     "preference_epochs": 1,
     "cutoff_len": 2048,
-    "padding": "right_to_batch_max_or_fixed_2048_at_execution",
+    "padding": "fixed_right_padding_to_cutoff_2048",
     "truncation": false,
     "packing": false,
     "actual_rationale_candidate_count": 948,
@@ -136,8 +148,7 @@
   },
   "optimization": {
     "micro_batch_size_pairs_per_device": 1,
-    "gradient_accumulation_pairs": 32,
-    "effective_pair_batch_size": 32,
+    "gradient_accumulation_is_arm_specific": true,
     "optimizer": "AdamW",
     "learning_rate": 5e-7,
     "betas": [
@@ -167,10 +178,13 @@
   },
   "budget_interpretation": {
     "P1_and_P2_have_identical_pairs_steps_and_token_materialization": true,
-    "P1_and_P1_SYN_have_matched_pair_counts_but_different_record_identity_by_design": true,
-    "P3_has_more_pairs_and_optimizer_steps_because_it_adds_the_full_rationale_block": true,
-    "P3_is_not_a_compute_matched_claim_against_P2": true,
-    "public_report_must_disclose_unpadded_and_field_token_totals_per_arm": true
+    "P1_and_P1_SYN_share_record_and_block_vectors": true,
+    "P1_and_P1_SYN_share_chosen_sequence_and_field_masks": true,
+    "P1_and_P1_SYN_differ_only_in_rejected_score_source_and_provenance": true,
+    "all_formal_arms_have_27_optimizer_steps_and_identical_scheduler_length": true,
+    "P3_has_more_pair_and_token_FLOPs_because_it_adds_the_full_rationale_block": true,
+    "P3_is_optimizer_step_matched_but_not_FLOP_matched_against_P2": true,
+    "public_report_must_disclose_unpadded_field_and_fixed_padded_forward_token_totals_per_arm": true
   },
   "authorization": {
     "pair_protocol_frozen_required": true,

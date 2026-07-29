@@ -1,6 +1,7 @@
 {
   "actual_rationale_candidate_count": 948,
   "actual_rationale_candidates_used": false,
+  "all_arm_optimizer_step_counts_equal": true,
   "arms": {
     "P1_FIELD_DPO": {
       "active_field_vector_sha256": "8fa2bf76abdd29ad465ab97e63f4ce69dae3bb535906c6117ceed1a3a696e648",
@@ -28,6 +29,7 @@
       "token_budget": {
         "chosen_field_tokens": 838,
         "chosen_unpadded_tokens": 521698,
+        "fixed_padded_forward_tokens": 3432448,
         "pairs": 838,
         "rejected_field_tokens": 838,
         "rejected_unpadded_tokens": 521698
@@ -59,6 +61,7 @@
       "token_budget": {
         "chosen_field_tokens": 838,
         "chosen_unpadded_tokens": 521698,
+        "fixed_padded_forward_tokens": 3432448,
         "pairs": 838,
         "rejected_field_tokens": 838,
         "rejected_unpadded_tokens": 521698
@@ -90,6 +93,7 @@
       "token_budget": {
         "chosen_field_tokens": 838,
         "chosen_unpadded_tokens": 521698,
+        "fixed_padded_forward_tokens": 3432448,
         "pairs": 838,
         "rejected_field_tokens": 838,
         "rejected_unpadded_tokens": 521698
@@ -98,7 +102,7 @@
     "P3_JOINT_SORC": {
       "active_field_vector_sha256": "5c903c70362dad2a5b7dfb8afb81370550e795e5eeacbd3f8dda8c7a83d99dab",
       "chosen_sequence_hash_vector_sha256": "d44cffb1cd1005d413a285da739f8b783f2f152a6f84ee71cbeafc19ddd541e2",
-      "final_effective_batch_pair_count": 6,
+      "final_effective_batch_pair_count": 72,
       "manifest_sha256": "c73a63b54edfc8db4c4b024064ec5b80bb8cfee56f36b3e6bd0c1c5836f1bbb5",
       "objective_weight_sum": 2437.9999999999745,
       "objective_weights_by_pair_type": {
@@ -107,7 +111,7 @@
         "rationale_alignment": 0.761875,
         "severe_l2h": 5.3464912280701755
       },
-      "optimizer_steps_one_physical_pass": 77,
+      "optimizer_steps_one_physical_pass": 27,
       "pair_count": 2438,
       "pair_id_vector_sha256": "bc6dd2c7874e5d54206f7d395f73bd0e393cf84e90bfed7ee50529986eadb2fd",
       "pair_task_counts": {
@@ -124,6 +128,7 @@
       "token_budget": {
         "chosen_field_tokens": 52844,
         "chosen_unpadded_tokens": 1580086,
+        "fixed_padded_forward_tokens": 9986048,
         "pairs": 2438,
         "rejected_field_tokens": 52879,
         "rejected_unpadded_tokens": 1580121
@@ -156,10 +161,13 @@
   "forward_backward_executed": false,
   "gpu_preference_training_allowed": false,
   "model_loaded": false,
+  "p1_p1_syn_chosen_sequence_and_mask_vectors_equal": true,
+  "p1_p1_syn_record_and_block_vectors_equal": true,
   "p1_p2_only_offset_differs": true,
   "p1_p2_pair_and_token_vectors_equal": true,
   "p3_currently_training_allowed": false,
   "p3_rationale_qualification_required": true,
+  "padding": "fixed_right_padding_to_cutoff_2048",
   "schema_version": "exp54-sorc-dpo-training-report-v1",
   "score_block_equal_weighting_verified": true,
   "status": "SORC_DPO_TRAINING_MANIFEST_CANDIDATE_NOT_AUTHORIZED",

@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import json
 import math
 
 import pytest
@@ -12,6 +13,10 @@ from thesis_exp.exp54_rar_sft.sorc_dpo_loss import (
     field_dpo_per_pair,
     field_mean_logps,
     weighted_objective,
+)
+from thesis_exp.exp54_rar_sft import REPO_ROOT
+from thesis_exp.exp54_rar_sft.audit_sorc_dpo_training_manifests import (
+    verify_p1_syn_control,
 )
 
 
@@ -175,6 +180,63 @@ def test_microbatch_chunks_sum_to_exact_short_group_objective() -> None:
     assert (first["loss"] + second["loss"]).item() == pytest.approx(
         whole["loss"].item()
     )
+
+
+@pytest.mark.parametrize("group_pair_count", [32, 6, 91, 72])
+def test_real_accumulation_group_denominators(group_pair_count: int) -> None:
+    losses = torch.linspace(0.25, 2.0, group_pair_count)
+    weights = torch.linspace(0.5, 1.5, group_pair_count)
+    chunk_losses = [
+        weighted_objective(
+            losses[index : index + 1],
+            weights[index : index + 1],
+            normalization_pair_count=group_pair_count,
+        )["loss"]
+        for index in range(group_pair_count)
+    ]
+    whole = weighted_objective(losses, weights)["loss"]
+    assert torch.stack(chunk_losses).sum().item() == pytest.approx(
+        whole.item()
+    )
+
+
+def test_candidate_arm_specific_accumulation_and_fixed_padding() -> None:
+    path = (
+        REPO_ROOT
+        / "thesis_exp/exp54_rar_sft/configs/"
+        "sorc_dpo_training_candidate_v1.json"
+    )
+    config = json.loads(path.read_text(encoding="utf-8"))
+    expected = {
+        "P1_FIELD_DPO": (838, 32, 27, 6),
+        "P2_SORC_SCORE": (838, 32, 27, 6),
+        "P3_JOINT_SORC": (2438, 91, 27, 72),
+        "P1_SYN_SEED42": (838, 32, 27, 6),
+    }
+    for arm, (pairs, batch, steps, final_group) in expected.items():
+        value = config["arms"][arm]
+        assert int(value["pair_count"]) == pairs
+        assert int(value["effective_pair_batch_size"]) == batch
+        assert math.ceil(pairs / batch) == steps
+        assert pairs % batch == final_group
+    assert config["data"]["padding"] == "fixed_right_padding_to_cutoff_2048"
+    assert int(config["data"]["cutoff_len"]) == 2048
+
+
+def test_p1_syn_same_record_control_tamper_hard_fails() -> None:
+    p1 = [
+        {
+            "record_id": "record-a",
+            "pair_type": "adjacent_score",
+            "chosen_input_ids": [1, 2, 3],
+            "chosen_field_token_positions": [2],
+        }
+    ]
+    p1_syn = [dict(p1[0])]
+    verify_p1_syn_control(p1, p1_syn)
+    p1_syn[0] = {**p1_syn[0], "record_id": "record-b"}
+    with pytest.raises(ValueError, match="record or block"):
+        verify_p1_syn_control(p1, p1_syn)
 
 
 def _feature(

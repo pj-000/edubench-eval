@@ -65,28 +65,38 @@ contained 32 pairs.
 
 ## Candidate run matrix and budget
 
-| Arm | Data | Objective | Seeds | Pairs | Steps at effective pair batch 32 |
-|---|---|---|---:|---:|---:|
-| P1 Field-DPO | hybrid score | equal three-block score, zero offset | 42/43/44 | 838 | 27 |
-| P2 SORC-score | same hybrid score | equal three-block score, risk offset | 42/43/44 | 838 | 27 |
-| P3 Joint SORC | P2 score + R3/R2 rationale | 0.5 score + 0.5 rationale | 42/43/44 | 2,438 | 77 |
-| P1-SYN | matched synthetic score | P1 loss | 42 only | 838 | 27 |
+| Arm | Data | Objective | Seeds | Pairs | Effective pair batch | Steps |
+|---|---|---|---:|---:|---:|---:|
+| P1 Field-DPO | hybrid score | equal three-block score, zero offset | 42/43/44 | 838 | 32 | 27 |
+| P2 SORC-score | same hybrid score | equal three-block score, risk offset | 42/43/44 | 838 | 32 | 27 |
+| P3 Joint SORC | P2 score + R3/R2 rationale | 0.5 score + 0.5 rationale | 42/43/44 | 2,438 | 91 | 27 |
+| P1-SYN | same-record matched synthetic score | P1 loss | 42 only | 838 | 32 | 27 |
 
 P1 and P2 have byte-identical pair identities and token materialization; only
-the ODPO offset differs. P3 is deliberately disclosed as a full-data method,
-not a compute-matched comparison with P2.
+the ODPO offset differs. P1-SYN uses the same record/block vector, chosen
+sequence, rationale anchor, and chosen field mask as P1; it changes the source
+and provenance of the rejected score. P3 retains all 2,438 pairs but uses
+91-pair accumulation so all four arms have exactly 27 optimizer updates and
+the same scheduler length. P3 remains higher-FLOP because it processes more
+chosen/rejected tokens; it is step-matched, not FLOP-matched, against P2.
 
 Shared optimization candidate: one physical preference pass, learning rate
-`5e-7`, AdamW, zero weight decay, cosine schedule, 5% warmup, BF16,
-micro-batch one pair, and 32-pair gradient accumulation. Policy and reference
-are the seed-matched frozen R3 epoch-3 checkpoint; optimizer state starts
-fresh.
+`5e-7`, AdamW, zero weight decay, cosine schedule, 5% warmup, BF16, and
+micro-batch one pair. P1/P2/P1-SYN accumulate 32 pairs; P3 accumulates 91.
+Policy and reference are the seed-matched frozen R3 epoch-3 checkpoint;
+optimizer state starts fresh.
+
+Padding is uniquely frozen as fixed right-padding of both chosen and rejected
+to 2,048 tokens. The public forward-token budgets for one physical pass are:
+
+- P1/P2/P1-SYN: `2 * 838 * 2048 = 3,432,448`;
+- P3: `2 * 2438 * 2048 = 9,986,048`.
 
 ## Validation evidence
 
-- New Field-DPO/SORC-DPO CPU tests: 16 passed.
+- New Field-DPO/SORC-DPO CPU tests: 22 passed.
 - Related failure-bank, pair, qualification, loss, and collator regression:
-  40 passed.
+  46 passed.
 - Independent materialized-manifest audit:
   `SORC_DPO_TRAINING_CANDIDATE_AUDIT_PASS`.
 - Independently verified manifest rows: P1 838, P2 838, P3 2,438, P1-SYN 838.

@@ -354,6 +354,7 @@ def _arm_report(
     path: Path,
     *,
     effective_batch: int,
+    cutoff_len: int,
 ) -> dict[str, Any]:
     task_counts = Counter(str(row["pair_task"]) for row in rows)
     type_counts = Counter(str(row["pair_type"]) for row in rows)
@@ -368,6 +369,9 @@ def _arm_report(
             raise AssertionError("one pair block received multiple objective weights")
         weights_by_type[pair_type] = next(iter(values))
     budget = token_budget(rows)
+    budget["fixed_padded_forward_tokens"] = (
+        2 * len(rows) * cutoff_len
+    )
     return {
         "pair_count": len(rows),
         "pair_task_counts": dict(sorted(task_counts.items())),
@@ -463,6 +467,12 @@ def main() -> None:
     ):
         raise PermissionError("candidate training config is not fail-closed")
     if (
+        config["data"].get("padding")
+        != "fixed_right_padding_to_cutoff_2048"
+        or int(config["data"]["cutoff_len"]) != 2048
+    ):
+        raise ValueError("preference padding contract must be fixed right 2048")
+    if (
         reference_lock.get("dev_accessed") is not False
         or reference_lock.get("test_accessed") is not False
     ):
@@ -493,9 +503,6 @@ def main() -> None:
         raise AssertionError("prompt cache and locked train differ")
 
     cutoff_len = int(config["data"]["cutoff_len"])
-    effective_batch = int(
-        config["optimization"]["effective_pair_batch_size"]
-    )
     hybrid_zero = [
         _materialize_pair(
             tokenizer,
@@ -550,6 +557,25 @@ def main() -> None:
         row["rejected_input_ids_sha256"] for row in hybrid_source
     ):
         raise AssertionError("P1/P2 token materialization differs")
+    if [
+        (row["record_id"], row["pair_type"]) for row in hybrid_zero
+    ] != [
+        (row["record_id"], row["pair_type"]) for row in synthetic_zero
+    ]:
+        raise AssertionError("P1/P1-SYN record or block vectors differ")
+    if vector_sha256(
+        row["chosen_input_ids_sha256"] for row in hybrid_zero
+    ) != vector_sha256(
+        row["chosen_input_ids_sha256"] for row in synthetic_zero
+    ):
+        raise AssertionError("P1/P1-SYN chosen sequence vectors differ")
+    if vector_sha256(
+        row["chosen_field_token_positions_sha256"] for row in hybrid_zero
+    ) != vector_sha256(
+        row["chosen_field_token_positions_sha256"]
+        for row in synthetic_zero
+    ):
+        raise AssertionError("P1/P1-SYN chosen field-mask vectors differ")
 
     manifests = {
         "P1_FIELD_DPO": hybrid_zero,
@@ -581,7 +607,10 @@ def main() -> None:
         arm: _arm_report(
             rows,
             paths[arm],
-            effective_batch=effective_batch,
+            effective_batch=int(
+                config["arms"][arm]["effective_pair_batch_size"]
+            ),
+            cutoff_len=cutoff_len,
         )
         for arm, rows in manifests.items()
     }
@@ -594,6 +623,11 @@ def main() -> None:
             arm_reports[arm]["optimizer_steps_one_physical_pass"]
         ):
             raise ValueError(f"{arm}: optimizer-step count differs from config")
+    if {
+        int(value["optimizer_steps_one_physical_pass"])
+        for value in arm_reports.values()
+    } != {27}:
+        raise ValueError("all preference arms must use exactly 27 optimizer steps")
 
     report = {
         "schema_version": "exp54-sorc-dpo-training-report-v1",
@@ -607,6 +641,18 @@ def main() -> None:
         "score_block_equal_weighting_verified": True,
         "p1_p2_pair_and_token_vectors_equal": True,
         "p1_p2_only_offset_differs": True,
+        "p1_p1_syn_record_and_block_vectors_equal": True,
+        "p1_p1_syn_chosen_sequence_and_mask_vectors_equal": True,
+        "all_arm_optimizer_step_counts_equal": (
+            len(
+                {
+                    int(value["optimizer_steps_one_physical_pass"])
+                    for value in arm_reports.values()
+                }
+            )
+            == 1
+        ),
+        "padding": "fixed_right_padding_to_cutoff_2048",
         "p3_rationale_qualification_required": True,
         "p3_currently_training_allowed": False,
         "evaluator_called": False,

@@ -277,6 +277,31 @@ def _arm_source_rows(
     ]
 
 
+def verify_p1_syn_control(
+    p1: list[dict[str, Any]],
+    p1_syn: list[dict[str, Any]],
+) -> None:
+    """Hard-fail if the synthetic diagnostic ceases to be same-record matched."""
+    if [
+        (row["record_id"], row["pair_type"]) for row in p1
+    ] != [
+        (row["record_id"], row["pair_type"]) for row in p1_syn
+    ]:
+        raise ValueError("P1/P1-SYN record or block vectors differ")
+    if [
+        row["chosen_input_ids"] for row in p1
+    ] != [
+        row["chosen_input_ids"] for row in p1_syn
+    ]:
+        raise ValueError("P1/P1-SYN chosen sequence vectors differ")
+    if [
+        row["chosen_field_token_positions"] for row in p1
+    ] != [
+        row["chosen_field_token_positions"] for row in p1_syn
+    ]:
+        raise ValueError("P1/P1-SYN chosen field-mask vectors differ")
+
+
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--candidate-dir", type=Path, default=DEFAULT_OUTPUT)
@@ -385,9 +410,12 @@ def main() -> None:
     }
     pairs = {name: read_jsonl(path) for name, path in PAIR_FILES.items()}
     cutoff_len = int(config["data"]["cutoff_len"])
-    effective_batch = int(
-        config["optimization"]["effective_pair_batch_size"]
-    )
+    if (
+        config["data"].get("padding")
+        != "fixed_right_padding_to_cutoff_2048"
+        or cutoff_len != 2048
+    ):
+        raise ValueError("preference padding contract must be fixed right 2048")
     manifest_rows = {}
     aggregate = {}
     for arm, filename in ARM_FILES.items():
@@ -397,6 +425,9 @@ def main() -> None:
             raise ValueError(f"{arm}: manifest hash differs")
         rows = read_jsonl(path)
         source_rows = _arm_source_rows(arm, pairs)
+        effective_batch = int(
+            config["arms"][arm]["effective_pair_batch_size"]
+        )
         if len(rows) != len(source_rows):
             raise ValueError(f"{arm}: source and manifest counts differ")
         tasks = [task for _source, task, _offset in source_rows]
@@ -455,6 +486,9 @@ def main() -> None:
                 "rejected_field_tokens": sum(
                     len(row["rejected_field_token_positions"]) for row in rows
                 ),
+                "fixed_padded_forward_tokens": (
+                    2 * len(rows) * cutoff_len
+                ),
             },
         }
         for field, expected_value in expected_public.items():
@@ -475,6 +509,8 @@ def main() -> None:
 
     p1 = manifest_rows["P1_FIELD_DPO"]
     p2 = manifest_rows["P2_SORC_SCORE"]
+    p1_syn = manifest_rows["P1_SYN_SEED42"]
+    verify_p1_syn_control(p1, p1_syn)
     ignored = {"odpo_offset"}
     for first, second in zip(p1, p2):
         if {
@@ -496,6 +532,22 @@ def main() -> None:
             if key not in p3_ignored
         }:
             raise ValueError("P3 score block differs from P2")
+    if {
+        int(value["optimizer_steps_one_physical_pass"])
+        for value in aggregate.values()
+    } != {27}:
+        raise ValueError("all preference arms must use exactly 27 optimizer steps")
+    if (
+        report.get("p1_p1_syn_record_and_block_vectors_equal") is not True
+        or report.get(
+            "p1_p1_syn_chosen_sequence_and_mask_vectors_equal"
+        )
+        is not True
+        or report.get("all_arm_optimizer_step_counts_equal") is not True
+        or report.get("padding")
+        != "fixed_right_padding_to_cutoff_2048"
+    ):
+        raise ValueError("public control or padding assertions differ")
 
     for value in (report, lock):
         if (
@@ -516,7 +568,11 @@ def main() -> None:
         "status": "SORC_DPO_TRAINING_CANDIDATE_AUDIT_PASS",
         "aggregate": aggregate,
         "p1_p2_only_offset_differs": True,
+        "p1_p1_syn_same_record_and_block_vectors": True,
+        "p1_p1_syn_same_chosen_sequence_and_mask_vectors": True,
         "p3_score_block_equals_p2_except_objective_weight": True,
+        "all_arm_optimizer_step_counts_equal_27": True,
+        "padding_fixed_right_to_2048": True,
         "three_score_blocks_equal_weighting_verified": True,
         "joint_score_rationale_half_half_verified": True,
         "field_masks_independently_rematerialized": True,
