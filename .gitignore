@@ -360,6 +360,8 @@ thesis_exp/artifacts/exp45_dopr_head/
 # Exp54 preference text/token manifests and qualification rows remain private.
 # Only aggregate reports, hashes, protocols, and source code are publishable.
 thesis_exp/outputs/exp54_rar_sft/rar_v2/preference_pairs/private/
+thesis_exp/outputs/exp54_rar_sft/rar_v2/preference_pairs/rationale_qualification/private/
+thesis_exp/outputs/exp54_rar_sft/rar_v2/preference_pairs/rationale_qualification/raw_api/
 thesis_exp/outputs/exp54_rar_sft/rar_v2/preference_training_candidate/private/
 thesis_exp/outputs/exp54_rar_sft/rar_v2/preference_smoke/private/
 thesis_exp/outputs/exp54_rar_sft/rar_v2/preference_smoke/runs/
