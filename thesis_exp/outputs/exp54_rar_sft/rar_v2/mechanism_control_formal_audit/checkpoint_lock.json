@@ -1,0 +1,34 @@
+{
+  "adapter_hashes": {
+    "P1_FULLSEQ:seed42": "1415153cdac4d4867520462bbb553bb03e17376786b032174af7f127fa4c37c0",
+    "P1_FULLSEQ:seed43": "f3c4437d70e1b43737aa2a9ab2a562dcf84d5161276aba85630e3ddd3ee68c27",
+    "P1_FULLSEQ:seed44": "0d0e9b331aa2d20b1c5c531d95192f058a9eec9c29d0c4d79cb8ba06abee4867",
+    "P1_SYN_LR5E6:seed42": "db5c50d3f8fa4eb785e336db39170187cea1643ed252323f52508d451eb03d97",
+    "P1_SYN_LR5E6:seed43": "d36a1722cd54b6df42bdad157adfaed8a66076d2eb9a32478895e6e930ea84cd",
+    "P1_SYN_LR5E6:seed44": "d0da7beeb7dd4c4e95b87d24a86431fbdb5923bac4b721162c5e9090238b5a62",
+    "R3_TOKENAVG:seed42": "3be774aa22dabfbbbdc992e3f8b198d1e8d76c694b3c3de75896ed0de4ba40b9",
+    "R3_TOKENAVG:seed43": "e1f90e2dc9c7896952a469f777d77a7cbfde216f245ce797808c72b95f1842f6",
+    "R3_TOKENAVG:seed44": "1ddb07fe5864abd4a8e0fb1e7534b7e59dcd6f137c11a0d90f82239f10d4deec"
+  },
+  "audit_report_sha256": "e4740ed229b33e520b7f366ec75f561c37794a50f0a10cfda786336fb5e55fe4",
+  "checkpoint_count": 9,
+  "checkpoint_frozen": true,
+  "dev_accessed": false,
+  "evaluation_started": false,
+  "formal_plan_sha256": "e1ff47ee9ce51a1e0aa62024e02438a160db4969ba48fda40278a901d331a611",
+  "result_hashes": {
+    "P1_FULLSEQ:seed42": "cd295f541350df3ebd2c272791945ff974fc7ce84428dcbb409b5f542b534c31",
+    "P1_FULLSEQ:seed43": "b0b4a2b499e32f481f3b0e5efe149d3d26f53d7d7acc044a772547f02e69ffed",
+    "P1_FULLSEQ:seed44": "06845da662e765ec4c6a01de6424ae31d16aec2d44e57b5fd8133a3a9c3af53e",
+    "P1_SYN_LR5E6:seed42": "92ae9725dc62bbc539b9f66f993ca40011bc9bcf855f49a1672cb7324394252f",
+    "P1_SYN_LR5E6:seed43": "3ccedce34e8503d87c9ba0df075157c8b19ab741c47e440e5f2c2da45d8dc346",
+    "P1_SYN_LR5E6:seed44": "22eb71ee068a30c8b0954665ecb94fa2361d9b28fc3aa11a60d56f38c7953bb5",
+    "R3_TOKENAVG:seed42": "4bdfd10b521d6b4bd20d81b48285ad1570cb3c13a91bef3152a4c91e7ed769be",
+    "R3_TOKENAVG:seed43": "ed6b5ee3cfcd87e88b54632292efbba1002142d744f441eba456f9335640b0cd",
+    "R3_TOKENAVG:seed44": "9082456b0745050cb1015f3433065d68638ada05a12365da523e0d5b810761fb"
+  },
+  "schema_version": "exp54-mechanism-control-formal-lock-v1",
+  "status": "MECHANISM_CONTROL_FORMAL_CHECKPOINTS_FROZEN",
+  "test_accessed": false,
+  "training_complete": true
+}
