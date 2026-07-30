@@ -1,0 +1,287 @@
+{
+  "H1_FIELD_DPO": {
+    "Exact": {
+      "bootstrap_mean": 0.006752073940486928,
+      "ci95_high": 0.010519987977156586,
+      "ci95_low": 0.003005710850616403,
+      "minimum_valid_replicates_met": true,
+      "omitted_replicates": 0,
+      "point_benefit": 0.006762849413886274,
+      "two_sided_p_unadjusted": 0.00039996000399960006,
+      "valid_replicates": 10000
+    },
+    "H2L_rate": {
+      "bootstrap_mean": -0.0008720353762087783,
+      "ci95_high": -0.0001718213058419244,
+      "ci95_low": -0.0019107173875282265,
+      "minimum_valid_replicates_met": true,
+      "omitted_replicates": 0,
+      "point_benefit": -0.0008676036786395974,
+      "two_sided_p_unadjusted": 0.038196180381961806,
+      "valid_replicates": 10000
+    },
+    "Kendall_tau_b": {
+      "bootstrap_mean": 0.026361693766715395,
+      "ci95_high": 0.03412216569876969,
+      "ci95_low": 0.018888097873187876,
+      "minimum_valid_replicates_met": true,
+      "omitted_replicates": 0,
+      "point_benefit": 0.026327683279580905,
+      "two_sided_p_unadjusted": 0.00019998000199980003,
+      "valid_replicates": 10000
+    },
+    "L2H_rate": {
+      "bootstrap_mean": 0.1622549661064435,
+      "ci95_high": 0.20125786163522008,
+      "ci95_low": 0.12548914189331642,
+      "holm_adjusted_p": 0.0011998800119988001,
+      "holm_family_resolved": true,
+      "minimum_valid_replicates_met": true,
+      "omitted_replicates": 0,
+      "point_benefit": 0.16181229773462785,
+      "two_sided_p_unadjusted": 0.00019998000199980003,
+      "valid_replicates": 10000
+    },
+    "Label_5_Recall": {
+      "bootstrap_mean": -0.00362598389114092,
+      "ci95_high": -0.000824385331342978,
+      "ci95_low": -0.006683375104427736,
+      "minimum_valid_replicates_met": true,
+      "omitted_replicates": 0,
+      "point_benefit": -0.0036081043574798244,
+      "two_sided_p_unadjusted": 0.012198780121987801,
+      "valid_replicates": 10000
+    },
+    "MAE": {
+      "bootstrap_mean": 0.024527472197174632,
+      "ci95_high": 0.03261196272918543,
+      "ci95_low": 0.01698226630598132,
+      "holm_adjusted_p": 0.0011998800119988001,
+      "holm_family_resolved": true,
+      "minimum_valid_replicates_met": true,
+      "omitted_replicates": 0,
+      "point_benefit": 0.024496543432521778,
+      "two_sided_p_unadjusted": 0.00019998000199980003,
+      "valid_replicates": 10000
+    },
+    "QWK": {
+      "bootstrap_mean": 0.09521119940305604,
+      "ci95_high": 0.11485193879854981,
+      "ci95_low": 0.07559539526899857,
+      "minimum_valid_replicates_met": true,
+      "omitted_replicates": 0,
+      "point_benefit": 0.09532252439385158,
+      "two_sided_p_unadjusted": 0.00019998000199980003,
+      "valid_replicates": 10000
+    },
+    "absolute_Signed_Bias": {
+      "bootstrap_mean": 0.03990465885181846,
+      "ci95_high": 0.04824165915238954,
+      "ci95_low": 0.03201082055906221,
+      "minimum_valid_replicates_met": true,
+      "omitted_replicates": 0,
+      "point_benefit": 0.03982566877066426,
+      "two_sided_p_unadjusted": 0.00019998000199980003,
+      "valid_replicates": 10000
+    },
+    "forced_completion_increase": {
+      "bootstrap_mean": 0.007394830177336939,
+      "ci95_high": 0.015028554253080856,
+      "ci95_low": -0.0003005710850616239,
+      "definition": "treatment_minus_baseline_rate",
+      "omitted_replicates": 0,
+      "point_treatment_minus_baseline": 0.007363991584009605,
+      "valid_replicates": 10000
+    }
+  },
+  "H2_ORDINAL_OFFSET": {
+    "Exact": {
+      "bootstrap_mean": 0.0013713706041478808,
+      "ci95_high": 0.0037608957018336283,
+      "ci95_low": -0.0010519987977156697,
+      "minimum_valid_replicates_met": true,
+      "omitted_replicates": 0,
+      "point_benefit": 0.0013525698827772104,
+      "two_sided_p_unadjusted": 0.29017098290170984,
+      "valid_replicates": 10000
+    },
+    "H2L_rate": {
+      "bootstrap_mean": -0.00017170296636920526,
+      "ci95_high": 0.0,
+      "ci95_low": -0.0005254860746190225,
+      "minimum_valid_replicates_met": true,
+      "omitted_replicates": 0,
+      "point_benefit": -0.00017352073572791948,
+      "two_sided_p_unadjusted": 0.7437256274372562,
+      "valid_replicates": 10000
+    },
+    "Kendall_tau_b": {
+      "bootstrap_mean": 0.0018142019210924763,
+      "ci95_high": 0.005128197177375548,
+      "ci95_low": -0.0013293996601503458,
+      "minimum_valid_replicates_met": true,
+      "omitted_replicates": 0,
+      "point_benefit": 0.001809698125308068,
+      "two_sided_p_unadjusted": 0.26617338266173385,
+      "valid_replicates": 10000
+    },
+    "L2H_rate": {
+      "bootstrap_mean": 0.019514927878232866,
+      "ci95_high": 0.03819444444444442,
+      "ci95_low": 0.0031446540880503138,
+      "holm_adjusted_p": 0.073992600739926,
+      "holm_family_resolved": true,
+      "minimum_valid_replicates_met": true,
+      "omitted_replicates": 0,
+      "point_benefit": 0.01941747572815533,
+      "two_sided_p_unadjusted": 0.036996300369963,
+      "valid_replicates": 10000
+    },
+    "Label_5_Recall": {
+      "bootstrap_mean": -0.001651067432401365,
+      "ci95_high": 0.0002686168631704175,
+      "ci95_low": -0.0035991888587870225,
+      "minimum_valid_replicates_met": true,
+      "omitted_replicates": 0,
+      "point_benefit": -0.0016652789342215257,
+      "two_sided_p_unadjusted": 0.09519048095190481,
+      "valid_replicates": 10000
+    },
+    "MAE": {
+      "bootstrap_mean": 0.003177892996693718,
+      "ci95_high": 0.00676284941388644,
+      "ci95_low": -0.00030057108506159613,
+      "holm_adjusted_p": 0.0805919408059194,
+      "holm_family_resolved": true,
+      "minimum_valid_replicates_met": true,
+      "omitted_replicates": 0,
+      "point_benefit": 0.0031559963931469537,
+      "two_sided_p_unadjusted": 0.0805919408059194,
+      "valid_replicates": 10000
+    },
+    "QWK": {
+      "bootstrap_mean": 0.010463997138285334,
+      "ci95_high": 0.01990427146802334,
+      "ci95_low": 0.0019011860422130434,
+      "minimum_valid_replicates_met": true,
+      "omitted_replicates": 0,
+      "point_benefit": 0.01043410557592761,
+      "two_sided_p_unadjusted": 0.015798420157984203,
+      "valid_replicates": 10000
+    },
+    "absolute_Signed_Bias": {
+      "bootstrap_mean": 0.007071791403666967,
+      "ci95_high": 0.010820559062218238,
+      "ci95_low": 0.0033062819356778073,
+      "minimum_valid_replicates_met": true,
+      "omitted_replicates": 0,
+      "point_benefit": 0.007063420498947995,
+      "two_sided_p_unadjusted": 0.00039996000399960006,
+      "valid_replicates": 10000
+    },
+    "forced_completion_increase": {
+      "bootstrap_mean": -0.003426059513074842,
+      "ci95_high": 0.004508566275924261,
+      "ci95_low": -0.01142170123234145,
+      "definition": "treatment_minus_baseline_rate",
+      "omitted_replicates": 0,
+      "point_treatment_minus_baseline": -0.0034565674782085776,
+      "valid_replicates": 10000
+    }
+  },
+  "H3_RATIONALE_BLOCK": {
+    "Exact": {
+      "bootstrap_mean": 0.0012077096483318291,
+      "ci95_high": 0.003907424105800916,
+      "ci95_low": -0.0015028554253079252,
+      "minimum_valid_replicates_met": true,
+      "omitted_replicates": 0,
+      "point_benefit": 0.0012022843402466066,
+      "two_sided_p_unadjusted": 0.38976102389761025,
+      "valid_replicates": 10000
+    },
+    "H2L_rate": {
+      "bootstrap_mean": 0.0003464297995887828,
+      "ci95_high": 0.0008739730816290858,
+      "ci95_low": 0.0,
+      "minimum_valid_replicates_met": true,
+      "omitted_replicates": 0,
+      "point_benefit": 0.00034704147145583897,
+      "two_sided_p_unadjusted": 0.27777222277772223,
+      "valid_replicates": 10000
+    },
+    "Kendall_tau_b": {
+      "bootstrap_mean": 0.006795253234803883,
+      "ci95_high": 0.012434352142998078,
+      "ci95_low": 0.001467218404262069,
+      "minimum_valid_replicates_met": true,
+      "omitted_replicates": 0,
+      "point_benefit": 0.006745197519210211,
+      "two_sided_p_unadjusted": 0.0091990800919908,
+      "valid_replicates": 10000
+    },
+    "L2H_rate": {
+      "bootstrap_mean": 0.03253064334885279,
+      "ci95_high": 0.0542635658914728,
+      "ci95_low": 0.012458174685589022,
+      "holm_adjusted_p": 0.012798720127987202,
+      "holm_family_resolved": true,
+      "minimum_valid_replicates_met": true,
+      "omitted_replicates": 0,
+      "point_benefit": 0.032362459546925626,
+      "two_sided_p_unadjusted": 0.0031996800319968005,
+      "valid_replicates": 10000
+    },
+    "Label_5_Recall": {
+      "bootstrap_mean": 0.0013871770070385152,
+      "ci95_high": 0.004163197335553592,
+      "ci95_low": -0.0011534025374855261,
+      "minimum_valid_replicates_met": true,
+      "omitted_replicates": 0,
+      "point_benefit": 0.0013877324451845308,
+      "two_sided_p_unadjusted": 0.35296470352964704,
+      "valid_replicates": 10000
+    },
+    "MAE": {
+      "bootstrap_mean": 0.006352750225428314,
+      "ci95_high": 0.01112113014727989,
+      "ci95_low": 0.0018034265103696878,
+      "holm_adjusted_p": 0.016798320167983202,
+      "holm_family_resolved": true,
+      "minimum_valid_replicates_met": true,
+      "omitted_replicates": 0,
+      "point_benefit": 0.006311992786293963,
+      "two_sided_p_unadjusted": 0.005599440055994401,
+      "valid_replicates": 10000
+    },
+    "QWK": {
+      "bootstrap_mean": 0.019318364126561682,
+      "ci95_high": 0.03243616678090117,
+      "ci95_low": 0.007275533232139727,
+      "minimum_valid_replicates_met": true,
+      "omitted_replicates": 0,
+      "point_benefit": 0.01922258276436095,
+      "two_sided_p_unadjusted": 0.0013998600139986002,
+      "valid_replicates": 10000
+    },
+    "absolute_Signed_Bias": {
+      "bootstrap_mean": 0.0015419597234746017,
+      "ci95_high": 0.006762849413886371,
+      "ci95_low": -0.0033062819356777934,
+      "minimum_valid_replicates_met": true,
+      "omitted_replicates": 0,
+      "point_benefit": 0.0015028554253080917,
+      "two_sided_p_unadjusted": 0.5609439056094391,
+      "valid_replicates": 10000
+    },
+    "forced_completion_increase": {
+      "bootstrap_mean": -0.009760054102795311,
+      "ci95_high": -0.0013525698827772752,
+      "ci95_low": -0.018184550646227832,
+      "definition": "treatment_minus_baseline_rate",
+      "omitted_replicates": 0,
+      "point_treatment_minus_baseline": -0.009768560264502568,
+      "valid_replicates": 10000
+    }
+  }
+}
