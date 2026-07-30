@@ -27,9 +27,6 @@ from thesis_exp.exp54_rar_sft.build_sorc_dpo_training_manifests import (
     PAIR_FILES,
 )
 from thesis_exp.exp54_rar_sft.probe_sorc_dpo_capacity import _device_identity
-from thesis_exp.exp54_rar_sft.run_sorc_dpo_dev_inference_vllm import (
-    _validate_adapter,
-)
 from thesis_exp.exp54_rar_sft.sorc_dpo_loss import (
     SORCDPOPairCollator,
 )
@@ -50,6 +47,14 @@ OUTPUT_ROOT = (
     REPO_ROOT
     / "thesis_exp/outputs/exp54_rar_sft/rar_v2/"
     "preference_train_signal_diagnostics"
+)
+DEFAULT_TRAINING_ROOT = (
+    REPO_ROOT
+    / "thesis_exp/outputs/exp54_rar_sft/rar_v2/"
+    "preference_formal_runs"
+)
+DEFAULT_TRAINING_AUDIT = (
+    DEFAULT_TRAINING_ROOT / "formal_training_audit_report.json"
 )
 PRIVATE_METRIC_FIELDS = (
     "reference_chosen_logp",
@@ -235,6 +240,61 @@ def _source_metadata() -> dict[str, dict[str, Any]]:
                 "language": str(row["language"]),
             }
     return output
+
+
+def _validate_diagnostic_adapter(
+    *,
+    arm: str,
+    seed: int,
+    training_root: Path,
+    audit_report_path: Path,
+    expected_audit_status: str,
+    expected_audit_run_count: int,
+) -> tuple[Path, dict[str, str]]:
+    result_path = training_root / arm.lower() / f"seed_{seed}/result.json"
+    adapter_path = result_path.parent / "adapter"
+    adapter_config_path = adapter_path / "adapter_config.json"
+    adapter_model_path = adapter_path / "adapter_model.safetensors"
+    for path in (result_path, adapter_config_path, adapter_model_path):
+        if not path.is_file() or path.is_symlink():
+            raise FileNotFoundError(path)
+    result = read_json(result_path)
+    exact = {
+        "status": "SORC_DPO_FORMAL_TRAINING_COMPLETE",
+        "arm": arm,
+        "seed": seed,
+        "optimizer_steps": 27,
+        "dev_accessed": False,
+        "test_accessed": False,
+    }
+    for field, expected in exact.items():
+        if result.get(field) != expected:
+            raise ValueError(f"{arm}/{seed}: training result {field} differs")
+    hashes = {
+        "adapter_config": sha256_file(adapter_config_path),
+        "adapter_model": sha256_file(adapter_model_path),
+        "training_result": sha256_file(result_path),
+    }
+    if (
+        hashes["adapter_config"] != result["output_adapter_config_sha256"]
+        or hashes["adapter_model"] != result["output_adapter_model_sha256"]
+    ):
+        raise ValueError(f"{arm}/{seed}: adapter hash differs")
+    audit = read_json(audit_report_path)
+    run_key = f"{arm}/seed_{seed}"
+    if (
+        audit.get("status") != expected_audit_status
+        or int(audit.get("run_count", -1)) != expected_audit_run_count
+        or audit.get("dev_accessed") is not False
+        or audit.get("test_accessed") is not False
+        or audit["runs"].get(run_key, {}).get("status") != "PASS"
+        or audit["runs"][run_key].get("adapter_model_sha256")
+        != hashes["adapter_model"]
+        or audit["runs"][run_key].get("result_sha256")
+        != hashes["training_result"]
+    ):
+        raise ValueError(f"{arm}/{seed}: training audit binding differs")
+    return adapter_path, hashes
 
 
 def _score_token_ids(
@@ -573,6 +633,10 @@ def run_seed(
     cuda_device_uuid: str,
     batch_pairs: int,
     output_dir: Path,
+    training_root: Path = DEFAULT_TRAINING_ROOT,
+    training_audit_path: Path = DEFAULT_TRAINING_AUDIT,
+    training_audit_status: str = "SORC_DPO_FORMAL_TRAINING_AUDIT_PASS",
+    training_audit_run_count: int = 10,
 ) -> dict[str, Any]:
     if seed not in (42, 43, 44):
         raise ValueError("diagnostic seed must be 42, 43, or 44")
@@ -611,19 +675,13 @@ def run_seed(
     trained_paths = {}
     trained_hashes = {}
     for arm in ARMS:
-        path, hashes = _validate_adapter(
+        path, hashes = _validate_diagnostic_adapter(
             arm=arm,
             seed=seed,
-            training_root=(
-                REPO_ROOT
-                / "thesis_exp/outputs/exp54_rar_sft/rar_v2/"
-                "preference_formal_runs"
-            ),
-            audit_report_path=(
-                REPO_ROOT
-                / "thesis_exp/outputs/exp54_rar_sft/rar_v2/"
-                "preference_formal_runs/formal_training_audit_report.json"
-            ),
+            training_root=training_root,
+            audit_report_path=training_audit_path,
+            expected_audit_status=training_audit_status,
+            expected_audit_run_count=training_audit_run_count,
         )
         trained_paths[arm] = path
         trained_hashes[arm] = hashes
@@ -796,6 +854,7 @@ def run_seed(
             "frozen_pair_sources": {
                 name: sha256_file(path) for name, path in PAIR_FILES.items()
             },
+            "training_audit": sha256_file(training_audit_path),
         },
         "row_level_values_public": False,
         "dev_accessed": False,
@@ -845,6 +904,21 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--cuda-device-uuid", required=True)
     parser.add_argument("--batch-pairs", type=int, default=16)
     parser.add_argument("--output-root", type=Path, default=OUTPUT_ROOT)
+    parser.add_argument(
+        "--training-root",
+        type=Path,
+        default=DEFAULT_TRAINING_ROOT,
+    )
+    parser.add_argument(
+        "--training-audit",
+        type=Path,
+        default=DEFAULT_TRAINING_AUDIT,
+    )
+    parser.add_argument(
+        "--training-audit-status",
+        default="SORC_DPO_FORMAL_TRAINING_AUDIT_PASS",
+    )
+    parser.add_argument("--training-audit-run-count", type=int, default=10)
     return parser.parse_args()
 
 
@@ -855,6 +929,10 @@ def main() -> None:
         cuda_device_uuid=args.cuda_device_uuid,
         batch_pairs=args.batch_pairs,
         output_dir=args.output_root / f"seed_{args.seed}",
+        training_root=args.training_root,
+        training_audit_path=args.training_audit,
+        training_audit_status=args.training_audit_status,
+        training_audit_run_count=args.training_audit_run_count,
     )
 
 

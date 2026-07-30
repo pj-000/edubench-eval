@@ -53,6 +53,10 @@ DEFAULT_OUTPUT_ROOT = (
 DEFAULT_AUDIT_REPORT = (
     DEFAULT_TRAINING_ROOT / "formal_training_audit_report.json"
 )
+AUDIT_CONTRACTS = {
+    "formal": ("SORC_DPO_FORMAL_TRAINING_AUDIT_PASS", 10),
+    "lr5e6_followup": ("SORC_DPO_LR5E6_TRAINING_AUDIT_PASS", 9),
+}
 
 
 def _read_json(path: Path) -> dict[str, Any]:
@@ -68,6 +72,7 @@ def _validate_adapter(
     seed: int,
     training_root: Path,
     audit_report_path: Path,
+    audit_contract: str = "formal",
 ) -> tuple[Path, dict[str, str]]:
     if arm == "P1_SYN_SEED42" and seed != 42:
         raise ValueError("P1-SYN is frozen for seed 42 only")
@@ -101,10 +106,13 @@ def _validate_adapter(
     ):
         raise ValueError(f"{arm}/{seed}: adapter hash differs")
     audit = _read_json(audit_report_path)
+    expected_audit_status, expected_audit_run_count = AUDIT_CONTRACTS[
+        audit_contract
+    ]
     run_key = f"{arm}/seed_{seed}"
     if (
-        audit.get("status") != "SORC_DPO_FORMAL_TRAINING_AUDIT_PASS"
-        or audit.get("run_count") != 10
+        audit.get("status") != expected_audit_status
+        or audit.get("run_count") != expected_audit_run_count
         or audit.get("dev_accessed") is not False
         or audit.get("test_accessed") is not False
         or audit["runs"].get(run_key, {}).get("status") != "PASS"
@@ -142,6 +150,7 @@ def run(args: argparse.Namespace) -> None:
         seed=args.seed,
         training_root=args.training_root,
         audit_report_path=args.audit_report,
+        audit_contract=args.audit_contract,
     )
     rows = load_dev_rows()
 
@@ -388,6 +397,11 @@ def parse_args() -> argparse.Namespace:
         type=Path,
         default=DEFAULT_AUDIT_REPORT,
     )
+    parser.add_argument(
+        "--audit-contract",
+        choices=tuple(AUDIT_CONTRACTS),
+        default="formal",
+    )
     parser.add_argument("--max-num-seqs", type=int, default=128)
     parser.add_argument("--gpu-memory-utilization", type=float, default=0.90)
     parser.add_argument("--validate-only", action="store_true")
@@ -404,6 +418,7 @@ if __name__ == "__main__":
             seed=parsed_args.seed,
             training_root=parsed_args.training_root,
             audit_report_path=parsed_args.audit_report,
+            audit_contract=parsed_args.audit_contract,
         )
         print(
             json.dumps(

@@ -259,9 +259,18 @@ def paired_bootstrap(
 
 def collect(args: argparse.Namespace) -> None:
     args.output_dir.mkdir(parents=True, exist_ok=False)
+    selected_arms = (
+        {
+            arm: seeds
+            for arm, seeds in ARMS.items()
+            if arm != "P1_SYN_SEED42"
+        }
+        if args.three_arm_only
+        else ARMS
+    )
     per_seed_rows: list[dict[str, Any]] = []
     predictions: dict[tuple[str, int], list[dict[str, Any]]] = {}
-    for arm, seeds in ARMS.items():
+    for arm, seeds in selected_arms.items():
         for seed in seeds:
             metrics, rows = _load_run(
                 args.dev_root / arm.lower() / f"seed_{seed}",
@@ -296,7 +305,7 @@ def collect(args: argparse.Namespace) -> None:
         predictions[("R3", seed)] = rows
 
     aggregates = []
-    for arm, seeds in ARMS.items():
+    for arm, seeds in selected_arms.items():
         arm_rows = [row for row in per_seed_rows if row["arm"] == arm]
         aggregate: dict[str, Any] = {"arm": arm, "seeds": list(seeds)}
         for name in (
@@ -331,11 +340,20 @@ def collect(args: argparse.Namespace) -> None:
         ),
         paired_bootstrap(
             predictions,
-            left="P1_FIELD_DPO",
-            right="P1_SYN_SEED42",
-            seeds=(42,),
+            left="P3_JOINT_SORC",
+            right="R3",
+            seeds=(42, 43, 44),
         ),
     ]
+    if not args.three_arm_only:
+        bootstraps.append(
+            paired_bootstrap(
+                predictions,
+                left="P1_FIELD_DPO",
+                right="P1_SYN_SEED42",
+                seeds=(42,),
+            )
+        )
     write_csv(args.output_dir / "per_seed_metrics.csv", per_seed_rows)
     write_csv(args.output_dir / "multiseed_summary.csv", aggregates)
     write_json(args.output_dir / "paired_bootstrap.json", bootstraps)
@@ -348,8 +366,13 @@ def collect(args: argparse.Namespace) -> None:
             "P1_FIELD_DPO vs frozen R3-SFT epoch3",
             "P2_SORC_SCORE vs P1_FIELD_DPO",
             "P3_JOINT_SORC vs P2_SORC_SCORE",
-            "P1_FIELD_DPO seed42 vs P1_SYN_SEED42",
-        ],
+            "P3_JOINT_SORC vs frozen R3-SFT epoch3",
+        ]
+        + (
+            []
+            if args.three_arm_only
+            else ["P1_FIELD_DPO seed42 vs P1_SYN_SEED42"]
+        ),
         "inference_protocol": "RAR_SFT_VLLM_COMPACT_JSON_V1",
         "dev_accessed": True,
         "test_accessed": False,
@@ -395,6 +418,11 @@ def parse_args() -> argparse.Namespace:
         default=DEFAULT_SFT_DEV_ROOT,
     )
     parser.add_argument("--output-dir", type=Path, default=DEFAULT_OUTPUT)
+    parser.add_argument(
+        "--three-arm-only",
+        action="store_true",
+        help="Collect P1/P2/P3 without the seed-42 P1-SYN diagnostic arm.",
+    )
     return parser.parse_args()
 
 
