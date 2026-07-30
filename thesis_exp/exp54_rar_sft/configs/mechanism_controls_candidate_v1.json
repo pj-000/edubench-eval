@@ -1,0 +1,187 @@
+{
+  "schema_version": "exp54-thesis-mechanism-controls-candidate-v1",
+  "status": "CPU_IMPLEMENTATION_CANDIDATE_GPU_NOT_AUTHORIZED",
+  "scientific_contract": {
+    "path": "thesis_exp/exp54_rar_sft/THESIS_SCIENTIFIC_CONTRACT_V1.md",
+    "sha256": "0ace69f634262ae7c3b2879ca599245b24563affea3a14f7b47073ac9aa47c96",
+    "commit": "5d759949f7a494267d76f0fe1e8770565c8cbf18"
+  },
+  "completed_result_anchor": {
+    "commit": "a71470d",
+    "test_result_path": "thesis_exp/exp54_rar_sft/SORC_DPO_ONE_TIME_TEST_RESULTS.md",
+    "old_predictions_must_not_be_regenerated": true
+  },
+  "controls": {
+    "R3_TOKENAVG": {
+      "seeds": [
+        42,
+        43,
+        44
+      ],
+      "new_training_runs": 3,
+      "matched_comparator": "R3_BLOCK",
+      "estimand": "score_rationale_block_balancing",
+      "only_changed_variable": "per_sample_loss_reduction",
+      "candidate_implementation": "mechanism_control_losses.token_average_causal_loss",
+      "active_event_loss": "2*sum(score_and_rationale_token_nll)/count(score_and_rationale_tokens)",
+      "inactive_event_loss": "mean(score_token_nll)",
+      "active_sample_scale": 2.0,
+      "fixed_parent_config": {
+        "path": "thesis_exp/exp54_rar_sft/configs/training_configuration_candidate.json",
+        "sha256": "291a3fa055f5ef07ac0f1bc39f67f3b1c9d13219da0c3e3e801d9a9df29d5318"
+      },
+      "fixed_variables": {
+        "seed_specific_r3_manifest": true,
+        "row_order_and_token_ids": true,
+        "score_and_rationale_masks": true,
+        "rationale_active_vector": true,
+        "base_model_tokenizer_chat_template": true,
+        "lora_and_optimizer": true,
+        "logical_epochs_and_optimizer_steps": true,
+        "batch_accumulation_padding_cutoff": true,
+        "checkpoint_rule_and_inference": true
+      }
+    },
+    "P1_FULLSEQ": {
+      "seeds": [
+        42,
+        43,
+        44
+      ],
+      "new_training_runs": 3,
+      "matched_comparator": "P1_FIELD_DPO_LR5E6",
+      "estimand": "field_local_preference_credit_assignment",
+      "only_changed_variable": "dpo_log_probability_support_and_reduction",
+      "field_parent": "mean_over_score_value_tokens",
+      "candidate_control": "sum_over_full_assistant_completion_tokens",
+      "candidate_implementation": {
+        "log_probability": "mechanism_control_losses.sequence_sum_logps",
+        "collator": "mechanism_control_losses.FullSequenceDPOPairCollator",
+        "dpo_loss": "sorc_dpo_loss.field_dpo_per_pair"
+      },
+      "beta": 0.1,
+      "odpo_offset": 0.0,
+      "fixed_parent_config": {
+        "training_candidate_path": "thesis_exp/exp54_rar_sft/configs/sorc_dpo_training_candidate_v1.json",
+        "training_candidate_sha256": "a579a7bff836e03069fc69d43c7850617166102d9dc164d520d2183e5aab515d",
+        "lr5e6_overlay_path": "thesis_exp/exp54_rar_sft/configs/sorc_dpo_lr5e6_followup_v1.json",
+        "lr5e6_overlay_sha256": "c90673f5234bf4de4ad6e0d7c85e6af98b351183a03c2118249fe3f3c31ce183"
+      },
+      "fixed_variables": {
+        "all_838_actual_error_pairs": true,
+        "chosen_and_rejected_sequence_bytes": true,
+        "record_block_label_metric_language_vectors": true,
+        "equal_three_score_block_weighting": true,
+        "seed_matched_policy_and_reference": true,
+        "learning_rate_5e_6": true,
+        "one_preference_epoch_and_27_steps": true,
+        "optimizer_lora_batch_schedule_padding": true,
+        "checkpoint_and_inference": true
+      }
+    },
+    "P1_SYN_LR5E6": {
+      "seeds": [
+        42,
+        43,
+        44
+      ],
+      "new_training_runs": 3,
+      "matched_comparator": "P1_ACTUAL_FIELD_DPO_LR5E6",
+      "estimand": "actual_policy_error_negative_source",
+      "only_changed_variables": [
+        "rejected_score_value",
+        "rejected_score_source",
+        "rejected_score_provenance"
+      ],
+      "field_dpo_implementation": "sorc_dpo_loss.field_dpo_per_pair",
+      "learning_rate": 5e-6,
+      "old_seed42_lr5e7_checkpoint_reusable": false,
+      "fixed_parent_config": {
+        "training_candidate_path": "thesis_exp/exp54_rar_sft/configs/sorc_dpo_training_candidate_v1.json",
+        "training_candidate_sha256": "a579a7bff836e03069fc69d43c7850617166102d9dc164d520d2183e5aab515d",
+        "lr5e6_overlay_path": "thesis_exp/exp54_rar_sft/configs/sorc_dpo_lr5e6_followup_v1.json",
+        "lr5e6_overlay_sha256": "c90673f5234bf4de4ad6e0d7c85e6af98b351183a03c2118249fe3f3c31ce183"
+      },
+      "required_pair_equality": {
+        "pair_count": 838,
+        "record_and_pair_type_vector": true,
+        "chosen_sequence_vector": true,
+        "chosen_score_and_rationale_anchor": true,
+        "chosen_field_mask_vector": true,
+        "label_metric_language_vector": true,
+        "objective_weight_vector": true
+      },
+      "fixed_variables": {
+        "field_dpo_loss_and_beta": true,
+        "equal_three_score_block_weighting": true,
+        "seed_matched_policy_and_reference": true,
+        "one_preference_epoch_and_27_steps": true,
+        "optimizer_lora_batch_schedule_padding": true,
+        "checkpoint_and_inference": true
+      }
+    }
+  },
+  "run_matrix": [
+    {
+      "arm": "R3_TOKENAVG",
+      "seed": 42
+    },
+    {
+      "arm": "R3_TOKENAVG",
+      "seed": 43
+    },
+    {
+      "arm": "R3_TOKENAVG",
+      "seed": 44
+    },
+    {
+      "arm": "P1_FULLSEQ",
+      "seed": 42
+    },
+    {
+      "arm": "P1_FULLSEQ",
+      "seed": 43
+    },
+    {
+      "arm": "P1_FULLSEQ",
+      "seed": 44
+    },
+    {
+      "arm": "P1_SYN_LR5E6",
+      "seed": 42
+    },
+    {
+      "arm": "P1_SYN_LR5E6",
+      "seed": 43
+    },
+    {
+      "arm": "P1_SYN_LR5E6",
+      "seed": 44
+    }
+  ],
+  "run_count": 9,
+  "test_boundary": {
+    "dataset": "existing frozen 2218-row test",
+    "new_checkpoint_evaluations_permitted_only_after_freeze": true,
+    "each_new_checkpoint_max_test_invocations": 1,
+    "old_checkpoint_predictions_regenerated": false,
+    "test_adaptive_tuning_or_retraining": false,
+    "claim_class": "post_hoc_mechanism_analysis_on_frozen_benchmark_test"
+  },
+  "excluded_changes": {
+    "p2_offset_rescaling": false,
+    "beta_search": false,
+    "grpo": false,
+    "p3_compute_redesign": false,
+    "actual_rationale_negative_training": false,
+    "new_h2_required": false
+  },
+  "authorization": {
+    "cpu_unit_tests_allowed": true,
+    "private_train_manifest_audit_allowed": true,
+    "gpu_smoke_allowed": false,
+    "full_gpu_training_allowed": false,
+    "dev_inference_allowed": false,
+    "test_inference_allowed": false
+  }
+}

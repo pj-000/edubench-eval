@@ -6,6 +6,9 @@ from thesis_exp.exp54_rar_sft.block_loss import (  # noqa: E402
     FixedRARCollator,
     blockwise_causal_loss,
 )
+from thesis_exp.exp54_rar_sft.mechanism_control_losses import (  # noqa: E402
+    token_average_causal_loss,
+)
 
 
 def _logits(input_ids, vocab_size=8):
@@ -100,6 +103,89 @@ def test_each_block_is_normalized_before_the_two_losses_are_added() -> None:
     assert torch.allclose(
         result["per_sample_loss"],
         torch.full((2,), 2 * expected_block_loss),
+    )
+
+
+def test_token_average_matches_two_block_scale_for_uniform_token_loss() -> None:
+    input_ids = torch.tensor([[1, 2, 3, 4, 5]])
+    logits = _logits(input_ids)
+    score_mask = torch.tensor([[False, True, False, False, False]])
+    rationale_mask = torch.tensor([[False, False, True, True, True]])
+    active = torch.tensor([True])
+
+    block = blockwise_causal_loss(
+        logits,
+        input_ids,
+        score_mask,
+        rationale_mask,
+        active,
+    )
+    token_average = token_average_causal_loss(
+        logits,
+        input_ids,
+        score_mask,
+        rationale_mask,
+        active,
+    )
+
+    assert torch.allclose(token_average["loss"], block["loss"])
+    assert token_average["active_sample_scale"].item() == pytest.approx(2.0)
+
+
+def test_token_average_weights_long_rationale_more_than_short_score() -> None:
+    input_ids = torch.tensor([[1, 2, 3, 4, 5]])
+    logits = _logits(input_ids)
+    score_mask = torch.tensor([[False, True, False, False, False]])
+    rationale_mask = torch.tensor([[False, False, True, True, True]])
+    active = torch.tensor([True])
+    for position in (2, 3, 4):
+        logits[0, position - 1, input_ids[0, position]] = 20.0
+
+    block = blockwise_causal_loss(
+        logits,
+        input_ids,
+        score_mask,
+        rationale_mask,
+        active,
+    )["loss"]
+    token_average = token_average_causal_loss(
+        logits,
+        input_ids,
+        score_mask,
+        rationale_mask,
+        active,
+    )["loss"]
+
+    assert token_average < block
+    assert token_average.item() == pytest.approx(block.item() / 2, abs=1e-5)
+
+
+def test_token_average_inactive_row_is_exactly_score_only() -> None:
+    input_ids = torch.tensor([[1, 2, 3, 4]])
+    logits = _logits(input_ids)
+    score_mask = torch.tensor([[False, False, True, False]])
+    rationale_mask = torch.zeros_like(score_mask)
+    inactive = torch.tensor([False])
+
+    block = blockwise_causal_loss(
+        logits,
+        input_ids,
+        score_mask,
+        rationale_mask,
+        inactive,
+    )
+    token_average = token_average_causal_loss(
+        logits,
+        input_ids,
+        score_mask,
+        rationale_mask,
+        inactive,
+    )
+
+    assert torch.equal(token_average["loss"], block["loss"])
+    assert torch.equal(
+        token_average["per_sample_loss"],
+        block["per_sample_loss"],
     )
 
 

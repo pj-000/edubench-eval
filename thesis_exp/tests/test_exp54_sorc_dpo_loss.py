@@ -7,15 +7,19 @@ import pytest
 
 torch = pytest.importorskip("torch")
 
-from thesis_exp.exp54_rar_sft.sorc_dpo_loss import (
+from thesis_exp.exp54_rar_sft.mechanism_control_losses import (  # noqa: E402
+    FullSequenceDPOPairCollator,
+    sequence_sum_logps,
+)
+from thesis_exp.exp54_rar_sft.sorc_dpo_loss import (  # noqa: E402
     SORCDPOPairCollator,
     exact_objective_weights,
     field_dpo_per_pair,
     field_mean_logps,
     weighted_objective,
 )
-from thesis_exp.exp54_rar_sft import REPO_ROOT
-from thesis_exp.exp54_rar_sft.audit_sorc_dpo_training_manifests import (
+from thesis_exp.exp54_rar_sft import REPO_ROOT  # noqa: E402
+from thesis_exp.exp54_rar_sft.audit_sorc_dpo_training_manifests import (  # noqa: E402
     verify_p1_syn_control,
 )
 
@@ -75,6 +79,58 @@ def test_field_mean_logps_rejects_empty_and_position_zero_masks() -> None:
     mask = torch.tensor([[True, False, False]])
     with pytest.raises(ValueError, match="position zero"):
         field_mean_logps(logits, input_ids, mask)
+
+
+def test_sequence_sum_logps_uses_full_completion_sum_not_field_mean() -> None:
+    input_ids = torch.tensor([[1, 2, 3, 4, 5]])
+    logits = torch.zeros((*input_ids.shape, 17), dtype=torch.float64)
+    completion_mask = torch.tensor([[False, False, True, True, True]])
+    field_mask = torch.tensor([[False, False, True, False, False]])
+
+    sequence = sequence_sum_logps(logits, input_ids, completion_mask)
+    field = field_mean_logps(logits, input_ids, field_mask)
+
+    assert sequence["active_token_count"].tolist() == [3]
+    assert sequence["per_sequence_logp"].item() == pytest.approx(
+        3 * field["per_sequence_logp"].item()
+    )
+
+
+def test_sequence_sum_logps_changes_when_non_score_completion_changes() -> None:
+    input_ids = torch.tensor([[1, 2, 3, 4, 5]])
+    field_mask = torch.tensor([[False, False, True, False, False]])
+    completion_mask = torch.tensor([[False, False, True, True, True]])
+    first = _logits_for_targets(input_ids)
+    second = first.clone()
+    second[0, 2, input_ids[0, 3]] = -20.0
+    second[0, 3, input_ids[0, 4]] = -20.0
+
+    assert field_mean_logps(first, input_ids, field_mask)[
+        "per_sequence_logp"
+    ].item() == pytest.approx(
+        field_mean_logps(second, input_ids, field_mask)[
+            "per_sequence_logp"
+        ].item()
+    )
+    assert sequence_sum_logps(first, input_ids, completion_mask)[
+        "per_sequence_logp"
+    ].item() > sequence_sum_logps(second, input_ids, completion_mask)[
+        "per_sequence_logp"
+    ].item()
+
+
+def test_sequence_sum_logps_rejects_empty_and_position_zero_masks() -> None:
+    input_ids = torch.tensor([[1, 2, 3]])
+    logits = _logits_for_targets(input_ids)
+    with pytest.raises(ValueError, match="nonempty completion"):
+        sequence_sum_logps(
+            logits,
+            input_ids,
+            torch.zeros_like(input_ids).bool(),
+        )
+    mask = torch.tensor([[True, False, False]])
+    with pytest.raises(ValueError, match="position zero"):
+        sequence_sum_logps(logits, input_ids, mask)
 
 
 def test_dpo_offset_is_subtracted_after_beta_scaling_once() -> None:
@@ -274,6 +330,62 @@ def test_collator_emits_disjoint_exact_chosen_and_rejected_masks() -> None:
         batch["chosen_field_mask"] & ~batch["chosen_attention_mask"].bool()
     )
     assert batch["odpo_offset"].tolist() == pytest.approx([0.25, 0.0])
+
+
+def _full_sequence_feature() -> dict[str, object]:
+    return {
+        "pair_id": "pair-full-1",
+        "pair_task": "score",
+        "pair_type": "adjacent_score",
+        "active_field": "score",
+        "chosen_input_ids": [1, 2, 3, 4, 5],
+        "chosen_prompt_token_count": 2,
+        "chosen_completion_token_positions": [2, 3, 4],
+        "rejected_input_ids": [1, 2, 6, 7, 8, 9],
+        "rejected_prompt_token_count": 2,
+        "rejected_completion_token_positions": [2, 3, 4, 5],
+        "odpo_offset": 0.0,
+        "objective_weight": 1.0,
+        "cutoff_len": 8,
+    }
+
+
+def test_full_sequence_collator_activates_complete_assistant_suffix() -> None:
+    batch = FullSequenceDPOPairCollator(
+        pad_token_id=0,
+        cutoff_len=8,
+    )([_full_sequence_feature()])
+
+    assert batch["chosen_completion_mask"].nonzero()[:, 1].tolist() == [2, 3, 4]
+    assert batch["rejected_completion_mask"].nonzero()[:, 1].tolist() == [
+        2,
+        3,
+        4,
+        5,
+    ]
+    assert not torch.any(
+        batch["chosen_completion_mask"]
+        & ~batch["chosen_attention_mask"].bool()
+    )
+
+
+def test_full_sequence_collator_rejects_partial_score_only_mask() -> None:
+    row = _full_sequence_feature()
+    row["chosen_completion_token_positions"] = [2]
+    with pytest.raises(ValueError, match="complete assistant suffix"):
+        FullSequenceDPOPairCollator(pad_token_id=0, cutoff_len=8)([row])
+
+
+def test_full_sequence_collator_rejects_offset_or_non_score_pair() -> None:
+    row = _full_sequence_feature()
+    row["odpo_offset"] = 0.1
+    with pytest.raises(ValueError, match="does not accept an ODPO"):
+        FullSequenceDPOPairCollator(pad_token_id=0, cutoff_len=8)([row])
+
+    row = _full_sequence_feature()
+    row["pair_task"] = "rationale"
+    with pytest.raises(ValueError, match="score preference"):
+        FullSequenceDPOPairCollator(pad_token_id=0, cutoff_len=8)([row])
 
 
 @pytest.mark.parametrize(
