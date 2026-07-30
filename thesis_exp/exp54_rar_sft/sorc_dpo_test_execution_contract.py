@@ -92,6 +92,9 @@ EXPECTED_RUNTIME_SOURCE_NAMES = {
     "thesis_exp/src/edujudge/__init__.py",
     "thesis_exp/src/edujudge/exp02/__init__.py",
     "thesis_exp/src/edujudge/exp02/build_exp02_dataset.py",
+    "thesis_exp/src/edujudge/utils/__init__.py",
+    "thesis_exp/src/edujudge/utils/io.py",
+    "thesis_exp/src/edujudge/utils/text_norm.py",
 }
 EXPECTED_RUNTIME_ARTIFACT_NAMES = {
     (

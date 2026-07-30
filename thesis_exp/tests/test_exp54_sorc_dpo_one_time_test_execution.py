@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import shutil
 import subprocess
 from pathlib import Path
 
@@ -274,6 +275,45 @@ def test_runtime_source_closure_rejects_dirty_source(
         lock_path=lock_path,
     )
     source.write_text("dirty\n", encoding="utf-8")
+    with pytest.raises(ValueError, match="runtime source SHA-256 differs"):
+        contract.validate_runtime_source_closure(
+            repo_root=tmp_path,
+            lock_path=lock_path,
+        )
+
+
+@pytest.mark.parametrize(
+    "relative",
+    [
+        "thesis_exp/src/edujudge/utils/io.py",
+        "thesis_exp/src/edujudge/utils/text_norm.py",
+    ],
+)
+def test_prompt_dependency_tamper_fails(
+    tmp_path: Path,
+    relative: str,
+) -> None:
+    lock = contract.read_object(contract.RUNTIME_LOCK_PATH)
+    assert relative in contract.EXPECTED_RUNTIME_SOURCE_NAMES
+    for name in (
+        *lock["source_sha256"],
+        *lock["artifact_sha256"],
+    ):
+        source = contract.REPO_ROOT / name
+        destination = tmp_path / name
+        destination.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(source, destination)
+    lock_path = tmp_path / "runtime_lock.json"
+    shutil.copyfile(contract.RUNTIME_LOCK_PATH, lock_path)
+    contract.validate_runtime_source_closure(
+        repo_root=tmp_path,
+        lock_path=lock_path,
+    )
+    target = tmp_path / relative
+    target.write_text(
+        target.read_text(encoding="utf-8") + "\n# tampered\n",
+        encoding="utf-8",
+    )
     with pytest.raises(ValueError, match="runtime source SHA-256 differs"):
         contract.validate_runtime_source_closure(
             repo_root=tmp_path,
