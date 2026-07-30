@@ -12,6 +12,7 @@ from typing import Any, Iterable
 
 import numpy as np
 
+from thesis_exp.exp54_rar_sft import REPO_ROOT
 from thesis_exp.exp54_rar_sft.sorc_dpo_test_execution_contract import (
     ARMS,
     EXPECTED_TEST_BLOB_SHA1,
@@ -21,6 +22,7 @@ from thesis_exp.exp54_rar_sft.sorc_dpo_test_execution_contract import (
     SEEDS,
     load_preregistration,
     read_object,
+    validate_runtime_source_closure,
     verify_completion_receipts,
 )
 
@@ -455,7 +457,7 @@ def _bootstrap(
 
 def _holm_adjust(
     bootstrap: dict[str, dict[str, dict[str, Any]]],
-) -> None:
+) -> bool:
     family = []
     for contrast_id, _baseline, _treatment in CONTRASTS:
         for endpoint in PRIMARY_ENDPOINTS:
@@ -465,7 +467,12 @@ def _holm_adjust(
                 continue
             family.append((float(p_value), contrast_id, endpoint))
     if len(family) != 6:
-        return
+        for contrast_id, _baseline, _treatment in CONTRASTS:
+            for endpoint in PRIMARY_ENDPOINTS:
+                bootstrap[contrast_id][endpoint][
+                    "holm_family_resolved"
+                ] = False
+        return False
     family.sort()
     running = 0.0
     family_size = len(family)
@@ -475,6 +482,8 @@ def _holm_adjust(
         bootstrap[contrast_id][endpoint][
             "holm_adjusted_p"
         ] = min(1.0, running)
+        bootstrap[contrast_id][endpoint]["holm_family_resolved"] = True
+    return True
 
 
 def _add_point_deltas(
@@ -518,6 +527,30 @@ def _interpret(
         result = bootstrap[contrast_id]
         primary_harms = []
         guardrail_harms = []
+        required_endpoints = (
+            *PRIMARY_ENDPOINTS,
+            "Exact",
+            "Kendall_tau_b",
+            "absolute_Signed_Bias",
+            "Label_5_Recall",
+            "H2L_rate",
+        )
+        unresolved_endpoints = [
+            endpoint
+            for endpoint in required_endpoints
+            if not result[endpoint]["minimum_valid_replicates_met"]
+            or result[endpoint].get("point_benefit") is None
+        ]
+        holm_family_resolved = all(
+            result[endpoint].get("holm_family_resolved") is True
+            for endpoint in PRIMARY_ENDPOINTS
+        )
+        if not holm_family_resolved:
+            unresolved_endpoints.extend(
+                endpoint
+                for endpoint in PRIMARY_ENDPOINTS
+                if endpoint not in unresolved_endpoints
+            )
         for endpoint in PRIMARY_ENDPOINTS:
             item = result[endpoint]
             threshold = float(sesoi[endpoint])
@@ -534,7 +567,6 @@ def _interpret(
             "absolute_Signed_Bias",
             "Label_5_Recall",
             "H2L_rate",
-            "QWK",
         ):
             sesoi_key = (
                 "Kendall_tau_b"
@@ -560,19 +592,32 @@ def _interpret(
             and float(forced["ci95_low"]) > 0.0
         )
         primary_points = {
-            endpoint: float(result[endpoint]["point_benefit"])
+            endpoint: (
+                None
+                if result[endpoint]["point_benefit"] is None
+                else float(result[endpoint]["point_benefit"])
+            )
+            for endpoint in PRIMARY_ENDPOINTS
+        }
+        any_direction_significant = {
+            endpoint: (
+                result[endpoint].get("holm_adjusted_p") is not None
+                and float(result[endpoint]["holm_adjusted_p"]) < 0.05
+            )
             for endpoint in PRIMARY_ENDPOINTS
         }
         primary_significant = {
             endpoint: (
-                result[endpoint].get("holm_adjusted_p") is not None
-                and float(result[endpoint]["holm_adjusted_p"]) < 0.05
-                and primary_points[endpoint] > 0.0
+                any_direction_significant[endpoint]
+                and primary_points[endpoint] is not None
+                and float(primary_points[endpoint]) > 0.0
             )
             for endpoint in PRIMARY_ENDPOINTS
         }
         no_disqualifier = not (
-            primary_harms
+            unresolved_endpoints
+            or not holm_family_resolved
+            or primary_harms
             or guardrail_harms
             or operational_failure
             or forced_harm
@@ -581,21 +626,30 @@ def _interpret(
         directional = (
             not strong
             and no_disqualifier
-            and any(value > 0.0 for value in primary_points.values())
+            and any(
+                value is not None and value > 0.0
+                for value in primary_points.values()
+            )
             and all(
-                primary_points[endpoint] > -float(sesoi[endpoint])
+                primary_points[endpoint] is not None
+                and float(primary_points[endpoint])
+                > -float(sesoi[endpoint])
                 for endpoint in PRIMARY_ENDPOINTS
             )
         )
         approximately_zero = (
             no_disqualifier
-            and not any(primary_significant.values())
+            and not any(any_direction_significant.values())
             and all(
-                abs(primary_points[endpoint]) < float(sesoi[endpoint])
+                primary_points[endpoint] is not None
+                and abs(float(primary_points[endpoint]))
+                < float(sesoi[endpoint])
                 for endpoint in PRIMARY_ENDPOINTS
             )
         )
-        if primary_harms or guardrail_harms:
+        if unresolved_endpoints or not holm_family_resolved:
+            classification = "UNRESOLVED"
+        elif primary_harms or guardrail_harms:
             classification = "MATERIAL_HARM"
         elif strong:
             classification = "STRONG_SUPPORT"
@@ -612,6 +666,8 @@ def _interpret(
                 "treatment_arm": treatment,
                 "classification": classification,
                 "primary_point_benefits": primary_points,
+                "unresolved_endpoints": sorted(set(unresolved_endpoints)),
+                "holm_family_resolved": holm_family_resolved,
                 "primary_harms": primary_harms,
                 "guardrail_harms": guardrail_harms,
                 "operational_failure": operational_failure,
@@ -624,9 +680,32 @@ def _interpret(
     return outcomes
 
 
+def _format_value(value: Any, spec: str) -> str:
+    if value is None:
+        return "NA"
+    numeric = float(value)
+    if not math.isfinite(numeric):
+        return "NA"
+    return format(numeric, spec)
+
+
+def _format_benefit_interval(item: dict[str, Any]) -> str:
+    if any(
+        item.get(field) is None
+        for field in ("point_benefit", "ci95_low", "ci95_high")
+    ):
+        return "NA"
+    return (
+        f"{float(item['point_benefit']):+.4f} "
+        f"[{float(item['ci95_low']):+.4f}, "
+        f"{float(item['ci95_high']):+.4f}]"
+    )
+
+
 def collect(args: argparse.Namespace) -> None:
     if args.output_dir.exists() or args.output_dir.is_symlink():
         raise FileExistsError(args.output_dir)
+    validate_runtime_source_closure(repo_root=REPO_ROOT)
     preregistration = load_preregistration(args.preregistration)
     runs, arrays, record_ids = _load_all_runs(
         args.test_root,
@@ -637,7 +716,7 @@ def collect(args: argparse.Namespace) -> None:
     per_seed, aggregate = _point_estimates(runs)
     bootstrap = _bootstrap(arrays, runs, len(record_ids))
     _add_point_deltas(aggregate=aggregate, bootstrap=bootstrap)
-    _holm_adjust(bootstrap)
+    holm_family_resolved = _holm_adjust(bootstrap)
     interpretation = _interpret(
         preregistration=preregistration,
         aggregate=aggregate,
@@ -664,6 +743,7 @@ def collect(args: argparse.Namespace) -> None:
             "bootstrap_replicates": BOOTSTRAP_REPLICATES,
             "bootstrap_seed": BOOTSTRAP_SEED,
             "holm_family_size": 6,
+            "holm_family_resolved": holm_family_resolved,
             "all_metrics_computed_per_seed_then_unweighted_mean": True,
             "P3_not_FLOP_matched": True,
             "rationale_quality_claim_allowed": False,
@@ -682,11 +762,16 @@ def collect(args: argparse.Namespace) -> None:
     for arm in ARMS:
         row = aggregate[arm]
         lines.append(
-            f"| {arm} | {row['MAE']:.4f} | {row['L2H_rate']:.2%} "
-            f"| {row['Exact']:.4f} | {row['Kendall_tau_b']:.4f} "
-            f"| {row['Signed_Bias']:+.4f} | {row['Label_2_Recall']:.2%} "
-            f"| {row['Label_5_Recall']:.2%} | {row['H2L_rate']:.2%} "
-            f"| {row['QWK']:.4f} | {row['forced_completion_rate']:.2%} |"
+            f"| {arm} | {_format_value(row['MAE'], '.4f')} "
+            f"| {_format_value(row['L2H_rate'], '.2%')} "
+            f"| {_format_value(row['Exact'], '.4f')} "
+            f"| {_format_value(row['Kendall_tau_b'], '.4f')} "
+            f"| {_format_value(row['Signed_Bias'], '+.4f')} "
+            f"| {_format_value(row['Label_2_Recall'], '.2%')} "
+            f"| {_format_value(row['Label_5_Recall'], '.2%')} "
+            f"| {_format_value(row['H2L_rate'], '.2%')} "
+            f"| {_format_value(row['QWK'], '.4f')} "
+            f"| {_format_value(row['forced_completion_rate'], '.2%')} |"
         )
     lines.extend(
         [
@@ -701,12 +786,10 @@ def collect(args: argparse.Namespace) -> None:
         l2h = bootstrap[contrast_id]["L2H_rate"]
         lines.append(
             f"| {contrast_id} "
-            f"| {mae['point_benefit']:+.4f} "
-            f"[{mae['ci95_low']:+.4f}, {mae['ci95_high']:+.4f}] "
-            f"| {mae.get('holm_adjusted_p', float('nan')):.4f} "
-            f"| {l2h['point_benefit']:+.4f} "
-            f"[{l2h['ci95_low']:+.4f}, {l2h['ci95_high']:+.4f}] "
-            f"| {l2h.get('holm_adjusted_p', float('nan')):.4f} "
+            f"| {_format_benefit_interval(mae)} "
+            f"| {_format_value(mae.get('holm_adjusted_p'), '.4f')} "
+            f"| {_format_benefit_interval(l2h)} "
+            f"| {_format_value(l2h.get('holm_adjusted_p'), '.4f')} "
             f"| {by_id[contrast_id]['classification']} |"
         )
     lines.extend(

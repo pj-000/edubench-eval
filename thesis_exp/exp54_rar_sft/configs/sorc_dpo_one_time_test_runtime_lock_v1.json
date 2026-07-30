@@ -1,0 +1,29 @@
+{
+  "artifact_sha256": {
+    "thesis_exp/exp54_rar_sft/configs/canonical_rubric_registry.json": "1ac9bafd3eb9e54463f1deddb60bea0d6a379804051b4d2c00a537a59d76f8ea",
+    "thesis_exp/exp54_rar_sft/configs/sorc_dpo_one_time_test_preregistration_v1.json": "bb05b883349b048d9bc1f889036f2fb547cbd7155641cd1e6c8303d42e3ea551",
+    "thesis_exp/exp54_rar_sft/configs/training_configuration_candidate.json": "291a3fa055f5ef07ac0f1bc39f67f3b1c9d13219da0c3e3e801d9a9df29d5318"
+  },
+  "runtime_versions": {
+    "cuda": "11.8",
+    "torch": "2.7.1+cu118",
+    "vllm": "0.10.0",
+    "xgrammar_source_sha256": "2e2e649417b9570fc3d22e6a7413d0f5b47ace7afe002b21ad4d4efae679bba6"
+  },
+  "schema_version": "exp54-sorc-dpo-one-time-test-runtime-lock-v1",
+  "source_sha256": {
+    "thesis_exp/__init__.py": "e57921412997c9605bd75fa597e907b2c68b201d6f70279add396d93f978d4a3",
+    "thesis_exp/exp54_rar_sft/__init__.py": "f3a89293c72fd63e5f8eb39c2e31c2845904201095774aa140249077050c0026",
+    "thesis_exp/exp54_rar_sft/collect_sorc_dpo_test_results.py": "0813abb9615649511b563051af598493c7b6a1b26769731b3e598352287d464d",
+    "thesis_exp/exp54_rar_sft/inference_contract.py": "5eda600beb28db066567f3f9bb7a158ddd8c416506c9689248d6cae0d58a3681",
+    "thesis_exp/exp54_rar_sft/run_sorc_dpo_test_inference_vllm.py": "272d3ad5c5a4a5d69d555277325bf7eea640f486dde341423bc88252a15b8620",
+    "thesis_exp/exp54_rar_sft/sorc_dpo_test_execution_contract.py": "2962994b0aea3555cdadc965ef6f031e57ff911f3c9260a79399ad02e3c35259",
+    "thesis_exp/exp54_rar_sft/training_contract.py": "a9b100c9446f2a0e011b1faf67f873b51d0aaacf08a75423c71b6c48360f5071",
+    "thesis_exp/scripts/run_exp54_sorc_dpo_one_time_test.sh": "745e0a3853d46d6dafd3a8dec5771e1f1f72b05c8e10ffa0ea14629ad7814f8e",
+    "thesis_exp/src/__init__.py": "086f5bae4f890a7cc89ce4de1e476a3bb1315ff24c027064033213bc2cfb1326",
+    "thesis_exp/src/edujudge/__init__.py": "e14d62632deed09164bee72b2b120785958662b9083c2abd3e4736fddbaccfc0",
+    "thesis_exp/src/edujudge/exp02/__init__.py": "701c13b855a58f535fff5f4588f4dba62d5acc41a4e41fdac8be8b48ce2a0ddc",
+    "thesis_exp/src/edujudge/exp02/build_exp02_dataset.py": "82eaefd6c711f632a23d61e7591d5c447076e9e351134887b726d7db75a7d241"
+  },
+  "status": "FROZEN_FOR_ONE_TIME_TEST_EXECUTION"
+}

@@ -225,6 +225,62 @@ def test_materialization_uses_exact_git_blob(tmp_path: Path) -> None:
         )
 
 
+def test_runtime_source_closure_rejects_dirty_source(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    source_name = "runtime.py"
+    artifact_name = "config.json"
+    source = tmp_path / source_name
+    artifact = tmp_path / artifact_name
+    source.write_text("frozen\n", encoding="utf-8")
+    artifact.write_text("{}\n", encoding="utf-8")
+    lock_path = tmp_path / "runtime_lock.json"
+    _write_json(
+        lock_path,
+        {
+            "schema_version": (
+                "exp54-sorc-dpo-one-time-test-runtime-lock-v1"
+            ),
+            "status": "FROZEN_FOR_ONE_TIME_TEST_EXECUTION",
+            "source_sha256": {
+                source_name: file_sha256(source),
+            },
+            "artifact_sha256": {
+                artifact_name: file_sha256(artifact),
+            },
+            "runtime_versions": {
+                "vllm": "0.10.0",
+                "torch": "2.7.1+cu118",
+                "cuda": "11.8",
+                "xgrammar_source_sha256": (
+                    contract.EXPECTED_XGRAMMAR_SHA256
+                ),
+            },
+        },
+    )
+    monkeypatch.setattr(
+        contract,
+        "EXPECTED_RUNTIME_SOURCE_NAMES",
+        {source_name},
+    )
+    monkeypatch.setattr(
+        contract,
+        "EXPECTED_RUNTIME_ARTIFACT_NAMES",
+        {artifact_name},
+    )
+    contract.validate_runtime_source_closure(
+        repo_root=tmp_path,
+        lock_path=lock_path,
+    )
+    source.write_text("dirty\n", encoding="utf-8")
+    with pytest.raises(ValueError, match="runtime source SHA-256 differs"):
+        contract.validate_runtime_source_closure(
+            repo_root=tmp_path,
+            lock_path=lock_path,
+        )
+
+
 def test_collector_does_not_parse_partial_grid(
     tmp_path: Path,
     monkeypatch: pytest.MonkeyPatch,
@@ -290,6 +346,11 @@ def test_full_collection_waits_then_uses_frozen_statistics(
             "arms": preregistration["arms"],
         },
     )
+    monkeypatch.setattr(
+        collector,
+        "validate_runtime_source_closure",
+        lambda **_kwargs: {},
+    )
     collector.collect(
         type(
             "Args",
@@ -328,3 +389,104 @@ def test_campaign_has_no_intermediate_metric_collection() -> None:
     assert "metrics.json" not in source
     assert "score_metrics" not in source
     assert "rationale_metrics" not in source
+    assert "EDUBENCH_TEST_CAMPAIGN_ROOT" not in source
+    assert source.index('mkdir "${CAMPAIGN_ROOT}"') < source.index(
+        "materialize"
+    )
+    runner_source = (
+        contract.REPO_ROOT
+        / "thesis_exp/exp54_rar_sft/"
+        "run_sorc_dpo_test_inference_vllm.py"
+    ).read_text(encoding="utf-8")
+    assert "train_rar_sft" not in runner_source
+    assert "run_dev_inference" not in runner_source
+    assert "validate_runtime_source_closure" in runner_source
+
+
+def _interpretation_fixture() -> tuple[
+    dict[str, dict[str, dict[str, object]]],
+    dict[str, dict[str, float]],
+]:
+    bootstrap: dict[str, dict[str, dict[str, object]]] = {}
+    for contrast_id, _baseline, _treatment in collector.CONTRASTS:
+        bootstrap[contrast_id] = {}
+        for endpoint in collector.INFERENTIAL_ENDPOINTS:
+            bootstrap[contrast_id][endpoint] = {
+                "minimum_valid_replicates_met": True,
+                "point_benefit": 0.0,
+                "ci95_low": -0.001,
+                "ci95_high": 0.001,
+            }
+        for endpoint in collector.PRIMARY_ENDPOINTS:
+            bootstrap[contrast_id][endpoint].update(
+                {
+                    "holm_family_resolved": True,
+                    "holm_adjusted_p": 1.0,
+                }
+            )
+        bootstrap[contrast_id]["forced_completion_increase"] = {
+            "point_treatment_minus_baseline": 0.0,
+            "ci95_low": -0.001,
+            "ci95_high": 0.001,
+        }
+    aggregate = {
+        arm: {
+            "strict_parse_rate": 1.0,
+            "forced_completion_rate": 0.0,
+        }
+        for arm in contract.ARMS
+    }
+    return bootstrap, aggregate
+
+
+def test_unresolved_primary_cannot_produce_support() -> None:
+    bootstrap, aggregate = _interpretation_fixture()
+    bootstrap["H1_FIELD_DPO"]["L2H_rate"][
+        "minimum_valid_replicates_met"
+    ] = False
+    preregistration = contract.load_preregistration()
+    outcomes = collector._interpret(
+        preregistration=preregistration,
+        aggregate=aggregate,
+        bootstrap=bootstrap,
+    )
+    assert outcomes[0]["classification"] == "UNRESOLVED"
+    assert "L2H_rate" in outcomes[0]["unresolved_endpoints"]
+
+
+def test_qwk_is_secondary_not_a_material_harm_guardrail() -> None:
+    bootstrap, aggregate = _interpretation_fixture()
+    qwk = bootstrap["H1_FIELD_DPO"]["QWK"]
+    qwk.update(
+        {
+            "point_benefit": -0.5,
+            "ci95_low": -0.6,
+            "ci95_high": -0.4,
+        }
+    )
+    outcomes = collector._interpret(
+        preregistration=contract.load_preregistration(),
+        aggregate=aggregate,
+        bootstrap=bootstrap,
+    )
+    assert outcomes[0]["classification"] == "APPROXIMATELY_ZERO"
+    assert outcomes[0]["guardrail_harms"] == []
+
+
+def test_significant_negative_primary_is_not_approximately_zero() -> None:
+    bootstrap, aggregate = _interpretation_fixture()
+    mae = bootstrap["H1_FIELD_DPO"]["MAE"]
+    mae.update(
+        {
+            "point_benefit": -0.005,
+            "ci95_low": -0.009,
+            "ci95_high": -0.001,
+            "holm_adjusted_p": 0.01,
+        }
+    )
+    outcomes = collector._interpret(
+        preregistration=contract.load_preregistration(),
+        aggregate=aggregate,
+        bootstrap=bootstrap,
+    )
+    assert outcomes[0]["classification"] == "UNSUPPORTED"

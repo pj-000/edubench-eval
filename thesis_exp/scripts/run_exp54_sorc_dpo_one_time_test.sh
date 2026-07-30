@@ -4,7 +4,7 @@ set -euo pipefail
 REPO_DIR="${EDUBENCH_REPO_ROOT:-/home/jpang/edubench-eval-exp2}"
 PYTHON="${EDUBENCH_VLLM_PYTHON:-/home/jpang/exp54_vllm063_shared/bin/python}"
 ROOT="${REPO_DIR}/thesis_exp/outputs/exp54_rar_sft/rar_v2"
-CAMPAIGN_ROOT="${EDUBENCH_TEST_CAMPAIGN_ROOT:-${ROOT}/sorc_dpo_one_time_test_v1}"
+CAMPAIGN_ROOT="${ROOT}/sorc_dpo_one_time_test_v1"
 TEST_PATH="${CAMPAIGN_ROOT}/isolated_input/test.jsonl"
 RUN_ROOT="${CAMPAIGN_ROOT}/runs"
 RESULT_ROOT="${CAMPAIGN_ROOT}/final_results"
@@ -56,6 +56,10 @@ done
   thesis_exp.exp54_rar_sft.sorc_dpo_test_execution_contract \
   preflight \
   --repo-root "${REPO_DIR}"
+
+# This fixed-path mkdir is the one-use claim. It is never removed, whether the
+# campaign succeeds or fails, and no environment variable can redirect it.
+mkdir "${CAMPAIGN_ROOT}"
 
 "${PYTHON}" -m \
   thesis_exp.exp54_rar_sft.sorc_dpo_test_execution_contract \

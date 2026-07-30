@@ -12,7 +12,6 @@ from pathlib import Path
 from typing import Any
 
 from thesis_exp.exp54_rar_sft import REPO_ROOT
-from thesis_exp.exp54_rar_sft.run_dev_inference import file_sha256
 
 
 ARMS = (
@@ -32,6 +31,11 @@ PREREGISTRATION_PATH = (
 )
 PREREGISTRATION_SHA256 = (
     "bb05b883349b048d9bc1f889036f2fb547cbd7155641cd1e6c8303d42e3ea551"
+)
+RUNTIME_LOCK_PATH = (
+    REPO_ROOT
+    / "thesis_exp/exp54_rar_sft/configs/"
+    "sorc_dpo_one_time_test_runtime_lock_v1.json"
 )
 EXPECTED_TEST_BLOB_SHA1 = "7749c2c0f166186cc840409d64424b5a78e7222a"
 EXPECTED_XGRAMMAR_SHA256 = (
@@ -75,6 +79,34 @@ EXPECTED_ADAPTER_CONFIG_SHA256 = {
         "56659e1b69e50c76c614e47c316a3969ffe5e195c8f643f510eb60d30591f84b"
     ),
 }
+EXPECTED_RUNTIME_SOURCE_NAMES = {
+    "thesis_exp/__init__.py",
+    "thesis_exp/exp54_rar_sft/__init__.py",
+    "thesis_exp/exp54_rar_sft/collect_sorc_dpo_test_results.py",
+    "thesis_exp/exp54_rar_sft/inference_contract.py",
+    "thesis_exp/exp54_rar_sft/run_sorc_dpo_test_inference_vllm.py",
+    "thesis_exp/exp54_rar_sft/sorc_dpo_test_execution_contract.py",
+    "thesis_exp/exp54_rar_sft/training_contract.py",
+    "thesis_exp/scripts/run_exp54_sorc_dpo_one_time_test.sh",
+    "thesis_exp/src/__init__.py",
+    "thesis_exp/src/edujudge/__init__.py",
+    "thesis_exp/src/edujudge/exp02/__init__.py",
+    "thesis_exp/src/edujudge/exp02/build_exp02_dataset.py",
+}
+EXPECTED_RUNTIME_ARTIFACT_NAMES = {
+    (
+        "thesis_exp/exp54_rar_sft/configs/"
+        "canonical_rubric_registry.json"
+    ),
+    (
+        "thesis_exp/exp54_rar_sft/configs/"
+        "sorc_dpo_one_time_test_preregistration_v1.json"
+    ),
+    (
+        "thesis_exp/exp54_rar_sft/configs/"
+        "training_configuration_candidate.json"
+    ),
+}
 P0_RELATIVE_TEMPLATE = (
     "thesis_exp/outputs/exp54_rar_sft/rar_v2/formal_runs/"
     "seed{seed}/r3/checkpoint-logical-epoch-3/adapter"
@@ -92,11 +124,151 @@ def regular_bytes(path: Path) -> bytes:
     return path.read_bytes()
 
 
+def file_sha256(path: Path) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as handle:
+        for block in iter(lambda: handle.read(1024 * 1024), b""):
+            digest.update(block)
+    return digest.hexdigest()
+
+
+def write_json(path: Path, value: Any) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(
+        json.dumps(
+            value,
+            ensure_ascii=False,
+            indent=2,
+            sort_keys=True,
+            allow_nan=False,
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+
+
+def write_jsonl(path: Path, rows: list[dict[str, Any]]) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    temporary = path.with_suffix(path.suffix + ".tmp")
+    with temporary.open("w", encoding="utf-8") as handle:
+        for row in rows:
+            handle.write(
+                json.dumps(row, ensure_ascii=False, sort_keys=True) + "\n"
+            )
+    temporary.replace(path)
+
+
 def read_object(path: Path) -> dict[str, Any]:
     value = json.loads(regular_bytes(path).decode("utf-8"))
     if not isinstance(value, dict):
         raise ValueError(f"{path}: expected JSON object")
     return value
+
+
+def validate_runtime_source_closure(
+    *,
+    repo_root: Path,
+    lock_path: Path | None = None,
+) -> dict[str, Any]:
+    lock = read_object(lock_path or (repo_root / RUNTIME_LOCK_PATH.relative_to(REPO_ROOT)))
+    if (
+        lock.get("schema_version")
+        != "exp54-sorc-dpo-one-time-test-runtime-lock-v1"
+        or lock.get("status") != "FROZEN_FOR_ONE_TIME_TEST_EXECUTION"
+        or set(lock.get("source_sha256", {}))
+        != EXPECTED_RUNTIME_SOURCE_NAMES
+        or set(lock.get("artifact_sha256", {}))
+        != EXPECTED_RUNTIME_ARTIFACT_NAMES
+        or lock.get("runtime_versions")
+        != {
+            "vllm": "0.10.0",
+            "torch": "2.7.1+cu118",
+            "cuda": "11.8",
+            "xgrammar_source_sha256": EXPECTED_XGRAMMAR_SHA256,
+        }
+    ):
+        raise ValueError("one-time test runtime lock contract differs")
+    for relative, expected in lock["source_sha256"].items():
+        if file_sha256(repo_root / relative) != expected:
+            raise ValueError(f"runtime source SHA-256 differs: {relative}")
+    for relative, expected in lock["artifact_sha256"].items():
+        if file_sha256(repo_root / relative) != expected:
+            raise ValueError(f"runtime artifact SHA-256 differs: {relative}")
+    return lock
+
+
+def load_inference_configuration(
+    *,
+    repo_root: Path,
+    runtime_lock: dict[str, Any],
+) -> dict[str, Any]:
+    relative = (
+        "thesis_exp/exp54_rar_sft/configs/"
+        "training_configuration_candidate.json"
+    )
+    config = read_object(repo_root / relative)
+    if (
+        config.get("model", {}).get("model_id")
+        != "Qwen/Qwen3-4B-Instruct-2507"
+        or config["model"].get("immutable_revision")
+        != "cdbee75f17c01a7cc42f958dc650907174af0554"
+        or config["model"].get("local_path")
+        != "/home/share/models/modelscope/Qwen/Qwen3-4B-Instruct-2507"
+        or config["model"].get("local_files_only") is not True
+        or config["model"].get("trust_remote_code") is not False
+        or config["model"].get("torch_dtype") != "bfloat16"
+        or config["model"].get("pad_token_id") != 151643
+        or config.get("lora", {}).get("rank") != 16
+        or config.get("generation", {}).get("do_sample") is not False
+        or config["generation"].get("max_new_tokens") != 256
+        or config["generation"].get("enable_thinking") is not False
+    ):
+        raise ValueError("frozen inference configuration differs")
+    if (
+        file_sha256(repo_root / relative)
+        != runtime_lock["artifact_sha256"][relative]
+    ):
+        raise ValueError("frozen inference configuration hash differs")
+    return config
+
+
+def verify_model_snapshot(config: dict[str, Any]) -> dict[str, str]:
+    model = config["model"]
+    model_path = Path(model["local_path"])
+    root_metadata = model_path.lstat()
+    if stat.S_ISLNK(root_metadata.st_mode) or not stat.S_ISDIR(
+        root_metadata.st_mode
+    ):
+        raise ValueError("base model root is not a real directory")
+    discovered: dict[str, int] = {}
+    for path in model_path.rglob("*"):
+        if path.is_symlink():
+            raise ValueError("base model snapshot contains a symlink")
+        if path.is_file():
+            discovered[path.relative_to(model_path).as_posix()] = (
+                path.stat().st_size
+            )
+    if discovered != model["directory_regular_files"]:
+        raise ValueError("base model file inventory differs")
+    listing_payload = json.dumps(
+        sorted(discovered.items()),
+        separators=(",", ":"),
+    ).encode("utf-8")
+    if (
+        hashlib.sha256(listing_payload).hexdigest()
+        != model["directory_listing_sha256"]
+    ):
+        raise ValueError("base model directory listing hash differs")
+    actual = {}
+    for name, expected in model["files"].items():
+        path = model_path / name
+        if path.stat().st_size != int(expected["size"]):
+            raise ValueError(f"base model file size differs: {name}")
+        digest = file_sha256(path)
+        if digest != expected["sha256"]:
+            raise ValueError(f"base model file hash differs: {name}")
+        actual[name] = digest
+    return actual
 
 
 def load_preregistration(
@@ -347,16 +519,26 @@ def _main() -> None:
     args = _parse_args()
     if args.command == "preflight":
         preregistration = load_preregistration()
-        from thesis_exp.exp54_rar_sft.train_rar_sft import (
-            DEFAULT_CONFIG,
-            _read_object,
-            validate_training_configuration,
-            verify_model_snapshot,
+        runtime_lock = validate_runtime_source_closure(
+            repo_root=args.repo_root,
         )
-
-        config = _read_object(DEFAULT_CONFIG)
-        validate_training_configuration(config)
+        config = load_inference_configuration(
+            repo_root=args.repo_root,
+            runtime_lock=runtime_lock,
+        )
         model_hashes = verify_model_snapshot(config)
+        import torch
+        import vllm
+        import xgrammar
+
+        if (
+            vllm.__version__ != "0.10.0"
+            or torch.__version__ != "2.7.1+cu118"
+            or torch.version.cuda != "11.8"
+            or file_sha256(Path(xgrammar.__file__))
+            != EXPECTED_XGRAMMAR_SHA256
+        ):
+            raise RuntimeError("frozen inference runtime version differs")
         rows = validate_all_checkpoints(
             repo_root=args.repo_root,
             preregistration=preregistration,

@@ -3,20 +3,13 @@
 from __future__ import annotations
 
 import argparse
+import json
+import re
 import time
 from pathlib import Path
 from typing import Any
 
 from thesis_exp.exp54_rar_sft.inference_contract import parse_review_json
-from thesis_exp.exp54_rar_sft.run_dev_inference import (
-    file_sha256,
-    write_json,
-    write_jsonl,
-)
-from thesis_exp.exp54_rar_sft.run_dev_inference_vllm import (
-    OUTPUT_SCHEMA,
-    _force_complete_budget_limited_json,
-)
 from thesis_exp.exp54_rar_sft.sorc_dpo_test_execution_contract import (
     ARMS,
     EXPECTED_TEST_BLOB_SHA1,
@@ -24,26 +17,83 @@ from thesis_exp.exp54_rar_sft.sorc_dpo_test_execution_contract import (
     PREREGISTRATION_PATH,
     PREREGISTRATION_SHA256,
     SEEDS,
+    file_sha256,
     git_blob_sha1,
+    load_inference_configuration,
     load_preregistration,
     parse_test_rows,
     regular_bytes,
     validate_checkpoint,
+    validate_runtime_source_closure,
+    write_json,
+    write_jsonl,
 )
 from thesis_exp.exp54_rar_sft.training_contract import (
     apply_chat_template,
     prompt_messages,
     token_ids_sha256,
 )
-from thesis_exp.exp54_rar_sft.train_rar_sft import (
-    DEFAULT_CONFIG,
-    _read_object,
-    validate_training_configuration,
-)
 
 
 MAX_MODEL_LEN = 1796
 MAX_NEW_TOKENS = 256
+OUTPUT_SCHEMA = {
+    "type": "object",
+    "additionalProperties": False,
+    "required": ["score", "rationale"],
+    "properties": {
+        "score": {"type": "integer", "enum": [1, 2, 3, 4, 5]},
+        "rationale": {"type": "string"},
+    },
+}
+COMPACT_PREFIX_PATTERN = re.compile(
+    r'^\{\s*"score"\s*:\s*([1-5])\s*,\s*'
+    r'"rationale"\s*:\s*"',
+    re.DOTALL,
+)
+
+
+def _force_complete_budget_limited_json(
+    text: str,
+    *,
+    tokenizer: Any,
+    max_tokens: int,
+) -> tuple[str, dict[str, Any], list[int], int]:
+    match = COMPACT_PREFIX_PATTERN.match(text)
+    if match is None:
+        raise ValueError(
+            "budget-limited output is not the expected compact JSON prefix"
+        )
+    score = int(match.group(1))
+    encoded_fragment = text[match.end() :]
+    for end in range(len(encoded_fragment), -1, -1):
+        candidate_fragment = encoded_fragment[:end]
+        try:
+            rationale = json.loads(f'"{candidate_fragment}"')
+        except json.JSONDecodeError:
+            continue
+        completed_text = json.dumps(
+            {"score": score, "rationale": rationale},
+            ensure_ascii=False,
+            separators=(",", ":"),
+        )
+        completed_token_ids = [
+            int(value)
+            for value in tokenizer.encode(
+                completed_text,
+                add_special_tokens=False,
+            )
+        ]
+        if len(completed_token_ids) <= max_tokens:
+            return (
+                completed_text,
+                {"score": score, "rationale": rationale},
+                completed_token_ids,
+                len(encoded_fragment) - end,
+            )
+    raise ValueError(
+        "no deterministic JSON completion fits the generation token budget"
+    )
 
 
 def _prepare_prompts(
@@ -78,6 +128,20 @@ def _prepare_prompts(
 
 def run(args: argparse.Namespace) -> None:
     started = time.time()
+    preregistration = load_preregistration(args.preregistration)
+    runtime_lock = validate_runtime_source_closure(
+        repo_root=args.repo_root,
+    )
+    config = load_inference_configuration(
+        repo_root=args.repo_root,
+        runtime_lock=runtime_lock,
+    )
+    checkpoint = validate_checkpoint(
+        repo_root=args.repo_root,
+        preregistration=preregistration,
+        arm=args.arm,
+        seed=args.seed,
+    )
     output_dir = args.output_root / args.arm.lower() / f"seed_{args.seed}"
     try:
         output_dir.mkdir(parents=True, exist_ok=False)
@@ -94,15 +158,6 @@ def run(args: argparse.Namespace) -> None:
         },
     )
 
-    preregistration = load_preregistration(args.preregistration)
-    config = _read_object(DEFAULT_CONFIG)
-    validate_training_configuration(config)
-    checkpoint = validate_checkpoint(
-        repo_root=args.repo_root,
-        preregistration=preregistration,
-        arm=args.arm,
-        seed=args.seed,
-    )
     test_payload = regular_bytes(args.test_path)
     if git_blob_sha1(test_payload) != EXPECTED_TEST_BLOB_SHA1:
         raise ValueError("isolated test payload Git blob differs")
@@ -116,8 +171,14 @@ def run(args: argparse.Namespace) -> None:
     from vllm.lora.request import LoRARequest
     from vllm.sampling_params import GuidedDecodingParams
 
-    if file_sha256(Path(xgrammar.__file__)) != EXPECTED_XGRAMMAR_SHA256:
-        raise ValueError("XGrammar source hash differs")
+    if (
+        vllm.__version__ != "0.10.0"
+        or torch.__version__ != "2.7.1+cu118"
+        or torch.version.cuda != "11.8"
+        or file_sha256(Path(xgrammar.__file__))
+        != EXPECTED_XGRAMMAR_SHA256
+    ):
+        raise ValueError("frozen vLLM runtime version differs")
     model_path = str(config["model"]["local_path"])
     tokenizer = AutoTokenizer.from_pretrained(
         model_path,
