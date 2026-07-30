@@ -1,0 +1,40 @@
+{
+  "arm": "R3_TOKENAVG",
+  "dev_accessed": false,
+  "elapsed_seconds": 28.039390563964844,
+  "full_training_started": false,
+  "schema_version": "exp54-mechanism-control-smoke-result-v1",
+  "seed": 42,
+  "semantic_output_inspected": false,
+  "source_hashes": {
+    "manifest_sha256": "a53a1fb27e7c1c24b14b9a3d898e7dcdf525589a3989d7a85662394508abceb4",
+    "prompt_cache_sha256": "d74b5c949953818eed935e6d73de7a26af4c53a793f5ab73ead96d2fcf48040d",
+    "smoke_lock_sha256": "90509b87d19ec93da6e0ebc51560cf500ae94181ce1c1a64c36d24001785b150"
+  },
+  "source_row_count": 8,
+  "status": "MECHANISM_CONTROL_TRAIN_ONLY_SMOKE_COMPLETE",
+  "test_accessed": false,
+  "training": {
+    "adapter_config_sha256": "cff64f000c25fb69d5a64c2627370314a4cbda89425a399b0961aa7d668edb4f",
+    "adapter_model_sha256": "8ee150c4c231cdbe1836f804069a68daec9d43af470da2db669dec5a83ad61a7",
+    "base_model_directory_listing_sha256": "96308d1ae2e03ab011a52371780c8f4b448930d2e393fb8682fa8aa09687064a",
+    "device_identity": {
+      "free_memory_bytes_before_load": 50175541248,
+      "name": "NVIDIA RTX A6000",
+      "total_memory_bytes": 51041271808,
+      "uuid": "GPU-6094556a-56f8-5784-14ad-6369b980d4ca"
+    },
+    "gradient_norm_before_clip": 138.29869079589844,
+    "losses": [
+      21.00611686706543,
+      13.28834342956543,
+      38.0,
+      15.318050384521484
+    ],
+    "micro_batches": 4,
+    "optimizer_steps": 1,
+    "parameter_update_l2": 0.41858188983033623,
+    "peak_allocated_bytes": 16598721536,
+    "peak_reserved_bytes": 20354957312
+  }
+}

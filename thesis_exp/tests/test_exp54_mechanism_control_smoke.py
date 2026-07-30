@@ -7,6 +7,7 @@ from pathlib import Path
 import pytest
 
 from thesis_exp.exp54_rar_sft import REPO_ROOT
+from thesis_exp.exp54_rar_sft.audit_mechanism_control_smoke import audit_results
 from thesis_exp.exp54_rar_sft.train_mechanism_control_smoke import (
     ARMS,
     _validate_candidate_config,
@@ -113,3 +114,63 @@ def test_runner_contains_no_split_specific_dev_or_test_input() -> None:
         "run_sorc_dpo_test",
     ):
         assert forbidden not in source
+
+
+def test_smoke_result_auditor_requires_positive_unique_updates(
+    tmp_path: Path,
+) -> None:
+    plan = json.loads(PLAN_PATH.read_text(encoding="utf-8"))
+    results = {}
+    paths = {}
+    for index, arm in enumerate(ARMS, start=1):
+        result_dir = tmp_path / arm.lower()
+        adapter_dir = result_dir / "adapter"
+        adapter_dir.mkdir(parents=True)
+        adapter_path = adapter_dir / "adapter_model.safetensors"
+        adapter_path.write_bytes(f"adapter-{arm}".encode("ascii"))
+        adapter_hash = _sha256(adapter_path)
+        result = {
+            "status": "MECHANISM_CONTROL_TRAIN_ONLY_SMOKE_COMPLETE",
+            "arm": arm,
+            "seed": 42,
+            "source_row_count": plan["source_rows"][arm],
+            "training": {
+                "losses": [0.5 + index],
+                "gradient_norm_before_clip": 1.0 + index,
+                "parameter_update_l2": 0.01 * index,
+                "optimizer_steps": 1,
+                "micro_batches": 4,
+                "peak_allocated_bytes": 100,
+                "peak_reserved_bytes": 200,
+                "adapter_model_sha256": adapter_hash,
+                "device_identity": {
+                    "uuid": plan["gpu_assignments"][arm]["uuid"],
+                    "name": plan["gpu_assignments"][arm]["name"],
+                },
+            },
+            "elapsed_seconds": 3.0,
+            "dev_accessed": False,
+            "test_accessed": False,
+            "full_training_started": False,
+        }
+        result_path = result_dir / "result.json"
+        result_path.write_text(json.dumps(result), encoding="utf-8")
+        results[arm] = result
+        paths[arm] = result_path
+    audit = audit_results(
+        plan=plan,
+        result_by_arm=results,
+        result_path_by_arm=paths,
+    )
+    assert (
+        audit["status"]
+        == "MECHANISM_CONTROL_SMOKE_PASS_FULL_TRAINING_NOT_STARTED"
+    )
+
+    results["P1_FULLSEQ"]["training"]["parameter_update_l2"] = 0.0
+    with pytest.raises(ValueError, match="gradient/update"):
+        audit_results(
+            plan=plan,
+            result_by_arm=results,
+            result_path_by_arm=paths,
+        )
