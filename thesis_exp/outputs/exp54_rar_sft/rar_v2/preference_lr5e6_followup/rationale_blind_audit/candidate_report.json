@@ -1,0 +1,71 @@
+{
+  "audit_completed": false,
+  "comparison": {
+    "comparator": "P2_SORC_SCORE",
+    "estimand": "incremental visible rationale-alignment value of the P3 rationale preference block over P2 score-only risk DPO",
+    "target": "P3_JOINT_SORC"
+  },
+  "dev_regenerated": false,
+  "forced_completion_summary": {
+    "P2_SORC_SCORE|forced=false": 96,
+    "P2_SORC_SCORE|forced=true": 24,
+    "P3_JOINT_SORC|forced=false": 97,
+    "P3_JOINT_SORC|forced=true": 23
+  },
+  "prediction_source_hashes": {
+    "P2_SORC_SCORE|seed=42": "43fc593809f17e846a5785b815ecef2b18fd61b414dd2199931e4b01b7f3465a",
+    "P2_SORC_SCORE|seed=43": "86c419a191b9407efa5fa7d90818b4a5005d687af4c2611c05a806b0c139ca17",
+    "P2_SORC_SCORE|seed=44": "352eff0b2279e23a5e1ad394a0b4e115bdd7d9d9d2ac1f88d552e4b1893268a7",
+    "P3_JOINT_SORC|seed=42": "b3a04b28f64130d090ae9c1ca9957e3444bbf37f6074e7e25e90093d68d774da",
+    "P3_JOINT_SORC|seed=43": "94b76a6dac2fb9e68d805c841f8c581df709e5881634fb1ba29cdf2e1f195a74",
+    "P3_JOINT_SORC|seed=44": "bc9b155f08ebf0f87a0b845445458a550b8c1dce187677f12483aaa29aed8ee8"
+  },
+  "private_bindings": {
+    "answer_key": {
+      "bytes": 95408,
+      "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/preference_lr5e6_followup/rationale_blind_audit/private/answer_key.jsonl",
+      "rows": 240,
+      "sha256": "3ca9305203b99985d811dd72cc596c1ff0d4b5e7b75d015bf3e14b38fe11ce60"
+    },
+    "sample_manifest": {
+      "bytes": 97409,
+      "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/preference_lr5e6_followup/rationale_blind_audit/private/sample_manifest.jsonl",
+      "rows": 40,
+      "sha256": "b646e9169be4c8ba6dd7a0815cee4e825b766290317fdd9492f54c837fb1ac33"
+    },
+    "score_blind_tasks": {
+      "bytes": 812356,
+      "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/preference_lr5e6_followup/rationale_blind_audit/private/score_blind_tasks.jsonl",
+      "rows": 240,
+      "sha256": "994203ad846413a0eea53a6ccec68c06961a83bc9c51be6df9c48710db6b1368"
+    },
+    "score_visible_tasks": {
+      "bytes": 817636,
+      "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/preference_lr5e6_followup/rationale_blind_audit/private/score_visible_tasks.jsonl",
+      "rows": 240,
+      "sha256": "1484098a4345c6359557c896d35c76cc9fd186138dc43dd7743e9ee02bd8fa96"
+    }
+  },
+  "private_row_level_content_committed": false,
+  "sample": {
+    "all_label_1_2_rows_included": true,
+    "pair_instances": 120,
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "selection_reads_model_outputs": false,
+    "selection_reused_from_frozen_rar_sft_audit": true,
+    "unique_records": 40
+  },
+  "schema_version": "exp54-sorc-dpo-rationale-audit-package-v1",
+  "status": "SORC_DPO_RATIONALE_AUDIT_PACKAGE_READY",
+  "tasks": {
+    "evaluator_agents_required_per_stage": 2,
+    "orientations_per_pair": 2,
+    "score_blind_presentations": 240,
+    "score_visible_presentations": 240
+  },
+  "test_accessed": false
+}

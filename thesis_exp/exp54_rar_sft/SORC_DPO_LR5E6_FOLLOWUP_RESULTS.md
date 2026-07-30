@@ -87,3 +87,18 @@ P3 versus R3 paired-bootstrap intervals were:
 
 The next scientific step is the already planned rationale blind audit.  Test
 must remain sealed until the SFT and preference-method selections are frozen.
+
+## P3-versus-P2 rationale blind audit
+
+The fixed 40-record × three-seed audit found no robust P3 rationale-quality
+advantage over P2. Tie-adjusted overall preferences were:
+
+- score blind, Codex Sol: `0.517`, 95% CI `[0.454, 0.579]`;
+- score blind, Codex Terra: `0.512`, 95% CI `[0.450, 0.575]`;
+- score visible, Codex Sol: `0.504`, 95% CI `[0.450, 0.558]`;
+- score visible, Codex Terra: `0.533`, 95% CI `[0.463, 0.600]`.
+
+Thus P3 learned its frozen rationale preferences on train, but did not
+establish a stable cross-agent improvement in visible dev rationale quality.
+The rationale block must be reported as an informative near-zero ablation,
+not as a confirmed reasoning or rationale-alignment improvement.

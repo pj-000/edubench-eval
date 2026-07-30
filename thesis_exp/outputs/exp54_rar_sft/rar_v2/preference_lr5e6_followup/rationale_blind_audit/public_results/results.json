@@ -1,0 +1,4824 @@
+{
+  "aggregates": [
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.058333333333333334,
+          0.125
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.4708333333333333,
+          0.5625
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "rubric_alignment",
+      "evaluator": "codex_sol",
+      "forced_completion_stratum": "all",
+      "label_stratum": "all",
+      "losses": 19,
+      "net_preference": 0.03333333333333333,
+      "pairs": 120,
+      "stage": "score_blind",
+      "tie_adjusted_preference": 0.5166666666666667,
+      "ties": 78,
+      "wins": 23
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.08235294117647059,
+          0.16671348314606674
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.4588235294117647,
+          0.5833567415730334
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "rubric_alignment",
+      "evaluator": "codex_sol",
+      "forced_completion_stratum": "neither_forced",
+      "label_stratum": "all",
+      "losses": 14,
+      "net_preference": 0.03529411764705882,
+      "pairs": 85,
+      "stage": "score_blind",
+      "tie_adjusted_preference": 0.5176470588235295,
+      "ties": 54,
+      "wins": 17
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.6,
+          0.0
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.2,
+          0.5
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "rubric_alignment",
+      "evaluator": "codex_sol",
+      "forced_completion_stratum": "P3_only_forced",
+      "label_stratum": "all",
+      "losses": 3,
+      "net_preference": -0.2727272727272727,
+      "pairs": 11,
+      "stage": "score_blind",
+      "tie_adjusted_preference": 0.36363636363636365,
+      "ties": 8,
+      "wins": 0
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          0.21428571428571427,
+          0.8181818181818182
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.6071428571428571,
+          0.9090909090909091
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "rubric_alignment",
+      "evaluator": "codex_sol",
+      "forced_completion_stratum": "P2_only_forced",
+      "label_stratum": "all",
+      "losses": 0,
+      "net_preference": 0.5,
+      "pairs": 12,
+      "stage": "score_blind",
+      "tie_adjusted_preference": 0.75,
+      "ties": 6,
+      "wins": 6
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.38461538461538464,
+          0.0
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.3076923076923077,
+          0.5
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "rubric_alignment",
+      "evaluator": "codex_sol",
+      "forced_completion_stratum": "both_forced",
+      "label_stratum": "all",
+      "losses": 2,
+      "net_preference": -0.16666666666666666,
+      "pairs": 12,
+      "stage": "score_blind",
+      "tie_adjusted_preference": 0.4166666666666667,
+      "ties": 10,
+      "wins": 0
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.16666666666666666,
+          0.3333333333333333
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.4166666666666667,
+          0.6666666666666666
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "rubric_alignment",
+      "evaluator": "codex_sol",
+      "forced_completion_stratum": "all",
+      "label_stratum": "label_1",
+      "losses": 1,
+      "net_preference": 0.05555555555555555,
+      "pairs": 18,
+      "stage": "score_blind",
+      "tie_adjusted_preference": 0.5277777777777778,
+      "ties": 15,
+      "wins": 2
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.16666666666666666,
+          0.19047619047619047
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.4166666666666667,
+          0.5952380952380952
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "rubric_alignment",
+      "evaluator": "codex_sol",
+      "forced_completion_stratum": "all",
+      "label_stratum": "label_2",
+      "losses": 8,
+      "net_preference": 0.0,
+      "pairs": 42,
+      "stage": "score_blind",
+      "tie_adjusted_preference": 0.5,
+      "ties": 26,
+      "wins": 8
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.11666666666666667,
+          0.16666666666666666
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.44166666666666665,
+          0.5833333333333334
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "rubric_alignment",
+      "evaluator": "codex_sol",
+      "forced_completion_stratum": "all",
+      "label_stratum": "low_1_2",
+      "losses": 9,
+      "net_preference": 0.016666666666666666,
+      "pairs": 60,
+      "stage": "score_blind",
+      "tie_adjusted_preference": 0.5083333333333333,
+      "ties": 41,
+      "wins": 10
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.08333333333333333,
+          0.16666666666666666
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.4583333333333333,
+          0.5833333333333334
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "rubric_alignment",
+      "evaluator": "codex_sol",
+      "forced_completion_stratum": "all",
+      "label_stratum": "non_low_3_5",
+      "losses": 10,
+      "net_preference": 0.05,
+      "pairs": 60,
+      "stage": "score_blind",
+      "tie_adjusted_preference": 0.525,
+      "ties": 37,
+      "wins": 13
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          0.008333333333333333,
+          0.15833333333333333
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.5041666666666667,
+          0.5791666666666667
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "answer_grounding",
+      "evaluator": "codex_sol",
+      "forced_completion_stratum": "all",
+      "label_stratum": "all",
+      "losses": 7,
+      "net_preference": 0.08333333333333333,
+      "pairs": 120,
+      "stage": "score_blind",
+      "tie_adjusted_preference": 0.5416666666666666,
+      "ties": 96,
+      "wins": 17
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          0.023255813953488372,
+          0.2
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.5116279069767442,
+          0.6
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "answer_grounding",
+      "evaluator": "codex_sol",
+      "forced_completion_stratum": "neither_forced",
+      "label_stratum": "all",
+      "losses": 3,
+      "net_preference": 0.10588235294117647,
+      "pairs": 85,
+      "stage": "score_blind",
+      "tie_adjusted_preference": 0.5529411764705883,
+      "ties": 70,
+      "wins": 12
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.45454545454545453,
+          0.0
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.2727272727272727,
+          0.5
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "answer_grounding",
+      "evaluator": "codex_sol",
+      "forced_completion_stratum": "P3_only_forced",
+      "label_stratum": "all",
+      "losses": 2,
+      "net_preference": -0.18181818181818182,
+      "pairs": 11,
+      "stage": "score_blind",
+      "tie_adjusted_preference": 0.4090909090909091,
+      "ties": 9,
+      "wins": 0
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          0.15384615384615385,
+          0.7272727272727273
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.5769230769230769,
+          0.8636363636363636
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "answer_grounding",
+      "evaluator": "codex_sol",
+      "forced_completion_stratum": "P2_only_forced",
+      "label_stratum": "all",
+      "losses": 0,
+      "net_preference": 0.4166666666666667,
+      "pairs": 12,
+      "stage": "score_blind",
+      "tie_adjusted_preference": 0.7083333333333334,
+      "ties": 7,
+      "wins": 5
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.38461538461538464,
+          0.0
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.3076923076923077,
+          0.5
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "answer_grounding",
+      "evaluator": "codex_sol",
+      "forced_completion_stratum": "both_forced",
+      "label_stratum": "all",
+      "losses": 2,
+      "net_preference": -0.16666666666666666,
+      "pairs": 12,
+      "stage": "score_blind",
+      "tie_adjusted_preference": 0.4166666666666667,
+      "ties": 10,
+      "wins": 0
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          0.0,
+          0.2222222222222222
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.5,
+          0.6111111111111112
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "answer_grounding",
+      "evaluator": "codex_sol",
+      "forced_completion_stratum": "all",
+      "label_stratum": "label_1",
+      "losses": 1,
+      "net_preference": 0.1111111111111111,
+      "pairs": 18,
+      "stage": "score_blind",
+      "tie_adjusted_preference": 0.5555555555555556,
+      "ties": 14,
+      "wins": 3
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.11904761904761904,
+          0.16666666666666666
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.44047619047619047,
+          0.5833333333333334
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "answer_grounding",
+      "evaluator": "codex_sol",
+      "forced_completion_stratum": "all",
+      "label_stratum": "label_2",
+      "losses": 4,
+      "net_preference": 0.023809523809523808,
+      "pairs": 42,
+      "stage": "score_blind",
+      "tie_adjusted_preference": 0.5119047619047619,
+      "ties": 33,
+      "wins": 5
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.05,
+          0.16666666666666666
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.475,
+          0.5833333333333334
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "answer_grounding",
+      "evaluator": "codex_sol",
+      "forced_completion_stratum": "all",
+      "label_stratum": "low_1_2",
+      "losses": 5,
+      "net_preference": 0.05,
+      "pairs": 60,
+      "stage": "score_blind",
+      "tie_adjusted_preference": 0.525,
+      "ties": 47,
+      "wins": 8
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          0.0,
+          0.23333333333333334
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.5,
+          0.6166666666666667
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "answer_grounding",
+      "evaluator": "codex_sol",
+      "forced_completion_stratum": "all",
+      "label_stratum": "non_low_3_5",
+      "losses": 2,
+      "net_preference": 0.11666666666666667,
+      "pairs": 60,
+      "stage": "score_blind",
+      "tie_adjusted_preference": 0.5583333333333333,
+      "ties": 49,
+      "wins": 9
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.075,
+          0.14166666666666666
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.4625,
+          0.5708333333333333
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "specificity",
+      "evaluator": "codex_sol",
+      "forced_completion_stratum": "all",
+      "label_stratum": "all",
+      "losses": 24,
+      "net_preference": 0.03333333333333333,
+      "pairs": 120,
+      "stage": "score_blind",
+      "tie_adjusted_preference": 0.5166666666666667,
+      "ties": 68,
+      "wins": 28
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.10465116279069768,
+          0.16666666666666666
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.4476744186046512,
+          0.5833333333333334
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "specificity",
+      "evaluator": "codex_sol",
+      "forced_completion_stratum": "neither_forced",
+      "label_stratum": "all",
+      "losses": 16,
+      "net_preference": 0.023529411764705882,
+      "pairs": 85,
+      "stage": "score_blind",
+      "tie_adjusted_preference": 0.5117647058823529,
+      "ties": 51,
+      "wins": 18
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.46153846153846156,
+          0.5454545454545454
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.2692307692307692,
+          0.7727272727272727
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "specificity",
+      "evaluator": "codex_sol",
+      "forced_completion_stratum": "P3_only_forced",
+      "label_stratum": "all",
+      "losses": 4,
+      "net_preference": 0.0,
+      "pairs": 11,
+      "stage": "score_blind",
+      "tie_adjusted_preference": 0.5,
+      "ties": 3,
+      "wins": 4
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          0.07142857142857142,
+          0.8181818181818182
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.5357142857142857,
+          0.9090909090909091
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "specificity",
+      "evaluator": "codex_sol",
+      "forced_completion_stratum": "P2_only_forced",
+      "label_stratum": "all",
+      "losses": 1,
+      "net_preference": 0.4166666666666667,
+      "pairs": 12,
+      "stage": "score_blind",
+      "tie_adjusted_preference": 0.7083333333333334,
+      "ties": 5,
+      "wins": 6
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.5,
+          -0.0625
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.25,
+          0.46875
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "specificity",
+      "evaluator": "codex_sol",
+      "forced_completion_stratum": "both_forced",
+      "label_stratum": "all",
+      "losses": 3,
+      "net_preference": -0.25,
+      "pairs": 12,
+      "stage": "score_blind",
+      "tie_adjusted_preference": 0.375,
+      "ties": 9,
+      "wins": 0
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.2222222222222222,
+          0.2777777777777778
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.3888888888888889,
+          0.6388888888888888
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "specificity",
+      "evaluator": "codex_sol",
+      "forced_completion_stratum": "all",
+      "label_stratum": "label_1",
+      "losses": 3,
+      "net_preference": 0.0,
+      "pairs": 18,
+      "stage": "score_blind",
+      "tie_adjusted_preference": 0.5,
+      "ties": 12,
+      "wins": 3
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.16666666666666666,
+          0.16666666666666666
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.4166666666666667,
+          0.5833333333333334
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "specificity",
+      "evaluator": "codex_sol",
+      "forced_completion_stratum": "all",
+      "label_stratum": "label_2",
+      "losses": 10,
+      "net_preference": 0.0,
+      "pairs": 42,
+      "stage": "score_blind",
+      "tie_adjusted_preference": 0.5,
+      "ties": 22,
+      "wins": 10
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.15,
+          0.15
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.425,
+          0.575
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "specificity",
+      "evaluator": "codex_sol",
+      "forced_completion_stratum": "all",
+      "label_stratum": "low_1_2",
+      "losses": 13,
+      "net_preference": 0.0,
+      "pairs": 60,
+      "stage": "score_blind",
+      "tie_adjusted_preference": 0.5,
+      "ties": 34,
+      "wins": 13
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.08333333333333333,
+          0.21666666666666667
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.4583333333333333,
+          0.6083333333333333
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "specificity",
+      "evaluator": "codex_sol",
+      "forced_completion_stratum": "all",
+      "label_stratum": "non_low_3_5",
+      "losses": 11,
+      "net_preference": 0.06666666666666667,
+      "pairs": 60,
+      "stage": "score_blind",
+      "tie_adjusted_preference": 0.5333333333333333,
+      "ties": 34,
+      "wins": 15
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.05,
+          0.14166666666666666
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.475,
+          0.5708333333333333
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "unsupported_claims_control",
+      "evaluator": "codex_sol",
+      "forced_completion_stratum": "all",
+      "label_stratum": "all",
+      "losses": 12,
+      "net_preference": 0.05,
+      "pairs": 120,
+      "stage": "score_blind",
+      "tie_adjusted_preference": 0.525,
+      "ties": 90,
+      "wins": 18
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.05555555555555555,
+          0.12363061797752757
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.4722222222222222,
+          0.5618153089887639
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "unsupported_claims_control",
+      "evaluator": "codex_sol",
+      "forced_completion_stratum": "neither_forced",
+      "label_stratum": "all",
+      "losses": 5,
+      "net_preference": 0.03529411764705882,
+      "pairs": 85,
+      "stage": "score_blind",
+      "tie_adjusted_preference": 0.5176470588235295,
+      "ties": 72,
+      "wins": 8
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.75,
+          -0.1
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.125,
+          0.45
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "unsupported_claims_control",
+      "evaluator": "codex_sol",
+      "forced_completion_stratum": "P3_only_forced",
+      "label_stratum": "all",
+      "losses": 5,
+      "net_preference": -0.45454545454545453,
+      "pairs": 11,
+      "stage": "score_blind",
+      "tie_adjusted_preference": 0.2727272727272727,
+      "ties": 6,
+      "wins": 0
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          0.5714285714285714,
+          1.0
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.7857142857142857,
+          1.0
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "unsupported_claims_control",
+      "evaluator": "codex_sol",
+      "forced_completion_stratum": "P2_only_forced",
+      "label_stratum": "all",
+      "losses": 0,
+      "net_preference": 0.8333333333333334,
+      "pairs": 12,
+      "stage": "score_blind",
+      "tie_adjusted_preference": 0.9166666666666666,
+      "ties": 2,
+      "wins": 10
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.38461538461538464,
+          0.0
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.3076923076923077,
+          0.5
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "unsupported_claims_control",
+      "evaluator": "codex_sol",
+      "forced_completion_stratum": "both_forced",
+      "label_stratum": "all",
+      "losses": 2,
+      "net_preference": -0.16666666666666666,
+      "pairs": 12,
+      "stage": "score_blind",
+      "tie_adjusted_preference": 0.4166666666666667,
+      "ties": 10,
+      "wins": 0
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          0.05555555555555555,
+          0.2777777777777778
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.5277777777777778,
+          0.6388888888888888
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "unsupported_claims_control",
+      "evaluator": "codex_sol",
+      "forced_completion_stratum": "all",
+      "label_stratum": "label_1",
+      "losses": 0,
+      "net_preference": 0.16666666666666666,
+      "pairs": 18,
+      "stage": "score_blind",
+      "tie_adjusted_preference": 0.5833333333333334,
+      "ties": 15,
+      "wins": 3
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.21428571428571427,
+          0.16666666666666666
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.39285714285714285,
+          0.5833333333333334
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "unsupported_claims_control",
+      "evaluator": "codex_sol",
+      "forced_completion_stratum": "all",
+      "label_stratum": "label_2",
+      "losses": 8,
+      "net_preference": -0.023809523809523808,
+      "pairs": 42,
+      "stage": "score_blind",
+      "tie_adjusted_preference": 0.4880952380952381,
+      "ties": 27,
+      "wins": 7
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.11666666666666667,
+          0.18333333333333332
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.44166666666666665,
+          0.5916666666666667
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "unsupported_claims_control",
+      "evaluator": "codex_sol",
+      "forced_completion_stratum": "all",
+      "label_stratum": "low_1_2",
+      "losses": 8,
+      "net_preference": 0.03333333333333333,
+      "pairs": 60,
+      "stage": "score_blind",
+      "tie_adjusted_preference": 0.5166666666666667,
+      "ties": 42,
+      "wins": 10
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.05,
+          0.18333333333333332
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.475,
+          0.5916666666666667
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "unsupported_claims_control",
+      "evaluator": "codex_sol",
+      "forced_completion_stratum": "all",
+      "label_stratum": "non_low_3_5",
+      "losses": 4,
+      "net_preference": 0.06666666666666667,
+      "pairs": 60,
+      "stage": "score_blind",
+      "tie_adjusted_preference": 0.5333333333333333,
+      "ties": 48,
+      "wins": 8
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.075,
+          0.14166666666666666
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.4625,
+          0.5708333333333333
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "completeness",
+      "evaluator": "codex_sol",
+      "forced_completion_stratum": "all",
+      "label_stratum": "all",
+      "losses": 20,
+      "net_preference": 0.03333333333333333,
+      "pairs": 120,
+      "stage": "score_blind",
+      "tie_adjusted_preference": 0.5166666666666667,
+      "ties": 76,
+      "wins": 24
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.07142857142857142,
+          0.18292682926829268
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.4642857142857143,
+          0.5914634146341463
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "completeness",
+      "evaluator": "codex_sol",
+      "forced_completion_stratum": "neither_forced",
+      "label_stratum": "all",
+      "losses": 14,
+      "net_preference": 0.047058823529411764,
+      "pairs": 85,
+      "stage": "score_blind",
+      "tie_adjusted_preference": 0.5235294117647059,
+      "ties": 53,
+      "wins": 18
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.2727272727272727,
+          0.5
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.36363636363636365,
+          0.75
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "completeness",
+      "evaluator": "codex_sol",
+      "forced_completion_stratum": "P3_only_forced",
+      "label_stratum": "all",
+      "losses": 2,
+      "net_preference": 0.09090909090909091,
+      "pairs": 11,
+      "stage": "score_blind",
+      "tie_adjusted_preference": 0.5454545454545454,
+      "ties": 6,
+      "wins": 3
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.2727272727272727,
+          0.45454545454545453
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.36363636363636365,
+          0.7272727272727273
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "completeness",
+      "evaluator": "codex_sol",
+      "forced_completion_stratum": "P2_only_forced",
+      "label_stratum": "all",
+      "losses": 2,
+      "net_preference": 0.08333333333333333,
+      "pairs": 12,
+      "stage": "score_blind",
+      "tie_adjusted_preference": 0.5416666666666666,
+      "ties": 7,
+      "wins": 3
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.38461538461538464,
+          0.0
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.3076923076923077,
+          0.5
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "completeness",
+      "evaluator": "codex_sol",
+      "forced_completion_stratum": "both_forced",
+      "label_stratum": "all",
+      "losses": 2,
+      "net_preference": -0.16666666666666666,
+      "pairs": 12,
+      "stage": "score_blind",
+      "tie_adjusted_preference": 0.4166666666666667,
+      "ties": 10,
+      "wins": 0
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.16666666666666666,
+          0.3333333333333333
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.4166666666666667,
+          0.6666666666666666
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "completeness",
+      "evaluator": "codex_sol",
+      "forced_completion_stratum": "all",
+      "label_stratum": "label_1",
+      "losses": 2,
+      "net_preference": 0.05555555555555555,
+      "pairs": 18,
+      "stage": "score_blind",
+      "tie_adjusted_preference": 0.5277777777777778,
+      "ties": 13,
+      "wins": 3
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.2619047619047619,
+          0.11904761904761904
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.36904761904761907,
+          0.5595238095238095
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "completeness",
+      "evaluator": "codex_sol",
+      "forced_completion_stratum": "all",
+      "label_stratum": "label_2",
+      "losses": 10,
+      "net_preference": -0.07142857142857142,
+      "pairs": 42,
+      "stage": "score_blind",
+      "tie_adjusted_preference": 0.4642857142857143,
+      "ties": 25,
+      "wins": 7
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.18333333333333332,
+          0.11666666666666667
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.4083333333333333,
+          0.5583333333333333
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "completeness",
+      "evaluator": "codex_sol",
+      "forced_completion_stratum": "all",
+      "label_stratum": "low_1_2",
+      "losses": 12,
+      "net_preference": -0.03333333333333333,
+      "pairs": 60,
+      "stage": "score_blind",
+      "tie_adjusted_preference": 0.48333333333333334,
+      "ties": 38,
+      "wins": 10
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.05,
+          0.23333333333333334
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.475,
+          0.6166666666666667
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "completeness",
+      "evaluator": "codex_sol",
+      "forced_completion_stratum": "all",
+      "label_stratum": "non_low_3_5",
+      "losses": 8,
+      "net_preference": 0.1,
+      "pairs": 60,
+      "stage": "score_blind",
+      "tie_adjusted_preference": 0.55,
+      "ties": 38,
+      "wins": 14
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.075,
+          0.09166666666666666
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.4625,
+          0.5458333333333333
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "repetition_control",
+      "evaluator": "codex_sol",
+      "forced_completion_stratum": "all",
+      "label_stratum": "all",
+      "losses": 13,
+      "net_preference": 0.008333333333333333,
+      "pairs": 120,
+      "stage": "score_blind",
+      "tie_adjusted_preference": 0.5041666666666667,
+      "ties": 93,
+      "wins": 14
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.034492782678428216,
+          0.034482758620689655
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.4827536086607859,
+          0.5172413793103449
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "repetition_control",
+      "evaluator": "codex_sol",
+      "forced_completion_stratum": "neither_forced",
+      "label_stratum": "all",
+      "losses": 1,
+      "net_preference": 0.0,
+      "pairs": 85,
+      "stage": "score_blind",
+      "tie_adjusted_preference": 0.5,
+      "ties": 83,
+      "wins": 1
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -1.0,
+          -1.0
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.0,
+          0.0
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "repetition_control",
+      "evaluator": "codex_sol",
+      "forced_completion_stratum": "P3_only_forced",
+      "label_stratum": "all",
+      "losses": 11,
+      "net_preference": -1.0,
+      "pairs": 11,
+      "stage": "score_blind",
+      "tie_adjusted_preference": 0.0,
+      "ties": 0,
+      "wins": 0
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          1.0,
+          1.0
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          1.0,
+          1.0
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "repetition_control",
+      "evaluator": "codex_sol",
+      "forced_completion_stratum": "P2_only_forced",
+      "label_stratum": "all",
+      "losses": 0,
+      "net_preference": 1.0,
+      "pairs": 12,
+      "stage": "score_blind",
+      "tie_adjusted_preference": 1.0,
+      "ties": 0,
+      "wins": 12
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.25,
+          0.25
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.375,
+          0.625
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "repetition_control",
+      "evaluator": "codex_sol",
+      "forced_completion_stratum": "both_forced",
+      "label_stratum": "all",
+      "losses": 1,
+      "net_preference": 0.0,
+      "pairs": 12,
+      "stage": "score_blind",
+      "tie_adjusted_preference": 0.5,
+      "ties": 10,
+      "wins": 1
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.1111111111111111,
+          0.2222222222222222
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.4444444444444444,
+          0.6111111111111112
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "repetition_control",
+      "evaluator": "codex_sol",
+      "forced_completion_stratum": "all",
+      "label_stratum": "label_1",
+      "losses": 1,
+      "net_preference": 0.05555555555555555,
+      "pairs": 18,
+      "stage": "score_blind",
+      "tie_adjusted_preference": 0.5277777777777778,
+      "ties": 15,
+      "wins": 2
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.19047619047619047,
+          0.11904761904761904
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.40476190476190477,
+          0.5595238095238095
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "repetition_control",
+      "evaluator": "codex_sol",
+      "forced_completion_stratum": "all",
+      "label_stratum": "label_2",
+      "losses": 5,
+      "net_preference": -0.023809523809523808,
+      "pairs": 42,
+      "stage": "score_blind",
+      "tie_adjusted_preference": 0.4880952380952381,
+      "ties": 33,
+      "wins": 4
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.11666666666666667,
+          0.11666666666666667
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.44166666666666665,
+          0.5583333333333333
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "repetition_control",
+      "evaluator": "codex_sol",
+      "forced_completion_stratum": "all",
+      "label_stratum": "low_1_2",
+      "losses": 6,
+      "net_preference": 0.0,
+      "pairs": 60,
+      "stage": "score_blind",
+      "tie_adjusted_preference": 0.5,
+      "ties": 48,
+      "wins": 6
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.1,
+          0.13333333333333333
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.45,
+          0.5666666666666667
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "repetition_control",
+      "evaluator": "codex_sol",
+      "forced_completion_stratum": "all",
+      "label_stratum": "non_low_3_5",
+      "losses": 7,
+      "net_preference": 0.016666666666666666,
+      "pairs": 60,
+      "stage": "score_blind",
+      "tie_adjusted_preference": 0.5083333333333333,
+      "ties": 45,
+      "wins": 8
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.09166666666666666,
+          0.15833333333333333
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.45416666666666666,
+          0.5791666666666667
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "overall_preference",
+      "evaluator": "codex_sol",
+      "forced_completion_stratum": "all",
+      "label_stratum": "all",
+      "losses": 30,
+      "net_preference": 0.03333333333333333,
+      "pairs": 120,
+      "stage": "score_blind",
+      "tie_adjusted_preference": 0.5166666666666667,
+      "ties": 56,
+      "wins": 34
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.08974719101123595,
+          0.189873417721519
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.455126404494382,
+          0.5949367088607594
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "overall_preference",
+      "evaluator": "codex_sol",
+      "forced_completion_stratum": "neither_forced",
+      "label_stratum": "all",
+      "losses": 17,
+      "net_preference": 0.047058823529411764,
+      "pairs": 85,
+      "stage": "score_blind",
+      "tie_adjusted_preference": 0.5235294117647059,
+      "ties": 47,
+      "wins": 21
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -1.0,
+          -1.0
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.0,
+          0.0
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "overall_preference",
+      "evaluator": "codex_sol",
+      "forced_completion_stratum": "P3_only_forced",
+      "label_stratum": "all",
+      "losses": 11,
+      "net_preference": -1.0,
+      "pairs": 11,
+      "stage": "score_blind",
+      "tie_adjusted_preference": 0.0,
+      "ties": 0,
+      "wins": 0
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          1.0,
+          1.0
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          1.0,
+          1.0
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "overall_preference",
+      "evaluator": "codex_sol",
+      "forced_completion_stratum": "P2_only_forced",
+      "label_stratum": "all",
+      "losses": 0,
+      "net_preference": 1.0,
+      "pairs": 12,
+      "stage": "score_blind",
+      "tie_adjusted_preference": 1.0,
+      "ties": 0,
+      "wins": 12
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.3333333333333333,
+          0.2
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.3333333333333333,
+          0.6
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "overall_preference",
+      "evaluator": "codex_sol",
+      "forced_completion_stratum": "both_forced",
+      "label_stratum": "all",
+      "losses": 2,
+      "net_preference": -0.08333333333333333,
+      "pairs": 12,
+      "stage": "score_blind",
+      "tie_adjusted_preference": 0.4583333333333333,
+      "ties": 9,
+      "wins": 1
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.1111111111111111,
+          0.4444444444444444
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.4444444444444444,
+          0.7222222222222222
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "overall_preference",
+      "evaluator": "codex_sol",
+      "forced_completion_stratum": "all",
+      "label_stratum": "label_1",
+      "losses": 2,
+      "net_preference": 0.16666666666666666,
+      "pairs": 18,
+      "stage": "score_blind",
+      "tie_adjusted_preference": 0.5833333333333334,
+      "ties": 11,
+      "wins": 5
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.23809523809523808,
+          0.16666666666666666
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.38095238095238093,
+          0.5833333333333334
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "overall_preference",
+      "evaluator": "codex_sol",
+      "forced_completion_stratum": "all",
+      "label_stratum": "label_2",
+      "losses": 12,
+      "net_preference": -0.047619047619047616,
+      "pairs": 42,
+      "stage": "score_blind",
+      "tie_adjusted_preference": 0.47619047619047616,
+      "ties": 20,
+      "wins": 10
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.15,
+          0.2
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.425,
+          0.6
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "overall_preference",
+      "evaluator": "codex_sol",
+      "forced_completion_stratum": "all",
+      "label_stratum": "low_1_2",
+      "losses": 14,
+      "net_preference": 0.016666666666666666,
+      "pairs": 60,
+      "stage": "score_blind",
+      "tie_adjusted_preference": 0.5083333333333333,
+      "ties": 31,
+      "wins": 15
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.15,
+          0.23333333333333334
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.425,
+          0.6166666666666667
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "overall_preference",
+      "evaluator": "codex_sol",
+      "forced_completion_stratum": "all",
+      "label_stratum": "non_low_3_5",
+      "losses": 16,
+      "net_preference": 0.05,
+      "pairs": 60,
+      "stage": "score_blind",
+      "tie_adjusted_preference": 0.525,
+      "ties": 25,
+      "wins": 19
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.1,
+          0.11666666666666667
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.45,
+          0.5583333333333333
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "score_rationale_consistency",
+      "evaluator": "codex_sol",
+      "forced_completion_stratum": "all",
+      "label_stratum": "all",
+      "losses": 31,
+      "net_preference": 0.008333333333333333,
+      "pairs": 120,
+      "stage": "score_visible",
+      "tie_adjusted_preference": 0.5041666666666667,
+      "ties": 57,
+      "wins": 32
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.08433734939759036,
+          0.16470911441499672
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.4578313253012048,
+          0.5823545572074984
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "score_rationale_consistency",
+      "evaluator": "codex_sol",
+      "forced_completion_stratum": "neither_forced",
+      "label_stratum": "all",
+      "losses": 16,
+      "net_preference": 0.03529411764705882,
+      "pairs": 85,
+      "stage": "score_visible",
+      "tie_adjusted_preference": 0.5176470588235295,
+      "ties": 50,
+      "wins": 19
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -1.0,
+          0.0
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.0,
+          0.5
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "score_rationale_consistency",
+      "evaluator": "codex_sol",
+      "forced_completion_stratum": "P3_only_forced",
+      "label_stratum": "all",
+      "losses": 8,
+      "net_preference": -0.5454545454545454,
+      "pairs": 11,
+      "stage": "score_visible",
+      "tie_adjusted_preference": 0.22727272727272727,
+      "ties": 1,
+      "wins": 2
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          0.16666666666666666,
+          1.0
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.5833333333333334,
+          1.0
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "score_rationale_consistency",
+      "evaluator": "codex_sol",
+      "forced_completion_stratum": "P2_only_forced",
+      "label_stratum": "all",
+      "losses": 2,
+      "net_preference": 0.6666666666666666,
+      "pairs": 12,
+      "stage": "score_visible",
+      "tie_adjusted_preference": 0.8333333333333334,
+      "ties": 0,
+      "wins": 10
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.6363636363636364,
+          0.0
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.18181818181818182,
+          0.5
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "score_rationale_consistency",
+      "evaluator": "codex_sol",
+      "forced_completion_stratum": "both_forced",
+      "label_stratum": "all",
+      "losses": 5,
+      "net_preference": -0.3333333333333333,
+      "pairs": 12,
+      "stage": "score_visible",
+      "tie_adjusted_preference": 0.3333333333333333,
+      "ties": 6,
+      "wins": 1
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.2222222222222222,
+          0.1111111111111111
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.3888888888888889,
+          0.5555555555555556
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "score_rationale_consistency",
+      "evaluator": "codex_sol",
+      "forced_completion_stratum": "all",
+      "label_stratum": "label_1",
+      "losses": 4,
+      "net_preference": -0.05555555555555555,
+      "pairs": 18,
+      "stage": "score_visible",
+      "tie_adjusted_preference": 0.4722222222222222,
+      "ties": 11,
+      "wins": 3
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.23809523809523808,
+          0.19047619047619047
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.38095238095238093,
+          0.5952380952380952
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "score_rationale_consistency",
+      "evaluator": "codex_sol",
+      "forced_completion_stratum": "all",
+      "label_stratum": "label_2",
+      "losses": 12,
+      "net_preference": -0.023809523809523808,
+      "pairs": 42,
+      "stage": "score_visible",
+      "tie_adjusted_preference": 0.4880952380952381,
+      "ties": 19,
+      "wins": 11
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.1837499999999996,
+          0.13333333333333333
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.4081250000000002,
+          0.5666666666666667
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "score_rationale_consistency",
+      "evaluator": "codex_sol",
+      "forced_completion_stratum": "all",
+      "label_stratum": "low_1_2",
+      "losses": 16,
+      "net_preference": -0.03333333333333333,
+      "pairs": 60,
+      "stage": "score_visible",
+      "tie_adjusted_preference": 0.48333333333333334,
+      "ties": 30,
+      "wins": 14
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.1,
+          0.2
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.45,
+          0.6
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "score_rationale_consistency",
+      "evaluator": "codex_sol",
+      "forced_completion_stratum": "all",
+      "label_stratum": "non_low_3_5",
+      "losses": 15,
+      "net_preference": 0.05,
+      "pairs": 60,
+      "stage": "score_visible",
+      "tie_adjusted_preference": 0.525,
+      "ties": 27,
+      "wins": 18
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.1,
+          0.11666666666666667
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.45,
+          0.5583333333333333
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "overall_scoring_justification_usefulness",
+      "evaluator": "codex_sol",
+      "forced_completion_stratum": "all",
+      "label_stratum": "all",
+      "losses": 31,
+      "net_preference": 0.008333333333333333,
+      "pairs": 120,
+      "stage": "score_visible",
+      "tie_adjusted_preference": 0.5041666666666667,
+      "ties": 57,
+      "wins": 32
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.08433734939759036,
+          0.16470911441499672
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.4578313253012048,
+          0.5823545572074984
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "overall_scoring_justification_usefulness",
+      "evaluator": "codex_sol",
+      "forced_completion_stratum": "neither_forced",
+      "label_stratum": "all",
+      "losses": 16,
+      "net_preference": 0.03529411764705882,
+      "pairs": 85,
+      "stage": "score_visible",
+      "tie_adjusted_preference": 0.5176470588235295,
+      "ties": 50,
+      "wins": 19
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -1.0,
+          0.0
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.0,
+          0.5
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "overall_scoring_justification_usefulness",
+      "evaluator": "codex_sol",
+      "forced_completion_stratum": "P3_only_forced",
+      "label_stratum": "all",
+      "losses": 8,
+      "net_preference": -0.5454545454545454,
+      "pairs": 11,
+      "stage": "score_visible",
+      "tie_adjusted_preference": 0.22727272727272727,
+      "ties": 1,
+      "wins": 2
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          0.16666666666666666,
+          1.0
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.5833333333333334,
+          1.0
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "overall_scoring_justification_usefulness",
+      "evaluator": "codex_sol",
+      "forced_completion_stratum": "P2_only_forced",
+      "label_stratum": "all",
+      "losses": 2,
+      "net_preference": 0.6666666666666666,
+      "pairs": 12,
+      "stage": "score_visible",
+      "tie_adjusted_preference": 0.8333333333333334,
+      "ties": 0,
+      "wins": 10
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.6363636363636364,
+          0.0
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.18181818181818182,
+          0.5
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "overall_scoring_justification_usefulness",
+      "evaluator": "codex_sol",
+      "forced_completion_stratum": "both_forced",
+      "label_stratum": "all",
+      "losses": 5,
+      "net_preference": -0.3333333333333333,
+      "pairs": 12,
+      "stage": "score_visible",
+      "tie_adjusted_preference": 0.3333333333333333,
+      "ties": 6,
+      "wins": 1
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.2222222222222222,
+          0.1111111111111111
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.3888888888888889,
+          0.5555555555555556
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "overall_scoring_justification_usefulness",
+      "evaluator": "codex_sol",
+      "forced_completion_stratum": "all",
+      "label_stratum": "label_1",
+      "losses": 4,
+      "net_preference": -0.05555555555555555,
+      "pairs": 18,
+      "stage": "score_visible",
+      "tie_adjusted_preference": 0.4722222222222222,
+      "ties": 11,
+      "wins": 3
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.23809523809523808,
+          0.19047619047619047
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.38095238095238093,
+          0.5952380952380952
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "overall_scoring_justification_usefulness",
+      "evaluator": "codex_sol",
+      "forced_completion_stratum": "all",
+      "label_stratum": "label_2",
+      "losses": 12,
+      "net_preference": -0.023809523809523808,
+      "pairs": 42,
+      "stage": "score_visible",
+      "tie_adjusted_preference": 0.4880952380952381,
+      "ties": 19,
+      "wins": 11
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.1837499999999996,
+          0.13333333333333333
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.4081250000000002,
+          0.5666666666666667
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "overall_scoring_justification_usefulness",
+      "evaluator": "codex_sol",
+      "forced_completion_stratum": "all",
+      "label_stratum": "low_1_2",
+      "losses": 16,
+      "net_preference": -0.03333333333333333,
+      "pairs": 60,
+      "stage": "score_visible",
+      "tie_adjusted_preference": 0.48333333333333334,
+      "ties": 30,
+      "wins": 14
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.1,
+          0.2
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.45,
+          0.6
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "overall_scoring_justification_usefulness",
+      "evaluator": "codex_sol",
+      "forced_completion_stratum": "all",
+      "label_stratum": "non_low_3_5",
+      "losses": 15,
+      "net_preference": 0.05,
+      "pairs": 60,
+      "stage": "score_visible",
+      "tie_adjusted_preference": 0.525,
+      "ties": 27,
+      "wins": 18
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.1,
+          0.11666666666666667
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.45,
+          0.5583333333333333
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "overall_preference",
+      "evaluator": "codex_sol",
+      "forced_completion_stratum": "all",
+      "label_stratum": "all",
+      "losses": 31,
+      "net_preference": 0.008333333333333333,
+      "pairs": 120,
+      "stage": "score_visible",
+      "tie_adjusted_preference": 0.5041666666666667,
+      "ties": 57,
+      "wins": 32
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.08433734939759036,
+          0.16470911441499672
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.4578313253012048,
+          0.5823545572074984
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "overall_preference",
+      "evaluator": "codex_sol",
+      "forced_completion_stratum": "neither_forced",
+      "label_stratum": "all",
+      "losses": 16,
+      "net_preference": 0.03529411764705882,
+      "pairs": 85,
+      "stage": "score_visible",
+      "tie_adjusted_preference": 0.5176470588235295,
+      "ties": 50,
+      "wins": 19
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -1.0,
+          0.0
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.0,
+          0.5
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "overall_preference",
+      "evaluator": "codex_sol",
+      "forced_completion_stratum": "P3_only_forced",
+      "label_stratum": "all",
+      "losses": 8,
+      "net_preference": -0.5454545454545454,
+      "pairs": 11,
+      "stage": "score_visible",
+      "tie_adjusted_preference": 0.22727272727272727,
+      "ties": 1,
+      "wins": 2
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          0.16666666666666666,
+          1.0
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.5833333333333334,
+          1.0
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "overall_preference",
+      "evaluator": "codex_sol",
+      "forced_completion_stratum": "P2_only_forced",
+      "label_stratum": "all",
+      "losses": 2,
+      "net_preference": 0.6666666666666666,
+      "pairs": 12,
+      "stage": "score_visible",
+      "tie_adjusted_preference": 0.8333333333333334,
+      "ties": 0,
+      "wins": 10
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.6363636363636364,
+          0.0
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.18181818181818182,
+          0.5
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "overall_preference",
+      "evaluator": "codex_sol",
+      "forced_completion_stratum": "both_forced",
+      "label_stratum": "all",
+      "losses": 5,
+      "net_preference": -0.3333333333333333,
+      "pairs": 12,
+      "stage": "score_visible",
+      "tie_adjusted_preference": 0.3333333333333333,
+      "ties": 6,
+      "wins": 1
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.2222222222222222,
+          0.1111111111111111
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.3888888888888889,
+          0.5555555555555556
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "overall_preference",
+      "evaluator": "codex_sol",
+      "forced_completion_stratum": "all",
+      "label_stratum": "label_1",
+      "losses": 4,
+      "net_preference": -0.05555555555555555,
+      "pairs": 18,
+      "stage": "score_visible",
+      "tie_adjusted_preference": 0.4722222222222222,
+      "ties": 11,
+      "wins": 3
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.23809523809523808,
+          0.19047619047619047
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.38095238095238093,
+          0.5952380952380952
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "overall_preference",
+      "evaluator": "codex_sol",
+      "forced_completion_stratum": "all",
+      "label_stratum": "label_2",
+      "losses": 12,
+      "net_preference": -0.023809523809523808,
+      "pairs": 42,
+      "stage": "score_visible",
+      "tie_adjusted_preference": 0.4880952380952381,
+      "ties": 19,
+      "wins": 11
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.1837499999999996,
+          0.13333333333333333
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.4081250000000002,
+          0.5666666666666667
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "overall_preference",
+      "evaluator": "codex_sol",
+      "forced_completion_stratum": "all",
+      "label_stratum": "low_1_2",
+      "losses": 16,
+      "net_preference": -0.03333333333333333,
+      "pairs": 60,
+      "stage": "score_visible",
+      "tie_adjusted_preference": 0.48333333333333334,
+      "ties": 30,
+      "wins": 14
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.1,
+          0.2
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.45,
+          0.6
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "overall_preference",
+      "evaluator": "codex_sol",
+      "forced_completion_stratum": "all",
+      "label_stratum": "non_low_3_5",
+      "losses": 15,
+      "net_preference": 0.05,
+      "pairs": 60,
+      "stage": "score_visible",
+      "tie_adjusted_preference": 0.525,
+      "ties": 27,
+      "wins": 18
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.11666666666666667,
+          0.1
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.44166666666666665,
+          0.55
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "rubric_alignment",
+      "evaluator": "codex_terra",
+      "forced_completion_stratum": "all",
+      "label_stratum": "all",
+      "losses": 20,
+      "net_preference": -0.008333333333333333,
+      "pairs": 120,
+      "stage": "score_blind",
+      "tie_adjusted_preference": 0.49583333333333335,
+      "ties": 81,
+      "wins": 19
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.14942528735632185,
+          0.10526315789473684
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.42528735632183906,
+          0.5526315789473685
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "rubric_alignment",
+      "evaluator": "codex_terra",
+      "forced_completion_stratum": "neither_forced",
+      "label_stratum": "all",
+      "losses": 11,
+      "net_preference": -0.023529411764705882,
+      "pairs": 85,
+      "stage": "score_blind",
+      "tie_adjusted_preference": 0.48823529411764705,
+      "ties": 65,
+      "wins": 9
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.6,
+          0.5
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.2,
+          0.75
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "rubric_alignment",
+      "evaluator": "codex_terra",
+      "forced_completion_stratum": "P3_only_forced",
+      "label_stratum": "all",
+      "losses": 4,
+      "net_preference": 0.0,
+      "pairs": 11,
+      "stage": "score_blind",
+      "tie_adjusted_preference": 0.5,
+      "ties": 3,
+      "wins": 4
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.4666666666666667,
+          0.5454545454545454
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.26666666666666666,
+          0.7727272727272727
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "rubric_alignment",
+      "evaluator": "codex_terra",
+      "forced_completion_stratum": "P2_only_forced",
+      "label_stratum": "all",
+      "losses": 4,
+      "net_preference": 0.0,
+      "pairs": 12,
+      "stage": "score_blind",
+      "tie_adjusted_preference": 0.5,
+      "ties": 4,
+      "wins": 4
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          0.0,
+          0.3
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.5,
+          0.65
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "rubric_alignment",
+      "evaluator": "codex_terra",
+      "forced_completion_stratum": "both_forced",
+      "label_stratum": "all",
+      "losses": 1,
+      "net_preference": 0.08333333333333333,
+      "pairs": 12,
+      "stage": "score_blind",
+      "tie_adjusted_preference": 0.5416666666666666,
+      "ties": 9,
+      "wins": 2
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.1111111111111111,
+          0.2222222222222222
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.4444444444444444,
+          0.6111111111111112
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "rubric_alignment",
+      "evaluator": "codex_terra",
+      "forced_completion_stratum": "all",
+      "label_stratum": "label_1",
+      "losses": 3,
+      "net_preference": 0.05555555555555555,
+      "pairs": 18,
+      "stage": "score_blind",
+      "tie_adjusted_preference": 0.5277777777777778,
+      "ties": 11,
+      "wins": 4
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          0.0,
+          0.3333333333333333
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.5,
+          0.6666666666666666
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "rubric_alignment",
+      "evaluator": "codex_terra",
+      "forced_completion_stratum": "all",
+      "label_stratum": "label_2",
+      "losses": 1,
+      "net_preference": 0.14285714285714285,
+      "pairs": 42,
+      "stage": "score_blind",
+      "tie_adjusted_preference": 0.5714285714285714,
+      "ties": 34,
+      "wins": 7
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          0.0,
+          0.25
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.5,
+          0.625
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "rubric_alignment",
+      "evaluator": "codex_terra",
+      "forced_completion_stratum": "all",
+      "label_stratum": "low_1_2",
+      "losses": 4,
+      "net_preference": 0.11666666666666667,
+      "pairs": 60,
+      "stage": "score_blind",
+      "tie_adjusted_preference": 0.5583333333333333,
+      "ties": 45,
+      "wins": 11
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.3,
+          0.03333333333333333
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.35,
+          0.5166666666666667
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "rubric_alignment",
+      "evaluator": "codex_terra",
+      "forced_completion_stratum": "all",
+      "label_stratum": "non_low_3_5",
+      "losses": 16,
+      "net_preference": -0.13333333333333333,
+      "pairs": 60,
+      "stage": "score_blind",
+      "tie_adjusted_preference": 0.43333333333333335,
+      "ties": 36,
+      "wins": 8
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.125,
+          0.125
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.4375,
+          0.5625
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "answer_grounding",
+      "evaluator": "codex_terra",
+      "forced_completion_stratum": "all",
+      "label_stratum": "all",
+      "losses": 20,
+      "net_preference": 0.0,
+      "pairs": 120,
+      "stage": "score_blind",
+      "tie_adjusted_preference": 0.5,
+      "ties": 80,
+      "wins": 20
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.06978796169630641,
+          0.13953488372093023
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.4651060191518468,
+          0.5697674418604651
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "answer_grounding",
+      "evaluator": "codex_terra",
+      "forced_completion_stratum": "neither_forced",
+      "label_stratum": "all",
+      "losses": 9,
+      "net_preference": 0.03529411764705882,
+      "pairs": 85,
+      "stage": "score_blind",
+      "tie_adjusted_preference": 0.5176470588235295,
+      "ties": 64,
+      "wins": 12
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.8,
+          -0.09071969696969973
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.1,
+          0.45464015151515014
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "answer_grounding",
+      "evaluator": "codex_terra",
+      "forced_completion_stratum": "P3_only_forced",
+      "label_stratum": "all",
+      "losses": 6,
+      "net_preference": -0.45454545454545453,
+      "pairs": 11,
+      "stage": "score_blind",
+      "tie_adjusted_preference": 0.2727272727272727,
+      "ties": 4,
+      "wins": 1
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.46153846153846156,
+          0.5454545454545454
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.2692307692307692,
+          0.7727272727272727
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "answer_grounding",
+      "evaluator": "codex_terra",
+      "forced_completion_stratum": "P2_only_forced",
+      "label_stratum": "all",
+      "losses": 4,
+      "net_preference": 0.0,
+      "pairs": 12,
+      "stage": "score_blind",
+      "tie_adjusted_preference": 0.5,
+      "ties": 4,
+      "wins": 4
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          0.0,
+          0.45454545454545453
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.5,
+          0.7272727272727273
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "answer_grounding",
+      "evaluator": "codex_terra",
+      "forced_completion_stratum": "both_forced",
+      "label_stratum": "all",
+      "losses": 1,
+      "net_preference": 0.16666666666666666,
+      "pairs": 12,
+      "stage": "score_blind",
+      "tie_adjusted_preference": 0.5833333333333334,
+      "ties": 8,
+      "wins": 3
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.3333333333333333,
+          0.2222222222222222
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.3333333333333333,
+          0.6111111111111112
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "answer_grounding",
+      "evaluator": "codex_terra",
+      "forced_completion_stratum": "all",
+      "label_stratum": "label_1",
+      "losses": 4,
+      "net_preference": -0.05555555555555555,
+      "pairs": 18,
+      "stage": "score_blind",
+      "tie_adjusted_preference": 0.4722222222222222,
+      "ties": 11,
+      "wins": 3
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.09523809523809523,
+          0.19047619047619047
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.4523809523809524,
+          0.5952380952380952
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "answer_grounding",
+      "evaluator": "codex_terra",
+      "forced_completion_stratum": "all",
+      "label_stratum": "label_2",
+      "losses": 2,
+      "net_preference": 0.047619047619047616,
+      "pairs": 42,
+      "stage": "score_blind",
+      "tie_adjusted_preference": 0.5238095238095238,
+      "ties": 36,
+      "wins": 4
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.11666666666666667,
+          0.15
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.44166666666666665,
+          0.575
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "answer_grounding",
+      "evaluator": "codex_terra",
+      "forced_completion_stratum": "all",
+      "label_stratum": "low_1_2",
+      "losses": 6,
+      "net_preference": 0.016666666666666666,
+      "pairs": 60,
+      "stage": "score_blind",
+      "tie_adjusted_preference": 0.5083333333333333,
+      "ties": 47,
+      "wins": 7
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.23333333333333334,
+          0.18333333333333332
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.38333333333333336,
+          0.5916666666666667
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "answer_grounding",
+      "evaluator": "codex_terra",
+      "forced_completion_stratum": "all",
+      "label_stratum": "non_low_3_5",
+      "losses": 14,
+      "net_preference": -0.016666666666666666,
+      "pairs": 60,
+      "stage": "score_blind",
+      "tie_adjusted_preference": 0.49166666666666664,
+      "ties": 33,
+      "wins": 13
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.08333333333333333,
+          0.16666666666666666
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.4583333333333333,
+          0.5833333333333334
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "specificity",
+      "evaluator": "codex_terra",
+      "forced_completion_stratum": "all",
+      "label_stratum": "all",
+      "losses": 21,
+      "net_preference": 0.041666666666666664,
+      "pairs": 120,
+      "stage": "score_blind",
+      "tie_adjusted_preference": 0.5208333333333334,
+      "ties": 73,
+      "wins": 26
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.022988505747126436,
+          0.21348314606741572
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.4885057471264368,
+          0.6067415730337079
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "specificity",
+      "evaluator": "codex_terra",
+      "forced_completion_stratum": "neither_forced",
+      "label_stratum": "all",
+      "losses": 9,
+      "net_preference": 0.09411764705882353,
+      "pairs": 85,
+      "stage": "score_blind",
+      "tie_adjusted_preference": 0.5470588235294118,
+      "ties": 59,
+      "wins": 17
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.5,
+          0.5
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.25,
+          0.75
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "specificity",
+      "evaluator": "codex_terra",
+      "forced_completion_stratum": "P3_only_forced",
+      "label_stratum": "all",
+      "losses": 4,
+      "net_preference": 0.0,
+      "pairs": 11,
+      "stage": "score_blind",
+      "tie_adjusted_preference": 0.5,
+      "ties": 3,
+      "wins": 4
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.6923076923076923,
+          0.2727272727272727
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.15384615384615385,
+          0.6363636363636364
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "specificity",
+      "evaluator": "codex_terra",
+      "forced_completion_stratum": "P2_only_forced",
+      "label_stratum": "all",
+      "losses": 6,
+      "net_preference": -0.25,
+      "pairs": 12,
+      "stage": "score_blind",
+      "tie_adjusted_preference": 0.375,
+      "ties": 3,
+      "wins": 3
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.38461538461538464,
+          0.4
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.3076923076923077,
+          0.7
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "specificity",
+      "evaluator": "codex_terra",
+      "forced_completion_stratum": "both_forced",
+      "label_stratum": "all",
+      "losses": 2,
+      "net_preference": 0.0,
+      "pairs": 12,
+      "stage": "score_blind",
+      "tie_adjusted_preference": 0.5,
+      "ties": 8,
+      "wins": 2
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.3333333333333333,
+          0.2222222222222222
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.3333333333333333,
+          0.6111111111111112
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "specificity",
+      "evaluator": "codex_terra",
+      "forced_completion_stratum": "all",
+      "label_stratum": "label_1",
+      "losses": 4,
+      "net_preference": -0.05555555555555555,
+      "pairs": 18,
+      "stage": "score_blind",
+      "tie_adjusted_preference": 0.4722222222222222,
+      "ties": 11,
+      "wins": 3
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.09523809523809523,
+          0.14285714285714285
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.4523809523809524,
+          0.5714285714285714
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "specificity",
+      "evaluator": "codex_terra",
+      "forced_completion_stratum": "all",
+      "label_stratum": "label_2",
+      "losses": 4,
+      "net_preference": 0.023809523809523808,
+      "pairs": 42,
+      "stage": "score_blind",
+      "tie_adjusted_preference": 0.5119047619047619,
+      "ties": 33,
+      "wins": 5
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.11666666666666667,
+          0.11666666666666667
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.44166666666666665,
+          0.5583333333333333
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "specificity",
+      "evaluator": "codex_terra",
+      "forced_completion_stratum": "all",
+      "label_stratum": "low_1_2",
+      "losses": 8,
+      "net_preference": 0.0,
+      "pairs": 60,
+      "stage": "score_blind",
+      "tie_adjusted_preference": 0.5,
+      "ties": 44,
+      "wins": 8
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.15,
+          0.3
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.425,
+          0.65
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "specificity",
+      "evaluator": "codex_terra",
+      "forced_completion_stratum": "all",
+      "label_stratum": "non_low_3_5",
+      "losses": 13,
+      "net_preference": 0.08333333333333333,
+      "pairs": 60,
+      "stage": "score_blind",
+      "tie_adjusted_preference": 0.5416666666666666,
+      "ties": 29,
+      "wins": 18
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.06687499999999981,
+          0.175
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.4665625000000001,
+          0.5875
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "unsupported_claims_control",
+      "evaluator": "codex_terra",
+      "forced_completion_stratum": "all",
+      "label_stratum": "all",
+      "losses": 18,
+      "net_preference": 0.05,
+      "pairs": 120,
+      "stage": "score_blind",
+      "tie_adjusted_preference": 0.525,
+      "ties": 78,
+      "wins": 24
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.07228915662650602,
+          0.1975344530577088
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.463855421686747,
+          0.5987672265288544
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "unsupported_claims_control",
+      "evaluator": "codex_terra",
+      "forced_completion_stratum": "neither_forced",
+      "label_stratum": "all",
+      "losses": 9,
+      "net_preference": 0.058823529411764705,
+      "pairs": 85,
+      "stage": "score_blind",
+      "tie_adjusted_preference": 0.5294117647058824,
+      "ties": 62,
+      "wins": 14
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.6,
+          0.36363636363636365
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.2,
+          0.6818181818181818
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "unsupported_claims_control",
+      "evaluator": "codex_terra",
+      "forced_completion_stratum": "P3_only_forced",
+      "label_stratum": "all",
+      "losses": 4,
+      "net_preference": -0.09090909090909091,
+      "pairs": 11,
+      "stage": "score_blind",
+      "tie_adjusted_preference": 0.45454545454545453,
+      "ties": 4,
+      "wins": 3
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.4666666666666667,
+          0.5454545454545454
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.26666666666666666,
+          0.7727272727272727
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "unsupported_claims_control",
+      "evaluator": "codex_terra",
+      "forced_completion_stratum": "P2_only_forced",
+      "label_stratum": "all",
+      "losses": 4,
+      "net_preference": 0.0,
+      "pairs": 12,
+      "stage": "score_blind",
+      "tie_adjusted_preference": 0.5,
+      "ties": 4,
+      "wins": 4
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          0.0,
+          0.45454545454545453
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.5,
+          0.7272727272727273
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "unsupported_claims_control",
+      "evaluator": "codex_terra",
+      "forced_completion_stratum": "both_forced",
+      "label_stratum": "all",
+      "losses": 1,
+      "net_preference": 0.16666666666666666,
+      "pairs": 12,
+      "stage": "score_blind",
+      "tie_adjusted_preference": 0.5833333333333334,
+      "ties": 8,
+      "wins": 3
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.16666666666666666,
+          0.5555555555555556
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.4166666666666667,
+          0.7777777777777778
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "unsupported_claims_control",
+      "evaluator": "codex_terra",
+      "forced_completion_stratum": "all",
+      "label_stratum": "label_1",
+      "losses": 2,
+      "net_preference": 0.16666666666666666,
+      "pairs": 18,
+      "stage": "score_blind",
+      "tie_adjusted_preference": 0.5833333333333334,
+      "ties": 11,
+      "wins": 5
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          0.0,
+          0.3333333333333333
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.5,
+          0.6666666666666666
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "unsupported_claims_control",
+      "evaluator": "codex_terra",
+      "forced_completion_stratum": "all",
+      "label_stratum": "label_2",
+      "losses": 1,
+      "net_preference": 0.14285714285714285,
+      "pairs": 42,
+      "stage": "score_blind",
+      "tie_adjusted_preference": 0.5714285714285714,
+      "ties": 34,
+      "wins": 7
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          0.0,
+          0.31666666666666665
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.5,
+          0.6583333333333333
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "unsupported_claims_control",
+      "evaluator": "codex_terra",
+      "forced_completion_stratum": "all",
+      "label_stratum": "low_1_2",
+      "losses": 3,
+      "net_preference": 0.15,
+      "pairs": 60,
+      "stage": "score_blind",
+      "tie_adjusted_preference": 0.575,
+      "ties": 45,
+      "wins": 12
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.21666666666666667,
+          0.13333333333333333
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.39166666666666666,
+          0.5666666666666667
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "unsupported_claims_control",
+      "evaluator": "codex_terra",
+      "forced_completion_stratum": "all",
+      "label_stratum": "non_low_3_5",
+      "losses": 15,
+      "net_preference": -0.05,
+      "pairs": 60,
+      "stage": "score_blind",
+      "tie_adjusted_preference": 0.475,
+      "ties": 33,
+      "wins": 12
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.10833333333333334,
+          0.14166666666666666
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.44583333333333336,
+          0.5708333333333333
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "completeness",
+      "evaluator": "codex_terra",
+      "forced_completion_stratum": "all",
+      "label_stratum": "all",
+      "losses": 20,
+      "net_preference": 0.016666666666666666,
+      "pairs": 120,
+      "stage": "score_blind",
+      "tie_adjusted_preference": 0.5083333333333333,
+      "ties": 78,
+      "wins": 22
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.07058823529411765,
+          0.17073170731707318
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.4647058823529412,
+          0.5853658536585366
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "completeness",
+      "evaluator": "codex_terra",
+      "forced_completion_stratum": "neither_forced",
+      "label_stratum": "all",
+      "losses": 9,
+      "net_preference": 0.047058823529411764,
+      "pairs": 85,
+      "stage": "score_blind",
+      "tie_adjusted_preference": 0.5235294117647059,
+      "ties": 63,
+      "wins": 13
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.4,
+          0.5454545454545454
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.3,
+          0.7727272727272727
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "completeness",
+      "evaluator": "codex_terra",
+      "forced_completion_stratum": "P3_only_forced",
+      "label_stratum": "all",
+      "losses": 4,
+      "net_preference": 0.09090909090909091,
+      "pairs": 11,
+      "stage": "score_blind",
+      "tie_adjusted_preference": 0.5454545454545454,
+      "ties": 2,
+      "wins": 5
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.6153846153846154,
+          0.36363636363636365
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.19230769230769232,
+          0.6818181818181818
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "completeness",
+      "evaluator": "codex_terra",
+      "forced_completion_stratum": "P2_only_forced",
+      "label_stratum": "all",
+      "losses": 5,
+      "net_preference": -0.16666666666666666,
+      "pairs": 12,
+      "stage": "score_blind",
+      "tie_adjusted_preference": 0.4166666666666667,
+      "ties": 4,
+      "wins": 3
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.42857142857142855,
+          0.2727272727272727
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.2857142857142857,
+          0.6363636363636364
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "completeness",
+      "evaluator": "codex_terra",
+      "forced_completion_stratum": "both_forced",
+      "label_stratum": "all",
+      "losses": 2,
+      "net_preference": -0.08333333333333333,
+      "pairs": 12,
+      "stage": "score_blind",
+      "tie_adjusted_preference": 0.4583333333333333,
+      "ties": 9,
+      "wins": 1
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.3888888888888889,
+          0.3888888888888889
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.3055555555555556,
+          0.6944444444444444
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "completeness",
+      "evaluator": "codex_terra",
+      "forced_completion_stratum": "all",
+      "label_stratum": "label_1",
+      "losses": 4,
+      "net_preference": 0.0,
+      "pairs": 18,
+      "stage": "score_blind",
+      "tie_adjusted_preference": 0.5,
+      "ties": 10,
+      "wins": 4
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.047619047619047616,
+          0.09523809523809523
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.47619047619047616,
+          0.5476190476190477
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "completeness",
+      "evaluator": "codex_terra",
+      "forced_completion_stratum": "all",
+      "label_stratum": "label_2",
+      "losses": 3,
+      "net_preference": 0.023809523809523808,
+      "pairs": 42,
+      "stage": "score_blind",
+      "tie_adjusted_preference": 0.5119047619047619,
+      "ties": 35,
+      "wins": 4
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.11666666666666667,
+          0.15
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.44166666666666665,
+          0.575
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "completeness",
+      "evaluator": "codex_terra",
+      "forced_completion_stratum": "all",
+      "label_stratum": "low_1_2",
+      "losses": 7,
+      "net_preference": 0.016666666666666666,
+      "pairs": 60,
+      "stage": "score_blind",
+      "tie_adjusted_preference": 0.5083333333333333,
+      "ties": 45,
+      "wins": 8
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.2,
+          0.23333333333333334
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.4,
+          0.6166666666666667
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "completeness",
+      "evaluator": "codex_terra",
+      "forced_completion_stratum": "all",
+      "label_stratum": "non_low_3_5",
+      "losses": 13,
+      "net_preference": 0.016666666666666666,
+      "pairs": 60,
+      "stage": "score_blind",
+      "tie_adjusted_preference": 0.5083333333333333,
+      "ties": 33,
+      "wins": 14
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.03333333333333333,
+          0.05
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.48333333333333334,
+          0.525
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "repetition_control",
+      "evaluator": "codex_terra",
+      "forced_completion_stratum": "all",
+      "label_stratum": "all",
+      "losses": 4,
+      "net_preference": 0.008333333333333333,
+      "pairs": 120,
+      "stage": "score_blind",
+      "tie_adjusted_preference": 0.5041666666666667,
+      "ties": 111,
+      "wins": 5
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          0.0,
+          0.0
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.5,
+          0.5
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "repetition_control",
+      "evaluator": "codex_terra",
+      "forced_completion_stratum": "neither_forced",
+      "label_stratum": "all",
+      "losses": 0,
+      "net_preference": 0.0,
+      "pairs": 85,
+      "stage": "score_blind",
+      "tie_adjusted_preference": 0.5,
+      "ties": 85,
+      "wins": 0
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.45454545454545453,
+          0.0
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.2727272727272727,
+          0.5
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "repetition_control",
+      "evaluator": "codex_terra",
+      "forced_completion_stratum": "P3_only_forced",
+      "label_stratum": "all",
+      "losses": 2,
+      "net_preference": -0.18181818181818182,
+      "pairs": 11,
+      "stage": "score_blind",
+      "tie_adjusted_preference": 0.4090909090909091,
+      "ties": 9,
+      "wins": 0
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          0.07692307692307693,
+          0.6363636363636364
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.5384615384615384,
+          0.8181818181818182
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "repetition_control",
+      "evaluator": "codex_terra",
+      "forced_completion_stratum": "P2_only_forced",
+      "label_stratum": "all",
+      "losses": 0,
+      "net_preference": 0.3333333333333333,
+      "pairs": 12,
+      "stage": "score_blind",
+      "tie_adjusted_preference": 0.6666666666666666,
+      "ties": 8,
+      "wins": 4
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.4,
+          0.18181818181818182
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.3,
+          0.5909090909090909
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "repetition_control",
+      "evaluator": "codex_terra",
+      "forced_completion_stratum": "both_forced",
+      "label_stratum": "all",
+      "losses": 2,
+      "net_preference": -0.08333333333333333,
+      "pairs": 12,
+      "stage": "score_blind",
+      "tie_adjusted_preference": 0.4583333333333333,
+      "ties": 9,
+      "wins": 1
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          0.0,
+          0.0
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.5,
+          0.5
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "repetition_control",
+      "evaluator": "codex_terra",
+      "forced_completion_stratum": "all",
+      "label_stratum": "label_1",
+      "losses": 0,
+      "net_preference": 0.0,
+      "pairs": 18,
+      "stage": "score_blind",
+      "tie_adjusted_preference": 0.5,
+      "ties": 18,
+      "wins": 0
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.047619047619047616,
+          0.14285714285714285
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.47619047619047616,
+          0.5714285714285714
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "repetition_control",
+      "evaluator": "codex_terra",
+      "forced_completion_stratum": "all",
+      "label_stratum": "label_2",
+      "losses": 1,
+      "net_preference": 0.047619047619047616,
+      "pairs": 42,
+      "stage": "score_blind",
+      "tie_adjusted_preference": 0.5238095238095238,
+      "ties": 38,
+      "wins": 3
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.03333333333333333,
+          0.1
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.48333333333333334,
+          0.55
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "repetition_control",
+      "evaluator": "codex_terra",
+      "forced_completion_stratum": "all",
+      "label_stratum": "low_1_2",
+      "losses": 1,
+      "net_preference": 0.03333333333333333,
+      "pairs": 60,
+      "stage": "score_blind",
+      "tie_adjusted_preference": 0.5166666666666667,
+      "ties": 56,
+      "wins": 3
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.06666666666666667,
+          0.03333333333333333
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.4666666666666667,
+          0.5166666666666667
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "repetition_control",
+      "evaluator": "codex_terra",
+      "forced_completion_stratum": "all",
+      "label_stratum": "non_low_3_5",
+      "losses": 3,
+      "net_preference": -0.016666666666666666,
+      "pairs": 60,
+      "stage": "score_blind",
+      "tie_adjusted_preference": 0.49166666666666664,
+      "ties": 55,
+      "wins": 2
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.1,
+          0.15
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.45,
+          0.575
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "overall_preference",
+      "evaluator": "codex_terra",
+      "forced_completion_stratum": "all",
+      "label_stratum": "all",
+      "losses": 20,
+      "net_preference": 0.025,
+      "pairs": 120,
+      "stage": "score_blind",
+      "tie_adjusted_preference": 0.5125,
+      "ties": 77,
+      "wins": 23
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.0759493670886076,
+          0.175
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.4620253164556962,
+          0.5875
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "overall_preference",
+      "evaluator": "codex_terra",
+      "forced_completion_stratum": "neither_forced",
+      "label_stratum": "all",
+      "losses": 8,
+      "net_preference": 0.047058823529411764,
+      "pairs": 85,
+      "stage": "score_blind",
+      "tie_adjusted_preference": 0.5235294117647059,
+      "ties": 65,
+      "wins": 12
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.6,
+          0.36363636363636365
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.2,
+          0.6818181818181818
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "overall_preference",
+      "evaluator": "codex_terra",
+      "forced_completion_stratum": "P3_only_forced",
+      "label_stratum": "all",
+      "losses": 4,
+      "net_preference": -0.09090909090909091,
+      "pairs": 11,
+      "stage": "score_blind",
+      "tie_adjusted_preference": 0.45454545454545453,
+      "ties": 4,
+      "wins": 3
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.5333333333333333,
+          0.5454545454545454
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.23333333333333334,
+          0.7727272727272727
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "overall_preference",
+      "evaluator": "codex_terra",
+      "forced_completion_stratum": "P2_only_forced",
+      "label_stratum": "all",
+      "losses": 5,
+      "net_preference": 0.0,
+      "pairs": 12,
+      "stage": "score_blind",
+      "tie_adjusted_preference": 0.5,
+      "ties": 2,
+      "wins": 5
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.3333333333333333,
+          0.3333333333333333
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.3333333333333333,
+          0.6666666666666666
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "overall_preference",
+      "evaluator": "codex_terra",
+      "forced_completion_stratum": "both_forced",
+      "label_stratum": "all",
+      "losses": 3,
+      "net_preference": 0.0,
+      "pairs": 12,
+      "stage": "score_blind",
+      "tie_adjusted_preference": 0.5,
+      "ties": 6,
+      "wins": 3
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.3888888888888889,
+          0.2777777777777778
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.3055555555555556,
+          0.6388888888888888
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "overall_preference",
+      "evaluator": "codex_terra",
+      "forced_completion_stratum": "all",
+      "label_stratum": "label_1",
+      "losses": 4,
+      "net_preference": -0.05555555555555555,
+      "pairs": 18,
+      "stage": "score_blind",
+      "tie_adjusted_preference": 0.4722222222222222,
+      "ties": 11,
+      "wins": 3
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.023809523809523808,
+          0.30952380952380953
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.4880952380952381,
+          0.6547619047619048
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "overall_preference",
+      "evaluator": "codex_terra",
+      "forced_completion_stratum": "all",
+      "label_stratum": "label_2",
+      "losses": 2,
+      "net_preference": 0.14285714285714285,
+      "pairs": 42,
+      "stage": "score_blind",
+      "tie_adjusted_preference": 0.5714285714285714,
+      "ties": 32,
+      "wins": 8
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.08333333333333333,
+          0.23333333333333334
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.4583333333333333,
+          0.6166666666666667
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "overall_preference",
+      "evaluator": "codex_terra",
+      "forced_completion_stratum": "all",
+      "label_stratum": "low_1_2",
+      "losses": 6,
+      "net_preference": 0.08333333333333333,
+      "pairs": 60,
+      "stage": "score_blind",
+      "tie_adjusted_preference": 0.5416666666666666,
+      "ties": 43,
+      "wins": 11
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.23333333333333334,
+          0.16666666666666666
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.38333333333333336,
+          0.5833333333333334
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "overall_preference",
+      "evaluator": "codex_terra",
+      "forced_completion_stratum": "all",
+      "label_stratum": "non_low_3_5",
+      "losses": 14,
+      "net_preference": -0.03333333333333333,
+      "pairs": 60,
+      "stage": "score_blind",
+      "tie_adjusted_preference": 0.48333333333333334,
+      "ties": 34,
+      "wins": 12
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.09166666666666666,
+          0.15833333333333333
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.45416666666666666,
+          0.5791666666666667
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "score_rationale_consistency",
+      "evaluator": "codex_terra",
+      "forced_completion_stratum": "all",
+      "label_stratum": "all",
+      "losses": 19,
+      "net_preference": 0.03333333333333333,
+      "pairs": 120,
+      "stage": "score_visible",
+      "tie_adjusted_preference": 0.5166666666666667,
+      "ties": 78,
+      "wins": 23
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.0898876404494382,
+          0.16666666666666666
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.4550561797752809,
+          0.5833333333333334
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "score_rationale_consistency",
+      "evaluator": "codex_terra",
+      "forced_completion_stratum": "neither_forced",
+      "label_stratum": "all",
+      "losses": 9,
+      "net_preference": 0.03529411764705882,
+      "pairs": 85,
+      "stage": "score_visible",
+      "tie_adjusted_preference": 0.5176470588235295,
+      "ties": 64,
+      "wins": 12
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.5,
+          0.6153846153846154
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.25,
+          0.8076923076923077
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "score_rationale_consistency",
+      "evaluator": "codex_terra",
+      "forced_completion_stratum": "P3_only_forced",
+      "label_stratum": "all",
+      "losses": 4,
+      "net_preference": 0.09090909090909091,
+      "pairs": 11,
+      "stage": "score_visible",
+      "tie_adjusted_preference": 0.5454545454545454,
+      "ties": 2,
+      "wins": 5
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.6428571428571429,
+          0.18181818181818182
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.17857142857142858,
+          0.5909090909090909
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "score_rationale_consistency",
+      "evaluator": "codex_terra",
+      "forced_completion_stratum": "P2_only_forced",
+      "label_stratum": "all",
+      "losses": 5,
+      "net_preference": -0.25,
+      "pairs": 12,
+      "stage": "score_visible",
+      "tie_adjusted_preference": 0.375,
+      "ties": 5,
+      "wins": 2
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          0.0665625000000001,
+          0.5
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.53328125,
+          0.75
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "score_rationale_consistency",
+      "evaluator": "codex_terra",
+      "forced_completion_stratum": "both_forced",
+      "label_stratum": "all",
+      "losses": 1,
+      "net_preference": 0.25,
+      "pairs": 12,
+      "stage": "score_visible",
+      "tie_adjusted_preference": 0.625,
+      "ties": 7,
+      "wins": 4
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.3333333333333333,
+          0.3888888888888889
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.3333333333333333,
+          0.6944444444444444
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "score_rationale_consistency",
+      "evaluator": "codex_terra",
+      "forced_completion_stratum": "all",
+      "label_stratum": "label_1",
+      "losses": 3,
+      "net_preference": 0.05555555555555555,
+      "pairs": 18,
+      "stage": "score_visible",
+      "tie_adjusted_preference": 0.5277777777777778,
+      "ties": 11,
+      "wins": 4
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.023809523809523808,
+          0.30952380952380953
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.4880952380952381,
+          0.6547619047619048
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "score_rationale_consistency",
+      "evaluator": "codex_terra",
+      "forced_completion_stratum": "all",
+      "label_stratum": "label_2",
+      "losses": 1,
+      "net_preference": 0.11904761904761904,
+      "pairs": 42,
+      "stage": "score_visible",
+      "tie_adjusted_preference": 0.5595238095238095,
+      "ties": 35,
+      "wins": 6
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.05,
+          0.26666666666666666
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.475,
+          0.6333333333333333
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "score_rationale_consistency",
+      "evaluator": "codex_terra",
+      "forced_completion_stratum": "all",
+      "label_stratum": "low_1_2",
+      "losses": 4,
+      "net_preference": 0.1,
+      "pairs": 60,
+      "stage": "score_visible",
+      "tie_adjusted_preference": 0.55,
+      "ties": 46,
+      "wins": 10
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.21666666666666667,
+          0.15
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.39166666666666666,
+          0.575
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "score_rationale_consistency",
+      "evaluator": "codex_terra",
+      "forced_completion_stratum": "all",
+      "label_stratum": "non_low_3_5",
+      "losses": 15,
+      "net_preference": -0.03333333333333333,
+      "pairs": 60,
+      "stage": "score_visible",
+      "tie_adjusted_preference": 0.48333333333333334,
+      "ties": 32,
+      "wins": 13
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.075,
+          0.2
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.4625,
+          0.6
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "overall_scoring_justification_usefulness",
+      "evaluator": "codex_terra",
+      "forced_completion_stratum": "all",
+      "label_stratum": "all",
+      "losses": 24,
+      "net_preference": 0.06666666666666667,
+      "pairs": 120,
+      "stage": "score_visible",
+      "tie_adjusted_preference": 0.5333333333333333,
+      "ties": 64,
+      "wins": 32
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.037037037037037035,
+          0.23255813953488372
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.48148148148148145,
+          0.6162790697674418
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "overall_scoring_justification_usefulness",
+      "evaluator": "codex_terra",
+      "forced_completion_stratum": "neither_forced",
+      "label_stratum": "all",
+      "losses": 11,
+      "net_preference": 0.09411764705882353,
+      "pairs": 85,
+      "stage": "score_visible",
+      "tie_adjusted_preference": 0.5470588235294118,
+      "ties": 55,
+      "wins": 19
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.3,
+          0.75
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.35,
+          0.875
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "overall_scoring_justification_usefulness",
+      "evaluator": "codex_terra",
+      "forced_completion_stratum": "P3_only_forced",
+      "label_stratum": "all",
+      "losses": 3,
+      "net_preference": 0.2727272727272727,
+      "pairs": 11,
+      "stage": "score_visible",
+      "tie_adjusted_preference": 0.6363636363636364,
+      "ties": 2,
+      "wins": 6
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.75,
+          0.3333333333333333
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.125,
+          0.6666666666666666
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "overall_scoring_justification_usefulness",
+      "evaluator": "codex_terra",
+      "forced_completion_stratum": "P2_only_forced",
+      "label_stratum": "all",
+      "losses": 7,
+      "net_preference": -0.25,
+      "pairs": 12,
+      "stage": "score_visible",
+      "tie_adjusted_preference": 0.375,
+      "ties": 1,
+      "wins": 4
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.35714285714285715,
+          0.45454545454545453
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.32142857142857145,
+          0.7272727272727273
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "overall_scoring_justification_usefulness",
+      "evaluator": "codex_terra",
+      "forced_completion_stratum": "both_forced",
+      "label_stratum": "all",
+      "losses": 3,
+      "net_preference": 0.0,
+      "pairs": 12,
+      "stage": "score_visible",
+      "tie_adjusted_preference": 0.5,
+      "ties": 6,
+      "wins": 3
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.3333333333333333,
+          0.3333333333333333
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.3333333333333333,
+          0.6666666666666666
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "overall_scoring_justification_usefulness",
+      "evaluator": "codex_terra",
+      "forced_completion_stratum": "all",
+      "label_stratum": "label_1",
+      "losses": 4,
+      "net_preference": 0.0,
+      "pairs": 18,
+      "stage": "score_visible",
+      "tie_adjusted_preference": 0.5,
+      "ties": 10,
+      "wins": 4
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          0.11904761904761904,
+          0.5
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.5595238095238095,
+          0.75
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "overall_scoring_justification_usefulness",
+      "evaluator": "codex_terra",
+      "forced_completion_stratum": "all",
+      "label_stratum": "label_2",
+      "losses": 2,
+      "net_preference": 0.30952380952380953,
+      "pairs": 42,
+      "stage": "score_visible",
+      "tie_adjusted_preference": 0.6547619047619048,
+      "ties": 25,
+      "wins": 15
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          0.03333333333333333,
+          0.4
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.5166666666666667,
+          0.7
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "overall_scoring_justification_usefulness",
+      "evaluator": "codex_terra",
+      "forced_completion_stratum": "all",
+      "label_stratum": "low_1_2",
+      "losses": 6,
+      "net_preference": 0.21666666666666667,
+      "pairs": 60,
+      "stage": "score_visible",
+      "tie_adjusted_preference": 0.6083333333333333,
+      "ties": 35,
+      "wins": 19
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.26666666666666666,
+          0.08333333333333333
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.36666666666666664,
+          0.5416666666666666
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "overall_scoring_justification_usefulness",
+      "evaluator": "codex_terra",
+      "forced_completion_stratum": "all",
+      "label_stratum": "non_low_3_5",
+      "losses": 18,
+      "net_preference": -0.08333333333333333,
+      "pairs": 60,
+      "stage": "score_visible",
+      "tie_adjusted_preference": 0.4583333333333333,
+      "ties": 29,
+      "wins": 13
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.05,
+          0.23333333333333334
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.475,
+          0.6166666666666667
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "overall_preference",
+      "evaluator": "codex_terra",
+      "forced_completion_stratum": "all",
+      "label_stratum": "all",
+      "losses": 25,
+      "net_preference": 0.09166666666666666,
+      "pairs": 120,
+      "stage": "score_visible",
+      "tie_adjusted_preference": 0.5458333333333333,
+      "ties": 59,
+      "wins": 36
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.024397771755495328,
+          0.2705882352941177
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.4878011141222523,
+          0.6352941176470588
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "overall_preference",
+      "evaluator": "codex_terra",
+      "forced_completion_stratum": "neither_forced",
+      "label_stratum": "all",
+      "losses": 11,
+      "net_preference": 0.11764705882352941,
+      "pairs": 85,
+      "stage": "score_visible",
+      "tie_adjusted_preference": 0.5588235294117647,
+      "ties": 53,
+      "wins": 21
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.4,
+          0.8181818181818182
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.3,
+          0.9090909090909091
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "overall_preference",
+      "evaluator": "codex_terra",
+      "forced_completion_stratum": "P3_only_forced",
+      "label_stratum": "all",
+      "losses": 4,
+      "net_preference": 0.2727272727272727,
+      "pairs": 11,
+      "stage": "score_visible",
+      "tie_adjusted_preference": 0.6363636363636364,
+      "ties": 0,
+      "wins": 7
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.75,
+          0.3333333333333333
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.125,
+          0.6666666666666666
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "overall_preference",
+      "evaluator": "codex_terra",
+      "forced_completion_stratum": "P2_only_forced",
+      "label_stratum": "all",
+      "losses": 7,
+      "net_preference": -0.25,
+      "pairs": 12,
+      "stage": "score_visible",
+      "tie_adjusted_preference": 0.375,
+      "ties": 1,
+      "wins": 4
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.26666666666666666,
+          0.5
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.36666666666666664,
+          0.75
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "overall_preference",
+      "evaluator": "codex_terra",
+      "forced_completion_stratum": "both_forced",
+      "label_stratum": "all",
+      "losses": 3,
+      "net_preference": 0.08333333333333333,
+      "pairs": 12,
+      "stage": "score_visible",
+      "tie_adjusted_preference": 0.5416666666666666,
+      "ties": 5,
+      "wins": 4
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.3333333333333333,
+          0.3333333333333333
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.3333333333333333,
+          0.6666666666666666
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "overall_preference",
+      "evaluator": "codex_terra",
+      "forced_completion_stratum": "all",
+      "label_stratum": "label_1",
+      "losses": 4,
+      "net_preference": 0.0,
+      "pairs": 18,
+      "stage": "score_visible",
+      "tie_adjusted_preference": 0.5,
+      "ties": 10,
+      "wins": 4
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          0.07142857142857142,
+          0.47619047619047616
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.5357142857142857,
+          0.7380952380952381
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "overall_preference",
+      "evaluator": "codex_terra",
+      "forced_completion_stratum": "all",
+      "label_stratum": "label_2",
+      "losses": 3,
+      "net_preference": 0.2857142857142857,
+      "pairs": 42,
+      "stage": "score_visible",
+      "tie_adjusted_preference": 0.6428571428571429,
+      "ties": 24,
+      "wins": 15
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          0.016666666666666666,
+          0.38333333333333336
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.5083333333333333,
+          0.6916666666666667
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "overall_preference",
+      "evaluator": "codex_terra",
+      "forced_completion_stratum": "all",
+      "label_stratum": "low_1_2",
+      "losses": 7,
+      "net_preference": 0.2,
+      "pairs": 60,
+      "stage": "score_visible",
+      "tie_adjusted_preference": 0.6,
+      "ties": 34,
+      "wins": 19
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -0.21666666666666667,
+          0.2
+        ],
+        "replicates": 10000,
+        "seed": 20260730,
+        "tie_adjusted_preference": [
+          0.39166666666666666,
+          0.6
+        ]
+      },
+      "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "dimension": "overall_preference",
+      "evaluator": "codex_terra",
+      "forced_completion_stratum": "all",
+      "label_stratum": "non_low_3_5",
+      "losses": 18,
+      "net_preference": -0.016666666666666666,
+      "pairs": 60,
+      "stage": "score_visible",
+      "tie_adjusted_preference": 0.49166666666666664,
+      "ties": 25,
+      "wins": 17
+    }
+  ],
+  "agreement": [
+    {
+      "cohen_kappa": 0.09153475567790778,
+      "dimension": "rubric_alignment",
+      "evaluators": [
+        "codex_sol",
+        "codex_terra"
+      ],
+      "exact_agreement_rate": 0.5416666666666666,
+      "pairs": 120,
+      "stage": "score_blind"
+    },
+    {
+      "cohen_kappa": 0.13461538461538464,
+      "dimension": "answer_grounding",
+      "evaluators": [
+        "codex_sol",
+        "codex_terra"
+      ],
+      "exact_agreement_rate": 0.625,
+      "pairs": 120,
+      "stage": "score_blind"
+    },
+    {
+      "cohen_kappa": 0.385665529010239,
+      "dimension": "specificity",
+      "evaluators": [
+        "codex_sol",
+        "codex_terra"
+      ],
+      "exact_agreement_rate": 0.65,
+      "pairs": 120,
+      "stage": "score_blind"
+    },
+    {
+      "cohen_kappa": 0.10873440285205004,
+      "dimension": "unsupported_claims_control",
+      "evaluators": [
+        "codex_sol",
+        "codex_terra"
+      ],
+      "exact_agreement_rate": 0.5833333333333334,
+      "pairs": 120,
+      "stage": "score_blind"
+    },
+    {
+      "cohen_kappa": 0.3160127253446448,
+      "dimension": "completeness",
+      "evaluators": [
+        "codex_sol",
+        "codex_terra"
+      ],
+      "exact_agreement_rate": 0.6416666666666667,
+      "pairs": 120,
+      "stage": "score_blind"
+    },
+    {
+      "cohen_kappa": 0.36283185840707943,
+      "dimension": "repetition_control",
+      "evaluators": [
+        "codex_sol",
+        "codex_terra"
+      ],
+      "exact_agreement_rate": 0.825,
+      "pairs": 120,
+      "stage": "score_blind"
+    },
+    {
+      "cohen_kappa": 0.3383873190902825,
+      "dimension": "overall_preference",
+      "evaluators": [
+        "codex_sol",
+        "codex_terra"
+      ],
+      "exact_agreement_rate": 0.6,
+      "pairs": 120,
+      "stage": "score_blind"
+    },
+    {
+      "cohen_kappa": 0.22123073357283574,
+      "dimension": "score_rationale_consistency",
+      "evaluators": [
+        "codex_sol",
+        "codex_terra"
+      ],
+      "exact_agreement_rate": 0.5333333333333333,
+      "pairs": 120,
+      "stage": "score_visible"
+    },
+    {
+      "cohen_kappa": 0.30543187889581475,
+      "dimension": "overall_scoring_justification_usefulness",
+      "evaluators": [
+        "codex_sol",
+        "codex_terra"
+      ],
+      "exact_agreement_rate": 0.5666666666666667,
+      "pairs": 120,
+      "stage": "score_visible"
+    },
+    {
+      "cohen_kappa": 0.31503841931942916,
+      "dimension": "overall_preference",
+      "evaluators": [
+        "codex_sol",
+        "codex_terra"
+      ],
+      "exact_agreement_rate": 0.5666666666666667,
+      "pairs": 120,
+      "stage": "score_visible"
+    }
+  ],
+  "claim_scope": "exploratory Codex-agent model-based visible rationale preference",
+  "comparison": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+  "dev_regenerated": false,
+  "evaluator_family_independence_satisfied": false,
+  "evaluators": [
+    "codex_sol",
+    "codex_terra"
+  ],
+  "forced_completion_included_in_primary": true,
+  "free_text_reasons_public": false,
+  "human_correctness_claim_allowed": false,
+  "orientation_conflict_rates": {
+    "codex_sol|score_blind": 0.0,
+    "codex_sol|score_visible": 0.0,
+    "codex_terra|score_blind": 0.0,
+    "codex_terra|score_visible": 0.0
+  },
+  "row_level_judgments_public": false,
+  "schema_version": "exp54-sorc-dpo-rationale-audit-results-v1",
+  "source_hashes": {
+    "answer_key": "3ca9305203b99985d811dd72cc596c1ff0d4b5e7b75d015bf3e14b38fe11ce60",
+    "codex_sol|score_blind": "1689b7d4da7595ced65f3bca095f23a754ee656b743eb45d3c7eb48ea826ad68",
+    "codex_sol|score_visible": "a3deea3a3e6f4c86cc65c69d4299bf0f71820f23fc40802f50a7ddecb2002f4d",
+    "codex_terra|score_blind": "e90a9fd4c5894654f12feefa68f6d43a76b6fdc0353d59e1fa1423237f595b88",
+    "codex_terra|score_visible": "58399d90914fb65e3276c7ae59f2267eecdfbe39e536eea10d4068def586f0b0"
+  },
+  "status": "SORC_DPO_RATIONALE_BLIND_AUDIT_COMPLETE",
+  "test_accessed": false
+}
