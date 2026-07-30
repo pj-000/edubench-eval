@@ -93,3 +93,12 @@ def test_plan_forbids_dev_and_test() -> None:
     assert plan["test_allowed"] is False
     assert plan["model_selection_allowed"] is False
     assert plan["candidate_artifacts_promoted_to_formal_inputs"] is True
+    assert plan["gpu_assignments_by_arm_and_seed"]["R3_TOKENAVG"]["42"][
+        "name"
+    ] == "NVIDIA GeForce RTX 3090"
+    assert plan["gpu_assignments_by_arm_and_seed"]["P1_FULLSEQ"]["42"][
+        "name"
+    ] == "NVIDIA RTX A6000"
+    assert plan["execution_device_override"][
+        "must_be_disclosed_as_execution_hardware_difference"
+    ] is True

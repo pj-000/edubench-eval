@@ -8,6 +8,7 @@ read dev/test data.
 from __future__ import annotations
 
 import argparse
+import copy
 import json
 import math
 import os
@@ -31,7 +32,6 @@ from thesis_exp.exp54_rar_sft.mechanism_control_losses import (
     sequence_sum_logps,
     token_average_causal_loss,
 )
-from thesis_exp.exp54_rar_sft.probe_sorc_dpo_capacity import _device_identity
 from thesis_exp.exp54_rar_sft.sorc_dpo_loss import (
     SORCDPOPairCollator,
     field_dpo_per_pair,
@@ -101,7 +101,42 @@ PHYSICAL_PREFERENCE_BATCH = 4
 PREFERENCE_PAIR_COUNT = 838
 PREFERENCE_GROUP_SIZE = 32
 PREFERENCE_STEPS = 27
-MINIMUM_FREE_MEMORY_BYTES = 40 * 1024**3
+MINIMUM_FREE_MEMORY_BYTES_BY_ARM = {
+    "R3_TOKENAVG": 22 * 1024**3,
+    "P1_FULLSEQ": 40 * 1024**3,
+    "P1_SYN_LR5E6": 40 * 1024**3,
+}
+
+
+def _formal_device_identity(
+    torch: Any,
+    *,
+    expected_uuid: str,
+    expected_name: str,
+    minimum_free_bytes: int,
+) -> dict[str, Any]:
+    cuda = torch.cuda
+    if not cuda.is_available() or cuda.device_count() != 1:
+        raise RuntimeError("formal training requires exactly one visible GPU")
+    name = str(cuda.get_device_name(0))
+    if name != expected_name:
+        raise RuntimeError("formal training GPU model differs from plan")
+    uuids = cuda._raw_device_uuid_nvml()
+    physical_index = int(cuda._get_nvml_device_index(0))
+    if uuids is None or physical_index >= len(uuids):
+        raise RuntimeError("formal training cannot resolve CUDA UUID")
+    uuid = str(uuids[physical_index])
+    if uuid != expected_uuid:
+        raise RuntimeError("formal training CUDA UUID differs from plan")
+    free_bytes, total_bytes = cuda.mem_get_info(0)
+    if int(free_bytes) < minimum_free_bytes:
+        raise RuntimeError("assigned GPU is not sufficiently idle")
+    return {
+        "name": name,
+        "uuid": uuid,
+        "free_memory_bytes_before_load": int(free_bytes),
+        "total_memory_bytes": int(total_bytes),
+    }
 
 
 def _atomic_json(path: Path, value: dict[str, Any]) -> None:
@@ -122,6 +157,7 @@ def _validate_plan(
     *,
     artifact_root: Path,
     output_root: Path,
+    arm: str,
     seed: int,
     cuda_device_uuid: str | None,
 ) -> None:
@@ -130,12 +166,21 @@ def _validate_plan(
         != "USER_APPROVED_TRAIN_ONLY_FULL_MECHANISM_CONTROLS"
         or plan.get("arms") != list(ARMS)
         or plan.get("seeds") != list(SEEDS)
-        or plan.get("per_seed_serial_order") != list(ARMS)
+        or plan.get("preference_per_seed_serial_order")
+        != ["P1_FULLSEQ", "P1_SYN_LR5E6"]
         or int(plan.get("run_count", -1)) != 9
         or plan.get("full_gpu_training_allowed") is not True
         or plan.get("dev_allowed") is not False
         or plan.get("test_allowed") is not False
         or plan.get("model_selection_allowed") is not False
+        or plan.get("execution_device_override", {}).get(
+            "data_loss_batch_steps_optimizer_and_seed_unchanged"
+        )
+        is not True
+        or plan.get("execution_device_override", {}).get(
+            "must_be_disclosed_as_execution_hardware_difference"
+        )
+        is not True
     ):
         raise PermissionError("mechanism-control formal plan differs")
     if str(artifact_root) != str(plan["server_paths"]["artifact_root"]):
@@ -167,10 +212,6 @@ def _validate_plan(
         ),
         "block_loss_sha256": (
             REPO_ROOT / "thesis_exp/exp54_rar_sft/block_loss.py"
-        ),
-        "device_probe_sha256": (
-            REPO_ROOT
-            / "thesis_exp/exp54_rar_sft/probe_sorc_dpo_capacity.py"
         ),
     }
     artifact_paths = {
@@ -208,14 +249,23 @@ def _validate_plan(
         != "1c65f892f01e558797fcae204d71b3b6e4609ccbe8d34d44b3e60250a679cddc"
     ):
         raise ValueError("formal private-manifest promotion differs")
-    assignment = plan["gpu_assignments_by_seed"][str(seed)]
+    assignment = plan["gpu_assignments_by_arm_and_seed"][arm][str(seed)]
+    expected_name = (
+        "NVIDIA GeForce RTX 3090"
+        if arm == "R3_TOKENAVG"
+        else "NVIDIA RTX A6000"
+    )
     if (
-        assignment.get("name") != "NVIDIA RTX A6000"
+        assignment.get("name") != expected_name
         or not str(assignment.get("uuid") or "").startswith("GPU-")
     ):
         raise ValueError("formal GPU assignment differs")
     if cuda_device_uuid is not None and cuda_device_uuid != assignment["uuid"]:
         raise ValueError("requested CUDA UUID differs from formal plan")
+    if int(plan["minimum_free_memory_bytes_by_arm"][arm]) != int(
+        MINIMUM_FREE_MEMORY_BYTES_BY_ARM[arm]
+    ):
+        raise ValueError("formal free-memory threshold differs")
 
 
 def _load_r3_rows(
@@ -420,7 +470,11 @@ def _execute_r3(
     config = read_json(DEFAULT_SFT_CONFIG)
     validate_training_configuration(config)
     verify_model_snapshot(config)
-    _require_runtime(config)
+    runtime_config = copy.deepcopy(config)
+    runtime_config["runtime"]["required_gpu_name"] = (
+        "NVIDIA GeForce RTX 3090"
+    )
+    _require_runtime(runtime_config)
     _set_determinism(seed, config)
     model = AutoModelForCausalLM.from_pretrained(
         config["model"]["local_path"],
@@ -886,6 +940,7 @@ def validate(
         plan,
         artifact_root=artifact_root,
         output_root=output_root,
+        arm=arm,
         seed=seed,
         cuda_device_uuid=None,
     )
@@ -922,6 +977,7 @@ def execute(
         plan,
         artifact_root=artifact_root,
         output_root=output_root,
+        arm=arm,
         seed=seed,
         cuda_device_uuid=cuda_device_uuid,
     )
@@ -938,9 +994,14 @@ def execute(
         )
     import torch
 
-    identity = _device_identity(torch, cuda_device_uuid)
-    if int(identity["free_memory_bytes_before_load"]) < MINIMUM_FREE_MEMORY_BYTES:
-        raise RuntimeError("assigned A6000 is not sufficiently idle")
+    minimum_free = MINIMUM_FREE_MEMORY_BYTES_BY_ARM[arm]
+    assignment = plan["gpu_assignments_by_arm_and_seed"][arm][str(seed)]
+    identity = _formal_device_identity(
+        torch,
+        expected_uuid=cuda_device_uuid,
+        expected_name=str(assignment["name"]),
+        minimum_free_bytes=minimum_free,
+    )
     if not torch.cuda.is_bf16_supported():
         raise RuntimeError("formal mechanism-control training requires BF16")
     output_dir.mkdir(parents=True, exist_ok=False)
