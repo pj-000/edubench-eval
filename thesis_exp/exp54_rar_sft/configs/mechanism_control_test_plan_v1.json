@@ -81,9 +81,9 @@
     "must_be_disclosed": true
   },
   "bindings": {
-    "runner_sha256": "d970862cc300122df10c9ed383a0b5df1ff3e3cdc5b016190817f1f802c2086f",
+    "runner_sha256": "f0e6632bfa86d0811ddb8d99dc7fbcee7a031359e9f9e48495cf61ef4abf6312",
     "collector_sha256": "ee7e1cf678ac4c11b8f25994e81280b63b86378c1db9a2234bf56df3c7e80c8e",
-    "worker_sha256": "04d3ea2328acd7e7e412c3fbd42213c830549716a48012c3a8a04b349de5b126",
+    "worker_sha256": "223763f2a13354b1993a6ad46263bf6928f461a69c4c2276cf5411a1b348ff50",
     "runtime_lock_sha256": "dc2effaef3ab5bdd5334e72f118e6c677158021305ede12444347317296847ec",
     "checkpoint_lock_sha256": "ce54712f38427b70ea9fa7ea5f10dc9cb7322c52d8df68a1181d4d86448c205d",
     "checkpoint_audit_report_sha256": "e4740ed229b33e520b7f366ec75f561c37794a50f0a10cfda786336fb5e55fe4"

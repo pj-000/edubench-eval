@@ -307,17 +307,6 @@ def run(args: argparse.Namespace) -> None:
     tokenizer.padding_side = "left"
     tokenizer.pad_token_id = int(config["model"]["pad_token_id"])
     prepared = _prepare_prompts(tokenizer, rows)
-    output_dir.mkdir(parents=True, exist_ok=False)
-    write_json(
-        output_dir / "run_state.json",
-        {
-            "status": "MECHANISM_CONTROL_TEST_RUN_STARTED",
-            "arm": args.arm,
-            "seed": args.seed,
-            "dev_accessed": False,
-            "test_accessed": True,
-        },
-    )
 
     init_started = time.perf_counter()
     llm = LLM(
@@ -340,6 +329,18 @@ def run(args: argparse.Namespace) -> None:
         guided_decoding_disable_any_whitespace=True,
     )
     engine_init_seconds = time.perf_counter() - init_started
+    output_dir.mkdir(parents=True, exist_ok=False)
+    write_json(
+        output_dir / "run_state.json",
+        {
+            "status": "MECHANISM_CONTROL_TEST_RUN_STARTED",
+            "arm": args.arm,
+            "seed": args.seed,
+            "dev_accessed": False,
+            "test_accessed": True,
+            "model_loaded": True,
+        },
+    )
     sampling = SamplingParams(
         temperature=0.0,
         max_tokens=MAX_NEW_TOKENS,

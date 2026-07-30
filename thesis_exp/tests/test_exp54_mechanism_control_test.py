@@ -48,3 +48,13 @@ def test_mechanism_test_plan_reuses_old_predictions() -> None:
         "checkpoint_lock_sha256",
         "checkpoint_audit_report_sha256",
     }
+
+
+def test_worker_uses_numeric_visibility_and_uuid_for_identity() -> None:
+    worker = (
+        Path(__file__).parents[1]
+        / "scripts/run_exp54_mechanism_control_test_worker.sh"
+    ).read_text(encoding="utf-8")
+    assert 'export CUDA_VISIBLE_DEVICES="$gpu_index"' in worker
+    assert '--cuda-device-uuid "$gpu_uuid"' in worker
+    assert 'export CUDA_VISIBLE_DEVICES="$gpu_uuid"' not in worker
