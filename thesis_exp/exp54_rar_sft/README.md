@@ -7,6 +7,12 @@ RAR-SFT stands for **Rubric-Aligned, Reliability-Gated Rationale Supervised Fine
 > Rationale SFT** with S0/R1/R2/R3 controls. RAR-0A remains the valid provenance-alignment audit;
 > its old field gates do not authorize the superseded criterion/evidence conversion pipeline.
 
+> Mechanism-follow-up update (2026-07-30): after completion of the frozen
+> RAR-SFT and preference test, [`THESIS_SCIENTIFIC_CONTRACT_V1.md`](THESIS_SCIENTIFIC_CONTRACT_V1.md)
+> freezes three post-hoc mechanism controls: R3-BLOCK versus R3-TOKENAVG,
+> P1-FIELD versus P1-FULLSEQ, and P1-ACTUAL versus matched P1-SYN. The contract
+> requires nine new training runs and changes no completed result.
+
 The experiment starts with RAR-0, a train-only supervision qualification audit. RAR-0 does not
 call an API, load a model, use a GPU, train, or read dev/test. Its first executable slice answers:
 
