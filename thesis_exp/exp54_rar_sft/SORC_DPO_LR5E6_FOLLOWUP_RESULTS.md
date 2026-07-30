@@ -22,6 +22,23 @@ the frozen preference pairs.  P2's strict ODPO offset-satisfaction rate
 remained zero, so the learned score margin still did not reach the full
 risk-dependent target.
 
+### Train-only mechanism decomposition
+
+An exact within-pair comparison of P2 against P1 refined the interpretation:
+
+| Score block | Seed 42 | Seed 43 | Seed 44 | Mean P2−P1 β-margin |
+|---|---:|---:|---:|---:|
+| Adjacent score | -0.000292 | +0.000401 | -0.000583 | -0.000158 |
+| Severe L2H | +0.005674 | +0.005674 | +0.005345 | +0.005565 |
+| H2L guard | -0.005181 | -0.003536 | -0.003618 | -0.004112 |
+
+The ordinal offset was therefore not inert: it consistently redirected train
+margin toward severe low-to-high pairs.  However, no P2 score pair reached the
+full prescribed offset, the high-score guard margin weakened relative to P1,
+and the dev comparison did not establish an independent P2-over-P1 benefit.
+This supports the presence of risk-conditioned optimization pressure, not the
+claim that ODPO independently improved generalization.
+
 ## Frozen dev result
 
 All nine dev runs used the same deterministic vLLM/XGrammar protocol as the
