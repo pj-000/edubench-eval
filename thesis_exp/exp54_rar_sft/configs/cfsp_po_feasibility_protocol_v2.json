@@ -1,13 +1,14 @@
 {
-  "protocol_version": "cspo-feasibility-v1",
+  "protocol_version": "cfsp-po-feasibility-v2",
   "status": "design_only_not_authorized_for_gpu_training",
   "relationship_to_thesis": {
     "frozen_rar_sft_and_sorc_dpo_unchanged": true,
+    "existing_field_dpo_role": "oracle_scope_strong_baseline",
     "existing_score_pairs_role": "known_scope_positive_control",
     "existing_rationale_pairs_role": "known_scope_positive_control",
-    "existing_test_excluded_from_cspo_development": true
+    "existing_test_excluded_from_cfsp_po_development": true
   },
-  "scientific_question": "Can schema-valid counterfactual field swaps recover preference responsibility and support target-field optimization with lower non-target drift?",
+  "scientific_question": "Can schema-valid counterfactual field combinations recover pair-specific preference scope and support target-field optimization with lower non-target drift?",
   "fields_in_controlled_benchmark": [
     "decision",
     "evidence",
@@ -20,6 +21,16 @@
     "private_education_data_allowed": false,
     "existing_test_allowed": false
   },
+  "counterfactual_attribution": {
+    "method": "exact_field_shapley",
+    "all_two_power_k_field_combinations_required": true,
+    "retain_signed_shapley_values_for_diagnostics": true,
+    "negative_values_clipped_only_for_optimization_weights": true,
+    "all_nonpositive_case": "scope_unresolved",
+    "uniform_fallback_for_unresolved_allowed": false,
+    "field_interaction_index_required": true,
+    "counterfactual_coherence_audit_required_for_natural_data": true
+  },
   "pair_families": [
     "single_responsible_field",
     "two_responsible_fields",
@@ -28,20 +39,23 @@
     "opposing_field_changes",
     "zero_total_gap_unresolved"
   ],
-  "responsibility": {
-    "symmetric_two_swap_definition": true,
-    "retain_unclipped_values_for_diagnostics": true,
-    "negative_values_clipped_only_for_optimization_weights": true,
-    "all_nonpositive_case": "scope_unresolved",
-    "uniform_fallback_for_unresolved_allowed": false
-  },
+  "scope_attribution_baselines": [
+    "uniform_scope",
+    "random_scope",
+    "policy_confidence_scope",
+    "token_difference_scope",
+    "simple_single_swap_scope",
+    "oracle_scope"
+  ],
   "development_order": [
-    "public_controlled_benchmark_builder",
-    "independent_oracle_and_auditor",
-    "cpu_equation_and_mask_tests",
+    "public_controlled_scopebench_builder",
+    "independent_shapley_oracle_and_auditor",
+    "education_known_scope_positive_controls",
+    "cpu_equation_mask_and_corrected_context_tests",
     "controlled_gpu_training",
-    "train_dev_education_positive_controls",
-    "new_external_task"
+    "train_dev_education_experiment",
+    "new_external_structured_task",
+    "new_untouched_holdout_only_after_method_freeze"
   ],
   "gate_a_construction": {
     "schema_valid_rate_required": 1.0,
@@ -54,32 +68,32 @@
     "deterministic_nondegenerate_exact_recovery_required": 1.0,
     "unresolved_case_identification_required": 1.0,
     "counterfactual_provenance_failures_allowed": 0,
-    "responsibility_completeness_required": true,
+    "shapley_efficiency_required": true,
     "builder_and_oracle_implementation_independence_required": true
   },
   "gate_c_cpu_implementation": {
     "causal_shift_tests_required": true,
     "field_mask_tests_required": true,
     "policy_reference_margin_tests_required": true,
-    "responsibility_normalization_tests_required": true,
+    "shapley_normalization_tests_required": true,
     "unresolved_pair_tests_required": true,
-    "preservation_kl_scope_tests_required": true,
+    "corrected_prefix_preservation_kl_tests_required": true,
     "score_or_rationale_specific_loss_branches_allowed": false
   },
   "controlled_training_arms": [
     "full_output_dpo",
     "uniform_field_dpo",
     "oracle_scope_field_dpo",
-    "cspo_without_preservation",
-    "cspo_complete"
+    "cfsp_po_auto_without_preservation",
+    "cfsp_po_auto_with_preservation"
   ],
   "explicit_non_goals": [
     "odpo_offset",
     "dynamic_beta",
     "grpo",
-    "learned_reward_model",
+    "joint_reward_model_training",
     "additional_risk_weighting",
     "existing_test_tuning"
   ],
-  "stop_rule": "Stop the CSPO extension if the analytic responsibility definition fails exact recovery on deterministic known-scope nondegenerate cases, or if controlled training shows neither target benefit nor non-target preservation over the declared controls."
+  "stop_rule": "Stop the CFSP-PO extension if exact Shapley attribution fails known-scope deterministic nondegenerate cases, or if controlled training shows neither target benefit nor non-target preservation over the declared controls."
 }

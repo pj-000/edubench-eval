@@ -1,8 +1,8 @@
-# CSPO train-only feasibility research specification
+# CFSP-PO train-only feasibility research specification
 
 Status: `DESIGN_ONLY_NOT_AUTHORIZED_FOR_GPU_TRAINING`
 
-Version: `cspo-feasibility-v1`
+Version: `cfsp-po-feasibility-v2`
 
 ## 1. Relationship to the completed thesis experiments
 
@@ -18,9 +18,9 @@ The existing preference data provide two useful positive controls:
 Their active field is therefore known from the data construction. They test
 whether a field-local preference loss can optimize a field when its scope is
 given, but they do not test whether the scope of a preference can be recovered
-automatically. CSPO addresses that missing scientific question.
+automatically. CFSP-PO addresses that missing scientific question.
 
-Existing dev and test results must not be used to choose the CSPO definition,
+Existing dev and test results must not be used to choose the CFSP-PO definition,
 counterfactual construction, utility function, thresholds, or hyperparameters.
 In particular, the existing test split is excluded from every feasibility
 stage described below.
@@ -40,63 +40,68 @@ responsible fields while limiting drift in non-responsible fields?
 This question is stronger than the current Field-DPO question:
 
 - Field-DPO assumes the active field is supplied by the pair builder.
-- CSPO estimates a soft responsibility vector from counterfactual utility
+- CFSP-PO estimates a soft responsibility vector from counterfactual utility
   changes and uses it to scope the preference update.
 
 The intended contribution is responsibility discovery plus scope-consistent
 optimization, not another manually chosen score/rationale loss weighting.
 
-## 3. Counterfactual responsibility
+## 3. Counterfactual Shapley responsibility
 
-For a preferred output \(y^+\), a rejected output \(y^-\), and field \(k\),
-define the two field-swap counterfactuals:
-
-\[
-y^{+\leftarrow k-}
- =
-(y^{+(1)},\ldots,y^{-(k)},\ldots,y^{+(K)}),
-\]
+Let \(F=\{1,\ldots,K\}\). For a preferred output \(y^+\), a rejected output
+\(y^-\), and every subset \(S\subseteq F\), define the mixed output:
 
 \[
-y^{-\leftarrow k+}
- =
-(y^{-(1)},\ldots,y^{+(k)},\ldots,y^{-(K)}).
-\]
-
-Given a frozen utility function \(U(x,y)\), define the symmetric
-responsibility contribution:
-
-\[
-d_k
+y^{S(k)}
 =
-\frac{1}{2}
+\begin{cases}
+y^{+(k)}, & k\in S,\\
+y^{-(k)}, & k\notin S.
+\end{cases}
+\]
+
+Given a frozen utility function \(U(x,y)\), the signed responsibility of field
+\(k\) is its exact Shapley value:
+
+\[
+\phi_k
+=
+\sum_{S\subseteq F\setminus\{k\}}
+\frac{|S|!\,(K-|S|-1)!}{K!}
 \left[
-U(x,y^+)-U(x,y^{+\leftarrow k-})
-+
-U(x,y^{-\leftarrow k+})-U(x,y^-)
+U(x,y^{S\cup\{k\}})-U(x,y^S)
 \right].
 \]
+
+For two fields this reduces to the symmetric two-context field-swap equation.
+For three or more fields, all \(2^K\) mixed outputs are required so that field
+interactions are averaged across every coalition context rather than only the
+all-chosen and all-rejected extremes.
 
 Negative responsibility is clipped only for constructing the optimization
 weight:
 
 \[
-\widetilde d_k=\max(d_k,0),
+\widetilde \phi_k=\max(\phi_k,0),
 \qquad
 a_k=
-\frac{\widetilde d_k}
-{\sum_{j=1}^{K}\widetilde d_j+\epsilon}.
+\frac{\widetilde \phi_k}
+{\sum_{j=1}^{K}\widetilde \phi_j+\epsilon}.
 \]
 
-The implementation must retain the unclipped \(d_k\) values for diagnostics.
-If every \(\widetilde d_k=0\), the pair is `scope_unresolved` and must not be
+The implementation must retain the unclipped \(\phi_k\) values for diagnostics.
+If every \(\widetilde \phi_k=0\), the pair is `scope_unresolved` and must not be
 silently converted to uniform field weights.
 
-Here, a positive \(d_k\) means that field \(k\) supports the declared
-preference, a negative \(d_k\) means that it opposes the declared preference,
+Here, a positive \(\phi_k\) means that field \(k\) supports the declared
+preference, a negative \(\phi_k\) means that it opposes the declared preference,
 and zero means that it is utility-neutral under the frozen utility. The signed
 responsibility vector and the positive optimization-scope vector are therefore
 different audit objects and must not be conflated.
+
+The auditor must also report a field-interaction index derived from deviations
+between conditional marginal contributions. Shapley allocates interactions;
+it does not prove that fields are causally independent.
 
 ## 4. Scope-consistent preference objective
 
@@ -141,31 +146,36 @@ The scoped preference loss is:
 \right).
 \]
 
-For \(s\in\{+,-\}\), let \(h_t^s=(x,y^s_{<t})\). To limit unintended changes
-in fields with low positive responsibility, apply the preservation term to
-both preferred and rejected sequence contexts:
+Let \(y^{\mathrm{corr}}=y^F=y^+\) be the preferred, scope-corrected
+teacher-forced sequence after counterfactual coherence validation, and let
+\(h_{k,t}^{\mathrm{corr}}=(x,y^{\mathrm{corr}}_{<t})\). To limit unintended
+changes in fields with low positive responsibility, compare policy and
+reference distributions under this same corrected prefix:
 
 \[
 \mathcal L_{\mathrm{pres}}
 =
-\frac{1}{2}
-\sum_{s\in\{+,-\}}
 \sum_{k=1}^{K}(1-a_k)
-\frac{1}{|T_k|}
-\sum_{t\in T_k}
+\frac{1}{|T_k(y^{\mathrm{corr}})|}
+\sum_{t\in T_k(y^{\mathrm{corr}})}
 D_{\mathrm{KL}}
 \left(
-\pi_{\mathrm{ref}}(\cdot\mid h_t^s)
+\pi_{\mathrm{ref}}(\cdot\mid h_{k,t}^{\mathrm{corr}})
 \;\|\;
-\pi_\theta(\cdot\mid h_t^s)
+\pi_\theta(\cdot\mid h_{k,t}^{\mathrm{corr}})
 \right).
 \]
+
+For a score-only preference whose score precedes the rationale, both
+distributions are therefore evaluated after the same corrected score prefix.
+The method must never compare rationale distributions conditioned on different
+scores and call the difference non-target drift.
 
 The complete proposed objective is:
 
 \[
 \boxed{
-\mathcal L_{\mathrm{CSPO}}
+\mathcal L_{\mathrm{CFSP}}
 =
 \mathcal L_{\mathrm{scope}}
 +
@@ -189,31 +199,39 @@ Primary measurements:
 - top-1 positive-responsibility field accuracy;
 - exact positive-responsibility set accuracy;
 - macro F1 over positive-responsibility fields;
+- multi-label Jaccard;
 - signed responsibility-vector exact recovery;
 - L1 error between normalized recovered responsibility and the oracle
   responsibility vector;
+- scope entropy and single-field versus multi-field stratification;
 - unresolved-pair rate.
 
 For the deterministic additive cases, exact oracle recovery is a hard
 requirement rather than an average performance target.
 
+For learned or non-additive attribution in later stages, automatic scope must
+be compared with uniform, random, policy-confidence, token-difference, simple
+single-swap, and oracle-scope controls before preference training is
+authorized.
+
 ### H2: target-field effectiveness
 
-When H1 holds, CSPO improves preference accuracy or task utility on
+When H1 holds, CFSP-PO improves preference accuracy or task utility on
 preference-supporting fields relative to:
 
 - full-output DPO;
 - uniform field-weight DPO;
-- CSPO without the preservation term.
+- CFSP-PO without the preservation term.
 
 Manually scoped Field-DPO using oracle scope is an upper-reference control.
-CSPO is expected to approach it without receiving the oracle scope, not
+CFSP-PO is expected to approach it without receiving the oracle scope, not
 necessarily outperform it.
 
 ### H3: non-target preservation
 
-At comparable optimizer steps and pair exposure, CSPO reduces non-responsible
-field drift relative to full-output DPO and CSPO without preservation.
+At comparable optimizer steps and pair exposure, CFSP-PO reduces
+non-responsible field drift relative to full-output DPO and CFSP-PO without
+preservation.
 
 Drift must be reported directly using field-level token KL, exact field
 retention where applicable, and task-specific non-target utility. Overall
@@ -276,15 +294,22 @@ Every generated or swapped output must:
 For deterministic additive utility, the auditor must verify:
 
 \[
-\sum_k d_k = U(x,y^+)-U(x,y^-)
+\sum_k \phi_k = U(x,y^+)-U(x,y^-)
 \]
 
 up to exact rational arithmetic or a declared numerical tolerance, and must
-compare every recovered \(d_k\) with an independently computed field-level
+compare every recovered \(\phi_k\) with an independently computed field-level
 oracle.
 
 The benchmark builder and auditor must not share the implementation used to
 compute the expected responsibility vector.
+
+For later natural-data counterfactuals, schema validity is necessary but not
+sufficient. A separately frozen coherence validator must identify mixtures
+such as a low score paired with a rationale that clearly supports a high
+score. Reports must include the rejection rate and evaluator-family agreement.
+Such mixtures are called controlled counterfactual interventions, not literal
+causal interventions on independent fields.
 
 ## 8. Decision gates and stop rules
 
@@ -302,7 +327,7 @@ Failure requires fixing the generator or abandoning the affected pair family.
 
 ### Gate B: analytic responsibility recovery
 
-Required before implementing the CSPO training loss:
+Required before implementing the CFSP-PO training loss:
 
 - 100% exact responsibility recovery on deterministic additive, non-degenerate
   cases;
@@ -311,8 +336,8 @@ Required before implementing the CSPO training loss:
 - equality between total recovered responsibility and total utility gap.
 
 If Gate B fails because the definition itself cannot recover known scope under
-its stated assumptions, CSPO stops. The experiment must not proceed by tuning
-thresholds on downstream model results.
+its stated assumptions, CFSP-PO stops. The experiment must not proceed by
+tuning thresholds on downstream model results.
 
 ### Gate C: CPU implementation
 
@@ -323,19 +348,20 @@ Required before GPU use:
 - responsibility normalization and unresolved-pair tests;
 - preservation-KL scope tests;
 - numerical equivalence with the written equations;
-- no score/rationale-specific branches in the generic CSPO loss.
+- corrected-prefix preservation tests for autoregressive field dependence;
+- no score/rationale-specific branches in the generic CFSP-PO loss.
 
 ### Gate D: controlled training
 
 Only after Gates A--C pass:
 
-- compare full-output DPO, uniform field DPO, oracle-scope Field-DPO, CSPO
-  without preservation, and complete CSPO;
+- compare full-output DPO, uniform field DPO, oracle-scope Field-DPO, CFSP-PO
+  without preservation, and complete CFSP-PO;
 - keep base model, pair order, optimizer steps, scheduler, beta, batch
   semantics, and selection rule fixed;
 - select no method using the existing education test set.
 
-If CSPO cannot outperform full-output or uniform-scope controls in target
+If CFSP-PO cannot outperform full-output or uniform-scope controls in target
 utility while reducing non-target drift, its general method claim is rejected.
 The completed RAR-SFT/Field-DPO thesis results remain valid as a separate
 task-specific contribution.
@@ -347,6 +373,8 @@ known-scope positive controls:
 
 - score-only difference should recover score responsibility;
 - rationale-only difference should recover rationale responsibility.
+- parser-invalid versus schema-valid output should recover format
+  responsibility.
 
 They cannot by themselves establish automatic scope discovery because their
 scope was fixed by construction.
@@ -354,11 +382,22 @@ scope was fixed by construction.
 Automatic rationale responsibility on natural model errors requires a
 separately frozen, non-circular utility source. Until such a source is defined
 and independently validated, rationale responsibility on real education
-outputs is outside the first CSPO claim.
+outputs is outside the first CFSP-PO claim.
 
 Any education-task experiment must use train/dev only during development.
 The already observed test results remain descriptive evidence for the frozen
-thesis method and are not a CSPO development target.
+thesis method and are not a CFSP-PO development target.
+
+After controlled and education train/dev gates pass, the method must be tested
+on at least one external structured-generation task whose fields and
+deterministic task metrics differ from education scoring. This is required to
+separate a general preference-scope method claim from an education-specific
+engineering result.
+
+A new untouched confirmation set, if created, is evaluated only after the
+scope estimator, preservation weight, checkpoints, contrasts, metrics, and
+bootstrap protocol are frozen. The already observed education test set cannot
+serve this role.
 
 ## 10. Next executable milestone
 
@@ -368,4 +407,4 @@ Implement only:
 2. an independent responsibility oracle and auditor;
 3. deterministic unit tests and aggregate reports.
 
-Do not implement or launch CSPO training until Gates A and B pass.
+Do not implement or launch CFSP-PO training until Gates A and B pass.
