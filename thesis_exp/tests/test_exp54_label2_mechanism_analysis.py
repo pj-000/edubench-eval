@@ -76,16 +76,30 @@ def test_natural_metrics_are_exact_for_perfect_predictions() -> None:
     assert metrics["QWK"] == 1.0
     assert metrics["Kendall_tau_b"] == pytest.approx(1.0)
     assert metrics["L2H_count"] == 0
+    assert metrics["L2H_rate_among_low"] == 0.0
     assert metrics["H2L_count"] == 0
+    assert metrics["H2L_rate_among_high"] == 0.0
     assert metrics["Recall"] == {str(score): 1.0 for score in range(1, 6)}
     assert metrics["multiclass_NLL"] == 0.0
     assert metrics["multiclass_Brier"] == 0.0
-    assert metrics["RPS"] == 0.0
+    assert metrics["RPS_normalized_by_4"] == 0.0
 
 
 def test_quadratic_weighted_kappa_rejects_shape_mismatch() -> None:
     with pytest.raises(ValueError, match="equal one-dimensional"):
         quadratic_weighted_kappa(np.asarray([1, 2]), np.asarray([1]))
+
+
+def test_tail_risk_rates_use_conditional_denominators() -> None:
+    labels = np.asarray([1, 2, 3, 4, 5], dtype=np.int64)
+    predictions = np.asarray([4, 2, 3, 1, 5], dtype=np.int64)
+    probabilities = np.full((5, 5), 0.05, dtype=np.float64)
+    probabilities[np.arange(5), predictions - 1] = 0.8
+    metrics = natural_metrics(probabilities, labels, predictions)
+    assert metrics["L2H_count"] == 1
+    assert metrics["L2H_rate_among_low"] == 0.5
+    assert metrics["H2L_count"] == 1
+    assert metrics["H2L_rate_among_high"] == 0.5
 
 
 def test_adjusted_support_coefficient_has_expected_direction() -> None:

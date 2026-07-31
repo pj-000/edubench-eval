@@ -275,6 +275,8 @@ def natural_metrics(
     for score in SCORES:
         selected = labels == score
         recalls[str(score)] = float(np.mean(predictions[selected] == score))
+    low = labels <= 2
+    high = labels >= 4
     return {
         "rows": int(len(labels)),
         "MAE": float(np.mean(np.abs(predictions - labels))),
@@ -282,15 +284,15 @@ def natural_metrics(
         "QWK": quadratic_weighted_kappa(labels, predictions),
         "Kendall_tau_b": float(tau),
         "L2H_count": int(np.sum((labels <= 2) & (predictions >= 4))),
-        "L2H_rate": float(np.mean((labels <= 2) & (predictions >= 4))),
+        "L2H_rate_among_low": float(np.mean(predictions[low] >= 4)),
         "H2L_count": int(np.sum((labels >= 4) & (predictions <= 2))),
-        "H2L_rate": float(np.mean((labels >= 4) & (predictions <= 2))),
+        "H2L_rate_among_high": float(np.mean(predictions[high] <= 2)),
         "Recall": recalls,
         "multiclass_NLL": _nll(probabilities, labels - 1),
         "multiclass_Brier": float(
             np.mean(np.square(probabilities - one_hot).sum(axis=1))
         ),
-        "RPS": float(
+        "RPS_normalized_by_4": float(
             np.mean(
                 np.square(cumulative_probability - cumulative_target).sum(axis=1)
                 / 4.0
@@ -388,6 +390,7 @@ def support_adjusted_association(
         value = _adjusted_support_coefficient(selected)
         if value is not None:
             values.append(value)
+    valid_fraction = len(values) / replicates
     if observed_coefficient is None or not values:
         return {
             "identifiable": False,
@@ -396,18 +399,25 @@ def support_adjusted_association(
             "ci95_low": None,
             "ci95_high": None,
             "bootstrap_valid_replicates": len(values),
+            "bootstrap_valid_fraction": valid_fraction,
             "adverse_association_gate": False,
             "model": "linear_probability_on_log1p_support_adjusted_for_metric_language_and_rater_range",
         }
     low, high = np.quantile(np.asarray(values), [0.025, 0.975])
+    bootstrap_identifiable = valid_fraction >= 0.8
     return {
-        "identifiable": True,
+        "identifiable": bootstrap_identifiable,
+        "point_estimate_identifiable": True,
+        "bootstrap_inference_identifiable": bootstrap_identifiable,
         "descriptive_low_minus_high_risk_difference": observed_difference,
         "adjusted_log1p_support_coefficient": observed_coefficient,
         "ci95_low": float(low),
         "ci95_high": float(high),
         "bootstrap_valid_replicates": len(values),
-        "adverse_association_gate": bool(observed_coefficient < 0 and high < 0),
+        "bootstrap_valid_fraction": valid_fraction,
+        "adverse_association_gate": bool(
+            bootstrap_identifiable and observed_coefficient < 0 and high < 0
+        ),
         "model": "linear_probability_on_log1p_support_adjusted_for_metric_language_and_rater_range",
     }
 
@@ -665,6 +675,11 @@ def analyze(
         "private_row_level_flags_published": False,
         "bootstrap_replicates": 10000,
         "bootstrap_cluster": "question_key",
+        "metric_definitions": {
+            "L2H_rate_among_low": "count(label<=2 and prediction>=4) / count(label<=2)",
+            "H2L_rate_among_high": "count(label>=4 and prediction<=2) / count(label>=4)",
+            "RPS_normalized_by_4": "mean over rows of the four cumulative-probability squared errors divided by four",
+        },
         "train_sha256": sha256_file(train_path),
         "dev_sha256": sha256_file(dev_path),
         "pair_source_sha256": sha256_file(pair_path),
