@@ -1,0 +1,74 @@
+{
+  "adjudication_required_for_disagreement": true,
+  "allowed_categorical_responses": [
+    "YES",
+    "NO",
+    "UNCERTAIN"
+  ],
+  "dev_sha256": "a18d6a27b9a524d4592a359658ae70c9348fe88e43c962971ba95f62d2b6cdf0",
+  "human_reviews_completed": false,
+  "independent_first_pass_required": true,
+  "model_or_llm_used_as_human_reviewer": false,
+  "packets": {
+    "A": {
+      "labels_raters_model_outputs_excluded": true,
+      "packet_fields": [
+        "case_number",
+        "presentation_id",
+        "language",
+        "metric",
+        "question",
+        "answer",
+        "rubric",
+        "score_2_uniquely_defensible",
+        "score_3_also_defensible",
+        "decisive_criterion_absent",
+        "present_criterion_too_vague",
+        "boundary_evidence_span",
+        "reviewer_notes"
+      ],
+      "rows": 14,
+      "sha256": "0eed4eb1923cdd1d8779433705739f8f5a08dd7083ca83e806f7baac0454f479"
+    },
+    "B": {
+      "labels_raters_model_outputs_excluded": true,
+      "packet_fields": [
+        "case_number",
+        "presentation_id",
+        "language",
+        "metric",
+        "question",
+        "answer",
+        "rubric",
+        "score_2_uniquely_defensible",
+        "score_3_also_defensible",
+        "decisive_criterion_absent",
+        "present_criterion_too_vague",
+        "boundary_evidence_span",
+        "reviewer_notes"
+      ],
+      "rows": 14,
+      "sha256": "8f51cb6e0ed9f40fdcbf2cc9de53f85ab466dfc49443b1cf7a97a901dabe78cd"
+    }
+  },
+  "population": "all locked dev rows with observed-consensus label_5 == 2",
+  "private_answer_key_rows": 28,
+  "private_answer_key_sha256": "f850afa4afbb96ba2e3baa495296821b3236e67dfc81ca6b4daa989dbf67e238",
+  "private_row_content_published": false,
+  "question_groups": 10,
+  "response_fields": [
+    "score_2_uniquely_defensible",
+    "score_3_also_defensible",
+    "decisive_criterion_absent",
+    "present_criterion_too_vague",
+    "boundary_evidence_span",
+    "reviewer_notes"
+  ],
+  "reviewer_orders_differ": true,
+  "reviewers_required": 2,
+  "schema_version": "exp54-label2-human-packet-build-v1",
+  "status": "PRIMARY_PACKETS_BUILT_AWAITING_TWO_HUMAN_REVIEWS",
+  "test_accessed": false,
+  "training_started": false,
+  "unique_records": 14
+}
