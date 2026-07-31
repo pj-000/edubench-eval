@@ -1,0 +1,224 @@
+{
+  "arms": {
+    "P1_FIELD_DPO": {
+      "42": {
+        "all_row_probability_metrics": {
+          "forced_choice_exact": 0.7168674698795181,
+          "multiclass_brier": 0.403735796092351,
+          "multiclass_nll": 0.7257322037756984,
+          "ranked_probability_score": 0.24347564874314442
+        },
+        "decoder_recoverable_label_2_failures": 0,
+        "elapsed_seconds": 76.86188125610352,
+        "forced_choice_counts_label_2": {
+          "1": 1,
+          "3": 4,
+          "4": 9
+        },
+        "label_2_rows": 14,
+        "mean_score_probabilities_label_2": {
+          "1": 0.05657791941991332,
+          "2": 0.11150157228016334,
+          "3": 0.2622513834702683,
+          "4": 0.4272949878914858,
+          "5": 0.14237413693816942
+        },
+        "output_sha256": "1b83cac5e6ea70583f72477a0f0b2d48c0a4bae0317f5357798257aa8472313c",
+        "parsed_score_counts_label_2": {
+          "1": 1,
+          "3": 4,
+          "4": 7,
+          "5": 2
+        },
+        "rows": 664
+      },
+      "43": {
+        "all_row_probability_metrics": {
+          "forced_choice_exact": 0.7108433734939759,
+          "multiclass_brier": 0.40658141926520824,
+          "multiclass_nll": 0.7285021432454732,
+          "ranked_probability_score": 0.2451515963482098
+        },
+        "decoder_recoverable_label_2_failures": 1,
+        "elapsed_seconds": 77.4154326915741,
+        "forced_choice_counts_label_2": {
+          "1": 1,
+          "2": 1,
+          "3": 3,
+          "4": 9
+        },
+        "label_2_rows": 14,
+        "mean_score_probabilities_label_2": {
+          "1": 0.07304767062825435,
+          "2": 0.11946616642397034,
+          "3": 0.2612090671332734,
+          "4": 0.41111364980037307,
+          "5": 0.13516344601412883
+        },
+        "output_sha256": "afc4f4d8855b5f9afba200b7e187cb42c9e1d3cb35e02984ea2833013e3127cc",
+        "parsed_score_counts_label_2": {
+          "1": 2,
+          "2": 1,
+          "3": 4,
+          "4": 7
+        },
+        "rows": 664
+      },
+      "44": {
+        "all_row_probability_metrics": {
+          "forced_choice_exact": 0.7033132530120482,
+          "multiclass_brier": 0.4101114164309995,
+          "multiclass_nll": 0.7344468882192202,
+          "ranked_probability_score": 0.25136811516053076
+        },
+        "decoder_recoverable_label_2_failures": 0,
+        "elapsed_seconds": 76.90558886528015,
+        "forced_choice_counts_label_2": {
+          "2": 1,
+          "3": 4,
+          "4": 9
+        },
+        "label_2_rows": 14,
+        "mean_score_probabilities_label_2": {
+          "1": 0.037787145391148524,
+          "2": 0.10175133384770162,
+          "3": 0.280385181065072,
+          "4": 0.4521404655283043,
+          "5": 0.12793587416777366
+        },
+        "output_sha256": "09e7176d802ed0afd1688014f2b2aafe9c25096badcdc1974ab784e7dc11efdc",
+        "parsed_score_counts_label_2": {
+          "2": 1,
+          "3": 5,
+          "4": 8
+        },
+        "rows": 664
+      }
+    },
+    "R3": {
+      "42": {
+        "all_row_probability_metrics": {
+          "forced_choice_exact": 0.7183734939759037,
+          "multiclass_brier": 0.40725955938635633,
+          "multiclass_nll": 0.7315680139659986,
+          "ranked_probability_score": 0.24633828547731715
+        },
+        "decoder_recoverable_label_2_failures": 0,
+        "elapsed_seconds": 76.45574760437012,
+        "forced_choice_counts_label_2": {
+          "1": 1,
+          "3": 4,
+          "4": 9
+        },
+        "label_2_rows": 14,
+        "mean_score_probabilities_label_2": {
+          "1": 0.046445596446640626,
+          "2": 0.09399916093144715,
+          "3": 0.26418214836203247,
+          "4": 0.44468347712174067,
+          "5": 0.1506896171381391
+        },
+        "output_sha256": "4e06f2a116647ae9d3f712a8026fc5f2f620c052d779e439f17be0614f4e0771",
+        "parsed_score_counts_label_2": {
+          "1": 1,
+          "3": 4,
+          "4": 7,
+          "5": 2
+        },
+        "rows": 664
+      },
+      "43": {
+        "all_row_probability_metrics": {
+          "forced_choice_exact": 0.7078313253012049,
+          "multiclass_brier": 0.4088557433604522,
+          "multiclass_nll": 0.7329412478911527,
+          "ranked_probability_score": 0.24773750479072598
+        },
+        "decoder_recoverable_label_2_failures": 0,
+        "elapsed_seconds": 77.06497621536255,
+        "forced_choice_counts_label_2": {
+          "1": 1,
+          "3": 4,
+          "4": 9
+        },
+        "label_2_rows": 14,
+        "mean_score_probabilities_label_2": {
+          "1": 0.053001099793268135,
+          "2": 0.09358442210133724,
+          "3": 0.25421274291156004,
+          "4": 0.45326667819145544,
+          "5": 0.1459350570023791
+        },
+        "output_sha256": "2c2e3a8e25fb38bd652b3f703185020936713f3dd6be827611c50830afe89130",
+        "parsed_score_counts_label_2": {
+          "1": 2,
+          "3": 4,
+          "4": 8
+        },
+        "rows": 664
+      },
+      "44": {
+        "all_row_probability_metrics": {
+          "forced_choice_exact": 0.697289156626506,
+          "multiclass_brier": 0.4117565324680839,
+          "multiclass_nll": 0.7396122803315284,
+          "ranked_probability_score": 0.2527613382667199
+        },
+        "decoder_recoverable_label_2_failures": 0,
+        "elapsed_seconds": 76.70048761367798,
+        "forced_choice_counts_label_2": {
+          "3": 4,
+          "4": 9,
+          "5": 1
+        },
+        "label_2_rows": 14,
+        "mean_score_probabilities_label_2": {
+          "1": 0.02645312972107978,
+          "2": 0.07444576325009579,
+          "3": 0.267673941839598,
+          "4": 0.4884969780421765,
+          "5": 0.14293018714705003
+        },
+        "output_sha256": "50a2a33f4ec321485900e48ab2a96b86de1f78faa7a15ab8a78fdc0377311917",
+        "parsed_score_counts_label_2": {
+          "2": 1,
+          "3": 4,
+          "4": 9
+        },
+        "rows": 664
+      }
+    }
+  },
+  "dev_sha256": "a18d6a27b9a524d4592a359658ae70c9348fe88e43c962971ba95f62d2b6cdf0",
+  "extractor_source_sha256": "aa41159ad2d2034d6497b0e799c12584e8bf4b1153fdf8e7af8c19841cfeb792",
+  "gpu_used_by_auditor": false,
+  "inventory_report_sha256": "6b1470e2ae26988f8c81b99bf3cb0aa89f482b527b8257692a4566b44b7f5af2",
+  "p1_minus_r3_mean_probability_mass_label_2": {
+    "42": {
+      "1": 0.010132322973272694,
+      "2": 0.017502411348716187,
+      "3": -0.001930764891764161,
+      "4": -0.017388489230255016,
+      "5": -0.008315480199969716
+    },
+    "43": {
+      "1": 0.020046570834986222,
+      "2": 0.02588174432263309,
+      "3": 0.0069963242217133395,
+      "4": -0.042153028391082405,
+      "5": -0.010771610988250259
+    },
+    "44": {
+      "1": 0.01133401567006875,
+      "2": 0.027305570597605817,
+      "3": 0.012711239225474097,
+      "4": -0.03635651251387232,
+      "5": -0.014994312979276364
+    }
+  },
+  "private_row_level_outputs_published": false,
+  "schema_version": "exp54-label2-score-probability-audit-v1",
+  "status": "LABEL2_SCORE_PROBABILITY_AUDIT_PASS",
+  "test_accessed": false,
+  "training_started": false
+}
