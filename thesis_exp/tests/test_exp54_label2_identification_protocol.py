@@ -13,6 +13,13 @@ from thesis_exp.exp54_rar_sft.audit_label2_identification_protocol import (
 )
 
 
+INVENTORY_REPORT = (
+    REPO_ROOT
+    / "thesis_exp/outputs/exp54_rar_sft/rar_v2/"
+    "label2_identification_audit/inventory_report.json"
+)
+
+
 def _protocol() -> dict:
     return json.loads(DEFAULT_PROTOCOL.read_text(encoding="utf-8"))
 
@@ -80,3 +87,21 @@ def test_locked_input_hash_mismatch_is_rejected() -> None:
     protocol["locked_inputs"]["dev"]["sha256"] = "0" * 64
     with pytest.raises(ValueError, match="hash mismatch"):
         validate_protocol(protocol, repo_root=REPO_ROOT)
+
+
+def test_inventory_stops_before_gpu_when_score_probabilities_are_missing() -> None:
+    report = json.loads(INVENTORY_REPORT.read_text(encoding="utf-8"))
+    assert report["status"] == "INVENTORY_COMPLETE_LOGITS_MISSING"
+    assert report["test_accessed_by_inventory"] is False
+    assert report["gpu_used_by_inventory"] is False
+    assert report["training_started"] is False
+    assert report["next_action_requires_gpu"] is True
+    assert report["gpu_execution_authorized"] is False
+    server = report["server_read_only_inventory"]
+    assert server["score_option_logprob_fields_present"] is False
+    assert server["p1_score_pair_graph"][
+        "direct_chosen_2_rejected_3_edges"
+    ] == 22
+    for group in ("r3_epoch3_dev_predictions", "p1_lr5e6_dev_predictions"):
+        assert set(server[group]) == {"42", "43", "44"}
+        assert all(item["rows"] == 664 for item in server[group].values())
