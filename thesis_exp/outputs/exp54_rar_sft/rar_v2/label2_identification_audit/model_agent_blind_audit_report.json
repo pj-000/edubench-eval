@@ -1,0 +1,108 @@
+{
+  "adjudication_performed": false,
+  "automated_mechanism_dominance_gate_passed": false,
+  "automated_report_sha256": "6e06d2521c2c84d1cc7f544ebce39b187699ac3451e0bc568fbaad2f7824ea5a",
+  "config_sha256": "b603ce41b3779327d6038dc1ee174c2d1b1ed63f892869b4b8d7dafbd6c4b62e",
+  "consensus": {
+    "automatic_rater_ambiguous_rows": 5,
+    "both_agents_flag_2_3_boundary_ambiguous": 10,
+    "both_agents_flag_rubric_missing_or_vague": 8,
+    "both_agents_say_score_2_unique": 2,
+    "consensus_boundary_ambiguous_within_automatic": 4,
+    "consensus_boundary_ambiguous_within_nonautomatic": 6,
+    "nonautomatic_rows": 9
+  },
+  "credible_causal_dominant_mechanism_identified": false,
+  "field_agreement": {
+    "decisive_criterion_absent": {
+      "agreement_count": 10,
+      "agreement_rate": 0.7142857142857143,
+      "both_yes": 3,
+      "cohen_kappa": 0.391304347826087,
+      "reviewer_A_distribution": {
+        "NO": 10,
+        "YES": 4
+      },
+      "reviewer_B_distribution": {
+        "NO": 8,
+        "YES": 6
+      }
+    },
+    "present_criterion_too_vague": {
+      "agreement_count": 9,
+      "agreement_rate": 0.6428571428571429,
+      "both_yes": 8,
+      "cohen_kappa": 0.18604651162790717,
+      "reviewer_A_distribution": {
+        "NO": 6,
+        "YES": 8
+      },
+      "reviewer_B_distribution": {
+        "NO": 1,
+        "YES": 13
+      }
+    },
+    "score_2_uniquely_defensible": {
+      "agreement_count": 11,
+      "agreement_rate": 0.7857142857142857,
+      "both_yes": 2,
+      "cohen_kappa": 0.475,
+      "reviewer_A_distribution": {
+        "NO": 12,
+        "YES": 2
+      },
+      "reviewer_B_distribution": {
+        "NO": 9,
+        "UNCERTAIN": 1,
+        "YES": 4
+      }
+    },
+    "score_3_also_defensible": {
+      "agreement_count": 10,
+      "agreement_rate": 0.7142857142857143,
+      "both_yes": 5,
+      "cohen_kappa": 0.44000000000000006,
+      "reviewer_A_distribution": {
+        "NO": 6,
+        "YES": 8
+      },
+      "reviewer_B_distribution": {
+        "NO": 8,
+        "YES": 6
+      }
+    }
+  },
+  "gpu_used": false,
+  "human_audit_satisfied": false,
+  "interpretation": "model-agent evidence supports a target-boundary hypothesis but cannot be represented as human validity evidence or decisive causal attribution",
+  "new_training_method_authorized": false,
+  "packet_report_sha256": "359dce180f62e6be99a3b55a7792904c7f1b10f72da77495fb7545c6a4ca3185",
+  "packet_validation": {
+    "A": {
+      "categorical_values_valid": true,
+      "completed_sha256": "4f5aa841ef1fad3ec0035f0a79a1b1e070cacda529c3d6a44afa0c4677134aa1",
+      "evidence_spans_nonempty": true,
+      "format_valid": true,
+      "rows": 14,
+      "source_columns_unchanged": true
+    },
+    "B": {
+      "categorical_values_valid": true,
+      "completed_sha256": "1858751cbf9894d7ec83ab39e0436bf7d0a8d8c44519e1f2b5dd829fead0687e",
+      "evidence_spans_nonempty": true,
+      "format_valid": true,
+      "rows": 14,
+      "source_columns_unchanged": true
+    }
+  },
+  "private_answer_key_sha256": "f850afa4afbb96ba2e3baa495296821b3236e67dfc81ca6b4daa989dbf67e238",
+  "private_row_content_published": false,
+  "records": 14,
+  "reviewer_model_identity": "runtime_model_not_externally_attested",
+  "reviewer_type": "independent_codex_subagents_not_humans",
+  "schema_version": "exp54-label2-model-agent-blind-audit-report-v1",
+  "status": "MODEL_AGENT_AUDIT_COMPLETE_HUMAN_PROTOCOL_NOT_SATISFIED",
+  "strongest_current_hypothesis": "observed-consensus 2/3 boundary instability and rubric executability",
+  "test_accessed": false,
+  "training_started": false
+}
