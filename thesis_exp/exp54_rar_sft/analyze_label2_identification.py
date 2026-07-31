@@ -12,6 +12,7 @@ from typing import Any, Iterable
 
 import numpy as np
 from scipy.optimize import minimize
+from scipy.stats import kendalltau
 
 from thesis_exp.exp54_rar_sft import REPO_ROOT
 
@@ -240,6 +241,64 @@ def measurement_ambiguous(row: dict[str, Any]) -> bool:
     return max(scores) - min(scores) >= 2.0 or {2.0, 3.0}.issubset(set(scores))
 
 
+def quadratic_weighted_kappa(labels: np.ndarray, predictions: np.ndarray) -> float:
+    if labels.shape != predictions.shape or labels.ndim != 1:
+        raise ValueError("labels and predictions must be equal one-dimensional vectors")
+    confusion = np.zeros((5, 5), dtype=np.float64)
+    for label, prediction in zip(labels, predictions, strict=True):
+        confusion[int(label) - 1, int(prediction) - 1] += 1.0
+    observed = confusion / confusion.sum()
+    expected = np.outer(confusion.sum(axis=1), confusion.sum(axis=0))
+    expected /= np.square(confusion.sum())
+    indices = np.arange(5, dtype=np.float64)
+    weights = np.square(indices[:, None] - indices[None, :]) / 16.0
+    denominator = float((weights * expected).sum())
+    if denominator == 0.0:
+        raise ValueError("quadratic weighted kappa is undefined")
+    return float(1.0 - (weights * observed).sum() / denominator)
+
+
+def natural_metrics(
+    probabilities: np.ndarray,
+    labels: np.ndarray,
+    predictions: np.ndarray,
+) -> dict[str, Any]:
+    if probabilities.shape != (len(labels), 5) or predictions.shape != labels.shape:
+        raise ValueError("metric inputs differ in shape")
+    if not np.allclose(probabilities.sum(axis=1), 1.0, atol=1e-8):
+        raise ValueError("metric probabilities are not normalized")
+    one_hot = np.eye(5, dtype=np.float64)[labels - 1]
+    cumulative_probability = np.cumsum(probabilities, axis=1)[:, :-1]
+    cumulative_target = np.cumsum(one_hot, axis=1)[:, :-1]
+    tau = kendalltau(labels, predictions, variant="b").statistic
+    recalls = {}
+    for score in SCORES:
+        selected = labels == score
+        recalls[str(score)] = float(np.mean(predictions[selected] == score))
+    return {
+        "rows": int(len(labels)),
+        "MAE": float(np.mean(np.abs(predictions - labels))),
+        "Exact": float(np.mean(predictions == labels)),
+        "QWK": quadratic_weighted_kappa(labels, predictions),
+        "Kendall_tau_b": float(tau),
+        "L2H_count": int(np.sum((labels <= 2) & (predictions >= 4))),
+        "L2H_rate": float(np.mean((labels <= 2) & (predictions >= 4))),
+        "H2L_count": int(np.sum((labels >= 4) & (predictions <= 2))),
+        "H2L_rate": float(np.mean((labels >= 4) & (predictions <= 2))),
+        "Recall": recalls,
+        "multiclass_NLL": _nll(probabilities, labels - 1),
+        "multiclass_Brier": float(
+            np.mean(np.square(probabilities - one_hot).sum(axis=1))
+        ),
+        "RPS": float(
+            np.mean(
+                np.square(cumulative_probability - cumulative_target).sum(axis=1)
+                / 4.0
+            )
+        ),
+    }
+
+
 def cluster_fraction_interval(
     rows: list[dict[str, Any]],
     *,
@@ -267,7 +326,39 @@ def cluster_fraction_interval(
     }
 
 
-def support_risk_difference(
+def _support_design(rows: list[dict[str, Any]]) -> np.ndarray:
+    metrics = sorted({str(row["metric_id"]) for row in rows})
+    languages = sorted({str(row["language"]) for row in rows})
+    columns = [
+        np.ones(len(rows), dtype=np.float64),
+        np.asarray([math.log1p(int(row["support_count"])) for row in rows]),
+        np.asarray([float(row["rater_range"]) for row in rows]),
+    ]
+    columns.extend(
+        np.asarray(
+            [str(row["metric_id"]) == metric for row in rows], dtype=np.float64
+        )
+        for metric in metrics[1:]
+    )
+    columns.extend(
+        np.asarray(
+            [str(row["language"]) == language for row in rows], dtype=np.float64
+        )
+        for language in languages[1:]
+    )
+    return np.column_stack(columns)
+
+
+def _adjusted_support_coefficient(rows: list[dict[str, Any]]) -> float | None:
+    design = _support_design(rows)
+    outcomes = np.asarray([bool(row["failure"]) for row in rows], dtype=np.float64)
+    if len(rows) <= design.shape[1] or np.linalg.matrix_rank(design) < design.shape[1]:
+        return None
+    coefficient = np.linalg.lstsq(design, outcomes, rcond=None)[0]
+    return float(coefficient[1])
+
+
+def support_adjusted_association(
     rows: list[dict[str, Any]],
     *,
     seed: int,
@@ -287,32 +378,37 @@ def support_risk_difference(
             row["failure"] for row in high
         ) / len(high)
 
-    observed = difference(rows)
+    observed_difference = difference(rows)
+    observed_coefficient = _adjusted_support_coefficient(rows)
     rng = np.random.default_rng(seed)
     values = []
     for _ in range(replicates):
         sampled = rng.choice(groups, size=len(groups), replace=True)
         selected = [row for group in sampled for row in grouped[str(group)]]
-        value = difference(selected)
+        value = _adjusted_support_coefficient(selected)
         if value is not None:
             values.append(value)
-    if observed is None or not values:
+    if observed_coefficient is None or not values:
         return {
             "identifiable": False,
-            "risk_difference": None,
+            "descriptive_low_minus_high_risk_difference": observed_difference,
+            "adjusted_log1p_support_coefficient": observed_coefficient,
             "ci95_low": None,
             "ci95_high": None,
             "bootstrap_valid_replicates": len(values),
             "adverse_association_gate": False,
+            "model": "linear_probability_on_log1p_support_adjusted_for_metric_language_and_rater_range",
         }
     low, high = np.quantile(np.asarray(values), [0.025, 0.975])
     return {
         "identifiable": True,
-        "risk_difference": float(observed),
+        "descriptive_low_minus_high_risk_difference": observed_difference,
+        "adjusted_log1p_support_coefficient": observed_coefficient,
         "ci95_low": float(low),
         "ci95_high": float(high),
         "bootstrap_valid_replicates": len(values),
-        "adverse_association_gate": bool(observed > 0 and low > 0),
+        "adverse_association_gate": bool(observed_coefficient < 0 and high < 0),
+        "model": "linear_probability_on_log1p_support_adjusted_for_metric_language_and_rater_range",
     }
 
 
@@ -424,6 +520,17 @@ def analyze(
                     {
                         "question_key": str(row["question_key"]),
                         "record_id": str(row["record_id"]),
+                        "metric_id": str(row["metric_id"]),
+                        "language": str(row["language"]),
+                        "support_count": support_counts[stratum],
+                        "rater_range": max(
+                            float(row[field])
+                            for field in ("human_1_5", "human_2_5", "human_3_5")
+                        )
+                        - min(
+                            float(row[field])
+                            for field in ("human_1_5", "human_2_5", "human_3_5")
+                        ),
                         "failure": parsed_failure,
                         "measurement_ambiguous": measurement_ambiguous(row),
                         "decoder_failure": decoder,
@@ -434,7 +541,7 @@ def analyze(
                         "preference_coverage_deficient": pair_deficient,
                     }
                 )
-            support_result = support_risk_difference(
+            support_result = support_adjusted_association(
                 label2_rows,
                 seed=20260731 + seed,
             )
@@ -471,6 +578,10 @@ def analyze(
                 for index, category in enumerate(AUTOMATED_HIERARCHY)
             }
             calibrated_label2 = calibrated_predictions[labels == 1]
+            probabilities = _softmax(log_probabilities)
+            parsed_predictions = np.asarray(
+                [int(row["parsed_score"]) for row in rows], dtype=np.int64
+            )
             public[arm][str(seed)] = {
                 "label_2_rows": len(label2_rows),
                 "label_2_failures": len(failures),
@@ -489,7 +600,12 @@ def analyze(
                 "calibration_recovered_label_2_failures": sum(
                     row["calibration_recoverable"] for row in failures
                 ),
-                "raw_nll": _nll(_softmax(log_probabilities), labels),
+                "natural_metrics": natural_metrics(
+                    probabilities,
+                    labels + 1,
+                    parsed_predictions,
+                ),
+                "raw_nll": _nll(probabilities, labels),
                 "cross_fitted_calibrated_nll": _nll(calibrated, labels),
                 "calibration": calibration_details,
                 "support": support_result,
