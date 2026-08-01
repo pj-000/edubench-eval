@@ -1,0 +1,23 @@
+{
+  "schema_version": "exp54-sorc-rationale-qualification-rule-v1",
+  "status": "PREREGISTERED_NOT_EXECUTED",
+  "split": "train",
+  "primary_stage": "score_blind",
+  "primary_field": "overall_preference",
+  "orientation_pairing_unit": ["pair_id", "evaluator_family"],
+  "orientation_mapping": {
+    "both_orientations_support_r3_aligned": "R3_WIN",
+    "both_orientations_support_r2_shuffled": "R2_WIN",
+    "all_other_combinations": "TIE"
+  },
+  "family_specific_reporting_required": true,
+  "pooling_cannot_replace_family_specific_results": true,
+  "formal_rationale_block_passes_if": "each_of_two_evaluator_families_has_r3_wins_strictly_greater_than_r2_wins",
+  "invalid_or_missing_response": "qualification_incomplete_not_pass",
+  "score_visible_role": "secondary_only_no_effect_on_pass_fail",
+  "row_level_filtering_or_selection_allowed": false,
+  "rationale_blind_qualification_completed": false,
+  "p3_preference_training_allowed": false,
+  "dev_accessed": false,
+  "test_accessed": false
+}

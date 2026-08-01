@@ -1,0 +1,56 @@
+{
+  "schema_version": "exp54-sorc-dpo-lr-only-followup-v1",
+  "status": "TRAIN_ONLY_SMOKE_THEN_SEED42_SCOUT",
+  "scientific_role": "exploratory_training_dose_followup_prompted_by_formal_dev_null",
+  "trigger": {
+    "diagnostic_report_path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/preference_train_signal_diagnostics/multiseed_report.json",
+    "diagnostic_report_sha256": "3e82d410ff063dc3d8c200837b2a3d01e3bc60e01bfb11e4775653cb3a3a3204",
+    "required_diagnostic_status": "SORC_DPO_TRAIN_SIGNAL_MULTISEED_COMPLETE",
+    "required_trigger_field": "lr_only_followup_trigger.lr_only_followup_trigger_satisfied",
+    "required_trigger_value": true
+  },
+  "parent_protocol": {
+    "training_config_path": "thesis_exp/exp54_rar_sft/configs/sorc_dpo_training_candidate_v1.json",
+    "training_config_sha256": "a579a7bff836e03069fc69d43c7850617166102d9dc164d520d2183e5aab515d",
+    "cold_start": "seed-matched frozen R3 epoch-3 adapter",
+    "optimizer_state": "fresh"
+  },
+  "only_override": {
+    "field": "optimization.learning_rate",
+    "from": 5e-7,
+    "to": 5e-6
+  },
+  "fixed_variables": {
+    "pair_manifests": true,
+    "actual_and_synthetic_pair_provenance": true,
+    "score_and_rationale_field_masks": true,
+    "score_block_weights": true,
+    "p3_score_share": 0.5,
+    "p3_rationale_share": 0.5,
+    "beta": 0.1,
+    "ordinal_offsets": true,
+    "lora_rank_alpha_dropout": true,
+    "preference_epochs": 1,
+    "optimizer_steps": 27,
+    "micro_batch_and_accumulation": true,
+    "optimizer_betas_epsilon_weight_decay": true,
+    "scheduler_and_warmup": true,
+    "reference_policy": true,
+    "checkpoint_selection": true,
+    "decoder_parser_and_dev_protocol": true
+  },
+  "execution": {
+    "first_stage": "fixed_existing_train_only_smoke_subsets_for_P1_P2_P3",
+    "second_stage": "seed42_P1_P2_P3_full_27_step_training",
+    "third_stage": "one_frozen_dev_pass_only_after_training_and_adapter_identity_checks",
+    "seeds43_44_allowed_only_after_scout_gate": true,
+    "p1_syn_not_extended": true
+  },
+  "boundaries": {
+    "formal_lr5e7_checkpoints_preserved": true,
+    "new_output_root_required": true,
+    "test_accessed": false,
+    "test_allowed": false,
+    "dev_accessed_during_train_only_stages": false
+  }
+}

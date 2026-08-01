@@ -1,0 +1,66 @@
+{
+  "arms": {
+    "P1_FIELD_DPO": {
+      "adapter_config_sha256": "29eaba6119dfd520cd10a5d5bc595a6b693949302dc7e597be3c6198b261b552",
+      "adapter_dtypes": [
+        "torch.float32"
+      ],
+      "adapter_model_sha256": "75a9b948715dc3129dd1e9ed6ec25d71cd21aa3c087c9f69c740db8a70b04d9c",
+      "adapter_parameter_count": 33030144,
+      "adapter_tensor_count": 504,
+      "authorization_sha256": "faa2aa9cf28987626bae8c0ab54846fe5b0210dc1adb2b1553fb3369f6abe800",
+      "gradient_norm_before_clip": 0.4433278441429138,
+      "loss": 1.4154195487499237,
+      "optimizer_steps": 1,
+      "pair_count": 32,
+      "peak_gpu_memory_bytes": 16729059328,
+      "result_sha256": "b030847bd032eb4b42dec2ef235a34753a28437669772332e7da2eb0c89e97ea"
+    },
+    "P1_SYN_SEED42": {
+      "adapter_config_sha256": "d513f24cb84fac83adb9c7c243f7dc25755d2de34df76fe86a247bb7e1a83c88",
+      "adapter_dtypes": [
+        "torch.float32"
+      ],
+      "adapter_model_sha256": "4846a871caa2ed25d47289e4d1f52314dc1a421b5fe68c5522ad5a6205bdd9d8",
+      "adapter_parameter_count": 33030144,
+      "adapter_tensor_count": 504,
+      "authorization_sha256": "719f049f37da51c41e5bc0c5e0ae8f3573014fffbf7169caf444041cca050dc1",
+      "gradient_norm_before_clip": 0.4458315968513489,
+      "loss": 1.416298140771687,
+      "optimizer_steps": 1,
+      "pair_count": 32,
+      "peak_gpu_memory_bytes": 16729059328,
+      "result_sha256": "4dea8be2d9033caef56c516559d25145b6005eb0d5f7982d622526f20b369f50"
+    },
+    "P2_SORC_SCORE": {
+      "adapter_config_sha256": "3fd28715cb080def0e6106f672b949dc7e6faeccb932280e7a372063f0b00013",
+      "adapter_dtypes": [
+        "torch.float32"
+      ],
+      "adapter_model_sha256": "45b1c892ae82b8b4d52121b9e5af9d1049729b450fac5273098069569413b44e",
+      "adapter_parameter_count": 33030144,
+      "adapter_tensor_count": 504,
+      "authorization_sha256": "ce40195cceb4ca8bc4c5dcd2a5bc91e5bf790fd3b3be4919cb6bc0c5facac862",
+      "gradient_norm_before_clip": 0.6256483793258667,
+      "loss": 1.9390229657292366,
+      "optimizer_steps": 1,
+      "pair_count": 32,
+      "peak_gpu_memory_bytes": 16729059328,
+      "result_sha256": "e45fae910ab5bf7557d77b6735804c9f4d7f813562a0c220b3ed2fe088f7290e"
+    }
+  },
+  "capacity_probe_executed": false,
+  "dev_accessed": false,
+  "evaluator_called": false,
+  "formal_preference_training_allowed": false,
+  "non_p3_arms_passed": true,
+  "p3_executed": false,
+  "schema_version": "exp54-sorc-dpo-correctness-smoke-partial-v1",
+  "source_hashes": {
+    "result_auditor": "56bc4f811a63eb6fcebf634222bdb9f31d44c71fa5a338b61a779e2788720a2e",
+    "smoke_implementation_candidate_lock": "8790960dc2423f79d767502c31e822a7424ac61e8eabe52ae24b288dfee0cca5",
+    "smoke_runner": "00dfb8aa1aed9a47e6e531f7899db231f7cd9fa5e59175254509576ab3d2c98c"
+  },
+  "status": "NON_P3_CORRECTNESS_SMOKE_PASS_P3_PENDING_QUALIFICATION",
+  "test_accessed": false
+}

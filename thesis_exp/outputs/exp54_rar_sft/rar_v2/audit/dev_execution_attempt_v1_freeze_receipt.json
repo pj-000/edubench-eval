@@ -1,0 +1,11 @@
+{
+  "dev_execution_attempt_v1_private_lock_sha256": "aaa69f79efd50b22887884e489fb9a4201d0e24a2a99985f0d55956121f96c74",
+  "dev_execution_attempt_v1_public_report_sha256": "5a9e89e9d8b0087669da404c515d4577fc35cc5e48f43dc122b9f520df100e88",
+  "freezer_source_sha256": "b78177bb311b6bd0e439e4b021f3eaea687c0c7f843c3356dd1c33012cc6b26f",
+  "private_evidence_location": "training server only",
+  "root_cause_report_sha256": "aab1b79a64356d02d593218d2de0bab9789b6033155abf2a1f0c9aadd28bd2f0",
+  "schema_version": "exp54-dev-execution-attempt-v1-freeze-receipt-v1",
+  "scientific_metrics_valid": false,
+  "status": "DEV_EXECUTION_ATTEMPT_V1_FROZEN",
+  "test_accessed": false
+}

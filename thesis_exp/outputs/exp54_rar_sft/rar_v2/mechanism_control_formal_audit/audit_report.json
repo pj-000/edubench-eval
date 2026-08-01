@@ -1,0 +1,219 @@
+{
+  "all_adapter_files_content_validated": true,
+  "all_adapter_hashes_unique": true,
+  "all_adapter_tensor_specs_equal": true,
+  "all_gradient_norms_finite_and_positive": true,
+  "all_losses_finite_and_positive": true,
+  "all_progress_files_complete": true,
+  "completed_run_count": 9,
+  "dev_accessed": false,
+  "evaluation_started": false,
+  "failed_run_count": 0,
+  "formal_run_count": 9,
+  "r3_epoch_checkpoint_inventory_complete": true,
+  "r3_execution_hardware_difference_disclosed": true,
+  "run_reports": {
+    "P1_FULLSEQ:seed42": {
+      "adapter_sha256": "1415153cdac4d4867520462bbb553bb03e17376786b032174af7f127fa4c37c0",
+      "adapter_tensor_spec": {
+        "dtypes": [
+          "torch.float32"
+        ],
+        "parameter_count": 33030144,
+        "tensor_count": 504
+      },
+      "device_name": "NVIDIA RTX A6000",
+      "device_uuid": "GPU-6094556a-56f8-5784-14ad-6369b980d4ca",
+      "elapsed_seconds": 3372.1705985069275,
+      "gradient_norm_max": 1.52843177318573,
+      "gradient_norm_min": 0.4566151201725006,
+      "loss_first": 0.7002849727869034,
+      "loss_last": 0.6567297652363777,
+      "loss_max": 1.0157420486211777,
+      "loss_min": 0.42020731791853905,
+      "optimizer_steps": 27,
+      "peak_allocated_bytes": 41854277120,
+      "peak_reserved_bytes": 47085256704
+    },
+    "P1_FULLSEQ:seed43": {
+      "adapter_sha256": "f3c4437d70e1b43737aa2a9ab2a562dcf84d5161276aba85630e3ddd3ee68c27",
+      "adapter_tensor_spec": {
+        "dtypes": [
+          "torch.float32"
+        ],
+        "parameter_count": 33030144,
+        "tensor_count": 504
+      },
+      "device_name": "NVIDIA RTX A6000",
+      "device_uuid": "GPU-353fd55a-1293-802a-1fd5-29f37dcd1fc3",
+      "elapsed_seconds": 3376.635874271393,
+      "gradient_norm_max": 2.5280935764312744,
+      "gradient_norm_min": 0.5504131317138672,
+      "loss_first": 0.6385190784931183,
+      "loss_last": 0.9609963074326515,
+      "loss_max": 0.980447068810463,
+      "loss_min": 0.4748803973197937,
+      "optimizer_steps": 27,
+      "peak_allocated_bytes": 41854277120,
+      "peak_reserved_bytes": 47085256704
+    },
+    "P1_FULLSEQ:seed44": {
+      "adapter_sha256": "0d0e9b331aa2d20b1c5c531d95192f058a9eec9c29d0c4d79cb8ba06abee4867",
+      "adapter_tensor_spec": {
+        "dtypes": [
+          "torch.float32"
+        ],
+        "parameter_count": 33030144,
+        "tensor_count": 504
+      },
+      "device_name": "NVIDIA RTX A6000",
+      "device_uuid": "GPU-87ada47d-0fad-a4c5-e717-0b1ab7536f4e",
+      "elapsed_seconds": 3373.277787208557,
+      "gradient_norm_max": 2.788264751434326,
+      "gradient_norm_min": 0.6525077819824219,
+      "loss_first": 0.5614777728915215,
+      "loss_last": 0.6015995517373085,
+      "loss_max": 0.9053808748722076,
+      "loss_min": 0.4094216153025627,
+      "optimizer_steps": 27,
+      "peak_allocated_bytes": 41854277120,
+      "peak_reserved_bytes": 47085256704
+    },
+    "P1_SYN_LR5E6:seed42": {
+      "adapter_sha256": "db5c50d3f8fa4eb785e336db39170187cea1643ed252323f52508d451eb03d97",
+      "adapter_tensor_spec": {
+        "dtypes": [
+          "torch.float32"
+        ],
+        "parameter_count": 33030144,
+        "tensor_count": 504
+      },
+      "device_name": "NVIDIA RTX A6000",
+      "device_uuid": "GPU-6094556a-56f8-5784-14ad-6369b980d4ca",
+      "elapsed_seconds": 3370.178228378296,
+      "gradient_norm_max": 1.172376036643982,
+      "gradient_norm_min": 0.1853092461824417,
+      "loss_first": 0.708164919167757,
+      "loss_last": 0.6438150480389595,
+      "loss_max": 1.0625653751194477,
+      "loss_min": 0.41939910501241684,
+      "optimizer_steps": 27,
+      "peak_allocated_bytes": 41854277120,
+      "peak_reserved_bytes": 47087353856
+    },
+    "P1_SYN_LR5E6:seed43": {
+      "adapter_sha256": "d36a1722cd54b6df42bdad157adfaed8a66076d2eb9a32478895e6e930ea84cd",
+      "adapter_tensor_spec": {
+        "dtypes": [
+          "torch.float32"
+        ],
+        "parameter_count": 33030144,
+        "tensor_count": 504
+      },
+      "device_name": "NVIDIA RTX A6000",
+      "device_uuid": "GPU-353fd55a-1293-802a-1fd5-29f37dcd1fc3",
+      "elapsed_seconds": 3373.7072813510895,
+      "gradient_norm_max": 0.9323049187660217,
+      "gradient_norm_min": 0.21627496182918549,
+      "loss_first": 0.635916855186224,
+      "loss_last": 1.0391831994056702,
+      "loss_max": 1.0391831994056702,
+      "loss_min": 0.4882529750466347,
+      "optimizer_steps": 27,
+      "peak_allocated_bytes": 41854277120,
+      "peak_reserved_bytes": 47087353856
+    },
+    "P1_SYN_LR5E6:seed44": {
+      "adapter_sha256": "d0da7beeb7dd4c4e95b87d24a86431fbdb5923bac4b721162c5e9090238b5a62",
+      "adapter_tensor_spec": {
+        "dtypes": [
+          "torch.float32"
+        ],
+        "parameter_count": 33030144,
+        "tensor_count": 504
+      },
+      "device_name": "NVIDIA RTX A6000",
+      "device_uuid": "GPU-87ada47d-0fad-a4c5-e717-0b1ab7536f4e",
+      "elapsed_seconds": 3372.6391322612762,
+      "gradient_norm_max": 0.6227182149887085,
+      "gradient_norm_min": 0.169607013463974,
+      "loss_first": 0.5655150786042213,
+      "loss_last": 0.6624739542603493,
+      "loss_max": 0.914326049387455,
+      "loss_min": 0.420021902769804,
+      "optimizer_steps": 27,
+      "peak_allocated_bytes": 41854277120,
+      "peak_reserved_bytes": 47087353856
+    },
+    "R3_TOKENAVG:seed42": {
+      "adapter_sha256": "3be774aa22dabfbbbdc992e3f8b198d1e8d76c694b3c3de75896ed0de4ba40b9",
+      "adapter_tensor_spec": {
+        "dtypes": [
+          "torch.float32"
+        ],
+        "parameter_count": 33030144,
+        "tensor_count": 504
+      },
+      "device_name": "NVIDIA GeForce RTX 3090",
+      "device_uuid": "GPU-8fb2e60c-d81f-8454-188a-a0c3bf2b6c17",
+      "elapsed_seconds": 16293.558037042618,
+      "gradient_norm_max": 319.2751159667969,
+      "gradient_norm_min": 1.2413679361343384,
+      "loss_first": 16.42415690422058,
+      "loss_last": 2.4374096790949507,
+      "loss_max": 18.15511006116867,
+      "loss_min": 0.2898101806640625,
+      "optimizer_steps": 996,
+      "peak_allocated_bytes": 16969782272,
+      "peak_reserved_bytes": 20491272192
+    },
+    "R3_TOKENAVG:seed43": {
+      "adapter_sha256": "e1f90e2dc9c7896952a469f777d77a7cbfde216f245ce797808c72b95f1842f6",
+      "adapter_tensor_spec": {
+        "dtypes": [
+          "torch.float32"
+        ],
+        "parameter_count": 33030144,
+        "tensor_count": 504
+      },
+      "device_name": "NVIDIA GeForce RTX 3090",
+      "device_uuid": "GPU-0451f36a-5026-994f-19c5-e95d5b1c47c9",
+      "elapsed_seconds": 16072.697048425674,
+      "gradient_norm_max": 303.0653991699219,
+      "gradient_norm_min": 1.3881133794784546,
+      "loss_first": 16.362229585647583,
+      "loss_last": 2.539549986521403,
+      "loss_max": 17.722208499908447,
+      "loss_min": 0.21576690673828125,
+      "optimizer_steps": 996,
+      "peak_allocated_bytes": 16969782272,
+      "peak_reserved_bytes": 20491272192
+    },
+    "R3_TOKENAVG:seed44": {
+      "adapter_sha256": "1ddb07fe5864abd4a8e0fb1e7534b7e59dcd6f137c11a0d90f82239f10d4deec",
+      "adapter_tensor_spec": {
+        "dtypes": [
+          "torch.float32"
+        ],
+        "parameter_count": 33030144,
+        "tensor_count": 504
+      },
+      "device_name": "NVIDIA GeForce RTX 3090",
+      "device_uuid": "GPU-c40e42b6-3b9f-bd93-a949-540694e870c6",
+      "elapsed_seconds": 16138.252853870392,
+      "gradient_norm_max": 234.89967346191406,
+      "gradient_norm_min": 1.2238426208496094,
+      "loss_first": 16.42415690422058,
+      "loss_last": 2.8549857139587402,
+      "loss_max": 18.648478865623474,
+      "loss_min": 0.27904510498046875,
+      "optimizer_steps": 996,
+      "peak_allocated_bytes": 16969782272,
+      "peak_reserved_bytes": 20491272192
+    }
+  },
+  "schema_version": "exp54-mechanism-control-formal-audit-v1",
+  "status": "MECHANISM_CONTROL_FORMAL_RESULT_AUDIT_PASS_EVALUATION_NOT_STARTED",
+  "test_accessed": false,
+  "total_optimizer_steps": 3150
+}

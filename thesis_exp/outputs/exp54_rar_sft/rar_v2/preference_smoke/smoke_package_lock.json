@@ -1,0 +1,30 @@
+{
+  "dev_accessed": false,
+  "evaluator_calls_allowed": false,
+  "formal_preference_training_allowed": false,
+  "gpu_smoke_allowed": false,
+  "private_subset_hashes": {
+    "P1_FIELD_DPO": "7f4cc6fc311a2e96bdf287766a52aec5e7293059c19992074b4230cb491d9fd5",
+    "P1_SYN_SEED42": "58c966a2f73081ce821b57f3c4df883d734b4e031ed85e3b02de51e2da868192",
+    "P2_SORC_SCORE": "3e864d9a55ec9f62df8d8948fa2eefe413a175bba9d32df704004244f271ce49",
+    "P3_JOINT_SORC": "f369193078b29c9c10820b1c9653d048366541f5d35bc383c579f990c5aeb074"
+  },
+  "schema_version": "exp54-sorc-dpo-smoke-package-lock-v1",
+  "smoke_package_report_sha256": "6286b997f8b49ef1154d2ec907d9bb9ce72211b4e6a700517d867170d133930c",
+  "source_hashes": {
+    "frozen_training_lock": "e977babaefa956c40620a1b38024d7222b9ac8433db8fecd6faf709dc65c2f98",
+    "smoke_builder": "a849246020235ba866910046226203770f56b25b1dd4f5e2e88cd0e62ca82681",
+    "smoke_plan": "8a29d6f1a2a2ee16402f0fda68ed020a32074301716808c504951df87159e859"
+  },
+  "source_manifest_hashes": {
+    "P1_FIELD_DPO": "0adf6f258b728754e6ec31ba51d7424f2d65fca3b6bc0b420d7fcefc43d42c59",
+    "P1_SYN_SEED42": "1c65f892f01e558797fcae204d71b3b6e4609ccbe8d34d44b3e60250a679cddc",
+    "P2_SORC_SCORE": "7e2872a338b7dd4cdfc15fbed965c62e3ec92a1d30677857d67c990f94f3e847",
+    "P3_JOINT_SORC": "c73a63b54edfc8db4c4b024064ec5b80bb8cfee56f36b3e6bd0c1c5836f1bbb5"
+  },
+  "source_split": "train",
+  "status": "SORC_DPO_SMOKE_PACKAGE_CANDIDATE_NOT_FROZEN_EXECUTION_FORBIDDEN",
+  "subset_frozen": false,
+  "test_accessed": false,
+  "training_used": false
+}

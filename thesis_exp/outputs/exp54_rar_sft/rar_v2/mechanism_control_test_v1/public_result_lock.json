@@ -1,0 +1,46 @@
+{
+  "schema_version": "exp54-mechanism-control-public-result-lock-v1",
+  "status": "MECHANISM_CONTROL_POSTHOC_TEST_RESULTS_LOCKED",
+  "execution_commit": "f52eec8023fbef33b7505ed0137544bd3c7da705",
+  "public_result_report_sha256": "8ebf1bb51e7f2f9df5af2cc4914fc60be351f540cefac0c13b44e457cef0f30a",
+  "execution_source_hashes": {
+    "plan_sha256": "966ce136cf0b5807b927a509fd8308afdc5ccc41d5514def1048e9e378d9a8fe",
+    "runner_sha256": "f0e6632bfa86d0811ddb8d99dc7fbcee7a031359e9f9e48495cf61ef4abf6312",
+    "collector_sha256": "ee7e1cf678ac4c11b8f25994e81280b63b86378c1db9a2234bf56df3c7e80c8e",
+    "worker_sha256": "223763f2a13354b1993a6ad46263bf6928f461a69c4c2276cf5411a1b348ff50"
+  },
+  "private_result_hashes": {
+    "final_results_sha256": "e62e3bfe20d0e169021ec1e2be6387550379a0f194111d1d39e88f5b5dcf71f1",
+    "multiseed_summary_sha256": "06fc930239600f2d12bfcfcb1ecfb2031e9015758c4294626537af8188e02245",
+    "paired_bootstrap_sha256": "dbf26c5dc20d0ec71b43354efca286be832ced97e0f7070116b9bdde2d8add5d",
+    "per_seed_metrics_sha256": "77fd86092630a3abf4e216eac9218d7e5532ee0cd01c6df6c70863f3005b26f1"
+  },
+  "frozen_inventory": {
+    "test_rows": 2218,
+    "new_checkpoint_runs": 9,
+    "new_completion_receipts": 9,
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "new_arms": [
+      "R3_TOKENAVG",
+      "P1_FULLSEQ",
+      "P1_SYN_LR5E6"
+    ],
+    "reused_comparator_arms": [
+      "P0_R3_SFT",
+      "P1_FIELD_DPO"
+    ]
+  },
+  "test_git_blob_sha1": "7749c2c0f166186cc840409d64424b5a78e7222a",
+  "test_sha256": "9bc6ad99dbc3856e292b073f1ce0e883ac980574b5703533f449c34600a5d7af",
+  "strict_parse_rate_all_arms": 1.0,
+  "dev_accessed": false,
+  "test_accessed": true,
+  "test_rerun_allowed": false,
+  "test_adaptive_tuning_or_retraining": false,
+  "old_predictions_regenerated": false,
+  "private_row_level_outputs_public": false
+}

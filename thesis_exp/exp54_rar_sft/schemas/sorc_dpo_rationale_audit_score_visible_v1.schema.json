@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "brief_reason": {
+      "maxLength": 600,
+      "minLength": 1,
+      "type": "string"
+    },
+    "overall_preference": {
+      "enum": ["A", "B", "tie"]
+    },
+    "overall_scoring_justification_usefulness": {
+      "enum": ["A", "B", "tie"]
+    },
+    "presentation_id": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "score_rationale_consistency": {
+      "enum": ["A", "B", "tie"]
+    }
+  },
+  "required": [
+    "presentation_id",
+    "score_rationale_consistency",
+    "overall_scoring_justification_usefulness",
+    "overall_preference",
+    "brief_reason"
+  ],
+  "type": "object"
+}

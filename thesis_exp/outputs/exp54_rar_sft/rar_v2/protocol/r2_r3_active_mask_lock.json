@@ -1,0 +1,10 @@
+{
+  "donor_map_lock_sha256": "c5f9f47ddbb3e7c1cc50cee78ebdca583aa344f4706413288b76ddf793fcf8ec",
+  "donor_map_sha256": "26b157b7c41e7109a3a5d975b40b6b767605ef6fadfef3a14d4d2ce165fbc61b",
+  "formal_training_allowed": false,
+  "r2_active_mask_sha256": "9ec8686a4f92d11333de6081c8464c2afb7287aa7b59c3d712998deff11fb2da",
+  "r3_active_mask_sha256": "9ec8686a4f92d11333de6081c8464c2afb7287aa7b59c3d712998deff11fb2da",
+  "status": "R2_STRICT_DONOR_MAP_READY",
+  "tokenizer_lock_sha256": "4c4fa5083c4b6da6097657bb15a304df06080a5692033c1f444288574acdf0b6",
+  "training_manifest_build_allowed": true
+}

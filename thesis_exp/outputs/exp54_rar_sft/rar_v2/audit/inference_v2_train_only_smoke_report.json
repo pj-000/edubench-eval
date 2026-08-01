@@ -1,0 +1,66 @@
+{
+  "coverage": {
+    "arms": [
+      "R1",
+      "R2",
+      "R3",
+      "S0"
+    ],
+    "labels": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "languages": [
+      "en",
+      "zh"
+    ],
+    "logical_epochs": [
+      1,
+      2,
+      3
+    ],
+    "rationale_activity_states": [
+      false,
+      true
+    ],
+    "rows": 36,
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "unique_arm_seed_epoch_groups": 36
+  },
+  "decoder_source_sha256": "35d4d892d9b713f03a19ef39b5461fba28aef0fbb14b844c1467bd2def2b4ff9",
+  "dev_accessed": false,
+  "elapsed_seconds": 957.5953226089478,
+  "execution": {
+    "forced_completion_rate": 0.3611111111111111,
+    "grammar_intervention_step_rate": 0.00734094616639478,
+    "illegal_unconstrained_top1_rate": 0.004690048939641109,
+    "max_token_hit_rate": 0.3611111111111111,
+    "removed_probability_mass_mean": 0.007499574691203057,
+    "strict_parse_rate": 1.0
+  },
+  "formal_v2_dev_allowed": false,
+  "grammar_sha256": "12cb532621c98fe6a1a3904b042ef52560c93f870f59bfa71b068f2d5d71c08e",
+  "privacy": {
+    "generated_text_public": false,
+    "record_or_event_ids_public": false,
+    "row_level_selection_public": false,
+    "score_or_rationale_semantics_inspected": false,
+    "train_prompts_public": false
+  },
+  "private_results_sha256": "151f60107f83b47e5a303125192743436b2783fdae3cfcb8677b1e40b5ec76e0",
+  "protocol_config_sha256": "1987598aef4018d590d057deecc8beaeae558e21bb4b0bdf8b956f41e2071b95",
+  "runner_source_sha256": "ad199cc106bdeeb0b7405e73984bc59df35c86660b18a0b3fc0c35f5b47f4d2d",
+  "schema_version": "exp54-inference-v2-train-smoke-v1",
+  "scientific_metrics_computed": false,
+  "shared_prompt_cache_sha256": "2a4b2c7a022628db96f9bec6bdc9be0d610db8845dab6a0ab09f887fb913dd76",
+  "status": "EXP54_INFERENCE_V2_TRAIN_ONLY_SMOKE_COMPLETE",
+  "test_accessed": false,
+  "train_source_sha256": "0a1733b9209984c5c4291d205d1ac6057bed341717903b9de075d07de44a878e"
+}

@@ -1,0 +1,1074 @@
+{
+  "agent_evaluators": [
+    "codex_sol",
+    "codex_terra"
+  ],
+  "aggregates": [
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          0.5333333333333333,
+          0.825
+        ],
+        "skipped_empty_replicates": 0,
+        "tie_adjusted_preference": [
+          0.7666666666666667,
+          0.9125
+        ],
+        "valid_replicates": 10000,
+        "win_rate_ties_retained": [
+          0.725,
+          0.8833333333333333
+        ]
+      },
+      "comparison": "R3_vs_R2",
+      "comparison_role": "primary",
+      "dimension": "score_rationale_consistency",
+      "evaluator": "codex_sol",
+      "forced_completion_stratum": "all",
+      "losses": 15,
+      "net_preference": 0.6833333333333333,
+      "pairs": 120,
+      "stage": "score_visible",
+      "tie_adjusted_preference": 0.8416666666666667,
+      "ties": 8,
+      "win_rate_ties_retained": 0.8083333333333333,
+      "wins": 97
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          0.5,
+          0.8536585365853658
+        ],
+        "skipped_empty_replicates": 0,
+        "tie_adjusted_preference": [
+          0.75,
+          0.926829268292683
+        ],
+        "valid_replicates": 10000,
+        "win_rate_ties_retained": [
+          0.6911651000606428,
+          0.8987341772151899
+        ]
+      },
+      "comparison": "R3_vs_R2",
+      "comparison_role": "primary",
+      "dimension": "score_rationale_consistency",
+      "evaluator": "codex_sol",
+      "forced_completion_stratum": "neither_candidate_forced",
+      "losses": 9,
+      "net_preference": 0.6875,
+      "pairs": 80,
+      "stage": "score_visible",
+      "tie_adjusted_preference": 0.84375,
+      "ties": 7,
+      "win_rate_ties_retained": 0.8,
+      "wins": 64
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          0.5,
+          1.0
+        ],
+        "skipped_empty_replicates": 0,
+        "tie_adjusted_preference": [
+          0.75,
+          1.0
+        ],
+        "valid_replicates": 10000,
+        "win_rate_ties_retained": [
+          0.75,
+          1.0
+        ]
+      },
+      "comparison": "R3_vs_R2",
+      "comparison_role": "primary",
+      "dimension": "score_rationale_consistency",
+      "evaluator": "codex_sol",
+      "forced_completion_stratum": "R3_only_forced",
+      "losses": 2,
+      "net_preference": 0.7647058823529411,
+      "pairs": 17,
+      "stage": "score_visible",
+      "tie_adjusted_preference": 0.8823529411764706,
+      "ties": 0,
+      "win_rate_ties_retained": 0.8823529411764706,
+      "wins": 15
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          0.2,
+          0.8823529411764706
+        ],
+        "skipped_empty_replicates": 0,
+        "tie_adjusted_preference": [
+          0.6,
+          0.9411764705882353
+        ],
+        "valid_replicates": 10000,
+        "win_rate_ties_retained": [
+          0.5625,
+          0.9333333333333333
+        ]
+      },
+      "comparison": "R3_vs_R2",
+      "comparison_role": "primary",
+      "dimension": "score_rationale_consistency",
+      "evaluator": "codex_sol",
+      "forced_completion_stratum": "comparator_only_forced",
+      "losses": 4,
+      "net_preference": 0.5714285714285714,
+      "pairs": 21,
+      "stage": "score_visible",
+      "tie_adjusted_preference": 0.7857142857142857,
+      "ties": 1,
+      "win_rate_ties_retained": 0.7619047619047619,
+      "wins": 16
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          1.0,
+          1.0
+        ],
+        "skipped_empty_replicates": 1278,
+        "tie_adjusted_preference": [
+          1.0,
+          1.0
+        ],
+        "valid_replicates": 8722,
+        "win_rate_ties_retained": [
+          1.0,
+          1.0
+        ]
+      },
+      "comparison": "R3_vs_R2",
+      "comparison_role": "primary",
+      "dimension": "score_rationale_consistency",
+      "evaluator": "codex_sol",
+      "forced_completion_stratum": "both_candidates_forced",
+      "losses": 0,
+      "net_preference": 1.0,
+      "pairs": 2,
+      "stage": "score_visible",
+      "tie_adjusted_preference": 1.0,
+      "ties": 0,
+      "win_rate_ties_retained": 1.0,
+      "wins": 2
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          0.5416666666666666,
+          0.825
+        ],
+        "skipped_empty_replicates": 0,
+        "tie_adjusted_preference": [
+          0.7708333333333334,
+          0.9125
+        ],
+        "valid_replicates": 10000,
+        "win_rate_ties_retained": [
+          0.725,
+          0.8833333333333333
+        ]
+      },
+      "comparison": "R3_vs_R2",
+      "comparison_role": "primary",
+      "dimension": "overall_scoring_justification_usefulness",
+      "evaluator": "codex_sol",
+      "forced_completion_stratum": "all",
+      "losses": 14,
+      "net_preference": 0.6916666666666667,
+      "pairs": 120,
+      "stage": "score_visible",
+      "tie_adjusted_preference": 0.8458333333333333,
+      "ties": 9,
+      "win_rate_ties_retained": 0.8083333333333333,
+      "wins": 97
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          0.5,
+          0.8536585365853658
+        ],
+        "skipped_empty_replicates": 0,
+        "tie_adjusted_preference": [
+          0.75,
+          0.926829268292683
+        ],
+        "valid_replicates": 10000,
+        "win_rate_ties_retained": [
+          0.6911651000606428,
+          0.8987341772151899
+        ]
+      },
+      "comparison": "R3_vs_R2",
+      "comparison_role": "primary",
+      "dimension": "overall_scoring_justification_usefulness",
+      "evaluator": "codex_sol",
+      "forced_completion_stratum": "neither_candidate_forced",
+      "losses": 9,
+      "net_preference": 0.6875,
+      "pairs": 80,
+      "stage": "score_visible",
+      "tie_adjusted_preference": 0.84375,
+      "ties": 7,
+      "win_rate_ties_retained": 0.8,
+      "wins": 64
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          0.6,
+          1.0
+        ],
+        "skipped_empty_replicates": 0,
+        "tie_adjusted_preference": [
+          0.8,
+          1.0
+        ],
+        "valid_replicates": 10000,
+        "win_rate_ties_retained": [
+          0.75,
+          1.0
+        ]
+      },
+      "comparison": "R3_vs_R2",
+      "comparison_role": "primary",
+      "dimension": "overall_scoring_justification_usefulness",
+      "evaluator": "codex_sol",
+      "forced_completion_stratum": "R3_only_forced",
+      "losses": 1,
+      "net_preference": 0.8235294117647058,
+      "pairs": 17,
+      "stage": "score_visible",
+      "tie_adjusted_preference": 0.9117647058823529,
+      "ties": 1,
+      "win_rate_ties_retained": 0.8823529411764706,
+      "wins": 15
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          0.2,
+          0.8823529411764706
+        ],
+        "skipped_empty_replicates": 0,
+        "tie_adjusted_preference": [
+          0.6,
+          0.9411764705882353
+        ],
+        "valid_replicates": 10000,
+        "win_rate_ties_retained": [
+          0.5625,
+          0.9333333333333333
+        ]
+      },
+      "comparison": "R3_vs_R2",
+      "comparison_role": "primary",
+      "dimension": "overall_scoring_justification_usefulness",
+      "evaluator": "codex_sol",
+      "forced_completion_stratum": "comparator_only_forced",
+      "losses": 4,
+      "net_preference": 0.5714285714285714,
+      "pairs": 21,
+      "stage": "score_visible",
+      "tie_adjusted_preference": 0.7857142857142857,
+      "ties": 1,
+      "win_rate_ties_retained": 0.7619047619047619,
+      "wins": 16
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          1.0,
+          1.0
+        ],
+        "skipped_empty_replicates": 1278,
+        "tie_adjusted_preference": [
+          1.0,
+          1.0
+        ],
+        "valid_replicates": 8722,
+        "win_rate_ties_retained": [
+          1.0,
+          1.0
+        ]
+      },
+      "comparison": "R3_vs_R2",
+      "comparison_role": "primary",
+      "dimension": "overall_scoring_justification_usefulness",
+      "evaluator": "codex_sol",
+      "forced_completion_stratum": "both_candidates_forced",
+      "losses": 0,
+      "net_preference": 1.0,
+      "pairs": 2,
+      "stage": "score_visible",
+      "tie_adjusted_preference": 1.0,
+      "ties": 0,
+      "win_rate_ties_retained": 1.0,
+      "wins": 2
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          0.5416666666666666,
+          0.825
+        ],
+        "skipped_empty_replicates": 0,
+        "tie_adjusted_preference": [
+          0.7708333333333334,
+          0.9125
+        ],
+        "valid_replicates": 10000,
+        "win_rate_ties_retained": [
+          0.725,
+          0.8833333333333333
+        ]
+      },
+      "comparison": "R3_vs_R2",
+      "comparison_role": "primary",
+      "dimension": "overall_preference",
+      "evaluator": "codex_sol",
+      "forced_completion_stratum": "all",
+      "losses": 14,
+      "net_preference": 0.6916666666666667,
+      "pairs": 120,
+      "stage": "score_visible",
+      "tie_adjusted_preference": 0.8458333333333333,
+      "ties": 9,
+      "win_rate_ties_retained": 0.8083333333333333,
+      "wins": 97
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          0.5,
+          0.8536585365853658
+        ],
+        "skipped_empty_replicates": 0,
+        "tie_adjusted_preference": [
+          0.75,
+          0.926829268292683
+        ],
+        "valid_replicates": 10000,
+        "win_rate_ties_retained": [
+          0.6911651000606428,
+          0.8987341772151899
+        ]
+      },
+      "comparison": "R3_vs_R2",
+      "comparison_role": "primary",
+      "dimension": "overall_preference",
+      "evaluator": "codex_sol",
+      "forced_completion_stratum": "neither_candidate_forced",
+      "losses": 9,
+      "net_preference": 0.6875,
+      "pairs": 80,
+      "stage": "score_visible",
+      "tie_adjusted_preference": 0.84375,
+      "ties": 7,
+      "win_rate_ties_retained": 0.8,
+      "wins": 64
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          0.6,
+          1.0
+        ],
+        "skipped_empty_replicates": 0,
+        "tie_adjusted_preference": [
+          0.8,
+          1.0
+        ],
+        "valid_replicates": 10000,
+        "win_rate_ties_retained": [
+          0.75,
+          1.0
+        ]
+      },
+      "comparison": "R3_vs_R2",
+      "comparison_role": "primary",
+      "dimension": "overall_preference",
+      "evaluator": "codex_sol",
+      "forced_completion_stratum": "R3_only_forced",
+      "losses": 1,
+      "net_preference": 0.8235294117647058,
+      "pairs": 17,
+      "stage": "score_visible",
+      "tie_adjusted_preference": 0.9117647058823529,
+      "ties": 1,
+      "win_rate_ties_retained": 0.8823529411764706,
+      "wins": 15
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          0.2,
+          0.8823529411764706
+        ],
+        "skipped_empty_replicates": 0,
+        "tie_adjusted_preference": [
+          0.6,
+          0.9411764705882353
+        ],
+        "valid_replicates": 10000,
+        "win_rate_ties_retained": [
+          0.5625,
+          0.9333333333333333
+        ]
+      },
+      "comparison": "R3_vs_R2",
+      "comparison_role": "primary",
+      "dimension": "overall_preference",
+      "evaluator": "codex_sol",
+      "forced_completion_stratum": "comparator_only_forced",
+      "losses": 4,
+      "net_preference": 0.5714285714285714,
+      "pairs": 21,
+      "stage": "score_visible",
+      "tie_adjusted_preference": 0.7857142857142857,
+      "ties": 1,
+      "win_rate_ties_retained": 0.7619047619047619,
+      "wins": 16
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          1.0,
+          1.0
+        ],
+        "skipped_empty_replicates": 1278,
+        "tie_adjusted_preference": [
+          1.0,
+          1.0
+        ],
+        "valid_replicates": 8722,
+        "win_rate_ties_retained": [
+          1.0,
+          1.0
+        ]
+      },
+      "comparison": "R3_vs_R2",
+      "comparison_role": "primary",
+      "dimension": "overall_preference",
+      "evaluator": "codex_sol",
+      "forced_completion_stratum": "both_candidates_forced",
+      "losses": 0,
+      "net_preference": 1.0,
+      "pairs": 2,
+      "stage": "score_visible",
+      "tie_adjusted_preference": 1.0,
+      "ties": 0,
+      "win_rate_ties_retained": 1.0,
+      "wins": 2
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          0.25833333333333336,
+          0.5083333333333333
+        ],
+        "skipped_empty_replicates": 0,
+        "tie_adjusted_preference": [
+          0.6291666666666667,
+          0.7541666666666667
+        ],
+        "valid_replicates": 10000,
+        "win_rate_ties_retained": [
+          0.4083333333333333,
+          0.5916666666666667
+        ]
+      },
+      "comparison": "R3_vs_R2",
+      "comparison_role": "primary",
+      "dimension": "score_rationale_consistency",
+      "evaluator": "codex_terra",
+      "forced_completion_stratum": "all",
+      "losses": 14,
+      "net_preference": 0.38333333333333336,
+      "pairs": 120,
+      "stage": "score_visible",
+      "tie_adjusted_preference": 0.6916666666666667,
+      "ties": 46,
+      "win_rate_ties_retained": 0.5,
+      "wins": 60
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          0.22093023255813954,
+          0.5200136986301368
+        ],
+        "skipped_empty_replicates": 0,
+        "tie_adjusted_preference": [
+          0.6104651162790697,
+          0.7600068493150685
+        ],
+        "valid_replicates": 10000,
+        "win_rate_ties_retained": [
+          0.3684210526315789,
+          0.5853658536585366
+        ]
+      },
+      "comparison": "R3_vs_R2",
+      "comparison_role": "primary",
+      "dimension": "score_rationale_consistency",
+      "evaluator": "codex_terra",
+      "forced_completion_stratum": "neither_candidate_forced",
+      "losses": 8,
+      "net_preference": 0.375,
+      "pairs": 80,
+      "stage": "score_visible",
+      "tie_adjusted_preference": 0.6875,
+      "ties": 34,
+      "win_rate_ties_retained": 0.475,
+      "wins": 38
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          0.24975000000000022,
+          0.9
+        ],
+        "skipped_empty_replicates": 0,
+        "tie_adjusted_preference": [
+          0.6248750000000001,
+          0.95
+        ],
+        "valid_replicates": 10000,
+        "win_rate_ties_retained": [
+          0.3888888888888889,
+          0.9
+        ]
+      },
+      "comparison": "R3_vs_R2",
+      "comparison_role": "primary",
+      "dimension": "score_rationale_consistency",
+      "evaluator": "codex_terra",
+      "forced_completion_stratum": "R3_only_forced",
+      "losses": 1,
+      "net_preference": 0.5882352941176471,
+      "pairs": 17,
+      "stage": "score_visible",
+      "tie_adjusted_preference": 0.7941176470588235,
+      "ties": 5,
+      "win_rate_ties_retained": 0.6470588235294118,
+      "wins": 11
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          0.0,
+          0.6
+        ],
+        "skipped_empty_replicates": 0,
+        "tie_adjusted_preference": [
+          0.5,
+          0.8
+        ],
+        "valid_replicates": 10000,
+        "win_rate_ties_retained": [
+          0.2777777777777778,
+          0.6818181818181818
+        ]
+      },
+      "comparison": "R3_vs_R2",
+      "comparison_role": "primary",
+      "dimension": "score_rationale_consistency",
+      "evaluator": "codex_terra",
+      "forced_completion_stratum": "comparator_only_forced",
+      "losses": 4,
+      "net_preference": 0.2857142857142857,
+      "pairs": 21,
+      "stage": "score_visible",
+      "tie_adjusted_preference": 0.6428571428571429,
+      "ties": 7,
+      "win_rate_ties_retained": 0.47619047619047616,
+      "wins": 10
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -1.0,
+          1.0
+        ],
+        "skipped_empty_replicates": 1278,
+        "tie_adjusted_preference": [
+          0.0,
+          1.0
+        ],
+        "valid_replicates": 8722,
+        "win_rate_ties_retained": [
+          0.0,
+          1.0
+        ]
+      },
+      "comparison": "R3_vs_R2",
+      "comparison_role": "primary",
+      "dimension": "score_rationale_consistency",
+      "evaluator": "codex_terra",
+      "forced_completion_stratum": "both_candidates_forced",
+      "losses": 1,
+      "net_preference": 0.0,
+      "pairs": 2,
+      "stage": "score_visible",
+      "tie_adjusted_preference": 0.5,
+      "ties": 0,
+      "win_rate_ties_retained": 0.5,
+      "wins": 1
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          0.25833333333333336,
+          0.5083333333333333
+        ],
+        "skipped_empty_replicates": 0,
+        "tie_adjusted_preference": [
+          0.6291666666666667,
+          0.7541666666666667
+        ],
+        "valid_replicates": 10000,
+        "win_rate_ties_retained": [
+          0.4083333333333333,
+          0.5916666666666667
+        ]
+      },
+      "comparison": "R3_vs_R2",
+      "comparison_role": "primary",
+      "dimension": "overall_scoring_justification_usefulness",
+      "evaluator": "codex_terra",
+      "forced_completion_stratum": "all",
+      "losses": 14,
+      "net_preference": 0.38333333333333336,
+      "pairs": 120,
+      "stage": "score_visible",
+      "tie_adjusted_preference": 0.6916666666666667,
+      "ties": 46,
+      "win_rate_ties_retained": 0.5,
+      "wins": 60
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          0.22093023255813954,
+          0.5200136986301368
+        ],
+        "skipped_empty_replicates": 0,
+        "tie_adjusted_preference": [
+          0.6104651162790697,
+          0.7600068493150685
+        ],
+        "valid_replicates": 10000,
+        "win_rate_ties_retained": [
+          0.3684210526315789,
+          0.5853658536585366
+        ]
+      },
+      "comparison": "R3_vs_R2",
+      "comparison_role": "primary",
+      "dimension": "overall_scoring_justification_usefulness",
+      "evaluator": "codex_terra",
+      "forced_completion_stratum": "neither_candidate_forced",
+      "losses": 8,
+      "net_preference": 0.375,
+      "pairs": 80,
+      "stage": "score_visible",
+      "tie_adjusted_preference": 0.6875,
+      "ties": 34,
+      "win_rate_ties_retained": 0.475,
+      "wins": 38
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          0.24975000000000022,
+          0.9
+        ],
+        "skipped_empty_replicates": 0,
+        "tie_adjusted_preference": [
+          0.6248750000000001,
+          0.95
+        ],
+        "valid_replicates": 10000,
+        "win_rate_ties_retained": [
+          0.3888888888888889,
+          0.9
+        ]
+      },
+      "comparison": "R3_vs_R2",
+      "comparison_role": "primary",
+      "dimension": "overall_scoring_justification_usefulness",
+      "evaluator": "codex_terra",
+      "forced_completion_stratum": "R3_only_forced",
+      "losses": 1,
+      "net_preference": 0.5882352941176471,
+      "pairs": 17,
+      "stage": "score_visible",
+      "tie_adjusted_preference": 0.7941176470588235,
+      "ties": 5,
+      "win_rate_ties_retained": 0.6470588235294118,
+      "wins": 11
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          0.0,
+          0.6
+        ],
+        "skipped_empty_replicates": 0,
+        "tie_adjusted_preference": [
+          0.5,
+          0.8
+        ],
+        "valid_replicates": 10000,
+        "win_rate_ties_retained": [
+          0.2777777777777778,
+          0.6818181818181818
+        ]
+      },
+      "comparison": "R3_vs_R2",
+      "comparison_role": "primary",
+      "dimension": "overall_scoring_justification_usefulness",
+      "evaluator": "codex_terra",
+      "forced_completion_stratum": "comparator_only_forced",
+      "losses": 4,
+      "net_preference": 0.2857142857142857,
+      "pairs": 21,
+      "stage": "score_visible",
+      "tie_adjusted_preference": 0.6428571428571429,
+      "ties": 7,
+      "win_rate_ties_retained": 0.47619047619047616,
+      "wins": 10
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -1.0,
+          1.0
+        ],
+        "skipped_empty_replicates": 1278,
+        "tie_adjusted_preference": [
+          0.0,
+          1.0
+        ],
+        "valid_replicates": 8722,
+        "win_rate_ties_retained": [
+          0.0,
+          1.0
+        ]
+      },
+      "comparison": "R3_vs_R2",
+      "comparison_role": "primary",
+      "dimension": "overall_scoring_justification_usefulness",
+      "evaluator": "codex_terra",
+      "forced_completion_stratum": "both_candidates_forced",
+      "losses": 1,
+      "net_preference": 0.0,
+      "pairs": 2,
+      "stage": "score_visible",
+      "tie_adjusted_preference": 0.5,
+      "ties": 0,
+      "win_rate_ties_retained": 0.5,
+      "wins": 1
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          0.25833333333333336,
+          0.5083333333333333
+        ],
+        "skipped_empty_replicates": 0,
+        "tie_adjusted_preference": [
+          0.6291666666666667,
+          0.7541666666666667
+        ],
+        "valid_replicates": 10000,
+        "win_rate_ties_retained": [
+          0.4083333333333333,
+          0.5916666666666667
+        ]
+      },
+      "comparison": "R3_vs_R2",
+      "comparison_role": "primary",
+      "dimension": "overall_preference",
+      "evaluator": "codex_terra",
+      "forced_completion_stratum": "all",
+      "losses": 14,
+      "net_preference": 0.38333333333333336,
+      "pairs": 120,
+      "stage": "score_visible",
+      "tie_adjusted_preference": 0.6916666666666667,
+      "ties": 46,
+      "win_rate_ties_retained": 0.5,
+      "wins": 60
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          0.22093023255813954,
+          0.5200136986301368
+        ],
+        "skipped_empty_replicates": 0,
+        "tie_adjusted_preference": [
+          0.6104651162790697,
+          0.7600068493150685
+        ],
+        "valid_replicates": 10000,
+        "win_rate_ties_retained": [
+          0.3684210526315789,
+          0.5853658536585366
+        ]
+      },
+      "comparison": "R3_vs_R2",
+      "comparison_role": "primary",
+      "dimension": "overall_preference",
+      "evaluator": "codex_terra",
+      "forced_completion_stratum": "neither_candidate_forced",
+      "losses": 8,
+      "net_preference": 0.375,
+      "pairs": 80,
+      "stage": "score_visible",
+      "tie_adjusted_preference": 0.6875,
+      "ties": 34,
+      "win_rate_ties_retained": 0.475,
+      "wins": 38
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          0.24975000000000022,
+          0.9
+        ],
+        "skipped_empty_replicates": 0,
+        "tie_adjusted_preference": [
+          0.6248750000000001,
+          0.95
+        ],
+        "valid_replicates": 10000,
+        "win_rate_ties_retained": [
+          0.3888888888888889,
+          0.9
+        ]
+      },
+      "comparison": "R3_vs_R2",
+      "comparison_role": "primary",
+      "dimension": "overall_preference",
+      "evaluator": "codex_terra",
+      "forced_completion_stratum": "R3_only_forced",
+      "losses": 1,
+      "net_preference": 0.5882352941176471,
+      "pairs": 17,
+      "stage": "score_visible",
+      "tie_adjusted_preference": 0.7941176470588235,
+      "ties": 5,
+      "win_rate_ties_retained": 0.6470588235294118,
+      "wins": 11
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          0.0,
+          0.6
+        ],
+        "skipped_empty_replicates": 0,
+        "tie_adjusted_preference": [
+          0.5,
+          0.8
+        ],
+        "valid_replicates": 10000,
+        "win_rate_ties_retained": [
+          0.2777777777777778,
+          0.6818181818181818
+        ]
+      },
+      "comparison": "R3_vs_R2",
+      "comparison_role": "primary",
+      "dimension": "overall_preference",
+      "evaluator": "codex_terra",
+      "forced_completion_stratum": "comparator_only_forced",
+      "losses": 4,
+      "net_preference": 0.2857142857142857,
+      "pairs": 21,
+      "stage": "score_visible",
+      "tie_adjusted_preference": 0.6428571428571429,
+      "ties": 7,
+      "win_rate_ties_retained": 0.47619047619047616,
+      "wins": 10
+    },
+    {
+      "bootstrap_95ci": {
+        "net_preference": [
+          -1.0,
+          1.0
+        ],
+        "skipped_empty_replicates": 1278,
+        "tie_adjusted_preference": [
+          0.0,
+          1.0
+        ],
+        "valid_replicates": 8722,
+        "win_rate_ties_retained": [
+          0.0,
+          1.0
+        ]
+      },
+      "comparison": "R3_vs_R2",
+      "comparison_role": "primary",
+      "dimension": "overall_preference",
+      "evaluator": "codex_terra",
+      "forced_completion_stratum": "both_candidates_forced",
+      "losses": 1,
+      "net_preference": 0.0,
+      "pairs": 2,
+      "stage": "score_visible",
+      "tie_adjusted_preference": 0.5,
+      "ties": 0,
+      "win_rate_ties_retained": 0.5,
+      "wins": 1
+    }
+  ],
+  "analysis_contract": {
+    "bootstrap": {
+      "interval": 0.95,
+      "method": "record-cluster hierarchical bootstrap",
+      "replicates": 10000,
+      "seed": 20260728
+    },
+    "comparison": "R3_vs_R2",
+    "comparison_role": "primary",
+    "forced_completion_primary_policy": "include all",
+    "orientation_disagreement_rule": "pair verdict becomes tie",
+    "orientations_per_pair": 2,
+    "pair_instances": 120,
+    "record_clusters": 40,
+    "stage": "score_visible",
+    "training_seeds_per_cluster": [
+      42,
+      43,
+      44
+    ]
+  },
+  "claim_scope": "Codex-agent exploratory primary score-visible preference",
+  "cross_evaluator_agreement": [
+    {
+      "cohen_kappa": 0.14521369657585606,
+      "comparison": "R3_vs_R2",
+      "comparison_role": "primary",
+      "confusion_matrix": {
+        "loss": {
+          "loss": 7,
+          "tie": 2,
+          "win": 6
+        },
+        "tie": {
+          "loss": 2,
+          "tie": 4,
+          "win": 2
+        },
+        "win": {
+          "loss": 5,
+          "tie": 40,
+          "win": 52
+        }
+      },
+      "dimension": "score_rationale_consistency",
+      "evaluators": [
+        "codex_sol",
+        "codex_terra"
+      ],
+      "exact_agreement_rate": 0.525,
+      "pairs": 120,
+      "stage": "score_visible"
+    },
+    {
+      "cohen_kappa": 0.1568381430363864,
+      "comparison": "R3_vs_R2",
+      "comparison_role": "primary",
+      "confusion_matrix": {
+        "loss": {
+          "loss": 7,
+          "tie": 1,
+          "win": 6
+        },
+        "tie": {
+          "loss": 2,
+          "tie": 5,
+          "win": 2
+        },
+        "win": {
+          "loss": 5,
+          "tie": 40,
+          "win": 52
+        }
+      },
+      "dimension": "overall_scoring_justification_usefulness",
+      "evaluators": [
+        "codex_sol",
+        "codex_terra"
+      ],
+      "exact_agreement_rate": 0.5333333333333333,
+      "pairs": 120,
+      "stage": "score_visible"
+    },
+    {
+      "cohen_kappa": 0.1568381430363864,
+      "comparison": "R3_vs_R2",
+      "comparison_role": "primary",
+      "confusion_matrix": {
+        "loss": {
+          "loss": 7,
+          "tie": 1,
+          "win": 6
+        },
+        "tie": {
+          "loss": 2,
+          "tie": 5,
+          "win": 2
+        },
+        "win": {
+          "loss": 5,
+          "tie": 40,
+          "win": 52
+        }
+      },
+      "dimension": "overall_preference",
+      "evaluators": [
+        "codex_sol",
+        "codex_terra"
+      ],
+      "exact_agreement_rate": 0.5333333333333333,
+      "pairs": 120,
+      "stage": "score_visible"
+    }
+  ],
+  "evaluator_family_independence_satisfied": false,
+  "formal_preregistered_two_family_audit_complete": false,
+  "input_bindings": {
+    "answer_key_sha256": "2908ad20fb95ca4da1f43edde147061e10c5a8d124393350ed85e4018506d750",
+    "judgment_sha256": {
+      "codex_sol": "0b7f0530494d57c2f8a9746592f73bcc148f9a0b980d70ee7cdd19cf56a7165d",
+      "codex_terra": "8b7bfaafded1a235807681d444b8b524c1aebac93cda5e760afdb7df295140ba"
+    }
+  },
+  "mode": "exploratory_agent_primary_only",
+  "orientation_bias_diagnostic_interpretable": false,
+  "orientation_judgments_context_isolated": false,
+  "privacy": {
+    "free_text_judgment_written": false,
+    "raw_judgments_written": false,
+    "row_identity_written": false,
+    "row_level_output_written": false,
+    "task_identity_written": false
+  },
+  "schema_version": "exp54-exploratory-agent-primary-rationale-results-v1",
+  "status": "EXPLORATORY_AGENT_PRIMARY_ONLY_RESULTS_COLLECTED",
+  "test_accessed": false
+}

@@ -1,0 +1,128 @@
+{
+  "schema_version": "exp54-label2-identification-inventory-v1",
+  "status": "INVENTORY_COMPLETE_LOGITS_MISSING",
+  "protocol_commit": "d255ffb",
+  "local_protocol_validation": "LABEL2_IDENTIFICATION_PROTOCOL_PASS",
+  "test_accessed_by_inventory": false,
+  "gpu_used_by_inventory": false,
+  "training_started": false,
+  "local_data": {
+    "train": {
+      "rows": 2654,
+      "label_2_rows": 52,
+      "label_2_question_groups": 28,
+      "complete_three_rater_rows": 2654,
+      "protocol_ambiguous_label_2_rows": 12
+    },
+    "dev": {
+      "rows": 664,
+      "label_2_rows": 14,
+      "label_2_question_groups": 10,
+      "complete_three_rater_rows": 664,
+      "protocol_ambiguous_label_2_rows": 5
+    },
+    "raw_rater_fields_present": [
+      "human_1_5",
+      "human_2_5",
+      "human_3_5"
+    ],
+    "question_disjoint_dev_available": true,
+    "r3_p1_backbone_oof_predictions_available": false,
+    "calibrator_question_group_cross_fitting_possible": true
+  },
+  "server_read_only_inventory": {
+    "artifact_root": "/home/jpang/edubench-eval-exp2/thesis_exp/outputs/exp54_rar_sft/rar_v2",
+    "server_git_head_observed": "4e95b0a4f1b41a0e7c43bbaf004e8561d136dc68",
+    "server_head_matches_protocol_commit": false,
+    "server_code_must_not_be_used_for_new_extraction_until_synced_and_validated": true,
+    "r3_epoch3_dev_predictions": {
+      "42": {
+        "rows": 664,
+        "sha256": "eeb1855b15d702449e0a8e57a634ef8a9e4a5d1a76fa021b2ee711dc05fef2a5"
+      },
+      "43": {
+        "rows": 664,
+        "sha256": "7ae7e92cbdcb2ea5bd4130ce6e640c03697f30d8198470ab734650c74c7ab527"
+      },
+      "44": {
+        "rows": 664,
+        "sha256": "3450235326c206010145ee8a5d778544bec29773dc8d7b022e3ab1d46269ac2e"
+      }
+    },
+    "p1_lr5e6_dev_predictions": {
+      "42": {
+        "rows": 664,
+        "sha256": "efc4d14a46c9974515b42af4f5e02e7605c4b1f2be4e68f18df9a41a75764ee9"
+      },
+      "43": {
+        "rows": 664,
+        "sha256": "e77c5ca083dd3ff6eb61a9e3b7ce3ea5fc6f38273b3833b3f044cfee0c91748b"
+      },
+      "44": {
+        "rows": 664,
+        "sha256": "6abca6fd6986ad5da08f9d922d7c57844340876afad8187b2ba8764a273c0897"
+      }
+    },
+    "prediction_row_fields": [
+      "backend_finish_reason",
+      "backend_generated_token_count",
+      "finish_reason",
+      "forced_completion",
+      "forced_completion_removed_characters",
+      "generated_token_count",
+      "label_5",
+      "language",
+      "metric_id",
+      "output_token_ids_sha256",
+      "parse_error",
+      "parse_success",
+      "prediction",
+      "prompt_token_count",
+      "prompt_token_ids_sha256",
+      "rationale_token_count",
+      "raw_backend_output",
+      "raw_output",
+      "record_id",
+      "row_position"
+    ],
+    "score_option_logprob_fields_present": false,
+    "actual_failure_bank": {
+      "rows": 7962,
+      "sha256": "d5d452017d8f6bb8b19e89c278a3e714c488d2211e266cde4e72dd5cf1c26757",
+      "row_level_private_source_present": true
+    },
+    "p1_score_pair_graph": {
+      "rows": 838,
+      "sha256": "aeb079c56be8a8afbfdbec386e72faad748fef848014761bf602fbc40c97a1bb",
+      "row_level_private_source_present": true,
+      "direct_chosen_2_rejected_3_edges": 22,
+      "global_2_3_coverage_is_nonzero": true,
+      "record_and_stratum_coverage_still_requires_audit": true
+    },
+    "r3_epoch3_adapter_sha256": {
+      "42": "ff4f1f56fb1b7af47cd5a33c342eaf3465dd8dff24f84f418deb12c4593cbf56",
+      "43": "2748a828b0852a1c5b3ede2a70c46e97800cd214c112509620b8f7b05017e003",
+      "44": "fe8d41ae73cebda6c6316b75d93c863a716406737800d3b6d6c90d7fa770eb61"
+    },
+    "p1_lr5e6_adapter_sha256": {
+      "42": "375b62199d2971685c398e0f19952b52049a70cb885a572108c41b17ccd6e078",
+      "43": "8ca90fd92b010abcfad761b065f599ba9428b6382ae827e1cb8a241c5fb30208",
+      "44": "fec43165b83902b253f00dd9d0d1847747bedb18c42b85e73377ac83d038ac02"
+    }
+  },
+  "readiness": {
+    "rater_ambiguity_audit_ready": true,
+    "rubric_human_packet_build_ready": true,
+    "support_count_audit_ready": true,
+    "preference_graph_audit_ready": true,
+    "parsed_transition_audit_ready": true,
+    "decoder_probability_audit_ready": false,
+    "prior_probability_audit_ready": false,
+    "calibration_probability_audit_ready": false,
+    "r3_to_p1_probability_mass_flow_ready": false
+  },
+  "blocking_artifact": "five canonical score-option log-probabilities for R3 and P1 across seeds 42/43/44 on locked dev",
+  "next_action_requires_gpu": true,
+  "gpu_execution_authorized": false,
+  "next_action": "wait for the user to confirm an idle GPU before implementing and running frozen-checkpoint score-option log-probability extraction"
+}

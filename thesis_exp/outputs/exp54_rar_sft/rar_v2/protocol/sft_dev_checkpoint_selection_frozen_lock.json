@@ -1,0 +1,802 @@
+{
+  "all_dev_artifact_tree": {
+    "canonical_file_vector_sha256": "d259ffb0c2b39a6ace5ae0e47566c4d2c51ffb39484381b9cff8e8277e2d6841",
+    "file_count": 144,
+    "total_bytes": 50745332
+  },
+  "arms": [
+    "S0",
+    "R1",
+    "R2",
+    "R3"
+  ],
+  "checkpoint_bindings": [
+    {
+      "adapter_files": {
+        "adapter_config.json": {
+          "bytes": 969,
+          "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/formal_runs/seed42/r1/checkpoint-logical-epoch-3/adapter/adapter_config.json",
+          "sha256": "66460105dd0140d94e7ea3c01c93b675fb62a0ae5226a300f9eb57017a9b6b08"
+        },
+        "adapter_model.safetensors": {
+          "bytes": 132187888,
+          "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/formal_runs/seed42/r1/checkpoint-logical-epoch-3/adapter/adapter_model.safetensors",
+          "sha256": "10b66be47def1f7523836a86298f488e16092ca38e796ce183828e360d9890c6"
+        }
+      },
+      "arm": "R1",
+      "checkpoint_relative_path": "seed42/r1/checkpoint-logical-epoch-3",
+      "seed": 42,
+      "selected_epoch": 3,
+      "trainer_state": {
+        "bytes": 472,
+        "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/formal_runs/seed42/r1/checkpoint-logical-epoch-3/trainer_state.json",
+        "sha256": "a47edecf473769b036f49cf7726fbcf852c3c6cce1260763b53fc058dd4cf5f1"
+      },
+      "training_bindings": {
+        "config_sha256": "291a3fa055f5ef07ac0f1bc39f67f3b1c9d13219da0c3e3e801d9a9df29d5318",
+        "frozen_manifest_lock_sha256": "8b5fffce6b54804f834499643953deae23393a7764c0652d0fd7df2214b20713",
+        "manifest_sha256": "7d2a38ed8d63c10262a65455d41b440fd26f883ad8d2b70be7de141d469e6536"
+      }
+    },
+    {
+      "adapter_files": {
+        "adapter_config.json": {
+          "bytes": 969,
+          "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/formal_runs/seed43/r1/checkpoint-logical-epoch-3/adapter/adapter_config.json",
+          "sha256": "0e0af839f61c7020e55d14ebaf0850375cc9a0f9e5825f5f65fd527fbf46e5aa"
+        },
+        "adapter_model.safetensors": {
+          "bytes": 132187888,
+          "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/formal_runs/seed43/r1/checkpoint-logical-epoch-3/adapter/adapter_model.safetensors",
+          "sha256": "42df81876a42c9e18aaa3bcd85d7cc87936de2fb67ab1e6923e989e2557f354a"
+        }
+      },
+      "arm": "R1",
+      "checkpoint_relative_path": "seed43/r1/checkpoint-logical-epoch-3",
+      "seed": 43,
+      "selected_epoch": 3,
+      "trainer_state": {
+        "bytes": 472,
+        "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/formal_runs/seed43/r1/checkpoint-logical-epoch-3/trainer_state.json",
+        "sha256": "466b685066819f33c3198421f7065e60d4e3aaf8c74cfd6eda4589cbe7ffae6f"
+      },
+      "training_bindings": {
+        "config_sha256": "291a3fa055f5ef07ac0f1bc39f67f3b1c9d13219da0c3e3e801d9a9df29d5318",
+        "frozen_manifest_lock_sha256": "8b5fffce6b54804f834499643953deae23393a7764c0652d0fd7df2214b20713",
+        "manifest_sha256": "53d6c67f0bace162f68d775aeb13f52e6968b7ec4e088125128d24a9f63accf9"
+      }
+    },
+    {
+      "adapter_files": {
+        "adapter_config.json": {
+          "bytes": 969,
+          "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/formal_runs/seed44/r1/checkpoint-logical-epoch-3/adapter/adapter_config.json",
+          "sha256": "b259400d76c4e85a288c8f63261b23e1034aaa3a5f79a1fe18c73b40672217d9"
+        },
+        "adapter_model.safetensors": {
+          "bytes": 132187888,
+          "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/formal_runs/seed44/r1/checkpoint-logical-epoch-3/adapter/adapter_model.safetensors",
+          "sha256": "a1898ee1f8091ab635f7a4435da8aece0a3c209bc7147e3d444ac16c6ea3259f"
+        }
+      },
+      "arm": "R1",
+      "checkpoint_relative_path": "seed44/r1/checkpoint-logical-epoch-3",
+      "seed": 44,
+      "selected_epoch": 3,
+      "trainer_state": {
+        "bytes": 472,
+        "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/formal_runs/seed44/r1/checkpoint-logical-epoch-3/trainer_state.json",
+        "sha256": "c8533ce59398f73d9ecd48557dd928471b8bddde5074f40e9caed6f7cbc85b89"
+      },
+      "training_bindings": {
+        "config_sha256": "291a3fa055f5ef07ac0f1bc39f67f3b1c9d13219da0c3e3e801d9a9df29d5318",
+        "frozen_manifest_lock_sha256": "8b5fffce6b54804f834499643953deae23393a7764c0652d0fd7df2214b20713",
+        "manifest_sha256": "e324631b7f6bc77421126a90e908384a6d0f67af0ee3b57664f3ebf260378a6d"
+      }
+    },
+    {
+      "adapter_files": {
+        "adapter_config.json": {
+          "bytes": 969,
+          "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/formal_runs/seed42/r2/checkpoint-logical-epoch-3/adapter/adapter_config.json",
+          "sha256": "66460105dd0140d94e7ea3c01c93b675fb62a0ae5226a300f9eb57017a9b6b08"
+        },
+        "adapter_model.safetensors": {
+          "bytes": 132187888,
+          "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/formal_runs/seed42/r2/checkpoint-logical-epoch-3/adapter/adapter_model.safetensors",
+          "sha256": "e77e15b23632a3ae4ca97e7800f1266421371bbcc76f41cacf6dd07571a3d719"
+        }
+      },
+      "arm": "R2",
+      "checkpoint_relative_path": "seed42/r2/checkpoint-logical-epoch-3",
+      "seed": 42,
+      "selected_epoch": 3,
+      "trainer_state": {
+        "bytes": 472,
+        "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/formal_runs/seed42/r2/checkpoint-logical-epoch-3/trainer_state.json",
+        "sha256": "a726e0f948f03c218f0048565ac44984a97e06d274f881ecf618c56e799727c4"
+      },
+      "training_bindings": {
+        "config_sha256": "291a3fa055f5ef07ac0f1bc39f67f3b1c9d13219da0c3e3e801d9a9df29d5318",
+        "frozen_manifest_lock_sha256": "8b5fffce6b54804f834499643953deae23393a7764c0652d0fd7df2214b20713",
+        "manifest_sha256": "9c17afffc0c9ce6a09241b343cb216821d02b8e9c3568b775106b9b6781006db"
+      }
+    },
+    {
+      "adapter_files": {
+        "adapter_config.json": {
+          "bytes": 969,
+          "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/formal_runs/seed43/r2/checkpoint-logical-epoch-3/adapter/adapter_config.json",
+          "sha256": "0e0af839f61c7020e55d14ebaf0850375cc9a0f9e5825f5f65fd527fbf46e5aa"
+        },
+        "adapter_model.safetensors": {
+          "bytes": 132187888,
+          "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/formal_runs/seed43/r2/checkpoint-logical-epoch-3/adapter/adapter_model.safetensors",
+          "sha256": "e2b057a67bb229c5ee644f6898c5716c39451cf154b5dbe61f858295492bae8f"
+        }
+      },
+      "arm": "R2",
+      "checkpoint_relative_path": "seed43/r2/checkpoint-logical-epoch-3",
+      "seed": 43,
+      "selected_epoch": 3,
+      "trainer_state": {
+        "bytes": 472,
+        "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/formal_runs/seed43/r2/checkpoint-logical-epoch-3/trainer_state.json",
+        "sha256": "85624ac3fed0541c937775f8ff5867e96be073bb13e85bb4f74c28ddcaadf17c"
+      },
+      "training_bindings": {
+        "config_sha256": "291a3fa055f5ef07ac0f1bc39f67f3b1c9d13219da0c3e3e801d9a9df29d5318",
+        "frozen_manifest_lock_sha256": "8b5fffce6b54804f834499643953deae23393a7764c0652d0fd7df2214b20713",
+        "manifest_sha256": "1915fa1941192e9c7ed09ecb3d3c024f1ea11775aa64e0a18f6068b52d48e7e0"
+      }
+    },
+    {
+      "adapter_files": {
+        "adapter_config.json": {
+          "bytes": 969,
+          "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/formal_runs/seed44/r2/checkpoint-logical-epoch-3/adapter/adapter_config.json",
+          "sha256": "b259400d76c4e85a288c8f63261b23e1034aaa3a5f79a1fe18c73b40672217d9"
+        },
+        "adapter_model.safetensors": {
+          "bytes": 132187888,
+          "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/formal_runs/seed44/r2/checkpoint-logical-epoch-3/adapter/adapter_model.safetensors",
+          "sha256": "8f2351d1c90a4ad7d9bc2260fde2a936598982b1df9d19aac529fa0d05c960bb"
+        }
+      },
+      "arm": "R2",
+      "checkpoint_relative_path": "seed44/r2/checkpoint-logical-epoch-3",
+      "seed": 44,
+      "selected_epoch": 3,
+      "trainer_state": {
+        "bytes": 472,
+        "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/formal_runs/seed44/r2/checkpoint-logical-epoch-3/trainer_state.json",
+        "sha256": "cc592f5e6bbb906c40c19d44781332db04e51462b5d8826ebf090c2bc7f7e7e3"
+      },
+      "training_bindings": {
+        "config_sha256": "291a3fa055f5ef07ac0f1bc39f67f3b1c9d13219da0c3e3e801d9a9df29d5318",
+        "frozen_manifest_lock_sha256": "8b5fffce6b54804f834499643953deae23393a7764c0652d0fd7df2214b20713",
+        "manifest_sha256": "ce1767b8657ef56f8246885bef5237e77023a7950cdb34804b02e437d8bbd923"
+      }
+    },
+    {
+      "adapter_files": {
+        "adapter_config.json": {
+          "bytes": 969,
+          "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/formal_runs/seed42/r3/checkpoint-logical-epoch-3/adapter/adapter_config.json",
+          "sha256": "66460105dd0140d94e7ea3c01c93b675fb62a0ae5226a300f9eb57017a9b6b08"
+        },
+        "adapter_model.safetensors": {
+          "bytes": 132187888,
+          "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/formal_runs/seed42/r3/checkpoint-logical-epoch-3/adapter/adapter_model.safetensors",
+          "sha256": "ff4f1f56fb1b7af47cd5a33c342eaf3465dd8dff24f84f418deb12c4593cbf56"
+        }
+      },
+      "arm": "R3",
+      "checkpoint_relative_path": "seed42/r3/checkpoint-logical-epoch-3",
+      "seed": 42,
+      "selected_epoch": 3,
+      "trainer_state": {
+        "bytes": 472,
+        "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/formal_runs/seed42/r3/checkpoint-logical-epoch-3/trainer_state.json",
+        "sha256": "047715c1d8577912380cab3643ce65e53251537bdc473766856205a66b716571"
+      },
+      "training_bindings": {
+        "config_sha256": "291a3fa055f5ef07ac0f1bc39f67f3b1c9d13219da0c3e3e801d9a9df29d5318",
+        "frozen_manifest_lock_sha256": "8b5fffce6b54804f834499643953deae23393a7764c0652d0fd7df2214b20713",
+        "manifest_sha256": "11a12a796c90a26e14013b2c42e760cf071ed2dae9bd18e8d42610faa5eb943a"
+      }
+    },
+    {
+      "adapter_files": {
+        "adapter_config.json": {
+          "bytes": 969,
+          "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/formal_runs/seed43/r3/checkpoint-logical-epoch-3/adapter/adapter_config.json",
+          "sha256": "0e0af839f61c7020e55d14ebaf0850375cc9a0f9e5825f5f65fd527fbf46e5aa"
+        },
+        "adapter_model.safetensors": {
+          "bytes": 132187888,
+          "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/formal_runs/seed43/r3/checkpoint-logical-epoch-3/adapter/adapter_model.safetensors",
+          "sha256": "2748a828b0852a1c5b3ede2a70c46e97800cd214c112509620b8f7b05017e003"
+        }
+      },
+      "arm": "R3",
+      "checkpoint_relative_path": "seed43/r3/checkpoint-logical-epoch-3",
+      "seed": 43,
+      "selected_epoch": 3,
+      "trainer_state": {
+        "bytes": 472,
+        "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/formal_runs/seed43/r3/checkpoint-logical-epoch-3/trainer_state.json",
+        "sha256": "cb51544e33bd0343beff9e484bfe8e17b007fe2bdb8f94ee274c56ed2f0feceb"
+      },
+      "training_bindings": {
+        "config_sha256": "291a3fa055f5ef07ac0f1bc39f67f3b1c9d13219da0c3e3e801d9a9df29d5318",
+        "frozen_manifest_lock_sha256": "8b5fffce6b54804f834499643953deae23393a7764c0652d0fd7df2214b20713",
+        "manifest_sha256": "6d62ad25fa8e56c07d9fa97e6126b057cd8d260725b754bf266c1d3917d378f6"
+      }
+    },
+    {
+      "adapter_files": {
+        "adapter_config.json": {
+          "bytes": 969,
+          "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/formal_runs/seed44/r3/checkpoint-logical-epoch-3/adapter/adapter_config.json",
+          "sha256": "b259400d76c4e85a288c8f63261b23e1034aaa3a5f79a1fe18c73b40672217d9"
+        },
+        "adapter_model.safetensors": {
+          "bytes": 132187888,
+          "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/formal_runs/seed44/r3/checkpoint-logical-epoch-3/adapter/adapter_model.safetensors",
+          "sha256": "fe8d41ae73cebda6c6316b75d93c863a716406737800d3b6d6c90d7fa770eb61"
+        }
+      },
+      "arm": "R3",
+      "checkpoint_relative_path": "seed44/r3/checkpoint-logical-epoch-3",
+      "seed": 44,
+      "selected_epoch": 3,
+      "trainer_state": {
+        "bytes": 472,
+        "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/formal_runs/seed44/r3/checkpoint-logical-epoch-3/trainer_state.json",
+        "sha256": "2ad22ba1df6edcab3f2b97afda9f6ebef65389aca4285dd2d3531b7991c0915d"
+      },
+      "training_bindings": {
+        "config_sha256": "291a3fa055f5ef07ac0f1bc39f67f3b1c9d13219da0c3e3e801d9a9df29d5318",
+        "frozen_manifest_lock_sha256": "8b5fffce6b54804f834499643953deae23393a7764c0652d0fd7df2214b20713",
+        "manifest_sha256": "190e09f7e410b0ccb8fe9ca8b4fd88835cd37126784552a50298f73124cd2928"
+      }
+    },
+    {
+      "adapter_files": {
+        "adapter_config.json": {
+          "bytes": 969,
+          "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/formal_runs/seed42/s0/checkpoint-logical-epoch-3/adapter/adapter_config.json",
+          "sha256": "66460105dd0140d94e7ea3c01c93b675fb62a0ae5226a300f9eb57017a9b6b08"
+        },
+        "adapter_model.safetensors": {
+          "bytes": 132187888,
+          "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/formal_runs/seed42/s0/checkpoint-logical-epoch-3/adapter/adapter_model.safetensors",
+          "sha256": "d224d81a79ebb023b51a91b83e2508008eb3f44f230153e6696b3f84bf460ed1"
+        }
+      },
+      "arm": "S0",
+      "checkpoint_relative_path": "seed42/s0/checkpoint-logical-epoch-3",
+      "seed": 42,
+      "selected_epoch": 3,
+      "trainer_state": {
+        "bytes": 472,
+        "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/formal_runs/seed42/s0/checkpoint-logical-epoch-3/trainer_state.json",
+        "sha256": "a4b81407cbc154da929e849c22dcee54175600bdd5e0a94589d05ae6e4ef3f15"
+      },
+      "training_bindings": {
+        "config_sha256": "291a3fa055f5ef07ac0f1bc39f67f3b1c9d13219da0c3e3e801d9a9df29d5318",
+        "frozen_manifest_lock_sha256": "8b5fffce6b54804f834499643953deae23393a7764c0652d0fd7df2214b20713",
+        "manifest_sha256": "368be4ff1aed13582f0a7a24b833375b763b906cec7c8aa157ea7ad51f93d068"
+      }
+    },
+    {
+      "adapter_files": {
+        "adapter_config.json": {
+          "bytes": 969,
+          "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/formal_runs/seed43/s0/checkpoint-logical-epoch-3/adapter/adapter_config.json",
+          "sha256": "0e0af839f61c7020e55d14ebaf0850375cc9a0f9e5825f5f65fd527fbf46e5aa"
+        },
+        "adapter_model.safetensors": {
+          "bytes": 132187888,
+          "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/formal_runs/seed43/s0/checkpoint-logical-epoch-3/adapter/adapter_model.safetensors",
+          "sha256": "1eafd5e67e221c07f75e3c2c2b9fb953073c2fef1c5c901bc995cca55a3deba6"
+        }
+      },
+      "arm": "S0",
+      "checkpoint_relative_path": "seed43/s0/checkpoint-logical-epoch-3",
+      "seed": 43,
+      "selected_epoch": 3,
+      "trainer_state": {
+        "bytes": 472,
+        "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/formal_runs/seed43/s0/checkpoint-logical-epoch-3/trainer_state.json",
+        "sha256": "6faf63000408d4108e52af8bf68c6264d4f4498af37049daf1ed122234561855"
+      },
+      "training_bindings": {
+        "config_sha256": "291a3fa055f5ef07ac0f1bc39f67f3b1c9d13219da0c3e3e801d9a9df29d5318",
+        "frozen_manifest_lock_sha256": "8b5fffce6b54804f834499643953deae23393a7764c0652d0fd7df2214b20713",
+        "manifest_sha256": "425b94d77aef171a223c0a511936a415dd0c18e15d7ccb39a8c6102ecbb6cebb"
+      }
+    },
+    {
+      "adapter_files": {
+        "adapter_config.json": {
+          "bytes": 969,
+          "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/formal_runs/seed44/s0/checkpoint-logical-epoch-3/adapter/adapter_config.json",
+          "sha256": "b259400d76c4e85a288c8f63261b23e1034aaa3a5f79a1fe18c73b40672217d9"
+        },
+        "adapter_model.safetensors": {
+          "bytes": 132187888,
+          "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/formal_runs/seed44/s0/checkpoint-logical-epoch-3/adapter/adapter_model.safetensors",
+          "sha256": "2d43185ddfb0f385ef66bf9ecbe54c7077e7bb7c834c364f52b4e845a5f7acd1"
+        }
+      },
+      "arm": "S0",
+      "checkpoint_relative_path": "seed44/s0/checkpoint-logical-epoch-3",
+      "seed": 44,
+      "selected_epoch": 3,
+      "trainer_state": {
+        "bytes": 472,
+        "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/formal_runs/seed44/s0/checkpoint-logical-epoch-3/trainer_state.json",
+        "sha256": "5958b9cb0d9fa3bdd612ef7ae30d6cebd0d8c0b783a4ad09d29669d27b971065"
+      },
+      "training_bindings": {
+        "config_sha256": "291a3fa055f5ef07ac0f1bc39f67f3b1c9d13219da0c3e3e801d9a9df29d5318",
+        "frozen_manifest_lock_sha256": "8b5fffce6b54804f834499643953deae23393a7764c0652d0fd7df2214b20713",
+        "manifest_sha256": "4c294154ba30a66dec1ac8a9fc82db71254b4f3b5217a9e03a9205f5c5189c60"
+      }
+    }
+  ],
+  "checkpoint_selection_frozen": true,
+  "inference_backend_contract": {
+    "budget_boundary_policy": "truncate_rationale_prefix_and_force_json_close",
+    "compact_json_whitespace_disabled": true,
+    "cuda": "11.8",
+    "name": "vllm",
+    "torch": "2.7.1+cu118",
+    "version": "0.10.0",
+    "xgrammar_source_sha256": "2e2e649417b9570fc3d22e6a7413d0f5b47ace7afe002b21ad4d4efae679bba6"
+  },
+  "invalidation_rule": "Any selected adapter, trainer state, selected dev artifact, complete dev tree, summary, source, inference backend, or upstream lock hash change invalidates this freeze.",
+  "output_schema_location": "OUTPUT_SCHEMA embedded in run_dev_inference_vllm.py",
+  "preference_training_allowed": false,
+  "public_summary_bindings": {
+    "all_epoch_metrics.csv": {
+      "bytes": 8792,
+      "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/dev_summary_vllm/all_epoch_metrics.csv",
+      "sha256": "fc2f120f788846a50d7cb6a12ceed1b09ce77783ff6ff8ceb22ed425a0ab2252"
+    },
+    "final_results.json": {
+      "bytes": 22697,
+      "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/dev_summary_vllm/final_results.json",
+      "sha256": "17afbc465795587945abb8a6b97542310657fb1f227fc126872f9045453b2db8"
+    },
+    "multiseed_summary.csv": {
+      "bytes": 3638,
+      "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/dev_summary_vllm/multiseed_summary.csv",
+      "sha256": "8516e4eea420a5317fe793ecac79db91b232f44d8b6db7bb9d992efe9d40e67d"
+    },
+    "paired_bootstrap.json": {
+      "bytes": 3071,
+      "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/dev_summary_vllm/paired_bootstrap.json",
+      "sha256": "988e30b6eb03c73ba49a2fbabf179795079862ce99db059de3d835560bf76fc5"
+    },
+    "report.md": {
+      "bytes": 1056,
+      "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/dev_summary_vllm/report.md",
+      "sha256": "ecaf7eb43203837e6f86ca8d79747d7132663f0f2bddf9ba88b0b1a16b105072"
+    },
+    "selected_checkpoints.csv": {
+      "bytes": 3591,
+      "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/dev_summary_vllm/selected_checkpoints.csv",
+      "sha256": "95778f0a7af2a879fb0a967f03405cf9802a7c935003d58d3cc745af50c29092"
+    }
+  },
+  "public_summary_vector_sha256": "5635ca776a171e314207ee588bec6bf843c921312c7012a37a79804932ace7f6",
+  "rationale_blind_audit_execution_allowed": false,
+  "rationale_blind_audit_planning_allowed": true,
+  "review_gate": {
+    "reviewed_commit": "a0c987b6973c5e03130fdee009df347b35d48080",
+    "verdict": "SFT_DEV_RESULT_PASS"
+  },
+  "schema_version": "exp54-sft-dev-selection-freeze-v1",
+  "seeds": [
+    42,
+    43,
+    44
+  ],
+  "selected_checkpoint_count": 12,
+  "selected_checkpoint_vector_sha256": "2516be435894aa4a8789425f79986e999524c8ea1521eb5963fdd1392037e564",
+  "selected_dev_result_bindings": [
+    {
+      "arm": "R1",
+      "metrics": {
+        "bytes": 2520,
+        "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/dev_runs_vllm/r1/seed42/epoch3/metrics.json",
+        "sha256": "5c12190b0f9602687f1c5c42adaa77057dc845767285c05740dfce29da1de919"
+      },
+      "predictions_jsonl": {
+        "bytes": 1380117,
+        "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/dev_runs_vllm/r1/seed42/epoch3/predictions.jsonl",
+        "rows": 664,
+        "sha256": "eac399201a718ae9f293a0adcfbfef25125af3446385ccb7bcc4e41cceaf16fd"
+      },
+      "protocol": {
+        "bytes": 2402,
+        "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/dev_runs_vllm/r1/seed42/epoch3/protocol.json",
+        "sha256": "73c4add76ceb614d615c79534ea1885a9e52098627bdb8e734cb43e502708b82"
+      },
+      "run_state": {
+        "bytes": 180,
+        "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/dev_runs_vllm/r1/seed42/epoch3/run_state.json",
+        "sha256": "12b1257e889ba0f5a16c8e373f249672c6e44fdbc1a539f81e32e2f0fe08c031"
+      },
+      "seed": 42,
+      "selected_epoch": 3
+    },
+    {
+      "arm": "R1",
+      "metrics": {
+        "bytes": 2507,
+        "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/dev_runs_vllm/r1/seed43/epoch3/metrics.json",
+        "sha256": "134f52a1a610b26d319f2cf5f67aa7392159b71be70414eae9332d6cd3abe415"
+      },
+      "predictions_jsonl": {
+        "bytes": 1435175,
+        "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/dev_runs_vllm/r1/seed43/epoch3/predictions.jsonl",
+        "rows": 664,
+        "sha256": "7305b84a7c004cd3a18f0d78dd7d88672132822ee61f62542039ab4ae726322b"
+      },
+      "protocol": {
+        "bytes": 2404,
+        "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/dev_runs_vllm/r1/seed43/epoch3/protocol.json",
+        "sha256": "1868d0f7fb7685e82e55ddad715a22048b83d8c8df8348856c9a4427e73cb87b"
+      },
+      "run_state": {
+        "bytes": 180,
+        "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/dev_runs_vllm/r1/seed43/epoch3/run_state.json",
+        "sha256": "b8a0eed7ffcecca3c0c2d93464e9a7ec88b886f84de99cb7e5eb57eec770d183"
+      },
+      "seed": 43,
+      "selected_epoch": 3
+    },
+    {
+      "arm": "R1",
+      "metrics": {
+        "bytes": 2491,
+        "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/dev_runs_vllm/r1/seed44/epoch3/metrics.json",
+        "sha256": "f6d424c36324b82ded1452015e61a34997e314064563b57059a7b608ffd42a08"
+      },
+      "predictions_jsonl": {
+        "bytes": 1152322,
+        "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/dev_runs_vllm/r1/seed44/epoch3/predictions.jsonl",
+        "rows": 664,
+        "sha256": "a2a8bf5e3de978566c4c69319376127de751ebb688f53f6bef2aec6de6857caa"
+      },
+      "protocol": {
+        "bytes": 2401,
+        "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/dev_runs_vllm/r1/seed44/epoch3/protocol.json",
+        "sha256": "1b5bed8c94c42b211d9ccf56934b6bc05647917ae4bd2fa3331698d566259dc3"
+      },
+      "run_state": {
+        "bytes": 179,
+        "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/dev_runs_vllm/r1/seed44/epoch3/run_state.json",
+        "sha256": "3fbbfe077bb05a3e45249a100452a33e01b2cea64a79c7eee9581d9b06fc4f1d"
+      },
+      "seed": 44,
+      "selected_epoch": 3
+    },
+    {
+      "arm": "R2",
+      "metrics": {
+        "bytes": 2511,
+        "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/dev_runs_vllm/r2/seed42/epoch3/metrics.json",
+        "sha256": "17bb376636c0eb26eab53e7d6eb123d8f9c398ce4cc6a0197a05195bd3626936"
+      },
+      "predictions_jsonl": {
+        "bytes": 1513683,
+        "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/dev_runs_vllm/r2/seed42/epoch3/predictions.jsonl",
+        "rows": 664,
+        "sha256": "04b26f85206a6c0a1ea65da3f7fbc0245bdedd86228a2d400cc73a2fed06ae90"
+      },
+      "protocol": {
+        "bytes": 2405,
+        "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/dev_runs_vllm/r2/seed42/epoch3/protocol.json",
+        "sha256": "cae4c37e8e35d2a98b75ae5cdac30815f34774f72b146827a483ea3e8c39faf3"
+      },
+      "run_state": {
+        "bytes": 180,
+        "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/dev_runs_vllm/r2/seed42/epoch3/run_state.json",
+        "sha256": "53470742dc5ac9b9684ae593ca1d57ecde924fb09b7b0c670fc3239035ce3832"
+      },
+      "seed": 42,
+      "selected_epoch": 3
+    },
+    {
+      "arm": "R2",
+      "metrics": {
+        "bytes": 2511,
+        "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/dev_runs_vllm/r2/seed43/epoch3/metrics.json",
+        "sha256": "e384cb22f2baae1bcb4d9acc6f54c28b96a5e6471e6e973e3553085503403b2a"
+      },
+      "predictions_jsonl": {
+        "bytes": 1562140,
+        "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/dev_runs_vllm/r2/seed43/epoch3/predictions.jsonl",
+        "rows": 664,
+        "sha256": "ebf5d02fcf68d7fc8b08da6dbdc87e5d15e3a6d94a09f960ab4ebd0fdc5d5265"
+      },
+      "protocol": {
+        "bytes": 2403,
+        "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/dev_runs_vllm/r2/seed43/epoch3/protocol.json",
+        "sha256": "cba77451fa50d7b57190f9d9743c7de71dce14b69a45c0df277528dd272a4622"
+      },
+      "run_state": {
+        "bytes": 180,
+        "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/dev_runs_vllm/r2/seed43/epoch3/run_state.json",
+        "sha256": "00165e7908128c01e837b87bdb9d7feff120e5ce826cc3cb3e080b43515af09a"
+      },
+      "seed": 43,
+      "selected_epoch": 3
+    },
+    {
+      "arm": "R2",
+      "metrics": {
+        "bytes": 2500,
+        "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/dev_runs_vllm/r2/seed44/epoch3/metrics.json",
+        "sha256": "36ba8d811741243c57838c4fe17017a47c937a01882ef62b0cbd0e9234014e27"
+      },
+      "predictions_jsonl": {
+        "bytes": 1446109,
+        "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/dev_runs_vllm/r2/seed44/epoch3/predictions.jsonl",
+        "rows": 664,
+        "sha256": "a45ec728dbd9b81fdb6fefd390d878fe186544e180673df233d55ad866484a1e"
+      },
+      "protocol": {
+        "bytes": 2407,
+        "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/dev_runs_vllm/r2/seed44/epoch3/protocol.json",
+        "sha256": "e8fc528dc08b14a670582901e0210346de05c26d272fc20ac377dbd5d332260f"
+      },
+      "run_state": {
+        "bytes": 180,
+        "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/dev_runs_vllm/r2/seed44/epoch3/run_state.json",
+        "sha256": "14e2dcc58c4f068fa7c71d6f9fec201dd2015b5f55800f2c0b96e37124d3f3ac"
+      },
+      "seed": 44,
+      "selected_epoch": 3
+    },
+    {
+      "arm": "R3",
+      "metrics": {
+        "bytes": 2497,
+        "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/dev_runs_vllm/r3/seed42/epoch3/metrics.json",
+        "sha256": "95b0d229c091aa8e94b588b2216620a4403e7714a910fb8fc8a54770e4fc3b51"
+      },
+      "predictions_jsonl": {
+        "bytes": 1434286,
+        "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/dev_runs_vllm/r3/seed42/epoch3/predictions.jsonl",
+        "rows": 664,
+        "sha256": "eeb1855b15d702449e0a8e57a634ef8a9e4a5d1a76fa021b2ee711dc05fef2a5"
+      },
+      "protocol": {
+        "bytes": 2405,
+        "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/dev_runs_vllm/r3/seed42/epoch3/protocol.json",
+        "sha256": "a81e0155685634b2437c1f6e534b62f81d17d59efaf9ecf7ebe73021fa9bd6ae"
+      },
+      "run_state": {
+        "bytes": 180,
+        "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/dev_runs_vllm/r3/seed42/epoch3/run_state.json",
+        "sha256": "794faf986dccfdfa07fda79de59886c2186d6c5f077046831498b867643f8399"
+      },
+      "seed": 42,
+      "selected_epoch": 3
+    },
+    {
+      "arm": "R3",
+      "metrics": {
+        "bytes": 2505,
+        "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/dev_runs_vllm/r3/seed43/epoch3/metrics.json",
+        "sha256": "6fd15ce28d43121ac1845080ffca7897857cd3b00c868a42b43c6632e2426900"
+      },
+      "predictions_jsonl": {
+        "bytes": 1118004,
+        "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/dev_runs_vllm/r3/seed43/epoch3/predictions.jsonl",
+        "rows": 664,
+        "sha256": "7ae7e92cbdcb2ea5bd4130ce6e640c03697f30d8198470ab734650c74c7ab527"
+      },
+      "protocol": {
+        "bytes": 2399,
+        "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/dev_runs_vllm/r3/seed43/epoch3/protocol.json",
+        "sha256": "07f93e11ac2bc06bb129d79ad80c3a928665504877d4e9a784f58a349e7902fd"
+      },
+      "run_state": {
+        "bytes": 179,
+        "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/dev_runs_vllm/r3/seed43/epoch3/run_state.json",
+        "sha256": "bf64a421bc047cfa0820f0f4a83613dfdc8d99c2f28c45e50e89da06279263c3"
+      },
+      "seed": 43,
+      "selected_epoch": 3
+    },
+    {
+      "arm": "R3",
+      "metrics": {
+        "bytes": 2525,
+        "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/dev_runs_vllm/r3/seed44/epoch3/metrics.json",
+        "sha256": "b1ec3e7d4459581d6a840c44e25aeeec6d8dd0640c3e1325800eebd0b51bb969"
+      },
+      "predictions_jsonl": {
+        "bytes": 1361843,
+        "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/dev_runs_vllm/r3/seed44/epoch3/predictions.jsonl",
+        "rows": 664,
+        "sha256": "3450235326c206010145ee8a5d778544bec29773dc8d7b022e3ab1d46269ac2e"
+      },
+      "protocol": {
+        "bytes": 2403,
+        "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/dev_runs_vllm/r3/seed44/epoch3/protocol.json",
+        "sha256": "ce961cb79a5c5bf05f1a21bbdab751e9d702188e6582932cd87aff5becfd6287"
+      },
+      "run_state": {
+        "bytes": 180,
+        "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/dev_runs_vllm/r3/seed44/epoch3/run_state.json",
+        "sha256": "66d7b2eadbbaa1e5dc28e5a963e7a78447559152cd4c743f52d63e5c042b576f"
+      },
+      "seed": 44,
+      "selected_epoch": 3
+    },
+    {
+      "arm": "S0",
+      "metrics": {
+        "bytes": 2490,
+        "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/dev_runs_vllm/s0/seed42/epoch3/metrics.json",
+        "sha256": "7eac7ed222876d97c7473e608e5a1353c23093e358412fbc3d4d62c390975862"
+      },
+      "predictions_jsonl": {
+        "bytes": 1249422,
+        "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/dev_runs_vllm/s0/seed42/epoch3/predictions.jsonl",
+        "rows": 664,
+        "sha256": "60b157ae1d44129c649a97d1febff3106fcea365cec15e7688e5fd699e5f5ead"
+      },
+      "protocol": {
+        "bytes": 2397,
+        "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/dev_runs_vllm/s0/seed42/epoch3/protocol.json",
+        "sha256": "74c91dbe1fe3f5e5a7bc26135a5b0535bde171b02f875244d4afb56714022aa4"
+      },
+      "run_state": {
+        "bytes": 179,
+        "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/dev_runs_vllm/s0/seed42/epoch3/run_state.json",
+        "sha256": "0b6a8aa8efafd12a5470e73a96cb9c90ed714ed78f655f12c0be3b1d30d79f83"
+      },
+      "seed": 42,
+      "selected_epoch": 3
+    },
+    {
+      "arm": "S0",
+      "metrics": {
+        "bytes": 2451,
+        "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/dev_runs_vllm/s0/seed43/epoch3/metrics.json",
+        "sha256": "8b499511528c1b0b6cb347e9c6d4a5cb07754ee3915160b34ff3e46398f0ee25"
+      },
+      "predictions_jsonl": {
+        "bytes": 965102,
+        "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/dev_runs_vllm/s0/seed43/epoch3/predictions.jsonl",
+        "rows": 664,
+        "sha256": "3a0606a11758ab62f21f176ee2c8512beedeba460650c00e09509d85ec61ee10"
+      },
+      "protocol": {
+        "bytes": 2360,
+        "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/dev_runs_vllm/s0/seed43/epoch3/protocol.json",
+        "sha256": "3eca756fbccec42bc97c20a8614c518e18be4eb7f3647616e3bfc99523250718"
+      },
+      "run_state": {
+        "bytes": 179,
+        "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/dev_runs_vllm/s0/seed43/epoch3/run_state.json",
+        "sha256": "9cc653b3d4605322da205ecf229d907f33f2b4466bded46720b661d0a208e055"
+      },
+      "seed": 43,
+      "selected_epoch": 3
+    },
+    {
+      "arm": "S0",
+      "metrics": {
+        "bytes": 2455,
+        "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/dev_runs_vllm/s0/seed44/epoch3/metrics.json",
+        "sha256": "f1c97e08146e0a1920b26c29fa4fce57b6078f6b6c97bedbb5686a9616b03902"
+      },
+      "predictions_jsonl": {
+        "bytes": 1247207,
+        "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/dev_runs_vllm/s0/seed44/epoch3/predictions.jsonl",
+        "rows": 664,
+        "sha256": "babeff4c52b21290538b229fed10c6a1901ecdc586475b13b37dd182b4f395de"
+      },
+      "protocol": {
+        "bytes": 2361,
+        "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/dev_runs_vllm/s0/seed44/epoch3/protocol.json",
+        "sha256": "7b7c6bf64edbc6fbac2b2be2f5c06d7239d46610199190447dabcb3139e1de2f"
+      },
+      "run_state": {
+        "bytes": 179,
+        "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/dev_runs_vllm/s0/seed44/epoch3/run_state.json",
+        "sha256": "7cdd0af0001941395fdbfbf2a35c49a396ceb31c47a29f6640c07e2cd905ee5a"
+      },
+      "seed": 44,
+      "selected_epoch": 3
+    }
+  ],
+  "selected_dev_result_vector_sha256": "74aa93b9c18490ffd9dacc815b4447b9c3d35778beeeddb361bd4c9f8187b3d2",
+  "selected_epoch": 3,
+  "selection_rule": "maximum Exact, lower MAE, earlier epoch",
+  "selection_table": {
+    "bytes": 3591,
+    "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/dev_summary_vllm/selected_checkpoints.csv",
+    "sha256": "95778f0a7af2a879fb0a967f03405cf9802a7c935003d58d3cc745af50c29092"
+  },
+  "source_bindings": {
+    "thesis_exp/exp54_rar_sft/audit_sft_dev_selection_freeze.py": {
+      "bytes": 10752,
+      "path": "thesis_exp/exp54_rar_sft/audit_sft_dev_selection_freeze.py",
+      "sha256": "d9feccd0d2685c1ff301794a33e24777e1bc943faaebb6ef49c520d41f3641bc"
+    },
+    "thesis_exp/exp54_rar_sft/collect_dev_results.py": {
+      "bytes": 14695,
+      "path": "thesis_exp/exp54_rar_sft/collect_dev_results.py",
+      "sha256": "53243fc8b7976411c18dc04ec9b94a44e484c1a0112193b33a4ea01412a46df7"
+    },
+    "thesis_exp/exp54_rar_sft/freeze_sft_dev_selection.py": {
+      "bytes": 14021,
+      "path": "thesis_exp/exp54_rar_sft/freeze_sft_dev_selection.py",
+      "sha256": "f1b1a72728bf46306cf7d78b93f39a97bb04c097a221c9d00e9f147ea57cc6fa"
+    },
+    "thesis_exp/exp54_rar_sft/inference_contract.py": {
+      "bytes": 1739,
+      "path": "thesis_exp/exp54_rar_sft/inference_contract.py",
+      "sha256": "5eda600beb28db066567f3f9bb7a158ddd8c416506c9689248d6cae0d58a3681"
+    },
+    "thesis_exp/exp54_rar_sft/run_dev_inference_vllm.py": {
+      "bytes": 17211,
+      "path": "thesis_exp/exp54_rar_sft/run_dev_inference_vllm.py",
+      "sha256": "71258c152fc2cd965c1b65727ce20425f3c33a8e5a8e88a0d0113de5d2663660"
+    },
+    "thesis_exp/exp54_rar_sft/training_contract.py": {
+      "bytes": 17050,
+      "path": "thesis_exp/exp54_rar_sft/training_contract.py",
+      "sha256": "a9b100c9446f2a0e011b1faf67f873b51d0aaacf08a75423c71b6c48360f5071"
+    },
+    "thesis_exp/scripts/run_exp54_vllm_dev_campaign.sh": {
+      "bytes": 4218,
+      "path": "thesis_exp/scripts/run_exp54_vllm_dev_campaign.sh",
+      "sha256": "b9d7195dc39a560dbb56617a6f98298eb1122d3332784aa2d73fad7c569e225f"
+    }
+  },
+  "source_vector_sha256": "ba894cba19a4bad91c5aaa3581c3f40195d4e667722b553954bf45144e0fc3fd",
+  "status": "SFT_DEV_CHECKPOINT_SELECTION_FROZEN",
+  "test_accessed": false,
+  "test_execution_allowed": false,
+  "upstream_bindings": {
+    "thesis_exp/exp54_rar_sft/configs/canonical_rubric_registry.json": {
+      "bytes": 3734,
+      "path": "thesis_exp/exp54_rar_sft/configs/canonical_rubric_registry.json",
+      "sha256": "1ac9bafd3eb9e54463f1deddb60bea0d6a379804051b4d2c00a537a59d76f8ea"
+    },
+    "thesis_exp/exp54_rar_sft/configs/qwen_tokenizer_lock_spec.json": {
+      "bytes": 478,
+      "path": "thesis_exp/exp54_rar_sft/configs/qwen_tokenizer_lock_spec.json",
+      "sha256": "3791901fc7a3b6066c77159a3588c0ce136d5dd0b40f1a6f5b0e703ef0d85514"
+    },
+    "thesis_exp/exp54_rar_sft/configs/training_configuration_candidate.json": {
+      "bytes": 7182,
+      "path": "thesis_exp/exp54_rar_sft/configs/training_configuration_candidate.json",
+      "sha256": "291a3fa055f5ef07ac0f1bc39f67f3b1c9d13219da0c3e3e801d9a9df29d5318"
+    },
+    "thesis_exp/outputs/exp54_rar_sft/rar_v2/protocol/materialized_manifest_frozen_lock.json": {
+      "bytes": 5433,
+      "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/protocol/materialized_manifest_frozen_lock.json",
+      "sha256": "8b5fffce6b54804f834499643953deae23393a7764c0652d0fd7df2214b20713"
+    },
+    "thesis_exp/outputs/exp54_rar_sft/rar_v2/protocol/training_configuration_frozen_lock.json": {
+      "bytes": 2738,
+      "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/protocol/training_configuration_frozen_lock.json",
+      "sha256": "85c098fda8af2d852874107249dbf89c03b0b59424fad8336096ffdaa37d31f7"
+    }
+  },
+  "upstream_vector_sha256": "633ff7ba6644ef61eb2d99d4135a41d3594908f97bf083ff94602788ed98eb8a"
+}

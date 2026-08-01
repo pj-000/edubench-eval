@@ -1,0 +1,25 @@
+{
+  "candidate_manifest_build_allowed": false,
+  "dev_accessed": false,
+  "donor_lock_sha256": "a40e8cfce3ca2f45a90a72943402f4ae1b39156cee0747683e99d48037495508",
+  "event_mask_builder_source_sha256": "5b76528c7c13805faf3c80d3334e00d6ae9ddce29e557dea0170cb967118dcf4",
+  "event_mask_sha256_by_seed": {
+    "seed42": {
+      "r2": "b12b9fc0ccac9656c2db8bf6b72a693f7c757a31f712ffcbe7e4c2ec7e117e8b",
+      "r3": "b12b9fc0ccac9656c2db8bf6b72a693f7c757a31f712ffcbe7e4c2ec7e117e8b"
+    },
+    "seed43": {
+      "r2": "3397e3d156016f3429a7dd7de300a6c74ca8f4d906632a53b2ed93b3a371f82e",
+      "r3": "3397e3d156016f3429a7dd7de300a6c74ca8f4d906632a53b2ed93b3a371f82e"
+    },
+    "seed44": {
+      "r2": "c66501f323e6285adb5fee7cb6d75721c38735b68759f5f05df651a963dd8869",
+      "r3": "c66501f323e6285adb5fee7cb6d75721c38735b68759f5f05df651a963dd8869"
+    }
+  },
+  "formal_training_allowed": false,
+  "manifest_freeze_allowed": false,
+  "status": "R2_R3_EVENT_MASK_CANDIDATE_READY",
+  "test_accessed": false,
+  "training_used": false
+}

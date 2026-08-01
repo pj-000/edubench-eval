@@ -1,0 +1,97 @@
+{
+  "schema_version": "exp54-mechanism-control-test-plan-v1",
+  "status": "FROZEN_POSTHOC_MECHANISM_TEST_ON_EXISTING_BENCHMARK",
+  "arms": [
+    "R3_TOKENAVG",
+    "P1_FULLSEQ",
+    "P1_SYN_LR5E6"
+  ],
+  "seeds": [
+    42,
+    43,
+    44
+  ],
+  "new_checkpoint_run_count": 9,
+  "scientific_role": "post_hoc_mechanism_analysis_on_frozen_benchmark_test",
+  "test_source": {
+    "rows": 2218,
+    "git_blob_sha1": "7749c2c0f166186cc840409d64424b5a78e7222a",
+    "sha256": "9bc6ad99dbc3856e292b073f1ce0e883ac980574b5703533f449c34600a5d7af"
+  },
+  "comparators_reused_without_regeneration": [
+    "P0_R3_SFT",
+    "P1_FIELD_DPO"
+  ],
+  "contrasts": [
+    {
+      "id": "C1_BLOCK_BALANCED_SFT",
+      "baseline": "R3_TOKENAVG",
+      "treatment": "P0_R3_SFT"
+    },
+    {
+      "id": "C2_FIELD_LOCAL_DPO",
+      "baseline": "P1_FULLSEQ",
+      "treatment": "P1_FIELD_DPO"
+    },
+    {
+      "id": "C3_ACTUAL_ERROR_NEGATIVES",
+      "baseline": "P1_SYN_LR5E6",
+      "treatment": "P1_FIELD_DPO"
+    }
+  ],
+  "generation": {
+    "protocol_id": "RAR_SFT_VLLM_COMPACT_JSON_V1",
+    "do_sample": false,
+    "temperature": 0.0,
+    "max_new_tokens": 256,
+    "max_model_len": 1796,
+    "max_num_seqs": 128,
+    "gpu_memory_utilization": 0.9,
+    "guided_decoding_backend": "xgrammar"
+  },
+  "server_paths": {
+    "repo_root": "/home/jpang/exp54_formal_exec/repo",
+    "artifact_root": "/home/jpang/edubench-eval-exp2/thesis_exp/outputs/exp54_rar_sft/rar_v2",
+    "test_path": "/home/jpang/edubench-eval-exp2/thesis_exp/outputs/exp54_rar_sft/rar_v2/sorc_dpo_one_time_test_v1/isolated_input/test.jsonl",
+    "old_prediction_root": "/home/jpang/edubench-eval-exp2/thesis_exp/outputs/exp54_rar_sft/rar_v2/sorc_dpo_one_time_test_v1/runs",
+    "output_root": "/home/jpang/edubench-eval-exp2/thesis_exp/outputs/exp54_rar_sft/rar_v2/mechanism_control_test_v1/runs",
+    "result_root": "/home/jpang/edubench-eval-exp2/thesis_exp/outputs/exp54_rar_sft/rar_v2/mechanism_control_test_v1/final_results"
+  },
+  "gpu_assignments_by_arm": {
+    "R3_TOKENAVG": {
+      "visible_index": 4,
+      "uuid": "GPU-8fb2e60c-d81f-8454-188a-a0c3bf2b6c17",
+      "name": "NVIDIA GeForce RTX 3090"
+    },
+    "P1_FULLSEQ": {
+      "visible_index": 6,
+      "uuid": "GPU-0451f36a-5026-994f-19c5-e95d5b1c47c9",
+      "name": "NVIDIA GeForce RTX 3090"
+    },
+    "P1_SYN_LR5E6": {
+      "visible_index": 7,
+      "uuid": "GPU-c40e42b6-3b9f-bd93-a949-540694e870c6",
+      "name": "NVIDIA GeForce RTX 3090"
+    }
+  },
+  "execution_hardware_difference": {
+    "new_checkpoint_inference_gpu": "NVIDIA GeForce RTX 3090",
+    "old_comparator_prediction_gpu_may_differ": true,
+    "greedy_generation_schema_prompt_and_token_budget_unchanged": true,
+    "must_be_disclosed": true
+  },
+  "bindings": {
+    "runner_sha256": "f0e6632bfa86d0811ddb8d99dc7fbcee7a031359e9f9e48495cf61ef4abf6312",
+    "collector_sha256": "ee7e1cf678ac4c11b8f25994e81280b63b86378c1db9a2234bf56df3c7e80c8e",
+    "worker_sha256": "223763f2a13354b1993a6ad46263bf6928f461a69c4c2276cf5411a1b348ff50",
+    "runtime_lock_sha256": "dc2effaef3ab5bdd5334e72f118e6c677158021305ede12444347317296847ec",
+    "checkpoint_lock_sha256": "ce54712f38427b70ea9fa7ea5f10dc9cb7322c52d8df68a1181d4d86448c205d",
+    "checkpoint_audit_report_sha256": "e4740ed229b33e520b7f366ec75f561c37794a50f0a10cfda786336fb5e55fe4"
+  },
+  "old_predictions_regenerated": false,
+  "new_checkpoint_max_test_invocations": 1,
+  "test_adaptive_tuning_or_retraining": false,
+  "training_allowed": false,
+  "dev_allowed": false,
+  "test_allowed": true
+}

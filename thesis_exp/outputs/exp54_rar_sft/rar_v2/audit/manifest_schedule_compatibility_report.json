@@ -1,0 +1,253 @@
+{
+  "audit_source_sha256": "4792b9500bebb903af68e518213374cf11dbc36194efc56240c2b108ca2e3cba",
+  "candidate_same_reference_count_six_epochs": {
+    "coverage": {
+      "active_coverage": 0.9827147941026945,
+      "active_references": 3866,
+      "inactive_references": 68,
+      "sample_coverage_by_label": [
+        {
+          "active_reason_samples": 16,
+          "fully_inactive_samples": 5,
+          "label_5": 1,
+          "source_reason_samples": 21
+        },
+        {
+          "active_reason_samples": 28,
+          "fully_inactive_samples": 12,
+          "label_5": 2,
+          "source_reason_samples": 40
+        },
+        {
+          "active_reason_samples": 146,
+          "fully_inactive_samples": 9,
+          "label_5": 3,
+          "source_reason_samples": 155
+        },
+        {
+          "active_reason_samples": 588,
+          "fully_inactive_samples": 1,
+          "label_5": 4,
+          "source_reason_samples": 589
+        },
+        {
+          "active_reason_samples": 807,
+          "fully_inactive_samples": 0,
+          "label_5": 5,
+          "source_reason_samples": 807
+        }
+      ],
+      "source_references": 3934
+    },
+    "frequency": {
+      "all_seeds_frequency_identical": true,
+      "epochs": 6,
+      "seed_reports": [
+        {
+          "absolute_frequency_delta_l1": 0,
+          "active_rationale_events_per_arm": 9510,
+          "epochs": 6,
+          "rationale_frequency_multiset_identical": true,
+          "reason_hashes_with_different_frequency": 0,
+          "seed": 42
+        },
+        {
+          "absolute_frequency_delta_l1": 0,
+          "active_rationale_events_per_arm": 9510,
+          "epochs": 6,
+          "rationale_frequency_multiset_identical": true,
+          "reason_hashes_with_different_frequency": 0,
+          "seed": 43
+        },
+        {
+          "absolute_frequency_delta_l1": 0,
+          "active_rationale_events_per_arm": 9510,
+          "epochs": 6,
+          "rationale_frequency_multiset_identical": true,
+          "reason_hashes_with_different_frequency": 0,
+          "seed": 44
+        }
+      ]
+    },
+    "protocol_change": "Add reference_count to donor strata and use six epochs, the LCM of two- and three-reference schedules."
+  },
+  "candidate_schedule_signature_three_epochs": {
+    "coverage": {
+      "active_coverage": 0.9567869852567361,
+      "active_references": 3764,
+      "inactive_references": 170,
+      "sample_coverage_by_label": [
+        {
+          "active_reason_samples": 16,
+          "fully_inactive_samples": 5,
+          "label_5": 1,
+          "source_reason_samples": 21
+        },
+        {
+          "active_reason_samples": 24,
+          "fully_inactive_samples": 16,
+          "label_5": 2,
+          "source_reason_samples": 40
+        },
+        {
+          "active_reason_samples": 122,
+          "fully_inactive_samples": 33,
+          "label_5": 3,
+          "source_reason_samples": 155
+        },
+        {
+          "active_reason_samples": 579,
+          "fully_inactive_samples": 10,
+          "label_5": 4,
+          "source_reason_samples": 589
+        },
+        {
+          "active_reason_samples": 793,
+          "fully_inactive_samples": 14,
+          "label_5": 5,
+          "source_reason_samples": 807
+        }
+      ],
+      "source_references": 3934
+    },
+    "frequency": {
+      "all_seeds_frequency_identical": true,
+      "epochs": 3,
+      "seed_reports": [
+        {
+          "absolute_frequency_delta_l1": 0,
+          "active_rationale_events_per_arm": 4602,
+          "epochs": 3,
+          "rationale_frequency_multiset_identical": true,
+          "reason_hashes_with_different_frequency": 0,
+          "seed": 42
+        },
+        {
+          "absolute_frequency_delta_l1": 0,
+          "active_rationale_events_per_arm": 4602,
+          "epochs": 3,
+          "rationale_frequency_multiset_identical": true,
+          "reason_hashes_with_different_frequency": 0,
+          "seed": 43
+        },
+        {
+          "absolute_frequency_delta_l1": 0,
+          "active_rationale_events_per_arm": 4602,
+          "epochs": 3,
+          "rationale_frequency_multiset_identical": true,
+          "reason_hashes_with_different_frequency": 0,
+          "seed": 44
+        }
+      ]
+    },
+    "protocol_change": "Add reference_count and the per-seed three-epoch selection-frequency signature to donor strata."
+  },
+  "current_contract": {
+    "coverage": {
+      "active_coverage": 0.9923741738688358,
+      "active_references": 3904,
+      "inactive_references": 30,
+      "sample_coverage_by_label": [
+        {
+          "active_reason_samples": 18,
+          "fully_inactive_samples": 3,
+          "label_5": 1,
+          "source_reason_samples": 21
+        },
+        {
+          "active_reason_samples": 34,
+          "fully_inactive_samples": 6,
+          "label_5": 2,
+          "source_reason_samples": 40
+        },
+        {
+          "active_reason_samples": 154,
+          "fully_inactive_samples": 1,
+          "label_5": 3,
+          "source_reason_samples": 155
+        },
+        {
+          "active_reason_samples": 588,
+          "fully_inactive_samples": 1,
+          "label_5": 4,
+          "source_reason_samples": 589
+        },
+        {
+          "active_reason_samples": 807,
+          "fully_inactive_samples": 0,
+          "label_5": 5,
+          "source_reason_samples": 807
+        }
+      ],
+      "source_references": 3934
+    },
+    "cross_reference_count": {
+      "active_edges_crossing_reference_count": 1742,
+      "active_edges_total": 3904,
+      "transition_counts": [
+        {
+          "active_edges": 921,
+          "donor_reference_count": 2,
+          "recipient_reference_count": 2
+        },
+        {
+          "active_edges": 871,
+          "donor_reference_count": 3,
+          "recipient_reference_count": 2
+        },
+        {
+          "active_edges": 871,
+          "donor_reference_count": 2,
+          "recipient_reference_count": 3
+        },
+        {
+          "active_edges": 1241,
+          "donor_reference_count": 3,
+          "recipient_reference_count": 3
+        }
+      ]
+    },
+    "epochs": 3,
+    "frequency": {
+      "all_seeds_frequency_identical": false,
+      "epochs": 3,
+      "seed_reports": [
+        {
+          "absolute_frequency_delta_l1": 1302,
+          "active_rationale_events_per_arm": 4800,
+          "epochs": 3,
+          "rationale_frequency_multiset_identical": false,
+          "reason_hashes_with_different_frequency": 1297,
+          "seed": 42
+        },
+        {
+          "absolute_frequency_delta_l1": 1302,
+          "active_rationale_events_per_arm": 4800,
+          "epochs": 3,
+          "rationale_frequency_multiset_identical": false,
+          "reason_hashes_with_different_frequency": 1298,
+          "seed": 43
+        },
+        {
+          "absolute_frequency_delta_l1": 1284,
+          "active_rationale_events_per_arm": 4800,
+          "epochs": 3,
+          "rationale_frequency_multiset_identical": false,
+          "reason_hashes_with_different_frequency": 1280,
+          "seed": 44
+        }
+      ]
+    },
+    "grouping": "label_5 × metric_id × language"
+  },
+  "dev_accessed": false,
+  "external_review_required": true,
+  "formal_donor_map_sha256": "26b157b7c41e7109a3a5d975b40b6b767605ef6fadfef3a14d4d2ce165fbc61b",
+  "formal_training_allowed": false,
+  "manifest_freeze_allowed": false,
+  "problem": "Reference-level permutation does not preserve realized rationale frequencies under the frozen one-reference-per-row three-epoch schedule.",
+  "reference_source_sha256": "718d760869b9c573b952a90faf5b5e6b346a034f31b454b5e15bd28ed1856500",
+  "status": "TRAINING_MANIFEST_SCHEDULE_BLOCKED",
+  "test_accessed": false,
+  "training_used": false
+}

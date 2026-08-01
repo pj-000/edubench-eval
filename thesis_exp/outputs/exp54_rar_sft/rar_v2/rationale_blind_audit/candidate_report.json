@@ -1,0 +1,103 @@
+{
+  "evaluator_calls_completed": false,
+  "evaluator_families_required": 2,
+  "forced_completion_summary": {
+    "primary|R2|forced=false": 97,
+    "primary|R2|forced=true": 23,
+    "primary|R3|forced=false": 101,
+    "primary|R3|forced=true": 19,
+    "secondary|R1|forced=false": 103,
+    "secondary|R1|forced=true": 17,
+    "secondary|R3|forced=false": 101,
+    "secondary|R3|forced=true": 19
+  },
+  "preference_training_started": false,
+  "private_bindings": {
+    "answer_key": {
+      "bytes": 191808,
+      "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/rationale_blind_audit/private/answer_key.jsonl",
+      "rows": 480,
+      "sha256": "2908ad20fb95ca4da1f43edde147061e10c5a8d124393350ed85e4018506d750"
+    },
+    "sample_manifest": {
+      "bytes": 97409,
+      "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/rationale_blind_audit/private/sample_manifest.jsonl",
+      "rows": 40,
+      "sha256": "b646e9169be4c8ba6dd7a0815cee4e825b766290317fdd9492f54c837fb1ac33"
+    },
+    "score_blind_tasks": {
+      "bytes": 1597406,
+      "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/rationale_blind_audit/private/score_blind_tasks.jsonl",
+      "rows": 480,
+      "sha256": "0f40ca2b026de1d8f5bef09ce0d640f88bfe10e2234acc40c2ff77794373ec59"
+    },
+    "score_visible_tasks": {
+      "bytes": 1607966,
+      "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/rationale_blind_audit/private/score_visible_tasks.jsonl",
+      "rows": 480,
+      "sha256": "c7f9b091b59b8f73ac845335b8482618bc0ea65a1a2a2e323599d0883448bbb8"
+    }
+  },
+  "sample": {
+    "all_12_metrics_covered": true,
+    "both_languages_covered": true,
+    "label_counts": {
+      "1": 6,
+      "2": 14,
+      "3": 8,
+      "4": 8,
+      "5": 4
+    },
+    "language_counts": {
+      "en": 20,
+      "zh": 20
+    },
+    "metric_counts": {
+      "BFA": 3,
+      "CRSC": 4,
+      "CSI": 4,
+      "DKA": 3,
+      "EICP": 3,
+      "HOTSD": 3,
+      "IFTC": 4,
+      "MGPF": 3,
+      "PALS": 3,
+      "RPR": 4,
+      "RTC": 3,
+      "SEI": 3
+    },
+    "unique_rows": 40
+  },
+  "schema_version": "exp54-minimal-rationale-audit-package-v2",
+  "selector": {
+    "band_order": [
+      "L3",
+      "L45"
+    ],
+    "band_quotas": {
+      "L3": 8,
+      "L45": 12
+    },
+    "candidate_rank": "min(current metric count, current language count, current metric-language count, SHA256(seed|record_id|row_position), record_id, row_position)",
+    "final_order": "ascending original dev row_position",
+    "low_score_rule": "include every label_5 <= 2 row",
+    "seed": "exp54-minimal-rationale-audit-v2|20260728",
+    "selection_reads_model_outputs": false,
+    "version": "exp54-minimal-rationale-selector-v2"
+  },
+  "status": "MINIMAL_RATIONALE_AUDIT_PACKAGE_READY",
+  "tasks": {
+    "orientations_per_pair": 2,
+    "pair_instances_before_orientation": {
+      "primary": 120,
+      "secondary": 120
+    },
+    "presentations_per_stage": 480,
+    "stages": [
+      "score_blind",
+      "score_visible"
+    ],
+    "total_presentations": 960
+  },
+  "test_accessed": false
+}

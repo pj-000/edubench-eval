@@ -1,0 +1,29 @@
+{
+  "adversarial_cases": 6,
+  "audit_source_sha256": "0ba34c3dbd6b5b8c7f769c3b4b92a503578c52598ac87fbce7c7e27ad3c0d5ef",
+  "checks": {
+    "adversarial_cases_included": true,
+    "conditional_minimum_length_matches_brute_force": true,
+    "input_order_invariance_20_shuffles": true,
+    "maximum_coverage_matches_brute_force": true,
+    "random_cases_exact": true
+  },
+  "dev_accessed": false,
+  "input_order_failures": [],
+  "input_order_trials_per_case": 20,
+  "matcher_source_sha256": "77455c1a0e14e61b691e03741149256a5d9225f0ee62e49f64f7a2501a9e5111",
+  "max_oracle_size": 8,
+  "objective_failures": [],
+  "random_cases": 64,
+  "runtime": {
+    "numpy": "1.26.4",
+    "python": "3.10.19",
+    "scipy": "1.15.3",
+    "solver": "scipy.optimize.linear_sum_assignment"
+  },
+  "seed": 20260723,
+  "status": "R2_MATCHER_ORACLE_PASS",
+  "test_accessed": false,
+  "total_cases": 70,
+  "training_used": false
+}

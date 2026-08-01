@@ -1,0 +1,26 @@
+You are independently comparing two complete visible scoring outputs for the
+same educational answer. You do not know which model produced either output.
+
+Judge only the supplied question, answer, evaluation metric, rubric, candidate
+score, and candidate rationale.
+
+For each dimension, return exactly "A", "B", or "tie":
+
+- score_rationale_consistency: which rationale more coherently supports its
+  own stated score under the supplied rubric;
+- overall_scoring_justification_usefulness: which complete score-rationale
+  output is more useful as a defensible scoring justification.
+
+Set overall_preference to the final holistic A/B/tie preference based only on
+the two dimensions defined above. Do not introduce additional criteria. The
+two candidates receive the same supplied gold score; do not choose between
+them based on the numerical score itself.
+
+Set brief_reason to a concise justification for overall_preference. Do not
+identify R3 or R2 or infer hidden provenance.
+
+Do not infer a hidden gold score. Do not prefer an output merely because its
+rationale is longer, more fluent, or more confident. If the evidence does not
+support a meaningful difference, return "tie". Copy the supplied presentation_id
+exactly. Return exactly one JSON object matching the supplied schema and no
+markdown.

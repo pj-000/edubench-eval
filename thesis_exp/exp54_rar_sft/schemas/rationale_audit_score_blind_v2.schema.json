@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "brief_reason": {
+      "maxLength": 600,
+      "minLength": 1,
+      "type": "string"
+    },
+    "completeness": {
+      "enum": ["A", "B", "tie"]
+    },
+    "metric_alignment": {
+      "enum": ["A", "B", "tie"]
+    },
+    "answer_grounding": {
+      "enum": ["A", "B", "tie"]
+    },
+    "overall_preference": {
+      "enum": ["A", "B", "tie"]
+    },
+    "presentation_id": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "rubric_relevance": {
+      "enum": ["A", "B", "tie"]
+    },
+    "specificity": {
+      "enum": ["A", "B", "tie"]
+    },
+    "unsupported_claims": {
+      "enum": ["A", "B", "tie"]
+    }
+  },
+  "required": [
+    "presentation_id",
+    "metric_alignment",
+    "rubric_relevance",
+    "answer_grounding",
+    "specificity",
+    "unsupported_claims",
+    "completeness",
+    "overall_preference",
+    "brief_reason"
+  ],
+  "type": "object"
+}

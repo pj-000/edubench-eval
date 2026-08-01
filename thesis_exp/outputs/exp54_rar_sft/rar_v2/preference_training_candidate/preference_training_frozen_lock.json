@@ -1,0 +1,47 @@
+{
+  "all_arm_optimizer_step_counts": 27,
+  "dev_accessed": false,
+  "evaluator_calls_allowed": false,
+  "formal_preference_training_allowed": false,
+  "gpu_smoke_allowed": false,
+  "invalidation_rule": "Any reviewed public artifact, private manifest, loss/collator, training config, tokenizer, checkpoint, or upstream source hash change invalidates this freeze.",
+  "loss_collator_manifests_and_config_frozen": true,
+  "padding": "fixed_right_padding_to_cutoff_2048",
+  "pair_artifact_hashes": {
+    "rationale_pairs_r3_r2": "ffb3aa272ad18b37d7c466691f983d91524ab67a0473c158669f4589c5fa445d",
+    "score_pairs_hybrid": "aeb079c56be8a8afbfdbec386e72faad748fef848014761bf602fbc40c97a1bb",
+    "score_pairs_synthetic_seed42": "83eef75218c945cf8fcaec754cbe84471c915a2fbd814f1d82d162de67406154"
+  },
+  "private_manifest_hashes": {
+    "P1_FIELD_DPO": "0adf6f258b728754e6ec31ba51d7424f2d65fca3b6bc0b420d7fcefc43d42c59",
+    "P1_SYN_SEED42": "1c65f892f01e558797fcae204d71b3b6e4609ccbe8d34d44b3e60250a679cddc",
+    "P2_SORC_SCORE": "7e2872a338b7dd4cdfc15fbed965c62e3ec92a1d30677857d67c990f94f3e847",
+    "P3_JOINT_SORC": "c73a63b54edfc8db4c4b024064ec5b80bb8cfee56f36b3e6bd0c1c5836f1bbb5"
+  },
+  "review_gate": {
+    "public_artifact_hashes": {
+      "audit_report": "1b16e213ff39634c23204d550637c9593201251bc7f7a530907e9968f9b77567",
+      "candidate_lock": "8578259ba22444c4883134b9558b54323768f804bb9097021afd8758abe3aeb1",
+      "candidate_report": "c698bc97e34567a1517c3e7fae8a60699458d6fc27ad05c48968b794495543d1"
+    },
+    "reviewed_commit": "82a22f842b2f5009962ba0019bcae61f172d5797",
+    "verdict": "PREFERENCE_TRAINING_IMPLEMENTATION_PASS"
+  },
+  "schema_version": "exp54-sorc-dpo-training-frozen-lock-v1",
+  "smoke_runner_implementation_allowed": true,
+  "smoke_subset_build_allowed": true,
+  "source_hashes": {
+    "checkpoint_selection_frozen_lock": "364a2c9ee023d1b0a2d803530d7898a347a150dd89dbaaa388aa44677cd71df4",
+    "locked_train": "0a1733b9209984c5c4291d205d1ac6057bed341717903b9de075d07de44a878e",
+    "loss_and_collator": "f0bd0bbd5edd4c6276ebcb76ddcfe2ad636929783ed0801b995c92479a9eb8e4",
+    "manifest_builder": "b1a361c3faf2729e39d9dc51201d742cb5bd56878f4f2e37230d47eb918cffea",
+    "pair_protocol_frozen_lock": "8300cadc49998ac7fd71da06a126afdc3d983f45a6ae60812cf0b3692dc26606",
+    "reference_set_data_lock": "fed541fb3cb82851db010d13e5dafa057ffbe196f4ecff357f5d9f4408e6d6f4",
+    "tokenizer_report": "6131ff0129e4831f2cc997003443fd2a1ef4f85e77fa9e30d0cdbb702ffb69c1",
+    "training_config": "a579a7bff836e03069fc69d43c7850617166102d9dc164d520d2183e5aab515d"
+  },
+  "status": "SORC_DPO_TRAINING_FROZEN_SMOKE_PACKAGE_BUILD_ALLOWED",
+  "test_accessed": false,
+  "tokenizer_lock_sha256": "4c4fa5083c4b6da6097657bb15a304df06080a5692033c1f444288574acdf0b6",
+  "training_used": false
+}

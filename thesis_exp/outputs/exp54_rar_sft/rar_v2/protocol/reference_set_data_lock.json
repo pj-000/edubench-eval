@@ -1,0 +1,32 @@
+{
+  "dev_accessed": false,
+  "experiment": "Exp54 RAR-SFT V2 deterministic reference sets",
+  "input": {
+    "aligned_path": "thesis_exp/outputs/exp54_rar_sft/rar0_alignment/private/aligned_reason_candidates.jsonl",
+    "aligned_sha256": "7d53ae8431797614d7cf10a6ae40518b2e89764def817685db09bbe694bbd994",
+    "rar0_lock_path": "thesis_exp/outputs/exp54_rar_sft/rar0_alignment/protocol/rar0a_protocol_lock.json",
+    "rar0_lock_sha256": "7342032b06f03fa2d463dc8813e6c5914c8a1d7f3c32e12316e01af94b2c93c7",
+    "rar0_source_hashes": {
+      "human_1_reasons": "a22d5c36e771325f75df586fa334c4433035d41dc018043d82cea721245fb72f",
+      "human_2_reasons": "796d0f6bf31225d57e198ac7f961e2cbbceb5ec3a71df62a3677d627fe605bf4",
+      "human_3_reasons": "23fc472daa9e573d7b52b29c6e37ba3e0deac679abd7095203c880d7fa211bad",
+      "train": "0a1733b9209984c5c4291d205d1ac6057bed341717903b9de075d07de44a878e"
+    }
+  },
+  "output_hashes": {
+    "aligned_reason_inventory": "177a2f4bcdad12f087ba07af72b322957373d143c145f3ac316ea607fb004922",
+    "all_rater_reference_sets": "09738af481273bb334399ef87862af09a0d82ad586bd1862fc5271a9051daebe",
+    "coverage": "a471dc9c7506f9bd6be98b0a49d459b75673dfd4e68934abcc78f51f8695055c",
+    "explicit_score_redaction_audit": "57ec3eab3b5b9e1bfdd45e160320bf50da3e2100f143a231e969e4193cc8a5b8",
+    "label_consistent_reference_sets": "718d760869b9c573b952a90faf5b5e6b346a034f31b454b5e15bd28ed1856500"
+  },
+  "score_redaction_rule_ids": [
+    "en_score_assignment",
+    "en_rater_verdict",
+    "zh_rater_verdict",
+    "zh_terminal_score_verdict",
+    "zh_explicit_score_assignment"
+  ],
+  "status": "REFERENCE_SETS_READY",
+  "test_accessed": false
+}

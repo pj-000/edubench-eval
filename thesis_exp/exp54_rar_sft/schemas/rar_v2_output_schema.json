@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Exp54 RAR-SFT visible output",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["score", "rationale"],
+  "properties": {
+    "score": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 5
+    },
+    "rationale": {
+      "type": "string"
+    }
+  }
+}

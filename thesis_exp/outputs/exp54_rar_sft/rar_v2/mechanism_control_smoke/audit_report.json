@@ -1,0 +1,54 @@
+{
+  "all_adapter_hashes_unique": true,
+  "all_gradient_norms_positive": true,
+  "all_losses_finite": true,
+  "all_parameter_updates_positive": true,
+  "arms": {
+    "P1_FULLSEQ": {
+      "adapter_model_sha256": "274920e68790c5a1a2584a6eb545a5c34b8676108611b729a99a7fb899d001ae",
+      "elapsed_seconds": 143.38418793678284,
+      "gradient_norm_before_clip": 1.5815588235855103,
+      "loss_sum": 1.4235099479556084,
+      "micro_batches": 8,
+      "optimizer_steps": 1,
+      "parameter_update_l2": 0.02862730710092368,
+      "peak_allocated_bytes": 41539964928,
+      "peak_reserved_bytes": 47083159552,
+      "result_sha256": "9aa0aba4afb78eff294ee9465cc220ff60be2658841c660089a6c4e6b29e7258",
+      "source_rows": 32
+    },
+    "P1_SYN_LR5E6": {
+      "adapter_model_sha256": "ff38a33735cbe88ae531015141a5b6a2f625417f6798474c2952744ecc7f8040",
+      "elapsed_seconds": 144.22866129875183,
+      "gradient_norm_before_clip": 0.44336459040641785,
+      "loss_sum": 1.4169467389583588,
+      "micro_batches": 8,
+      "optimizer_steps": 1,
+      "parameter_update_l2": 0.028529763511389535,
+      "peak_allocated_bytes": 41539964928,
+      "peak_reserved_bytes": 47083159552,
+      "result_sha256": "81aede071e551ae109243a3e45c21991666ef9214203e48bc327b7e4fdcec14c",
+      "source_rows": 32
+    },
+    "R3_TOKENAVG": {
+      "adapter_model_sha256": "8ee150c4c231cdbe1836f804069a68daec9d43af470da2db669dec5a83ad61a7",
+      "elapsed_seconds": 28.039390563964844,
+      "gradient_norm_before_clip": 138.29869079589844,
+      "loss_sum": 87.61251068115234,
+      "micro_batches": 4,
+      "optimizer_steps": 1,
+      "parameter_update_l2": 0.41858188983033623,
+      "peak_allocated_bytes": 16598721536,
+      "peak_reserved_bytes": 20354957312,
+      "result_sha256": "6ccea2eb889820ec9872b0263cd96bff806e781cd38c13c84749952d6740cbbb",
+      "source_rows": 8
+    }
+  },
+  "dev_accessed": false,
+  "full_training_allowed": false,
+  "full_training_started": false,
+  "gpu_smoke_complete": true,
+  "schema_version": "exp54-mechanism-control-smoke-audit-v1",
+  "status": "MECHANISM_CONTROL_SMOKE_PASS_FULL_TRAINING_NOT_STARTED",
+  "test_accessed": false
+}

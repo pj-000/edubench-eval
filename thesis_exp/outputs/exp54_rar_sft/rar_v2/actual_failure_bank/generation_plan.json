@@ -1,0 +1,158 @@
+{
+  "checkpoints": [
+    {
+      "adapter_config": {
+        "bytes": 969,
+        "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/formal_runs/seed42/r3/checkpoint-logical-epoch-3/adapter/adapter_config.json",
+        "sha256": "66460105dd0140d94e7ea3c01c93b675fb62a0ae5226a300f9eb57017a9b6b08"
+      },
+      "adapter_model": {
+        "bytes": 132187888,
+        "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/formal_runs/seed42/r3/checkpoint-logical-epoch-3/adapter/adapter_model.safetensors",
+        "sha256": "ff4f1f56fb1b7af47cd5a33c342eaf3465dd8dff24f84f418deb12c4593cbf56"
+      },
+      "checkpoint_relative_path": "seed42/r3/checkpoint-logical-epoch-3",
+      "seed": 42,
+      "trainer_state": {
+        "bytes": 472,
+        "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/formal_runs/seed42/r3/checkpoint-logical-epoch-3/trainer_state.json",
+        "sha256": "047715c1d8577912380cab3643ce65e53251537bdc473766856205a66b716571"
+      }
+    },
+    {
+      "adapter_config": {
+        "bytes": 969,
+        "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/formal_runs/seed43/r3/checkpoint-logical-epoch-3/adapter/adapter_config.json",
+        "sha256": "0e0af839f61c7020e55d14ebaf0850375cc9a0f9e5825f5f65fd527fbf46e5aa"
+      },
+      "adapter_model": {
+        "bytes": 132187888,
+        "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/formal_runs/seed43/r3/checkpoint-logical-epoch-3/adapter/adapter_model.safetensors",
+        "sha256": "2748a828b0852a1c5b3ede2a70c46e97800cd214c112509620b8f7b05017e003"
+      },
+      "checkpoint_relative_path": "seed43/r3/checkpoint-logical-epoch-3",
+      "seed": 43,
+      "trainer_state": {
+        "bytes": 472,
+        "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/formal_runs/seed43/r3/checkpoint-logical-epoch-3/trainer_state.json",
+        "sha256": "cb51544e33bd0343beff9e484bfe8e17b007fe2bdb8f94ee274c56ed2f0feceb"
+      }
+    },
+    {
+      "adapter_config": {
+        "bytes": 969,
+        "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/formal_runs/seed44/r3/checkpoint-logical-epoch-3/adapter/adapter_config.json",
+        "sha256": "b259400d76c4e85a288c8f63261b23e1034aaa3a5f79a1fe18c73b40672217d9"
+      },
+      "adapter_model": {
+        "bytes": 132187888,
+        "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/formal_runs/seed44/r3/checkpoint-logical-epoch-3/adapter/adapter_model.safetensors",
+        "sha256": "fe8d41ae73cebda6c6316b75d93c863a716406737800d3b6d6c90d7fa770eb61"
+      },
+      "checkpoint_relative_path": "seed44/r3/checkpoint-logical-epoch-3",
+      "seed": 44,
+      "trainer_state": {
+        "bytes": 472,
+        "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/formal_runs/seed44/r3/checkpoint-logical-epoch-3/trainer_state.json",
+        "sha256": "2ad22ba1df6edcab3f2b97afda9f6ebef65389aca4285dd2d3531b7991c0915d"
+      }
+    }
+  ],
+  "configuration": {
+    "bytes": 1453,
+    "path": "thesis_exp/exp54_rar_sft/configs/actual_failure_bank_generation.json",
+    "sha256": "9f73960ea75b22e990aaa040232950a88d449b359404d0ef30fa16737d18bdfb"
+  },
+  "execution": {
+    "dev_accessed": false,
+    "gpu_execution_allowed": false,
+    "gpu_execution_requires_user_confirmation": true,
+    "gpu_used": false,
+    "preference_pair_construction_started": false,
+    "stochastic_rollout_started": false,
+    "test_accessed": false
+  },
+  "expected_outputs_per_seed": 2654,
+  "expected_total_outputs": 7962,
+  "generation": {
+    "budget_boundary_policy": "truncate_rationale_prefix_and_force_json_close",
+    "do_sample": false,
+    "guided_json": true,
+    "max_new_tokens": 256,
+    "mode": "greedy",
+    "rollouts_per_checkpoint_per_prompt": 1,
+    "temperature": 0.0,
+    "top_p": null
+  },
+  "schema_version": "exp54-actual-failure-bank-plan-v1",
+  "scientific_role": "Neutral train-only inventory of actual R3-SFT failures; independent of the later actual/synthetic/hybrid pair decision.",
+  "sources": {
+    "thesis_exp/exp54_rar_sft/actual_failure_bank.py": {
+      "bytes": 8790,
+      "path": "thesis_exp/exp54_rar_sft/actual_failure_bank.py",
+      "sha256": "83a7484012958fbc2276964a9df412d78e82037980bfeb4c422e7a7e09fa862a"
+    },
+    "thesis_exp/exp54_rar_sft/build_actual_failure_bank_plan.py": {
+      "bytes": 5393,
+      "path": "thesis_exp/exp54_rar_sft/build_actual_failure_bank_plan.py",
+      "sha256": "8154809057aacf96976a92b564f9d17ab8bc6afc4dcb92a5e8dae6a145b6e8cf"
+    },
+    "thesis_exp/exp54_rar_sft/collect_actual_failure_bank.py": {
+      "bytes": 5234,
+      "path": "thesis_exp/exp54_rar_sft/collect_actual_failure_bank.py",
+      "sha256": "8ce21f6bb7d0380e213fcadabd903ca27b486c10830ddbfa42a8f1d9a7065b5b"
+    },
+    "thesis_exp/exp54_rar_sft/inference_contract.py": {
+      "bytes": 1739,
+      "path": "thesis_exp/exp54_rar_sft/inference_contract.py",
+      "sha256": "5eda600beb28db066567f3f9bb7a158ddd8c416506c9689248d6cae0d58a3681"
+    },
+    "thesis_exp/exp54_rar_sft/run_actual_failure_bank_vllm.py": {
+      "bytes": 11564,
+      "path": "thesis_exp/exp54_rar_sft/run_actual_failure_bank_vllm.py",
+      "sha256": "dbd86f10716809f275490e2235fbb10e19e38ed2a8bf7b228cbc59dbebb5c6be"
+    },
+    "thesis_exp/exp54_rar_sft/run_dev_inference_vllm.py": {
+      "bytes": 17211,
+      "path": "thesis_exp/exp54_rar_sft/run_dev_inference_vllm.py",
+      "sha256": "71258c152fc2cd965c1b65727ce20425f3c33a8e5a8e88a0d0113de5d2663660"
+    },
+    "thesis_exp/exp54_rar_sft/training_contract.py": {
+      "bytes": 17050,
+      "path": "thesis_exp/exp54_rar_sft/training_contract.py",
+      "sha256": "a9b100c9446f2a0e011b1faf67f873b51d0aaacf08a75423c71b6c48360f5071"
+    }
+  },
+  "status": "ACTUAL_FAILURE_BANK_PLAN_READY_NO_GPU_EXECUTION",
+  "train": {
+    "bytes": 11749497,
+    "label_counts": {
+      "1": 24,
+      "2": 52,
+      "3": 251,
+      "4": 946,
+      "5": 1381
+    },
+    "language_counts": {
+      "en": 1341,
+      "zh": 1313
+    },
+    "metric_counts": {
+      "BFA": 322,
+      "CRSC": 312,
+      "CSI": 187,
+      "DKA": 137,
+      "EICP": 134,
+      "HOTSD": 178,
+      "IFTC": 490,
+      "MGPF": 186,
+      "PALS": 163,
+      "RPR": 195,
+      "RTC": 99,
+      "SEI": 251
+    },
+    "path": "thesis_exp/data/splits/paper_like_triple_seed42/train.jsonl",
+    "rows": 2654,
+    "sha256": "0a1733b9209984c5c4291d205d1ac6057bed341717903b9de075d07de44a878e"
+  }
+}
