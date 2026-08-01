@@ -1,0 +1,18 @@
+\begin{table}[H]
+\centering
+\caption{本文与 Fornaciari 等（2021）soft-label multi-task 范式的定位比较。}
+\label{tab:positioning}
+\small
+\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{0.16\linewidth}YY@{}}
+\toprule
+维度 & Fornaciari 等（2021） & 本文 \\
+\midrule
+共同结构 & 硬标签主任务与分布辅助任务共享编码器 & 沿用硬主头--软辅助头共享主干 \\
+任务设置 & 词性标注、词干分类 & 教育回答 1--5 级序数评分 \\
+核心问题 & 利用标签分歧改进预测 & 比较三种软监督放置方式 \\
+损失设计 & 主任务与辅助分布损失等权联合 & 硬标签 CE 与分布 CE 等权联合 \\
+评分接口 & 主任务头输出标签 & 仅由硬头输出整数分数 \\
+证据重点 & 2 项 NLP 任务、3 个数据集、3 种辅助损失 & 序数指标、风险分层、置换与均分对照 \\
+\bottomrule
+\end{tabularx}
+\end{table}

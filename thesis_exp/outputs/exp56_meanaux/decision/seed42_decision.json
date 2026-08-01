@@ -1,0 +1,73 @@
+{
+  "checks": {
+    "bias_or_l2h_improves": true,
+    "exact_loses_at_most_two_rows": false,
+    "finite": true,
+    "kendall_noninferior": true,
+    "l2h_does_not_increase": true,
+    "label4_loses_at_most_three_rows": true,
+    "label5_loses_at_most_three_rows": false,
+    "mae_improvement_at_least_0p005": false
+  },
+  "interpretation_contract": "This post-hoc dev control compares target geometry/loss, not information content; no test prediction is authorized.",
+  "metrics": {
+    "hard_only": {
+      "Bias_human_mean": 0.11395582329317268,
+      "Exact_rounded": 0.7183734939759037,
+      "Kendall_human_mean": 0.5770767969155172,
+      "L2H_count": 11.0,
+      "MAE_human_mean": 0.3860441767068273,
+      "QWK_rounded": 0.6231931550699559,
+      "Recall_1_rounded": 0.6666666666666666,
+      "Recall_2_rounded": 0.21428571428571427,
+      "Recall_3_rounded": 0.27419354838709675,
+      "Recall_4_rounded": 0.6919831223628692,
+      "Recall_5_rounded": 0.8376811594202899
+    },
+    "hmsa": {
+      "Bias_human_mean": 0.09437751004016062,
+      "Exact_rounded": 0.7289156626506024,
+      "Kendall_human_mean": 0.6050346873454892,
+      "L2H_count": 7.0,
+      "MAE_human_mean": 0.37650602409638545,
+      "QWK_rounded": 0.6662189548976754,
+      "Recall_1_rounded": 0.5,
+      "Recall_2_rounded": 0.21428571428571427,
+      "Recall_3_rounded": 0.2903225806451613,
+      "Recall_4_rounded": 0.7046413502109705,
+      "Recall_5_rounded": 0.8492753623188406
+    },
+    "meanaux": {
+      "Bias_human_mean": 0.09437751004016062,
+      "Exact_rounded": 0.7078313253012049,
+      "Kendall_human_mean": 0.5759085728536114,
+      "L2H_count": 11.0,
+      "MAE_human_mean": 0.3885542168674699,
+      "QWK_rounded": 0.6371945161931254,
+      "Recall_1_rounded": 0.8333333333333334,
+      "Recall_2_rounded": 0.21428571428571427,
+      "Recall_3_rounded": 0.24193548387096775,
+      "Recall_4_rounded": 0.70042194092827,
+      "Recall_5_rounded": 0.8144927536231884
+    }
+  },
+  "paired_bootstrap": {
+    "meanaux_minus_hard_only": {
+      "ci_high": 0.0251004016064257,
+      "ci_low": -0.020080321285140573,
+      "mean_delta_mae": 0.0025100401606425707,
+      "resamples": 10000,
+      "rng_seed": 56
+    },
+    "meanaux_minus_hmsa": {
+      "ci_high": 0.03514056224899599,
+      "ci_low": -0.010040160642570281,
+      "mean_delta_mae": 0.012048192771084345,
+      "resamples": 10000,
+      "rng_seed": 56
+    }
+  },
+  "passed": false,
+  "status": "EXP56_SEED42_NO_GO",
+  "test_access_count": 0
+}

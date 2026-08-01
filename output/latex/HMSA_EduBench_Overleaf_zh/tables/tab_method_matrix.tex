@@ -1,0 +1,19 @@
+\begin{table}[H]
+\centering
+\caption{六种监督配置。Direct-soft 与 Single-head mix 为随机种子 42 的诊断配置；Shuffled-soft 与 MeanAux 为事后开发集机制对照。}
+\label{tab:method_matrix}
+\small
+\setlength{\tabcolsep}{3pt}
+\begin{tabularx}{\linewidth}{@{}lYYcYcY@{}}
+\toprule
+配置 & 主头目标 & 辅助头目标 & 头数 & 推理 & 种子 & 证据角色 \\
+\midrule
+Hard-only & 聚合硬标签 & -- & 1 & 硬头 & 42/43/44 & 匹配基线 \\
+Direct-soft & 三人经验分布 & -- & 1 & 同一头 & 42 & 诊断实验 \\
+Single-head mix & 硬/软目标各 0.5 & -- & 1 & 同一头 & 42 & 诊断实验 \\
+Shuffled-soft & 聚合硬标签 & 标签内置换 & 2 & 仅硬头 & 42/43/44 & 事后机制对照 \\
+MeanAux & 聚合硬标签 & 连续人类均分 & 2 & 仅硬头 & 42/43/44 & 事后目标对照 \\
+HMSA & 聚合硬标签 & 三人经验分布 & 2 & 仅硬头 & 42/43/44 & 三种子评估 \\
+\bottomrule
+\end{tabularx}
+\end{table}

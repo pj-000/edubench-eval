@@ -1,0 +1,25 @@
+\begin{table}[H]
+\centering
+\caption{同一教育评分任务上的既有结果与本文受控结果。A 组引自相关审计研究\cite{prioraudit}；本文的方法增益仅依据 B 组配对比较。}
+\label{tab:historical_evaluators}
+\small
+\setlength{\tabcolsep}{3.6pt}
+\begin{tabular}{@{}lrrrrr@{}}
+\toprule
+评审器 & MAE $\downarrow$ & \shortstack{有符号偏差\\（0 最优）} & \shortstack{精确\\匹配率 $\uparrow$} & Kendall $\tau_b$ $\uparrow$ & \shortstack{三档\\一致率 $\uparrow$} \\
+\midrule
+\multicolumn{6}{@{}l}{\textit{A. 相关工作报告的系统结果}} \\
+\addlinespace[2pt]
+EduBenchEvaluator & 0.430 & +0.246 & 0.725 & 0.508 & 0.897 \\
+DeepSeek-V3 & 0.576 & +0.458 & 0.602 & 0.326 & 0.867 \\
+DeepSeek-R1 & 0.589 & +0.335 & 0.585 & 0.319 & 0.854 \\
+QwQ-plus & 0.593 & +0.402 & 0.604 & 0.301 & 0.860 \\
+GPT-4o & 0.598 & +0.475 & 0.575 & 0.278 & 0.868 \\
+\midrule
+\multicolumn{6}{@{}l}{\textit{B. 本文受控比较（相同划分、配置和种子）}} \\
+\addlinespace[2pt]
+Hard-only & 0.433 $\pm$ 0.009 & 0.200 $\pm$ 0.051 & 0.731 $\pm$ 0.001 & 0.561 $\pm$ 0.018 & 0.879 $\pm$ 0.005 \\
+HMSA & \textbf{0.388 $\pm$ 0.003} & \textbf{0.146 $\pm$ 0.033} & \textbf{0.749 $\pm$ 0.002} & \textbf{0.611 $\pm$ 0.004} & \textbf{0.890 $\pm$ 0.003} \\
+\bottomrule
+\end{tabular}
+\end{table}

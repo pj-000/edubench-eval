@@ -1,0 +1,23 @@
+{
+  "status": "PASS",
+  "control": "within_label_shuffled_soft",
+  "evidence_role": "posthoc_dev_only",
+  "shuffle_seed": 20260730,
+  "mapping_shared_across_model_seeds": true,
+  "mapping_sha256": "b4e96c49607700be99816582c1b85a8085b8c5abb260ddafbad4e9ee0dc25ad4",
+  "training_rows": 2654,
+  "effective_target_changes": 1490,
+  "effective_change_rate": 0.5614167294649586,
+  "preserved": [
+    "training inputs and hard targets",
+    "dual-head architecture and initialization rule",
+    "per-hard-label soft-target multiset and entropy distribution",
+    "optimizer, scheduler, auxiliary weight, checkpoint rule, and hard-head inference"
+  ],
+  "development_targets": "original_unshuffled_human_distributions",
+  "test_access_count": 0,
+  "source_sha256": {
+    "dev_mechanism_comparison.json": "7e2d1056b4570954b8030d0164e4c36c2d95546146666ce43bfd595de84d42b6",
+    "shuffle_audit.json": "dea91706747b3b783da9bb55e92e4df16a3a5b7f734dd72f9b163c3f3298fbdb"
+  }
+}

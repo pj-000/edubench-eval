@@ -1,0 +1,21 @@
+experiment: Exp55-WithinLabel-Shuffled-Soft
+purpose: posthoc_dev_only_mechanism_control
+parent: Exp51-HMSA
+variant: within_label_shuffled_soft
+shuffle_scope: within_hard_label
+shuffle_seed: 20260730
+mapping_shared_across_model_seeds: true
+model_seeds: [42, 43, 44]
+preserved:
+  - dual_head_architecture
+  - hard_targets
+  - per_hard_label_soft_target_multiset
+  - per_hard_label_soft_target_entropy_distribution
+  - auxiliary_loss_weight
+  - optimizer_and_scheduler
+  - checkpoint_rule
+  - hard_head_inference
+changed:
+  - training_example_to_soft_target_correspondence
+development_targets: original_unshuffled_human_distributions
+test_access: forbidden

@@ -1,0 +1,14 @@
+{
+  "status": "INVALID_SHARED_CHECKPOINT_COLLISION",
+  "detected_at": "2026-08-01",
+  "affected_seeds": [42, 43, 44],
+  "cause": "The command-line checkpoint root was reduced to its parent directory. Concurrent seeds therefore wrote to and reloaded the same best checkpoint directory.",
+  "evidence": {
+    "shared_checkpoint_directory": "thesis_exp/artifacts/exp56_meanaux/hard_main_mean_aux_lambda1/best",
+    "final_prediction_sha256_all_seeds": "a699775d4351b46be69d87ee4c2e9b530c3b36026bbfb06c2be9064448b67545",
+    "training_histories_differed": true,
+    "selected_final_metrics_were_identical": true
+  },
+  "disposition": "Quarantine all affected outputs and checkpoints. Do not use their final metrics. Fix checkpoint-root isolation, add regression tests, update the source lock, and rerun all three seeds from initialization.",
+  "test_access_count": 0
+}
