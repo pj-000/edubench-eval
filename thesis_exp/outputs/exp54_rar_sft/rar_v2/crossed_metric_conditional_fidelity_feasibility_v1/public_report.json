@@ -1,0 +1,203 @@
+{
+  "data_scope": {
+    "gpu_used": false,
+    "new_api_calls": false,
+    "new_inference": false,
+    "new_training": false,
+    "splits": [
+      "train",
+      "dev"
+    ],
+    "test_accessed": false
+  },
+  "decision": "NO_GO_INSUFFICIENT_CROSSED_METRIC_SUPPORT",
+  "downstream_estimands": {
+    "human_metric_difference_prevalence": "NOT_ESTIMATED_PAIR_SUPPORT_GATE_FAILED",
+    "leave_one_rater_metric_concordance": "NOT_ESTIMATED_PAIR_SUPPORT_GATE_FAILED",
+    "model_conditional_fidelity": "NOT_ESTIMATED_PAIR_SUPPORT_GATE_FAILED"
+  },
+  "gate_results": {
+    "dev_metric_pairs_with_at_least_20_shared_qa": 0,
+    "jointly_eligible_metric_pairs": {
+      "observed": 0,
+      "passed": false
+    },
+    "multi_metric_dev_qa_nodes": {
+      "observed": 131,
+      "passed": true
+    },
+    "train_metric_pairs_with_at_least_30_shared_qa": 41
+  },
+  "interpretation": {
+    "new_method_authorized": false,
+    "not_supported": "A NO-GO does not show that rubric conditional insensitivity is absent; it shows that the current dev split cannot identify it under the specified design.",
+    "supported": "The current dev split does not meet the preregistered repeated-QA metric-pair support required for a stable conditional-fidelity direction-selection audit."
+  },
+  "inventory": {
+    "dev": {
+      "duplicate_extra_row_count": 5,
+      "duplicate_response_metric_edge_count": 5,
+      "maximum_shared_qa_per_metric_pair": 11,
+      "metric_count_distribution": {
+        "1": 371,
+        "2": 108,
+        "3": 22,
+        "6": 1
+      },
+      "metric_pair_count": 48,
+      "multi_metric_qa_node_count": 131,
+      "qa_node_count": 502,
+      "row_count": 664,
+      "single_metric_qa_node_count": 371
+    },
+    "train": {
+      "duplicate_extra_row_count": 17,
+      "duplicate_response_metric_edge_count": 16,
+      "maximum_shared_qa_per_metric_pair": 176,
+      "metric_count_distribution": {
+        "1": 163,
+        "2": 231,
+        "3": 219,
+        "4": 155,
+        "5": 97,
+        "6": 37,
+        "7": 4
+      },
+      "metric_pair_count": 55,
+      "multi_metric_qa_node_count": 743,
+      "qa_node_count": 906,
+      "row_count": 2654,
+      "single_metric_qa_node_count": 163
+    }
+  },
+  "jointly_eligible_metric_pairs": [],
+  "schema_version": "exp54-crossed-metric-conditional-fidelity-feasibility-v1",
+  "thresholds": {
+    "minimum_dev_shared_qa_per_metric_pair": 20,
+    "minimum_jointly_eligible_metric_pairs": 6,
+    "minimum_multi_metric_dev_qa_nodes": 80,
+    "minimum_train_shared_qa_per_metric_pair": 30
+  },
+  "top_dev_metric_pairs": [
+    {
+      "dev_shared_qa": 11,
+      "metric_a": "CRSC",
+      "metric_b": "IFTC",
+      "train_shared_qa": 171
+    },
+    {
+      "dev_shared_qa": 9,
+      "metric_a": "BFA",
+      "metric_b": "CRSC",
+      "train_shared_qa": 161
+    },
+    {
+      "dev_shared_qa": 9,
+      "metric_a": "CSI",
+      "metric_b": "HOTSD",
+      "train_shared_qa": 55
+    },
+    {
+      "dev_shared_qa": 9,
+      "metric_a": "EICP",
+      "metric_b": "RPR",
+      "train_shared_qa": 80
+    },
+    {
+      "dev_shared_qa": 8,
+      "metric_a": "BFA",
+      "metric_b": "IFTC",
+      "train_shared_qa": 176
+    },
+    {
+      "dev_shared_qa": 8,
+      "metric_a": "IFTC",
+      "metric_b": "RPR",
+      "train_shared_qa": 110
+    },
+    {
+      "dev_shared_qa": 7,
+      "metric_a": "BFA",
+      "metric_b": "EICP",
+      "train_shared_qa": 91
+    },
+    {
+      "dev_shared_qa": 7,
+      "metric_a": "BFA",
+      "metric_b": "RPR",
+      "train_shared_qa": 121
+    },
+    {
+      "dev_shared_qa": 7,
+      "metric_a": "IFTC",
+      "metric_b": "MGPF",
+      "train_shared_qa": 123
+    },
+    {
+      "dev_shared_qa": 6,
+      "metric_a": "IFTC",
+      "metric_b": "PALS",
+      "train_shared_qa": 93
+    },
+    {
+      "dev_shared_qa": 6,
+      "metric_a": "PALS",
+      "metric_b": "SEI",
+      "train_shared_qa": 91
+    },
+    {
+      "dev_shared_qa": 5,
+      "metric_a": "CRSC",
+      "metric_b": "EICP",
+      "train_shared_qa": 63
+    },
+    {
+      "dev_shared_qa": 5,
+      "metric_a": "CRSC",
+      "metric_b": "HOTSD",
+      "train_shared_qa": 84
+    },
+    {
+      "dev_shared_qa": 5,
+      "metric_a": "CRSC",
+      "metric_b": "RPR",
+      "train_shared_qa": 106
+    },
+    {
+      "dev_shared_qa": 5,
+      "metric_a": "HOTSD",
+      "metric_b": "IFTC",
+      "train_shared_qa": 85
+    },
+    {
+      "dev_shared_qa": 5,
+      "metric_a": "IFTC",
+      "metric_b": "SEI",
+      "train_shared_qa": 120
+    },
+    {
+      "dev_shared_qa": 4,
+      "metric_a": "BFA",
+      "metric_b": "CSI",
+      "train_shared_qa": 75
+    },
+    {
+      "dev_shared_qa": 4,
+      "metric_a": "BFA",
+      "metric_b": "MGPF",
+      "train_shared_qa": 90
+    },
+    {
+      "dev_shared_qa": 4,
+      "metric_a": "CRSC",
+      "metric_b": "DKA",
+      "train_shared_qa": 49
+    },
+    {
+      "dev_shared_qa": 4,
+      "metric_a": "DKA",
+      "metric_b": "IFTC",
+      "train_shared_qa": 64
+    }
+  ]
+}

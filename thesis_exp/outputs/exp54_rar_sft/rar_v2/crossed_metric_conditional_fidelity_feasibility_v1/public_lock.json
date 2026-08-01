@@ -1,0 +1,15 @@
+{
+  "analysis_source_sha256": "9a4c2631739b925e8b0068b34b3c80f1dd4eae19f50e9ee37f4c6701f444fe45",
+  "decision": "NO_GO_INSUFFICIENT_CROSSED_METRIC_SUPPORT",
+  "dev_sha256": "a18d6a27b9a524d4592a359658ae70c9348fe88e43c962971ba95f62d2b6cdf0",
+  "gpu_used": false,
+  "new_api_calls": false,
+  "new_inference": false,
+  "new_training": false,
+  "protocol_sha256": "1e40c00768b834c624cc25accd4ab2807771461a3b5e177fd7fa1e0140735cd9",
+  "public_report_sha256": "aec00fcf2726aee252a499ea35b14a4e63b2b22e038bc6268089955faf1274d5",
+  "schema_version": "exp54-crossed-metric-conditional-fidelity-feasibility-v1",
+  "test_accessed": false,
+  "test_source_sha256": "e4eb0d7e75b3a137966cb8902ff1202d821ab1c0e37681b63d661ab23d0a3946",
+  "train_sha256": "0a1733b9209984c5c4291d205d1ac6057bed341717903b9de075d07de44a878e"
+}

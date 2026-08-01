@@ -1,0 +1,26 @@
+{
+  "schema_version": "exp54-crossed-metric-conditional-fidelity-feasibility-v1",
+  "status": "PREREGISTERED_FEASIBILITY_GATE",
+  "purpose": "Determine whether the frozen train/dev split has enough repeated-QA crossed-metric support to identify a conditional-fidelity direction before any full audit or new method work.",
+  "data_scope": {
+    "splits": ["train", "dev"],
+    "new_training": false,
+    "new_inference": false,
+    "new_api_calls": false,
+    "gpu_use": false,
+    "test_access": false
+  },
+  "identity": {
+    "qa_node": ["question_key", "answer_key"],
+    "edge": ["question_key", "answer_key", "metric_id"],
+    "metric_pair_counting": "Each unordered metric pair is counted at most once per QA node, even if a response-metric edge has duplicate rows."
+  },
+  "go_requirements": {
+    "minimum_multi_metric_dev_qa_nodes": 80,
+    "minimum_train_shared_qa_per_metric_pair": 30,
+    "minimum_dev_shared_qa_per_metric_pair": 20,
+    "minimum_jointly_eligible_metric_pairs": 6
+  },
+  "sequential_rule": "If pair-support requirements fail, return NO_GO_INSUFFICIENT_CROSSED_METRIC_SUPPORT and do not estimate human contrast reliability or model conditional fidelity on post-hoc pooled sparse pairs.",
+  "interpretation": "A NO-GO is a limitation of the current dev design for this scientific question, not evidence that rubric conditional insensitivity is absent."
+}
