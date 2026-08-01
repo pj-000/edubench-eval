@@ -1,0 +1,90 @@
+{
+  "schema_version": "exp54-llm-judge-spec-intervention-pilot-v1",
+  "status": "PROTOCOL_FROZEN_NOT_EXECUTED",
+  "population": {
+    "type": "LLM_judge_instances",
+    "runtime_model": "gpt-5.6-sol",
+    "reasoning_effort": "max",
+    "not_human_raters": true,
+    "not_posterior_samples": true
+  },
+  "estimands": {
+    "ordinal_distance": "abs(score_a-score_b)/4",
+    "D_original": "expected pairwise ordinal distance under the original specification",
+    "D_clarified": "expected pairwise ordinal distance under the model-audited clarified specification",
+    "U_clarifiable": "D_original-D_clarified",
+    "U_residual": "D_clarified"
+  },
+  "roles": {
+    "clarification_proposer_instances": 1,
+    "fidelity_auditor_instances": 2,
+    "original_condition_judge_instances": 5,
+    "clarified_condition_judge_instances": 5,
+    "fresh_context_per_role_instance": true,
+    "cross_condition_judge_reuse_allowed": false,
+    "row_level_output_exchange_allowed": false
+  },
+  "sampling": {
+    "split": "train_only",
+    "source": "frozen_R3_train_failure_bank",
+    "rubric_boundary_groups": 4,
+    "target_adjacent_boundaries": ["1-2", "2-3", "3-4", "4-5"],
+    "clarification_development_items_per_group": 2,
+    "evaluation_items_per_group": 4,
+    "evaluation_items_total": 16,
+    "evaluation_visible_to_clarification_proposer": false,
+    "dev_access_allowed": false,
+    "test_access_allowed": false
+  },
+  "judge_execution": {
+    "conditions": ["original", "clarified"],
+    "judge_instances_per_condition": 5,
+    "formal_rating_decisions": 160,
+    "score_range": [1, 5],
+    "output_order": ["score", "evidence_grounded_reason"],
+    "condition_blinding": true,
+    "other_judge_outputs_visible": false,
+    "item_order_randomized_and_locked": true
+  },
+  "clarification_contract": {
+    "clause_level_original_text_provenance_required": true,
+    "new_criterion_allowed": false,
+    "criterion_removal_allowed": false,
+    "weight_change_allowed": false,
+    "new_score_cap_allowed": false,
+    "evaluation_answer_access_allowed": false,
+    "answer_specific_rule_allowed": false,
+    "both_fidelity_auditors_must_pass": true,
+    "interpretation": "model-audited textual policy preservation, not recovery of author intent"
+  },
+  "primary_outcome": "paired mean change in pairwise ordinal judge disagreement",
+  "secondary_outcomes": [
+    "mean_score_shift",
+    "exact_agreement",
+    "adjacent_boundary_crossing",
+    "clear_anchor_invariance",
+    "evidence_span_consistency",
+    "judge_replication_value",
+    "clarification_vs_replication_value_by_group"
+  ],
+  "go_gate": {
+    "minimum_dual_auditor_fidelity_pass_rate": 0.8,
+    "minimum_relative_disagreement_reduction": 0.25,
+    "one_sided_interval_level": 0.9,
+    "tau_D_interval_lower_strictly_greater_than": 0.0,
+    "minimum_groups_favoring_clarification": 2,
+    "minimum_groups_favoring_replication_or_direct": 1,
+    "effect_must_extend_beyond_boundary_2_3": true,
+    "clear_anchor_material_policy_shift_allowed": false
+  },
+  "execution_boundary": {
+    "model_training_allowed": false,
+    "new_loss_implementation_allowed": false,
+    "new_DPO_pairs_allowed": false,
+    "gpu_required": false,
+    "dev_access_allowed": false,
+    "test_access_allowed": false,
+    "human_validity_claim_allowed": false,
+    "CCF_A_method_claim_allowed": false
+  }
+}
