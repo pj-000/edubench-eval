@@ -1,0 +1,97 @@
+{
+  "P1_predictions_available": false,
+  "R3_to_GPT_boundary_transfer_seed_events": 9,
+  "R3_to_GPT_direction_transfer_seed_events": 12,
+  "by_boundary": {
+    "1-2": {
+      "n": 3,
+      "original_Pweak": 1,
+      "original_consensus_errors": 1,
+      "original_correct": 1
+    },
+    "2-3": {
+      "n": 3,
+      "original_Pweak": 0,
+      "original_consensus_errors": 0,
+      "original_correct": 3
+    },
+    "3-4": {
+      "n": 3,
+      "original_Pweak": 1,
+      "original_consensus_errors": 1,
+      "original_correct": 1
+    },
+    "4-5": {
+      "n": 3,
+      "original_Pweak": 1,
+      "original_consensus_errors": 1,
+      "original_correct": 1
+    }
+  },
+  "clarification_fixes_recurrent": 2,
+  "clarification_harms_recurrent": 1,
+  "clarified_panel_persistent_consensus_errors_recurrent": 2,
+  "clear_anchors": 4,
+  "clear_anchors_original_correct": 3,
+  "decision": "NO_DIRECTION_SELECTED_MORE_EVIDENCE_NEEDED",
+  "dev_accessed": false,
+  "fired_branches": [
+    "HUMAN_RATING_NONUNIQUENESS_DOMINANT"
+  ],
+  "gpu_used": false,
+  "human_classes_recurrent": {
+    "H0": 4,
+    "H1": 8
+  },
+  "human_nonuniqueness_error_only_support": false,
+  "incorrect_mode_in_human_score_set_recurrent": 1,
+  "leave_one_boundary_out": {
+    "1-2": {
+      "n": 9,
+      "original_consensus_errors": 2,
+      "original_correct": 5
+    },
+    "2-3": {
+      "n": 9,
+      "original_consensus_errors": 3,
+      "original_correct": 3
+    },
+    "3-4": {
+      "n": 9,
+      "original_consensus_errors": 2,
+      "original_correct": 5
+    },
+    "4-5": {
+      "n": 9,
+      "original_consensus_errors": 2,
+      "original_correct": 5
+    }
+  },
+  "new_model_calls": 0,
+  "original_mode_in_human_score_set_recurrent": 7,
+  "original_panel_Pweak_recurrent": 3,
+  "original_panel_consensus_errors_recurrent": 3,
+  "original_panel_correct_recurrent": 6,
+  "original_panel_incorrect_recurrent": 6,
+  "original_panel_severe_consensus_errors_recurrent": 2,
+  "preregistered_decision": "HUMAN_RATING_NONUNIQUENESS_DOMINANT",
+  "preregistered_human_set_gate_has_correctness_denominator_confound": true,
+  "private_answer_key_sha256": "04aff2696336a4e4e307aeadd47e64039ce00ca6474cda86b9b94f9870146e9b",
+  "private_response_hashes": {
+    "response_clarified-J1.json": "a92170ec428ad8e24239f392799679b5f09ee18eb072817bfb7e9d3c5f82e5fa",
+    "response_clarified-J2.json": "d780b096ec8f8b1df41c1dd8edbbcfc98f5cce0b652fbc5b7406048c9a5965b2",
+    "response_clarified-J3.json": "b5854a15b6dd172f1ddfbb7acaa0c02cae65008c86061be7dca814e2cf9d8349",
+    "response_clarified-J4.json": "4187f74d17f484044264b67d406e36a326c489f4460c70e38251836916d60b24",
+    "response_clarified-J5.json": "af398fe7c7541f5d9de069c0cdf4d363c755c4013f1a814681e1a9a60afb9826",
+    "response_original-J1.json": "29b8ebc396b78a6b38e46aae0f924f58bde9eca4bcf02c8fa20459ed69ce6777",
+    "response_original-J2.json": "03b0eeacbfe75b4ddd4fd541b8451e28cb69f2a80acde64a00013cda26d7c0da",
+    "response_original-J3.json": "303b34b41bc45d4fb9e86a7be8070b79f8b445f73d9f85bd7e8eedf1d8d99b88",
+    "response_original-J4.json": "54e27cc8ca113a5a12cfdf526e93b44cbedc5acd92a92effae12a7343e4fdd8f",
+    "response_original-J5.json": "31c382e327d294d7d9c85eace873b9e16548f038b3e8e3399975592b39ed1d42"
+  },
+  "private_row_table_sha256": "571e40fec99ce77632032bcd3f19778d9d4905ae01aaf2ad165338ec3e33644b",
+  "recurrent_failures": 12,
+  "schema_version": "exp54-train-only-consensus-correctness-transfer-audit-v1",
+  "test_accessed": false,
+  "training_started": false
+}
