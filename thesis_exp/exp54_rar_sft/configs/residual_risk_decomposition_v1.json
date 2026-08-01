@@ -1,0 +1,79 @@
+{
+  "schema_version": "exp54-residual-risk-decomposition-v1",
+  "status": "PREREGISTERED_BEFORE_EXECUTION",
+  "purpose": "Choose exactly one next research direction by separating response exposure, local ordinal boundary support, and relative-correction landing mismatch using frozen train/dev artifacts only.",
+  "allowed_inputs": {
+    "splits": ["train", "dev"],
+    "arms": ["S0", "R2", "R3", "P1_FIELD_DPO"],
+    "seeds": [42, 43, 44],
+    "selected_sft_epoch": 3,
+    "new_training": false,
+    "new_api_calls": false,
+    "test_access": false
+  },
+  "diagnostic_variables": {
+    "response_seen": "(question_key, answer_key) occurs in locked train",
+    "exact_response_metric_edge_seen": "(question_key, answer_key, metric_id, language) occurs in locked train",
+    "boundary_support": "Within the same metric_id-language train stratum, S_k=min(count(label<=k), count(label>k)); row support is the minimum over valid adjacent boundaries k in {y-1,y}.",
+    "supported_binary": "all valid adjacent-boundary support counts are at least 20",
+    "human_ambiguity": {
+      "H0": "all three human scores agree",
+      "H1": "human score range is exactly 1",
+      "H2": "human score range is at least 2"
+    },
+    "landing_population": "label_5<=2, response_seen, supported_binary, ambiguity in H0/H1, and raw DeltaH>0"
+  },
+  "probability_transport": {
+    "delta_high": "-((P1[p4]+P1[p5])-(R3[p4]+R3[p5]))",
+    "delta_gold": "P1[p_gold]-R3[p_gold]",
+    "delta_middle": "P1[p3]-R3[p3]",
+    "GLE": "sum(delta_gold)/sum(delta_high)",
+    "MCR": "sum(delta_middle)/sum(delta_high)",
+    "controls": ["metric-language train-prior neutralization", "question-group cross-fitted vector scaling"]
+  },
+  "statistics": {
+    "bootstrap_cluster": "question_key",
+    "bootstrap_replicates": 10000,
+    "bootstrap_seed": 20260802,
+    "confidence_level": 0.95,
+    "seed_reporting": "separate",
+    "continuous_support_primary": true,
+    "binary_support_threshold_secondary": 20,
+    "holm_correction": true,
+    "leave_one_metric_out": true,
+    "leave_one_language_out": true
+  },
+  "direction_gates": {
+    "A_EVALUATION_UNIT": {
+      "minimum_unseen_minus_seen_mae": 0.05,
+      "alternative_relative_boundary_or_l2h_increase": 0.20,
+      "ci_must_exclude_zero": true,
+      "minimum_seeds": 2,
+      "minimum_metric_language_strata": 3,
+      "benefits_mainly_seen_required": true
+    },
+    "B_BOUNDARY_SUPPORT": {
+      "minimum_unsupported_minus_supported_mae": 0.05,
+      "alternative_relative_boundary_increase": 0.20,
+      "minimum_seeds": 2,
+      "minimum_metric_language_strata": 3,
+      "minimum_low_score_failures_in_unsupported": 0.60,
+      "adverse_continuous_support_association_required": true
+    },
+    "C_RELATIVE_TO_ABSOLUTE": {
+      "population": "seen-response + supported-boundary + H0/H1 + label<=2",
+      "minimum_MCR": 0.50,
+      "maximum_GLE": 0.35,
+      "minimum_seeds": 2,
+      "minimum_metric_language_strata": 3,
+      "maximum_exact_or_recall2_improvement": 0.05,
+      "must_persist_after_prior_and_calibration_controls": true
+    },
+    "D_STOP_METHOD_EXPANSION": "Selected when no single A/B/C gate passes; multiple simultaneous gates also mean no uniquely identified method direction."
+  },
+  "interpretation_limits": [
+    "This is a direction-selection diagnostic, not a causal root-cause experiment.",
+    "Decision thresholds are preregistered project rules, not universal constants.",
+    "No row-level identifiers, text, predictions, or probabilities may enter the public report."
+  ]
+}

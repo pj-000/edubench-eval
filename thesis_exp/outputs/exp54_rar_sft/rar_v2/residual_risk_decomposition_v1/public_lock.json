@@ -1,0 +1,16 @@
+{
+  "schema_version": "exp54-residual-risk-decomposition-public-lock-v1",
+  "status": "COMPLETE",
+  "direction": "D_STOP_METHOD_EXPANSION",
+  "public_report_sha256": "9bf76783a531d4fb6538de8345c72a6d0e2b856cb5ae8333855040e470f2c8cf",
+  "analysis_source_sha256": "2d8041ccb3e7dd62fbcc7c27395d58fe62b078add2365618eb025364e2e3d168",
+  "protocol_sha256": "106847b104da3867e76a5e988e2c872f5d5ca8472a86adb49f340e27af85a8fe",
+  "test_source_sha256": "8e23e34c3c5e9b67e96f4402cfc6d06b3f99803557661eafe5cc7dc9c4c8a58f",
+  "auditor_source_sha256": "a676a38810e3fe3b5901cac7cfee8d984c38bcbcadc213c9384751c9931ab542",
+  "bootstrap_replicates": 10000,
+  "test_accessed": false,
+  "new_training": false,
+  "new_api_calls": false,
+  "gpu_used": false,
+  "row_level_artifacts_published": false
+}
