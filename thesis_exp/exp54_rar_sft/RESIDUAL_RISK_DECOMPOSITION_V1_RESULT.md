@@ -1,8 +1,14 @@
 # Residual Risk Decomposition V1 Result
 
+> Scientific interpretation superseded in part by
+> `COMMON_SUPPORT_EXPOSURE_AND_NESTED_LANDING_PATCH_V1_RESULT.md`. The
+> operational decision to authorize no new method on the current artifacts is
+> retained, but A/B/C must not be described as disproven. The corrected label
+> is `D_NO_METHOD_DIRECTION_IDENTIFIED_ON_CURRENT_DATA`.
+
 ## Decision
 
-`D_STOP_METHOD_EXPANSION`
+`D_NO_METHOD_DIRECTION_IDENTIFIED_ON_CURRENT_DATA`
 
 None of the three preregistered A/B/C direction gates passed. This result does
 not say that response exposure, sparse boundaries, or relative preference

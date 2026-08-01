@@ -1,0 +1,49 @@
+{
+  "schema_version": "exp54-common-support-exposure-nested-landing-patch-v1",
+  "status": "PREREGISTERED_BEFORE_PATCH_EXECUTION",
+  "purpose": "Correct composition-confounded exposure claims and describe low-score probability transport without claiming mechanism identification.",
+  "execution_scope": {
+    "splits": ["train", "dev"],
+    "arms": ["S0", "R3", "P1_FIELD_DPO"],
+    "seeds": [42, 43, 44],
+    "new_training": false,
+    "new_api_calls": false,
+    "test_access": false,
+    "gpu_use": false
+  },
+  "exposure_levels": {
+    "E2": "exact (question_key, answer_key) response seen in train",
+    "E1": "question_key seen but exact response unseen",
+    "E0": "question_key unseen"
+  },
+  "common_support": {
+    "primary_comparison": "E1 versus E2 because E0 is reported only if observed",
+    "stratum": ["metric_id", "language", "label_5", "human_ambiguity"],
+    "weights": "pooled row-frequency weights normalized over strata containing both groups",
+    "bootstrap": "question-cluster exponential multiplier bootstrap with fixed common-support strata and fixed pooled weights",
+    "replicates": 10000,
+    "seed": 20260803,
+    "finite_resampling_pvalue": true
+  },
+  "paired_benefits": {
+    "SFT": "abs(S0 error)-abs(R3 error)",
+    "DPO": "abs(R3 error)-abs(P1 error)",
+    "positive_means_improvement": true
+  },
+  "support_names": {
+    "cumulative_threshold_marginal_support": "min(count(Y<=k), count(Y>k))",
+    "direct_adjacent_class_support": "min(count(Y=k), count(Y=k+1))",
+    "binary_threshold": 20
+  },
+  "nested_transport": {
+    "base_filter": "label_5<=2 and raw DeltaH>0",
+    "levels": ["all_low", "response_seen", "H0_H1", "cumulative_supported", "direct_adjacent_supported"],
+    "reported_mass": ["delta_p1", "delta_p2", "delta_p3", "delta_p4", "delta_p5", "delta_high", "delta_gold", "delta_other_low"],
+    "interpretation": "descriptive existence analysis only; cannot distinguish support shortage from DPO estimand mismatch"
+  },
+  "decision_rules": {
+    "response_identification_data": "E1-minus-E2 standardized MAE >=0.05 with 95% CI above zero in at least two seeds",
+    "low_boundary_identification_data": "all three seeds have positive removed high-score mass, MCR>=0.50, GLE<=0.35 on all_low",
+    "otherwise": "write thesis and authorize no new method on current data"
+  }
+}

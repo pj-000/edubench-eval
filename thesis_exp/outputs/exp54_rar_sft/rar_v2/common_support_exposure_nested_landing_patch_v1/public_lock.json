@@ -1,0 +1,17 @@
+{
+  "schema_version": "exp54-common-support-exposure-nested-landing-public-lock-v1",
+  "status": "COMPLETE",
+  "decision": "WRITE_THESIS_NO_NEW_METHOD_ON_CURRENT_DATA",
+  "scientific_direction_label": "D_NO_METHOD_DIRECTION_IDENTIFIED_ON_CURRENT_DATA",
+  "public_report_sha256": "564024394445491c21009bb5fb9996036601a51bbcc45068c65f99ddd6411e6b",
+  "analysis_source_sha256": "bbd8dc53b80d69f7b4d7fd21831f97a3a9a1a4d7f4cc9adf9fcb42fecc734100",
+  "protocol_sha256": "ba1b663cc8af89a322307fc53740d0574c0a69582a9e95afb8bd5e3bd7c2fdac",
+  "test_source_sha256": "1715345563d3459a3d1a37449c9e4a454ff4b860ad11ddd45c2bc4c7c6261734",
+  "auditor_source_sha256": "3e21d55b5a4a3372bde8fbc12692a10c509631d2be84c3863e6ed44f39d5a395",
+  "bootstrap_replicates": 10000,
+  "test_accessed": false,
+  "new_training": false,
+  "new_api_calls": false,
+  "gpu_used": false,
+  "row_level_artifacts_published": false
+}
