@@ -55,6 +55,13 @@ def test_rating_budget_tamper_fails() -> None:
         audit_protocol(config)
 
 
+def test_evaluation_composition_tamper_fails() -> None:
+    config = _config()
+    config["sampling"]["clear_anchor_evaluation_items_per_group"] = 0
+    with pytest.raises(ValueError, match="clear-anchor"):
+        audit_protocol(config)
+
+
 def test_method_claim_authorization_fails() -> None:
     config = copy.deepcopy(_config())
     config["execution_boundary"]["CCF_A_method_claim_allowed"] = True

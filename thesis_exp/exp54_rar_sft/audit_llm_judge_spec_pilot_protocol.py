@@ -39,6 +39,18 @@ def audit_protocol(config: dict) -> None:
         raise ValueError("rubric-boundary group count differs")
     if sampling["evaluation_items_total"] != 16:
         raise ValueError("evaluation item count differs")
+    if sampling["recurrent_crossing_evaluation_items_per_group"] != 3:
+        raise ValueError("recurrent crossing evaluation count differs")
+    if sampling["clear_anchor_evaluation_items_per_group"] != 1:
+        raise ValueError("clear-anchor evaluation count differs")
+    if sampling["minimum_recurrent_crossing_records_per_group"] != 5:
+        raise ValueError("minimum recurrent crossing pool differs")
+    if (
+        sampling["recurrent_crossing_evaluation_items_per_group"]
+        + sampling["clear_anchor_evaluation_items_per_group"]
+        != sampling["evaluation_items_per_group"]
+    ):
+        raise ValueError("evaluation item composition does not close")
     if sampling["evaluation_visible_to_clarification_proposer"]:
         raise ValueError("evaluation items leak to the clarification proposer")
     if sampling["dev_access_allowed"] or sampling["test_access_allowed"]:

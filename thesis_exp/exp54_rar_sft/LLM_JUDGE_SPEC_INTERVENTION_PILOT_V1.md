@@ -98,14 +98,20 @@ selects four rubric-boundary groups, targeting all adjacent boundaries:
 Each selected group must contain:
 
 - two clarification-development answers;
-- four evaluation answers not shown to the proposer;
-- recurring frozen-model transitions relevant to the target boundary;
-- one or more clear anchor cases when available.
+- four evaluation answers not shown to the proposer, consisting of exactly
+  three recurrent boundary-crossing failures and one clear anchor;
+- at least five recurrent frozen-model boundary-crossing records so that the
+  two development and three evaluation failures are disjoint;
+- a clear anchor whose three original human scores agree and whose frozen R3
+  outputs are correct in all three seeds.
 
 One global clarification is written per rubric-boundary group. It cannot be
 adapted to an evaluation answer. Selection uses only train identities and
 frozen train failure evidence. Human aggregate labels and historical model
 predictions are excluded from judge prompts.
+
+The anchor is used only to detect a material scoring-policy shift. Its hidden
+historical labels and predictions are never shown to a judge.
 
 ## Judge execution
 
@@ -190,4 +196,3 @@ cross-model generality.
 Any later CCF-A claim requires at minimum a second model family, an external
 norm-governed ordinal task, same-data generic baselines, a source-aware
 estimator, a non-equivalence argument, and a new confirmatory holdout.
-
