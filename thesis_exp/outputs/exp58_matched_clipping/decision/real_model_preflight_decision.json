@@ -1,0 +1,36 @@
+{
+  "status": "EXP58_REAL_MODEL_PREFLIGHT_PASS_READY_FOR_SEED42_GPU_AUTHORIZATION",
+  "protocol_version": 2,
+  "protocol_sha256": "0ecb1c4520b597966abb3483234fdc637c61109a4050db1da85114120e0b2b8b",
+  "source_lock_sha256": "0b841458fd0b405132e3403ffabc31bc4f590eab9ef431b5549ce59979ecfd2e",
+  "preserved_first_bf16_failure": {
+    "sha256": "79a3185b3a6046531b7d0473f244381bf17c6bd56278a193a028cd9bf1a56677",
+    "optimizer_steps": 0,
+    "test_access_count": 0
+  },
+  "fp32_identity_gate": {
+    "status": "PASS",
+    "sha256": "d2569a0911e3d7d6630848631313522c7b0fca00f169f93448b1c429cfaa30ed",
+    "global_decomposition_relative_error": 0.000013575522898504862,
+    "paired_matched_relative_error": 0.0000004833614435568633,
+    "optimizer_steps": 0,
+    "test_access_count": 0
+  },
+  "bf16_runtime_gate": {
+    "status": "PASS",
+    "sha256": "c55893225855c811a05cfd84d56805304348a0a3e2d18f130b6e4e081690b2a6",
+    "residual_direction_cosine": 0.9377277884661293,
+    "maximum_component_norm_relative_error": 0.0001315736483851182,
+    "paired_matched_relative_error": 0.008280624922735472,
+    "matched_update_norm": 0.9874483300223657,
+    "beta_cap_active": false,
+    "optimizer_steps": 0,
+    "test_access_count": 0
+  },
+  "scientific_interpretation": "The paired matched-gradient implementation is algebraically correct in FP32 and numerically safe with direction preservation in the frozen BF16 runtime. The first BF16 strict-identity failure is attributable to cancellation-amplified BF16 quantization, not an objective-scaling or routing defect.",
+  "seed_42_implementation_authorized": true,
+  "gpu_execution_authorized_in_this_decision": false,
+  "seeds_43_to_46_authorized": false,
+  "next_required_step": "obtain user GPU authorization, then run the frozen seed-42 matched-control pilot on train/dev only",
+  "test_access_count": 0
+}

@@ -114,7 +114,7 @@ def parse_args() -> TrainConfig:
 
 def verify_contract(*, require_source_lock: bool) -> dict[str, Any]:
     protocol = json.loads(PROTOCOL_PATH.read_text(encoding="utf-8"))
-    if protocol.get("status") != "EXP58_MATCHED_CLIPPING_PROTOCOL_FROZEN_BEFORE_RESULTS":
+    if protocol.get("status") != "EXP58_MATCHED_CLIPPING_PROTOCOL_V2_FROZEN_BEFORE_FORMAL_TRAINING":
         raise RuntimeError("Exp58 protocol is not frozen")
     if protocol.get("allowed_splits") != ["train", "dev"] or protocol.get("test_access_count") != 0:
         raise RuntimeError("Invalid Exp58 split contract")

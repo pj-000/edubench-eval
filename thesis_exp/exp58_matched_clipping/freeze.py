@@ -34,7 +34,9 @@ SOURCE_FILES = (
     "thesis_exp/data/splits/paper_like_triple_seed42/train.jsonl",
     "thesis_exp/data/splits/paper_like_triple_seed42/dev.jsonl",
     "thesis_exp/outputs/exp57_cbrd/decision/stage1_confirmation_decision.json",
-    "thesis_exp/outputs/exp57_cbrd/audit/stage1_clip_gradient_audit.json"
+    "thesis_exp/outputs/exp57_cbrd/audit/stage1_clip_gradient_audit.json",
+    "thesis_exp/outputs/exp58_matched_clipping/audit/preflight_real_qwen3_full_accumulation_bf16_v1_fail.json",
+    "thesis_exp/outputs/exp58_matched_clipping/audit/preflight_real_qwen3_full_accumulation_fp32_diagnostic.json",
 )
 
 
@@ -44,14 +46,14 @@ def sha256(path: Path) -> str:
 
 def main() -> None:
     protocol = json.loads(PROTOCOL_PATH.read_text(encoding="utf-8"))
-    if protocol.get("status") != "EXP58_MATCHED_CLIPPING_PROTOCOL_FROZEN_BEFORE_RESULTS":
+    if protocol.get("status") != "EXP58_MATCHED_CLIPPING_PROTOCOL_V2_FROZEN_BEFORE_FORMAL_TRAINING":
         raise RuntimeError("Protocol is not frozen")
     missing = [relative for relative in SOURCE_FILES if not (REPO_ROOT / relative).is_file()]
     if missing:
         raise FileNotFoundError(missing)
     files = {relative: sha256(REPO_ROOT / relative) for relative in SOURCE_FILES}
     lock = {
-        "status": "EXP58_SOURCE_LOCK_FROZEN_BEFORE_PREFLIGHT_AND_RESULTS",
+        "status": "EXP58_SOURCE_LOCK_V2_FROZEN_AFTER_NO_UPDATE_DIAGNOSTIC_BEFORE_FORMAL_RESULTS",
         "files": files,
         "protocol_sha256": sha256(PROTOCOL_PATH),
         "test_access_count": 0,

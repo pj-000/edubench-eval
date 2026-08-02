@@ -21,12 +21,25 @@ class MatchedClippingTest(unittest.TestCase):
         protocol = json.loads(PROTOCOL_PATH.read_text(encoding="utf-8"))
         self.assertEqual(
             protocol["status"],
-            "EXP58_MATCHED_CLIPPING_PROTOCOL_FROZEN_BEFORE_RESULTS",
+            "EXP58_MATCHED_CLIPPING_PROTOCOL_V2_FROZEN_BEFORE_FORMAL_TRAINING",
         )
         self.assertEqual(protocol["allowed_splits"], ["train", "dev"])
         self.assertEqual(protocol["test_access_count"], 0)
         self.assertEqual(protocol["new_training_runs"]["run_count"], 5)
         self.assertFalse(protocol["fixed_training"]["hyperparameter_search"])
+        gates = protocol["implementation_gates_before_training"]
+        self.assertEqual(
+            gates["bf16_runtime_gate"][
+                "standard_routed_post_clip_reconstruction_relative_error_at_most"
+            ],
+            1.5 * (2.0 ** -7),
+        )
+        self.assertEqual(
+            gates["fp32_identity_gate"][
+                "paired_trainer_vs_independent_construction_relative_error_at_most"
+            ],
+            1e-4,
+        )
 
     def test_clip_coefficient_matches_frozen_rule(self) -> None:
         self.assertEqual(clip_coefficient(0.5), 1.0)

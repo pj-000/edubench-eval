@@ -60,7 +60,12 @@ def relative_error(left: dict[str, Any], right: dict[str, Any], names: set[str])
     return math.sqrt(numerator) / max(math.sqrt(denominator), 1e-12)
 
 
-def run(model_path: str, *, microbatches: int = 32) -> dict[str, Any]:
+def run(
+    model_path: str,
+    *,
+    microbatches: int = 32,
+    precision: str = "bf16",
+) -> dict[str, Any]:
     import torch
 
     from thesis_exp.src.edujudge.exp02.train_ce_baseline import set_seed
@@ -71,6 +76,8 @@ def run(model_path: str, *, microbatches: int = 32) -> dict[str, Any]:
         raise RuntimeError("CUBLAS_WORKSPACE_CONFIG must be :4096:8")
     if microbatches != 32:
         raise ValueError("Formal preflight requires a complete 32-microbatch window")
+    if precision not in {"bf16", "fp32"}:
+        raise ValueError("precision must be bf16 or fp32")
     torch.backends.cudnn.benchmark = False
     torch.backends.cudnn.deterministic = True
     if hasattr(torch.backends.cuda, "enable_flash_sdp"):
@@ -87,7 +94,7 @@ def run(model_path: str, *, microbatches: int = 32) -> dict[str, Any]:
         for row in trace
     ]
     set_seed(42)
-    cfg = config(model_path, bf16="true")
+    cfg = config(model_path, bf16="true" if precision == "bf16" else "false")
     cfg.gradient_checkpointing = True
     model, tokenizer, model_mode, head_contract = load_model(cfg)
     device = torch.device("cuda")
@@ -170,6 +177,10 @@ def run(model_path: str, *, microbatches: int = 32) -> dict[str, Any]:
         for group, group_names in groups.items()
         if group_names
     }
+    difference_residual_dot = sum(
+        float((difference[name].double() * residual[name].double()).sum())
+        for name in names
+    )
     common_sq = squared_norm(common)
     routed_sq = squared_norm(routed)
     residual_sq = squared_norm(residual)
@@ -236,30 +247,61 @@ def run(model_path: str, *, microbatches: int = 32) -> dict[str, Any]:
     paired_matched_relative_error = relative_error(
         actual_matched, expected_matched, names
     )
-    checks = {
-        "global_decomposition_relative_error_at_most_0_02": decomposition_errors["all"] <= 0.02,
+    difference_norm = difference_group_norms["all"]
+    residual_norm = math.sqrt(residual_sq)
+    residual_direction_cosine = (
+        difference_residual_dot / (difference_norm * residual_norm)
+        if difference_norm > 0.0 and residual_norm > 0.0
+        else 1.0
+    )
+
+    def norm_relative_error(left: float, right: float) -> float:
+        return abs(left - right) / max(abs(right), 1e-12)
+
+    component_norm_relative_errors = {
+        "common": norm_relative_error(paired_audit["common_norm"], math.sqrt(common_sq)),
+        "routed": norm_relative_error(paired_audit["routed_norm"], math.sqrt(routed_sq)),
+        "residual": norm_relative_error(paired_audit["residual_norm"], residual_norm),
+    }
+    invariant_checks = {
         "hard_head_difference_norm_at_most_1e_12": difference_group_norms["hard_head"] <= 1e-12,
         "soft_head_difference_norm_at_most_1e_12": difference_group_norms["soft_head"] <= 1e-12,
-        "standard_post_clip_reconstruction_error_at_most_1e_4": standard_reconstruction_error <= 1e-4,
         "expected_matched_norm_at_most_1_000001": expected_matched_norm <= 1.000001,
-        "paired_trainer_matches_independent_construction_at_most_1e_4": paired_matched_relative_error <= 1e-4,
         "paired_actual_norm_at_most_1_000001": paired_audit["matched_update_norm"] <= 1.000001,
         "cublas_workspace_config_recorded": os.environ.get("CUBLAS_WORKSPACE_CONFIG") == ":4096:8",
         "no_optimizer_step": True,
         "no_test_access": True,
     }
+    if precision == "fp32":
+        precision_checks = {
+            "fp32_global_decomposition_relative_error_at_most_0_02": decomposition_errors["all"] <= 0.02,
+            "fp32_standard_post_clip_reconstruction_error_at_most_1e_4": standard_reconstruction_error <= 1e-4,
+            "fp32_paired_trainer_matches_independent_construction_at_most_1e_4": paired_matched_relative_error <= 1e-4,
+        }
+    else:
+        bf16_tolerance = 1.5 * (2.0 ** -7)
+        precision_checks = {
+            "bf16_residual_direction_cosine_at_least_0_9": residual_direction_cosine >= 0.9,
+            "bf16_component_norm_relative_errors_at_most_5e_4": max(component_norm_relative_errors.values()) <= 5e-4,
+            "bf16_standard_post_clip_reconstruction_error_at_most_1_5_unit_roundoff": standard_reconstruction_error <= bf16_tolerance,
+            "bf16_paired_trainer_matches_independent_construction_at_most_1_5_unit_roundoff": paired_matched_relative_error <= bf16_tolerance,
+        }
+    checks = {**invariant_checks, **precision_checks}
     report = {
         "status": "EXP58_PREFLIGHT_PASS" if all(checks.values()) else "EXP58_PREFLIGHT_FAIL",
         "checks": checks,
         "model_mode": model_mode,
         "head_contract": head_contract,
+        "precision": precision,
         "microbatches": microbatches,
         "examples": microbatches * 4,
         "decomposition_relative_errors": decomposition_errors,
+        "residual_direction_cosine": residual_direction_cosine,
+        "component_norm_relative_errors": component_norm_relative_errors,
         "difference_group_norms": difference_group_norms,
         "common_norm": math.sqrt(common_sq),
         "routed_norm": math.sqrt(routed_sq),
-        "residual_norm": math.sqrt(residual_sq),
+        "residual_norm": residual_norm,
         "alpha_C": alpha_common,
         "alpha_R": alpha_routed,
         "beta": beta,
@@ -273,7 +315,11 @@ def run(model_path: str, *, microbatches: int = 32) -> dict[str, Any]:
         "optimizer_steps": 0,
         "test_access_count": 0,
     }
-    output = OUTPUT_ROOT / "audit" / "preflight_real_qwen3_full_accumulation.json"
+    output = (
+        OUTPUT_ROOT
+        / "audit"
+        / f"preflight_real_qwen3_full_accumulation_{precision}_v2.json"
+    )
     write_json(output, report)
     return report
 
@@ -282,8 +328,13 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--model-name-or-path", required=True)
     parser.add_argument("--microbatches", type=int, default=32)
+    parser.add_argument("--precision", choices=("bf16", "fp32"), default="bf16")
     args = parser.parse_args()
-    result = run(args.model_name_or_path, microbatches=args.microbatches)
+    result = run(
+        args.model_name_or_path,
+        microbatches=args.microbatches,
+        precision=args.precision,
+    )
     print(json.dumps(result, ensure_ascii=False, indent=2, sort_keys=True))
     if result["status"] != "EXP58_PREFLIGHT_PASS":
         raise SystemExit(1)

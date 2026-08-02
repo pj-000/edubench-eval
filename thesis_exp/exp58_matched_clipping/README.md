@@ -22,3 +22,9 @@ again.
 Only train/dev are permitted.  The historical EduBench test is prohibited.
 Existing five-seed Consensus-only and Routed-HMSA runs are reused; the only new
 formal arm is the matched control at seeds 42--46.
+
+Before formal training, the frozen v2 protocol requires two no-update checks on
+the same complete accumulation window.  FP32 is the strict algebraic identity
+gate.  BF16 is the actual-runtime safety and direction-preservation gate, with
+a tolerance derived from BF16 unit roundoff.  The first BF16 failure remains
+preserved as an audit artifact; no optimizer step preceded this revision.

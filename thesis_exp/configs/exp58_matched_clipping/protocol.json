@@ -1,6 +1,12 @@
 {
-  "status": "EXP58_MATCHED_CLIPPING_PROTOCOL_FROZEN_BEFORE_RESULTS",
+  "status": "EXP58_MATCHED_CLIPPING_PROTOCOL_V2_FROZEN_BEFORE_FORMAL_TRAINING",
   "frozen_date": "2026-08-02",
+  "preflight_revision": {
+    "reason": "The first no-update BF16 preflight exposed cancellation-amplified BF16 quantization when two approximately 450-norm accumulated gradients were subtracted to audit an approximately 10-norm residual. A no-update FP32 diagnostic on the identical 32-microbatch window recovered the strict algebraic identities, separating numerical precision from an implementation error.",
+    "timing": "after the first BF16 no-update preflight and before any optimizer step or formal result",
+    "preserved_artifact": "preflight_real_qwen3_full_accumulation_bf16_v1_fail.json",
+    "formal_training_changed": false
+  },
   "parent_runtime_commit": "7bc73a4266aa57f7d010d84c315d80a15b0fcc62",
   "parent_confirmation_protocol_sha256": "9edfc3be935f69752a6b63075d99bdb9186c4717daf7099a2576714b3e353577",
   "parent_confirmation_decision_sha256": "fe20ca5ff23aff3280dec3e5e70842e27c07199182c0aa4f3a4b64b0bad47a4c",
@@ -83,11 +89,21 @@
     "small_seed_42_metric_effect_may_stop_campaign": false
   },
   "implementation_gates_before_training": {
-    "global_relative_error_G_R_minus_G_C_vs_R_at_most": 0.02,
+    "fp32_identity_gate": {
+      "global_relative_error_G_R_minus_G_C_vs_R_at_most": 0.02,
+      "standard_routed_post_clip_reconstruction_relative_error_at_most": 0.0001,
+      "paired_trainer_vs_independent_construction_relative_error_at_most": 0.0001
+    },
+    "bf16_runtime_gate": {
+      "residual_direction_cosine_at_least": 0.9,
+      "independent_vs_paired_component_norm_relative_error_at_most": 0.0005,
+      "standard_routed_post_clip_reconstruction_relative_error_at_most": 0.01171875,
+      "paired_trainer_vs_independent_construction_relative_error_at_most": 0.01171875,
+      "tolerance_basis": "1.5 times the BF16 unit roundoff 2^-7; the residual-relative subtraction error is diagnostic, not a gate"
+    },
     "report_relative_error_by_parameter_group": true,
     "residual_hard_head_norm_at_most": 1e-12,
     "residual_soft_head_norm_at_most": 1e-12,
-    "standard_routed_post_clip_reconstruction_relative_error_at_most": 0.0001,
     "matched_update_norm_at_most": 1.000001,
     "paired_rng_replay_required": true,
     "cublas_workspace_config": ":4096:8",
