@@ -1,0 +1,18 @@
+{
+  "status": "CHECKPOINT_HASH_MANIFEST_COMPLETE",
+  "algorithm": "sha256",
+  "checkpoints": {
+    "consensus_only_seed_42": "d3e297ed21cad33df413c55737b1812f4f18145fe3fd47c6bec53042b8acfaf2",
+    "consensus_only_seed_43": "2f973630e1fb940476d22a2b1db0efa3b0ade42bf09bd0ab54aa66649cbcb64b",
+    "consensus_only_seed_44": "6d7134e2d362c2d2d00c8a17ea0e7b33f9b6b7f1b3fab11594c4d6a779cef976",
+    "consensus_only_seed_45": "3856ac883b9eb971eb9d0c644745a31519b290d3cd2f75991e4a5df2db1eec8f",
+    "consensus_only_seed_46": "06271eae765333f2e51f8266d481ac0ed4fa1fa38fbfedf1e74bf27c1647c322",
+    "routed_hmsa_seed_42": "a862f2991425be3b0d243e4bef663ff63d127dcad892943862735af603819c0e",
+    "routed_hmsa_seed_43": "da55fa8c1b3d2351007847eabc5c9c0189419c45c9f90d8bc07a9d46364ff52c",
+    "routed_hmsa_seed_44": "669a2623ed7de2b8d7a3a33ab1c7eb937e0b79816a5b2a504a2d272bc67d7997",
+    "routed_hmsa_seed_45": "d89aebc59d47b1fe3b75f65f0e70c26872ddaa0312bf2b3483523d0f09685389",
+    "routed_hmsa_seed_46": "954113681ddd20360e2881fa63f24c3d6418bd1c0040c03095430b3a503c9e1f"
+  },
+  "checkpoint_files_published": false,
+  "test_access_count": 0
+}

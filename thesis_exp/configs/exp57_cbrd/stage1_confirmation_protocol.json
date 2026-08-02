@@ -1,0 +1,49 @@
+{
+  "status": "EXP57_STAGE1_CONFIRMATION_FROZEN_BEFORE_SEEDS_45_46",
+  "frozen_date": "2026-08-02",
+  "parent_protocol_sha256": "b1f31978370e1a3269b85d1f154d1d321b309e19120f6a0457c1b6de6d1234d3",
+  "development_decision_sha256": "d3c7fe645c98417306fdd64febe0e2d0fc8bad816b53c079ec09bb1746617f21",
+  "final_integrity_audit_sha256": "46acfead4ac69cf9305eaf74c96949f490a74e0d4f62da7c236ad6a9eed4e6bb",
+  "authorized_new_runs": {
+    "variants": ["consensus_only", "routed_hmsa"],
+    "seeds": [45, 46],
+    "run_count": 4
+  },
+  "fixed_training": "inherit_exactly_from_stage1_protocol.json",
+  "checkpoint_rule": "highest hard-head dev Exact_rounded; ties keep earlier epoch",
+  "confirmation_rule_over_all_five_seeds": {
+    "favorable_mae_seeds_required": 4,
+    "mean_delta_mae_at_most": -0.005,
+    "mean_delta_exact_at_least": -0.003,
+    "mean_delta_kendall_at_least": -0.005,
+    "delta_definition": "routed_hmsa minus consensus_only"
+  },
+  "required_no_training_analyses": {
+    "common_epoch_sensitivity": {
+      "epochs": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+      "report": [
+        "per-seed per-epoch deltas",
+        "fraction of epochs with favorable MAE",
+        "epoch-10 delta",
+        "normalized trapezoidal MAE-curve area delta",
+        "registered selected-checkpoint delta"
+      ]
+    },
+    "primary_question_cluster_bootstrap": {
+      "repetitions": 10000,
+      "rng_seed": 57,
+      "unit": "question_key cluster",
+      "statistic": "paired mean absolute-error difference, routed_hmsa minus consensus_only",
+      "report": ["each seed", "three-seed mean prediction effect"]
+    }
+  },
+  "prohibited": [
+    "historical test access",
+    "new variant search",
+    "residual-weight search",
+    "learning-rate search",
+    "epoch-count search",
+    "checkpoint-rule revision after results"
+  ],
+  "test_access_count": 0
+}

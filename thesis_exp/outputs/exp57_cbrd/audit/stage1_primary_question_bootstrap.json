@@ -1,0 +1,48 @@
+{
+  "comparison": "routed_hmsa minus consensus_only",
+  "per_seed": {
+    "42": {
+      "bootstrap_probability_delta_below_zero": 0.9759,
+      "ci95_lower": -0.04377648938850053,
+      "ci95_upper": -0.0005011968544114676,
+      "observed_delta_mae": -0.02208835341365461,
+      "question_clusters": 184,
+      "repetitions": 10000,
+      "rng_seed": 99,
+      "rows": 664
+    },
+    "43": {
+      "bootstrap_probability_delta_below_zero": 0.9893,
+      "ci95_lower": -0.062137986375549036,
+      "ci95_upper": -0.004373138013987789,
+      "observed_delta_mae": -0.03313253012048193,
+      "question_clusters": 184,
+      "repetitions": 10000,
+      "rng_seed": 100,
+      "rows": 664
+    },
+    "44": {
+      "bootstrap_probability_delta_below_zero": 0.8536,
+      "ci95_lower": -0.0322112394952805,
+      "ci95_upper": 0.00960062816616007,
+      "observed_delta_mae": -0.01154618473895583,
+      "question_clusters": 184,
+      "repetitions": 10000,
+      "rng_seed": 101,
+      "rows": 664
+    }
+  },
+  "statistic": "paired hard-prediction absolute error against human_mean_5",
+  "status": "COMPLETE",
+  "test_access_count": 0,
+  "three_seed_mean_prediction_effect": {
+    "bootstrap_probability_delta_below_zero": 0.9961,
+    "ci95_lower": -0.03946030515619389,
+    "ci95_upper": -0.005820073974205346,
+    "observed_delta_mae": -0.022255689424364122,
+    "question_clusters": 184,
+    "repetitions": 10000,
+    "rng_seed": 57,
+    "rows": 664
+  }
+}

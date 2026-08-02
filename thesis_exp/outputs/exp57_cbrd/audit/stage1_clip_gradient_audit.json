@@ -1,0 +1,162 @@
+{
+  "checks": {
+    "all_routes_are_clipped": true,
+    "nine_expected_strict_audits": true,
+    "no_test_access": true,
+    "selected_clip_rescaling_is_material": true,
+    "selected_residual_is_anti_aligned_in_all_states": true,
+    "strict_and_diagnostic_numeric_results_identical": true
+  },
+  "decision": {
+    "joint_route_optimizer_intervention_claim": "SUPPORTED_BY_FIVE_SEED_DEV_RESULTS",
+    "pure_residual_direction_claim": "NOT_IDENTIFIED_UNDER_GLOBAL_CLIPPING",
+    "required_if_pure_direction_is_a_core_claim": "pre-register a matched-clipping control"
+  },
+  "interpretation": "At selected checkpoints the aligned residual is consistently anti-aligned with the consensus-route total gradient and materially changes the global clip coefficient. The current experiment therefore identifies the effect of the residual-routing intervention together with its optimizer/clipping interaction, not a scale-matched residual direction in isolation.",
+  "optimizer_steps": 0,
+  "rows": [
+    {
+      "aligned_clip_coefficient": 0.0022126604535934384,
+      "aligned_over_consensus_clip_ratio": 1.012717098731383,
+      "aligned_total_norm": 451.9446244738113,
+      "checkpoint_sha256": null,
+      "common_residual_cosine": -0.5538917943843361,
+      "consensus_clip_coefficient": 0.002184875180210948,
+      "consensus_total_norm": 457.69204889707964,
+      "hard_residual_cosine": -0.5357761673446046,
+      "model_state": "initial",
+      "residual_norm": 10.529977252621114,
+      "seed": 42,
+      "state": "initial_seed42"
+    },
+    {
+      "aligned_clip_coefficient": 0.003244249262832988,
+      "aligned_over_consensus_clip_ratio": 1.0011229437533744,
+      "aligned_total_norm": 308.23772026768285,
+      "checkpoint_sha256": null,
+      "common_residual_cosine": -0.04903949931209137,
+      "consensus_clip_coefficient": 0.0032406102398070753,
+      "consensus_total_norm": 308.58385389133474,
+      "hard_residual_cosine": -0.04664560661925347,
+      "model_state": "initial",
+      "residual_norm": 11.195936080779132,
+      "seed": 43,
+      "state": "initial_seed43"
+    },
+    {
+      "aligned_clip_coefficient": 0.00237993550880019,
+      "aligned_over_consensus_clip_ratio": 1.0073759210813629,
+      "aligned_total_norm": 420.1794518895178,
+      "checkpoint_sha256": null,
+      "common_residual_cosine": -0.27072883642225515,
+      "consensus_clip_coefficient": 0.002362509822793322,
+      "consensus_total_norm": 423.2786623740411,
+      "hard_residual_cosine": -0.26119022281322607,
+      "model_state": "initial",
+      "residual_norm": 12.038042888079692,
+      "seed": 44,
+      "state": "initial_seed44"
+    },
+    {
+      "aligned_clip_coefficient": 0.01620756823748568,
+      "aligned_over_consensus_clip_ratio": 1.127514385091636,
+      "aligned_total_norm": 61.699569555387185,
+      "checkpoint_sha256": "d3e297ed21cad33df413c55737b1812f4f18145fe3fd47c6bec53042b8acfaf2",
+      "common_residual_cosine": -0.5609208622866546,
+      "consensus_clip_coefficient": 0.01437459996234855,
+      "consensus_total_norm": 69.5671523551754,
+      "hard_residual_cosine": -0.5632779692822086,
+      "model_state": "selected_checkpoint",
+      "residual_norm": 61.15622600795009,
+      "seed": 42,
+      "state": "selected_consensus_seed42"
+    },
+    {
+      "aligned_clip_coefficient": 0.026152239627370052,
+      "aligned_over_consensus_clip_ratio": 1.0894629486423626,
+      "aligned_total_norm": 38.2376419035712,
+      "checkpoint_sha256": "2f973630e1fb940476d22a2b1db0efa3b0ade42bf09bd0ab54aa66649cbcb64b",
+      "common_residual_cosine": -0.3975184279598731,
+      "consensus_clip_coefficient": 0.02400470769562172,
+      "consensus_total_norm": 41.65849418685839,
+      "hard_residual_cosine": -0.36717713602359525,
+      "model_state": "selected_checkpoint",
+      "residual_norm": 15.600147412706843,
+      "seed": 43,
+      "state": "selected_consensus_seed43"
+    },
+    {
+      "aligned_clip_coefficient": 0.016936490494462123,
+      "aligned_over_consensus_clip_ratio": 1.1600468361644163,
+      "aligned_total_norm": 59.044108541287734,
+      "checkpoint_sha256": "6d7134e2d362c2d2d00c8a17ea0e7b33f9b6b7f1b3fab11594c4d6a779cef976",
+      "common_residual_cosine": -0.5069986745962283,
+      "consensus_clip_coefficient": 0.014599833357126342,
+      "consensus_total_norm": 68.49393146751606,
+      "hard_residual_cosine": -0.4786879045051041,
+      "model_state": "selected_checkpoint",
+      "residual_norm": 35.56673267930952,
+      "seed": 44,
+      "state": "selected_consensus_seed44"
+    },
+    {
+      "aligned_clip_coefficient": 0.018670656022368157,
+      "aligned_over_consensus_clip_ratio": 1.2950407696697077,
+      "aligned_total_norm": 53.55998097395753,
+      "checkpoint_sha256": "a862f2991425be3b0d243e4bef663ff63d127dcad892943862735af603819c0e",
+      "common_residual_cosine": -0.6403433056876254,
+      "consensus_clip_coefficient": 0.014417041115338782,
+      "consensus_total_norm": 69.36235927904963,
+      "hard_residual_cosine": -0.6151640798746595,
+      "model_state": "selected_checkpoint",
+      "residual_norm": 38.91198949367193,
+      "seed": 42,
+      "state": "selected_routed_seed42"
+    },
+    {
+      "aligned_clip_coefficient": 0.033585783939603646,
+      "aligned_over_consensus_clip_ratio": 1.4910152921670372,
+      "aligned_total_norm": 29.77450126554995,
+      "checkpoint_sha256": "da55fa8c1b3d2351007847eabc5c9c0189419c45c9f90d8bc07a9d46364ff52c",
+      "common_residual_cosine": -0.743530440863286,
+      "consensus_clip_coefficient": 0.02252544565843464,
+      "consensus_total_norm": 44.394237194597075,
+      "hard_residual_cosine": -0.7252520683978247,
+      "model_state": "selected_checkpoint",
+      "residual_norm": 35.295715517828555,
+      "seed": 43,
+      "state": "selected_routed_seed43"
+    },
+    {
+      "aligned_clip_coefficient": 0.016930520476308872,
+      "aligned_over_consensus_clip_ratio": 1.3851890346809583,
+      "aligned_total_norm": 59.06492859855044,
+      "checkpoint_sha256": "669a2623ed7de2b8d7a3a33ab1c7eb937e0b79816a5b2a504a2d272bc67d7997",
+      "common_residual_cosine": -0.7689229856699387,
+      "consensus_clip_coefficient": 0.012222534291291418,
+      "consensus_total_norm": 81.81609181411484,
+      "hard_residual_cosine": -0.7708419705743131,
+      "model_state": "selected_checkpoint",
+      "residual_norm": 35.47862336554029,
+      "seed": 44,
+      "state": "selected_routed_seed44"
+    }
+  ],
+  "status": "MATERIAL_CLIPPING_INTERACTION_CONFIRMED",
+  "summary": {
+    "initial_clip_ratio_range": [
+      1.0011229437533744,
+      1.012717098731383
+    ],
+    "max_strict_vs_diagnostic_numeric_difference": 0.0,
+    "selected_clip_ratio_range": [
+      1.0894629486423626,
+      1.4910152921670372
+    ],
+    "selected_common_residual_cosine_range": [
+      -0.7689229856699387,
+      -0.3975184279598731
+    ]
+  },
+  "test_access_count": 0
+}

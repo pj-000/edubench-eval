@@ -1,0 +1,40 @@
+{
+  "aggregate": {
+    "favorable_seed_epoch_cells": 27,
+    "favorable_seed_epoch_fraction": 0.9,
+    "mean_common_epoch_delta_mae": -0.01745314591700135,
+    "mean_epoch10_delta_mae": -0.022255689424364122,
+    "mean_normalized_trapezoidal_mae_curve_delta": -0.01741224155882792,
+    "mean_selected_checkpoint_delta_mae": -0.02225568942436416,
+    "total_seed_epoch_cells": 30
+  },
+  "comparison": "routed_hmsa minus consensus_only",
+  "per_seed": [
+    {
+      "epoch10_delta_mae": -0.028112449799196748,
+      "favorable_mae_epochs": 10,
+      "favorable_mae_fraction": 1.0,
+      "normalized_trapezoidal_mae_curve_delta": -0.019243641231593042,
+      "seed": 42,
+      "selected_checkpoint_delta_mae": -0.02208835341365467
+    },
+    {
+      "epoch10_delta_mae": -0.02761044176706834,
+      "favorable_mae_epochs": 9,
+      "favorable_mae_fraction": 0.9,
+      "normalized_trapezoidal_mae_curve_delta": -0.025992860330209776,
+      "seed": 43,
+      "selected_checkpoint_delta_mae": -0.03313253012048201
+    },
+    {
+      "epoch10_delta_mae": -0.01104417670682728,
+      "favorable_mae_epochs": 8,
+      "favorable_mae_fraction": 0.8,
+      "normalized_trapezoidal_mae_curve_delta": -0.007000223114680937,
+      "seed": 44,
+      "selected_checkpoint_delta_mae": -0.0115461847389558
+    }
+  ],
+  "status": "COMPLETE",
+  "test_access_count": 0
+}

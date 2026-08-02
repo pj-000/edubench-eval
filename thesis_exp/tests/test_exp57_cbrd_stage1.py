@@ -9,6 +9,7 @@ from thesis_exp.exp57_cbrd import CONFIG_ROOT
 from thesis_exp.exp57_cbrd.data_audit import load_rows
 from thesis_exp.exp57_cbrd.losses import VARIANTS
 from thesis_exp.exp57_cbrd.metrics import add_boundary_diagnostics
+from thesis_exp.exp57_cbrd.confirmation_analysis import _cluster_bootstrap
 
 
 class CbrdStage1Test(unittest.TestCase):
@@ -60,6 +61,29 @@ class CbrdStage1Test(unittest.TestCase):
         self.assertEqual(metrics["boundary_advantage_up_mean"], 0.25)
         self.assertEqual(metrics["boundary_advantage_pooled_mean"], -0.125)
         self.assertEqual(metrics["boundary_advantage_pooled_n"], 2)
+
+    def test_confirmation_protocol_is_primary_pair_only(self) -> None:
+        protocol = json.loads(
+            (CONFIG_ROOT / "stage1_confirmation_protocol.json").read_text(encoding="utf-8")
+        )
+        self.assertEqual(
+            protocol["authorized_new_runs"]["variants"],
+            ["consensus_only", "routed_hmsa"],
+        )
+        self.assertEqual(protocol["authorized_new_runs"]["seeds"], [45, 46])
+        self.assertEqual(protocol["authorized_new_runs"]["run_count"], 4)
+        self.assertEqual(protocol["test_access_count"], 0)
+
+    def test_cluster_bootstrap_preserves_cluster_multiplicity(self) -> None:
+        rows = [
+            {"question_key": "a", "delta_absolute_error": -1.0},
+            {"question_key": "a", "delta_absolute_error": -1.0},
+            {"question_key": "b", "delta_absolute_error": 1.0},
+        ]
+        result = _cluster_bootstrap(rows, repetitions=100, rng_seed=57)
+        self.assertEqual(result["question_clusters"], 2)
+        self.assertEqual(result["rows"], 3)
+        self.assertAlmostEqual(result["observed_delta_mae"], -1.0 / 3.0)
 
 
 if __name__ == "__main__":

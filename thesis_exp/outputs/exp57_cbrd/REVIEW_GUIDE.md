@@ -27,22 +27,31 @@ set was not accessed (`test_access_count = 0`).
    - `thesis_exp/exp57_cbrd/gate.py`
 2. Frozen protocol and source locks:
    - `thesis_exp/configs/exp57_cbrd/stage1_protocol.json`
+   - `thesis_exp/configs/exp57_cbrd/stage1_confirmation_protocol.json`
    - `thesis_exp/configs/exp57_cbrd/stage1_source_lock.json`
 3. Aggregate decisions:
    - `decision/stage1_development_decision.json`
+   - `decision/stage1_confirmation_decision.json`
    - `decision/stage1_pilot_decision.json`
 4. Integrity and implementation audits:
    - `audit/stage1_final_integrity_audit.json`
+   - `audit/stage1_primary_common_epoch.json`
+   - `audit/stage1_confirmation_common_epoch.json`
+   - `audit/stage1_confirmation_question_bootstrap.json`
+   - `audit/stage1_clip_gradient_audit.json`
+   - `audit/stage1_confirmation_checkpoint_hashes.json`
    - `audit/posthoc_checkpoint_identity_training_kernels.json`
    - `audit/posthoc_checkpoint_identity_deterministic.json`
 5. Per-run evidence:
    - each run's `selected_dev_metrics.json`, `dev_metrics_history.json`,
      `run_summary.json`, and `training_trace_first64.json`
 
-Model checkpoints and repeated 664-row prediction dumps are intentionally not
-stored in this Git review bundle.  The final integrity audit records the
-prediction-count, record-ID, metric-recomputation, checkpoint-selection, and
-test-access checks performed before publication.
+Model checkpoints and repeated prediction copies are intentionally not stored
+in this Git review bundle.  One canonical 664-row selected-dev prediction file
+is included for every run in the five-seed primary pair, together with complete
+epoch histories and SHA-256 hashes for all ten selected checkpoints.  This is
+enough to recompute the primary metrics and question-cluster bootstrap without
+publishing roughly 12 GB of model weights.
 
 ## Three-seed development results
 
@@ -100,15 +109,63 @@ contributes to the global norm.  This is a qualification of the parity gate
 and detached control; it must not be hidden or silently reclassified as a
 pass.
 
+## Five-seed primary-pair confirmation
+
+The extension to seeds 45 and 46 was frozen before either result was read and
+authorized only four new runs: Consensus-only and Routed-HMSA at each seed.
+All five seeds favor Routed-HMSA on MAE.
+
+| Seed | Delta MAE | Delta Exact | Delta Kendall's tau |
+|---:|---:|---:|---:|
+| 42 | -0.022088 | +0.003012 | +0.042934 |
+| 43 | -0.033133 | +0.006024 | +0.046855 |
+| 44 | -0.011546 | +0.009036 | +0.027126 |
+| 45 | -0.046185 | +0.021084 | +0.052737 |
+| 46 | -0.009036 | +0.001506 | +0.002957 |
+| Mean | **-0.024398** | **+0.008133** | **+0.034522** |
+
+All frozen five-seed gates passed.  Forty-two of 50 same-epoch seed/epoch
+cells favor Routed-HMSA on MAE; the mean epoch-10 delta is `-0.021888`, so the
+effect is not confined to independently selected checkpoints.  The paired
+question-cluster bootstrap over the five-seed mean prediction effect gives
+delta MAE `-0.024398` with a 95% interval of `[-0.037004, -0.012546]`.
+
+This decision is recorded as `CONFIRMATION_PASS_INTERNAL_MECHANISM`.  It is an
+internal development-set confirmation, not external generalization and not a
+new sealed-test result.
+
+## Global-clipping interaction audit
+
+The strict audit replays a complete 32-microbatch accumulation window at three
+initial states and six selected checkpoints.  It performs no optimizer step.
+The cuBLAS-deterministic replay exactly matches the first diagnostic replay.
+
+At initialization, the aligned/consensus clip-coefficient ratio ranges from
+`1.0011` to `1.0127`.  At selected checkpoints it ranges from `1.0895` to
+`1.4910`.  In all six selected states, the residual is anti-aligned with the
+consensus-route total gradient (cosine range `[-0.7689, -0.3975]`), reducing
+the total pre-clip norm and thereby increasing the global clip coefficient.
+
+Consequently, the experiment identifies the effect of the residual-routing
+intervention together with its interaction with the frozen optimizer and
+global clipping.  It does **not** isolate a scale-matched residual direction
+in pure form.  A pure direction-only causal claim requires a preregistered
+matched-clipping control; alternatively, the paper must retain the narrower
+joint-intervention claim.
+
 ## Evidence boundary for review
 
 The current evidence supports the narrower statement that the aligned
-human-disagreement residual carries useful development-set supervision beyond
-a duplicated hard-label auxiliary task and a fixed shuffled residual.  It does
-not yet establish a CCF-B-level general method, independent-dataset
-generalization, fully passed directional causality, or final test performance.
+human-disagreement residual-routing intervention, under the frozen optimizer
+and global clipping, consistently improves development-set performance beyond
+a duplicated hard-label auxiliary task, consensus-only routing, and one fixed
+shuffled residual.  It does not yet establish a CCF-B-level general method,
+independent-dataset generalization, scale-matched direction-only causality,
+fully passed signed directionality, or final test performance.
 
-The next decision should be whether this mechanism result is strong and novel
-enough to justify additional seeds and a final test protocol, or whether it is
-better positioned as a mechanistic explanation and ablation section inside
-the existing HMSA paper.
+The primary effect no longer needs additional EduBench seeds.  The next
+decision is whether to (i) keep the result as a strong HMSA mechanism section,
+or (ii) pursue a preregistered matched-clipping control followed by a minimal
+primary-pair replication on an independent multi-rater ordinal dataset.  The
+historically used EduBench test must not be presented as the sole independent
+confirmation.

@@ -1,0 +1,78 @@
+{
+  "checkpoint_path": "thesis_exp/artifacts/exp57_cbrd/consensus_only/seed_44/best/state_dict.pt",
+  "checkpoint_sha256": "6d7134e2d362c2d2d00c8a17ea0e7b33f9b6b7f1b3fab11594c4d6a779cef976",
+  "clip_coefficients": {
+    "aligned_over_consensus": 1.1600468361644163,
+    "aligned_route": 0.016936490494462123,
+    "consensus_route": 0.014599833357126342
+  },
+  "cosines": {
+    "consensus_route_total_vs_residual": {
+      "all": -0.5069986745962283,
+      "backbone": -0.508302188086145,
+      "hard_head": null,
+      "soft_head": null
+    },
+    "hard_loss_gradient_vs_residual": {
+      "all": -0.4786879045051041,
+      "backbone": -0.4801222160652945,
+      "hard_head": null,
+      "soft_head": null
+    }
+  },
+  "deterministic_kernels": true,
+  "examples": 128,
+  "gradient_accumulation_steps": 32,
+  "interpretation_scope": "No optimizer step. The residual is the paired deterministic difference between aligned and consensus routes at one fixed model state and one complete frozen accumulation window.",
+  "max_grad_norm": 1.0,
+  "mean_unscaled_losses": {
+    "aligned_route": 1.0985897823702544,
+    "consensus_route": 1.0985897823702544,
+    "hard": 0.3531155987875536
+  },
+  "microbatches": 32,
+  "model_state": "selected_checkpoint",
+  "post_clip_total_norms": {
+    "aligned_route": {
+      "all": 0.9999999830635096,
+      "backbone": 0.9965474509299416,
+      "hard_head": 0.04561895169604039,
+      "soft_head": 0.06936898023042705
+    },
+    "consensus_route": {
+      "all": 0.9999999854001667,
+      "backbone": 0.9974355394830766,
+      "hard_head": 0.039325094706412954,
+      "soft_head": 0.059798430604568464
+    }
+  },
+  "pre_clip_norms": {
+    "aligned_residual_difference": {
+      "all": 35.56673267930952,
+      "backbone": 35.56673267930952,
+      "hard_head": 0.0,
+      "soft_head": 0.0
+    },
+    "aligned_route_total": {
+      "all": 59.044108541287734,
+      "backbone": 58.84025685579853,
+      "hard_head": 2.6935303810997224,
+      "soft_head": 4.095829667492758
+    },
+    "consensus_route_total": {
+      "all": 68.49393146751606,
+      "backbone": 68.3182824820543,
+      "hard_head": 2.6935303810997224,
+      "soft_head": 4.095829667492758
+    },
+    "hard_loss_only": {
+      "all": 34.872704223369254,
+      "backbone": 34.76852590974614,
+      "hard_head": 2.6935303810997224
+    }
+  },
+  "seed": 44,
+  "status": "CLIP_GRADIENT_AUDIT_COMPLETE",
+  "test_access_count": 0,
+  "trace_path": "thesis_exp/outputs/exp57_cbrd/runs/consensus_only/seed_44/training_trace_first64.json"
+}
