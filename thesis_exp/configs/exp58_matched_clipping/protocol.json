@@ -1,0 +1,145 @@
+{
+  "status": "EXP58_MATCHED_CLIPPING_PROTOCOL_FROZEN_BEFORE_RESULTS",
+  "frozen_date": "2026-08-02",
+  "parent_runtime_commit": "7bc73a4266aa57f7d010d84c315d80a15b0fcc62",
+  "parent_confirmation_protocol_sha256": "9edfc3be935f69752a6b63075d99bdb9186c4717daf7099a2576714b3e353577",
+  "parent_confirmation_decision_sha256": "fe20ca5ff23aff3280dec3e5e70842e27c07199182c0aa4f3a4b64b0bad47a4c",
+  "parent_clip_audit_sha256": "b845b33bdc755c2947e72804b021795c64ba9fc58cfa1c64c5155d84c6b33921",
+  "scientific_question": "After matching the clipping scale applied to the common gradient, does the sample-aligned human-disagreement residual retain an independent development-set increment over Consensus-only?",
+  "role": "mechanism control, not a new deployable model architecture",
+  "allowed_splits": ["train", "dev"],
+  "historical_test_access": "forbidden",
+  "test_access_count": 0,
+  "model_name_or_path": "/home/share/models/modelscope/Qwen/Qwen3-Reranker-0.6B",
+  "data_split": "paper_like_triple_seed42",
+  "method": {
+    "name": "Common-Scale-Matched Routed Control",
+    "pre_clip_gradients": {
+      "G_C": "complete Consensus-only gradient for the current model state and accumulation window",
+      "R": "aligned residual parameter VJP on backbone parameters; exact zeros on hard and soft heads",
+      "G_R": "G_C + R"
+    },
+    "standard_clip_coefficients": {
+      "alpha_C": "min(1, M / (norm(G_C) + epsilon))",
+      "alpha_R": "min(1, M / (norm(G_R) + epsilon))",
+      "M": 1.0,
+      "epsilon": 0.000001
+    },
+    "matched_update": "U_M = alpha_C * G_C + beta * R",
+    "beta_rule": {
+      "preferred": "beta = alpha_R",
+      "safety": "if norm(alpha_C * G_C + alpha_R * R) > M, beta is the largest value in [0, alpha_R] satisfying norm(alpha_C * G_C + beta * R) <= M",
+      "quadratic": "A=dot(R,R), B=2*alpha_C*dot(G_C,R), C=alpha_C^2*dot(G_C,G_C)-M^2; beta_max=(-B+sqrt(max(0,B^2-4AC)))/(2A)",
+      "zero_residual": "beta = 0 when dot(R,R) = 0"
+    },
+    "execution_order": [
+      "accumulate the ordinary Routed-HMSA gradient G_R over the frozen window",
+      "accumulate a paired residual-only backbone VJP R with identical per-microbatch RNG and return zero from diagnostic parameter hooks so G_R is unchanged",
+      "construct G_C = G_R - R after accumulation",
+      "compute alpha_C, alpha_R, and beta before any ordinary clipping",
+      "overwrite parameter gradients with U_M",
+      "assert norm(U_M) <= 1 + tolerance",
+      "do not call clip_grad_norm_ again",
+      "perform the unchanged AdamW and scheduler steps"
+    ],
+    "matched_objects": [
+      "common backbone-gradient scaling to Consensus-only",
+      "hard-head gradient scaling to Consensus-only",
+      "soft-head gradient scaling to Consensus-only"
+    ],
+    "not_matched": [
+      "total update norm",
+      "AdamW moment state",
+      "decoupled weight-decay update norm"
+    ]
+  },
+  "fixed_training": {
+    "epochs": 10,
+    "learning_rate": 0.00002,
+    "weight_decay": 0.01,
+    "warmup_ratio": 0.05,
+    "scheduler": "cosine_with_warmup",
+    "micro_batch_size": 4,
+    "eval_batch_size": 4,
+    "gradient_accumulation_steps": 32,
+    "max_grad_norm": 1.0,
+    "max_length": 2048,
+    "precision": "bf16",
+    "gradient_checkpointing": true,
+    "aux_weight": 1.0,
+    "checkpoint_rule": "highest hard-head dev Exact_rounded; ties keep earlier epoch",
+    "inference": "hard-head raw-logit argmax only",
+    "hyperparameter_search": false
+  },
+  "new_training_runs": {
+    "variant": "common_scale_matched_routed",
+    "seeds": [42, 43, 44, 45, 46],
+    "run_count": 5,
+    "reuse_existing_consensus_and_routed_runs": true
+  },
+  "execution_sequence": {
+    "seed_42": "implementation, norm-safety, and catastrophic-failure screen only",
+    "seeds_43_to_46": "mandatory after seed 42 unless an implementation stop condition fires",
+    "small_seed_42_metric_effect_may_stop_campaign": false
+  },
+  "implementation_gates_before_training": {
+    "global_relative_error_G_R_minus_G_C_vs_R_at_most": 0.02,
+    "report_relative_error_by_parameter_group": true,
+    "residual_hard_head_norm_at_most": 1e-12,
+    "residual_soft_head_norm_at_most": 1e-12,
+    "standard_routed_post_clip_reconstruction_relative_error_at_most": 0.0001,
+    "matched_update_norm_at_most": 1.000001,
+    "paired_rng_replay_required": true,
+    "cublas_workspace_config": ":4096:8",
+    "test_access_count": 0
+  },
+  "seed_42_stop_conditions": [
+    "NaN or Inf",
+    "training crash",
+    "gradient decomposition implementation gate failure",
+    "matched update norm exceeds 1.000001",
+    "beta safety cap is active on more than 5 percent of optimizer steps",
+    "MAE worsens by at least 0.02 and Exact drops by at least 0.02 relative to Consensus-only"
+  ],
+  "primary_comparison": "common_scale_matched_routed minus existing consensus_only over seeds 42-46",
+  "secondary_comparison": "existing routed_hmsa minus common_scale_matched_routed over seeds 42-46",
+  "scientific_go_no_go": {
+    "favorable_mae_seeds_required": 4,
+    "mean_delta_mae_at_most": -0.005,
+    "mean_delta_exact_at_least": -0.003,
+    "mean_delta_kendall_at_least": -0.005,
+    "five_seed_question_cluster_bootstrap_ci_upper_below": 0.0
+  },
+  "effect_retention": {
+    "standard_routed_gain_mae": 0.024397590361445787,
+    "matched_gain": "MAE_consensus - MAE_matched",
+    "rho": "matched_gain / standard_routed_gain_mae",
+    "interpretation": {
+      "rho_at_least_0_5": "at least half of the existing gain remains after common-scale matching",
+      "rho_between_0_and_0_5_with_go": "the residual has an independent increment but clipping interaction contributes materially",
+      "rho_at_most_0_or_no_go": "no support for an independently beneficial residual under matched common scaling"
+    }
+  },
+  "mandatory_reporting": [
+    "per-step alpha_C, alpha_R, beta, norms, and cap-active flag",
+    "fraction of steps with beta below alpha_R",
+    "selected-checkpoint primary metrics",
+    "all ten epoch metrics",
+    "same-epoch sensitivity",
+    "epoch-10 delta",
+    "paired question-cluster bootstrap",
+    "effect-retention rho",
+    "all negative and failed gates"
+  ],
+  "prohibited": [
+    "historical test access",
+    "residual-weight search",
+    "learning-rate search",
+    "epoch-count search",
+    "checkpoint-rule revision",
+    "no-clipping campaign",
+    "random-gradient control",
+    "sign-direction gate revision",
+    "external-dataset training before this control is decided"
+  ]
+}

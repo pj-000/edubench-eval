@@ -1,0 +1,7 @@
+{
+  "formal_training_authorized": false,
+  "next_required_step": "real Qwen3 full-accumulation no-update preflight",
+  "source_lock_sha256": "5a45ed451d43389163a113bd54db8cc8ebb7338a4a12849c1dd93d5908d7cd22",
+  "status": "EXP58_CPU_GATES_PASS_READY_FOR_REAL_MODEL_PREFLIGHT",
+  "test_access_count": 0
+}
