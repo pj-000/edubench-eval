@@ -263,11 +263,13 @@ def run(
         "routed": norm_relative_error(paired_audit["routed_norm"], math.sqrt(routed_sq)),
         "residual": norm_relative_error(paired_audit["residual_norm"], residual_norm),
     }
+    paired_post_cast_limit = 1.01171875 if precision == "bf16" else 1.000001
     invariant_checks = {
         "hard_head_difference_norm_at_most_1e_12": difference_group_norms["hard_head"] <= 1e-12,
         "soft_head_difference_norm_at_most_1e_12": difference_group_norms["soft_head"] <= 1e-12,
         "expected_matched_norm_at_most_1_000001": expected_matched_norm <= 1.000001,
-        "paired_actual_norm_at_most_1_000001": paired_audit["matched_update_norm"] <= 1.000001,
+        "paired_expected_fp32_norm_at_most_1_000001": paired_audit["matched_update_expected_fp32_norm"] <= 1.000001,
+        "paired_actual_norm_within_precision_storage_limit": paired_audit["matched_update_norm"] <= paired_post_cast_limit,
         "cublas_workspace_config_recorded": os.environ.get("CUBLAS_WORKSPACE_CONFIG") == ":4096:8",
         "no_optimizer_step": True,
         "no_test_access": True,
@@ -318,7 +320,7 @@ def run(
     output = (
         OUTPUT_ROOT
         / "audit"
-        / f"preflight_real_qwen3_full_accumulation_{precision}_v2.json"
+        / f"preflight_real_qwen3_full_accumulation_{precision}_v3.json"
     )
     write_json(output, report)
     return report

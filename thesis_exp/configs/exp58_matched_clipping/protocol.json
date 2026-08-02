@@ -1,11 +1,20 @@
 {
-  "status": "EXP58_MATCHED_CLIPPING_PROTOCOL_V2_FROZEN_BEFORE_FORMAL_TRAINING",
+  "status": "EXP58_MATCHED_CLIPPING_PROTOCOL_V3_FROZEN_AFTER_SEED42_IMPLEMENTATION_STOP",
   "frozen_date": "2026-08-02",
   "preflight_revision": {
     "reason": "The first no-update BF16 preflight exposed cancellation-amplified BF16 quantization when two approximately 450-norm accumulated gradients were subtracted to audit an approximately 10-norm residual. A no-update FP32 diagnostic on the identical 32-microbatch window recovered the strict algebraic identities, separating numerical precision from an implementation error.",
     "timing": "after the first BF16 no-update preflight and before any optimizer step or formal result",
     "preserved_artifact": "preflight_real_qwen3_full_accumulation_bf16_v1_fail.json",
     "formal_training_changed": false
+  },
+  "runtime_revision": {
+    "reason": "The v2 seed-42 pilot stopped after five optimizer steps because a unit-bounded FP32 matched update measured 1.0000224706986143 after storage in BF16 gradients, exceeding the FP32-oriented 1.000001 assertion.",
+    "timing": "after zero completed epochs, before any dev metric or checkpoint selection, and with zero test access",
+    "preserved_artifact": "seed42_v2_post_cast_norm_stop.json",
+    "scientific_rule_changed": false,
+    "v3_rule": "assert the constructed FP32 matched update at 1.000001; after BF16 storage, permit only representation error up to 1.5 times BF16 unit roundoff",
+    "gradient_rescaling_added": false,
+    "restart": "seed 42 restarts from the original initialization and data order; the five partial v2 optimizer steps are discarded"
   },
   "parent_runtime_commit": "7bc73a4266aa57f7d010d84c315d80a15b0fcc62",
   "parent_confirmation_protocol_sha256": "9edfc3be935f69752a6b63075d99bdb9186c4717daf7099a2576714b3e353577",
@@ -104,7 +113,9 @@
     "report_relative_error_by_parameter_group": true,
     "residual_hard_head_norm_at_most": 1e-12,
     "residual_soft_head_norm_at_most": 1e-12,
-    "matched_update_norm_at_most": 1.000001,
+    "matched_update_fp32_constructed_norm_at_most": 1.000001,
+    "matched_update_bf16_stored_norm_at_most": 1.01171875,
+    "bf16_stored_norm_tolerance_basis": "1 + 1.5 times BF16 unit roundoff 2^-7; no post-cast rescaling is applied",
     "paired_rng_replay_required": true,
     "cublas_workspace_config": ":4096:8",
     "test_access_count": 0
@@ -113,7 +124,8 @@
     "NaN or Inf",
     "training crash",
     "gradient decomposition implementation gate failure",
-    "matched update norm exceeds 1.000001",
+    "constructed FP32 matched update norm exceeds 1.000001",
+    "BF16-stored matched update norm exceeds 1.01171875",
     "beta safety cap is active on more than 5 percent of optimizer steps",
     "MAE worsens by at least 0.02 and Exact drops by at least 0.02 relative to Consensus-only"
   ],

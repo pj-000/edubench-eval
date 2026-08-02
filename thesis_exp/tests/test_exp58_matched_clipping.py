@@ -14,6 +14,7 @@ from thesis_exp.exp58_matched_clipping.matched_update import (
     largest_safe_beta,
     summarize_components,
 )
+from thesis_exp.exp58_matched_clipping.train import post_cast_relative_tolerance
 
 
 class MatchedClippingTest(unittest.TestCase):
@@ -21,7 +22,7 @@ class MatchedClippingTest(unittest.TestCase):
         protocol = json.loads(PROTOCOL_PATH.read_text(encoding="utf-8"))
         self.assertEqual(
             protocol["status"],
-            "EXP58_MATCHED_CLIPPING_PROTOCOL_V2_FROZEN_BEFORE_FORMAL_TRAINING",
+            "EXP58_MATCHED_CLIPPING_PROTOCOL_V3_FROZEN_AFTER_SEED42_IMPLEMENTATION_STOP",
         )
         self.assertEqual(protocol["allowed_splits"], ["train", "dev"])
         self.assertEqual(protocol["test_access_count"], 0)
@@ -40,6 +41,17 @@ class MatchedClippingTest(unittest.TestCase):
             ],
             1e-4,
         )
+        self.assertEqual(
+            gates["matched_update_bf16_stored_norm_at_most"],
+            1.0 + post_cast_relative_tolerance("torch.bfloat16"),
+        )
+
+    def test_post_cast_tolerance_is_precision_specific(self) -> None:
+        self.assertEqual(
+            post_cast_relative_tolerance("torch.bfloat16"),
+            1.5 * (2.0 ** -7),
+        )
+        self.assertEqual(post_cast_relative_tolerance("torch.float32"), 1e-6)
 
     def test_clip_coefficient_matches_frozen_rule(self) -> None:
         self.assertEqual(clip_coefficient(0.5), 1.0)

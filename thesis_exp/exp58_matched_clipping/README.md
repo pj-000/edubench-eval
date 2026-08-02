@@ -28,3 +28,10 @@ the same complete accumulation window.  FP32 is the strict algebraic identity
 gate.  BF16 is the actual-runtime safety and direction-preservation gate, with
 a tolerance derived from BF16 unit roundoff.  The first BF16 failure remains
 preserved as an audit artifact; no optimizer step preceded this revision.
+
+The v2 seed-42 pilot subsequently exposed a separate representation-level
+edge case: a unit-bounded FP32 update measured 1.00002247 after BF16 storage.
+Protocol v3 keeps the FP32 construction limit at 1.000001 and adds a BF16
+post-storage bound of `1 + 1.5 * 2^-7`.  It does not rescale the update.  The
+stopped five-step pilot is discarded and preserved; no epoch, dev metric, or
+test access preceded the v3 restart.

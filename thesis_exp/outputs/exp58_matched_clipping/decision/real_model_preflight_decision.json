@@ -1,16 +1,23 @@
 {
-  "status": "EXP58_REAL_MODEL_PREFLIGHT_PASS_READY_FOR_SEED42_GPU_AUTHORIZATION",
-  "protocol_version": 2,
-  "protocol_sha256": "0ecb1c4520b597966abb3483234fdc637c61109a4050db1da85114120e0b2b8b",
-  "source_lock_sha256": "0b841458fd0b405132e3403ffabc31bc4f590eab9ef431b5549ce59979ecfd2e",
+  "status": "EXP58_V3_REAL_MODEL_PREFLIGHT_PASS_READY_FOR_SEED42_RESTART",
+  "protocol_version": 3,
+  "protocol_sha256": "bc60c5185769b25cca3522d0501392fd60b3a577986254fd7c7c3028e745762a",
+  "source_lock_sha256": "6ab0b7440cc7badbbf831d4fa2ef95cf3d3f1a91c6ac140f7abc2953b45f0de3",
   "preserved_first_bf16_failure": {
     "sha256": "79a3185b3a6046531b7d0473f244381bf17c6bd56278a193a028cd9bf1a56677",
     "optimizer_steps": 0,
     "test_access_count": 0
   },
+  "preserved_seed42_v2_implementation_stop": {
+    "sha256": "71e9d92f3e6810585d12ca2410211064d0044fb4ea2dda0e3c5cfc5b6c957bb6",
+    "completed_optimizer_steps": 5,
+    "completed_epochs": 0,
+    "dev_metrics_produced": false,
+    "test_access_count": 0
+  },
   "fp32_identity_gate": {
     "status": "PASS",
-    "sha256": "d2569a0911e3d7d6630848631313522c7b0fca00f169f93448b1c429cfaa30ed",
+    "sha256": "ecc708885dd085422f93538bd60a0907161b1fa902ea84a76f8964e1bfdf66cd",
     "global_decomposition_relative_error": 0.000013575522898504862,
     "paired_matched_relative_error": 0.0000004833614435568633,
     "optimizer_steps": 0,
@@ -18,19 +25,20 @@
   },
   "bf16_runtime_gate": {
     "status": "PASS",
-    "sha256": "c55893225855c811a05cfd84d56805304348a0a3e2d18f130b6e4e081690b2a6",
+    "sha256": "98cfb918fc4182a072b5d0e185a5adf3c508f3e1ab8dd6550c42edc248508bb2",
     "residual_direction_cosine": 0.9377277884661293,
     "maximum_component_norm_relative_error": 0.0001315736483851182,
     "paired_matched_relative_error": 0.008280624922735472,
-    "matched_update_norm": 0.9874483300223657,
+    "matched_update_expected_fp32_norm": 0.9874180578687272,
+    "matched_update_bf16_stored_norm": 0.9874483300223657,
     "beta_cap_active": false,
     "optimizer_steps": 0,
     "test_access_count": 0
   },
-  "scientific_interpretation": "The paired matched-gradient implementation is algebraically correct in FP32 and numerically safe with direction preservation in the frozen BF16 runtime. The first BF16 strict-identity failure is attributable to cancellation-amplified BF16 quantization, not an objective-scaling or routing defect.",
+  "scientific_interpretation": "The paired matched-gradient implementation is algebraically correct in FP32 and numerically safe with direction preservation in the frozen BF16 runtime. Protocol v3 distinguishes the unit-bounded FP32 construction from representation-only BF16 post-storage norm error and applies no extra gradient rescaling.",
   "seed_42_implementation_authorized": true,
-  "gpu_execution_authorized_in_this_decision": false,
+  "gpu_execution_authorized_by_user": true,
   "seeds_43_to_46_authorized": false,
-  "next_required_step": "obtain user GPU authorization, then run the frozen seed-42 matched-control pilot on train/dev only",
+  "next_required_step": "restart frozen seed 42 from the original initialization and data order on train/dev only",
   "test_access_count": 0
 }

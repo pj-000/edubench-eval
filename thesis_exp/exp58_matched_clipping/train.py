@@ -114,7 +114,7 @@ def parse_args() -> TrainConfig:
 
 def verify_contract(*, require_source_lock: bool) -> dict[str, Any]:
     protocol = json.loads(PROTOCOL_PATH.read_text(encoding="utf-8"))
-    if protocol.get("status") != "EXP58_MATCHED_CLIPPING_PROTOCOL_V2_FROZEN_BEFORE_FORMAL_TRAINING":
+    if protocol.get("status") != "EXP58_MATCHED_CLIPPING_PROTOCOL_V3_FROZEN_AFTER_SEED42_IMPLEMENTATION_STOP":
         raise RuntimeError("Exp58 protocol is not frozen")
     if protocol.get("allowed_splits") != ["train", "dev"] or protocol.get("test_access_count") != 0:
         raise RuntimeError("Invalid Exp58 split contract")
@@ -193,6 +193,14 @@ def _sum_squares(torch: Any, values: list[Any], device: Any) -> Any:
     return total
 
 
+def post_cast_relative_tolerance(dtype_name: str) -> float:
+    """Return the frozen storage-only norm tolerance for a gradient dtype."""
+
+    if dtype_name == "torch.bfloat16":
+        return 1.5 * (2.0 ** -7)
+    return 1e-6
+
+
 def compose_matched_step(
     model: Any,
     residual_buffers: dict[str, Any],
@@ -244,20 +252,35 @@ def compose_matched_step(
         alpha_routed=alpha_routed,
         max_norm=max_norm,
     )
+    expected_matched_sq = torch.zeros((), device=device, dtype=torch.float32)
     for name, parameter in named.items():
         residual = residual_buffers.get(name)
         if residual is None:
             residual = torch.zeros_like(common_cache[name])
         matched = alpha_common * common_cache[name] + beta * residual
+        expected_matched_sq = expected_matched_sq + matched.square().sum()
         parameter.grad.copy_(matched.to(dtype=parameter.grad.dtype))
+    expected_matched_norm = math.sqrt(
+        max(0.0, float(expected_matched_sq.detach().cpu()))
+    )
+    if (
+        not math.isfinite(expected_matched_norm)
+        or expected_matched_norm > max_norm + 1e-6
+    ):
+        raise RuntimeError(
+            f"Constructed FP32 matched update norm violation: {expected_matched_norm}"
+        )
     actual_sq = _sum_squares(
         torch,
         [parameter.grad for parameter in named.values()],
         device,
     )
     actual_norm = math.sqrt(max(0.0, float(actual_sq.detach().cpu())))
-    if not math.isfinite(actual_norm) or actual_norm > max_norm + 1e-6:
-        raise RuntimeError(f"Matched update norm violation: {actual_norm}")
+    gradient_dtype = str(next(iter(named.values())).grad.dtype)
+    storage_relative_tolerance = post_cast_relative_tolerance(gradient_dtype)
+    post_cast_limit = max_norm * (1.0 + storage_relative_tolerance)
+    if not math.isfinite(actual_norm) or actual_norm > post_cast_limit:
+        raise RuntimeError(f"BF16-stored matched update norm violation: {actual_norm}")
     return {
         "common_norm": common_norm,
         "routed_norm": routed_norm,
@@ -273,7 +296,12 @@ def compose_matched_step(
         "beta": beta,
         "beta_over_alpha_R": beta / alpha_routed if alpha_routed > 0.0 else None,
         "beta_cap_active": cap_active,
+        "matched_update_expected_fp32_norm": expected_matched_norm,
         "matched_update_norm": actual_norm,
+        "matched_update_post_cast_norm_delta": actual_norm - expected_matched_norm,
+        "gradient_storage_dtype": gradient_dtype,
+        "post_cast_relative_tolerance": storage_relative_tolerance,
+        "post_cast_norm_limit": post_cast_limit,
     }
 
 
