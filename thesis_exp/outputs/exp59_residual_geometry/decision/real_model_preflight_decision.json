@@ -1,0 +1,39 @@
+{
+  "status": "EXP59_REAL_MODEL_PREFLIGHT_PASS_READY_FOR_TWO_ARM_SEED42_GPU_AUTHORIZATION",
+  "protocol_sha256": "42a96ca25f6a40619da011c34905387e0c67da0567fee6a27744724fba257e85",
+  "source_lock_sha256": "7f28869d04bd0fb040a4880cb917a7e4adce8e0a8872e41d561eff1a0bed9fac",
+  "endpoint_parity": {
+    "status": "PASS",
+    "checks_passed": 62,
+    "checks_total": 62
+  },
+  "fp32_identity_gate": {
+    "status": "PASS",
+    "sha256": "3fe30c8244584a2f274c565a868182d673f38260ab5fe5b6b202bff27d9f0a9f",
+    "residual_reconstruction_relative_error": 2.0510437288645303e-08,
+    "normalized_orthogonality_error": 1.0685795663448245e-08,
+    "full_route_reconstruction_relative_error": 4.6717852429942416e-07,
+    "parallel_trainer_relative_error": 4.6340806962654114e-07,
+    "orthogonal_trainer_relative_error": 4.792305709197566e-07,
+    "optimizer_steps": 0,
+    "test_access_count": 0
+  },
+  "bf16_runtime_gate": {
+    "status": "PASS",
+    "sha256": "e5af8aa4d6e519931954f7ab55511c98e7e97a8308431eb19760d6a9b0897905",
+    "residual_reconstruction_relative_error": 9.983539674934026e-09,
+    "normalized_orthogonality_error": 1.0687544641265088e-08,
+    "full_route_reconstruction_relative_error": 0.008094623039668718,
+    "parallel_trainer_relative_error": 0.008285912355269069,
+    "orthogonal_trainer_relative_error": 0.00846557608764464,
+    "representation_tolerance": 0.01171875,
+    "optimizer_steps": 0,
+    "test_access_count": 0
+  },
+  "seed42_implementation_authorized": true,
+  "seed42_performance_gate": false,
+  "gpu_execution_authorized_in_this_decision": false,
+  "seeds43_to_46_authorized": false,
+  "next_required_step": "obtain user GPU authorization and run parallel_only plus orthogonal_only seed42 from frozen initialization on train/dev only",
+  "test_access_count": 0
+}
