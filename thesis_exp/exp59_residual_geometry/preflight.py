@@ -320,7 +320,7 @@ def run(
     output = (
         OUTPUT_ROOT
         / "audit"
-        / f"preflight_real_qwen3_full_accumulation_{precision}_v1.json"
+        / f"preflight_real_qwen3_full_accumulation_{precision}_v2.json"
     )
     write_json(output, report)
     return report

@@ -15,7 +15,7 @@
     "thesis_exp/exp59_residual_geometry/__init__.py": "8324deba28fb491e563aa516a5df612810b4a22e66003af0e773d616cbbd582a",
     "thesis_exp/exp59_residual_geometry/endpoint_parity.py": "b2207f5918079271420361cea6a52e06d3a54fa6f61008f3d34f0e505fcf491c",
     "thesis_exp/exp59_residual_geometry/geometry.py": "f92cd4607a82eda9044c6b3d03d029698ffddda87251b13c82ee77ed162800c7",
-    "thesis_exp/exp59_residual_geometry/preflight.py": "611d7acd3b326244628f6fbba4497cc516a37f59e25d313c8933b8898874811d",
+    "thesis_exp/exp59_residual_geometry/preflight.py": "e66afde89b03a0a3cb7371fbf20c319c72f465b8e63b6c8e6d581bbd3639a145",
     "thesis_exp/exp59_residual_geometry/train.py": "f8f5d3d7b59f4021db1d2c12171af62b9580243e567486cbf0bb237490d02960",
     "thesis_exp/outputs/exp57_cbrd/decision/stage1_confirmation_decision.json": "fe20ca5ff23aff3280dec3e5e70842e27c07199182c0aa4f3a4b64b0bad47a4c",
     "thesis_exp/outputs/exp58_matched_clipping/decision/seed42_stop_decision.json": "36ee49d2d9cceaabe7a0496558550fb63e575ad24f38d720ce2d826c62d5e201",

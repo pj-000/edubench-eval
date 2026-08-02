@@ -1,7 +1,7 @@
 {
   "formal_training_authorized": false,
   "next_required_step": "repeat real Qwen3 dual-precision full-accumulation no-update preflight for the FP64 scalar-reduction amendment",
-  "source_lock_sha256": "f90d6c74c12da1792d75f889942e78533453d7e7bbffd2048ea3fc009375d459",
+  "source_lock_sha256": "d4db160c499d91ac4ca74988cdd5ff59ef809990f50d76b49ebcda8a8897d34f",
   "status": "EXP59_V2_CPU_GATES_PASS_READY_FOR_REAL_MODEL_PREFLIGHT",
   "test_access_count": 0
 }
