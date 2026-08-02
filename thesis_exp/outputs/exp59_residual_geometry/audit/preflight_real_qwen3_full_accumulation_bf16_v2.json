@@ -1,0 +1,109 @@
+{
+  "checks": {
+    "bf16_full_route_reconstruction_within_representation_tolerance": true,
+    "bf16_orthogonal_trainer_matches_independent_within_tolerance": true,
+    "bf16_orthogonality_within_representation_tolerance": true,
+    "bf16_parallel_trainer_matches_independent_within_tolerance": true,
+    "bf16_residual_reconstruction_within_representation_tolerance": true,
+    "cublas_workspace_config_recorded": true,
+    "no_optimizer_step": true,
+    "no_test_access": true,
+    "orthogonal_hard_head_norm_at_most_1e_12": true,
+    "orthogonal_soft_head_norm_at_most_1e_12": true,
+    "orthogonal_standard_clip_norm_safe": true,
+    "parallel_hard_head_norm_at_most_1e_12": true,
+    "parallel_soft_head_norm_at_most_1e_12": true,
+    "parallel_standard_clip_norm_safe": true
+  },
+  "component_head_norms": {
+    "orthogonal_hard_head": 0.0,
+    "orthogonal_soft_head": 0.0,
+    "parallel_hard_head": 0.0,
+    "parallel_soft_head": 0.0
+  },
+  "contract": {
+    "protocol_sha256": "42a96ca25f6a40619da011c34905387e0c67da0567fee6a27744724fba257e85",
+    "source_lock_sha256": "d4db160c499d91ac4ca74988cdd5ff59ef809990f50d76b49ebcda8a8897d34f"
+  },
+  "cublas_workspace_config": ":4096:8",
+  "deterministic_algorithms": true,
+  "endpoint_residual_relative_errors": {
+    "all": 0.37280375121329495,
+    "backbone": 0.37280375121329506,
+    "hard_head": 0.0,
+    "soft_head": 0.0
+  },
+  "examples": 128,
+  "full_route_reconstruction_relative_error": 0.008094623039668724,
+  "geometry": {
+    "common_backbone_norm": 442.8926429533279,
+    "normalized_orthogonality_error": 1.0687544644867727e-08,
+    "orthogonal_norm": 7.8034127063163385,
+    "parallel_norm": 5.949926332451083,
+    "projection_coefficient": -0.013434240428874273,
+    "reconstruction_relative_error": 9.983539674934028e-09,
+    "residual_common_cosine": -0.6063313196048229,
+    "residual_norm": 9.812995069250995
+  },
+  "head_contract": {
+    "hard_bias": false,
+    "hard_head_hash": "d7c922a1956118af437c52189ffc993465277a72698cef38290e47404247f9e2",
+    "hard_parameter_count": 5120,
+    "soft_bias": false,
+    "soft_head_hash": "d7c922a1956118af437c52189ffc993465277a72698cef38290e47404247f9e2",
+    "soft_parameter_count": 5120,
+    "storage_independent": true
+  },
+  "independent_clip_coefficients": {
+    "orthogonal_only": 0.002184557692112261,
+    "parallel_only": 0.002212697761680962
+  },
+  "independent_preclip_norms": {
+    "orthogonal_only": 457.7585666087568,
+    "parallel_only": 451.9370042782587
+  },
+  "microbatches": 32,
+  "model_mode": "qwen3_cbrd_dual_head_sequence_classification",
+  "optimizer_steps": 0,
+  "paired_audits": {
+    "orthogonal_only": {
+      "common_backbone_norm": 442.83048248497806,
+      "gradient_storage_dtype": "torch.bfloat16",
+      "normalized_orthogonality_error": 8.323754124619575e-09,
+      "orthogonal_norm": 7.803726429409289,
+      "parallel_norm": 5.949575418471399,
+      "post_cast_norm_limit": 1.01171875,
+      "post_cast_relative_tolerance": 0.01171875,
+      "postclip_norm": 0.9985669716241082,
+      "preclip_norm": 458.0,
+      "projection_coefficient": -0.013435333813302346,
+      "residual_common_cosine": -0.6062932922083245,
+      "residual_norm": 9.813031797236382,
+      "residual_reconstruction_relative_error": 0.0,
+      "variant": "orthogonal_only"
+    },
+    "parallel_only": {
+      "common_backbone_norm": 442.83048248497806,
+      "gradient_storage_dtype": "torch.bfloat16",
+      "normalized_orthogonality_error": 8.323754124619575e-09,
+      "orthogonal_norm": 7.803726429409289,
+      "parallel_norm": 5.949575418471399,
+      "post_cast_norm_limit": 1.01171875,
+      "post_cast_relative_tolerance": 0.01171875,
+      "postclip_norm": 0.9998772963106322,
+      "preclip_norm": 452.0,
+      "projection_coefficient": -0.013435333813302346,
+      "residual_common_cosine": -0.6062932922083245,
+      "residual_norm": 9.813031797236382,
+      "residual_reconstruction_relative_error": 0.0,
+      "variant": "parallel_only"
+    }
+  },
+  "paired_trainer_relative_errors": {
+    "orthogonal_only": 0.008465576041683756,
+    "parallel_only": 0.00828591268634587
+  },
+  "precision": "bf16",
+  "status": "EXP59_PREFLIGHT_PASS",
+  "test_access_count": 0
+}
