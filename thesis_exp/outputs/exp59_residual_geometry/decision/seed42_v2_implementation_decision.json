@@ -1,0 +1,56 @@
+{
+  "status": "EXP59_SEED42_V2_IMPLEMENTATION_PASS_SEEDS43_TO_46_REQUIRED",
+  "date": "2026-08-02",
+  "protocol_sha256": "42a96ca25f6a40619da011c34905387e0c67da0567fee6a27744724fba257e85",
+  "source_lock_sha256": "d4db160c499d91ac4ca74988cdd5ff59ef809990f50d76b49ebcda8a8897d34f",
+  "parallel_only": {
+    "exit_code": 0,
+    "status": "COMPLETED",
+    "optimizer_steps": 210,
+    "selected_epoch": 6,
+    "selected_metrics": {
+      "MAE_human_mean": 0.38905622489959835,
+      "Exact_rounded": 0.7213855421686747,
+      "Kendall_human_mean": 0.5779774680836033
+    },
+    "maximum_normalized_orthogonality_error": 5.261719064259079e-08,
+    "maximum_residual_reconstruction_relative_error": 0.0,
+    "maximum_postclip_norm": 1.0054594856078447,
+    "frozen_postclip_limit": 1.01171875,
+    "run_summary_sha256": "acffb3031572af06abbd2a735f987064e7142570c32a5b264742d2b1b3f9f76b"
+  },
+  "orthogonal_only": {
+    "exit_code": 0,
+    "status": "COMPLETED",
+    "optimizer_steps": 210,
+    "selected_epoch": 6,
+    "selected_metrics": {
+      "MAE_human_mean": 0.3795180722891566,
+      "Exact_rounded": 0.7183734939759037,
+      "Kendall_human_mean": 0.6102208434928242
+    },
+    "maximum_normalized_orthogonality_error": 6.762933572456404e-08,
+    "maximum_residual_reconstruction_relative_error": 0.0,
+    "maximum_postclip_norm": 1.00554134933759,
+    "frozen_postclip_limit": 1.01171875,
+    "run_summary_sha256": "35e4bc46babaef820babede88c7b5bb749b1040308f203336c7fa154eca6465c"
+  },
+  "seed42_descriptive_deltas_vs_reused_consensus_only": {
+    "parallel_only": {
+      "delta_MAE": -0.006024096385542188,
+      "delta_Exact": -0.003012048192771122,
+      "delta_Kendall": 0.0005127981676976701
+    },
+    "orthogonal_only": {
+      "delta_MAE": -0.015562248995983907,
+      "delta_Exact": -0.0060240963855421326,
+      "delta_Kendall": 0.032756173576918624
+    }
+  },
+  "all_implementation_gates_pass": true,
+  "performance_gate_applied": false,
+  "seed42_performance_interpretation": "descriptive only until all five frozen seeds and paired question-cluster bootstrap are complete",
+  "seeds43_to_46_required_by_protocol": true,
+  "test_access_count": 0,
+  "next_step": "After explicit GPU authorization, run both arms for seeds43-46 without changing configuration or stopping based on interim performance."
+}
