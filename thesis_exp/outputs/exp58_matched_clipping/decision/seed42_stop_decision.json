@@ -1,0 +1,47 @@
+{
+  "status": "EXP58_SEED42_PROTOCOL_STOP_BETA_CAP_FRACTION",
+  "seed": 42,
+  "run_status": "COMPLETED",
+  "run_summary_sha256": "82cfa4df3cf2ad53bb0b9d4314cfa5e8422835ad4c069169e1e8f0d27b886583",
+  "matched_step_audit_sha256": "14b01d52516ed9f0d12f882953c6c3070b3ca5e24dd354014a9e1ee9b022a91a",
+  "selected_epoch": 9,
+  "selected_metrics": {
+    "MAE_human_mean": 0.37148594377510036,
+    "Exact_rounded": 0.7213855421686747,
+    "Kendall_human_mean": 0.604547351972497
+  },
+  "comparison_to_consensus_only_seed42": {
+    "delta_MAE": -0.023594377510040176,
+    "delta_Exact": -0.003012048192771122,
+    "delta_Kendall": 0.027082682056591368
+  },
+  "comparison_to_routed_hmsa_seed42": {
+    "delta_MAE": -0.0015060240963854963,
+    "delta_Exact": -0.006024096385542244,
+    "delta_Kendall": -0.01585133687987983
+  },
+  "stop_gate": {
+    "name": "beta safety cap is active on more than 5 percent of optimizer steps",
+    "registered_limit": 0.05,
+    "observed_events": 17,
+    "optimizer_steps": 210,
+    "observed_fraction": 0.08095238095238096,
+    "triggered": true,
+    "cap_step_range": [5, 100],
+    "cap_epochs": [1, 2, 3, 4, 5],
+    "mean_beta_over_alpha_R_on_capped_steps": 0.20514849303623445,
+    "minimum_beta_over_alpha_R_on_capped_steps": 1.1830579400159889e-07
+  },
+  "other_stop_conditions": {
+    "nan_or_inf": false,
+    "training_crash": false,
+    "gradient_decomposition_gate_failure": false,
+    "constructed_fp32_norm_violation": false,
+    "bf16_stored_norm_violation": false,
+    "catastrophic_joint_MAE_and_Exact_degradation": false
+  },
+  "formal_seeds_43_to_46_authorized": false,
+  "scientific_interpretation": "Seed 42 is performance-favorable, but the pre-registered frequency gate shows that the safety cap materially intervened. The result cannot yet isolate the benefit of a full alpha_R-scaled residual under common-gradient scale matching.",
+  "next_required_step": "independent review of whether to stop Exp58 or relabel any seeds 43-46 campaign as exploratory; do not revise the 5 percent gate after seeing seed42",
+  "test_access_count": 0
+}
