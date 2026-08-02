@@ -1,0 +1,56 @@
+{
+  "catastrophic_screen": {
+    "consensus_only": {
+      "catastrophic": false,
+      "delta_exact_vs_hard_only": 0.0060240963855421326,
+      "delta_mae_vs_hard_only": 0.009036144578313254
+    },
+    "dual_hard": {
+      "catastrophic": false,
+      "delta_exact_vs_hard_only": 0.013554216867469826,
+      "delta_mae_vs_hard_only": -0.0050200803212851475
+    },
+    "residual_only": {
+      "catastrophic": false,
+      "delta_exact_vs_hard_only": 0.0015060240963854499,
+      "delta_mae_vs_hard_only": -0.01204819277108432
+    },
+    "routed_hmsa": {
+      "catastrophic": false,
+      "delta_exact_vs_hard_only": 0.009036144578313254,
+      "delta_mae_vs_hard_only": -0.013052208835341417
+    },
+    "shuffled_residual": {
+      "catastrophic": false,
+      "delta_exact_vs_hard_only": 0.015060240963855387,
+      "delta_mae_vs_hard_only": 0.006024096385542077
+    },
+    "sign_flipped": {
+      "catastrophic": false,
+      "delta_exact_vs_hard_only": -0.01656626506024106,
+      "delta_mae_vs_hard_only": 0.03413654618473888
+    }
+  },
+  "checks": {
+    "detached_hard_path_parity": false,
+    "no_catastrophic_scientific_arm": true,
+    "no_test_access": true,
+    "routed_full_run_parity": false
+  },
+  "interpretation": "Seed 42 is an integrity/catastrophic screen only; it is not a mechanism-effect decision.",
+  "parity": {
+    "detached_vs_hard_only": {
+      "abs_delta_exact": 0.003012048192771122,
+      "abs_delta_mae": 0.0035140562248995866,
+      "prediction_agreement": 0.8930722891566265
+    },
+    "routed_vs_ordinary_hmsa": {
+      "abs_delta_exact": 0.0015060240963854499,
+      "abs_delta_mae": 0.0035140562248995866,
+      "prediction_agreement": 0.8975903614457831
+    }
+  },
+  "seed": 42,
+  "status": "PILOT_NO_GO",
+  "test_access_count": 0
+}

@@ -1,0 +1,14 @@
+{
+  "seed42": {
+    "mae_human_mean_max": 0.3810441767068273,
+    "exact_correct_min": 475,
+    "kendall_min": 0.5740767969155172,
+    "label4_correct_min": 161,
+    "label5_correct_min": 286,
+    "l2h_count_max": 11,
+    "l2h_count_improved_max": 10,
+    "abs_bias_improved_max": 0.10895582329317268
+  },
+  "bootstrap_resamples": 10000,
+  "test_access_before_formal_pass": 0
+}

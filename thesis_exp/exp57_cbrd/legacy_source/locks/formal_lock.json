@@ -1,0 +1,28 @@
+{
+  "status": "EXP51_FORMAL_PROTOCOL_LOCKED",
+  "protocol_commit": "f21fca2f383169f1f9969ca22e538194d889ab3b",
+  "exp51_source_commit": "193d64e51ddc7c0ffd8bd4c4b5d4468dafa91162",
+  "baseline_result_commit": "9ad6190277950439a3a5b9b7188c14b3943b7433",
+  "test_access_count": 0,
+  "files": {
+    "thesis_exp/configs/exp51_hmsa/formal_protocol.json": "8f871c2270ffb6638c8c50bb04d978ef8ab8f997a6e51af60fe8c5419ef78f49",
+    "thesis_exp/configs/exp51_hmsa/source_lock.json": "4072b74ca9dce9009ec8226748d53612431f774dd4ae00164d5bc28867f5249a",
+    "thesis_exp/data/splits/paper_like_triple_seed42/dev.jsonl": "a18d6a27b9a524d4592a359658ae70c9348fe88e43c962971ba95f62d2b6cdf0",
+    "thesis_exp/data/splits/paper_like_triple_seed42/train.jsonl": "0a1733b9209984c5c4291d205d1ac6057bed341717903b9de075d07de44a878e",
+    "thesis_exp/exp49_cphce/__init__.py": "14886202d13ee4c3e1769e56360aa536f3de0106cf64c8b37f635ef3ed75d249",
+    "thesis_exp/exp49_cphce/build_targets.py": "6e1c078ebdf1acb4684486a44edba4ed286c51e7ac1a64e69a847d34da2c2db6",
+    "thesis_exp/exp49_cphce/losses.py": "cc0b9a58d1697c1e354115975e7aa1e352bc2cfab709ff3fab521e2831f80a3a",
+    "thesis_exp/exp49_cphce/metric_contract.py": "338818090ca653b200140e19f27ec5965d863d9bd9eb084e406c233ce69b8ea7",
+    "thesis_exp/exp49_cphce/train.py": "20644184acd179a81f81fbc5d7c8c3d306c74b7e79774f1058ac73fb4b511a57",
+    "thesis_exp/exp50_cahs/__init__.py": "96dc95fa221661696fb9d17ac7580142772e80ad444e3d53b447589dbc2f548a",
+    "thesis_exp/exp50_cahs/build_targets.py": "be0d44e8c88e3244134f7c770a551ad013000c46cd0081d70d1212525b22bf74",
+    "thesis_exp/exp50_cahs/train.py": "7b213eacca2ed09cbc83eeeb44994762e23997901d8f187c0a455e7c8bc137bb",
+    "thesis_exp/exp51_hmsa/formal_gate.py": "ad022b0701e1807bf517d73ee9f58cf32db5df2aaee01777e681f50fd7938377",
+    "thesis_exp/scripts/run_exp51_formal.sh": "4935d6ef4dcab84b5f55837fd9f2ba14ae2d2d1181c5d7191fb0c406c0692a0f",
+    "thesis_exp/src/edujudge/exp02/__init__.py": "701c13b855a58f535fff5f4588f4dba62d5acc41a4e41fdac8be8b48ce2a0ddc",
+    "thesis_exp/src/edujudge/exp02/build_exp02_dataset.py": "82eaefd6c711f632a23d61e7591d5c447076e9e351134887b726d7db75a7d241",
+    "thesis_exp/src/edujudge/exp02/train_ce_baseline.py": "fccf33d68bdd7ea889032c071422baff6bfd1cf8a4e3e54927638bcf258c9b68",
+    "thesis_exp/src/edujudge/utils/io.py": "e19250fbf9b7a2013b61078d29100137ee6cefab76cd8dda01ab6888156f1364",
+    "thesis_exp/src/edujudge/utils/text_norm.py": "4642255f3aa0fdeeec089fc4364749943082df1a9decb992fd81aae64c1740e4"
+  }
+}

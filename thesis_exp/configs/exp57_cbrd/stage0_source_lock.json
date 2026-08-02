@@ -1,0 +1,30 @@
+{
+  "evidence_files": {
+    "thesis_exp/outputs/exp57_cbrd/audit/legacy_source_archive.json": "16dc3b64c5b764cabc50c312a96da379aee5cb11529a04c67c79f94433ce0252",
+    "thesis_exp/outputs/exp57_cbrd/audit/stage0_data_and_source_audit.json": "42776d3adab876680bbdcbdd142fa11aee97683c1006825d7858bc39df13acb5",
+    "thesis_exp/outputs/exp57_cbrd/audit/stage0_real_qwen3_mechanism_routes.json": "0f5c2a3d65f9bf9d901e9fbd471dce77edf7e8201c267464954928d85b4d539d",
+    "thesis_exp/outputs/exp57_cbrd/audit/stage0_real_qwen3_routing_bf16_false.json": "742636a3cabc0f8bded3092e8cb20974702c8ce92b32633d5c10dbc68c8efb30",
+    "thesis_exp/outputs/exp57_cbrd/audit/stage0_real_qwen3_routing_bf16_true.json": "35d68602a1db1e0ffb0b7f625b0beb3e4607f6f9c53a6e89624d2cc473a332e8",
+    "thesis_exp/outputs/exp57_cbrd/audit/stage0_torch_identity.json": "1c32706c105aa144e0cfb10f3626abe6bf9d1f52b4af1d58d9c4d959de738f5a",
+    "thesis_exp/outputs/exp57_cbrd/audit/stage0_two_branch_bf16_no_go.json": "27f25c2b1211b82d7701ca2f4c1ba32c2a15cdd71269d2db8db567b69416601a"
+  },
+  "source_files": {
+    "thesis_exp/configs/exp57_cbrd/stage0_protocol.json": "f57dbe337df6e180d29e65d52bfd3cd913fc5c16c6d8c4254a30dbb831a7fd03",
+    "thesis_exp/exp57_cbrd/README.md": "0ed48c10cf212f3482e6652f005243da78f3fbe64baaf243c3c4826a46162fa5",
+    "thesis_exp/exp57_cbrd/__init__.py": "53db54a38d0224fa49b21433fd6f6449f6b42608d50657a95d675f17a674688e",
+    "thesis_exp/exp57_cbrd/archive_legacy_sources.py": "62660d7ac1fc6e17ea8ea910614b03ddced6d66ba35f2987ef8852e7b2d2327f",
+    "thesis_exp/exp57_cbrd/data_audit.py": "35a3d38a6c0719b85cdea0983fa11c71991790874e6118a519dffeac1a34ca0d",
+    "thesis_exp/exp57_cbrd/finalize_stage0.py": "9e18f4ed6e1adf4ee67d37e7b2e4f58924e2fd55ec8723eb16d7bfb45832e67e",
+    "thesis_exp/exp57_cbrd/losses.py": "79478bdfd83851f2f077b3b30223e46648a840df6468c9f8edae64f22e307b54",
+    "thesis_exp/exp57_cbrd/mechanism_audit.py": "09052334e784e09042373f0a41527c2b6c32dcd61cf61c987041e6583087c422",
+    "thesis_exp/exp57_cbrd/method.py": "d112992222bc5166068fbc887e4dbdadb16f437faf24cecf5d50693efb0a5fa7",
+    "thesis_exp/exp57_cbrd/model.py": "cd648c050e23a33773078e662919df7749b8a617476c3aaf082521f19774caaf",
+    "thesis_exp/exp57_cbrd/preflight.py": "7dc79d53955b008f7541493c921fef612bf3554b3f44781e73d00c35bfe5fcf8",
+    "thesis_exp/exp57_cbrd/torch_audit.py": "965918c80e117759a74e98ae4be34130f810d218693b62f167e347fa4457cc66",
+    "thesis_exp/scripts/run_exp57_cbrd_stage0.sh": "ea793defeb06a9c9f823f53443224b363e2489cbce6bedac3246e2342afce508",
+    "thesis_exp/scripts/sync_exp57_cbrd_to_server.sh": "15cb5f8de8f135a60bb68cf65e972a628b06e1b017a048a26954a4f360eba4bf",
+    "thesis_exp/tests/test_exp57_cbrd_stage0.py": "056bda662c5bd3fa25275ad0fa366b526f652af7cf645ca217cf518a4a881071"
+  },
+  "status": "EXP57_CBRD_STAGE0_SOURCE_LOCKED",
+  "test_access_count": 0
+}

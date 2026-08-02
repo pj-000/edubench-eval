@@ -1,0 +1,19 @@
+{
+  "deterministic": false,
+  "first_loss_abs_difference": 0.0,
+  "gradient_checkpointing": true,
+  "gradient_max_abs_differences_after_first_backward": {
+    "backbone": 0.0001220703125,
+    "hard_head": 0.0,
+    "soft_head": 0.0
+  },
+  "interpretation_scope": "post-result implementation diagnosis only; no optimizer step and no test access",
+  "optimizer_steps": 0,
+  "ordinary_first_loss": 4.790341854095459,
+  "ordinary_second_loss_after_first_backward": 4.100723743438721,
+  "routed_first_loss": 4.790341854095459,
+  "routed_second_loss_after_first_backward": 4.100723743438721,
+  "second_loss_abs_difference": 0.0,
+  "status": "DIAGNOSTIC_COMPLETE",
+  "test_access_count": 0
+}

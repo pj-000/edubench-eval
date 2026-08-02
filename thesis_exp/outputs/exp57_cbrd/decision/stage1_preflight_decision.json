@@ -1,0 +1,27 @@
+{
+  "authorized_runs": {
+    "scientific_variants": [
+      "dual_hard",
+      "consensus_only",
+      "routed_hmsa",
+      "residual_only",
+      "sign_flipped",
+      "shuffled_residual"
+    ],
+    "seed": 42,
+    "technical_control": "detached_soft seed 42"
+  },
+  "checks": {
+    "accumulation_scale_route_audit_passed": true,
+    "all_seven_smoke_paths_completed": true,
+    "all_smoke_paths_train_dev_only": true,
+    "no_test_access": true,
+    "shuffled_smoke_mapping_matches": true,
+    "source_files_present": true,
+    "stage0_passed": true
+  },
+  "interpretation": "Formal seed 42 may screen only integrity and catastrophic failure. It may not be used to prune a small effect or claim the CBRD mechanism.",
+  "source_lock_sha256": "4e6d62f352362a8ded82dba8a4be46d54693a5cd6fd8ba46867c7f1df2144b5f",
+  "status": "STAGE1_PILOT_AUTHORIZED",
+  "test_access_count": 0
+}
