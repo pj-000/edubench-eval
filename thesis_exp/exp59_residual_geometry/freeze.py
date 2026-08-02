@@ -17,6 +17,8 @@ from thesis_exp.exp59_residual_geometry import (
 
 SOURCE_FILES = (
     "thesis_exp/configs/exp59_residual_geometry/protocol.json",
+    "thesis_exp/configs/exp59_residual_geometry/implementation_amendment_v2.json",
+    "thesis_exp/outputs/exp59_residual_geometry/decision/seed42_v1_implementation_stop.json",
     "thesis_exp/exp59_residual_geometry/__init__.py",
     "thesis_exp/exp59_residual_geometry/README.md",
     "thesis_exp/exp59_residual_geometry/geometry.py",
@@ -55,17 +57,17 @@ def main() -> None:
     if missing:
         raise FileNotFoundError(missing)
     lock = {
-        "status": "EXP59_SOURCE_LOCK_FROZEN_BEFORE_REAL_MODEL_PREFLIGHT_AND_RESULTS",
+        "status": "EXP59_SOURCE_LOCK_V2_REFROZEN_AFTER_NUMERICAL_AMENDMENT_BEFORE_SEED42_RERUN",
         "files": {relative: sha256(REPO_ROOT / relative) for relative in SOURCE_FILES},
         "protocol_sha256": sha256(PROTOCOL_PATH),
         "test_access_count": 0,
     }
     write_json(SOURCE_LOCK_PATH, lock)
     decision = {
-        "status": "EXP59_CPU_GATES_PASS_READY_FOR_REAL_MODEL_PREFLIGHT",
+        "status": "EXP59_V2_CPU_GATES_PASS_READY_FOR_REAL_MODEL_PREFLIGHT",
         "source_lock_sha256": sha256(SOURCE_LOCK_PATH),
         "formal_training_authorized": False,
-        "next_required_step": "real Qwen3 dual-precision full-accumulation no-update preflight",
+        "next_required_step": "repeat real Qwen3 dual-precision full-accumulation no-update preflight for the FP64 scalar-reduction amendment",
         "test_access_count": 0,
     }
     write_json(OUTPUT_ROOT / "decision" / "cpu_preflight_decision.json", decision)

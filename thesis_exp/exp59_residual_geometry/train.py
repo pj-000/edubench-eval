@@ -220,9 +220,14 @@ def compose_geometry_step(
     if not named:
         raise RuntimeError("No accumulated gradients")
     device = next(iter(named.values())).grad.device
-    common_backbone_sq = torch.zeros((), device=device, dtype=torch.float32)
-    residual_sq = torch.zeros((), device=device, dtype=torch.float32)
-    common_residual_dot = torch.zeros((), device=device, dtype=torch.float32)
+    # The projection is applied to hundreds of millions of coordinates.  Keep
+    # the stored gradients in FP32, but accumulate the scalar reductions in
+    # FP64 so cancellation in a long dot product cannot create a spurious
+    # orthogonality-gate failure.  This is a numerical implementation detail;
+    # it does not alter the frozen projection definition or model update.
+    common_backbone_sq = torch.zeros((), device=device, dtype=torch.float64)
+    residual_sq = torch.zeros((), device=device, dtype=torch.float64)
+    common_residual_dot = torch.zeros((), device=device, dtype=torch.float64)
     common_cache: dict[str, Any] = {}
     for name, parameter in named.items():
         routed = parameter.grad.detach().float()
@@ -232,19 +237,23 @@ def compose_geometry_step(
         common = routed - residual
         common_cache[name] = common
         if name.startswith("backbone."):
-            common_backbone_sq = common_backbone_sq + common.square().sum()
-            residual_sq = residual_sq + residual.square().sum()
-            common_residual_dot = common_residual_dot + (common * residual).sum()
+            common_backbone_sq = common_backbone_sq + common.square().sum(
+                dtype=torch.float64
+            )
+            residual_sq = residual_sq + residual.square().sum(dtype=torch.float64)
+            common_residual_dot = common_residual_dot + (common * residual).sum(
+                dtype=torch.float64
+            )
     common_sq_value = float(common_backbone_sq.detach().cpu())
     residual_sq_value = float(residual_sq.detach().cpu())
     dot_value = float(common_residual_dot.detach().cpu())
     projection_coefficient = (
         dot_value / common_sq_value if common_sq_value > 0.0 else 0.0
     )
-    parallel_sq = torch.zeros((), device=device, dtype=torch.float32)
-    orthogonal_sq = torch.zeros((), device=device, dtype=torch.float32)
-    orthogonal_common_dot = torch.zeros((), device=device, dtype=torch.float32)
-    reconstruction_error_sq = torch.zeros((), device=device, dtype=torch.float32)
+    parallel_sq = torch.zeros((), device=device, dtype=torch.float64)
+    orthogonal_sq = torch.zeros((), device=device, dtype=torch.float64)
+    orthogonal_common_dot = torch.zeros((), device=device, dtype=torch.float64)
+    reconstruction_error_sq = torch.zeros((), device=device, dtype=torch.float64)
     for name, parameter in named.items():
         residual = residual_buffers.get(name)
         if residual is None:
@@ -262,14 +271,16 @@ def compose_geometry_step(
         preclip = common_cache[name] + component
         parameter.grad.copy_(preclip.to(dtype=parameter.grad.dtype))
         if name.startswith("backbone."):
-            parallel_sq = parallel_sq + parallel.square().sum()
-            orthogonal_sq = orthogonal_sq + orthogonal.square().sum()
+            parallel_sq = parallel_sq + parallel.square().sum(dtype=torch.float64)
+            orthogonal_sq = orthogonal_sq + orthogonal.square().sum(
+                dtype=torch.float64
+            )
             orthogonal_common_dot = orthogonal_common_dot + (
                 orthogonal * common_cache[name]
-            ).sum()
+            ).sum(dtype=torch.float64)
             reconstruction_error_sq = reconstruction_error_sq + (
                 residual - parallel - orthogonal
-            ).square().sum()
+            ).square().sum(dtype=torch.float64)
     preclip_norm = float(
         torch.nn.utils.clip_grad_norm_(
             [parameter for parameter in named.values()],

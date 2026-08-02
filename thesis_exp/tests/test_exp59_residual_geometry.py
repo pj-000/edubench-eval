@@ -16,6 +16,19 @@ from thesis_exp.exp59_residual_geometry.endpoint_parity import run as endpoint_p
 
 
 class ResidualGeometryTest(unittest.TestCase):
+    def test_numerical_amendment_preserves_protocol_and_threshold(self) -> None:
+        amendment_path = (
+            PROTOCOL_PATH.parent / "implementation_amendment_v2.json"
+        )
+        amendment = json.loads(amendment_path.read_text(encoding="utf-8"))
+        self.assertEqual(
+            amendment["protocol_sha256_unchanged"],
+            "42a96ca25f6a40619da011c34905387e0c67da0567fee6a27744724fba257e85",
+        )
+        self.assertEqual(amendment["trigger"]["frozen_limit"], 1e-6)
+        self.assertFalse(amendment["performance_used_to_authorize_change"])
+        self.assertEqual(amendment["test_access_count"], 0)
+
     def test_protocol_freezes_primary_and_no_search(self) -> None:
         protocol = json.loads(PROTOCOL_PATH.read_text(encoding="utf-8"))
         self.assertEqual(

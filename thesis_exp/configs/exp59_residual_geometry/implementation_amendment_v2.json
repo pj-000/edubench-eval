@@ -1,0 +1,37 @@
+{
+  "status": "EXP59_NUMERICAL_IMPLEMENTATION_AMENDMENT_FROZEN_BEFORE_SEED42_RERUN",
+  "date": "2026-08-02",
+  "protocol_sha256_unchanged": "42a96ca25f6a40619da011c34905387e0c67da0567fee6a27744724fba257e85",
+  "prior_source_lock_sha256": "7f28869d04bd0fb040a4880cb917a7e4adce8e0a8872e41d561eff1a0bed9fac",
+  "trigger": {
+    "stage": "seed42 implementation-safety run",
+    "parallel_only_normalized_orthogonality_error": 0.0000010043229832499214,
+    "orthogonal_only_normalized_orthogonality_error": 0.0000012470470277573757,
+    "frozen_limit": 0.000001,
+    "parallel_only_exit_code": 1,
+    "orthogonal_only_exit_code": 1
+  },
+  "preserved_failure_evidence": {
+    "parallel_log_sha256": "8e0509599f4caa3d2eb5c6360f1d568be2fa751dbf868cf26dfab8597a2cad25",
+    "orthogonal_log_sha256": "b86adf9e8b9bc542ec5f6b447540904a2cc7a53a4e70c0f059aaa2e07a12ba25",
+    "parallel_geometry_audit_sha256": "66fdf7ddcd1c7fc979e2187a27e149c51ff0a88b7dc799e1be4d766df6d5e26b",
+    "orthogonal_geometry_audit_sha256": "75b415ac285c0039487efae1237d084d81473b128f550e9a742460b15c3c5f95"
+  },
+  "diagnosis": "Long, cancellation-prone scalar reductions were accumulated in FP32 even though the frozen projection is defined over the full backbone vector. Both safety runs stopped just above the unchanged 1e-6 gate after epoch 1.",
+  "authorized_change": "Accumulate projection dot products, squared norms, reconstruction statistics, and orthogonality audit scalars in FP64 while retaining the original FP32 gradient tensors and the exact frozen projection formula.",
+  "unchanged": [
+    "projection definition",
+    "orthogonality threshold",
+    "model and data",
+    "losses and residual support",
+    "optimizer and scheduler",
+    "learning rate and epochs",
+    "standard global clipping",
+    "checkpoint rule",
+    "primary comparison",
+    "test access count"
+  ],
+  "rerun_rule": "Discard v1 partial endpoints from scientific comparisons, rerun both seed42 arms from initialization for implementation safety, and do not start seeds43-46 unless both reruns complete all frozen gates.",
+  "performance_used_to_authorize_change": false,
+  "test_access_count": 0
+}
