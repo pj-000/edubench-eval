@@ -1,0 +1,283 @@
+{
+  "allowed_splits": [
+    "train"
+  ],
+  "checks": {
+    "actual_mapping_sha_and_train_coverage_verified": true,
+    "construction_and_storage_geometry_gates": true,
+    "diagnostic_gradients_exactly_unchanged": true,
+    "diagnostic_residual_buffers_exclude_heads": true,
+    "explicit_route_residual_equivalence": true,
+    "forward_logits_identical": true,
+    "full_and_partial_windows_present": true,
+    "hard_soft_initial_heads_identical_and_storage_independent": true,
+    "mapping_integrity": true,
+    "model_parameters_exactly_unchanged": true,
+    "no_optimizer_constructed_or_step_taken": true,
+    "no_test_access": true,
+    "projected_formal_memory_has_required_margin": true,
+    "rng_restored": true
+  },
+  "environment": {
+    "cublas_workspace_config": ":4096:8",
+    "cuda": "12.1",
+    "cuda_visible_devices": "7",
+    "cudnn": 90100,
+    "deterministic_algorithms": false,
+    "git_commit": "8f1eda43f21ceba42ca1da5195f11b257cf2b3a1",
+    "git_tracked_diff_empty": true,
+    "gpu": "NVIDIA GeForce RTX 3090",
+    "platform": "Linux-5.4.0-216-generic-x86_64-with-glibc2.31",
+    "python": "3.10.19 (main, Oct 21 2025, 16:43:05) [GCC 11.2.0]",
+    "pytorch": "2.4.0+cu121",
+    "transformers": "4.57.1"
+  },
+  "final_model_snapshot_sha256": "4818c55477181149cfe8c7d27b535ecbf80cd749790cb594c5bd17977b28ddb3",
+  "gpu_identity": {
+    "cuda_visible_devices": "7",
+    "identity": "GPU-c40e42b63b9fbd93a949540694e870c6",
+    "mig_mode": "[N/A]",
+    "name": "NVIDIA GeForce RTX 3090",
+    "nvidia_smi_uuid": "GPU-c40e42b6-3b9f-bd93-a949-540694e870c6",
+    "pci_bus_id": "00000000:E1:00.0",
+    "stable_gpu_uuid": "GPU-c40e42b63b9fbd93a949540694e870c6",
+    "torch_uuid": null,
+    "total_memory_bytes": 25438126080
+  },
+  "gpu_slot": 2,
+  "initial_head_contract": {
+    "hard_bias": false,
+    "hard_head_hash": "a62b630d0cf926401230262a4fdacc89de35b0f7f61dd16782e91280f29f4073",
+    "hard_parameter_count": 5120,
+    "soft_bias": false,
+    "soft_head_hash": "a62b630d0cf926401230262a4fdacc89de35b0f7f61dd16782e91280f29f4073",
+    "soft_parameter_count": 5120,
+    "storage_independent": true
+  },
+  "initial_model_snapshot_sha256": "4818c55477181149cfe8c7d27b535ecbf80cd749790cb594c5bd17977b28ddb3",
+  "mapping_sha256": "dc9d3fbce24af01fee58e896f83ed35f3ccd516fcf30f35ed43a3cfd4c2fa7fb",
+  "memory": {
+    "conservative_adam_fp32_state_bytes": 4766294016,
+    "model_loaded_allocated_bytes": 1191588352,
+    "model_loaded_reserved_bytes": 1216348160,
+    "projected_free_fraction": 0.09143544460331568,
+    "projected_peak_bytes": 23112179712,
+    "required_free_fraction": 0.08,
+    "total_bytes": 25438126080,
+    "two_fp32_residual_buffers_bytes": 4766212096
+  },
+  "model_input_manifest": {
+    "files": {
+      ".mdl": "0fc262c8f7134b08258a44d8461ce89a4159ff0a667649d919c98b6fb88e7197",
+      ".mv": "78e161d91c6716e8abdb42372b421ca919dfa32a10cfc60098fd041c380ce703",
+      "README.md": "e9cf97a55cb476bbf7f1e4a321ae1637834535319002552d91e880deaabc5393",
+      "config.json": "d479c427a9ca5295218063d4f9aca4f297ab4ac27487cca7af42c84643d51ef0",
+      "configuration.json": "f888421726665e8a84b738eed42a64875aed79de8be7daade851ac8bf4c0cef9",
+      "generation_config.json": "81051cd3f6e77013827148d0b8a6ead93f8ac390d5ab805f849199f0af6a08db",
+      "merges.txt": "8831e4f1a044471340f7c0a83d7bd71306a5b867e95fd870f74d0c5308a904d5",
+      "model.safetensors": "27cd75a405b9c1b46b59abfd88aaa209e6fed2a1972cde9b70e7659537c5e65b",
+      "tokenizer.json": "aeb13307a71acd8fe81861d94ad54ab689df773318809eed3cbe794b4492dae4",
+      "tokenizer_config.json": "253153d0738ceb4c668d2eff957714dd2bea0b56de772a9fdccd96cbf517e6a0",
+      "vocab.json": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910"
+    },
+    "manifest_sha256": "7807b8bc764b2d995ce487bbafc97e6ee39a81c29a57ee21db718e1932873bde",
+    "root": "/home/share/models/modelscope/Qwen/Qwen3-Reranker-0.6B"
+  },
+  "model_mode": "qwen3_cbrd_dual_head_sequence_classification",
+  "optimizer_steps": 0,
+  "preflight_contract_binding": {
+    "normalized_scientific_protocol_sha256": "2efa551e3d2ea8e9e0be94c0c800696add1d569698d970d9967f5102af5391c5",
+    "preflight_source_lock_sha256": "b8f526856fa1de35ff89aa64863518a57607bd81982d6ea8dde402b74376cf76"
+  },
+  "runtime_estimate": {
+    "estimated_10_epoch_training_seconds_excluding_eval_and_checkpoint_io": 8354.206902086735,
+    "mean_formal_microbatch_seconds": 1.222854282706976,
+    "mean_geometry_window_seconds": 1.1164498329162598
+  },
+  "seed": 49,
+  "status": "EXP60_REAL_MODEL_NO_UPDATE_PREFLIGHT_PASS",
+  "test_access_count": 0,
+  "treatment_separation_observation": {
+    "per_seed_rule_is_evaluated_after_all_three_seed_reports": true,
+    "storage_component_activity_ratios": [
+      0.02245411564937752,
+      0.02635934703829665
+    ],
+    "storage_component_cosines": [
+      0.401073787872457,
+      0.5564135926235575
+    ],
+    "storage_component_relative_distances": [
+      1.0962895111638564,
+      0.9404798231110514
+    ]
+  },
+  "windows": [
+    {
+      "aligned_explicit_route_relative_error": {
+        "backbone": 0.32197150483048076,
+        "global": 0.32197150483048076,
+        "hard_head": 0.0,
+        "soft_head": 0.0
+      },
+      "diagnostic_gradient_digest_after_aligned": "ba5aae1462a7d2a7f5585d84c21a68ca9e58b8dc68a81e2651feb9edbcffcd0a",
+      "diagnostic_gradient_digest_after_shuffled": "ba5aae1462a7d2a7f5585d84c21a68ca9e58b8dc68a81e2651feb9edbcffcd0a",
+      "diagnostic_gradient_digest_before": "ba5aae1462a7d2a7f5585d84c21a68ca9e58b8dc68a81e2651feb9edbcffcd0a",
+      "diagnostic_gradient_mismatches_after_aligned": [],
+      "diagnostic_gradient_mismatches_after_shuffled": [],
+      "diagnostic_gradients_exactly_unchanged": true,
+      "elapsed_seconds": 79.93441104888916,
+      "formal_path_timing": {
+        "aligned_diagnostic_seconds": 12.897445917129517,
+        "geometry_seconds": 1.1164016723632812,
+        "main_forward_backward_seconds": 13.687087059020996,
+        "mean_microbatch_main_plus_two_diagnostics_seconds": 1.2349726185202599,
+        "shuffled_diagnostic_seconds": 12.934590816497803
+      },
+      "forward_logit_parity": {
+        "aligned_soft_ce": true,
+        "aux": true,
+        "hard": true
+      },
+      "geometry": {
+        "aligned_normalized_orthogonality_error": 2.4598658023264285e-09,
+        "aligned_orthogonal_norm": 12.203546975139032,
+        "aligned_projection_coefficient": -0.0023312040804592173,
+        "aligned_residual_norm": 12.264765516101319,
+        "aligned_shuffled_component_cosine": 0.40126470232976974,
+        "aligned_shuffled_component_relative_distance": 1.0942900160207039,
+        "clip_coefficient_aligned": 0.0018368780913008375,
+        "clip_coefficient_relative_error": 4.4798287747337635e-10,
+        "clip_coefficient_shuffled": 0.0018368780921237274,
+        "common_backbone_norm": 525.0047695170591,
+        "component_norm_relative_error": 3.6713713004959925e-08,
+        "gradient_storage_dtype": "torch.bfloat16",
+        "post_cast_norm_limit": 1.01171875,
+        "post_cast_orthogonality_tolerance": 0.1,
+        "post_cast_relative_tolerance": 0.01171875,
+        "postclip_norm": 0.999993979912757,
+        "preclip_norm": 544.0,
+        "preclip_total_norm_aligned": 544.4019409338937,
+        "preclip_total_norm_relative_error": 4.479828069029442e-10,
+        "preclip_total_norm_shuffled": 544.401940690011,
+        "shuffled_normalized_orthogonality_error": 7.656101594625164e-09,
+        "shuffled_orthogonal_norm_after_match": 12.20354742317657,
+        "shuffled_orthogonal_norm_before_match": 15.467073611928805,
+        "shuffled_projection_coefficient": -0.007377878984074313,
+        "shuffled_residual_norm": 15.944709508151487,
+        "shuffled_scale": 0.7890016742227944,
+        "storage_aligned_normalized_orthogonality_error": 0.05069072884551356,
+        "storage_aligned_orthogonal_norm": 12.22090169198746,
+        "storage_aligned_shuffled_component_cosine": 0.401073787872457,
+        "storage_aligned_shuffled_component_relative_distance": 1.0962895111638564,
+        "storage_clip_coefficient_aligned": 0.001838983713524116,
+        "storage_clip_coefficient_relative_error": 0.001154298005742002,
+        "storage_clip_coefficient_shuffled": 0.0018368609782910032,
+        "storage_component_activity_ratio": 0.02245411564937752,
+        "storage_component_norm_relative_error": 0.00331757110452998,
+        "storage_preclip_total_norm_aligned": 543.7786048929587,
+        "storage_preclip_total_norm_relative_error": 0.0011542980078622634,
+        "storage_preclip_total_norm_shuffled": 544.4070128233269,
+        "storage_shuffled_normalized_orthogonality_error": 0.0006371350120704209,
+        "storage_shuffled_orthogonal_norm": 12.261580356674637,
+        "variant": "aligned_orthogonal_only"
+      },
+      "loss_scale": 0.03125,
+      "microbatches": 32,
+      "name": "full_32",
+      "peak_allocated_bytes": 15937102848,
+      "peak_reserved_bytes": 18343788544,
+      "residual_buffers_have_no_head_entries": true,
+      "rng_restored": true,
+      "shuffled_explicit_route_relative_error": {
+        "backbone": 0.25556968988495676,
+        "global": 0.25556968988495676,
+        "hard_head": 0.0,
+        "soft_head": 0.0
+      }
+    },
+    {
+      "aligned_explicit_route_relative_error": {
+        "backbone": 0.22679584063889524,
+        "global": 0.22679584063889524,
+        "hard_head": 0.0,
+        "soft_head": 0.0
+      },
+      "diagnostic_gradient_digest_after_aligned": "62fbc51f3a2f069d2aadce1e6f16a2e99d39cdf8fe0ab40ba4d53b31679c8fa1",
+      "diagnostic_gradient_digest_after_shuffled": "62fbc51f3a2f069d2aadce1e6f16a2e99d39cdf8fe0ab40ba4d53b31679c8fa1",
+      "diagnostic_gradient_digest_before": "62fbc51f3a2f069d2aadce1e6f16a2e99d39cdf8fe0ab40ba4d53b31679c8fa1",
+      "diagnostic_gradient_mismatches_after_aligned": [],
+      "diagnostic_gradient_mismatches_after_shuffled": [],
+      "diagnostic_gradients_exactly_unchanged": true,
+      "elapsed_seconds": 61.5952365398407,
+      "formal_path_timing": {
+        "aligned_diagnostic_seconds": 10.023056268692017,
+        "geometry_seconds": 1.1164979934692383,
+        "main_forward_backward_seconds": 9.301392555236816,
+        "mean_microbatch_main_plus_two_diagnostics_seconds": 1.210735946893692,
+        "shuffled_diagnostic_seconds": 9.733213901519775
+      },
+      "forward_logit_parity": {
+        "aligned_soft_ce": true,
+        "aux": true,
+        "hard": true
+      },
+      "geometry": {
+        "aligned_normalized_orthogonality_error": 1.544087692612834e-08,
+        "aligned_orthogonal_norm": 11.466724788756295,
+        "aligned_projection_coefficient": -0.013412533748382117,
+        "aligned_residual_norm": 12.787511853025032,
+        "aligned_shuffled_component_cosine": 0.5560608525482834,
+        "aligned_shuffled_component_relative_distance": 0.9422729542914127,
+        "clip_coefficient_aligned": 0.0022885706430826195,
+        "clip_coefficient_relative_error": 4.85515997042243e-10,
+        "clip_coefficient_shuffled": 0.002288570641971482,
+        "common_backbone_norm": 421.9873026667769,
+        "component_norm_relative_error": 2.8555789267412685e-08,
+        "gradient_storage_dtype": "torch.bfloat16",
+        "post_cast_norm_limit": 1.01171875,
+        "post_cast_orthogonality_tolerance": 0.1,
+        "post_cast_relative_tolerance": 0.01171875,
+        "postclip_norm": 1.000099415605754,
+        "preclip_norm": 436.0,
+        "preclip_total_norm_aligned": 436.95395671267835,
+        "preclip_total_norm_relative_error": 4.855160648833822e-10,
+        "preclip_total_norm_shuffled": 436.9539569248265,
+        "shuffled_normalized_orthogonality_error": 1.2740247906509013e-09,
+        "shuffled_orthogonal_norm_after_match": 11.466725116197681,
+        "shuffled_orthogonal_norm_before_match": 12.106411223958505,
+        "shuffled_projection_coefficient": -0.0058121583699672725,
+        "shuffled_residual_norm": 12.352356821783587,
+        "shuffled_scale": 0.9471613491918832,
+        "storage_aligned_normalized_orthogonality_error": 0.0019093254653987203,
+        "storage_aligned_orthogonal_norm": 11.548710357285044,
+        "storage_aligned_shuffled_component_cosine": 0.5564135926235575,
+        "storage_aligned_shuffled_component_relative_distance": 0.9404798231110514,
+        "storage_clip_coefficient_aligned": 0.002288679959231874,
+        "storage_clip_coefficient_relative_error": 3.586818879120044e-05,
+        "storage_clip_coefficient_shuffled": 0.0022885978684270137,
+        "storage_component_activity_ratio": 0.02635934703829665,
+        "storage_component_norm_relative_error": 0.0030204262387992136,
+        "storage_preclip_total_norm_aligned": 436.933086112634,
+        "storage_preclip_total_norm_relative_error": 3.5868188873331684e-05,
+        "storage_preclip_total_norm_shuffled": 436.94875867323805,
+        "storage_shuffled_normalized_orthogonality_error": 0.0004735053047446568,
+        "storage_shuffled_orthogonal_norm": 11.513828329497608,
+        "variant": "aligned_orthogonal_only"
+      },
+      "loss_scale": 0.03125,
+      "microbatches": 24,
+      "name": "partial_24",
+      "peak_allocated_bytes": 15937102848,
+      "peak_reserved_bytes": 18345885696,
+      "residual_buffers_have_no_head_entries": true,
+      "rng_restored": true,
+      "shuffled_explicit_route_relative_error": {
+        "backbone": 0.2449623529690971,
+        "global": 0.2449623529690971,
+        "hard_head": 0.0,
+        "soft_head": 0.0
+      }
+    }
+  ]
+}

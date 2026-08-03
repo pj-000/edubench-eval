@@ -1,6 +1,7 @@
 {
-  "status": "EXP60_DRAFT_FOR_INDEPENDENT_REVIEW_NOT_AUTHORIZED_FOR_TRAINING",
+  "status": "EXP60_PROTOCOL_FROZEN_BEFORE_FORMAL_RESULTS",
   "draft_date": "2026-08-03",
+  "formal_freeze_timestamp": "2026-08-03T10:51:42Z",
   "name": "Geometry-Matched Shuffled Orthogonal Sample--Target Alignment Control",
   "role": "single-variable mechanism control; not a new deployable architecture or loss",
   "scientific_question": "Does the non-collinear residual benefit require sample--target alignment of the observed ordinal residual, or can one preregistered geometry-matched maximum-mismatch residual reproduce it?",
@@ -79,7 +80,7 @@
       "48": {"gpu_slot_0": "matched_shuffled_orthogonal_only", "gpu_slot_1": "consensus_only", "gpu_slot_2": "aligned_orthogonal_only"},
       "49": {"gpu_slot_0": "aligned_orthogonal_only", "gpu_slot_1": "matched_shuffled_orthogonal_only", "gpu_slot_2": "consensus_only"}
     },
-    "physical_gpu_bindings": null,
+    "physical_gpu_bindings": {"gpu_slot_0": "4", "gpu_slot_1": "6", "gpu_slot_2": "7"},
     "physical_gpu_binding_freeze_rule": "replace null with three distinct CUDA_VISIBLE_DEVICES identifiers during the sole post-preflight protocol freeze; each slot must additionally have a stable non-MIG hardware UUID recorded by preflight and revalidated by the formal trainer",
     "real_preflight_gpu_schedule": {"47": 0, "48": 1, "49": 2},
     "post_result_seed_extension": "forbidden; seeds 50/51 may not be added to resolve an unclear result"
