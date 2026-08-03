@@ -70,6 +70,7 @@ def test_streaming_geometry_step_passes_all_local_match_gates(variant: str) -> N
     assert audit["storage_clip_coefficient_relative_error"] <= 1e-6
     assert -1.0 <= audit["aligned_shuffled_component_cosine"] <= 1.0
     assert audit["aligned_shuffled_component_relative_distance"] >= 0.0
+    assert audit["storage_component_activity_ratio"] >= 1e-6
     assert audit["postclip_norm"] <= 1.0 + 1e-6
 
 
@@ -108,3 +109,37 @@ def test_bfloat16_storage_space_is_audited_for_both_candidate_arms() -> None:
     assert audit["storage_component_norm_relative_error"] <= 0.01171875
     assert audit["storage_preclip_total_norm_relative_error"] <= 0.01171875
     assert audit["storage_clip_coefficient_relative_error"] <= 0.01171875
+
+
+def test_nonfinite_unselected_candidate_fails_closed() -> None:
+    model = ToyModel()
+    common, aligned, shuffled = tensors()
+    shuffled["backbone.weight"][0, 0] = float("nan")
+    for name, parameter in model.named_parameters():
+        parameter.grad = (
+            common[name] + aligned.get(name, torch.zeros_like(parameter))
+        ).clone()
+    with pytest.raises(RuntimeError, match="EXP60_NONFINITE_TENSOR"):
+        compose_geometry_step(
+            model,
+            {name: value.clone() for name, value in aligned.items()},
+            {name: value.clone() for name, value in shuffled.items()},
+            variant="consensus_only",
+            max_norm=1.0,
+        )
+
+
+def test_zero_treatment_components_fail_instead_of_producing_cosine_zero() -> None:
+    model = ToyModel()
+    common, _, _ = tensors()
+    for name, parameter in model.named_parameters():
+        parameter.grad = common[name].clone()
+    zero = {"backbone.weight": torch.zeros_like(model.backbone.weight)}
+    with pytest.raises(RuntimeError, match="EXP60_DEGENERATE_TREATMENT_COMPONENT"):
+        compose_geometry_step(
+            model,
+            {name: value.clone() for name, value in zero.items()},
+            {name: value.clone() for name, value in zero.items()},
+            variant="consensus_only",
+            max_norm=1.0,
+        )

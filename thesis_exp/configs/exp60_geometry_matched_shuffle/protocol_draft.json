@@ -81,6 +81,7 @@
     },
     "physical_gpu_bindings": null,
     "physical_gpu_binding_freeze_rule": "replace null with three distinct CUDA_VISIBLE_DEVICES identifiers during the sole post-preflight protocol freeze",
+    "real_preflight_gpu_schedule": {"47": 0, "48": 1, "49": 2},
     "post_result_seed_extension": "forbidden; seeds 50/51 may not be added to resolve an unclear result"
   },
   "implementation_gates_before_training": {
@@ -90,7 +91,10 @@
     "clip_coefficient_relative_error_at_most": 0.0001,
     "bf16_storage_space_relative_error_at_most": 0.01171875,
     "explicit_route_residual_relative_error_at_most": 0.02,
-    "preflight_treatment_separation_stop_if_all_window_cosines_above": 0.99,
+    "preflight_treatment_component_activity_ratio_at_least": 0.000001,
+    "preflight_treatment_component_cosine_at_most": 0.99,
+    "preflight_treatment_component_relative_distance_at_least": 0.1,
+    "preflight_treatment_separation_rule": "both windows per seed must be finite and nondegenerate; at least one of the seed's two windows must jointly satisfy cosine <= 0.99 and relative distance >= 0.1",
     "residual_head_norm_at_most": 1e-12,
     "one_standard_global_clip": true,
     "test_access_count": 0
@@ -112,6 +116,8 @@
   "stop_conditions": [
     "mapping does not achieve the theoretical maximum mismatch",
     "geometry or clip matching gate failure",
+    "non-finite gradient, residual, geometry scalar or clipping result",
+    "degenerate aligned or matched-shuffled treatment component",
     "shuffled orthogonal norm is zero while aligned is nonzero",
     "NaN, Inf or training crash",
     "residual component enters either head",

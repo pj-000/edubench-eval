@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import json
 import hashlib
+import math
 from collections import defaultdict
 from pathlib import Path
 from typing import Any
@@ -20,7 +21,10 @@ from thesis_exp.exp60_geometry_matched_shuffle import (
     REAL_PREFLIGHT_DECISION_PATH,
     SOURCE_LOCK_PATH,
 )
-from thesis_exp.exp60_geometry_matched_shuffle.train import dataset_contract_sha256
+from thesis_exp.exp60_geometry_matched_shuffle.train import (
+    dataset_contract_sha256,
+    verify_contract,
+)
 from thesis_exp.src.edujudge.utils.io import write_csv
 
 
@@ -62,6 +66,94 @@ def prediction_path(directory: Path) -> Path:
     raise FileNotFoundError(f"No fixed-epoch-10 predictions below {directory}")
 
 
+def validate_geometry_audit(
+    directory: Path, summary: dict[str, Any]
+) -> list[dict[str, Any]]:
+    rows = read_json(directory / "geometry_step_audit.json")
+    if not isinstance(rows, list) or len(rows) != 210:
+        raise RuntimeError(f"Geometry audit must contain 210 steps: {directory}")
+    numeric_fields = (
+        "aligned_normalized_orthogonality_error",
+        "shuffled_normalized_orthogonality_error",
+        "component_norm_relative_error",
+        "preclip_total_norm_relative_error",
+        "clip_coefficient_relative_error",
+        "storage_component_norm_relative_error",
+        "storage_preclip_total_norm_relative_error",
+        "storage_clip_coefficient_relative_error",
+        "storage_aligned_normalized_orthogonality_error",
+        "storage_shuffled_normalized_orthogonality_error",
+        "aligned_shuffled_component_cosine",
+        "aligned_shuffled_component_relative_distance",
+        "storage_component_activity_ratio",
+        "preclip_norm",
+        "postclip_norm",
+    )
+    for index, row in enumerate(rows, start=1):
+        expected_epoch = (index - 1) // 21 + 1
+        expected_microbatches = 24 if index % 21 == 0 else 32
+        if (
+            int(row.get("global_step", -1)) != index
+            or int(row.get("epoch", -1)) != expected_epoch
+            or int(row.get("microbatches_in_window", -1)) != expected_microbatches
+        ):
+            raise RuntimeError(f"Geometry step structure mismatch: {directory}: {index}")
+        for field in numeric_fields:
+            if field not in row or not math.isfinite(float(row[field])):
+                raise RuntimeError(
+                    f"Non-finite/missing geometry value: {directory}: {index}: {field}"
+                )
+    recomputed = {
+        "maximum_aligned_normalized_orthogonality_error": max(
+            float(row["aligned_normalized_orthogonality_error"]) for row in rows
+        ),
+        "maximum_shuffled_normalized_orthogonality_error": max(
+            float(row["shuffled_normalized_orthogonality_error"]) for row in rows
+        ),
+        "maximum_component_norm_relative_error": max(
+            float(row["component_norm_relative_error"]) for row in rows
+        ),
+        "maximum_preclip_total_norm_relative_error": max(
+            float(row["preclip_total_norm_relative_error"]) for row in rows
+        ),
+        "maximum_clip_coefficient_relative_error": max(
+            float(row["clip_coefficient_relative_error"]) for row in rows
+        ),
+        "maximum_storage_component_norm_relative_error": max(
+            float(row["storage_component_norm_relative_error"]) for row in rows
+        ),
+        "maximum_storage_preclip_total_norm_relative_error": max(
+            float(row["storage_preclip_total_norm_relative_error"]) for row in rows
+        ),
+        "maximum_storage_clip_coefficient_relative_error": max(
+            float(row["storage_clip_coefficient_relative_error"]) for row in rows
+        ),
+        "maximum_storage_normalized_orthogonality_error": max(
+            max(
+                float(row["storage_aligned_normalized_orthogonality_error"]),
+                float(row["storage_shuffled_normalized_orthogonality_error"]),
+            )
+            for row in rows
+        ),
+        "maximum_aligned_shuffled_component_cosine": max(
+            float(row["aligned_shuffled_component_cosine"]) for row in rows
+        ),
+        "minimum_aligned_shuffled_component_relative_distance": min(
+            float(row["aligned_shuffled_component_relative_distance"]) for row in rows
+        ),
+        "minimum_storage_component_activity_ratio": min(
+            float(row["storage_component_activity_ratio"]) for row in rows
+        ),
+    }
+    for field, value in recomputed.items():
+        reported = float(summary.get(field, float("nan")))
+        if not math.isfinite(reported) or reported != value:
+            raise RuntimeError(
+                f"Geometry summary mismatch: {directory}: {field}: {reported} != {value}"
+            )
+    return rows
+
+
 def endpoint(
     variant: str,
     seed: int,
@@ -80,6 +172,11 @@ def endpoint(
         str(seed)
     ][f"gpu_slot_{gpu_slot}"] != variant:
         raise RuntimeError(f"GPU Latin-square mismatch: {directory}")
+    bindings = protocol["formal_runs"].get("physical_gpu_bindings")
+    if not isinstance(bindings, dict) or str(summary.get("cuda_visible_devices")) != str(
+        bindings[f"gpu_slot_{gpu_slot}"]
+    ):
+        raise RuntimeError(f"Physical GPU binding mismatch: {directory}")
     if summary.get("selected_epoch") != 10 or summary.get("checkpoint_rule") != "fixed epoch 10 primary":
         raise RuntimeError(f"Non-frozen checkpoint: {directory}")
     if summary.get("optimizer_steps") != 210:
@@ -160,6 +257,7 @@ def endpoint(
     )
     if any(float(summary.get(field, float("inf"))) > tolerance for field in geometry_fields):
         raise RuntimeError(f"BF16 storage geometry gate mismatch: {directory}")
+    validate_geometry_audit(directory, summary)
 
     predictions = read_jsonl(prediction_path(directory))
     if len(predictions) != len(frozen_dev) or len(predictions) != fixed["dev_rows"]:
@@ -182,7 +280,9 @@ def endpoint(
     metrics = {key: float(recomputed[key]) for key in METRICS}
     for key in METRICS:
         reported = float(summary["selected_metrics"][key])
-        if not np.isclose(metrics[key], reported, rtol=0.0, atol=1e-12):
+        if not math.isfinite(metrics[key]) or not math.isfinite(reported) or not np.isclose(
+            metrics[key], reported, rtol=0.0, atol=1e-12
+        ):
             raise RuntimeError(
                 f"Recomputed metric mismatch: {directory}: {key}: {metrics[key]} != {reported}"
             )
@@ -287,6 +387,7 @@ def main() -> None:
         raise RuntimeError("Exp60 analysis is blocked until the protocol is formally frozen")
     if not SOURCE_LOCK_PATH.is_file():
         raise FileNotFoundError(SOURCE_LOCK_PATH)
+    verify_contract()
     mapping_sha = str(read_json(MAPPING_AUDIT_PATH)["mapping_sha256"])
     dev_rows = model_rows("dev")
     frozen_dev = {str(row["record_id"]): row for row in dev_rows}

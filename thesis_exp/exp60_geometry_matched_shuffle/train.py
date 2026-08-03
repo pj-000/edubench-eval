@@ -36,6 +36,7 @@ from thesis_exp.exp60_geometry_matched_shuffle.mapping import (
     mapping_sha256,
     mapping_target_lookup,
 )
+from thesis_exp.exp60_geometry_matched_shuffle.contract import require_finite_scalar
 from thesis_exp.src.edujudge.exp02.train_ce_baseline import (
     StepProgressBar,
     TrainConfig,
@@ -53,6 +54,7 @@ VARIANTS = (
     "aligned_orthogonal_only",
     "matched_shuffled_orthogonal_only",
 )
+TREATMENT_COMPONENT_ACTIVITY_RATIO_MIN = 1e-6
 
 
 def sha256_file(path: Path) -> str:
@@ -237,6 +239,17 @@ def assert_formal_config_matches_protocol(
     mapping_audit = json.loads(MAPPING_AUDIT_PATH.read_text(encoding="utf-8"))
     if mapping_audit.get("mapping_sha256") != protocol["mapping"]["canonical_sha256"]:
         mismatches.append("mapping SHA-256 differs from protocol")
+    if not math.isclose(
+        float(
+            protocol["implementation_gates_before_training"][
+                "preflight_treatment_component_activity_ratio_at_least"
+            ]
+        ),
+        TREATMENT_COMPONENT_ACTIVITY_RATIO_MIN,
+        rel_tol=0.0,
+        abs_tol=0.0,
+    ):
+        mismatches.append("treatment activity threshold differs from trainer")
     if mismatches:
         raise RuntimeError("Exp60 formal configuration mismatch: " + "; ".join(mismatches))
 
@@ -413,6 +426,17 @@ def post_cast_relative_tolerance(dtype_name: str) -> float:
     return 1e-6
 
 
+def require_finite_tensor(torch: Any, name: str, value: Any) -> None:
+    finite = torch.isfinite(value).all()
+    message = f"EXP60_NONFINITE_TENSOR:{name}"
+    if value.is_cuda and hasattr(torch, "_assert_async"):
+        # The later FP64 scalar reads synchronize the stream, so the device
+        # assertion cannot be skipped while avoiding one host sync per tensor.
+        torch._assert_async(finite, message)
+    elif not bool(finite.item()):
+        raise RuntimeError(message)
+
+
 def compose_geometry_step(
     model: Any,
     aligned_residual_buffers: dict[str, Any],
@@ -455,23 +479,41 @@ def compose_geometry_step(
         shuffled_residual = shuffled_residual_buffers.get(name)
         if shuffled_residual is None:
             shuffled_residual = torch.zeros_like(routed)
+        require_finite_tensor(torch, f"gradient:{name}", routed)
+        require_finite_tensor(torch, f"aligned_residual:{name}", aligned_residual)
+        require_finite_tensor(torch, f"shuffled_residual:{name}", shuffled_residual)
         common = routed - aligned_residual
+        require_finite_tensor(torch, f"common:{name}", common)
         common_sq += common.square().sum(dtype=torch.float64)
         aligned_sq += aligned_residual.square().sum(dtype=torch.float64)
         shuffled_sq += shuffled_residual.square().sum(dtype=torch.float64)
         common_aligned_dot += (common * aligned_residual).sum(dtype=torch.float64)
         common_shuffled_dot += (common * shuffled_residual).sum(dtype=torch.float64)
-    common_sq_value = float(common_sq.detach().cpu())
-    aligned_sq_value = float(aligned_sq.detach().cpu())
-    shuffled_sq_value = float(shuffled_sq.detach().cpu())
-    aligned_dot_value = float(common_aligned_dot.detach().cpu())
-    shuffled_dot_value = float(common_shuffled_dot.detach().cpu())
+    for scalar_name, scalar_tensor in (
+        ("common_sq", common_sq),
+        ("aligned_sq", aligned_sq),
+        ("shuffled_sq", shuffled_sq),
+        ("common_aligned_dot", common_aligned_dot),
+        ("common_shuffled_dot", common_shuffled_dot),
+    ):
+        require_finite_tensor(torch, scalar_name, scalar_tensor)
+    common_sq_value = require_finite_scalar("common_sq", float(common_sq.detach().cpu()))
+    aligned_sq_value = require_finite_scalar("aligned_sq", float(aligned_sq.detach().cpu()))
+    shuffled_sq_value = require_finite_scalar("shuffled_sq", float(shuffled_sq.detach().cpu()))
+    aligned_dot_value = require_finite_scalar(
+        "common_aligned_dot", float(common_aligned_dot.detach().cpu())
+    )
+    shuffled_dot_value = require_finite_scalar(
+        "common_shuffled_dot", float(common_shuffled_dot.detach().cpu())
+    )
     aligned_coefficient = (
         aligned_dot_value / common_sq_value if common_sq_value > 0.0 else 0.0
     )
     shuffled_coefficient = (
         shuffled_dot_value / common_sq_value if common_sq_value > 0.0 else 0.0
     )
+    require_finite_scalar("aligned_projection_coefficient", aligned_coefficient)
+    require_finite_scalar("shuffled_projection_coefficient", shuffled_coefficient)
 
     aligned_orthogonal_sq = torch.zeros((), device=device, dtype=torch.float64)
     shuffled_orthogonal_sq = torch.zeros((), device=device, dtype=torch.float64)
@@ -484,13 +526,21 @@ def compose_geometry_step(
         common = routed - aligned_residual
         aligned_orthogonal = aligned_residual - aligned_coefficient * common
         shuffled_orthogonal = shuffled_residual - shuffled_coefficient * common
+        require_finite_tensor(torch, f"aligned_orthogonal:{name}", aligned_orthogonal)
+        require_finite_tensor(torch, f"shuffled_orthogonal:{name}", shuffled_orthogonal)
         aligned_orthogonal_sq += aligned_orthogonal.square().sum(dtype=torch.float64)
         shuffled_orthogonal_sq += shuffled_orthogonal.square().sum(dtype=torch.float64)
-    aligned_orthogonal_norm = math.sqrt(
-        max(0.0, float(aligned_orthogonal_sq.detach().cpu()))
+    aligned_orthogonal_sq_value = require_finite_scalar(
+        "aligned_orthogonal_sq", float(aligned_orthogonal_sq.detach().cpu())
     )
-    shuffled_orthogonal_norm = math.sqrt(
-        max(0.0, float(shuffled_orthogonal_sq.detach().cpu()))
+    shuffled_orthogonal_sq_value = require_finite_scalar(
+        "shuffled_orthogonal_sq", float(shuffled_orthogonal_sq.detach().cpu())
+    )
+    aligned_orthogonal_norm = require_finite_scalar(
+        "aligned_orthogonal_norm", math.sqrt(max(0.0, aligned_orthogonal_sq_value))
+    )
+    shuffled_orthogonal_norm = require_finite_scalar(
+        "shuffled_orthogonal_norm", math.sqrt(max(0.0, shuffled_orthogonal_sq_value))
     )
     if aligned_orthogonal_norm > 0.0 and shuffled_orthogonal_norm <= 0.0:
         raise RuntimeError(
@@ -501,6 +551,7 @@ def compose_geometry_step(
         if shuffled_orthogonal_norm > 0.0
         else 0.0
     )
+    require_finite_scalar("shuffled_scale", shuffled_scale)
 
     actual_aligned_sq = torch.zeros((), device=device, dtype=torch.float64)
     actual_shuffled_sq = torch.zeros((), device=device, dtype=torch.float64)
@@ -521,6 +572,7 @@ def compose_geometry_step(
     cast_shuffled_total_sq = torch.zeros((), device=device, dtype=torch.float64)
     for name, parameter in named.items():
         routed = parameter.grad.detach().float()
+        require_finite_tensor(torch, f"selected_route_gradient:{name}", routed)
         aligned_residual = aligned_residual_buffers.get(name)
         shuffled_residual = shuffled_residual_buffers.get(name)
         if aligned_residual is None:
@@ -528,11 +580,14 @@ def compose_geometry_step(
         if shuffled_residual is None:
             shuffled_residual = torch.zeros_like(routed)
         common = routed - aligned_residual
+        require_finite_tensor(torch, f"selected_common:{name}", common)
         if name.startswith("backbone."):
             aligned_component = aligned_residual - aligned_coefficient * common
             shuffled_component = shuffled_scale * (
                 shuffled_residual - shuffled_coefficient * common
             )
+            require_finite_tensor(torch, f"aligned_component:{name}", aligned_component)
+            require_finite_tensor(torch, f"shuffled_component:{name}", shuffled_component)
             actual_aligned_sq += aligned_component.square().sum(dtype=torch.float64)
             actual_shuffled_sq += shuffled_component.square().sum(dtype=torch.float64)
             aligned_shuffled_dot += (aligned_component * shuffled_component).sum(
@@ -548,6 +603,8 @@ def compose_geometry_step(
             shuffled_component = torch.zeros_like(common)
         aligned_preclip = common + aligned_component
         shuffled_preclip = common + shuffled_component
+        require_finite_tensor(torch, f"aligned_preclip:{name}", aligned_preclip)
+        require_finite_tensor(torch, f"shuffled_preclip:{name}", shuffled_preclip)
         aligned_total_sq += aligned_preclip.square().sum(dtype=torch.float64)
         shuffled_total_sq += shuffled_preclip.square().sum(dtype=torch.float64)
         storage_dtype = parameter.grad.dtype
@@ -556,6 +613,13 @@ def compose_geometry_step(
         cast_shuffled_total = shuffled_preclip.to(dtype=storage_dtype).float()
         cast_aligned_component = cast_aligned_total - cast_common
         cast_shuffled_component = cast_shuffled_total - cast_common
+        require_finite_tensor(torch, f"storage_common:{name}", cast_common)
+        require_finite_tensor(
+            torch, f"storage_aligned_component:{name}", cast_aligned_component
+        )
+        require_finite_tensor(
+            torch, f"storage_shuffled_component:{name}", cast_shuffled_component
+        )
         cast_common_sq += cast_common.square().sum(dtype=torch.float64)
         cast_aligned_component_sq += cast_aligned_component.square().sum(dtype=torch.float64)
         cast_shuffled_component_sq += cast_shuffled_component.square().sum(dtype=torch.float64)
@@ -581,23 +645,48 @@ def compose_geometry_step(
             selected = shuffled_preclip
         parameter.grad.copy_(selected.to(dtype=parameter.grad.dtype))
 
-    actual_aligned_norm = math.sqrt(max(0.0, float(actual_aligned_sq.detach().cpu())))
-    actual_shuffled_norm = math.sqrt(max(0.0, float(actual_shuffled_sq.detach().cpu())))
-    component_cosine = float(aligned_shuffled_dot.detach().cpu()) / (
+    reduction_tensors = {
+        "actual_aligned_sq": actual_aligned_sq,
+        "actual_shuffled_sq": actual_shuffled_sq,
+        "aligned_shuffled_dot": aligned_shuffled_dot,
+        "aligned_shuffled_difference_sq": aligned_shuffled_difference_sq,
+        "aligned_common_dot": aligned_common_dot,
+        "shuffled_common_dot": shuffled_common_dot,
+        "aligned_total_sq": aligned_total_sq,
+        "shuffled_total_sq": shuffled_total_sq,
+        "cast_common_sq": cast_common_sq,
+        "cast_aligned_component_sq": cast_aligned_component_sq,
+        "cast_shuffled_component_sq": cast_shuffled_component_sq,
+        "cast_aligned_shuffled_dot": cast_aligned_shuffled_dot,
+        "cast_aligned_shuffled_difference_sq": cast_aligned_shuffled_difference_sq,
+        "cast_common_aligned_dot": cast_common_aligned_dot,
+        "cast_common_shuffled_dot": cast_common_shuffled_dot,
+        "cast_aligned_total_sq": cast_aligned_total_sq,
+        "cast_shuffled_total_sq": cast_shuffled_total_sq,
+    }
+    reduction_values: dict[str, float] = {}
+    for scalar_name, scalar_tensor in reduction_tensors.items():
+        require_finite_tensor(torch, scalar_name, scalar_tensor)
+        reduction_values[scalar_name] = require_finite_scalar(
+            scalar_name, float(scalar_tensor.detach().cpu())
+        )
+    actual_aligned_norm = math.sqrt(max(0.0, reduction_values["actual_aligned_sq"]))
+    actual_shuffled_norm = math.sqrt(max(0.0, reduction_values["actual_shuffled_sq"]))
+    component_cosine = reduction_values["aligned_shuffled_dot"] / (
         actual_aligned_norm * actual_shuffled_norm + 1e-12
     )
     component_relative_distance = math.sqrt(
-        max(0.0, float(aligned_shuffled_difference_sq.detach().cpu()))
+        max(0.0, reduction_values["aligned_shuffled_difference_sq"])
     ) / (actual_aligned_norm + 1e-12)
     common_norm = math.sqrt(max(0.0, common_sq_value))
-    aligned_orthogonality_error = abs(float(aligned_common_dot.detach().cpu())) / (
+    aligned_orthogonality_error = abs(reduction_values["aligned_common_dot"]) / (
         common_norm * actual_aligned_norm + 1e-12
     )
-    shuffled_orthogonality_error = abs(float(shuffled_common_dot.detach().cpu())) / (
+    shuffled_orthogonality_error = abs(reduction_values["shuffled_common_dot"]) / (
         common_norm * actual_shuffled_norm + 1e-12
     )
-    aligned_total_norm = math.sqrt(max(0.0, float(aligned_total_sq.detach().cpu())))
-    shuffled_total_norm = math.sqrt(max(0.0, float(shuffled_total_sq.detach().cpu())))
+    aligned_total_norm = math.sqrt(max(0.0, reduction_values["aligned_total_sq"]))
+    shuffled_total_norm = math.sqrt(max(0.0, reduction_values["shuffled_total_sq"]))
     component_norm_relative_error = abs(actual_aligned_norm - actual_shuffled_norm) / max(
         actual_aligned_norm, actual_shuffled_norm, 1e-12
     )
@@ -610,18 +699,18 @@ def compose_geometry_step(
         clip_aligned, clip_shuffled, 1e-12
     )
 
-    cast_common_norm = math.sqrt(max(0.0, float(cast_common_sq.detach().cpu())))
+    cast_common_norm = math.sqrt(max(0.0, reduction_values["cast_common_sq"]))
     cast_aligned_component_norm = math.sqrt(
-        max(0.0, float(cast_aligned_component_sq.detach().cpu()))
+        max(0.0, reduction_values["cast_aligned_component_sq"])
     )
     cast_shuffled_component_norm = math.sqrt(
-        max(0.0, float(cast_shuffled_component_sq.detach().cpu()))
+        max(0.0, reduction_values["cast_shuffled_component_sq"])
     )
     cast_aligned_total_norm = math.sqrt(
-        max(0.0, float(cast_aligned_total_sq.detach().cpu()))
+        max(0.0, reduction_values["cast_aligned_total_sq"])
     )
     cast_shuffled_total_norm = math.sqrt(
-        max(0.0, float(cast_shuffled_total_sq.detach().cpu()))
+        max(0.0, reduction_values["cast_shuffled_total_sq"])
     )
     cast_component_norm_relative_error = abs(
         cast_aligned_component_norm - cast_shuffled_component_norm
@@ -635,17 +724,58 @@ def compose_geometry_step(
         cast_clip_aligned - cast_clip_shuffled
     ) / max(cast_clip_aligned, cast_clip_shuffled, 1e-12)
     cast_aligned_orthogonality_error = abs(
-        float(cast_common_aligned_dot.detach().cpu())
+        reduction_values["cast_common_aligned_dot"]
     ) / (cast_common_norm * cast_aligned_component_norm + 1e-12)
     cast_shuffled_orthogonality_error = abs(
-        float(cast_common_shuffled_dot.detach().cpu())
+        reduction_values["cast_common_shuffled_dot"]
     ) / (cast_common_norm * cast_shuffled_component_norm + 1e-12)
-    cast_component_cosine = float(cast_aligned_shuffled_dot.detach().cpu()) / (
+    cast_component_cosine = reduction_values["cast_aligned_shuffled_dot"] / (
         cast_aligned_component_norm * cast_shuffled_component_norm + 1e-12
     )
     cast_component_relative_distance = math.sqrt(
-        max(0.0, float(cast_aligned_shuffled_difference_sq.detach().cpu()))
+        max(0.0, reduction_values["cast_aligned_shuffled_difference_sq"])
     ) / (cast_aligned_component_norm + 1e-12)
+    storage_component_activity_ratio = min(
+        cast_aligned_component_norm, cast_shuffled_component_norm
+    ) / max(cast_common_norm, 1e-12)
+    derived_scalars = {
+        "actual_aligned_norm": actual_aligned_norm,
+        "actual_shuffled_norm": actual_shuffled_norm,
+        "component_cosine": component_cosine,
+        "component_relative_distance": component_relative_distance,
+        "common_norm": common_norm,
+        "aligned_orthogonality_error": aligned_orthogonality_error,
+        "shuffled_orthogonality_error": shuffled_orthogonality_error,
+        "aligned_total_norm": aligned_total_norm,
+        "shuffled_total_norm": shuffled_total_norm,
+        "component_norm_relative_error": component_norm_relative_error,
+        "preclip_total_norm_relative_error": preclip_total_norm_relative_error,
+        "clip_aligned": clip_aligned,
+        "clip_shuffled": clip_shuffled,
+        "clip_coefficient_relative_error": clip_coefficient_relative_error,
+        "cast_common_norm": cast_common_norm,
+        "cast_aligned_component_norm": cast_aligned_component_norm,
+        "cast_shuffled_component_norm": cast_shuffled_component_norm,
+        "cast_aligned_total_norm": cast_aligned_total_norm,
+        "cast_shuffled_total_norm": cast_shuffled_total_norm,
+        "cast_component_norm_relative_error": cast_component_norm_relative_error,
+        "cast_preclip_total_norm_relative_error": cast_preclip_total_norm_relative_error,
+        "cast_clip_aligned": cast_clip_aligned,
+        "cast_clip_shuffled": cast_clip_shuffled,
+        "cast_clip_coefficient_relative_error": cast_clip_coefficient_relative_error,
+        "cast_aligned_orthogonality_error": cast_aligned_orthogonality_error,
+        "cast_shuffled_orthogonality_error": cast_shuffled_orthogonality_error,
+        "cast_component_cosine": cast_component_cosine,
+        "cast_component_relative_distance": cast_component_relative_distance,
+        "storage_component_activity_ratio": storage_component_activity_ratio,
+    }
+    for scalar_name, scalar_value in derived_scalars.items():
+        require_finite_scalar(scalar_name, scalar_value)
+    if storage_component_activity_ratio < TREATMENT_COMPONENT_ACTIVITY_RATIO_MIN:
+        raise RuntimeError(
+            "EXP60_DEGENERATE_TREATMENT_COMPONENT:"
+            f"activity_ratio={storage_component_activity_ratio:.9g}"
+        )
     if aligned_orthogonality_error > 1e-6:
         raise RuntimeError("Aligned orthogonality gate failure")
     if shuffled_orthogonality_error > 1e-6:
@@ -679,14 +809,17 @@ def compose_geometry_step(
         torch.nn.utils.clip_grad_norm_(
             [parameter for parameter in named.values()],
             max_norm=max_norm,
+            error_if_nonfinite=True,
         ).detach().cpu()
     )
+    require_finite_scalar("clip_grad_norm_return", preclip_norm)
     postclip_sq = _sum_squares(
         torch,
         [parameter.grad for parameter in named.values()],
         device,
     )
     postclip_norm = math.sqrt(max(0.0, float(postclip_sq.detach().cpu())))
+    require_finite_scalar("postclip_norm", postclip_norm)
     post_cast_limit = max_norm * (1.0 + storage_relative_tolerance)
     if not math.isfinite(postclip_norm) or postclip_norm > post_cast_limit:
         raise RuntimeError(f"Standard-clipped gradient norm violation: {postclip_norm}")
@@ -723,6 +856,7 @@ def compose_geometry_step(
         "storage_shuffled_normalized_orthogonality_error": cast_shuffled_orthogonality_error,
         "storage_aligned_shuffled_component_cosine": cast_component_cosine,
         "storage_aligned_shuffled_component_relative_distance": cast_component_relative_distance,
+        "storage_component_activity_ratio": storage_component_activity_ratio,
         "aligned_normalized_orthogonality_error": aligned_orthogonality_error,
         "shuffled_normalized_orthogonality_error": shuffled_orthogonality_error,
         "preclip_norm": preclip_norm,
@@ -1093,6 +1227,9 @@ def train(config: TrainConfig, variant: str, gpu_slot: int) -> dict[str, Any]:
         "minimum_aligned_shuffled_component_relative_distance": min(
             float(row["aligned_shuffled_component_relative_distance"])
             for row in step_audit
+        ),
+        "minimum_storage_component_activity_ratio": min(
+            float(row["storage_component_activity_ratio"]) for row in step_audit
         ),
         "maximum_aligned_shuffled_component_cosine": max(
             float(row["aligned_shuffled_component_cosine"]) for row in step_audit

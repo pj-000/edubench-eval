@@ -29,7 +29,14 @@ from thesis_exp.exp60_geometry_matched_shuffle import (
     OUTPUT_ROOT,
     PROTOCOL_PATH,
 )
-from thesis_exp.exp60_geometry_matched_shuffle.mapping import mapping_target_lookup
+from thesis_exp.exp60_geometry_matched_shuffle.contract import (
+    require_finite_scalar,
+    verify_preflight_source_lock,
+)
+from thesis_exp.exp60_geometry_matched_shuffle.mapping import (
+    mapping_sha256,
+    mapping_target_lookup,
+)
 from thesis_exp.exp60_geometry_matched_shuffle.train import (
     _capture_rng,
     _install_residual_capture_hooks,
@@ -48,6 +55,42 @@ from thesis_exp.src.edujudge.exp02.train_ce_baseline import (
 
 
 WINDOWS = {"full_32": 32, "partial_24": 24}
+
+
+def physical_gpu_identity(torch: Any, device: Any) -> dict[str, Any]:
+    visible = os.environ.get("CUDA_VISIBLE_DEVICES")
+    if not visible or "," in visible:
+        raise RuntimeError(
+            "Exp60 preflight requires exactly one explicit CUDA_VISIBLE_DEVICES identifier"
+        )
+    properties = torch.cuda.get_device_properties(device)
+    torch_uuid = getattr(properties, "uuid", None)
+    smi_uuid = pci_bus_id = None
+    command = subprocess.run(
+        [
+            "nvidia-smi",
+            f"--id={visible}",
+            "--query-gpu=uuid,pci.bus_id",
+            "--format=csv,noheader,nounits",
+        ],
+        check=False,
+        text=True,
+        capture_output=True,
+    )
+    if command.returncode == 0 and command.stdout.strip():
+        parts = [part.strip() for part in command.stdout.strip().split(",")]
+        if len(parts) == 2:
+            smi_uuid, pci_bus_id = parts
+    identity = str(torch_uuid or smi_uuid or f"CUDA_VISIBLE_DEVICES:{visible}")
+    return {
+        "cuda_visible_devices": visible,
+        "identity": identity,
+        "torch_uuid": str(torch_uuid) if torch_uuid else None,
+        "nvidia_smi_uuid": smi_uuid,
+        "pci_bus_id": pci_bus_id,
+        "name": properties.name,
+        "total_memory_bytes": int(properties.total_memory),
+    }
 
 
 def parse_args() -> tuple[TrainConfig, int]:
@@ -442,22 +485,37 @@ def run(config: TrainConfig, gpu_slot: int) -> dict[str, Any]:
     protocol = json.loads(PROTOCOL_PATH.read_text(encoding="utf-8"))
     if protocol.get("status") != "EXP60_DRAFT_FOR_INDEPENDENT_REVIEW_NOT_AUTHORIZED_FOR_TRAINING":
         raise RuntimeError("Real-model preflight requires the reviewed preflight-only draft status")
+    contract_binding = verify_preflight_source_lock()
+    expected_slot = int(protocol["formal_runs"]["real_preflight_gpu_schedule"][str(config.seed)])
+    if gpu_slot != expected_slot:
+        raise RuntimeError(
+            f"Exp60 seed {config.seed} preflight requires gpu_slot {expected_slot}, got {gpu_slot}"
+        )
     # This checks all formal hyperparameters but deliberately does not call the
     # formal source-lock verifier, which remains unavailable until preflight passes.
     assert_formal_config_matches_protocol(config, "consensus_only", protocol)
     if not torch.cuda.is_available():
         raise RuntimeError("Exp60 real-model preflight requires CUDA")
     device = torch.device("cuda")
+    gpu_identity = physical_gpu_identity(torch, device)
     config.output_dir.mkdir(parents=True, exist_ok=True)
     mapping_audit = json.loads(MAPPING_AUDIT_PATH.read_text(encoding="utf-8"))
-    if mapping_audit["mapping_sha256"] != protocol["mapping"]["canonical_sha256"]:
-        raise RuntimeError("Preflight mapping SHA mismatch")
     mapping_rows = [
         json.loads(line) for line in MAPPING_PATH.read_text(encoding="utf-8").splitlines()
         if line.strip()
     ]
+    actual_mapping_sha = mapping_sha256(mapping_rows)
+    if actual_mapping_sha != mapping_audit["mapping_sha256"]:
+        raise RuntimeError("Preflight actual mapping differs from mapping audit")
+    if actual_mapping_sha != protocol["mapping"]["canonical_sha256"]:
+        raise RuntimeError("Preflight actual mapping differs from protocol")
+    if not all(mapping_audit["checks"].values()):
+        raise RuntimeError("Preflight mapping integrity audit is incomplete")
     target_lookup = mapping_target_lookup(mapping_rows)
     rows = model_rows("train")
+    train_ids = {str(row["record_id"]) for row in rows}
+    if set(target_lookup) != train_ids or len(target_lookup) != len(rows):
+        raise RuntimeError("Preflight mapping recipient coverage differs from frozen train")
     fixed = protocol["fixed_training"]
     if len(rows) != fixed["train_rows"] or aggregate_text_hash(rows) != fixed["train_text_hash"]:
         raise RuntimeError("Preflight frozen training data mismatch")
@@ -504,6 +562,30 @@ def run(config: TrainConfig, gpu_slot: int) -> dict[str, Any]:
         float(window["geometry"]["storage_aligned_shuffled_component_cosine"])
         for window in windows
     ]
+    all_distances = [
+        float(window["geometry"]["storage_aligned_shuffled_component_relative_distance"])
+        for window in windows
+    ]
+    all_activity_ratios = [
+        float(window["geometry"]["storage_component_activity_ratio"])
+        for window in windows
+    ]
+    finite_preflight_scalars = [
+        *all_cosines,
+        *all_distances,
+        *all_activity_ratios,
+        *(
+            float(value)
+            for window in windows
+            for key in (
+                "aligned_explicit_route_relative_error",
+                "shuffled_explicit_route_relative_error",
+            )
+            for value in window[key].values()
+        ),
+    ]
+    for index, value in enumerate(finite_preflight_scalars):
+        require_finite_scalar(f"real_preflight_scalar_{index}", value)
     checks = {
         "full_and_partial_windows_present": [row["microbatches"] for row in windows]
         == [32, 24],
@@ -536,6 +618,9 @@ def run(config: TrainConfig, gpu_slot: int) -> dict[str, Any]:
             for row in windows
         ),
         "mapping_integrity": all(mapping_audit["checks"].values()),
+        "actual_mapping_sha_and_train_coverage_verified": actual_mapping_sha
+        == protocol["mapping"]["canonical_sha256"]
+        and set(target_lookup) == train_ids,
         "hard_soft_initial_heads_identical_and_storage_independent": (
             head_contract["hard_head_hash"] == head_contract["soft_head_hash"]
             and bool(head_contract["storage_independent"])
@@ -565,16 +650,20 @@ def run(config: TrainConfig, gpu_slot: int) -> dict[str, Any]:
         else "EXP60_REAL_MODEL_NO_UPDATE_PREFLIGHT_FAIL",
         "seed": config.seed,
         "gpu_slot": gpu_slot,
+        "gpu_identity": gpu_identity,
+        "preflight_contract_binding": contract_binding,
         "model_mode": model_mode,
         "initial_head_contract": head_contract,
         "initial_model_snapshot_sha256": initial_model_hash,
         "final_model_snapshot_sha256": final_model_hash,
         "model_input_manifest": model_manifest,
-        "mapping_sha256": mapping_audit["mapping_sha256"],
+        "mapping_sha256": actual_mapping_sha,
         "windows": windows,
         "treatment_separation_observation": {
             "storage_component_cosines": all_cosines,
-            "global_stop_rule_is_evaluated_after_all_three_seed_reports": True,
+            "storage_component_relative_distances": all_distances,
+            "storage_component_activity_ratios": all_activity_ratios,
+            "per_seed_rule_is_evaluated_after_all_three_seed_reports": True,
         },
         "memory": {
             "total_bytes": total_memory,
@@ -598,7 +687,7 @@ def run(config: TrainConfig, gpu_slot: int) -> dict[str, Any]:
             "cuda": torch.version.cuda,
             "cudnn": torch.backends.cudnn.version(),
             "gpu": torch.cuda.get_device_name(device),
-            "cuda_visible_devices": os.environ.get("CUDA_VISIBLE_DEVICES"),
+            "cuda_visible_devices": gpu_identity["cuda_visible_devices"],
             "cublas_workspace_config": os.environ.get("CUBLAS_WORKSPACE_CONFIG"),
             "deterministic_algorithms": torch.are_deterministic_algorithms_enabled(),
             "git_commit": subprocess.check_output(

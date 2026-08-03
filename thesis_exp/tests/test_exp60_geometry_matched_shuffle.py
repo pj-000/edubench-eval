@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import itertools
+import copy
 import json
 import unittest
 from collections import Counter
@@ -14,13 +15,27 @@ from thesis_exp.exp60_geometry_matched_shuffle.analyze_confirmation import (
     paired_rows,
     question_cluster_bootstrap,
 )
-from thesis_exp.exp60_geometry_matched_shuffle import PROTOCOL_PATH
+from thesis_exp.exp60_geometry_matched_shuffle import (
+    MAPPING_AUDIT_PATH,
+    MAPPING_PATH,
+    PREFLIGHT_SOURCE_LOCK_PATH,
+    PROTOCOL_PATH,
+)
+from thesis_exp.exp60_geometry_matched_shuffle.contract import (
+    normalized_scientific_protocol_sha256,
+    verify_preflight_source_lock,
+)
 from thesis_exp.exp60_geometry_matched_shuffle.geometry import (
     match_shuffled_orthogonal,
     select_component,
 )
+from thesis_exp.exp60_geometry_matched_shuffle.finalize_real_preflight import (
+    treatment_separation_by_seed,
+)
 from thesis_exp.exp60_geometry_matched_shuffle.mapping import (
     build_maximum_mismatch_mapping,
+    mapping_sha256,
+    mapping_target_lookup,
     theoretical_maximum_changes,
 )
 from thesis_exp.exp60_geometry_matched_shuffle.preflight import run as run_preflight
@@ -32,6 +47,24 @@ from thesis_exp.exp60_geometry_matched_shuffle.train import (
 
 
 class Exp60MappingTest(unittest.TestCase):
+    def test_actual_mapping_file_hash_and_train_coverage_are_canonical(self) -> None:
+        from thesis_exp.exp57_cbrd.data_audit import model_rows
+
+        mapping = [
+            json.loads(line)
+            for line in MAPPING_PATH.read_text(encoding="utf-8").splitlines()
+            if line.strip()
+        ]
+        audit = json.loads(MAPPING_AUDIT_PATH.read_text(encoding="utf-8"))
+        protocol = json.loads(PROTOCOL_PATH.read_text(encoding="utf-8"))
+        actual = mapping_sha256(mapping)
+        self.assertEqual(actual, audit["mapping_sha256"])
+        self.assertEqual(actual, protocol["mapping"]["canonical_sha256"])
+        self.assertEqual(
+            set(mapping_target_lookup(mapping)),
+            {str(row["record_id"]) for row in model_rows("train")},
+        )
+
     def test_frozen_real_mapping_reaches_declared_maximum(self) -> None:
         from thesis_exp.exp57_cbrd.data_audit import model_rows
 
@@ -126,6 +159,16 @@ class Exp60GeometryTest(unittest.TestCase):
         )
         self.assertEqual(protocol["allowed_splits"], ["train", "dev"])
         self.assertEqual(protocol["formal_runs"]["run_count"], 9)
+        self.assertEqual(
+            set(protocol["formal_runs"]["real_preflight_gpu_schedule"].values()),
+            {0, 1, 2},
+        )
+        self.assertEqual(
+            protocol["implementation_gates_before_training"][
+                "preflight_treatment_component_activity_ratio_at_least"
+            ],
+            1e-6,
+        )
         self.assertIn(
             "formal GPU training before independent review and source lock",
             protocol["prohibited"],
@@ -178,8 +221,58 @@ class Exp60GeometryTest(unittest.TestCase):
         self.assertEqual(report["status"], "EXP60_CPU_NO_UPDATE_PREFLIGHT_PASS")
         self.assertTrue(all(report["checks"].values()))
 
+    def test_normalized_protocol_allows_only_freeze_fields(self) -> None:
+        protocol = json.loads(PROTOCOL_PATH.read_text(encoding="utf-8"))
+        baseline = normalized_scientific_protocol_sha256(protocol)
+        allowed = copy.deepcopy(protocol)
+        allowed["status"] = "EXP60_PROTOCOL_FROZEN_BEFORE_FORMAL_RESULTS"
+        allowed["formal_runs"]["physical_gpu_bindings"] = {
+            "gpu_slot_0": "4",
+            "gpu_slot_1": "6",
+            "gpu_slot_2": "7",
+        }
+        allowed["formal_freeze_timestamp"] = "future"
+        self.assertEqual(baseline, normalized_scientific_protocol_sha256(allowed))
+        changed = copy.deepcopy(protocol)
+        changed["fixed_training"]["learning_rate"] = 3e-5
+        self.assertNotEqual(baseline, normalized_scientific_protocol_sha256(changed))
+
+    def test_preflight_source_lock_is_no_training_authority_and_verifies(self) -> None:
+        self.assertTrue(PREFLIGHT_SOURCE_LOCK_PATH.is_file())
+        lock = json.loads(PREFLIGHT_SOURCE_LOCK_PATH.read_text(encoding="utf-8"))
+        self.assertEqual(
+            lock["status"], "EXP60_PREFLIGHT_SOURCE_LOCK_NO_TRAINING_AUTHORITY"
+        )
+        self.assertEqual(lock["optimizer_steps"], 0)
+        self.assertEqual(lock["test_access_count"], 0)
+        binding = verify_preflight_source_lock()
+        self.assertEqual(
+            binding["normalized_scientific_protocol_sha256"],
+            lock["normalized_scientific_protocol_sha256"],
+        )
+
 
 class Exp60AnalysisTest(unittest.TestCase):
+    def test_treatment_separation_is_nondegenerate_and_required_per_seed(self) -> None:
+        good = {
+            "storage_component_cosines": [0.98, 0.999],
+            "storage_component_relative_distances": [0.2, 0.01],
+            "storage_component_activity_ratios": [1e-4, 2e-4],
+        }
+        observations = {seed: copy.deepcopy(good) for seed in (47, 48, 49)}
+        passed = treatment_separation_by_seed(
+            observations, cosine_max=0.99, distance_min=0.1, activity_min=1e-6
+        )
+        self.assertTrue(all(passed.values()))
+        observations[48]["storage_component_activity_ratios"] = [0.0, 0.0]
+        observations[49]["storage_component_cosines"] = [0.999, 0.999]
+        failed = treatment_separation_by_seed(
+            observations, cosine_max=0.99, distance_min=0.1, activity_min=1e-6
+        )
+        self.assertTrue(failed["47"])
+        self.assertFalse(failed["48"])
+        self.assertFalse(failed["49"])
+
     def test_paired_mae_sign_is_treatment_minus_control(self) -> None:
         treatment = [
             {

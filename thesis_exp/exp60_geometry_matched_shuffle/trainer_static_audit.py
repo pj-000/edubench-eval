@@ -84,6 +84,17 @@ def run() -> dict[str, Any]:
             "storage_component_norm_relative_error" in source
             and "storage_clip_coefficient_relative_error" in source
         ),
+        "nonfinite_geometry_fails_closed": (
+            "EXP60_NONFINITE_TENSOR" in source
+            and "error_if_nonfinite=True" in source
+            and "EXP60_DEGENERATE_TREATMENT_COMPONENT" in source
+        ),
+        "real_preflight_requires_preflight_source_lock": (
+            "verify_preflight_source_lock()" in preflight_source
+        ),
+        "real_preflight_rehashes_actual_mapping": (
+            "actual_mapping_sha = mapping_sha256(mapping_rows)" in preflight_source
+        ),
         "latin_square_gpu_assignment_enforced": "assert_gpu_slot_assignment" in source,
         "physical_gpu_binding_enforced": "assert_physical_gpu_binding" in source,
         "test_split_not_loaded": 'model_rows("test")' not in source,

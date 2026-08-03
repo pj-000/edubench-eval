@@ -6,7 +6,13 @@
 
 No model has been loaded, no optimizer step has been taken, no GPU has been
 used, and test remains inaccessible.  The protocol deliberately remains a
-draft.  There is no Exp60 source lock yet.
+draft.  There is no formal Exp60 source lock yet.  A separate no-training-
+authority preflight source lock binds the reviewed CPU/GPU-preflight code.
+
+- preflight source-lock SHA-256:
+  `53f9b2d56b3a5dc25d8d08d1a8b6a22346f657bc67ce2cbb4828177e8b061e32`;
+- normalized scientific-protocol SHA-256:
+  `86cce8a43630e28127e3e87e6527c885d372be223fdd80e0849065b27d71e1d6`.
 
 ## Scientific question
 
@@ -61,8 +67,9 @@ structure, all possible orthogonal regularizers, or low-score mechanisms.
 
 ## Completed pre-result checks
 
-- Eleven generic mapping/geometry/config/analysis tests pass.
-- Five PyTorch CPU tests, including BF16 storage-space simulation, pass.
+- Fifteen generic mapping/geometry/config/contract/analysis tests pass.
+- Seven PyTorch CPU tests, including BF16 storage-space simulation, non-finite
+  rejection and zero-treatment rejection, pass.
 - Exp59 regression suite: seven tests pass.
 - Restored historical Exp51 suite: eight pass, one Torch-dependent collection
   is skipped in the default environment.
@@ -103,6 +110,28 @@ still mandatory before formal training.
   seeds and mean MAE delta at most -0.005.  Adding seeds after results is
   prohibited.
 
+## Revisions after review of commit 72d266a
+
+- Every gradient, residual, candidate vector, reduction, projection scalar,
+  cosine, relative error and clip result now fails closed on NaN/Inf;
+  `clip_grad_norm_` uses `error_if_nonfinite=True`.
+- Storage-space treatment activity must be at least `1e-6`; zero/near-zero
+  components cannot be reported as a separated direction.
+- Separation is evaluated per seed: both windows must be finite and
+  nondegenerate, and at least one must jointly satisfy cosine `<=0.99` and
+  relative distance `>=0.1`.
+- Real preflight directly rehashes the actual mapping JSONL and verifies exact
+  coverage of all 2,654 frozen train IDs.
+- `preflight_source_lock.json` locks the preflight implementation and records a
+  normalized scientific-protocol hash.  Final freezing permits changes only to
+  status, physical GPU bindings and the explicit freeze timestamp.
+- Seeds 47/48/49 must cover slots 0/1/2 and three distinct physical GPU
+  identities; final protocol bindings must equal those actually preflighted.
+- Formal analysis now revalidates the full source lock, reads all 210 geometry
+  rows per endpoint, checks the 32/.../24 window structure, independently
+  recomputes extrema, rejects non-finite metrics and verifies physical GPU
+  bindings.
+
 ## Files to review
 
 - Draft protocol:
@@ -117,6 +146,9 @@ still mandatory before formal training.
 - Real-model preflight and three-seed finalizer:
   `thesis_exp/exp60_geometry_matched_shuffle/real_model_preflight.py`
   `thesis_exp/exp60_geometry_matched_shuffle/finalize_real_preflight.py`
+- Preflight scientific contract and no-authority lock builder:
+  `thesis_exp/exp60_geometry_matched_shuffle/contract.py`
+  `thesis_exp/exp60_geometry_matched_shuffle/freeze_preflight_contract.py`
 - Post-approval formal source-lock builder:
   `thesis_exp/exp60_geometry_matched_shuffle/freeze_source_lock.py`
 - Pre-result analysis implementation:

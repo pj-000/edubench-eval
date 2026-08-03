@@ -12,16 +12,26 @@ from thesis_exp.exp60_geometry_matched_shuffle import (
     MAPPING_AUDIT_PATH,
     MAPPING_PATH,
     OUTPUT_ROOT,
+    PREFLIGHT_SOURCE_LOCK_PATH,
     PROTOCOL_PATH,
     REAL_PREFLIGHT_DECISION_PATH,
     REPO_ROOT,
     SOURCE_LOCK_PATH,
 )
+from thesis_exp.exp60_geometry_matched_shuffle.contract import (
+    normalized_scientific_protocol_sha256,
+)
 
 
 STATIC_FILES = (
+    "thesis_exp/__init__.py",
+    "thesis_exp/src/__init__.py",
+    "thesis_exp/src/edujudge/__init__.py",
+    "thesis_exp/src/edujudge/utils/__init__.py",
     "thesis_exp/configs/exp60_geometry_matched_shuffle/protocol_draft.json",
     "thesis_exp/exp60_geometry_matched_shuffle/__init__.py",
+    "thesis_exp/exp60_geometry_matched_shuffle/contract.py",
+    "thesis_exp/exp60_geometry_matched_shuffle/freeze_preflight_contract.py",
     "thesis_exp/exp60_geometry_matched_shuffle/mapping.py",
     "thesis_exp/exp60_geometry_matched_shuffle/geometry.py",
     "thesis_exp/exp60_geometry_matched_shuffle/preflight.py",
@@ -43,7 +53,10 @@ STATIC_FILES = (
     "thesis_exp/exp57_cbrd/train.py",
     "thesis_exp/exp59_residual_geometry/geometry.py",
     "thesis_exp/src/edujudge/exp02/train_ce_baseline.py",
+    "thesis_exp/src/edujudge/exp02/__init__.py",
+    "thesis_exp/src/edujudge/exp02/build_exp02_dataset.py",
     "thesis_exp/src/edujudge/utils/io.py",
+    "thesis_exp/src/edujudge/utils/text_norm.py",
 )
 
 
@@ -69,10 +82,35 @@ def run() -> dict[str, Any]:
     decision = json.loads(REAL_PREFLIGHT_DECISION_PATH.read_text(encoding="utf-8"))
     if decision.get("status") != "EXP60_REAL_MODEL_PREFLIGHT_ALL_SEEDS_PASS":
         raise RuntimeError("All-seed real-model preflight has not passed")
+    preflight_lock = json.loads(PREFLIGHT_SOURCE_LOCK_PATH.read_text(encoding="utf-8"))
+    if sha256_file(PREFLIGHT_SOURCE_LOCK_PATH) != decision[
+        "preflight_contract_binding"
+    ]["preflight_source_lock_sha256"]:
+        raise RuntimeError("Preflight source lock differs from reviewed preflight reports")
+    normalized_sha = normalized_scientific_protocol_sha256(protocol)
+    if normalized_sha != decision["preflight_contract_binding"][
+        "normalized_scientific_protocol_sha256"
+    ] or normalized_sha != preflight_lock["normalized_scientific_protocol_sha256"]:
+        raise RuntimeError("Scientific protocol changed after real-model preflight")
+    expected_bindings = {
+        slot: str(identity["cuda_visible_devices"])
+        for slot, identity in decision["preflight_gpu_bindings"].items()
+    }
+    if bindings != expected_bindings:
+        raise RuntimeError(
+            "Formal physical GPU bindings must equal the three preflighted devices"
+        )
+    protocol_relative = str(PROTOCOL_PATH.relative_to(REPO_ROOT))
+    for relative, expected in preflight_lock["files"].items():
+        if relative == protocol_relative:
+            continue
+        if sha256_file(REPO_ROOT / relative) != expected:
+            raise RuntimeError(f"Source changed after real-model preflight: {relative}")
     generated = [
         str(MAPPING_PATH.relative_to(REPO_ROOT)),
         str(MAPPING_AUDIT_PATH.relative_to(REPO_ROOT)),
         str(REAL_PREFLIGHT_DECISION_PATH.relative_to(REPO_ROOT)),
+        str(PREFLIGHT_SOURCE_LOCK_PATH.relative_to(REPO_ROOT)),
         *(
             str(
                 (
@@ -103,6 +141,8 @@ def run() -> dict[str, Any]:
         "files": files,
         "file_count": len(files),
         "contains_frozen_analysis": True,
+        "normalized_scientific_protocol_sha256": normalized_sha,
+        "physical_gpu_bindings_equal_preflight_devices": True,
         "contains_model_and_environment_manifests_via_seed_reports": True,
         "allowed_splits": ["train", "dev"],
         "test_access_count": 0,

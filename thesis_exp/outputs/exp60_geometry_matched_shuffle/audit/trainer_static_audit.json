@@ -12,8 +12,11 @@
     "latin_square_gpu_assignment_enforced": true,
     "no_generic_full_model_component_materialization": true,
     "no_test_access": true,
+    "nonfinite_geometry_fails_closed": true,
     "physical_gpu_binding_enforced": true,
     "real_model_preflight_is_separate_and_has_no_optimizer": true,
+    "real_preflight_rehashes_actual_mapping": true,
+    "real_preflight_requires_preflight_source_lock": true,
     "test_split_not_loaded": true
   },
   "counts": {
