@@ -11,7 +11,7 @@ remains a draft and there is no formal Exp60 source lock.  A separate no-
 training-authority preflight source lock binds the CPU/GPU-preflight code.
 
 - preflight source-lock SHA-256:
-  `c51ce2252f56aab382cd90307624d11664bb4a0138d08e4c54c089ec23d2c45e`;
+  `f5a4bbf48d8d0d75424c1a67685e22e6c215d8b237e50f16edecabb0fd3447bb`;
 - normalized scientific-protocol SHA-256:
   `b46935c5898f837ce87f62618de1a5d560e7bfa6590b0079363f08d53a518067`.
 
