@@ -65,6 +65,11 @@ def test_streaming_geometry_step_passes_all_local_match_gates(variant: str) -> N
     assert audit["component_norm_relative_error"] <= 1e-4
     assert audit["preclip_total_norm_relative_error"] <= 1e-4
     assert audit["clip_coefficient_relative_error"] <= 1e-4
+    assert audit["storage_component_norm_relative_error"] <= 1e-6
+    assert audit["storage_preclip_total_norm_relative_error"] <= 1e-6
+    assert audit["storage_clip_coefficient_relative_error"] <= 1e-6
+    assert -1.0 <= audit["aligned_shuffled_component_cosine"] <= 1.0
+    assert audit["aligned_shuffled_component_relative_distance"] >= 0.0
     assert audit["postclip_norm"] <= 1.0 + 1e-6
 
 
@@ -83,3 +88,23 @@ def test_consensus_arm_restores_common_heads_unchanged() -> None:
     gradients = {name: parameter.grad for name, parameter in model.named_parameters()}
     assert torch.allclose(gradients["hard_head.weight"], common["hard_head.weight"])
     assert torch.allclose(gradients["soft_head.weight"], common["soft_head.weight"])
+
+
+def test_bfloat16_storage_space_is_audited_for_both_candidate_arms() -> None:
+    model = ToyModel().to(dtype=torch.bfloat16)
+    common, aligned, shuffled = tensors()
+    for name, parameter in model.named_parameters():
+        routed = common[name] + aligned.get(name, torch.zeros_like(parameter, dtype=torch.float32))
+        parameter.grad = routed.to(dtype=torch.bfloat16)
+    audit = compose_geometry_step(
+        model,
+        {name: value.clone() for name, value in aligned.items()},
+        {name: value.clone() for name, value in shuffled.items()},
+        variant="aligned_orthogonal_only",
+        max_norm=1.0,
+    )
+    assert audit["gradient_storage_dtype"] == "torch.bfloat16"
+    assert audit["post_cast_relative_tolerance"] == pytest.approx(0.01171875)
+    assert audit["storage_component_norm_relative_error"] <= 0.01171875
+    assert audit["storage_preclip_total_norm_relative_error"] <= 0.01171875
+    assert audit["storage_clip_coefficient_relative_error"] <= 0.01171875

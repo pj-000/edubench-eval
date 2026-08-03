@@ -8,6 +8,7 @@
     "clip_coefficient_match_at_most_1e_4": true,
     "component_norm_match_at_most_1e_4": true,
     "mapping_audit_pass": true,
+    "mapping_is_a_same_label_bijection_with_exact_donor_targets": true,
     "mapping_maximum_mismatch_every_label": true,
     "no_model_loaded": true,
     "no_optimizer_step": true,

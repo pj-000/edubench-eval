@@ -1,13 +1,19 @@
 {
   "checks": {
+    "bf16_storage_space_geometry_gate_present": true,
     "exactly_one_optimizer_step_call": true,
     "exactly_one_standard_clip_call": true,
     "exactly_two_diagnostic_residual_vjp_calls": true,
     "fixed_epoch10_primary_present": true,
+    "formal_training_asserts_all_frozen_config": true,
     "formal_training_requires_frozen_protocol": true,
+    "formal_training_unconditionally_verifies_source_lock": true,
     "fresh_seed_contract_present": true,
+    "latin_square_gpu_assignment_enforced": true,
     "no_generic_full_model_component_materialization": true,
     "no_test_access": true,
+    "physical_gpu_binding_enforced": true,
+    "real_model_preflight_is_separate_and_has_no_optimizer": true,
     "test_split_not_loaded": true
   },
   "counts": {

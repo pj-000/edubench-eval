@@ -10,9 +10,9 @@ draft.  There is no Exp60 source lock yet.
 
 ## Scientific question
 
-Does the non-collinear residual benefit found in Exp59 require the observed
-rater distribution to remain aligned with its own sample, or can an equally
-large mismatched orthogonal residual reproduce it?
+Does the non-collinear residual benefit found in Exp59 require sample--target
+alignment of the observed adjacent 2:1 ordinal residual, or can this one
+preregistered geometry-matched maximum-mismatch residual reproduce it?
 
 ## Draft intervention
 
@@ -20,10 +20,10 @@ large mismatched orthogonal residual reproduce it?
 - `aligned_orthogonal_only`: `G_C + O_A`;
 - `matched_shuffled_orthogonal_only`: `G_C + O_pi_tilde`.
 
-All three arms execute the same ordinary aligned hard/soft objective and both
-diagnostic residual VJPs with restored RNG.  Hard- and soft-head updates remain
-the complete original updates.  Only the residual component injected into the
-shared backbone differs.
+All three arms use identical hard- and soft-head objectives and identical
+pre-clip parameter-support rules.  Actual gradients may diverge with model
+state.  Aligned and matched-shuffled are locally clip-matched; Consensus-only
+is not clip-matched.  Both diagnostic VJPs use restored RNG states.
 
 The shuffled component is independently projected against the current common
 backbone gradient and scaled once to the aligned orthogonal norm.  Consequently
@@ -47,17 +47,30 @@ The 142 unavoidable unchanged targets arise from dominant target categories in
 hard-label strata; changing them is impossible under an exact multiset-
 preserving bijection.
 
+The regenerated audit additionally verifies that donor and recipient ID sets
+are identical, every donor is used exactly once, hard labels match, and every
+stored shuffled target equals the donor's source target.  Label 1 changes only
+8/24 rows, so Exp60 cannot support a low-score-specific mechanism claim.
+
+## Claim boundary
+
+A positive result can support only sample--target alignment specificity of the
+observed ordinal residual relative to this canonical control.  It cannot by
+itself establish general human ambiguity, multimodal preferences, subgroup
+structure, all possible orthogonal regularizers, or low-score mechanisms.
+
 ## Completed pre-result checks
 
-- Nine NumPy mapping/geometry/analysis tests pass.
-- Four PyTorch CPU tests of the memory-streaming formal geometry step pass.
+- Eleven generic mapping/geometry/config/analysis tests pass.
+- Five PyTorch CPU tests, including BF16 storage-space simulation, pass.
 - Exp59 regression suite: seven tests pass.
 - Restored historical Exp51 suite: eight pass, one Torch-dependent collection
   is skipped in the default environment.
 - Exp49--Exp51 source/config closure: 43/43 blobs exactly match commit
   `fa72bd4`.
 - Trainer static audit confirms two diagnostic VJPs, one standard clip and one
-  optimizer step.
+  optimizer step in formal training; formal source-lock verification is now
+  unconditional and all frozen runtime settings are code-checked.
 - Generic 64-case CPU preflight maxima:
   - aligned orthogonality error: `1.84e-08`;
   - shuffled orthogonality error: `1.31e-08`;
@@ -67,6 +80,28 @@ preserving bijection.
 
 These are generic FP32/FP64 checks.  A real Qwen BF16 no-update preflight is
 still mandatory before formal training.
+
+## Revisions after independent review
+
+- The formal trainer can no longer bypass source lock through an environment
+  variable and also requires the aggregated real-model-preflight decision.
+- Model path, epochs, optimizer settings, batch sizes, accumulation, clipping,
+  length, BF16, checkpointing, no-subsampling, workers, data hashes and mapping
+  hash are machine-checked.
+- Both aligned and shuffled candidates are audited after storage-dtype casting
+  for orthogonality, component norm, total norm and clipping coefficient.
+- Aligned--shuffled cosine and relative distance are recorded.
+- A separate real-Qwen BF16 no-update preflight now covers 32- and
+  24-microbatch windows, exact diagnostic-gradient non-pollution, RNG/logit
+  parity, explicit-route residual equivalence, memory and runtime.  It contains
+  no optimizer.
+- Formal variants rotate through three GPU slots by a frozen Latin square.
+- Analysis recomputes metrics from all 664 unique frozen dev predictions and
+  verifies IDs, targets, hashes, initializations, batch order, source lock and
+  all geometry gates.
+- The aligned-vs-consensus secondary requirement is now at least 2/3 favorable
+  seeds and mean MAE delta at most -0.005.  Adding seeds after results is
+  prohibited.
 
 ## Files to review
 
@@ -79,6 +114,11 @@ still mandatory before formal training.
   `thesis_exp/exp60_geometry_matched_shuffle/preflight.py`
 - Formal memory-streaming trainer:
   `thesis_exp/exp60_geometry_matched_shuffle/train.py`
+- Real-model preflight and three-seed finalizer:
+  `thesis_exp/exp60_geometry_matched_shuffle/real_model_preflight.py`
+  `thesis_exp/exp60_geometry_matched_shuffle/finalize_real_preflight.py`
+- Post-approval formal source-lock builder:
+  `thesis_exp/exp60_geometry_matched_shuffle/freeze_source_lock.py`
 - Pre-result analysis implementation:
   `thesis_exp/exp60_geometry_matched_shuffle/analyze_confirmation.py`
 - Static and source-closure audits:
@@ -90,7 +130,7 @@ still mandatory before formal training.
 - Generated evidence:
   `thesis_exp/outputs/exp60_geometry_matched_shuffle/audit/`
 
-## Questions requiring independent approval
+## Questions requiring renewed independent approval
 
 1. Does the maximum-mismatch mapping isolate sample alignment adequately while
    preserving the intended residual multiset?
@@ -98,11 +138,12 @@ still mandatory before formal training.
    current state the correct feasible estimand?
 3. Are fixed epoch 10, fresh seeds 47--49, and the proposed practical gates
    adequate for the one-shot decision?
-4. Is keeping the empirical aligned soft-head CE identical in all arms the
-   right head-update control?
+4. Do the new BF16 storage-space gates, exact no-pollution audit, explicit-route
+   equivalence threshold (0.02), treatment-separation rule and memory estimate
+   authorize real-model no-update preflight?
 5. Does the preregistered item-weighted question-cluster bootstrap correctly
    state that it is conditional on the three trained seeds?
-6. What additional real-model no-update checks are mandatory before freezing?
+6. Is the strengthened analysis and Latin-square execution contract complete?
 
 Formal training must remain blocked until these questions are reviewed, the
 real-model preflight passes, the protocol status is changed exactly once, and a

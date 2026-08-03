@@ -7,6 +7,8 @@ import hashlib
 import json
 import math
 import os
+import platform
+import sys
 import time
 from pathlib import Path
 from typing import Any
@@ -26,6 +28,7 @@ from thesis_exp.exp60_geometry_matched_shuffle import (
     MAPPING_PATH,
     OUTPUT_ROOT,
     PROTOCOL_PATH,
+    REAL_PREFLIGHT_DECISION_PATH,
     REPO_ROOT,
     SOURCE_LOCK_PATH,
 )
@@ -53,10 +56,46 @@ VARIANTS = (
 
 
 def sha256_file(path: Path) -> str:
-    return hashlib.sha256(path.read_bytes()).hexdigest()
+    digest = hashlib.sha256()
+    with path.open("rb") as handle:
+        for block in iter(lambda: handle.read(1024 * 1024), b""):
+            digest.update(block)
+    return digest.hexdigest()
 
 
-def parse_args() -> tuple[TrainConfig, str]:
+def file_manifest(root: Path) -> dict[str, Any]:
+    if not root.is_dir():
+        raise FileNotFoundError(f"Exp60 model directory does not exist: {root}")
+    files: dict[str, str] = {}
+    digest = hashlib.sha256()
+    for path in sorted(item for item in root.rglob("*") if item.is_file()):
+        relative = str(path.relative_to(root))
+        file_hash = sha256_file(path)
+        files[relative] = file_hash
+        digest.update(f"{relative}\t{file_hash}\n".encode("utf-8"))
+    return {"root": str(root), "files": files, "manifest_sha256": digest.hexdigest()}
+
+
+def dataset_contract_sha256(rows: list[dict[str, Any]]) -> str:
+    digest = hashlib.sha256()
+    for row in rows:
+        payload = {
+            "record_id": str(row["record_id"]),
+            "question_key": str(row.get("question_key") or ""),
+            "label_5": int(row["label_5"]),
+            "human_mean_5": float(row["human_mean_5"]),
+            "soft_target_5": [float(value) for value in row["soft_target_5"]],
+            "text": str(row["text"]),
+        }
+        digest.update(
+            (json.dumps(payload, ensure_ascii=False, sort_keys=True) + "\n").encode(
+                "utf-8"
+            )
+        )
+    return digest.hexdigest()
+
+
+def parse_args() -> tuple[TrainConfig, str, int]:
     parser = argparse.ArgumentParser(description="Frozen Exp60 residual-geometry trainer")
     parser.add_argument("--model_name_or_path", required=True)
     parser.add_argument("--output_dir", type=Path)
@@ -72,6 +111,7 @@ def parse_args() -> tuple[TrainConfig, str]:
     parser.add_argument("--max_grad_norm", type=float, default=1.0)
     parser.add_argument("--seed", type=int, required=True, choices=(47, 48, 49))
     parser.add_argument("--variant", required=True, choices=VARIANTS)
+    parser.add_argument("--gpu_slot", required=True, type=int, choices=(0, 1, 2))
     parser.add_argument("--bf16", choices=("auto", "true", "false"), default="true")
     parser.add_argument("--gradient_checkpointing", action="store_true")
     parser.add_argument("--local_files_only", action="store_true")
@@ -115,28 +155,194 @@ def parse_args() -> tuple[TrainConfig, str]:
         progress_bar=args.progress_bar,
         evaluate_test=False,
     )
-    return config, args.variant
+    return config, args.variant, args.gpu_slot
 
 
-def verify_contract(*, require_source_lock: bool) -> dict[str, Any]:
+def verify_contract() -> dict[str, Any]:
+    """Verify the formal frozen protocol and its mandatory source lock."""
+
     protocol = json.loads(PROTOCOL_PATH.read_text(encoding="utf-8"))
     if protocol.get("status") != "EXP60_PROTOCOL_FROZEN_BEFORE_FORMAL_RESULTS":
         raise RuntimeError("Exp60 protocol is not frozen")
     if protocol.get("allowed_splits") != ["train", "dev"] or protocol.get("test_access_count") != 0:
         raise RuntimeError("Invalid Exp60 split contract")
-    lock = None
-    if SOURCE_LOCK_PATH.is_file():
-        lock = json.loads(SOURCE_LOCK_PATH.read_text(encoding="utf-8"))
-        for relative, expected in lock["files"].items():
-            actual = sha256_file(REPO_ROOT / relative)
-            if actual != expected:
-                raise RuntimeError(f"Exp60 source-lock mismatch: {relative}: {actual} != {expected}")
-    elif require_source_lock:
+    if not REAL_PREFLIGHT_DECISION_PATH.is_file():
+        raise FileNotFoundError(REAL_PREFLIGHT_DECISION_PATH)
+    preflight_decision = json.loads(
+        REAL_PREFLIGHT_DECISION_PATH.read_text(encoding="utf-8")
+    )
+    if preflight_decision.get("status") != "EXP60_REAL_MODEL_PREFLIGHT_ALL_SEEDS_PASS":
+        raise RuntimeError("Exp60 real-model preflight did not authorize formal freezing")
+    if not SOURCE_LOCK_PATH.is_file():
         raise FileNotFoundError(SOURCE_LOCK_PATH)
+    lock = json.loads(SOURCE_LOCK_PATH.read_text(encoding="utf-8"))
+    for relative, expected in lock["files"].items():
+        actual = sha256_file(REPO_ROOT / relative)
+        if actual != expected:
+            raise RuntimeError(f"Exp60 source-lock mismatch: {relative}: {actual} != {expected}")
     return {
         "protocol_sha256": sha256_file(PROTOCOL_PATH),
-        "source_lock_sha256": sha256_file(SOURCE_LOCK_PATH) if lock else None,
+        "source_lock_sha256": sha256_file(SOURCE_LOCK_PATH),
+        "real_model_preflight_decision_sha256": sha256_file(
+            REAL_PREFLIGHT_DECISION_PATH
+        ),
     }
+
+
+def assert_formal_config_matches_protocol(
+    config: TrainConfig,
+    variant: str,
+    protocol: dict[str, Any] | None = None,
+) -> None:
+    """Reject every runtime deviation from the pre-result formal contract."""
+
+    protocol = protocol or json.loads(PROTOCOL_PATH.read_text(encoding="utf-8"))
+    fixed = protocol["fixed_training"]
+    expected: dict[str, Any] = {
+        "model_name_or_path": protocol["model_name_or_path"],
+        "num_train_epochs": float(fixed["epochs"]),
+        "learning_rate": float(fixed["learning_rate"]),
+        "weight_decay": float(fixed["weight_decay"]),
+        "warmup_ratio": float(fixed["warmup_ratio"]),
+        "per_device_train_batch_size": int(fixed["micro_batch_size"]),
+        "per_device_eval_batch_size": int(fixed["eval_batch_size"]),
+        "gradient_accumulation_steps": int(fixed["gradient_accumulation_steps"]),
+        "max_grad_norm": float(fixed["max_grad_norm"]),
+        "max_length": int(fixed["max_length"]),
+        "bf16": "true",
+        "fp16": False,
+        "gradient_checkpointing": bool(fixed["gradient_checkpointing"]),
+        "max_train_samples": fixed["max_train_samples"],
+        "max_eval_samples": fixed["max_eval_samples"],
+        "num_workers": int(fixed["num_workers"]),
+        "local_files_only": bool(fixed["local_files_only"]),
+        "trust_remote_code": bool(fixed["trust_remote_code"]),
+        "eval_only": False,
+        "evaluate_test": False,
+    }
+    mismatches: list[str] = []
+    for field, frozen_value in expected.items():
+        runtime_value = getattr(config, field)
+        equal = (
+            math.isclose(runtime_value, frozen_value, rel_tol=0.0, abs_tol=1e-15)
+            if isinstance(frozen_value, float) and isinstance(runtime_value, (float, int))
+            else runtime_value == frozen_value
+        )
+        if not equal:
+            mismatches.append(f"{field}={runtime_value!r} (frozen {frozen_value!r})")
+    if variant not in protocol["formal_runs"]["variants"]:
+        mismatches.append(f"variant={variant!r} is not frozen")
+    if config.seed not in protocol["formal_runs"]["fresh_seeds"]:
+        mismatches.append(f"seed={config.seed!r} is not frozen")
+    mapping_audit = json.loads(MAPPING_AUDIT_PATH.read_text(encoding="utf-8"))
+    if mapping_audit.get("mapping_sha256") != protocol["mapping"]["canonical_sha256"]:
+        mismatches.append("mapping SHA-256 differs from protocol")
+    if mismatches:
+        raise RuntimeError("Exp60 formal configuration mismatch: " + "; ".join(mismatches))
+
+
+def assert_gpu_slot_assignment(
+    seed: int,
+    variant: str,
+    gpu_slot: int,
+    protocol: dict[str, Any] | None = None,
+) -> None:
+    protocol = protocol or json.loads(PROTOCOL_PATH.read_text(encoding="utf-8"))
+    expected = protocol["formal_runs"]["gpu_latin_square"][str(seed)][
+        f"gpu_slot_{gpu_slot}"
+    ]
+    if expected != variant:
+        raise RuntimeError(
+            f"Exp60 Latin-square mismatch: seed {seed} slot {gpu_slot} "
+            f"requires {expected}, not {variant}"
+        )
+
+
+def assert_physical_gpu_binding(
+    gpu_slot: int, protocol: dict[str, Any] | None = None
+) -> None:
+    protocol = protocol or json.loads(PROTOCOL_PATH.read_text(encoding="utf-8"))
+    bindings = protocol["formal_runs"].get("physical_gpu_bindings")
+    if not isinstance(bindings, dict):
+        raise RuntimeError("Exp60 physical GPU bindings are not frozen")
+    expected = str(bindings[f"gpu_slot_{gpu_slot}"])
+    visible = os.environ.get("CUDA_VISIBLE_DEVICES")
+    if visible != expected:
+        raise RuntimeError(
+            f"Exp60 GPU slot {gpu_slot} requires CUDA_VISIBLE_DEVICES={expected}, "
+            f"got {visible!r}"
+        )
+
+
+def parameter_snapshot_sha256(model: Any) -> str:
+    """Hash parameter names, dtypes, shapes and exact storage bytes."""
+
+    import torch
+
+    digest = hashlib.sha256()
+    for name, parameter in model.named_parameters():
+        value = parameter.detach().cpu().contiguous()
+        digest.update(f"{name}\t{value.dtype}\t{tuple(value.shape)}\n".encode("utf-8"))
+        digest.update(value.view(-1).view(torch.uint8).numpy().tobytes())
+    return digest.hexdigest()
+
+
+def runtime_environment(torch: Any, transformers: Any, device: Any) -> dict[str, Any]:
+    return {
+        "python": sys.version,
+        "platform": platform.platform(),
+        "pytorch": torch.__version__,
+        "transformers": transformers.__version__,
+        "cuda": torch.version.cuda,
+        "cudnn": torch.backends.cudnn.version(),
+        "gpu": torch.cuda.get_device_name(device),
+        "cublas_workspace_config": os.environ.get("CUBLAS_WORKSPACE_CONFIG"),
+        "deterministic_algorithms": torch.are_deterministic_algorithms_enabled(),
+    }
+
+
+def assert_runtime_matches_seed_preflight(
+    seed: int, environment: dict[str, Any]
+) -> None:
+    report_path = (
+        OUTPUT_ROOT
+        / "real_model_preflight"
+        / f"seed_{seed}"
+        / "real_model_no_update_preflight.json"
+    )
+    report = json.loads(report_path.read_text(encoding="utf-8"))
+    expected = report["environment"]
+    fields = (
+        "python",
+        "platform",
+        "pytorch",
+        "transformers",
+        "cuda",
+        "cudnn",
+        "gpu",
+        "cublas_workspace_config",
+        "deterministic_algorithms",
+    )
+    mismatch = [field for field in fields if environment.get(field) != expected.get(field)]
+    if mismatch:
+        raise RuntimeError(
+            "Exp60 runtime differs from real-model preflight: " + ", ".join(mismatch)
+        )
+
+
+def assert_model_manifest_matches_seed_preflight(
+    seed: int, manifest_sha256: str
+) -> None:
+    report_path = (
+        OUTPUT_ROOT
+        / "real_model_preflight"
+        / f"seed_{seed}"
+        / "real_model_no_update_preflight.json"
+    )
+    report = json.loads(report_path.read_text(encoding="utf-8"))
+    expected = report["model_input_manifest"]["manifest_sha256"]
+    if manifest_sha256 != expected:
+        raise RuntimeError("Exp60 model/tokenizer manifest differs from preflight")
 
 
 def _capture_rng(torch: Any, device: Any) -> tuple[Any, Any]:
@@ -298,10 +504,21 @@ def compose_geometry_step(
 
     actual_aligned_sq = torch.zeros((), device=device, dtype=torch.float64)
     actual_shuffled_sq = torch.zeros((), device=device, dtype=torch.float64)
+    aligned_shuffled_dot = torch.zeros((), device=device, dtype=torch.float64)
+    aligned_shuffled_difference_sq = torch.zeros((), device=device, dtype=torch.float64)
     aligned_common_dot = torch.zeros((), device=device, dtype=torch.float64)
     shuffled_common_dot = torch.zeros((), device=device, dtype=torch.float64)
     aligned_total_sq = torch.zeros((), device=device, dtype=torch.float64)
     shuffled_total_sq = torch.zeros((), device=device, dtype=torch.float64)
+    cast_common_sq = torch.zeros((), device=device, dtype=torch.float64)
+    cast_aligned_component_sq = torch.zeros((), device=device, dtype=torch.float64)
+    cast_shuffled_component_sq = torch.zeros((), device=device, dtype=torch.float64)
+    cast_aligned_shuffled_dot = torch.zeros((), device=device, dtype=torch.float64)
+    cast_aligned_shuffled_difference_sq = torch.zeros((), device=device, dtype=torch.float64)
+    cast_common_aligned_dot = torch.zeros((), device=device, dtype=torch.float64)
+    cast_common_shuffled_dot = torch.zeros((), device=device, dtype=torch.float64)
+    cast_aligned_total_sq = torch.zeros((), device=device, dtype=torch.float64)
+    cast_shuffled_total_sq = torch.zeros((), device=device, dtype=torch.float64)
     for name, parameter in named.items():
         routed = parameter.grad.detach().float()
         aligned_residual = aligned_residual_buffers.get(name)
@@ -318,6 +535,12 @@ def compose_geometry_step(
             )
             actual_aligned_sq += aligned_component.square().sum(dtype=torch.float64)
             actual_shuffled_sq += shuffled_component.square().sum(dtype=torch.float64)
+            aligned_shuffled_dot += (aligned_component * shuffled_component).sum(
+                dtype=torch.float64
+            )
+            aligned_shuffled_difference_sq += (
+                aligned_component - shuffled_component
+            ).square().sum(dtype=torch.float64)
             aligned_common_dot += (common * aligned_component).sum(dtype=torch.float64)
             shuffled_common_dot += (common * shuffled_component).sum(dtype=torch.float64)
         else:
@@ -327,6 +550,29 @@ def compose_geometry_step(
         shuffled_preclip = common + shuffled_component
         aligned_total_sq += aligned_preclip.square().sum(dtype=torch.float64)
         shuffled_total_sq += shuffled_preclip.square().sum(dtype=torch.float64)
+        storage_dtype = parameter.grad.dtype
+        cast_common = common.to(dtype=storage_dtype).float()
+        cast_aligned_total = aligned_preclip.to(dtype=storage_dtype).float()
+        cast_shuffled_total = shuffled_preclip.to(dtype=storage_dtype).float()
+        cast_aligned_component = cast_aligned_total - cast_common
+        cast_shuffled_component = cast_shuffled_total - cast_common
+        cast_common_sq += cast_common.square().sum(dtype=torch.float64)
+        cast_aligned_component_sq += cast_aligned_component.square().sum(dtype=torch.float64)
+        cast_shuffled_component_sq += cast_shuffled_component.square().sum(dtype=torch.float64)
+        cast_aligned_shuffled_dot += (
+            cast_aligned_component * cast_shuffled_component
+        ).sum(dtype=torch.float64)
+        cast_aligned_shuffled_difference_sq += (
+            cast_aligned_component - cast_shuffled_component
+        ).square().sum(dtype=torch.float64)
+        cast_common_aligned_dot += (cast_common * cast_aligned_component).sum(
+            dtype=torch.float64
+        )
+        cast_common_shuffled_dot += (cast_common * cast_shuffled_component).sum(
+            dtype=torch.float64
+        )
+        cast_aligned_total_sq += cast_aligned_total.square().sum(dtype=torch.float64)
+        cast_shuffled_total_sq += cast_shuffled_total.square().sum(dtype=torch.float64)
         if variant == "consensus_only":
             selected = common
         elif variant == "aligned_orthogonal_only":
@@ -337,6 +583,12 @@ def compose_geometry_step(
 
     actual_aligned_norm = math.sqrt(max(0.0, float(actual_aligned_sq.detach().cpu())))
     actual_shuffled_norm = math.sqrt(max(0.0, float(actual_shuffled_sq.detach().cpu())))
+    component_cosine = float(aligned_shuffled_dot.detach().cpu()) / (
+        actual_aligned_norm * actual_shuffled_norm + 1e-12
+    )
+    component_relative_distance = math.sqrt(
+        max(0.0, float(aligned_shuffled_difference_sq.detach().cpu()))
+    ) / (actual_aligned_norm + 1e-12)
     common_norm = math.sqrt(max(0.0, common_sq_value))
     aligned_orthogonality_error = abs(float(aligned_common_dot.detach().cpu())) / (
         common_norm * actual_aligned_norm + 1e-12
@@ -357,6 +609,43 @@ def compose_geometry_step(
     clip_coefficient_relative_error = abs(clip_aligned - clip_shuffled) / max(
         clip_aligned, clip_shuffled, 1e-12
     )
+
+    cast_common_norm = math.sqrt(max(0.0, float(cast_common_sq.detach().cpu())))
+    cast_aligned_component_norm = math.sqrt(
+        max(0.0, float(cast_aligned_component_sq.detach().cpu()))
+    )
+    cast_shuffled_component_norm = math.sqrt(
+        max(0.0, float(cast_shuffled_component_sq.detach().cpu()))
+    )
+    cast_aligned_total_norm = math.sqrt(
+        max(0.0, float(cast_aligned_total_sq.detach().cpu()))
+    )
+    cast_shuffled_total_norm = math.sqrt(
+        max(0.0, float(cast_shuffled_total_sq.detach().cpu()))
+    )
+    cast_component_norm_relative_error = abs(
+        cast_aligned_component_norm - cast_shuffled_component_norm
+    ) / max(cast_aligned_component_norm, cast_shuffled_component_norm, 1e-12)
+    cast_preclip_total_norm_relative_error = abs(
+        cast_aligned_total_norm - cast_shuffled_total_norm
+    ) / max(cast_aligned_total_norm, cast_shuffled_total_norm, 1e-12)
+    cast_clip_aligned = min(1.0, max_norm / (cast_aligned_total_norm + 1e-6))
+    cast_clip_shuffled = min(1.0, max_norm / (cast_shuffled_total_norm + 1e-6))
+    cast_clip_coefficient_relative_error = abs(
+        cast_clip_aligned - cast_clip_shuffled
+    ) / max(cast_clip_aligned, cast_clip_shuffled, 1e-12)
+    cast_aligned_orthogonality_error = abs(
+        float(cast_common_aligned_dot.detach().cpu())
+    ) / (cast_common_norm * cast_aligned_component_norm + 1e-12)
+    cast_shuffled_orthogonality_error = abs(
+        float(cast_common_shuffled_dot.detach().cpu())
+    ) / (cast_common_norm * cast_shuffled_component_norm + 1e-12)
+    cast_component_cosine = float(cast_aligned_shuffled_dot.detach().cpu()) / (
+        cast_aligned_component_norm * cast_shuffled_component_norm + 1e-12
+    )
+    cast_component_relative_distance = math.sqrt(
+        max(0.0, float(cast_aligned_shuffled_difference_sq.detach().cpu()))
+    ) / (cast_aligned_component_norm + 1e-12)
     if aligned_orthogonality_error > 1e-6:
         raise RuntimeError("Aligned orthogonality gate failure")
     if shuffled_orthogonality_error > 1e-6:
@@ -367,6 +656,25 @@ def compose_geometry_step(
         raise RuntimeError("Preclip total norm matching gate failure")
     if clip_coefficient_relative_error > 1e-4:
         raise RuntimeError("Clip coefficient matching gate failure")
+    gradient_dtype = str(next(iter(named.values())).grad.dtype)
+    storage_relative_tolerance = post_cast_relative_tolerance(gradient_dtype)
+    storage_errors = {
+        "aligned orthogonality": cast_aligned_orthogonality_error,
+        "shuffled orthogonality": cast_shuffled_orthogonality_error,
+        "component norm": cast_component_norm_relative_error,
+        "preclip total norm": cast_preclip_total_norm_relative_error,
+        "clip coefficient": cast_clip_coefficient_relative_error,
+    }
+    failed_storage = {
+        name: value
+        for name, value in storage_errors.items()
+        if value > storage_relative_tolerance
+    }
+    if failed_storage:
+        raise RuntimeError(
+            "Storage-space geometry gate failure: "
+            + ", ".join(f"{name}={value:.6g}" for name, value in failed_storage.items())
+        )
     preclip_norm = float(
         torch.nn.utils.clip_grad_norm_(
             [parameter for parameter in named.values()],
@@ -379,8 +687,6 @@ def compose_geometry_step(
         device,
     )
     postclip_norm = math.sqrt(max(0.0, float(postclip_sq.detach().cpu())))
-    gradient_dtype = str(next(iter(named.values())).grad.dtype)
-    storage_relative_tolerance = post_cast_relative_tolerance(gradient_dtype)
     post_cast_limit = max_norm * (1.0 + storage_relative_tolerance)
     if not math.isfinite(postclip_norm) or postclip_norm > post_cast_limit:
         raise RuntimeError(f"Standard-clipped gradient norm violation: {postclip_norm}")
@@ -395,6 +701,8 @@ def compose_geometry_step(
         "shuffled_orthogonal_norm_before_match": shuffled_orthogonal_norm,
         "shuffled_orthogonal_norm_after_match": actual_shuffled_norm,
         "shuffled_scale": shuffled_scale,
+        "aligned_shuffled_component_cosine": component_cosine,
+        "aligned_shuffled_component_relative_distance": component_relative_distance,
         "component_norm_relative_error": component_norm_relative_error,
         "preclip_total_norm_aligned": aligned_total_norm,
         "preclip_total_norm_shuffled": shuffled_total_norm,
@@ -402,6 +710,19 @@ def compose_geometry_step(
         "clip_coefficient_aligned": clip_aligned,
         "clip_coefficient_shuffled": clip_shuffled,
         "clip_coefficient_relative_error": clip_coefficient_relative_error,
+        "storage_aligned_orthogonal_norm": cast_aligned_component_norm,
+        "storage_shuffled_orthogonal_norm": cast_shuffled_component_norm,
+        "storage_component_norm_relative_error": cast_component_norm_relative_error,
+        "storage_preclip_total_norm_aligned": cast_aligned_total_norm,
+        "storage_preclip_total_norm_shuffled": cast_shuffled_total_norm,
+        "storage_preclip_total_norm_relative_error": cast_preclip_total_norm_relative_error,
+        "storage_clip_coefficient_aligned": cast_clip_aligned,
+        "storage_clip_coefficient_shuffled": cast_clip_shuffled,
+        "storage_clip_coefficient_relative_error": cast_clip_coefficient_relative_error,
+        "storage_aligned_normalized_orthogonality_error": cast_aligned_orthogonality_error,
+        "storage_shuffled_normalized_orthogonality_error": cast_shuffled_orthogonality_error,
+        "storage_aligned_shuffled_component_cosine": cast_component_cosine,
+        "storage_aligned_shuffled_component_relative_distance": cast_component_relative_distance,
         "aligned_normalized_orthogonality_error": aligned_orthogonality_error,
         "shuffled_normalized_orthogonality_error": shuffled_orthogonality_error,
         "preclip_norm": preclip_norm,
@@ -412,25 +733,35 @@ def compose_geometry_step(
     }
 
 
-def train(config: TrainConfig, variant: str) -> dict[str, Any]:
+def train(config: TrainConfig, variant: str, gpu_slot: int) -> dict[str, Any]:
     import torch
+    import transformers
     from torch.optim import AdamW
     from transformers import get_cosine_schedule_with_warmup
 
     if variant not in VARIANTS:
         raise ValueError(f"Missing or invalid Exp60 variant: {variant}")
-    if config.evaluate_test:
-        raise PermissionError("Exp60 must never evaluate test")
-    if config.gradient_accumulation_steps != 32 or config.max_grad_norm != 1.0:
-        raise RuntimeError("Exp60 accumulation and clipping must match the frozen protocol")
-    contract_files = verify_contract(
-        require_source_lock=os.environ.get("EXP60_REQUIRE_SOURCE_LOCK") == "1"
-    )
+    protocol = json.loads(PROTOCOL_PATH.read_text(encoding="utf-8"))
+    assert_formal_config_matches_protocol(config, variant, protocol)
+    assert_gpu_slot_assignment(config.seed, variant, gpu_slot, protocol)
+    assert_physical_gpu_binding(gpu_slot, protocol)
+    contract_files = verify_contract()
     config.output_dir.mkdir(parents=True, exist_ok=True)
     config.checkpoint_output_dir.mkdir(parents=True, exist_ok=True)
     set_seed(config.seed)
     train_rows = limit(model_rows("train"), config.max_train_samples)
     dev_rows = limit(model_rows("dev"), config.max_eval_samples)
+    fixed = protocol["fixed_training"]
+    if len(train_rows) != fixed["train_rows"] or len(dev_rows) != fixed["dev_rows"]:
+        raise RuntimeError("Exp60 frozen train/dev row-count mismatch")
+    if aggregate_text_hash(train_rows) != fixed["train_text_hash"]:
+        raise RuntimeError("Exp60 frozen train text hash mismatch")
+    if aggregate_text_hash(dev_rows) != fixed["dev_text_hash"]:
+        raise RuntimeError("Exp60 frozen dev text hash mismatch")
+    if dataset_contract_sha256(train_rows) != fixed["train_dataset_contract_sha256"]:
+        raise RuntimeError("Exp60 frozen train dataset-contract hash mismatch")
+    if dataset_contract_sha256(dev_rows) != fixed["dev_dataset_contract_sha256"]:
+        raise RuntimeError("Exp60 frozen dev dataset-contract hash mismatch")
     mapping_rows = [
         json.loads(line)
         for line in MAPPING_PATH.read_text(encoding="utf-8").splitlines()
@@ -439,14 +770,38 @@ def train(config: TrainConfig, variant: str) -> dict[str, Any]:
     mapping_audit = json.loads(MAPPING_AUDIT_PATH.read_text(encoding="utf-8"))
     if mapping_sha256(mapping_rows) != mapping_audit["mapping_sha256"]:
         raise RuntimeError("Exp60 mapping hash mismatch")
+    if mapping_audit["mapping_sha256"] != protocol["mapping"]["canonical_sha256"]:
+        raise RuntimeError("Exp60 mapping differs from protocol")
+    if not all(mapping_audit["checks"].values()):
+        raise RuntimeError("Exp60 mapping integrity audit is not complete")
     shuffled_targets_by_id = mapping_target_lookup(mapping_rows)
     if config.max_train_samples is None and len(shuffled_targets_by_id) != len(train_rows):
         raise RuntimeError("Exp60 mapping does not cover the complete training set")
+    model_input_manifest = file_manifest(Path(config.model_name_or_path))
+    assert_model_manifest_matches_seed_preflight(
+        config.seed, model_input_manifest["manifest_sha256"]
+    )
+    write_json(config.output_dir / "model_input_manifest.json", model_input_manifest)
     model, tokenizer, model_mode, initial_contract = load_model(config)
+    initial_model_snapshot_sha256 = parameter_snapshot_sha256(model)
+    seed_preflight = json.loads(
+        (
+            OUTPUT_ROOT
+            / "real_model_preflight"
+            / f"seed_{config.seed}"
+            / "real_model_no_update_preflight.json"
+        ).read_text(encoding="utf-8")
+    )
+    if initial_model_snapshot_sha256 != seed_preflight["initial_model_snapshot_sha256"]:
+        raise RuntimeError("Exp60 initial model snapshot differs from seed preflight")
+    if initial_contract != seed_preflight["initial_head_contract"]:
+        raise RuntimeError("Exp60 initial head contract differs from seed preflight")
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     if device.type != "cuda":
         raise RuntimeError("Formal Exp60 training requires CUDA")
     model.to(device)
+    environment = runtime_environment(torch, transformers, device)
+    assert_runtime_matches_seed_preflight(config.seed, environment)
     train_loader = make_dataloader(train_rows, tokenizer, config, "train", shuffle=True)
     dev_loader = make_dataloader(dev_rows, tokenizer, config, "dev", shuffle=False)
     optimizer = AdamW(model.parameters(), lr=config.learning_rate, weight_decay=config.weight_decay)
@@ -463,6 +818,7 @@ def train(config: TrainConfig, variant: str) -> dict[str, Any]:
     history: list[dict[str, Any]] = []
     trace: list[dict[str, Any]] = []
     step_audit: list[dict[str, Any]] = []
+    data_order_digest = hashlib.sha256()
     named_backbone = {
         name: parameter
         for name, parameter in model.named_parameters()
@@ -500,6 +856,11 @@ def train(config: TrainConfig, variant: str) -> dict[str, Any]:
                     [shuffled_targets_by_id[str(row["record_id"])] for row in metadata],
                     dtype=torch.float32,
                     device=device,
+                )
+                data_order_digest.update(
+                    ("\t".join(str(row["record_id"]) for row in metadata) + "\n").encode(
+                        "utf-8"
+                    )
                 )
                 loss_scale = 1.0 / float(config.gradient_accumulation_steps)
                 rng_before = _capture_rng(torch, device)
@@ -673,10 +1034,17 @@ def train(config: TrainConfig, variant: str) -> dict[str, Any]:
         "status": "COMPLETED",
         "variant": variant,
         "seed": config.seed,
+        "gpu_slot": gpu_slot,
+        "cuda_visible_devices": os.environ.get("CUDA_VISIBLE_DEVICES"),
+        "gpu_name": torch.cuda.get_device_name(device),
+        "runtime_environment": environment,
         "runtime_head": git_head(),
         "model_mode": model_mode,
         "model_name_or_path": config.model_name_or_path,
+        "model_input_manifest_sha256": model_input_manifest["manifest_sha256"],
         "initial_head_contract": initial_contract,
+        "initial_model_snapshot_sha256": initial_model_snapshot_sha256,
+        "training_batch_id_order_sha256": data_order_digest.hexdigest(),
         "selected_epoch": 10,
         "selected_metrics": selected,
         "checkpoint_path": str(epoch10_dir),
@@ -706,10 +1074,35 @@ def train(config: TrainConfig, variant: str) -> dict[str, Any]:
         "maximum_clip_coefficient_relative_error": max(
             float(row["clip_coefficient_relative_error"]) for row in step_audit
         ),
+        "maximum_storage_component_norm_relative_error": max(
+            float(row["storage_component_norm_relative_error"]) for row in step_audit
+        ),
+        "maximum_storage_preclip_total_norm_relative_error": max(
+            float(row["storage_preclip_total_norm_relative_error"]) for row in step_audit
+        ),
+        "maximum_storage_clip_coefficient_relative_error": max(
+            float(row["storage_clip_coefficient_relative_error"]) for row in step_audit
+        ),
+        "maximum_storage_normalized_orthogonality_error": max(
+            max(
+                float(row["storage_aligned_normalized_orthogonality_error"]),
+                float(row["storage_shuffled_normalized_orthogonality_error"]),
+            )
+            for row in step_audit
+        ),
+        "minimum_aligned_shuffled_component_relative_distance": min(
+            float(row["aligned_shuffled_component_relative_distance"])
+            for row in step_audit
+        ),
+        "maximum_aligned_shuffled_component_cosine": max(
+            float(row["aligned_shuffled_component_cosine"]) for row in step_audit
+        ),
         "mapping_sha256": mapping_audit["mapping_sha256"],
         "mapping_effective_change_rate": mapping_audit["effective_change_rate"],
         "train_text_hash": aggregate_text_hash(train_rows),
         "dev_text_hash": aggregate_text_hash(dev_rows),
+        "train_dataset_contract_sha256": dataset_contract_sha256(train_rows),
+        "dev_dataset_contract_sha256": dataset_contract_sha256(dev_rows),
         "frozen_contract_files": contract_files,
         "test_access_count": 0,
         "elapsed_seconds": elapsed,
@@ -735,8 +1128,8 @@ def train(config: TrainConfig, variant: str) -> dict[str, Any]:
 
 
 def main() -> None:
-    config, variant = parse_args()
-    result = train(config, variant)
+    config, variant, gpu_slot = parse_args()
+    result = train(config, variant, gpu_slot)
     print(json.dumps(result, ensure_ascii=False, indent=2, default=str))
 
 

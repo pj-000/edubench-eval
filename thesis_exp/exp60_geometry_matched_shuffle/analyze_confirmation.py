@@ -3,14 +3,24 @@
 from __future__ import annotations
 
 import json
+import hashlib
 from collections import defaultdict
 from pathlib import Path
 from typing import Any
 
 import numpy as np
 
-from thesis_exp.exp57_cbrd.data_audit import write_json
-from thesis_exp.exp60_geometry_matched_shuffle import MAPPING_AUDIT_PATH, OUTPUT_ROOT
+from thesis_exp.exp57_cbrd.data_audit import model_rows, write_json
+from thesis_exp.exp57_cbrd.metrics import compute_metrics
+from thesis_exp.exp57_cbrd.train import aggregate_text_hash
+from thesis_exp.exp60_geometry_matched_shuffle import (
+    MAPPING_AUDIT_PATH,
+    OUTPUT_ROOT,
+    PROTOCOL_PATH,
+    REAL_PREFLIGHT_DECISION_PATH,
+    SOURCE_LOCK_PATH,
+)
+from thesis_exp.exp60_geometry_matched_shuffle.train import dataset_contract_sha256
 from thesis_exp.src.edujudge.utils.io import write_csv
 
 
@@ -34,6 +44,10 @@ def read_jsonl(path: Path) -> list[dict[str, Any]]:
         return [json.loads(line) for line in handle if line.strip()]
 
 
+def sha256_file(path: Path) -> str:
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
 def run_dir(variant: str, seed: int) -> Path:
     return OUTPUT_ROOT / "runs" / variant / f"seed_{seed}"
 
@@ -48,11 +62,24 @@ def prediction_path(directory: Path) -> Path:
     raise FileNotFoundError(f"No fixed-epoch-10 predictions below {directory}")
 
 
-def endpoint(variant: str, seed: int, mapping_sha: str) -> tuple[dict[str, float], list[dict[str, Any]]]:
+def endpoint(
+    variant: str,
+    seed: int,
+    mapping_sha: str,
+    protocol: dict[str, Any],
+    frozen_dev: dict[str, dict[str, Any]],
+) -> tuple[dict[str, float], list[dict[str, Any]], dict[str, Any]]:
     directory = run_dir(variant, seed)
     summary = read_json(directory / "run_summary.json")
     if summary.get("status") != "COMPLETED":
         raise RuntimeError(f"Incomplete endpoint: {directory}")
+    if summary.get("variant") != variant or summary.get("seed") != seed:
+        raise RuntimeError(f"Variant/seed self-report mismatch: {directory}")
+    gpu_slot = summary.get("gpu_slot")
+    if gpu_slot not in (0, 1, 2) or protocol["formal_runs"]["gpu_latin_square"][
+        str(seed)
+    ][f"gpu_slot_{gpu_slot}"] != variant:
+        raise RuntimeError(f"GPU Latin-square mismatch: {directory}")
     if summary.get("selected_epoch") != 10 or summary.get("checkpoint_rule") != "fixed epoch 10 primary":
         raise RuntimeError(f"Non-frozen checkpoint: {directory}")
     if summary.get("optimizer_steps") != 210:
@@ -61,8 +88,105 @@ def endpoint(variant: str, seed: int, mapping_sha: str) -> tuple[dict[str, float
         raise RuntimeError(f"Mapping mismatch: {directory}")
     if summary.get("test_access_count") != 0:
         raise RuntimeError(f"Nonzero test access: {directory}")
-    metrics = {key: float(summary["selected_metrics"][key]) for key in METRICS}
-    return metrics, read_jsonl(prediction_path(directory))
+    contract = summary.get("frozen_contract_files", {})
+    if contract.get("protocol_sha256") != sha256_file(PROTOCOL_PATH):
+        raise RuntimeError(f"Protocol SHA mismatch: {directory}")
+    if contract.get("source_lock_sha256") != sha256_file(SOURCE_LOCK_PATH):
+        raise RuntimeError(f"Source-lock SHA mismatch: {directory}")
+    if contract.get("real_model_preflight_decision_sha256") != sha256_file(
+        REAL_PREFLIGHT_DECISION_PATH
+    ):
+        raise RuntimeError(f"Real-preflight decision SHA mismatch: {directory}")
+    fixed = protocol["fixed_training"]
+    if summary.get("train_text_hash") != fixed["train_text_hash"]:
+        raise RuntimeError(f"Train hash mismatch: {directory}")
+    if summary.get("dev_text_hash") != fixed["dev_text_hash"]:
+        raise RuntimeError(f"Dev hash mismatch: {directory}")
+    if summary.get("train_dataset_contract_sha256") != fixed[
+        "train_dataset_contract_sha256"
+    ]:
+        raise RuntimeError(f"Train dataset-contract mismatch: {directory}")
+    if summary.get("dev_dataset_contract_sha256") != fixed[
+        "dev_dataset_contract_sha256"
+    ]:
+        raise RuntimeError(f"Dev dataset-contract mismatch: {directory}")
+    for required in (
+        "initial_model_snapshot_sha256",
+        "model_input_manifest_sha256",
+        "initial_head_contract",
+    ):
+        if not summary.get(required):
+            raise RuntimeError(f"Missing {required}: {directory}")
+    tolerance = float(protocol["implementation_gates_before_training"][
+        "bf16_storage_space_relative_error_at_most"
+    ])
+    construction_limits = {
+        "maximum_aligned_normalized_orthogonality_error": float(
+            protocol["implementation_gates_before_training"][
+                "normalized_orthogonality_error_at_most"
+            ]
+        ),
+        "maximum_shuffled_normalized_orthogonality_error": float(
+            protocol["implementation_gates_before_training"][
+                "normalized_orthogonality_error_at_most"
+            ]
+        ),
+        "maximum_component_norm_relative_error": float(
+            protocol["implementation_gates_before_training"][
+                "component_norm_relative_error_at_most"
+            ]
+        ),
+        "maximum_preclip_total_norm_relative_error": float(
+            protocol["implementation_gates_before_training"][
+                "preclip_total_norm_relative_error_at_most"
+            ]
+        ),
+        "maximum_clip_coefficient_relative_error": float(
+            protocol["implementation_gates_before_training"][
+                "clip_coefficient_relative_error_at_most"
+            ]
+        ),
+    }
+    if any(
+        float(summary.get(field, float("inf"))) > limit
+        for field, limit in construction_limits.items()
+    ):
+        raise RuntimeError(f"Construction-space geometry gate mismatch: {directory}")
+    geometry_fields = (
+        "maximum_storage_component_norm_relative_error",
+        "maximum_storage_preclip_total_norm_relative_error",
+        "maximum_storage_clip_coefficient_relative_error",
+        "maximum_storage_normalized_orthogonality_error",
+    )
+    if any(float(summary.get(field, float("inf"))) > tolerance for field in geometry_fields):
+        raise RuntimeError(f"BF16 storage geometry gate mismatch: {directory}")
+
+    predictions = read_jsonl(prediction_path(directory))
+    if len(predictions) != len(frozen_dev) or len(predictions) != fixed["dev_rows"]:
+        raise RuntimeError(f"Prediction row-count mismatch: {directory}")
+    ids = [str(row["record_id"]) for row in predictions]
+    if len(set(ids)) != len(ids) or set(ids) != set(frozen_dev):
+        raise RuntimeError(f"Prediction ID-set mismatch: {directory}")
+    for row in predictions:
+        record_id = str(row["record_id"])
+        source = frozen_dev[record_id]
+        if not str(row.get("question_key") or "").strip():
+            raise RuntimeError(f"Empty question key: {directory}: {record_id}")
+        if str(row["question_key"]) != str(source["question_key"]):
+            raise RuntimeError(f"Question-key mismatch: {directory}: {record_id}")
+        if int(row["label_5"]) != int(source["label_5"]):
+            raise RuntimeError(f"Target label mismatch: {directory}: {record_id}")
+        if float(row["human_mean_5"]) != float(source["human_mean_5"]):
+            raise RuntimeError(f"Human-mean mismatch: {directory}: {record_id}")
+    recomputed = compute_metrics(predictions)
+    metrics = {key: float(recomputed[key]) for key in METRICS}
+    for key in METRICS:
+        reported = float(summary["selected_metrics"][key])
+        if not np.isclose(metrics[key], reported, rtol=0.0, atol=1e-12):
+            raise RuntimeError(
+                f"Recomputed metric mismatch: {directory}: {key}: {metrics[key]} != {reported}"
+            )
+    return metrics, predictions, summary
 
 
 def paired_rows(
@@ -129,13 +253,15 @@ def question_cluster_bootstrap(seed_rows: list[list[dict[str, Any]]]) -> dict[st
 def comparison(
     treatment: str,
     control: str,
-    endpoints: dict[tuple[str, int], tuple[dict[str, float], list[dict[str, Any]]]],
+    endpoints: dict[
+        tuple[str, int], tuple[dict[str, float], list[dict[str, Any]], dict[str, Any]]
+    ],
 ) -> dict[str, Any]:
     rows: list[dict[str, Any]] = []
     paired_predictions: list[list[dict[str, Any]]] = []
     for seed in SEEDS:
-        treatment_metrics, treatment_predictions = endpoints[(treatment, seed)]
-        control_metrics, control_predictions = endpoints[(control, seed)]
+        treatment_metrics, treatment_predictions, _ = endpoints[(treatment, seed)]
+        control_metrics, control_predictions, _ = endpoints[(control, seed)]
         row: dict[str, Any] = {"seed": seed, "treatment": treatment, "control": control}
         for metric in METRICS:
             row[f"delta_{metric}"] = treatment_metrics[metric] - control_metrics[metric]
@@ -156,12 +282,48 @@ def comparison(
 
 
 def main() -> None:
+    protocol = read_json(PROTOCOL_PATH)
+    if protocol.get("status") != "EXP60_PROTOCOL_FROZEN_BEFORE_FORMAL_RESULTS":
+        raise RuntimeError("Exp60 analysis is blocked until the protocol is formally frozen")
+    if not SOURCE_LOCK_PATH.is_file():
+        raise FileNotFoundError(SOURCE_LOCK_PATH)
     mapping_sha = str(read_json(MAPPING_AUDIT_PATH)["mapping_sha256"])
+    dev_rows = model_rows("dev")
+    frozen_dev = {str(row["record_id"]): row for row in dev_rows}
+    if len(frozen_dev) != len(dev_rows):
+        raise RuntimeError("Frozen dev contains duplicate record IDs")
+    if aggregate_text_hash(dev_rows) != protocol["fixed_training"]["dev_text_hash"]:
+        raise RuntimeError("Frozen dev text hash differs from protocol")
+    if dataset_contract_sha256(dev_rows) != protocol["fixed_training"][
+        "dev_dataset_contract_sha256"
+    ]:
+        raise RuntimeError("Frozen dev dataset-contract hash differs from protocol")
     endpoints = {
-        (variant, seed): endpoint(variant, seed, mapping_sha)
+        (variant, seed): endpoint(
+            variant, seed, mapping_sha, protocol, frozen_dev
+        )
         for variant in VARIANTS
         for seed in SEEDS
     }
+    for seed in SEEDS:
+        summaries = [endpoints[(variant, seed)][2] for variant in VARIANTS]
+        for field in (
+            "initial_model_snapshot_sha256",
+            "model_input_manifest_sha256",
+            "train_text_hash",
+            "dev_text_hash",
+            "train_dataset_contract_sha256",
+            "dev_dataset_contract_sha256",
+            "training_batch_id_order_sha256",
+        ):
+            if len({str(summary[field]) for summary in summaries}) != 1:
+                raise RuntimeError(f"Same-seed three-arm {field} mismatch for seed {seed}")
+        head_contracts = [summary["initial_head_contract"] for summary in summaries]
+        if any(contract != head_contracts[0] for contract in head_contracts[1:]):
+            raise RuntimeError(f"Same-seed initial head mismatch for seed {seed}")
+        environments = [summary.get("runtime_environment") for summary in summaries]
+        if any(environment != environments[0] for environment in environments[1:]):
+            raise RuntimeError(f"Same-seed runtime-environment mismatch for seed {seed}")
     primary = comparison(
         "aligned_orthogonal_only",
         "matched_shuffled_orthogonal_only",
@@ -174,10 +336,15 @@ def main() -> None:
         "cluster_CI_upper_below_zero": primary["question_cluster_bootstrap"]["ci_95"][1] < 0.0,
         "mean_delta_Exact_at_least_minus_0p003": primary["mean_delta"]["Exact_rounded"] >= -0.003,
         "mean_delta_Kendall_at_least_minus_0p005": primary["mean_delta"]["Kendall_human_mean"] >= -0.005,
-        "aligned_minus_consensus_MAE_direction_negative": secondary["mean_delta"]["MAE_human_mean"] < 0.0,
+        "aligned_minus_consensus_favorable_MAE_in_at_least_2_of_3_seeds": secondary[
+            "favorable_MAE_seeds"
+        ] >= 2,
+        "aligned_minus_consensus_mean_delta_MAE_at_most_minus_0p005": secondary[
+            "mean_delta"
+        ]["MAE_human_mean"] <= -0.005,
     }
     report = {
-        "status": "EXP60_SEMANTIC_SPECIFICITY_GO" if all(gates.values()) else "EXP60_SEMANTIC_SPECIFICITY_NO_GO",
+        "status": "EXP60_SAMPLE_TARGET_ALIGNMENT_GO" if all(gates.values()) else "EXP60_SAMPLE_TARGET_ALIGNMENT_NO_GO",
         "primary": primary,
         "secondary": secondary,
         "gates": gates,

@@ -6,6 +6,7 @@ import itertools
 import json
 import unittest
 from collections import Counter
+from types import SimpleNamespace
 
 import numpy as np
 
@@ -23,7 +24,11 @@ from thesis_exp.exp60_geometry_matched_shuffle.mapping import (
     theoretical_maximum_changes,
 )
 from thesis_exp.exp60_geometry_matched_shuffle.preflight import run as run_preflight
-from thesis_exp.exp60_geometry_matched_shuffle.train import verify_contract
+from thesis_exp.exp60_geometry_matched_shuffle.train import (
+    assert_formal_config_matches_protocol,
+    assert_gpu_slot_assignment,
+    verify_contract,
+)
 
 
 class Exp60MappingTest(unittest.TestCase):
@@ -126,7 +131,47 @@ class Exp60GeometryTest(unittest.TestCase):
             protocol["prohibited"],
         )
         with self.assertRaisesRegex(RuntimeError, "protocol is not frozen"):
-            verify_contract(require_source_lock=False)
+            verify_contract()
+
+    def test_formal_config_assertion_rejects_subsampling_and_disabled_bf16(self) -> None:
+        protocol = json.loads(PROTOCOL_PATH.read_text(encoding="utf-8"))
+        fixed = protocol["fixed_training"]
+        base = dict(
+            model_name_or_path=protocol["model_name_or_path"],
+            num_train_epochs=float(fixed["epochs"]),
+            learning_rate=float(fixed["learning_rate"]),
+            weight_decay=float(fixed["weight_decay"]),
+            warmup_ratio=float(fixed["warmup_ratio"]),
+            per_device_train_batch_size=int(fixed["micro_batch_size"]),
+            per_device_eval_batch_size=int(fixed["eval_batch_size"]),
+            gradient_accumulation_steps=int(fixed["gradient_accumulation_steps"]),
+            max_grad_norm=float(fixed["max_grad_norm"]),
+            max_length=int(fixed["max_length"]),
+            bf16="true",
+            fp16=False,
+            gradient_checkpointing=True,
+            max_train_samples=None,
+            max_eval_samples=None,
+            num_workers=0,
+            local_files_only=True,
+            trust_remote_code=False,
+            eval_only=False,
+            evaluate_test=False,
+            seed=47,
+        )
+        assert_formal_config_matches_protocol(
+            SimpleNamespace(**base), "consensus_only", protocol
+        )
+        for update in ({"max_train_samples": 8}, {"bf16": "false"}):
+            with self.assertRaisesRegex(RuntimeError, "formal configuration mismatch"):
+                assert_formal_config_matches_protocol(
+                    SimpleNamespace(**{**base, **update}), "consensus_only", protocol
+                )
+
+    def test_latin_square_assignment_is_enforced(self) -> None:
+        assert_gpu_slot_assignment(47, "aligned_orthogonal_only", 1)
+        with self.assertRaisesRegex(RuntimeError, "Latin-square mismatch"):
+            assert_gpu_slot_assignment(47, "aligned_orthogonal_only", 0)
 
     def test_cpu_no_update_preflight_passes(self) -> None:
         report = run_preflight()

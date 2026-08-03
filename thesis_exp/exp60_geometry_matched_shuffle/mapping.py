@@ -136,6 +136,21 @@ def build_maximum_mismatch_mapping(
             "self_assignments": self_assignments,
         }
 
+    source_by_id = {stable_row_id(row): row for row in rows}
+    recipient_ids = [str(row["recipient_record_id"]) for row in mapping]
+    donor_ids = [str(row["donor_record_id"]) for row in mapping]
+    donor_counts = Counter(donor_ids)
+    donor_targets_exact = all(
+        list(thirds(row_target(source_by_id[str(item["donor_record_id"])])))
+        == list(item["shuffled_target_thirds"])
+        for item in mapping
+    )
+    hard_labels_match = all(
+        int(source_by_id[str(item["recipient_record_id"])]["label_5"])
+        == int(item["hard_label"])
+        == int(source_by_id[str(item["donor_record_id"])]["label_5"])
+        for item in mapping
+    )
     audit = {
         "status": "EXP60_MAXIMUM_MISMATCH_MAPPING_PASS",
         "algorithm": "within-hard-label lexicographic target blocks rotated by the largest block size",
@@ -150,6 +165,12 @@ def build_maximum_mismatch_mapping(
         "by_hard_label": label_audits,
         "checks": {
             "all_rows_mapped_once": len(mapping) == len(rows),
+            "recipient_id_set_equals_source_id_set": set(recipient_ids) == set(source_by_id),
+            "donor_id_set_equals_recipient_id_set": set(donor_ids) == set(recipient_ids),
+            "every_donor_used_exactly_once": all(count == 1 for count in donor_counts.values())
+            and len(donor_counts) == len(rows),
+            "donor_and_recipient_hard_labels_match": hard_labels_match,
+            "shuffled_target_exactly_equals_donor_source_target": donor_targets_exact,
             "within_hard_label_target_multisets_preserved": True,
             "maximum_mismatch_achieved_in_every_label": True,
             "no_model_or_dev_information_used": True,

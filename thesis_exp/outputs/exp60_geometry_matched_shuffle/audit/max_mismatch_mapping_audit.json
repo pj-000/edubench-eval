@@ -70,9 +70,14 @@
   },
   "checks": {
     "all_rows_mapped_once": true,
+    "donor_and_recipient_hard_labels_match": true,
+    "donor_id_set_equals_recipient_id_set": true,
+    "every_donor_used_exactly_once": true,
     "maximum_mismatch_achieved_in_every_label": true,
     "no_model_or_dev_information_used": true,
     "no_test_access": true,
+    "recipient_id_set_equals_source_id_set": true,
+    "shuffled_target_exactly_equals_donor_source_target": true,
     "within_hard_label_target_multisets_preserved": true
   },
   "effective_change_rate": 0.9464958553127355,

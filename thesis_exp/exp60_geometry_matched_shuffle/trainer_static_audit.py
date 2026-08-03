@@ -12,6 +12,7 @@ from thesis_exp.exp60_geometry_matched_shuffle import OUTPUT_ROOT
 
 
 TRAIN_PATH = Path(__file__).with_name("train.py")
+REAL_PREFLIGHT_PATH = Path(__file__).with_name("real_model_preflight.py")
 OUTPUT_PATH = OUTPUT_ROOT / "audit" / "trainer_static_audit.json"
 
 
@@ -33,6 +34,7 @@ def _function(tree: ast.Module, name: str) -> ast.FunctionDef:
 
 def run() -> dict[str, Any]:
     source = TRAIN_PATH.read_text(encoding="utf-8")
+    preflight_source = REAL_PREFLIGHT_PATH.read_text(encoding="utf-8")
     tree = ast.parse(source)
     geometry = _function(tree, "compose_geometry_step")
     train = _function(tree, "train")
@@ -66,6 +68,24 @@ def run() -> dict[str, Any]:
         "formal_training_requires_frozen_protocol": (
             "EXP60_PROTOCOL_FROZEN_BEFORE_FORMAL_RESULTS" in source
         ),
+        "formal_training_unconditionally_verifies_source_lock": (
+            "contract_files = verify_contract()" in source
+            and "EXP60_REQUIRE_SOURCE_LOCK" not in source
+        ),
+        "formal_training_asserts_all_frozen_config": (
+            "assert_formal_config_matches_protocol(config, variant, protocol)" in source
+        ),
+        "real_model_preflight_is_separate_and_has_no_optimizer": (
+            "no optimizer" in preflight_source.lower()
+            and "optimizer.step" not in preflight_source
+            and "AdamW(" not in preflight_source
+        ),
+        "bf16_storage_space_geometry_gate_present": (
+            "storage_component_norm_relative_error" in source
+            and "storage_clip_coefficient_relative_error" in source
+        ),
+        "latin_square_gpu_assignment_enforced": "assert_gpu_slot_assignment" in source,
+        "physical_gpu_binding_enforced": "assert_physical_gpu_binding" in source,
         "test_split_not_loaded": 'model_rows("test")' not in source,
         "no_test_access": True,
     }

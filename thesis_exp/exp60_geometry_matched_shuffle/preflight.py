@@ -111,6 +111,15 @@ def run() -> dict[str, Any]:
         "mapping_maximum_mismatch_every_label": mapping["checks"][
             "maximum_mismatch_achieved_in_every_label"
         ],
+        "mapping_is_a_same_label_bijection_with_exact_donor_targets": all(
+            mapping["checks"][key]
+            for key in (
+                "donor_id_set_equals_recipient_id_set",
+                "every_donor_used_exactly_once",
+                "donor_and_recipient_hard_labels_match",
+                "shuffled_target_exactly_equals_donor_source_target",
+            )
+        ),
         "aligned_orthogonality_at_most_1e_6": maxima[
             "aligned_normalized_orthogonality_error"
         ]
