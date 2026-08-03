@@ -1,0 +1,55 @@
+{
+  "status": "EXP59_PRIMARY_GO_ORTHOGONAL_PASS_PARALLEL_FAIL",
+  "date": "2026-08-03",
+  "protocol_sha256": "42a96ca25f6a40619da011c34905387e0c67da0567fee6a27744724fba257e85",
+  "source_lock_sha256": "d4db160c499d91ac4ca74988cdd5ff59ef809990f50d76b49ebcda8a8897d34f",
+  "analysis_report_sha256": "cba61629bb465be36cbdc92ba1c39bd5ea772a28ded2faa933ae47f2d1f643c1",
+  "comparison_table_sha256": "ab349e1a10dec07770622aed20e6b050bc78b27ea0482de338e045f46fbb9e63",
+  "endpoint_integrity": {
+    "completed_runs": 10,
+    "expected_runs": 10,
+    "optimizer_steps_per_run": 210,
+    "all_exit_codes_zero": true,
+    "all_geometry_audits_complete": true,
+    "all_orthogonality_gates_pass": true,
+    "all_reconstruction_gates_pass": true,
+    "all_standard_clipping_gates_pass": true,
+    "test_access_count": 0
+  },
+  "primary_orthogonal_only_minus_consensus_only": {
+    "favorable_MAE_seeds": 5,
+    "mean_delta_MAE": -0.01455823293172689,
+    "mean_delta_Exact": 0.001807228915662673,
+    "mean_delta_Kendall": 0.021330801265644305,
+    "question_cluster_bootstrap": {
+      "observed_delta_MAE": -0.014558232931726905,
+      "ci95_lower": -0.024016018403672245,
+      "ci95_upper": -0.005592070564068399,
+      "probability_delta_below_zero": 0.9996,
+      "question_clusters": 184,
+      "repetitions": 10000,
+      "rng_seed": 57
+    },
+    "all_frozen_effect_gates_pass": true
+  },
+  "secondary_parallel_only_minus_consensus_only": {
+    "favorable_MAE_seeds": 3,
+    "mean_delta_MAE": 0.00040160642570280514,
+    "mean_delta_Exact": -0.004518072289156616,
+    "mean_delta_Kendall": -0.009077652297919968,
+    "question_cluster_bootstrap": {
+      "observed_delta_MAE": 0.0004016064257028138,
+      "ci95_lower": -0.010606437777490409,
+      "ci95_upper": 0.011603144964944074,
+      "probability_delta_below_zero": 0.4786,
+      "question_clusters": 184,
+      "repetitions": 10000,
+      "rng_seed": 57
+    },
+    "all_frozen_effect_gates_pass": false
+  },
+  "frozen_interpretation": "Under the original standard global-clipping algorithm, the non-collinear residual component retains a stable increment over Consensus-only, whereas the common-aligned component does not. This supports a residual-direction mechanism rather than a pure common-gradient magnitude or clipping-dynamics explanation.",
+  "claim_boundary": "The result identifies direction rotation within the standard clipping algorithm; it is not a no-change pure orthogonal causal effect, does not imply linear additivity of component gains, and is currently limited to EduBench and Qwen3-Reranker-0.6B.",
+  "paper_action": "Promote Exp59 from an internal experiment identifier to a residual-geometry mechanism analysis in the paper; retain HMSA as the motivating method and strong endpoint rather than claiming a novel dual-head architecture.",
+  "test_access_count": 0
+}

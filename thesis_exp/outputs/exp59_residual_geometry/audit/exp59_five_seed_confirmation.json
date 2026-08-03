@@ -1,0 +1,314 @@
+{
+  "comparisons": {
+    "orthogonal_only": {
+      "bootstrap": {
+        "comparison": "orthogonal_only minus consensus_only",
+        "five_seed_mean_prediction_effect": {
+          "bootstrap_probability_delta_below_zero": 0.9996,
+          "ci95_lower": -0.024016018403672245,
+          "ci95_upper": -0.005592070564068399,
+          "observed_delta_mae": -0.014558232931726905,
+          "question_clusters": 184,
+          "repetitions": 10000,
+          "rng_seed": 57,
+          "rows": 664
+        },
+        "per_seed": {
+          "42": {
+            "bootstrap_probability_delta_below_zero": 0.9012,
+            "ci95_lower": -0.03887158324458643,
+            "ci95_upper": 0.007923930269413631,
+            "observed_delta_mae": -0.015562248995983928,
+            "question_clusters": 184,
+            "repetitions": 10000,
+            "rng_seed": 99,
+            "rows": 664
+          },
+          "43": {
+            "bootstrap_probability_delta_below_zero": 0.9777,
+            "ci95_lower": -0.035394979247964,
+            "ci95_upper": -0.0005144032921810638,
+            "observed_delta_mae": -0.017068273092369475,
+            "question_clusters": 184,
+            "repetitions": 10000,
+            "rng_seed": 100,
+            "rows": 664
+          },
+          "44": {
+            "bootstrap_probability_delta_below_zero": 0.7898,
+            "ci95_lower": -0.031659572581360276,
+            "ci95_upper": 0.013997598476635854,
+            "observed_delta_mae": -0.009538152610441764,
+            "question_clusters": 184,
+            "repetitions": 10000,
+            "rng_seed": 101,
+            "rows": 664
+          },
+          "45": {
+            "bootstrap_probability_delta_below_zero": 0.9682,
+            "ci95_lower": -0.056488765256393667,
+            "ci95_upper": 0.001460014555729179,
+            "observed_delta_mae": -0.026606425702811243,
+            "question_clusters": 184,
+            "repetitions": 10000,
+            "rng_seed": 102,
+            "rows": 664
+          },
+          "46": {
+            "bootstrap_probability_delta_below_zero": 0.6318,
+            "ci95_lower": -0.026115859449192765,
+            "ci95_upper": 0.017341268394084723,
+            "observed_delta_mae": -0.004016064257028109,
+            "question_clusters": 184,
+            "repetitions": 10000,
+            "rng_seed": 103,
+            "rows": 664
+          }
+        },
+        "statistic": "five-seed mean paired hard-prediction absolute error against human_mean_5"
+      },
+      "checks": {
+        "favorable_MAE_seeds_at_least_4": true,
+        "five_seed_question_cluster_bootstrap_CI_upper_below_0": true,
+        "mean_delta_Exact_at_least_minus_0_003": true,
+        "mean_delta_Kendall_at_least_minus_0_005": true,
+        "mean_delta_MAE_at_most_minus_0_005": true
+      },
+      "mean_delta": {
+        "Exact_rounded": 0.001807228915662673,
+        "Kendall_human_mean": 0.021330801265644305,
+        "MAE_human_mean": -0.01455823293172689
+      },
+      "passes_frozen_effect_gates": true,
+      "rows": [
+        {
+          "consensus_Exact_rounded": 0.7243975903614458,
+          "consensus_Kendall_human_mean": 0.5774646699159056,
+          "consensus_MAE_human_mean": 0.39508032128514053,
+          "delta_Exact_rounded": -0.0060240963855421326,
+          "delta_Kendall_human_mean": 0.032756173576918624,
+          "delta_MAE_human_mean": -0.015562248995983907,
+          "seed": 42,
+          "treatment_Exact_rounded": 0.7183734939759037,
+          "treatment_Kendall_human_mean": 0.6102208434928242,
+          "treatment_MAE_human_mean": 0.3795180722891566,
+          "variant": "orthogonal_only"
+        },
+        {
+          "consensus_Exact_rounded": 0.7123493975903614,
+          "consensus_Kendall_human_mean": 0.5463949601703378,
+          "consensus_MAE_human_mean": 0.4141566265060241,
+          "delta_Exact_rounded": 0.003012048192771122,
+          "delta_Kendall_human_mean": 0.01350483990054141,
+          "delta_MAE_human_mean": -0.017068273092369524,
+          "seed": 43,
+          "treatment_Exact_rounded": 0.7153614457831325,
+          "treatment_Kendall_human_mean": 0.5598998000708792,
+          "treatment_MAE_human_mean": 0.39708835341365456,
+          "variant": "orthogonal_only"
+        },
+        {
+          "consensus_Exact_rounded": 0.7319277108433735,
+          "consensus_Kendall_human_mean": 0.5931291635643675,
+          "consensus_MAE_human_mean": 0.37901606425702805,
+          "delta_Exact_rounded": 0.004518072289156683,
+          "delta_Kendall_human_mean": 0.02197732681445408,
+          "delta_MAE_human_mean": -0.009538152610441775,
+          "seed": 44,
+          "treatment_Exact_rounded": 0.7364457831325302,
+          "treatment_Kendall_human_mean": 0.6151064903788216,
+          "treatment_MAE_human_mean": 0.3694779116465863,
+          "variant": "orthogonal_only"
+        },
+        {
+          "consensus_Exact_rounded": 0.7048192771084337,
+          "consensus_Kendall_human_mean": 0.5490594184821431,
+          "consensus_MAE_human_mean": 0.4231927710843373,
+          "delta_Exact_rounded": 0.015060240963855387,
+          "delta_Kendall_human_mean": 0.030203467527633476,
+          "delta_MAE_human_mean": -0.026606425702811187,
+          "seed": 45,
+          "treatment_Exact_rounded": 0.7198795180722891,
+          "treatment_Kendall_human_mean": 0.5792628860097766,
+          "treatment_MAE_human_mean": 0.3965863453815261,
+          "variant": "orthogonal_only"
+        },
+        {
+          "consensus_Exact_rounded": 0.7168674698795181,
+          "consensus_Kendall_human_mean": 0.5654680503641931,
+          "consensus_MAE_human_mean": 0.3935742971887549,
+          "delta_Exact_rounded": -0.0075301204819276935,
+          "delta_Kendall_human_mean": 0.00821219850867394,
+          "delta_MAE_human_mean": -0.004016064257028051,
+          "seed": 46,
+          "treatment_Exact_rounded": 0.7093373493975904,
+          "treatment_Kendall_human_mean": 0.5736802488728671,
+          "treatment_MAE_human_mean": 0.38955823293172687,
+          "variant": "orthogonal_only"
+        }
+      ]
+    },
+    "parallel_only": {
+      "bootstrap": {
+        "comparison": "parallel_only minus consensus_only",
+        "five_seed_mean_prediction_effect": {
+          "bootstrap_probability_delta_below_zero": 0.4786,
+          "ci95_lower": -0.010606437777490409,
+          "ci95_upper": 0.011603144964944074,
+          "observed_delta_mae": 0.0004016064257028138,
+          "question_clusters": 184,
+          "repetitions": 10000,
+          "rng_seed": 57,
+          "rows": 664
+        },
+        "per_seed": {
+          "42": {
+            "bootstrap_probability_delta_below_zero": 0.7207,
+            "ci95_lower": -0.0247788036255522,
+            "ci95_upper": 0.013866356997596606,
+            "observed_delta_mae": -0.006024096385542155,
+            "question_clusters": 184,
+            "repetitions": 10000,
+            "rng_seed": 99,
+            "rows": 664
+          },
+          "43": {
+            "bootstrap_probability_delta_below_zero": 0.2604,
+            "ci95_lower": -0.00982060029326391,
+            "ci95_upper": 0.018877748847606835,
+            "observed_delta_mae": 0.0045180722891566315,
+            "question_clusters": 184,
+            "repetitions": 10000,
+            "rng_seed": 100,
+            "rows": 664
+          },
+          "44": {
+            "bootstrap_probability_delta_below_zero": 0.0753,
+            "ci95_lower": -0.00470203125173528,
+            "ci95_upper": 0.0309598272125289,
+            "observed_delta_mae": 0.01255020080321285,
+            "question_clusters": 184,
+            "repetitions": 10000,
+            "rng_seed": 101,
+            "rows": 664
+          },
+          "45": {
+            "bootstrap_probability_delta_below_zero": 0.5708,
+            "ci95_lower": -0.03676114447269222,
+            "ci95_upper": 0.031172689461459503,
+            "observed_delta_mae": -0.002510040160642572,
+            "question_clusters": 184,
+            "repetitions": 10000,
+            "rng_seed": 102,
+            "rows": 664
+          },
+          "46": {
+            "bootstrap_probability_delta_below_zero": 0.7096,
+            "ci95_lower": -0.028601144045761823,
+            "ci95_upper": 0.019193121693121682,
+            "observed_delta_mae": -0.006526104417670682,
+            "question_clusters": 184,
+            "repetitions": 10000,
+            "rng_seed": 103,
+            "rows": 664
+          }
+        },
+        "statistic": "five-seed mean paired hard-prediction absolute error against human_mean_5"
+      },
+      "checks": {
+        "favorable_MAE_seeds_at_least_4": false,
+        "five_seed_question_cluster_bootstrap_CI_upper_below_0": false,
+        "mean_delta_Exact_at_least_minus_0_003": false,
+        "mean_delta_Kendall_at_least_minus_0_005": false,
+        "mean_delta_MAE_at_most_minus_0_005": false
+      },
+      "mean_delta": {
+        "Exact_rounded": -0.004518072289156616,
+        "Kendall_human_mean": -0.009077652297919968,
+        "MAE_human_mean": 0.00040160642570280514
+      },
+      "passes_frozen_effect_gates": false,
+      "rows": [
+        {
+          "consensus_Exact_rounded": 0.7243975903614458,
+          "consensus_Kendall_human_mean": 0.5774646699159056,
+          "consensus_MAE_human_mean": 0.39508032128514053,
+          "delta_Exact_rounded": -0.003012048192771122,
+          "delta_Kendall_human_mean": 0.0005127981676976701,
+          "delta_MAE_human_mean": -0.006024096385542188,
+          "seed": 42,
+          "treatment_Exact_rounded": 0.7213855421686747,
+          "treatment_Kendall_human_mean": 0.5779774680836033,
+          "treatment_MAE_human_mean": 0.38905622489959835,
+          "variant": "parallel_only"
+        },
+        {
+          "consensus_Exact_rounded": 0.7123493975903614,
+          "consensus_Kendall_human_mean": 0.5463949601703378,
+          "consensus_MAE_human_mean": 0.4141566265060241,
+          "delta_Exact_rounded": -0.016566265060240948,
+          "delta_Kendall_human_mean": -0.017329853752720448,
+          "delta_MAE_human_mean": 0.004518072289156572,
+          "seed": 43,
+          "treatment_Exact_rounded": 0.6957831325301205,
+          "treatment_Kendall_human_mean": 0.5290651064176174,
+          "treatment_MAE_human_mean": 0.41867469879518066,
+          "variant": "parallel_only"
+        },
+        {
+          "consensus_Exact_rounded": 0.7319277108433735,
+          "consensus_Kendall_human_mean": 0.5931291635643675,
+          "consensus_MAE_human_mean": 0.37901606425702805,
+          "delta_Exact_rounded": -0.0075301204819276935,
+          "delta_Kendall_human_mean": -0.03766954028714464,
+          "delta_MAE_human_mean": 0.012550200803212841,
+          "seed": 44,
+          "treatment_Exact_rounded": 0.7243975903614458,
+          "treatment_Kendall_human_mean": 0.5554596232772229,
+          "treatment_MAE_human_mean": 0.3915662650602409,
+          "variant": "parallel_only"
+        },
+        {
+          "consensus_Exact_rounded": 0.7048192771084337,
+          "consensus_Kendall_human_mean": 0.5490594184821431,
+          "consensus_MAE_human_mean": 0.4231927710843373,
+          "delta_Exact_rounded": 0.003012048192771122,
+          "delta_Kendall_human_mean": -0.009103984088235983,
+          "delta_MAE_human_mean": -0.0025100401606426015,
+          "seed": 45,
+          "treatment_Exact_rounded": 0.7078313253012049,
+          "treatment_Kendall_human_mean": 0.5399554343939071,
+          "treatment_MAE_human_mean": 0.4206827309236947,
+          "variant": "parallel_only"
+        },
+        {
+          "consensus_Exact_rounded": 0.7168674698795181,
+          "consensus_Kendall_human_mean": 0.5654680503641931,
+          "consensus_MAE_human_mean": 0.3935742971887549,
+          "delta_Exact_rounded": 0.001506024096385561,
+          "delta_Kendall_human_mean": 0.018202318470803558,
+          "delta_MAE_human_mean": -0.006526104417670597,
+          "seed": 46,
+          "treatment_Exact_rounded": 0.7183734939759037,
+          "treatment_Kendall_human_mean": 0.5836703688349967,
+          "treatment_MAE_human_mean": 0.3870481927710843,
+          "variant": "parallel_only"
+        }
+      ]
+    }
+  },
+  "frozen_interpretation": "non_collinear_residual_direction_supported",
+  "primary_comparison": "orthogonal_only minus consensus_only",
+  "primary_pass": true,
+  "secondary_comparison": "parallel_only minus consensus_only",
+  "secondary_pass": false,
+  "seeds": [
+    42,
+    43,
+    44,
+    45,
+    46
+  ],
+  "status": "EXP59_CONFIRMATION_ANALYSIS_COMPLETE",
+  "test_access_count": 0
+}
