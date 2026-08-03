@@ -188,6 +188,92 @@ def five_seed_bootstrap(variant: str) -> dict[str, Any]:
     }
 
 
+def checkpoint_sensitivity() -> dict[str, Any]:
+    """Report same-epoch, epoch-10 and curve summaries without new training."""
+
+    table_rows: list[dict[str, Any]] = []
+    comparisons: dict[str, Any] = {}
+    for variant in VARIANTS:
+        per_seed: list[dict[str, Any]] = []
+        all_mae_deltas: list[float] = []
+        for seed in SEEDS:
+            treatment_history = {
+                int(row["epoch"]): row
+                for row in read_json(run_dir(variant, seed) / "dev_metrics_history.json")
+            }
+            consensus_history = {
+                int(row["epoch"]): row
+                for row in read_json(consensus_dir(seed) / "dev_metrics_history.json")
+            }
+            expected_epochs = set(range(1, 11))
+            if set(treatment_history) != expected_epochs or set(consensus_history) != expected_epochs:
+                raise RuntimeError(f"Incomplete epoch history for {variant} seed {seed}")
+            seed_mae_deltas: list[float] = []
+            for epoch in range(1, 11):
+                row: dict[str, Any] = {
+                    "variant": variant,
+                    "seed": seed,
+                    "epoch": epoch,
+                }
+                for metric in METRICS:
+                    treatment_value = float(treatment_history[epoch][metric])
+                    consensus_value = float(consensus_history[epoch][metric])
+                    row[f"treatment_{metric}"] = treatment_value
+                    row[f"consensus_{metric}"] = consensus_value
+                    row[f"delta_{metric}"] = treatment_value - consensus_value
+                table_rows.append(row)
+                seed_mae_deltas.append(float(row["delta_MAE_human_mean"]))
+                all_mae_deltas.append(float(row["delta_MAE_human_mean"]))
+            per_seed.append(
+                {
+                    "seed": seed,
+                    "favorable_MAE_epochs": int(
+                        np.sum(np.asarray(seed_mae_deltas) < 0.0)
+                    ),
+                    "epoch10_delta_MAE": seed_mae_deltas[-1],
+                    "normalized_trapezoidal_MAE_curve_delta": float(
+                        np.trapezoid(np.asarray(seed_mae_deltas), dx=1.0) / 9.0
+                    ),
+                }
+            )
+        comparisons[variant] = {
+            "per_seed": per_seed,
+            "aggregate": {
+                "favorable_seed_epoch_cells": int(
+                    np.sum(np.asarray(all_mae_deltas) < 0.0)
+                ),
+                "total_seed_epoch_cells": len(all_mae_deltas),
+                "mean_common_epoch_delta_MAE": float(np.mean(all_mae_deltas)),
+                "mean_epoch10_delta_MAE": float(
+                    np.mean([row["epoch10_delta_MAE"] for row in per_seed])
+                ),
+                "mean_normalized_trapezoidal_MAE_curve_delta": float(
+                    np.mean(
+                        [
+                            row["normalized_trapezoidal_MAE_curve_delta"]
+                            for row in per_seed
+                        ]
+                    )
+                ),
+            },
+        }
+    report = {
+        "status": "EXP59_CHECKPOINT_SENSITIVITY_COMPLETE",
+        "selection_rule": "highest dev Exact_rounded; ties keep earlier epoch",
+        "analyses": ["same_epoch", "fixed_epoch_10", "normalized_curve_area"],
+        "comparisons": comparisons,
+        "interpretation_scope": "development-set sensitivity analysis; no new training and no test access",
+        "test_access_count": 0,
+    }
+    write_csv(
+        OUTPUT_ROOT / "tables" / "exp59_checkpoint_sensitivity.csv", table_rows
+    )
+    write_json(
+        OUTPUT_ROOT / "audit" / "exp59_checkpoint_sensitivity.json", report
+    )
+    return report
+
+
 def main() -> None:
     report: dict[str, Any] = {
         "status": "EXP59_CONFIRMATION_ANALYSIS_COMPLETE",
@@ -234,6 +320,7 @@ def main() -> None:
         report["frozen_interpretation"] = "neither_single_component_passes"
     write_csv(OUTPUT_ROOT / "tables" / "exp59_five_seed_comparison.csv", table_rows)
     write_json(OUTPUT_ROOT / "audit" / "exp59_five_seed_confirmation.json", report)
+    checkpoint_sensitivity()
     print(json.dumps(report, ensure_ascii=False, indent=2, sort_keys=True))
 
 
