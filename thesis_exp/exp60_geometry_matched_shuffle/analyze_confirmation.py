@@ -89,6 +89,8 @@ def validate_geometry_audit(
         "storage_aligned_shuffled_component_cosine",
         "storage_aligned_shuffled_component_relative_distance",
         "storage_component_activity_ratio",
+        "storage_aligned_projection_correction",
+        "storage_shuffled_projection_correction",
         "preclip_norm",
         "postclip_norm",
     )

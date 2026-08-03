@@ -11,7 +11,7 @@
   "file_count": 35,
   "files": {
     "thesis_exp/__init__.py": "e57921412997c9605bd75fa597e907b2c68b201d6f70279add396d93f978d4a3",
-    "thesis_exp/configs/exp60_geometry_matched_shuffle/protocol_draft.json": "f3532a70b6aab1d6544b0f21c92568c48c8969b7753cdfe82574c54eee3b00a3",
+    "thesis_exp/configs/exp60_geometry_matched_shuffle/protocol_draft.json": "528f4ad16e7c5f5d9f346f4e4c0edaaf3d97a6f1c857ce127037be72613ccf51",
     "thesis_exp/exp57_cbrd/__init__.py": "6d0dea1ba44c2bf4a3a3972c819f49054f8e392db37ef5435bcc47b10ec7cddf",
     "thesis_exp/exp57_cbrd/data_audit.py": "35a3d38a6c0719b85cdea0983fa11c71991790874e6118a519dffeac1a34ca0d",
     "thesis_exp/exp57_cbrd/losses.py": "79478bdfd83851f2f077b3b30223e46648a840df6468c9f8edae64f22e307b54",
@@ -21,7 +21,7 @@
     "thesis_exp/exp57_cbrd/train.py": "238c2ef0f51499dee08eb452fbbb3ea4109c536a3373be89de4d087d4e36f8d6",
     "thesis_exp/exp59_residual_geometry/geometry.py": "f92cd4607a82eda9044c6b3d03d029698ffddda87251b13c82ee77ed162800c7",
     "thesis_exp/exp60_geometry_matched_shuffle/__init__.py": "c50f0255be3e45cbe107b70cf85d5541df5a6a6e7630957553a381b0baf55d57",
-    "thesis_exp/exp60_geometry_matched_shuffle/analyze_confirmation.py": "88447e5547115d796940055c08b26a6b3893e92b2a8ed1656e5e05744b708d3f",
+    "thesis_exp/exp60_geometry_matched_shuffle/analyze_confirmation.py": "9ca07a312445576d71abb989afd000a50454f61b84a5df67f2fbf2debba441b3",
     "thesis_exp/exp60_geometry_matched_shuffle/contract.py": "50e80f13640ecb799e4a1442d44bbb4572280892244f9e614d4c936fe2801449",
     "thesis_exp/exp60_geometry_matched_shuffle/finalize_real_preflight.py": "dc4bd487a3977a1be3bcf912a7fd0e1457043239de7d5ed7bcef82534f2468e3",
     "thesis_exp/exp60_geometry_matched_shuffle/freeze_preflight_contract.py": "3048dac0995ce4573c5c6a5628d9f6e75c9bdc7fde420c3593b2cc3c96f3290b",
@@ -31,7 +31,7 @@
     "thesis_exp/exp60_geometry_matched_shuffle/preflight.py": "65709d0883918be4f301431e99b64804dd5b3ccb37b8f19ae6ed723d267bd3ca",
     "thesis_exp/exp60_geometry_matched_shuffle/real_model_preflight.py": "d7802e271da166fee37688fe5d68309861dc91f50f23d4bdf3c13a3ba214d05e",
     "thesis_exp/exp60_geometry_matched_shuffle/source_closure_audit.py": "fe120726234d3f717b3cbbd8c2de771320e9e2fadeccac644af35be0227e6269",
-    "thesis_exp/exp60_geometry_matched_shuffle/train.py": "e5431cecaa806058a79bd8fe9d73f87a44224a5014b88ddf437587f0cbf38bf0",
+    "thesis_exp/exp60_geometry_matched_shuffle/train.py": "816a847e2213234d45c81a353df3f4f18606ac6df667e21b83faea47d44db439",
     "thesis_exp/exp60_geometry_matched_shuffle/trainer_static_audit.py": "f23215c7da250773b35b24e5975c16d42a4387c2f52521e0e957b02913330f5d",
     "thesis_exp/outputs/exp60_geometry_matched_shuffle/audit/max_mismatch_mapping.jsonl": "83258a53098d47f38376a5109738371be68fd701e169c773eb054f8894904b7f",
     "thesis_exp/outputs/exp60_geometry_matched_shuffle/audit/max_mismatch_mapping_audit.json": "29d9cfd30be462305acc197135bba03ed538f3f629dd416aef339ffd1be2a045",
@@ -44,12 +44,12 @@
     "thesis_exp/src/edujudge/utils/io.py": "e19250fbf9b7a2013b61078d29100137ee6cefab76cd8dda01ab6888156f1364",
     "thesis_exp/src/edujudge/utils/text_norm.py": "4642255f3aa0fdeeec089fc4364749943082df1a9decb992fd81aae64c1740e4",
     "thesis_exp/tests/test_exp60_geometry_matched_shuffle.py": "e295410745b9b470b50aecb9b53de9f9b7bd01da569ae095645d7c894fb65de8",
-    "thesis_exp/tests/test_exp60_torch_geometry.py": "450b67f734142342133401928230d413e68e811cf1b6330b1290abce5c677c3d"
+    "thesis_exp/tests/test_exp60_torch_geometry.py": "e258e0653c16b40a3265e5fa726d06516c748d044a5a3a16484fcee7381ecf50"
   },
   "mapping_sha256": "dc9d3fbce24af01fee58e896f83ed35f3ccd516fcf30f35ed43a3cfd4c2fa7fb",
-  "normalized_scientific_protocol_sha256": "b980edfeff877966da379a19c03af160ab714bd46dcb383769086c451ccb7213",
+  "normalized_scientific_protocol_sha256": "40c46180db26b67448d5a705ba6ce461b5337a009983cb34f94773fa1e58c747",
   "optimizer_steps": 0,
-  "protocol_sha256_at_preflight": "f3532a70b6aab1d6544b0f21c92568c48c8969b7753cdfe82574c54eee3b00a3",
+  "protocol_sha256_at_preflight": "528f4ad16e7c5f5d9f346f4e4c0edaaf3d97a6f1c857ce127037be72613ccf51",
   "status": "EXP60_PREFLIGHT_SOURCE_LOCK_NO_TRAINING_AUTHORITY",
   "test_access_count": 0
 }

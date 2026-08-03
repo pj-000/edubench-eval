@@ -10,9 +10,9 @@ draft.  There is no formal Exp60 source lock yet.  A separate no-training-
 authority preflight source lock binds the reviewed CPU/GPU-preflight code.
 
 - preflight source-lock SHA-256:
-  `7a2c1cef33f04e9c79a5ff6eee9422ea13b25cf6253e9def6d31244b0172929e`;
+  `8d647af69ffe423d616fdef080abe9974f3c1d5129a46a697f4d6b0a88003bec`;
 - normalized scientific-protocol SHA-256:
-  `b980edfeff877966da379a19c03af160ab714bd46dcb383769086c451ccb7213`.
+  `40c46180db26b67448d5a705ba6ce461b5337a009983cb34f94773fa1e58c747`.
 
 ## Scientific question
 
@@ -97,6 +97,9 @@ still mandatory before formal training.
   hash are machine-checked.
 - Both aligned and shuffled candidates are audited after storage-dtype casting
   for orthogonality, component norm, total norm and clipping coefficient.
+- A deterministic storage-aware reprojection cancels common-direction leakage
+  introduced solely by BF16 quantization; its two correction coefficients are
+  finite-checked and recorded while residual head support remains exactly zero.
 - Aligned--shuffled cosine and relative distance are recorded.
 - A separate real-Qwen BF16 no-update preflight now covers 32- and
   24-microbatch windows, exact diagnostic-gradient non-pollution, RNG/logit

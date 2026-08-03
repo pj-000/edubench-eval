@@ -32,6 +32,7 @@
     "aligned": "O_A = P_perp(G_C^B) R_A",
     "shuffled": "O_pi = P_perp(G_C^B) R_pi",
     "match": "O_pi_tilde = norm(O_A)/(norm(O_pi)+zero_guard) * O_pi",
+    "storage_rule": "before BF16 gradient storage, apply a deterministic quantization-aware common-direction correction to both candidate totals; this correction preserves zero residual support on both heads and is audited separately",
     "head_support": "all three residual components are exact zero on hard and soft heads",
     "local_identification_scope": "instantaneous geometry is matched within each arm's current state; future optimization trajectories are not claimed identical"
   },
