@@ -60,6 +60,7 @@ VARIANTS = (
     "matched_shuffled_orthogonal_only",
 )
 TREATMENT_COMPONENT_ACTIVITY_RATIO_MIN = 1e-6
+MODEL_MANIFEST_EXCLUDED_METADATA = frozenset({".msc"})
 
 
 def sha256_file(path: Path) -> str:
@@ -77,6 +78,8 @@ def file_manifest(root: Path) -> dict[str, Any]:
     digest = hashlib.sha256()
     for path in sorted(item for item in root.rglob("*") if item.is_file()):
         relative = str(path.relative_to(root))
+        if relative in MODEL_MANIFEST_EXCLUDED_METADATA:
+            continue
         file_hash = sha256_file(path)
         files[relative] = file_hash
         digest.update(f"{relative}\t{file_hash}\n".encode("utf-8"))

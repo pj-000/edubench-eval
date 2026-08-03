@@ -31,7 +31,7 @@
     "thesis_exp/exp60_geometry_matched_shuffle/preflight.py": "65709d0883918be4f301431e99b64804dd5b3ccb37b8f19ae6ed723d267bd3ca",
     "thesis_exp/exp60_geometry_matched_shuffle/real_model_preflight.py": "d7802e271da166fee37688fe5d68309861dc91f50f23d4bdf3c13a3ba214d05e",
     "thesis_exp/exp60_geometry_matched_shuffle/source_closure_audit.py": "fe120726234d3f717b3cbbd8c2de771320e9e2fadeccac644af35be0227e6269",
-    "thesis_exp/exp60_geometry_matched_shuffle/train.py": "d3eaa2ed852415c009553c83f6165649e041143ba5fe8e7ebc0d4c68fb9c9fed",
+    "thesis_exp/exp60_geometry_matched_shuffle/train.py": "e5431cecaa806058a79bd8fe9d73f87a44224a5014b88ddf437587f0cbf38bf0",
     "thesis_exp/exp60_geometry_matched_shuffle/trainer_static_audit.py": "f23215c7da250773b35b24e5975c16d42a4387c2f52521e0e957b02913330f5d",
     "thesis_exp/outputs/exp60_geometry_matched_shuffle/audit/max_mismatch_mapping.jsonl": "83258a53098d47f38376a5109738371be68fd701e169c773eb054f8894904b7f",
     "thesis_exp/outputs/exp60_geometry_matched_shuffle/audit/max_mismatch_mapping_audit.json": "29d9cfd30be462305acc197135bba03ed538f3f629dd416aef339ffd1be2a045",
@@ -43,7 +43,7 @@
     "thesis_exp/src/edujudge/utils/__init__.py": "c42265d82bb338df21786306034519a3fa6bda1454babd175a42bc8994ec1a3b",
     "thesis_exp/src/edujudge/utils/io.py": "e19250fbf9b7a2013b61078d29100137ee6cefab76cd8dda01ab6888156f1364",
     "thesis_exp/src/edujudge/utils/text_norm.py": "4642255f3aa0fdeeec089fc4364749943082df1a9decb992fd81aae64c1740e4",
-    "thesis_exp/tests/test_exp60_geometry_matched_shuffle.py": "23a25d994b092934fce2cb716c544070f1b34e60178c5519c664741fa27e1646",
+    "thesis_exp/tests/test_exp60_geometry_matched_shuffle.py": "e295410745b9b470b50aecb9b53de9f9b7bd01da569ae095645d7c894fb65de8",
     "thesis_exp/tests/test_exp60_torch_geometry.py": "450b67f734142342133401928230d413e68e811cf1b6330b1290abce5c677c3d"
   },
   "mapping_sha256": "dc9d3fbce24af01fee58e896f83ed35f3ccd516fcf30f35ed43a3cfd4c2fa7fb",

@@ -5,8 +5,10 @@ from __future__ import annotations
 import itertools
 import copy
 import json
+import tempfile
 import unittest
 from collections import Counter
+from pathlib import Path
 from types import SimpleNamespace
 from unittest.mock import patch
 
@@ -48,6 +50,7 @@ from thesis_exp.exp60_geometry_matched_shuffle.preflight import run as run_prefl
 from thesis_exp.exp60_geometry_matched_shuffle.train import (
     assert_formal_config_matches_protocol,
     assert_gpu_slot_assignment,
+    file_manifest,
     verify_contract,
 )
 
@@ -216,6 +219,15 @@ class Exp60GeometryTest(unittest.TestCase):
                 assert_formal_config_matches_protocol(
                     SimpleNamespace(**{**base, **update}), "consensus_only", protocol
                 )
+
+    def test_model_manifest_excludes_only_unreadable_modelscope_metadata(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            (root / ".msc").write_text("private metadata", encoding="utf-8")
+            (root / "config.json").write_text("{}", encoding="utf-8")
+            manifest = file_manifest(root)
+        self.assertNotIn(".msc", manifest["files"])
+        self.assertIn("config.json", manifest["files"])
 
     def test_latin_square_assignment_is_enforced(self) -> None:
         assert_gpu_slot_assignment(47, "aligned_orthogonal_only", 1)

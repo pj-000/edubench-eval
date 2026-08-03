@@ -10,7 +10,7 @@ draft.  There is no formal Exp60 source lock yet.  A separate no-training-
 authority preflight source lock binds the reviewed CPU/GPU-preflight code.
 
 - preflight source-lock SHA-256:
-  `785de8b0a6547fef1238e173e80b6d1f81bfbbc3153242345894a72ac1a08440`;
+  `7a2c1cef33f04e9c79a5ff6eee9422ea13b25cf6253e9def6d31244b0172929e`;
 - normalized scientific-protocol SHA-256:
   `b980edfeff877966da379a19c03af160ab714bd46dcb383769086c451ccb7213`.
 
@@ -150,7 +150,10 @@ still mandatory before formal training.
 - The post-clip squared norm is now explicitly finite-checked before square
   root.  Formal summaries and analysis additionally audit the complete BF16
   storage-space cosine, relative-distance and per-epoch activity trajectory.
-- Forty-three relevant Exp60/Exp59/Exp51 regression tests pass; both the static
+- Model-manifest hashing explicitly excludes only ModelScope's unreadable
+  `.msc` download metadata; all model, tokenizer and readable metadata files
+  remain hashed.
+- Forty-four relevant Exp60/Exp59/Exp51 regression tests pass; both the static
   trainer audit and generic 64-case CPU no-update preflight pass.  No real
   model or GPU has been used and no optimizer step or test access occurred.
 
