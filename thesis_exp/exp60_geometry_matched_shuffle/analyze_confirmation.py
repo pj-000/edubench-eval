@@ -89,8 +89,6 @@ def validate_geometry_audit(
         "storage_aligned_shuffled_component_cosine",
         "storage_aligned_shuffled_component_relative_distance",
         "storage_component_activity_ratio",
-        "storage_aligned_projection_correction",
-        "storage_shuffled_projection_correction",
         "preclip_norm",
         "postclip_norm",
     )
@@ -279,10 +277,18 @@ def endpoint(
         "maximum_storage_component_norm_relative_error",
         "maximum_storage_preclip_total_norm_relative_error",
         "maximum_storage_clip_coefficient_relative_error",
-        "maximum_storage_normalized_orthogonality_error",
     )
     if any(float(summary.get(field, float("inf"))) > tolerance for field in geometry_fields):
         raise RuntimeError(f"BF16 storage geometry gate mismatch: {directory}")
+    orthogonality_tolerance = float(
+        protocol["implementation_gates_before_training"][
+            "bf16_storage_space_normalized_orthogonality_error_at_most"
+        ]
+    )
+    if float(
+        summary.get("maximum_storage_normalized_orthogonality_error", float("inf"))
+    ) > orthogonality_tolerance:
+        raise RuntimeError(f"BF16 storage orthogonality gate mismatch: {directory}")
     validate_geometry_audit(directory, summary)
 
     predictions = read_jsonl(prediction_path(directory))

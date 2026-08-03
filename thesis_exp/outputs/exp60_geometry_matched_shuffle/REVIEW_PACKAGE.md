@@ -4,15 +4,16 @@
 
 `READY_FOR_INDEPENDENT_REVIEW_NOT_AUTHORIZED_FOR_FORMAL_TRAINING`
 
-No model has been loaded, no optimizer step has been taken, no GPU has been
-used, and test remains inaccessible.  The protocol deliberately remains a
-draft.  There is no formal Exp60 source lock yet.  A separate no-training-
-authority preflight source lock binds the reviewed CPU/GPU-preflight code.
+No optimizer step has been taken and test remains inaccessible.  A real-model
+no-update qualification attempt exposed a BF16 numerical-gate mismatch and
+stopped before training; it produced no authorized seed report.  The protocol
+remains a draft and there is no formal Exp60 source lock.  A separate no-
+training-authority preflight source lock binds the CPU/GPU-preflight code.
 
 - preflight source-lock SHA-256:
-  `8d647af69ffe423d616fdef080abe9974f3c1d5129a46a697f4d6b0a88003bec`;
+  `c51ce2252f56aab382cd90307624d11664bb4a0138d08e4c54c089ec23d2c45e`;
 - normalized scientific-protocol SHA-256:
-  `40c46180db26b67448d5a705ba6ce461b5337a009983cb34f94773fa1e58c747`.
+  `b46935c5898f837ce87f62618de1a5d560e7bfa6590b0079363f08d53a518067`.
 
 ## Scientific question
 
@@ -97,9 +98,13 @@ still mandatory before formal training.
   hash are machine-checked.
 - Both aligned and shuffled candidates are audited after storage-dtype casting
   for orthogonality, component norm, total norm and clipping coefficient.
-- A deterministic storage-aware reprojection cancels common-direction leakage
-  introduced solely by BF16 quantization; its two correction coefficients are
-  finite-checked and recorded while residual head support remains exactly zero.
+- BF16 storage-space normalized orthogonality uses a separate `0.10` numerical
+  qualification bound (an angle of at least about 84.3 degrees).  This was
+  amended after no-update train-window qualification showed that the original
+  unit-roundoff-derived `0.01171875` bound was inapplicable to a small residual
+  obtained by subtracting two large quantized gradients.  Norm, total-norm and
+  clip matching remain at `0.01171875`; no dev metric or optimizer result was
+  observed when making this numerical amendment.
 - Aligned--shuffled cosine and relative distance are recorded.
 - A separate real-Qwen BF16 no-update preflight now covers 32- and
   24-microbatch windows, exact diagnostic-gradient non-pollution, RNG/logit
@@ -157,8 +162,8 @@ still mandatory before formal training.
   `.msc` download metadata; all model, tokenizer and readable metadata files
   remain hashed.
 - Forty-four relevant Exp60/Exp59/Exp51 regression tests pass; both the static
-  trainer audit and generic 64-case CPU no-update preflight pass.  No real
-  model or GPU has been used and no optimizer step or test access occurred.
+  trainer audit and generic 64-case CPU no-update preflight pass.  No optimizer
+  step or test access occurred.
 
 ## Files to review
 

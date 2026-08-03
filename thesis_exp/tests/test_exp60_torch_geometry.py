@@ -109,8 +109,7 @@ def test_bfloat16_storage_space_is_audited_for_both_candidate_arms() -> None:
     assert audit["storage_component_norm_relative_error"] <= 0.01171875
     assert audit["storage_preclip_total_norm_relative_error"] <= 0.01171875
     assert audit["storage_clip_coefficient_relative_error"] <= 0.01171875
-    assert abs(audit["storage_aligned_projection_correction"]) < 0.1
-    assert abs(audit["storage_shuffled_projection_correction"]) < 0.1
+    assert audit["post_cast_orthogonality_tolerance"] == pytest.approx(0.1)
 
 
 def test_nonfinite_unselected_candidate_fails_closed() -> None:

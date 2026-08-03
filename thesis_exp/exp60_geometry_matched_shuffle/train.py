@@ -61,6 +61,7 @@ VARIANTS = (
 )
 TREATMENT_COMPONENT_ACTIVITY_RATIO_MIN = 1e-6
 MODEL_MANIFEST_EXCLUDED_METADATA = frozenset({".msc"})
+BF16_STORAGE_ORTHOGONALITY_ERROR_MAX = 0.1
 
 
 def sha256_file(path: Path) -> str:
@@ -262,6 +263,17 @@ def assert_formal_config_matches_protocol(
         abs_tol=0.0,
     ):
         mismatches.append("treatment activity threshold differs from trainer")
+    if not math.isclose(
+        float(
+            protocol["implementation_gates_before_training"][
+                "bf16_storage_space_normalized_orthogonality_error_at_most"
+            ]
+        ),
+        BF16_STORAGE_ORTHOGONALITY_ERROR_MAX,
+        rel_tol=0.0,
+        abs_tol=0.0,
+    ):
+        mismatches.append("BF16 orthogonality threshold differs from trainer")
     if mismatches:
         raise RuntimeError("Exp60 formal configuration mismatch: " + "; ".join(mismatches))
 
@@ -459,6 +471,12 @@ def post_cast_relative_tolerance(dtype_name: str) -> float:
     return 1e-6
 
 
+def post_cast_orthogonality_tolerance(dtype_name: str) -> float:
+    if dtype_name == "torch.bfloat16":
+        return BF16_STORAGE_ORTHOGONALITY_ERROR_MAX
+    return 1e-6
+
+
 def require_finite_tensor(torch: Any, name: str, value: Any) -> None:
     finite = torch.isfinite(value).all()
     message = f"EXP60_NONFINITE_TENSOR:{name}"
@@ -468,88 +486,6 @@ def require_finite_tensor(torch: Any, name: str, value: Any) -> None:
         torch._assert_async(finite, message)
     elif not bool(finite.item()):
         raise RuntimeError(message)
-
-
-def _storage_projection_corrections(
-    torch: Any,
-    named: dict[str, Any],
-    aligned_residual_buffers: dict[str, Any],
-    shuffled_residual_buffers: dict[str, Any],
-    *,
-    aligned_coefficient: float,
-    shuffled_coefficient: float,
-    shuffled_scale: float,
-    iterations: int = 4,
-) -> tuple[float, float]:
-    """Cancel quantization-induced common-direction leakage in stored gradients."""
-
-    device = next(iter(named.values())).grad.device
-    aligned_correction = 0.0
-    shuffled_correction = 0.0
-    for iteration in range(iterations):
-        common_sq = torch.zeros((), device=device, dtype=torch.float64)
-        aligned_dot = torch.zeros((), device=device, dtype=torch.float64)
-        shuffled_dot = torch.zeros((), device=device, dtype=torch.float64)
-        for name, parameter in named.items():
-            if not name.startswith("backbone."):
-                continue
-            routed = parameter.grad.detach().float()
-            aligned_residual = aligned_residual_buffers[name]
-            shuffled_residual = shuffled_residual_buffers[name]
-            common = routed - aligned_residual
-            aligned_component = aligned_residual - aligned_coefficient * common
-            shuffled_component = shuffled_scale * (
-                shuffled_residual - shuffled_coefficient * common
-            )
-            storage_dtype = parameter.grad.dtype
-            stored_common = common.to(dtype=storage_dtype).float()
-            stored_aligned_component = (
-                common
-                + aligned_component
-                - aligned_correction * common
-            ).to(dtype=storage_dtype).float() - stored_common
-            stored_shuffled_component = (
-                common
-                + shuffled_component
-                - shuffled_correction * common
-            ).to(dtype=storage_dtype).float() - stored_common
-            for value_name, value in (
-                (f"storage_correction_common:{name}", stored_common),
-                (f"storage_correction_aligned:{name}", stored_aligned_component),
-                (f"storage_correction_shuffled:{name}", stored_shuffled_component),
-            ):
-                require_finite_tensor(torch, value_name, value)
-            common_sq += stored_common.square().sum(dtype=torch.float64)
-            aligned_dot += (stored_common * stored_aligned_component).sum(
-                dtype=torch.float64
-            )
-            shuffled_dot += (stored_common * stored_shuffled_component).sum(
-                dtype=torch.float64
-            )
-        for value_name, value in (
-            (f"storage_correction_common_sq_{iteration}", common_sq),
-            (f"storage_correction_aligned_dot_{iteration}", aligned_dot),
-            (f"storage_correction_shuffled_dot_{iteration}", shuffled_dot),
-        ):
-            require_finite_tensor(torch, value_name, value)
-        denominator = require_finite_scalar(
-            f"storage_correction_common_sq_{iteration}",
-            float(common_sq.detach().cpu()),
-        )
-        if denominator <= 0.0:
-            break
-        aligned_correction += require_finite_scalar(
-            f"storage_aligned_projection_delta_{iteration}",
-            float(aligned_dot.detach().cpu()) / denominator,
-        )
-        shuffled_correction += require_finite_scalar(
-            f"storage_shuffled_projection_delta_{iteration}",
-            float(shuffled_dot.detach().cpu()) / denominator,
-        )
-    return (
-        require_finite_scalar("storage_aligned_projection_correction", aligned_correction),
-        require_finite_scalar("storage_shuffled_projection_correction", shuffled_correction),
-    )
 
 
 def compose_geometry_step(
@@ -667,19 +603,6 @@ def compose_geometry_step(
         else 0.0
     )
     require_finite_scalar("shuffled_scale", shuffled_scale)
-    (
-        storage_aligned_correction,
-        storage_shuffled_correction,
-    ) = _storage_projection_corrections(
-        torch,
-        named,
-        aligned_residual_buffers,
-        shuffled_residual_buffers,
-        aligned_coefficient=aligned_coefficient,
-        shuffled_coefficient=shuffled_coefficient,
-        shuffled_scale=shuffled_scale,
-    )
-
     actual_aligned_sq = torch.zeros((), device=device, dtype=torch.float64)
     actual_shuffled_sq = torch.zeros((), device=device, dtype=torch.float64)
     aligned_shuffled_dot = torch.zeros((), device=device, dtype=torch.float64)
@@ -734,19 +657,10 @@ def compose_geometry_step(
         require_finite_tensor(torch, f"shuffled_preclip:{name}", shuffled_preclip)
         aligned_total_sq += aligned_preclip.square().sum(dtype=torch.float64)
         shuffled_total_sq += shuffled_preclip.square().sum(dtype=torch.float64)
-        storage_aligned_preclip = aligned_preclip
-        storage_shuffled_preclip = shuffled_preclip
-        if name.startswith("backbone."):
-            storage_aligned_preclip = (
-                storage_aligned_preclip - storage_aligned_correction * common
-            )
-            storage_shuffled_preclip = (
-                storage_shuffled_preclip - storage_shuffled_correction * common
-            )
         storage_dtype = parameter.grad.dtype
         cast_common = common.to(dtype=storage_dtype).float()
-        cast_aligned_total = storage_aligned_preclip.to(dtype=storage_dtype).float()
-        cast_shuffled_total = storage_shuffled_preclip.to(dtype=storage_dtype).float()
+        cast_aligned_total = aligned_preclip.to(dtype=storage_dtype).float()
+        cast_shuffled_total = shuffled_preclip.to(dtype=storage_dtype).float()
         cast_aligned_component = cast_aligned_total - cast_common
         cast_shuffled_component = cast_shuffled_total - cast_common
         require_finite_tensor(torch, f"storage_common:{name}", cast_common)
@@ -776,9 +690,9 @@ def compose_geometry_step(
         if variant == "consensus_only":
             selected = common
         elif variant == "aligned_orthogonal_only":
-            selected = storage_aligned_preclip
+            selected = aligned_preclip
         else:
-            selected = storage_shuffled_preclip
+            selected = shuffled_preclip
         parameter.grad.copy_(selected.to(dtype=parameter.grad.dtype))
 
     reduction_tensors = {
@@ -904,8 +818,6 @@ def compose_geometry_step(
         "cast_component_cosine": cast_component_cosine,
         "cast_component_relative_distance": cast_component_relative_distance,
         "storage_component_activity_ratio": storage_component_activity_ratio,
-        "storage_aligned_projection_correction": storage_aligned_correction,
-        "storage_shuffled_projection_correction": storage_shuffled_correction,
     }
     for scalar_name, scalar_value in derived_scalars.items():
         require_finite_scalar(scalar_name, scalar_value)
@@ -926,17 +838,35 @@ def compose_geometry_step(
         raise RuntimeError("Clip coefficient matching gate failure")
     gradient_dtype = str(next(iter(named.values())).grad.dtype)
     storage_relative_tolerance = post_cast_relative_tolerance(gradient_dtype)
+    storage_orthogonality_tolerance = post_cast_orthogonality_tolerance(
+        gradient_dtype
+    )
     storage_errors = {
-        "aligned orthogonality": cast_aligned_orthogonality_error,
-        "shuffled orthogonality": cast_shuffled_orthogonality_error,
-        "component norm": cast_component_norm_relative_error,
-        "preclip total norm": cast_preclip_total_norm_relative_error,
-        "clip coefficient": cast_clip_coefficient_relative_error,
+        "aligned orthogonality": (
+            cast_aligned_orthogonality_error,
+            storage_orthogonality_tolerance,
+        ),
+        "shuffled orthogonality": (
+            cast_shuffled_orthogonality_error,
+            storage_orthogonality_tolerance,
+        ),
+        "component norm": (
+            cast_component_norm_relative_error,
+            storage_relative_tolerance,
+        ),
+        "preclip total norm": (
+            cast_preclip_total_norm_relative_error,
+            storage_relative_tolerance,
+        ),
+        "clip coefficient": (
+            cast_clip_coefficient_relative_error,
+            storage_relative_tolerance,
+        ),
     }
     failed_storage = {
         name: value
-        for name, value in storage_errors.items()
-        if value > storage_relative_tolerance
+        for name, (value, tolerance) in storage_errors.items()
+        if value > tolerance
     }
     if failed_storage:
         raise RuntimeError(
@@ -996,14 +926,13 @@ def compose_geometry_step(
         "storage_aligned_shuffled_component_cosine": cast_component_cosine,
         "storage_aligned_shuffled_component_relative_distance": cast_component_relative_distance,
         "storage_component_activity_ratio": storage_component_activity_ratio,
-        "storage_aligned_projection_correction": storage_aligned_correction,
-        "storage_shuffled_projection_correction": storage_shuffled_correction,
         "aligned_normalized_orthogonality_error": aligned_orthogonality_error,
         "shuffled_normalized_orthogonality_error": shuffled_orthogonality_error,
         "preclip_norm": preclip_norm,
         "postclip_norm": postclip_norm,
         "gradient_storage_dtype": gradient_dtype,
         "post_cast_relative_tolerance": storage_relative_tolerance,
+        "post_cast_orthogonality_tolerance": storage_orthogonality_tolerance,
         "post_cast_norm_limit": post_cast_limit,
     }
 

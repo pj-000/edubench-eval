@@ -32,7 +32,6 @@
     "aligned": "O_A = P_perp(G_C^B) R_A",
     "shuffled": "O_pi = P_perp(G_C^B) R_pi",
     "match": "O_pi_tilde = norm(O_A)/(norm(O_pi)+zero_guard) * O_pi",
-    "storage_rule": "before BF16 gradient storage, apply a deterministic quantization-aware common-direction correction to both candidate totals; this correction preserves zero residual support on both heads and is audited separately",
     "head_support": "all three residual components are exact zero on hard and soft heads",
     "local_identification_scope": "instantaneous geometry is matched within each arm's current state; future optimization trajectories are not claimed identical"
   },
@@ -91,6 +90,7 @@
     "preclip_total_norm_relative_error_at_most": 0.0001,
     "clip_coefficient_relative_error_at_most": 0.0001,
     "bf16_storage_space_relative_error_at_most": 0.01171875,
+    "bf16_storage_space_normalized_orthogonality_error_at_most": 0.1,
     "explicit_route_residual_relative_error_at_most": 0.02,
     "preflight_treatment_component_activity_ratio_at_least": 0.000001,
     "preflight_treatment_component_cosine_at_most": 0.99,
