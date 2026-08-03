@@ -5,6 +5,7 @@
     "exactly_one_standard_clip_call": true,
     "exactly_two_diagnostic_residual_vjp_calls": true,
     "fixed_epoch10_primary_present": true,
+    "formal_source_lock_schema_is_validated": true,
     "formal_training_asserts_all_frozen_config": true,
     "formal_training_requires_frozen_protocol": true,
     "formal_training_unconditionally_verifies_source_lock": true,
@@ -17,6 +18,7 @@
     "real_model_preflight_is_separate_and_has_no_optimizer": true,
     "real_preflight_rehashes_actual_mapping": true,
     "real_preflight_requires_preflight_source_lock": true,
+    "stable_gpu_identity_is_fail_closed": true,
     "test_split_not_loaded": true
   },
   "counts": {

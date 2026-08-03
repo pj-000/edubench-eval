@@ -8,6 +8,7 @@ import json
 import unittest
 from collections import Counter
 from types import SimpleNamespace
+from unittest.mock import patch
 
 import numpy as np
 
@@ -22,7 +23,12 @@ from thesis_exp.exp60_geometry_matched_shuffle import (
     PROTOCOL_PATH,
 )
 from thesis_exp.exp60_geometry_matched_shuffle.contract import (
+    FORMAL_MANDATORY_FILES,
+    FORMAL_SOURCE_LOCK_SCHEMA_VERSION,
+    manifest_sha256,
     normalized_scientific_protocol_sha256,
+    stable_gpu_identity,
+    validate_formal_source_lock,
     verify_preflight_source_lock,
 )
 from thesis_exp.exp60_geometry_matched_shuffle.geometry import (
@@ -250,6 +256,85 @@ class Exp60GeometryTest(unittest.TestCase):
             binding["normalized_scientific_protocol_sha256"],
             lock["normalized_scientific_protocol_sha256"],
         )
+
+    def test_gpu_identity_fails_without_stable_uuid(self) -> None:
+        fake_torch = SimpleNamespace(
+            cuda=SimpleNamespace(
+                get_device_properties=lambda _device: SimpleNamespace(
+                    uuid=None, name="fake", total_memory=24
+                )
+            )
+        )
+        command = SimpleNamespace(returncode=1, stdout="")
+        with patch.dict("os.environ", {"CUDA_VISIBLE_DEVICES": "4"}, clear=False), patch(
+            "thesis_exp.exp60_geometry_matched_shuffle.contract.subprocess.run",
+            return_value=command,
+        ):
+            with self.assertRaisesRegex(RuntimeError, "STABLE_GPU_IDENTITY_UNAVAILABLE"):
+                stable_gpu_identity(fake_torch, "cuda")
+
+    def test_gpu_identity_requires_uuid_sources_to_agree_and_rejects_mig(self) -> None:
+        fake_torch = SimpleNamespace(
+            cuda=SimpleNamespace(
+                get_device_properties=lambda _device: SimpleNamespace(
+                    uuid="GPU-aaaaaaaa", name="fake", total_memory=24
+                )
+            )
+        )
+        disagree = SimpleNamespace(
+            returncode=0,
+            stdout="GPU-bbbbbbbb, 00000000:01:00.0, Disabled\n",
+        )
+        with patch.dict("os.environ", {"CUDA_VISIBLE_DEVICES": "4"}, clear=False), patch(
+            "thesis_exp.exp60_geometry_matched_shuffle.contract.subprocess.run",
+            return_value=disagree,
+        ):
+            with self.assertRaisesRegex(RuntimeError, "UUID_SOURCES_DISAGREE"):
+                stable_gpu_identity(fake_torch, "cuda")
+        mig = SimpleNamespace(
+            returncode=0,
+            stdout="GPU-aaaaaaaa, 00000000:01:00.0, Enabled\n",
+        )
+        with patch.dict("os.environ", {"CUDA_VISIBLE_DEVICES": "4"}, clear=False), patch(
+            "thesis_exp.exp60_geometry_matched_shuffle.contract.subprocess.run",
+            return_value=mig,
+        ):
+            with self.assertRaisesRegex(RuntimeError, "MIG_ENVIRONMENT_NOT_AUTHORIZED"):
+                stable_gpu_identity(fake_torch, "cuda")
+
+    def test_formal_source_lock_rejects_empty_and_incomplete_manifests(self) -> None:
+        protocol = json.loads(PROTOCOL_PATH.read_text(encoding="utf-8"))
+        decision = {"status": "EXP60_REAL_MODEL_PREFLIGHT_ALL_SEEDS_PASS"}
+        normalized = normalized_scientific_protocol_sha256(protocol)
+        base = {
+            "schema_version": FORMAL_SOURCE_LOCK_SCHEMA_VERSION,
+            "status": "EXP60_FORMAL_SOURCE_LOCK",
+            "protocol_sha256": "protocol-sha",
+            "real_model_preflight_decision_sha256": "decision-sha",
+            "normalized_scientific_protocol_sha256": normalized,
+            "mandatory_file_manifest_sha256": manifest_sha256(FORMAL_MANDATORY_FILES),
+            "contains_frozen_analysis": True,
+            "physical_gpu_bindings_equal_preflight_devices": True,
+            "allowed_splits": ["train", "dev"],
+            "test_access_count": 0,
+            "files": {},
+            "file_count": 0,
+        }
+        with patch(
+            "thesis_exp.exp60_geometry_matched_shuffle.contract.sha256_file",
+            side_effect=["protocol-sha", "decision-sha"],
+        ):
+            with self.assertRaisesRegex(RuntimeError, "file manifest is empty"):
+                validate_formal_source_lock(base, protocol, decision)
+        incomplete = copy.deepcopy(base)
+        incomplete["files"] = {FORMAL_MANDATORY_FILES[0]: "sha"}
+        incomplete["file_count"] = 1
+        with patch(
+            "thesis_exp.exp60_geometry_matched_shuffle.contract.sha256_file",
+            side_effect=["protocol-sha", "decision-sha"],
+        ):
+            with self.assertRaisesRegex(RuntimeError, "misses mandatory files"):
+                validate_formal_source_lock(incomplete, protocol, decision)
 
 
 class Exp60AnalysisTest(unittest.TestCase):

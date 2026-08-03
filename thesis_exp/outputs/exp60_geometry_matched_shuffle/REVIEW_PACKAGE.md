@@ -10,9 +10,9 @@ draft.  There is no formal Exp60 source lock yet.  A separate no-training-
 authority preflight source lock binds the reviewed CPU/GPU-preflight code.
 
 - preflight source-lock SHA-256:
-  `53f9b2d56b3a5dc25d8d08d1a8b6a22346f657bc67ce2cbb4828177e8b061e32`;
+  `785de8b0a6547fef1238e173e80b6d1f81bfbbc3153242345894a72ac1a08440`;
 - normalized scientific-protocol SHA-256:
-  `86cce8a43630e28127e3e87e6527c885d372be223fdd80e0849065b27d71e1d6`.
+  `b980edfeff877966da379a19c03af160ab714bd46dcb383769086c451ccb7213`.
 
 ## Scientific question
 
@@ -67,7 +67,7 @@ structure, all possible orthogonal regularizers, or low-score mechanisms.
 
 ## Completed pre-result checks
 
-- Fifteen generic mapping/geometry/config/contract/analysis tests pass.
+- Eighteen generic mapping/geometry/config/contract/analysis tests pass.
 - Seven PyTorch CPU tests, including BF16 storage-space simulation, non-finite
   rejection and zero-treatment rejection, pass.
 - Exp59 regression suite: seven tests pass.
@@ -131,6 +131,28 @@ still mandatory before formal training.
   rows per endpoint, checks the 32/.../24 window structure, independently
   recomputes extrema, rejects non-finite metrics and verifies physical GPU
   bindings.
+
+## Revisions after review of commit 7b71dc9
+
+- GPU identity is now fail-closed.  A `CUDA_VISIBLE_DEVICES` alias can no
+  longer serve as physical identity: PyTorch and/or `nvidia-smi` must yield a
+  stable UUID, both sources must agree when present, `nvidia-smi` must provide
+  a PCI bus ID, and MIG environments are rejected.
+- The all-seed finalizer requires three nonempty, distinct stable GPU UUIDs.
+  Formal training resolves the current stable UUID again and compares it with
+  the corresponding locked preflight report, in addition to checking the
+  visible-device binding.
+- The final source lock now has an explicit schema version and mandatory-file
+  manifest.  `verify_contract()` independently checks its status, protocol and
+  preflight-decision hashes, normalized scientific-protocol hash, frozen
+  analysis flag, GPU-binding flag, split contract, file count and mandatory
+  subset before verifying every file hash.  Empty or partial manifests fail.
+- The post-clip squared norm is now explicitly finite-checked before square
+  root.  Formal summaries and analysis additionally audit the complete BF16
+  storage-space cosine, relative-distance and per-epoch activity trajectory.
+- Forty-three relevant Exp60/Exp59/Exp51 regression tests pass; both the static
+  trainer audit and generic 64-case CPU no-update preflight pass.  No real
+  model or GPU has been used and no optimizer step or test access occurred.
 
 ## Files to review
 

@@ -5,6 +5,7 @@ from __future__ import annotations
 import json
 import hashlib
 import math
+import statistics
 from collections import defaultdict
 from pathlib import Path
 from typing import Any
@@ -85,6 +86,8 @@ def validate_geometry_audit(
         "storage_shuffled_normalized_orthogonality_error",
         "aligned_shuffled_component_cosine",
         "aligned_shuffled_component_relative_distance",
+        "storage_aligned_shuffled_component_cosine",
+        "storage_aligned_shuffled_component_relative_distance",
         "storage_component_activity_ratio",
         "preclip_norm",
         "postclip_norm",
@@ -144,6 +147,17 @@ def validate_geometry_audit(
         "minimum_storage_component_activity_ratio": min(
             float(row["storage_component_activity_ratio"]) for row in rows
         ),
+        "maximum_storage_aligned_shuffled_component_cosine": max(
+            float(row["storage_aligned_shuffled_component_cosine"]) for row in rows
+        ),
+        "minimum_storage_aligned_shuffled_component_relative_distance": min(
+            float(row["storage_aligned_shuffled_component_relative_distance"])
+            for row in rows
+        ),
+        "median_storage_aligned_shuffled_component_relative_distance": statistics.median(
+            float(row["storage_aligned_shuffled_component_relative_distance"])
+            for row in rows
+        ),
     }
     for field, value in recomputed.items():
         reported = float(summary.get(field, float("nan")))
@@ -151,6 +165,16 @@ def validate_geometry_audit(
             raise RuntimeError(
                 f"Geometry summary mismatch: {directory}: {field}: {reported} != {value}"
             )
+    epoch_activity = {
+        str(epoch): min(
+            float(row["storage_component_activity_ratio"])
+            for row in rows
+            if int(row["epoch"]) == epoch
+        )
+        for epoch in range(1, 11)
+    }
+    if summary.get("minimum_storage_component_activity_ratio_by_epoch") != epoch_activity:
+        raise RuntimeError(f"Per-epoch treatment activity mismatch: {directory}")
     return rows
 
 

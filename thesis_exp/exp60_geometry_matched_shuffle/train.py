@@ -8,6 +8,7 @@ import json
 import math
 import os
 import platform
+import statistics
 import sys
 import time
 from pathlib import Path
@@ -36,7 +37,11 @@ from thesis_exp.exp60_geometry_matched_shuffle.mapping import (
     mapping_sha256,
     mapping_target_lookup,
 )
-from thesis_exp.exp60_geometry_matched_shuffle.contract import require_finite_scalar
+from thesis_exp.exp60_geometry_matched_shuffle.contract import (
+    stable_gpu_identity,
+    require_finite_scalar,
+    validate_formal_source_lock,
+)
 from thesis_exp.src.edujudge.exp02.train_ce_baseline import (
     StepProgressBar,
     TrainConfig,
@@ -178,8 +183,12 @@ def verify_contract() -> dict[str, Any]:
     if not SOURCE_LOCK_PATH.is_file():
         raise FileNotFoundError(SOURCE_LOCK_PATH)
     lock = json.loads(SOURCE_LOCK_PATH.read_text(encoding="utf-8"))
+    validate_formal_source_lock(lock, protocol, preflight_decision)
     for relative, expected in lock["files"].items():
-        actual = sha256_file(REPO_ROOT / relative)
+        path = REPO_ROOT / relative
+        if not path.is_file():
+            raise FileNotFoundError(path)
+        actual = sha256_file(path)
         if actual != expected:
             raise RuntimeError(f"Exp60 source-lock mismatch: {relative}: {actual} != {expected}")
     return {
@@ -272,8 +281,11 @@ def assert_gpu_slot_assignment(
 
 
 def assert_physical_gpu_binding(
-    gpu_slot: int, protocol: dict[str, Any] | None = None
-) -> None:
+    gpu_slot: int,
+    torch: Any,
+    device: Any,
+    protocol: dict[str, Any] | None = None,
+) -> dict[str, Any]:
     protocol = protocol or json.loads(PROTOCOL_PATH.read_text(encoding="utf-8"))
     bindings = protocol["formal_runs"].get("physical_gpu_bindings")
     if not isinstance(bindings, dict):
@@ -285,6 +297,24 @@ def assert_physical_gpu_binding(
             f"Exp60 GPU slot {gpu_slot} requires CUDA_VISIBLE_DEVICES={expected}, "
             f"got {visible!r}"
         )
+    current_identity = stable_gpu_identity(torch, device)
+    report_path = (
+        OUTPUT_ROOT
+        / "real_model_preflight"
+        / f"seed_{47 + gpu_slot}"
+        / "real_model_no_update_preflight.json"
+    )
+    report = json.loads(report_path.read_text(encoding="utf-8"))
+    if int(report.get("gpu_slot", -1)) != gpu_slot:
+        raise RuntimeError("EXP60_PREFLIGHT_REPORT_GPU_SLOT_MISMATCH")
+    preflight_identity = report.get("gpu_identity", {})
+    if current_identity["stable_gpu_uuid"] != preflight_identity.get("stable_gpu_uuid"):
+        raise RuntimeError("EXP60_FORMAL_GPU_IDENTITY_DIFFERS_FROM_PREFLIGHT")
+    expected_pci = preflight_identity.get("pci_bus_id")
+    current_pci = current_identity.get("pci_bus_id")
+    if expected_pci and current_pci and str(expected_pci).lower() != str(current_pci).lower():
+        raise RuntimeError("EXP60_FORMAL_GPU_PCI_BUS_DIFFERS_FROM_PREFLIGHT")
+    return current_identity
 
 
 def parameter_snapshot_sha256(model: Any) -> str:
@@ -818,6 +848,7 @@ def compose_geometry_step(
         [parameter.grad for parameter in named.values()],
         device,
     )
+    require_finite_tensor(torch, "postclip_sq", postclip_sq)
     postclip_norm = math.sqrt(max(0.0, float(postclip_sq.detach().cpu())))
     require_finite_scalar("postclip_norm", postclip_norm)
     post_cast_limit = max_norm * (1.0 + storage_relative_tolerance)
@@ -878,8 +909,11 @@ def train(config: TrainConfig, variant: str, gpu_slot: int) -> dict[str, Any]:
     protocol = json.loads(PROTOCOL_PATH.read_text(encoding="utf-8"))
     assert_formal_config_matches_protocol(config, variant, protocol)
     assert_gpu_slot_assignment(config.seed, variant, gpu_slot, protocol)
-    assert_physical_gpu_binding(gpu_slot, protocol)
     contract_files = verify_contract()
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    if device.type != "cuda":
+        raise RuntimeError("Formal Exp60 training requires CUDA")
+    gpu_identity = assert_physical_gpu_binding(gpu_slot, torch, device, protocol)
     config.output_dir.mkdir(parents=True, exist_ok=True)
     config.checkpoint_output_dir.mkdir(parents=True, exist_ok=True)
     set_seed(config.seed)
@@ -930,9 +964,6 @@ def train(config: TrainConfig, variant: str, gpu_slot: int) -> dict[str, Any]:
         raise RuntimeError("Exp60 initial model snapshot differs from seed preflight")
     if initial_contract != seed_preflight["initial_head_contract"]:
         raise RuntimeError("Exp60 initial head contract differs from seed preflight")
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    if device.type != "cuda":
-        raise RuntimeError("Formal Exp60 training requires CUDA")
     model.to(device)
     environment = runtime_environment(torch, transformers, device)
     assert_runtime_matches_seed_preflight(config.seed, environment)
@@ -1171,6 +1202,7 @@ def train(config: TrainConfig, variant: str, gpu_slot: int) -> dict[str, Any]:
         "gpu_slot": gpu_slot,
         "cuda_visible_devices": os.environ.get("CUDA_VISIBLE_DEVICES"),
         "gpu_name": torch.cuda.get_device_name(device),
+        "gpu_identity": gpu_identity,
         "runtime_environment": environment,
         "runtime_head": git_head(),
         "model_mode": model_mode,
@@ -1234,6 +1266,26 @@ def train(config: TrainConfig, variant: str, gpu_slot: int) -> dict[str, Any]:
         "maximum_aligned_shuffled_component_cosine": max(
             float(row["aligned_shuffled_component_cosine"]) for row in step_audit
         ),
+        "maximum_storage_aligned_shuffled_component_cosine": max(
+            float(row["storage_aligned_shuffled_component_cosine"])
+            for row in step_audit
+        ),
+        "minimum_storage_aligned_shuffled_component_relative_distance": min(
+            float(row["storage_aligned_shuffled_component_relative_distance"])
+            for row in step_audit
+        ),
+        "median_storage_aligned_shuffled_component_relative_distance": statistics.median(
+            float(row["storage_aligned_shuffled_component_relative_distance"])
+            for row in step_audit
+        ),
+        "minimum_storage_component_activity_ratio_by_epoch": {
+            str(epoch): min(
+                float(row["storage_component_activity_ratio"])
+                for row in step_audit
+                if int(row["epoch"]) == epoch
+            )
+            for epoch in range(1, 11)
+        },
         "mapping_sha256": mapping_audit["mapping_sha256"],
         "mapping_effective_change_rate": mapping_audit["effective_change_rate"],
         "train_text_hash": aggregate_text_hash(train_rows),

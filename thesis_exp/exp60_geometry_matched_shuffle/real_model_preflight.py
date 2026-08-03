@@ -13,7 +13,6 @@ import json
 import math
 import os
 import platform
-import subprocess
 import sys
 import time
 from collections import deque
@@ -31,6 +30,7 @@ from thesis_exp.exp60_geometry_matched_shuffle import (
 )
 from thesis_exp.exp60_geometry_matched_shuffle.contract import (
     require_finite_scalar,
+    stable_gpu_identity,
     verify_preflight_source_lock,
 )
 from thesis_exp.exp60_geometry_matched_shuffle.mapping import (
@@ -55,42 +55,6 @@ from thesis_exp.src.edujudge.exp02.train_ce_baseline import (
 
 
 WINDOWS = {"full_32": 32, "partial_24": 24}
-
-
-def physical_gpu_identity(torch: Any, device: Any) -> dict[str, Any]:
-    visible = os.environ.get("CUDA_VISIBLE_DEVICES")
-    if not visible or "," in visible:
-        raise RuntimeError(
-            "Exp60 preflight requires exactly one explicit CUDA_VISIBLE_DEVICES identifier"
-        )
-    properties = torch.cuda.get_device_properties(device)
-    torch_uuid = getattr(properties, "uuid", None)
-    smi_uuid = pci_bus_id = None
-    command = subprocess.run(
-        [
-            "nvidia-smi",
-            f"--id={visible}",
-            "--query-gpu=uuid,pci.bus_id",
-            "--format=csv,noheader,nounits",
-        ],
-        check=False,
-        text=True,
-        capture_output=True,
-    )
-    if command.returncode == 0 and command.stdout.strip():
-        parts = [part.strip() for part in command.stdout.strip().split(",")]
-        if len(parts) == 2:
-            smi_uuid, pci_bus_id = parts
-    identity = str(torch_uuid or smi_uuid or f"CUDA_VISIBLE_DEVICES:{visible}")
-    return {
-        "cuda_visible_devices": visible,
-        "identity": identity,
-        "torch_uuid": str(torch_uuid) if torch_uuid else None,
-        "nvidia_smi_uuid": smi_uuid,
-        "pci_bus_id": pci_bus_id,
-        "name": properties.name,
-        "total_memory_bytes": int(properties.total_memory),
-    }
 
 
 def parse_args() -> tuple[TrainConfig, int]:
@@ -497,7 +461,7 @@ def run(config: TrainConfig, gpu_slot: int) -> dict[str, Any]:
     if not torch.cuda.is_available():
         raise RuntimeError("Exp60 real-model preflight requires CUDA")
     device = torch.device("cuda")
-    gpu_identity = physical_gpu_identity(torch, device)
+    gpu_identity = stable_gpu_identity(torch, device)
     config.output_dir.mkdir(parents=True, exist_ok=True)
     mapping_audit = json.loads(MAPPING_AUDIT_PATH.read_text(encoding="utf-8"))
     mapping_rows = [

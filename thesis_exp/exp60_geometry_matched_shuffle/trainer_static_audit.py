@@ -13,6 +13,7 @@ from thesis_exp.exp60_geometry_matched_shuffle import OUTPUT_ROOT
 
 TRAIN_PATH = Path(__file__).with_name("train.py")
 REAL_PREFLIGHT_PATH = Path(__file__).with_name("real_model_preflight.py")
+CONTRACT_PATH = Path(__file__).with_name("contract.py")
 OUTPUT_PATH = OUTPUT_ROOT / "audit" / "trainer_static_audit.json"
 
 
@@ -35,6 +36,7 @@ def _function(tree: ast.Module, name: str) -> ast.FunctionDef:
 def run() -> dict[str, Any]:
     source = TRAIN_PATH.read_text(encoding="utf-8")
     preflight_source = REAL_PREFLIGHT_PATH.read_text(encoding="utf-8")
+    contract_source = CONTRACT_PATH.read_text(encoding="utf-8")
     tree = ast.parse(source)
     geometry = _function(tree, "compose_geometry_step")
     train = _function(tree, "train")
@@ -97,6 +99,16 @@ def run() -> dict[str, Any]:
         ),
         "latin_square_gpu_assignment_enforced": "assert_gpu_slot_assignment" in source,
         "physical_gpu_binding_enforced": "assert_physical_gpu_binding" in source,
+        "stable_gpu_identity_is_fail_closed": (
+            "EXP60_STABLE_GPU_IDENTITY_UNAVAILABLE" in contract_source
+            and "CUDA_VISIBLE_DEVICES:{visible}" not in contract_source
+            and "EXP60_MIG_ENVIRONMENT_NOT_AUTHORIZED" in contract_source
+        ),
+        "formal_source_lock_schema_is_validated": (
+            "validate_formal_source_lock(lock, protocol, preflight_decision)" in source
+            and "FORMAL_MANDATORY_FILES" in contract_source
+            and "formal source-lock file manifest is empty" in contract_source
+        ),
         "test_split_not_loaded": 'model_rows("test")' not in source,
         "no_test_access": True,
     }

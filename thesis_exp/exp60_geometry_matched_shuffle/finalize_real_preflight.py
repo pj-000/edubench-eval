@@ -120,6 +120,10 @@ def run() -> dict[str, Any]:
         str(report["gpu_identity"]["identity"])
         for report in reports.values()
     }
+    stable_gpu_uuids = {
+        str(report["gpu_identity"].get("stable_gpu_uuid") or "")
+        for report in reports.values()
+    }
     checks = {
         "all_three_seed_reports_pass": all(
             report.get("status") == "EXP60_REAL_MODEL_NO_UPDATE_PREFLIGHT_PASS"
@@ -138,6 +142,13 @@ def run() -> dict[str, Any]:
         ),
         "three_distinct_cuda_visible_devices": len(visible_devices) == 3,
         "three_distinct_physical_gpu_identities": len(physical_identities) == 3,
+        "all_reports_have_stable_gpu_uuid": "" not in stable_gpu_uuids,
+        "three_distinct_stable_gpu_uuids": len(stable_gpu_uuids) == 3,
+        "mig_is_not_used": all(
+            str(report["gpu_identity"].get("mig_mode") or "").lower() != "enabled"
+            and not str(report["gpu_identity"].get("stable_gpu_uuid") or "").lower().startswith("mig-")
+            for report in reports.values()
+        ),
         "mapping_sha_identical": len(
             {str(report["mapping_sha256"]) for report in reports.values()}
         ) == 1,

@@ -19,6 +19,9 @@ from thesis_exp.exp60_geometry_matched_shuffle import (
     SOURCE_LOCK_PATH,
 )
 from thesis_exp.exp60_geometry_matched_shuffle.contract import (
+    FORMAL_MANDATORY_FILES,
+    FORMAL_SOURCE_LOCK_SCHEMA_VERSION,
+    manifest_sha256,
     normalized_scientific_protocol_sha256,
 )
 
@@ -82,6 +85,13 @@ def run() -> dict[str, Any]:
     decision = json.loads(REAL_PREFLIGHT_DECISION_PATH.read_text(encoding="utf-8"))
     if decision.get("status") != "EXP60_REAL_MODEL_PREFLIGHT_ALL_SEEDS_PASS":
         raise RuntimeError("All-seed real-model preflight has not passed")
+    required_gpu_checks = (
+        "all_reports_have_stable_gpu_uuid",
+        "three_distinct_stable_gpu_uuids",
+        "mig_is_not_used",
+    )
+    if not all(decision.get("checks", {}).get(name) is True for name in required_gpu_checks):
+        raise RuntimeError("Stable non-MIG GPU identity gates did not pass")
     preflight_lock = json.loads(PREFLIGHT_SOURCE_LOCK_PATH.read_text(encoding="utf-8"))
     if sha256_file(PREFLIGHT_SOURCE_LOCK_PATH) != decision[
         "preflight_contract_binding"
@@ -131,6 +141,7 @@ def run() -> dict[str, Any]:
     if "thesis_exp/exp60_geometry_matched_shuffle/analyze_confirmation.py" not in files:
         raise AssertionError("Frozen analysis must be source-locked")
     lock = {
+        "schema_version": FORMAL_SOURCE_LOCK_SCHEMA_VERSION,
         "status": "EXP60_FORMAL_SOURCE_LOCK",
         "protocol_sha256": sha256_file(PROTOCOL_PATH),
         "real_model_preflight_decision_sha256": sha256_file(
@@ -140,6 +151,7 @@ def run() -> dict[str, Any]:
         or json.loads(MAPPING_AUDIT_PATH.read_text(encoding="utf-8"))["mapping_sha256"],
         "files": files,
         "file_count": len(files),
+        "mandatory_file_manifest_sha256": manifest_sha256(FORMAL_MANDATORY_FILES),
         "contains_frozen_analysis": True,
         "normalized_scientific_protocol_sha256": normalized_sha,
         "physical_gpu_bindings_equal_preflight_devices": True,

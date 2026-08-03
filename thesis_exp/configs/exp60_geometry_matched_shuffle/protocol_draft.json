@@ -80,7 +80,7 @@
       "49": {"gpu_slot_0": "aligned_orthogonal_only", "gpu_slot_1": "matched_shuffled_orthogonal_only", "gpu_slot_2": "consensus_only"}
     },
     "physical_gpu_bindings": null,
-    "physical_gpu_binding_freeze_rule": "replace null with three distinct CUDA_VISIBLE_DEVICES identifiers during the sole post-preflight protocol freeze",
+    "physical_gpu_binding_freeze_rule": "replace null with three distinct CUDA_VISIBLE_DEVICES identifiers during the sole post-preflight protocol freeze; each slot must additionally have a stable non-MIG hardware UUID recorded by preflight and revalidated by the formal trainer",
     "real_preflight_gpu_schedule": {"47": 0, "48": 1, "49": 2},
     "post_result_seed_extension": "forbidden; seeds 50/51 may not be added to resolve an unclear result"
   },
