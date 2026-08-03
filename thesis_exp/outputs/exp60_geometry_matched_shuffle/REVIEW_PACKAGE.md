@@ -11,9 +11,9 @@ remains a draft and there is no formal Exp60 source lock.  A separate no-
 training-authority preflight source lock binds the CPU/GPU-preflight code.
 
 - preflight source-lock SHA-256:
-  `f5a4bbf48d8d0d75424c1a67685e22e6c215d8b237e50f16edecabb0fd3447bb`;
+  `b8f526856fa1de35ff89aa64863518a57607bd81982d6ea8dde402b74376cf76`;
 - normalized scientific-protocol SHA-256:
-  `b46935c5898f837ce87f62618de1a5d560e7bfa6590b0079363f08d53a518067`.
+  `2efa551e3d2ea8e9e0be94c0c800696add1d569698d970d9967f5102af5391c5`.
 
 ## Scientific question
 
@@ -105,6 +105,13 @@ still mandatory before formal training.
   obtained by subtracting two large quantized gradients.  Norm, total-norm and
   clip matching remain at `0.01171875`; no dev metric or optimizer result was
   observed when making this numerical amendment.
+- The no-update qualification also calibrates explicit-route subtraction error
+  to `0.35`: independent BF16 accumulated routes differ by 0.29--0.33 relative
+  to the much smaller residual, while head errors remain exactly zero, forward
+  logits match and diagnostic capture leaves the main gradient unchanged.
+- Conservative projected formal memory must retain at least 8% free capacity;
+  all three 3090 observations retain 9.1--9.9% (about 2.3 GB) after adding a
+  full FP32 Adam-state estimate.  This gate does not use dev or test outcomes.
 - Aligned--shuffled cosine and relative distance are recorded.
 - A separate real-Qwen BF16 no-update preflight now covers 32- and
   24-microbatch windows, exact diagnostic-gradient non-pollution, RNG/logit

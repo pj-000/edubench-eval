@@ -608,7 +608,14 @@ def run(config: TrainConfig, gpu_slot: int) -> dict[str, Any]:
     estimated_training_seconds_excluding_eval = (
         mean_microbatch_seconds * 664 * 10 + mean_geometry_seconds * 210
     )
-    checks["projected_formal_memory_has_10_percent_margin"] = projected_peak <= 0.9 * total_memory
+    required_free_fraction = float(
+        protocol["implementation_gates_before_training"][
+            "projected_formal_memory_free_fraction_at_least"
+        ]
+    )
+    checks["projected_formal_memory_has_required_margin"] = (
+        (total_memory - projected_peak) / total_memory >= required_free_fraction
+    )
     report = {
         "status": "EXP60_REAL_MODEL_NO_UPDATE_PREFLIGHT_PASS"
         if all(checks.values())
@@ -638,6 +645,7 @@ def run(config: TrainConfig, gpu_slot: int) -> dict[str, Any]:
             "conservative_adam_fp32_state_bytes": conservative_adam_fp32_bytes,
             "projected_peak_bytes": projected_peak,
             "projected_free_fraction": (total_memory - projected_peak) / total_memory,
+            "required_free_fraction": required_free_fraction,
         },
         "runtime_estimate": {
             "mean_formal_microbatch_seconds": mean_microbatch_seconds,

@@ -11,7 +11,7 @@
   "file_count": 35,
   "files": {
     "thesis_exp/__init__.py": "e57921412997c9605bd75fa597e907b2c68b201d6f70279add396d93f978d4a3",
-    "thesis_exp/configs/exp60_geometry_matched_shuffle/protocol_draft.json": "458f9ed6484b8ff3411e7197b6704fe956746bb2fc8bf024fc7b9662f141c953",
+    "thesis_exp/configs/exp60_geometry_matched_shuffle/protocol_draft.json": "19737c657c68b02ce571df703cccf81fcad378652c3847558ab41fb45baaeccb",
     "thesis_exp/exp57_cbrd/__init__.py": "6d0dea1ba44c2bf4a3a3972c819f49054f8e392db37ef5435bcc47b10ec7cddf",
     "thesis_exp/exp57_cbrd/data_audit.py": "35a3d38a6c0719b85cdea0983fa11c71991790874e6118a519dffeac1a34ca0d",
     "thesis_exp/exp57_cbrd/losses.py": "79478bdfd83851f2f077b3b30223e46648a840df6468c9f8edae64f22e307b54",
@@ -29,7 +29,7 @@
     "thesis_exp/exp60_geometry_matched_shuffle/geometry.py": "b4f89a974ad1bcb76f5a1f6bd06632a1fefaa9aac50efc633e55e36431598b2d",
     "thesis_exp/exp60_geometry_matched_shuffle/mapping.py": "3c2a3842f04e2d317390ce3cfefa314e02a93a456f43b075a4dfa4f3ea24eea7",
     "thesis_exp/exp60_geometry_matched_shuffle/preflight.py": "65709d0883918be4f301431e99b64804dd5b3ccb37b8f19ae6ed723d267bd3ca",
-    "thesis_exp/exp60_geometry_matched_shuffle/real_model_preflight.py": "b4293b43ed3ac4ecc8857738d0a01ae9510fa195bc5d4e5d58a49559b4f7d38f",
+    "thesis_exp/exp60_geometry_matched_shuffle/real_model_preflight.py": "91b470357b3d934565d5744231fb1d108a8f80f970981f7eb6b8b68678123d2a",
     "thesis_exp/exp60_geometry_matched_shuffle/source_closure_audit.py": "fe120726234d3f717b3cbbd8c2de771320e9e2fadeccac644af35be0227e6269",
     "thesis_exp/exp60_geometry_matched_shuffle/train.py": "348d534890f5665e4ed24148ddc03895eb7fb92e8b5122c012ec36cbad6599a1",
     "thesis_exp/exp60_geometry_matched_shuffle/trainer_static_audit.py": "f23215c7da250773b35b24e5975c16d42a4387c2f52521e0e957b02913330f5d",
@@ -47,9 +47,9 @@
     "thesis_exp/tests/test_exp60_torch_geometry.py": "4baa1091308d4a01709afa570bf0260bc6c74f069957fa2af27158597f3c35fd"
   },
   "mapping_sha256": "dc9d3fbce24af01fee58e896f83ed35f3ccd516fcf30f35ed43a3cfd4c2fa7fb",
-  "normalized_scientific_protocol_sha256": "b46935c5898f837ce87f62618de1a5d560e7bfa6590b0079363f08d53a518067",
+  "normalized_scientific_protocol_sha256": "2efa551e3d2ea8e9e0be94c0c800696add1d569698d970d9967f5102af5391c5",
   "optimizer_steps": 0,
-  "protocol_sha256_at_preflight": "458f9ed6484b8ff3411e7197b6704fe956746bb2fc8bf024fc7b9662f141c953",
+  "protocol_sha256_at_preflight": "19737c657c68b02ce571df703cccf81fcad378652c3847558ab41fb45baaeccb",
   "status": "EXP60_PREFLIGHT_SOURCE_LOCK_NO_TRAINING_AUTHORITY",
   "test_access_count": 0
 }
