@@ -1,0 +1,279 @@
+{
+  "checks": {
+    "all_historical_exp49_to_exp51_blobs_exact": true,
+    "all_historical_exp49_to_exp51_files_present": true,
+    "no_test_access": true
+  },
+  "files": [
+    {
+      "actual_blob": "3f31ff14958e22bbf92c5ddce234e99199bd8646",
+      "exact_match": true,
+      "expected_blob": "3f31ff14958e22bbf92c5ddce234e99199bd8646",
+      "path": "thesis_exp/configs/exp49_cphce/baseline_hard_ce.yaml"
+    },
+    {
+      "actual_blob": "9a65e91e0f17bcb730d2e61f237fbb4a139b947c",
+      "exact_match": true,
+      "expected_blob": "9a65e91e0f17bcb730d2e61f237fbb4a139b947c",
+      "path": "thesis_exp/configs/exp49_cphce/cphce_human_soft.yaml"
+    },
+    {
+      "actual_blob": "2a40e542e10646d2faadb5149bb60a8e47f0074c",
+      "exact_match": true,
+      "expected_blob": "2a40e542e10646d2faadb5149bb60a8e47f0074c",
+      "path": "thesis_exp/configs/exp49_cphce/gates.json"
+    },
+    {
+      "actual_blob": "ecceee8b6dd861bed12ee9df9b17fe13bf5bf1ec",
+      "exact_match": true,
+      "expected_blob": "ecceee8b6dd861bed12ee9df9b17fe13bf5bf1ec",
+      "path": "thesis_exp/configs/exp50_cahs/cahs_0p5.yaml"
+    },
+    {
+      "actual_blob": "6e29bf4ed32229442e36bc3731a246d4ce5a1935",
+      "exact_match": true,
+      "expected_blob": "6e29bf4ed32229442e36bc3731a246d4ce5a1935",
+      "path": "thesis_exp/configs/exp50_cahs/gates.json"
+    },
+    {
+      "actual_blob": "8138a40523a6d68c32dc9ad7cbcf4afafa46658c",
+      "exact_match": true,
+      "expected_blob": "8138a40523a6d68c32dc9ad7cbcf4afafa46658c",
+      "path": "thesis_exp/configs/exp51_hmsa/final_test_lock.json"
+    },
+    {
+      "actual_blob": "6b2ade786e213d5192c25f856c4689c309e4b99b",
+      "exact_match": true,
+      "expected_blob": "6b2ade786e213d5192c25f856c4689c309e4b99b",
+      "path": "thesis_exp/configs/exp51_hmsa/formal_lock.json"
+    },
+    {
+      "actual_blob": "726a4a4ad9b9c1e1bbadfe7bcd0828ecd7c0196c",
+      "exact_match": true,
+      "expected_blob": "726a4a4ad9b9c1e1bbadfe7bcd0828ecd7c0196c",
+      "path": "thesis_exp/configs/exp51_hmsa/formal_protocol.json"
+    },
+    {
+      "actual_blob": "937168e08f9fcb78b8770acc05c68159c5bc78e3",
+      "exact_match": true,
+      "expected_blob": "937168e08f9fcb78b8770acc05c68159c5bc78e3",
+      "path": "thesis_exp/configs/exp51_hmsa/gates.json"
+    },
+    {
+      "actual_blob": "73bd6fc22992bf0dabe6b7c41414bb44cb9236f2",
+      "exact_match": true,
+      "expected_blob": "73bd6fc22992bf0dabe6b7c41414bb44cb9236f2",
+      "path": "thesis_exp/configs/exp51_hmsa/hmsa_lambda1.yaml"
+    },
+    {
+      "actual_blob": "299ed6d6f6da669870963e10e5922b01cfb17463",
+      "exact_match": true,
+      "expected_blob": "299ed6d6f6da669870963e10e5922b01cfb17463",
+      "path": "thesis_exp/configs/exp51_hmsa/source_lock.json"
+    },
+    {
+      "actual_blob": "dd5fa646879c1d7f1770d904a7daa276d0ddfea8",
+      "exact_match": true,
+      "expected_blob": "dd5fa646879c1d7f1770d904a7daa276d0ddfea8",
+      "path": "thesis_exp/exp49_cphce/METHOD.md"
+    },
+    {
+      "actual_blob": "cad662ee46cd3e865293f1dd75137a17d2f69a1a",
+      "exact_match": true,
+      "expected_blob": "cad662ee46cd3e865293f1dd75137a17d2f69a1a",
+      "path": "thesis_exp/exp49_cphce/README.md"
+    },
+    {
+      "actual_blob": "8245ae080622734d1044de09aa867d811a608455",
+      "exact_match": true,
+      "expected_blob": "8245ae080622734d1044de09aa867d811a608455",
+      "path": "thesis_exp/exp49_cphce/__init__.py"
+    },
+    {
+      "actual_blob": "a0d853e6d1de437899db91a9edb295e21c1eb07a",
+      "exact_match": true,
+      "expected_blob": "a0d853e6d1de437899db91a9edb295e21c1eb07a",
+      "path": "thesis_exp/exp49_cphce/audit_history_registry.py"
+    },
+    {
+      "actual_blob": "4c6342a20cd4b2a8315409ed208f66cca420d2a1",
+      "exact_match": true,
+      "expected_blob": "4c6342a20cd4b2a8315409ed208f66cca420d2a1",
+      "path": "thesis_exp/exp49_cphce/build_targets.py"
+    },
+    {
+      "actual_blob": "aa3fd28e05532cbd40010a70212e54f09a772b97",
+      "exact_match": true,
+      "expected_blob": "aa3fd28e05532cbd40010a70212e54f09a772b97",
+      "path": "thesis_exp/exp49_cphce/evaluate.py"
+    },
+    {
+      "actual_blob": "cb98a4f946143218345f42b17407776ae3d4290d",
+      "exact_match": true,
+      "expected_blob": "cb98a4f946143218345f42b17407776ae3d4290d",
+      "path": "thesis_exp/exp49_cphce/formal_gate.py"
+    },
+    {
+      "actual_blob": "754daf98f4a9853350c4cf504c00804d33d0beb8",
+      "exact_match": true,
+      "expected_blob": "754daf98f4a9853350c4cf504c00804d33d0beb8",
+      "path": "thesis_exp/exp49_cphce/freeze_manifest.py"
+    },
+    {
+      "actual_blob": "8747f6f8ab30e7a99b5e56f24b802718cec0eb8d",
+      "exact_match": true,
+      "expected_blob": "8747f6f8ab30e7a99b5e56f24b802718cec0eb8d",
+      "path": "thesis_exp/exp49_cphce/losses.py"
+    },
+    {
+      "actual_blob": "8b170b4d3b918d32971fa8a84a779153d2691481",
+      "exact_match": true,
+      "expected_blob": "8b170b4d3b918d32971fa8a84a779153d2691481",
+      "path": "thesis_exp/exp49_cphce/metric_contract.py"
+    },
+    {
+      "actual_blob": "f4ab934f67f36a5f786896462b148cbaf8c87f2b",
+      "exact_match": true,
+      "expected_blob": "f4ab934f67f36a5f786896462b148cbaf8c87f2b",
+      "path": "thesis_exp/exp49_cphce/train.py"
+    },
+    {
+      "actual_blob": "df5034549d3f5abf9e7cc9a7f4b8085ef3b2f0c2",
+      "exact_match": true,
+      "expected_blob": "df5034549d3f5abf9e7cc9a7f4b8085ef3b2f0c2",
+      "path": "thesis_exp/exp50_cahs/METHOD.md"
+    },
+    {
+      "actual_blob": "caf078c8242ca8e15b7993d85a262146f7abe1b7",
+      "exact_match": true,
+      "expected_blob": "caf078c8242ca8e15b7993d85a262146f7abe1b7",
+      "path": "thesis_exp/exp50_cahs/README.md"
+    },
+    {
+      "actual_blob": "16b4726665821f2184be9af1bfa4802b555db433",
+      "exact_match": true,
+      "expected_blob": "16b4726665821f2184be9af1bfa4802b555db433",
+      "path": "thesis_exp/exp50_cahs/__init__.py"
+    },
+    {
+      "actual_blob": "2991800394ca6ac8019b285c39826239a752354c",
+      "exact_match": true,
+      "expected_blob": "2991800394ca6ac8019b285c39826239a752354c",
+      "path": "thesis_exp/exp50_cahs/build_targets.py"
+    },
+    {
+      "actual_blob": "8d1a591a5867512304082f39b934c33a0850bdb0",
+      "exact_match": true,
+      "expected_blob": "8d1a591a5867512304082f39b934c33a0850bdb0",
+      "path": "thesis_exp/exp50_cahs/determinism_smoke.py"
+    },
+    {
+      "actual_blob": "f2f315588a67a12284bbf9dd8816315c13bac8d1",
+      "exact_match": true,
+      "expected_blob": "f2f315588a67a12284bbf9dd8816315c13bac8d1",
+      "path": "thesis_exp/exp50_cahs/gate.py"
+    },
+    {
+      "actual_blob": "09c9ab05127a52685c210b5512e17797672968da",
+      "exact_match": true,
+      "expected_blob": "09c9ab05127a52685c210b5512e17797672968da",
+      "path": "thesis_exp/exp50_cahs/mechanism_audit.py"
+    },
+    {
+      "actual_blob": "472a4bdcb93eb2af002d13d8bd15c7d3dad2ceac",
+      "exact_match": true,
+      "expected_blob": "472a4bdcb93eb2af002d13d8bd15c7d3dad2ceac",
+      "path": "thesis_exp/exp50_cahs/train.py"
+    },
+    {
+      "actual_blob": "2b50467dcfb1f4420f77182e5284fc104ff09ace",
+      "exact_match": true,
+      "expected_blob": "2b50467dcfb1f4420f77182e5284fc104ff09ace",
+      "path": "thesis_exp/exp51_hmsa/METHOD.md"
+    },
+    {
+      "actual_blob": "54b8b565c5552e9dfca7d5d6f88f96eccbade9ca",
+      "exact_match": true,
+      "expected_blob": "54b8b565c5552e9dfca7d5d6f88f96eccbade9ca",
+      "path": "thesis_exp/exp51_hmsa/README.md"
+    },
+    {
+      "actual_blob": "c246e0c0a39be940f3e95cb33073b13405c87abe",
+      "exact_match": true,
+      "expected_blob": "c246e0c0a39be940f3e95cb33073b13405c87abe",
+      "path": "thesis_exp/exp51_hmsa/__init__.py"
+    },
+    {
+      "actual_blob": "e14055e5ca8957f530150e8010863aee76f1b6eb",
+      "exact_match": true,
+      "expected_blob": "e14055e5ca8957f530150e8010863aee76f1b6eb",
+      "path": "thesis_exp/exp51_hmsa/audit_six_checkpoint_reload.py"
+    },
+    {
+      "actual_blob": "1ba0da595d2aea24cb4494fc8db54c922081429b",
+      "exact_match": true,
+      "expected_blob": "1ba0da595d2aea24cb4494fc8db54c922081429b",
+      "path": "thesis_exp/exp51_hmsa/build_canonical_final_report.py"
+    },
+    {
+      "actual_blob": "be4d2b4332fca2c055724c5a3d492eff2cc6c014",
+      "exact_match": true,
+      "expected_blob": "be4d2b4332fca2c055724c5a3d492eff2cc6c014",
+      "path": "thesis_exp/exp51_hmsa/build_targets.py"
+    },
+    {
+      "actual_blob": "37a32580e5b3334f579ddf90712b7259360af467",
+      "exact_match": true,
+      "expected_blob": "37a32580e5b3334f579ddf90712b7259360af467",
+      "path": "thesis_exp/exp51_hmsa/determinism_smoke.py"
+    },
+    {
+      "actual_blob": "135feff9cc6d1b3642b49cdbae9f210b89834a55",
+      "exact_match": true,
+      "expected_blob": "135feff9cc6d1b3642b49cdbae9f210b89834a55",
+      "path": "thesis_exp/exp51_hmsa/final_test.py"
+    },
+    {
+      "actual_blob": "2c038ed7f46d2139db98c4c956280b21848dd7a0",
+      "exact_match": true,
+      "expected_blob": "2c038ed7f46d2139db98c4c956280b21848dd7a0",
+      "path": "thesis_exp/exp51_hmsa/formal_gate.py"
+    },
+    {
+      "actual_blob": "c40adc5732f3c8ed0cdc2abfd303a8dfbb178a34",
+      "exact_match": true,
+      "expected_blob": "c40adc5732f3c8ed0cdc2abfd303a8dfbb178a34",
+      "path": "thesis_exp/exp51_hmsa/gate.py"
+    },
+    {
+      "actual_blob": "9f796f3db7576559afa2be2396c5a9c55ed07a04",
+      "exact_match": true,
+      "expected_blob": "9f796f3db7576559afa2be2396c5a9c55ed07a04",
+      "path": "thesis_exp/exp51_hmsa/model.py"
+    },
+    {
+      "actual_blob": "5c0f4f1f939ad1c6f7cd3ae0cf58f31f4dbd37b0",
+      "exact_match": true,
+      "expected_blob": "5c0f4f1f939ad1c6f7cd3ae0cf58f31f4dbd37b0",
+      "path": "thesis_exp/exp51_hmsa/preflight.py"
+    },
+    {
+      "actual_blob": "5c990bb65ee98ed5d8c362b9b4ca901434e82192",
+      "exact_match": true,
+      "expected_blob": "5c990bb65ee98ed5d8c362b9b4ca901434e82192",
+      "path": "thesis_exp/exp51_hmsa/train.py"
+    }
+  ],
+  "historical_commit": "fa72bd4",
+  "manifest_sha256": "23c9a36a6704b9d3a1d59cc83739e6327fc0775a7a9501929fee588a807bb2ad",
+  "source_roots": [
+    "thesis_exp/exp49_cphce",
+    "thesis_exp/exp50_cahs",
+    "thesis_exp/exp51_hmsa",
+    "thesis_exp/configs/exp49_cphce",
+    "thesis_exp/configs/exp50_cahs",
+    "thesis_exp/configs/exp51_hmsa"
+  ],
+  "status": "EXP49_TO_EXP51_SOURCE_CLOSURE_RESTORED",
+  "test_access_count": 0
+}

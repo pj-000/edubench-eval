@@ -1,0 +1,96 @@
+{
+  "status": "EXP51_FINAL_TEST_LOCKED",
+  "evaluation_source_commit": "ddb0ca72c201e9430ab381f429bc5905e66bed5f",
+  "exp51_training_source_commit": "193d64e51ddc7c0ffd8bd4c4b5d4468dafa91162",
+  "formal_protocol_commit": "f21fca2f383169f1f9969ca22e538194d889ab3b",
+  "formal_lock_manifest_sha256": "3f0a526318dcfad35776e62b35fc9417982bf88352fcdf6ed539b74ce100eaee",
+  "formal_decision_sha256": "fa9329151a900926f5c76cf910d418e9d5bcc8e761864931829fcdc2e8d3238f",
+  "relevant_worktree_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "model_name_or_path": "/home/share/models/modelscope/Qwen/Qwen3-Reranker-0.6B",
+  "seeds": [42, 43, 44],
+  "arms": ["b0", "exp51"],
+  "checkpoint_rule": "highest hard Exact_rounded; ties keep earlier epoch",
+  "b0_inference": "raw_logit_argmax",
+  "exp51_inference": "hard_head_raw_logit_argmax",
+  "expected_test_rows": 2218,
+  "test_split_hash_deferred_until_campaign": true,
+  "test_access_before_campaign": 0,
+  "checkpoints": {
+    "b0/seed_42": {
+      "path": "thesis_exp/artifacts/exp49_cphce/b0_hard_ce/seed_42/best/state_dict.pt",
+      "sha256": "726d76ffcb925d6ba557b5948feeed9eec121d92b51594c02793e5fb0af04b33",
+      "size_bytes": 1191689397,
+      "selected_epoch": 8,
+      "run_summary_sha256": "7bce3d76854e44e04cf3b1e502b21f031a177e7d9a8299e171bfc7452f98fb87"
+    },
+    "b0/seed_43": {
+      "path": "thesis_exp/artifacts/exp49_cphce/b0_hard_ce/seed_43/best/state_dict.pt",
+      "sha256": "89dd7934eec2134a6479053bd59de99da6f6f4f8f90f7b0ab924f5f6b494c9c3",
+      "size_bytes": 1191689397,
+      "selected_epoch": 3,
+      "run_summary_sha256": "9d5b9ac0877df124143a76feb82fb80b0416ed55c5e52bebc396fb9643f092cb"
+    },
+    "b0/seed_44": {
+      "path": "thesis_exp/artifacts/exp49_cphce/b0_hard_ce/seed_44/best/state_dict.pt",
+      "sha256": "9087d9d4025b48ae724315a7f0fb6c446d2e6c7b102cdb17c8bae3b21704509b",
+      "size_bytes": 1191689397,
+      "selected_epoch": 5,
+      "run_summary_sha256": "ff36d565c753d5784af9d733f34246efbe4e66731687928af11d725c6bdcac8d"
+    },
+    "exp51/seed_42": {
+      "path": "thesis_exp/artifacts/exp51_hmsa/hmsa_lambda1/seed_42/best/state_dict.pt",
+      "sha256": "968383312cf5a741c3a812fbce05c35d55520cb188ebcc0ad30683ef5fe37a70",
+      "size_bytes": 1191702198,
+      "selected_epoch": 5,
+      "run_summary_sha256": "3ec88342600da0e5eee1365171a4a15d8b1fef39c30c2af6e579f20b73867a15"
+    },
+    "exp51/seed_43": {
+      "path": "thesis_exp/artifacts/exp51_hmsa/hmsa_lambda1/seed_43/best/state_dict.pt",
+      "sha256": "e11b97b058e45499e207ff95080376c21c69528e2628ec03dc2b93c4788fbb0f",
+      "size_bytes": 1191702198,
+      "selected_epoch": 10,
+      "run_summary_sha256": "de3f7f0123856c6d61fa6b62e26e3c25b02729230f8948a4da5fd64afee6c1c5"
+    },
+    "exp51/seed_44": {
+      "path": "thesis_exp/artifacts/exp51_hmsa/hmsa_lambda1/seed_44/best/state_dict.pt",
+      "sha256": "bd54796074eb3395e0580dfcb5c6a88c30378ffd5d7e0e1dd0dedb45fa399c01",
+      "size_bytes": 1191702198,
+      "selected_epoch": 6,
+      "run_summary_sha256": "6af656ab1f895d52b1b3a980818ca29d74dade6703cc71407a67adee830230f4"
+    }
+  },
+  "files": {
+    "thesis_exp/configs/exp51_hmsa/formal_lock.json": "3f0a526318dcfad35776e62b35fc9417982bf88352fcdf6ed539b74ce100eaee",
+    "thesis_exp/configs/exp51_hmsa/formal_protocol.json": "8f871c2270ffb6638c8c50bb04d978ef8ab8f997a6e51af60fe8c5419ef78f49",
+    "thesis_exp/configs/exp51_hmsa/source_lock.json": "4072b74ca9dce9009ec8226748d53612431f774dd4ae00164d5bc28867f5249a",
+    "thesis_exp/data/splits/paper_like_triple_seed42/dev.jsonl": "a18d6a27b9a524d4592a359658ae70c9348fe88e43c962971ba95f62d2b6cdf0",
+    "thesis_exp/data/splits/paper_like_triple_seed42/train.jsonl": "0a1733b9209984c5c4291d205d1ac6057bed341717903b9de075d07de44a878e",
+    "thesis_exp/exp49_cphce/__init__.py": "14886202d13ee4c3e1769e56360aa536f3de0106cf64c8b37f635ef3ed75d249",
+    "thesis_exp/exp49_cphce/build_targets.py": "6e1c078ebdf1acb4684486a44edba4ed286c51e7ac1a64e69a847d34da2c2db6",
+    "thesis_exp/exp49_cphce/losses.py": "cc0b9a58d1697c1e354115975e7aa1e352bc2cfab709ff3fab521e2831f80a3a",
+    "thesis_exp/exp49_cphce/metric_contract.py": "338818090ca653b200140e19f27ec5965d863d9bd9eb084e406c233ce69b8ea7",
+    "thesis_exp/exp50_cahs/__init__.py": "96dc95fa221661696fb9d17ac7580142772e80ad444e3d53b447589dbc2f548a",
+    "thesis_exp/exp50_cahs/build_targets.py": "be0d44e8c88e3244134f7c770a551ad013000c46cd0081d70d1212525b22bf74",
+    "thesis_exp/exp50_cahs/train.py": "7b213eacca2ed09cbc83eeeb44994762e23997901d8f187c0a455e7c8bc137bb",
+    "thesis_exp/exp51_hmsa/__init__.py": "773c3e9a4ee4da1351a73d0e1c7aa2800dc5096c2b35c30ecd9014b40037ad49",
+    "thesis_exp/exp51_hmsa/build_targets.py": "23dba66759c3a336a8c612be0a36a7c194735ded9c5c076e5b6927f7cc43a8b1",
+    "thesis_exp/exp51_hmsa/final_test.py": "c1a9508d53338777c8919d60c0c391fd04f8ae8668bff702bc744f402144a99c",
+    "thesis_exp/exp51_hmsa/formal_gate.py": "ad022b0701e1807bf517d73ee9f58cf32db5df2aaee01777e681f50fd7938377",
+    "thesis_exp/exp51_hmsa/model.py": "7e98a241c85b0f5520661594b4e2cf8d377399e48ce2cdafc8e8c1d210111dc0",
+    "thesis_exp/exp51_hmsa/train.py": "001c68ed193e82afdccc91ead80cea8a1119ca61478b0435f052132957bd5668",
+    "thesis_exp/outputs/exp49_cphce/runs/b0_hard_ce/seed_42/run_summary.json": "7bce3d76854e44e04cf3b1e502b21f031a177e7d9a8299e171bfc7452f98fb87",
+    "thesis_exp/outputs/exp49_cphce/runs/b0_hard_ce/seed_43/run_summary.json": "9d5b9ac0877df124143a76feb82fb80b0416ed55c5e52bebc396fb9643f092cb",
+    "thesis_exp/outputs/exp49_cphce/runs/b0_hard_ce/seed_44/run_summary.json": "ff36d565c753d5784af9d733f34246efbe4e66731687928af11d725c6bdcac8d",
+    "thesis_exp/outputs/exp51_hmsa/decision/formal_decision.json": "fa9329151a900926f5c76cf910d418e9d5bcc8e761864931829fcdc2e8d3238f",
+    "thesis_exp/outputs/exp51_hmsa/runs/hmsa_lambda1/seed_42/run_summary.json": "3ec88342600da0e5eee1365171a4a15d8b1fef39c30c2af6e579f20b73867a15",
+    "thesis_exp/outputs/exp51_hmsa/runs/hmsa_lambda1/seed_43/run_summary.json": "de3f7f0123856c6d61fa6b62e26e3c25b02729230f8948a4da5fd64afee6c1c5",
+    "thesis_exp/outputs/exp51_hmsa/runs/hmsa_lambda1/seed_44/run_summary.json": "6af656ab1f895d52b1b3a980818ca29d74dade6703cc71407a67adee830230f4",
+    "thesis_exp/scripts/run_exp51_final_test.sh": "4869fedfbb5de8f6b74e804a8dde8eda9a453328ea5ff0614532024a78154527",
+    "thesis_exp/src/edujudge/exp02/__init__.py": "701c13b855a58f535fff5f4588f4dba62d5acc41a4e41fdac8be8b48ce2a0ddc",
+    "thesis_exp/src/edujudge/exp02/build_exp02_dataset.py": "82eaefd6c711f632a23d61e7591d5c447076e9e351134887b726d7db75a7d241",
+    "thesis_exp/src/edujudge/exp02/train_ce_baseline.py": "fccf33d68bdd7ea889032c071422baff6bfd1cf8a4e3e54927638bcf258c9b68",
+    "thesis_exp/src/edujudge/utils/io.py": "e19250fbf9b7a2013b61078d29100137ee6cefab76cd8dda01ab6888156f1364",
+    "thesis_exp/src/edujudge/utils/text_norm.py": "4642255f3aa0fdeeec089fc4364749943082df1a9decb992fd81aae64c1740e4",
+    "thesis_exp/tests/test_exp51_final_test.py": "df77b51d872df22ccd1927297169d92fd53c4b4bc56e45dc4f79cf6245419209"
+  }
+}

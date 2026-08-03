@@ -1,0 +1,44 @@
+{
+  "checks": {
+    "bias_or_l2h_improves": true,
+    "exact_loses_at_most_two_rows": true,
+    "finite": true,
+    "kendall_noninferior": true,
+    "l2h_does_not_increase": true,
+    "label4_loses_at_most_three_rows": true,
+    "label5_loses_at_most_three_rows": true,
+    "mae_improvement_at_least_0p005": true
+  },
+  "comparison": {
+    "b0_bias": 0.11395582329317268,
+    "b0_exact_correct": 477,
+    "b0_l2h_count": 11,
+    "b0_label4_correct": 164,
+    "b0_label5_correct": 289,
+    "b0_selected_epoch": 8,
+    "delta_exact": 0.010542168674698704,
+    "delta_kendall": 0.027957890429971988,
+    "exp51_bias": 0.09437751004016062,
+    "exp51_exact_correct": 484,
+    "exp51_l2h_count": 7,
+    "exp51_label4_correct": 167,
+    "exp51_label5_correct": 293,
+    "exp51_selected_epoch": 5,
+    "mae_improvement": 0.00953815261044183,
+    "seed": 42
+  },
+  "mcnemar": {
+    "b0_correct_exp51_wrong": 35,
+    "b0_wrong_exp51_correct": 42,
+    "discordant": 77,
+    "two_sided_exact_p": 0.49438227369550003
+  },
+  "paired_bootstrap": {
+    "ci_high": 0.011044176706827303,
+    "ci_low": -0.030120481927710854,
+    "mean_delta_mae": -0.009538152610441775,
+    "resamples": 10000
+  },
+  "passed": true,
+  "status": "EXP51_SEED42_PASS"
+}

@@ -1,0 +1,104 @@
+{
+  "status": "EXP60_DRAFT_FOR_INDEPENDENT_REVIEW_NOT_AUTHORIZED_FOR_TRAINING",
+  "draft_date": "2026-08-03",
+  "name": "Geometry-Matched Shuffled Orthogonal Semantic Specificity Control",
+  "role": "single-variable mechanism control; not a new deployable architecture or loss",
+  "scientific_question": "Does the non-collinear residual benefit require alignment with the current sample's observed rater distribution, or can a norm-matched mismatched orthogonal residual reproduce it?",
+  "allowed_splits": ["train", "dev"],
+  "historical_test_access": "forbidden",
+  "test_access_count": 0,
+  "model_name_or_path": "/home/share/models/modelscope/Qwen/Qwen3-Reranker-0.6B",
+  "data_split": "paper_like_triple_seed42",
+  "arms": {
+    "consensus_only": "G_C",
+    "aligned_orthogonal_only": "G_C + O_A",
+    "matched_shuffled_orthogonal_only": "G_C + O_pi_tilde",
+    "head_rule": "all arms retain identical complete hard-head hard-CE and soft-head empirical soft-CE updates; only the backbone residual component differs",
+    "diagnostic_rule": "all arms compute aligned and shuffled residual VJPs with identical restored RNG states",
+    "inference": "hard-head raw-logit argmax only"
+  },
+  "mapping": {
+    "stratum": "hard label",
+    "algorithm": "deterministic maximum-mismatch bijection preserving the exact target-vector multiset",
+    "tie_break": "target_thirds then record_id lexicographic order",
+    "model_or_dev_information": false,
+    "frozen_sha256_required_before_training": true,
+    "zero_shuffled_nonzero_aligned_action": "stop; mapping may not be replaced"
+  },
+  "geometry": {
+    "space": "trainable backbone raw-parameter-gradient space after every accumulation window and before one standard global clip",
+    "aligned": "O_A = P_perp(G_C^B) R_A",
+    "shuffled": "O_pi = P_perp(G_C^B) R_pi",
+    "match": "O_pi_tilde = norm(O_A)/(norm(O_pi)+zero_guard) * O_pi",
+    "head_support": "all three residual components are exact zero on hard and soft heads",
+    "local_identification_scope": "instantaneous geometry is matched within each arm's current state; future optimization trajectories are not claimed identical"
+  },
+  "fixed_training": {
+    "epochs": 10,
+    "primary_checkpoint": "fixed epoch 10",
+    "secondary_checkpoint_sensitivity": "highest dev Exact_rounded; ties keep earlier epoch",
+    "learning_rate": 0.00002,
+    "weight_decay": 0.01,
+    "warmup_ratio": 0.05,
+    "scheduler": "cosine_with_warmup",
+    "micro_batch_size": 4,
+    "eval_batch_size": 4,
+    "gradient_accumulation_steps": 32,
+    "partial_window_rule": "20 full 32-microbatch windows and one fixed 24-microbatch final window per epoch; inherited loss scale remains 1/32",
+    "max_grad_norm": 1.0,
+    "max_length": 2048,
+    "precision": "bf16",
+    "gradient_checkpointing": true,
+    "aux_weight": 1.0,
+    "hyperparameter_search": false
+  },
+  "formal_runs": {
+    "variants": [
+      "consensus_only",
+      "aligned_orthogonal_only",
+      "matched_shuffled_orthogonal_only"
+    ],
+    "fresh_seeds": [47, 48, 49],
+    "run_count": 9,
+    "concurrent_endpoint_trainer": true
+  },
+  "implementation_gates_before_training": {
+    "normalized_orthogonality_error_at_most": 0.000001,
+    "component_norm_relative_error_at_most": 0.0001,
+    "preclip_total_norm_relative_error_at_most": 0.0001,
+    "clip_coefficient_relative_error_at_most": 0.0001,
+    "residual_head_norm_at_most": 1e-12,
+    "one_standard_global_clip": true,
+    "test_access_count": 0
+  },
+  "primary_comparison": {
+    "delta": "aligned_orthogonal_only minus matched_shuffled_orthogonal_only",
+    "metric": "MAE_human_mean at fixed epoch 10",
+    "all_required": {
+      "favorable_MAE_seeds": 3,
+      "mean_delta_MAE_at_most": -0.005,
+      "mean_delta_Exact_at_least": -0.003,
+      "mean_delta_Kendall_at_least": -0.005,
+      "three_seed_mean_paired_question_cluster_bootstrap_CI_upper_below": 0.0,
+      "aligned_minus_consensus_MAE_direction": "negative"
+    }
+  },
+  "bootstrap_estimand": "item-weighted mean paired MAE difference with question-cluster resampling, conditional on the three trained seeds",
+  "stop_conditions": [
+    "mapping does not achieve the theoretical maximum mismatch",
+    "geometry or clip matching gate failure",
+    "shuffled orthogonal norm is zero while aligned is nonzero",
+    "NaN, Inf or training crash",
+    "residual component enters either head",
+    "source-lock, data or configuration mismatch",
+    "test_access_count is nonzero"
+  ],
+  "prohibited": [
+    "formal GPU training before independent review and source lock",
+    "mapping replacement after a preflight or result",
+    "residual-weight, learning-rate, epoch or clipping search",
+    "dev-selected checkpoint as the primary result",
+    "switching the primary comparison after results",
+    "historical test access"
+  ]
+}

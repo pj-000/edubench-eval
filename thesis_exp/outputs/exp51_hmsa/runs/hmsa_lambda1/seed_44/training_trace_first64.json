@@ -1,0 +1,781 @@
+{
+  "head_contract": {
+    "hard_bias": false,
+    "hard_head_hash": "4d623081343b16ef0b0aa9057da9a800e0d5c3011a4798b494fbf40db240bf57",
+    "hard_parameter_count": 5120,
+    "soft_bias": false,
+    "soft_head_hash": "4d623081343b16ef0b0aa9057da9a800e0d5c3011a4798b494fbf40db240bf57",
+    "soft_parameter_count": 5120,
+    "storage_independent": true
+  },
+  "trace": [
+    {
+      "hard_loss": 4.204829216003418,
+      "micro_step": 1,
+      "record_ids": [
+        "2bac13737e85d5eca0ff19d3b172271ec1c99cad",
+        "fab6da8b2e93d4b9b86952814b91085880ca67df",
+        "1ed8673a0b565be508367b6627587dd6371b268a",
+        "72d9f60e87b74354a687dcab67f1da99f4d2d163"
+      ],
+      "soft_loss": 3.9808712005615234,
+      "total_loss": 8.185700416564941
+    },
+    {
+      "hard_loss": 5.048168182373047,
+      "micro_step": 2,
+      "record_ids": [
+        "a73deaf1c2383387bfbc21f864e6b8620f9a6dd0",
+        "7c716be03cf9cf46f20d1d10c090bfc01367c259",
+        "9259d6feeca223cb6d959b6feecb6c843e8154b6",
+        "ff5696da7330a8055688d8d5c990534f9add747a"
+      ],
+      "soft_loss": 4.555451393127441,
+      "total_loss": 9.603619575500488
+    },
+    {
+      "hard_loss": 4.39531946182251,
+      "micro_step": 3,
+      "record_ids": [
+        "c598854a27a833bf74f367d7745152d70abade27",
+        "883f453017a4f3bc2898615096990585b5608617",
+        "6e36e2623aaecf02383ec8277114b344a56e497a",
+        "fb78c96abcc3629f7483ecd5ad5644f92129cbe2"
+      ],
+      "soft_loss": 4.292638301849365,
+      "total_loss": 8.687957763671875
+    },
+    {
+      "hard_loss": 3.1052186489105225,
+      "micro_step": 4,
+      "record_ids": [
+        "a1f0c389eee3902130286b10a8686f650813e7a1",
+        "4c0bf51f9684459e8d17d1557a13f2800ea6fbec",
+        "5decb92b10c1ebcb70ed7daf29cf7aea969d26eb",
+        "584cb8ac832472c981145135cdcc05113d9f8e7a"
+      ],
+      "soft_loss": 2.864333152770996,
+      "total_loss": 5.969552040100098
+    },
+    {
+      "hard_loss": 4.44577693939209,
+      "micro_step": 5,
+      "record_ids": [
+        "13d04f08a0d70c9f135178c8257a87a5dbeb4f4a",
+        "293b29a2622713babcb8a2dbc341d9f224d6c8b2",
+        "99984b4ac9c815f89947481885a6b4c729241985",
+        "e78781ba44e7ccd99d93c2d2256495034a753f86"
+      ],
+      "soft_loss": 3.243302822113037,
+      "total_loss": 7.689079761505127
+    },
+    {
+      "hard_loss": 3.5225911140441895,
+      "micro_step": 6,
+      "record_ids": [
+        "4c51c3a532e7f5c624845b801d9d2881b812fa1d",
+        "a15817b8f416a5491c62edfc850d19da67c07dc2",
+        "79c93e933d6ec54be05b7d9732a0dd50971aac3b",
+        "7996dd4c4aa987284f8e8e95ad2f7b236f20bc87"
+      ],
+      "soft_loss": 3.6798176765441895,
+      "total_loss": 7.202408790588379
+    },
+    {
+      "hard_loss": 3.3824760913848877,
+      "micro_step": 7,
+      "record_ids": [
+        "cf07f45ce3ebb990b0f60ca6ee5985416b21d8d8",
+        "8b94a8180752ddf171f736afefe57ea997bf0c3f",
+        "b2ff82a9b866a81cf9d37dde2158bbc2ac0a02b9",
+        "4a679713ec80ab8157a4e56975178a08d5267ebc"
+      ],
+      "soft_loss": 3.302398204803467,
+      "total_loss": 6.684874534606934
+    },
+    {
+      "hard_loss": 3.207095146179199,
+      "micro_step": 8,
+      "record_ids": [
+        "f9cef5ad1ade3908365e5424240b3154d1c1eca6",
+        "9a895005b34aaf5a5462f7c5e53bcfb17bfb7f53",
+        "61a435f8b2d6f3e9b66bdc3d0b0b2aa5ddd2c393",
+        "1d12e224633936ac9f8524b8d553914f0302fee8"
+      ],
+      "soft_loss": 3.661522388458252,
+      "total_loss": 6.868617534637451
+    },
+    {
+      "hard_loss": 2.7658467292785645,
+      "micro_step": 9,
+      "record_ids": [
+        "a5d65c72cc1854dbaa2d3b9b99e807d8f82c1307",
+        "c80788ecca899afd68c1d7fb84b388a31aa4568a",
+        "69f0770e2ac4449e0064d14523d37dda1a1a47f4",
+        "c59549929c8107f772e82ebcc8c4dfe9c69c8a16"
+      ],
+      "soft_loss": 3.292987108230591,
+      "total_loss": 6.058834075927734
+    },
+    {
+      "hard_loss": 1.927395224571228,
+      "micro_step": 10,
+      "record_ids": [
+        "b2fefc56f706f7f81c354a6946b1c5c6402a93f1",
+        "f039a41fad3824842e2abc63d07fbc25515aec94",
+        "b3d5ee39bbc3b07f751503e7b6b380a018f6caf1",
+        "fc977252160db97ee979f7ad7768bbefa30c6e57"
+      ],
+      "soft_loss": 2.9239773750305176,
+      "total_loss": 4.851372718811035
+    },
+    {
+      "hard_loss": 4.0864386558532715,
+      "micro_step": 11,
+      "record_ids": [
+        "f8fe4a6504e3441dd41d9b45f63f2c13152dabe6",
+        "d4184e14af786a67a6fc0d18a10d71633e1ed70d",
+        "cfb81571b29ab9d333ce73c425d92ffc518d0724",
+        "b0106edd91e17115dd57dc504576ffcd10f4692c"
+      ],
+      "soft_loss": 4.188652038574219,
+      "total_loss": 8.275091171264648
+    },
+    {
+      "hard_loss": 3.1474316120147705,
+      "micro_step": 12,
+      "record_ids": [
+        "eb2c936e5d990100aec194bd3defd64d290ff06f",
+        "9f9410bfb373350db01cf4cdbcc608abbe83715d",
+        "c5c5d712e8e76b3bc7e2d9ee560080c5bf5b92fb",
+        "1306af08bd266c0cc70dcc32663b886f43ad6d58"
+      ],
+      "soft_loss": 3.1398632526397705,
+      "total_loss": 6.287294864654541
+    },
+    {
+      "hard_loss": 4.008678913116455,
+      "micro_step": 13,
+      "record_ids": [
+        "55c5bf0b5181e3df38c28335bce74e9835e2e6f9",
+        "382276d5fdd2fcd5072674703e6847f553be31ac",
+        "588c6ef26d7976e58f0eeed1401f2ceb9995c378",
+        "67ae8a411747f7d479869c5034f287cc228f8106"
+      ],
+      "soft_loss": 4.075410842895508,
+      "total_loss": 8.084089279174805
+    },
+    {
+      "hard_loss": 3.5680088996887207,
+      "micro_step": 14,
+      "record_ids": [
+        "3cdde12207ae884f8277f44fbf883427ce65b8e3",
+        "60df4bd6d509f7db4e0c75e35a5cfba02e98c6ad",
+        "88a0ab6cae8b29dd3900aa95f9283695ea069905",
+        "11ae3b7eeb6cb366b2b9cfc1cfe33bf837611990"
+      ],
+      "soft_loss": 3.8700923919677734,
+      "total_loss": 7.438101291656494
+    },
+    {
+      "hard_loss": 5.2288103103637695,
+      "micro_step": 15,
+      "record_ids": [
+        "f8eceddfb02a4a07941c193a52952617e27a62fc",
+        "62ee5e704ae78654177bfcff5ce35cae5e371aed",
+        "75077596e274ffc21186e7cb30eefece28d48574",
+        "12b0fbaa8dc92d70e5f3a1c5b668c285c85d33fb"
+      ],
+      "soft_loss": 4.5881853103637695,
+      "total_loss": 9.816995620727539
+    },
+    {
+      "hard_loss": 2.417421817779541,
+      "micro_step": 16,
+      "record_ids": [
+        "ead20b3926355774d5e7cfc61c8351ae4595a0c3",
+        "865a6b6826100205770e18460081bac95ae27273",
+        "c3545804d24cd9ce387bb585219bc16cd8c8c30f",
+        "79578290b5204df5e21b484daeb9c2ff5857f8a8"
+      ],
+      "soft_loss": 2.556093692779541,
+      "total_loss": 4.973515510559082
+    },
+    {
+      "hard_loss": 4.7473835945129395,
+      "micro_step": 17,
+      "record_ids": [
+        "b98565af716b7812b910bc9f66f10ffbf09b5e41",
+        "5501e81406155851b540318bda30d02b86ee55be",
+        "93cd1449df959f96d893c4901f0fa8517bda3f69",
+        "43eec9ed192dec3286e91ab8b1af39d45f723bb1"
+      ],
+      "soft_loss": 4.401191711425781,
+      "total_loss": 9.148574829101562
+    },
+    {
+      "hard_loss": 3.2169201374053955,
+      "micro_step": 18,
+      "record_ids": [
+        "0665f2ceb51e696930c562b371b2f18a70660587",
+        "45d0c0cdd54aa4d0a87f613141225d0192aede43",
+        "4569b3f1a76774a37b95cae2b14c2655c265d101",
+        "cbb12b90983260da2928afe2509f16f9e709c9be"
+      ],
+      "soft_loss": 3.7891857624053955,
+      "total_loss": 7.006105899810791
+    },
+    {
+      "hard_loss": 3.5791587829589844,
+      "micro_step": 19,
+      "record_ids": [
+        "35ebb6325761470a0fc0e7017ae1cbd7cbf40694",
+        "0e2a102fe1028a7e945835ad6ac72dcf8cbbe661",
+        "0437d0cfa0dce66ccca098964dc8a1bba6a151b5",
+        "d37bb087964545b6242eaad017fa9694a6b0395a"
+      ],
+      "soft_loss": 3.689530372619629,
+      "total_loss": 7.268689155578613
+    },
+    {
+      "hard_loss": 3.732865333557129,
+      "micro_step": 20,
+      "record_ids": [
+        "8191df49884552ee2a983c084f5d63f5f3c4cee1",
+        "ef81aa51a96cc526752db4c4e670dae998589e2a",
+        "f2bb56fb3fc9f75cef1397957987f1a120e8a728",
+        "6754a8636ce3e8ccd64682888d97500059a2886a"
+      ],
+      "soft_loss": 4.176224708557129,
+      "total_loss": 7.909090042114258
+    },
+    {
+      "hard_loss": 4.0992913246154785,
+      "micro_step": 21,
+      "record_ids": [
+        "9b9ee2e1500f7071f755ec9db5b2e5ddfc811b03",
+        "415298d44a255a1aad7e9e0f4293f9c7462692f8",
+        "0034fd2db48e99c02674ca6f1f947b0b8b62beec",
+        "91f4788814e9fcc91b7af3a44ad65d2d958c07ec"
+      ],
+      "soft_loss": 3.9674553871154785,
+      "total_loss": 8.066746711730957
+    },
+    {
+      "hard_loss": 3.201687812805176,
+      "micro_step": 22,
+      "record_ids": [
+        "6377f7e3f43e2bd08b05b5d3ca05c0fb6962bbd9",
+        "7956279b7819b86409fa3c3dd7d64661d6db60d7",
+        "721a1089750ecbb861f222baf30af369353c2b21",
+        "03755d25914c85c6eaabd46795cf656ef79566af"
+      ],
+      "soft_loss": 3.201687812805176,
+      "total_loss": 6.403375625610352
+    },
+    {
+      "hard_loss": 4.605872631072998,
+      "micro_step": 23,
+      "record_ids": [
+        "20b6c353348bf6455daf7c488443ac92d0d10f09",
+        "4636dcd0011a3366d7bd82f89368e54f8dfcfc93",
+        "92f8101bd483ca1bfd26a29bdbb57d680086a3e9",
+        "a0fac572005a701a61b075857bf62319aa6291e7"
+      ],
+      "soft_loss": 4.338212966918945,
+      "total_loss": 8.944086074829102
+    },
+    {
+      "hard_loss": 3.37981915473938,
+      "micro_step": 24,
+      "record_ids": [
+        "5543f359f58362e55ef4bba0fdc6560fd79cc400",
+        "c96f0f988d4c5dd461367a76d6e3aacc1ef6c298",
+        "8fb87223bc3a10b230967e9a774713754d5f9fd9",
+        "1a8f9e815deea759df9aaa1b09ca5948bb2f901c"
+      ],
+      "soft_loss": 3.6636734008789062,
+      "total_loss": 7.043492317199707
+    },
+    {
+      "hard_loss": 5.247590065002441,
+      "micro_step": 25,
+      "record_ids": [
+        "20b1d09ee43a182552456c40a5facafd18404929",
+        "03f45ca8c80619be890df69d51a2eb51823c5731",
+        "36bbff4e11c16a54642867c13c4cdeefc2ec5177",
+        "f09de0f8062a115ab351d9e9d270f61460fcc8db"
+      ],
+      "soft_loss": 4.153514385223389,
+      "total_loss": 9.401103973388672
+    },
+    {
+      "hard_loss": 4.959006309509277,
+      "micro_step": 26,
+      "record_ids": [
+        "241f608505c2c42c6ab9ad2668fc95b4e4ebda1d",
+        "fcb60b285f3b8d66baa5837a442e1a8727956209",
+        "38198e8112f6fbc14a8e497a27d171d03f8cedda",
+        "fbdd0a82669d1fbe2dcf93858f3b9413478325cb"
+      ],
+      "soft_loss": 4.531760215759277,
+      "total_loss": 9.490766525268555
+    },
+    {
+      "hard_loss": 2.064117431640625,
+      "micro_step": 27,
+      "record_ids": [
+        "3a15e3bd0f3476fbd36250b022ddae18238de620",
+        "71826863b48892f1eac56519b3dc87008419e4a0",
+        "cb14b4c71cf459e9f2beecb98fe996141c03425a",
+        "c66470c6e72269d1c627c7b2e08eb92284b54649"
+      ],
+      "soft_loss": 2.433258056640625,
+      "total_loss": 4.49737548828125
+    },
+    {
+      "hard_loss": 3.782365322113037,
+      "micro_step": 28,
+      "record_ids": [
+        "26df3f681793575e777775d6d94b2ccc276bb7c5",
+        "19f72fcf5b72ea532cb0862c5f34764d5a7fcd35",
+        "4120359499d292030549af56f9241bdf529b689b",
+        "dbdc559b17ab6d5554875205fb86e2322a786014"
+      ],
+      "soft_loss": 4.007646560668945,
+      "total_loss": 7.790011882781982
+    },
+    {
+      "hard_loss": 3.6578264236450195,
+      "micro_step": 29,
+      "record_ids": [
+        "bbd8fe34d3db1925fa68024a660d12814f4b5e04",
+        "7869c723157aeef87aceb83488ff928e0f29e293",
+        "a141cd1abe59260dc0d0b4c4fd40ba271ad76063",
+        "70761f0450d5966c67210fa5a4eb646c29606fb8"
+      ],
+      "soft_loss": 3.4486794471740723,
+      "total_loss": 7.106505870819092
+    },
+    {
+      "hard_loss": 3.581590175628662,
+      "micro_step": 30,
+      "record_ids": [
+        "aecd1f611f3240d1b34cc110420629542708fd0a",
+        "d268dd8b02bdea0dbccedc1e9e224eb83323bb61",
+        "4543320628f35f7b59725b052912213d0d9d37e8",
+        "b98512826084e19226d9cd1e01fb27008fd3f85c"
+      ],
+      "soft_loss": 3.4914207458496094,
+      "total_loss": 7.0730109214782715
+    },
+    {
+      "hard_loss": 4.141948699951172,
+      "micro_step": 31,
+      "record_ids": [
+        "2e264600b5333a70972a8032b98e2fb9707267f4",
+        "0575632a8d01ebe516fabf0f509b77b2a8f1a5b2",
+        "d0abd105b80d85ebe68890f9cf40c0c012e1d03a",
+        "0c35ccaa8ff4ca51153a23d6470937f56e5d8d93"
+      ],
+      "soft_loss": 4.604024887084961,
+      "total_loss": 8.745973587036133
+    },
+    {
+      "hard_loss": 4.000467300415039,
+      "micro_step": 32,
+      "record_ids": [
+        "1564dd97c837673324b306b66b34777b56da86f6",
+        "21f5f80b51318ecab52965c45671aa7102809562",
+        "07a9883089c759edc2978f3ee1f4bf2c3cad79f3",
+        "12747760c9e36c869507f117c7053340bdfad0cd"
+      ],
+      "soft_loss": 3.874490976333618,
+      "total_loss": 7.874958038330078
+    },
+    {
+      "hard_loss": 2.6879992485046387,
+      "micro_step": 33,
+      "record_ids": [
+        "49318c4f0d2ec2244ac543b0db468afaf9a85d1b",
+        "5072897db721e1dcafec66decf6ae1cb3e20fcf7",
+        "4114009a0c88d7adb6d2ccb60fc8d2ee6eaf0924",
+        "1823b34eb58e1bac98a413e1a699220e913ed66c"
+      ],
+      "soft_loss": 2.9891059398651123,
+      "total_loss": 5.677104949951172
+    },
+    {
+      "hard_loss": 3.3714330196380615,
+      "micro_step": 34,
+      "record_ids": [
+        "e4fcfe8d0e70129d2a565f9279a564a7e9ebb0c5",
+        "4153d3a9a2b62778bf32e38aa33be57d0215987d",
+        "f2ce9bdbbf6be947ffa4940b026ab08df8a0ab47",
+        "d1d0a6c9052622518e48571afb5a55d46d9ae29a"
+      ],
+      "soft_loss": 3.171888828277588,
+      "total_loss": 6.54332160949707
+    },
+    {
+      "hard_loss": 3.5650665760040283,
+      "micro_step": 35,
+      "record_ids": [
+        "46133cfb383c1c10e94bab324dabdce1277ab939",
+        "ee679a5b5cf9af727f6cf8405556eae37f874ef8",
+        "953b4370e424a78047c930da8392bb57795469dc",
+        "f7c2ac30a42fab50b69c92e2bd8e483c557cc9f7"
+      ],
+      "soft_loss": 3.8350048065185547,
+      "total_loss": 7.400071144104004
+    },
+    {
+      "hard_loss": 3.746913433074951,
+      "micro_step": 36,
+      "record_ids": [
+        "55034e794dc65dd3e25bd8ac35fbcf6e683e499e",
+        "8091d8161c7ca86d5fc5235f685dfd0e7a4dbb10",
+        "b229a9127206617486d10308d17d5ab7a5ce538f",
+        "f4c97611a747acd221ea7c23b165bea5cdee4d8c"
+      ],
+      "soft_loss": 3.3432676792144775,
+      "total_loss": 7.090181350708008
+    },
+    {
+      "hard_loss": 4.7678680419921875,
+      "micro_step": 37,
+      "record_ids": [
+        "05dc89b2e8a5872aa50732857058c8c17d90b66d",
+        "50349ad7c5ffd383619779fefbafa4c8fc0b2fd6",
+        "327d944b5588223ee01f87fed218bbe0c40c9818",
+        "4646eb6596e7af17c8389ea9fb2ab13cadc54681"
+      ],
+      "soft_loss": 4.13245153427124,
+      "total_loss": 8.900320053100586
+    },
+    {
+      "hard_loss": 3.36238694190979,
+      "micro_step": 38,
+      "record_ids": [
+        "48844f5c242cbdca49b24697909de45cd32b6c4f",
+        "680c2d6218874f5470c9a3aa212a6958c64ab524",
+        "bc2377fc98fd4e0d8380a075dc8dca6aff294709",
+        "5a7339369e02b0bf86476fd651b3f89bbde8699b"
+      ],
+      "soft_loss": 3.5720224380493164,
+      "total_loss": 6.934409141540527
+    },
+    {
+      "hard_loss": 4.162365913391113,
+      "micro_step": 39,
+      "record_ids": [
+        "b6eb6a3179f08f55f88820e5b6d2052d33ba7abc",
+        "a0d8761b0cd6aea4b4b2e373d723d13954b9a5db",
+        "d282e920cd565d941c0f18deec534743a7340a3b",
+        "3850183ca37325e321b607f1203c6f0df49ec158"
+      ],
+      "soft_loss": 4.015536308288574,
+      "total_loss": 8.177902221679688
+    },
+    {
+      "hard_loss": 4.68310022354126,
+      "micro_step": 40,
+      "record_ids": [
+        "209a0a78a689407502d6834b0c634b2dea5153b5",
+        "03f5d9758c7a62f42ea24d2e10cba7cafbd492f4",
+        "2a215ad07c321810a3dfb3f9f1a139cbc38858f0",
+        "57d32472b460f128da0b279438c6a12393b0270a"
+      ],
+      "soft_loss": 4.539219856262207,
+      "total_loss": 9.222320556640625
+    },
+    {
+      "hard_loss": 3.3492515087127686,
+      "micro_step": 41,
+      "record_ids": [
+        "2b9ac3140f1f89b61bde336155e6f4e67f4efe8d",
+        "93d126c0a2f73ad392102a1486155d1c187f1f4d",
+        "4f78d2eb60150e4d97ed01870f03ea619e3066a4",
+        "ccc3cb559df9ddd31e167ccb8bbd83c6c3154e13"
+      ],
+      "soft_loss": 3.650683879852295,
+      "total_loss": 6.999935150146484
+    },
+    {
+      "hard_loss": 3.8116376399993896,
+      "micro_step": 42,
+      "record_ids": [
+        "e2bd358565cf7fece447cee6def671de0dacfc7a",
+        "b4117735234c2ae52e8da1eed927ef89749d8b67",
+        "71d8aecb1789f7e20231134c4b6b2d9070474ad7",
+        "8b0960f12507e1b3e48b5a31c9801096300a7355"
+      ],
+      "soft_loss": 3.924593448638916,
+      "total_loss": 7.736230850219727
+    },
+    {
+      "hard_loss": 4.4440202713012695,
+      "micro_step": 43,
+      "record_ids": [
+        "c439ca329195026c985fb818f343672e54980243",
+        "366f7b41d5134e7561de9a49b3fa40d8382c16c8",
+        "7859cb9c01364f31af32c29ad42ae7f65f1358de",
+        "dadf4459ca5da7e900925be45157d71bb6f1aa56"
+      ],
+      "soft_loss": 4.461273193359375,
+      "total_loss": 8.905293464660645
+    },
+    {
+      "hard_loss": 4.9828410148620605,
+      "micro_step": 44,
+      "record_ids": [
+        "3299ea3016e4406ae4252b7b0d3651b701480ac2",
+        "858a04b62cf4253a9bbe60ed7d42d749883c6527",
+        "4137b3767bcee82093fd5d42df25a8a3ea154015",
+        "2e86218bfa7eb7b2152cc7677c048f829d5455dd"
+      ],
+      "soft_loss": 4.403779983520508,
+      "total_loss": 9.386621475219727
+    },
+    {
+      "hard_loss": 3.8971426486968994,
+      "micro_step": 45,
+      "record_ids": [
+        "4622cfaeee381397df1162d10d99e6e1b1078983",
+        "dc3ff176c94b7548bd5cdb73752a5a5cb0946aa9",
+        "2e554ec2c59cb3b033dbee60a7a8107a806d4fba",
+        "e8eaac2d34fe22bfaeea169dbdf5be45c09c1213"
+      ],
+      "soft_loss": 4.312507629394531,
+      "total_loss": 8.209650039672852
+    },
+    {
+      "hard_loss": 1.5804184675216675,
+      "micro_step": 46,
+      "record_ids": [
+        "81b0a87bc2607bc381b6f4590571dc027e82c028",
+        "e411072cba646476b2d7c17b7ff2d3ae5cbf9c7d",
+        "dab1feb7eef433a241086fa5a85ea444dd655562",
+        "7f474f93d1bb8c2770cc7c8ab8464c1d7389c3cb"
+      ],
+      "soft_loss": 1.6938625574111938,
+      "total_loss": 3.2742810249328613
+    },
+    {
+      "hard_loss": 4.386702060699463,
+      "micro_step": 47,
+      "record_ids": [
+        "7a53d8265663c503136bd7d4b1246df45851740b",
+        "d10ae0ebdf1c25e8eeafb2133bf931379e0261d7",
+        "bb7a87c1c53f5385476d8cf6f149bf179d67f09e",
+        "d5c3174ca05b7f833833bb226bbf5fbc3073901e"
+      ],
+      "soft_loss": 4.063948631286621,
+      "total_loss": 8.450651168823242
+    },
+    {
+      "hard_loss": 3.2796618938446045,
+      "micro_step": 48,
+      "record_ids": [
+        "670a70da279583b9094c9f260f8fcfba2e48a1f4",
+        "6d85503c3331e55e4dc4d4b4a40a6dbe8d96fd45",
+        "bdfb1901aed7bfddbd4bcd0898854e7ecfd4513c",
+        "da58b3f4a39062cf7c44b466b552d68bce879b8c"
+      ],
+      "soft_loss": 3.1236562728881836,
+      "total_loss": 6.403318405151367
+    },
+    {
+      "hard_loss": 3.108407497406006,
+      "micro_step": 49,
+      "record_ids": [
+        "70387089746788f96ca3eb71ef89e18fb515888e",
+        "8643d5e766e61e091b7bbdbf4c8b085333b7b506",
+        "08dc1b51bef5ef7d7ceabf8df2856589e4e36f56",
+        "ad14023eebac62d6ea845efe3a15e166e42f1539"
+      ],
+      "soft_loss": 3.5804128646850586,
+      "total_loss": 6.6888203620910645
+    },
+    {
+      "hard_loss": 3.692490577697754,
+      "micro_step": 50,
+      "record_ids": [
+        "cee900ae54fa6eebba02a393eb17608c77e96b4b",
+        "f845eb149f69a44fb1c51bcc78ef541b002ec07c",
+        "dc527d0535973541ede5794711ce6792d8ea0269",
+        "fc6a26599e78de3c990971e47a05e3030abfad49"
+      ],
+      "soft_loss": 3.6532654762268066,
+      "total_loss": 7.3457560539245605
+    },
+    {
+      "hard_loss": 4.548832893371582,
+      "micro_step": 51,
+      "record_ids": [
+        "76cdeb3d77092d92ebf9c7e4e9a68abbc10372bf",
+        "abdb228a62bf18c602a9070080e2ce4f04c4b898",
+        "6d4feb8b6162c6908d6fb004bed7cea2110298ef",
+        "7b901d6b17d594fc711dc1074ce82ae41e01649f"
+      ],
+      "soft_loss": 4.080082893371582,
+      "total_loss": 8.628915786743164
+    },
+    {
+      "hard_loss": 4.1038713455200195,
+      "micro_step": 52,
+      "record_ids": [
+        "130b9044b1debd72bd2bb3dabbcfc7081a1966bc",
+        "85be2cf548d17c40e595b471dd4eb651f10f8edf",
+        "f8abceaa5f2951bec81757f8a16604d324f2fbb2",
+        "7719f29bf1fbb50238913b7546558c1454877c6d"
+      ],
+      "soft_loss": 3.860381603240967,
+      "total_loss": 7.964252948760986
+    },
+    {
+      "hard_loss": 4.906280517578125,
+      "micro_step": 53,
+      "record_ids": [
+        "18648970913f54573650bc09b724371f3bbb59fc",
+        "61584b63fddcf2c5d0a1304d65582607b9fbd0b7",
+        "ef502614a2e376d5cdab1eb11d34195ce4c2b3c7",
+        "41eb55e5d3584329f599a5075f3f50da9ab7ad85"
+      ],
+      "soft_loss": 4.302439212799072,
+      "total_loss": 9.208719253540039
+    },
+    {
+      "hard_loss": 3.6557857990264893,
+      "micro_step": 54,
+      "record_ids": [
+        "0e3d5c687438b64279a046f606b5db3439fac4e8",
+        "a356107aea60ba977be7125cd35c33031b5c1dd5",
+        "f148ff8c63d243258e1a121140572d66e953f936",
+        "508aa2e79011f122e617183d021022adc499c7f3"
+      ],
+      "soft_loss": 3.8317298889160156,
+      "total_loss": 7.487515449523926
+    },
+    {
+      "hard_loss": 3.92811918258667,
+      "micro_step": 55,
+      "record_ids": [
+        "3a3e408111522b7ad17a38bd71c656230d18396d",
+        "1ba165ecc185b3f9ae7b260dd7b52a2886f6ff02",
+        "10c69dd1e604977b423b722728a48a4f826a5590",
+        "8528f75793308cd0206262f08501e923b2ba9df6"
+      ],
+      "soft_loss": 3.875791549682617,
+      "total_loss": 7.803910732269287
+    },
+    {
+      "hard_loss": 3.7969799041748047,
+      "micro_step": 56,
+      "record_ids": [
+        "6b0714e56afaddc9f3d583f946a6665e54d85759",
+        "9f6de2c323a3d6a9a659f074bdced160a364d883",
+        "de398681a4fc9f4a9b205630868fbd74d38decf4",
+        "477425c66921d1de0be05897ab5403360b2c65ed"
+      ],
+      "soft_loss": 3.68520450592041,
+      "total_loss": 7.482184410095215
+    },
+    {
+      "hard_loss": 2.626042127609253,
+      "micro_step": 57,
+      "record_ids": [
+        "6544254c0cbe1ddf63750f5fb99d1f4f9fc539f2",
+        "18ae31b0930f4812f14b417a1b631e06c74e7410",
+        "b11210996d9d39c4b2df8cba01a2329f162ddbd4",
+        "52706cb9f3db26fd4d5eca48fc86ac6d31780585"
+      ],
+      "soft_loss": 2.650456190109253,
+      "total_loss": 5.276498317718506
+    },
+    {
+      "hard_loss": 2.4373779296875,
+      "micro_step": 58,
+      "record_ids": [
+        "45d4c24eae1ed3cbe074591a98f17ea2eefe16b7",
+        "dee950f98c2d7319141278fffe6b77e27b142c91",
+        "be2adeda1054423f95b12eae95150328d195d95d",
+        "7fee5e5d860ae1e664859582388c4d4568696757"
+      ],
+      "soft_loss": 2.2036538124084473,
+      "total_loss": 4.641031742095947
+    },
+    {
+      "hard_loss": 2.4842922687530518,
+      "micro_step": 59,
+      "record_ids": [
+        "8c8737cdcbf0b4f8b85275a1dfde1b734f2415d7",
+        "659a4067624436b861e71d7c32ca3abae5666a23",
+        "7dcedd8f98604d19a3acf65e46bd4c2e5fbd38d5",
+        "fc67b5687897aa43761c2bb5f41037a65d583e16"
+      ],
+      "soft_loss": 3.353107452392578,
+      "total_loss": 5.837399482727051
+    },
+    {
+      "hard_loss": 4.679771423339844,
+      "micro_step": 60,
+      "record_ids": [
+        "4b3cdec18fff6e37c3cb1bf7c1fcca1b65b3187e",
+        "ac928704ee42f09cda816880d5004a8c95ed84e1",
+        "3ce1044e9ed129ed84603ad2da76562ad64c9f93",
+        "b9f74b9e49491ba0c5123e4f18b4eddef1a88128"
+      ],
+      "soft_loss": 4.354739189147949,
+      "total_loss": 9.034510612487793
+    },
+    {
+      "hard_loss": 4.545494556427002,
+      "micro_step": 61,
+      "record_ids": [
+        "ee4eff0a5467bcc1b967d7c8e04fe3cd69aeefef",
+        "468e8ecc6643ba5ab57bfb5591aa1c3445c8f500",
+        "f895e347a0c6bdbc1c1f83a2fe6fffdfff2f11e0",
+        "6a2d67e4c034be519f8d2f35f8a035e66ea78891"
+      ],
+      "soft_loss": 4.272871017456055,
+      "total_loss": 8.818365097045898
+    },
+    {
+      "hard_loss": 2.4487228393554688,
+      "micro_step": 62,
+      "record_ids": [
+        "c0d4f41ccf2066449887e86887cb7b8903269b2a",
+        "42f17954d67fb2fef67e07375a4d32200c0a5db7",
+        "8459fcdcd400bc03e0c2c349ec5f47cac882e92d",
+        "6c5fed7f1c159d7a24e2032426abf24e23a3e809"
+      ],
+      "soft_loss": 2.3670172691345215,
+      "total_loss": 4.81574010848999
+    },
+    {
+      "hard_loss": 2.9491021633148193,
+      "micro_step": 63,
+      "record_ids": [
+        "af8cc23fcd89ac16cd2538bdbea62adbb268993c",
+        "f6956ca8c35ae8f6a1fb4b28be76bbcf692279ff",
+        "5a0f35bdef022300a97a99e8332c40462658cc4b",
+        "4f67484ea8735d8ca4955c90023be520f201ca39"
+      ],
+      "soft_loss": 3.2552547454833984,
+      "total_loss": 6.204357147216797
+    },
+    {
+      "hard_loss": 4.161036491394043,
+      "micro_step": 64,
+      "record_ids": [
+        "2165556c5f8faa1cadefce0e1262014b51d3b062",
+        "dcbb76158c5baf8733d12283263c018083ef1772",
+        "a9565ee3b59013e8bb3c53aa411ba6cc79701d3c",
+        "c54968846ebdc39afca78b0761e80832937eccec"
+      ],
+      "soft_loss": 3.843653917312622,
+      "total_loss": 8.004690170288086
+    }
+  ]
+}

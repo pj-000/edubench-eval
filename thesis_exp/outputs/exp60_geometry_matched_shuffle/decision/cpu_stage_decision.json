@@ -1,0 +1,15 @@
+{
+  "status": "READY_FOR_INDEPENDENT_REVIEW_NOT_AUTHORIZED_FOR_FORMAL_TRAINING",
+  "mapping_status": "EXP60_MAXIMUM_MISMATCH_MAPPING_PASS",
+  "cpu_preflight_status": "EXP60_CPU_NO_UPDATE_PREFLIGHT_PASS",
+  "trainer_static_audit_status": "EXP60_TRAINER_STATIC_AUDIT_PASS",
+  "source_closure_status": "EXP49_TO_EXP51_SOURCE_CLOSURE_RESTORED",
+  "formal_protocol_status": "DRAFT",
+  "source_lock_generated": false,
+  "real_model_bf16_preflight_completed": false,
+  "gpu_used": false,
+  "optimizer_steps": 0,
+  "allowed_splits": ["train"],
+  "test_access_count": 0,
+  "next_action": "independent review of protocol, mapping, trainer, analysis and required real-model preflight"
+}

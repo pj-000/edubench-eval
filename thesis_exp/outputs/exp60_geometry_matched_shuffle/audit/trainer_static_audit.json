@@ -1,0 +1,21 @@
+{
+  "checks": {
+    "exactly_one_optimizer_step_call": true,
+    "exactly_one_standard_clip_call": true,
+    "exactly_two_diagnostic_residual_vjp_calls": true,
+    "fixed_epoch10_primary_present": true,
+    "formal_training_requires_frozen_protocol": true,
+    "fresh_seed_contract_present": true,
+    "no_generic_full_model_component_materialization": true,
+    "no_test_access": true,
+    "test_split_not_loaded": true
+  },
+  "counts": {
+    "diagnostic_vjp_calls_in_train": 2,
+    "optimizer_step_calls_in_train": 1,
+    "standard_clip_calls_in_geometry_step": 1
+  },
+  "status": "EXP60_TRAINER_STATIC_AUDIT_PASS",
+  "test_access_count": 0,
+  "train_path": "/Users/sss/edubench-eval/thesis_exp/exp60_geometry_matched_shuffle/train.py"
+}

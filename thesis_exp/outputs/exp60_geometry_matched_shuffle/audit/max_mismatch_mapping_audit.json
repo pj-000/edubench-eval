@@ -1,0 +1,97 @@
+{
+  "algorithm": "within-hard-label lexicographic target blocks rotated by the largest block size",
+  "allowed_splits": [
+    "train"
+  ],
+  "by_hard_label": {
+    "1": {
+      "effective_change_rate": 0.3333333333333333,
+      "effective_target_changes": 8,
+      "rotation": 20,
+      "rows": 24,
+      "self_assignments": 0,
+      "target_counts": {
+        "[2, 1, 0, 0, 0]": 4,
+        "[3, 0, 0, 0, 0]": 20
+      },
+      "theoretical_maximum_changes": 8
+    },
+    "2": {
+      "effective_change_rate": 0.7307692307692307,
+      "effective_target_changes": 38,
+      "rotation": 33,
+      "rows": 52,
+      "self_assignments": 0,
+      "target_counts": {
+        "[0, 2, 1, 0, 0]": 12,
+        "[0, 3, 0, 0, 0]": 33,
+        "[1, 2, 0, 0, 0]": 7
+      },
+      "theoretical_maximum_changes": 38
+    },
+    "3": {
+      "effective_change_rate": 0.900398406374502,
+      "effective_target_changes": 226,
+      "rotation": 138,
+      "rows": 251,
+      "self_assignments": 0,
+      "target_counts": {
+        "[0, 0, 2, 1, 0]": 138,
+        "[0, 0, 3, 0, 0]": 85,
+        "[0, 1, 2, 0, 0]": 28
+      },
+      "theoretical_maximum_changes": 226
+    },
+    "4": {
+      "effective_change_rate": 1.0,
+      "effective_target_changes": 946,
+      "rotation": 441,
+      "rows": 946,
+      "self_assignments": 0,
+      "target_counts": {
+        "[0, 0, 0, 2, 1]": 441,
+        "[0, 0, 0, 3, 0]": 297,
+        "[0, 0, 1, 2, 0]": 208
+      },
+      "theoretical_maximum_changes": 946
+    },
+    "5": {
+      "effective_change_rate": 0.9370021723388848,
+      "effective_target_changes": 1294,
+      "rotation": 734,
+      "rows": 1381,
+      "self_assignments": 0,
+      "target_counts": {
+        "[0, 0, 0, 0, 3]": 734,
+        "[0, 0, 0, 1, 2]": 647
+      },
+      "theoretical_maximum_changes": 1294
+    }
+  },
+  "checks": {
+    "all_rows_mapped_once": true,
+    "maximum_mismatch_achieved_in_every_label": true,
+    "no_model_or_dev_information_used": true,
+    "no_test_access": true,
+    "within_hard_label_target_multisets_preserved": true
+  },
+  "effective_change_rate": 0.9464958553127355,
+  "effective_target_changes": 2512,
+  "mapping_sha256": "dc9d3fbce24af01fee58e896f83ed35f3ccd516fcf30f35ed43a3cfd4c2fa7fb",
+  "rows": 2654,
+  "self_assignments": 0,
+  "source_contract_sha256": "11170cf4a6bf4d1fb5c0f6aea5ccb2da154f885e687565acd699f24951140b4c",
+  "state_transition_counts": {
+    "down->up": 236,
+    "down->zero": 654,
+    "up->down": 172,
+    "up->up": 25,
+    "up->zero": 398,
+    "zero->down": 718,
+    "zero->up": 334,
+    "zero->zero": 117
+  },
+  "status": "EXP60_MAXIMUM_MISMATCH_MAPPING_PASS",
+  "test_access_count": 0,
+  "tie_break": "target_thirds then recipient record_id lexicographic order"
+}
