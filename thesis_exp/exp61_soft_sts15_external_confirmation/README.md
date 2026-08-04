@@ -39,3 +39,16 @@ python -m thesis_exp.exp61_soft_sts15_external_confirmation.finalize_stage0
 ```
 
 Stage 0 may authorize protocol design, but it cannot authorize formal training.
+
+## Protocol-freeze implementation state
+
+The three frozen arms are `quantized_mean_only`,
+`aligned_orthogonal_only`, and `matched_shuffled_orthogonal_only`. The main
+point prediction is the expectation of the hard-head six-class distribution;
+the auxiliary head is discarded at inference.
+
+The train/dev loader rejects `test`, the maximum-mismatch mapping uses train
+targets only, and the formal trainer refuses all optimizer steps until an
+independent final protocol/preflight review updates both the protocol and
+source-lock authorization. The next permitted action is the real-model
+no-update preflight for seeds 61/62/63.

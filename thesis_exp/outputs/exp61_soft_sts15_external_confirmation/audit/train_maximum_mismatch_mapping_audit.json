@@ -1,0 +1,68 @@
+{
+  "algorithm": "within-label target blocks rotated by largest block size",
+  "allowed_splits": [
+    "train"
+  ],
+  "by_hard_label": {
+    "0": {
+      "effective_target_changes": 884,
+      "rotation": 951,
+      "rows": 1393,
+      "target_state_count": 4,
+      "theoretical_maximum_changes": 884
+    },
+    "1": {
+      "effective_target_changes": 862,
+      "rotation": 73,
+      "rows": 862,
+      "target_state_count": 34,
+      "theoretical_maximum_changes": 862
+    },
+    "2": {
+      "effective_target_changes": 777,
+      "rotation": 62,
+      "rows": 777,
+      "target_state_count": 68,
+      "theoretical_maximum_changes": 777
+    },
+    "3": {
+      "effective_target_changes": 666,
+      "rotation": 59,
+      "rows": 666,
+      "target_state_count": 58,
+      "theoretical_maximum_changes": 666
+    },
+    "4": {
+      "effective_target_changes": 700,
+      "rotation": 77,
+      "rows": 700,
+      "target_state_count": 31,
+      "theoretical_maximum_changes": 700
+    },
+    "5": {
+      "effective_target_changes": 336,
+      "rotation": 135,
+      "rows": 336,
+      "target_state_count": 4,
+      "theoretical_maximum_changes": 336
+    }
+  },
+  "checks": {
+    "all_train_rows_mapped_once": true,
+    "donor_set_preserved": true,
+    "every_donor_used_once": true,
+    "maximum_mismatch_in_every_label": true,
+    "no_dev_or_test_information_used": true,
+    "no_model_outcome_used": true,
+    "recipient_set_preserved": true,
+    "six_dimensional_target_multiset_preserved": true
+  },
+  "effective_change_rate": 0.8924799324038868,
+  "effective_target_changes": 4225,
+  "mapping_sha256": "ab7bcaee6532e93b5babfd0fbbe69d18dd2945f94859dd26da2c736f43d3e9f0",
+  "rows": 4734,
+  "source_contract_sha256": "e4abd30af2c17937c03c8d8726a9ac61d88af72490f79b91dcc7206a43596f31",
+  "status": "EXP61_TRAIN_MAXIMUM_MISMATCH_MAPPING_PASS",
+  "test_access_count": 0,
+  "tie_break": "target_fifths then record_id lexicographic order"
+}
