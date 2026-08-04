@@ -19,9 +19,9 @@
     "thesis_exp/exp61_soft_sts15_external_confirmation/analysis.py": "1f674a34ca07ac6ddcec49109bc1766e4af9b757973f7ca6ffe1cc1d8572b0d0",
     "thesis_exp/exp61_soft_sts15_external_confirmation/audit_dataset.py": "560dd1a29683e0ae2dac6d24d0f003682212ff57fed44bcc4aebfe2ca300a76a",
     "thesis_exp/exp61_soft_sts15_external_confirmation/build_source_lock.py": "0c1d2edc66268e707096f71df81fda2ccffd65a0c7d06b8013ac300fb502fb0c",
-    "thesis_exp/exp61_soft_sts15_external_confirmation/configs/protocol.json": "74d068f46d98dcd6b4808c0949004f14e3de8c2bfd61b4e058cf065bff4cfdf5",
+    "thesis_exp/exp61_soft_sts15_external_confirmation/configs/protocol.json": "dd0c4b92abf2dc138514f6199e50507572419612936444cc6a0390b7856a5cc1",
     "thesis_exp/exp61_soft_sts15_external_confirmation/configs/stage0_protocol.json": "8ba1efcfc3b8d8f141b445f3251c4b9a847eeea0145b4e4b7379a83d55e49abc",
-    "thesis_exp/exp61_soft_sts15_external_confirmation/contract.py": "21eab26dcc0d1f9bd0b83843f28002f68b4600bb42e247cb53b2a86f76906543",
+    "thesis_exp/exp61_soft_sts15_external_confirmation/contract.py": "33a938b36ab700c1f3ec36f267bc49aef2dd3e27f826ed9ef77422f2ba63b8e2",
     "thesis_exp/exp61_soft_sts15_external_confirmation/data.py": "fc3090d66dffb79aff3863e0613115dcbcc64a9cdf69cfe3e16248873c22f1c2",
     "thesis_exp/exp61_soft_sts15_external_confirmation/evaluate_test_once.py": "5cf1e03557c5d04866c0bea49799788904fa491f622704e199f16aaa4e585247",
     "thesis_exp/exp61_soft_sts15_external_confirmation/finalize_preflight.py": "4a1e595458b2c036d202a08755488483f0f72f6e7f0a66cacc18c0e4a125a185",
@@ -37,6 +37,7 @@
     "thesis_exp/outputs/exp61_soft_sts15_external_confirmation/audit/train_maximum_mismatch_mapping.jsonl": "50b8252d77757bad8db33ff9c303bec2e631acb15d714f599068d7b0d081237d",
     "thesis_exp/outputs/exp61_soft_sts15_external_confirmation/audit/train_maximum_mismatch_mapping_audit.json": "f74f483ec9935c2df2ab52054e33c7196577ed0bce006523be0f84e3e1ee910e",
     "thesis_exp/outputs/exp61_soft_sts15_external_confirmation/data/split_manifest.jsonl": "73b04b02c3aaac303e8ba3b9213030a9dcdf1e5736f18bf3f81a987be8da56ad",
+    "thesis_exp/outputs/exp61_soft_sts15_external_confirmation/decision/formal_training_authorization.json": "b4361c84046b7c670f32a23fef959c593359312482a6913938ff18aad8a71608",
     "thesis_exp/outputs/exp61_soft_sts15_external_confirmation/decision/preflight_implementation_decision.json": "b1eb1ada22901e62a1145c395b0b9e0e854c0ddf6e711768a407f4926efc784c",
     "thesis_exp/outputs/exp61_soft_sts15_external_confirmation/preflight/seed_61/real_model_no_update_preflight.json": "308e3c947a76d58dad0f3886a18cec5b6394e019c1abac985401099782aaa6bb",
     "thesis_exp/outputs/exp61_soft_sts15_external_confirmation/preflight/seed_62/real_model_no_update_preflight.json": "3e008f071de0c8cdb557b130f98700106e20ddf31fe371282f7077907bb8d461",
@@ -48,8 +49,8 @@
     "thesis_exp/src/edujudge/utils/text_norm.py": "4642255f3aa0fdeeec089fc4364749943082df1a9decb992fd81aae64c1740e4",
     "thesis_exp/tests/test_exp61_soft_sts15.py": "7d785f784cb66160aa133d3c3fe8ab01e3093b48e16c18246c9d291185892bae"
   },
-  "formal_training_authorized": false,
-  "mandatory_file_count": 45,
+  "formal_training_authorized": true,
+  "mandatory_file_count": 46,
   "mapping_semantic_sha256": "ab7bcaee6532e93b5babfd0fbbe69d18dd2945f94859dd26da2c736f43d3e9f0",
   "model": {
     "files": {
@@ -68,8 +69,8 @@
     "manifest_sha256": "7807b8bc764b2d995ce487bbafc97e6ee39a81c29a57ee21db718e1932873bde",
     "path": "/home/share/models/modelscope/Qwen/Qwen3-Reranker-0.6B"
   },
-  "protocol_sha256": "74d068f46d98dcd6b4808c0949004f14e3de8c2bfd61b4e058cf065bff4cfdf5",
-  "status": "EXP61_SOURCE_LOCK_CANDIDATE_AWAITING_FINAL_PREFLIGHT_REVIEW",
+  "protocol_sha256": "dd0c4b92abf2dc138514f6199e50507572419612936444cc6a0390b7856a5cc1",
+  "status": "EXP61_SOURCE_LOCK_FROZEN_AFTER_FINAL_PREFLIGHT_REVIEW",
   "test_access_count": 0,
   "train_dataset_contract_sha256": "e4abd30af2c17937c03c8d8726a9ac61d88af72490f79b91dcc7206a43596f31"
 }
