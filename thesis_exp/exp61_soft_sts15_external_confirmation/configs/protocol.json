@@ -1,6 +1,6 @@
 {
   "experiment": "Exp61-SoftSTS15-External-Confirmation",
-  "status": "EXP61_PROTOCOL_IMPLEMENTATION_IN_PROGRESS_NO_FORMAL_TRAINING",
+  "status": "EXP61_PROTOCOL_FROZEN_FOR_FORMAL_9_RUN_TRAINING",
   "scientific_question": "Does label-aligned residual geometry improve a quantized-mean six-class STS predictor beyond a geometry-matched shuffled residual control on an external task?",
   "source_lock": {
     "upstream_commit": "ca754a21e58437c4b843d10161d2838f39230e7f",
@@ -107,7 +107,9 @@
     "cpu_static_tests": true,
     "real_model_no_update_preflight": true,
     "optimizer_steps_before_final_preflight_review": false,
-    "formal_nine_run_gpu_training": false,
-    "test_access": false
+    "formal_nine_run_gpu_training": true,
+    "test_access": false,
+    "authorization_basis": "thesis_exp/outputs/exp61_soft_sts15_external_confirmation/decision/formal_training_authorization.json",
+    "authorization_scope": "train/dev only; exactly 3 arms x seeds 61,62,63; fixed epoch 10"
   }
 }

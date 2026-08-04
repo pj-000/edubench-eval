@@ -37,6 +37,7 @@ SOURCE_LOCK_ROOT_FILES = (
     "thesis_exp/outputs/exp61_soft_sts15_external_confirmation/audit/train_maximum_mismatch_mapping.jsonl",
     "thesis_exp/outputs/exp61_soft_sts15_external_confirmation/audit/train_maximum_mismatch_mapping_audit.json",
     "thesis_exp/outputs/exp61_soft_sts15_external_confirmation/decision/preflight_implementation_decision.json",
+    "thesis_exp/outputs/exp61_soft_sts15_external_confirmation/decision/formal_training_authorization.json",
     "thesis_exp/outputs/exp61_soft_sts15_external_confirmation/preflight/seed_61/real_model_no_update_preflight.json",
     "thesis_exp/outputs/exp61_soft_sts15_external_confirmation/preflight/seed_62/real_model_no_update_preflight.json",
     "thesis_exp/outputs/exp61_soft_sts15_external_confirmation/preflight/seed_63/real_model_no_update_preflight.json",
@@ -130,8 +131,15 @@ def build_source_lock(model_path: Path) -> dict[str, Any]:
     mandatory_files = repository_local_import_closure()
     files = {relative: sha256_file(ROOT / relative) for relative in mandatory_files}
     protocol = json.loads(FROZEN_PROTOCOL.read_text(encoding="utf-8"))
+    formal_authorized = bool(
+        protocol["authorization"]["formal_nine_run_gpu_training"]
+    )
     return {
-        "status": "EXP61_SOURCE_LOCK_CANDIDATE_AWAITING_FINAL_PREFLIGHT_REVIEW",
+        "status": (
+            "EXP61_SOURCE_LOCK_FROZEN_AFTER_FINAL_PREFLIGHT_REVIEW"
+            if formal_authorized
+            else "EXP61_SOURCE_LOCK_CANDIDATE_AWAITING_FINAL_PREFLIGHT_REVIEW"
+        ),
         "files": files,
         "mandatory_file_count": len(mandatory_files),
         "dependency_closure_algorithm": "AST repository-local transitive imports plus explicit non-code roots",
@@ -141,7 +149,7 @@ def build_source_lock(model_path: Path) -> dict[str, Any]:
         "dev_dataset_contract_sha256": "df15133be9843a5b0ee4853c0dfec82e166ff1246d0b2b2324da3c8a5a0dc871",
         "mapping_semantic_sha256": "ab7bcaee6532e93b5babfd0fbbe69d18dd2945f94859dd26da2c736f43d3e9f0",
         "test_access_count": 0,
-        "formal_training_authorized": bool(protocol["authorization"]["formal_nine_run_gpu_training"]),
+        "formal_training_authorized": formal_authorized,
     }
 
 

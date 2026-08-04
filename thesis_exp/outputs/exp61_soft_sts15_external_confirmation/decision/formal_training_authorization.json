@@ -1,0 +1,47 @@
+{
+  "status": "EXP61_GO_TO_FORMAL_9_RUN_TRAINING",
+  "authorization_scope": {
+    "allowed_splits": [
+      "train",
+      "dev"
+    ],
+    "arms": [
+      "quantized_mean_only",
+      "aligned_orthogonal_only",
+      "matched_shuffled_orthogonal_only"
+    ],
+    "checkpoint": "fixed epoch 10",
+    "seeds": [
+      61,
+      62,
+      63
+    ],
+    "total_runs": 9
+  },
+  "basis": {
+    "independent_review_of_f9c8a4a": "REVISE_BEFORE_FORMAL_TRAINING",
+    "finite_blockers_closed_in": [
+      "1e36ffc",
+      "795f01c"
+    ],
+    "server_full_tests": "25 passed",
+    "local_contract_tests": "12 passed, 1 skipped because local PyTorch is unavailable",
+    "real_model_no_update_preflight_seeds": [
+      61,
+      62,
+      63
+    ],
+    "real_model_no_update_preflight_status": "PASS_ALL_THREE",
+    "self_review": "PASS",
+    "user_authorization": "Self-review and start training if no blocker remains"
+  },
+  "closed_blockers": {
+    "formal_initialization_bound_to_seed_preflight": true,
+    "strict_one_shot_test_prediction_and_analysis_frozen": true,
+    "transitive_repository_dependency_closure_locked": true
+  },
+  "formal_optimizer_steps_authorized": true,
+  "scientific_protocol_changed": false,
+  "test_access_authorized": false,
+  "test_access_count": 0
+}

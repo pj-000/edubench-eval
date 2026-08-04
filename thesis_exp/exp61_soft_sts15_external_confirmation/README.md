@@ -48,7 +48,8 @@ point prediction is the expectation of the hard-head six-class distribution;
 the auxiliary head is discarded at inference.
 
 The train/dev loader rejects `test`, the maximum-mismatch mapping uses train
-targets only, and the formal trainer refuses all optimizer steps until an
-independent final protocol/preflight review updates both the protocol and
-source-lock authorization. The next permitted action is the real-model
-no-update preflight for seeds 61/62/63.
+targets only, and the three real-model no-update preflights passed for seeds
+61/62/63. After the independent review's three finite implementation blockers
+were closed and a final fail-closed self-review passed, formal train/dev-only
+training was authorized for exactly three arms by three seeds. Test access
+remains sealed until all nine fixed epoch-10 checkpoints exist.
