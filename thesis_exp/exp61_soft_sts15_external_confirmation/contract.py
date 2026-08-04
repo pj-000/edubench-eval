@@ -27,6 +27,7 @@ LOCKED_RELATIVE_FILES = (
     "thesis_exp/exp61_soft_sts15_external_confirmation/analysis.py",
     "thesis_exp/exp61_soft_sts15_external_confirmation/contract.py",
     "thesis_exp/exp61_soft_sts15_external_confirmation/build_source_lock.py",
+    "thesis_exp/exp61_soft_sts15_external_confirmation/finalize_preflight.py",
     "thesis_exp/exp60_geometry_matched_shuffle/geometry.py",
     "thesis_exp/exp60_geometry_matched_shuffle/train.py",
     "thesis_exp/exp59_residual_geometry/geometry.py",
@@ -96,3 +97,13 @@ def verify_source_lock(*, require_formal_authorization: bool) -> dict[str, Any]:
         if lock.get("status") != "EXP61_SOURCE_LOCK_FROZEN_AFTER_FINAL_PREFLIGHT_REVIEW":
             raise PermissionError("Exp61 source lock is still a review candidate")
     return lock
+
+
+def verify_model_against_lock(model_path: Path, lock: dict[str, Any]) -> dict[str, Any]:
+    runtime = directory_manifest(model_path.resolve())
+    expected = lock["model"]
+    if runtime["manifest_sha256"] != expected["manifest_sha256"]:
+        raise RuntimeError("Exp61 runtime model manifest differs from source lock")
+    if runtime["files"] != expected["files"]:
+        raise RuntimeError("Exp61 runtime model file set differs from source lock")
+    return runtime

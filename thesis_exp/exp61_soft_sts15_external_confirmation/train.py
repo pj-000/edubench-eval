@@ -23,7 +23,10 @@ from thesis_exp.exp61_soft_sts15_external_confirmation import (
     SEEDS,
     VARIANTS,
 )
-from thesis_exp.exp61_soft_sts15_external_confirmation.contract import verify_source_lock
+from thesis_exp.exp61_soft_sts15_external_confirmation.contract import (
+    verify_model_against_lock,
+    verify_source_lock,
+)
 from thesis_exp.exp61_soft_sts15_external_confirmation.data import load_model_rows, rows_contract_sha256
 from thesis_exp.exp61_soft_sts15_external_confirmation.geometry import compose_geometry_step
 from thesis_exp.exp61_soft_sts15_external_confirmation.mapping import mapping_sha256, mapping_target_lookup
@@ -137,7 +140,8 @@ def train(config: FormalConfig) -> dict[str, Any]:
     from torch.optim import AdamW
     from transformers import get_cosine_schedule_with_warmup
 
-    verify_source_lock(require_formal_authorization=True)
+    source_lock = verify_source_lock(require_formal_authorization=True)
+    verify_model_against_lock(Path(config.model_name_or_path), source_lock)
     if not torch.cuda.is_available():
         raise RuntimeError("formal Exp61 training requires CUDA")
     torch.manual_seed(config.seed)

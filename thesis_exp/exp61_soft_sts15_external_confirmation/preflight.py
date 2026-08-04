@@ -15,7 +15,10 @@ from thesis_exp.exp61_soft_sts15_external_confirmation import (
     VARIANTS,
 )
 from thesis_exp.exp61_soft_sts15_external_confirmation.data import load_model_rows
-from thesis_exp.exp61_soft_sts15_external_confirmation.contract import verify_source_lock
+from thesis_exp.exp61_soft_sts15_external_confirmation.contract import (
+    verify_model_against_lock,
+    verify_source_lock,
+)
 from thesis_exp.exp61_soft_sts15_external_confirmation.geometry import compose_geometry_step
 from thesis_exp.exp61_soft_sts15_external_confirmation.mapping import mapping_sha256, mapping_target_lookup
 from thesis_exp.exp61_soft_sts15_external_confirmation.method import hard_soft_ce_identity
@@ -51,7 +54,8 @@ def parse_args() -> argparse.Namespace:
 def run(args: argparse.Namespace) -> dict[str, Any]:
     import torch
 
-    verify_source_lock(require_formal_authorization=False)
+    source_lock = verify_source_lock(require_formal_authorization=False)
+    model_manifest = verify_model_against_lock(Path(args.model_name_or_path), source_lock)
     if args.device != "cuda" or not torch.cuda.is_available():
         raise RuntimeError("Exp61 real-model preflight requires an explicitly assigned CUDA device")
     torch.manual_seed(args.seed)
@@ -132,6 +136,7 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
         "device": str(device),
         "batch_record_ids": [row["record_id"] for row in metadata],
         "head_contract": head,
+        "model_manifest_sha256": model_manifest["manifest_sha256"],
         "soft_ce_identity": identity,
         "aligned_diagnostic_soft_ce": aligned_loss,
         "shuffled_diagnostic_soft_ce": shuffled_loss,
