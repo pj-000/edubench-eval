@@ -1,0 +1,121 @@
+{
+  "allowed_splits": [
+    "dev"
+  ],
+  "analysis_registration": {
+    "implemented_before_formal_results": true,
+    "repetitions": 10000,
+    "rng_seed": 60
+  },
+  "checkpoint": "fixed epoch 10",
+  "gates": {
+    "aligned_favorable_MAE_in_3_of_3_seeds": true,
+    "aligned_minus_consensus_favorable_MAE_in_at_least_2_of_3_seeds": true,
+    "aligned_minus_consensus_mean_delta_MAE_at_most_minus_0p005": true,
+    "cluster_CI_upper_below_zero": false,
+    "mean_delta_Exact_at_least_minus_0p003": true,
+    "mean_delta_Kendall_at_least_minus_0p005": true,
+    "mean_delta_MAE_at_most_minus_0p005": true
+  },
+  "mapping_sha256": "dc9d3fbce24af01fee58e896f83ed35f3ccd516fcf30f35ed43a3cfd4c2fa7fb",
+  "primary": {
+    "control": "matched_shuffled_orthogonal_only",
+    "favorable_MAE_seeds": 3,
+    "mean_delta": {
+      "Exact_rounded": 0.0035140562248996052,
+      "Kendall_human_mean": 0.019345880723643294,
+      "MAE_human_mean": -0.01054216867469876
+    },
+    "per_seed": [
+      {
+        "control": "matched_shuffled_orthogonal_only",
+        "delta_Exact_rounded": -0.010542168674698815,
+        "delta_Kendall_human_mean": 0.011656245729197545,
+        "delta_MAE_human_mean": -0.004016064257028051,
+        "seed": 47,
+        "treatment": "aligned_orthogonal_only"
+      },
+      {
+        "control": "matched_shuffled_orthogonal_only",
+        "delta_Exact_rounded": 0.004518072289156683,
+        "delta_Kendall_human_mean": 0.00903028792738414,
+        "delta_MAE_human_mean": -0.005020080321285092,
+        "seed": 48,
+        "treatment": "aligned_orthogonal_only"
+      },
+      {
+        "control": "matched_shuffled_orthogonal_only",
+        "delta_Exact_rounded": 0.016566265060240948,
+        "delta_Kendall_human_mean": 0.0373511085143482,
+        "delta_MAE_human_mean": -0.022590361445783136,
+        "seed": 49,
+        "treatment": "aligned_orthogonal_only"
+      }
+    ],
+    "question_cluster_bootstrap": {
+      "bootstrap_probability_delta_below_zero": 0.9384,
+      "ci_95": [
+        -0.024260257164289478,
+        0.0029114143807083387
+      ],
+      "clusters": 184,
+      "estimand": "item-weighted mean paired MAE difference with question-cluster resampling, conditional on three trained seeds",
+      "point_estimate": -0.010542168674698791,
+      "records": 664,
+      "repetitions": 10000,
+      "rng_seed": 60
+    },
+    "treatment": "aligned_orthogonal_only"
+  },
+  "secondary": {
+    "control": "consensus_only",
+    "favorable_MAE_seeds": 3,
+    "mean_delta": {
+      "Exact_rounded": 0.0010040160642570406,
+      "Kendall_human_mean": 0.0206211696504038,
+      "MAE_human_mean": -0.012382864792503315
+    },
+    "per_seed": [
+      {
+        "control": "consensus_only",
+        "delta_Exact_rounded": -0.012048192771084376,
+        "delta_Kendall_human_mean": 0.022987755515665564,
+        "delta_MAE_human_mean": -0.0025100401606426015,
+        "seed": 47,
+        "treatment": "aligned_orthogonal_only"
+      },
+      {
+        "control": "consensus_only",
+        "delta_Exact_rounded": 0.003012048192771122,
+        "delta_Kendall_human_mean": 0.01130869171414095,
+        "delta_MAE_human_mean": -0.007530120481927582,
+        "seed": 48,
+        "treatment": "aligned_orthogonal_only"
+      },
+      {
+        "control": "consensus_only",
+        "delta_Exact_rounded": 0.012048192771084376,
+        "delta_Kendall_human_mean": 0.027567061721404884,
+        "delta_MAE_human_mean": -0.027108433734939763,
+        "seed": 49,
+        "treatment": "aligned_orthogonal_only"
+      }
+    ],
+    "question_cluster_bootstrap": {
+      "bootstrap_probability_delta_below_zero": 0.9349,
+      "ci_95": [
+        -0.028315425540438758,
+        0.0028622375465792247
+      ],
+      "clusters": 184,
+      "estimand": "item-weighted mean paired MAE difference with question-cluster resampling, conditional on three trained seeds",
+      "point_estimate": -0.01238286479250334,
+      "records": 664,
+      "repetitions": 10000,
+      "rng_seed": 60
+    },
+    "treatment": "aligned_orthogonal_only"
+  },
+  "status": "EXP60_SAMPLE_TARGET_ALIGNMENT_NO_GO",
+  "test_access_count": 0
+}
