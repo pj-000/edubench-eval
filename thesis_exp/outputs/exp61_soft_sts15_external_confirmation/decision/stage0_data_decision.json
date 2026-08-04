@@ -1,0 +1,6 @@
+{
+  "all_data_gates_pass": true,
+  "formal_training_authorized": false,
+  "next_required_artifact": "audit/tokenizer_length_audit.json",
+  "status": "EXP61_REVISED_DATA_STAGE0_PASS_TOKENIZER_AUDIT_PENDING"
+}

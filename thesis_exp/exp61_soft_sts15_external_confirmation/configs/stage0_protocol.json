@@ -1,6 +1,6 @@
 {
   "experiment": "Exp61-SoftSTS15-External-Confirmation",
-  "status": "DRAFT_STAGE0",
+  "status": "EXP61_STAGE0_REVISED_GO_TO_PROTOCOL_FREEZE",
   "upstream": {
     "repository": "https://github.com/ale0xb/sts_beyond_averages.git",
     "commit": "ca754a21e58437c4b843d10161d2838f39230e7f",
@@ -16,7 +16,9 @@
     "published_ratings_per_record": 5,
     "empirical_target": "distribution of the five published score_list values",
     "human_mean": "arithmetic mean of the same five published score_list values",
-    "hard_label": "floor(human_mean + 0.5)"
+    "hard_label": "floor(human_mean + 0.5)",
+    "hard_target_paper_name": "quantized-mean main target",
+    "hard_target_not_assumed": ["majority label", "annotator consensus"]
   },
   "split": {
     "method": "two-stage StratifiedGroupKFold",
@@ -25,16 +27,27 @@
     "random_state": 61,
     "outer_folds": 5,
     "inner_folds": 4,
+    "candidate_selection": "enumerate all 5x4 fold combinations; require integrity, all 20 strata, size tolerance <=2, and dev/test maximum component share <=5%; then lexicographically minimize maximum evaluation component share, maximum evaluation origin deviation, maximum stratum deviation, outer fold, inner fold",
+    "selected_outer_fold": 4,
+    "selected_inner_fold": 2,
     "expected_sizes": {
-      "train": 4733,
+      "train": 4734,
       "dev": 1578,
-      "test": 1579
-    }
+      "test": 1578
+    },
+    "split_manifest_sha256": "73b04b02c3aaac303e8ba3b9213030a9dcdf1e5736f18bf3f81a987be8da56ad"
+  },
+  "input": {
+    "template_sha256": "1a7e4d6ed59d9e495769c64fa363615cd74dcff97f72bb562b4da528dee74fc5",
+    "tokenizer_json_sha256": "aeb13307a71acd8fe81861d94ad54ab689df773318809eed3cbe794b4492dae4",
+    "maximum_observed_tokens": 143,
+    "max_length": 256,
+    "truncation_allowed": false
   },
   "stage0": {
     "uses_gpu": false,
     "uses_model_outcomes": false,
+    "protocol_freeze_authorized": true,
     "formal_training_authorized": false
   }
 }
-

@@ -1,19 +1,25 @@
 {
-  "formal_training_authorized": false,
-  "must_complete_before_training": [
-    "freeze the exact three-arm trainer and inference estimator",
-    "define scale-aware primary effect and non-inferiority gates",
-    "freeze dev-only preflight and single-access test policy",
-    "verify model/tokenizer availability and no-update geometry on the six-class head",
-    "freeze source and environment manifests",
-    "document upstream data reuse and redistribution terms"
-  ],
-  "passed": [
-    "7890 rows parsed",
-    "every row has five published integer scores in [0, 5]",
-    "deterministic component-disjoint split generated",
-    "all 20 observed strata occur in every split",
-    "zero sentence or pair overlap across the frozen split"
-  ],
-  "status": "CONDITIONAL_GO_TO_PROTOCOL_DESIGN"
+  "bindings": {
+    "data_audit_sha256": "4d8b7e8ff761c83cc53782bf4babe124a005ac09e123488b89e8fb39fc4b779c",
+    "input_template_sha256": "1a7e4d6ed59d9e495769c64fa363615cd74dcff97f72bb562b4da528dee74fc5",
+    "selected_max_length": 256,
+    "split_manifest_sha256": "73b04b02c3aaac303e8ba3b9213030a9dcdf1e5736f18bf3f81a987be8da56ad",
+    "tokenizer_audit_sha256": "179fbc26582409703e941feb2279a363c6004a3c255d6d56d076569c89da540c"
+  },
+  "formal_gpu_training_authorized": false,
+  "gates": {
+    "data_gates_all_true": true,
+    "data_stage0_pass": true,
+    "manifest_gates_all_true": true,
+    "manifest_hash_bound": true,
+    "no_gpu_used": true,
+    "no_training_performed": true,
+    "split_gates_all_true": true,
+    "tokenizer_audit_pass": true,
+    "tokenizer_gates_all_true": true,
+    "tokenizer_manifest_bound": true
+  },
+  "next_required_stage": "freeze trainer, mapping, analysis, source lock, and real-model no-update preflight",
+  "protocol_freeze_authorized": true,
+  "status": "EXP61_STAGE0_REVISED_GO_TO_PROTOCOL_FREEZE"
 }
