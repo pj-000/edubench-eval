@@ -1,0 +1,19 @@
+{
+  "formal_training_authorized": false,
+  "must_complete_before_training": [
+    "freeze the exact three-arm trainer and inference estimator",
+    "define scale-aware primary effect and non-inferiority gates",
+    "freeze dev-only preflight and single-access test policy",
+    "verify model/tokenizer availability and no-update geometry on the six-class head",
+    "freeze source and environment manifests",
+    "document upstream data reuse and redistribution terms"
+  ],
+  "passed": [
+    "7890 rows parsed",
+    "every row has five published integer scores in [0, 5]",
+    "deterministic component-disjoint split generated",
+    "all 20 observed strata occur in every split",
+    "zero sentence or pair overlap across the frozen split"
+  ],
+  "status": "CONDITIONAL_GO_TO_PROTOCOL_DESIGN"
+}

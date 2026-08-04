@@ -1,0 +1,148 @@
+{
+  "agreement_tercile_thresholds": [
+    0.7631877567066381,
+    0.9486240877209278
+  ],
+  "dataset_sha256": "8707cdb85e2da9818bc8c08cd90b9b2c17c483e08f7bb7ff5c6dc69b555dde71",
+  "experiment": "Exp61-SoftSTS15-External-Confirmation",
+  "frozen_component_split": {
+    "accepted_for_exp61": true,
+    "leakage": {
+      "canonical_pair": {
+        "cross_split_groups": 0,
+        "rows_in_cross_split_groups": 0
+      },
+      "sentence_any_position": {
+        "cross_split_groups": 0,
+        "rows_in_cross_split_groups": 0
+      },
+      "sentence_component": {
+        "cross_split_groups": 0,
+        "rows_in_cross_split_groups": 0
+      }
+    },
+    "summary": {
+      "dev": {
+        "components": 1057,
+        "maximum_absolute_stratum_proportion_deviation": 0.0003802281368821339,
+        "rows": 1578,
+        "strata_present": 20
+      },
+      "test": {
+        "components": 997,
+        "maximum_absolute_stratum_proportion_deviation": 0.0005121882502522428,
+        "rows": 1579,
+        "strata_present": 20
+      },
+      "train": {
+        "components": 3169,
+        "maximum_absolute_stratum_proportion_deviation": 0.00016666947841076016,
+        "rows": 4733,
+        "strata_present": 20
+      }
+    }
+  },
+  "gpu_used": false,
+  "gs_score_vs_published_five_mean": {
+    "matches": 7522,
+    "maximum_absolute_difference": 0.8333333333333334,
+    "mismatches": 368,
+    "protocol_resolution": "derive hard label and human mean from the same five published scores"
+  },
+  "invalid_published_scores": 0,
+  "largest_component_rows": [
+    348,
+    69,
+    64,
+    47,
+    47,
+    46,
+    39,
+    33,
+    33,
+    29,
+    28,
+    24,
+    24,
+    23,
+    23,
+    21,
+    18,
+    18,
+    18,
+    18
+  ],
+  "model_training_performed": false,
+  "n_annotators_field": {
+    "10": 43,
+    "11": 17,
+    "12": 4,
+    "14": 1,
+    "15": 3,
+    "16": 1,
+    "5": 7147,
+    "6": 671,
+    "7": 1,
+    "8": 1,
+    "9": 1
+  },
+  "origins": {
+    "answers-forums": 1698,
+    "answers-students": 1464,
+    "belief": 1751,
+    "headlines": 1484,
+    "images": 1493
+  },
+  "published_score_list_lengths": {
+    "5": 7890
+  },
+  "rows": 7890,
+  "sentence_components": 5223,
+  "sentences": 13083,
+  "split_manifest_sha256": "4c2e15cc699a55c230af11567be40f885630e05491267bbdc56bc62bc414f34b",
+  "stage": 0,
+  "strata": 20,
+  "target_patterns": {
+    "non_unanimous_rows": 5910,
+    "unanimous_rows": 1980,
+    "unique_empirical_distributions": 209
+  },
+  "upstream_commit": "ca754a21e58437c4b843d10161d2838f39230e7f",
+  "upstream_item_split": {
+    "accepted_for_exp61": false,
+    "leakage": {
+      "canonical_pair": {
+        "cross_split_groups": 7,
+        "rows_in_cross_split_groups": 14
+      },
+      "sentence_any_position": {
+        "cross_split_groups": 774,
+        "rows_in_cross_split_groups": 2781
+      },
+      "sentence_component": {
+        "cross_split_groups": 563,
+        "rows_in_cross_split_groups": 2919
+      }
+    },
+    "summary": {
+      "dev": {
+        "components": 1260,
+        "maximum_absolute_stratum_proportion_deviation": 0.00038022813688213045,
+        "rows": 1578,
+        "strata_present": 20
+      },
+      "test": {
+        "components": 1258,
+        "maximum_absolute_stratum_proportion_deviation": 0.0003802281368821339,
+        "rows": 1578,
+        "strata_present": 20
+      },
+      "train": {
+        "components": 3385,
+        "maximum_absolute_stratum_proportion_deviation": 0.00016899028305873004,
+        "rows": 4734,
+        "strata_present": 20
+      }
+    }
+  }
+}
