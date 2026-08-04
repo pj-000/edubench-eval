@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 import argparse
-import hashlib
 import json
 from pathlib import Path
 from typing import Any
@@ -22,7 +21,11 @@ from thesis_exp.exp61_soft_sts15_external_confirmation.contract import (
 from thesis_exp.exp61_soft_sts15_external_confirmation.geometry import compose_geometry_step
 from thesis_exp.exp61_soft_sts15_external_confirmation.mapping import mapping_sha256, mapping_target_lookup
 from thesis_exp.exp61_soft_sts15_external_confirmation.method import hard_soft_ce_identity
-from thesis_exp.exp61_soft_sts15_external_confirmation.model import ModelConfig, load_model_and_tokenizer
+from thesis_exp.exp61_soft_sts15_external_confirmation.model import (
+    ModelConfig,
+    load_model_and_tokenizer,
+    parameter_sha256,
+)
 from thesis_exp.exp61_soft_sts15_external_confirmation.runtime import (
     accumulate_residual_vjp,
     capture_rng,
@@ -30,14 +33,6 @@ from thesis_exp.exp61_soft_sts15_external_confirmation.runtime import (
     restore_rng,
     routed_objective,
 )
-
-
-def parameter_sha256(model: Any) -> str:
-    digest = hashlib.sha256()
-    for name, value in sorted(model.state_dict().items()):
-        digest.update(name.encode("utf-8"))
-        digest.update(value.detach().float().cpu().contiguous().numpy().tobytes())
-    return digest.hexdigest()
 
 
 def parse_args() -> argparse.Namespace:

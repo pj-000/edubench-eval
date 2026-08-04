@@ -60,7 +60,7 @@
     "effective_batch_size": 128,
     "last_physical_batch_per_epoch": 2,
     "last_accumulation_window_examples_per_epoch": 126,
-    "effective_batch_size_interpretation": "128 is nominal; the deterministic final physical batch is not dropped and the last update of each epoch contains 126 examples",
+    "effective_batch_size_interpretation": "128 is nominal; the deterministic final physical batch is not dropped and the last update of each epoch contains 126 examples. Because each microbatch mean is scaled equally by 1/32, each record in the final two-record microbatch has twice the weight of a record in a four-record microbatch; this is identical across paired arms.",
     "max_gradient_norm": 1.0,
     "precision": "BF16",
     "gradient_checkpointing": true,
@@ -92,7 +92,15 @@
     "training_has_test_dataloader": false,
     "unseal_condition": "all nine fixed epoch-10 checkpoints, trainer, analysis, mapping, and source lock are frozen",
     "allowed_test_evaluations": 1,
-    "changes_after_test": false
+    "changes_after_test": false,
+    "prediction_entrypoint": "python -m thesis_exp.exp61_soft_sts15_external_confirmation.evaluate_test_once",
+    "analysis_entrypoint": "python -m thesis_exp.exp61_soft_sts15_external_confirmation.analysis",
+    "fixed_prediction_root": "thesis_exp/outputs/exp61_soft_sts15_external_confirmation/final_test/predictions",
+    "access_marker": "thesis_exp/outputs/exp61_soft_sts15_external_confirmation/final_test/test_access.json",
+    "confirmatory_decision": "thesis_exp/outputs/exp61_soft_sts15_external_confirmation/final_test/confirmation_decision.json",
+    "failed_attempt_is_access": true,
+    "overwrite_or_retry_allowed": false,
+    "required_test_rows_per_run": 1578
   },
   "authorization": {
     "implementation": true,

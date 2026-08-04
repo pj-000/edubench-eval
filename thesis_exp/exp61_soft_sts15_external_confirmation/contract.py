@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import ast
 import hashlib
 import json
 from pathlib import Path
@@ -11,7 +12,9 @@ from thesis_exp.exp61_soft_sts15_external_confirmation import EXP61_ROOT, FROZEN
 
 
 SOURCE_LOCK = EXP61_ROOT / "configs/source_lock.json"
-LOCKED_RELATIVE_FILES = (
+# These are the non-inferable runtime roots. Python imports reachable from any
+# .py root are added recursively by repository_local_import_closure().
+SOURCE_LOCK_ROOT_FILES = (
     "thesis_exp/exp61_soft_sts15_external_confirmation/__init__.py",
     "thesis_exp/exp61_soft_sts15_external_confirmation/configs/stage0_protocol.json",
     "thesis_exp/exp61_soft_sts15_external_confirmation/configs/protocol.json",
@@ -25,17 +28,18 @@ LOCKED_RELATIVE_FILES = (
     "thesis_exp/exp61_soft_sts15_external_confirmation/preflight.py",
     "thesis_exp/exp61_soft_sts15_external_confirmation/train.py",
     "thesis_exp/exp61_soft_sts15_external_confirmation/analysis.py",
+    "thesis_exp/exp61_soft_sts15_external_confirmation/evaluate_test_once.py",
     "thesis_exp/exp61_soft_sts15_external_confirmation/contract.py",
     "thesis_exp/exp61_soft_sts15_external_confirmation/build_source_lock.py",
     "thesis_exp/exp61_soft_sts15_external_confirmation/finalize_preflight.py",
-    "thesis_exp/exp60_geometry_matched_shuffle/geometry.py",
-    "thesis_exp/exp60_geometry_matched_shuffle/train.py",
-    "thesis_exp/exp59_residual_geometry/geometry.py",
-    "thesis_exp/exp57_cbrd/model.py",
     "thesis_exp/tests/test_exp61_soft_sts15.py",
     "thesis_exp/outputs/exp61_soft_sts15_external_confirmation/data/split_manifest.jsonl",
     "thesis_exp/outputs/exp61_soft_sts15_external_confirmation/audit/train_maximum_mismatch_mapping.jsonl",
     "thesis_exp/outputs/exp61_soft_sts15_external_confirmation/audit/train_maximum_mismatch_mapping_audit.json",
+    "thesis_exp/outputs/exp61_soft_sts15_external_confirmation/decision/preflight_implementation_decision.json",
+    "thesis_exp/outputs/exp61_soft_sts15_external_confirmation/preflight/seed_61/real_model_no_update_preflight.json",
+    "thesis_exp/outputs/exp61_soft_sts15_external_confirmation/preflight/seed_62/real_model_no_update_preflight.json",
+    "thesis_exp/outputs/exp61_soft_sts15_external_confirmation/preflight/seed_63/real_model_no_update_preflight.json",
 )
 
 
@@ -62,12 +66,75 @@ def directory_manifest(path: Path) -> dict[str, Any]:
     return {"path": str(path), "manifest_sha256": digest.hexdigest(), "files": files}
 
 
+def _module_relative_path(module: str) -> str | None:
+    if not module.startswith("thesis_exp"):
+        return None
+    stem = module.replace(".", "/")
+    candidates = (f"{stem}.py", f"{stem}/__init__.py")
+    for relative in candidates:
+        if (ROOT / relative).is_file():
+            return relative
+    return None
+
+
+def _resolved_import_modules(path: Path) -> set[str]:
+    tree = ast.parse(path.read_text(encoding="utf-8"), filename=str(path))
+    modules: set[str] = set()
+    relative = path.relative_to(ROOT).with_suffix("")
+    current_parts = list(relative.parts)
+    if current_parts[-1] == "__init__":
+        current_parts = current_parts[:-1]
+    else:
+        current_parts = current_parts[:-1]
+    for node in ast.walk(tree):
+        if isinstance(node, ast.Import):
+            modules.update(alias.name for alias in node.names)
+        elif isinstance(node, ast.ImportFrom):
+            if node.level:
+                keep = len(current_parts) - node.level + 1
+                prefix = current_parts[: max(0, keep)]
+                module_parts = node.module.split(".") if node.module else []
+                module = ".".join(prefix + module_parts)
+            else:
+                module = node.module or ""
+            if module:
+                modules.add(module)
+    return modules
+
+
+def repository_local_import_closure(
+    roots: tuple[str, ...] = SOURCE_LOCK_ROOT_FILES,
+) -> tuple[str, ...]:
+    """Return the exact repository-local transitive import closure."""
+
+    closure = set(roots)
+    pending = [relative for relative in roots if relative.endswith(".py")]
+    parsed: set[str] = set()
+    while pending:
+        relative = pending.pop()
+        if relative in parsed:
+            continue
+        path = ROOT / relative
+        if not path.is_file():
+            raise FileNotFoundError(path)
+        parsed.add(relative)
+        for module in _resolved_import_modules(path):
+            dependency = _module_relative_path(module)
+            if dependency is not None and dependency not in closure:
+                closure.add(dependency)
+                pending.append(dependency)
+    return tuple(sorted(closure))
+
+
 def build_source_lock(model_path: Path) -> dict[str, Any]:
-    files = {relative: sha256_file(ROOT / relative) for relative in LOCKED_RELATIVE_FILES}
+    mandatory_files = repository_local_import_closure()
+    files = {relative: sha256_file(ROOT / relative) for relative in mandatory_files}
     protocol = json.loads(FROZEN_PROTOCOL.read_text(encoding="utf-8"))
     return {
         "status": "EXP61_SOURCE_LOCK_CANDIDATE_AWAITING_FINAL_PREFLIGHT_REVIEW",
         "files": files,
+        "mandatory_file_count": len(mandatory_files),
+        "dependency_closure_algorithm": "AST repository-local transitive imports plus explicit non-code roots",
         "protocol_sha256": sha256_file(FROZEN_PROTOCOL),
         "model": directory_manifest(model_path),
         "train_dataset_contract_sha256": "e4abd30af2c17937c03c8d8726a9ac61d88af72490f79b91dcc7206a43596f31",
@@ -82,6 +149,16 @@ def verify_source_lock(*, require_formal_authorization: bool) -> dict[str, Any]:
     if not SOURCE_LOCK.is_file():
         raise FileNotFoundError(SOURCE_LOCK)
     lock = json.loads(SOURCE_LOCK.read_text(encoding="utf-8"))
+    mandatory_files = set(repository_local_import_closure())
+    locked_files = set(lock.get("files", {}))
+    if locked_files != mandatory_files:
+        missing = sorted(mandatory_files - locked_files)
+        extra = sorted(locked_files - mandatory_files)
+        raise RuntimeError(
+            f"Exp61 source-lock dependency closure mismatch; missing={missing}, extra={extra}"
+        )
+    if lock.get("mandatory_file_count") != len(mandatory_files):
+        raise RuntimeError("Exp61 source-lock mandatory file count mismatch")
     for relative, expected in lock["files"].items():
         actual = sha256_file(ROOT / relative)
         if actual != expected:

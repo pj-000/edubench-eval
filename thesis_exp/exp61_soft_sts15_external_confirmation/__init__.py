@@ -11,6 +11,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 EXP61_ROOT = ROOT / "thesis_exp/exp61_soft_sts15_external_confirmation"
 OUTPUT_ROOT = ROOT / "thesis_exp/outputs/exp61_soft_sts15_external_confirmation"
+ARTIFACT_ROOT = ROOT / "thesis_exp/artifacts/exp61_soft_sts15_external_confirmation"
 STAGE0_PROTOCOL = EXP61_ROOT / "configs/stage0_protocol.json"
 FROZEN_PROTOCOL = EXP61_ROOT / "configs/protocol.json"
 SPLIT_MANIFEST = OUTPUT_ROOT / "data/split_manifest.jsonl"

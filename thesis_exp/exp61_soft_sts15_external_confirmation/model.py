@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import hashlib
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
@@ -15,6 +16,14 @@ class ModelConfig:
     local_files_only: bool = True
     gradient_checkpointing: bool = True
     bf16: bool = True
+
+
+def parameter_sha256(model: Any) -> str:
+    digest = hashlib.sha256()
+    for name, value in sorted(model.state_dict().items()):
+        digest.update(name.encode("utf-8"))
+        digest.update(value.detach().float().cpu().contiguous().numpy().tobytes())
+    return digest.hexdigest()
 
 
 def load_model_and_tokenizer(config: ModelConfig) -> tuple[Any, Any, dict[str, Any]]:

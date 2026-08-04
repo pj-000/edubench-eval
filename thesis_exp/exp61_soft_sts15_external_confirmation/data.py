@@ -77,11 +77,9 @@ def verify_source(source_repo: Path) -> Path:
     return data_path
 
 
-def load_model_rows(source_repo: Path, split: str) -> list[dict[str, Any]]:
-    """Load only train/dev; this function has no test override by design."""
-
-    if split not in TRAINING_SPLITS:
-        raise PermissionError("Exp61 training loader permits only train and dev")
+def _load_rows_for_frozen_split(source_repo: Path, split: str) -> list[dict[str, Any]]:
+    if split not in EXPECTED_SPLIT_ROWS:
+        raise ValueError(f"unknown Exp61 split: {split}")
     frame = load_dataset(verify_source(source_repo), expected_rows=EXPECTED_ROWS)
     manifest = read_manifest()
     rows: list[dict[str, Any]] = []
@@ -121,6 +119,14 @@ def load_model_rows(source_repo: Path, split: str) -> list[dict[str, Any]]:
     if len(rows) != EXPECTED_SPLIT_ROWS[split]:
         raise RuntimeError(f"Exp61 {split} row count mismatch")
     return rows
+
+
+def load_model_rows(source_repo: Path, split: str) -> list[dict[str, Any]]:
+    """Load only train/dev; test has a separate one-shot entry point."""
+
+    if split not in TRAINING_SPLITS:
+        raise PermissionError("Exp61 training loader permits only train and dev")
+    return _load_rows_for_frozen_split(source_repo, split)
 
 
 def rows_contract_sha256(rows: list[dict[str, Any]]) -> str:

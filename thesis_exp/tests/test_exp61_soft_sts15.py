@@ -1,6 +1,8 @@
 from __future__ import annotations
 
 from collections import Counter
+import json
+from pathlib import Path
 
 import numpy as np
 import pytest
@@ -23,6 +25,22 @@ from thesis_exp.exp61_soft_sts15_external_confirmation.metrics import (
     component_cluster_bootstrap,
     confirmation_gates,
     evaluate_hard_head,
+)
+from thesis_exp.exp61_soft_sts15_external_confirmation.analysis import (
+    validate_prediction_rows,
+)
+from thesis_exp.exp61_soft_sts15_external_confirmation.contract import (
+    ROOT,
+    repository_local_import_closure,
+    sha256_file,
+    verify_source_lock,
+)
+from thesis_exp.exp61_soft_sts15_external_confirmation.evaluate_test_once import (
+    _write_json_exclusive,
+    validate_checkpoint_grid,
+)
+from thesis_exp.exp61_soft_sts15_external_confirmation.train import (
+    verify_seed_preflight_binding,
 )
 
 
@@ -101,3 +119,160 @@ def test_component_bootstrap_is_deterministic_and_gate_code_is_fail_closed() -> 
     shuffled_metrics = {seed: {"nmae": 0.12, "spearman": 0.80} for seed in (61, 62, 63)}
     main_metrics = {seed: {"nmae": 0.11, "spearman": 0.79} for seed in (61, 62, 63)}
     assert confirmation_gates(aligned_metrics, shuffled_metrics, main_metrics, first)["decision"] == "PASS"
+
+
+def test_source_lock_uses_real_repository_local_transitive_closure() -> None:
+    closure = set(repository_local_import_closure())
+    assert "thesis_exp/exp61_soft_sts15_external_confirmation/audit_dataset.py" in closure
+    assert "thesis_exp/exp60_geometry_matched_shuffle/contract.py" in closure
+    assert "thesis_exp/exp60_geometry_matched_shuffle/__init__.py" in closure
+    assert "thesis_exp/exp61_soft_sts15_external_confirmation/evaluate_test_once.py" in closure
+    assert "thesis_exp/exp61_soft_sts15_external_confirmation/sealed_test_data.py" in closure
+
+
+def test_source_lock_verifier_rejects_an_omitted_mandatory_dependency(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    import thesis_exp.exp61_soft_sts15_external_confirmation.contract as contract
+
+    mandatory = repository_local_import_closure()
+    lock = {
+        "status": "EXP61_SOURCE_LOCK_CANDIDATE_AWAITING_FINAL_PREFLIGHT_REVIEW",
+        "files": {relative: sha256_file(ROOT / relative) for relative in mandatory},
+        "mandatory_file_count": len(mandatory),
+        "protocol_sha256": sha256_file(contract.FROZEN_PROTOCOL),
+        "test_access_count": 0,
+        "formal_training_authorized": False,
+    }
+    path = tmp_path / "source_lock.json"
+    path.write_text(json.dumps(lock))
+    monkeypatch.setattr(contract, "SOURCE_LOCK", path)
+    verify_source_lock(require_formal_authorization=False)
+    lock["files"].pop(
+        "thesis_exp/exp61_soft_sts15_external_confirmation/audit_dataset.py"
+    )
+    path.write_text(json.dumps(lock))
+    with pytest.raises(RuntimeError, match="dependency closure mismatch"):
+        verify_source_lock(require_formal_authorization=False)
+
+
+def test_seed_preflight_binding_fails_closed() -> None:
+    lock = {"model": {"manifest_sha256": "model"}}
+    preflight = {
+        "status": "EXP61_REAL_MODEL_NO_UPDATE_PREFLIGHT_PASS",
+        "seed": 61,
+        "initial_parameter_sha256": "initial",
+        "model_manifest_sha256": "model",
+        "checks": {
+            "no_parameter_update": True,
+            "optimizer_step_count_zero": True,
+            "test_access_count_zero": True,
+        },
+    }
+    verify_seed_preflight_binding(
+        seed=61,
+        initial_parameter_sha256="initial",
+        preflight=preflight,
+        source_lock=lock,
+    )
+    preflight["initial_parameter_sha256"] = "different"
+    with pytest.raises(RuntimeError):
+        verify_seed_preflight_binding(
+            seed=61,
+            initial_parameter_sha256="initial",
+            preflight=preflight,
+            source_lock=lock,
+        )
+
+
+def _synthetic_test_rows() -> tuple[list[dict[str, object]], list[dict[str, object]]]:
+    expected: list[dict[str, object]] = []
+    predictions: list[dict[str, object]] = []
+    for index in range(1578):
+        frozen = {
+            "record_id": f"softsts15:{index}",
+            "row_id": index,
+            "split": "test",
+            "component_sha256": f"component-{index // 2}",
+            "human_mean": 2.0,
+            "hard_label": 2,
+        }
+        expected.append(frozen)
+        predictions.append(
+            {
+                **frozen,
+                "variant": "quantized_mean_only",
+                "seed": 61,
+                "checkpoint_state_dict_sha256": "state",
+                "hard_head_probabilities": [0.0, 0.0, 1.0, 0.0, 0.0, 0.0],
+                "hard_head_expectation": 2.0,
+                "hard_head_argmax": 2,
+            }
+        )
+    return expected, predictions
+
+
+def test_strict_test_prediction_metadata_rejects_any_manifest_drift() -> None:
+    expected, predictions = _synthetic_test_rows()
+    validate_prediction_rows(
+        predictions,
+        expected,
+        variant="quantized_mean_only",
+        seed=61,
+        checkpoint_state_sha256="state",
+    )
+    predictions[100]["component_sha256"] = "wrong"
+    with pytest.raises(RuntimeError):
+        validate_prediction_rows(
+            predictions,
+            expected,
+            variant="quantized_mean_only",
+            seed=61,
+            checkpoint_state_sha256="state",
+        )
+
+
+def test_test_access_marker_is_exclusive(tmp_path: Path) -> None:
+    marker = tmp_path / "test_access.json"
+    _write_json_exclusive(marker, {"test_access_count": 1})
+    with pytest.raises(FileExistsError):
+        _write_json_exclusive(marker, {"test_access_count": 2})
+
+
+def test_checkpoint_grid_requires_nine_epoch10_artifacts_and_paired_order(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    import thesis_exp.exp61_soft_sts15_external_confirmation.evaluate_test_once as evaluator
+
+    monkeypatch.setattr(evaluator, "ARTIFACT_ROOT", tmp_path)
+    for variant in evaluator.VARIANTS:
+        for seed in evaluator.SEEDS:
+            root = tmp_path / variant / f"seed_{seed}" / "epoch10"
+            root.mkdir(parents=True)
+            state = root / "dual_head_state_dict.pt"
+            state.write_bytes(f"{variant}-{seed}".encode())
+            metadata = {
+                "status": "EXP61_FIXED_EPOCH10_CHECKPOINT",
+                "variant": variant,
+                "seed": seed,
+                "epoch": 10,
+                "state_dict_sha256": sha256_file(state),
+                "provenance": {
+                    "protocol_sha256": "protocol",
+                    "source_lock_sha256": "lock",
+                    "initial_parameter_sha256": f"initial-{seed}",
+                    "train_batch_order_sha256": f"order-{seed}",
+                },
+                "test_access_count": 0,
+            }
+            (root / "exp61_checkpoint.json").write_text(json.dumps(metadata))
+    grid = validate_checkpoint_grid(
+        protocol_sha256="protocol", source_lock_sha256="lock"
+    )
+    assert set(grid) == set(evaluator.VARIANTS)
+    bad = tmp_path / "aligned_orthogonal_only/seed_61/epoch10/exp61_checkpoint.json"
+    metadata = json.loads(bad.read_text())
+    metadata["provenance"]["train_batch_order_sha256"] = "different"
+    bad.write_text(json.dumps(metadata))
+    with pytest.raises(RuntimeError):
+        validate_checkpoint_grid(protocol_sha256="protocol", source_lock_sha256="lock")

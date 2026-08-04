@@ -7,6 +7,7 @@ protocol/preflight review flips both protocol and source-lock authorization.
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import math
 import time
@@ -17,6 +18,7 @@ from typing import Any
 import numpy as np
 
 from thesis_exp.exp61_soft_sts15_external_confirmation import (
+    ARTIFACT_ROOT,
     MAPPING_AUDIT_PATH,
     MAPPING_PATH,
     OUTPUT_ROOT,
@@ -24,14 +26,21 @@ from thesis_exp.exp61_soft_sts15_external_confirmation import (
     VARIANTS,
 )
 from thesis_exp.exp61_soft_sts15_external_confirmation.contract import (
+    SOURCE_LOCK,
+    sha256_file,
     verify_model_against_lock,
     verify_source_lock,
 )
+from thesis_exp.exp61_soft_sts15_external_confirmation import FROZEN_PROTOCOL
 from thesis_exp.exp61_soft_sts15_external_confirmation.data import load_model_rows, rows_contract_sha256
 from thesis_exp.exp61_soft_sts15_external_confirmation.geometry import compose_geometry_step
 from thesis_exp.exp61_soft_sts15_external_confirmation.mapping import mapping_sha256, mapping_target_lookup
 from thesis_exp.exp61_soft_sts15_external_confirmation.metrics import evaluate_hard_head
-from thesis_exp.exp61_soft_sts15_external_confirmation.model import ModelConfig, load_model_and_tokenizer
+from thesis_exp.exp61_soft_sts15_external_confirmation.model import (
+    ModelConfig,
+    load_model_and_tokenizer,
+    parameter_sha256,
+)
 from thesis_exp.exp61_soft_sts15_external_confirmation.runtime import (
     accumulate_residual_vjp,
     capture_rng,
@@ -61,6 +70,26 @@ class FormalConfig:
     num_workers: int = 0
 
 
+def verify_seed_preflight_binding(
+    *,
+    seed: int,
+    initial_parameter_sha256: str,
+    preflight: dict[str, Any],
+    source_lock: dict[str, Any],
+) -> None:
+    checks = {
+        "preflight_status": preflight.get("status") == "EXP61_REAL_MODEL_NO_UPDATE_PREFLIGHT_PASS",
+        "preflight_seed": preflight.get("seed") == seed,
+        "initial_parameter": preflight.get("initial_parameter_sha256") == initial_parameter_sha256,
+        "model_manifest": preflight.get("model_manifest_sha256") == source_lock["model"]["manifest_sha256"],
+        "no_parameter_update": preflight.get("checks", {}).get("no_parameter_update") is True,
+        "optimizer_step_zero": preflight.get("checks", {}).get("optimizer_step_count_zero") is True,
+        "test_access_zero": preflight.get("checks", {}).get("test_access_count_zero") is True,
+    }
+    if not all(checks.values()):
+        raise RuntimeError(f"Exp61 seed-specific preflight binding failed: {checks}")
+
+
 def parse_args() -> FormalConfig:
     parser = argparse.ArgumentParser()
     parser.add_argument("--source_repo", type=Path, required=True)
@@ -71,7 +100,7 @@ def parse_args() -> FormalConfig:
     parser.add_argument("--checkpoint_dir", type=Path)
     args = parser.parse_args()
     output = args.output_dir or OUTPUT_ROOT / "runs" / args.variant / f"seed_{args.seed}"
-    checkpoint = args.checkpoint_dir or Path("thesis_exp/artifacts/exp61_soft_sts15_external_confirmation") / args.variant / f"seed_{args.seed}" / "epoch10"
+    checkpoint = args.checkpoint_dir or ARTIFACT_ROOT / args.variant / f"seed_{args.seed}" / "epoch10"
     return FormalConfig(args.source_repo, args.model_name_or_path, output, checkpoint, args.variant, args.seed)
 
 
@@ -124,15 +153,39 @@ def evaluate_dev(model: Any, loader: Any, device: Any) -> tuple[dict[str, float]
     return metrics, predictions
 
 
-def save_epoch10(model: Any, tokenizer: Any, config: FormalConfig, metrics: dict[str, Any]) -> None:
+def save_epoch10(
+    model: Any,
+    tokenizer: Any,
+    config: FormalConfig,
+    metrics: dict[str, Any],
+    provenance: dict[str, Any],
+) -> dict[str, Any]:
     import torch
 
     config.checkpoint_dir.mkdir(parents=True, exist_ok=True)
-    torch.save(model.state_dict(), config.checkpoint_dir / "dual_head_state_dict.pt")
+    state_path = config.checkpoint_dir / "dual_head_state_dict.pt"
+    torch.save(model.state_dict(), state_path)
     tokenizer.save_pretrained(config.checkpoint_dir)
+    checkpoint = {
+        "status": "EXP61_FIXED_EPOCH10_CHECKPOINT",
+        "variant": config.variant,
+        "seed": config.seed,
+        "epoch": 10,
+        "state_dict_sha256": sha256_file(state_path),
+        "config": {
+            **asdict(config),
+            "source_repo": str(config.source_repo),
+            "output_dir": str(config.output_dir),
+            "checkpoint_dir": str(config.checkpoint_dir),
+        },
+        "metrics": metrics,
+        "provenance": provenance,
+        "test_access_count": 0,
+    }
     (config.checkpoint_dir / "exp61_checkpoint.json").write_text(
-        json.dumps({"config": {**asdict(config), "source_repo": str(config.source_repo), "output_dir": str(config.output_dir), "checkpoint_dir": str(config.checkpoint_dir)}, "metrics": metrics}, indent=2, sort_keys=True) + "\n"
+        json.dumps(checkpoint, indent=2, sort_keys=True) + "\n"
     )
+    return checkpoint
 
 
 def train(config: FormalConfig) -> dict[str, Any]:
@@ -160,6 +213,23 @@ def train(config: FormalConfig) -> dict[str, Any]:
         raise RuntimeError("Exp61 mapping contract mismatch")
     shuffled = mapping_target_lookup(mapping_rows)
     model, tokenizer, head_contract = load_model_and_tokenizer(ModelConfig(config.model_name_or_path))
+    initial_parameter_sha256 = parameter_sha256(model)
+    preflight_path = (
+        OUTPUT_ROOT
+        / "preflight"
+        / f"seed_{config.seed}"
+        / "real_model_no_update_preflight.json"
+    )
+    preflight = json.loads(preflight_path.read_text(encoding="utf-8"))
+    verify_seed_preflight_binding(
+        seed=config.seed,
+        initial_parameter_sha256=initial_parameter_sha256,
+        preflight=preflight,
+        source_lock=source_lock,
+    )
+    protocol_sha256 = sha256_file(FROZEN_PROTOCOL)
+    source_lock_sha256 = sha256_file(SOURCE_LOCK)
+    semantic_mapping_sha256 = mapping_sha256(mapping_rows)
     device = torch.device("cuda")
     model.to(device)
     train_loader = make_loader(train_rows, tokenizer, config, shuffle=True)
@@ -172,6 +242,7 @@ def train(config: FormalConfig) -> dict[str, Any]:
     aligned_buffers = {name: torch.zeros_like(parameter, dtype=torch.float32) for name, parameter in named_backbone.items()}
     shuffled_buffers = {name: torch.zeros_like(parameter, dtype=torch.float32) for name, parameter in named_backbone.items()}
     geometry_audits: list[dict[str, Any]] = []
+    batch_order_digest = hashlib.sha256()
     optimizer.zero_grad(set_to_none=True)
     global_step = 0
     started = time.time()
@@ -179,6 +250,11 @@ def train(config: FormalConfig) -> dict[str, Any]:
         model.train()
         for micro_step, batch in enumerate(train_loader, start=1):
             metadata = batch.pop("metadata")
+            batch_order_digest.update(
+                ("\t".join(str(row["record_id"]) for row in metadata) + "\n").encode(
+                    "utf-8"
+                )
+            )
             labels = batch.pop("labels").to(device)
             inputs = {name: value.to(device) for name, value in batch.items()}
             aligned_targets = torch.tensor([row["soft_target"] for row in metadata], dtype=torch.float32, device=device)
@@ -209,6 +285,15 @@ def train(config: FormalConfig) -> dict[str, Any]:
             raise RuntimeError("frozen Exp61 batch contract unexpectedly produced a partial accumulation window")
     metrics, predictions = evaluate_dev(model, dev_loader, device)
     config.output_dir.mkdir(parents=True, exist_ok=True)
+    provenance = {
+        "initial_parameter_sha256": initial_parameter_sha256,
+        "preflight_json_sha256": sha256_file(preflight_path),
+        "protocol_sha256": protocol_sha256,
+        "source_lock_sha256": source_lock_sha256,
+        "mapping_semantic_sha256": semantic_mapping_sha256,
+        "train_batch_order_sha256": batch_order_digest.hexdigest(),
+        "model_manifest_sha256": source_lock["model"]["manifest_sha256"],
+    }
     summary = {
         "status": "EXP61_FIXED_EPOCH10_DEV_COMPLETE",
         "variant": config.variant,
@@ -218,12 +303,16 @@ def train(config: FormalConfig) -> dict[str, Any]:
         "elapsed_seconds": time.time() - started,
         "metrics": metrics,
         "head_contract": head_contract,
+        "provenance": provenance,
         "test_access_count": 0,
     }
-    (config.output_dir / "epoch10_dev_summary.json").write_text(json.dumps(summary, indent=2, sort_keys=True) + "\n")
     (config.output_dir / "epoch10_dev_predictions.jsonl").write_text("".join(json.dumps(row, sort_keys=True) + "\n" for row in predictions))
     (config.output_dir / "geometry_step_audit.json").write_text(json.dumps(geometry_audits, indent=2, sort_keys=True) + "\n")
-    save_epoch10(model, tokenizer, config, metrics)
+    checkpoint = save_epoch10(model, tokenizer, config, metrics, provenance)
+    summary["checkpoint_state_dict_sha256"] = checkpoint["state_dict_sha256"]
+    (config.output_dir / "epoch10_dev_summary.json").write_text(
+        json.dumps(summary, indent=2, sort_keys=True) + "\n"
+    )
     return summary
 
 
