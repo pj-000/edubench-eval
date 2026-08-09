@@ -1,0 +1,30 @@
+{
+  "status": "EXP64_MECHANICAL_REVISION_BEFORE_ANY_FORMAL_STAGE_RESULT",
+  "date": "2026-08-09",
+  "failure": "The first formal attempt on seeds 72, 73 and 74 exhausted 24 GiB CUDA memory during the first group-A probe-gradient forward with a hard-coded probe batch size of 128.",
+  "result_exposure": {
+    "formal_stage_json_files_written": 0,
+    "seed_summary_files_written": 0,
+    "full_effects_printed": 0,
+    "completed_probe_losses_printed": 0,
+    "independent_model_outcomes_observed": 0,
+    "test_access_count": 0
+  },
+  "revision": {
+    "old_probe_batch_size": 128,
+    "new_probe_batch_size": 32,
+    "gradient_definition": "unchanged mean hard cross-entropy; each batch sum is divided by the same frozen total probe-row count before backward",
+    "loss_definition": "unchanged total summed hard cross-entropy divided by the frozen total probe-row count",
+    "scientific_protocol_changed": false,
+    "seeds_changed": false,
+    "checkpoints_changed": false,
+    "probe_partition_changed": false,
+    "success_or_stop_rules_changed": false
+  },
+  "base_trajectory_source_lock_sha256": "7783cbb9428dacb292903313acba52cfd7fd9a4e2cd7d847a2dab21c223e2808",
+  "failed_logs": {
+    "seed72": "0db930a518937034d86c70f84ff1242423ab04336305108688fb71107a5f4b76",
+    "seed73": "82ed2070c82ff75c2f04c2db200b9de67445190ba4ba9ad65028958396df762a",
+    "seed74": "88fdbb0c86f09a71ba2b1177d68d8e32c5b60b29bd60284624c96b7e7a28f1d8"
+  }
+}

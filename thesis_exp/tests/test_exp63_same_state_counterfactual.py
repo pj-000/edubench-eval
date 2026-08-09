@@ -1,7 +1,9 @@
 from __future__ import annotations
 
 import json
+import random
 
+import numpy as np
 import torch
 from transformers import get_cosine_schedule_with_warmup
 
@@ -9,9 +11,10 @@ from thesis_exp.exp63_same_state_counterfactual import PROTOCOL_PATH
 from thesis_exp.exp63_same_state_counterfactual.counterfactual import (
     candidate_raw_norm,
     candidate_tensor,
+    restore_saved_training_rng,
     scalar_geometry,
 )
-from thesis_exp.exp63_same_state_counterfactual.runtime import epoch_order
+from thesis_exp.exp63_same_state_counterfactual.runtime import capture_rng, epoch_order
 
 
 def test_protocol_is_train_dev_only_and_seed_is_primary_unit() -> None:
@@ -75,3 +78,26 @@ def test_scheduler_must_be_constructed_before_optimizer_state_restore() -> None:
     assert expected_lr > 0.0
     assert target_optimizer.param_groups[0]["lr"] == expected_lr
     assert target_scheduler.get_last_lr()[0] == expected_lr
+
+
+def test_complete_checkpoint_rng_is_restored() -> None:
+    device = torch.device("cpu")
+    random.seed(19)
+    np.random.seed(19)
+    torch.manual_seed(19)
+    state = capture_rng(torch, device)
+    expected = (
+        random.random(),
+        float(np.random.rand()),
+        float(torch.rand(())),
+    )
+    random.seed(99)
+    np.random.seed(99)
+    torch.manual_seed(99)
+    restore_saved_training_rng(torch, device, {"rng": state})
+    actual = (
+        random.random(),
+        float(np.random.rand()),
+        float(torch.rand(())),
+    )
+    assert actual == expected

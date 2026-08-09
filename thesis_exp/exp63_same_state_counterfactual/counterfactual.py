@@ -29,6 +29,7 @@ from thesis_exp.exp63_same_state_counterfactual.runtime import (
     hash_strings,
     load_protocol,
     ordered_rows,
+    restore_rng as restore_checkpoint_rng,
     sha256_file,
     write_json,
 )
@@ -216,6 +217,20 @@ def collect_components(
     }
 
 
+def restore_saved_training_rng(torch: Any, device: Any, payload: dict[str, Any]) -> None:
+    """Restore the complete RNG snapshot stored by ``train_base.save_stage``.
+
+    Exp63's component collector separately rewinds Torch CPU/CUDA RNG between
+    the common and residual backward passes.  That local rewind does not
+    replace restoration of the Python, NumPy and Torch RNG state captured at
+    the frozen training checkpoint.
+    """
+
+    if "rng" not in payload:
+        raise RuntimeError("Frozen checkpoint is missing its complete RNG state")
+    restore_checkpoint_rng(torch, device, payload["rng"])
+
+
 def assign_matched_gradient(
     model: Any,
     common: dict[str, Any],
@@ -307,6 +322,7 @@ def run_stage(
     model.gradient_checkpointing_enable()
     model.load_state_dict(payload["model"], strict=True)
     window_loader = make_dataloader(window_rows, tokenizer, config, "train", shuffle=False)
+    restore_saved_training_rng(torch, device, payload)
     common, residual, window_audit = collect_components(
         model, window_loader, device, config.gradient_accumulation_steps
     )
@@ -410,6 +426,7 @@ def run_stage(
             "same_optimizer_state_for_all_arms": True,
             "same_scheduler_state_for_all_arms": True,
             "same_window_for_all_arms": True,
+            "checkpoint_rng_restored_before_component_collection": True,
             "same_full_parameter_target_norm": target_norm,
             "same_clip_threshold": clip_threshold,
         },
