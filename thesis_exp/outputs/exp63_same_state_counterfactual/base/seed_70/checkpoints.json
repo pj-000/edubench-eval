@@ -1,0 +1,29 @@
+[
+  {
+    "bytes": 3575142540,
+    "epoch": 2,
+    "global_step": 42,
+    "next_window_rows": 128,
+    "next_window_sha256": "af18b48b3759aa5c2b0442a91b3c9477fc3cf4a171ced89c7600bd65161ac458",
+    "path": "/home/jpang/edubench-eval-exp2/thesis_exp/artifacts/exp63_same_state_counterfactual/seed_70/after_epoch_2.pt",
+    "sha256": "7003dcee548a7c358cdff72920e0565b209743833a93007b9b38e9eaf3328fae"
+  },
+  {
+    "bytes": 3575142540,
+    "epoch": 5,
+    "global_step": 105,
+    "next_window_rows": 128,
+    "next_window_sha256": "b531cf1947861c5f97e05fd6f12eb18736b9c3a015c92dee09335af9616e1ce9",
+    "path": "/home/jpang/edubench-eval-exp2/thesis_exp/artifacts/exp63_same_state_counterfactual/seed_70/after_epoch_5.pt",
+    "sha256": "fd8be48af5a75bb8f1cbeb6f8657a88156afe35fc1b8e838c7147a208cabdbda"
+  },
+  {
+    "bytes": 3575142540,
+    "epoch": 8,
+    "global_step": 168,
+    "next_window_rows": 128,
+    "next_window_sha256": "ec1d2382226a3e6e166511af0412b2e483c877be9f99d666c7fabf54d23c5cec",
+    "path": "/home/jpang/edubench-eval-exp2/thesis_exp/artifacts/exp63_same_state_counterfactual/seed_70/after_epoch_8.pt",
+    "sha256": "d9e53ec23d78a42e6c35e4d84ea4ef00960623f02e969e1c792aff335c863fa8"
+  }
+]

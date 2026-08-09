@@ -1,0 +1,23 @@
+{
+  "files": {
+    "thesis_exp/configs/exp63_same_state_counterfactual/protocol.json": "0ebf41ebb74c4841ed2bcf76ff27dc48bf0891ca3935996eefd991982ca67866",
+    "thesis_exp/data/splits/paper_like_triple_seed42/dev.jsonl": "a18d6a27b9a524d4592a359658ae70c9348fe88e43c962971ba95f62d2b6cdf0",
+    "thesis_exp/data/splits/paper_like_triple_seed42/train.jsonl": "0a1733b9209984c5c4291d205d1ac6057bed341717903b9de075d07de44a878e",
+    "thesis_exp/exp57_cbrd/data_audit.py": "35a3d38a6c0719b85cdea0983fa11c71991790874e6118a519dffeac1a34ca0d",
+    "thesis_exp/exp57_cbrd/losses.py": "79478bdfd83851f2f077b3b30223e46648a840df6468c9f8edae64f22e307b54",
+    "thesis_exp/exp57_cbrd/method.py": "00f044bc764668910a6ff6c809d481acfd8e75a29974df3d0b71ace9728f68c8",
+    "thesis_exp/exp57_cbrd/model.py": "cd648c050e23a33773078e662919df7749b8a617476c3aaf082521f19774caaf",
+    "thesis_exp/exp57_cbrd/train.py": "238c2ef0f51499dee08eb452fbbb3ea4109c536a3373be89de4d087d4e36f8d6",
+    "thesis_exp/exp59_residual_geometry/train.py": "f8f5d3d7b59f4021db1d2c12171af62b9580243e567486cbf0bb237490d02960",
+    "thesis_exp/exp63_same_state_counterfactual/__init__.py": "3252d2d9829b08990cdb4f2918cec3294c364bd9712c85c6cec2cf3d32f6eb16",
+    "thesis_exp/exp63_same_state_counterfactual/analyze.py": "9a0a8be17634aa783450aeab99836f26488648ba3310f800952645209e32d1b9",
+    "thesis_exp/exp63_same_state_counterfactual/counterfactual.py": "555158166710591c37a7fab188a09c0a34462a845bd730c79504731d0b819fb1",
+    "thesis_exp/exp63_same_state_counterfactual/preflight.py": "678c0ce5d549bbfc8faf79624856f6c078e0f0a4e71f970187d2b9214b708c5c",
+    "thesis_exp/exp63_same_state_counterfactual/runtime.py": "6ae9abd1f16af4fe0d206eee82d8ecd823e87969e107160268ee2b50661a28f2",
+    "thesis_exp/exp63_same_state_counterfactual/train_base.py": "9cbae190ab55340fbb016edcff63d862071c4a989d0a540a66fdc04e901093f5",
+    "thesis_exp/src/edujudge/exp02/build_exp02_dataset.py": "82eaefd6c711f632a23d61e7591d5c447076e9e351134887b726d7db75a7d241",
+    "thesis_exp/src/edujudge/exp02/train_ce_baseline.py": "fccf33d68bdd7ea889032c071422baff6bfd1cf8a4e3e54927638bcf258c9b68",
+    "thesis_exp/src/edujudge/utils/io.py": "e19250fbf9b7a2013b61078d29100137ee6cefab76cd8dda01ab6888156f1364"
+  },
+  "status": "EXP63_SOURCE_LOCK_FROZEN_BEFORE_REAL_MODEL_UPDATE_RESULTS"
+}

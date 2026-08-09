@@ -1,0 +1,82 @@
+[
+  {
+    "clip_events": 21,
+    "epoch": 1,
+    "global_step": 21,
+    "learning_rate_after_epoch": 1.985109326154774e-05,
+    "maximum_preclip_norm": 324.0,
+    "record_order_sha256": "eda1565e466cb78233a22a081afe2c75657663f31a68a12f95bd669b4b47a2aa"
+  },
+  {
+    "clip_events": 21,
+    "epoch": 2,
+    "global_step": 42,
+    "learning_rate_after_epoch": 1.8763066800438638e-05,
+    "maximum_preclip_norm": 120.0,
+    "record_order_sha256": "497a49573342501f7e9851e934e5832ec0f6d01263e306a880b145105cc75783"
+  },
+  {
+    "clip_events": 21,
+    "epoch": 3,
+    "global_step": 63,
+    "learning_rate_after_epoch": 1.6730125135097736e-05,
+    "maximum_preclip_norm": 97.5,
+    "record_order_sha256": "e3a69c24a08bc9afbcedf6d22bdefabc0133a7c94230a009471b3e145efa7b96"
+  },
+  {
+    "clip_events": 21,
+    "epoch": 4,
+    "global_step": 84,
+    "learning_rate_after_epoch": 1.3971478906347806e-05,
+    "maximum_preclip_norm": 117.5,
+    "record_order_sha256": "27827e3569144e80ddc67f6ca4810cdda1f399775a8bc34d8725d17093c8a633"
+  },
+  {
+    "clip_events": 21,
+    "epoch": 5,
+    "global_step": 105,
+    "learning_rate_after_epoch": 1.0784590957278452e-05,
+    "maximum_preclip_norm": 175.0,
+    "record_order_sha256": "d8e8e969686f3f2db628df9f971d5775fae42507dba5da73350aa8e068fe8fae"
+  },
+  {
+    "clip_events": 21,
+    "epoch": 6,
+    "global_step": 126,
+    "learning_rate_after_epoch": 7.513101128351454e-06,
+    "maximum_preclip_norm": 147.0,
+    "record_order_sha256": "8be580ed0b1ff68666d109df7f8ad04b70cfbb5dace4ed4759bd54929ff4ab33"
+  },
+  {
+    "clip_events": 21,
+    "epoch": 7,
+    "global_step": 147,
+    "learning_rate_after_epoch": 4.509771820018682e-06,
+    "maximum_preclip_norm": 106.0,
+    "record_order_sha256": "3dde2b67a4cf713e3e2749854d96e89e3ba480cf6d6a565dccb45e1d78748cd2"
+  },
+  {
+    "clip_events": 21,
+    "epoch": 8,
+    "global_step": 168,
+    "learning_rate_after_epoch": 2.098449876243096e-06,
+    "maximum_preclip_norm": 81.5,
+    "record_order_sha256": "4698f333a07ae2ee94b375730efbffb7df9d11ef8c64ef38ef3d08e0394bda17"
+  },
+  {
+    "clip_events": 21,
+    "epoch": 9,
+    "global_step": 189,
+    "learning_rate_after_epoch": 5.391464117245471e-07,
+    "maximum_preclip_norm": 57.5,
+    "record_order_sha256": "aed332f5f7a5bad6cf7ed3e4fd494b5c6bda083bc651d2dc19ea8c264d37dd80"
+  },
+  {
+    "clip_events": 21,
+    "epoch": 10,
+    "global_step": 210,
+    "learning_rate_after_epoch": 0.0,
+    "maximum_preclip_norm": 61.75,
+    "record_order_sha256": "6cf99543bba8563d011cd517eef215a7fce6d270b3ff7b1b88ad8ff8c25f001f"
+  }
+]

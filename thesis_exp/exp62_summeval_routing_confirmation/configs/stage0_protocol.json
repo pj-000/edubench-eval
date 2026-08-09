@@ -1,0 +1,32 @@
+{
+  "experiment": "Exp62-SummEval-Routing-Confirmation",
+  "status": "STAGE0_AUDIT_ONLY",
+  "scientific_question": "Does the favorable association of direct residual routing and its orthogonal component reproduce on an independent true multi-rater ordinal dataset?",
+  "source": {
+    "dataset": "SummEval",
+    "official_repository": "https://github.com/Yale-LILY/SummEval",
+    "official_repository_commit": "81b59ad53d63cb6009764240853c91235a44e238",
+    "official_annotation_url": "https://storage.googleapis.com/sfr-summarization-repo-research/model_annotations.aligned.jsonl",
+    "annotation_sha256": "f0d4166e0cdeb439b387c4449634b067b7e9f721b9ef4c2b722f6b7550d3d6ab"
+  },
+  "task": {
+    "included_dimensions": ["coherence", "fluency"],
+    "excluded_dimensions": ["consistency", "relevance"],
+    "exclusion_reason": "The released annotation JSONL does not contain the CNN/DailyMail source articles required by consistency and relevance.",
+    "labels": [1, 2, 3, 4, 5],
+    "expert_ratings_per_record": 3,
+    "soft_target": "empirical distribution of the three expert ratings",
+    "hard_target": "floor(arithmetic mean of the three expert ratings + 0.5)"
+  },
+  "split": {
+    "unit": "SummEval source-article id",
+    "ratios": {"train": 0.70, "dev": 0.15, "test": 0.15},
+    "candidate_search": "seeds 0..9999; require all labels in each dimension and split; minimize maximum absolute class-proportion deviation; seed tie-break",
+    "model_predictions_used": false
+  },
+  "stage0": {
+    "uses_gpu": false,
+    "formal_training_authorized": false
+  }
+}
+

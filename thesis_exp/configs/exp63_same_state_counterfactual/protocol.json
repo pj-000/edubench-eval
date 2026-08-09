@@ -1,0 +1,99 @@
+{
+  "status": "EXP63_PROTOCOL_FROZEN_BEFORE_ANY_REAL_MODEL_UPDATE_RESULT",
+  "frozen_date": "2026-08-09",
+  "name": "Same-state, same-norm, same-clipping counterfactual residual update",
+  "role": "mechanism control for Exp57--Exp59; not a new deployable method",
+  "scientific_question": "Conditional on identical model parameters, AdamW state, learning rate and samples, does the orthogonal residual direction improve a held-out probe after one update when full-parameter gradient norm and clipping are held fixed?",
+  "allowed_splits": ["train", "dev"],
+  "test_access_count": 0,
+  "model_name_or_path": "/home/share/models/modelscope/Qwen/Qwen3-Reranker-0.6B",
+  "data_split": "paper_like_triple_seed42",
+  "base_trajectory": {
+    "route": "consensus_only",
+    "seeds": [67, 68, 69, 70, 71],
+    "epochs": 10,
+    "stage_checkpoints_after_epochs": [2, 5, 8],
+    "counterfactual_window": "the first complete 32-microbatch window of the immediately following epoch",
+    "window_rows": 128,
+    "epoch_order": "torch.randperm with an independent generator seeded by seed*1000+epoch",
+    "checkpoint_selection": "none; stages are fixed independently of outcomes"
+  },
+  "fixed_training": {
+    "learning_rate": 0.00002,
+    "weight_decay": 0.01,
+    "warmup_ratio": 0.05,
+    "scheduler": "cosine_with_warmup",
+    "micro_batch_size": 4,
+    "eval_batch_size": 4,
+    "gradient_accumulation_steps": 32,
+    "max_grad_norm": 1.0,
+    "max_length": 2048,
+    "precision": "bf16",
+    "gradient_checkpointing": true,
+    "aux_weight": 1.0
+  },
+  "counterfactual_arms": {
+    "blocked": "G_C",
+    "full_residual": "G_C + R",
+    "parallel_only": "G_C + R_parallel",
+    "orthogonal_only": "G_C + R_orthogonal",
+    "projection_space": "trainable backbone parameter space before norm matching",
+    "head_rule": "R, R_parallel and R_orthogonal are exactly zero on both heads"
+  },
+  "fairness_controls": {
+    "same_checkpoint_file": true,
+    "same_model_parameters": true,
+    "same_AdamW_state": true,
+    "same_scheduler_state_and_learning_rate": true,
+    "same_RNG_state": true,
+    "same_accumulation_window": true,
+    "full_parameter_target_gradient_norm": 0.95,
+    "common_global_clip_threshold": 1.0,
+    "expected_clip_coefficient": 1.0,
+    "optimizer_steps_per_arm": 1,
+    "probe": "complete frozen dev split; disjoint from the train window",
+    "test_forbidden": true
+  },
+  "implementation_gates": {
+    "raw_candidate_norm_must_exceed_target": true,
+    "matched_norm_absolute_error_at_most": 0.005,
+    "post_clip_norm_at_most": 0.97,
+    "residual_reconstruction_relative_error_at_most": 0.000001,
+    "normalized_orthogonality_error_at_most": 0.000001,
+    "residual_head_norm_at_most": 1e-12,
+    "restored_learning_rate_must_equal_checkpoint_and_be_positive": true,
+    "all_four_arms_complete": true,
+    "all_15_seed_stage_units_complete": true,
+    "test_access_count": 0
+  },
+  "primary_estimand": {
+    "metric": "post-update dev hard cross-entropy",
+    "contrast": "orthogonal_only minus blocked",
+    "unit": "seed; first average the three fixed stage contrasts within each seed",
+    "directional_support_all_required": {
+      "mean_delta_at_most": -0.00001,
+      "favorable_seeds_at_least": 4
+    }
+  },
+  "secondary_estimands": [
+    "orthogonal_only minus parallel_only dev hard cross-entropy",
+    "full_residual minus blocked dev hard cross-entropy",
+    "post-update dev MAE, Exact and Kendall as low-resolution diagnostics",
+    "stage-specific effects reported without selecting a favorable stage"
+  ],
+  "interpretation": {
+    "primary_and_orthogonal_vs_parallel_pass": "supports a direction-specific orthogonal residual effect conditional on the measured states",
+    "only_full_passes": "supports a residual interaction not attributable to the isolated orthogonal component",
+    "no_arm_passes": "the long-run Exp59 advantage is not identified as an immediate same-state direction effect and may depend on scale, clipping or trajectory",
+    "scope": "in-domain local optimizer-state intervention; it does not establish broad external generalization"
+  },
+  "prohibited": [
+    "test access",
+    "stage selection after outcomes",
+    "seed pruning",
+    "target-norm tuning",
+    "learning-rate or window search",
+    "treating 15 seed-stage checkpoints as 15 independent confirmatory units",
+    "using hard-label prediction ties to replace the continuous hard-CE primary metric"
+  ]
+}

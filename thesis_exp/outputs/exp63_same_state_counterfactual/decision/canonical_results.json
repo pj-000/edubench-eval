@@ -1,0 +1,231 @@
+{
+  "by_seed": {
+    "67": {
+      "stage_contrasts": {
+        "blocked_minus_blocked": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "full_residual_minus_blocked": [
+          -0.006729898749884389,
+          -0.0013548497258578651,
+          0.005390162221615258
+        ],
+        "orthogonal_minus_parallel": [
+          -0.00715179216251316,
+          0.0020742544365053295,
+          0.006624758175403533
+        ],
+        "orthogonal_only_minus_blocked": [
+          -0.006992248941706691,
+          0.004908616088628137,
+          0.002404664329628936
+        ],
+        "parallel_only_minus_blocked": [
+          0.00015954322080646843,
+          0.0028343616521228077,
+          -0.004220093845774597
+        ]
+      },
+      "stage_count": 3,
+      "stage_mean_contrasts": {
+        "blocked_minus_blocked": 0.0,
+        "full_residual_minus_blocked": -0.000898195418042332,
+        "orthogonal_minus_parallel": 0.0005157401497985677,
+        "orthogonal_only_minus_blocked": 0.00010701049218346063,
+        "parallel_only_minus_blocked": -0.0004087296576151071
+      }
+    },
+    "68": {
+      "stage_contrasts": {
+        "blocked_minus_blocked": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "full_residual_minus_blocked": [
+          0.0019317092935005054,
+          -0.004121652304991508,
+          -0.006730350320359291
+        ],
+        "orthogonal_minus_parallel": [
+          0.000280275222766746,
+          0.005923366659399409,
+          0.003181417059596514
+        ],
+        "orthogonal_only_minus_blocked": [
+          0.002125707915030306,
+          -0.0021252001085912964,
+          -0.00177787633119042
+        ],
+        "parallel_only_minus_blocked": [
+          0.00184543269226356,
+          -0.008048566767990706,
+          -0.004959293390786934
+        ]
+      },
+      "stage_count": 3,
+      "stage_mean_contrasts": {
+        "blocked_minus_blocked": 0.0,
+        "full_residual_minus_blocked": -0.0029734311106167644,
+        "orthogonal_minus_parallel": 0.0031283529805875565,
+        "orthogonal_only_minus_blocked": -0.0005924561749171368,
+        "parallel_only_minus_blocked": -0.003720809155504693
+      }
+    },
+    "69": {
+      "stage_contrasts": {
+        "blocked_minus_blocked": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "full_residual_minus_blocked": [
+          -0.0015257653522203762,
+          -0.004557765282533488,
+          -0.007944604264626953
+        ],
+        "orthogonal_minus_parallel": [
+          -0.002416744199861931,
+          0.0057646689714908605,
+          -0.004286345254951751
+        ],
+        "orthogonal_only_minus_blocked": [
+          -0.002246776977217313,
+          0.0020925241805814787,
+          -0.0015866395165997638
+        ],
+        "parallel_only_minus_blocked": [
+          0.00016996722264461805,
+          -0.003672144790909382,
+          0.0026997057383519873
+        ]
+      },
+      "stage_count": 3,
+      "stage_mean_contrasts": {
+        "blocked_minus_blocked": 0.0,
+        "full_residual_minus_blocked": -0.004676044966460273,
+        "orthogonal_minus_parallel": -0.0003128068277742739,
+        "orthogonal_only_minus_blocked": -0.0005802974377451994,
+        "parallel_only_minus_blocked": -0.0002674906099709255
+      }
+    },
+    "70": {
+      "stage_contrasts": {
+        "blocked_minus_blocked": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "full_residual_minus_blocked": [
+          0.0033870949353799196,
+          -0.002734208933262927,
+          0.003750195252500088
+        ],
+        "orthogonal_minus_parallel": [
+          0.0012038452438560832,
+          9.847302810306324e-05,
+          -0.003300383959823794
+        ],
+        "orthogonal_only_minus_blocked": [
+          0.0018096449055585717,
+          -0.0021505551889583474,
+          0.00310865101802138
+        ],
+        "parallel_only_minus_blocked": [
+          0.0006057996617024886,
+          -0.0022490282170614107,
+          0.006409034977845174
+        ]
+      },
+      "stage_count": 3,
+      "stage_mean_contrasts": {
+        "blocked_minus_blocked": 0.0,
+        "full_residual_minus_blocked": 0.001467693751539027,
+        "orthogonal_minus_parallel": -0.0006660218959548825,
+        "orthogonal_only_minus_blocked": 0.0009225802448738681,
+        "parallel_only_minus_blocked": 0.0015886021408287505
+      }
+    },
+    "71": {
+      "stage_contrasts": {
+        "blocked_minus_blocked": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "full_residual_minus_blocked": [
+          0.000392925319632198,
+          -0.0010022774890292574,
+          0.00028979204918044843
+        ],
+        "orthogonal_minus_parallel": [
+          -0.0017499718927295183,
+          -0.0014860773081604162,
+          -0.007814362682005749
+        ],
+        "orthogonal_only_minus_blocked": [
+          -0.0012163463867751467,
+          9.716402512016664e-06,
+          -0.00852737362373479
+        ],
+        "parallel_only_minus_blocked": [
+          0.0005336255059543715,
+          0.0014957937106724328,
+          -0.000713010941729042
+        ]
+      },
+      "stage_count": 3,
+      "stage_mean_contrasts": {
+        "blocked_minus_blocked": 0.0,
+        "full_residual_minus_blocked": -0.00010652004007220366,
+        "orthogonal_minus_parallel": -0.0036834706276318943,
+        "orthogonal_only_minus_blocked": -0.0032446678693326403,
+        "parallel_only_minus_blocked": 0.00043880275829925414
+      }
+    }
+  },
+  "checkpoint_units": 15,
+  "decision": "FULL_RESIDUAL_ONLY_SUPPORT",
+  "full_residual": {
+    "favorable_seeds": 4,
+    "mean": -0.001437299556730509,
+    "seed_values": [
+      -0.000898195418042332,
+      -0.0029734311106167644,
+      -0.004676044966460273,
+      0.001467693751539027,
+      -0.00010652004007220366
+    ]
+  },
+  "orthogonal_vs_parallel": {
+    "favorable_seeds": 3,
+    "mean": -0.0002036412441949852,
+    "pass_by_primary_thresholds": false,
+    "seed_values": [
+      0.0005157401497985677,
+      0.0031283529805875565,
+      -0.0003128068277742739,
+      -0.0006660218959548825,
+      -0.0036834706276318943
+    ]
+  },
+  "primary": {
+    "contrast": "orthogonal_only minus blocked post-update dev hard CE",
+    "favorable_seeds": 3,
+    "mean": -0.0006775661489875296,
+    "pass": false,
+    "seed_values": [
+      0.00010701049218346063,
+      -0.0005924561749171368,
+      -0.0005802974377451994,
+      0.0009225802448738681,
+      -0.0032446678693326403
+    ]
+  },
+  "seed_is_primary_unit": true,
+  "seed_units": 5,
+  "status": "COMPLETED",
+  "test_access_count": 0
+}

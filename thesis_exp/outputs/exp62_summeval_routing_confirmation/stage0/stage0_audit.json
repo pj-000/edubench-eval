@@ -1,0 +1,157 @@
+{
+  "expanded_rows": 3200,
+  "expert_rating_counts": {
+    "coherence": [
+      340,
+      812,
+      1418,
+      988,
+      1242
+    ],
+    "fluency": [
+      48,
+      126,
+      365,
+      270,
+      3991
+    ]
+  },
+  "raw_audit": {
+    "checks": {
+      "group_count": true,
+      "model_count": true,
+      "no_empty_summary": true,
+      "no_summary_crosses_source_group": true,
+      "one_source_path_per_group": true,
+      "raw_row_count": true,
+      "same_model_set_per_group": true,
+      "sixteen_models_per_group": true,
+      "unique_example_keys": true
+    },
+    "empty_summaries": 0,
+    "model_ids": [
+      "M0",
+      "M1",
+      "M10",
+      "M11",
+      "M12",
+      "M13",
+      "M14",
+      "M15",
+      "M17",
+      "M2",
+      "M20",
+      "M22",
+      "M23",
+      "M5",
+      "M8",
+      "M9"
+    ],
+    "normalized_summaries_crossing_group": 0,
+    "normalized_summary_duplicates_within_group": 52,
+    "raw_rows": 1600,
+    "source_groups": 100
+  },
+  "scope": {
+    "dimensions": [
+      "coherence",
+      "fluency"
+    ],
+    "excluded_dimensions": [
+      "consistency",
+      "relevance"
+    ],
+    "reason": "The released annotation JSONL contains candidate summaries but not source articles. Coherence and fluency are source-free; consistency and relevance are excluded from the frozen core experiment."
+  },
+  "source": {
+    "annotation_path": "/Users/sss/edubench-eval/tmp/summeval_data/model_annotations.aligned.jsonl",
+    "annotation_sha256": "f0d4166e0cdeb439b387c4449634b067b7e9f721b9ef4c2b722f6b7550d3d6ab",
+    "official_annotation_url": "https://storage.googleapis.com/sfr-summarization-repo-research/model_annotations.aligned.jsonl",
+    "official_repository": "https://github.com/Yale-LILY/SummEval",
+    "official_repository_commit": "81b59ad53d63cb6009764240853c91235a44e238"
+  },
+  "split": {
+    "checks": {
+      "all_groups_assigned": true,
+      "all_labels_in_each_dimension_and_split": true,
+      "disjoint_groups": true,
+      "expected_expanded_rows": true,
+      "expected_group_counts": true
+    },
+    "expanded_row_counts": {
+      "dev": 480,
+      "test": 480,
+      "train": 2240
+    },
+    "group_counts": {
+      "dev": 15,
+      "test": 15,
+      "train": 70
+    },
+    "hard_label_counts": {
+      "dev": {
+        "coherence": [
+          6,
+          49,
+          62,
+          89,
+          34
+        ],
+        "fluency": [
+          1,
+          4,
+          10,
+          29,
+          196
+        ]
+      },
+      "test": {
+        "coherence": [
+          4,
+          49,
+          61,
+          87,
+          39
+        ],
+        "fluency": [
+          1,
+          8,
+          14,
+          26,
+          191
+        ]
+      },
+      "train": {
+        "coherence": [
+          28,
+          228,
+          299,
+          403,
+          162
+        ],
+        "fluency": [
+          8,
+          27,
+          58,
+          123,
+          904
+        ]
+      }
+    },
+    "maximum_absolute_class_proportion_deviation": 0.015625,
+    "search_seeds": 10000,
+    "selected_seed": 5743,
+    "split_manifest_sha256": "b32a6a78242f7959fe3074e9df817a5e6f87bf447a6f84dc326370311b80fff9"
+  },
+  "stage0": {
+    "formal_training_authorized": false,
+    "test_used_for_model_or_hyperparameter_selection": false,
+    "uses_gpu": false,
+    "uses_model_predictions": false
+  },
+  "status": "EXP62_STAGE0_PASS_READY_TO_FREEZE_PROTOCOL",
+  "unanimous_rows": {
+    "coherence": 200,
+    "fluency": 1191
+  }
+}
