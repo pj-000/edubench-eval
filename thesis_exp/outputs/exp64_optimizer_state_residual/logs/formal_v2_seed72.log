@@ -1,0 +1,8 @@
+`torch_dtype` is deprecated! Use `dtype` instead!
+Some weights of Qwen3ForSequenceClassification were not initialized from the model checkpoint at /home/share/models/modelscope/Qwen/Qwen3-Reranker-0.6B and are newly initialized: ['score.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+/home/jpang/miniconda3/envs/llama_factory/lib/python3.10/site-packages/torch/utils/checkpoint.py:295: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+  with torch.enable_grad(), device_autocast_ctx, torch.cpu.amp.autocast(**ctx.cpu_autocast_kwargs):  # type: ignore[attr-defined]
+[exp64:formal:seed72] completed stage 2; Full mean Y=0.00177027
+[exp64:formal:seed72] completed stage 5; Full mean Y=-0.00544066
+[exp64:formal:seed72] completed stage 8; Full mean Y=-0.00215398
