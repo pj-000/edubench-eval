@@ -1,0 +1,33 @@
+{
+  "files": {
+    "thesis_exp/configs/exp57_cbrd/stage1_protocol.json": "b1f31978370e1a3269b85d1f154d1d321b309e19120f6a0457c1b6de6d1234d3",
+    "thesis_exp/configs/exp57_cbrd/stage1_source_lock.json": "4e6d62f352362a8ded82dba8a4be46d54693a5cd6fd8ba46867c7f1df2144b5f",
+    "thesis_exp/configs/exp59_residual_geometry/implementation_amendment_v2.json": "6b804c042ec6f9db7945384ecae8aaeaa157d5c2e2c9a5b82f0bc713f2bee02a",
+    "thesis_exp/configs/exp59_residual_geometry/protocol.json": "42a96ca25f6a40619da011c34905387e0c67da0567fee6a27744724fba257e85",
+    "thesis_exp/data/splits/paper_like_triple_seed42/dev.jsonl": "a18d6a27b9a524d4592a359658ae70c9348fe88e43c962971ba95f62d2b6cdf0",
+    "thesis_exp/data/splits/paper_like_triple_seed42/train.jsonl": "0a1733b9209984c5c4291d205d1ac6057bed341717903b9de075d07de44a878e",
+    "thesis_exp/exp57_cbrd/data_audit.py": "35a3d38a6c0719b85cdea0983fa11c71991790874e6118a519dffeac1a34ca0d",
+    "thesis_exp/exp57_cbrd/losses.py": "79478bdfd83851f2f077b3b30223e46648a840df6468c9f8edae64f22e307b54",
+    "thesis_exp/exp57_cbrd/model.py": "cd648c050e23a33773078e662919df7749b8a617476c3aaf082521f19774caaf",
+    "thesis_exp/exp57_cbrd/preflight.py": "7dc79d53955b008f7541493c921fef612bf3554b3f44781e73d00c35bfe5fcf8",
+    "thesis_exp/exp57_cbrd/train.py": "238c2ef0f51499dee08eb452fbbb3ea4109c536a3373be89de4d087d4e36f8d6",
+    "thesis_exp/exp59_residual_geometry/README.md": "ddac65f0a70330b03c3229f32df5512bbb0b10680857d81d665288e300ce9d88",
+    "thesis_exp/exp59_residual_geometry/__init__.py": "8324deba28fb491e563aa516a5df612810b4a22e66003af0e773d616cbbd582a",
+    "thesis_exp/exp59_residual_geometry/endpoint_parity.py": "b2207f5918079271420361cea6a52e06d3a54fa6f61008f3d34f0e505fcf491c",
+    "thesis_exp/exp59_residual_geometry/geometry.py": "f92cd4607a82eda9044c6b3d03d029698ffddda87251b13c82ee77ed162800c7",
+    "thesis_exp/exp59_residual_geometry/preflight.py": "e66afde89b03a0a3cb7371fbf20c319c72f465b8e63b6c8e6d581bbd3639a145",
+    "thesis_exp/exp59_residual_geometry/train.py": "f8f5d3d7b59f4021db1d2c12171af62b9580243e567486cbf0bb237490d02960",
+    "thesis_exp/outputs/exp57_cbrd/decision/stage1_confirmation_decision.json": "fe20ca5ff23aff3280dec3e5e70842e27c07199182c0aa4f3a4b64b0bad47a4c",
+    "thesis_exp/outputs/exp58_matched_clipping/decision/seed42_stop_decision.json": "36ee49d2d9cceaabe7a0496558550fb63e575ad24f38d720ce2d826c62d5e201",
+    "thesis_exp/outputs/exp59_residual_geometry/audit/endpoint_parity.json": "7d126ded659dec2ad25b77ac78179f01f89ae8a5043f3a761f6a04f7063a016a",
+    "thesis_exp/outputs/exp59_residual_geometry/decision/seed42_v1_implementation_stop.json": "6e50cfee1adb55c0827eae79d7d79312337841ae094e5fa37330b4f722a932f9",
+    "thesis_exp/scripts/run_exp59_geometry_job.sh": "99e75e983c077ea91782a6d3784f239f7637e2866ef2fa91286f25a16c5a5580",
+    "thesis_exp/src/edujudge/exp02/build_exp02_dataset.py": "82eaefd6c711f632a23d61e7591d5c447076e9e351134887b726d7db75a7d241",
+    "thesis_exp/src/edujudge/exp02/train_ce_baseline.py": "fccf33d68bdd7ea889032c071422baff6bfd1cf8a4e3e54927638bcf258c9b68",
+    "thesis_exp/src/edujudge/utils/io.py": "e19250fbf9b7a2013b61078d29100137ee6cefab76cd8dda01ab6888156f1364",
+    "thesis_exp/tests/test_exp59_residual_geometry.py": "71f1b18539e8ebc9ef44f64e6c2746e6163a1bf345ebdce026ac3e36d1948d72"
+  },
+  "protocol_sha256": "42a96ca25f6a40619da011c34905387e0c67da0567fee6a27744724fba257e85",
+  "status": "EXP59_SOURCE_LOCK_V2_REFROZEN_AFTER_NUMERICAL_AMENDMENT_BEFORE_SEED42_RERUN",
+  "test_access_count": 0
+}

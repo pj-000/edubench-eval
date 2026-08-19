@@ -1,0 +1,57 @@
+{
+  "dev_accessed": false,
+  "evaluator_family_results": {
+    "codex_agent_a": {
+      "model": "codex-independent-blind-run-a",
+      "p3_family_pass": true,
+      "pairs": 120,
+      "presentations": 240,
+      "qualification_completed": true,
+      "r2_wins": 6,
+      "r3_wins": 107,
+      "ties": 7
+    },
+    "codex_agent_b": {
+      "model": "codex-independent-blind-run-b",
+      "p3_family_pass": true,
+      "pairs": 120,
+      "presentations": 240,
+      "qualification_completed": true,
+      "r2_wins": 12,
+      "r3_wins": 100,
+      "ties": 8
+    }
+  },
+  "formal_rationale_block_passed": true,
+  "p3_preference_training_allowed": true,
+  "preference_training_allowed": false,
+  "primary_stage": "score_blind",
+  "qualification_evidence_hashes": {
+    "answer_key": "1c24541cbab7cc1fa8db24290d5bc74f1158139301c6404c28414d095cfbc5c3",
+    "api_runner": "7c3ea6eee6bde2c1914ad8c1754387612c717cb54da159be2a516b13a5761203",
+    "candidate_lock": "7f1524429ac2713cbd795461f35b5d54ecb85be85757c809124639ccbd0ef936",
+    "codex_agent_a_results": "9666caad690497b25efb1594725a5ace01253a33fdb6b29dd07a4a831ad0bab7",
+    "codex_agent_b_results": "34836cafa38db9565005de52ba7d4a277347a64382791f911f0c1980c84a9b1a",
+    "collector": "8b46d8d6f3a20c523f6b855a835bf03af208a80b392e4f4596b2a9606ba66275",
+    "score_blind_schema": "f5fa2f75ecd9642e577beb72af1a730628418b8d5c00cb7ee69a065fae305321",
+    "score_blind_tasks": "ce5266516843b178071185c013bfd95ad07a847375dbe0f6dbdba436079d3b86"
+  },
+  "rationale_blind_qualification_completed": true,
+  "schema_version": "exp54-sorc-rationale-qualification-v1-final-report",
+  "score_visible_secondary_executed": false,
+  "source_hashes": {
+    "builder_source": "cc8ec559e4c210a6609c962ad8c51502e3f8f4e8990eebfa815f08515f056cdb",
+    "independent_auditor_source": "764062a1d081eeba91a5ed4dd4980d2abdca6a92f146565d83e56390bd371747",
+    "pair_candidate_lock": "7448cd58dfcd102e889f6301c6705a84d14367b4ae289c444c8491f48f9b5904",
+    "pair_protocol": "a4368e533bc27ff2625792a62da8f35ca46de8fa049f4e75909a3c5022448e81",
+    "qualification_decision_rule_protocol": "0ac9017ad6cc35ad21f97f2b8a37d9c9808d048370b9a2d4b8c90d04874585c4",
+    "rationale_pairs": "ffb3aa272ad18b37d7c466691f983d91524ab67a0473c158669f4589c5fa445d",
+    "score_blind_prompt": "a6bd5eb222eb852e7142e2f7654af8a4cc2dbfcac34cf19a4d4fe6ed096708aa",
+    "score_blind_schema": "f5fa2f75ecd9642e577beb72af1a730628418b8d5c00cb7ee69a065fae305321",
+    "score_visible_prompt": "e9ccdd61bc631e3da89b0a16c22de6db027b7ee8b912d4799476d52219632f05",
+    "score_visible_schema": "399549dd6c18d8bccea8718c9001b911606126519b74d06079ffa555f55f4ae7",
+    "train": "0a1733b9209984c5c4291d205d1ac6057bed341717903b9de075d07de44a878e"
+  },
+  "status": "SORC_RATIONALE_QUALIFICATION_COMPLETE_P3_ALLOWED",
+  "test_accessed": false
+}

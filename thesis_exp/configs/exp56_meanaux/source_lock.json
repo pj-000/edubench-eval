@@ -1,0 +1,25 @@
+{
+  "status": "EXP56_MEANAUX_SOURCE_HASH_LOCKED",
+  "source_commit": "4e95b0a4f1b41a0e7c43bbaf004e8561d136dc68",
+  "source_state": "base commit plus the hash-locked Exp56 worktree files listed below",
+  "created_at": "2026-07-31",
+  "revised_at": "2026-08-01",
+  "revision_reason": "Fix command-line checkpoint-root isolation before the valid three-seed rerun.",
+  "files": {
+    "thesis_exp/configs/exp56_meanaux/protocol.json": "7b1974fb4352d24af8f2a7cd0d04305b126bbeafb834481c854948130089de88",
+    "thesis_exp/exp49_cphce/build_targets.py": "6e1c078ebdf1acb4684486a44edba4ed286c51e7ac1a64e69a847d34da2c2db6",
+    "thesis_exp/exp49_cphce/losses.py": "cc0b9a58d1697c1e354115975e7aa1e352bc2cfab709ff3fab521e2831f80a3a",
+    "thesis_exp/exp49_cphce/metric_contract.py": "338818090ca653b200140e19f27ec5965d863d9bd9eb084e406c233ce69b8ea7",
+    "thesis_exp/exp50_cahs/train.py": "7b213eacca2ed09cbc83eeeb44994762e23997901d8f187c0a455e7c8bc137bb",
+    "thesis_exp/exp56_meanaux/PROTOCOL.md": "99fd3f989be8dd5612219f49996563128fcb34d3197a7e29a82848faeadca113",
+    "thesis_exp/exp56_meanaux/__init__.py": "449e5acc6a75cb28c965677e70c0df41bc93342e19c092ff8581a304c00924fa",
+    "thesis_exp/exp56_meanaux/build_targets.py": "6c4a1bbf7e4c7673f1638c1bb7494088d968498ef02194471ba957f15c3387ca",
+    "thesis_exp/exp56_meanaux/gate.py": "15130648a0706e5b4c66bceff3ddaf14cd1533bd01fc36045e108bba8daaffe9",
+    "thesis_exp/exp56_meanaux/losses.py": "bbda1a0dc920b7e51b39b546961e36bb091ab0da7f7d6ff2187c4add0b6a2394",
+    "thesis_exp/exp56_meanaux/model.py": "33ab79d83778cbe60e597b8de7719a32b129253940ec42334e0935d7e14f9720",
+    "thesis_exp/exp56_meanaux/train.py": "075167dc5c7fcfea0629c1427338be542dc0530623906a2fa3cfb47ceed91b5f",
+    "thesis_exp/scripts/run_exp56_meanaux.sh": "18672095ec8b8a982c07397667b285064ab878a78e010e3a2f19d2013a7cb457",
+    "thesis_exp/src/edujudge/exp02/train_ce_baseline.py": "fccf33d68bdd7ea889032c071422baff6bfd1cf8a4e3e54927638bcf258c9b68",
+    "thesis_exp/src/edujudge/utils/io.py": "e19250fbf9b7a2013b61078d29100137ee6cefab76cd8dda01ab6888156f1364"
+  }
+}

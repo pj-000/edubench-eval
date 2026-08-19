@@ -1,0 +1,50 @@
+{
+  "status": "CBRD_STAGE0_PROTOCOL_PREREGISTERED",
+  "experiment": "Exp57-CBRD",
+  "scope": "mechanism audit of HMSA soft auxiliary supervision",
+  "data_access": {
+    "allowed_splits": ["train", "dev"],
+    "historical_test_access": "forbidden during all CBRD development and Stage 0",
+    "test_access_count": 0
+  },
+  "legacy_source_closure": {
+    "hmsa_source_commit": "193d64e51ddc7c0ffd8bd4c4b5d4468dafa91162",
+    "hmsa_result_commit": "fa72bd46864a8fc202015fb18507046bf9dd6bcf",
+    "required": "all source-lock and formal-lock blobs must match SHA-256; materialize an immutable archive below thesis_exp/exp57_cbrd/legacy_source"
+  },
+  "mathematical_contract": {
+    "identity": "CE(d,z) = CE(e_y,z) + (e_y-d)^T z",
+    "temperature": 1.0,
+    "class_weights": "none",
+    "label_smoothing": "none",
+    "reduction": "mean over examples",
+    "residual_target": "r = e_y - d; it is a signed gradient-routing term, not a probability distribution",
+    "allowed_relation_types": ["zero", "down", "up"],
+    "full_residual_vector_count": 9
+  },
+  "stage0_gates": {
+    "scalar_identity": {"float64_max_abs_error": 1e-10, "float32_max_abs_error": 1e-6, "gpu_amp_max_abs_error": 1e-5},
+    "gradient_identity": "ordinary HMSA and routed HMSA must agree for logits, auxiliary-head parameters, hidden states, and bottom/top backbone parameters under identical deterministic audit kernels; if the CUDA stack still has early-layer nondeterminism, routed-vs-ordinary may not exceed ordinary-vs-ordinary repeat noise",
+    "route_directionality": "on one frozen batch containing zero/down/up states, verify full=consensus+residual, flipped=consensus-residual, shuffled=consensus+shuffled-residual, unanimous residual=0, and identical hard/soft head gradients across all soft-target routing controls",
+    "data_support": "all train/dev rows must be either unanimous or adjacent 2:1 and the empirical mean must equal the stored human mean",
+    "shuffle": "reproduce Exp55 seed 20260730 mapping SHA b4e96c49607700be99816582c1b85a8085b8c5abb260ddafbad4e9ee0dc25ad4 and its 1490/2654 effective target changes",
+    "no_stage1_before": ["source closure", "all Stage 0 checks", "real Qwen3 routing parity"]
+  },
+  "stage1_planned_variants": [
+    "DualHard",
+    "CBRD-Consensus-only",
+    "Routed-HMSA",
+    "Residual-only",
+    "Sign-flipped residual",
+    "Shuffled residual"
+  ],
+  "main_confirmatory_comparison": "Routed-HMSA versus CBRD-Consensus-only, with an identical original empirical soft target on the auxiliary head and only the backbone residual route differing",
+  "implementation_constraints": [
+    "Use one original soft-CE forward/backward so the auxiliary-head target, scalar loss, and parameter gradient are identical across all residual-routing controls.",
+    "Route only the auxiliary hidden branch's gradient to the shared backbone; the hard path remains untouched.",
+    "Routed-HMSA uses an identity hook and must match ordinary HMSA in FP32 and BF16.",
+    "Consensus-only subtracts the analytic residual hidden gradient once; Residual-only replaces the auxiliary hidden gradient; Sign-flipped subtracts it twice; Shuffled-residual replaces only the aligned residual component.",
+    "Accumulate the hard and auxiliary branches, unscale once if AMP is used, clip the whole model once, then optimizer-step once.",
+    "The hard head alone is used for inference and checkpoint selection."
+  ]
+}

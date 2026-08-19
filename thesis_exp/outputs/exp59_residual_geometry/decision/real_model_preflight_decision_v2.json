@@ -1,0 +1,29 @@
+{
+  "status": "EXP59_V2_REAL_MODEL_PREFLIGHT_PASS_READY_FOR_SEED42_RERUN_AUTHORIZATION",
+  "date": "2026-08-02",
+  "protocol_sha256": "42a96ca25f6a40619da011c34905387e0c67da0567fee6a27744724fba257e85",
+  "source_lock_sha256": "d4db160c499d91ac4ca74988cdd5ff59ef809990f50d76b49ebcda8a8897d34f",
+  "fp32_report_sha256": "5d4e96efb5dbcb84782113bb839bfb7953405714a9fb76bed01954ab7ea42937",
+  "bf16_report_sha256": "182de6f9095511461fe1f3cc814eda529bd3bbf6ce204af0651b7cfe8dff361f",
+  "fp32": {
+    "status": "EXP59_PREFLIGHT_PASS",
+    "normalized_orthogonality_error": 1.068579566331847e-08,
+    "residual_reconstruction_relative_error": 2.0510437288645307e-08,
+    "full_route_reconstruction_relative_error": 4.6717852429942427e-07,
+    "parallel_trainer_relative_error": 4.635240268168238e-07,
+    "orthogonal_trainer_relative_error": 4.803978783833389e-07
+  },
+  "bf16": {
+    "status": "EXP59_PREFLIGHT_PASS",
+    "normalized_orthogonality_error": 1.0687544644867727e-08,
+    "residual_reconstruction_relative_error": 9.983539674934028e-09,
+    "full_route_reconstruction_relative_error": 0.008094623039668724,
+    "parallel_trainer_relative_error": 0.00828591268634587,
+    "orthogonal_trainer_relative_error": 0.008465576041683756
+  },
+  "all_checks_pass": true,
+  "optimizer_steps": 0,
+  "test_access_count": 0,
+  "formal_seed42_rerun_authorized": false,
+  "next_step": "Obtain explicit user authorization, then rerun parallel_only and orthogonal_only seed42 from initialization on separate idle RTX 3090 GPUs."
+}

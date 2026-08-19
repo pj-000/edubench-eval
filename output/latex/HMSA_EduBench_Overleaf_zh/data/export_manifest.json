@@ -1,0 +1,45 @@
+{
+  "bootstrap": {
+    "ci_high": -0.03391443743111913,
+    "ci_low": -0.056507363991584014,
+    "convention": "Exp51_minus_B0; negative MAE is better",
+    "mean_delta_mae": -0.04483518685502455,
+    "resamples": 10000,
+    "rng_seed": 42,
+    "unit": "test row after averaging the three seed-level deltas"
+  },
+  "delta_convention": "Exp51_minus_B0",
+  "mechanism_control": {
+    "evidence_role": "posthoc_dev_only",
+    "mapping_sha256": "b4e96c49607700be99816582c1b85a8085b8c5abb260ddafbad4e9ee0dc25ad4",
+    "test_access_count": 0
+  },
+  "raw_test_split_reopened": false,
+  "sources": {
+    "thesis_exp/outputs/exp51_hmsa/audit/six_checkpoint_dev_reload_integrity.json": {
+      "sha256": "00a2a86d474aaaacc7b5f1b4115830c83f6d102aaea5a64af42b5dd67c3188bb",
+      "size_bytes": 7244
+    },
+    "thesis_exp/outputs/exp51_hmsa/decision/formal_decision.json": {
+      "sha256": "fa9329151a900926f5c76cf910d418e9d5bcc8e761864931829fcdc2e8d3238f",
+      "size_bytes": 7674
+    },
+    "thesis_exp/outputs/exp51_hmsa/final_test/b0/seed_42/test_metrics.json": {
+      "sha256": "18e19ad1f6f311941f58e919a760f7ef3de7f2319cb0f1fab84a16beacc677c7",
+      "size_bytes": 1824
+    },
+    "thesis_exp/outputs/exp51_hmsa/final_test/canonical_final_test_report.json": {
+      "sha256": "4266b8b81023ce7d30f1aa9cc812e1c991d2b26c95f94a07e1021391323bc1fd",
+      "size_bytes": 29924
+    },
+    "thesis_exp/outputs/exp55_within_label_shuffle/audit/shuffle_audit.json": {
+      "sha256": "dea91706747b3b783da9bb55e92e4df16a3a5b7f734dd72f9b163c3f3298fbdb",
+      "size_bytes": 2208
+    },
+    "thesis_exp/outputs/exp55_within_label_shuffle/decision/dev_mechanism_comparison.json": {
+      "sha256": "7e2d1056b4570954b8030d0164e4c36c2d95546146666ce43bfd595de84d42b6",
+      "size_bytes": 8217
+    }
+  },
+  "status": "PAPER_DATA_EXPORTED_FROM_FROZEN_RESULTS"
+}

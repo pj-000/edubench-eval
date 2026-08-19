@@ -1,0 +1,30 @@
+{
+  "status": "EXP58_SEED42_V2_IMPLEMENTATION_STOP",
+  "seed": 42,
+  "variant": "common_scale_matched_routed",
+  "stopped_at": "2026-08-02T17:03:15+08:00",
+  "completed_optimizer_steps": 5,
+  "completed_epochs": 0,
+  "selected_checkpoint_created": false,
+  "dev_metrics_produced": false,
+  "test_access_count": 0,
+  "failure": {
+    "type": "BF16_POST_CAST_NORM_OVERSHOOT",
+    "actual_post_cast_norm": 1.0000224706986143,
+    "v2_limit": 1.000001,
+    "absolute_overshoot_above_one": 0.000022470698614274643,
+    "message": "Matched update norm violation: 1.0000224706986143"
+  },
+  "interpretation": "The FP32 matched update was constructed under the unit-norm bound, but casting the parameter gradients back to BF16 changed the measured norm by a small representation-level rounding amount. The v2 assertion intentionally stopped the pilot before the sixth optimizer update.",
+  "remote_private_log": {
+    "path": "thesis_exp/outputs/exp58_matched_clipping/logs_private/matched_seed_42_v2_failed_post_cast_norm.log",
+    "sha256": "1d63c11a9e15a287265dcc1e526daea468636c48c846fc0c3dfd0bde93ac3f28",
+    "bytes": 1670
+  },
+  "remote_tmux_capture": {
+    "path": "thesis_exp/outputs/exp58_matched_clipping/logs_private/matched_seed_42_v2_failed_post_cast_norm.tmux.txt",
+    "sha256": "9c939685c59fb814ac6b63c79bcd7b34253572840d41a6e6c869a68f7d4f0b87",
+    "bytes": 1849
+  },
+  "restart_allowed_without_protocol_revision": false
+}

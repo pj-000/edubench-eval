@@ -1,0 +1,22 @@
+{
+  "candidate_hashes": {
+    "candidate_report": "716f407a71d09db5fbb40caa445ed25425791711e0641331e29f05fe12b62265",
+    "p1_fullseq_manifest": "b6d2289c96ef8bad92e219ef9c9e452c2d46b2acd90cb4db702cca8413cacac7"
+  },
+  "config_sha256": "ae54955b7f8f8d483199abdea686332e59bb8fa3012b713449db1390fc145963",
+  "dev_accessed": false,
+  "full_gpu_training_allowed": false,
+  "gpu_smoke_allowed": false,
+  "gpu_used": false,
+  "schema_version": "exp54-mechanism-control-candidate-lock-v1",
+  "scientific_contract_sha256": "0ace69f634262ae7c3b2879ca599245b24563affea3a14f7b47073ac9aa47c96",
+  "source_hashes": {
+    "materialized_manifest_frozen_lock": "8b5fffce6b54804f834499643953deae23393a7764c0652d0fd7df2214b20713",
+    "p1_manifest": "0adf6f258b728754e6ec31ba51d7424f2d65fca3b6bc0b420d7fcefc43d42c59",
+    "p1_syn_manifest": "1c65f892f01e558797fcae204d71b3b6e4609ccbe8d34d44b3e60250a679cddc",
+    "preference_training_frozen_lock": "e977babaefa956c40620a1b38024d7222b9ac8433db8fecd6faf709dc65c2f98",
+    "prompt_cache": "2a4b2c7a022628db96f9bec6bdc9be0d610db8845dab6a0ab09f887fb913dd76"
+  },
+  "status": "MECHANISM_CONTROL_CPU_CANDIDATE_NOT_FROZEN",
+  "test_accessed": false
+}

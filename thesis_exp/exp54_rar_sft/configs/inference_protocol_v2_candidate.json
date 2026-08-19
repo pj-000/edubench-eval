@@ -1,0 +1,118 @@
+{
+  "status": "EXP54_INFERENCE_PROTOCOL_V2_CANDIDATE_NOT_AUTHORIZED",
+  "schema_version": "exp54-inference-protocol-v2-candidate-v1",
+  "protocol_id": "RAR_SFT_INFERENCE_PROTOCOL_V2",
+  "amendment_scope": {
+    "checkpoint_weights_changed": false,
+    "training_data_changed": false,
+    "training_loss_changed": false,
+    "prompt_template_changed": false,
+    "strict_parser_changed": false,
+    "decoder_changed": true,
+    "dev_rerun_allowed": false,
+    "test_accessed": false
+  },
+  "application": {
+    "arms": [
+      "S0",
+      "R1",
+      "R2",
+      "R3"
+    ],
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "logical_epochs": [
+      1,
+      2,
+      3
+    ],
+    "arm_specific_grammar_allowed": false,
+    "arm_specific_decoder_allowed": false
+  },
+  "grammar": {
+    "format": "EBNF",
+    "path": "thesis_exp/exp54_rar_sft/configs/rar_sft_output_v2.ebnf",
+    "sha256": "12cb532621c98fe6a1a3904b042ef52560c93f870f59bfa71b068f2d5d71c08e",
+    "root_rule": "root",
+    "exact_key_order": [
+      "score",
+      "rationale"
+    ],
+    "score_values": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "empty_rationale_allowed": true,
+    "terminate_without_stop_token": true
+  },
+  "backend": {
+    "name": "xgrammar",
+    "version": "0.2.5",
+    "wheel_filename": "xgrammar-0.2.5-cp310-cp310-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl",
+    "wheel_sha256": "69901bd7469127b59e22668a41efc25e9062a591b4596e5a8877fae18bd10832",
+    "wheel_index": "https://pypi.org/simple/xgrammar/",
+    "dependency_wheels": [
+      {
+        "package": "apache-tvm-ffi",
+        "version": "0.1.9",
+        "wheel_filename": "apache_tvm_ffi-0.1.9-cp310-cp310-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl",
+        "wheel_sha256": "eefcd17f61bf503ff0f4ad429e03ef6c241c7d13682f58281d883218b854c9bd"
+      }
+    ],
+    "integration": "direct_batched_grammar_matcher"
+  },
+  "model_and_tokenizer": {
+    "model_id": "Qwen/Qwen3-4B-Instruct-2507",
+    "immutable_revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "model_directory_listing_sha256": "96308d1ae2e03ab011a52371780c8f4b448930d2e393fb8682fa8aa09687064a",
+    "tokenizer_json_sha256": "aeb13307a71acd8fe81861d94ad54ab689df773318809eed3cbe794b4492dae4",
+    "tokenizer_class": "Qwen2TokenizerFast",
+    "model_vocab_size": 151936,
+    "pad_token_id": 151643,
+    "eos_token_id": 151645
+  },
+  "runtime": {
+    "python": "3.10.19",
+    "torch": "2.4.0+cu121",
+    "transformers": "4.57.1",
+    "tokenizers": "0.22.1"
+  },
+  "generation": {
+    "search": "greedy_argmax_after_grammar_mask",
+    "do_sample": false,
+    "num_beams": 1,
+    "max_new_tokens": 256,
+    "formal_batch_size": 16,
+    "use_cache": true,
+    "repetition_penalty": 1.0,
+    "no_repeat_ngram_size": 0,
+    "temperature": null,
+    "top_p": null,
+    "top_k": null,
+    "length_penalty": null,
+    "posthoc_repair_allowed": false,
+    "unconstrained_fallback_allowed": false
+  },
+  "budget_completion": {
+    "enabled": true,
+    "trigger": "remaining_budget_equals_shortest_tokenizer_valid_structural_completion_length",
+    "semantic_content_may_be_added": false,
+    "score_may_be_changed": false,
+    "truncation_fallback_allowed": false,
+    "execution_error_if_no_completion": true
+  },
+  "selection_and_access": {
+    "decoder_variant_selection_from_dev_allowed": false,
+    "diagnostic_threshold_selection_from_dev_allowed": false,
+    "train_only_and_synthetic_tests_required": true,
+    "independent_review_required_before_dev": true,
+    "formal_v2_dev_allowed": false,
+    "formal_test_allowed": false
+  }
+}

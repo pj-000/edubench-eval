@@ -1,0 +1,139 @@
+{
+  "status": "EXP60_PROTOCOL_FROZEN_BEFORE_FORMAL_RESULTS",
+  "draft_date": "2026-08-03",
+  "formal_freeze_timestamp": "2026-08-03T10:51:42Z",
+  "name": "Geometry-Matched Shuffled Orthogonal Sample--Target Alignment Control",
+  "role": "single-variable mechanism control; not a new deployable architecture or loss",
+  "scientific_question": "Does the non-collinear residual benefit require sample--target alignment of the observed ordinal residual, or can one preregistered geometry-matched maximum-mismatch residual reproduce it?",
+  "claim_scope": "The experiment identifies sample--target alignment specificity only for the observed adjacent 2:1 ordinal residual. It does not identify general human ambiguity, multimodal opinion structure, subgroup structure, all shuffled controls, or low-score-specific mechanisms.",
+  "allowed_splits": ["train", "dev"],
+  "historical_test_access": "forbidden",
+  "test_access_count": 0,
+  "model_name_or_path": "/home/share/models/modelscope/Qwen/Qwen3-Reranker-0.6B",
+  "data_split": "paper_like_triple_seed42",
+  "arms": {
+    "consensus_only": "G_C",
+    "aligned_orthogonal_only": "G_C + O_A",
+    "matched_shuffled_orthogonal_only": "G_C + O_pi_tilde",
+    "head_rule": "all arms use identical hard- and soft-head objectives and identical pre-clip parameter-support rules; actual gradient values may diverge with model state. The aligned and matched-shuffled arms are locally matched in clipping scale; Consensus-only is not clip-matched",
+    "diagnostic_rule": "all arms compute aligned and shuffled residual VJPs with identical restored RNG states",
+    "inference": "hard-head raw-logit argmax only"
+  },
+  "mapping": {
+    "stratum": "hard label",
+    "algorithm": "deterministic maximum-mismatch bijection preserving the exact target-vector multiset",
+    "tie_break": "target_thirds then record_id lexicographic order",
+    "model_or_dev_information": false,
+    "frozen_sha256_required_before_training": true,
+    "canonical_sha256": "dc9d3fbce24af01fee58e896f83ed35f3ccd516fcf30f35ed43a3cfd4c2fa7fb",
+    "zero_shuffled_nonzero_aligned_action": "stop; mapping may not be replaced"
+  },
+  "geometry": {
+    "space": "trainable backbone raw-parameter-gradient space after every accumulation window and before one standard global clip",
+    "aligned": "O_A = P_perp(G_C^B) R_A",
+    "shuffled": "O_pi = P_perp(G_C^B) R_pi",
+    "match": "O_pi_tilde = norm(O_A)/(norm(O_pi)+zero_guard) * O_pi",
+    "head_support": "all three residual components are exact zero on hard and soft heads",
+    "local_identification_scope": "instantaneous geometry is matched within each arm's current state; future optimization trajectories are not claimed identical"
+  },
+  "fixed_training": {
+    "epochs": 10,
+    "primary_checkpoint": "fixed epoch 10",
+    "secondary_checkpoint_sensitivity": "highest dev Exact_rounded; ties keep earlier epoch",
+    "learning_rate": 0.00002,
+    "weight_decay": 0.01,
+    "warmup_ratio": 0.05,
+    "scheduler": "cosine_with_warmup",
+    "micro_batch_size": 4,
+    "eval_batch_size": 4,
+    "gradient_accumulation_steps": 32,
+    "partial_window_rule": "20 full 32-microbatch windows and one fixed 24-microbatch final window per epoch; inherited loss scale remains 1/32",
+    "max_grad_norm": 1.0,
+    "max_length": 2048,
+    "precision": "bf16",
+    "gradient_checkpointing": true,
+    "max_train_samples": null,
+    "max_eval_samples": null,
+    "num_workers": 0,
+    "local_files_only": true,
+    "trust_remote_code": false,
+    "aux_weight": 1.0,
+    "hyperparameter_search": false,
+    "train_rows": 2654,
+    "dev_rows": 664,
+    "train_text_hash": "0ff6cced959a740191a778e7c55a73b10b1c8fe0be8a1c85a549580b498411e5",
+    "dev_text_hash": "661d7ec3766b3789d8da9938068a4bde19fb7b145130a0f5e41732cb689161a6",
+    "train_dataset_contract_sha256": "e15d9528a33a5d6b8889bfb38a8bbe096f9ae85d06440550fa865b1490d4f6f4",
+    "dev_dataset_contract_sha256": "e14a0621b0b19bfd5728b78172e5612d12ca3f3a57c68712d760a5297776af16"
+  },
+  "formal_runs": {
+    "variants": [
+      "consensus_only",
+      "aligned_orthogonal_only",
+      "matched_shuffled_orthogonal_only"
+    ],
+    "fresh_seeds": [47, 48, 49],
+    "run_count": 9,
+    "concurrent_endpoint_trainer": false,
+    "gpu_latin_square": {
+      "47": {"gpu_slot_0": "consensus_only", "gpu_slot_1": "aligned_orthogonal_only", "gpu_slot_2": "matched_shuffled_orthogonal_only"},
+      "48": {"gpu_slot_0": "matched_shuffled_orthogonal_only", "gpu_slot_1": "consensus_only", "gpu_slot_2": "aligned_orthogonal_only"},
+      "49": {"gpu_slot_0": "aligned_orthogonal_only", "gpu_slot_1": "matched_shuffled_orthogonal_only", "gpu_slot_2": "consensus_only"}
+    },
+    "physical_gpu_bindings": {"gpu_slot_0": "4", "gpu_slot_1": "6", "gpu_slot_2": "7"},
+    "physical_gpu_binding_freeze_rule": "replace null with three distinct CUDA_VISIBLE_DEVICES identifiers during the sole post-preflight protocol freeze; each slot must additionally have a stable non-MIG hardware UUID recorded by preflight and revalidated by the formal trainer",
+    "real_preflight_gpu_schedule": {"47": 0, "48": 1, "49": 2},
+    "post_result_seed_extension": "forbidden; seeds 50/51 may not be added to resolve an unclear result"
+  },
+  "implementation_gates_before_training": {
+    "normalized_orthogonality_error_at_most": 0.000001,
+    "component_norm_relative_error_at_most": 0.0001,
+    "preclip_total_norm_relative_error_at_most": 0.0001,
+    "clip_coefficient_relative_error_at_most": 0.0001,
+    "bf16_storage_space_relative_error_at_most": 0.01171875,
+    "bf16_storage_space_normalized_orthogonality_error_at_most": 0.1,
+    "explicit_route_residual_relative_error_at_most": 0.35,
+    "projected_formal_memory_free_fraction_at_least": 0.08,
+    "preflight_treatment_component_activity_ratio_at_least": 0.000001,
+    "preflight_treatment_component_cosine_at_most": 0.99,
+    "preflight_treatment_component_relative_distance_at_least": 0.1,
+    "preflight_treatment_separation_rule": "both windows per seed must be finite and nondegenerate; at least one of the seed's two windows must jointly satisfy cosine <= 0.99 and relative distance >= 0.1",
+    "residual_head_norm_at_most": 1e-12,
+    "one_standard_global_clip": true,
+    "test_access_count": 0
+  },
+  "primary_comparison": {
+    "delta": "aligned_orthogonal_only minus matched_shuffled_orthogonal_only",
+    "metric": "MAE_human_mean at fixed epoch 10",
+    "all_required": {
+      "favorable_MAE_seeds": 3,
+      "mean_delta_MAE_at_most": -0.005,
+      "mean_delta_Exact_at_least": -0.003,
+      "mean_delta_Kendall_at_least": -0.005,
+      "three_seed_mean_paired_question_cluster_bootstrap_CI_upper_below": 0.0,
+      "aligned_minus_consensus_favorable_MAE_seeds_at_least": 2,
+      "aligned_minus_consensus_mean_delta_MAE_at_most": -0.005
+    }
+  },
+  "bootstrap_estimand": "item-weighted mean paired MAE difference with question-cluster resampling, conditional on the three trained seeds",
+  "stop_conditions": [
+    "mapping does not achieve the theoretical maximum mismatch",
+    "geometry or clip matching gate failure",
+    "non-finite gradient, residual, geometry scalar or clipping result",
+    "degenerate aligned or matched-shuffled treatment component",
+    "shuffled orthogonal norm is zero while aligned is nonzero",
+    "NaN, Inf or training crash",
+    "residual component enters either head",
+    "source-lock, data or configuration mismatch",
+    "test_access_count is nonzero"
+  ],
+  "prohibited": [
+    "formal GPU training before independent review and source lock",
+    "mapping replacement after a preflight or result",
+    "adding seeds after observing formal results",
+    "residual-weight, learning-rate, epoch or clipping search",
+    "dev-selected checkpoint as the primary result",
+    "switching the primary comparison after results",
+    "historical test access"
+  ]
+}

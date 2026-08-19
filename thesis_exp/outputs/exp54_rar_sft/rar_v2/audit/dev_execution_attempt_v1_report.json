@@ -1,0 +1,538 @@
+{
+  "all_final_checkpoint_bindings": [
+    {
+      "aggregate_sha256": "3c51220c29665e71b76103e6840ab026f6a3f6de1fc52ca6f16aaf5a30daf101",
+      "arm": "S0",
+      "files": [
+        {
+          "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/formal_runs/seed42/s0/checkpoint-logical-epoch-3/adapter/adapter_config.json",
+          "sha256": "66460105dd0140d94e7ea3c01c93b675fb62a0ae5226a300f9eb57017a9b6b08",
+          "size_bytes": 969
+        },
+        {
+          "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/formal_runs/seed42/s0/checkpoint-logical-epoch-3/adapter/adapter_model.safetensors",
+          "sha256": "d224d81a79ebb023b51a91b83e2508008eb3f44f230153e6696b3f84bf460ed1",
+          "size_bytes": 132187888
+        },
+        {
+          "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/formal_runs/seed42/s0/checkpoint-logical-epoch-3/trainer_state.json",
+          "sha256": "a4b81407cbc154da929e849c22dcee54175600bdd5e0a94589d05ae6e4ef3f15",
+          "size_bytes": 472
+        }
+      ],
+      "logical_epoch_number": 3,
+      "seed": 42
+    },
+    {
+      "aggregate_sha256": "ce35690d1a5f81368b154d7c0e43d90c95228cebfdc3b54485d64644e6f8b1c7",
+      "arm": "S0",
+      "files": [
+        {
+          "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/formal_runs/seed43/s0/checkpoint-logical-epoch-3/adapter/adapter_config.json",
+          "sha256": "0e0af839f61c7020e55d14ebaf0850375cc9a0f9e5825f5f65fd527fbf46e5aa",
+          "size_bytes": 969
+        },
+        {
+          "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/formal_runs/seed43/s0/checkpoint-logical-epoch-3/adapter/adapter_model.safetensors",
+          "sha256": "1eafd5e67e221c07f75e3c2c2b9fb953073c2fef1c5c901bc995cca55a3deba6",
+          "size_bytes": 132187888
+        },
+        {
+          "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/formal_runs/seed43/s0/checkpoint-logical-epoch-3/trainer_state.json",
+          "sha256": "6faf63000408d4108e52af8bf68c6264d4f4498af37049daf1ed122234561855",
+          "size_bytes": 472
+        }
+      ],
+      "logical_epoch_number": 3,
+      "seed": 43
+    },
+    {
+      "aggregate_sha256": "4b4e0d89f3164b5ee551e6053ea8dea8bf5c91cefee824a8a48109b58a56cacf",
+      "arm": "S0",
+      "files": [
+        {
+          "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/formal_runs/seed44/s0/checkpoint-logical-epoch-3/adapter/adapter_config.json",
+          "sha256": "b259400d76c4e85a288c8f63261b23e1034aaa3a5f79a1fe18c73b40672217d9",
+          "size_bytes": 969
+        },
+        {
+          "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/formal_runs/seed44/s0/checkpoint-logical-epoch-3/adapter/adapter_model.safetensors",
+          "sha256": "2d43185ddfb0f385ef66bf9ecbe54c7077e7bb7c834c364f52b4e845a5f7acd1",
+          "size_bytes": 132187888
+        },
+        {
+          "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/formal_runs/seed44/s0/checkpoint-logical-epoch-3/trainer_state.json",
+          "sha256": "5958b9cb0d9fa3bdd612ef7ae30d6cebd0d8c0b783a4ad09d29669d27b971065",
+          "size_bytes": 472
+        }
+      ],
+      "logical_epoch_number": 3,
+      "seed": 44
+    },
+    {
+      "aggregate_sha256": "743a5322b2ed05bf2c73d6b3e27779d041c4cc484d3ba6d9ee226232231c375c",
+      "arm": "R1",
+      "files": [
+        {
+          "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/formal_runs/seed42/r1/checkpoint-logical-epoch-3/adapter/adapter_config.json",
+          "sha256": "66460105dd0140d94e7ea3c01c93b675fb62a0ae5226a300f9eb57017a9b6b08",
+          "size_bytes": 969
+        },
+        {
+          "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/formal_runs/seed42/r1/checkpoint-logical-epoch-3/adapter/adapter_model.safetensors",
+          "sha256": "10b66be47def1f7523836a86298f488e16092ca38e796ce183828e360d9890c6",
+          "size_bytes": 132187888
+        },
+        {
+          "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/formal_runs/seed42/r1/checkpoint-logical-epoch-3/trainer_state.json",
+          "sha256": "a47edecf473769b036f49cf7726fbcf852c3c6cce1260763b53fc058dd4cf5f1",
+          "size_bytes": 472
+        }
+      ],
+      "logical_epoch_number": 3,
+      "seed": 42
+    },
+    {
+      "aggregate_sha256": "55b4b56e90ce0812e9a303e72676cc9a50a0ba01d571f4d19073cefb608571ea",
+      "arm": "R1",
+      "files": [
+        {
+          "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/formal_runs/seed43/r1/checkpoint-logical-epoch-3/adapter/adapter_config.json",
+          "sha256": "0e0af839f61c7020e55d14ebaf0850375cc9a0f9e5825f5f65fd527fbf46e5aa",
+          "size_bytes": 969
+        },
+        {
+          "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/formal_runs/seed43/r1/checkpoint-logical-epoch-3/adapter/adapter_model.safetensors",
+          "sha256": "42df81876a42c9e18aaa3bcd85d7cc87936de2fb67ab1e6923e989e2557f354a",
+          "size_bytes": 132187888
+        },
+        {
+          "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/formal_runs/seed43/r1/checkpoint-logical-epoch-3/trainer_state.json",
+          "sha256": "466b685066819f33c3198421f7065e60d4e3aaf8c74cfd6eda4589cbe7ffae6f",
+          "size_bytes": 472
+        }
+      ],
+      "logical_epoch_number": 3,
+      "seed": 43
+    },
+    {
+      "aggregate_sha256": "edbdba8d100bb48a2bdd7969436b457636e75e55f143930b1add8f29309f7d48",
+      "arm": "R1",
+      "files": [
+        {
+          "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/formal_runs/seed44/r1/checkpoint-logical-epoch-3/adapter/adapter_config.json",
+          "sha256": "b259400d76c4e85a288c8f63261b23e1034aaa3a5f79a1fe18c73b40672217d9",
+          "size_bytes": 969
+        },
+        {
+          "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/formal_runs/seed44/r1/checkpoint-logical-epoch-3/adapter/adapter_model.safetensors",
+          "sha256": "a1898ee1f8091ab635f7a4435da8aece0a3c209bc7147e3d444ac16c6ea3259f",
+          "size_bytes": 132187888
+        },
+        {
+          "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/formal_runs/seed44/r1/checkpoint-logical-epoch-3/trainer_state.json",
+          "sha256": "c8533ce59398f73d9ecd48557dd928471b8bddde5074f40e9caed6f7cbc85b89",
+          "size_bytes": 472
+        }
+      ],
+      "logical_epoch_number": 3,
+      "seed": 44
+    },
+    {
+      "aggregate_sha256": "db201255d9cbc3951e1b415f6adb142045028843ef446e05e87401ac607e1e6b",
+      "arm": "R2",
+      "files": [
+        {
+          "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/formal_runs/seed42/r2/checkpoint-logical-epoch-3/adapter/adapter_config.json",
+          "sha256": "66460105dd0140d94e7ea3c01c93b675fb62a0ae5226a300f9eb57017a9b6b08",
+          "size_bytes": 969
+        },
+        {
+          "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/formal_runs/seed42/r2/checkpoint-logical-epoch-3/adapter/adapter_model.safetensors",
+          "sha256": "e77e15b23632a3ae4ca97e7800f1266421371bbcc76f41cacf6dd07571a3d719",
+          "size_bytes": 132187888
+        },
+        {
+          "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/formal_runs/seed42/r2/checkpoint-logical-epoch-3/trainer_state.json",
+          "sha256": "a726e0f948f03c218f0048565ac44984a97e06d274f881ecf618c56e799727c4",
+          "size_bytes": 472
+        }
+      ],
+      "logical_epoch_number": 3,
+      "seed": 42
+    },
+    {
+      "aggregate_sha256": "fb6c45ff6cd8259258f2ba4b0517f3936b481bcbd8e996e7f95eb7249f785f31",
+      "arm": "R2",
+      "files": [
+        {
+          "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/formal_runs/seed43/r2/checkpoint-logical-epoch-3/adapter/adapter_config.json",
+          "sha256": "0e0af839f61c7020e55d14ebaf0850375cc9a0f9e5825f5f65fd527fbf46e5aa",
+          "size_bytes": 969
+        },
+        {
+          "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/formal_runs/seed43/r2/checkpoint-logical-epoch-3/adapter/adapter_model.safetensors",
+          "sha256": "e2b057a67bb229c5ee644f6898c5716c39451cf154b5dbe61f858295492bae8f",
+          "size_bytes": 132187888
+        },
+        {
+          "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/formal_runs/seed43/r2/checkpoint-logical-epoch-3/trainer_state.json",
+          "sha256": "85624ac3fed0541c937775f8ff5867e96be073bb13e85bb4f74c28ddcaadf17c",
+          "size_bytes": 472
+        }
+      ],
+      "logical_epoch_number": 3,
+      "seed": 43
+    },
+    {
+      "aggregate_sha256": "0afe9b1f091eb7af4f9880be1f06b2897c7ebc855df75434346efd101f77e108",
+      "arm": "R2",
+      "files": [
+        {
+          "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/formal_runs/seed44/r2/checkpoint-logical-epoch-3/adapter/adapter_config.json",
+          "sha256": "b259400d76c4e85a288c8f63261b23e1034aaa3a5f79a1fe18c73b40672217d9",
+          "size_bytes": 969
+        },
+        {
+          "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/formal_runs/seed44/r2/checkpoint-logical-epoch-3/adapter/adapter_model.safetensors",
+          "sha256": "8f2351d1c90a4ad7d9bc2260fde2a936598982b1df9d19aac529fa0d05c960bb",
+          "size_bytes": 132187888
+        },
+        {
+          "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/formal_runs/seed44/r2/checkpoint-logical-epoch-3/trainer_state.json",
+          "sha256": "cc592f5e6bbb906c40c19d44781332db04e51462b5d8826ebf090c2bc7f7e7e3",
+          "size_bytes": 472
+        }
+      ],
+      "logical_epoch_number": 3,
+      "seed": 44
+    },
+    {
+      "aggregate_sha256": "c1b82b03a2f2e01afd0d963740fbe5c972418b97ee2197ec05188ce67ebd08a2",
+      "arm": "R3",
+      "files": [
+        {
+          "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/formal_runs/seed42/r3/checkpoint-logical-epoch-3/adapter/adapter_config.json",
+          "sha256": "66460105dd0140d94e7ea3c01c93b675fb62a0ae5226a300f9eb57017a9b6b08",
+          "size_bytes": 969
+        },
+        {
+          "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/formal_runs/seed42/r3/checkpoint-logical-epoch-3/adapter/adapter_model.safetensors",
+          "sha256": "ff4f1f56fb1b7af47cd5a33c342eaf3465dd8dff24f84f418deb12c4593cbf56",
+          "size_bytes": 132187888
+        },
+        {
+          "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/formal_runs/seed42/r3/checkpoint-logical-epoch-3/trainer_state.json",
+          "sha256": "047715c1d8577912380cab3643ce65e53251537bdc473766856205a66b716571",
+          "size_bytes": 472
+        }
+      ],
+      "logical_epoch_number": 3,
+      "seed": 42
+    },
+    {
+      "aggregate_sha256": "108350727036961cf7f8e8c823891d16ff0c87738a9cf1a5efbfeea557a9fbc3",
+      "arm": "R3",
+      "files": [
+        {
+          "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/formal_runs/seed43/r3/checkpoint-logical-epoch-3/adapter/adapter_config.json",
+          "sha256": "0e0af839f61c7020e55d14ebaf0850375cc9a0f9e5825f5f65fd527fbf46e5aa",
+          "size_bytes": 969
+        },
+        {
+          "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/formal_runs/seed43/r3/checkpoint-logical-epoch-3/adapter/adapter_model.safetensors",
+          "sha256": "2748a828b0852a1c5b3ede2a70c46e97800cd214c112509620b8f7b05017e003",
+          "size_bytes": 132187888
+        },
+        {
+          "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/formal_runs/seed43/r3/checkpoint-logical-epoch-3/trainer_state.json",
+          "sha256": "cb51544e33bd0343beff9e484bfe8e17b007fe2bdb8f94ee274c56ed2f0feceb",
+          "size_bytes": 472
+        }
+      ],
+      "logical_epoch_number": 3,
+      "seed": 43
+    },
+    {
+      "aggregate_sha256": "62e6192761d715dc19e2f80b9a9015d0d9ea98576483ed73e3af900c8b3fb6b1",
+      "arm": "R3",
+      "files": [
+        {
+          "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/formal_runs/seed44/r3/checkpoint-logical-epoch-3/adapter/adapter_config.json",
+          "sha256": "b259400d76c4e85a288c8f63261b23e1034aaa3a5f79a1fe18c73b40672217d9",
+          "size_bytes": 969
+        },
+        {
+          "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/formal_runs/seed44/r3/checkpoint-logical-epoch-3/adapter/adapter_model.safetensors",
+          "sha256": "fe8d41ae73cebda6c6316b75d93c863a716406737800d3b6d6c90d7fa770eb61",
+          "size_bytes": 132187888
+        },
+        {
+          "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/formal_runs/seed44/r3/checkpoint-logical-epoch-3/trainer_state.json",
+          "sha256": "2ad22ba1df6edcab3f2b97afda9f6ebef65389aca4285dd2d3531b7991c0915d",
+          "size_bytes": 472
+        }
+      ],
+      "logical_epoch_number": 3,
+      "seed": 44
+    }
+  ],
+  "all_final_checkpoint_count": 12,
+  "attempts": [
+    {
+      "arm": "S0",
+      "failure_record_id_vector_sha256": "5da85eb2079ce1698e129474c51d59c92a3b5408e8a69bfd56c3468aaf0bd5d0",
+      "files": [
+        {
+          "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/dev_runs/s0/seed42/epoch1/protocol.json",
+          "sha256": "aac557e1b049937baa3805e77ccf699efacac74a770e0b33ae1fb3f1ef08f525",
+          "size_bytes": 1032
+        },
+        {
+          "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/dev_runs/s0/seed42/epoch1/predictions.jsonl",
+          "sha256": "b5eab7f385a8be18ac89f99edeb006ebd1c53d830d9f185d1e57a4979d09b33b",
+          "size_bytes": 421846
+        },
+        {
+          "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/dev_runs/s0/seed42/epoch1/parse_failures.json",
+          "sha256": "07a6f87cd836266626ea2dcdc69f09fda5fcd1b2c722806a5406d04aa3a37a92",
+          "size_bytes": 31913
+        }
+      ],
+      "logical_epoch_number": 1,
+      "parse_error_categories": {
+        "invalid_json": 376,
+        "other_strict_parse_failure": 276,
+        "trailing_non_whitespace": 12
+      },
+      "protocol_file_observed_mtime_utc": "2026-07-28T01:19:23.822209+00:00",
+      "record_id_vector_sha256": "5da85eb2079ce1698e129474c51d59c92a3b5408e8a69bfd56c3468aaf0bd5d0",
+      "rows": 664,
+      "scientific_metrics_written": false,
+      "seed": 42,
+      "strict_parse_failure_count": 664,
+      "strict_parse_success_count": 0
+    },
+    {
+      "arm": "S0",
+      "failure_record_id_vector_sha256": "c56aa934093c96dcfca0ddd6e7ba99101f7a82b655c2c8ff6ee60651c3f68e05",
+      "files": [
+        {
+          "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/dev_runs/s0/seed42/epoch2/protocol.json",
+          "sha256": "d1577f9717bb8a5ce4e5c0e013420eacd4da5c4487801320388b58fe5c4fa49f",
+          "size_bytes": 1032
+        },
+        {
+          "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/dev_runs/s0/seed42/epoch2/predictions.jsonl",
+          "sha256": "dd92f459e0b043bfa431ac466a2be64c8e00ce8ced836a9fd6faacc25f7e814a",
+          "size_bytes": 526925
+        },
+        {
+          "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/dev_runs/s0/seed42/epoch2/parse_failures.json",
+          "sha256": "ed7f8c454478aa4840be0963ba14a55126e6039bde389162aec183dd8a26e330",
+          "size_bytes": 27689
+        }
+      ],
+      "logical_epoch_number": 2,
+      "parse_error_categories": {
+        "invalid_json": 331,
+        "other_strict_parse_failure": 95,
+        "strict_parse_success": 88,
+        "trailing_non_whitespace": 150
+      },
+      "protocol_file_observed_mtime_utc": "2026-07-28T01:18:23.918443+00:00",
+      "record_id_vector_sha256": "5da85eb2079ce1698e129474c51d59c92a3b5408e8a69bfd56c3468aaf0bd5d0",
+      "rows": 664,
+      "scientific_metrics_written": false,
+      "seed": 42,
+      "strict_parse_failure_count": 576,
+      "strict_parse_success_count": 88
+    },
+    {
+      "arm": "S0",
+      "failure_record_id_vector_sha256": "5da85eb2079ce1698e129474c51d59c92a3b5408e8a69bfd56c3468aaf0bd5d0",
+      "files": [
+        {
+          "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/dev_runs/s0/seed42/epoch3/protocol.json",
+          "sha256": "57a72bb54b96d4cf6bcece420c2948805d2a61054f72cf501cf24f454d1cebcc",
+          "size_bytes": 1030
+        },
+        {
+          "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/dev_runs/s0/seed42/epoch3/predictions.jsonl",
+          "sha256": "c96edc4e3d4fd4e8fd5a39ec89c8908098bbe7af255b108e1dbd64ecc14cc150",
+          "size_bytes": 429497
+        },
+        {
+          "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/dev_runs/s0/seed42/epoch3/parse_failures.json",
+          "sha256": "07a6f87cd836266626ea2dcdc69f09fda5fcd1b2c722806a5406d04aa3a37a92",
+          "size_bytes": 31913
+        }
+      ],
+      "logical_epoch_number": 3,
+      "parse_error_categories": {
+        "invalid_json": 641,
+        "other_strict_parse_failure": 13,
+        "trailing_non_whitespace": 10
+      },
+      "protocol_file_observed_mtime_utc": "2026-07-28T01:19:17.358234+00:00",
+      "record_id_vector_sha256": "5da85eb2079ce1698e129474c51d59c92a3b5408e8a69bfd56c3468aaf0bd5d0",
+      "rows": 664,
+      "scientific_metrics_written": false,
+      "seed": 42,
+      "strict_parse_failure_count": 664,
+      "strict_parse_success_count": 0
+    }
+  ],
+  "checkpoint_selection_allowed": false,
+  "cross_arm_read_only_diagnostic": {
+    "R1": {
+      "max_token_hit_count": 5,
+      "rows": 16,
+      "strict_parse_failure_count": 13,
+      "strict_parse_success_count": 3
+    },
+    "R2": {
+      "max_token_hit_count": 15,
+      "rows": 16,
+      "strict_parse_failure_count": 16,
+      "strict_parse_success_count": 0
+    },
+    "R3": {
+      "max_token_hit_count": 4,
+      "rows": 16,
+      "strict_parse_failure_count": 16,
+      "strict_parse_success_count": 0
+    },
+    "formal_metrics_written": false,
+    "note": "Interactive read-only diagnostic established that the format failure crosses rationale arms; no score or rationale semantic metric was computed.",
+    "sample_id_vector_sha256": "a7a6aebf5ce62b2f19dd70febb88fdd12929c37942f441acb212f76aa5cb2f4a",
+    "scope": "seed42 logical epoch 3, first 16 ordered dev rows"
+  },
+  "dev_rerun_allowed": false,
+  "execution_source_identity": {
+    "complete_identity_method": "per-file SHA-256 bindings",
+    "fully_represented_by_repository_commit": false,
+    "reason": "the V1 runner was not committed at execution time; the observed repository HEAD is contextual rather than a complete execution-source identity"
+  },
+  "failure_scope": "strict JSON serialization and termination under unconstrained greedy decoding",
+  "ordered_dev_row_vector_sha256": "5da85eb2079ce1698e129474c51d59c92a3b5408e8a69bfd56c3468aaf0bd5d0",
+  "privacy": {
+    "labels_public": false,
+    "private_evidence_retained": true,
+    "questions_answers_rubrics_public": false,
+    "raw_outputs_public": false,
+    "row_level_identifiers_public": false
+  },
+  "protocol_boundary": {
+    "independent_review_required_before_dev_rerun": true,
+    "no_lenient_parser": true,
+    "no_posthoc_score_extraction": true,
+    "v1_outputs_must_not_be_deleted_or_overwritten": true,
+    "v2_must_freeze_outside_dev": true
+  },
+  "repository_head_observed_at_freeze": "4e95b0a4f1b41a0e7c43bbaf004e8561d136dc68",
+  "root_cause_classification": "field-content-only training loss plus unconstrained decoding created a train-inference serialization mismatch",
+  "runtime_source_aggregate_sha256": "a724b2d6464e82182e406006c577e26507bda157b2070a1da322115c2fdea867",
+  "runtime_source_bindings": [
+    {
+      "path": "thesis_exp/exp54_rar_sft/run_dev_inference.py",
+      "sha256": "bddfce526e902ecdaacc4a7413511d249c3fc039cbc2f3e8f525f5929ff0240d",
+      "size_bytes": 14899
+    },
+    {
+      "path": "thesis_exp/exp54_rar_sft/inference_contract.py",
+      "sha256": "5eda600beb28db066567f3f9bb7a158ddd8c416506c9689248d6cae0d58a3681",
+      "size_bytes": 1739
+    },
+    {
+      "path": "thesis_exp/exp54_rar_sft/block_loss.py",
+      "sha256": "0e9f6ad5ee9b59175f160a0d24c20e9e92ece348e39069996e4522382cc61800",
+      "size_bytes": 11704
+    },
+    {
+      "path": "thesis_exp/exp54_rar_sft/training_contract.py",
+      "sha256": "a9b100c9446f2a0e011b1faf67f873b51d0aaacf08a75423c71b6c48360f5071",
+      "size_bytes": 17050
+    },
+    {
+      "path": "thesis_exp/exp54_rar_sft/configs/training_configuration_candidate.json",
+      "sha256": "291a3fa055f5ef07ac0f1bc39f67f3b1c9d13219da0c3e3e801d9a9df29d5318",
+      "size_bytes": 7182
+    }
+  ],
+  "schema_version": "exp54-dev-execution-attempt-v1-freeze-v1",
+  "scientific_metrics_valid": false,
+  "status": "DEV_EXECUTION_ATTEMPT_V1_FORMAT_EXECUTION_FAILURE",
+  "test_accessed": false,
+  "v1_checkpoint_bindings": [
+    {
+      "aggregate_sha256": "9324c530788dd547edaf5e20b0ba0f65287b0e8980ec962f57afd922bcf22d43",
+      "arm": "S0",
+      "files": [
+        {
+          "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/formal_runs/seed42/s0/checkpoint-logical-epoch-1/adapter/adapter_config.json",
+          "sha256": "66460105dd0140d94e7ea3c01c93b675fb62a0ae5226a300f9eb57017a9b6b08",
+          "size_bytes": 969
+        },
+        {
+          "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/formal_runs/seed42/s0/checkpoint-logical-epoch-1/adapter/adapter_model.safetensors",
+          "sha256": "09176c64ced6fc701f4344b9862dc19a3aa369f27151e60c4a1b20a56709a759",
+          "size_bytes": 132187888
+        },
+        {
+          "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/formal_runs/seed42/s0/checkpoint-logical-epoch-1/trainer_state.json",
+          "sha256": "9b3c1c8642d746346f874eabf9d97b3636f4aa2e5366997ba09681f4c19803d4",
+          "size_bytes": 472
+        }
+      ],
+      "logical_epoch_number": 1,
+      "seed": 42
+    },
+    {
+      "aggregate_sha256": "b02bd3546e985b807054caee33bcc6176ea6f06869dafd8ea295ae9427521a13",
+      "arm": "S0",
+      "files": [
+        {
+          "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/formal_runs/seed42/s0/checkpoint-logical-epoch-2/adapter/adapter_config.json",
+          "sha256": "66460105dd0140d94e7ea3c01c93b675fb62a0ae5226a300f9eb57017a9b6b08",
+          "size_bytes": 969
+        },
+        {
+          "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/formal_runs/seed42/s0/checkpoint-logical-epoch-2/adapter/adapter_model.safetensors",
+          "sha256": "b84b76b79a36c15a8111d800419f83e24a3214a4f03d407f3ecaee0b0f982bad",
+          "size_bytes": 132187888
+        },
+        {
+          "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/formal_runs/seed42/s0/checkpoint-logical-epoch-2/trainer_state.json",
+          "sha256": "02623a7bc467053db3e5db6aab87045096fa638b9e75f5c24bbd9b46034b8e23",
+          "size_bytes": 472
+        }
+      ],
+      "logical_epoch_number": 2,
+      "seed": 42
+    },
+    {
+      "aggregate_sha256": "3c51220c29665e71b76103e6840ab026f6a3f6de1fc52ca6f16aaf5a30daf101",
+      "arm": "S0",
+      "files": [
+        {
+          "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/formal_runs/seed42/s0/checkpoint-logical-epoch-3/adapter/adapter_config.json",
+          "sha256": "66460105dd0140d94e7ea3c01c93b675fb62a0ae5226a300f9eb57017a9b6b08",
+          "size_bytes": 969
+        },
+        {
+          "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/formal_runs/seed42/s0/checkpoint-logical-epoch-3/adapter/adapter_model.safetensors",
+          "sha256": "d224d81a79ebb023b51a91b83e2508008eb3f44f230153e6696b3f84bf460ed1",
+          "size_bytes": 132187888
+        },
+        {
+          "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/formal_runs/seed42/s0/checkpoint-logical-epoch-3/trainer_state.json",
+          "sha256": "a4b81407cbc154da929e849c22dcee54175600bdd5e0a94589d05ae6e4ef3f15",
+          "size_bytes": 472
+        }
+      ],
+      "logical_epoch_number": 3,
+      "seed": 42
+    }
+  ]
+}

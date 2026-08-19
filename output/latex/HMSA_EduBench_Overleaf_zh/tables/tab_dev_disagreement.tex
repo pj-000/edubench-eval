@@ -1,0 +1,21 @@
+\begin{table}[H]
+\centering
+\caption{开发集上的评分一致性分层分析（均值 $\pm$ 跨三个训练随机种子的样本标准差）。}
+\label{tab:dev_disagreement}
+\small
+\begin{tabular}{llrrrr}
+\toprule
+分组 & 指标 & $n$ & Hard-only & HMSA & $\Delta$ \\
+\midrule
+三人一致 & MAE & 291 & 0.251 $\pm$ 0.031 & \textbf{0.228 $\pm$ 0.002} & -0.023 \\
+ & 精确匹配率 &  & 0.817 $\pm$ 0.019 & \textbf{0.834 $\pm$ 0.005} & +0.017 \\
+ & 有符号偏差 &  & 0.134 $\pm$ 0.027 & \textbf{0.111 $\pm$ 0.015} & -0.023 \\
+ & QWK &  & 0.654 $\pm$ 0.065 & \textbf{0.700 $\pm$ 0.017} & +0.047 \\
+\midrule
+相邻等级2:1分歧 & MAE & 373 & 0.504 $\pm$ 0.013 & \textbf{0.497 $\pm$ 0.005} & -0.007 \\
+ & 精确匹配率 &  & 0.643 $\pm$ 0.018 & \textbf{0.651 $\pm$ 0.009} & +0.007 \\
+ & 有符号偏差 &  & 0.163 $\pm$ 0.040 & \textbf{0.111 $\pm$ 0.036} & -0.052 \\
+ & QWK &  & 0.529 $\pm$ 0.030 & \textbf{0.576 $\pm$ 0.018} & +0.047 \\
+\bottomrule
+\end{tabular}
+\end{table}

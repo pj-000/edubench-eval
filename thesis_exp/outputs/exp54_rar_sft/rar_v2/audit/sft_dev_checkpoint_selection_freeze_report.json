@@ -1,0 +1,18 @@
+{
+  "all_selected_epochs_equal_three": true,
+  "checkpoint_hashes_verified": true,
+  "complete_dev_tree_verified": true,
+  "lock_sha256": "364a2c9ee023d1b0a2d803530d7898a347a150dd89dbaaa388aa44677cd71df4",
+  "preference_training_allowed": false,
+  "rationale_blind_audit_execution_allowed": false,
+  "rationale_blind_audit_planning_allowed": true,
+  "schema_version": "exp54-sft-dev-selection-freeze-audit-v1",
+  "selected_checkpoint_count": 12,
+  "selected_dev_artifact_hashes_verified": true,
+  "selected_prediction_rows": 7968,
+  "status": "SFT_DEV_CHECKPOINT_SELECTION_FREEZE_AUDIT_PASS",
+  "strict_parse_rate_all_selected": 1.0,
+  "summary_source_and_upstream_hashes_verified": true,
+  "test_accessed": false,
+  "test_execution_allowed": false
+}

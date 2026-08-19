@@ -1,0 +1,78 @@
+{
+  "status": "PASS",
+  "experiment": "within_label_shuffled_soft",
+  "shuffle_seed": 20260730,
+  "mapping_sha256": "b4e96c49607700be99816582c1b85a8085b8c5abb260ddafbad4e9ee0dc25ad4",
+  "rows": 2654,
+  "effective_target_changes": 1490,
+  "effective_change_rate": 0.5614167294649586,
+  "checks": {
+    "train_rows_2654": true,
+    "row_order_and_nonsoft_fields_unchanged": true,
+    "all_label_multisets_preserved": true,
+    "every_shuffled_mode_matches_hard_label": true,
+    "effective_changes_nonzero": true,
+    "test_access_count_zero": true
+  },
+  "by_hard_label": {
+    "1": {
+      "rows": 24,
+      "soft_target_multiset_preserved": true,
+      "effective_target_changes": 6,
+      "effective_change_rate": 0.25,
+      "self_assignments": 1,
+      "original_target_counts": {
+        "[2, 1, 0, 0, 0]": 4,
+        "[3, 0, 0, 0, 0]": 20
+      }
+    },
+    "2": {
+      "rows": 52,
+      "soft_target_multiset_preserved": true,
+      "effective_target_changes": 30,
+      "effective_change_rate": 0.5769230769230769,
+      "self_assignments": 0,
+      "original_target_counts": {
+        "[0, 2, 1, 0, 0]": 12,
+        "[0, 3, 0, 0, 0]": 33,
+        "[1, 2, 0, 0, 0]": 7
+      }
+    },
+    "3": {
+      "rows": 251,
+      "soft_target_multiset_preserved": true,
+      "effective_target_changes": 139,
+      "effective_change_rate": 0.5537848605577689,
+      "self_assignments": 1,
+      "original_target_counts": {
+        "[0, 0, 2, 1, 0]": 138,
+        "[0, 0, 3, 0, 0]": 85,
+        "[0, 1, 2, 0, 0]": 28
+      }
+    },
+    "4": {
+      "rows": 946,
+      "soft_target_multiset_preserved": true,
+      "effective_target_changes": 609,
+      "effective_change_rate": 0.6437632135306554,
+      "self_assignments": 1,
+      "original_target_counts": {
+        "[0, 0, 0, 2, 1]": 441,
+        "[0, 0, 0, 3, 0]": 297,
+        "[0, 0, 1, 2, 0]": 208
+      }
+    },
+    "5": {
+      "rows": 1381,
+      "soft_target_multiset_preserved": true,
+      "effective_target_changes": 706,
+      "effective_change_rate": 0.5112237509051412,
+      "self_assignments": 0,
+      "original_target_counts": {
+        "[0, 0, 0, 0, 3]": 734,
+        "[0, 0, 0, 1, 2]": 647
+      }
+    }
+  },
+  "test_access_count": 0
+}

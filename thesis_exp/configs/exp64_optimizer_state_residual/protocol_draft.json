@@ -1,0 +1,112 @@
+{
+  "status": "EXP64_PROTOCOL_FROZEN_BEFORE_INDEPENDENT_OUTCOMES",
+  "name": "Optimizer-state-aware attribution of multi-rater signed residual utility",
+  "role": "one final falsifiable mechanism experiment; not a deployable method",
+  "scientific_question": "Does exact finite-difference AdamW displacement predict group-disjoint local hard-task utility of an analytically isolated multi-rater residual better than raw Euclidean geometry and simpler optimizer approximations?",
+  "allowed_splits": ["train", "dev"],
+  "test_access_count": 0,
+  "dataset": {
+    "name": "SummEval coherence/fluency frozen Exp62 split",
+    "group_unit": "source article id",
+    "train_rows": 2240,
+    "dev_rows": 480,
+    "test_forbidden": true,
+    "split_manifest_sha256": "b32a6a78242f7959fe3074e9df817a5e6f87bf447a6f84dc326370311b80fff9"
+  },
+  "model": "Qwen3-Reranker-0.6B",
+  "base_trajectory": {
+    "route": "direct_residual_blocked",
+    "seeds": [72, 73, 74, 75, 76],
+    "epochs": 10,
+    "stage_checkpoints_after_epochs": [2, 5, 8],
+    "checkpoint_contents": ["model", "AdamW", "scheduler", "complete_RNG", "next_window_record_ids"],
+    "counterfactual_window_rows": 112,
+    "checkpoint_selection": "none"
+  },
+  "training": {
+    "learning_rate": 0.00002,
+    "weight_decay": 0.01,
+    "warmup_ratio": 0.05,
+    "micro_batch_size": 112,
+    "gradient_accumulation_steps": 1,
+    "max_gradient_norm": 1.0,
+    "max_length": 256,
+    "precision": "bf16 model/gradient storage; FP32 losses; FP64 reductions"
+  },
+  "optimizer": {
+    "name": "torch.optim.AdamW",
+    "betas": [0.9, 0.999],
+    "epsilon": 1e-8,
+    "amsgrad": false,
+    "maximize": false,
+    "foreach": false,
+    "fused": false,
+    "capturable": false,
+    "reason": "freeze the exact non-fused operation order validated by the finite-difference unit test"
+  },
+  "arms": [
+    "blocked",
+    "full_residual",
+    "parallel_only",
+    "orthogonal_only",
+    "sign_flipped_residual"
+  ],
+  "shared_scaling": {
+    "formula": "c_t = min(1, 0.95 / max_arm ||g_arm||_2)",
+    "per_arm_recalibration_forbidden": true,
+    "clip_threshold": 1.0,
+    "all_effective_clip_coefficients": 1.0
+  },
+  "probe": {
+    "split": "dev only",
+    "partition": "SHA256 order of exp64_probe_v1\\t+group_id, alternating into A and B",
+    "manifest_sha256": "e9acd26528c0eb5f2a5248817156df0f6f007da912e6208d38be30b5b45bc6c4",
+    "probe_A_groups": 8,
+    "probe_A_rows": 256,
+    "probe_B_groups": 7,
+    "probe_B_rows": 224,
+    "directions": ["A_to_B", "B_to_A"],
+    "same_probe_for_prediction_and_outcome_forbidden": true
+  },
+  "primary_unit": "seed; stages, candidates and probe swaps are within-seed repeated measurements",
+  "success_rules": {
+    "full_local_effect": "negative seed-level mean in at least 4/5 seeds and negative five-seed mean",
+    "exact_adamw_beats_raw_validation_alignment": "lower within-seed MAE in at least 4/5 seeds",
+    "exact_adamw_beats_fixed_denominator_adam": "lower within-seed MAE in at least 4/5 seeds",
+    "direction_not_only_magnitude": {
+      "grid_per_seed": "3 stages x 3 residual candidates x 2 cross-probe directions = 18 observations",
+      "exact_score": "q_exact = probe_gradient dot exact_AdamW_attributable_displacement",
+      "magnitude_only_score": "q_mag = -L2_norm(exact_AdamW_attributable_displacement); negative sign freezes the alternative that larger displacement is always more beneficial",
+      "ranking_statistic": "Kendall tau-b against observed hard-loss effect; absolute outcomes <= 1e-8 are retained as ties",
+      "criterion": "tau_exact > tau_magnitude in at least 4/5 seeds",
+      "signflip_control": "Full has lower seed-level mean hard-loss effect than sign-flipped residual in at least 4/5 seeds and in the five-seed mean",
+      "descriptive_only": "per-seed signed prediction accuracy and both tau values"
+    },
+    "stage_robustness": {
+      "full_effect": "five-seed/two-direction mean Full outcome is negative at at least 2/3 frozen stages",
+      "coordinate_comparison": "stage-pooled exact MAE is lower than both comparator MAEs at at least 2/3 frozen stages",
+      "interpretation": "anti-single-stage gates; stages are not independent replicates"
+    },
+    "nonadditivity": {
+      "role": "secondary and conditional; never inferred from Full passing alone",
+      "numerical_threshold": "seed-level mean ||iota|| / max(||delta_full||, 1e-30) > 1e-3",
+      "directional_threshold": "seed-level mean q_iota and observed Full-minus-Parallel-minus-Orthogonal deviation have the same sign in at least 4/5 seeds"
+    }
+  },
+  "authorization": {
+    "synthetic_unit_tests": true,
+    "existing_exp63_no_outcome_preflight": true,
+    "five_base_trajectory_gpu_training": true,
+    "formal_counterfactual_updates": true,
+    "test_evaluation": false
+  },
+  "freeze_evidence": {
+    "frozen_date": "2026-08-09",
+    "independent_seed_outcomes_read_before_freeze": 0,
+    "rng_audit_summary_sha256": "554a7d78e77f20d9a926892d4e0675af2185543aba8521b48ee521162bb9bcbb",
+    "probe_manifest_audit_sha256": "e704a008d35d41010b964fc954b72e69416a889c8957ae36ace2a5d22e12e387",
+    "synthetic_unit_tests_sha256": "a2208bbe1d6b8ecd848c09d631d017c2b1d2d68921510b95ee818b2444d5750b",
+    "existing_state_no_outcome_preflight_sha256": "bd85dfccab4e3df9eb884a099c7d83652b57df82a3b509e6e201027e9e7c3f0f"
+  },
+  "stop_rule": "After one independent frozen run, stop regardless of outcome; failure triggers the declared CCF-C route."
+}

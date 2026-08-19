@@ -1,0 +1,4 @@
+split,n,unanimous,adjacent_2_to_1,label_1,label_2,label_3,label_4,label_5
+train,2654,1169,1485,24,52,251,946,1381
+dev,664,291,373,6,14,62,237,345
+test,2218,not_reopened,not_reopened,56,47,194,720,1201

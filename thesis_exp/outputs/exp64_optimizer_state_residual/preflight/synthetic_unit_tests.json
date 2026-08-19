@@ -1,0 +1,17 @@
+{
+  "status": "EXP64_SYNTHETIC_UNIT_TESTS_PASS",
+  "command": "/home/jpang/miniconda3/envs/llama_factory/bin/python -m pytest -q thesis_exp/tests/test_exp64_optimizer_state_residual.py",
+  "result": "4 passed in 2.84s",
+  "python": "3.10.19",
+  "pytorch": "2.4.0+cu121",
+  "cuda_runtime": "12.1",
+  "checks": {
+    "exact_formula_matches_torch_adamw_step": true,
+    "shared_scale_keeps_all_candidates_at_or_below_target": true,
+    "attributable_difference_cancels_weight_decay": true,
+    "directional_kendall_control_is_frozen": true
+  },
+  "real_model_outcomes_read": 0,
+  "optimizer_steps_on_real_model": 0,
+  "test_access_count": 0
+}

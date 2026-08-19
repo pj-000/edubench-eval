@@ -1,0 +1,110 @@
+{
+  "checks": {
+    "cublas_workspace_config_recorded": true,
+    "fp32_endpoint_residual_relative_error_at_most_1e_4": true,
+    "fp32_full_route_reconstruction_error_at_most_1e_4": true,
+    "fp32_orthogonal_trainer_matches_independent_at_most_1e_4": true,
+    "fp32_orthogonality_error_at_most_1e_6": true,
+    "fp32_parallel_trainer_matches_independent_at_most_1e_4": true,
+    "fp32_residual_reconstruction_error_at_most_1e_6": true,
+    "no_optimizer_step": true,
+    "no_test_access": true,
+    "orthogonal_hard_head_norm_at_most_1e_12": true,
+    "orthogonal_soft_head_norm_at_most_1e_12": true,
+    "orthogonal_standard_clip_norm_safe": true,
+    "parallel_hard_head_norm_at_most_1e_12": true,
+    "parallel_soft_head_norm_at_most_1e_12": true,
+    "parallel_standard_clip_norm_safe": true
+  },
+  "component_head_norms": {
+    "orthogonal_hard_head": 0.0,
+    "orthogonal_soft_head": 0.0,
+    "parallel_hard_head": 0.0,
+    "parallel_soft_head": 0.0
+  },
+  "contract": {
+    "protocol_sha256": "42a96ca25f6a40619da011c34905387e0c67da0567fee6a27744724fba257e85",
+    "source_lock_sha256": "d4db160c499d91ac4ca74988cdd5ff59ef809990f50d76b49ebcda8a8897d34f"
+  },
+  "cublas_workspace_config": ":4096:8",
+  "deterministic_algorithms": true,
+  "endpoint_residual_relative_errors": {
+    "all": 1.3575522898504864e-05,
+    "backbone": 1.3575522898504862e-05,
+    "hard_head": 0.0,
+    "soft_head": 0.0
+  },
+  "examples": 128,
+  "full_route_reconstruction_relative_error": 4.6717852429942427e-07,
+  "geometry": {
+    "common_backbone_norm": 323.349527624761,
+    "normalized_orthogonality_error": 1.068579566331847e-08,
+    "orthogonal_norm": 10.58247686957751,
+    "parallel_norm": 4.179382363751937,
+    "projection_coefficient": -0.012925277117007857,
+    "reconstruction_relative_error": 2.0510437288645307e-08,
+    "residual_common_cosine": -0.3673253606216873,
+    "residual_norm": 11.377875579105519
+  },
+  "head_contract": {
+    "hard_bias": false,
+    "hard_head_hash": "f8616ecb9aa489aba10260f6b367dc2a0c033323461d9dc8ea8ed109344ff8a1",
+    "hard_parameter_count": 5120,
+    "soft_bias": false,
+    "soft_head_hash": "f8616ecb9aa489aba10260f6b367dc2a0c033323461d9dc8ea8ed109344ff8a1",
+    "soft_parameter_count": 5120,
+    "storage_independent": true
+  },
+  "independent_clip_coefficients": {
+    "orthogonal_only": 0.002979895784010331,
+    "parallel_only": 0.0030176095943982104
+  },
+  "independent_preclip_norms": {
+    "orthogonal_only": 335.5822047153302,
+    "parallel_only": 331.388128815191
+  },
+  "microbatches": 32,
+  "model_mode": "qwen3_cbrd_dual_head_sequence_classification",
+  "optimizer_steps": 0,
+  "paired_audits": {
+    "orthogonal_only": {
+      "common_backbone_norm": 323.34953886102244,
+      "gradient_storage_dtype": "torch.float32",
+      "normalized_orthogonality_error": 6.430795626286654e-11,
+      "orthogonal_norm": 10.582476885682729,
+      "parallel_norm": 4.179382205053389,
+      "post_cast_norm_limit": 1.000001,
+      "post_cast_relative_tolerance": 1e-06,
+      "postclip_norm": 0.999999850988377,
+      "preclip_norm": 335.5821838378906,
+      "projection_coefficient": -0.012925276528378086,
+      "residual_common_cosine": -0.36732535668597593,
+      "residual_norm": 11.37787557823071,
+      "residual_reconstruction_relative_error": 0.0,
+      "variant": "orthogonal_only"
+    },
+    "parallel_only": {
+      "common_backbone_norm": 323.34953886102244,
+      "gradient_storage_dtype": "torch.float32",
+      "normalized_orthogonality_error": 6.430795626286654e-11,
+      "orthogonal_norm": 10.582476885682729,
+      "parallel_norm": 4.179382205053389,
+      "post_cast_norm_limit": 1.000001,
+      "post_cast_relative_tolerance": 1e-06,
+      "postclip_norm": 0.9999999701976772,
+      "preclip_norm": 331.3881530761719,
+      "projection_coefficient": -0.012925276528378086,
+      "residual_common_cosine": -0.36732535668597593,
+      "residual_norm": 11.37787557823071,
+      "residual_reconstruction_relative_error": 0.0,
+      "variant": "parallel_only"
+    }
+  },
+  "paired_trainer_relative_errors": {
+    "orthogonal_only": 4.803978783833389e-07,
+    "parallel_only": 4.635240268168238e-07
+  },
+  "precision": "fp32",
+  "status": "EXP59_PREFLIGHT_PASS",
+  "test_access_count": 0
+}

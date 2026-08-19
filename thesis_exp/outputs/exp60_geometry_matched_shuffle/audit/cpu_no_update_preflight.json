@@ -1,0 +1,34 @@
+{
+  "allowed_splits": [
+    "train"
+  ],
+  "cases": 64,
+  "checks": {
+    "aligned_orthogonality_at_most_1e_6": true,
+    "clip_coefficient_match_at_most_1e_4": true,
+    "component_norm_match_at_most_1e_4": true,
+    "mapping_audit_pass": true,
+    "mapping_is_a_same_label_bijection_with_exact_donor_targets": true,
+    "mapping_maximum_mismatch_every_label": true,
+    "no_model_loaded": true,
+    "no_optimizer_step": true,
+    "no_test_access": true,
+    "preclip_total_norm_match_at_most_1e_4": true,
+    "protocol_remains_draft_and_training_forbidden": true,
+    "residual_components_have_zero_head_support": true,
+    "shuffled_orthogonality_at_most_1e_6": true,
+    "zero_shuffled_nonzero_aligned_forces_stop": true
+  },
+  "mapping_sha256": "dc9d3fbce24af01fee58e896f83ed35f3ccd516fcf30f35ed43a3cfd4c2fa7fb",
+  "maxima": {
+    "aligned_normalized_orthogonality_error": 1.837204453685785e-08,
+    "clip_coefficient_relative_error": 3.669772429402722e-08,
+    "component_norm_relative_error": 5.950710712720512e-08,
+    "preclip_total_norm_relative_error": 3.669772831644644e-08,
+    "shuffled_normalized_orthogonality_error": 1.3099014834861405e-08
+  },
+  "rng_seed": 60,
+  "scope": "generic FP32/FP64 geometry only; real Qwen BF16 preflight remains required before formal training",
+  "status": "EXP60_CPU_NO_UPDATE_PREFLIGHT_PASS",
+  "test_access_count": 0
+}

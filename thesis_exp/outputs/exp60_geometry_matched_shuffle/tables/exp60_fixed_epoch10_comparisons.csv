@@ -1,0 +1,7 @@
+seed,treatment,control,delta_MAE_human_mean,delta_Exact_rounded,delta_Kendall_human_mean
+47,aligned_orthogonal_only,matched_shuffled_orthogonal_only,-0.004016064257028051,-0.010542168674698815,0.011656245729197545
+48,aligned_orthogonal_only,matched_shuffled_orthogonal_only,-0.005020080321285092,0.004518072289156683,0.00903028792738414
+49,aligned_orthogonal_only,matched_shuffled_orthogonal_only,-0.022590361445783136,0.016566265060240948,0.0373511085143482
+47,aligned_orthogonal_only,consensus_only,-0.0025100401606426015,-0.012048192771084376,0.022987755515665564
+48,aligned_orthogonal_only,consensus_only,-0.007530120481927582,0.003012048192771122,0.01130869171414095
+49,aligned_orthogonal_only,consensus_only,-0.027108433734939763,0.012048192771084376,0.027567061721404884

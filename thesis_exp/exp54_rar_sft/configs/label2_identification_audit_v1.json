@@ -1,0 +1,195 @@
+{
+  "schema_version": "exp54-label2-identification-audit-v1",
+  "status": "PROTOCOL_FROZEN_NOT_EXECUTED",
+  "scientific_question": "Why do frozen P1 Field-DPO checkpoints still fail to identify observed-consensus Label-2 answers, and which mechanisms are also present before preference optimization in frozen R3-SFT?",
+  "estimand": {
+    "target": "observed_consensus_label_5",
+    "primary_arm": "P1_FIELD_DPO",
+    "paired_comparator_arm": "R3",
+    "seeds": [42, 43, 44],
+    "primary_split": "dev",
+    "primary_population": "seed_record occurrences with label_5 == 2 and parsed_score != 2",
+    "primary_unit": "arm_seed_record_occurrence",
+    "dependence_unit": "question_key",
+    "primary_quantity": "mechanism-specific fraction of primary-population failures, reported separately by seed",
+    "not_identified": [
+      "latent_student_mastery",
+      "an unobserved uniquely correct score",
+      "human rationale faithfulness",
+      "causal effects of mechanisms from observational association alone"
+    ]
+  },
+  "evidence_scope": {
+    "allowed_splits": ["train", "dev"],
+    "forbidden_splits": ["test", "one_time_test", "holdout_2"],
+    "backbone_training_allowed": false,
+    "adapter_training_allowed": false,
+    "new_preference_pair_construction_allowed": false,
+    "frozen_checkpoint_inference_allowed_if_logits_missing": true,
+    "dev_logits_may_be_regenerated": true,
+    "test_predictions_must_not_be_read": true,
+    "train_failure_bank_role": "descriptive coverage and transition evidence only; never generalization evidence"
+  },
+  "locked_inputs": {
+    "train": {
+      "path": "thesis_exp/data/splits/paper_like_triple_seed42/train.jsonl",
+      "sha256": "0a1733b9209984c5c4291d205d1ac6057bed341717903b9de075d07de44a878e",
+      "rows": 2654
+    },
+    "dev": {
+      "path": "thesis_exp/data/splits/paper_like_triple_seed42/dev.jsonl",
+      "sha256": "a18d6a27b9a524d4592a359658ae70c9348fe88e43c962971ba95f62d2b6cdf0",
+      "rows": 664,
+      "label_2_rows": 14
+    },
+    "all_rater_reference_inventory": {
+      "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/data/all_rater_reference_sets.jsonl",
+      "sha256": "09738af481273bb334399ef87862af09a0d82ad586bd1862fc5271a9051daebe"
+    },
+    "r3_dev_summary": {
+      "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/dev_summary_vllm/final_results.json",
+      "sha256": "17afbc465795587945abb8a6b97542310657fb1f227fc126872f9045453b2db8"
+    },
+    "p1_dev_summary": {
+      "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/preference_lr5e6_followup/dev_summary/final_results.json",
+      "sha256": "9aa9eba4afc3692acc81eced91081cc7deabb65c1ecb1f7da1d660c63ee97af2"
+    },
+    "train_failure_bank_report": {
+      "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/actual_failure_bank/aggregate_report.json",
+      "sha256": "e0b80926b92e7e2f9c89eeb77996d2500d22531b011689f15c880a795bc093e3"
+    },
+    "preference_pair_lock": {
+      "path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/preference_pairs/pair_protocol_frozen_lock.json",
+      "sha256": "8300cadc49998ac7fd71da06a126afdc3d983f45a6ae60812cf0b3692dc26606"
+    }
+  },
+  "required_row_fields": {
+    "identity": ["record_id", "question_key", "metric_id", "language"],
+    "target": ["label_5", "human_mean_5"],
+    "raters": ["human_1_5", "human_2_5", "human_3_5"],
+    "model": [
+      "parsed_score",
+      "canonical_score_option_logprob_1",
+      "canonical_score_option_logprob_2",
+      "canonical_score_option_logprob_3",
+      "canonical_score_option_logprob_4",
+      "canonical_score_option_logprob_5"
+    ]
+  },
+  "score_probability_contract": {
+    "definition": "conditional sequence log-probability of each canonical score value under the identical frozen prompt and score-field prefix",
+    "candidate_values": [1, 2, 3, 4, 5],
+    "normalization": "softmax over the five canonical option sequence log-probabilities",
+    "single_token_assumption_allowed": false,
+    "rationale_tokens_used": false,
+    "decoder_prediction": "parsed score from the already frozen structured generation protocol",
+    "forced_choice_prediction": "argmax over normalized canonical score option probabilities"
+  },
+  "primary_exclusive_attribution": {
+    "rule": "first satisfied category in the frozen order; all independent flags are retained for sensitivity analysis",
+    "order": [
+      "measurement_ambiguous",
+      "rubric_incomplete",
+      "decoder_failure",
+      "prior_recoverable",
+      "calibration_recoverable",
+      "support_deficient",
+      "preference_coverage_deficient",
+      "residual"
+    ],
+    "definitions": {
+      "measurement_ambiguous": "at least two valid rater scores are present and either the observed rater range is at least 2 or both boundary scores 2 and 3 occur",
+      "rubric_incomplete": "two independent human reviewers agree, or adjudication concludes, that a score-decisive criterion used for the case is absent or operationally unusable in the supplied rubric",
+      "decoder_failure": "the frozen parsed score is not 2 while the frozen canonical forced-choice score argmax is 2",
+      "prior_recoverable": "decoder_failure is false and train-prior-neutralized frozen score probabilities have argmax 2",
+      "calibration_recoverable": "decoder and prior recovery are false and the record's outer-fold prediction from nested question-group cross-fitted vector scaling has argmax 2",
+      "support_deficient": "earlier rules are false, train label-2 count in the exact metric_id-language stratum is below 5, and low support has the preregistered adverse association in the adjusted occurrence-level model",
+      "preference_coverage_deficient": "earlier rules are false and the frozen P1 pair graph contains no direct 2-over-3 edge for the record and no direct 2-over-3 edge in its metric_id-language stratum",
+      "residual": "no earlier exclusive attribution rule is satisfied"
+    }
+  },
+  "independent_sensitivity_flags": [
+    "measurement_ambiguous",
+    "rubric_incomplete",
+    "decoder_failure",
+    "prior_recoverable",
+    "calibration_recoverable",
+    "support_deficient",
+    "preference_coverage_deficient"
+  ],
+  "calibration_protocol": {
+    "data": "dev only",
+    "outer_grouping": "question_key",
+    "outer_folds": 5,
+    "outer_assignment": "sha256('exp54-label2-audit-v1|' + question_key) modulo 5",
+    "method": "multinomial vector scaling with L2 regularization",
+    "regularization_grid": [0.0001, 0.001, 0.01, 0.1, 1.0, 10.0],
+    "selection": "inner question-group cross-validation minimizing multiclass NLL",
+    "no_record_scores_its_own_calibrator": true,
+    "interpretation": "diagnostic recoverability, not a new model result"
+  },
+  "prior_protocol": {
+    "source": "locked train label_5 frequencies only",
+    "formula": "adjusted_logit_y = frozen_log_probability_y - log(train_frequency_y / train_rows)",
+    "target_prior": "uniform over scores 1-5",
+    "interpretation": "sensitivity test for learned class-prior attraction, not a deployment correction"
+  },
+  "support_protocol": {
+    "primary_count": "number of locked train rows with label_5 == 2 in the same metric_id-language stratum",
+    "low_support_threshold": 5,
+    "association_model": "failure indicator regressed on log1p(stratum label-2 support), metric_id, language and rater disagreement; question-cluster robust uncertainty",
+    "exact_question_support_is_not_used": "the split is question-disjoint, so exact-question support is structurally zero"
+  },
+  "human_audit": {
+    "primary_dev_records": "all 14 unique dev records with label_5 == 2",
+    "secondary_sample_size_range": [100, 150],
+    "secondary_sampling_frame": "train label-1/2 actual failures plus matched prediction-3 and severe-overestimate controls; no test",
+    "reviewers": 2,
+    "independent_first_pass": true,
+    "adjudication_required_for_disagreement": true,
+    "model_family_judge_is_final_arbiter": false,
+    "questions": [
+      "Is score 2 uniquely defensible from the supplied rubric and answer?",
+      "Is score 3 also defensible?",
+      "Is a decisive criterion absent from the rubric?",
+      "Is a present criterion too vague to execute reproducibly?",
+      "Which evidence span determines the 2-versus-3 boundary?"
+    ]
+  },
+  "statistics": {
+    "seed_reporting": "separate first, pooled descriptive second",
+    "bootstrap_cluster": "question_key",
+    "bootstrap_replicates": 10000,
+    "bootstrap_seed": 20260731,
+    "confidence_interval": 0.95,
+    "primary_gate": {
+      "exclusive_fraction_at_least": 0.6,
+      "cluster_ci_lower_strictly_greater_than": 0.5,
+      "minimum_seeds_passing": 2,
+      "no_direction_reversal_after_excluding_measurement_ambiguous": true,
+      "minimum_metric_language_strata_with_same_direction": 2
+    },
+    "gate_interpretation": "project decision rule, not a universal statistical law"
+  },
+  "mandatory_natural_metrics": [
+    "MAE",
+    "Exact",
+    "QWK",
+    "Kendall_tau_b",
+    "L2H",
+    "H2L",
+    "Recall_1",
+    "Recall_2",
+    "Recall_5",
+    "multiclass_NLL",
+    "multiclass_Brier",
+    "RPS"
+  ],
+  "decision_policy": {
+    "dominant_calibration_or_prior": "run only matched strong calibration baselines; do not claim a new preference-learning principle",
+    "dominant_support": "test a support-aware estimator against Balanced Softmax, class-balanced objectives and CORN before proposing a new method",
+    "dominant_measurement_or_rubric": "treat target validity and rubric executability as the research problem before further model optimization",
+    "dominant_preference_coverage": "derive a new estimand and a candidate-specific counterexample before implementing another preference loss",
+    "no_dominant_mechanism": "stop CCF-A algorithm expansion and write the completed work as a rigorous master-thesis study with bounded claims"
+  }
+}

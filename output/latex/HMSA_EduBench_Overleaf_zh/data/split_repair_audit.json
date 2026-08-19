@@ -1,0 +1,29 @@
+{
+  "status": "PASS",
+  "split_name": "paper_like_triple_seed42",
+  "split_source": "original_heldout_flag_repaired_for_triple_isolation",
+  "group_key": "question_answer_metric_triple",
+  "question_disjoint_required": false,
+  "current_sizes": {
+    "train": 2654,
+    "dev": 664,
+    "test": 2218
+  },
+  "current_test_by_original_flag": {
+    "original_is_test_set_true": 2210,
+    "original_is_test_set_false": 8
+  },
+  "current_train_dev_by_original_flag": {
+    "original_is_test_set_true": 8,
+    "original_is_test_set_false": 3310
+  },
+  "original_test_label_distribution_1_to_5": [52, 47, 194, 726, 1199],
+  "repaired_test_label_distribution_1_to_5": [56, 47, 194, 720, 1201],
+  "repair_summary": {
+    "original_test_rows_moved_to_train_dev_pool": 8,
+    "original_train_pool_rows_moved_to_test": 8,
+    "test_size_preserved": true,
+    "cross_split_triple_overlap_after_repair": 0
+  },
+  "interpretation": "The prior report remains evidence for its original held-out row set. All current arms share the repaired split, so only current within-protocol comparisons are matched."
+}

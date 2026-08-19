@@ -1,0 +1,66 @@
+{
+  "alpha_C": 0.002184875180210948,
+  "alpha_R": 0.0022126604535934384,
+  "beta": 0.0022126604535934384,
+  "beta_cap_active": false,
+  "checks": {
+    "cublas_workspace_config_recorded": true,
+    "expected_matched_norm_at_most_1_000001": true,
+    "global_decomposition_relative_error_at_most_0_02": false,
+    "hard_head_difference_norm_at_most_1e_12": true,
+    "no_optimizer_step": true,
+    "no_test_access": true,
+    "paired_actual_norm_at_most_1_000001": true,
+    "paired_trainer_matches_independent_construction_at_most_1e_4": false,
+    "soft_head_difference_norm_at_most_1e_12": true,
+    "standard_post_clip_reconstruction_error_at_most_1e_4": false
+  },
+  "common_norm": 457.69204889707964,
+  "cublas_workspace_config": ":4096:8",
+  "decomposition_relative_errors": {
+    "all": 0.3728037512132949,
+    "backbone": 0.3728037512132949,
+    "hard_head": 0.0,
+    "soft_head": 0.0
+  },
+  "deterministic_algorithms": true,
+  "difference_group_norms": {
+    "all": 10.529977252621114,
+    "backbone": 10.529977252621112,
+    "hard_head": 0.0,
+    "soft_head": 0.0
+  },
+  "examples": 128,
+  "expected_matched_norm": 0.9874170355452563,
+  "head_contract": {
+    "hard_bias": false,
+    "hard_head_hash": "d7c922a1956118af437c52189ffc993465277a72698cef38290e47404247f9e2",
+    "hard_parameter_count": 5120,
+    "soft_bias": false,
+    "soft_head_hash": "d7c922a1956118af437c52189ffc993465277a72698cef38290e47404247f9e2",
+    "soft_parameter_count": 5120,
+    "storage_independent": true
+  },
+  "microbatches": 32,
+  "model_mode": "qwen3_cbrd_dual_head_sequence_classification",
+  "optimizer_steps": 0,
+  "paired_audit": {
+    "alpha_C": 0.002185162690037763,
+    "alpha_R": 0.0022126607404796906,
+    "beta": 0.0022126607404796906,
+    "beta_cap_active": false,
+    "beta_over_alpha_R": 1.0,
+    "common_norm": 457.6318286843694,
+    "common_residual_cosine": -0.586683393105629,
+    "common_residual_dot": -2634.652099609375,
+    "matched_update_norm": 0.9874483300223657,
+    "residual_norm": 9.813032974055591,
+    "routed_norm": 451.94456587617026
+  },
+  "paired_matched_relative_error": 0.008280624922735482,
+  "residual_norm": 9.812995069250995,
+  "routed_norm": 451.9446244738113,
+  "standard_post_clip_reconstruction_relative_error": 0.00809462358462767,
+  "status": "EXP58_PREFLIGHT_FAIL",
+  "test_access_count": 0
+}

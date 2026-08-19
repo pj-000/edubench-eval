@@ -1,0 +1,49 @@
+{
+  "actual_rationale_preference_labels_created": false,
+  "aggregate": {
+    "actual_rationale_candidates": 948,
+    "actual_rationale_minimum_128_met": true,
+    "hybrid_pair_sources": {
+      "actual_controlled": 802,
+      "synthetic_backfill": 36
+    },
+    "hybrid_pair_types": {
+      "adjacent_score": 686,
+      "h2l_guard": 76,
+      "severe_l2h": 76
+    },
+    "hybrid_score_pairs": 838,
+    "hybrid_unique_records": 751,
+    "rationale_pairs": 1600,
+    "rationale_unique_records": 1600,
+    "synthetic_score_pairs": 838
+  },
+  "dev_accessed": false,
+  "evaluator_execution_allowed": false,
+  "formal_preference_training_allowed": false,
+  "gpu_preference_training_allowed": false,
+  "pair_protocol_frozen": true,
+  "private_artifact_hashes": {
+    "actual_rationale_candidates": "4b0c024cbe21f05bf01a1b3e7514cbd27554af3599ccca203b7ee9f2c330ba7c",
+    "rationale_pairs_r3_r2": "ffb3aa272ad18b37d7c466691f983d91524ab67a0473c158669f4589c5fa445d",
+    "score_pairs_hybrid": "aeb079c56be8a8afbfdbec386e72faad748fef848014761bf602fbc40c97a1bb",
+    "score_pairs_synthetic_seed42": "83eef75218c945cf8fcaec754cbe84471c915a2fbd814f1d82d162de67406154"
+  },
+  "public_artifact_hashes": {
+    "audit_report": "d233e2d3900a3f4c916e20f3ddc30154ff486640ff7efded93b3886dac1033a5",
+    "candidate_lock": "7448cd58dfcd102e889f6301c6705a84d14367b4ae289c444c8491f48f9b5904",
+    "candidate_report": "fb3bfa79ea52839caea4bc8de918ede57f2ab74251ffce016fb84c00356ec660"
+  },
+  "review_verdict": "PAIR_PROTOCOL_PASS",
+  "reviewed_commit": "ad3e2dda3f05b99fb571137686c505367de4c4bd",
+  "schema_version": "exp54-sorc-dpo-pair-frozen-lock-v1",
+  "source_hashes": {
+    "failure_contract": "7f4389ee81a2560dd9fe8878349b32aca1f7703b7b85c6f1c3d21bcb3c7982ca",
+    "pair_auditor": "2ee32f838c5d173bb0e3815fa38f1ecf094be5644c135919011b9ef4b28e04fd",
+    "pair_builder": "665c61cd0bec7d5fa41b17fe23c792d9462c63792edf6f9afab111ea3d7e2015",
+    "pair_protocol": "a4368e533bc27ff2625792a62da8f35ca46de8fa049f4e75909a3c5022448e81"
+  },
+  "status": "PAIR_PROTOCOL_FROZEN_IMPLEMENTATION_ALLOWED",
+  "test_accessed": false,
+  "training_implementation_allowed": true
+}

@@ -1,0 +1,15 @@
+\begin{table}[H]
+\centering
+\caption{连续均分辅助目标的事后开发集匹配对照（均值 $\pm$ 跨三个训练随机种子的样本标准差）。MeanAux 与 HMSA 具有相同的双头结构和硬头评分路径，只将辅助目标及损失替换为连续人类均分与 Smooth L1。}
+\label{tab:dev_meanaux_summary}
+\small
+\begin{tabular}{lrrr}
+\toprule
+配置 & MAE $\downarrow$ & 精确匹配率 $\uparrow$ & Kendall $\tau_b$ $\uparrow$ \\
+\midrule
+Hard-only & 0.393 $\pm$ 0.016 & 0.719 $\pm$ 0.011 & 0.569 $\pm$ 0.024 \\
+MeanAux & 0.395 $\pm$ 0.009 & 0.710 $\pm$ 0.003 & 0.569 $\pm$ 0.006 \\
+HMSA & \textbf{0.379 $\pm$ 0.003} & \textbf{0.731 $\pm$ 0.005} & \textbf{0.597 $\pm$ 0.007} \\
+\bottomrule
+\end{tabular}
+\end{table}

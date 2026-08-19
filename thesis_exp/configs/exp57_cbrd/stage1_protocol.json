@@ -1,0 +1,131 @@
+{
+  "status": "CBRD_STAGE1_PROTOCOL_FROZEN_BEFORE_RESULTS",
+  "experiment": "Exp57-CBRD",
+  "scientific_question": "Does the sample-aligned signed adjacent residual entering the shared backbone cause an effect beyond duplicated consensus supervision?",
+  "stage0_decision_required": "STAGE0_PASS_READY_TO_FREEZE_STAGE1",
+  "allowed_splits": ["train", "dev"],
+  "historical_test_access": "forbidden",
+  "test_access_count": 0,
+  "model_name_or_path": "/home/share/models/modelscope/Qwen/Qwen3-Reranker-0.6B",
+  "fixed_training": {
+    "epochs": 10,
+    "learning_rate": 0.00002,
+    "weight_decay": 0.01,
+    "warmup_ratio": 0.05,
+    "scheduler": "cosine_with_warmup",
+    "micro_batch_size": 4,
+    "eval_batch_size": 4,
+    "gradient_accumulation_steps": 32,
+    "max_grad_norm": 1.0,
+    "max_length": 2048,
+    "precision": "bf16",
+    "gradient_checkpointing": true,
+    "aux_weight": 1.0,
+    "checkpoint_rule": "highest hard-head dev Exact_rounded; ties keep earlier epoch",
+    "inference": "hard-head raw-logit argmax only",
+    "hyperparameter_search": false
+  },
+  "new_variants": {
+    "dual_hard": {
+      "backbone_auxiliary_gradient": "consensus",
+      "auxiliary_head_gradient": "hard CE"
+    },
+    "consensus_only": {
+      "backbone_auxiliary_gradient": "consensus",
+      "auxiliary_head_gradient": "original empirical soft CE"
+    },
+    "routed_hmsa": {
+      "backbone_auxiliary_gradient": "consensus plus aligned residual",
+      "auxiliary_head_gradient": "original empirical soft CE"
+    },
+    "residual_only": {
+      "backbone_auxiliary_gradient": "aligned residual only",
+      "auxiliary_head_gradient": "original empirical soft CE"
+    },
+    "sign_flipped": {
+      "backbone_auxiliary_gradient": "consensus minus aligned residual",
+      "auxiliary_head_gradient": "original empirical soft CE"
+    },
+    "shuffled_residual": {
+      "backbone_auxiliary_gradient": "consensus plus fixed within-hard-label permuted residual",
+      "auxiliary_head_gradient": "original empirical soft CE"
+    }
+  },
+  "technical_control": {
+    "variant": "detached_soft",
+    "seed": 42,
+    "role": "full-run hard-path parity check against matched Hard-only; not a scientific multi-seed arm"
+  },
+  "seeds": {
+    "pilot_all_six": [42],
+    "development_all_six_after_pilot_integrity": [43, 44],
+    "confirmatory_pair_only_if_development_gate_passes": [45, 46]
+  },
+  "permutation": {
+    "seed": 20260730,
+    "mapping_sha256": "b4e96c49607700be99816582c1b85a8085b8c5abb260ddafbad4e9ee0dc25ad4",
+    "effective_changes": 1490,
+    "scope": "train residual route only; the auxiliary-head target is never shuffled"
+  },
+  "primary_comparison": "routed_hmsa minus consensus_only",
+  "secondary_comparisons": [
+    "routed_hmsa minus dual_hard",
+    "routed_hmsa minus sign_flipped",
+    "routed_hmsa minus shuffled_residual",
+    "residual_only minus matched historical hard_only"
+  ],
+  "pilot_rule": {
+    "purpose": "implementation integrity and catastrophic-failure screening only",
+    "catastrophic_failure": "relative to the matched reference, MAE worsens by at least 0.02 and Exact drops by at least 0.02, or NaN/Inf/training failure occurs",
+    "small_seed42_metric_differences_may_not_prune_a_variant": true
+  },
+  "implementation_gates": {
+    "routed_hmsa_vs_ordinary_hmsa_seed42": {
+      "max_abs_mae_difference": 0.002,
+      "max_abs_exact_difference": 0.003,
+      "minimum_hard_prediction_agreement": 0.99
+    },
+    "detached_soft_vs_hard_only_seed42": {
+      "max_abs_mae_difference": 0.002,
+      "max_abs_exact_difference": 0.003,
+      "minimum_hard_prediction_agreement": 0.99
+    }
+  },
+  "development_go_no_go": {
+    "primary_routed_vs_consensus": {
+      "mean_delta_mae_at_most": -0.005,
+      "favorable_mae_seeds_required": 3,
+      "max_single_seed_mae_worsening": 0.002,
+      "mean_delta_exact_at_least": -0.003,
+      "mean_delta_kendall_at_least": -0.005
+    },
+    "dual_hard": {
+      "routed_mean_delta_mae_at_most": -0.005,
+      "favorable_mae_seeds_required": 3,
+      "routed_mean_delta_exact_at_least": -0.003,
+      "secondary_gain": "Exact gain at least 0.005 or Kendall gain at least 0.010"
+    },
+    "residual_only": {
+      "mean_delta_mae_vs_hard_only_at_most": -0.005,
+      "favorable_mae_seeds_required": 2,
+      "mean_delta_exact_at_least": -0.005
+    },
+    "sign_direction": {
+      "prediction": "on disputed dev rows, the hard-head minority-neighbor advantage is larger for routed_hmsa than sign_flipped for down, up, and pooled strata",
+      "favorable_seeds_required": 3,
+      "paired_question_cluster_bootstrap_ci_lower_bound": 0.0,
+      "secondary_routed_mae_advantage_at_least": 0.005
+    },
+    "aligned_vs_shuffled": {
+      "mean_delta_mae_at_most": -0.005,
+      "favorable_mae_seeds_required": 3,
+      "next_step_if_passed": "freeze at least 20 mappings before any permutation-null campaign"
+    }
+  },
+  "interpretation_limits": [
+    "The CE identity is an experimental tool, not a standalone novelty claim.",
+    "Boundary residual refers directly to an auxiliary-logit/shared-representation gradient; a hard-head decision-boundary claim requires the registered hard-head margin analysis.",
+    "Residual-only is a parameter-group gradient intervention, not a proper probability target or ordinary unified scalar objective.",
+    "No result from the historical test split may be used to select, revise, or stop a Stage 1 arm."
+  ]
+}

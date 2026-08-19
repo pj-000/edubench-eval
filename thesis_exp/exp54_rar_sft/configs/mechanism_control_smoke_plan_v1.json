@@ -1,0 +1,70 @@
+{
+  "schema_version": "exp54-mechanism-control-smoke-plan-v1",
+  "status": "USER_APPROVED_TRAIN_ONLY_GPU_SMOKE",
+  "arms": [
+    "R3_TOKENAVG",
+    "P1_FULLSEQ",
+    "P1_SYN_LR5E6"
+  ],
+  "seed": 42,
+  "optimizer_steps_per_arm": 1,
+  "source_rows": {
+    "R3_TOKENAVG": 8,
+    "P1_FULLSEQ": 32,
+    "P1_SYN_LR5E6": 32
+  },
+  "batching": {
+    "R3_TOKENAVG_micro_batch_events": 2,
+    "R3_TOKENAVG_accumulation_micro_batches": 4,
+    "P1_FULLSEQ_physical_micro_batch_pairs": 4,
+    "P1_FULLSEQ_accumulation_pairs": 32,
+    "P1_SYN_LR5E6_physical_micro_batch_pairs": 4,
+    "P1_SYN_LR5E6_accumulation_pairs": 32
+  },
+  "implementation_bindings": {
+    "runner_path": "thesis_exp/exp54_rar_sft/train_mechanism_control_smoke.py",
+    "runner_sha256": "eb8b9ea6feec1ce9f904c04679bc44c7c8b591a694928c86a789061e492c87fe",
+    "control_loss_path": "thesis_exp/exp54_rar_sft/mechanism_control_losses.py",
+    "control_loss_sha256": "8f407e73aa895dd339be5359ba880cbd03dddaf3000f573b46d9f92b8145c3cc",
+    "candidate_config_path": "thesis_exp/exp54_rar_sft/configs/mechanism_controls_candidate_v1.json",
+    "candidate_config_sha256": "ae54955b7f8f8d483199abdea686332e59bb8fa3012b713449db1390fc145963",
+    "candidate_lock_sha256": "c624e90442fdec04e453a1b41bbd4223926c3100dd756eea2319b2fb3e206e39",
+    "candidate_report_sha256": "716f407a71d09db5fbb40caa445ed25425791711e0641331e29f05fe12b62265",
+    "candidate_audit_sha256": "5bea206047bb6d834a6f618261af44d547d2e1e8afec2ca5d521176f38148c29"
+  },
+  "server_paths": {
+    "artifact_root": "/home/jpang/edubench-eval-exp2/thesis_exp/outputs/exp54_rar_sft/rar_v2",
+    "output_root": "/home/jpang/edubench-eval-exp2/thesis_exp/outputs/exp54_rar_sft/rar_v2/mechanism_control_smoke"
+  },
+  "gpu_assignments": {
+    "R3_TOKENAVG": {
+      "visible_index": 1,
+      "uuid": "GPU-6094556a-56f8-5784-14ad-6369b980d4ca",
+      "name": "NVIDIA RTX A6000"
+    },
+    "P1_FULLSEQ": {
+      "visible_index": 2,
+      "uuid": "GPU-353fd55a-1293-802a-1fd5-29f37dcd1fc3",
+      "name": "NVIDIA RTX A6000"
+    },
+    "P1_SYN_LR5E6": {
+      "visible_index": 3,
+      "uuid": "GPU-87ada47d-0fad-a4c5-e717-0b1ab7536f4e",
+      "name": "NVIDIA RTX A6000"
+    }
+  },
+  "minimum_free_memory_bytes_before_load": 42949672960,
+  "required_result_checks": {
+    "finite_loss": true,
+    "positive_finite_gradient_norm": true,
+    "positive_parameter_update_l2": true,
+    "adapter_safetensors_saved": true,
+    "source_hashes_recorded": true,
+    "peak_gpu_memory_recorded": true
+  },
+  "gpu_smoke_allowed": true,
+  "full_training_allowed": false,
+  "dev_allowed": false,
+  "test_allowed": false,
+  "model_selection_allowed": false
+}

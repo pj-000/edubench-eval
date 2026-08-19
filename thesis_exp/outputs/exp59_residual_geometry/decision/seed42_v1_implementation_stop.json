@@ -1,0 +1,26 @@
+{
+  "status": "EXP59_SEED42_V1_IMPLEMENTATION_STOP_ORTHOGONALITY_GATE",
+  "date": "2026-08-02",
+  "completed_epochs": 1,
+  "requested_epochs": 10,
+  "scientific_endpoint_valid": false,
+  "parallel_only": {
+    "exit_code": 1,
+    "failure": "Residual orthogonality gate failure",
+    "normalized_orthogonality_error": 0.0000010043229832499214,
+    "log_sha256": "8e0509599f4caa3d2eb5c6360f1d568be2fa751dbf868cf26dfab8597a2cad25",
+    "geometry_audit_sha256": "66fdf7ddcd1c7fc979e2187a27e149c51ff0a88b7dc799e1be4d766df6d5e26b"
+  },
+  "orthogonal_only": {
+    "exit_code": 1,
+    "failure": "Residual orthogonality gate failure",
+    "normalized_orthogonality_error": 0.0000012470470277573757,
+    "log_sha256": "b86adf9e8b9bc542ec5f6b447540904a2cc7a53a4e70c0f059aaa2e07a12ba25",
+    "geometry_audit_sha256": "75b415ac285c0039487efae1237d084d81473b128f550e9a742460b15c3c5f95"
+  },
+  "frozen_limit": 0.000001,
+  "performance_interpretation_allowed": false,
+  "seeds43_to_46_authorized": false,
+  "test_access_count": 0,
+  "next_step": "Apply only the frozen FP64 scalar-reduction amendment, repeat no-update preflight, then rerun both seed42 arms from initialization if explicitly authorized."
+}

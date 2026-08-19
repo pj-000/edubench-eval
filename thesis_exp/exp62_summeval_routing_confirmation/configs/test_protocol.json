@@ -1,0 +1,35 @@
+{
+  "experiment": "Exp62-SummEval-Routing-Confirmation",
+  "status": "EXP62_TEST_PROTOCOL_FROZEN_ONE_TIME_AUTHORIZED",
+  "required_training_integrity_status": "EXP62_FORMAL_TRAINING_INTEGRITY_PASS_READY_TO_AUTHORIZE_TEST",
+  "required_checkpoints": 20,
+  "test_access_count_before_run": 0,
+  "evaluation": {
+    "primary_metric": "macro average of coherence and fluency expected-score MAE",
+    "paired_comparisons": [
+      "routed_hmsa-minus-direct_residual_blocked",
+      "orthogonal_only-minus-direct_residual_blocked",
+      "parallel_only-minus-direct_residual_blocked"
+    ],
+    "training_seed_summary": "five paired seed differences: mean and sample standard deviation",
+    "cluster_interval": "average paired per-record absolute-error differences across five seeds, then item-weighted bootstrap over 15 source-article groups",
+    "bootstrap_resamples": 10000,
+    "bootstrap_seed": 620062
+  },
+  "interpretation": {
+    "full_routing_confirmed": "mean routed-minus-blocked MAE < 0 and source-cluster interval upper bound < 0",
+    "orthogonal_component_confirmed": "mean orthogonal-minus-blocked MAE < 0 and source-cluster interval upper bound < 0",
+    "parallel_not_reproduced": "parallel-minus-blocked mean is non-negative or its source-cluster interval includes zero",
+    "otherwise": "report a dataset- or regime-dependent boundary without changing thresholds"
+  },
+  "frozen_artifacts": {
+    "evaluate_test_once_sha256": "9428f516b7c17af67418bb07f7e2b683500357504791e478696a9f46bafa629a",
+    "analyze_test_sha256": "65608a02f236357da3510cf5c4c07cc38665ef4c96070f8b977f164930475cfc",
+    "formal_training_integrity_sha256": "c20dd5172edd4a3b022bd403ac30c35b1e5b37931179a7dbd67d5fabd3a910b0",
+    "training_source_lock_sha256": "b26a9e15ce5dd4a5e63f13281a31bcec01683d17718be1030c615cb261e89913",
+    "split_manifest_sha256": "b32a6a78242f7959fe3074e9df817a5e6f87bf447a6f84dc326370311b80fff9"
+  },
+  "authorization": {
+    "one_time_test_evaluation": true
+  }
+}

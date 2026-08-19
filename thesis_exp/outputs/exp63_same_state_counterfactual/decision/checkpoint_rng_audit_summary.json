@@ -1,0 +1,447 @@
+{
+  "completed_units": 15,
+  "decision": "The missing checkpoint-RNG restore is mechanically outcome-invariant under deterministic CUDA execution for all 15 frozen states; no Exp63 optimizer update rerun is required.",
+  "missing": [],
+  "optimizer_steps": 0,
+  "required_units": 15,
+  "scope": "This audit closes only the checkpoint-RNG protocol deviation.  It does not repair or reinterpret Exp63's arm-specific norm matching.",
+  "status": "EXP63_RNG_AUDIT_EXACT_PASS_RETAIN_ORIGINAL_RESULTS",
+  "test_access_count": 0,
+  "units": [
+    {
+      "determinism_contract": {
+        "cublas_workspace_config": ":4096:8",
+        "cudnn_benchmark": false,
+        "cudnn_deterministic": true,
+        "torch_deterministic_algorithms": true
+      },
+      "diagnostic_differences": {
+        "common_max_abs": 0.0,
+        "projection_coefficient_abs": 0.0,
+        "residual_max_abs": 0.0
+      },
+      "exact_checks": {
+        "candidate_hashes_equal": true,
+        "common_hash_equal": true,
+        "pre_update_probe_hash_equal": true,
+        "projection_coefficient_equal": true,
+        "residual_hash_equal": true,
+        "test_access_count_zero": true,
+        "window_hash_equal": true
+      },
+      "optimizer_steps": 0,
+      "path": "thesis_exp/outputs/exp63_same_state_counterfactual/rng_audit_deterministic/seed_67/after_epoch_2.json",
+      "seed": 67,
+      "sha256": "6d8b9326d3415e067d8e442c8e1a377a9f7595d3e182ad6fed952d2f61550f57",
+      "stage_epoch": 2,
+      "status": "RNG_INVARIANT_EXACT",
+      "test_access_count": 0
+    },
+    {
+      "determinism_contract": {
+        "cublas_workspace_config": ":4096:8",
+        "cudnn_benchmark": false,
+        "cudnn_deterministic": true,
+        "torch_deterministic_algorithms": true
+      },
+      "diagnostic_differences": {
+        "common_max_abs": 0.0,
+        "projection_coefficient_abs": 0.0,
+        "residual_max_abs": 0.0
+      },
+      "exact_checks": {
+        "candidate_hashes_equal": true,
+        "common_hash_equal": true,
+        "pre_update_probe_hash_equal": true,
+        "projection_coefficient_equal": true,
+        "residual_hash_equal": true,
+        "test_access_count_zero": true,
+        "window_hash_equal": true
+      },
+      "optimizer_steps": 0,
+      "path": "thesis_exp/outputs/exp63_same_state_counterfactual/rng_audit_deterministic/seed_67/after_epoch_5.json",
+      "seed": 67,
+      "sha256": "f284a12b5966ff44bbf64e72de53fedc8ffdceacf1e2b51464944ab39de2d1b8",
+      "stage_epoch": 5,
+      "status": "RNG_INVARIANT_EXACT",
+      "test_access_count": 0
+    },
+    {
+      "determinism_contract": {
+        "cublas_workspace_config": ":4096:8",
+        "cudnn_benchmark": false,
+        "cudnn_deterministic": true,
+        "torch_deterministic_algorithms": true
+      },
+      "diagnostic_differences": {
+        "common_max_abs": 0.0,
+        "projection_coefficient_abs": 0.0,
+        "residual_max_abs": 0.0
+      },
+      "exact_checks": {
+        "candidate_hashes_equal": true,
+        "common_hash_equal": true,
+        "pre_update_probe_hash_equal": true,
+        "projection_coefficient_equal": true,
+        "residual_hash_equal": true,
+        "test_access_count_zero": true,
+        "window_hash_equal": true
+      },
+      "optimizer_steps": 0,
+      "path": "thesis_exp/outputs/exp63_same_state_counterfactual/rng_audit_deterministic/seed_67/after_epoch_8.json",
+      "seed": 67,
+      "sha256": "4b69e7115d941f570cdc7addea7e41e20d08b06514890b7d5e11c7d6c06a22b8",
+      "stage_epoch": 8,
+      "status": "RNG_INVARIANT_EXACT",
+      "test_access_count": 0
+    },
+    {
+      "determinism_contract": {
+        "cublas_workspace_config": ":4096:8",
+        "cudnn_benchmark": false,
+        "cudnn_deterministic": true,
+        "torch_deterministic_algorithms": true
+      },
+      "diagnostic_differences": {
+        "common_max_abs": 0.0,
+        "projection_coefficient_abs": 0.0,
+        "residual_max_abs": 0.0
+      },
+      "exact_checks": {
+        "candidate_hashes_equal": true,
+        "common_hash_equal": true,
+        "pre_update_probe_hash_equal": true,
+        "projection_coefficient_equal": true,
+        "residual_hash_equal": true,
+        "test_access_count_zero": true,
+        "window_hash_equal": true
+      },
+      "optimizer_steps": 0,
+      "path": "thesis_exp/outputs/exp63_same_state_counterfactual/rng_audit_deterministic/seed_68/after_epoch_2.json",
+      "seed": 68,
+      "sha256": "5da1fda187829608c6f13706b2c099d53d72f97e0247b2d72261fd345a0582c3",
+      "stage_epoch": 2,
+      "status": "RNG_INVARIANT_EXACT",
+      "test_access_count": 0
+    },
+    {
+      "determinism_contract": {
+        "cublas_workspace_config": ":4096:8",
+        "cudnn_benchmark": false,
+        "cudnn_deterministic": true,
+        "torch_deterministic_algorithms": true
+      },
+      "diagnostic_differences": {
+        "common_max_abs": 0.0,
+        "projection_coefficient_abs": 0.0,
+        "residual_max_abs": 0.0
+      },
+      "exact_checks": {
+        "candidate_hashes_equal": true,
+        "common_hash_equal": true,
+        "pre_update_probe_hash_equal": true,
+        "projection_coefficient_equal": true,
+        "residual_hash_equal": true,
+        "test_access_count_zero": true,
+        "window_hash_equal": true
+      },
+      "optimizer_steps": 0,
+      "path": "thesis_exp/outputs/exp63_same_state_counterfactual/rng_audit_deterministic/seed_68/after_epoch_5.json",
+      "seed": 68,
+      "sha256": "00a9f1848491308bac69071817f1ccbd3e45f425f6f219e8aea4257e10f6b373",
+      "stage_epoch": 5,
+      "status": "RNG_INVARIANT_EXACT",
+      "test_access_count": 0
+    },
+    {
+      "determinism_contract": {
+        "cublas_workspace_config": ":4096:8",
+        "cudnn_benchmark": false,
+        "cudnn_deterministic": true,
+        "torch_deterministic_algorithms": true
+      },
+      "diagnostic_differences": {
+        "common_max_abs": 0.0,
+        "projection_coefficient_abs": 0.0,
+        "residual_max_abs": 0.0
+      },
+      "exact_checks": {
+        "candidate_hashes_equal": true,
+        "common_hash_equal": true,
+        "pre_update_probe_hash_equal": true,
+        "projection_coefficient_equal": true,
+        "residual_hash_equal": true,
+        "test_access_count_zero": true,
+        "window_hash_equal": true
+      },
+      "optimizer_steps": 0,
+      "path": "thesis_exp/outputs/exp63_same_state_counterfactual/rng_audit_deterministic/seed_68/after_epoch_8.json",
+      "seed": 68,
+      "sha256": "447b94e9e3b5830f6d8fdc08c6022cf2de17d3aa1e55f5be643f2fc28ffa5abd",
+      "stage_epoch": 8,
+      "status": "RNG_INVARIANT_EXACT",
+      "test_access_count": 0
+    },
+    {
+      "determinism_contract": {
+        "cublas_workspace_config": ":4096:8",
+        "cudnn_benchmark": false,
+        "cudnn_deterministic": true,
+        "torch_deterministic_algorithms": true
+      },
+      "diagnostic_differences": {
+        "common_max_abs": 0.0,
+        "projection_coefficient_abs": 0.0,
+        "residual_max_abs": 0.0
+      },
+      "exact_checks": {
+        "candidate_hashes_equal": true,
+        "common_hash_equal": true,
+        "pre_update_probe_hash_equal": true,
+        "projection_coefficient_equal": true,
+        "residual_hash_equal": true,
+        "test_access_count_zero": true,
+        "window_hash_equal": true
+      },
+      "optimizer_steps": 0,
+      "path": "thesis_exp/outputs/exp63_same_state_counterfactual/rng_audit_deterministic/seed_69/after_epoch_2.json",
+      "seed": 69,
+      "sha256": "c485fc934537483f39896d692c4f4b5a44dba8253606514d1e86b3d19c0c2fb4",
+      "stage_epoch": 2,
+      "status": "RNG_INVARIANT_EXACT",
+      "test_access_count": 0
+    },
+    {
+      "determinism_contract": {
+        "cublas_workspace_config": ":4096:8",
+        "cudnn_benchmark": false,
+        "cudnn_deterministic": true,
+        "torch_deterministic_algorithms": true
+      },
+      "diagnostic_differences": {
+        "common_max_abs": 0.0,
+        "projection_coefficient_abs": 0.0,
+        "residual_max_abs": 0.0
+      },
+      "exact_checks": {
+        "candidate_hashes_equal": true,
+        "common_hash_equal": true,
+        "pre_update_probe_hash_equal": true,
+        "projection_coefficient_equal": true,
+        "residual_hash_equal": true,
+        "test_access_count_zero": true,
+        "window_hash_equal": true
+      },
+      "optimizer_steps": 0,
+      "path": "thesis_exp/outputs/exp63_same_state_counterfactual/rng_audit_deterministic/seed_69/after_epoch_5.json",
+      "seed": 69,
+      "sha256": "c66cbded3c11f5d2f50553db0a155b6c311144a94dca679d60f528f1af5eaba5",
+      "stage_epoch": 5,
+      "status": "RNG_INVARIANT_EXACT",
+      "test_access_count": 0
+    },
+    {
+      "determinism_contract": {
+        "cublas_workspace_config": ":4096:8",
+        "cudnn_benchmark": false,
+        "cudnn_deterministic": true,
+        "torch_deterministic_algorithms": true
+      },
+      "diagnostic_differences": {
+        "common_max_abs": 0.0,
+        "projection_coefficient_abs": 0.0,
+        "residual_max_abs": 0.0
+      },
+      "exact_checks": {
+        "candidate_hashes_equal": true,
+        "common_hash_equal": true,
+        "pre_update_probe_hash_equal": true,
+        "projection_coefficient_equal": true,
+        "residual_hash_equal": true,
+        "test_access_count_zero": true,
+        "window_hash_equal": true
+      },
+      "optimizer_steps": 0,
+      "path": "thesis_exp/outputs/exp63_same_state_counterfactual/rng_audit_deterministic/seed_69/after_epoch_8.json",
+      "seed": 69,
+      "sha256": "b9314c5ecf81ee4970287ce02f19115d28904a7709ef95feb8891f8d789cbc75",
+      "stage_epoch": 8,
+      "status": "RNG_INVARIANT_EXACT",
+      "test_access_count": 0
+    },
+    {
+      "determinism_contract": {
+        "cublas_workspace_config": ":4096:8",
+        "cudnn_benchmark": false,
+        "cudnn_deterministic": true,
+        "torch_deterministic_algorithms": true
+      },
+      "diagnostic_differences": {
+        "common_max_abs": 0.0,
+        "projection_coefficient_abs": 0.0,
+        "residual_max_abs": 0.0
+      },
+      "exact_checks": {
+        "candidate_hashes_equal": true,
+        "common_hash_equal": true,
+        "pre_update_probe_hash_equal": true,
+        "projection_coefficient_equal": true,
+        "residual_hash_equal": true,
+        "test_access_count_zero": true,
+        "window_hash_equal": true
+      },
+      "optimizer_steps": 0,
+      "path": "thesis_exp/outputs/exp63_same_state_counterfactual/rng_audit_deterministic/seed_70/after_epoch_2.json",
+      "seed": 70,
+      "sha256": "172f72c347fa141210fd5eb4f56efc506ff49282ae47f5824e7e2072ddfa1674",
+      "stage_epoch": 2,
+      "status": "RNG_INVARIANT_EXACT",
+      "test_access_count": 0
+    },
+    {
+      "determinism_contract": {
+        "cublas_workspace_config": ":4096:8",
+        "cudnn_benchmark": false,
+        "cudnn_deterministic": true,
+        "torch_deterministic_algorithms": true
+      },
+      "diagnostic_differences": {
+        "common_max_abs": 0.0,
+        "projection_coefficient_abs": 0.0,
+        "residual_max_abs": 0.0
+      },
+      "exact_checks": {
+        "candidate_hashes_equal": true,
+        "common_hash_equal": true,
+        "pre_update_probe_hash_equal": true,
+        "projection_coefficient_equal": true,
+        "residual_hash_equal": true,
+        "test_access_count_zero": true,
+        "window_hash_equal": true
+      },
+      "optimizer_steps": 0,
+      "path": "thesis_exp/outputs/exp63_same_state_counterfactual/rng_audit_deterministic/seed_70/after_epoch_5.json",
+      "seed": 70,
+      "sha256": "7ff21c43a6aa1dc4c68071691ee822cbcf802a0f22889190e475e6c22a612a45",
+      "stage_epoch": 5,
+      "status": "RNG_INVARIANT_EXACT",
+      "test_access_count": 0
+    },
+    {
+      "determinism_contract": {
+        "cublas_workspace_config": ":4096:8",
+        "cudnn_benchmark": false,
+        "cudnn_deterministic": true,
+        "torch_deterministic_algorithms": true
+      },
+      "diagnostic_differences": {
+        "common_max_abs": 0.0,
+        "projection_coefficient_abs": 0.0,
+        "residual_max_abs": 0.0
+      },
+      "exact_checks": {
+        "candidate_hashes_equal": true,
+        "common_hash_equal": true,
+        "pre_update_probe_hash_equal": true,
+        "projection_coefficient_equal": true,
+        "residual_hash_equal": true,
+        "test_access_count_zero": true,
+        "window_hash_equal": true
+      },
+      "optimizer_steps": 0,
+      "path": "thesis_exp/outputs/exp63_same_state_counterfactual/rng_audit_deterministic/seed_70/after_epoch_8.json",
+      "seed": 70,
+      "sha256": "9f6aad6efe950124feabaa4f8096c444cf0057bf5285a6413b0503f72ad96565",
+      "stage_epoch": 8,
+      "status": "RNG_INVARIANT_EXACT",
+      "test_access_count": 0
+    },
+    {
+      "determinism_contract": {
+        "cublas_workspace_config": ":4096:8",
+        "cudnn_benchmark": false,
+        "cudnn_deterministic": true,
+        "torch_deterministic_algorithms": true
+      },
+      "diagnostic_differences": {
+        "common_max_abs": 0.0,
+        "projection_coefficient_abs": 0.0,
+        "residual_max_abs": 0.0
+      },
+      "exact_checks": {
+        "candidate_hashes_equal": true,
+        "common_hash_equal": true,
+        "pre_update_probe_hash_equal": true,
+        "projection_coefficient_equal": true,
+        "residual_hash_equal": true,
+        "test_access_count_zero": true,
+        "window_hash_equal": true
+      },
+      "optimizer_steps": 0,
+      "path": "thesis_exp/outputs/exp63_same_state_counterfactual/rng_audit_deterministic/seed_71/after_epoch_2.json",
+      "seed": 71,
+      "sha256": "a9691770db4d24b49fdc1f7ecb115ca535b29ce94d9eeb566d6a4b22dd2647d8",
+      "stage_epoch": 2,
+      "status": "RNG_INVARIANT_EXACT",
+      "test_access_count": 0
+    },
+    {
+      "determinism_contract": {
+        "cublas_workspace_config": ":4096:8",
+        "cudnn_benchmark": false,
+        "cudnn_deterministic": true,
+        "torch_deterministic_algorithms": true
+      },
+      "diagnostic_differences": {
+        "common_max_abs": 0.0,
+        "projection_coefficient_abs": 0.0,
+        "residual_max_abs": 0.0
+      },
+      "exact_checks": {
+        "candidate_hashes_equal": true,
+        "common_hash_equal": true,
+        "pre_update_probe_hash_equal": true,
+        "projection_coefficient_equal": true,
+        "residual_hash_equal": true,
+        "test_access_count_zero": true,
+        "window_hash_equal": true
+      },
+      "optimizer_steps": 0,
+      "path": "thesis_exp/outputs/exp63_same_state_counterfactual/rng_audit_deterministic/seed_71/after_epoch_5.json",
+      "seed": 71,
+      "sha256": "405619a4ebff7c82a07424154ecb31ad21c437ad3f199fa2bbed4498719ecb35",
+      "stage_epoch": 5,
+      "status": "RNG_INVARIANT_EXACT",
+      "test_access_count": 0
+    },
+    {
+      "determinism_contract": {
+        "cublas_workspace_config": ":4096:8",
+        "cudnn_benchmark": false,
+        "cudnn_deterministic": true,
+        "torch_deterministic_algorithms": true
+      },
+      "diagnostic_differences": {
+        "common_max_abs": 0.0,
+        "projection_coefficient_abs": 0.0,
+        "residual_max_abs": 0.0
+      },
+      "exact_checks": {
+        "candidate_hashes_equal": true,
+        "common_hash_equal": true,
+        "pre_update_probe_hash_equal": true,
+        "projection_coefficient_equal": true,
+        "residual_hash_equal": true,
+        "test_access_count_zero": true,
+        "window_hash_equal": true
+      },
+      "optimizer_steps": 0,
+      "path": "thesis_exp/outputs/exp63_same_state_counterfactual/rng_audit_deterministic/seed_71/after_epoch_8.json",
+      "seed": 71,
+      "sha256": "ec6536e89731e0795a0924be98b34ca3c18ea97f1f1acca4bddde62116aeead3",
+      "stage_epoch": 8,
+      "status": "RNG_INVARIANT_EXACT",
+      "test_access_count": 0
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+experiment: Exp51-HMSA
+variant: hmsa_lambda1
+architecture: shared_qwen3_backbone_independent_hard_and_soft_linear_heads
+hard_target: rounded_label_5
+soft_target: three_human_empirical_distribution
+loss: hard_ce_plus_1p0_soft_ce
+aux_weight: 1.0
+split: thesis_exp/data/splits/paper_like_triple_seed42
+input_builder: thesis_exp.src.edujudge.exp02.build_exp02_dataset.make_prompt
+input_fields: [question, answer, metric_canonical]
+model: Qwen3-Reranker-0.6B
+num_labels_per_head: 5
+max_length: 2048
+epochs: 10
+learning_rate: 2.0e-5
+weight_decay: 0.01
+warmup_ratio: 0.05
+lr_scheduler_type: cosine
+per_device_train_batch_size: 4
+gradient_accumulation_steps: 32
+effective_batch_size: 128
+per_device_eval_batch_size: 4
+max_grad_norm: 1.0
+gradient_checkpointing: true
+checkpoint_rule: highest_hard_dev_exact_tie_earlier_epoch
+inference: hard_head_raw_logit_argmax
+scout_seed: 42
+formal_seeds: [42, 43, 44]
+aux_weight_search: forbidden
+test_during_scout_or_formal: false

@@ -1,0 +1,70 @@
+{
+  "auxiliary_logit_max_difference": 0.0,
+  "backbone_noise_gate": true,
+  "base_head_hash": "d7c922a1956118af437c52189ffc993465277a72698cef38290e47404247f9e2",
+  "bf16": "true",
+  "ce_reconstruction_difference": 0.0,
+  "cublas_workspace_config": ":4096:8",
+  "deterministic_audit_kernels": true,
+  "device": "cuda",
+  "dtype": "torch.bfloat16",
+  "hard_path_max_difference": 0.0,
+  "head_contract": {
+    "hard_bias": false,
+    "hard_head_hash": "d7c922a1956118af437c52189ffc993465277a72698cef38290e47404247f9e2",
+    "hard_parameter_count": 5120,
+    "soft_bias": false,
+    "soft_head_hash": "d7c922a1956118af437c52189ffc993465277a72698cef38290e47404247f9e2",
+    "soft_parameter_count": 5120,
+    "storage_independent": true
+  },
+  "historical_head_hash_matches": true,
+  "historical_head_hash_required": true,
+  "historical_seed42_head_hash": "d7c922a1956118af437c52189ffc993465277a72698cef38290e47404247f9e2",
+  "implementation": "single_soft_ce_hidden_gradient_hook",
+  "max_gradient_difference": 0.0,
+  "max_relative_gradient_difference": 0.0,
+  "model_mode": "sequence_classification",
+  "ordinary_repeat_max_gradient_difference": 0.0,
+  "ordinary_repeat_max_relative_gradient_difference": 0.0,
+  "ordinary_repeat_per_tensor_max_gradient_difference": {
+    "backbone.layers.0.self_attn.q_proj.weight": 0.0,
+    "backbone.layers.27.post_attention_layernorm.weight": 0.0,
+    "backbone_hidden": 0.0,
+    "hard_head.weight": 0.0,
+    "soft_head.weight": 0.0
+  },
+  "ordinary_repeat_per_tensor_relative_gradient_difference": {
+    "backbone.layers.0.self_attn.q_proj.weight": 0.0,
+    "backbone.layers.27.post_attention_layernorm.weight": 0.0,
+    "backbone_hidden": 0.0,
+    "hard_head.weight": 0.0,
+    "soft_head.weight": 0.0
+  },
+  "per_tensor_max_gradient_difference": {
+    "backbone.layers.0.self_attn.q_proj.weight": 0.0,
+    "backbone.layers.27.post_attention_layernorm.weight": 0.0,
+    "backbone_hidden": 0.0,
+    "hard_head.weight": 0.0,
+    "soft_head.weight": 0.0
+  },
+  "per_tensor_relative_gradient_difference": {
+    "backbone.layers.0.self_attn.q_proj.weight": 0.0,
+    "backbone.layers.27.post_attention_layernorm.weight": 0.0,
+    "backbone_hidden": 0.0,
+    "hard_head.weight": 0.0,
+    "soft_head.weight": 0.0
+  },
+  "relative_tolerance": 1e-05,
+  "rows": [
+    "00f03652813873e800443b4e84091ed05063eb49",
+    "079d3cbeeacbfeccd949183b375b3198418e4959"
+  ],
+  "selected_backbone_parameters": [
+    "layers.0.self_attn.q_proj.weight",
+    "layers.27.post_attention_layernorm.weight"
+  ],
+  "status": "PASS",
+  "test_access_count": 0,
+  "tolerance": 1e-05
+}

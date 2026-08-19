@@ -1,0 +1,16 @@
+\begin{table}[H]
+\centering
+\caption{开发集随机种子 42 的诊断结果。Direct-soft 与 Single-head mix 仅用于预设推进判定；“未推进”表示未通过门槛，不代表相应方法族普遍无效。}
+\label{tab:diagnostic_seed42}
+\small
+\begin{tabular}{lrrrrrrl}
+\toprule
+配置 & 轮次 & MAE $\downarrow$ & 精确匹配率 $\uparrow$ & Kendall $\tau_b$ $\uparrow$ & 有符号偏差 & L2H & 结论 \\
+\midrule
+Hard-only & 8 & 0.386 & 0.718 & 0.577 & +0.114 & 11 & 基线 \\
+Direct-soft & 5 & 0.389 & 0.714 & 0.576 & +0.102 & 8 & 未推进 \\
+Single-head mix & 6 & 0.384 & 0.718 & 0.590 & +0.102 & 8 & 未推进 \\
+HMSA & 5 & 0.377 & 0.729 & 0.605 & +0.094 & 7 & 推进 \\
+\bottomrule
+\end{tabular}
+\end{table}

@@ -1,0 +1,73 @@
+{
+  "alpha_C": 0.002981378547134232,
+  "alpha_R": 0.0030160720429476726,
+  "beta": 0.0030160720429476726,
+  "beta_cap_active": false,
+  "checks": {
+    "cublas_workspace_config_recorded": true,
+    "expected_matched_norm_at_most_1_000001": true,
+    "fp32_global_decomposition_relative_error_at_most_0_02": true,
+    "fp32_paired_trainer_matches_independent_construction_at_most_1e_4": true,
+    "fp32_standard_post_clip_reconstruction_error_at_most_1e_4": true,
+    "hard_head_difference_norm_at_most_1e_12": true,
+    "no_optimizer_step": true,
+    "no_test_access": true,
+    "paired_actual_norm_at_most_1_000001": true,
+    "soft_head_difference_norm_at_most_1e_12": true
+  },
+  "common_norm": 335.41530577519046,
+  "component_norm_relative_errors": {
+    "common": 1.4928093200834573e-07,
+    "residual": 7.701046831718829e-09,
+    "routed": 6.204127983945712e-08
+  },
+  "cublas_workspace_config": ":4096:8",
+  "decomposition_relative_errors": {
+    "all": 1.3575522898504862e-05,
+    "backbone": 1.3575522898504869e-05,
+    "hard_head": 0.0,
+    "soft_head": 0.0
+  },
+  "deterministic_algorithms": true,
+  "difference_group_norms": {
+    "all": 11.377872768370615,
+    "backbone": 11.377872768370613,
+    "hard_head": 0.0,
+    "soft_head": 0.0
+  },
+  "examples": 128,
+  "expected_matched_norm": 0.9883692718432197,
+  "head_contract": {
+    "hard_bias": false,
+    "hard_head_hash": "f8616ecb9aa489aba10260f6b367dc2a0c033323461d9dc8ea8ed109344ff8a1",
+    "hard_parameter_count": 5120,
+    "soft_bias": false,
+    "soft_head_hash": "f8616ecb9aa489aba10260f6b367dc2a0c033323461d9dc8ea8ed109344ff8a1",
+    "soft_parameter_count": 5120,
+    "storage_independent": true
+  },
+  "microbatches": 32,
+  "model_mode": "qwen3_cbrd_dual_head_sequence_classification",
+  "optimizer_steps": 0,
+  "paired_audit": {
+    "alpha_C": 0.0029813781020713312,
+    "alpha_R": 0.0030160718558267154,
+    "beta": 0.0030160718558267154,
+    "beta_cap_active": false,
+    "beta_over_alpha_R": 1.0,
+    "common_norm": 335.4153558462999,
+    "common_residual_cosine": -0.3541115654149055,
+    "common_residual_dot": -1351.4010009765625,
+    "matched_update_norm": 0.9883691499844999,
+    "residual_norm": 11.377875666727071,
+    "routed_norm": 331.5570864308287
+  },
+  "paired_matched_relative_error": 4.833614435568633e-07,
+  "precision": "fp32",
+  "residual_direction_cosine": 0.9999999999078832,
+  "residual_norm": 11.377875579105519,
+  "routed_norm": 331.557065860604,
+  "standard_post_clip_reconstruction_relative_error": 4.67552443184487e-07,
+  "status": "EXP58_PREFLIGHT_PASS",
+  "test_access_count": 0
+}

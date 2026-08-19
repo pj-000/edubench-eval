@@ -1,0 +1,39 @@
+{
+  "status": "AUTHORIZED_PRE_FINAL_RESULT_PARALLEL_THREE_SEED_CHANGE",
+  "authorized_by_user": true,
+  "authorized_at": "2026-08-02T00:30:00+08:00",
+  "reason": "Run seeds 42, 43 and 44 concurrently using the available RTX 3090 GPUs.",
+  "decision_basis": "user preference for the 3090 cohort and parallel seeds; no selected checkpoint or final seed-42 result was used to authorize the change",
+  "supersedes": {
+    "seed42_first": true,
+    "formal_seeds_require_seed42_pilot_pass": true,
+    "a6000_cohort_change": "canceled before any A6000 run completed"
+  },
+  "formal_scientific_cohort": {
+    "gpu_model": "NVIDIA GeForce RTX 3090",
+    "root": "thesis_exp/outputs/exp57_cbrd/runs",
+    "seeds": [42, 43, 44],
+    "assignment": {
+      "seed_42_remaining": "GPU 4",
+      "seed_43": "GPU 6",
+      "seed_44": "GPU 7"
+    }
+  },
+  "canceled_a6000_outputs": {
+    "root": "thesis_exp/outputs/exp57_cbrd/runs_a6000",
+    "status": "QUARANTINED_INCOMPLETE_DO_NOT_ANALYZE",
+    "completed_runs": 0,
+    "test_access_count": 0
+  },
+  "unchanged": [
+    "six scientific variants and detached technical control",
+    "model and copied-head initialization",
+    "train/dev data",
+    "all optimization hyperparameters",
+    "checkpoint rule and hard-head inference",
+    "registered pilot and development metrics",
+    "test prohibition"
+  ],
+  "interpretation": "Seeds 43 and 44 are authorized for compute scheduling before the seed-42 pilot decision, but no mechanism claim may be made until all implementation-parity gates are evaluated.",
+  "test_access_count": 0
+}

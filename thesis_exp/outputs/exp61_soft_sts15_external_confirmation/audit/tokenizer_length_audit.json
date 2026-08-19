@@ -1,0 +1,46 @@
+{
+  "add_special_tokens": true,
+  "candidate_max_lengths": [
+    128,
+    256,
+    512,
+    1024
+  ],
+  "dataset_sha256": "8707cdb85e2da9818bc8c08cd90b9b2c17c483e08f7bb7ff5c6dc69b555dde71",
+  "gates": {
+    "all_rows_tokenized": true,
+    "no_gpu_used": true,
+    "no_model_weights_loaded": true,
+    "no_truncation_at_selected_max_length": true,
+    "selected_from_frozen_candidates": true,
+    "tokenizer_snapshot_matches_exp60": true
+  },
+  "gpu_used": false,
+  "input_template": "Sentence 1:\n{sentence1}\n\nSentence 2:\n{sentence2}\n\nTask:\nPredict their semantic similarity on a scale from 0 (completely unrelated) to 5 (semantically equivalent).",
+  "input_template_sha256": "1a7e4d6ed59d9e495769c64fa363615cd74dcff97f72bb562b4da528dee74fc5",
+  "maximum_record": {
+    "rendered_input_sha256": "ef96ce19ad38159517d11142380e19319ad3afca59c1bd19b9e4119970f1f108",
+    "row_id": 216,
+    "tokens": 143
+  },
+  "model_training_performed": false,
+  "rows": 7890,
+  "selected_max_length": 256,
+  "split_manifest_sha256": "73b04b02c3aaac303e8ba3b9213030a9dcdf1e5736f18bf3f81a987be8da56ad",
+  "status": "EXP61_TOKENIZER_LENGTH_AUDIT_PASS",
+  "token_lengths": {
+    "maximum": 143,
+    "median": 59.0,
+    "minimum": 43,
+    "p90": 75.0,
+    "p95": 80.0,
+    "p99": 96.0
+  },
+  "tokenizer_class": "Qwen2TokenizerFast",
+  "tokenizer_files": {
+    "config.json": "d479c427a9ca5295218063d4f9aca4f297ab4ac27487cca7af42c84643d51ef0",
+    "tokenizer.json": "aeb13307a71acd8fe81861d94ad54ab689df773318809eed3cbe794b4492dae4",
+    "tokenizer_config.json": "253153d0738ceb4c668d2eff957714dd2bea0b56de772a9fdccd96cbf517e6a0"
+  },
+  "transformers_version": "4.50.3"
+}

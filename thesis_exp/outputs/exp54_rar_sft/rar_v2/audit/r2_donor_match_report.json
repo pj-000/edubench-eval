@@ -1,0 +1,249 @@
+{
+  "api_used": false,
+  "checks": {
+    "active_donors_unique": true,
+    "active_rows_have_cycle_ids": true,
+    "active_subset_permutation": true,
+    "all_references_covered": true,
+    "inactive_rows_have_no_donor": true,
+    "no_fixed_points": true,
+    "no_same_content_donors": true,
+    "no_same_sample_donors": true,
+    "one_map_row_per_reference": true,
+    "score_metric_language_match": true
+  },
+  "counts": {
+    "active_coverage": 0.9923741738688358,
+    "active_references": 3904,
+    "inactive_references": 30,
+    "max_absolute_length_difference": 67,
+    "max_stratum_references": 232,
+    "mean_absolute_length_difference": 1.3934426229508197,
+    "source_references": 3934,
+    "strata": 95,
+    "strata_with_deactivation": 14
+  },
+  "dev_accessed": false,
+  "formal_training_allowed": false,
+  "inactive_by_stratum": [
+    {
+      "inactive_references": 3,
+      "label_5": 1,
+      "language": "zh",
+      "metric_id": "BFA",
+      "total_references": 3
+    },
+    {
+      "inactive_references": 2,
+      "label_5": 1,
+      "language": "zh",
+      "metric_id": "CRSC",
+      "total_references": 2
+    },
+    {
+      "inactive_references": 2,
+      "label_5": 1,
+      "language": "zh",
+      "metric_id": "MGPF",
+      "total_references": 2
+    },
+    {
+      "inactive_references": 1,
+      "label_5": 2,
+      "language": "zh",
+      "metric_id": "BFA",
+      "total_references": 5
+    },
+    {
+      "inactive_references": 3,
+      "label_5": 2,
+      "language": "en",
+      "metric_id": "CRSC",
+      "total_references": 3
+    },
+    {
+      "inactive_references": 3,
+      "label_5": 2,
+      "language": "zh",
+      "metric_id": "CRSC",
+      "total_references": 3
+    },
+    {
+      "inactive_references": 3,
+      "label_5": 2,
+      "language": "zh",
+      "metric_id": "EICP",
+      "total_references": 3
+    },
+    {
+      "inactive_references": 3,
+      "label_5": 2,
+      "language": "zh",
+      "metric_id": "HOTSD",
+      "total_references": 3
+    },
+    {
+      "inactive_references": 1,
+      "label_5": 2,
+      "language": "zh",
+      "metric_id": "MGPF",
+      "total_references": 5
+    },
+    {
+      "inactive_references": 2,
+      "label_5": 2,
+      "language": "zh",
+      "metric_id": "PALS",
+      "total_references": 2
+    },
+    {
+      "inactive_references": 2,
+      "label_5": 2,
+      "language": "en",
+      "metric_id": "RPR",
+      "total_references": 2
+    },
+    {
+      "inactive_references": 1,
+      "label_5": 3,
+      "language": "zh",
+      "metric_id": "EICP",
+      "total_references": 5
+    },
+    {
+      "inactive_references": 2,
+      "label_5": 3,
+      "language": "zh",
+      "metric_id": "RTC",
+      "total_references": 2
+    },
+    {
+      "inactive_references": 2,
+      "label_5": 4,
+      "language": "en",
+      "metric_id": "BFA",
+      "total_references": 2
+    }
+  ],
+  "length_mode": "tokenizer",
+  "model_used": true,
+  "oracle_lock": {
+    "matcher_source_sha256": "77455c1a0e14e61b691e03741149256a5d9225f0ee62e49f64f7a2501a9e5111",
+    "path": "/home/jpang/edubench-eval-exp2/thesis_exp/outputs/exp54_rar_sft/rar_v2/audit/r2_solver_oracle_report.json",
+    "sha256": "6dc8bcb4c2adaf27b38e513e0b8f04ff588af1a0cb61a8989e6ceca7e879e9ef",
+    "status": "R2_MATCHER_ORACLE_PASS"
+  },
+  "r2_r3_manifest_build_allowed": true,
+  "reference_source_sha256": "718d760869b9c573b952a90faf5b5e6b346a034f31b454b5e15bd28ed1856500",
+  "row_coverage_by_label": [
+    {
+      "active_reason_rows": 18,
+      "active_references": 52,
+      "active_row_coverage": 0.8571428571428571,
+      "fully_deactivated_rows": 3,
+      "inactive_references": 7,
+      "label_5": 1,
+      "source_reason_rows": 21
+    },
+    {
+      "active_reason_rows": 34,
+      "active_references": 87,
+      "active_row_coverage": 0.85,
+      "fully_deactivated_rows": 6,
+      "inactive_references": 18,
+      "label_5": 2,
+      "source_reason_rows": 40
+    },
+    {
+      "active_reason_rows": 154,
+      "active_references": 360,
+      "active_row_coverage": 0.9935483870967742,
+      "fully_deactivated_rows": 1,
+      "inactive_references": 3,
+      "label_5": 3,
+      "source_reason_rows": 155
+    },
+    {
+      "active_reason_rows": 588,
+      "active_references": 1355,
+      "active_row_coverage": 0.99830220713073,
+      "fully_deactivated_rows": 1,
+      "inactive_references": 2,
+      "label_5": 4,
+      "source_reason_rows": 589
+    },
+    {
+      "active_reason_rows": 807,
+      "active_references": 2050,
+      "active_row_coverage": 1.0,
+      "fully_deactivated_rows": 0,
+      "inactive_references": 0,
+      "label_5": 5,
+      "source_reason_rows": 807
+    }
+  ],
+  "status": "R2_TOKENIZED_DONOR_MAP_READY",
+  "test_accessed": false,
+  "tokenizer_lock": {
+    "expected_file_hashes": {
+      "tokenizer.json": "aeb13307a71acd8fe81861d94ad54ab689df773318809eed3cbe794b4492dae4"
+    },
+    "expected_file_hashes_match": true,
+    "model_id": "Qwen/Qwen3-4B-Instruct-2507",
+    "runtime": {
+      "python": "3.10.19",
+      "transformers": "4.57.1"
+    },
+    "status": "QWEN_TOKENIZER_REVISION_LOCKED",
+    "tokenizer_class": "Qwen2TokenizerFast",
+    "tokenizer_files": [
+      {
+        "path": "config.json",
+        "sha256": "5beea1a4a34c62782bfb2f911c606741a3bab8f92d80a118fa053c28af12e8ba"
+      },
+      {
+        "path": "merges.txt",
+        "sha256": "599bab54075088774b1733fde865d5bd747cbcc7a547c5bc12610e874e26f5e3"
+      },
+      {
+        "path": "tokenizer.json",
+        "sha256": "aeb13307a71acd8fe81861d94ad54ab689df773318809eed3cbe794b4492dae4"
+      },
+      {
+        "path": "tokenizer_config.json",
+        "sha256": "a62ff0a2472a0fa1b8eaabcb57c59b58afa42a22831dc141400b6e0cf2b65ce3"
+      },
+      {
+        "path": "vocab.json",
+        "sha256": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910"
+      }
+    ],
+    "tokenizer_lock_sha256": "4c4fa5083c4b6da6097657bb15a304df06080a5692033c1f444288574acdf0b6",
+    "tokenizer_path": "/home/share/models/modelscope/Qwen/Qwen3-4B-Instruct-2507",
+    "unicode_probes": {
+      "chinese": {
+        "token_count": 6,
+        "token_ids_sha256": "718973893700b6ce16f7e9b54657214584caa8fc38a4406203ef6c977b030106"
+      },
+      "emoji_special": {
+        "token_count": 7,
+        "token_ids_sha256": "3e7274901f54bc1a646aacfa6a386dac14e0078034a86e762c5cddb4d2364825"
+      },
+      "english": {
+        "token_count": 8,
+        "token_ids_sha256": "8c4c2747b90d9db3fc6d116d30078b3f86f28ed5121b4202e7ddedb0205cb508"
+      },
+      "fullwidth_nfkc_pair": {
+        "token_count": 8,
+        "token_ids_sha256": "03f31e32cc1d144886d18f6d56527f751615d3f4b40a49ba94f1d6391f624954"
+      },
+      "mixed": {
+        "token_count": 8,
+        "token_ids_sha256": "cce2afc72e9e82f625ff9a8bf0794848836324f209fc966965fb28b50ccf9b3a"
+      }
+    },
+    "upstream_revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "vocab_size": 151669
+  },
+  "training_used": false
+}

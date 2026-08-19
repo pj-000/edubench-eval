@@ -1,0 +1,19 @@
+\begin{table}[H]
+\centering
+\caption{事后开发集机制对照（均值 $\pm$ 跨三个训练随机种子的样本标准差）。Shuffled-soft 保留各硬标签内软目标的完整多重集，但打乱样本与软目标的对应关系；$\Delta_{\mathrm{H-S}}$ 为 HMSA$-$Shuffled-soft。}
+\label{tab:dev_mechanism_summary}
+\small
+\setlength{\tabcolsep}{3.8pt}
+\begin{tabular}{lrrrr}
+\toprule
+指标 & Hard-only & Shuffled-soft & HMSA & $\Delta_{\mathrm{H-S}}$ \\
+\midrule
+MAE $\downarrow$ & 0.393 $\pm$ 0.016 & 0.389 $\pm$ 0.009 & \textbf{0.379 $\pm$ 0.003} & -0.010 \\
+精确匹配率 $\uparrow$ & 0.719 $\pm$ 0.011 & 0.722 $\pm$ 0.005 & \textbf{0.731 $\pm$ 0.005} & +0.009 \\
+Kendall $\tau_b$ $\uparrow$ & 0.569 $\pm$ 0.024 & 0.577 $\pm$ 0.021 & \textbf{0.597 $\pm$ 0.007} & +0.020 \\
+有符号偏差（0 最佳） & 0.150 $\pm$ 0.035 & 0.120 $\pm$ 0.032 & \textbf{0.111 $\pm$ 0.026} & -0.010 \\
+QWK $\uparrow$ & 0.602 $\pm$ 0.040 & 0.635 $\pm$ 0.007 & \textbf{0.648 $\pm$ 0.016} & +0.013 \\
+L2H 数量 $\downarrow$ & 11.3 $\pm$ 2.5 & \textbf{8.3 $\pm$ 0.6} & 8.7 $\pm$ 1.5 & +0.3 \\
+\bottomrule
+\end{tabular}
+\end{table}

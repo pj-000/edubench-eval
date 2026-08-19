@@ -1,0 +1,63 @@
+{
+  "experiment": "Exp62-SummEval-Routing-Confirmation",
+  "status": "EXP62_PROTOCOL_FROZEN_FORMAL_TRAINING_AUTHORIZED",
+  "hypothesis": {
+    "primary": "Routed-HMSA has lower fixed-epoch macro MAE than Direct-Residual-Blocked on the independent SummEval confirmation test.",
+    "mechanism": "Orthogonal-only retains a favorable difference relative to Direct-Residual-Blocked, whereas Parallel-only does not reproduce that improvement."
+  },
+  "data": {
+    "dimensions": ["coherence", "fluency"],
+    "group_unit": "source article id",
+    "split_manifest_sha256": "b32a6a78242f7959fe3074e9df817a5e6f87bf447a6f84dc326370311b80fff9",
+    "split_rows": {"train": 2240, "dev": 480, "test": 480}
+  },
+  "arms": [
+    "direct_residual_blocked",
+    "routed_hmsa",
+    "orthogonal_only",
+    "parallel_only"
+  ],
+  "seeds": [62, 63, 64, 65, 66],
+  "model": "Qwen3-Reranker-0.6B",
+  "training": {
+    "epochs": 10,
+    "checkpoint_selection": "fixed epoch 10; no best-checkpoint selection",
+    "learning_rate": 0.00002,
+    "weight_decay": 0.01,
+    "warmup_ratio": 0.05,
+    "micro_batch_size": 112,
+    "gradient_accumulation_steps": 1,
+    "effective_batch_size": 112,
+    "maximum_gradient_norm": 1.0,
+    "optimizer": "AdamW",
+    "scheduler": "cosine",
+    "precision": "bfloat16 model/gradient storage with FP32 losses and FP64 projection reductions",
+    "max_length": 256,
+    "truncation_allowed": false,
+    "maximum_observed_tokens": 230,
+    "tokenizer_json_sha256": "aeb13307a71acd8fe81861d94ad54ab689df773318809eed3cbe794b4492dae4"
+  },
+  "resource_amendment": {
+    "timing": "before any formal checkpoint or development result existed",
+    "superseded_setting": "micro-batch 4 x gradient accumulation 28",
+    "frozen_setting": "micro-batch 112 x gradient accumulation 1",
+    "invariant": "effective batch size remains 112; epochs, data order, learning rate, objective, clipping, and all evaluation rules are unchanged",
+    "reason": "the maximum 230-token input left the RTX 3090 substantially underutilized"
+  },
+  "evaluation": {
+    "primary_metric": "macro average of coherence and fluency expected-score MAE",
+    "secondary_metrics": ["RMSE", "exact match", "Spearman correlation", "quadratic weighted kappa"],
+    "uncertainty": "paired source-article-cluster bootstrap after averaging paired per-record errors across five seeds",
+    "training_seed_uncertainty": "report all five paired seed differences and mean plus sample standard deviation",
+    "development_use": "implementation validity only; no arm, epoch, or hyperparameter selection"
+  },
+  "test_access": {
+    "count": 0,
+    "rule": "one-time evaluation only after all 20 fixed-epoch checkpoints exist and pass integrity checks"
+  },
+  "authorization": {
+    "real_model_preflight": true,
+    "formal_twenty_run_gpu_training": true,
+    "one_time_test_evaluation": false
+  }
+}

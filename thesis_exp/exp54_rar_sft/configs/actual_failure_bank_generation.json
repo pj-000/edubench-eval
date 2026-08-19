@@ -1,0 +1,43 @@
+{
+  "schema_version": "exp54-actual-failure-bank-generation-v1",
+  "status": "TRAIN_ONLY_GREEDY_DIAGNOSTIC_PLANNED",
+  "scientific_role": "Neutral inventory of failures actually produced by frozen R3-SFT checkpoints; not a preference-pair manifest.",
+  "split": "train",
+  "expected_rows": 2654,
+  "arm": "R3",
+  "checkpoint_epoch": 3,
+  "checkpoint_seeds": [42, 43, 44],
+  "shared_generation_dataset_across_future_preference_seeds": true,
+  "generation": {
+    "mode": "greedy",
+    "rollouts_per_checkpoint_per_prompt": 1,
+    "do_sample": false,
+    "temperature": 0.0,
+    "top_p": null,
+    "max_new_tokens": 256,
+    "guided_json": true,
+    "budget_boundary_policy": "truncate_rationale_prefix_and_force_json_close"
+  },
+  "expected_total_outputs": 7962,
+  "error_classes": [
+    "correct",
+    "adjacent_overestimate",
+    "adjacent_underestimate",
+    "severe_low_to_high",
+    "severe_high_to_low",
+    "other_overestimate",
+    "other_underestimate",
+    "invalid_output"
+  ],
+  "secondary_diagnostics": [
+    "forced_completion",
+    "empty_rationale",
+    "explicit_score_leakage"
+  ],
+  "future_stochastic_rollout_policy": "Do not run by default. Consider only after the greedy inventory is summarized, preferentially on the 76 Label-1/2 train rows.",
+  "preference_pair_construction_allowed": false,
+  "gpu_execution_allowed": false,
+  "gpu_execution_requires_user_confirmation": true,
+  "dev_accessed": false,
+  "test_accessed": false
+}

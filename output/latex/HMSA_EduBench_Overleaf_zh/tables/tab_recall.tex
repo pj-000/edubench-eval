@@ -1,0 +1,17 @@
+\begin{table}[H]
+\centering
+\caption{测试集上的分等级召回率（均值 $\pm$ 跨三个训练随机种子的样本标准差）；$n$ 表示各等级样本数，差值由未四舍五入的数值计算。}
+\label{tab:recall}
+\small
+\begin{tabular}{rrrrr}
+\toprule
+评分等级 & $n$ & Hard-only & HMSA & $\Delta$ \\
+\midrule
+1 & 56 & 0.155 $\pm$ 0.072 & \textbf{0.440 $\pm$ 0.045} & +0.286 \\
+2 & 47 & 0.199 $\pm$ 0.098 & \textbf{0.270 $\pm$ 0.098} & +0.071 \\
+3 & 194 & 0.297 $\pm$ 0.025 & \textbf{0.351 $\pm$ 0.024} & +0.053 \\
+4 & 720 & 0.696 $\pm$ 0.012 & \textbf{0.720 $\pm$ 0.022} & +0.024 \\
+5 & 1,201 & \textbf{0.869 $\pm$ 0.015} & 0.864 $\pm$ 0.020 & -0.004 \\
+\bottomrule
+\end{tabular}
+\end{table}

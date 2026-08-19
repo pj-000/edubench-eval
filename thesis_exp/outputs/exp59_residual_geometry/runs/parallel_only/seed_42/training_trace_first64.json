@@ -1,0 +1,900 @@
+{
+  "trace": [
+    {
+      "diagnostic_aux_soft_ce": 2.354969024658203,
+      "hard_loss": 2.435372829437256,
+      "micro_step": 1,
+      "optimization_loss": 4.790341854095459,
+      "record_ids": [
+        "5e97c43b4bd62881c138373bce416d6c1f68a800",
+        "46a9ea4afc3464835871457d43e3c48dc0e3ab99",
+        "cc1d1f6694031cc53f66368b3816f5ae8b2cae66",
+        "7f52dd1d97f054bbb35033cf92a6e23ba1f65fdc"
+      ],
+      "reported_original_soft_ce": 2.354969024658203,
+      "route_loss_scale": 0.03125
+    },
+    {
+      "diagnostic_aux_soft_ce": 2.1421587467193604,
+      "hard_loss": 1.9585649967193604,
+      "micro_step": 2,
+      "optimization_loss": 4.100723743438721,
+      "record_ids": [
+        "072293e008cc3b28f56a7cfb51a7979ad942a832",
+        "cd63948c28174674b09c1bed2f6fa389c8ec4a34",
+        "38638126af3ed565fceb79316f2cd04de51d7af5",
+        "1ee9f50c557bcad77965a3209e6fd8fdb6a9bc17"
+      ],
+      "reported_original_soft_ce": 2.1421587467193604,
+      "route_loss_scale": 0.03125
+    },
+    {
+      "diagnostic_aux_soft_ce": 1.9272096157073975,
+      "hard_loss": 1.570113182067871,
+      "micro_step": 3,
+      "optimization_loss": 3.4973227977752686,
+      "record_ids": [
+        "1b0ddc727cc651454f7823b107d6bc27e25fd4f6",
+        "a03f8c2c6fab8049962fdf3833cf29d992f597d3",
+        "82d14da6c87d1d674e2b7ff0ee20acbe312797e5",
+        "12e7fc799400eba02f528f565af32a0a0297d624"
+      ],
+      "reported_original_soft_ce": 1.9272096157073975,
+      "route_loss_scale": 0.03125
+    },
+    {
+      "diagnostic_aux_soft_ce": 2.656874418258667,
+      "hard_loss": 2.7280006408691406,
+      "micro_step": 4,
+      "optimization_loss": 5.384875297546387,
+      "record_ids": [
+        "72165e1e7401d326a7ca07eea3934d2f4cde1fdf",
+        "d5569484e0900abdbaf37f39bcf5a90b78352a20",
+        "a6862e75fa3937d3c513e52234f90b9fd3213f6b",
+        "8fd9ef6c2e44a2b843f220ffaedfd9bd6b7b349e"
+      ],
+      "reported_original_soft_ce": 2.656874418258667,
+      "route_loss_scale": 0.03125
+    },
+    {
+      "diagnostic_aux_soft_ce": 2.2268877029418945,
+      "hard_loss": 2.2161455154418945,
+      "micro_step": 5,
+      "optimization_loss": 4.443033218383789,
+      "record_ids": [
+        "67f3671958f0b9b40491946f5ef9c1b3f9aad194",
+        "579c7161d23186114c709867acce054ec73e0531",
+        "70472dd528f65e830823580dd09aef77a1dcc2f2",
+        "a5028ba0f05852013c3457dd38ccc980f475fcab"
+      ],
+      "reported_original_soft_ce": 2.2268877029418945,
+      "route_loss_scale": 0.03125
+    },
+    {
+      "diagnostic_aux_soft_ce": 2.343236207962036,
+      "hard_loss": 1.8262276649475098,
+      "micro_step": 6,
+      "optimization_loss": 4.169464111328125,
+      "record_ids": [
+        "1f8eb19a651955b13709769abfdd0b57ad9d248c",
+        "a19c21c89b520b79bb1773c75b4eec1435aa6798",
+        "e411072cba646476b2d7c17b7ff2d3ae5cbf9c7d",
+        "761686f62e89e406a7cbcaece20f5c7fcdb248e7"
+      ],
+      "reported_original_soft_ce": 2.343236207962036,
+      "route_loss_scale": 0.03125
+    },
+    {
+      "diagnostic_aux_soft_ce": 2.413797378540039,
+      "hard_loss": 1.8975211381912231,
+      "micro_step": 7,
+      "optimization_loss": 4.311318397521973,
+      "record_ids": [
+        "75c3ff7c2c07e66d7af2fd88d328ddfc8a81c2d6",
+        "f0ebd02f5de40b382022b3ce06d7a793ad7b8ea6",
+        "4da9f4adc9b46cf2f4eda5615bb8e93b5a5ca760",
+        "2a566ad6d4aaf461ecb9484d993fc443c2be01b8"
+      ],
+      "reported_original_soft_ce": 2.413797378540039,
+      "route_loss_scale": 0.03125
+    },
+    {
+      "diagnostic_aux_soft_ce": 2.8327364921569824,
+      "hard_loss": 2.8327362537384033,
+      "micro_step": 8,
+      "optimization_loss": 5.665472984313965,
+      "record_ids": [
+        "b7d213e5d2066581a3207b10c3ca638ca6c76221",
+        "c1503058f5bf0487f27c2505f5e857f1a0bfd612",
+        "86b510497e8df73ea935ed0b78fc39801d5c52d5",
+        "0b24303ee333541742acab0e6ac342abe677c221"
+      ],
+      "reported_original_soft_ce": 2.8327364921569824,
+      "route_loss_scale": 0.03125
+    },
+    {
+      "diagnostic_aux_soft_ce": 2.431278705596924,
+      "hard_loss": 2.560347557067871,
+      "micro_step": 9,
+      "optimization_loss": 4.991626262664795,
+      "record_ids": [
+        "a37657f9d792d504ef8a5447d1af1e1f0b493ce0",
+        "144ea8d9cba7a3e9964eaf28ff31cd3da7ad3f60",
+        "c8b5eec67001c89370f97a17657cf7cef147a6dd",
+        "cae3c38f157bbe4a43c61d3bce1f1a9ce5d64ce0"
+      ],
+      "reported_original_soft_ce": 2.431278705596924,
+      "route_loss_scale": 0.03125
+    },
+    {
+      "diagnostic_aux_soft_ce": 2.334221839904785,
+      "hard_loss": 2.339348793029785,
+      "micro_step": 10,
+      "optimization_loss": 4.67357063293457,
+      "record_ids": [
+        "a37753ddd5309a428fbe97ca91367b9650d5cf41",
+        "72dac3c68a61d2424688e1008e1291e0a2a0f675",
+        "0c87cc101d1de7cce217ec168ed17010fb595ceb",
+        "622eeb7321f7262832ab83985a49f2f03419662f"
+      ],
+      "reported_original_soft_ce": 2.334221839904785,
+      "route_loss_scale": 0.03125
+    },
+    {
+      "diagnostic_aux_soft_ce": 1.9657732248306274,
+      "hard_loss": 1.9154802560806274,
+      "micro_step": 11,
+      "optimization_loss": 3.881253480911255,
+      "record_ids": [
+        "b4bea8c47d08e31b725c9952d4601a3a478a17aa",
+        "cca3ac84ec731f720bfdb784bcc3da146c3bc26c",
+        "eba2175825ade823eaadac6ee94c3490ef5d8c6a",
+        "7de125d40549e0cf9fd6659ea972a70a867f3c59"
+      ],
+      "reported_original_soft_ce": 1.9657732248306274,
+      "route_loss_scale": 0.03125
+    },
+    {
+      "diagnostic_aux_soft_ce": 2.747687339782715,
+      "hard_loss": 2.814744472503662,
+      "micro_step": 12,
+      "optimization_loss": 5.562431812286377,
+      "record_ids": [
+        "9261d4a9fcab2629ba65a8cd8a2d67c81cc07084",
+        "177a5c2d4ffa9dc2fa5062ad324da54945dd120b",
+        "62adeb43753fd7aaad789ae8c32e8d694ed8a1b7",
+        "20dd2fbee2c251e7323d8ed8db1fd35af6b3fd7a"
+      ],
+      "reported_original_soft_ce": 2.747687339782715,
+      "route_loss_scale": 0.03125
+    },
+    {
+      "diagnostic_aux_soft_ce": 2.314645290374756,
+      "hard_loss": 2.3348278999328613,
+      "micro_step": 13,
+      "optimization_loss": 4.649473190307617,
+      "record_ids": [
+        "20b1d09ee43a182552456c40a5facafd18404929",
+        "f514d05047461d751b1b128ba2e67d6f0bdee313",
+        "63b1dc3c7e0c97d737f8ecf8c645813bd1095cc2",
+        "92f8101bd483ca1bfd26a29bdbb57d680086a3e9"
+      ],
+      "reported_original_soft_ce": 2.314645290374756,
+      "route_loss_scale": 0.03125
+    },
+    {
+      "diagnostic_aux_soft_ce": 1.757238507270813,
+      "hard_loss": 1.6789507865905762,
+      "micro_step": 14,
+      "optimization_loss": 3.4361891746520996,
+      "record_ids": [
+        "61474d35c4a3aa6da4ed80e11a41b926f4227eed",
+        "7fee5e5d860ae1e664859582388c4d4568696757",
+        "65061c2e1dd6cd6a9b1745900ce1843ca87a085e",
+        "327d944b5588223ee01f87fed218bbe0c40c9818"
+      ],
+      "reported_original_soft_ce": 1.757238507270813,
+      "route_loss_scale": 0.03125
+    },
+    {
+      "diagnostic_aux_soft_ce": 2.25315523147583,
+      "hard_loss": 2.5182106494903564,
+      "micro_step": 15,
+      "optimization_loss": 4.771366119384766,
+      "record_ids": [
+        "e78781ba44e7ccd99d93c2d2256495034a753f86",
+        "e672495d56064181e3436211c0c24480e1e149ae",
+        "70a6e10a35e8c6d2a7fec5e44b7625d0a64a3325",
+        "184ab08cd75107e7ae5da02c9075d867f748ddc3"
+      ],
+      "reported_original_soft_ce": 2.25315523147583,
+      "route_loss_scale": 0.03125
+    },
+    {
+      "diagnostic_aux_soft_ce": 1.9182007312774658,
+      "hard_loss": 1.8858519792556763,
+      "micro_step": 16,
+      "optimization_loss": 3.8040528297424316,
+      "record_ids": [
+        "af85def4367b2861a8db75cec0434ee360305a85",
+        "6d8e1df9d1bad2f6f9b73780ec3bf702ff665f62",
+        "de398681a4fc9f4a9b205630868fbd74d38decf4",
+        "22fc3538594bd7f6426d96df9de31645e099e5df"
+      ],
+      "reported_original_soft_ce": 1.9182007312774658,
+      "route_loss_scale": 0.03125
+    },
+    {
+      "diagnostic_aux_soft_ce": 2.6982858180999756,
+      "hard_loss": 2.8672311305999756,
+      "micro_step": 17,
+      "optimization_loss": 5.565516948699951,
+      "record_ids": [
+        "a85b6a83143c1ad1fa95d959914330153ef41f73",
+        "111169cd461add4443b69738a5952b0cb49aabab",
+        "0e54ffac34fa7f91e6f677878bf2da9c344ba8ed",
+        "74dda22caa05bd0715cd9a5075e412277d26194d"
+      ],
+      "reported_original_soft_ce": 2.6982858180999756,
+      "route_loss_scale": 0.03125
+    },
+    {
+      "diagnostic_aux_soft_ce": 2.650115489959717,
+      "hard_loss": 2.6411633491516113,
+      "micro_step": 18,
+      "optimization_loss": 5.291278839111328,
+      "record_ids": [
+        "fb8315aa3fa3d11e37652203fca9d0fa34f5a502",
+        "4c646c69440f2582b479b0a5eafd80a31a54ae7e",
+        "6b707bf422eb4b7b248439390dd9705f8abafb46",
+        "36750be956c374531ab379904325444978217fbd"
+      ],
+      "reported_original_soft_ce": 2.650115489959717,
+      "route_loss_scale": 0.03125
+    },
+    {
+      "diagnostic_aux_soft_ce": 2.3523101806640625,
+      "hard_loss": 2.4818673133850098,
+      "micro_step": 19,
+      "optimization_loss": 4.834177494049072,
+      "record_ids": [
+        "7c7ddf6dcdaccc915d37c8279752c0e907888165",
+        "59d681885dedcae0b13cc24f48cd2c8fc734a96f",
+        "4d7361e303f3c6a68ed2bc5367e04264e6aac45d",
+        "b73dc72299a21638741c30bf26324ced7c901a2c"
+      ],
+      "reported_original_soft_ce": 2.3523101806640625,
+      "route_loss_scale": 0.03125
+    },
+    {
+      "diagnostic_aux_soft_ce": 2.4119296073913574,
+      "hard_loss": 2.703270435333252,
+      "micro_step": 20,
+      "optimization_loss": 5.115200042724609,
+      "record_ids": [
+        "b94d2741a467b5f67c9b4dbfe9408c41a5775545",
+        "44b4cbcc1fdb5e7ab478e056b458e08c5b3883f9",
+        "e5c0617de97105cf7c5509f7604026cb62c7bd23",
+        "c143657f00d83deb738a13e40c39698a4d25d83b"
+      ],
+      "reported_original_soft_ce": 2.4119296073913574,
+      "route_loss_scale": 0.03125
+    },
+    {
+      "diagnostic_aux_soft_ce": 2.2162656784057617,
+      "hard_loss": 2.4031147956848145,
+      "micro_step": 21,
+      "optimization_loss": 4.619380474090576,
+      "record_ids": [
+        "4bdfa7d1447a4b3b96088d45c6dd29b188802406",
+        "55b37270bb074af8213aadd9810e3c688e814687",
+        "ea00860ffd6200bce9bfc24d9f0453b84ea7c126",
+        "44a426bf4f453df7ea5b7ac85d6f0e801f9ba296"
+      ],
+      "reported_original_soft_ce": 2.2162656784057617,
+      "route_loss_scale": 0.03125
+    },
+    {
+      "diagnostic_aux_soft_ce": 2.2507803440093994,
+      "hard_loss": 2.459652900695801,
+      "micro_step": 22,
+      "optimization_loss": 4.710433006286621,
+      "record_ids": [
+        "f1b30d1334c76ece3b8ced4c633da407577763e7",
+        "21c6ddb5c9925974609d88ab4697fc55c5cd3620",
+        "84fa1390f1d17d0eaf1525c33cc8d29cff99cc46",
+        "b2dcc626813700195a3faaed63ff1c7b5d3989df"
+      ],
+      "reported_original_soft_ce": 2.2507803440093994,
+      "route_loss_scale": 0.03125
+    },
+    {
+      "diagnostic_aux_soft_ce": 3.0157625675201416,
+      "hard_loss": 2.6251373291015625,
+      "micro_step": 23,
+      "optimization_loss": 5.640899658203125,
+      "record_ids": [
+        "30a49a700cf6b388d636db421db673f71bf2f429",
+        "5decb92b10c1ebcb70ed7daf29cf7aea969d26eb",
+        "5dae917ce9c547b3426ad08f3ed26568e65e1f4a",
+        "13af8e6896f2be6cf223e45bf4f1652fe39fe7d3"
+      ],
+      "reported_original_soft_ce": 3.0157625675201416,
+      "route_loss_scale": 0.03125
+    },
+    {
+      "diagnostic_aux_soft_ce": 2.4629926681518555,
+      "hard_loss": 2.72259521484375,
+      "micro_step": 24,
+      "optimization_loss": 5.1855878829956055,
+      "record_ids": [
+        "ff4680a0d1b04bd710e75680a911fa98c6f2de2d",
+        "a6c35f42ec5fd5d03ae47d183816f46b373af851",
+        "f8eceddfb02a4a07941c193a52952617e27a62fc",
+        "2fe3c1abf7a402543149975b12f25e648a6508c6"
+      ],
+      "reported_original_soft_ce": 2.4629926681518555,
+      "route_loss_scale": 0.03125
+    },
+    {
+      "diagnostic_aux_soft_ce": 2.947650909423828,
+      "hard_loss": 2.895893096923828,
+      "micro_step": 25,
+      "optimization_loss": 5.843544006347656,
+      "record_ids": [
+        "fd9950388b7289f3afde0680adfded3592259399",
+        "4636dcd0011a3366d7bd82f89368e54f8dfcfc93",
+        "2a215ad07c321810a3dfb3f9f1a139cbc38858f0",
+        "b4dc58b82f5b48b120f6d6541db6e4246873327a"
+      ],
+      "reported_original_soft_ce": 2.947650909423828,
+      "route_loss_scale": 0.03125
+    },
+    {
+      "diagnostic_aux_soft_ce": 2.340582847595215,
+      "hard_loss": 2.934821128845215,
+      "micro_step": 26,
+      "optimization_loss": 5.27540397644043,
+      "record_ids": [
+        "b8bc85412230c34c0facedf78b34819e13db4e3c",
+        "df03d3cde7f13b17318024ede83e0c64325146a3",
+        "13d3bdc7fc8e3e3fcffa5e83be55a64ac077e075",
+        "1e2d374d2a1b7e3f3397cc0aaa250a4e6cbe1ba2"
+      ],
+      "reported_original_soft_ce": 2.340582847595215,
+      "route_loss_scale": 0.03125
+    },
+    {
+      "diagnostic_aux_soft_ce": 3.1507632732391357,
+      "hard_loss": 3.3284974098205566,
+      "micro_step": 27,
+      "optimization_loss": 6.479260444641113,
+      "record_ids": [
+        "8859bda98ffdac3abedfcd7093a4b4117555c53e",
+        "48396ce0b3a8eed332056d2ecf2bcc642dc4f359",
+        "fb78c96abcc3629f7483ecd5ad5644f92129cbe2",
+        "7754b17ca8eb0080efa6f3baf6b42178e2c5ad00"
+      ],
+      "reported_original_soft_ce": 3.1507632732391357,
+      "route_loss_scale": 0.03125
+    },
+    {
+      "diagnostic_aux_soft_ce": 2.2281086444854736,
+      "hard_loss": 2.221923589706421,
+      "micro_step": 28,
+      "optimization_loss": 4.4500322341918945,
+      "record_ids": [
+        "a0de43b1b4b18389805629dbe607a30d56f3f5e1",
+        "841dfbd8b8e582e1213ba50a360f20f83a29a2c0",
+        "302305f5444e1ac0dc68d37d52566734942ef44b",
+        "574212794931a862e5706314d6706ff53823a374"
+      ],
+      "reported_original_soft_ce": 2.2281086444854736,
+      "route_loss_scale": 0.03125
+    },
+    {
+      "diagnostic_aux_soft_ce": 2.052177667617798,
+      "hard_loss": 2.014091730117798,
+      "micro_step": 29,
+      "optimization_loss": 4.066269397735596,
+      "record_ids": [
+        "4c2a5f0075acc0f1d4c32c2df927d4be0af34d5f",
+        "1338e3e8db67fa1b30e5433a5e5f725d37f47dbf",
+        "f6163cd44a233eeeb38701feb359f1edf2f04f39",
+        "25fbc028c14ccc8dff1900c29bdeae1241ab3361"
+      ],
+      "reported_original_soft_ce": 2.052177667617798,
+      "route_loss_scale": 0.03125
+    },
+    {
+      "diagnostic_aux_soft_ce": 1.9596177339553833,
+      "hard_loss": 2.440086603164673,
+      "micro_step": 30,
+      "optimization_loss": 4.399704456329346,
+      "record_ids": [
+        "45d4c24eae1ed3cbe074591a98f17ea2eefe16b7",
+        "916d2c5798784d2feaf30c713f073e14a49a5813",
+        "966a072cac82408dc8f27226807c2e838d0aaa6d",
+        "3aa46875e4cffe9830f91e445c94cc844dd00986"
+      ],
+      "reported_original_soft_ce": 1.9596177339553833,
+      "route_loss_scale": 0.03125
+    },
+    {
+      "diagnostic_aux_soft_ce": 2.0509390830993652,
+      "hard_loss": 1.8836214542388916,
+      "micro_step": 31,
+      "optimization_loss": 3.934560537338257,
+      "record_ids": [
+        "3321ae50d1d869368d0b2e943fd5a3ffb564c457",
+        "f953bed6fad3a062089c98d4d4f523b8e6f22104",
+        "b4cf7ac5834f887b70d2850c4c1651892cbad21e",
+        "6ac6c3ddce71cd69843cb544c18b947f760d06db"
+      ],
+      "reported_original_soft_ce": 2.0509390830993652,
+      "route_loss_scale": 0.03125
+    },
+    {
+      "diagnostic_aux_soft_ce": 1.7643588781356812,
+      "hard_loss": 1.8203485012054443,
+      "micro_step": 32,
+      "optimization_loss": 3.584707260131836,
+      "record_ids": [
+        "f7f1ee2896d43768ab51d1f28d9cd4d1549a616a",
+        "875f9e89c41196e921e1ac63f024025c0dd2be44",
+        "9259d6feeca223cb6d959b6feecb6c843e8154b6",
+        "1214a9796760bb201b38fce79c99471cc31271d2"
+      ],
+      "reported_original_soft_ce": 1.7643588781356812,
+      "route_loss_scale": 0.03125
+    },
+    {
+      "diagnostic_aux_soft_ce": 2.960176944732666,
+      "hard_loss": 3.436739683151245,
+      "micro_step": 33,
+      "optimization_loss": 6.396916389465332,
+      "record_ids": [
+        "10913b49c73336ea7e2658f30e35ff83573f9816",
+        "26347fdbe0a04b7bfbc0e5079be670bb041a82f8",
+        "55c5bf0b5181e3df38c28335bce74e9835e2e6f9",
+        "994318bcdda05714db56d062d00ead6dd6b05e6d"
+      ],
+      "reported_original_soft_ce": 2.960176944732666,
+      "route_loss_scale": 0.03125
+    },
+    {
+      "diagnostic_aux_soft_ce": 2.6499626636505127,
+      "hard_loss": 2.80686354637146,
+      "micro_step": 34,
+      "optimization_loss": 5.456826210021973,
+      "record_ids": [
+        "72a5f93f185d9c264ece068480a741b1fde467cc",
+        "116ea38005af88a2fcfdcf81ff38f11189a31edd",
+        "b7725db4dda11088d3c100640eb2b3a8f434c4ad",
+        "d848ee6d1d4057f6158c0e7bb1993f7934636f37"
+      ],
+      "reported_original_soft_ce": 2.6499626636505127,
+      "route_loss_scale": 0.03125
+    },
+    {
+      "diagnostic_aux_soft_ce": 2.3161165714263916,
+      "hard_loss": 2.2954459190368652,
+      "micro_step": 35,
+      "optimization_loss": 4.611562728881836,
+      "record_ids": [
+        "025440cebee6f5ce51c1eb618e7ec69eaa724e5e",
+        "bb727bf94e710ba2ebf6e9626194b7985aa3df8d",
+        "3fee2a253c18f9f9b27ace74b1b8fdeee90bb6cc",
+        "b93b7d4b8c8de48d80e00495c2a94301d96e600f"
+      ],
+      "reported_original_soft_ce": 2.3161165714263916,
+      "route_loss_scale": 0.03125
+    },
+    {
+      "diagnostic_aux_soft_ce": 1.9793531894683838,
+      "hard_loss": 1.952904462814331,
+      "micro_step": 36,
+      "optimization_loss": 3.932257652282715,
+      "record_ids": [
+        "75077596e274ffc21186e7cb30eefece28d48574",
+        "43e451fbfa148300c82398ca68537386d5a9fe44",
+        "171406822cb15c3bd09be151966bd0fdd4278efb",
+        "ee3f27e15b2fd85c598df34491f4afd974f71b93"
+      ],
+      "reported_original_soft_ce": 1.9793531894683838,
+      "route_loss_scale": 0.03125
+    },
+    {
+      "diagnostic_aux_soft_ce": 1.718153715133667,
+      "hard_loss": 1.3272031545639038,
+      "micro_step": 37,
+      "optimization_loss": 3.0453567504882812,
+      "record_ids": [
+        "62480a4f0a57615bda9981f707cdf04cd375e6c8",
+        "016540423ea53b5e0973f79a57e2d4cb12777b0c",
+        "a9a485839f61091c041c6477a20b6781d395c788",
+        "10d562fac008433eb2ec558d62c99fd72862279f"
+      ],
+      "reported_original_soft_ce": 1.718153715133667,
+      "route_loss_scale": 0.03125
+    },
+    {
+      "diagnostic_aux_soft_ce": 3.055082321166992,
+      "hard_loss": 2.931547164916992,
+      "micro_step": 38,
+      "optimization_loss": 5.986629486083984,
+      "record_ids": [
+        "149042d0e9daa885208abd9cfee6669849e776ee",
+        "a3301dcc00f8ba14380d0248ca8c0b3217044350",
+        "1d5f77fabc222d72e4fb87f25eb3e5c41e786cf4",
+        "189ebd895aad37de41ede8be81efbb00c85a2e7d"
+      ],
+      "reported_original_soft_ce": 3.055082321166992,
+      "route_loss_scale": 0.03125
+    },
+    {
+      "diagnostic_aux_soft_ce": 2.1427760124206543,
+      "hard_loss": 2.2511744499206543,
+      "micro_step": 39,
+      "optimization_loss": 4.393950462341309,
+      "record_ids": [
+        "45645dbe123db7df18458e20501dc8e106e728ae",
+        "856f3a4626ca0dc17f8b4ec6d661a77abf820577",
+        "6b00df6b0ccf15fb1d2fcc53b813769d37423547",
+        "2125938da47bed2731aea15e4efaf92bf6e0d62b"
+      ],
+      "reported_original_soft_ce": 2.1427760124206543,
+      "route_loss_scale": 0.03125
+    },
+    {
+      "diagnostic_aux_soft_ce": 2.8406715393066406,
+      "hard_loss": 3.1648902893066406,
+      "micro_step": 40,
+      "optimization_loss": 6.005561828613281,
+      "record_ids": [
+        "8fdb8537dbff2a09e2f266e1a9538080a1c4c00e",
+        "ac928704ee42f09cda816880d5004a8c95ed84e1",
+        "da9eed2b6159b80f88e2221e66853b7fb5368b44",
+        "1bd5e1ce094da34aea6531591c2674bd221634b6"
+      ],
+      "reported_original_soft_ce": 2.8406715393066406,
+      "route_loss_scale": 0.03125
+    },
+    {
+      "diagnostic_aux_soft_ce": 3.0506906509399414,
+      "hard_loss": 3.0506906509399414,
+      "micro_step": 41,
+      "optimization_loss": 6.101381301879883,
+      "record_ids": [
+        "9dabd112ebaa537905da4fa4b12775e725b35318",
+        "107a460ba82cd473b9a08a5d43257a7f1d336874",
+        "9eb1b49ec6be0f1aa3af01b6726c30bd520693ed",
+        "13e30f6f382a157140477a7aa3272b65bd2f4039"
+      ],
+      "reported_original_soft_ce": 3.0506906509399414,
+      "route_loss_scale": 0.03125
+    },
+    {
+      "diagnostic_aux_soft_ce": 2.028938055038452,
+      "hard_loss": 1.7665681838989258,
+      "micro_step": 42,
+      "optimization_loss": 3.795506238937378,
+      "record_ids": [
+        "83a21e01932eb847075eea678499287b52377b90",
+        "131489c6bd31f72e830c1c5f2e157ce00e795d5c",
+        "5fae477aac282c14a0a9319f0440c01b46270bd2",
+        "75b32fe22fcb84acb1d7f2152fa77565cc0789eb"
+      ],
+      "reported_original_soft_ce": 2.028938055038452,
+      "route_loss_scale": 0.03125
+    },
+    {
+      "diagnostic_aux_soft_ce": 2.9491686820983887,
+      "hard_loss": 2.924428939819336,
+      "micro_step": 43,
+      "optimization_loss": 5.873597621917725,
+      "record_ids": [
+        "dbdfd2ada70625081f6759bc5863491668502ccd",
+        "fc7a7c20ad7302bdc181b4a7e4c60e3b5db87fef",
+        "4232e56f076d88a51c7768074d03b503eeef6f42",
+        "67e81aa08c63ee229302928bcdd9d786f8f1e121"
+      ],
+      "reported_original_soft_ce": 2.9491686820983887,
+      "route_loss_scale": 0.03125
+    },
+    {
+      "diagnostic_aux_soft_ce": 2.7298994064331055,
+      "hard_loss": 2.654053211212158,
+      "micro_step": 44,
+      "optimization_loss": 5.383952617645264,
+      "record_ids": [
+        "48abb216125921f2c6d993e1e65c8da7670a6f94",
+        "5a679babfe788c377f40ed2432d628d488bbb12e",
+        "6b6efec7495e2a188ca768c14aec100d56f87f32",
+        "b5c9d1a2bd2ab99e681af2aec0ec8d0a15dd1551"
+      ],
+      "reported_original_soft_ce": 2.7298994064331055,
+      "route_loss_scale": 0.03125
+    },
+    {
+      "diagnostic_aux_soft_ce": 2.5690407752990723,
+      "hard_loss": 2.4905900955200195,
+      "micro_step": 45,
+      "optimization_loss": 5.059630870819092,
+      "record_ids": [
+        "3ea05cd6d3e5532a228585d13cb11d09322c22c4",
+        "e3f4abc59e18fecd6d3482ca70a7bff02f40788f",
+        "4146c65e4cb4d9c19c0b4c86234df642e0ec2934",
+        "5a0a332d6f6b04abb342c71b5a8c6a7892dbf3b3"
+      ],
+      "reported_original_soft_ce": 2.5690407752990723,
+      "route_loss_scale": 0.03125
+    },
+    {
+      "diagnostic_aux_soft_ce": 2.0614967346191406,
+      "hard_loss": 1.7405332326889038,
+      "micro_step": 46,
+      "optimization_loss": 3.802030086517334,
+      "record_ids": [
+        "b177cd12f5802ffcfe6e4bd5646563bba8eed056",
+        "55db4d64628e45349540e63c18c7c6d634553e1e",
+        "691f6fdae45cbec12e64755c340ae267e6ae71d8",
+        "de2e1d514f2d466e57479ed221fbc136c228e622"
+      ],
+      "reported_original_soft_ce": 2.0614967346191406,
+      "route_loss_scale": 0.03125
+    },
+    {
+      "diagnostic_aux_soft_ce": 2.5426347255706787,
+      "hard_loss": 2.7311112880706787,
+      "micro_step": 47,
+      "optimization_loss": 5.273746013641357,
+      "record_ids": [
+        "741156dafd625302ffc41ba47dab1d9f0262b1fb",
+        "fef8aac8776a2f5df36e402f5b89a525ba5d57d2",
+        "7171275475208319103ef42e50addcac18a31e09",
+        "11ae3b7eeb6cb366b2b9cfc1cfe33bf837611990"
+      ],
+      "reported_original_soft_ce": 2.5426347255706787,
+      "route_loss_scale": 0.03125
+    },
+    {
+      "diagnostic_aux_soft_ce": 2.5999155044555664,
+      "hard_loss": 2.24819016456604,
+      "micro_step": 48,
+      "optimization_loss": 4.848105430603027,
+      "record_ids": [
+        "5545d269ecf88eaaefb5b2ea0c7f8fe556ba118a",
+        "0029a0a8d467908b7c7bfc7302845f54df20a94e",
+        "ef8e86af63b4ba03d4eba30c0e3d7e7e751d8238",
+        "dd6f7fb1826c778cbba415f4b9e2c77bb8390668"
+      ],
+      "reported_original_soft_ce": 2.5999155044555664,
+      "route_loss_scale": 0.03125
+    },
+    {
+      "diagnostic_aux_soft_ce": 2.3060569763183594,
+      "hard_loss": 2.4387879371643066,
+      "micro_step": 49,
+      "optimization_loss": 4.744844913482666,
+      "record_ids": [
+        "3263de1050852b221bbbff185dd629d52c93e51c",
+        "143f844f0de67a82fe8b1355e71144c090c2a8b4",
+        "6ba1d9fdc2898cfa44f877e7724b403d08eaac96",
+        "8b94a8180752ddf171f736afefe57ea997bf0c3f"
+      ],
+      "reported_original_soft_ce": 2.3060569763183594,
+      "route_loss_scale": 0.03125
+    },
+    {
+      "diagnostic_aux_soft_ce": 1.519505262374878,
+      "hard_loss": 1.4950097799301147,
+      "micro_step": 50,
+      "optimization_loss": 3.014514923095703,
+      "record_ids": [
+        "25b2aca3522e1455a7dad91ab18dedaaf7d3e1bb",
+        "b12ae9d1c636e59a9d8c4b822b1eecb65e5878dc",
+        "f629f4c7750fcee6d4548618ea988578798f60ed",
+        "336cf9234689876641442a083b8e639b08e14335"
+      ],
+      "reported_original_soft_ce": 1.519505262374878,
+      "route_loss_scale": 0.03125
+    },
+    {
+      "diagnostic_aux_soft_ce": 2.9348435401916504,
+      "hard_loss": 2.8607873916625977,
+      "micro_step": 51,
+      "optimization_loss": 5.795630931854248,
+      "record_ids": [
+        "b2bd4cb9d5acec31a0538ebdccf5708f8d4e53b7",
+        "6837629a2b6848e97e15b5cb1123a245d33dee53",
+        "2cf3945f4c725b7d3e3ff3db9c99acdfce7603cd",
+        "923b39f88ba4fd9cbfa560c0e17f69018fce0b4f"
+      ],
+      "reported_original_soft_ce": 2.9348435401916504,
+      "route_loss_scale": 0.03125
+    },
+    {
+      "diagnostic_aux_soft_ce": 2.1583759784698486,
+      "hard_loss": 2.3390400409698486,
+      "micro_step": 52,
+      "optimization_loss": 4.497416019439697,
+      "record_ids": [
+        "be7c1b78266f4bf543165af3404e3d039ffa5101",
+        "a4d0ae0d36f99a1180d7f56d3135efe6cd559ffa",
+        "5be47f54fc2c3b69357b7fd7ac9e07f043cd25be",
+        "1ed8673a0b565be508367b6627587dd6371b268a"
+      ],
+      "reported_original_soft_ce": 2.1583759784698486,
+      "route_loss_scale": 0.03125
+    },
+    {
+      "diagnostic_aux_soft_ce": 2.3071980476379395,
+      "hard_loss": 2.405179738998413,
+      "micro_step": 53,
+      "optimization_loss": 4.712377548217773,
+      "record_ids": [
+        "a946b20864b31d0ab6a9e953e7ef387da3543466",
+        "2d7c6aa14b533ec7b86c31b8b8d250e5bce6be4b",
+        "f83fe7590594b138a9502fff79248f5ee02da5a0",
+        "82679f872d419d4e29dd1d825192f27f64f7e996"
+      ],
+      "reported_original_soft_ce": 2.3071980476379395,
+      "route_loss_scale": 0.03125
+    },
+    {
+      "diagnostic_aux_soft_ce": 2.1800596714019775,
+      "hard_loss": 2.5149900913238525,
+      "micro_step": 54,
+      "optimization_loss": 4.69504976272583,
+      "record_ids": [
+        "f4ead2c836901c114ed6f02251236ef11bd43161",
+        "89ef5f0faa9aaa8fd44eaef5b5fad661997ac14d",
+        "ad610dc6b3e07dd6631b1f878663eb173de2bfa2",
+        "462e7bfc2512a100b727b17f11c4522948e2d0aa"
+      ],
+      "reported_original_soft_ce": 2.1800596714019775,
+      "route_loss_scale": 0.03125
+    },
+    {
+      "diagnostic_aux_soft_ce": 1.6895561218261719,
+      "hard_loss": 1.877381682395935,
+      "micro_step": 55,
+      "optimization_loss": 3.5669379234313965,
+      "record_ids": [
+        "aaa6ef0fa09f10429440d4c9f570671f02f22613",
+        "a575b0012cf5329def9f19bf58328a443b54ffe8",
+        "923abedbf2e960d24e6149a76efeb744b4fa21db",
+        "6c6b212f33ba4beee2d558b3d37f4dcbb6096746"
+      ],
+      "reported_original_soft_ce": 1.6895561218261719,
+      "route_loss_scale": 0.03125
+    },
+    {
+      "diagnostic_aux_soft_ce": 2.2377355098724365,
+      "hard_loss": 2.28737735748291,
+      "micro_step": 56,
+      "optimization_loss": 4.525113105773926,
+      "record_ids": [
+        "7023b6e6a13670710feb642a8d4467fdb4aabe77",
+        "46fbe63dfb733b12080d1d00ff52dd20683bd39d",
+        "a04ba175116e6a1fb367750da20577b7b42ca4e5",
+        "2452ff7492aac4ffa1242727afb75520330e1f51"
+      ],
+      "reported_original_soft_ce": 2.2377355098724365,
+      "route_loss_scale": 0.03125
+    },
+    {
+      "diagnostic_aux_soft_ce": 2.125861167907715,
+      "hard_loss": 2.137254476547241,
+      "micro_step": 57,
+      "optimization_loss": 4.263115882873535,
+      "record_ids": [
+        "10c69dd1e604977b423b722728a48a4f826a5590",
+        "7b7a0b24bf18e433a6f08e82a382b83a48a25696",
+        "cf0b674668f9a20a13168541190ad544efcb4650",
+        "a4f7a7802cb592fc5f77fab740a30f96c971cc49"
+      ],
+      "reported_original_soft_ce": 2.125861167907715,
+      "route_loss_scale": 0.03125
+    },
+    {
+      "diagnostic_aux_soft_ce": 2.158172607421875,
+      "hard_loss": 2.232391357421875,
+      "micro_step": 58,
+      "optimization_loss": 4.39056396484375,
+      "record_ids": [
+        "b808060cb1fe05d281d54def3be8ee3b259eaafe",
+        "a053d35f802c6561291ba42640d9be71c61de679",
+        "46e39f7221fa2af238f36f6dd8cab2d2adb4c9ca",
+        "abc2aed26c2f3aa3dad2c0bae8c5890218e7d839"
+      ],
+      "reported_original_soft_ce": 2.158172607421875,
+      "route_loss_scale": 0.03125
+    },
+    {
+      "diagnostic_aux_soft_ce": 2.636046886444092,
+      "hard_loss": 3.0045366287231445,
+      "micro_step": 59,
+      "optimization_loss": 5.640583515167236,
+      "record_ids": [
+        "e5aae9db6bf48c9645854e1c3da9c635458612f8",
+        "c5579563452b2230f960b1d480aab652bdfbd2ab",
+        "04bfbf54a7eeef628f3799e10e300520dcee17ca",
+        "49318c4f0d2ec2244ac543b0db468afaf9a85d1b"
+      ],
+      "reported_original_soft_ce": 2.636046886444092,
+      "route_loss_scale": 0.03125
+    },
+    {
+      "diagnostic_aux_soft_ce": 1.5248743295669556,
+      "hard_loss": 1.5398483276367188,
+      "micro_step": 60,
+      "optimization_loss": 3.0647225379943848,
+      "record_ids": [
+        "ffd828ec844e0189e1334086824d38d50b1f9eac",
+        "2de05bdc40242686c8f207e6c7717bcf07cfe5d5",
+        "c1a9cd0b574ded76d22c1403c2865f9009fe7c78",
+        "a7c9898667fee92e71f22864e0e708ed4659826c"
+      ],
+      "reported_original_soft_ce": 1.5248743295669556,
+      "route_loss_scale": 0.03125
+    },
+    {
+      "diagnostic_aux_soft_ce": 2.0407636165618896,
+      "hard_loss": 1.8010172843933105,
+      "micro_step": 61,
+      "optimization_loss": 3.8417809009552,
+      "record_ids": [
+        "72700b714863b01365f2ca5b64a540f4e58099fa",
+        "cee900ae54fa6eebba02a393eb17608c77e96b4b",
+        "6f808bdebb33be81918cc13a50c143f915a43afd",
+        "3ad5e4ede19f3a153a48f1478e4f5076054d930e"
+      ],
+      "reported_original_soft_ce": 2.0407636165618896,
+      "route_loss_scale": 0.03125
+    },
+    {
+      "diagnostic_aux_soft_ce": 2.4858641624450684,
+      "hard_loss": 2.8764076232910156,
+      "micro_step": 62,
+      "optimization_loss": 5.362271785736084,
+      "record_ids": [
+        "dec4c6c783f75c657018bc38f0bff5780f56135a",
+        "6e7aa98455d0694d91b00797c1b088a78f2cb0f0",
+        "0d7c809c3abdeb42d7aecd1da0512858e820b7cb",
+        "abca50c95b7b2719bf6700d0351894949b1942f3"
+      ],
+      "reported_original_soft_ce": 2.4858641624450684,
+      "route_loss_scale": 0.03125
+    },
+    {
+      "diagnostic_aux_soft_ce": 2.1070313453674316,
+      "hard_loss": 2.0230469703674316,
+      "micro_step": 63,
+      "optimization_loss": 4.130078315734863,
+      "record_ids": [
+        "3a88e0767ab7a97541e0ade09a6ea4240f079485",
+        "fd0e9cbd791f9dfbe5c41a420fd5a69a3e190446",
+        "8191df49884552ee2a983c084f5d63f5f3c4cee1",
+        "36b7456a8780fed1fbcc8cfff7a6868ddbcb9054"
+      ],
+      "reported_original_soft_ce": 2.1070313453674316,
+      "route_loss_scale": 0.03125
+    },
+    {
+      "diagnostic_aux_soft_ce": 1.9271068572998047,
+      "hard_loss": 1.4564037322998047,
+      "micro_step": 64,
+      "optimization_loss": 3.3835105895996094,
+      "record_ids": [
+        "836c83cf5c26494c365ea9fcb62847fd6c3abfd2",
+        "b964c643ca86d6b40fdfa27d27cebca463b607e4",
+        "f7da1247fae8cf5670ea4c9e52e2a721bda99a56",
+        "5bec4ff1d78b7ac609067618a858e7bb5734f952"
+      ],
+      "reported_original_soft_ce": 1.9271068572998047,
+      "route_loss_scale": 0.03125
+    }
+  ]
+}

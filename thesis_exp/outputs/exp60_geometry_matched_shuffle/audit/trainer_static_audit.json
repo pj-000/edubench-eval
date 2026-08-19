@@ -1,0 +1,32 @@
+{
+  "checks": {
+    "bf16_storage_space_geometry_gate_present": true,
+    "exactly_one_optimizer_step_call": true,
+    "exactly_one_standard_clip_call": true,
+    "exactly_two_diagnostic_residual_vjp_calls": true,
+    "fixed_epoch10_primary_present": true,
+    "formal_source_lock_schema_is_validated": true,
+    "formal_training_asserts_all_frozen_config": true,
+    "formal_training_requires_frozen_protocol": true,
+    "formal_training_unconditionally_verifies_source_lock": true,
+    "fresh_seed_contract_present": true,
+    "latin_square_gpu_assignment_enforced": true,
+    "no_generic_full_model_component_materialization": true,
+    "no_test_access": true,
+    "nonfinite_geometry_fails_closed": true,
+    "physical_gpu_binding_enforced": true,
+    "real_model_preflight_is_separate_and_has_no_optimizer": true,
+    "real_preflight_rehashes_actual_mapping": true,
+    "real_preflight_requires_preflight_source_lock": true,
+    "stable_gpu_identity_is_fail_closed": true,
+    "test_split_not_loaded": true
+  },
+  "counts": {
+    "diagnostic_vjp_calls_in_train": 2,
+    "optimizer_step_calls_in_train": 1,
+    "standard_clip_calls_in_geometry_step": 1
+  },
+  "status": "EXP60_TRAINER_STATIC_AUDIT_PASS",
+  "test_access_count": 0,
+  "train_path": "/Users/sss/edubench-eval/thesis_exp/exp60_geometry_matched_shuffle/train.py"
+}

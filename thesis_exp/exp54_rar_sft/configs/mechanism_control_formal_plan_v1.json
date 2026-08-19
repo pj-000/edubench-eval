@@ -1,0 +1,134 @@
+{
+  "schema_version": "exp54-mechanism-control-formal-plan-v1",
+  "status": "USER_APPROVED_TRAIN_ONLY_FULL_MECHANISM_CONTROLS",
+  "arms": [
+    "R3_TOKENAVG",
+    "P1_FULLSEQ",
+    "P1_SYN_LR5E6"
+  ],
+  "seeds": [
+    42,
+    43,
+    44
+  ],
+  "run_count": 9,
+  "candidate_artifacts_promoted_to_formal_inputs": true,
+  "parallelization": "three_r3_3090_jobs_and_three_preference_a6000_queues",
+  "preference_per_seed_serial_order": [
+    "P1_FULLSEQ",
+    "P1_SYN_LR5E6"
+  ],
+  "implementation_bindings": {
+    "runner_path": "thesis_exp/exp54_rar_sft/train_mechanism_controls_formal.py",
+    "runner_sha256": "cd5e955142bcb2fe3663066b0a3850992b7b5ab3f0f779cc8dafe7b33f1023ec",
+    "control_loss_path": "thesis_exp/exp54_rar_sft/mechanism_control_losses.py",
+    "control_loss_sha256": "8f407e73aa895dd339be5359ba880cbd03dddaf3000f573b46d9f92b8145c3cc",
+    "candidate_config_path": "thesis_exp/exp54_rar_sft/configs/mechanism_controls_candidate_v1.json",
+    "candidate_config_sha256": "ae54955b7f8f8d483199abdea686332e59bb8fa3012b713449db1390fc145963",
+    "sft_config_sha256": "291a3fa055f5ef07ac0f1bc39f67f3b1c9d13219da0c3e3e801d9a9df29d5318",
+    "preference_config_sha256": "a579a7bff836e03069fc69d43c7850617166102d9dc164d520d2183e5aab515d",
+    "lr_overlay_sha256": "c90673f5234bf4de4ad6e0d7c85e6af98b351183a03c2118249fe3f3c31ce183",
+    "train_rar_sft_sha256": "15f4384b32fafa88f141fa50a8b23df733f4704d69a54073cdc3e31afce9422c",
+    "train_sorc_dpo_formal_sha256": "10508720e78b4a829afeaff194d11835cdb682091cf249df6484ad38688f20f5",
+    "train_sorc_dpo_smoke_sha256": "43b790de02dbb1c3ee08c4d7460639ccd13e8dcb4878254872d7281ef5db94af",
+    "sorc_dpo_loss_sha256": "f0bd0bbd5edd4c6276ebcb76ddcfe2ad636929783ed0801b995c92479a9eb8e4",
+    "block_loss_sha256": "0e9f6ad5ee9b59175f160a0d24c20e9e92ece348e39069996e4522382cc61800",
+    "candidate_lock_sha256": "c624e90442fdec04e453a1b41bbd4223926c3100dd756eea2319b2fb3e206e39",
+    "candidate_report_sha256": "716f407a71d09db5fbb40caa445ed25425791711e0641331e29f05fe12b62265",
+    "candidate_audit_sha256": "5bea206047bb6d834a6f618261af44d547d2e1e8afec2ca5d521176f38148c29",
+    "materialized_manifest_lock_sha256": "8b5fffce6b54804f834499643953deae23393a7764c0652d0fd7df2214b20713",
+    "checkpoint_selection_lock_sha256": "364a2c9ee023d1b0a2d803530d7898a347a150dd89dbaaa388aa44677cd71df4",
+    "p1_fullseq_manifest_sha256": "b6d2289c96ef8bad92e219ef9c9e452c2d46b2acd90cb4db702cca8413cacac7",
+    "p1_syn_manifest_sha256": "1c65f892f01e558797fcae204d71b3b6e4609ccbe8d34d44b3e60250a679cddc",
+    "smoke_audit_path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/mechanism_control_smoke/audit_report.json",
+    "smoke_audit_sha256": "438f98ce6c595b293852d6165ef779aa46239f30a3dce807ccfef68ab9ac7351"
+  },
+  "server_paths": {
+    "artifact_root": "/home/jpang/edubench-eval-exp2/thesis_exp/outputs/exp54_rar_sft/rar_v2",
+    "output_root": "/home/jpang/edubench-eval-exp2/thesis_exp/outputs/exp54_rar_sft/rar_v2/mechanism_control_formal"
+  },
+  "gpu_assignments_by_arm_and_seed": {
+    "R3_TOKENAVG": {
+      "42": {
+        "visible_index": 4,
+        "uuid": "GPU-8fb2e60c-d81f-8454-188a-a0c3bf2b6c17",
+        "name": "NVIDIA GeForce RTX 3090"
+      },
+      "43": {
+        "visible_index": 6,
+        "uuid": "GPU-0451f36a-5026-994f-19c5-e95d5b1c47c9",
+        "name": "NVIDIA GeForce RTX 3090"
+      },
+      "44": {
+        "visible_index": 7,
+        "uuid": "GPU-c40e42b6-3b9f-bd93-a949-540694e870c6",
+        "name": "NVIDIA GeForce RTX 3090"
+      }
+    },
+    "P1_FULLSEQ": {
+      "42": {
+        "visible_index": 1,
+        "uuid": "GPU-6094556a-56f8-5784-14ad-6369b980d4ca",
+        "name": "NVIDIA RTX A6000"
+      },
+      "43": {
+        "visible_index": 2,
+        "uuid": "GPU-353fd55a-1293-802a-1fd5-29f37dcd1fc3",
+        "name": "NVIDIA RTX A6000"
+      },
+      "44": {
+        "visible_index": 3,
+        "uuid": "GPU-87ada47d-0fad-a4c5-e717-0b1ab7536f4e",
+        "name": "NVIDIA RTX A6000"
+      }
+    },
+    "P1_SYN_LR5E6": {
+      "42": {
+        "visible_index": 1,
+        "uuid": "GPU-6094556a-56f8-5784-14ad-6369b980d4ca",
+        "name": "NVIDIA RTX A6000"
+      },
+      "43": {
+        "visible_index": 2,
+        "uuid": "GPU-353fd55a-1293-802a-1fd5-29f37dcd1fc3",
+        "name": "NVIDIA RTX A6000"
+      },
+      "44": {
+        "visible_index": 3,
+        "uuid": "GPU-87ada47d-0fad-a4c5-e717-0b1ab7536f4e",
+        "name": "NVIDIA RTX A6000"
+      }
+    }
+  },
+  "minimum_free_memory_bytes_by_arm": {
+    "R3_TOKENAVG": 23622320128,
+    "P1_FULLSEQ": 42949672960,
+    "P1_SYN_LR5E6": 42949672960
+  },
+  "execution_device_override": {
+    "arm": "R3_TOKENAVG",
+    "parent_required_gpu": "NVIDIA RTX A6000",
+    "execution_gpu": "NVIDIA GeForce RTX 3090",
+    "architecture_generation": "Ampere",
+    "data_loss_batch_steps_optimizer_and_seed_unchanged": true,
+    "must_be_disclosed_as_execution_hardware_difference": true
+  },
+  "execution_budget": {
+    "R3_TOKENAVG_optimizer_steps_per_seed": 996,
+    "P1_FULLSEQ_optimizer_steps_per_seed": 27,
+    "P1_SYN_LR5E6_optimizer_steps_per_seed": 27,
+    "total_optimizer_steps": 3150,
+    "dev_inference_during_training": false,
+    "test_inference_during_training": false
+  },
+  "failure_policy": {
+    "stop_remaining_arms_in_failed_seed_queue": true,
+    "other_seed_queues_continue": true,
+    "automatic_retry": false,
+    "preserve_failure_artifact": true
+  },
+  "full_gpu_training_allowed": true,
+  "dev_allowed": false,
+  "test_allowed": false,
+  "model_selection_allowed": false
+}

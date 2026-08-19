@@ -1,0 +1,80 @@
+{
+  "D_clarified": 0.059375000000000004,
+  "D_original": 0.065625,
+  "all_five_exact_agreement_rate_clarified": 0.625,
+  "all_five_exact_agreement_rate_original": 0.6875,
+  "all_required_assessed_gates_pass": false,
+  "dev_accessed": false,
+  "evaluation_items": 16,
+  "formal_decisions_validated": 160,
+  "gates": {
+    "at_least_two_groups_favor_clarification": false,
+    "clear_anchor_no_material_mean_shift": true,
+    "dual_auditor_fidelity_at_least_80_percent": true,
+    "effect_extends_beyond_boundary_2_3": true,
+    "one_sided_90_percent_cluster_bootstrap_lower_above_zero": false,
+    "relative_disagreement_reduction_at_least_25_percent": false
+  },
+  "gpu_used": false,
+  "group_reports": [
+    {
+      "D_clarified": 0.125,
+      "D_original": 0.1125,
+      "clear_anchor_mean_shift": 0,
+      "group_id": "RB1-12",
+      "relative_reduction": -0.11111111111111108,
+      "tau_D": -0.012499999999999997
+    },
+    {
+      "D_clarified": 0.0,
+      "D_original": 0.0,
+      "clear_anchor_mean_shift": 0,
+      "group_id": "RB2-23",
+      "relative_reduction": 0.0,
+      "tau_D": 0.0
+    },
+    {
+      "D_clarified": 0.05,
+      "D_original": 0.0875,
+      "clear_anchor_mean_shift": 0,
+      "group_id": "RB3-34",
+      "relative_reduction": 0.4285714285714285,
+      "tau_D": 0.03749999999999999
+    },
+    {
+      "D_clarified": 0.0625,
+      "D_original": 0.0625,
+      "clear_anchor_mean_shift": 0,
+      "group_id": "RB4-45",
+      "relative_reduction": 0.0,
+      "tau_D": 0.0
+    }
+  ],
+  "groups_favoring_clarification": 1,
+  "interpretation": "The model-audited clarification produced a small pooled point reduction in judge disagreement, but it failed the preregistered magnitude, interval, and cross-group consistency gates. This pilot does not support scaling the specification-intervention direction as the thesis core method.",
+  "judge_instances_per_condition": 5,
+  "mean_score_clarified": 3.8,
+  "mean_score_original": 3.75,
+  "mean_score_shift": 0.04999999999999996,
+  "one_sided_90_percent_exact_cluster_bootstrap_lower": -0.006249999999999999,
+  "private_answer_key_sha256": "04aff2696336a4e4e307aeadd47e64039ce00ca6474cda86b9b94f9870146e9b",
+  "private_response_hashes": {
+    "response_clarified-J1.json": "a92170ec428ad8e24239f392799679b5f09ee18eb072817bfb7e9d3c5f82e5fa",
+    "response_clarified-J2.json": "d780b096ec8f8b1df41c1dd8edbbcfc98f5cce0b652fbc5b7406048c9a5965b2",
+    "response_clarified-J3.json": "b5854a15b6dd172f1ddfbb7acaa0c02cae65008c86061be7dca814e2cf9d8349",
+    "response_clarified-J4.json": "4187f74d17f484044264b67d406e36a326c489f4460c70e38251836916d60b24",
+    "response_clarified-J5.json": "af398fe7c7541f5d9de069c0cdf4d363c755c4013f1a814681e1a9a60afb9826",
+    "response_original-J1.json": "29b8ebc396b78a6b38e46aae0f924f58bde9eca4bcf02c8fa20459ed69ce6777",
+    "response_original-J2.json": "03b0eeacbfe75b4ddd4fd541b8451e28cb69f2a80acde64a00013cda26d7c0da",
+    "response_original-J3.json": "303b34b41bc45d4fb9e86a7be8070b79f8b445f73d9f85bd7e8eedf1d8d99b88",
+    "response_original-J4.json": "54e27cc8ca113a5a12cfdf526e93b44cbedc5acd92a92effae12a7343e4fdd8f",
+    "response_original-J5.json": "31c382e327d294d7d9c85eace873b9e16548f038b3e8e3399975592b39ed1d42"
+  },
+  "relative_disagreement_reduction": 0.09523809523809522,
+  "replication_value_gate_not_needed_after_decisive_failure": true,
+  "schema_version": "exp54-llm-judge-spec-pilot-result-v1",
+  "status": "STOP_SPECIFICATION_INTERVENTION_DIRECTION",
+  "tau_D": 0.006249999999999999,
+  "test_accessed": false,
+  "training_started": false
+}

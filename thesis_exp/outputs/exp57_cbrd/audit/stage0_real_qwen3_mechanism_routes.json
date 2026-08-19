@@ -1,0 +1,111 @@
+{
+  "absolute_tolerance": 0.0005,
+  "checks": {
+    "all_soft_variant_head_gradients_identical": true,
+    "all_three_relation_states_present": true,
+    "component_algebra": true,
+    "historical_head_hash_matches": true,
+    "identity_hook_exact": true,
+    "no_test_access": true,
+    "relative_component_algebra": true
+  },
+  "comparisons": {
+    "detached_auxiliary_is_zero": 0.0,
+    "full_equals_consensus_plus_residual": 0.000244140625,
+    "identity_hook": 0.0,
+    "residual_matches_analytic": 6.103515625e-05,
+    "shuffled_matches_consensus_plus_shuffled_residual": 0.000244140625,
+    "sign_flip_matches_consensus_minus_residual": 0.0003662109375,
+    "unanimous_residual_is_zero": 0.0
+  },
+  "cublas_workspace_config": ":4096:8",
+  "device": "cuda",
+  "dtype": "torch.bfloat16",
+  "head_gradient_differences": {
+    "hard_head.consensus_only.weight": 0.0,
+    "hard_head.detached_soft.weight": 0.0,
+    "hard_head.ordinary_hmsa.weight": 0.0,
+    "hard_head.residual_only.weight": 0.0,
+    "hard_head.routed_hmsa.weight": 0.0,
+    "hard_head.shuffled_residual.weight": 0.0,
+    "hard_head.sign_flipped.weight": 0.0,
+    "soft_head.consensus_only.weight": 0.0,
+    "soft_head.detached_soft.weight": 0.0,
+    "soft_head.ordinary_hmsa.weight": 0.0,
+    "soft_head.residual_only.weight": 0.0,
+    "soft_head.routed_hmsa.weight": 0.0,
+    "soft_head.shuffled_residual.weight": 0.0,
+    "soft_head.sign_flipped.weight": 0.0
+  },
+  "implementation": "single_soft_ce_hidden_gradient_hook",
+  "relative_comparisons": {
+    "full_equals_consensus_plus_residual": 0.00975609756097561,
+    "shuffled_matches_consensus_plus_shuffled_residual": 0.00909090909090909,
+    "sign_flip_matches_consensus_minus_residual": 0.00949367088607595
+  },
+  "relative_tolerance": 0.02,
+  "rows": [
+    {
+      "hard_label": 4,
+      "record_id": "eb284da4d05b5674af9f47a017caa8f1d9ab9dcf",
+      "shuffle_effectively_changed": true,
+      "shuffled_residual_target": [
+        0.0,
+        0.0,
+        0.0,
+        0.6666666666666666,
+        0.3333333333333333
+      ],
+      "state": "zero",
+      "target": [
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0
+      ]
+    },
+    {
+      "hard_label": 4,
+      "record_id": "4abb5320624308bb074fe6932d7ef7c088b0dd41",
+      "shuffle_effectively_changed": true,
+      "shuffled_residual_target": [
+        0.0,
+        0.0,
+        0.0,
+        0.6666666666666666,
+        0.3333333333333333
+      ],
+      "state": "down",
+      "target": [
+        0.0,
+        0.0,
+        0.3333333333333333,
+        0.6666666666666666,
+        0.0
+      ]
+    },
+    {
+      "hard_label": 4,
+      "record_id": "22fc3538594bd7f6426d96df9de31645e099e5df",
+      "shuffle_effectively_changed": true,
+      "shuffled_residual_target": [
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0
+      ],
+      "state": "up",
+      "target": [
+        0.0,
+        0.0,
+        0.0,
+        0.6666666666666666,
+        0.3333333333333333
+      ]
+    }
+  ],
+  "status": "PASS",
+  "test_access_count": 0
+}

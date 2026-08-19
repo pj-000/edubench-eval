@@ -1,0 +1,115 @@
+{
+  "experiment": "Exp61-SoftSTS15-External-Confirmation",
+  "status": "EXP61_PROTOCOL_FROZEN_FOR_FORMAL_9_RUN_TRAINING",
+  "scientific_question": "Does label-aligned residual geometry improve a quantized-mean six-class STS predictor beyond a geometry-matched shuffled residual control on an external task?",
+  "source_lock": {
+    "upstream_commit": "ca754a21e58437c4b843d10161d2838f39230e7f",
+    "dataset_sha256": "8707cdb85e2da9818bc8c08cd90b9b2c17c483e08f7bb7ff5c6dc69b555dde71",
+    "split_manifest_sha256": "73b04b02c3aaac303e8ba3b9213030a9dcdf1e5736f18bf3f81a987be8da56ad",
+    "stage0_commit": "1b454cbb1b0937142632dc77dbd85c4e15bbcc3e"
+  },
+  "data": {
+    "train_rows": 4734,
+    "dev_rows": 1578,
+    "test_rows": 1578,
+    "training_loader_allowed_splits": ["train", "dev"],
+    "training_test_access_count": 0,
+    "input_max_length": 256,
+    "truncation_allowed": false,
+    "target_classes": [0, 1, 2, 3, 4, 5],
+    "soft_target": "six-bin empirical distribution of the five published ratings",
+    "main_target": "floor(mean_of_the_same_five_ratings + 0.5)",
+    "primary_regression_reference": "mean_of_the_same_five_ratings",
+    "forbidden_target_source": "gs_score"
+  },
+  "model": {
+    "path": "/home/share/models/modelscope/Qwen/Qwen3-Reranker-0.6B",
+    "num_labels": 6,
+    "hard_head_bias": false,
+    "soft_head_initialization": "deep copy of initialized hard head before training",
+    "inference_head": "hard head only",
+    "primary_point_prediction": "sum(k * softmax(hard_logits)[k] for k in 0..5)"
+  },
+  "arms": [
+    "quantized_mean_only",
+    "aligned_orthogonal_only",
+    "matched_shuffled_orthogonal_only"
+  ],
+  "mapping": {
+    "scope": "train only and independently within quantized-mean hard label",
+    "algorithm": "deterministic maximum-mismatch bijection by largest-block rotation",
+    "preserves": "exact six-dimensional target multiset",
+    "may_use_dev_or_test": false,
+    "may_use_model_outcomes": false,
+    "train_dataset_contract_sha256": "e4abd30af2c17937c03c8d8726a9ac61d88af72490f79b91dcc7206a43596f31",
+    "semantic_mapping_sha256": "ab7bcaee6532e93b5babfd0fbbe69d18dd2945f94859dd26da2c736f43d3e9f0",
+    "mapping_artifact_sha256": "50b8252d77757bad8db33ff9c303bec2e631acb15d714f599068d7b0d081237d",
+    "effective_target_change_rate": 0.8924799324038868
+  },
+  "training": {
+    "seeds": [61, 62, 63],
+    "epochs": 10,
+    "confirmatory_checkpoint": "fixed epoch 10",
+    "optimizer": "AdamW",
+    "learning_rate": 0.00002,
+    "weight_decay": 0.01,
+    "scheduler": "cosine",
+    "warmup_ratio": 0.05,
+    "micro_batch_size": 4,
+    "gradient_accumulation_steps": 32,
+    "effective_batch_size": 128,
+    "last_physical_batch_per_epoch": 2,
+    "last_accumulation_window_examples_per_epoch": 126,
+    "effective_batch_size_interpretation": "128 is nominal; the deterministic final physical batch is not dropped and the last update of each epoch contains 126 examples. Because each microbatch mean is scaled equally by 1/32, each record in the final two-record microbatch has twice the weight of a record in a four-record microbatch; this is identical across paired arms.",
+    "max_gradient_norm": 1.0,
+    "precision": "BF16",
+    "gradient_checkpointing": true,
+    "dataloader_workers": 0,
+    "hyperparameter_search": false
+  },
+  "analysis": {
+    "primary_metric": "NMAE = MAE(hard-head expectation, five-rating human mean) / 5",
+    "primary_comparison": "aligned_orthogonal_only minus matched_shuffled_orthogonal_only",
+    "secondary_metrics": ["Spearman", "NRMSE", "argmax NMAE", "Exact match", "QWK"],
+    "exploratory_metrics": ["ranked probability score", "ordinal EMD", "soft-head diagnostics"],
+    "bootstrap": {
+      "unit": "test sentence connected component",
+      "aggregation_order": "average per-record paired error difference over three seeds first",
+      "weighting": "item weighted",
+      "resamples": 10000,
+      "rng_seed": 610061
+    },
+    "all_required_gates": [
+      "aligned NMAE lower than shuffled for 3/3 seeds",
+      "mean aligned-minus-shuffled NMAE <= -0.00125",
+      "component-cluster bootstrap 95% CI upper < 0",
+      "mean aligned-minus-shuffled Spearman >= -0.005",
+      "aligned NMAE lower than quantized-mean-only for at least 2/3 seeds",
+      "mean aligned-minus-quantized-mean-only NMAE <= -0.00125"
+    ]
+  },
+  "test_policy": {
+    "training_has_test_dataloader": false,
+    "unseal_condition": "all nine fixed epoch-10 checkpoints, trainer, analysis, mapping, and source lock are frozen",
+    "allowed_test_evaluations": 1,
+    "changes_after_test": false,
+    "prediction_entrypoint": "python -m thesis_exp.exp61_soft_sts15_external_confirmation.evaluate_test_once",
+    "analysis_entrypoint": "python -m thesis_exp.exp61_soft_sts15_external_confirmation.analysis",
+    "fixed_prediction_root": "thesis_exp/outputs/exp61_soft_sts15_external_confirmation/final_test/predictions",
+    "access_marker": "thesis_exp/outputs/exp61_soft_sts15_external_confirmation/final_test/test_access.json",
+    "confirmatory_decision": "thesis_exp/outputs/exp61_soft_sts15_external_confirmation/final_test/confirmation_decision.json",
+    "failed_attempt_is_access": true,
+    "overwrite_or_retry_allowed": false,
+    "required_test_rows_per_run": 1578
+  },
+  "authorization": {
+    "implementation": true,
+    "cpu_static_tests": true,
+    "real_model_no_update_preflight": true,
+    "optimizer_steps_before_final_preflight_review": false,
+    "formal_nine_run_gpu_training": true,
+    "test_access": false,
+    "authorization_basis": "thesis_exp/outputs/exp61_soft_sts15_external_confirmation/decision/formal_training_authorization.json",
+    "authorization_scope": "train/dev only; exactly 3 arms x seeds 61,62,63; fixed epoch 10"
+  }
+}

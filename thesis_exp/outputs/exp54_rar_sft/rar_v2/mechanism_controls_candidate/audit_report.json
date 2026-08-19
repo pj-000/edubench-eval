@@ -1,0 +1,16 @@
+{
+  "candidate_lock_sha256": "c624e90442fdec04e453a1b41bbd4223926c3100dd756eea2319b2fb3e206e39",
+  "candidate_report_sha256": "716f407a71d09db5fbb40caa445ed25425791711e0641331e29f05fe12b62265",
+  "dev_accessed": false,
+  "full_completion_masks_rederived_from_prompt_cache": true,
+  "full_gpu_training_allowed": false,
+  "gpu_smoke_allowed": false,
+  "gpu_used": false,
+  "p1_fullseq_manifest_sha256": "b6d2289c96ef8bad92e219ef9c9e452c2d46b2acd90cb4db702cca8413cacac7",
+  "p1_fullseq_rows_verified": 838,
+  "p1_fullseq_source_fields_byte_equivalent": true,
+  "p1_p1_syn_same_record_block_chosen_mask_and_weight": true,
+  "schema_version": "exp54-mechanism-control-audit-report-v1",
+  "status": "MECHANISM_CONTROL_CPU_AUDIT_PASS_GPU_NOT_AUTHORIZED",
+  "test_accessed": false
+}

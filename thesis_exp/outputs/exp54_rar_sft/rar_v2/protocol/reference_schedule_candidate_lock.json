@@ -1,0 +1,21 @@
+{
+  "dev_accessed": false,
+  "formal_training_allowed": false,
+  "manifest_freeze_allowed": false,
+  "ordered_three_epoch_row_vector_sha256": "f10b178bf34f594ad8d2d782247f784246f477c78395fc746aa53c916604eefa",
+  "reference_source_sha256": "718d760869b9c573b952a90faf5b5e6b346a034f31b454b5e15bd28ed1856500",
+  "schedule_file_hashes": {
+    "base_event_schedule_seed42": "41acc76d7fb6699801559a19cc78aa8b3a2b5b5fd3d3e2fa97ec2876a4ce71c3",
+    "base_event_schedule_seed43": "fa17f0db3dd01a54e0a4b572aeb168a9187968d71f0ab43f8ba84ed5591d6847",
+    "base_event_schedule_seed44": "7c05c1f562d21cca11ff75f82bdba7caf7c1e17651d3436e08842ac41e4702f2"
+  },
+  "schedule_schema_version": "exp54-reference-event-v1",
+  "source_hashes": {
+    "builder_source_sha256": "6a578934da661906db72c3622ccc9542f77d0859d0f761e04fc4e30b811a18cb",
+    "event_schema_sha256": "1668f3bc7dd2275eb5e25eb7573215e76466b0384d0414f7c637ee8a4d4223e5",
+    "shared_schedule_source_sha256": "22acc599d9e2919138870f21373cc21c61e096ab0365b6f635a4a72741bd421d"
+  },
+  "status": "CANDIDATE_REFERENCE_SCHEDULE_READY",
+  "test_accessed": false,
+  "training_used": false
+}

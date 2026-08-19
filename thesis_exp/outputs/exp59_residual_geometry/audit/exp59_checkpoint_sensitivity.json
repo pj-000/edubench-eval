@@ -1,0 +1,95 @@
+{
+  "analyses": [
+    "same_epoch",
+    "fixed_epoch_10",
+    "normalized_curve_area"
+  ],
+  "comparisons": {
+    "orthogonal_only": {
+      "aggregate": {
+        "favorable_seed_epoch_cells": 40,
+        "mean_common_epoch_delta_MAE": -0.011626506024096388,
+        "mean_epoch10_delta_MAE": -0.013052208835341339,
+        "mean_normalized_trapezoidal_MAE_curve_delta": -0.011088799643016517,
+        "total_seed_epoch_cells": 50
+      },
+      "per_seed": [
+        {
+          "epoch10_delta_MAE": -0.026104417670682722,
+          "favorable_MAE_epochs": 8,
+          "normalized_trapezoidal_MAE_curve_delta": -0.007446452476572964,
+          "seed": 42
+        },
+        {
+          "epoch10_delta_MAE": -0.015562248995983963,
+          "favorable_MAE_epochs": 10,
+          "normalized_trapezoidal_MAE_curve_delta": -0.02239513609995541,
+          "seed": 43
+        },
+        {
+          "epoch10_delta_MAE": -0.014558232931726867,
+          "favorable_MAE_epochs": 7,
+          "normalized_trapezoidal_MAE_curve_delta": -0.00577309236947791,
+          "seed": 44
+        },
+        {
+          "epoch10_delta_MAE": -0.015562248995983907,
+          "favorable_MAE_epochs": 8,
+          "normalized_trapezoidal_MAE_curve_delta": -0.012354975457385101,
+          "seed": 45
+        },
+        {
+          "epoch10_delta_MAE": 0.006526104417670764,
+          "favorable_MAE_epochs": 7,
+          "normalized_trapezoidal_MAE_curve_delta": -0.007474341811691204,
+          "seed": 46
+        }
+      ]
+    },
+    "parallel_only": {
+      "aggregate": {
+        "favorable_seed_epoch_cells": 23,
+        "mean_common_epoch_delta_MAE": 0.0011345381526104382,
+        "mean_epoch10_delta_MAE": 0.0005020080321285425,
+        "mean_normalized_trapezoidal_MAE_curve_delta": 0.001561802766622036,
+        "total_seed_epoch_cells": 50
+      },
+      "per_seed": [
+        {
+          "epoch10_delta_MAE": -0.0075301204819276935,
+          "favorable_MAE_epochs": 5,
+          "normalized_trapezoidal_MAE_curve_delta": 0.009677599286033005,
+          "seed": 42
+        },
+        {
+          "epoch10_delta_MAE": 0.010542168674698815,
+          "favorable_MAE_epochs": 2,
+          "normalized_trapezoidal_MAE_curve_delta": 0.004880633645693886,
+          "seed": 43
+        },
+        {
+          "epoch10_delta_MAE": 0.007028112449799229,
+          "favorable_MAE_epochs": 4,
+          "normalized_trapezoidal_MAE_curve_delta": 0.001952253458277539,
+          "seed": 44
+        },
+        {
+          "epoch10_delta_MAE": -0.016064257028112428,
+          "favorable_MAE_epochs": 8,
+          "normalized_trapezoidal_MAE_curve_delta": -0.010709504685408322,
+          "seed": 45
+        },
+        {
+          "epoch10_delta_MAE": 0.00853413654618479,
+          "favorable_MAE_epochs": 4,
+          "normalized_trapezoidal_MAE_curve_delta": 0.002008032128514072,
+          "seed": 46
+        }
+      ]
+    }
+  },
+  "interpretation_scope": "development-set sensitivity analysis; no new training and no test access",
+  "selection_rule": "highest dev Exact_rounded; ties keep earlier epoch",
+  "status": "EXP59_CHECKPOINT_SENSITIVITY_COMPLETE",
+  "test_access_count": 0
+}

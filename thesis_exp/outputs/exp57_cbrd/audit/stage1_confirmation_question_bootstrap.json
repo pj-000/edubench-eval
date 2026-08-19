@@ -1,0 +1,65 @@
+{
+  "five_seed_mean_prediction_effect": {
+    "bootstrap_probability_delta_below_zero": 1.0,
+    "ci95_lower": -0.037003825920612146,
+    "ci95_upper": -0.012546245177824126,
+    "observed_delta_mae": -0.024397590361445787,
+    "question_clusters": 184,
+    "repetitions": 10000,
+    "rng_seed": 57,
+    "rows": 664
+  },
+  "per_seed": {
+    "42": {
+      "bootstrap_probability_delta_below_zero": 0.9759,
+      "ci95_lower": -0.04377648938850053,
+      "ci95_upper": -0.0005011968544114676,
+      "observed_delta_mae": -0.02208835341365461,
+      "question_clusters": 184,
+      "repetitions": 10000,
+      "rng_seed": 99,
+      "rows": 664
+    },
+    "43": {
+      "bootstrap_probability_delta_below_zero": 0.9893,
+      "ci95_lower": -0.062137986375549036,
+      "ci95_upper": -0.004373138013987789,
+      "observed_delta_mae": -0.03313253012048193,
+      "question_clusters": 184,
+      "repetitions": 10000,
+      "rng_seed": 100,
+      "rows": 664
+    },
+    "44": {
+      "bootstrap_probability_delta_below_zero": 0.8536,
+      "ci95_lower": -0.0322112394952805,
+      "ci95_upper": 0.00960062816616007,
+      "observed_delta_mae": -0.01154618473895583,
+      "question_clusters": 184,
+      "repetitions": 10000,
+      "rng_seed": 101,
+      "rows": 664
+    },
+    "45": {
+      "bootstrap_probability_delta_below_zero": 0.9998,
+      "ci95_lower": -0.07220436032092616,
+      "ci95_upper": -0.022420688039622525,
+      "observed_delta_mae": -0.04618473895582329,
+      "question_clusters": 184,
+      "repetitions": 10000,
+      "rng_seed": 102,
+      "rows": 664
+    },
+    "46": {
+      "bootstrap_probability_delta_below_zero": 0.8488,
+      "ci95_lower": -0.026408023932924615,
+      "ci95_upper": 0.008547695605573405,
+      "observed_delta_mae": -0.009036144578313251,
+      "question_clusters": 184,
+      "repetitions": 10000,
+      "rng_seed": 103,
+      "rows": 664
+    }
+  },
+  "test_access_count": 0
+}

@@ -1,0 +1,25 @@
+{
+  "artifact_hashes": {
+    "prediction_jsonl_sha256": {
+      "b0/seed_42": "585202e0197b949f1db7e28a42ecce6c76e38494f80e62956ba16ff00bfcf1c5",
+      "b0/seed_43": "d7c0dde2c13fe2866ffe3fa8cfd85d193029070727c45a9d6d99257fd515b6fb",
+      "b0/seed_44": "b8879427e0a4c07e86412e28288c8b62f8a9c1fdffa00265c9e58f9dba1188c8",
+      "exp51/seed_42": "16c00a77b384c9bd29fd29fd3e0daee85aca94f1414eedd1727f16e02d006644",
+      "exp51/seed_43": "8694feb21bfa624882926646e49fd9454868a0ea4a63077ddc524ef3a48e1267",
+      "exp51/seed_44": "16ca78a6f0009c589d13e3f0a79a10f0a586c65977644bf0ee2a8270a781b3f4"
+    },
+    "test_split_sha256": "9bc6ad99dbc3856e292b073f1ce0e883ac980574b5703533f449c34600a5d7af"
+  },
+  "ci_high": -0.029980085843621593,
+  "ci_low": -0.06223223504022652,
+  "cluster_count": 163,
+  "cluster_key": "question_key, falling back to exact question text",
+  "convention": "HMSA_minus_Hard-only; negative MAE is better",
+  "max_cluster_size": 24,
+  "mean_delta_mae": -0.04483518685502454,
+  "min_cluster_size": 3,
+  "resamples": 10000,
+  "rng_seed": 20260731,
+  "row_count": 2218,
+  "unit": "question cluster after averaging paired row deltas over three model seeds"
+}

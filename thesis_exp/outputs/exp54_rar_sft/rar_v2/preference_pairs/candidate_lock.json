@@ -1,0 +1,19 @@
+{
+  "builder_source_sha256": "665c61cd0bec7d5fa41b17fe23c792d9462c63792edf6f9afab111ea3d7e2015",
+  "candidate_report_sha256": "fb3bfa79ea52839caea4bc8de918ede57f2ab74251ffce016fb84c00356ec660",
+  "dev_accessed": false,
+  "failure_bank_sha256": "d5d452017d8f6bb8b19e89c278a3e714c488d2211e266cde4e72dd5cf1c26757",
+  "frozen_manifest_lock_sha256": "8b5fffce6b54804f834499643953deae23393a7764c0652d0fd7df2214b20713",
+  "independent_auditor_source_sha256": "2ee32f838c5d173bb0e3815fa38f1ecf094be5644c135919011b9ef4b28e04fd",
+  "preference_training_allowed": false,
+  "private_output_hashes": {
+    "actual_rationale_candidates": "4b0c024cbe21f05bf01a1b3e7514cbd27554af3599ccca203b7ee9f2c330ba7c",
+    "rationale_pairs_r3_r2": "ffb3aa272ad18b37d7c466691f983d91524ab67a0473c158669f4589c5fa445d",
+    "score_pairs_hybrid": "aeb079c56be8a8afbfdbec386e72faad748fef848014761bf602fbc40c97a1bb",
+    "score_pairs_synthetic_seed42": "83eef75218c945cf8fcaec754cbe84471c915a2fbd814f1d82d162de67406154"
+  },
+  "protocol_sha256": "a4368e533bc27ff2625792a62da8f35ca46de8fa049f4e75909a3c5022448e81",
+  "schema_version": "exp54-sorc-dpo-pair-candidate-lock-v1",
+  "status": "PAIR_CANDIDATES_NOT_FROZEN_TRAINING_NOT_ALLOWED",
+  "test_accessed": false
+}

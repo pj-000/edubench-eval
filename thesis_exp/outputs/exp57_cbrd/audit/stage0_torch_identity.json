@@ -1,0 +1,65 @@
+{
+  "gpu_amp_identity": {
+    "autocast_dtype": "bfloat16",
+    "device": "cuda",
+    "max_logit_gradient_error": 7.450580596923828e-09,
+    "max_scalar_error": 4.470348358154297e-08,
+    "pass": true,
+    "status": "PASS",
+    "tolerance": 1e-05
+  },
+  "real_qwen3_routing_status": "PENDING_GPU_RUNTIME_AUDIT",
+  "scalar_identity": {
+    "float32": {
+      "dtype": "float32",
+      "max_logit_gradient_error": 7.450580596923828e-09,
+      "max_scalar_error": 2.0116567611694336e-07,
+      "pass": true,
+      "target_vectors": 13,
+      "tolerance": 1e-06
+    },
+    "float64": {
+      "dtype": "float64",
+      "max_logit_gradient_error": 6.938893903907228e-18,
+      "max_scalar_error": 2.706168622523819e-16,
+      "pass": true,
+      "target_vectors": 13,
+      "tolerance": 1e-10
+    }
+  },
+  "status": "PASS",
+  "test_access_count": 0,
+  "toy_identity_hook_parity": {
+    "hidden_gradient_error": 0.0,
+    "max_parameter_gradient_error": 0.0,
+    "pass": true,
+    "per_parameter_gradient_error": {
+      "bottom.weight": 0.0,
+      "hard_head.weight": 0.0,
+      "soft_head.weight": 0.0,
+      "top.weight": 0.0
+    }
+  },
+  "toy_two_branch_routing_identity": {
+    "checks": {
+      "auxiliary_head_checked": true,
+      "bottom_backbone_checked": true,
+      "hard_head_checked": true,
+      "top_backbone_checked": true
+    },
+    "hidden_gradient_error": 3.469446951953614e-18,
+    "max_parameter_gradient_error": 1.3877787807814457e-17,
+    "pass": true,
+    "per_parameter_gradient_error": {
+      "bottom.weight": 1.3877787807814457e-17,
+      "hard_head.weight": 0.0,
+      "soft_head.weight": 0.0,
+      "top.weight": 1.3877787807814457e-17
+    },
+    "scalars": {
+      "aux_head_soft": 1.6431305877746853,
+      "optimization_loss": 4.926602891190781,
+      "route_consensus_plus_residual": 1.6431305877746853
+    }
+  }
+}

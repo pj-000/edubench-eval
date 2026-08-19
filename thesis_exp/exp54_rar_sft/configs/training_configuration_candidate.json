@@ -1,0 +1,226 @@
+{
+  "status": "EXP54_TRAINING_CONFIGURATION_CANDIDATE_NOT_AUTHORIZED",
+  "schema_version": "exp54-training-configuration-v1",
+  "experiment": {
+    "arms": ["S0", "R1", "R2", "R3"],
+    "seeds": [42, 43, 44],
+    "independent_base_reload_per_run": true,
+    "historical_adapter_allowed": false,
+    "dev_or_test_access_during_training": false
+  },
+  "model": {
+    "model_id": "Qwen/Qwen3-4B-Instruct-2507",
+    "immutable_revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "local_path": "/home/share/models/modelscope/Qwen/Qwen3-4B-Instruct-2507",
+    "architecture": "Qwen3ForCausalLM",
+    "local_files_only": true,
+    "trust_remote_code": false,
+    "torch_dtype": "bfloat16",
+    "use_cache": false,
+    "pad_token_id": 151643,
+    "eos_token_id": 151645,
+    "directory_regular_files": {
+      ".mdl": 50,
+      ".msc": 978,
+      ".mv": 36,
+      "LICENSE": 11343,
+      "README.md": 8168,
+      "config.json": 727,
+      "configuration.json": 73,
+      "generation_config.json": 238,
+      "merges.txt": 1671839,
+      "model-00001-of-00003.safetensors": 3957900840,
+      "model-00002-of-00003.safetensors": 3987450520,
+      "model-00003-of-00003.safetensors": 99630640,
+      "model.safetensors.index.json": 32819,
+      "tokenizer.json": 11422654,
+      "tokenizer_config.json": 9377,
+      "vocab.json": 2776833
+    },
+    "directory_listing_sha256": "96308d1ae2e03ab011a52371780c8f4b448930d2e393fb8682fa8aa09687064a",
+    "files": {
+      "config.json": {
+        "size": 727,
+        "sha256": "5beea1a4a34c62782bfb2f911c606741a3bab8f92d80a118fa053c28af12e8ba"
+      },
+      "generation_config.json": {
+        "size": 238,
+        "sha256": "835fffe355c9438e7a25be099b3fccaa98350b83451f9fd2d99512e74f1ade48"
+      },
+      "model.safetensors.index.json": {
+        "size": 32819,
+        "sha256": "d6c42883a895dfef5b0080ed2116a1bcd764f558406b98923d675978a1abf29c"
+      },
+      "model-00001-of-00003.safetensors": {
+        "size": 3957900840,
+        "sha256": "75311d91bb08cf0b882913da464a1e722a31fb44db35208663487efb7a3d8ed6"
+      },
+      "model-00002-of-00003.safetensors": {
+        "size": 3987450520,
+        "sha256": "0b48adbb1f60e901153d91907ba11ce63bd4b8b584482e730f48808d055dfba1"
+      },
+      "model-00003-of-00003.safetensors": {
+        "size": 99630640,
+        "sha256": "7dd39ccca5e4de123c74c14af44c9bf2eb75df33b4614382af0134528e060d5d"
+      },
+      "tokenizer.json": {
+        "size": 11422654,
+        "sha256": "aeb13307a71acd8fe81861d94ad54ab689df773318809eed3cbe794b4492dae4"
+      },
+      "tokenizer_config.json": {
+        "size": 9377,
+        "sha256": "a62ff0a2472a0fa1b8eaabcb57c59b58afa42a22831dc141400b6e0cf2b65ce3"
+      },
+      "merges.txt": {
+        "size": 1671839,
+        "sha256": "599bab54075088774b1733fde865d5bd747cbcc7a547c5bc12610e874e26f5e3"
+      },
+      "vocab.json": {
+        "size": 2776833,
+        "sha256": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910"
+      }
+    }
+  },
+  "runtime": {
+    "python": "3.10.19",
+    "torch": "2.4.0+cu121",
+    "transformers": "4.57.1",
+    "peft": "0.17.1",
+    "accelerate": "1.11.0",
+    "datasets": "4.0.0",
+    "safetensors": "0.5.3",
+    "tokenizers": "0.22.1",
+    "numpy": "1.26.4",
+    "sentencepiece": "0.2.1",
+    "llamafactory": "0.9.4.dev0",
+    "cuda_runtime": "12.1",
+    "cudnn": 90100,
+    "driver": "530.30.02",
+    "required_gpu_name": "NVIDIA RTX A6000",
+    "visible_gpu_count": 1,
+    "bf16_required": true
+  },
+  "lora": {
+    "rank": 16,
+    "alpha": 32,
+    "dropout": 0.05,
+    "bias": "none",
+    "task_type": "CAUSAL_LM",
+    "target_modules": [
+      "q_proj",
+      "k_proj",
+      "v_proj",
+      "o_proj",
+      "gate_proj",
+      "up_proj",
+      "down_proj"
+    ],
+    "expected_target_occurrences_each": 36,
+    "expected_trainable_parameters": 33030144,
+    "expected_base_parameters": 4022468096,
+    "modules_to_save": null,
+    "inference_mode": false
+  },
+  "data": {
+    "rows_per_logical_epoch": 2654,
+    "logical_epochs_in_manifest": 3,
+    "events_per_manifest": 7962,
+    "physical_manifest_passes": 1,
+    "shuffle": false,
+    "dataloader_num_workers": 0,
+    "drop_last": false,
+    "packing": false,
+    "cutoff_len": 2048,
+    "padding": "fixed_max_length",
+    "truncation": false
+  },
+  "loss": {
+    "implementation": "blockwise_causal_loss",
+    "score_block_weight": 1.0,
+    "rationale_block_weight_when_active": 1.0,
+    "inactive_rationale_block_weight": 0.0,
+    "per_block_token_reduction": "mean_per_sample",
+    "batch_reduction": "mean_over_samples",
+    "prompt_loss_active": false,
+    "json_punctuation_loss_active": false,
+    "assistant_suffix_loss_active": false,
+    "padding_loss_active": false
+  },
+  "optimization": {
+    "micro_batch_size_per_device": 2,
+    "gradient_accumulation_steps": 4,
+    "gradient_accumulation_boundary": "flush_and_reset_at_each_logical_epoch",
+    "remainder_group_divisor": "actual_micro_batches_in_group",
+    "optimizer": "AdamW",
+    "learning_rate": 0.0001,
+    "betas": [0.9, 0.999],
+    "epsilon": 1e-8,
+    "weight_decay": 0.0,
+    "max_grad_norm": 1.0,
+    "scheduler": "cosine",
+    "warmup_steps": 50,
+    "optimizer_steps_per_logical_epoch": 332,
+    "total_optimizer_steps": 996
+  },
+  "precision_and_memory": {
+    "autocast_dtype": "bfloat16",
+    "gradient_checkpointing": true,
+    "gradient_checkpointing_use_reentrant": false,
+    "tf32": false,
+    "allow_fp16_reduced_precision_reduction": false
+  },
+  "determinism": {
+    "same_seed_for_data_lora_and_runtime": true,
+    "python_hash_seed_equals_run_seed": true,
+    "cublas_workspace_config": ":4096:8",
+    "torch_deterministic_algorithms": true,
+    "torch_deterministic_warn_only": false,
+    "cudnn_deterministic": true,
+    "cudnn_benchmark": false
+  },
+  "checkpointing": {
+    "save_after_each_logical_epoch": true,
+    "save_adapter": true,
+    "save_optimizer": true,
+    "save_scheduler": true,
+    "save_rng_state": true,
+    "resume_allowed": false,
+    "overwrite_output_dir": false,
+    "evaluation_during_training": false,
+    "checkpoint_names": [
+      "checkpoint-logical-epoch-1",
+      "checkpoint-logical-epoch-2",
+      "checkpoint-logical-epoch-3"
+    ]
+  },
+  "generation": {
+    "do_sample": false,
+    "num_beams": 1,
+    "max_new_tokens": 256,
+    "use_model_generation_config": false,
+    "enable_thinking": false
+  },
+  "parser": {
+    "format": "strict_single_json_object",
+    "required_keys": ["score", "rationale"],
+    "additional_keys_allowed": false,
+    "duplicate_keys_allowed": false,
+    "score_type": "integer_not_boolean",
+    "score_min": 1,
+    "score_max": 5,
+    "rationale_type": "string",
+    "empty_rationale_allowed_at_inference": true
+  },
+  "authorization": {
+    "manifest_frozen_required": true,
+    "configuration_review_required": true,
+    "authentication_method": "root_owned_repository_external_exact_sha256",
+    "trusted_digest_path": "/etc/edubench/exp54_authorization.sha256",
+    "self_consistent_repository_locks_sufficient": false,
+    "smoke_training_allowed": false,
+    "formal_training_allowed": false,
+    "dev_accessed": false,
+    "test_accessed": false,
+    "training_used": false
+  }
+}

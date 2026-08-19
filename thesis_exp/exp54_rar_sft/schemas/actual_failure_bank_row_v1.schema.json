@@ -1,0 +1,108 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "absolute_error": {
+      "maximum": 4,
+      "minimum": 0,
+      "type": "integer"
+    },
+    "error_class": {
+      "enum": [
+        "correct",
+        "adjacent_overestimate",
+        "adjacent_underestimate",
+        "severe_low_to_high",
+        "severe_high_to_low",
+        "other_overestimate",
+        "other_underestimate",
+        "invalid_output"
+      ]
+    },
+    "forced_completion": {
+      "type": "boolean"
+    },
+    "generated_rationale": {
+      "type": ["string", "null"]
+    },
+    "generated_score": {
+      "type": ["integer", "null"]
+    },
+    "generation_mode": {
+      "enum": ["greedy", "stochastic"]
+    },
+    "generator_adapter_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "generator_arm": {
+      "const": "R3"
+    },
+    "generator_epoch": {
+      "const": 3
+    },
+    "generator_seed": {
+      "enum": [42, 43, 44]
+    },
+    "gold_label": {
+      "maximum": 5,
+      "minimum": 1,
+      "type": "integer"
+    },
+    "language": {
+      "enum": ["en", "zh"]
+    },
+    "metric_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "parse_success": {
+      "type": "boolean"
+    },
+    "record_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "rollout_seed": {
+      "type": ["integer", "null"]
+    },
+    "row_position": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "severe_high_to_low": {
+      "type": "boolean"
+    },
+    "severe_low_to_high": {
+      "type": "boolean"
+    },
+    "signed_error": {
+      "maximum": 4,
+      "minimum": -4,
+      "type": "integer"
+    }
+  },
+  "required": [
+    "record_id",
+    "row_position",
+    "gold_label",
+    "metric_id",
+    "language",
+    "generator_arm",
+    "generator_seed",
+    "generator_epoch",
+    "generator_adapter_sha256",
+    "generation_mode",
+    "rollout_seed",
+    "parse_success",
+    "generated_score",
+    "generated_rationale",
+    "forced_completion",
+    "signed_error",
+    "absolute_error",
+    "error_class",
+    "severe_low_to_high",
+    "severe_high_to_low"
+  ],
+  "type": "object"
+}

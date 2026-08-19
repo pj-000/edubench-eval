@@ -1,0 +1,47 @@
+{
+  "checks": {
+    "all_mechanism_routes": true,
+    "legacy_source_and_live_dependencies": true,
+    "no_test_access": true,
+    "no_training_or_optimizer_step": true,
+    "real_qwen3_bf16_identity": true,
+    "real_qwen3_fp32_identity": true,
+    "scalar_toy_and_amp_identity": true,
+    "train_dev_support_and_shuffle": true,
+    "unsafe_two_branch_implementation_rejected": true
+  },
+  "experiment": "Exp57-CBRD",
+  "interpretation": "The CE decomposition and the single-soft-CE hidden-gradient router are numerically validated. Stage 0 authorizes protocol freezing and implementation of train/dev-only Stage 1 controls; it does not establish a CBRD mechanism effect and does not authorize historical-test access.",
+  "key_results": {
+    "bf16_identity_max_gradient_difference": 0.0,
+    "dev_relation_states": {
+      "down": 201,
+      "up": 172,
+      "zero": 291
+    },
+    "fp32_identity_max_gradient_difference": 0.0,
+    "historical_bf16_head_hash": "d7c922a1956118af437c52189ffc993465277a72698cef38290e47404247f9e2",
+    "mechanism_route_comparisons": {
+      "detached_auxiliary_is_zero": 0.0,
+      "full_equals_consensus_plus_residual": 0.000244140625,
+      "identity_hook": 0.0,
+      "residual_matches_analytic": 6.103515625e-05,
+      "shuffled_matches_consensus_plus_shuffled_residual": 0.000244140625,
+      "sign_flip_matches_consensus_minus_residual": 0.0003662109375,
+      "unanimous_residual_is_zero": 0.0
+    },
+    "rejected_two_branch_relative_gradient_difference": 0.016355140186915886,
+    "residual_vector_count": 9,
+    "shuffle_effective_changes": 1490,
+    "shuffle_mapping_sha256": "b4e96c49607700be99816582c1b85a8085b8c5abb260ddafbad4e9ee0dc25ad4",
+    "target_vector_count": 13,
+    "train_relation_states": {
+      "down": 890,
+      "up": 595,
+      "zero": 1169
+    }
+  },
+  "production_implementation": "single_soft_ce_hidden_gradient_hook",
+  "status": "STAGE0_PASS_READY_TO_FREEZE_STAGE1",
+  "test_access_count": 0
+}

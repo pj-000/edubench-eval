@@ -1,0 +1,17 @@
+\begin{table}[htbp]
+\centering
+\caption{评测指标、参照目标与解释口径。}
+\label{tab:metric_contract}
+\small
+\renewcommand{\arraystretch}{1.12}
+\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{0.26\linewidth}>{\raggedright\arraybackslash}p{0.27\linewidth}Y@{}}
+\toprule
+指标 & 参照目标 & 含义 \\
+\midrule
+精确匹配、召回、QWK & 整数硬标签 $y_i$ & 整数分类与序数一致性 \\
+L2H 数量 & $y_i$ 与整数预测 $\hat y_i$ & $y_i\leq 2$ 却预测为 $\hat y_i\geq 4$ 的严重高估数 \\
+MAE、偏差、Kendall $\tau_b$ & 连续人类均分 $\bar r_i$ & 绝对误差、系统性偏差与排序一致性 \\
+三档一致率 & $y_i$ 的低/中/高分箱 & 预测与硬标签是否处于相同风险档 \\
+\bottomrule
+\end{tabularx}
+\end{table}

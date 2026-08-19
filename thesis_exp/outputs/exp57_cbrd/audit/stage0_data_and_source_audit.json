@@ -1,0 +1,446 @@
+{
+  "dev": {
+    "checks": {
+      "no_invalid_rows": true,
+      "no_test_access": true,
+      "only_zero_down_up_relation_states": true,
+      "three_rater_target_grid": true
+    },
+    "distinct_residual_vectors": 9,
+    "distinct_target_vectors": 13,
+    "hard_label_counts": {
+      "1": 6,
+      "2": 14,
+      "3": 62,
+      "4": 237,
+      "5": 345
+    },
+    "invalid_rows": [],
+    "mean_minus_hard_label_counts": {
+      "+0.000000": 291,
+      "+0.333333": 172,
+      "-0.333333": 201
+    },
+    "relation_state_counts": {
+      "down": 201,
+      "up": 172,
+      "zero": 291
+    },
+    "residual_thirds_counts": {
+      "[-1, 1, 0, 0, 0]": 1,
+      "[0, -1, 1, 0, 0]": 6,
+      "[0, 0, -1, 1, 0]": 42,
+      "[0, 0, 0, -1, 1]": 152,
+      "[0, 0, 0, 0, 0]": 291,
+      "[0, 0, 0, 1, -1]": 128,
+      "[0, 0, 1, -1, 0]": 38,
+      "[0, 1, -1, 0, 0]": 5,
+      "[1, -1, 0, 0, 0]": 1
+    },
+    "rows": 664,
+    "split": "dev",
+    "target_thirds_counts": {
+      "[0, 0, 0, 0, 3]": 193,
+      "[0, 0, 0, 1, 2]": 152,
+      "[0, 0, 0, 2, 1]": 128,
+      "[0, 0, 0, 3, 0]": 67,
+      "[0, 0, 1, 2, 0]": 42,
+      "[0, 0, 2, 1, 0]": 38,
+      "[0, 0, 3, 0, 0]": 18,
+      "[0, 1, 2, 0, 0]": 6,
+      "[0, 2, 1, 0, 0]": 5,
+      "[0, 3, 0, 0, 0]": 8,
+      "[1, 2, 0, 0, 0]": 1,
+      "[2, 1, 0, 0, 0]": 1,
+      "[3, 0, 0, 0, 0]": 5
+    }
+  },
+  "shuffled_residual": {
+    "checks": {
+      "effective_change_rate_matches_exp55": true,
+      "mapping_matches_exp55": true,
+      "no_test_access": true,
+      "within_hard_label_multisets_preserved": true
+    },
+    "effective_change_rate": 0.5614167294649586,
+    "effective_target_changes": 1490,
+    "expected_exp55_mapping_sha256": "b4e96c49607700be99816582c1b85a8085b8c5abb260ddafbad4e9ee0dc25ad4",
+    "mapping_matches_exp55": true,
+    "mapping_sha256": "b4e96c49607700be99816582c1b85a8085b8c5abb260ddafbad4e9ee0dc25ad4",
+    "rows": 2654,
+    "shuffle_seed": 20260730,
+    "state_transition_counts": {
+      "down->down": 348,
+      "down->up": 110,
+      "down->zero": 432,
+      "up->down": 106,
+      "up->up": 284,
+      "up->zero": 205,
+      "zero->down": 436,
+      "zero->up": 201,
+      "zero->zero": 532
+    }
+  },
+  "source_closure": {
+    "checks": {
+      "all_historical_blobs_match": true,
+      "all_live_shared_dependencies_match": true,
+      "no_test_access": true
+    },
+    "formal_lock_sha256": "3f0a526318dcfad35776e62b35fc9417982bf88352fcdf6ed539b74ce100eaee",
+    "historical_blob_checks": [
+      {
+        "actual": "51829102e0daa1931cf6d055816378c66f1e66f0ac6964b0977899b100b353fe",
+        "expected": "51829102e0daa1931cf6d055816378c66f1e66f0ac6964b0977899b100b353fe",
+        "match": true,
+        "path": "thesis_exp/configs/exp51_hmsa/gates.json",
+        "scope": "hmsa_source"
+      },
+      {
+        "actual": "83992399cb7295585823b15cf189ef88fb6f6114898e197f7450becfe48c1cf1",
+        "expected": "83992399cb7295585823b15cf189ef88fb6f6114898e197f7450becfe48c1cf1",
+        "match": true,
+        "path": "thesis_exp/configs/exp51_hmsa/hmsa_lambda1.yaml",
+        "scope": "hmsa_source"
+      },
+      {
+        "actual": "8e2b5d40aaa9dbc0d7a0e097346cb8874baf9f4e290689748fb0b9fc5e744da3",
+        "expected": "8e2b5d40aaa9dbc0d7a0e097346cb8874baf9f4e290689748fb0b9fc5e744da3",
+        "match": true,
+        "path": "thesis_exp/exp51_hmsa/METHOD.md",
+        "scope": "hmsa_source"
+      },
+      {
+        "actual": "4da2cde022c60d9fbd2630a56bfdb0404cfed2e4f9ecb13d41f57f4ee58d65a2",
+        "expected": "4da2cde022c60d9fbd2630a56bfdb0404cfed2e4f9ecb13d41f57f4ee58d65a2",
+        "match": true,
+        "path": "thesis_exp/exp51_hmsa/README.md",
+        "scope": "hmsa_source"
+      },
+      {
+        "actual": "773c3e9a4ee4da1351a73d0e1c7aa2800dc5096c2b35c30ecd9014b40037ad49",
+        "expected": "773c3e9a4ee4da1351a73d0e1c7aa2800dc5096c2b35c30ecd9014b40037ad49",
+        "match": true,
+        "path": "thesis_exp/exp51_hmsa/__init__.py",
+        "scope": "hmsa_source"
+      },
+      {
+        "actual": "23dba66759c3a336a8c612be0a36a7c194735ded9c5c076e5b6927f7cc43a8b1",
+        "expected": "23dba66759c3a336a8c612be0a36a7c194735ded9c5c076e5b6927f7cc43a8b1",
+        "match": true,
+        "path": "thesis_exp/exp51_hmsa/build_targets.py",
+        "scope": "hmsa_source"
+      },
+      {
+        "actual": "10d842f0bb49abecb66537e804715410d1ace1e49f8a698d24cba0cdb4e24447",
+        "expected": "10d842f0bb49abecb66537e804715410d1ace1e49f8a698d24cba0cdb4e24447",
+        "match": true,
+        "path": "thesis_exp/exp51_hmsa/determinism_smoke.py",
+        "scope": "hmsa_source"
+      },
+      {
+        "actual": "ca1b5a47377e275655a6e110bc6e08f6a2c07b08c15b9170dfc38e6d6461423b",
+        "expected": "ca1b5a47377e275655a6e110bc6e08f6a2c07b08c15b9170dfc38e6d6461423b",
+        "match": true,
+        "path": "thesis_exp/exp51_hmsa/gate.py",
+        "scope": "hmsa_source"
+      },
+      {
+        "actual": "7e98a241c85b0f5520661594b4e2cf8d377399e48ce2cdafc8e8c1d210111dc0",
+        "expected": "7e98a241c85b0f5520661594b4e2cf8d377399e48ce2cdafc8e8c1d210111dc0",
+        "match": true,
+        "path": "thesis_exp/exp51_hmsa/model.py",
+        "scope": "hmsa_source"
+      },
+      {
+        "actual": "2b49dc209d61e763871d1339560b3f67a8aa2b53c49d9c85d856c11e4d0b212a",
+        "expected": "2b49dc209d61e763871d1339560b3f67a8aa2b53c49d9c85d856c11e4d0b212a",
+        "match": true,
+        "path": "thesis_exp/exp51_hmsa/preflight.py",
+        "scope": "hmsa_source"
+      },
+      {
+        "actual": "001c68ed193e82afdccc91ead80cea8a1119ca61478b0435f052132957bd5668",
+        "expected": "001c68ed193e82afdccc91ead80cea8a1119ca61478b0435f052132957bd5668",
+        "match": true,
+        "path": "thesis_exp/exp51_hmsa/train.py",
+        "scope": "hmsa_source"
+      },
+      {
+        "actual": "7d65f2d4f4a020f94e3495448e323f93d7ed667dc5f0cc91ef6c8d883cb4d31d",
+        "expected": "7d65f2d4f4a020f94e3495448e323f93d7ed667dc5f0cc91ef6c8d883cb4d31d",
+        "match": true,
+        "path": "thesis_exp/scripts/run_exp51_cpu_smoke.sh",
+        "scope": "hmsa_source"
+      },
+      {
+        "actual": "15bc875bb4896a06acedde03d499119f90aab0e72c5a8a2bc32a8146f49d1fbf",
+        "expected": "15bc875bb4896a06acedde03d499119f90aab0e72c5a8a2bc32a8146f49d1fbf",
+        "match": true,
+        "path": "thesis_exp/scripts/run_exp51_determinism_smoke.sh",
+        "scope": "hmsa_source"
+      },
+      {
+        "actual": "7489309ab20dfd779df790b5f392b32f0657aae4f77051cdfdb129ad59b04ad5",
+        "expected": "7489309ab20dfd779df790b5f392b32f0657aae4f77051cdfdb129ad59b04ad5",
+        "match": true,
+        "path": "thesis_exp/scripts/run_exp51_gpu_smoke.sh",
+        "scope": "hmsa_source"
+      },
+      {
+        "actual": "1f1aa31d63d95ae5d3b09c235b241e3c9d29d5a64a5814fb8d2e7797085c6b9b",
+        "expected": "1f1aa31d63d95ae5d3b09c235b241e3c9d29d5a64a5814fb8d2e7797085c6b9b",
+        "match": true,
+        "path": "thesis_exp/scripts/run_exp51_preflight.sh",
+        "scope": "hmsa_source"
+      },
+      {
+        "actual": "e8bb0319d4214dc7620f259fd71cb77f7b4f565c14f6dd7ef8f3e6f799e560d9",
+        "expected": "e8bb0319d4214dc7620f259fd71cb77f7b4f565c14f6dd7ef8f3e6f799e560d9",
+        "match": true,
+        "path": "thesis_exp/scripts/run_exp51_seed42.sh",
+        "scope": "hmsa_source"
+      },
+      {
+        "actual": "94fbe7e77e7fe111a7bca5c67700fdefa7377a63492ce16cc6070fe985036f99",
+        "expected": "94fbe7e77e7fe111a7bca5c67700fdefa7377a63492ce16cc6070fe985036f99",
+        "match": true,
+        "path": "thesis_exp/tests/test_exp51_contract.py",
+        "scope": "hmsa_source"
+      },
+      {
+        "actual": "af063f307a77fdd26769ce166b9cdd6bcb821d14f4f092de936b09472fdb0073",
+        "expected": "af063f307a77fdd26769ce166b9cdd6bcb821d14f4f092de936b09472fdb0073",
+        "match": true,
+        "path": "thesis_exp/tests/test_exp51_dual_head.py",
+        "scope": "hmsa_source"
+      },
+      {
+        "actual": "8f871c2270ffb6638c8c50bb04d978ef8ab8f997a6e51af60fe8c5419ef78f49",
+        "expected": "8f871c2270ffb6638c8c50bb04d978ef8ab8f997a6e51af60fe8c5419ef78f49",
+        "match": true,
+        "path": "thesis_exp/configs/exp51_hmsa/formal_protocol.json",
+        "scope": "formal_snapshot"
+      },
+      {
+        "actual": "4072b74ca9dce9009ec8226748d53612431f774dd4ae00164d5bc28867f5249a",
+        "expected": "4072b74ca9dce9009ec8226748d53612431f774dd4ae00164d5bc28867f5249a",
+        "match": true,
+        "path": "thesis_exp/configs/exp51_hmsa/source_lock.json",
+        "scope": "formal_snapshot"
+      },
+      {
+        "actual": "a18d6a27b9a524d4592a359658ae70c9348fe88e43c962971ba95f62d2b6cdf0",
+        "expected": "a18d6a27b9a524d4592a359658ae70c9348fe88e43c962971ba95f62d2b6cdf0",
+        "match": true,
+        "path": "thesis_exp/data/splits/paper_like_triple_seed42/dev.jsonl",
+        "scope": "formal_snapshot"
+      },
+      {
+        "actual": "0a1733b9209984c5c4291d205d1ac6057bed341717903b9de075d07de44a878e",
+        "expected": "0a1733b9209984c5c4291d205d1ac6057bed341717903b9de075d07de44a878e",
+        "match": true,
+        "path": "thesis_exp/data/splits/paper_like_triple_seed42/train.jsonl",
+        "scope": "formal_snapshot"
+      },
+      {
+        "actual": "14886202d13ee4c3e1769e56360aa536f3de0106cf64c8b37f635ef3ed75d249",
+        "expected": "14886202d13ee4c3e1769e56360aa536f3de0106cf64c8b37f635ef3ed75d249",
+        "match": true,
+        "path": "thesis_exp/exp49_cphce/__init__.py",
+        "scope": "formal_snapshot"
+      },
+      {
+        "actual": "6e1c078ebdf1acb4684486a44edba4ed286c51e7ac1a64e69a847d34da2c2db6",
+        "expected": "6e1c078ebdf1acb4684486a44edba4ed286c51e7ac1a64e69a847d34da2c2db6",
+        "match": true,
+        "path": "thesis_exp/exp49_cphce/build_targets.py",
+        "scope": "formal_snapshot"
+      },
+      {
+        "actual": "cc0b9a58d1697c1e354115975e7aa1e352bc2cfab709ff3fab521e2831f80a3a",
+        "expected": "cc0b9a58d1697c1e354115975e7aa1e352bc2cfab709ff3fab521e2831f80a3a",
+        "match": true,
+        "path": "thesis_exp/exp49_cphce/losses.py",
+        "scope": "formal_snapshot"
+      },
+      {
+        "actual": "338818090ca653b200140e19f27ec5965d863d9bd9eb084e406c233ce69b8ea7",
+        "expected": "338818090ca653b200140e19f27ec5965d863d9bd9eb084e406c233ce69b8ea7",
+        "match": true,
+        "path": "thesis_exp/exp49_cphce/metric_contract.py",
+        "scope": "formal_snapshot"
+      },
+      {
+        "actual": "20644184acd179a81f81fbc5d7c8c3d306c74b7e79774f1058ac73fb4b511a57",
+        "expected": "20644184acd179a81f81fbc5d7c8c3d306c74b7e79774f1058ac73fb4b511a57",
+        "match": true,
+        "path": "thesis_exp/exp49_cphce/train.py",
+        "scope": "formal_snapshot"
+      },
+      {
+        "actual": "96dc95fa221661696fb9d17ac7580142772e80ad444e3d53b447589dbc2f548a",
+        "expected": "96dc95fa221661696fb9d17ac7580142772e80ad444e3d53b447589dbc2f548a",
+        "match": true,
+        "path": "thesis_exp/exp50_cahs/__init__.py",
+        "scope": "formal_snapshot"
+      },
+      {
+        "actual": "be0d44e8c88e3244134f7c770a551ad013000c46cd0081d70d1212525b22bf74",
+        "expected": "be0d44e8c88e3244134f7c770a551ad013000c46cd0081d70d1212525b22bf74",
+        "match": true,
+        "path": "thesis_exp/exp50_cahs/build_targets.py",
+        "scope": "formal_snapshot"
+      },
+      {
+        "actual": "7b213eacca2ed09cbc83eeeb44994762e23997901d8f187c0a455e7c8bc137bb",
+        "expected": "7b213eacca2ed09cbc83eeeb44994762e23997901d8f187c0a455e7c8bc137bb",
+        "match": true,
+        "path": "thesis_exp/exp50_cahs/train.py",
+        "scope": "formal_snapshot"
+      },
+      {
+        "actual": "ad022b0701e1807bf517d73ee9f58cf32db5df2aaee01777e681f50fd7938377",
+        "expected": "ad022b0701e1807bf517d73ee9f58cf32db5df2aaee01777e681f50fd7938377",
+        "match": true,
+        "path": "thesis_exp/exp51_hmsa/formal_gate.py",
+        "scope": "formal_snapshot"
+      },
+      {
+        "actual": "4935d6ef4dcab84b5f55837fd9f2ba14ae2d2d1181c5d7191fb0c406c0692a0f",
+        "expected": "4935d6ef4dcab84b5f55837fd9f2ba14ae2d2d1181c5d7191fb0c406c0692a0f",
+        "match": true,
+        "path": "thesis_exp/scripts/run_exp51_formal.sh",
+        "scope": "formal_snapshot"
+      },
+      {
+        "actual": "701c13b855a58f535fff5f4588f4dba62d5acc41a4e41fdac8be8b48ce2a0ddc",
+        "expected": "701c13b855a58f535fff5f4588f4dba62d5acc41a4e41fdac8be8b48ce2a0ddc",
+        "match": true,
+        "path": "thesis_exp/src/edujudge/exp02/__init__.py",
+        "scope": "formal_snapshot"
+      },
+      {
+        "actual": "82eaefd6c711f632a23d61e7591d5c447076e9e351134887b726d7db75a7d241",
+        "expected": "82eaefd6c711f632a23d61e7591d5c447076e9e351134887b726d7db75a7d241",
+        "match": true,
+        "path": "thesis_exp/src/edujudge/exp02/build_exp02_dataset.py",
+        "scope": "formal_snapshot"
+      },
+      {
+        "actual": "fccf33d68bdd7ea889032c071422baff6bfd1cf8a4e3e54927638bcf258c9b68",
+        "expected": "fccf33d68bdd7ea889032c071422baff6bfd1cf8a4e3e54927638bcf258c9b68",
+        "match": true,
+        "path": "thesis_exp/src/edujudge/exp02/train_ce_baseline.py",
+        "scope": "formal_snapshot"
+      },
+      {
+        "actual": "e19250fbf9b7a2013b61078d29100137ee6cefab76cd8dda01ab6888156f1364",
+        "expected": "e19250fbf9b7a2013b61078d29100137ee6cefab76cd8dda01ab6888156f1364",
+        "match": true,
+        "path": "thesis_exp/src/edujudge/utils/io.py",
+        "scope": "formal_snapshot"
+      },
+      {
+        "actual": "4642255f3aa0fdeeec089fc4364749943082df1a9decb992fd81aae64c1740e4",
+        "expected": "4642255f3aa0fdeeec089fc4364749943082df1a9decb992fd81aae64c1740e4",
+        "match": true,
+        "path": "thesis_exp/src/edujudge/utils/text_norm.py",
+        "scope": "formal_snapshot"
+      }
+    ],
+    "legacy_hmsa_source_commit": "193d64e51ddc7c0ffd8bd4c4b5d4468dafa91162",
+    "legacy_result_commit": "fa72bd46864a8fc202015fb18507046bf9dd6bcf",
+    "live_shared_dependency_checks": [
+      {
+        "actual": "a18d6a27b9a524d4592a359658ae70c9348fe88e43c962971ba95f62d2b6cdf0",
+        "expected": "a18d6a27b9a524d4592a359658ae70c9348fe88e43c962971ba95f62d2b6cdf0",
+        "match": true,
+        "path": "thesis_exp/data/splits/paper_like_triple_seed42/dev.jsonl"
+      },
+      {
+        "actual": "0a1733b9209984c5c4291d205d1ac6057bed341717903b9de075d07de44a878e",
+        "expected": "0a1733b9209984c5c4291d205d1ac6057bed341717903b9de075d07de44a878e",
+        "match": true,
+        "path": "thesis_exp/data/splits/paper_like_triple_seed42/train.jsonl"
+      },
+      {
+        "actual": "82eaefd6c711f632a23d61e7591d5c447076e9e351134887b726d7db75a7d241",
+        "expected": "82eaefd6c711f632a23d61e7591d5c447076e9e351134887b726d7db75a7d241",
+        "match": true,
+        "path": "thesis_exp/src/edujudge/exp02/build_exp02_dataset.py"
+      },
+      {
+        "actual": "fccf33d68bdd7ea889032c071422baff6bfd1cf8a4e3e54927638bcf258c9b68",
+        "expected": "fccf33d68bdd7ea889032c071422baff6bfd1cf8a4e3e54927638bcf258c9b68",
+        "match": true,
+        "path": "thesis_exp/src/edujudge/exp02/train_ce_baseline.py"
+      },
+      {
+        "actual": "e19250fbf9b7a2013b61078d29100137ee6cefab76cd8dda01ab6888156f1364",
+        "expected": "e19250fbf9b7a2013b61078d29100137ee6cefab76cd8dda01ab6888156f1364",
+        "match": true,
+        "path": "thesis_exp/src/edujudge/utils/io.py"
+      }
+    ],
+    "source_lock_sha256": "4072b74ca9dce9009ec8226748d53612431f774dd4ae00164d5bc28867f5249a"
+  },
+  "status": "PASS",
+  "test_access_count": 0,
+  "train": {
+    "checks": {
+      "no_invalid_rows": true,
+      "no_test_access": true,
+      "only_zero_down_up_relation_states": true,
+      "three_rater_target_grid": true
+    },
+    "distinct_residual_vectors": 9,
+    "distinct_target_vectors": 13,
+    "hard_label_counts": {
+      "1": 24,
+      "2": 52,
+      "3": 251,
+      "4": 946,
+      "5": 1381
+    },
+    "invalid_rows": [],
+    "mean_minus_hard_label_counts": {
+      "+0.000000": 1169,
+      "+0.333333": 595,
+      "-0.333333": 890
+    },
+    "relation_state_counts": {
+      "down": 890,
+      "up": 595,
+      "zero": 1169
+    },
+    "residual_thirds_counts": {
+      "[-1, 1, 0, 0, 0]": 7,
+      "[0, -1, 1, 0, 0]": 28,
+      "[0, 0, -1, 1, 0]": 208,
+      "[0, 0, 0, -1, 1]": 647,
+      "[0, 0, 0, 0, 0]": 1169,
+      "[0, 0, 0, 1, -1]": 441,
+      "[0, 0, 1, -1, 0]": 138,
+      "[0, 1, -1, 0, 0]": 12,
+      "[1, -1, 0, 0, 0]": 4
+    },
+    "rows": 2654,
+    "split": "train",
+    "target_thirds_counts": {
+      "[0, 0, 0, 0, 3]": 734,
+      "[0, 0, 0, 1, 2]": 647,
+      "[0, 0, 0, 2, 1]": 441,
+      "[0, 0, 0, 3, 0]": 297,
+      "[0, 0, 1, 2, 0]": 208,
+      "[0, 0, 2, 1, 0]": 138,
+      "[0, 0, 3, 0, 0]": 85,
+      "[0, 1, 2, 0, 0]": 28,
+      "[0, 2, 1, 0, 0]": 12,
+      "[0, 3, 0, 0, 0]": 33,
+      "[1, 2, 0, 0, 0]": 7,
+      "[2, 1, 0, 0, 0]": 4,
+      "[3, 0, 0, 0, 0]": 20
+    }
+  }
+}

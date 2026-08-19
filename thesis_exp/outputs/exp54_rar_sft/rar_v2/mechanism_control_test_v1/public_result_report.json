@@ -1,0 +1,237 @@
+{
+  "schema_version": "exp54-mechanism-control-public-result-v1",
+  "status": "MECHANISM_CONTROL_POSTHOC_TEST_PASS",
+  "execution_commit": "f52eec8023fbef33b7505ed0137544bd3c7da705",
+  "scope": {
+    "role": "post_hoc_mechanism_analysis_on_the_existing_frozen_test",
+    "test_rows": 2218,
+    "new_checkpoint_runs": 9,
+    "new_arms": [
+      "R3_TOKENAVG",
+      "P1_FULLSEQ",
+      "P1_SYN_LR5E6"
+    ],
+    "reused_comparator_arms": [
+      "P0_R3_SFT",
+      "P1_FIELD_DPO"
+    ],
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "strict_parse_rate_all_arms": 1.0,
+    "new_completion_receipts": 9,
+    "bootstrap_replicates": 10000,
+    "bootstrap_seed": 20260731,
+    "primary_multiplicity_family": "three contrasts times MAE and L2H_rate",
+    "primary_multiplicity_correction": "Holm"
+  },
+  "test_source": {
+    "git_blob_sha1": "7749c2c0f166186cc840409d64424b5a78e7222a",
+    "sha256": "9bc6ad99dbc3856e292b073f1ce0e883ac980574b5703533f449c34600a5d7af"
+  },
+  "execution": {
+    "new_inference_gpu": "NVIDIA GeForce RTX 3090",
+    "physical_gpu_indices": [
+      4,
+      6,
+      7
+    ],
+    "peak_observed_memory_mib_per_gpu": 23081,
+    "old_comparator_hardware_may_differ": true,
+    "generation_protocol_unchanged": true,
+    "protocol_id": "RAR_SFT_VLLM_COMPACT_JSON_V1",
+    "temperature": 0.0,
+    "max_new_tokens": 256,
+    "max_model_len": 1796,
+    "old_predictions_regenerated": false
+  },
+  "multiseed_summary": {
+    "R3_TOKENAVG": {
+      "MAE": 0.3874361286444244,
+      "Exact": 0.7057409077246769,
+      "Kendall_tau_b": 0.539813521995833,
+      "L2H_rate": 0.6763754045307443,
+      "Label_1_Recall": 0.24404761904761907,
+      "Label_2_Recall": 0.02127659574468085,
+      "forced_completion_rate": 0.239404869251578
+    },
+    "P0_R3_SFT": {
+      "MAE": 0.35692816351067025,
+      "Exact": 0.7218214607754735,
+      "Kendall_tau_b": 0.5853566153016693,
+      "L2H_rate": 0.6310679611650486,
+      "Label_1_Recall": 0.36309523809523814,
+      "Label_2_Recall": 0.0,
+      "forced_completion_rate": 0.15163811241358582
+    },
+    "P1_FULLSEQ": {
+      "MAE": 0.35076645626690706,
+      "Exact": 0.723775172828374,
+      "Kendall_tau_b": 0.5902621714503096,
+      "L2H_rate": 0.5857605177993528,
+      "Label_1_Recall": 0.41071428571428564,
+      "Label_2_Recall": 0.0070921985815602835,
+      "forced_completion_rate": 0.20183348361887585
+    },
+    "P1_SYN_LR5E6": {
+      "MAE": 0.35031559963931463,
+      "Exact": 0.725278028253682,
+      "Kendall_tau_b": 0.5909396905309497,
+      "L2H_rate": 0.5792880258899676,
+      "Label_1_Recall": 0.4166666666666666,
+      "Label_2_Recall": 0.014184397163120567,
+      "forced_completion_rate": 0.13510670273519687
+    },
+    "P1_FIELD_DPO": {
+      "MAE": 0.33243162007814847,
+      "Exact": 0.7285843101893598,
+      "Kendall_tau_b": 0.6116842985812502,
+      "L2H_rate": 0.46925566343042074,
+      "Label_1_Recall": 0.5833333333333334,
+      "Label_2_Recall": 0.014184397163120567,
+      "forced_completion_rate": 0.15900210399759543
+    }
+  },
+  "contrasts": {
+    "C1_BLOCK_BALANCED_SFT": {
+      "baseline": "R3_TOKENAVG",
+      "treatment": "P0_R3_SFT",
+      "classification": "STRONG_SUPPORT",
+      "MAE_benefit": {
+        "point": 0.030507965133754145,
+        "ci95": [
+          0.017583408476104623,
+          0.04343252179140361
+        ],
+        "holm_adjusted_p": 0.0011998800119988001
+      },
+      "L2H_rate_benefit": {
+        "point": 0.0453074433656957,
+        "ci95": [
+          -0.0033670033670033543,
+          0.09090909090909094
+        ],
+        "holm_adjusted_p": 0.0735926407359264
+      },
+      "Exact_benefit": {
+        "point": 0.016080553050796587,
+        "ci95": [
+          0.005560565073639889,
+          0.026600541027953173
+        ],
+        "unadjusted_p": 0.0029997000299970002
+      },
+      "Kendall_tau_b_benefit": {
+        "point": 0.04554309330583628,
+        "ci95": [
+          0.027836828286635137,
+          0.06348096235392746
+        ],
+        "unadjusted_p": 0.00019998000199980003
+      }
+    },
+    "C2_FIELD_LOCAL_DPO": {
+      "baseline": "P1_FULLSEQ",
+      "treatment": "P1_FIELD_DPO",
+      "classification": "STRONG_SUPPORT",
+      "MAE_benefit": {
+        "point": 0.018334836188758585,
+        "ci95": [
+          0.011571986774872365,
+          0.025548542230237392
+        ],
+        "holm_adjusted_p": 0.0011998800119988001
+      },
+      "L2H_rate_benefit": {
+        "point": 0.11650485436893204,
+        "ci95": [
+          0.08580858085808585,
+          0.14960629921259844
+        ],
+        "holm_adjusted_p": 0.0011998800119988001
+      },
+      "Exact_benefit": {
+        "point": 0.00480913736098576,
+        "ci95": [
+          0.0015028554253081472,
+          0.0079688908926962
+        ],
+        "unadjusted_p": 0.0031996800319968005
+      },
+      "Kendall_tau_b_benefit": {
+        "point": 0.021422127130940605,
+        "ci95": [
+          0.014270644168826072,
+          0.02878520243067342
+        ],
+        "unadjusted_p": 0.00019998000199980003
+      }
+    },
+    "C3_ACTUAL_ERROR_NEGATIVES": {
+      "baseline": "P1_SYN_LR5E6",
+      "treatment": "P1_FIELD_DPO",
+      "classification": "STRONG_SUPPORT",
+      "MAE_benefit": {
+        "point": 0.017883979561166163,
+        "ci95": [
+          0.010069131349564164,
+          0.026149684400360695
+        ],
+        "holm_adjusted_p": 0.0011998800119988001
+      },
+      "L2H_rate_benefit": {
+        "point": 0.1100323624595469,
+        "ci95": [
+          0.07878787878787885,
+          0.14478114478114473
+        ],
+        "holm_adjusted_p": 0.0011998800119988001
+      },
+      "Exact_benefit": {
+        "point": 0.003306281935677724,
+        "ci95": [
+          -0.0018034265103696878,
+          0.008415990381725247
+        ],
+        "unadjusted_p": 0.2131786821317868
+      },
+      "Kendall_tau_b_benefit": {
+        "point": 0.020744608050300428,
+        "ci95": [
+          0.011300857229453792,
+          0.03042362392499578
+        ],
+        "unadjusted_p": 0.00019998000199980003
+      }
+    }
+  },
+  "scientific_conclusions": {
+    "block_balanced_sft": "Supported: independently averaging score and rationale fields and then weighting the two task blocks prevents the longer rationale field from dominating the SFT objective. It outperforms global token averaging on MAE, Exact and Kendall; its L2H improvement is directional after primary-family correction.",
+    "field_local_dpo": "Supported: applying preference learning to the intended score field is better than applying ordinary full-sequence DPO to the same preference records.",
+    "actual_error_negatives": "Supported: negatives derived from frozen R3-SFT errors outperform record-matched synthetic score negatives under the frozen comparison.",
+    "overall": "The mechanism controls close the main attribution gap: the gains are associated with block-balanced SFT supervision, field-local preference optimization and actual-error-driven negatives, rather than with generic extra SFT or generic DPO alone."
+  },
+  "limitations": [
+    "This is a post-hoc mechanism analysis on the already frozen test, not a new model-selection round.",
+    "The test must not be rerun or used for tuning, retraining or checkpoint selection.",
+    "Label-2 recall remains very low even for P1_FIELD_DPO, so the lowest-score long tail is not solved.",
+    "Forced completion remains non-zero and differs by arm; no rationale-quality conclusion is made from this evaluation.",
+    "The old comparator predictions were reused, so inference hardware may differ even though prompt, grammar, parser, token budget and greedy decoding are unchanged."
+  ],
+  "artifact_hashes": {
+    "private_final_results_sha256": "e62e3bfe20d0e169021ec1e2be6387550379a0f194111d1d39e88f5b5dcf71f1",
+    "private_multiseed_summary_sha256": "06fc930239600f2d12bfcfcb1ecfb2031e9015758c4294626537af8188e02245",
+    "private_paired_bootstrap_sha256": "dbf26c5dc20d0ec71b43354efca286be832ced97e0f7070116b9bdde2d8add5d",
+    "private_per_seed_metrics_sha256": "77fd86092630a3abf4e216eac9218d7e5532ee0cd01c6df6c70863f3005b26f1"
+  },
+  "boundaries": {
+    "dev_accessed": false,
+    "test_accessed": true,
+    "test_rerun_allowed": false,
+    "test_adaptive_tuning_or_retraining": false,
+    "old_predictions_regenerated": false,
+    "rationale_quality_claim_allowed": false
+  }
+}

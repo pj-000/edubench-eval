@@ -1,0 +1,195 @@
+{
+  "schema_version": "exp54-sorc-dpo-one-time-test-preregistration-v1",
+  "status": "CANDIDATE_NOT_AUTHORIZED",
+  "scientific_question": "Does actual-error-driven field-local preference optimization reduce educational-scoring error and low-score overestimation, does the ordinal-risk offset add independent value, and does adding the rationale block together with its extra token/FLOP budget add a bundled score-side increment?",
+  "arms": {
+    "P0_R3_SFT": {
+      "role": "frozen_R3_SFT_cold_start",
+      "seed_42_adapter_model_sha256": "ff4f1f56fb1b7af47cd5a33c342eaf3465dd8dff24f84f418deb12c4593cbf56",
+      "seed_43_adapter_model_sha256": "2748a828b0852a1c5b3ede2a70c46e97800cd214c112509620b8f7b05017e003",
+      "seed_44_adapter_model_sha256": "fe8d41ae73cebda6c6316b75d93c863a716406737800d3b6d6c90d7fa770eb61"
+    },
+    "P1_FIELD_DPO": {
+      "role": "actual_error_driven_field_local_DPO",
+      "seed_42_adapter_model_sha256": "375b62199d2971685c398e0f19952b52049a70cb885a572108c41b17ccd6e078",
+      "seed_43_adapter_model_sha256": "8ca90fd92b010abcfad761b065f599ba9428b6382ae827e1cb8a241c5fb30208",
+      "seed_44_adapter_model_sha256": "fec43165b83902b253f00dd9d0d1847747bedb18c42b85e73377ac83d038ac02"
+    },
+    "P2_SORC_SCORE": {
+      "role": "P1_plus_ordinal_risk_offset",
+      "seed_42_adapter_model_sha256": "45b5f3cc4c6e41efaa564c5a2753c795ffbd9cf4af7921c8c1ec2b7ab903c925",
+      "seed_43_adapter_model_sha256": "39b537932fe71b7d9ab198f340875cd319483da4b18862ce5c419b2f92ad8d6a",
+      "seed_44_adapter_model_sha256": "7ddce14f4a70f062463064cd89260cbaf34d21ae3c545f484602ee02814a217e"
+    },
+    "P3_JOINT_SORC": {
+      "role": "P2_plus_rationale_alignment_preference",
+      "seed_42_adapter_model_sha256": "414c72c717f733b0065d1fc538fd01744d0143e747ba06bccf844c647acacb58",
+      "seed_43_adapter_model_sha256": "0441c6e9cd78b528cddfdfc113a530412b300764989daa8534e49daa2f127a4f",
+      "seed_44_adapter_model_sha256": "73bdf5d69ae23a667f1ffee0a83d29e7c62b7bcfc99ca4c9545d5db2ddf1d79e"
+    }
+  },
+  "confirmatory_contrasts": [
+    {
+      "id": "H1_FIELD_DPO",
+      "contrast_label": "P1_FIELD_DPO_vs_P0_R3_SFT",
+      "baseline_arm": "P0_R3_SFT",
+      "treatment_arm": "P1_FIELD_DPO",
+      "all_inference_uses_endpoint_specific_benefit_delta": true,
+      "estimand": "incremental value of actual-error-driven field-local score preference"
+    },
+    {
+      "id": "H2_ORDINAL_OFFSET",
+      "contrast_label": "P2_SORC_SCORE_vs_P1_FIELD_DPO",
+      "baseline_arm": "P1_FIELD_DPO",
+      "treatment_arm": "P2_SORC_SCORE",
+      "all_inference_uses_endpoint_specific_benefit_delta": true,
+      "estimand": "independent incremental value of the ordinal-risk offset"
+    },
+    {
+      "id": "H3_RATIONALE_BLOCK",
+      "contrast_label": "P3_JOINT_SORC_vs_P2_SORC_SCORE",
+      "baseline_arm": "P2_SORC_SCORE",
+      "treatment_arm": "P3_JOINT_SORC",
+      "all_inference_uses_endpoint_specific_benefit_delta": true,
+      "estimand": "bundled score-side increment from adding the rationale preference block together with its additional token and FLOP budget",
+      "not_FLOP_matched": true,
+      "pair_counts": {
+        "P2": 838,
+        "P3": 2438
+      },
+      "gradient_accumulation_pairs": {
+        "P2": 32,
+        "P3": 91
+      },
+      "optimizer_steps_both": 27
+    }
+  ],
+  "test_source_binding": {
+    "path": "thesis_exp/data/splits/paper_like_triple_seed42/test.jsonl",
+    "git_index_blob_sha1": "7749c2c0f166186cc840409d64424b5a78e7222a",
+    "last_source_commit": "ee036e7266d46e9957ae2c5602bca3eda6fb076e",
+    "content_read_during_preregistration": false,
+    "execution_requires_clean_blob_materialization": true,
+    "dirty_worktree_copy_forbidden": true
+  },
+  "inference_protocol": {
+    "protocol_id": "RAR_SFT_VLLM_COMPACT_JSON_V1",
+    "base_model": "/home/share/models/modelscope/Qwen/Qwen3-4B-Instruct-2507",
+    "backend": "vllm_0.10.0_with_xgrammar",
+    "xgrammar_source_sha256": "2e2e649417b9570fc3d22e6a7413d0f5b47ace7afe002b21ad4d4efae679bba6",
+    "do_sample": false,
+    "temperature": 0.0,
+    "max_new_tokens": 256,
+    "max_model_len": 1796,
+    "budget_boundary_policy": "truncate_rationale_prefix_and_force_json_close",
+    "structured_output": "single_compact_JSON_object",
+    "score_domain": [1, 2, 3, 4, 5],
+    "rerun_due_to_forced_completion_forbidden": true
+  },
+  "primary_endpoints": [
+    "MAE_against_label_5",
+    "low_to_high_rate_for_gold_label_1_or_2_predicted_as_4_or_5"
+  ],
+  "descriptive_primary_counts": [
+    "low_to_high_count_for_gold_label_1_or_2_predicted_as_4_or_5"
+  ],
+  "guardrails": [
+    "Exact_Match",
+    "Kendall_tau_b",
+    "Signed_Bias",
+    "Label_5_Recall",
+    "high_to_low_rate_for_gold_label_4_or_5_predicted_as_1_or_2",
+    "strict_parse_rate",
+    "forced_completion_count_and_rate"
+  ],
+  "secondary_endpoints": [
+    "Label_1_correct_count_and_recall",
+    "Label_2_correct_count_and_recall",
+    "quadratic_weighted_kappa",
+    "descriptive_high_to_low_count_for_gold_label_4_or_5_predicted_as_1_or_2"
+  ],
+  "statistical_protocol": {
+    "unit": "unique_test_record",
+    "seed_replicates": [42, 43, 44],
+    "point_estimate_algorithm": "compute_each_metric_separately_within_each_seed_then_take_the_unweighted_mean_of_the_three_seed_metrics",
+    "paired_record_cluster_bootstrap_replicates": 10000,
+    "paired_record_cluster_bootstrap_seed": 20260731,
+    "bootstrap_algorithm": "sample_N_unique_record_indices_with_replacement; apply_the_same_sampled_index_vector_to_all_four_arms_and_all_three_seeds; compute_each_metric_per_seed; average_the_three_seed_metrics; then_form_each_component_contrast",
+    "each_sampled_record_carries_all_three_seed_predictions": true,
+    "benefit_sign_convention": {
+      "MAE": "baseline_or_left_MAE_minus_treatment_or_right_MAE",
+      "L2H_rate": "baseline_or_left_L2H_rate_minus_treatment_or_right_L2H_rate",
+      "Exact": "treatment_or_right_Exact_minus_baseline_or_left_Exact",
+      "Kendall_tau_b": "treatment_or_right_Kendall_minus_baseline_or_left_Kendall",
+      "absolute_Signed_Bias": "baseline_or_left_absolute_bias_minus_treatment_or_right_absolute_bias",
+      "Label_5_Recall": "treatment_or_right_recall_minus_baseline_or_left_recall",
+      "H2L_rate": "baseline_or_left_H2L_rate_minus_treatment_or_right_H2L_rate",
+      "QWK": "treatment_or_right_QWK_minus_baseline_or_left_QWK"
+    },
+    "bootstrap_two_sided_p_value": "min(1,2*min((1+count(delta<=0))/(B+1),(1+count(delta>=0))/(B+1)))",
+    "primary_multiplicity": {
+      "family": "six_tests_equal_to_three_component_contrasts_times_two_co_primary_endpoints",
+      "procedure": "Holm_Bonferroni_step_down",
+      "familywise_alpha": 0.05,
+      "selection_after_results_forbidden": true,
+      "unadjusted_percentile_95_intervals_reported_as_descriptive": true
+    },
+    "undefined_replicate_rule": {
+      "L2H_rate": "replicate_undefined_if_no_gold_label_1_or_2_record_is_sampled",
+      "H2L_rate": "replicate_undefined_if_no_gold_label_4_or_5_record_is_sampled",
+      "label_recall": "replicate_undefined_if_no_record_of_that_label_is_sampled",
+      "Kendall_tau_b_or_QWK": "replicate_undefined_if_the_metric_library_returns_non_finite_for_any_seed",
+      "handling": "omit_the_undefined_replicate_for_that_endpoint_only_and_report_valid_and_omitted_counts",
+      "minimum_valid_replicates_for_any_interval_or_p_value": 9500,
+      "below_minimum_valid_replicates": "endpoint_is_unresolved_and_cannot_support_a_claim"
+    },
+    "smallest_effect_size_of_interest": {
+      "MAE": 0.01,
+      "L2H_rate": 0.05,
+      "Exact": 0.01,
+      "Kendall_tau_b": 0.01,
+      "absolute_Signed_Bias": 0.02,
+      "Label_5_Recall": 0.02,
+      "H2L_rate": 0.02,
+      "QWK": 0.01
+    },
+    "strong_component_support": "at_least_one_co_primary_has_positive_benefit_and_Holm_adjusted_p<0.05; the_other_co_primary_does_not_meet_material_harm; no_guardrail_meets_material_harm; no_operational_failure; and_no_forced_completion_diagnostic_harm",
+    "directional_component_support": "not_strong; at_least_one_co_primary_point_estimate_is_positive; the_other_is_greater_than_negative_its_SESOI; no_guardrail_meets_material_harm; no_operational_failure; and_no_forced_completion_diagnostic_harm",
+    "approximately_zero_component": "neither_primary_is_Holm_significant_and_both_primary_absolute_point_estimates_are_strictly_below_their_SESOI",
+    "material_primary_harm": "the_benefit_point_estimate_is_at_or_below_negative_SESOI_and_the_unadjusted_95_percent_interval_is_entirely_below_zero",
+    "material_guardrail_harm": "the_guardrail_benefit_point_estimate_is_at_or_below_negative_SESOI_and_the_unadjusted_95_percent_interval_is_entirely_below_zero",
+    "operational_failure": "any_arm_seed_strict_parse_rate_below_1.0; this_is_reported_as_failure_and_is_not_a_reason_to_change_or_rerun_semantically_valid_outputs",
+    "forced_completion_diagnostic_harm": "treatment_minus_baseline_forced_completion_rate_at_least_0.05_and_its_unadjusted_95_percent_interval_is_entirely_above_zero",
+    "unsupported_component": "not_strong_not_directional_not_approximately_zero_and_not_harmful",
+    "harmful_component": "either_co_primary_meets_material_primary_harm_or_any_guardrail_meets_material_guardrail_harm"
+  },
+  "execution_rules": {
+    "all_12_arm_seed_runs_required": true,
+    "run_order_must_not_depend_on_intermediate_results": true,
+    "no_checkpoint_or_arm_selection_after_test": true,
+    "no_hyperparameter_change_after_test": true,
+    "no_decoder_or_token_budget_change_after_test": true,
+    "no_partial_result_inspection_before_all_12_runs_complete": true,
+    "execution_failure_retry_allowed_only_without_reading_model_outputs": true,
+    "semantic_or_metric_disappointment_is_never_a_retry_reason": true
+  },
+  "interpretation_rules": {
+    "P1_greater_than_P0": "supports field-local actual-error-driven preference optimization",
+    "P2_greater_than_P1": "supports an independent ordinal-risk-offset increment",
+    "P3_greater_than_P2": "supports only the bundled score-side increment of adding the rationale block plus its additional token and FLOP budget; it does not isolate rationale semantics and visible-rationale improvement additionally requires an independent rationale audit",
+    "P3_greater_than_P0_but_P2_approximately_P1": "supports the joint pipeline but not causal attribution to the ordinal offset",
+    "all_preference_arms_approximately_P0": "the dev preference gains did not generalize",
+    "lower_L2H_with_negative_bias_or_high_score_harm": "not a successful risk improvement"
+  },
+  "probability_calibration_metrics": {
+    "included": false,
+    "reason": "the frozen structured-generation protocol does not expose a normalized five-class score distribution; adding a separate probability-extraction protocol after dev would introduce a new unfrozen measurement path"
+  },
+  "rationale_claim": {
+    "P3_dev_blind_audit_result": "near_zero_cross_agent_result",
+    "test_score_results_cannot_override_the_dev_rationale_audit": true,
+    "internal_reasoning_claim_allowed": false
+  },
+  "test_execution_allowed": false,
+  "test_accessed": false
+}

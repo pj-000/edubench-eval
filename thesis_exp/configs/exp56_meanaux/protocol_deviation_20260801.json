@@ -1,0 +1,21 @@
+{
+  "status": "AUTHORIZED_EXECUTION_ORDER_DEVIATION",
+  "experiment": "Exp56 MeanAux",
+  "authorized_at": "2026-08-01",
+  "original_rule": "Run seed 42 first; launch seeds 43 and 44 only if seed 42 passes the frozen development gate.",
+  "authorized_change": "Run seeds 42, 43, and 44 concurrently on separate RTX 3090 GPUs.",
+  "unchanged": [
+    "train/dev-only data access",
+    "source-locked trainer",
+    "model and tokenizer",
+    "input fields",
+    "losses and auxiliary weight",
+    "optimizer and scheduler",
+    "batch size and gradient accumulation",
+    "epoch count",
+    "checkpoint selection rule",
+    "hard-head-only evaluation",
+    "no hyperparameter search"
+  ],
+  "interpretation": "This changes compute scheduling and removes the compute-saving sequential gate. It does not authorize test access or result-dependent tuning. All three development runs must be reported regardless of outcome."
+}

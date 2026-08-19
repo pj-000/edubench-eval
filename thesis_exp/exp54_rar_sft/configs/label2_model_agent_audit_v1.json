@@ -1,0 +1,24 @@
+{
+  "schema_version": "exp54-label2-model-agent-audit-config-v1",
+  "reviewer_type": "independent_codex_subagents_not_humans",
+  "reviewer_model_identity": "runtime_model_not_externally_attested",
+  "human_audit_satisfied": false,
+  "adjudication_performed": false,
+  "allowed_categorical_responses": ["YES", "NO", "UNCERTAIN"],
+  "expected_hashes": {
+    "automated_mechanism_report.json": "6e06d2521c2c84d1cc7f544ebce39b187699ac3451e0bc568fbaad2f7824ea5a",
+    "human_packet_build_report.json": "359dce180f62e6be99a3b55a7792904c7f1b10f72da77495fb7545c6a4ca3185",
+    "reviewer_a_packet.csv": "0eed4eb1923cdd1d8779433705739f8f5a08dd7083ca83e806f7baac0454f479",
+    "reviewer_b_packet.csv": "8f51cb6e0ed9f40fdcbf2cc9de53f85ab466dfc49443b1cf7a97a901dabe78cd",
+    "reviewer_a_completed.csv": "4f5aa841ef1fad3ec0035f0a79a1b1e070cacda529c3d6a44afa0c4677134aa1",
+    "reviewer_b_completed.csv": "1858751cbf9894d7ec83ab39e0436bf7d0a8d8c44519e1f2b5dd829fead0687e",
+    "private_answer_key.jsonl": "f850afa4afbb96ba2e3baa495296821b3236e67dfc81ca6b4daa989dbf67e238"
+  },
+  "execution_boundary": {
+    "training_allowed": false,
+    "gpu_required": false,
+    "test_access_allowed": false,
+    "private_row_content_publish_allowed": false,
+    "new_method_authorized_by_this_audit": false
+  }
+}

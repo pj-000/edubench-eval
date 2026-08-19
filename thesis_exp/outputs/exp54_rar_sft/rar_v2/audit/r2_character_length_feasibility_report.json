@@ -1,0 +1,189 @@
+{
+  "api_used": false,
+  "checks": {
+    "active_donors_unique": true,
+    "active_rows_have_cycle_ids": true,
+    "active_subset_permutation": true,
+    "all_references_covered": true,
+    "inactive_rows_have_no_donor": true,
+    "no_fixed_points": true,
+    "no_same_content_donors": true,
+    "no_same_sample_donors": true,
+    "one_map_row_per_reference": true,
+    "score_metric_language_match": true
+  },
+  "counts": {
+    "active_coverage": 0.9923741738688358,
+    "active_references": 3904,
+    "inactive_references": 30,
+    "max_absolute_length_difference": 181,
+    "max_stratum_references": 232,
+    "mean_absolute_length_difference": 2.6577868852459017,
+    "source_references": 3934,
+    "strata": 95,
+    "strata_with_deactivation": 14
+  },
+  "dev_accessed": false,
+  "formal_training_allowed": false,
+  "inactive_by_stratum": [
+    {
+      "inactive_references": 3,
+      "label_5": 1,
+      "language": "zh",
+      "metric_id": "BFA",
+      "total_references": 3
+    },
+    {
+      "inactive_references": 2,
+      "label_5": 1,
+      "language": "zh",
+      "metric_id": "CRSC",
+      "total_references": 2
+    },
+    {
+      "inactive_references": 2,
+      "label_5": 1,
+      "language": "zh",
+      "metric_id": "MGPF",
+      "total_references": 2
+    },
+    {
+      "inactive_references": 1,
+      "label_5": 2,
+      "language": "zh",
+      "metric_id": "BFA",
+      "total_references": 5
+    },
+    {
+      "inactive_references": 3,
+      "label_5": 2,
+      "language": "en",
+      "metric_id": "CRSC",
+      "total_references": 3
+    },
+    {
+      "inactive_references": 3,
+      "label_5": 2,
+      "language": "zh",
+      "metric_id": "CRSC",
+      "total_references": 3
+    },
+    {
+      "inactive_references": 3,
+      "label_5": 2,
+      "language": "zh",
+      "metric_id": "EICP",
+      "total_references": 3
+    },
+    {
+      "inactive_references": 3,
+      "label_5": 2,
+      "language": "zh",
+      "metric_id": "HOTSD",
+      "total_references": 3
+    },
+    {
+      "inactive_references": 1,
+      "label_5": 2,
+      "language": "zh",
+      "metric_id": "MGPF",
+      "total_references": 5
+    },
+    {
+      "inactive_references": 2,
+      "label_5": 2,
+      "language": "zh",
+      "metric_id": "PALS",
+      "total_references": 2
+    },
+    {
+      "inactive_references": 2,
+      "label_5": 2,
+      "language": "en",
+      "metric_id": "RPR",
+      "total_references": 2
+    },
+    {
+      "inactive_references": 1,
+      "label_5": 3,
+      "language": "zh",
+      "metric_id": "EICP",
+      "total_references": 5
+    },
+    {
+      "inactive_references": 2,
+      "label_5": 3,
+      "language": "zh",
+      "metric_id": "RTC",
+      "total_references": 2
+    },
+    {
+      "inactive_references": 2,
+      "label_5": 4,
+      "language": "en",
+      "metric_id": "BFA",
+      "total_references": 2
+    }
+  ],
+  "length_mode": "character-diagnostic",
+  "model_used": false,
+  "oracle_lock": {
+    "status": "NOT_REQUIRED_FOR_CHARACTER_DIAGNOSTIC"
+  },
+  "r2_r3_manifest_build_allowed": false,
+  "reference_source_sha256": "718d760869b9c573b952a90faf5b5e6b346a034f31b454b5e15bd28ed1856500",
+  "row_coverage_by_label": [
+    {
+      "active_reason_rows": 18,
+      "active_references": 52,
+      "active_row_coverage": 0.8571428571428571,
+      "fully_deactivated_rows": 3,
+      "inactive_references": 7,
+      "label_5": 1,
+      "source_reason_rows": 21
+    },
+    {
+      "active_reason_rows": 34,
+      "active_references": 87,
+      "active_row_coverage": 0.85,
+      "fully_deactivated_rows": 6,
+      "inactive_references": 18,
+      "label_5": 2,
+      "source_reason_rows": 40
+    },
+    {
+      "active_reason_rows": 154,
+      "active_references": 360,
+      "active_row_coverage": 0.9935483870967742,
+      "fully_deactivated_rows": 1,
+      "inactive_references": 3,
+      "label_5": 3,
+      "source_reason_rows": 155
+    },
+    {
+      "active_reason_rows": 588,
+      "active_references": 1355,
+      "active_row_coverage": 0.99830220713073,
+      "fully_deactivated_rows": 1,
+      "inactive_references": 2,
+      "label_5": 4,
+      "source_reason_rows": 589
+    },
+    {
+      "active_reason_rows": 807,
+      "active_references": 2050,
+      "active_row_coverage": 1.0,
+      "fully_deactivated_rows": 0,
+      "inactive_references": 0,
+      "label_5": 5,
+      "source_reason_rows": 807
+    }
+  ],
+  "status": "R2_DONOR_DIAGNOSTIC_ONLY",
+  "test_accessed": false,
+  "tokenizer_lock": {
+    "formal_training_allowed": false,
+    "mode": "character_length_only"
+  },
+  "training_used": false
+}

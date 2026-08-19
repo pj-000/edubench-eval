@@ -1,0 +1,135 @@
+{
+  "component_cluster_bootstrap": {
+    "aggregation": "average paired record errors across seeds, then item-weighted component bootstrap",
+    "ci95_lower": -0.0018334072580435622,
+    "ci95_upper": -0.00022801202972118573,
+    "components": 1057,
+    "mean_delta_nmae": -0.0010206686535073567,
+    "n_resamples": 10000,
+    "records": 1578,
+    "rng_seed": 610061,
+    "seeds": [
+      61,
+      62,
+      63
+    ],
+    "statistic": "aligned_nmae_minus_shuffled_nmae"
+  },
+  "confirmation": {
+    "aligned_minus_quantized_mean_only_nmae_by_seed": {
+      "61": -0.002863820390774416,
+      "62": -0.003180766297999668,
+      "63": -0.0018095826901494694
+    },
+    "aligned_minus_shuffled_mean_spearman": 0.003663622056874353,
+    "aligned_minus_shuffled_nmae_by_seed": {
+      "61": -0.0007672675194168449,
+      "62": -0.00042997335215058663,
+      "63": -0.0018647650889546397
+    },
+    "decision": "NO_GO",
+    "gates": {
+      "aligned_beats_quantized_mean_only_at_least_2_of_3": true,
+      "aligned_beats_shuffled_nmae_all_3_seeds": true,
+      "aligned_minus_quantized_mean_only_mean_nmae_le_minus_0_00125": true,
+      "aligned_minus_shuffled_mean_nmae_le_minus_0_00125": false,
+      "aligned_minus_shuffled_spearman_ge_minus_0_005": true,
+      "component_bootstrap_ci_upper_below_zero": true
+    }
+  },
+  "decision": "NO_GO",
+  "metrics": {
+    "aligned_orthogonal_only": {
+      "61": {
+        "argmax_nmae": 0.09008871989860583,
+        "exact_match": 0.638149556400507,
+        "mae": 0.4192349166112318,
+        "nmae": 0.08384698332224635,
+        "nrmse": 0.11957216506459487,
+        "qwk": 0.9098698149463886,
+        "spearman": 0.9273658665565595
+      },
+      "62": {
+        "argmax_nmae": 0.09363751584283905,
+        "exact_match": 0.6204055766793409,
+        "mae": 0.42705958508619934,
+        "nmae": 0.08541191701723987,
+        "nrmse": 0.12046042614665378,
+        "qwk": 0.9060203786500473,
+        "spearman": 0.9275261389868557
+      },
+      "63": {
+        "argmax_nmae": 0.09323193916349812,
+        "exact_match": 0.6248415716096325,
+        "mae": 0.4225003468894929,
+        "nmae": 0.08450006937789858,
+        "nrmse": 0.11946386375020819,
+        "qwk": 0.909519630145229,
+        "spearman": 0.9278006736876477
+      }
+    },
+    "matched_shuffled_orthogonal_only": {
+      "61": {
+        "argmax_nmae": 0.09178707224334601,
+        "exact_match": 0.6305449936628644,
+        "mae": 0.423071254208316,
+        "nmae": 0.0846142508416632,
+        "nrmse": 0.1204953943617409,
+        "qwk": 0.9087762869145686,
+        "spearman": 0.9246319902595892
+      },
+      "62": {
+        "argmax_nmae": 0.09247148288973385,
+        "exact_match": 0.6286438529784537,
+        "mae": 0.42920945184695225,
+        "nmae": 0.08584189036939045,
+        "nrmse": 0.12094712801301874,
+        "qwk": 0.9079864404805613,
+        "spearman": 0.922303603134572
+      },
+      "63": {
+        "argmax_nmae": 0.09356147021546261,
+        "exact_match": 0.6261089987325729,
+        "mae": 0.4318241723342661,
+        "nmae": 0.08636483446685322,
+        "nrmse": 0.12170403945637845,
+        "qwk": 0.9070300843051097,
+        "spearman": 0.9247662196662786
+      }
+    },
+    "quantized_mean_only": {
+      "61": {
+        "argmax_nmae": 0.0929277566539924,
+        "exact_match": 0.6229404309252218,
+        "mae": 0.43355401856510384,
+        "nmae": 0.08671080371302077,
+        "nrmse": 0.12361707960710497,
+        "qwk": 0.9080647503735017,
+        "spearman": 0.924751948003442
+      },
+      "62": {
+        "argmax_nmae": 0.09315589353612166,
+        "exact_match": 0.6318124207858048,
+        "mae": 0.4429634165761977,
+        "nmae": 0.08859268331523953,
+        "nrmse": 0.12642109832175513,
+        "qwk": 0.9044801068800344,
+        "spearman": 0.9239992512405197
+      },
+      "63": {
+        "argmax_nmae": 0.09122940430925222,
+        "exact_match": 0.6368821292775665,
+        "mae": 0.43154826034024024,
+        "nmae": 0.08630965206804805,
+        "nrmse": 0.12361436134601063,
+        "qwk": 0.9108782005747869,
+        "spearman": 0.9267959740871542
+      }
+    }
+  },
+  "model_manifest_sha256": "7807b8bc764b2d995ce487bbafc97e6ee39a81c29a57ee21db718e1932873bde",
+  "protocol_sha256": "dd0c4b92abf2dc138514f6199e50507572419612936444cc6a0390b7856a5cc1",
+  "source_lock_sha256": "5e1315134339a4692c6ace6140e76406f8dd5f1201b294fb853760dcd408a24f",
+  "status": "EXP61_FROZEN_TEST_CONFIRMATION_COMPLETE",
+  "test_access_count": 1
+}

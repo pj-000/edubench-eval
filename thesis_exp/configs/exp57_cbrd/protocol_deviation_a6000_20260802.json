@@ -1,0 +1,41 @@
+{
+  "status": "AUTHORIZED_PRE_FINAL_RESULT_HARDWARE_COHORT_CHANGE",
+  "authorized_by_user": true,
+  "authorized_at": "2026-08-02T00:20:00+08:00",
+  "reason": "Reduce wall-clock time by using four otherwise idle RTX A6000 GPUs.",
+  "decision_basis": "wall-clock and resource utilization only; no selected checkpoint or final seed-42 result existed when authorized",
+  "scientific_cohort": {
+    "gpu_model": "NVIDIA RTX A6000",
+    "root": "thesis_exp/outputs/exp57_cbrd/runs_a6000",
+    "variants": [
+      "dual_hard",
+      "consensus_only",
+      "routed_hmsa",
+      "residual_only",
+      "sign_flipped",
+      "shuffled_residual"
+    ],
+    "seeds": [42, 43, 44]
+  },
+  "3090_parity_cohort": {
+    "root": "thesis_exp/outputs/exp57_cbrd/runs",
+    "required": [
+      "routed_hmsa seed 42 versus historical ordinary HMSA seed 42",
+      "detached_soft seed 42 versus historical Hard-only seed 42"
+    ],
+    "other_in_flight_3090_runs": "implementation duplicates only; excluded from scientific effect comparisons"
+  },
+  "unchanged": [
+    "model and initialization",
+    "train/dev data and order",
+    "ten epochs",
+    "learning rate, scheduler, warmup and weight decay",
+    "micro-batch size 4 and gradient accumulation 32",
+    "maximum length 2048",
+    "BF16 and gradient checkpointing",
+    "checkpoint selection",
+    "all registered metrics and gates",
+    "test prohibition"
+  ],
+  "test_access_count": 0
+}

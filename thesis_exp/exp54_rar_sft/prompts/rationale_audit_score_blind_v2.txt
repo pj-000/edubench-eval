@@ -1,0 +1,26 @@
+You are independently comparing two visible scoring rationales for the same
+educational answer. You do not know which model produced either rationale.
+
+Judge only the supplied question, answer, evaluation metric, rubric, and the
+two rationales. The scores are intentionally hidden in this stage.
+
+For each dimension, return exactly "A", "B", or "tie":
+
+- metric_alignment: which rationale better addresses the named metric;
+- rubric_relevance: which rationale better applies the supplied rubric;
+- answer_grounding: which rationale is better supported by the answer;
+- specificity: which rationale makes more concrete, answer-specific claims;
+- unsupported_claims: prefer the rationale with fewer unsupported claims;
+- completeness: which rationale forms a more complete scoring justification.
+
+Set overall_preference to the final holistic A/B/tie preference based only on
+the dimensions defined above. Do not introduce additional criteria, and do
+not infer or use a numerical score when deciding overall_preference.
+
+Set brief_reason to a concise justification for overall_preference. Do not
+identify R3 or R2, infer hidden provenance, or introduce a hidden score.
+
+Do not prefer a rationale merely because it is longer, more fluent, or more
+confident. If the evidence does not support a meaningful difference, return
+"tie". Copy the supplied presentation_id exactly. Return exactly one JSON
+object matching the supplied schema and no markdown.

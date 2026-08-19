@@ -1,0 +1,24 @@
+{
+  "status": "EXP51_SOURCE_LOCKED_FOR_SEED42",
+  "source_commit": "193d64e51ddc7c0ffd8bd4c4b5d4468dafa91162",
+  "files": {
+    "thesis_exp/configs/exp51_hmsa/gates.json": "51829102e0daa1931cf6d055816378c66f1e66f0ac6964b0977899b100b353fe",
+    "thesis_exp/configs/exp51_hmsa/hmsa_lambda1.yaml": "83992399cb7295585823b15cf189ef88fb6f6114898e197f7450becfe48c1cf1",
+    "thesis_exp/exp51_hmsa/METHOD.md": "8e2b5d40aaa9dbc0d7a0e097346cb8874baf9f4e290689748fb0b9fc5e744da3",
+    "thesis_exp/exp51_hmsa/README.md": "4da2cde022c60d9fbd2630a56bfdb0404cfed2e4f9ecb13d41f57f4ee58d65a2",
+    "thesis_exp/exp51_hmsa/__init__.py": "773c3e9a4ee4da1351a73d0e1c7aa2800dc5096c2b35c30ecd9014b40037ad49",
+    "thesis_exp/exp51_hmsa/build_targets.py": "23dba66759c3a336a8c612be0a36a7c194735ded9c5c076e5b6927f7cc43a8b1",
+    "thesis_exp/exp51_hmsa/determinism_smoke.py": "10d842f0bb49abecb66537e804715410d1ace1e49f8a698d24cba0cdb4e24447",
+    "thesis_exp/exp51_hmsa/gate.py": "ca1b5a47377e275655a6e110bc6e08f6a2c07b08c15b9170dfc38e6d6461423b",
+    "thesis_exp/exp51_hmsa/model.py": "7e98a241c85b0f5520661594b4e2cf8d377399e48ce2cdafc8e8c1d210111dc0",
+    "thesis_exp/exp51_hmsa/preflight.py": "2b49dc209d61e763871d1339560b3f67a8aa2b53c49d9c85d856c11e4d0b212a",
+    "thesis_exp/exp51_hmsa/train.py": "001c68ed193e82afdccc91ead80cea8a1119ca61478b0435f052132957bd5668",
+    "thesis_exp/scripts/run_exp51_cpu_smoke.sh": "7d65f2d4f4a020f94e3495448e323f93d7ed667dc5f0cc91ef6c8d883cb4d31d",
+    "thesis_exp/scripts/run_exp51_determinism_smoke.sh": "15bc875bb4896a06acedde03d499119f90aab0e72c5a8a2bc32a8146f49d1fbf",
+    "thesis_exp/scripts/run_exp51_gpu_smoke.sh": "7489309ab20dfd779df790b5f392b32f0657aae4f77051cdfdb129ad59b04ad5",
+    "thesis_exp/scripts/run_exp51_preflight.sh": "1f1aa31d63d95ae5d3b09c235b241e3c9d29d5a64a5814fb8d2e7797085c6b9b",
+    "thesis_exp/scripts/run_exp51_seed42.sh": "e8bb0319d4214dc7620f259fd71cb77f7b4f565c14f6dd7ef8f3e6f799e560d9",
+    "thesis_exp/tests/test_exp51_contract.py": "94fbe7e77e7fe111a7bca5c67700fdefa7377a63492ce16cc6070fe985036f99",
+    "thesis_exp/tests/test_exp51_dual_head.py": "af063f307a77fdd26769ce166b9cdd6bcb821d14f4f092de936b09472fdb0073"
+  }
+}

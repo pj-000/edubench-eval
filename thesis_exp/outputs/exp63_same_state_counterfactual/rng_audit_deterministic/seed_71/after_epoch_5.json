@@ -1,0 +1,104 @@
+{
+  "checkpoint": {
+    "format": "EXP63_COMPLETE_STAGE_STATE_V1",
+    "path": "/home/jpang/edubench-eval-exp2/thesis_exp/artifacts/exp63_same_state_counterfactual/seed_71/after_epoch_5.pt",
+    "sha256": "9c6ea2d2316c89b2694baf148c9a0bb6c272da6c5c9ade20995a692d830e7925"
+  },
+  "decision_rule": "All component, candidate and probe hashes must match exactly to retain the original Exp63 formal results without rerunning them.",
+  "determinism_contract": {
+    "cublas_workspace_config": ":4096:8",
+    "cudnn_benchmark": false,
+    "cudnn_deterministic": true,
+    "torch_deterministic_algorithms": true
+  },
+  "diagnostic_differences": {
+    "common_max_abs": 0.0,
+    "projection_coefficient_abs": 0.0,
+    "residual_max_abs": 0.0
+  },
+  "exact_checks": {
+    "candidate_hashes_equal": true,
+    "common_hash_equal": true,
+    "pre_update_probe_hash_equal": true,
+    "projection_coefficient_equal": true,
+    "residual_hash_equal": true,
+    "test_access_count_zero": true,
+    "window_hash_equal": true
+  },
+  "hashes": {
+    "legacy": {
+      "candidates": {
+        "blocked": "f288037a6bc80fcf6822ce9ad2ad6d794addee45b70585e6f81113ebe71d015c",
+        "full_residual": "906b170ca194538b4728b1a8db4133d20723e42383b0d0518c9be3a448cf5ca8",
+        "orthogonal_only": "71e1e98c7cfc125cc023a8b28883dccbc8b7334014b835d58e1efff59da59115",
+        "parallel_only": "73a0261c291f9b860440640838af1f9cb91a12f6f50fd8523c50a3bfff42b557"
+      },
+      "common": "f288037a6bc80fcf6822ce9ad2ad6d794addee45b70585e6f81113ebe71d015c",
+      "pre_update_probe": "3acf5bb6647c1ac5968ce23ab21e0cc7b9a141e56b56fbe8d7763aca56e1166f",
+      "residual": "c208f3b9af0ec570956670eefde9d82260c89dce8dc397e5a7d5d178f57bce45"
+    },
+    "restored_checkpoint_rng": {
+      "candidates": {
+        "blocked": "f288037a6bc80fcf6822ce9ad2ad6d794addee45b70585e6f81113ebe71d015c",
+        "full_residual": "906b170ca194538b4728b1a8db4133d20723e42383b0d0518c9be3a448cf5ca8",
+        "orthogonal_only": "71e1e98c7cfc125cc023a8b28883dccbc8b7334014b835d58e1efff59da59115",
+        "parallel_only": "73a0261c291f9b860440640838af1f9cb91a12f6f50fd8523c50a3bfff42b557"
+      },
+      "common": "f288037a6bc80fcf6822ce9ad2ad6d794addee45b70585e6f81113ebe71d015c",
+      "pre_update_probe": "3acf5bb6647c1ac5968ce23ab21e0cc7b9a141e56b56fbe8d7763aca56e1166f",
+      "residual": "c208f3b9af0ec570956670eefde9d82260c89dce8dc397e5a7d5d178f57bce45"
+    }
+  },
+  "head_contract": {
+    "hard_bias": false,
+    "hard_head_hash": "463bedfbe99a5a571206e9808340a248888d1e2fa833fa3cc8529fc5246cb490",
+    "hard_parameter_count": 5120,
+    "soft_bias": false,
+    "soft_head_hash": "463bedfbe99a5a571206e9808340a248888d1e2fa833fa3cc8529fc5246cb490",
+    "soft_parameter_count": 5120,
+    "storage_independent": true
+  },
+  "legacy_geometry": {
+    "common_backbone_norm": 72.80737145885855,
+    "normalized_orthogonality_error": 1.0233032037186271e-16,
+    "orthogonal_norm": 50.253103020404026,
+    "parallel_norm": 46.64703050904433,
+    "projection_coefficient": -0.6406910395797397,
+    "reconstruction_relative_error": 0.0,
+    "residual_common_cosine": -0.6803213562136532,
+    "residual_norm": 68.56617109399542
+  },
+  "legacy_probe": {
+    "Exact_rounded": 0.6957831325301205,
+    "Kendall_human_mean": 0.5438745873936941,
+    "MAE_human_mean": 0.42118473895582326,
+    "Macro_F1": null,
+    "QWK_rounded": 0.5410627813213302,
+    "eval_hard_ce_loss": 0.8455760260109078
+  },
+  "model_mode": "qwen3_cbrd_dual_head_sequence_classification",
+  "optimizer_steps": 0,
+  "restored_geometry": {
+    "common_backbone_norm": 72.80737145885855,
+    "normalized_orthogonality_error": 1.0233032037186271e-16,
+    "orthogonal_norm": 50.253103020404026,
+    "parallel_norm": 46.64703050904433,
+    "projection_coefficient": -0.6406910395797397,
+    "reconstruction_relative_error": 0.0,
+    "residual_common_cosine": -0.6803213562136532,
+    "residual_norm": 68.56617109399542
+  },
+  "restored_probe": {
+    "Exact_rounded": 0.6957831325301205,
+    "Kendall_human_mean": 0.5438745873936941,
+    "MAE_human_mean": 0.42118473895582326,
+    "Macro_F1": null,
+    "QWK_rounded": 0.5410627813213302,
+    "eval_hard_ce_loss": 0.8455760260109078
+  },
+  "seed": 71,
+  "stage_epoch": 5,
+  "status": "RNG_INVARIANT_EXACT",
+  "test_access_count": 0,
+  "window_sha256": "ceff75b7fcf5d353a832559180dace8ac25ffddd1565a1a7340760437400218c"
+}

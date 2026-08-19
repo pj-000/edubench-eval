@@ -1,0 +1,139 @@
+{
+  "status": "EXP59_RESIDUAL_GEOMETRY_PROTOCOL_FROZEN_BEFORE_REAL_MODEL_RESULTS",
+  "frozen_date": "2026-08-02",
+  "parent_exp57_protocol_sha256": "b1f31978370e1a3269b85d1f154d1d321b309e19120f6a0457c1b6de6d1234d3",
+  "parent_exp57_confirmation_decision_sha256": "fe20ca5ff23aff3280dec3e5e70842e27c07199182c0aa4f3a4b64b0bad47a4c",
+  "parent_exp58_stop_decision_sha256": "36ee49d2d9cceaabe7a0496558550fb63e575ad24f38d720ce2d826c62d5e201",
+  "name": "Residual Geometry Ablation under Standard Global Clipping",
+  "role": "mechanism ablation, not a new deployable architecture or loss",
+  "scientific_question": "Under the original standard global-clipping regime, is the Routed-HMSA increment carried primarily by the residual component parallel to the common backbone gradient or by its orthogonal direction component?",
+  "allowed_splits": ["train", "dev"],
+  "historical_test_access": "forbidden",
+  "test_access_count": 0,
+  "model_name_or_path": "/home/share/models/modelscope/Qwen/Qwen3-Reranker-0.6B",
+  "data_split": "paper_like_triple_seed42",
+  "projection": {
+    "space": "trainable backbone parameter space after each complete 32-microbatch accumulation window and before clipping",
+    "common_backbone": "G_C^B",
+    "residual_backbone": "R^B",
+    "parallel": "R_parallel^B = dot(R^B,G_C^B)/(dot(G_C^B,G_C^B)+zero_guard) * G_C^B",
+    "orthogonal": "R_orthogonal^B = R^B - R_parallel^B",
+    "zero_common_rule": "if dot(G_C^B,G_C^B)=0, set R_parallel=0 and R_orthogonal=R",
+    "head_support": "both residual components are exact zero on hard and soft heads"
+  },
+  "arms": {
+    "reused_endpoints": [
+      "consensus_only: G_C",
+      "routed_hmsa: G_C + R"
+    ],
+    "new": [
+      "parallel_only: G_C + R_parallel",
+      "orthogonal_only: G_C + R_orthogonal"
+    ],
+    "soft_head_rule": "all arms retain the complete empirical soft-CE auxiliary-head update; geometry changes only the auxiliary gradient entering the backbone",
+    "hard_head_rule": "complete hard CE in every arm",
+    "inference": "hard-head raw-logit argmax only"
+  },
+  "standard_clipping": {
+    "rule": "U_X = alpha_X G_X",
+    "alpha_X": "min(1, 1/(norm(G_X)+1e-6))",
+    "max_grad_norm": 1.0,
+    "beta_or_safety_cap": false,
+    "extra_rescaling": false
+  },
+  "fixed_training": {
+    "epochs": 10,
+    "learning_rate": 0.00002,
+    "weight_decay": 0.01,
+    "warmup_ratio": 0.05,
+    "scheduler": "cosine_with_warmup",
+    "micro_batch_size": 4,
+    "eval_batch_size": 4,
+    "gradient_accumulation_steps": 32,
+    "max_grad_norm": 1.0,
+    "max_length": 2048,
+    "precision": "bf16",
+    "gradient_checkpointing": true,
+    "aux_weight": 1.0,
+    "checkpoint_rule": "highest hard-head dev Exact_rounded; ties keep earlier epoch",
+    "hyperparameter_search": false
+  },
+  "new_runs": {
+    "variants": ["parallel_only", "orthogonal_only"],
+    "seeds": [42, 43, 44, 45, 46],
+    "run_count": 10,
+    "reuse_existing_consensus_and_full_routed": true
+  },
+  "endpoint_parity_gate": {
+    "required": true,
+    "checks": [
+      "train/dev text and record hashes",
+      "model and initial-head contract",
+      "optimizer, scheduler, precision, accumulation and clipping configuration",
+      "checkpoint selection rule",
+      "no-update reconstruction of Consensus-only and Full Routed-HMSA gradients"
+    ],
+    "failure_action": "stop Exp59; do not choose post hoc whether to rerun or replace endpoints"
+  },
+  "implementation_gates_before_training": {
+    "fp32_R_reconstruction_relative_error_at_most": 0.000001,
+    "fp32_normalized_orthogonality_error_at_most": 0.000001,
+    "parallel_hard_head_norm_at_most": 1e-12,
+    "parallel_soft_head_norm_at_most": 1e-12,
+    "orthogonal_hard_head_norm_at_most": 1e-12,
+    "orthogonal_soft_head_norm_at_most": 1e-12,
+    "fp32_full_route_reconstruction_relative_error_at_most": 0.0001,
+    "bf16_representation_relative_tolerance": 0.01171875,
+    "cublas_workspace_config": ":4096:8",
+    "test_access_count": 0
+  },
+  "execution_sequence": {
+    "seed42": "run both new arms for implementation safety only; no performance gate",
+    "seeds43_to_46": "mandatory for both arms after seed42 unless an implementation stop condition fires"
+  },
+  "primary_comparison": {
+    "delta": "orthogonal_only minus consensus_only",
+    "all_required": {
+      "favorable_MAE_seeds_at_least": 4,
+      "mean_delta_MAE_at_most": -0.005,
+      "mean_delta_Exact_at_least": -0.003,
+      "mean_delta_Kendall_at_least": -0.005,
+      "five_seed_paired_question_cluster_bootstrap_CI_upper_below": 0.0
+    }
+  },
+  "secondary_comparison": {
+    "delta": "parallel_only minus consensus_only",
+    "report_same_effect_thresholds": true,
+    "cannot_replace_primary": true
+  },
+  "stop_conditions": [
+    "NaN or Inf",
+    "training crash",
+    "residual reconstruction failure",
+    "orthogonality failure",
+    "residual component enters either head",
+    "Full Routed-HMSA reconstruction failure",
+    "post-standard-clipping norm exceeds frozen BF16 tolerance",
+    "source-lock, endpoint-parity, data or configuration hash mismatch",
+    "test_access_count is nonzero"
+  ],
+  "prohibited": [
+    "seed42 performance gate",
+    "projection-definition revision after results",
+    "parallel or orthogonal norm matching",
+    "residual-weight search",
+    "learning-rate, epoch, clipping-threshold or checkpoint-rule search",
+    "switching the primary comparison after results",
+    "revising the Exp57 sign-direction conclusion",
+    "historical test access"
+  ],
+  "frozen_interpretation": {
+    "orthogonal_pass_parallel_fail": "supports a non-collinear residual-direction mechanism",
+    "parallel_pass_orthogonal_fail": "supports common-aligned cancellation or clipping-dynamics mechanism; independent boundary direction is not supported",
+    "both_pass": "both components have independent value and may be complementary",
+    "neither_pass_full_routed_pass": "single components are insufficient; full residual requires interaction",
+    "orthogonal_trend_only": "report trend only",
+    "parallel_beats_full": "possible orthogonal negative transfer; external replication required",
+    "both_degrade": "abandon an independent CBRD mechanism claim"
+  }
+}

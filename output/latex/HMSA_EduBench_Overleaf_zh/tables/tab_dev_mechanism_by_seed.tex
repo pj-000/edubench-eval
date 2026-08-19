@@ -1,0 +1,23 @@
+\begin{table}[H]
+\centering
+\caption{事后开发集机制对照的逐种子结果。轮次表示按相同开发集精确匹配率规则选出的检查点；三个主指标均只读取硬标签主头。}
+\label{tab:dev_mechanism_by_seed}
+\small
+\begin{tabular}{clrrrr}
+\toprule
+种子 & 配置 & 轮次 & MAE $\downarrow$ & 精确匹配率 $\uparrow$ & Kendall $\tau_b$ $\uparrow$ \\
+\midrule
+42 & Hard-only & 8 & 0.386 & 0.718 & 0.577 \\
+ & Shuffled-soft & 5 & 0.388 & 0.723 & 0.587 \\
+ & HMSA & 5 & \textbf{0.377} & \textbf{0.729} & \textbf{0.605} \\
+\addlinespace[2pt]
+43 & Hard-only & 3 & 0.411 & 0.709 & 0.542 \\
+ & Shuffled-soft & 10 & 0.399 & 0.717 & 0.553 \\
+ & HMSA & 10 & \textbf{0.382} & \textbf{0.727} & \textbf{0.593} \\
+\addlinespace[2pt]
+44 & Hard-only & 5 & 0.382 & 0.730 & 0.588 \\
+ & Shuffled-soft & 5 & 0.382 & 0.727 & 0.590 \\
+ & HMSA & 6 & \textbf{0.379} & \textbf{0.736} & \textbf{0.592} \\
+\bottomrule
+\end{tabular}
+\end{table}

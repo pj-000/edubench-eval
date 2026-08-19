@@ -1,0 +1,57 @@
+{
+  "annotation_sha256": "f0d4166e0cdeb439b387c4449634b067b7e9f721b9ef4c2b722f6b7550d3d6ab",
+  "dev_contract_sha256": "c723a4eedd29689edb12841ca8f95788af670bb4bd34295784b6bff132e52603",
+  "formal_training_authorized": true,
+  "model": {
+    "files": {
+      ".mdl": "0fc262c8f7134b08258a44d8461ce89a4159ff0a667649d919c98b6fb88e7197",
+      ".mv": "78e161d91c6716e8abdb42372b421ca919dfa32a10cfc60098fd041c380ce703",
+      "README.md": "e9cf97a55cb476bbf7f1e4a321ae1637834535319002552d91e880deaabc5393",
+      "config.json": "d479c427a9ca5295218063d4f9aca4f297ab4ac27487cca7af42c84643d51ef0",
+      "configuration.json": "f888421726665e8a84b738eed42a64875aed79de8be7daade851ac8bf4c0cef9",
+      "generation_config.json": "81051cd3f6e77013827148d0b8a6ead93f8ac390d5ab805f849199f0af6a08db",
+      "merges.txt": "8831e4f1a044471340f7c0a83d7bd71306a5b867e95fd870f74d0c5308a904d5",
+      "model.safetensors": "27cd75a405b9c1b46b59abfd88aaa209e6fed2a1972cde9b70e7659537c5e65b",
+      "tokenizer.json": "aeb13307a71acd8fe81861d94ad54ab689df773318809eed3cbe794b4492dae4",
+      "tokenizer_config.json": "253153d0738ceb4c668d2eff957714dd2bea0b56de772a9fdccd96cbf517e6a0",
+      "vocab.json": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910"
+    },
+    "manifest_sha256": "7807b8bc764b2d995ce487bbafc97e6ee39a81c29a57ee21db718e1932873bde"
+  },
+  "preflight_sha256": {
+    "62": "770acf59f7393aec16e13062b27dddc6b89997388914d435b4ddf129f1b3219b",
+    "63": "39a8dff7dadf37faad96bf0778fc7e69777884137ae73e84c0e97d0fa25eb48b",
+    "64": "b207d1aa26dfca49bfbb70db1086f97b14762991e52620f31c18a9a10e3f2e9c",
+    "65": "9fb14e3b9a19d9546595c3ccf514d6008da4b6afc7d472ed7f038a0f332b8110",
+    "66": "68e999d4b810db122bb932d83b108723c21989973bc9d372216ffba997d98fd7"
+  },
+  "protocol_sha256": "c45a482d2047a2ed7a60e86a1c5eccd4e47a06204e039cf891e9c8cb76773b70",
+  "source_files": {
+    "thesis_exp/exp57_cbrd/losses.py": "79478bdfd83851f2f077b3b30223e46648a840df6468c9f8edae64f22e307b54",
+    "thesis_exp/exp57_cbrd/method.py": "d112992222bc5166068fbc887e4dbdadb16f437faf24cecf5d50693efb0a5fa7",
+    "thesis_exp/exp57_cbrd/model.py": "cd648c050e23a33773078e662919df7749b8a617476c3aaf082521f19774caaf",
+    "thesis_exp/exp59_residual_geometry/train.py": "f8f5d3d7b59f4021db1d2c12171af62b9580243e567486cbf0bb237490d02960",
+    "thesis_exp/exp62_summeval_routing_confirmation/__init__.py": "e39cc8dc46355ab778621419534274e444ecccf3880a8ec80441f0d05072a242",
+    "thesis_exp/exp62_summeval_routing_confirmation/audit_dataset.py": "c80703f946c59108097378ed5da1336afce8b482a399b5d97c1d3872631d54fa",
+    "thesis_exp/exp62_summeval_routing_confirmation/audit_token_lengths.py": "632c6ce554fe6d5534d035b30e1a0d3faf69b1e7bd3e8075a89569bc6d473135",
+    "thesis_exp/exp62_summeval_routing_confirmation/build_source_lock.py": "afeb904e6a428217c88ee9646f9f363ab1cb194c6b79d005079f61855da1183a",
+    "thesis_exp/exp62_summeval_routing_confirmation/configs/protocol.json": "c45a482d2047a2ed7a60e86a1c5eccd4e47a06204e039cf891e9c8cb76773b70",
+    "thesis_exp/exp62_summeval_routing_confirmation/configs/stage0_protocol.json": "e3e86234fce928e245af0b232520dbc2567054d69243a79c263e7b3b18164bbe",
+    "thesis_exp/exp62_summeval_routing_confirmation/contract.py": "74f8a74efec9fe2fbc592433a42dc797923fc3226a006fe64d36a3a3ece829a2",
+    "thesis_exp/exp62_summeval_routing_confirmation/data.py": "2d858f85c012478b6c723ae8b73ea8d86ec7157c5971e63bec698c192e24be66",
+    "thesis_exp/exp62_summeval_routing_confirmation/geometry.py": "5b20e21ea0c8be8b9bccdd0963f5edda4a974525b50c0c4da8f6b4e21a533cfc",
+    "thesis_exp/exp62_summeval_routing_confirmation/metrics.py": "cc7236fe687e759154c223a97a17b1b78d51ffd33bd0bddfa82bca14e527922e",
+    "thesis_exp/exp62_summeval_routing_confirmation/model.py": "9848efed716a9ff7f2b4e6abd3326d0843da848560c65c3d40cfaee2a8030ec1",
+    "thesis_exp/exp62_summeval_routing_confirmation/preflight.py": "b389f33c68795f1b4723d954f48cbebd1eecc1da6fa7efab842acb274560286d",
+    "thesis_exp/exp62_summeval_routing_confirmation/runtime.py": "32d180e4a73c81e9ceb49f7538289ba6097016e16c8d49abd037eaa57279d1e3",
+    "thesis_exp/exp62_summeval_routing_confirmation/train.py": "d595734bcb32a2d726ba42159f17803592f1f9f162ceda4e202a42e09daa666e",
+    "thesis_exp/outputs/exp62_summeval_routing_confirmation/stage0/split_manifest.jsonl": "b32a6a78242f7959fe3074e9df817a5e6f87bf447a6f84dc326370311b80fff9",
+    "thesis_exp/outputs/exp62_summeval_routing_confirmation/stage0/stage0_audit.json": "980f195ae03566fba490ccd4a0e146e93621d3bac228f053b72e85e5369adb48",
+    "thesis_exp/outputs/exp62_summeval_routing_confirmation/stage0/token_length_audit.json": "a0a45fb69b31b38c97ed560003a62ab8db0baa161fa87526da620ce0023abb66",
+    "thesis_exp/tests/test_exp62_summeval_stage0.py": "d1ddee4ae5c774f0d0396c69ec68009929e75ba181dfabad075f6bdcbed3958b"
+  },
+  "split_manifest_sha256": "b32a6a78242f7959fe3074e9df817a5e6f87bf447a6f84dc326370311b80fff9",
+  "status": "EXP62_SOURCE_AND_MODEL_LOCK_FROZEN",
+  "test_access_count": 0,
+  "train_contract_sha256": "9cf52e485e654037332b624cb49240081e77b5bc1f92e9ff65e72589ddeeb04b"
+}

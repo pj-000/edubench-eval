@@ -1,0 +1,117 @@
+{
+  "all_adapter_hashes_unique": true,
+  "all_learning_rates_equal_5e6": true,
+  "all_runs_complete": true,
+  "all_runs_have_27_optimizer_steps": true,
+  "common_adapter_spec": {
+    "dtypes": [
+      "torch.float32"
+    ],
+    "key_and_shape_sha256": "710fcf38b45871a5532fd197029ac01896f35273b67361cd07d3a7cfbf9a8cbb",
+    "tensor_count": 504,
+    "total_parameters": 33030144
+  },
+  "dev_accessed": false,
+  "run_count": 9,
+  "runs": {
+    "P1_FIELD_DPO/seed_42": {
+      "adapter_model_sha256": "375b62199d2971685c398e0f19952b52049a70cb885a572108c41b17ccd6e078",
+      "elapsed_seconds": 3380.2547857761383,
+      "gradient_trace_finite_positive": true,
+      "learning_rate": 5e-06,
+      "loss_trace_finite": true,
+      "optimizer_steps": 27,
+      "result_sha256": "b2b80d4a859c3840a5b9983caafb57ee4d2a3684f6f66f67d0a97e859367bad7",
+      "status": "PASS"
+    },
+    "P1_FIELD_DPO/seed_43": {
+      "adapter_model_sha256": "8ca90fd92b010abcfad761b065f599ba9428b6382ae827e1cb8a241c5fb30208",
+      "elapsed_seconds": 3370.3052611351013,
+      "gradient_trace_finite_positive": true,
+      "learning_rate": 5e-06,
+      "loss_trace_finite": true,
+      "optimizer_steps": 27,
+      "result_sha256": "110a5b5ba83c120c8cdeb4feaaadc5d77c661e3c4bebd9e5eea7904dfe11162c",
+      "status": "PASS"
+    },
+    "P1_FIELD_DPO/seed_44": {
+      "adapter_model_sha256": "fec43165b83902b253f00dd9d0d1847747bedb18c42b85e73377ac83d038ac02",
+      "elapsed_seconds": 3376.554732322693,
+      "gradient_trace_finite_positive": true,
+      "learning_rate": 5e-06,
+      "loss_trace_finite": true,
+      "optimizer_steps": 27,
+      "result_sha256": "30a5bc5e4675d2fabad9357c24e17592ffc24a82a02f92f180d11ccafe8a865a",
+      "status": "PASS"
+    },
+    "P2_SORC_SCORE/seed_42": {
+      "adapter_model_sha256": "45b5f3cc4c6e41efaa564c5a2753c795ffbd9cf4af7921c8c1ec2b7ab903c925",
+      "elapsed_seconds": 3380.2984747886658,
+      "gradient_trace_finite_positive": true,
+      "learning_rate": 5e-06,
+      "loss_trace_finite": true,
+      "optimizer_steps": 27,
+      "result_sha256": "480fdb70cff799d793cdc98f24a8b4ffcc18f017df40df62be3df5ddfb6c2980",
+      "status": "PASS"
+    },
+    "P2_SORC_SCORE/seed_43": {
+      "adapter_model_sha256": "39b537932fe71b7d9ab198f340875cd319483da4b18862ce5c419b2f92ad8d6a",
+      "elapsed_seconds": 3367.2764179706573,
+      "gradient_trace_finite_positive": true,
+      "learning_rate": 5e-06,
+      "loss_trace_finite": true,
+      "optimizer_steps": 27,
+      "result_sha256": "1c0abc9e93f2548ad17c62f8e071941568ce8de1c8eb7f933b26d10ea31b1fbd",
+      "status": "PASS"
+    },
+    "P2_SORC_SCORE/seed_44": {
+      "adapter_model_sha256": "7ddce14f4a70f062463064cd89260cbaf34d21ae3c545f484602ee02814a217e",
+      "elapsed_seconds": 3376.762053966522,
+      "gradient_trace_finite_positive": true,
+      "learning_rate": 5e-06,
+      "loss_trace_finite": true,
+      "optimizer_steps": 27,
+      "result_sha256": "b5cf5fd5520023fde282bcc60b0314f5d44e87ef3477c35f9df6ca30345a48f0",
+      "status": "PASS"
+    },
+    "P3_JOINT_SORC/seed_42": {
+      "adapter_model_sha256": "414c72c717f733b0065d1fc538fd01744d0143e747ba06bccf844c647acacb58",
+      "elapsed_seconds": 9835.703240156174,
+      "gradient_trace_finite_positive": true,
+      "learning_rate": 5e-06,
+      "loss_trace_finite": true,
+      "optimizer_steps": 27,
+      "result_sha256": "ae526772bffc9efd009608df7860a658ff8969033a3eae19510d604bc96580d8",
+      "status": "PASS"
+    },
+    "P3_JOINT_SORC/seed_43": {
+      "adapter_model_sha256": "0441c6e9cd78b528cddfdfc113a530412b300764989daa8534e49daa2f127a4f",
+      "elapsed_seconds": 9796.914464235306,
+      "gradient_trace_finite_positive": true,
+      "learning_rate": 5e-06,
+      "loss_trace_finite": true,
+      "optimizer_steps": 27,
+      "result_sha256": "b938f9ddc1c278a325da4e99923369e45f38f75494cee5236f550891e4df8ce1",
+      "status": "PASS"
+    },
+    "P3_JOINT_SORC/seed_44": {
+      "adapter_model_sha256": "73bdf5d69ae23a667f1ffee0a83d29e7c62b7bcfc99ca4c9545d5db2ddf1d79e",
+      "elapsed_seconds": 9823.291935682297,
+      "gradient_trace_finite_positive": true,
+      "learning_rate": 5e-06,
+      "loss_trace_finite": true,
+      "optimizer_steps": 27,
+      "result_sha256": "409b0443c91fa590713de60209bbf999100763a0cd139ea39e214d7a066d3cc4",
+      "status": "PASS"
+    }
+  },
+  "schema_version": "exp54-sorc-dpo-lr5e6-training-audit-v1",
+  "source_hashes": {
+    "auditor": "57a33cd8861f2a7ba223de50fdb54ce9a32bb2a7f0dc4a611285bbf6fe85dc9b",
+    "frozen_training_lock": "e977babaefa956c40620a1b38024d7222b9ac8433db8fecd6faf709dc65c2f98",
+    "multiseed_overlay": "8aa59e9b9264129fd26ee5c717bb51830d525686a1cb3e54bf30543710de0a90",
+    "training_config": "a579a7bff836e03069fc69d43c7850617166102d9dc164d520d2183e5aab515d"
+  },
+  "status": "SORC_DPO_LR5E6_TRAINING_AUDIT_PASS",
+  "test_accessed": false
+}

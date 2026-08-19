@@ -1,0 +1,10 @@
+{
+  "expected_files": {
+    "tokenizer.json": "aeb13307a71acd8fe81861d94ad54ab689df773318809eed3cbe794b4492dae4"
+  },
+  "model_id": "Qwen/Qwen3-4B-Instruct-2507",
+  "official_source": "https://huggingface.co/Qwen/Qwen3-4B-Instruct-2507",
+  "status": "QWEN_TOKENIZER_LOCK_SPEC_READY_SERVER_VERIFICATION_REQUIRED",
+  "training_server_candidate_path": "/home/share/models/modelscope/Qwen/Qwen3-4B-Instruct-2507",
+  "upstream_revision": "cdbee75f17c01a7cc42f958dc650907174af0554"
+}

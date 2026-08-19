@@ -1,0 +1,46 @@
+{
+  "aggregate": {
+    "P1_FIELD_DPO": {
+      "deterministic_selection_mismatches": 0,
+      "pairs_verified": 32,
+      "public_budget_mismatches": 0
+    },
+    "P1_SYN_SEED42": {
+      "deterministic_selection_mismatches": 0,
+      "pairs_verified": 32,
+      "public_budget_mismatches": 0
+    },
+    "P2_SORC_SCORE": {
+      "deterministic_selection_mismatches": 0,
+      "pairs_verified": 32,
+      "public_budget_mismatches": 0
+    },
+    "P3_JOINT_SORC": {
+      "deterministic_selection_mismatches": 0,
+      "pairs_verified": 91,
+      "public_budget_mismatches": 0
+    }
+  },
+  "auditor_source_sha256": "f6a2bca2b9266d04b1d79197df83b04031004bcff45d6f46f7c1ed79b520f473",
+  "correctness_smoke_physical_micro_batch_pairs": 1,
+  "dev_accessed": false,
+  "evaluator_called": false,
+  "formal_preference_training_allowed": false,
+  "gpu_smoke_allowed": false,
+  "private_subset_hash_vector_sha256": "a3209bab9a9891b669221fa7bf01bcfd1063d4591489ba5e68cde162672d3cea",
+  "runner_authorization_precedes_execution": true,
+  "runner_binds_checkpoint_base_frozen_and_implementation_locks": true,
+  "runner_has_no_top_level_gpu_or_model_import": true,
+  "runner_rejects_checkpoint_lock_cli_override": true,
+  "runner_requires_authorized_idle_a6000": true,
+  "runner_requires_exact_p3_qualification_contract": true,
+  "runner_source_identity_checks_precede_torch_import": true,
+  "runner_source_sha256": "00dfb8aa1aed9a47e6e531f7899db231f7cd9fa5e59175254509576ab3d2c98c",
+  "schema_version": "exp54-sorc-dpo-smoke-package-audit-v1",
+  "selection_independently_rederived": true,
+  "smoke_package_lock_sha256": "c8ccfe88eee29f0c8b1b7906531dc0f38d84254f6142f529bf8c628d5bbb0e94",
+  "smoke_package_report_sha256": "6286b997f8b49ef1154d2ec907d9bb9ce72211b4e6a700517d867170d133930c",
+  "status": "SORC_DPO_SMOKE_PACKAGE_CANDIDATE_AUDIT_PASS",
+  "test_accessed": false,
+  "training_used": false
+}

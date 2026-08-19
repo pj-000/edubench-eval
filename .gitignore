@@ -3,6 +3,15 @@
 # Exp2 checkpoints and model-weight artifacts must never be committed.
 saves/
 thesis_exp/artifacts/
+thesis_exp/outputs/exp54_rar_sft/rar_v2/private_dev_execution_evidence/
+thesis_exp/outputs/exp54_rar_sft/rar_v2/inference_v2_train_smoke/
+thesis_exp/outputs/exp54_rar_sft/rar_v2/inference_v2_train_smoke.log
+thesis_exp/outputs/exp54_rar_sft/rar_v2/inference_v2_budget_probe.log
+thesis_exp/outputs/exp54_rar_sft/rar_v2/inference_v2_determinism_probe.log
+thesis_exp/outputs/exp54_rar_sft/rar_v2/private_inference_v2_superseded/
+thesis_exp/outputs/exp54_rar_sft/rar_v2/rationale_blind_audit/private/
+thesis_exp/outputs/exp54_rar_sft/rar_v2/rationale_blind_audit/raw_api/
+thesis_exp/outputs/exp54_rar_sft/rar_v2/actual_failure_bank/private/
 **/checkpoints/
 **/*.safetensors
 **/*.bin
@@ -347,3 +356,13 @@ thesis_exp/exp45_dopr_head/outputs/**/private/
 thesis_exp/exp45_dopr_head/outputs/**/logs_private/
 thesis_exp/runs/exp45_dopr_head/
 thesis_exp/artifacts/exp45_dopr_head/
+
+# Exp54 preference text/token manifests and qualification rows remain private.
+# Only aggregate reports, hashes, protocols, and source code are publishable.
+thesis_exp/outputs/exp54_rar_sft/rar_v2/preference_pairs/private/
+thesis_exp/outputs/exp54_rar_sft/rar_v2/preference_pairs/rationale_qualification/private/
+thesis_exp/outputs/exp54_rar_sft/rar_v2/preference_pairs/rationale_qualification/raw_api/
+thesis_exp/outputs/exp54_rar_sft/rar_v2/preference_training_candidate/private/
+thesis_exp/outputs/exp54_rar_sft/rar_v2/preference_smoke/private/
+thesis_exp/outputs/exp54_rar_sft/rar_v2/preference_smoke/runs/
+thesis_exp/outputs/exp54_rar_sft/rar_v2/preference_smoke/gpu_smoke_execution_authorization.json

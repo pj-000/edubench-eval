@@ -1,0 +1,31 @@
+{
+  "schema_version": "exp54-rubric-registry-v1",
+  "status": "EXP54_CANONICAL_RUBRIC_REGISTRY_V1",
+  "level_order": [5, 4, 3, 2, 1],
+  "entries": {
+    "BFA|en": {"metric_id": "BFA", "language": "en", "rendered_rubric_sha256": "e1ef4f1f5b45626fd38c2d7ffe6eace003131a75de45355a108a2d5c194b2c1a"},
+    "BFA|zh": {"metric_id": "BFA", "language": "zh", "rendered_rubric_sha256": "63d320036082345a0c7b055db05d187802cb229e6071fc5ff2c9063dcd992d39"},
+    "CRSC|en": {"metric_id": "CRSC", "language": "en", "rendered_rubric_sha256": "505d7413b6e05442d909fc37f772e85ddc50e4e3b006d3e0343a4b1347f01e77"},
+    "CRSC|zh": {"metric_id": "CRSC", "language": "zh", "rendered_rubric_sha256": "72ef3e2ce47b1515e6e6243ce21cde0cff9d42ded4fd8119ef1c1d9ebc83424b"},
+    "CSI|en": {"metric_id": "CSI", "language": "en", "rendered_rubric_sha256": "85dcfb556c3c05249c48ea5558414b53595e955febe6510bed45e4c74b8b94c4"},
+    "CSI|zh": {"metric_id": "CSI", "language": "zh", "rendered_rubric_sha256": "832d7e7b51b3505e1b73be8f71b31d95a1470267690bac463717d1ddfa5b63a1"},
+    "DKA|en": {"metric_id": "DKA", "language": "en", "rendered_rubric_sha256": "1f6e3cc8d44b51e504775673f37c2625039f74731988c3156577a126f72b455c"},
+    "DKA|zh": {"metric_id": "DKA", "language": "zh", "rendered_rubric_sha256": "9cf64b9f0e22e62e00b90ca9983af1337caa86e407b2c60bbeb1672f58cbb918"},
+    "EICP|en": {"metric_id": "EICP", "language": "en", "rendered_rubric_sha256": "8142980c1b49d76635f3b12300b51fb5030defca53773b500c8b901a0301e9af"},
+    "EICP|zh": {"metric_id": "EICP", "language": "zh", "rendered_rubric_sha256": "763bc1d57429fca9413e644c0123e021b017f8f33c4242c0cbb5a5b2f7ea784d"},
+    "HOTSD|en": {"metric_id": "HOTSD", "language": "en", "rendered_rubric_sha256": "922cc01cb0ee83e76e44d673d5dc6a1f7abce9efbb37edb24878297cba92dfb0"},
+    "HOTSD|zh": {"metric_id": "HOTSD", "language": "zh", "rendered_rubric_sha256": "869175292f2ed2cb43f41997d230ac73b3836b73b671ad81ef2fbd870381efb8"},
+    "IFTC|en": {"metric_id": "IFTC", "language": "en", "rendered_rubric_sha256": "3924d964c27954ab714558c84abcce3a6dc2f12e26d957d241415f196d0ffc49"},
+    "IFTC|zh": {"metric_id": "IFTC", "language": "zh", "rendered_rubric_sha256": "7187785a8979639351be64401e34ee8526c0c08d0a089cd933763dbc195ba82a"},
+    "MGPF|en": {"metric_id": "MGPF", "language": "en", "rendered_rubric_sha256": "7d5b032dee4727a14eae5bd520e70a8a095660fed81853d7e7164fc214fd3f17"},
+    "MGPF|zh": {"metric_id": "MGPF", "language": "zh", "rendered_rubric_sha256": "9f8245809c57a16c43c8dcd8021183ccd2aa5d298817c445d18c980d6c8d6d85"},
+    "PALS|en": {"metric_id": "PALS", "language": "en", "rendered_rubric_sha256": "7c785167f0ad7ebdc98dabd8afcfccc07175813543a8b1e8622b9c61b42b3e6b"},
+    "PALS|zh": {"metric_id": "PALS", "language": "zh", "rendered_rubric_sha256": "a4071d23d046954a5f44751ebdc30c3ec76526dc37bddf5735a96353e784936d"},
+    "RPR|en": {"metric_id": "RPR", "language": "en", "rendered_rubric_sha256": "952e1a21b506f4405cd393a439a0e5db5986a58542887686b0ce4107f0787f66"},
+    "RPR|zh": {"metric_id": "RPR", "language": "zh", "rendered_rubric_sha256": "eea9316eeb6a9cce341b484b8f0df1e779142a1ec3febccb81be50db3bc674ea"},
+    "RTC|en": {"metric_id": "RTC", "language": "en", "rendered_rubric_sha256": "d553b0fae177c2a5ede43c31d0d7fd43e61257ef3a8c91a5b8dc672dd4794e70"},
+    "RTC|zh": {"metric_id": "RTC", "language": "zh", "rendered_rubric_sha256": "c8631bc7284a5482d2c257948e29dca87721d772cbd0c41759d562f4e6d99b3d"},
+    "SEI|en": {"metric_id": "SEI", "language": "en", "rendered_rubric_sha256": "99cf56b1007200c26ace70286ac3ff7fa8a3c6f2ff047b23a533d9d24a339ea8"},
+    "SEI|zh": {"metric_id": "SEI", "language": "zh", "rendered_rubric_sha256": "5a3b9ba9ef9ac444796ef50e9b4247a48f476b5f942e7b11d4a1cc7f75387ef2"}
+  }
+}

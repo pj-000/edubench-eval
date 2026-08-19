@@ -1,0 +1,2 @@
+seed,b0_selected_epoch,exp51_selected_epoch,b0_exact_correct,exp51_exact_correct,mae_improvement,delta_exact,delta_kendall,b0_label4_correct,exp51_label4_correct,b0_label5_correct,exp51_label5_correct,b0_l2h_count,exp51_l2h_count,b0_bias,exp51_bias
+42,8,5,477,484,0.00953815261044183,0.010542168674698704,0.027957890429971988,164,167,289,293,11,7,0.11395582329317268,0.09437751004016062

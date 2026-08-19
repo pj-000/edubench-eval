@@ -1,0 +1,264 @@
+{
+  "aggregate": {
+    "by_gold_label": {
+      "1": {
+        "adjacent_overestimate": 1,
+        "adjacent_underestimate": 0,
+        "correct": 29,
+        "invalid_output": 0,
+        "other_overestimate": 3,
+        "other_underestimate": 0,
+        "severe_high_to_low": 0,
+        "severe_low_to_high": 39
+      },
+      "2": {
+        "adjacent_overestimate": 50,
+        "adjacent_underestimate": 3,
+        "correct": 10,
+        "invalid_output": 0,
+        "other_overestimate": 0,
+        "other_underestimate": 0,
+        "severe_high_to_low": 0,
+        "severe_low_to_high": 93
+      },
+      "3": {
+        "adjacent_overestimate": 489,
+        "adjacent_underestimate": 3,
+        "correct": 182,
+        "invalid_output": 0,
+        "other_overestimate": 77,
+        "other_underestimate": 2,
+        "severe_high_to_low": 0,
+        "severe_low_to_high": 0
+      },
+      "4": {
+        "adjacent_overestimate": 590,
+        "adjacent_underestimate": 81,
+        "correct": 2162,
+        "invalid_output": 0,
+        "other_overestimate": 0,
+        "other_underestimate": 0,
+        "severe_high_to_low": 5,
+        "severe_low_to_high": 0
+      },
+      "5": {
+        "adjacent_overestimate": 0,
+        "adjacent_underestimate": 538,
+        "correct": 3598,
+        "invalid_output": 0,
+        "other_overestimate": 0,
+        "other_underestimate": 4,
+        "severe_high_to_low": 3,
+        "severe_low_to_high": 0
+      }
+    },
+    "by_language": {
+      "en": {
+        "adjacent_overestimate": 529,
+        "adjacent_underestimate": 270,
+        "correct": 3063,
+        "invalid_output": 0,
+        "other_overestimate": 61,
+        "other_underestimate": 1,
+        "severe_high_to_low": 0,
+        "severe_low_to_high": 99
+      },
+      "zh": {
+        "adjacent_overestimate": 601,
+        "adjacent_underestimate": 355,
+        "correct": 2918,
+        "invalid_output": 0,
+        "other_overestimate": 19,
+        "other_underestimate": 5,
+        "severe_high_to_low": 8,
+        "severe_low_to_high": 33
+      }
+    },
+    "by_metric": {
+      "BFA": {
+        "adjacent_overestimate": 78,
+        "adjacent_underestimate": 5,
+        "correct": 864,
+        "invalid_output": 0,
+        "other_overestimate": 11,
+        "other_underestimate": 0,
+        "severe_high_to_low": 1,
+        "severe_low_to_high": 7
+      },
+      "CRSC": {
+        "adjacent_overestimate": 94,
+        "adjacent_underestimate": 37,
+        "correct": 793,
+        "invalid_output": 0,
+        "other_overestimate": 6,
+        "other_underestimate": 0,
+        "severe_high_to_low": 2,
+        "severe_low_to_high": 4
+      },
+      "CSI": {
+        "adjacent_overestimate": 67,
+        "adjacent_underestimate": 67,
+        "correct": 413,
+        "invalid_output": 0,
+        "other_overestimate": 5,
+        "other_underestimate": 0,
+        "severe_high_to_low": 0,
+        "severe_low_to_high": 9
+      },
+      "DKA": {
+        "adjacent_overestimate": 38,
+        "adjacent_underestimate": 81,
+        "correct": 292,
+        "invalid_output": 0,
+        "other_overestimate": 0,
+        "other_underestimate": 0,
+        "severe_high_to_low": 0,
+        "severe_low_to_high": 0
+      },
+      "EICP": {
+        "adjacent_overestimate": 55,
+        "adjacent_underestimate": 7,
+        "correct": 295,
+        "invalid_output": 0,
+        "other_overestimate": 20,
+        "other_underestimate": 0,
+        "severe_high_to_low": 0,
+        "severe_low_to_high": 25
+      },
+      "HOTSD": {
+        "adjacent_overestimate": 104,
+        "adjacent_underestimate": 101,
+        "correct": 321,
+        "invalid_output": 0,
+        "other_overestimate": 4,
+        "other_underestimate": 4,
+        "severe_high_to_low": 0,
+        "severe_low_to_high": 0
+      },
+      "IFTC": {
+        "adjacent_overestimate": 217,
+        "adjacent_underestimate": 122,
+        "correct": 1087,
+        "invalid_output": 0,
+        "other_overestimate": 19,
+        "other_underestimate": 2,
+        "severe_high_to_low": 2,
+        "severe_low_to_high": 21
+      },
+      "MGPF": {
+        "adjacent_overestimate": 86,
+        "adjacent_underestimate": 56,
+        "correct": 383,
+        "invalid_output": 0,
+        "other_overestimate": 7,
+        "other_underestimate": 0,
+        "severe_high_to_low": 0,
+        "severe_low_to_high": 26
+      },
+      "PALS": {
+        "adjacent_overestimate": 101,
+        "adjacent_underestimate": 32,
+        "correct": 354,
+        "invalid_output": 0,
+        "other_overestimate": 2,
+        "other_underestimate": 0,
+        "severe_high_to_low": 0,
+        "severe_low_to_high": 0
+      },
+      "RPR": {
+        "adjacent_overestimate": 120,
+        "adjacent_underestimate": 48,
+        "correct": 383,
+        "invalid_output": 0,
+        "other_overestimate": 6,
+        "other_underestimate": 0,
+        "severe_high_to_low": 3,
+        "severe_low_to_high": 25
+      },
+      "RTC": {
+        "adjacent_overestimate": 19,
+        "adjacent_underestimate": 31,
+        "correct": 247,
+        "invalid_output": 0,
+        "other_overestimate": 0,
+        "other_underestimate": 0,
+        "severe_high_to_low": 0,
+        "severe_low_to_high": 0
+      },
+      "SEI": {
+        "adjacent_overestimate": 151,
+        "adjacent_underestimate": 38,
+        "correct": 549,
+        "invalid_output": 0,
+        "other_overestimate": 0,
+        "other_underestimate": 0,
+        "severe_high_to_low": 0,
+        "severe_low_to_high": 15
+      }
+    },
+    "by_seed": {
+      "42": {
+        "adjacent_overestimate": 365,
+        "adjacent_underestimate": 216,
+        "correct": 1998,
+        "invalid_output": 0,
+        "other_overestimate": 29,
+        "other_underestimate": 3,
+        "severe_high_to_low": 3,
+        "severe_low_to_high": 40
+      },
+      "43": {
+        "adjacent_overestimate": 372,
+        "adjacent_underestimate": 203,
+        "correct": 2005,
+        "invalid_output": 0,
+        "other_overestimate": 27,
+        "other_underestimate": 1,
+        "severe_high_to_low": 3,
+        "severe_low_to_high": 43
+      },
+      "44": {
+        "adjacent_overestimate": 393,
+        "adjacent_underestimate": 206,
+        "correct": 1978,
+        "invalid_output": 0,
+        "other_overestimate": 24,
+        "other_underestimate": 2,
+        "severe_high_to_low": 2,
+        "severe_low_to_high": 49
+      }
+    },
+    "empty_rationale_count": 0,
+    "error_class_counts": {
+      "adjacent_overestimate": 1130,
+      "adjacent_underestimate": 625,
+      "correct": 5981,
+      "invalid_output": 0,
+      "other_overestimate": 80,
+      "other_underestimate": 6,
+      "severe_high_to_low": 8,
+      "severe_low_to_high": 132
+    },
+    "explicit_score_leakage_count": 894,
+    "forced_completion_count": 3613,
+    "records_with_actual_severe_h2l": 7,
+    "records_with_actual_severe_l2h": 53,
+    "records_with_any_correct_generation": 2093,
+    "rows": 7962,
+    "unique_record_seed_keys": 7962
+  },
+  "combined_private_sha256": "d5d452017d8f6bb8b19e89c278a3e714c488d2211e266cde4e72dd5cf1c26757",
+  "dev_accessed": false,
+  "preference_pair_construction_started": false,
+  "schema_sha256": "3d719fbeb4e2305b63c329e4409f1dcf3acf07c067e2f7e5cdfc79950a6f8745",
+  "schema_version": "exp54-actual-failure-bank-report-v1",
+  "scientific_role": "Train-only diagnostic inventory; no preference pair has been selected or materialized.",
+  "source_hashes": {
+    "42": "faa5540864609b781f2ba79d139d83de3d1307de6355806dc9ce0b753ce129ce",
+    "43": "cbab6b3bdab28b32c57758bb45a8ac077ebc7322a1a97accef229b730e4743e5",
+    "44": "2353c0cb7054bd2982de17e046f30658327ad9eb62958a15f59f84f027e77dca"
+  },
+  "status": "ACTUAL_FAILURE_BANK_GREEDY_INVENTORY_COMPLETE",
+  "stochastic_rollout_started": false,
+  "test_accessed": false
+}

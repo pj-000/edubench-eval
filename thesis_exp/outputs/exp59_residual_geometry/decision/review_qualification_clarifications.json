@@ -1,0 +1,18 @@
+{
+  "status": "EXP59_REVIEW_QUALIFICATIONS_ACCEPTED",
+  "date": "2026-08-03",
+  "accumulation_window_clarification": "Projection is performed after every optimizer accumulation window. In each epoch, 20 windows contain 32 microbatches and the final fixed partial window contains 24 microbatches; the inherited loss scale remains 1/32 for that partial window.",
+  "statistical_status": "Preregistered internal development-set confirmation, not an independent sealed confirmation.",
+  "bootstrap_estimand": "Item-weighted mean absolute-error difference with question-cluster resampling, conditional on the five trained seeds.",
+  "analysis_registration_boundary": "The primary comparison, effect thresholds, non-inferiority thresholds, seeds and cluster-CI decision rule were frozen before results. The exact analysis implementation, 10000 repetitions and RNG seed 57 were implemented after results and must not be described as fully preregistered code.",
+  "mechanism_claim": "A stable non-collinear raw-gradient contribution under the frozen standard-clipping and AdamW setting.",
+  "prohibited_claims": [
+    "pure orthogonal causal effect",
+    "unchanged clipped common-gradient magnitude",
+    "function-space or decision-boundary orthogonality",
+    "exclusion of all clipping or AdamW interactions",
+    "cross-model or cross-dataset generalization"
+  ],
+  "next_confirmatory_design": "External multi-rater ordinal data with Reference-only, Aligned Orthogonal-only and fixed Shuffled Orthogonal-only over three frozen seeds.",
+  "test_access_count": 0
+}

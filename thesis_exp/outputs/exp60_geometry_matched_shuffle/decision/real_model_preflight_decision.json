@@ -1,0 +1,107 @@
+{
+  "checks": {
+    "all_reports_have_stable_gpu_uuid": true,
+    "all_runs_started_from_clean_tracked_git": true,
+    "all_six_windows_present": true,
+    "all_three_seed_reports_pass": true,
+    "all_treatment_values_finite": true,
+    "each_seed_has_nondegenerate_and_separated_treatment": true,
+    "git_commit_identical": true,
+    "mapping_sha_identical": true,
+    "mig_is_not_used": true,
+    "model_file_manifest_identical": true,
+    "no_optimizer_steps": true,
+    "no_test_access": true,
+    "preflight_gpu_schedule_matches_protocol": true,
+    "preflight_gpu_slots_cover_0_1_2": true,
+    "preflight_source_lock_identical_and_current": true,
+    "three_distinct_cuda_visible_devices": true,
+    "three_distinct_physical_gpu_identities": true,
+    "three_distinct_stable_gpu_uuids": true
+  },
+  "mapping_sha256": "dc9d3fbce24af01fee58e896f83ed35f3ccd516fcf30f35ed43a3cfd4c2fa7fb",
+  "model_input_manifest_sha256": "7807b8bc764b2d995ce487bbafc97e6ee39a81c29a57ee21db718e1932873bde",
+  "next_action": "independent review, then one protocol-status freeze and formal source lock",
+  "per_seed_treatment_separation": {
+    "47": true,
+    "48": true,
+    "49": true
+  },
+  "preflight_contract_binding": {
+    "normalized_scientific_protocol_sha256": "2efa551e3d2ea8e9e0be94c0c800696add1d569698d970d9967f5102af5391c5",
+    "preflight_source_lock_sha256": "b8f526856fa1de35ff89aa64863518a57607bd81982d6ea8dde402b74376cf76"
+  },
+  "preflight_git_commit": "8f1eda43f21ceba42ca1da5195f11b257cf2b3a1",
+  "preflight_gpu_bindings": {
+    "gpu_slot_0": {
+      "cuda_visible_devices": "4",
+      "identity": "GPU-8fb2e60cd81f8454188aa0c3bf2b6c17",
+      "mig_mode": "[N/A]",
+      "name": "NVIDIA GeForce RTX 3090",
+      "nvidia_smi_uuid": "GPU-8fb2e60c-d81f-8454-188a-a0c3bf2b6c17",
+      "pci_bus_id": "00000000:81:00.0",
+      "stable_gpu_uuid": "GPU-8fb2e60cd81f8454188aa0c3bf2b6c17",
+      "torch_uuid": null,
+      "total_memory_bytes": 25438126080
+    },
+    "gpu_slot_1": {
+      "cuda_visible_devices": "6",
+      "identity": "GPU-0451f36a5026994f19c5e95d5b1c47c9",
+      "mig_mode": "[N/A]",
+      "name": "NVIDIA GeForce RTX 3090",
+      "nvidia_smi_uuid": "GPU-0451f36a-5026-994f-19c5-e95d5b1c47c9",
+      "pci_bus_id": "00000000:C1:00.0",
+      "stable_gpu_uuid": "GPU-0451f36a5026994f19c5e95d5b1c47c9",
+      "torch_uuid": null,
+      "total_memory_bytes": 25438126080
+    },
+    "gpu_slot_2": {
+      "cuda_visible_devices": "7",
+      "identity": "GPU-c40e42b63b9fbd93a949540694e870c6",
+      "mig_mode": "[N/A]",
+      "name": "NVIDIA GeForce RTX 3090",
+      "nvidia_smi_uuid": "GPU-c40e42b6-3b9f-bd93-a949-540694e870c6",
+      "pci_bus_id": "00000000:E1:00.0",
+      "stable_gpu_uuid": "GPU-c40e42b63b9fbd93a949540694e870c6",
+      "torch_uuid": null,
+      "total_memory_bytes": 25438126080
+    }
+  },
+  "protocol_status_at_preflight": "EXP60_DRAFT_FOR_INDEPENDENT_REVIEW_NOT_AUTHORIZED_FOR_TRAINING",
+  "seeds": [
+    47,
+    48,
+    49
+  ],
+  "status": "EXP60_REAL_MODEL_PREFLIGHT_ALL_SEEDS_PASS",
+  "storage_component_activity_ratios": [
+    0.024045476457845348,
+    0.03919151948098105,
+    0.021457839544736554,
+    0.022929695743362875,
+    0.02245411564937752,
+    0.02635934703829665
+  ],
+  "storage_component_cosines": [
+    0.10033781378899428,
+    0.717242498977179,
+    0.3940701299072242,
+    -0.07027991697493713,
+    0.401073787872457,
+    0.5564135926235575
+  ],
+  "storage_component_relative_distances": [
+    1.3381178748544125,
+    0.7510179982746428,
+    1.1008885260724723,
+    1.4677500155262009,
+    1.0962895111638564,
+    0.9404798231110514
+  ],
+  "test_access_count": 0,
+  "treatment_thresholds": {
+    "activity_ratio_at_least": 1e-06,
+    "cosine_at_most": 0.99,
+    "relative_distance_at_least": 0.1
+  }
+}

@@ -1,0 +1,1174 @@
+{
+  "arms": {
+    "P1_FIELD_DPO": {
+      "42": {
+        "calibrated_label_2_prediction_counts": {
+          "1": 1,
+          "3": 4,
+          "4": 9
+        },
+        "calibration": {
+          "inner_folds": 4,
+          "inner_mean_nll": {
+            "0": {
+              "0.0001": 0.7195760705307995,
+              "0.001": 0.7187017552663856,
+              "0.01": 0.7171992907974335,
+              "0.1": 0.7156823844791567,
+              "1.0": 0.713174883288493,
+              "10.0": 0.7124171589074779
+            },
+            "1": {
+              "0.0001": 0.7272372167455992,
+              "0.001": 0.7255064000808338,
+              "0.01": 0.7243311269609475,
+              "0.1": 0.7231146865388909,
+              "1.0": 0.7244293476145043,
+              "10.0": 0.7267622381037646
+            },
+            "2": {
+              "0.0001": 0.721625517497037,
+              "0.001": 0.7173324589648831,
+              "0.01": 0.7157575427227727,
+              "0.1": 0.7151599255480277,
+              "1.0": 0.7136468880188844,
+              "10.0": 0.7131690978723464
+            },
+            "3": {
+              "0.0001": 0.7658163657536935,
+              "0.001": 0.7573832424283814,
+              "0.01": 0.7518490543432123,
+              "0.1": 0.7468747558331794,
+              "1.0": 0.740968556977218,
+              "10.0": 0.738568405101016
+            },
+            "4": {
+              "0.0001": 0.7515960583073106,
+              "0.001": 0.7470544585756081,
+              "0.01": 0.7455506416171167,
+              "0.1": 0.7429228526695987,
+              "1.0": 0.7375238758236038,
+              "10.0": 0.7359274727354859
+            }
+          },
+          "outer_folds": 5,
+          "selected_regularization": {
+            "0": 10.0,
+            "1": 0.1,
+            "2": 10.0,
+            "3": 10.0,
+            "4": 10.0
+          }
+        },
+        "calibration_recovered_label_2_failures": 0,
+        "cross_fitted_calibrated_nll": 0.729019249740245,
+        "label_2_failures": 14,
+        "label_2_rows": 14,
+        "low_support_label_2_rows": 7,
+        "measurement_ambiguous_label_2_rows": 5,
+        "natural_metrics": {
+          "Exact": 0.7063253012048193,
+          "H2L_count": 3,
+          "H2L_rate_among_high": 0.005154639175257732,
+          "Kendall_tau_b": 0.5850081672046202,
+          "L2H_count": 10,
+          "L2H_rate_among_low": 0.5,
+          "MAE": 0.34789156626506024,
+          "QWK": 0.5757935377701825,
+          "RPS_normalized_by_4": 0.06086891218578604,
+          "Recall": {
+            "1": 0.5,
+            "2": 0.0,
+            "3": 0.1774193548387097,
+            "4": 0.6835443037974683,
+            "5": 0.8492753623188406
+          },
+          "multiclass_Brier": 0.40373579609235055,
+          "multiclass_NLL": 0.7257322037756979,
+          "rows": 664
+        },
+        "pair_coverage_deficient_label_2_rows": 5,
+        "prior_corrected_label_2_prediction_counts": {
+          "1": 4,
+          "2": 3,
+          "3": 4,
+          "4": 3
+        },
+        "prior_recovered_label_2_failures": 3,
+        "provisional_automated_exclusive_fractions": {
+          "calibration_recoverable": {
+            "ci95_high": 0.0,
+            "ci95_low": 0.0,
+            "fraction": 0.0
+          },
+          "decoder_failure": {
+            "ci95_high": 0.0,
+            "ci95_low": 0.0,
+            "fraction": 0.0
+          },
+          "measurement_ambiguous": {
+            "ci95_high": 0.6666666666666666,
+            "ci95_low": 0.125,
+            "fraction": 0.35714285714285715
+          },
+          "preference_coverage_deficient": {
+            "ci95_high": 0.29411764705882354,
+            "ci95_low": 0.0,
+            "fraction": 0.14285714285714285
+          },
+          "prior_recoverable": {
+            "ci95_high": 0.35294117647058826,
+            "ci95_low": 0.0,
+            "fraction": 0.14285714285714285
+          },
+          "residual": {
+            "ci95_high": 0.6153846153846154,
+            "ci95_low": 0.08333333333333333,
+            "fraction": 0.35714285714285715
+          },
+          "support_deficient": {
+            "ci95_high": 0.0,
+            "ci95_low": 0.0,
+            "fraction": 0.0
+          }
+        },
+        "raw_nll": 0.7257322037756979,
+        "sensitivity_failure_fractions": {
+          "calibration_recoverable": {
+            "ci95_high": 0.0,
+            "ci95_low": 0.0,
+            "fraction": 0.0
+          },
+          "decoder_failure": {
+            "ci95_high": 0.0,
+            "ci95_low": 0.0,
+            "fraction": 0.0
+          },
+          "measurement_ambiguous": {
+            "ci95_high": 0.6666666666666666,
+            "ci95_low": 0.125,
+            "fraction": 0.35714285714285715
+          },
+          "preference_coverage_deficient": {
+            "ci95_high": 0.6111111111111112,
+            "ci95_low": 0.08333333333333333,
+            "fraction": 0.35714285714285715
+          },
+          "prior_recoverable": {
+            "ci95_high": 0.4166666666666667,
+            "ci95_low": 0.0,
+            "fraction": 0.21428571428571427
+          },
+          "support_deficient": {
+            "ci95_high": 0.0,
+            "ci95_low": 0.0,
+            "fraction": 0.0
+          }
+        },
+        "support": {
+          "adjusted_log1p_support_coefficient": -1.457837147233289e-15,
+          "adverse_association_gate": false,
+          "bootstrap_inference_identifiable": false,
+          "bootstrap_valid_fraction": 0.2033,
+          "bootstrap_valid_replicates": 2033,
+          "ci95_high": 2.1894395352049808e-15,
+          "ci95_low": -3.2629906163334203e-15,
+          "descriptive_low_minus_high_risk_difference": 0.0,
+          "identifiable": false,
+          "model": "linear_probability_on_log1p_support_adjusted_for_metric_language_and_rater_range",
+          "point_estimate_identifiable": true
+        }
+      },
+      "43": {
+        "calibrated_label_2_prediction_counts": {
+          "1": 1,
+          "3": 4,
+          "4": 9
+        },
+        "calibration": {
+          "inner_folds": 4,
+          "inner_mean_nll": {
+            "0": {
+              "0.0001": 0.722835181985495,
+              "0.001": 0.7202270397493228,
+              "0.01": 0.7164629907596483,
+              "0.1": 0.7130725712272986,
+              "1.0": 0.710264688292886,
+              "10.0": 0.7096761382478587
+            },
+            "1": {
+              "0.0001": 0.7327058626845443,
+              "0.001": 0.7305276099735627,
+              "0.01": 0.7281454146117484,
+              "0.1": 0.7260236910400506,
+              "1.0": 0.7277180794890067,
+              "10.0": 0.73065359086833
+            },
+            "2": {
+              "0.0001": 0.7428730189816617,
+              "0.001": 0.7319741872856053,
+              "0.01": 0.726349329265789,
+              "0.1": 0.7231794847195179,
+              "1.0": 0.7214903598843558,
+              "10.0": 0.7213329885294077
+            },
+            "3": {
+              "0.0001": 0.7740603562258745,
+              "0.001": 0.763185202761257,
+              "0.01": 0.7556966499024494,
+              "0.1": 0.7504370602745303,
+              "1.0": 0.7448930547217756,
+              "10.0": 0.7427960981676768
+            },
+            "4": {
+              "0.0001": 0.7592006667486857,
+              "0.001": 0.7537541612446621,
+              "0.01": 0.748702767163568,
+              "0.1": 0.7438338509914233,
+              "1.0": 0.7382572775688578,
+              "10.0": 0.7367675894493249
+            }
+          },
+          "outer_folds": 5,
+          "selected_regularization": {
+            "0": 10.0,
+            "1": 0.1,
+            "2": 10.0,
+            "3": 10.0,
+            "4": 10.0
+          }
+        },
+        "calibration_recovered_label_2_failures": 0,
+        "cross_fitted_calibrated_nll": 0.7319300582414661,
+        "label_2_failures": 13,
+        "label_2_rows": 14,
+        "low_support_label_2_rows": 7,
+        "measurement_ambiguous_label_2_rows": 5,
+        "natural_metrics": {
+          "Exact": 0.7153614457831325,
+          "H2L_count": 3,
+          "H2L_rate_among_high": 0.005154639175257732,
+          "Kendall_tau_b": 0.6087029292967536,
+          "L2H_count": 7,
+          "L2H_rate_among_low": 0.35,
+          "MAE": 0.32379518072289154,
+          "QWK": 0.655585839407117,
+          "RPS_normalized_by_4": 0.06128789908705254,
+          "Recall": {
+            "1": 0.8333333333333334,
+            "2": 0.07142857142857142,
+            "3": 0.25806451612903225,
+            "4": 0.6877637130801688,
+            "5": 0.8405797101449275
+          },
+          "multiclass_Brier": 0.40658141926520774,
+          "multiclass_NLL": 0.7285021432454732,
+          "rows": 664
+        },
+        "pair_coverage_deficient_label_2_rows": 5,
+        "prior_corrected_label_2_prediction_counts": {
+          "1": 3,
+          "2": 3,
+          "3": 5,
+          "4": 3
+        },
+        "prior_recovered_label_2_failures": 2,
+        "provisional_automated_exclusive_fractions": {
+          "calibration_recoverable": {
+            "ci95_high": 0.0,
+            "ci95_low": 0.0,
+            "fraction": 0.0
+          },
+          "decoder_failure": {
+            "ci95_high": 0.0,
+            "ci95_low": 0.0,
+            "fraction": 0.0
+          },
+          "measurement_ambiguous": {
+            "ci95_high": 0.6923076923076923,
+            "ci95_low": 0.14285714285714285,
+            "fraction": 0.38461538461538464
+          },
+          "preference_coverage_deficient": {
+            "ci95_high": 0.42857142857142855,
+            "ci95_low": 0.0,
+            "fraction": 0.15384615384615385
+          },
+          "prior_recoverable": {
+            "ci95_high": 0.2727272727272727,
+            "ci95_low": 0.0,
+            "fraction": 0.07692307692307693
+          },
+          "residual": {
+            "ci95_high": 0.6666666666666666,
+            "ci95_low": 0.09090909090909091,
+            "fraction": 0.38461538461538464
+          },
+          "support_deficient": {
+            "ci95_high": 0.0,
+            "ci95_low": 0.0,
+            "fraction": 0.0
+          }
+        },
+        "raw_nll": 0.7285021432454732,
+        "sensitivity_failure_fractions": {
+          "calibration_recoverable": {
+            "ci95_high": 0.0,
+            "ci95_low": 0.0,
+            "fraction": 0.0
+          },
+          "decoder_failure": {
+            "ci95_high": 0.21428571428571427,
+            "ci95_low": 0.0,
+            "fraction": 0.07692307692307693
+          },
+          "measurement_ambiguous": {
+            "ci95_high": 0.6923076923076923,
+            "ci95_low": 0.14285714285714285,
+            "fraction": 0.38461538461538464
+          },
+          "preference_coverage_deficient": {
+            "ci95_high": 0.5882352941176471,
+            "ci95_low": 0.0,
+            "fraction": 0.3076923076923077
+          },
+          "prior_recoverable": {
+            "ci95_high": 0.35714285714285715,
+            "ci95_low": 0.0,
+            "fraction": 0.15384615384615385
+          },
+          "support_deficient": {
+            "ci95_high": 0.0,
+            "ci95_low": 0.0,
+            "fraction": 0.0
+          }
+        },
+        "support": {
+          "adjusted_log1p_support_coefficient": -1.1772683708969067,
+          "adverse_association_gate": false,
+          "bootstrap_inference_identifiable": false,
+          "bootstrap_valid_fraction": 0.1968,
+          "bootstrap_valid_replicates": 1968,
+          "ci95_high": 2.8779696997651752e-15,
+          "ci95_low": -1.6021679021734554,
+          "descriptive_low_minus_high_risk_difference": -0.1428571428571429,
+          "identifiable": false,
+          "model": "linear_probability_on_log1p_support_adjusted_for_metric_language_and_rater_range",
+          "point_estimate_identifiable": true
+        }
+      },
+      "44": {
+        "calibrated_label_2_prediction_counts": {
+          "2": 1,
+          "3": 4,
+          "4": 9
+        },
+        "calibration": {
+          "inner_folds": 4,
+          "inner_mean_nll": {
+            "0": {
+              "0.0001": 0.7208815337893606,
+              "0.001": 0.7251614015035475,
+              "0.01": 0.7249255791209934,
+              "0.1": 0.723062112213443,
+              "1.0": 0.7202629989409134,
+              "10.0": 0.7191483951689772
+            },
+            "1": {
+              "0.0001": 0.7473307331751201,
+              "0.001": 0.7386470813389407,
+              "0.01": 0.7369734413526021,
+              "0.1": 0.7347875936070476,
+              "1.0": 0.7336358723198295,
+              "10.0": 0.7341434556583628
+            },
+            "2": {
+              "0.0001": 0.7435944019793483,
+              "0.001": 0.7309288298426759,
+              "0.01": 0.7275014117993894,
+              "0.1": 0.7269485230385775,
+              "1.0": 0.724838805866697,
+              "10.0": 0.7239381055993775
+            },
+            "3": {
+              "0.0001": 0.7751188728663884,
+              "0.001": 0.7644368906555481,
+              "0.01": 0.7600041627015071,
+              "0.1": 0.7567520201776766,
+              "1.0": 0.7497172167152273,
+              "10.0": 0.7464236846437403
+            },
+            "4": {
+              "0.0001": 0.7733107554411222,
+              "0.001": 0.75945047431637,
+              "0.01": 0.7564714676531615,
+              "0.1": 0.75433527747347,
+              "1.0": 0.7480032760655213,
+              "10.0": 0.7454451445145363
+            }
+          },
+          "outer_folds": 5,
+          "selected_regularization": {
+            "0": 10.0,
+            "1": 1.0,
+            "2": 10.0,
+            "3": 10.0,
+            "4": 10.0
+          }
+        },
+        "calibration_recovered_label_2_failures": 0,
+        "cross_fitted_calibrated_nll": 0.7352748175187704,
+        "label_2_failures": 13,
+        "label_2_rows": 14,
+        "low_support_label_2_rows": 7,
+        "measurement_ambiguous_label_2_rows": 5,
+        "natural_metrics": {
+          "Exact": 0.7093373493975904,
+          "H2L_count": 2,
+          "H2L_rate_among_high": 0.003436426116838488,
+          "Kendall_tau_b": 0.5997341984094188,
+          "L2H_count": 10,
+          "L2H_rate_among_low": 0.5,
+          "MAE": 0.33433734939759036,
+          "QWK": 0.6011714656161586,
+          "RPS_normalized_by_4": 0.06284202879013255,
+          "Recall": {
+            "1": 0.3333333333333333,
+            "2": 0.07142857142857142,
+            "3": 0.25806451612903225,
+            "4": 0.7088607594936709,
+            "5": 0.8231884057971014
+          },
+          "multiclass_Brier": 0.4101114164309989,
+          "multiclass_NLL": 0.7344468882192192,
+          "rows": 664
+        },
+        "pair_coverage_deficient_label_2_rows": 5,
+        "prior_corrected_label_2_prediction_counts": {
+          "1": 3,
+          "2": 3,
+          "3": 7,
+          "4": 1
+        },
+        "prior_recovered_label_2_failures": 3,
+        "provisional_automated_exclusive_fractions": {
+          "calibration_recoverable": {
+            "ci95_high": 0.0,
+            "ci95_low": 0.0,
+            "fraction": 0.0
+          },
+          "decoder_failure": {
+            "ci95_high": 0.0,
+            "ci95_low": 0.0,
+            "fraction": 0.0
+          },
+          "measurement_ambiguous": {
+            "ci95_high": 0.6923076923076923,
+            "ci95_low": 0.14285714285714285,
+            "fraction": 0.38461538461538464
+          },
+          "preference_coverage_deficient": {
+            "ci95_high": 0.42857142857142855,
+            "ci95_low": 0.0,
+            "fraction": 0.15384615384615385
+          },
+          "prior_recoverable": {
+            "ci95_high": 0.36363636363636365,
+            "ci95_low": 0.0,
+            "fraction": 0.15384615384615385
+          },
+          "residual": {
+            "ci95_high": 0.5384615384615384,
+            "ci95_low": 0.08333333333333333,
+            "fraction": 0.3076923076923077
+          },
+          "support_deficient": {
+            "ci95_high": 0.0,
+            "ci95_low": 0.0,
+            "fraction": 0.0
+          }
+        },
+        "raw_nll": 0.7344468882192192,
+        "sensitivity_failure_fractions": {
+          "calibration_recoverable": {
+            "ci95_high": 0.0,
+            "ci95_low": 0.0,
+            "fraction": 0.0
+          },
+          "decoder_failure": {
+            "ci95_high": 0.0,
+            "ci95_low": 0.0,
+            "fraction": 0.0
+          },
+          "measurement_ambiguous": {
+            "ci95_high": 0.6923076923076923,
+            "ci95_low": 0.14285714285714285,
+            "fraction": 0.38461538461538464
+          },
+          "preference_coverage_deficient": {
+            "ci95_high": 0.6428571428571429,
+            "ci95_low": 0.09090909090909091,
+            "fraction": 0.38461538461538464
+          },
+          "prior_recoverable": {
+            "ci95_high": 0.42857142857142855,
+            "ci95_low": 0.0,
+            "fraction": 0.23076923076923078
+          },
+          "support_deficient": {
+            "ci95_high": 0.0,
+            "ci95_low": 0.0,
+            "fraction": 0.0
+          }
+        },
+        "support": {
+          "adjusted_log1p_support_coefficient": 1.1772683708969045,
+          "adverse_association_gate": false,
+          "bootstrap_inference_identifiable": false,
+          "bootstrap_valid_fraction": 0.1986,
+          "bootstrap_valid_replicates": 1986,
+          "ci95_high": 1.6021679021734545,
+          "ci95_low": -3.739397246717631e-15,
+          "descriptive_low_minus_high_risk_difference": -0.1428571428571429,
+          "identifiable": false,
+          "model": "linear_probability_on_log1p_support_adjusted_for_metric_language_and_rater_range",
+          "point_estimate_identifiable": true
+        }
+      }
+    },
+    "R3": {
+      "42": {
+        "calibrated_label_2_prediction_counts": {
+          "1": 1,
+          "3": 3,
+          "4": 10
+        },
+        "calibration": {
+          "inner_folds": 4,
+          "inner_mean_nll": {
+            "0": {
+              "0.0001": 0.7226150286367942,
+              "0.001": 0.7218261333828014,
+              "0.01": 0.720610998757293,
+              "0.1": 0.7186841389310731,
+              "1.0": 0.7165307548371223,
+              "10.0": 0.7161707832770808
+            },
+            "1": {
+              "0.0001": 0.7299860768293077,
+              "0.001": 0.7292894636476484,
+              "0.01": 0.7294778052572524,
+              "0.1": 0.7285649702278423,
+              "1.0": 0.7310514636200394,
+              "10.0": 0.7341911129701599
+            },
+            "2": {
+              "0.0001": 0.7227866235126424,
+              "0.001": 0.7194509227719224,
+              "0.01": 0.7189602505628154,
+              "0.1": 0.718654497741347,
+              "1.0": 0.7179753338154082,
+              "10.0": 0.7180770008834297
+            },
+            "3": {
+              "0.0001": 0.7684944962579144,
+              "0.001": 0.7601676543909277,
+              "0.01": 0.7558360518588632,
+              "0.1": 0.7516834013232196,
+              "1.0": 0.7473653386495975,
+              "10.0": 0.7459044088288129
+            },
+            "4": {
+              "0.0001": 0.7517880247744219,
+              "0.001": 0.7481958523504263,
+              "0.01": 0.7483835805804215,
+              "0.1": 0.7466873915553061,
+              "1.0": 0.7431348510060292,
+              "10.0": 0.7424262353177218
+            }
+          },
+          "outer_folds": 5,
+          "selected_regularization": {
+            "0": 10.0,
+            "1": 0.1,
+            "2": 1.0,
+            "3": 10.0,
+            "4": 10.0
+          }
+        },
+        "calibration_recovered_label_2_failures": 0,
+        "cross_fitted_calibrated_nll": 0.7336753597786562,
+        "label_2_failures": 14,
+        "label_2_rows": 14,
+        "low_support_label_2_rows": 7,
+        "measurement_ambiguous_label_2_rows": 5,
+        "natural_metrics": {
+          "Exact": 0.7063253012048193,
+          "H2L_count": 2,
+          "H2L_rate_among_high": 0.003436426116838488,
+          "Kendall_tau_b": 0.5908901182995683,
+          "L2H_count": 10,
+          "L2H_rate_among_low": 0.5,
+          "MAE": 0.34186746987951805,
+          "QWK": 0.5905245620561927,
+          "RPS_normalized_by_4": 0.06158457136932919,
+          "Recall": {
+            "1": 0.5,
+            "2": 0.0,
+            "3": 0.1774193548387097,
+            "4": 0.6708860759493671,
+            "5": 0.8579710144927536
+          },
+          "multiclass_Brier": 0.4072595593863566,
+          "multiclass_NLL": 0.7315680139659988,
+          "rows": 664
+        },
+        "pair_coverage_deficient_label_2_rows": 5,
+        "prior_corrected_label_2_prediction_counts": {
+          "1": 4,
+          "2": 2,
+          "3": 4,
+          "4": 4
+        },
+        "prior_recovered_label_2_failures": 2,
+        "provisional_automated_exclusive_fractions": {
+          "calibration_recoverable": {
+            "ci95_high": 0.0,
+            "ci95_low": 0.0,
+            "fraction": 0.0
+          },
+          "decoder_failure": {
+            "ci95_high": 0.0,
+            "ci95_low": 0.0,
+            "fraction": 0.0
+          },
+          "measurement_ambiguous": {
+            "ci95_high": 0.6666666666666666,
+            "ci95_low": 0.125,
+            "fraction": 0.35714285714285715
+          },
+          "preference_coverage_deficient": {
+            "ci95_high": 0.47058823529411764,
+            "ci95_low": 0.0,
+            "fraction": 0.21428571428571427
+          },
+          "prior_recoverable": {
+            "ci95_high": 0.25,
+            "ci95_low": 0.0,
+            "fraction": 0.07142857142857142
+          },
+          "residual": {
+            "ci95_high": 0.6153846153846154,
+            "ci95_low": 0.08333333333333333,
+            "fraction": 0.35714285714285715
+          },
+          "support_deficient": {
+            "ci95_high": 0.0,
+            "ci95_low": 0.0,
+            "fraction": 0.0
+          }
+        },
+        "raw_nll": 0.7315680139659988,
+        "sensitivity_failure_fractions": {
+          "calibration_recoverable": {
+            "ci95_high": 0.0,
+            "ci95_low": 0.0,
+            "fraction": 0.0
+          },
+          "decoder_failure": {
+            "ci95_high": 0.0,
+            "ci95_low": 0.0,
+            "fraction": 0.0
+          },
+          "measurement_ambiguous": {
+            "ci95_high": 0.6666666666666666,
+            "ci95_low": 0.125,
+            "fraction": 0.35714285714285715
+          },
+          "preference_coverage_deficient": {
+            "ci95_high": 0.6111111111111112,
+            "ci95_low": 0.08333333333333333,
+            "fraction": 0.35714285714285715
+          },
+          "prior_recoverable": {
+            "ci95_high": 0.3333333333333333,
+            "ci95_low": 0.0,
+            "fraction": 0.14285714285714285
+          },
+          "support_deficient": {
+            "ci95_high": 0.0,
+            "ci95_low": 0.0,
+            "fraction": 0.0
+          }
+        },
+        "support": {
+          "adjusted_log1p_support_coefficient": -1.457837147233289e-15,
+          "adverse_association_gate": false,
+          "bootstrap_inference_identifiable": false,
+          "bootstrap_valid_fraction": 0.2033,
+          "bootstrap_valid_replicates": 2033,
+          "ci95_high": 2.1894395352049808e-15,
+          "ci95_low": -3.2629906163334203e-15,
+          "descriptive_low_minus_high_risk_difference": 0.0,
+          "identifiable": false,
+          "model": "linear_probability_on_log1p_support_adjusted_for_metric_language_and_rater_range",
+          "point_estimate_identifiable": true
+        }
+      },
+      "43": {
+        "calibrated_label_2_prediction_counts": {
+          "1": 1,
+          "3": 4,
+          "4": 9
+        },
+        "calibration": {
+          "inner_folds": 4,
+          "inner_mean_nll": {
+            "0": {
+              "0.0001": 0.7260650932839486,
+              "0.001": 0.7238334800457139,
+              "0.01": 0.7203510661927285,
+              "0.1": 0.7169324488041986,
+              "1.0": 0.7140662354419546,
+              "10.0": 0.7133482312370487
+            },
+            "1": {
+              "0.0001": 0.7365868538481891,
+              "0.001": 0.7345697281890334,
+              "0.01": 0.7335061972376056,
+              "0.1": 0.7319321283087687,
+              "1.0": 0.7333430613721741,
+              "10.0": 0.7354952559611251
+            },
+            "2": {
+              "0.0001": 0.7427003079668387,
+              "0.001": 0.7339590996580585,
+              "0.01": 0.7304776011607571,
+              "0.1": 0.7287355644011339,
+              "1.0": 0.7279182866366256,
+              "10.0": 0.728044864633461
+            },
+            "3": {
+              "0.0001": 0.7714559996893087,
+              "0.001": 0.7617363171026997,
+              "0.01": 0.755917088076776,
+              "0.1": 0.7515004403529868,
+              "1.0": 0.7466300071154673,
+              "10.0": 0.7448583743777155
+            },
+            "4": {
+              "0.0001": 0.7594008611624329,
+              "0.001": 0.7544232510082407,
+              "0.01": 0.7515064167982504,
+              "0.1": 0.7482380870215541,
+              "1.0": 0.7438104197787694,
+              "10.0": 0.7425502812363969
+            }
+          },
+          "outer_folds": 5,
+          "selected_regularization": {
+            "0": 10.0,
+            "1": 0.1,
+            "2": 1.0,
+            "3": 10.0,
+            "4": 10.0
+          }
+        },
+        "calibration_recovered_label_2_failures": 0,
+        "cross_fitted_calibrated_nll": 0.7346533893585249,
+        "label_2_failures": 14,
+        "label_2_rows": 14,
+        "low_support_label_2_rows": 7,
+        "measurement_ambiguous_label_2_rows": 5,
+        "natural_metrics": {
+          "Exact": 0.7063253012048193,
+          "H2L_count": 1,
+          "H2L_rate_among_high": 0.001718213058419244,
+          "Kendall_tau_b": 0.5975590212076702,
+          "L2H_count": 9,
+          "L2H_rate_among_low": 0.45,
+          "MAE": 0.3328313253012048,
+          "QWK": 0.6240408794893288,
+          "RPS_normalized_by_4": 0.06193437619768147,
+          "Recall": {
+            "1": 0.6666666666666666,
+            "2": 0.0,
+            "3": 0.1935483870967742,
+            "4": 0.6877637130801688,
+            "5": 0.8405797101449275
+          },
+          "multiclass_Brier": 0.4088557433604523,
+          "multiclass_NLL": 0.7329412478911518,
+          "rows": 664
+        },
+        "pair_coverage_deficient_label_2_rows": 5,
+        "prior_corrected_label_2_prediction_counts": {
+          "1": 2,
+          "2": 4,
+          "3": 4,
+          "4": 4
+        },
+        "prior_recovered_label_2_failures": 4,
+        "provisional_automated_exclusive_fractions": {
+          "calibration_recoverable": {
+            "ci95_high": 0.0,
+            "ci95_low": 0.0,
+            "fraction": 0.0
+          },
+          "decoder_failure": {
+            "ci95_high": 0.0,
+            "ci95_low": 0.0,
+            "fraction": 0.0
+          },
+          "measurement_ambiguous": {
+            "ci95_high": 0.6666666666666666,
+            "ci95_low": 0.125,
+            "fraction": 0.35714285714285715
+          },
+          "preference_coverage_deficient": {
+            "ci95_high": 0.42857142857142855,
+            "ci95_low": 0.0,
+            "fraction": 0.14285714285714285
+          },
+          "prior_recoverable": {
+            "ci95_high": 0.5,
+            "ci95_low": 0.0,
+            "fraction": 0.21428571428571427
+          },
+          "residual": {
+            "ci95_high": 0.5714285714285714,
+            "ci95_low": 0.0,
+            "fraction": 0.2857142857142857
+          },
+          "support_deficient": {
+            "ci95_high": 0.0,
+            "ci95_low": 0.0,
+            "fraction": 0.0
+          }
+        },
+        "raw_nll": 0.7329412478911518,
+        "sensitivity_failure_fractions": {
+          "calibration_recoverable": {
+            "ci95_high": 0.0,
+            "ci95_low": 0.0,
+            "fraction": 0.0
+          },
+          "decoder_failure": {
+            "ci95_high": 0.0,
+            "ci95_low": 0.0,
+            "fraction": 0.0
+          },
+          "measurement_ambiguous": {
+            "ci95_high": 0.6666666666666666,
+            "ci95_low": 0.125,
+            "fraction": 0.35714285714285715
+          },
+          "preference_coverage_deficient": {
+            "ci95_high": 0.6153846153846154,
+            "ci95_low": 0.08333333333333333,
+            "fraction": 0.35714285714285715
+          },
+          "prior_recoverable": {
+            "ci95_high": 0.5714285714285714,
+            "ci95_low": 0.0,
+            "fraction": 0.2857142857142857
+          },
+          "support_deficient": {
+            "ci95_high": 0.0,
+            "ci95_low": 0.0,
+            "fraction": 0.0
+          }
+        },
+        "support": {
+          "adjusted_log1p_support_coefficient": -1.457837147233289e-15,
+          "adverse_association_gate": false,
+          "bootstrap_inference_identifiable": false,
+          "bootstrap_valid_fraction": 0.1968,
+          "bootstrap_valid_replicates": 1968,
+          "ci95_high": 2.7987301926980936e-15,
+          "ci95_low": -2.8168263622427362e-15,
+          "descriptive_low_minus_high_risk_difference": 0.0,
+          "identifiable": false,
+          "model": "linear_probability_on_log1p_support_adjusted_for_metric_language_and_rater_range",
+          "point_estimate_identifiable": true
+        }
+      },
+      "44": {
+        "calibrated_label_2_prediction_counts": {
+          "3": 4,
+          "4": 9,
+          "5": 1
+        },
+        "calibration": {
+          "inner_folds": 4,
+          "inner_mean_nll": {
+            "0": {
+              "0.0001": 0.7251749305345937,
+              "0.001": 0.7295056832777057,
+              "0.01": 0.729223842328713,
+              "0.1": 0.7269045116317776,
+              "1.0": 0.7242190126411556,
+              "10.0": 0.7234468512990831
+            },
+            "1": {
+              "0.0001": 0.7469053976333373,
+              "0.001": 0.7398207573857926,
+              "0.01": 0.7393773796132551,
+              "0.1": 0.7376159968670888,
+              "1.0": 0.7372450465365958,
+              "10.0": 0.7383677693742826
+            },
+            "2": {
+              "0.0001": 0.7447287571646589,
+              "0.001": 0.7336811358304678,
+              "0.01": 0.7309751717401752,
+              "0.1": 0.7301803850687156,
+              "1.0": 0.7287301960672344,
+              "10.0": 0.7284768462156948
+            },
+            "3": {
+              "0.0001": 0.7750819906907173,
+              "0.001": 0.7662457265957403,
+              "0.01": 0.7634358364129679,
+              "0.1": 0.7612819119937735,
+              "1.0": 0.756227812000291,
+              "10.0": 0.7542952496542791
+            },
+            "4": {
+              "0.0001": 0.7735051666149438,
+              "0.001": 0.7615216748765816,
+              "0.01": 0.7599784619282092,
+              "0.1": 0.7584329204881041,
+              "1.0": 0.7541290345681768,
+              "10.0": 0.7526758628688268
+            }
+          },
+          "outer_folds": 5,
+          "selected_regularization": {
+            "0": 10.0,
+            "1": 1.0,
+            "2": 10.0,
+            "3": 10.0,
+            "4": 10.0
+          }
+        },
+        "calibration_recovered_label_2_failures": 0,
+        "cross_fitted_calibrated_nll": 0.7400818359316632,
+        "label_2_failures": 13,
+        "label_2_rows": 14,
+        "low_support_label_2_rows": 7,
+        "measurement_ambiguous_label_2_rows": 5,
+        "natural_metrics": {
+          "Exact": 0.6987951807228916,
+          "H2L_count": 1,
+          "H2L_rate_among_high": 0.001718213058419244,
+          "Kendall_tau_b": 0.5847398315958457,
+          "L2H_count": 12,
+          "L2H_rate_among_low": 0.6,
+          "MAE": 0.34789156626506024,
+          "QWK": 0.5637488475490492,
+          "RPS_normalized_by_4": 0.06319033456668012,
+          "Recall": {
+            "1": 0.16666666666666666,
+            "2": 0.07142857142857142,
+            "3": 0.1774193548387097,
+            "4": 0.6962025316455697,
+            "5": 0.8289855072463768
+          },
+          "multiclass_Brier": 0.4117565324680843,
+          "multiclass_NLL": 0.7396122803315284,
+          "rows": 664
+        },
+        "pair_coverage_deficient_label_2_rows": 5,
+        "prior_corrected_label_2_prediction_counts": {
+          "1": 3,
+          "2": 3,
+          "3": 6,
+          "4": 2
+        },
+        "prior_recovered_label_2_failures": 3,
+        "provisional_automated_exclusive_fractions": {
+          "calibration_recoverable": {
+            "ci95_high": 0.0,
+            "ci95_low": 0.0,
+            "fraction": 0.0
+          },
+          "decoder_failure": {
+            "ci95_high": 0.0,
+            "ci95_low": 0.0,
+            "fraction": 0.0
+          },
+          "measurement_ambiguous": {
+            "ci95_high": 0.6923076923076923,
+            "ci95_low": 0.14285714285714285,
+            "fraction": 0.38461538461538464
+          },
+          "preference_coverage_deficient": {
+            "ci95_high": 0.42857142857142855,
+            "ci95_low": 0.0,
+            "fraction": 0.15384615384615385
+          },
+          "prior_recoverable": {
+            "ci95_high": 0.36363636363636365,
+            "ci95_low": 0.0,
+            "fraction": 0.15384615384615385
+          },
+          "residual": {
+            "ci95_high": 0.5384615384615384,
+            "ci95_low": 0.08333333333333333,
+            "fraction": 0.3076923076923077
+          },
+          "support_deficient": {
+            "ci95_high": 0.0,
+            "ci95_low": 0.0,
+            "fraction": 0.0
+          }
+        },
+        "raw_nll": 0.7396122803315284,
+        "sensitivity_failure_fractions": {
+          "calibration_recoverable": {
+            "ci95_high": 0.0,
+            "ci95_low": 0.0,
+            "fraction": 0.0
+          },
+          "decoder_failure": {
+            "ci95_high": 0.0,
+            "ci95_low": 0.0,
+            "fraction": 0.0
+          },
+          "measurement_ambiguous": {
+            "ci95_high": 0.6923076923076923,
+            "ci95_low": 0.14285714285714285,
+            "fraction": 0.38461538461538464
+          },
+          "preference_coverage_deficient": {
+            "ci95_high": 0.6428571428571429,
+            "ci95_low": 0.09090909090909091,
+            "fraction": 0.38461538461538464
+          },
+          "prior_recoverable": {
+            "ci95_high": 0.42857142857142855,
+            "ci95_low": 0.0,
+            "fraction": 0.23076923076923078
+          },
+          "support_deficient": {
+            "ci95_high": 0.0,
+            "ci95_low": 0.0,
+            "fraction": 0.0
+          }
+        },
+        "support": {
+          "adjusted_log1p_support_coefficient": 1.1772683708969045,
+          "adverse_association_gate": false,
+          "bootstrap_inference_identifiable": false,
+          "bootstrap_valid_fraction": 0.1986,
+          "bootstrap_valid_replicates": 1986,
+          "ci95_high": 1.6021679021734545,
+          "ci95_low": -3.739397246717631e-15,
+          "descriptive_low_minus_high_risk_difference": -0.1428571428571429,
+          "identifiable": false,
+          "model": "linear_probability_on_log1p_support_adjusted_for_metric_language_and_rater_range",
+          "point_estimate_identifiable": true
+        }
+      }
+    }
+  },
+  "automated_hierarchy_excludes_pending_rubric_category": true,
+  "bootstrap_cluster": "question_key",
+  "bootstrap_replicates": 10000,
+  "comparator_arm": "R3",
+  "dev_sha256": "a18d6a27b9a524d4592a359658ae70c9348fe88e43c962971ba95f62d2b6cdf0",
+  "final_exclusive_attribution_allowed": false,
+  "global_direct_2_over_3_pair_count": 22,
+  "human_rubric_audit_pending": true,
+  "label_2_stratum_coverage": {
+    "BFA|en": {
+      "direct_2_over_3_pairs": 1,
+      "train_label_2_support": 2
+    },
+    "BFA|zh": {
+      "direct_2_over_3_pairs": 0,
+      "train_label_2_support": 3
+    },
+    "CSI|en": {
+      "direct_2_over_3_pairs": 0,
+      "train_label_2_support": 3
+    },
+    "EICP|zh": {
+      "direct_2_over_3_pairs": 1,
+      "train_label_2_support": 1
+    },
+    "HOTSD|en": {
+      "direct_2_over_3_pairs": 6,
+      "train_label_2_support": 6
+    },
+    "IFTC|en": {
+      "direct_2_over_3_pairs": 1,
+      "train_label_2_support": 7
+    },
+    "IFTC|zh": {
+      "direct_2_over_3_pairs": 2,
+      "train_label_2_support": 3
+    },
+    "MGPF|en": {
+      "direct_2_over_3_pairs": 4,
+      "train_label_2_support": 6
+    },
+    "MGPF|zh": {
+      "direct_2_over_3_pairs": 3,
+      "train_label_2_support": 4
+    },
+    "RPR|en": {
+      "direct_2_over_3_pairs": 0,
+      "train_label_2_support": 1
+    },
+    "SEI|en": {
+      "direct_2_over_3_pairs": 0,
+      "train_label_2_support": 5
+    }
+  },
+  "metric_definitions": {
+    "H2L_rate_among_high": "count(label>=4 and prediction<=2) / count(label>=4)",
+    "L2H_rate_among_low": "count(label<=2 and prediction>=4) / count(label<=2)",
+    "RPS_normalized_by_4": "mean over rows of the four cumulative-probability squared errors divided by four"
+  },
+  "new_method_development_allowed": false,
+  "p1_provisional_dominance_gate": {
+    "calibration_recoverable": {
+      "passes_two_seed_gate": false,
+      "seeds_passing_fraction_and_ci_gate": 0
+    },
+    "decoder_failure": {
+      "passes_two_seed_gate": false,
+      "seeds_passing_fraction_and_ci_gate": 0
+    },
+    "measurement_ambiguous": {
+      "passes_two_seed_gate": false,
+      "seeds_passing_fraction_and_ci_gate": 0
+    },
+    "preference_coverage_deficient": {
+      "passes_two_seed_gate": false,
+      "seeds_passing_fraction_and_ci_gate": 0
+    },
+    "prior_recoverable": {
+      "passes_two_seed_gate": false,
+      "seeds_passing_fraction_and_ci_gate": 0
+    },
+    "residual": {
+      "passes_two_seed_gate": false,
+      "seeds_passing_fraction_and_ci_gate": 0
+    },
+    "support_deficient": {
+      "passes_two_seed_gate": false,
+      "seeds_passing_fraction_and_ci_gate": 0
+    }
+  },
+  "pair_source_sha256": "aeb079c56be8a8afbfdbec386e72faad748fef848014761bf602fbc40c97a1bb",
+  "primary_arm": "P1_FIELD_DPO",
+  "private_row_level_flags_published": false,
+  "schema_version": "exp54-label2-automated-mechanism-report-v1",
+  "status": "AUTOMATED_MECHANISM_AUDIT_COMPLETE_HUMAN_RUBRIC_PENDING",
+  "test_accessed": false,
+  "train_sha256": "0a1733b9209984c5c4291d205d1ac6057bed341717903b9de075d07de44a878e",
+  "training_started": false
+}

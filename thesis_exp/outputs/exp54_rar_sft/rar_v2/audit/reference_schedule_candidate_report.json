@@ -1,0 +1,138 @@
+{
+  "cross_seed": {
+    "checks": {
+      "cross_seed_base_metadata_identical": true,
+      "event_ids_disjoint_across_seeds": true,
+      "formal_seed_set_exact": true,
+      "row_event_vector_matches_train_order": true
+    },
+    "cross_seed_metadata_vector_sha256": "12a6ca56d7d8319fcb0080f88d2a78fc966cacd9701f8c28b3d3093aae89b472",
+    "ordered_three_epoch_row_vector_sha256": "f10b178bf34f594ad8d2d782247f784246f477c78395fc746aa53c916604eefa"
+  },
+  "dev_accessed": false,
+  "epochs": 3,
+  "event_matching_allowed": true,
+  "expected_row_events_per_seed": 7962,
+  "expected_rows_per_epoch": 2654,
+  "experiment": "Exp54 RAR-SFT event-level control",
+  "formal_seeds": [
+    42,
+    43,
+    44
+  ],
+  "formal_training_allowed": false,
+  "human_rationale_text_public": false,
+  "manifest_freeze_allowed": false,
+  "private_schedule_file_hashes": {
+    "base_event_schedule_seed42": "41acc76d7fb6699801559a19cc78aa8b3a2b5b5fd3d3e2fa97ec2876a4ce71c3",
+    "base_event_schedule_seed43": "fa17f0db3dd01a54e0a4b572aeb168a9187968d71f0ab43f8ba84ed5591d6847",
+    "base_event_schedule_seed44": "7c05c1f562d21cca11ff75f82bdba7caf7c1e17651d3436e08842ac41e4702f2"
+  },
+  "reference_lock_sha256": "fed541fb3cb82851db010d13e5dafa057ffbe196f4ecff357f5d9f4408e6d6f4",
+  "reference_source_sha256": "718d760869b9c573b952a90faf5b5e6b346a034f31b454b5e15bd28ed1856500",
+  "row_level_artifacts_public": false,
+  "schedule_probe": {
+    "indices_for_three_epochs_and_three_references": [
+      0,
+      1,
+      2
+    ],
+    "offset_integer": 746608230635606418,
+    "payload_utf8_hex": "34327c73616d706c652d61",
+    "record_id": "sample-a",
+    "seed": 42,
+    "sha256": "0a5c7c3ae56b1192d0a28fb6f505ef3f4ea7fd7270e3adf1c95b912dfb548db5",
+    "sha256_prefix_16": "0a5c7c3ae56b1192"
+  },
+  "schedule_schema_version": "exp54-reference-event-v1",
+  "seed_summaries": [
+    {
+      "checks": {
+        "all_inventory_references_selected": true,
+        "event_count_exact": true,
+        "event_ids_unique": true,
+        "row_order_identical_each_epoch": true,
+        "selection_matches_shared_schedule": true,
+        "three_epoch_rotation_exact": true
+      },
+      "epochs": 3,
+      "event_id_vector_sha256": "a6b977552161e05a1c2bdf8c4385a7b835674ffcb9238ca7bc88bf4166297824",
+      "ordered_row_id_vector_sha256": "a6db06f185344757ffe9874fe182c98840923b6c7e8ce6c97f03f7c7a1f7a2ce",
+      "private_schedule_path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/data/base_event_schedule_seed42.jsonl",
+      "private_schedule_sha256": "41acc76d7fb6699801559a19cc78aa8b3a2b5b5fd3d3e2fa97ec2876a4ce71c3",
+      "rationale_available_events": 4836,
+      "repeated_reference_occurrences": 902,
+      "row_events": 7962,
+      "row_id_set_sha256": "d2925cb475bc5344aa123ac78bbf344d6f962287cc2a1577c69a026a5e80c6b8",
+      "score_only_events": 3126,
+      "seed": 42,
+      "selected_reason_hash_vector_sha256": "55a0225edfd92677757d0ad097c021448e45b3b758ad475e6b44ec521810f828",
+      "selected_reference_vector_sha256": "99f0f475c322d1f45b979a91ee5ce908baca98cea191edf4d387e97489552a13",
+      "unique_event_ids": 7962,
+      "unique_row_ids": 2654,
+      "unique_selected_reference_ids": 3934
+    },
+    {
+      "checks": {
+        "all_inventory_references_selected": true,
+        "event_count_exact": true,
+        "event_ids_unique": true,
+        "row_order_identical_each_epoch": true,
+        "selection_matches_shared_schedule": true,
+        "three_epoch_rotation_exact": true
+      },
+      "epochs": 3,
+      "event_id_vector_sha256": "4336922462377552b44b7540b54ac34fbccfd7fbb40a9b7a0d3b1c2ed80079b4",
+      "ordered_row_id_vector_sha256": "a6db06f185344757ffe9874fe182c98840923b6c7e8ce6c97f03f7c7a1f7a2ce",
+      "private_schedule_path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/data/base_event_schedule_seed43.jsonl",
+      "private_schedule_sha256": "fa17f0db3dd01a54e0a4b572aeb168a9187968d71f0ab43f8ba84ed5591d6847",
+      "rationale_available_events": 4836,
+      "repeated_reference_occurrences": 902,
+      "row_events": 7962,
+      "row_id_set_sha256": "d2925cb475bc5344aa123ac78bbf344d6f962287cc2a1577c69a026a5e80c6b8",
+      "score_only_events": 3126,
+      "seed": 43,
+      "selected_reason_hash_vector_sha256": "621f69f43c40843bb1618b8f4bdbe8721f065bbb69edd3451dba1f1486131da2",
+      "selected_reference_vector_sha256": "053524ab1fa7865ad32dfe456b5075d9b41034c6b7fa36b1779b622c4a5bf1d4",
+      "unique_event_ids": 7962,
+      "unique_row_ids": 2654,
+      "unique_selected_reference_ids": 3934
+    },
+    {
+      "checks": {
+        "all_inventory_references_selected": true,
+        "event_count_exact": true,
+        "event_ids_unique": true,
+        "row_order_identical_each_epoch": true,
+        "selection_matches_shared_schedule": true,
+        "three_epoch_rotation_exact": true
+      },
+      "epochs": 3,
+      "event_id_vector_sha256": "d9668def0848c344d328434026ff17edc62c8d01ed5db852c46dd180ac92e0dc",
+      "ordered_row_id_vector_sha256": "a6db06f185344757ffe9874fe182c98840923b6c7e8ce6c97f03f7c7a1f7a2ce",
+      "private_schedule_path": "thesis_exp/outputs/exp54_rar_sft/rar_v2/data/base_event_schedule_seed44.jsonl",
+      "private_schedule_sha256": "7c05c1f562d21cca11ff75f82bdba7caf7c1e17651d3436e08842ac41e4702f2",
+      "rationale_available_events": 4836,
+      "repeated_reference_occurrences": 902,
+      "row_events": 7962,
+      "row_id_set_sha256": "d2925cb475bc5344aa123ac78bbf344d6f962287cc2a1577c69a026a5e80c6b8",
+      "score_only_events": 3126,
+      "seed": 44,
+      "selected_reason_hash_vector_sha256": "0456001cf119eb282d3986f5991c250c75ce868df0fac495d9946415689790fa",
+      "selected_reference_vector_sha256": "3fdc43fc152e7788621857d4c2f6966ebdfd8977a725a3d7367290208ead733d",
+      "unique_event_ids": 7962,
+      "unique_row_ids": 2654,
+      "unique_selected_reference_ids": 3934
+    }
+  ],
+  "smoke_training_allowed": false,
+  "source_hashes": {
+    "builder_source_sha256": "6a578934da661906db72c3622ccc9542f77d0859d0f761e04fc4e30b811a18cb",
+    "event_schema_sha256": "1668f3bc7dd2275eb5e25eb7573215e76466b0384d0414f7c637ee8a4d4223e5",
+    "shared_schedule_source_sha256": "22acc599d9e2919138870f21373cc21c61e096ab0365b6f635a4a72741bd421d"
+  },
+  "stage": "shared train-only reference schedule",
+  "status": "CANDIDATE_REFERENCE_SCHEDULE_READY",
+  "test_accessed": false,
+  "training_used": false
+}

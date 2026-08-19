@@ -1,0 +1,33 @@
+{
+  "aux_weight": 1.0,
+  "dev_text_hash": "888db0fef20586e339ee2b2a152a2ccd3ecfd53589ca10912793ebad00e8f679",
+  "fields": [
+    "question",
+    "answer",
+    "metric_canonical"
+  ],
+  "token_lengths": {
+    "dev": {
+      "max": 1269,
+      "max_length": 2048,
+      "n": 664,
+      "p50": 395.0,
+      "p90": 675.0,
+      "p95": 756.7,
+      "p99": 975.7700000000001,
+      "truncation_count": 0
+    },
+    "train": {
+      "max": 1265,
+      "max_length": 2048,
+      "n": 2654,
+      "p50": 388.5,
+      "p90": 691.0,
+      "p95": 758.0,
+      "p99": 875.4699999999998,
+      "truncation_count": 0
+    }
+  },
+  "train_text_hash": "67a03a285ba0bde1458318d0d8ffc86409156c574bebffe6760b1fd200b5d961",
+  "variant": "hmsa_lambda1"
+}

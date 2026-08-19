@@ -1,0 +1,49 @@
+{
+  "dev_accessed": false,
+  "full_gpu_training_allowed": false,
+  "gpu_smoke_allowed": false,
+  "gpu_used": false,
+  "p1_fullseq": {
+    "chosen_completion_mask_vector_sha256": "d58cb0235a8172f113157a99466e117866b51bc242a25497f2c77e7c0ae191bc",
+    "chosen_completion_token_total": 25555,
+    "full_completion_is_contiguous_assistant_suffix": true,
+    "manifest_sha256": "b6d2289c96ef8bad92e219ef9c9e452c2d46b2acd90cb4db702cca8413cacac7",
+    "pair_count": 838,
+    "rejected_completion_mask_vector_sha256": "d58cb0235a8172f113157a99466e117866b51bc242a25497f2c77e7c0ae191bc",
+    "rejected_completion_token_total": 25555,
+    "sequence_vector_unchanged": true,
+    "source_p1_manifest_sha256": "0adf6f258b728754e6ec31ba51d7424f2d65fca3b6bc0b420d7fcefc43d42c59"
+  },
+  "p1_syn_lr5e6": {
+    "old_lr5e7_seed42_checkpoint_reused": false,
+    "pair_count": 838,
+    "reused_frozen_manifest_sha256": "1c65f892f01e558797fcae204d71b3b6e4609ccbe8d34d44b3e60250a679cddc",
+    "run_seeds": [
+      42,
+      43,
+      44
+    ],
+    "same_record_block_chosen_and_field_mask_as_p1": true
+  },
+  "r3_tokenavg": {
+    "reused_frozen_r3_manifest_hashes": {
+      "42": "11a12a796c90a26e14013b2c42e760cf071ed2dae9bd18e8d42610faa5eb943a",
+      "43": "6d62ad25fa8e56c07d9fa97e6126b057cd8d260725b754bf266c1d3917d378f6",
+      "44": "190e09f7e410b0ccb8fe9ca8b4fd88835cd37126784552a50298f73124cd2928"
+    },
+    "run_seeds": [
+      42,
+      43,
+      44
+    ]
+  },
+  "run_count": 9,
+  "runs_by_control": {
+    "P1_FULLSEQ": 3,
+    "P1_SYN_LR5E6": 3,
+    "R3_TOKENAVG": 3
+  },
+  "schema_version": "exp54-mechanism-control-candidate-report-v1",
+  "status": "MECHANISM_CONTROL_MANIFEST_CANDIDATE_CPU_ONLY",
+  "test_accessed": false
+}

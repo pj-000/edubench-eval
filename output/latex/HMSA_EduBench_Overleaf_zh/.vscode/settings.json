@@ -1,0 +1,33 @@
+{
+  "latex-workshop.latex.autoBuild.run": "onSave",
+  "latex-workshop.latex.outDir": "%DIR%/build",
+  "latex-workshop.latex.recipe.default": "first",
+  "latex-workshop.latex.recipes": [
+    {
+      "name": "Tectonic (Codex LaTeX plugin)",
+      "tools": [
+        "tectonic-codex"
+      ]
+    }
+  ],
+  "latex-workshop.latex.tools": [
+    {
+      "name": "tectonic-codex",
+      "command": "/Users/sss/.codex/plugins/cache/openai-bundled/latex/0.2.4/bin/tectonic",
+      "args": [
+        "-X",
+        "compile",
+        "--outdir",
+        "%OUTDIR%",
+        "--outfmt",
+        "pdf",
+        "--synctex",
+        "--keep-logs",
+        "--print",
+        "--untrusted",
+        "%DOC_EXT%"
+      ]
+    }
+  ],
+  "latex-workshop.view.pdf.viewer": "tab"
+}
