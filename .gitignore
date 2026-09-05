@@ -1,5 +1,8 @@
 .DS_Store
 
+# Statistical closure consumes frozen private predictions; publish aggregates only.
+/tmp/statistical_closure_inputs/
+
 # Exp2 checkpoints and model-weight artifacts must never be committed.
 saves/
 thesis_exp/artifacts/

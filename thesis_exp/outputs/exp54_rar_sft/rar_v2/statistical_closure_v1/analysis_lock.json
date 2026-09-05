@@ -1,0 +1,18 @@
+{
+  "analysis_source_sha256": {
+    "thesis_exp/exp54_rar_sft/STATISTICAL_CLOSURE_PROTOCOL.md": "72c4ed3894f256b5aa8e0c4c5b4c743c69df5dcba4bd7ea9d722ac5b5b387153",
+    "thesis_exp/exp54_rar_sft/statistical_closure.py": "89f92501e4ca6535432fb86d5a865d26111d054340c96dcea22d0ba848a0efbb",
+    "thesis_exp/tests/test_exp54_statistical_closure.py": "a388e42cb240da38aa2769b91d64ca76886637c600aa43098b507f20170c12c8"
+  },
+  "new_model_execution_allowed": false,
+  "original_reports_modified": false,
+  "result_sha256": {
+    "arm_uncertainty.csv": "d346591445668343864fae5ecb338d6132753388f8618a22277bdbeec29a4693",
+    "cluster_results.json": "213344a4b67457ccaa385d4ae879328c55a6fab70a42a1f91cb63aa78de72a12",
+    "historical_comparison.csv": "a87d7f45817257f9fb2eb9c59eaa23bd38b21ce50cfc905bf5c60648d6b6d2a1",
+    "paired_contrasts.csv": "2e6f1d5df0721ff09d0643476cdc018bb9653ba3b6cc95ca18d0a4ed73268f33",
+    "per_seed_metrics.csv": "21787b9067c8717e1c3bdc51b8202d9fed9be05f34e1126ecac1990b99e65fc6"
+  },
+  "scientific_scope": "statistical_correction_not_new_experiment",
+  "upstream_revision": "a75f79d300fe9f7634247443950a268c6c836bfc"
+}
